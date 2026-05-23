@@ -1,0 +1,331 @@
+# ZABAL Games Season 1
+
+> A Farcaster vibe-coding challenge for the ZAO ecosystem - streamer games crossed with a hackathon. June workshops, July open build-a-thon, August Finals. Use any AI coding tool to ship a build that helps the ZAO community.
+
+This file is the machine-readable context for ZABAL Games builders. Point your AI harness at `https://zabalgames.com/llms.txt` (Claude Code: save as `CLAUDE.md`; Cursor: `.cursorrules`; Windsurf: `.windsurfrules`; Aider: `CONVENTIONS.md`). Treat sections as menu items - if you are building Empire Builder tooling, focus on that section.
+
+For the full long-form context bundle (every detail, every code path) see [docs/research/630-player-context-bundle.md](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/630-player-context-bundle.md). For the current state of decisions see [docs/research/701-canonical-state.md](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/701-canonical-state.md).
+
+---
+
+## What ZABAL Games is
+
+**Not a generic hackathon.** It is a Farcaster-creator onboarding event for the ZAO ecosystem. Bring talented Farcaster builders together, give them deep context on everything the ZAO is building, let them ship something with a ZAO mentor as embedded teammate, and have them earn governance during the event itself.
+
+**Three months.**
+
+- **June - workshop month.** Builders across the ecosystem record one ~30-min session each on tools they have built. The whole library lands in one Magnetic portal. Watchable live or after.
+- **July - open build-a-thon.** Anyone with the chops ships a build for ZABAL, ZAO, or WaveWarZ. **The build IS the application.** Live URL + open-source repo + 60s demo + cast on `/zabal`. Adopt a started ZAO project from the list below, or build from scratch with this context.
+- **August - the Finals.** The strongest July builds get curated in. Each finalist pairs with a ZAO mentor as embedded teammate for a 24h build + 24h promote + 24h ZAO governance vote + live reveal stream. **Every finalist wins** - the competition is in getting selected, the Finals are a collaboration.
+
+**Two surfaces:**
+- **Magnetic portal** (Tyler Stambaugh's platform) - workshop library, entry/onboarding, polls, UGC submissions.
+- **This Farcaster mini app** (zabalgames.com) - explainer and front door.
+- **Entry:** collect the Zabal connector NFT on Magnetic. The connector is the anchor magnet - other ZAO magnets are side channels off it. Collecting it auto-drops the road-to-ZAOstock entry.
+
+**Prize:** $500 USDC pool, tiered. Every finalist who ships gets paid. Plus a Hats Protocol role NFT for every finisher (July + August).
+
+---
+
+## The ZAO ecosystem (brand-by-brand)
+
+The umbrella you are building for. Understand which brand your build serves.
+
+### The ZAO (umbrella)
+- **What:** Music infrastructure for independent artists using decentralized tools.
+- **Audience:** Independent musician, 100-10k monthly listeners, no label, releasing monthly, crypto-curious not crypto-native, owns/controls masters.
+- **Status:** Live - 188-member gated Farcaster music community. Q1 2026 shipped ZAO OS, launched ZABAL, Crypto Magazine feature.
+
+### ZAO OS
+- **What:** The platform layer - a gated Farcaster client for ZAO members.
+- **Stack:** Next.js 16 + Tailwind v4 + Supabase + Neynar + RainbowKit + viem + Base.
+- **Surfaces:** `/feed`, `/spaces`, `/respect`, `/ecosystem`, `/governance`, `/settings`.
+- **Reusable modules:** `src/lib/publish/` (10 cross-post platforms), `src/lib/music/`, `src/components/respect/`, `src/components/spaces/`. You don't have write access but can read patterns and replicate SDKs.
+- **Repo:** github.com/bettercallzaal/ZAOOS.
+
+### $ZABAL + Empire Builder
+- **What:** Ecosystem token (Base ERC-20) wrapped in an "Empire" on Empire Builder, with leaderboards + boosters.
+- **Token contract:** `0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07` on Base. Empire address: `0xe0faa499d6711870211505bd9ae2105206af1462`.
+- **Multiplier stack:** `totalPoints = pointsWithoutMultiplier * stakingMultiplier * empireMultiplier`. Staking: 2.1x-3.0x via `1 + sqrt(stakeAmount / 250000 SANG)`. Empire: 4.0x-8.6x via boosters.
+- **API (no auth for reads):** Empire Builder public read endpoints for leaderboards, personal-stats, empires. Docs: empire-builder.gitbook.io/empire-builder-docs.
+- **Tier stack (V3):** Basic Empire (free, tokenless) = 2 leaderboards / 10 boosters / 250 ranked spots. Ascended Empire (token launch unlocks) = 10 leaderboards / 40 boosters / 500 ranked spots.
+- **Launched:** 2026-01-01 via Clanker. Co-creators: yerbearserker (Jordan Oram) + Adrian (~divifly).
+
+### WaveWarZ
+- **What:** Solana-based artist prediction markets. 43 artists battle head-to-head. Wallets bet on outcomes.
+- **Status:** Partner-built (Ikechi Nwachukwu / Hurric4n3Ike), NOT ZAO-built. Live at wavewarz-intelligence.vercel.app.
+- **Voice:** Loud arena brand - competitive, sports-energy, stats-forward. The deliberate opposite of the warm ZAO-umbrella tone.
+- **Cross-chain:** ZAO is Base-native, WaveWarZ is Solana-native (Helius free tier for RPC). Bridging is a recurring theme.
+- **Contact:** X @WaveWarZ.
+
+### ZAO Festivals / ZAOstock
+- **What:** ZAO's IRL festival arm. ZAOstock 2026 is the inaugural festival.
+- **ZAOstock:** Oct 3 2026, Franklin Street Parklet, Ellsworth Maine. 10 artists, full day + livestream + after-party. 14-person team across 4 teams.
+- **Voice:** "Partiful warmth + Luma competence." First-person, community-rooted.
+- **Visual:** Maine/local influence - Ellsworth, Art of Ellsworth, Northeast indie.
+
+### ZAO Music (DBA)
+- **What:** The label arm. Releases tracks via DistroKid + 0xSplits (Base) + BMI without the major-label tax.
+- **First release:** Cipher = #1 (multi-artist cypher). Team: DCoop, GodCloud, Iman.
+- **Voice:** Artist-collective - members making music together, not a label voice.
+
+### COC Concertz
+- **What:** Virtual concert community - 13+ promoters running streamed shows.
+- **Stack:** Next.js 16 + Firebase + Cloudinary.
+- **Surfaces:** `/portal/newsletter`, `/stage`, `/team`. 150+ concerts run.
+- **Mission:** Give virtual concerts a real home - for the metaverse + streamed shows and the promoters who run them.
+- **Voice:** Warm, communal, builder-energy - same family as the ZAO umbrella.
+
+### FISHBOWLZ (paused)
+- **What:** Was audio rooms for music communities. Paused 2026-04-16 - audio-room job is now Juke's.
+- **Implication:** Do NOT build "audio rooms for music." Find a different job.
+
+### BetterCallZaal (BCZ)
+- **What:** Zaal's personal brand + the Farcaster mini app at bettercallzaal.com. FID 19640.
+- **Stack:** Pure static HTML, direct push to main = deploy.
+
+### Respect + Fractals
+- **What:** Soulbound, peer-validated, Fibonacci-ranked reputation. Earned in weekly fractal sessions.
+- **Voice:** Ritual, earned, communal. Reputation-with-weight, not gamified-points.
+- **What it gates:** ZABAL Games voter eligibility, plus most ZAO governance.
+
+---
+
+## Tech stack + rails (the defaults)
+
+```
+Frontend:
+  Next.js 16 (App Router, Turbopack)
+  Tailwind v4
+  Farcaster mini-app SDK (@farcaster/miniapp-sdk via esm.sh CDN)
+  wagmi + viem (EVM client)
+  Coinbase Smart Wallet
+
+Backend:
+  Next.js API routes (serverless on Vercel)
+  Supabase (Postgres + Auth + Storage)
+  Neynar (Farcaster reads + signers)
+
+Onchain:
+  Base (chainId 8453) - primary ZAO chain
+  Solana - only for WaveWarZ reads (Helius free tier)
+  Privy (agent wallets, pre-funded)
+
+Streaming / Live:
+  Twitch (your account)
+  StreamElements (free browser overlays)
+```
+
+### Key APIs
+
+| Service | What for | Auth | Cost |
+|---------|----------|------|------|
+| Empire Builder | Token leaderboards, booster mechanics | X-API-Key (reads free) | Free reads |
+| Neynar | Farcaster reads + signers + search | API key | Free dev tier |
+| Hats Protocol | Onchain roles on Base | Hats SDK | Gas only (~$5 setup) |
+| Bonfire | Reputation graph, social signals | SDK / DM relay | Free |
+| EAS (Base) | Onchain attestations | EAS SDK | Free offchain, gas onchain |
+| Hypersub (Fabric STP) | Subscription NFTs | Hypersub UI/contracts | ~5% protocol fee |
+| 0xSplits | Onchain revenue splits | Splits SDK | Gas only |
+| Coinflow | Fiat to USDC checkout | Merchant key | Coinflow rev share |
+| Zora | Content coins / creator coins | Zora SDK | 50% trade + LP fee to creator |
+| Clanker | AI agent token launcher on Farcaster | Cast tag `@clanker` | 0.2% trade fee in WETH; 100% creator fees |
+| Privy | Embedded + agent wallets | App ID + secret | Free 0-499 MAU |
+
+### Hats contract on Base
+`0x3bc1A0Ad72417f2d411118085256fC53CBdDd137`
+
+### Identity model
+Every ZAO member has a Farcaster account with at least one verified Ethereum address (Base preferred). Verified addr is the default "who" identifier - sybil-resistant. Lookup via Neynar:
+```ts
+import { NeynarAPIClient } from '@neynar/nodejs-sdk';
+const client = new NeynarAPIClient(process.env.NEYNAR_API_KEY);
+const user = await client.lookupUserByVerifiedAddress({ address });
+```
+
+---
+
+## Build paths
+
+### Path 1 - Adopt a started ZAO project
+
+A curated list of started / in-progress ZAO projects builders can pick up and run with. Adopt one and ship it forward. (List below is a candidate list pending final confirmation - check Doc 701 Part 4 for current.)
+
+1. **Songjam leaderboard migration** - move the leaderboard off the deprecated X scraper onto an Empire Builder API leaderboard. Frees Adam from scraper maintenance. Spec: Doc 654.
+2. **POIDH bounty leaderboard on Empire Builder** - pulls on-chain POIDH bounty submissions; counts unique submitters across all ZABAL bounties. One contract added 2026-05-16; second pending. Spec: Doc 654 + Doc 626.
+3. **zlank.online Empire daily-stats Snap template** - one-click cast "Today's Empire Builder Stats." Footy app is the reference. Spec: Doc 654 + Doc 505 + Doc 527.
+4. **Twitch -> Empire Builder stream score feed** - StreamElements WebSocket events feed an apiLeaderboard. Spec: Doc 627 + Doc 628.
+5. **New ZOE skill(s)** - extend the ZOE concierge bot (Telegram `@zaoclaw_bot`). Backend mirrors the Hermes runtime pattern. Spec: Doc 601 + Doc 600.
+6. **The `/zabal` Farcaster mini app itself** - this repo. Extend the workshops calendar, the submissions board, the connector NFT flow.
+7. **COC Concertz content-pipeline automation** - record show -> Descript -> newsletter builder generates YouTube descriptions (MiniMax AI) -> manual cross-post. Automate the cross-post.
+8. **Streaming auto-clip flywheel** - 24h of stream -> 150+ short clips for TikTok/Reels/YouTube/Farcaster. Spec: Doc 629.
+
+### Path 2 - Build from scratch
+
+Build anything that helps the ZAO community. Tie it to existing ZAO rails (Empire Builder, Farcaster, Hats, Bonfire, EAS, Coinflow, Hypersub). Composability is the point - do not reinvent identity, leaderboards, or attestations.
+
+Suggestion sparks (non-binding):
+- A Farcaster mini app for [some specific job-to-be-done in the ZAO ecosystem]
+- A bot that ingests [some signal] and posts to a ZAO surface
+- A leaderboard / dashboard for [some metric]
+- A content-pipeline tool that automates [some manual step]
+- A wallet / agent flow that [does something onchain]
+
+### What "good" looks like (judging rubric)
+ZAO members with Respect vote 1-person-1-vote on which build best serves the ecosystem. Implicit criteria:
+1. **Does it work?** Deployed, demoable, no crashes. Voters click your link.
+2. **Is it ZAO-native?** Plugs into real rails (ZABAL, Empire, Farcaster, Hats, Bonfire, EAS, Coinflow, Hypersub). More rails wired = more votes.
+3. **Would I use this?** ZABAL holders vote for things they would open again next week.
+4. **Did you ship something thoughtful in 24h?** Velocity beats polish.
+
+Voters do NOT care about: how elegant your code is, which AI tool you used, how many features you crammed in, how much you streamed.
+
+---
+
+## Brand guidelines (NON-NEGOTIABLE)
+
+### Naming glossary - ALWAYS use these exact spellings
+
+| Correct | Wrong |
+|---------|-------|
+| WaveWarZ | Wave Wars, Wavewarz |
+| COC Concertz | COC Concerts, CocConcertz |
+| The ZAO | the Zao, Zao |
+| BetterCallZaal | Bettercallzaal, Better Call Zaal |
+| Joseph Goats | Jose Goats, Jose |
+| Huottoja | Waha |
+| SongJam | Songjam |
+| ZABAL | Zabal, zabal |
+| SANG | Sang |
+| ZOE | Zoe |
+| ZOLs | Zols, ZOL |
+| FISHBOWLZ | Fishbowlz |
+| Stilo World | StiloWorld |
+| Thy Revolution | The Revolution |
+| ArDrive | Ardrive |
+| ZAOstock | Zaostock, ZAO Stock |
+| ZAO Music | ZAO music, ZaoMusic |
+| ZAO DEVZ | ZAO Devs, ZAOdevz |
+
+### Writing rules
+- **NEVER use emojis** - not in code, commits, casts, or UI copy.
+- **NEVER use em dashes** - use hyphens instead.
+- **NEVER use decorative Unicode** - no checkmarks, warning triangles, play buttons as text. Use labels like `[MUSIC]`, `OVERDUE`, `DONE`, `IN PROGRESS`.
+- Plain hyphens or numbered lists for bullets.
+
+### Brand colors (ZAO default palette)
+```css
+:root {
+  --bg: #070709;           /* deep almost-black */
+  --surface: #111115;
+  --surface-2: #16161c;
+  --orange: #ff6b35;       /* primary accent */
+  --cyan: #00e5ff;         /* secondary accent */
+  --gold: #f5c842;         /* highlight */
+  --pink: #ff3d6e;         /* alt highlight */
+  --zabal: #a78bfa;        /* ZABAL purple */
+  --poidh-blue: #2a81d5;
+  --text: #e4e2dd;
+  --text-muted: #8a8895;
+  --text-dim: #4e4c57;
+  --border: #1f1e26;
+  --gradient-main: linear-gradient(135deg, #ff6b35, #ff3d6e, #00e5ff);
+  --gradient-zabal: linear-gradient(135deg, #a78bfa, #00e5ff);
+}
+```
+
+### Fonts
+- Headings: **Syne** (700-800)
+- Body: **Outfit** (300-600)
+- Mono / numbers: **JetBrains Mono** (400-500)
+
+### Layout
+- Mobile-first - test at 424px wide (Farcaster mini-app viewport).
+- Dark background by default.
+- `8px` button radius.
+- No popups, no aggressive modals, no autoplay.
+
+### Tone
+- Direct, not corporate.
+- Confident but humble.
+- No marketing fluff ("revolutionary", "game-changing", "transform your X" - avoid).
+- Write like Zaal - read bettercallzaal.com or his recent /zabal casts for tone calibration.
+
+---
+
+## Submission bar (hit ALL four by T+24h)
+
+1. **Live deployed URL** (working, not 404). Vercel free tier is fine.
+2. **Public GitHub repo link** (MIT or similar permissive). Verifiable empty git log at T+0.
+3. **60-second demo video link** (Loom, YouTube, or self-hosted). Show the thing working.
+4. **Cast on `/zabal` channel** announcing your ship. Tag `@bettercallzaal`.
+
+Plus your declared **show-your-work visibility mode** must be active during the build window:
+- Mode 1: live Twitch stream (archive available)
+- Mode 2: recorded screen sessions uploaded within 1h
+- Mode 3: public AI prompt logs every 1-2h
+- Mode 4: frequent build casts every 1-2h
+
+Miss the bar OR fail visibility = no submission.
+
+---
+
+## Voting + judging
+
+- **Voter set:** ZAO members with Respect above a threshold. Snapshot at T+0.
+- **Mechanism:** 1-person-1-vote. NOT token-weighted.
+- **Window:** T+48h to T+72h.
+- **Output:** orders the recognition tiers. All finalists win.
+
+---
+
+## Where to get help
+
+| Need | Where |
+|------|-------|
+| Stuck on your AI tool | Stream chat + your tool's docs |
+| ZAO infra question | `/zabal` Farcaster channel, tag `@bettercallzaal` |
+| Stream tech issue | StreamElements docs + `/zabal` |
+| Wallet / Empire Builder | DM `@bettercallzaal` on Farcaster |
+| Real emergency | Text Zaal (number in your onboarding email) |
+
+---
+
+## Deeper context
+
+This file is the lean version. For depth:
+
+- [docs/research/630-player-context-bundle.md](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/630-player-context-bundle.md) - the full player primer (every detail, every code pattern)
+- [docs/research/701-canonical-state.md](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/701-canonical-state.md) - the current state of decisions; what is locked, what is open
+- [docs/research/630-season-1-spec.md](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/630-season-1-spec.md) - the long-form Season 1 working spec
+- [docs/research/646-clanker-promote.md](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/646-clanker-promote.md) - the optional Clanker token mechanic
+- [docs/research/654-empire-v3-meeting.md](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/654-empire-v3-meeting.md) - the calendar pivot decisions
+- [docs/research/714-tyler-call.md](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/714-tyler-call.md) - Tyler / Magnetic hosting + Zabal connector decisions
+- [docs/research/719-jordan-meeting.md](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/719-jordan-meeting.md) - Empire Builder v3 integration follow-up
+- [docs/brand-context.md](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/brand-context.md) - the brand identity guide per ZAO brand
+
+External:
+- Farcaster: https://farcaster.xyz
+- Farcaster Mini Apps docs: https://miniapps.farcaster.xyz
+- Hats Protocol: https://hatsprotocol.xyz
+- Empire Builder docs: https://empire-builder.gitbook.io/empire-builder-docs
+- WaveWarZ Intelligence: https://wavewarz-intelligence.vercel.app
+- BetterCallZaal: https://bettercallzaal.com
+- ZAO research library (historical, pre-move): https://github.com/bettercallzaal/ZAOOS/tree/main/research
+
+---
+
+## How to use this file with your harness
+
+1. **Claude Code:** save as `CLAUDE.md` at repo root.
+2. **Cursor:** save as `.cursorrules` at repo root, OR as `CLAUDE.md` plus reference in `.cursor/rules/`.
+3. **Windsurf:** save as `.windsurfrules` at repo root.
+4. **Aider:** save as `CONVENTIONS.md` and pass with `--read CONVENTIONS.md`.
+5. **Cline / Continue:** add to `.cline/instructions/` or via continue.dev config.
+6. **Other harnesses:** check your tool's docs for the project-level context file convention.
+
+After loading, tell your tool what you are building. The brand guidelines are non-negotiable - the tool needs to know "no emojis, no em dashes" before it writes a single line.
+
+---
+
+*Updated 2026-05-23. Source of truth is this file. Pull requests welcome at https://github.com/ZAODEVZ/zabalgames.*
