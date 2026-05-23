@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Env + secrets
+.env
+.env.local
+.env*.local
+
+# Vercel
+.vercel
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node (if we add a build step later)
+node_modules/
+
+# Build artifacts (none today, future-proofing)
+dist/
+out/
+.next/

@@ -1,0 +1,19 @@
+{
+  "accountAssociation": {
+    "header": "TODO_HEADER_SIGN_WITH_FID_19640",
+    "payload": "TODO_PAYLOAD",
+    "signature": "TODO_SIGNATURE"
+  },
+  "miniapp": {
+    "version": "1",
+    "name": "ZABAL Games",
+    "iconUrl": "https://zabalgames.com/assets/icon.png",
+    "homeUrl": "https://zabalgames.com",
+    "splashImageUrl": "https://zabalgames.com/assets/icon.png",
+    "splashBackgroundColor": "#070709",
+    "subtitle": "Farcaster vibe-coding challenge",
+    "description": "ZABAL Games Season 1 - a Farcaster vibe-coding challenge for the ZAO ecosystem. June workshops, July open build-a-thon, August Finals. Streamer games crossed with a hackathon.",
+    "primaryCategory": "social",
+    "tags": ["hackathon", "vibe-coding", "zao", "farcaster", "games"]
+  }
+}
