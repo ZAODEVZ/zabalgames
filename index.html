@@ -821,13 +821,47 @@
 
   <section id="ideas">
     <div class="container">
-      <div class="section-eyebrow">The Prompt</div>
-      <h2 class="section-title">Sealed Until T+0</h2>
+      <div class="section-eyebrow">The Context File</div>
+      <h2 class="section-title">One URL. Any Harness.</h2>
       <p class="section-sub">
-        The exact prompt drops to every finalist simultaneously at <strong>T+0</strong> (date locks when the cohort is chosen). Everything before that stays sealed so every player starts on the same footing.
+        The July build prompt is a single machine-readable file at <a href="https://zabalgames.com/llms.txt" style="color: var(--cyan);"><strong>zabalgames.com/llms.txt</strong></a>. Point your AI tool at it and load the full ZAO ecosystem context in one fetch - what every brand is, the tech stack and rails, the two build paths, the brand guidelines (no emojis, no em dashes, naming glossary), the submission bar, and where the deeper docs live.
       </p>
-      <p class="section-sub" style="margin-top: 0.8rem;">
-        What we can tell you now: you get two paths. Adopt a started ZAO project from a curated list and run with it, or build from scratch with just the ecosystem context. Either way it ties to real ZAO rails (Empire Builder, Farcaster mini apps, Hats, Bonfire, EAS, Hypersub, Coinflow) and is achievable in 24h with a vibe-coding harness. You don't need to be a senior engineer.
+
+      <div class="options-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 1.5rem;">
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--cyan);">Load it</div>
+          <h3>Point your harness at the URL</h3>
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-muted); line-height: 1.7; margin-top: 0.6rem;">
+            <strong style="color: var(--text);">Claude Code:</strong> save as <code>CLAUDE.md</code><br>
+            <strong style="color: var(--text);">Cursor:</strong> save as <code>.cursorrules</code><br>
+            <strong style="color: var(--text);">Windsurf:</strong> save as <code>.windsurfrules</code><br>
+            <strong style="color: var(--text);">Aider:</strong> <code>--read CONVENTIONS.md</code><br>
+            <strong style="color: var(--text);">Cline / Continue:</strong> drop in <code>.cline/instructions/</code>
+          </p>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.6rem;">
+            One file. Any tool. Treat sections as menu items - if you are building Empire Builder tooling, focus on that section.
+          </p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--gold);">Claude skill</div>
+          <h3>For Claude Code users</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+            A packaged Claude skill mirror of the context file - install once, available across all your projects. The skill auto-loads when the agent recognises ZABAL Games / ZAO ecosystem work.
+          </p>
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.6rem; background: var(--surface-2); padding: 0.7rem; border-radius: 6px; overflow-x: auto;">
+mkdir -p ~/.claude/skills/zabal-games<br>
+curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
+&nbsp;&nbsp;https://raw.githubusercontent.com/ZAODEVZ/zabalgames/main/.claude/skills/zabal-games/SKILL.md
+          </p>
+        </div>
+      </div>
+
+      <p class="section-sub" style="margin-top: 1.5rem;">
+        <strong>Two build paths.</strong> Adopt a started ZAO project from the list in the context file, or build from scratch. Either way you tie it to real ZAO rails (Empire Builder, Farcaster mini apps, Hats, Bonfire, EAS, Hypersub, Coinflow) and ship within 24h with your AI tool of choice.
+      </p>
+
+      <p class="section-sub" style="margin-top: 0.6rem; font-size: 0.85rem;">
+        The <strong>August Finals</strong> get an additional sealed prompt drop at T+0 - identical for every finalist so the build window starts on equal footing. The July base context (this file) stays public the whole way through.
       </p>
     </div>
   </section>
