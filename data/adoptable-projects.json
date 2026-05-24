@@ -91,6 +91,69 @@
       "spec_label": "Doc 720",
       "color": "pink",
       "status": "open"
+    },
+    {
+      "id": "10",
+      "name": "ZAOVideoEditor (starter repo)",
+      "description": "Multi-track web video editor for music battle clips. Starter repo exists (bettercallzaal/ZAOVideoEditor) with scope sketch only. Builder owns full spec: ingestion + timeline + effects + FFmpeg export + Audius/Zora share. Pair with #08 streaming auto-clip flywheel for end-to-end content pipeline.",
+      "spec_url": "https://github.com/bettercallzaal/ZAOVideoEditor",
+      "spec_label": "Repo",
+      "color": "orange",
+      "status": "open"
+    },
+    {
+      "id": "11",
+      "name": "ZAONEXUS - ecosystem connection graph (starter repo)",
+      "description": "Knowledge graph for The ZAO members + projects + skills. Starter repo (bettercallzaal/ZAONEXUS) is a stub. Builder picks: graph DB (Neo4j or similar) -> scrape ZAOOS for entities -> discovery UI with filters + search + recommend engine. Bonfire kEngram 'zabal-ecosystem' is a near-neighbor; check before building.",
+      "spec_url": "https://github.com/bettercallzaal/ZAONEXUS",
+      "spec_label": "Repo",
+      "color": "cyan",
+      "status": "open"
+    },
+    {
+      "id": "12",
+      "name": "ZAOFlights - group travel coordinator (starter repo)",
+      "description": "Group travel logistics for ZAO members - flight search + booking coordination + cost split + calendar sync. Starter repo (bettercallzaal/ZAOFlights) is a stub. Builder integrates Skyscanner or Kiwi API, builds frontend, ties to Cal.com / Lu.ma for trip events.",
+      "spec_url": "https://github.com/bettercallzaal/ZAOFlights",
+      "spec_label": "Repo",
+      "color": "gold",
+      "status": "open"
+    },
+    {
+      "id": "13",
+      "name": "CoCConcertZ - concert discovery + calendar (starter repo)",
+      "description": "Concert event discovery surfaced for The ZAO music community. Starter repo (bettercallzaal/CoCConcertZ) is a stub. Builder picks Songkick or Bandsintown API, filters by date/genre/venue, exports to ICS, casts to Farcaster. Lighter touch than #10; medium scope.",
+      "spec_url": "https://github.com/bettercallzaal/CoCConcertZ",
+      "spec_label": "Repo",
+      "color": "pink",
+      "status": "open"
+    },
+    {
+      "id": "14",
+      "name": "ZAO 101 - educational onboarding guide (starter repo)",
+      "description": "Beginner guide to The ZAO ecosystem - what it is, how to join, contribution paths, success stories, FAQ. Starter repo (bettercallzaal/zao-101) is a stub. Smallest scope on this list - static site with 5-7 pages, Mermaid diagrams, glossary. Content mostly derivable from ZAOOS research + this prompt. Good first adoption.",
+      "spec_url": "https://github.com/bettercallzaal/zao-101",
+      "spec_label": "Repo",
+      "color": "zabal",
+      "status": "open"
+    },
+    {
+      "id": "15",
+      "name": "Aurdour - web DJ platform with Flow Mode (starter repo)",
+      "description": "Browser-based two-deck DJ app with auto-mix Flow Mode for non-DJs. Starter repo (bettercallzaal/Aurdour) is a concept sketch. Builder owns: Web Audio API mixing, waveform viz, cross-fader, EQ, beat-matching, ML model for Flow Mode track sequencing. Largest scope on this list - real audio engineering. Ships best as a Farcaster Mini App.",
+      "spec_url": "https://github.com/bettercallzaal/Aurdour",
+      "spec_label": "Repo",
+      "color": "orange",
+      "status": "open"
+    },
+    {
+      "id": "16",
+      "name": "ZOUNZ - music mini app (starter repo)",
+      "description": "Farcaster Mini App for music discovery + creation. Starter repo (bettercallzaal/ZOUNZ) has architecture sketch. Builder wires: AI generation (OpenAI / ElevenLabs), Audius search, Zora NFT mint (Base), Attention Markets trade (Solana), multi-screen mini app UX. Most ambitious - 4 protocols stitched. Pair with #03 zlank if you want a no-code Snap variant first.",
+      "spec_url": "https://github.com/bettercallzaal/ZOUNZ",
+      "spec_label": "Repo",
+      "color": "cyan",
+      "status": "open"
     }
   ]
 }
