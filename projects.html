@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adoptable Projects - ZABAL Games Season 1</title>
+  <meta name="description" content="Eight started ZAO projects you can adopt for your July submission. Or build from scratch with the context file - both paths count.">
+  <link rel="canonical" href="https://zabalgames.com/projects">
+  <meta property="og:title" content="Adoptable Projects - ZABAL Games Season 1">
+  <meta property="og:description" content="Started ZAO projects up for grabs - pick one and ship it forward.">
+  <meta property="og:url" content="https://zabalgames.com/projects">
+  <meta property="og:image" content="https://zabalgames.com/assets/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/lead.html">Lead</a>
+      <a href="/projects.html" class="active">Projects</a>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow">Path 1 - Adopt a Project</div>
+    <h1>Started ZAO Projects <span class="accent">Up for Grabs</span>.</h1>
+    <p class="hero-sub">
+      You do not have to build from scratch. These are real, in-progress ZAO ecosystem projects that need a builder to pick them up and ship them forward. Adopt one in your July submission, OR build from scratch with the <a href="/llms.txt">context file</a>. Both paths count.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2>How adoption works</h2>
+    <p>
+      Pick a project. DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a> with the project number to claim it (first-come-first-served, one builder per project). You ship it for ZABAL Games Season 1 - keep the repo + the credit. The project stays open-source MIT.
+    </p>
+    <p>
+      Status updates here as builders claim slots. Full curated list also in <a href="/llms.txt">llms.txt</a> for any AI harness to load.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>The eight</h2>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--orange);">01</div>
+      <h3>Songjam leaderboard migration</h3>
+      <p>Move the Songjam leaderboard off the deprecated X scraper onto an Empire Builder API leaderboard. Frees Adam from scraper maintenance, gives ZABAL Farcaster-native data. Pattern is the standard apiLeaderboards JSON contract: publish <code>[{address, score}]</code>, Empire Builder pulls + distributes.</p>
+      <div class="card-meta">Spec: <a href="/docs/research/654-empire-v3-meeting.md">Doc 654</a> - Empire V3 meeting decisions</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--pink);">02</div>
+      <h3>POIDH bounty leaderboard on Empire Builder</h3>
+      <p>Empire Builder leaderboard pulling on-chain POIDH bounty submissions. Counts unique submitters across all ZABAL bounties (5 submissions on one bounty counts as 1; submitters across two bounties count as 2). One contract is wired; second pending. Replaces manual $1-ZABAL-per-submitter outreach.</p>
+      <div class="card-meta">Spec: <a href="/docs/research/654-empire-v3-meeting.md">Doc 654</a> + the Player Context Bundle for the apiLeaderboards JSON contract</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--cyan);">03</div>
+      <h3>zlank.online Empire daily-stats Snap template</h3>
+      <p>One-click "Today's Empire Builder Stats" Snap template on zlank.online. Footy app is the reference. kmac.eth + Zaal collab. The Snap pulls the day's leaderboard movement, formats a cast, returns a button that posts it. Reusable for any empire (POIDH, Songjam, etc).</p>
+      <div class="card-meta">Spec: <a href="/docs/research/654-empire-v3-meeting.md">Doc 654</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--gold);">04</div>
+      <h3>Twitch -> Empire Builder stream feed</h3>
+      <p>StreamElements WebSocket events feed an apiLeaderboard endpoint. Stream activity (tips, raids, follows, chat engagement) becomes a real-time Empire leaderboard surface. Generalizes to any creator running Twitch + an empire.</p>
+      <div class="card-meta">Spec: pull the Twitch + StreamElements sections from the <a href="/docs/research/630-player-context-bundle.md">player context bundle</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--zabal);">05</div>
+      <h3>A new ZOE skill</h3>
+      <p>Extend the ZOE concierge bot (Telegram <code>@zaoclaw_bot</code>). Backend mirrors the Hermes runtime pattern - Claude Code CLI as subprocess, swap the system prompt for the new skill's persona. Skills are independent capabilities ZOE can route to.</p>
+      <div class="card-meta">Spec: ZOE / Hermes references in the player context bundle. Pick a skill the ZAO actually needs.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--orange);">06</div>
+      <h3>This /zabal mini app</h3>
+      <p>The Farcaster mini app you're on. Extend the workshops calendar, the submissions board, the connector NFT flow. Repo is open: <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">github.com/ZAODEVZ/zabalgames</a>. Highest meta-leverage build - you literally extend the platform you're shipping into.</p>
+      <div class="card-meta">Spec: <a href="https://github.com/ZAODEVZ/zabalgames/blob/main/TODO.md" target="_blank" rel="noopener">TODO.md</a> + <a href="/docs/snap-design.md">docs/snap-design.md</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--pink);">07</div>
+      <h3>COC Concertz content pipeline</h3>
+      <p>Today: record show -> Descript edit -> newsletter builder generates YouTube descriptions (MiniMax AI) -> manual cross-post to YouTube + social. Automate the cross-post end. Bridges to ZAO's <code>src/lib/publish/</code> 10-platform module. Recurring win - every COC concert.</p>
+      <div class="card-meta">Spec: COC Concertz references in the player context bundle</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--cyan);">08</div>
+      <h3>Streaming auto-clip flywheel</h3>
+      <p>Turn 24h of stream into ~150 short clips for TikTok / Reels / YouTube / Farcaster. The content engine that processes ZABAL Games streams (and every future ZAO event). High lift, high payoff - it would auto-amplify the whole Season.</p>
+      <div class="card-meta">Spec: <a href="/docs/research/701-canonical-state.md">Doc 701</a> Part 4 + the player context bundle</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Or build from scratch</h2>
+    <p>
+      Path 2 is wide open. Build anything that helps the ZAO community using the rails the ecosystem already has (Empire Builder, Farcaster mini apps, Hats, Bonfire, EAS, Hypersub, Coinflow). Composability is the point - do not reinvent identity, leaderboards, or attestations.
+    </p>
+    <p>
+      Load <a href="/llms.txt">zabalgames.com/llms.txt</a> into your AI harness and you have the full ecosystem context. Look for the gap that wants to be filled.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Claim a project</h2>
+    <p>
+      DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a> on Farcaster with the project number (01-08) and a one-line "why you." First-come-first-served. We confirm in DM and announce on <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>.
+    </p>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div>
+    <a href="/">zabalgames.com</a> -
+    <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">github</a> -
+    <a href="/llms.txt">llms.txt</a> -
+    <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+  </div>
+  <p style="margin-top: 0.5rem; color: var(--text-dim);">ZABAL Games Season 1 - the eight adoptable projects.</p>
+</footer>
+
+</body>
+</html>

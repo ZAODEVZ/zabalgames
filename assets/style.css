@@ -1,0 +1,201 @@
+/* ZABAL Games - shared styles for standalone pages (/lead, /projects, etc).
+   The main index.html keeps its own inline styles - this file is for the
+   leaner landing pages that link to it. */
+
+:root {
+  --bg: #070709;
+  --surface: #111115;
+  --surface-2: #16161c;
+  --orange: #ff6b35;
+  --cyan: #00e5ff;
+  --gold: #f5c842;
+  --pink: #ff3d6e;
+  --zabal: #a78bfa;
+  --text: #e4e2dd;
+  --text-muted: #8a8895;
+  --text-dim: #4e4c57;
+  --border: #1f1e26;
+  --border-hover: #2a2a35;
+  --radius: 10px;
+  --gradient-main: linear-gradient(135deg, #ff6b35, #ff3d6e, #00e5ff);
+  --gradient-zabal: linear-gradient(135deg, #a78bfa, #00e5ff);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.container { max-width: 760px; margin: 0 auto; padding: 24px 20px; }
+
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(7, 7, 9, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-row {
+  max-width: 760px; margin: 0 auto;
+  padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+}
+.nav-brand {
+  font-family: 'Syne', 'Outfit', sans-serif;
+  font-weight: 800; font-size: 0.95rem;
+  color: var(--text); text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-brand .accent {
+  background: var(--gradient-main); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.nav-links { display: flex; gap: 14px; font-size: 0.85rem; }
+.nav-links a {
+  color: var(--text-muted); text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+.hero {
+  padding: 56px 0 32px;
+}
+.hero-eyebrow {
+  color: var(--gold); font-size: 0.78rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 0.8rem;
+}
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 2.4rem;
+  letter-spacing: -0.02em; line-height: 1.1;
+  margin-bottom: 0.8rem;
+}
+h1 .accent {
+  background: var(--gradient-main); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub {
+  font-size: 1.05rem; color: var(--text-muted);
+  max-width: 620px; line-height: 1.55;
+}
+
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 1.5rem;
+  margin: 2.5rem 0 1rem;
+}
+h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+p { margin-bottom: 1rem; color: var(--text-muted); font-size: 0.95rem; }
+p strong { color: var(--text); font-weight: 600; }
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.section { padding: 24px 0; border-top: 1px solid var(--border); margin-top: 8px; }
+.section:first-of-type { border-top: 0; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  transition: border-color 0.15s;
+}
+.card:hover { border-color: var(--border-hover); }
+.card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 0.4rem;
+}
+.card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+.card p { font-size: 0.88rem; margin-bottom: 0.5rem; }
+.card-meta { font-size: 0.78rem; color: var(--text-muted); }
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 700; font-size: 0.9rem;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: opacity 0.15s, transform 0.05s;
+  font-family: inherit;
+}
+.btn:hover { opacity: 0.9; text-decoration: none; }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--orange); color: #fff; }
+.btn-ghost {
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border-hover);
+}
+
+.field { margin-bottom: 1rem; }
+.field label {
+  display: block; margin-bottom: 0.35rem;
+  font-size: 0.85rem; color: var(--text); font-weight: 500;
+}
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: inherit; font-size: 0.95rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  outline: none; transition: border-color 0.15s;
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus { border-color: var(--orange); }
+.field textarea { min-height: 90px; resize: vertical; }
+.form-help {
+  font-size: 0.78rem; color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+
+.embed-box {
+  background: var(--surface);
+  border: 1px dashed var(--border-hover);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  text-align: center;
+  min-height: 200px;
+  display: flex; align-items: center; justify-content: center;
+}
+.embed-box p { font-size: 0.85rem; margin: 0; }
+
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 0.8rem 0 1.5rem; }
+.tag {
+  font-size: 0.75rem; padding: 0.3rem 0.7rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 999px; color: var(--text-muted);
+}
+
+.footer {
+  margin-top: 4rem; padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.82rem; color: var(--text-dim);
+}
+.footer a { color: var(--text-muted); margin: 0 0.5rem; }
+.footer a:hover { color: var(--cyan); }
+
+@media (max-width: 540px) {
+  h1 { font-size: 1.8rem; }
+  .hero { padding: 36px 0 24px; }
+  .nav-links { gap: 10px; font-size: 0.78rem; }
+}

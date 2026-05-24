@@ -15,7 +15,8 @@ Repo + content moved over from `bettercallzaal/bettercallzaalwebsite` + `betterc
 - `901996d` - `.claude/skills/zabal-games/SKILL.md` + index.html `#ideas` section reworked to "The Context File"
 - `e0fb310` - OG share card SVG, robots.txt, sitemap.xml, Confirmed Workshop Leads section (Tyler/Magnetic as 001), `#projects` section with the 8 adoptable projects
 - `d3c04eb` - `docs/snap-design.md` (zlank no-code + custom Vercel-function path)
-- (this commit) - workshop leads moved to `data/workshop-leads.json` + JS render; JSON-LD Event + WebSite schema added to `<head>` for SEO; this TODO file
+- `c9911dc` - workshop leads moved to `data/workshop-leads.json` + JS render; JSON-LD Event + WebSite schema added to `<head>` for SEO; this TODO file
+- (this commit) - `/lead.html` standalone workshop-lead recruitment page (form + Cal.com slot + confirmed-leads grid); `/projects.html` standalone page with all 8 adoptable projects; `assets/style.css` shared stylesheet for the new pages; nav links + sitemap updated
 
 BCZ side (separate repo, BCZ PR #11 merged):
 - `zabalgames.html` -> redirect to `zabalgames.com`
@@ -52,8 +53,8 @@ Ordered by leverage. I can pick these off in parallel to your unblocking.
 |---|-------|-----|-------------|
 | N1 | **Custom Snap (path B) scaffold** - `api/snap/signup/route.js` Vercel serverless function + `package.json` + `vercel.json`. Backend stub via Formspree until Supabase lands. | Even without Supabase, the Snap can ship - Formspree captures the role-tap as a form submission. When Supabase is up, swap one line. | ~2 hours |
 | N2 | **Polish `#format` / `#showwork` / `#bigpicture` sections** - currently carry pre-Magnetic framing. Update to reflect Magnetic + connector + the two surfaces. | The launch cast drives traffic here. Stale framing weakens conversion. | ~1 hour |
-| N3 | **`/lead` standalone page** - dedicated workshop-lead recruitment page (form + the calendar embeds + a "what a workshop looks like" pitch). Sharable URL for DM cohorts. | DM-driven traffic deserves a tight landing page, not a deep scroll into the long homepage. | ~1 hour |
-| N4 | **`/projects` standalone page** - dedicated adoptable-projects page with one card per project + a "claim this" CTA per project. | Same logic - shareable URL: `zabalgames.com/projects`. | ~1 hour |
+| ~~N3~~ | ~~`/lead` standalone page~~ | DONE in commit above. | done |
+| ~~N4~~ | ~~`/projects` standalone page~~ | DONE in commit above. | done |
 | N5 | **Hero banner using the SVG OG card** - embed `assets/og-card.svg` as a visual element in the hero (currently text-only). | Adds visual impact above the fold. | ~15 min |
 | N6 | **`canonical-state.md` Part 4 update** - rewrite the adoptable-projects list to match the version on the site (+ link to it). | The canonical doc and the site shouldn't drift. | ~10 min |
 | N7 | **Vercel deploy config** - `vercel.json` with redirects (`/spec` -> `/docs/research/701-canonical-state.md`, etc) for nice shorter URLs. | Shorter URLs are more shareable in DMs. | ~15 min |
