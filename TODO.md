@@ -54,7 +54,7 @@ Ordered by leverage. I can pick these off in parallel to your unblocking.
 
 | # | Build | Why | Est. effort |
 |---|-------|-----|-------------|
-| ~~N1~~ | ~~Custom Snap (path B) scaffold~~ | DONE in `13554b5`. Live at `https://zabalgames.com/api/snap/signup`. Edge runtime, no JFS sig verification yet (v2). Backend = Formspree. | done |
+| ~~N1~~ | ~~Custom Snap (path B) scaffold~~ | DONE - now serving the proper in-cast Snap (4 role buttons + confirmation), per @farcaster/snap spec v2.0 (commit `9526388` + Vary fix `<latest>`). Content negotiation: snap+json Accept -> Snap JSON (in-cast 4 buttons -> POST -> confirmation), default Accept -> HTML with fc:miniapp fallback. Backend = Formspree stub. JFS sig still deferred to v2 (Node runtime + SDK install). | done |
 | N2 | **Polish `#format` / `#showwork` / `#bigpicture` sections** - currently carry pre-Magnetic framing. Update to reflect Magnetic + connector + the two surfaces. | The launch cast drives traffic here. Stale framing weakens conversion. | ~1 hour |
 | ~~N3~~ | ~~`/lead` standalone page~~ | DONE in commit above. | done |
 | ~~N4~~ | ~~`/projects` standalone page~~ | DONE in commit above. | done |
