@@ -59,22 +59,33 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Launched:** 2026-01-01 via Clanker. Co-creators: yerbearserker (Jordan Oram) + Adrian (~divifly).
 
 ### WaveWarZ
-- **What:** Music-battle prediction markets. Artists battle head-to-head, wallets trade on outcomes, 1% of trade volume goes to the artist, settled on-chain via smart contract (no custody). 472+ SOL cumulative volume, ~735 battles, 43 artists, 11 shows/week.
+- **What:** Music-battle prediction markets. Artists battle head-to-head, wallets trade on outcomes, 1% of trade volume goes to the artist, settled on-chain via smart contract (no custody). 472+ SOL cumulative volume, ~735 battles, 43 artists, **11 shows/week** (5 morning + 5 night Mon-Fri + Sunday-night battles).
+- **The model proof:** in one early battle, a musician earned ~0.5 SOL in 20 minutes of trade activity alone. Artists earn from engagement, not from streams.
+- **Top performers (Doc 180 snapshot):** LUI - 49 wins, 29.59 SOL volume. APORKALYPSE - 73% win rate. PROF!T - 71% win rate, 13.86 SOL. Kata7yst - most active in the snapshot window.
 - **Status:** v1 LIVE on Solana (Hurric4n3Ike at wavewarz-intelligence.vercel.app). v2 IN BUILD on Base - agentic version Sam (candytoybox) is shipping with Arthur (Neynar) reviewing smart contracts. Repo: `~/Documents/wwbase` locally; ZAO research Doc 711.
 - **Voice:** Loud arena brand - competitive, sports-energy, stats-forward. The deliberate opposite of the warm ZAO-umbrella tone.
-- **Cross-chain:** WaveWarZ v1 on Solana (Helius free tier for RPC); v2 on Base (matches ZAO rails). Both surfaces are real ZAO infrastructure now.
+- **Cross-chain:** WaveWarZ v1 on Solana (Helius free tier for RPC, 1M credits/mo, 10 RPS). v2 on Base (matches ZAO rails). Both surfaces are real ZAO infrastructure now.
 - **ZABAL Games Finals integration:** WaveWarZ-Base is the August Finals voting protocol - each finalist build becomes a battle entry, wallets trade on which wins, smart contract settles placement at T+72h. Respect-holders get pre-funded baseline positions so the community has real market weight. See docs/research/720-wavewarz-finals-mechanic.md.
-- **Contact:** X @WaveWarZ. Founders: Hurric4n3Ike + Zaal + Sam (candytoybox). Arthur (Neynar) on smart contracts for the Base build.
+- **Contact:** X @WaveWarZ (no Farcaster/Discord/Telegram presence). Founders: Hurric4n3Ike + Zaal + Sam (candytoybox). Arthur (Neynar) on smart contracts for the Base build.
 
 ### ZAO Festivals / ZAOstock
-- **What:** ZAO's IRL festival arm. ZAOstock 2026 is the inaugural festival.
-- **ZAOstock:** Oct 3 2026, Franklin Street Parklet, Ellsworth Maine. 10 artists, full day + livestream + after-party. 14-person team across 4 teams.
+- **What:** ZAO's IRL festival arm. ZAOstock 2026 is the inaugural festival; ZAO Festivals is the umbrella for future iterations worldwide.
+- **ZAOstock:** Oct 3 2026, Franklin Street Parklet, Ellsworth Maine. 10 artists (ZAO roster + external bookings - target up to 22 from full roster), full day + livestream + after-party. **14-person team across 4 teams** (Operations, Finance, Design, Music). **172-day build** to Oct 3. Anchor partners: Steve Peer rolodex, Roddy Parklet circle, local Ellsworth venues, Art of Ellsworth, Maine indie press.
+- **Attendance target:** 500-1,000 people. Free or low-cost ticketing to minimize barrier; potential NFT attendance tokens for memorabilia.
+- **Format thesis:** A polished music festival FIRST, not a Web3 conference. Anyone attends + enjoys without knowing anything about blockchain. The tech enhances; it doesn't interrupt. Timed against a statewide craft-fair weekend that already draws Maine artists + visitors - rides existing marketing without competing with the craft-fair itself.
+- **Ops cadence:** Weekly DMAIC retros, `/stock/team` kanban dashboard, `@ZAOstockTeamBot` on Telegram.
 - **Voice:** "Partiful warmth + Luma competence." First-person, community-rooted.
 - **Visual:** Maine/local influence - Ellsworth, Art of Ellsworth, Northeast indie.
 
 ### ZAO Music (DBA)
-- **What:** The label arm. Releases tracks via DistroKid + 0xSplits (Base) + BMI without the major-label tax.
-- **First release:** Cipher = #1 (multi-artist cypher). Team: DCoop, GodCloud, Iman.
+- **What:** The label arm. Releases tracks via DistroKid + 0xSplits (Base) + BMI without the major-label tax. **Frame externally as "ZAO Music" - NEVER "Web3 record label" or "record label."** Internally framed as "ZAO Artist Support Collective."
+- **Legal wrapper:** **BetterCallZaal Strategies LLC** is the holding vehicle. DBA "ZAO Music Publishing" registered under it (no new entity cost; ties the collective to the operating consulting entity).
+- **Stack (locked):** BMI as publisher (one-time $250 LLC fee; BMI collects mechanicals in-house, NO Songtrust needed) + The MLC (free direct registration for US streaming mechanicals, belt-and-suspenders) + DistroKid Musician Plus ($44.99/yr, 100% royalty retention, 24-48h Spotify, unlimited uploads) + 0xSplits on Base for every release. **Skip CD Baby** (acquired by UMG Feb 2026).
+- **Producer tag:** "thezao.com" - first audio beat of every ZAO Music release. Zero cost branding play, GodCloud produces, DCoop approves.
+- **Artist contract model:** NO exclusive deals. Per-release participation agreement (90-day termination). Artist keeps 100% master ownership. ZAO Music gets producer tag + publishing admin rights + compilation rights.
+- **The 25% middleman replacement:** What would've gone to ASCAP/BMI as writer fees instead funds an on-chain multi-sig "ZAO Creator Fund." Net benefit, not a fee.
+- **First release:** Cipher = #1 (10-artist multi-artist cypher), summer 2026, timed to ZAOstock Oct 3 promo cycle. NO NFT on first release - prove the wallet-payout rails work first, add NFT-per-release starting #2.
+- **Team:** DCoop (lead music ops), GodCloud (A&R / Drip ambassador / publishing guide), Iman (WaveWarZ Zambia regional lead).
 - **Voice:** Artist-collective - members making music together, not a label voice.
 
 ### COC Concertz
@@ -82,15 +93,19 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Stack:** Next.js 16 + Firebase + Cloudinary.
 - **Surfaces:** `/portal/newsletter`, `/stage`, `/team`. 150+ concerts run.
 - **Mission:** Give virtual concerts a real home - for the metaverse + streamed shows and the promoters who run them.
+- **Content pipeline (today, manual):** Record show -> Descript edit -> newsletter builder generates YouTube descriptions (MiniMax AI) -> manual cross-post. Automating the cross-post end is adoptable project #07.
+- **Recent:** COC Concertz #3 ran March 2026 - metaverse concert with DUO DO, JOSEPH GOATS, STILO WORLD.
 - **Voice:** Warm, communal, builder-energy - same family as the ZAO umbrella.
 
 ### FISHBOWLZ (paused)
-- **What:** Was audio rooms for music communities. Paused 2026-04-16 - audio-room job is now Juke's.
-- **Implication:** Do NOT build "audio rooms for music." Find a different job.
+- **What:** Was audio rooms for music communities. Paused 2026-04-16 - audio-room job is now Juke's (partnership).
+- **Implication:** Do NOT build "audio rooms for music." Find a different job. FISHBOWLZ failed at the job layer, not the tech layer.
 
 ### BetterCallZaal (BCZ)
-- **What:** Zaal's personal brand + the Farcaster mini app at bettercallzaal.com. FID 19640.
-- **Stack:** Pure static HTML, direct push to main = deploy.
+- **What (two things):** (1) Zaal's personal brand + Farcaster mini app at bettercallzaal.com (FID 19640). (2) **BCZ Strategies LLC** - Maine local SMB consulting agency + the legal holding entity for ZAO Music Publishing DBA. Real client work in flight: **Riverside Group** (active), **FarmDrop** (active).
+- **Stack (personal site):** Pure static HTML, direct push to main = deploy.
+- **BCZ Strategies job-to-be-done (per Doc 526):** Maine local business with low Google rank, knows they need digital marketing but has been burned by an agency before, owner-operator with under 10 employees. Channels: local Ellsworth/Bar Harbor walk-ins + cold pitch, Maine small-biz Slack/FB groups - NOT Farcaster.
+- **Win:** Zaal/Zlank won the **Snap category at FarHack 2026** ($1,000 prize).
 
 ### Respect + Fractals
 - **What:** Soulbound, peer-validated, Fibonacci-ranked reputation. Earned in weekly fractal sessions - 6-person groups consensus-rank each other's contribution. Two Respect types: **OG Respect** (ERC-20, one-time grandfathered) + **ZOR** (ERC-1155, weekly consensus, the active mechanism).
@@ -566,6 +581,73 @@ Counter-examples that lose votes:
 - Reinvents identity / leaderboard / governance instead of using the rails.
 - Heavy crypto-bro framing ("revolutionary onchain", "tokenize everything").
 - Solana-only when there is no WaveWarZ-related reason.
+
+---
+
+## Look at these (concrete past builds - the quality bar in code)
+
+Real ZAO ecosystem builds you can read for patterns + UI + integration choices. All open-source MIT, all browseable on GitHub.
+
+| Build | What | Why look |
+|-------|------|----------|
+| **zlank** (zlank.online) | No-code Farcaster Snap builder. 14 block types, polls, multi-page, KV vote tallies. Built by Zaal + kmac.eth. **Won FarHack 2026 Snap category ($1,000).** | The current-best reference for working Farcaster Snap implementations - content negotiation, JFS verification, template patterns. Source: `bettercallzaal/zlank`. |
+| **ZAOOS feed module** | Music-first gated Farcaster client. Discord-style chat with inline music players, quote casts, reactions, music queue sidebar. | The simplest case of "real ZAO rails composed cleanly" - Neynar + Supabase + Tailwind + music infra in one cohesive flow. Source: `bettercallzaal/ZAOOS`. |
+| **Hermes Coder/Critic** | Dual-bot loop that takes a PR webhook -> Coder writes a fix -> Critic scores it (target > 80/100 before merge). Claude Code CLI subprocess pattern. | The agent pattern ZAO has actually proven in production - cost-stable, quality-gated, secret-safe. Source: `bot/src/hermes/` on the VPS. |
+| **fractalbotmarch2026** | The Discord bot running the weekly fractal sessions. 52 slash commands. Snapshot integration, Hats Protocol bindings, on-chain auto-submit, Supabase storage. | The reference for any governance-integration build. How to bind Hats + Snapshot + an off-platform UI (Discord) coherently. Source: `bettercallzaal/fractalbotmarch2026`. |
+| **ZAO-Leaderboard** | Respect Token Leaderboard, Next.js 14 + ethers.js v6 + Airtable + Alchemy RPC. | Reference for the simplest possible "read tokens, render a table, deploy" build. Good starting point if you are doing project #01 (Songjam migration) or #02 (POIDH leaderboard). Source: `bettercallzaal/ZAO-Leaderboard`. |
+| **ZOUNZ** | Farcaster Music NFT Mini App. React 19 + Vite + Express + mint.club API + Farcaster SDK + Zora NFT mint on Base + Attention Markets on Solana + AI music gen + Audius discovery. | Cross-chain mini app reference. How to do Base + Solana in one product without it feeling Frankenstein. Source: `bettercallzaal/ZOUNZ`. |
+| **bettercallzaal.com** | Zaal's personal Farcaster mini app, pure static HTML, no build step, push-to-deploy. | The simplest possible Farcaster mini app pattern. If your build is "explainer + form + Farcaster mini-app embed," start here. Source: `bettercallzaal/bettercallzaalwebsite`. |
+| **This repo (zabalgames)** | The site you are reading. Static HTML + Vercel functions + a Snap endpoint + JSON-driven dynamic content + Farcaster Mini App manifest. | Reference for a hybrid static + serverless + Snap deploy on Vercel. Source: `ZAODEVZ/zabalgames`. |
+| **NERDDAO/bonfires-sdk** | Bonfire Python CLI + SDK. `pip install bonfires`. | Reference for integrating Bonfire memory into any ZAO bot. Source: `github.com/NERDDAO/bonfires-sdk`. |
+
+The pattern: every one of these is **focused on one job, plugged into 2-4 ZAO rails, ships small, ships open.** That is the bar.
+
+---
+
+## Tools the ZAO actually uses (recurring stack)
+
+Not just for ZABAL Games builds - this is what's in production across the ZAO ecosystem. If a tool is on this list, the team has either built with it or paid for it, so pick from here over inventing a new dep.
+
+| Tool | Used for | Cost |
+|------|----------|------|
+| **DistroKid** (Musician Plus) | DSP distribution for ZAO Music releases | $44.99/yr |
+| **BMI** | Publisher + mechanicals collection | $250 one-time LLC |
+| **The MLC** | US streaming mechanicals (free belt-and-suspenders to BMI) | $0 |
+| **0xSplits** | Onchain revenue splits on Base | Gas only |
+| **Descript** | Audio + video editing (COC Concertz content pipeline) | Subscription |
+| **MiniMax AI** | YouTube description auto-generation (COC pipeline) | Per-use |
+| **StreamElements** | Twitch overlays + WebSocket event stream | Free |
+| **Snapshot.org** | Off-chain governance voting | Free |
+| **Hats Protocol** | Onchain role NFTs (Optimism for ZAO governance treeId 226; Base for ZABAL Games NFTs) | Gas only |
+| **Neynar** | Farcaster reads + signers + identity | Free dev tier |
+| **Privy** | Embedded + agent wallets | Free 0-499 MAU |
+| **Coinflow** | Fiat -> USDC checkout | Coinflow rev share |
+| **Helius** | Solana RPC for WaveWarZ reads | Free tier (1M credits/mo, 10 RPS) |
+| **Alchemy** | Base RPC | Free tier |
+| **Vercel** | Hosting + edge / Node functions | Free tier handles current scale |
+| **Supabase** | Postgres + Auth + Storage (default DB across ZAO stack) | Free tier |
+| **Airtable** | Lightweight ops DB (early ZAO-Leaderboard) | Free tier (legacy) |
+| **Lavalink** | Discord music streaming (zaomusicbot) | Self-hosted |
+| **mint.club** | Bonding-curve token launcher (ZOUNZ) | Per-launch fee |
+| **Zora** | Content coins / creator coins / NFT minting on Base | 50% trade + LP fee to creator |
+| **Hypersub** (Fabric STP) | Subscription NFTs on Base | ~5% protocol fee |
+| **Bonfires** | Knowledge-graph agent memory | 0.1 ETH Genesis NFT per bonfire |
+| **Clanker** | AI-agent token launcher on Farcaster (Base) | 0.2% trade fee, 100% creator fees |
+| **Lu.ma** | Event + workshop calendars | Free |
+| **Cal.com** | Slot booking (workshop scheduling) | Free / Self-hosted |
+| **Formspree** | Form submissions (current launch-form backend) | Free tier |
+| **Magnetic** | Portal / opt-in / workshop library (Tyler Stambaugh's platform) | Per-customer |
+| **GitHub** | Code + issues + Actions | Free for public |
+| **Telegram** | Team coordination + ZOE + ZAOstockTeamBot home | Free |
+| **Farcaster** | Social + protocol identity + Snaps + mini apps | Free |
+| **Discord** | Fractal sessions + community channel | Free |
+| **Twitch** | Live streaming for workshops + builders | Free |
+| **YouTube** | Long-form video archive | Free |
+| **Paragraph** | Newsletter distribution | Free |
+| **Claude Code Max plan** | Hermes + ZOE brain via subprocess OAuth | $200/mo flat |
+| **Ollama** | Local low-stakes inference (`llama3.1:8b` on VPS port 11434) | Self-hosted |
+
+If your build needs something not on this list, that is a real decision - check llms.txt's anti-patterns + ask before adding another dep.
 
 ---
 
