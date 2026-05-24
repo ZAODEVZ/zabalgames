@@ -1,0 +1,2752 @@
+{
+  "entities": [
+    {
+      "id": "zaal",
+      "name": "Zaal",
+      "labels": [
+        "Person",
+        "Founder"
+      ],
+      "attributes": {
+        "farcaster_id": 19640,
+        "farcaster_handle": "@zaal",
+        "role": "founder",
+        "description": "Engineer, builder, and connector in web3/Farcaster/music ecosystem"
+      }
+    },
+    {
+      "id": "zabal",
+      "name": "ZABAL",
+      "labels": [
+        "Organization",
+        "Ecosystem"
+      ],
+      "attributes": {
+        "description": "Music + web3 ecosystem",
+        "founded_by": "Zaal"
+      }
+    },
+    {
+      "id": "bettercallzaal",
+      "name": "BetterCallZaal",
+      "labels": [
+        "Website",
+        "Personal Site"
+      ],
+      "attributes": {
+        "domain": "bettercallzaal.com",
+        "description": "Personal site and Farcaster Mini App for Zaal",
+        "platform": "Farcaster"
+      }
+    },
+    {
+      "id": "hermes-coder",
+      "name": "Hermes Coder",
+      "labels": [
+        "Agent"
+      ],
+      "attributes": {
+        "role": "code-generation",
+        "model": "claude-opus-4-7",
+        "subprocess_of": "Claude Code CLI",
+        "spawned_by": "bot/src/hermes/runner.ts",
+        "language": "TypeScript",
+        "auth_method": "Claude Code Max plan OAuth",
+        "github_repo": "bettercallzaal/zaoos",
+        "path": "bot/src/hermes/coder.ts",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "hermes-critic",
+      "name": "Hermes Critic",
+      "labels": [
+        "Agent"
+      ],
+      "attributes": {
+        "role": "code-review",
+        "model": "claude-sonnet-4-6",
+        "subprocess_of": "Claude Code CLI",
+        "spawned_by": "bot/src/hermes/runner.ts",
+        "language": "TypeScript",
+        "auth_method": "Claude Code Max plan OAuth",
+        "github_repo": "bettercallzaal/zaoos",
+        "path": "bot/src/hermes/critic.ts",
+        "scoring_threshold": 70,
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "hermes-pre-flight-gate",
+      "name": "Hermes Pre-Flight Gate",
+      "labels": [
+        "Module"
+      ],
+      "attributes": {
+        "role": "quality-gate",
+        "components": [
+          "typecheck (tsc)",
+          "biome lint",
+          "test runner (vitest)"
+        ],
+        "runs_between": "Coder-done and Critic-start",
+        "language": "TypeScript",
+        "github_path": "bot/src/hermes/preflight.ts",
+        "cost": "$0 (local, no API calls)",
+        "typical_duration_ms": "5000-15000",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "hermes-runner",
+      "name": "Hermes Runner",
+      "labels": [
+        "Orchestrator"
+      ],
+      "attributes": {
+        "role": "dispatch-loop",
+        "entrypoint": "dispatchHermesRun()",
+        "phases": [
+          "clone-branch",
+          "coder-loop",
+          "preflight",
+          "critic-loop",
+          "pr-open",
+          "pr-watch"
+        ],
+        "max_attempts": 3,
+        "language": "TypeScript",
+        "github_path": "bot/src/hermes/runner.ts",
+        "fleet_daily_cap_usd": 20,
+        "notional_cost_per_run": "$0.50",
+        "auth": "Max plan OAuth (bearer via Claude Code CLI)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "hermes-pr-watcher",
+      "name": "Hermes PR Watcher",
+      "labels": [
+        "Monitor"
+      ],
+      "attributes": {
+        "role": "post-pr-alerting",
+        "monitors": [
+          "mergeable status",
+          "CI check rollup"
+        ],
+        "alert_transport": "Telegram via HermesBot",
+        "language": "TypeScript",
+        "github_path": "bot/src/hermes/pr-watcher.ts",
+        "polling_interval_ms": 30000,
+        "max_poll_minutes": 5,
+        "alerts_on": [
+          "CONFLICTING",
+          "CI failure"
+        ],
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "zao-devz-bot-zaodevzbot",
+      "name": "ZAO Devz Bot (@ZAODevZBot)",
+      "labels": [
+        "Telegram Bot"
+      ],
+      "attributes": {
+        "role": "command-relay",
+        "transport": "Telegram polling",
+        "chat_id": "ZAO Devz (private group)",
+        "commands": [
+          "/fix",
+          "/help",
+          "/status"
+        ],
+        "privacy_mode": "OFF (reads all chat)",
+        "dispatches_to": "Hermes Runner via dispatchHermesRun()",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "hermes-narrator-hermeszaodevzbot",
+      "name": "Hermes Narrator (@HermesZAOdevzbot)",
+      "labels": [
+        "Telegram Bot"
+      ],
+      "attributes": {
+        "role": "phase-narrator",
+        "transport": "Telegram polling",
+        "chat_id": "ZAO Devz (same chat as DevZ)",
+        "posts": [
+          "Coder started",
+          "Coder done",
+          "Critic started",
+          "Critic done",
+          "PR opened",
+          "Escalated"
+        ],
+        "privacy_mode": "OFF (reads all chat)",
+        "token_env": "HERMES_BOT_TOKEN",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "hermes-database",
+      "name": "Hermes Database",
+      "labels": [
+        "Schema"
+      ],
+      "attributes": {
+        "host": "Supabase (postgres)",
+        "table": "hermes_runs",
+        "fields": [
+          "id",
+          "triggered_by_telegram_id",
+          "issue_text",
+          "status",
+          "branch",
+          "pr_number",
+          "fixer_attempts",
+          "fixer_model",
+          "critic_model",
+          "critic_score",
+          "total_input_tokens",
+          "total_output_tokens",
+          "estimated_cost_usd"
+        ],
+        "github_path": "bot/migrations/hermes_runs.sql",
+        "audit_log": "immutable per-run record",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "claude-code-sdk",
+      "name": "Claude Code SDK",
+      "labels": [
+        "External Runtime"
+      ],
+      "attributes": {
+        "role": "subprocess-spawner",
+        "provides": "Coder and Critic as managed subprocesses",
+        "auth_mechanism": "OAuth bearer (Max plan)",
+        "spawned_by": "bot/src/hermes/claude-cli.ts",
+        "model_routing": "Opus for Coder, Sonnet for Critic (hardcoded today)",
+        "version_constraint": "v2.0+ (MCP-aligned)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "zabal-bonfire-bot",
+      "name": "ZABAL Bonfire Bot",
+      "labels": [
+        "Telegram Bot"
+      ],
+      "attributes": {
+        "role": "knowledge-graph-intake",
+        "transport": "Telegram (Bonfire native agent)",
+        "chat_id": "ZAO Devz + custom ZABAL",
+        "writes_to": "Bonfire knowledge graph",
+        "integration_with_hermes": "planned (context reads + event writes)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "hermes-http-dispatch",
+      "name": "Hermes HTTP Dispatch",
+      "labels": [
+        "API Endpoint"
+      ],
+      "attributes": {
+        "role": "remote-trigger",
+        "port": 3007,
+        "endpoint": "POST /hermes-dispatch",
+        "auth_header": "x-hermes-secret",
+        "body": "{trigger_by, issue_text}",
+        "response": "DispatchResult (ready | failed | escalated)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "diff-complexity-classifier",
+      "name": "Diff Complexity Classifier",
+      "labels": [
+        "Utility"
+      ],
+      "attributes": {
+        "role": "cost-routing",
+        "classifies": "simple (Haiku OK) vs complex (needs Sonnet)",
+        "rules": [
+          "docs-only = simple",
+          "<30 LOC + no code = simple",
+          "has risk patterns = complex"
+        ],
+        "github_path": "bot/src/hermes/types.ts::classifyDiffComplexity()",
+        "future_use": "Gap #1 (multi-model routing, Sprint 1)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "zao-repository-target",
+      "name": "ZAO Repository Target",
+      "labels": [
+        "Config"
+      ],
+      "attributes": {
+        "profiles": [
+          "zaoos (default)",
+          "zaostock (standalone)"
+        ],
+        "extends_for": "per-repo system prompts, forbidden paths",
+        "type_definition": "HermesRepoTarget",
+        "github_path": "bot/src/hermes/types.ts",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "id": "poidh",
+      "name": "POIDH",
+      "labels": [
+        "Platform"
+      ],
+      "attributes": {
+        "full_name": "Pics Or It Didn't Happen",
+        "url": "https://poidh.xyz",
+        "app_url": "https://poidh-app.vercel.app",
+        "chains": [
+          "Arbitrum",
+          "Base",
+          "Degen Chain"
+        ],
+        "launched": "2024-04-24",
+        "contract_base": "0xb502c5856f7244dccdd0264a541cc25675353d39",
+        "contract_arbitrum": "0x0aa50ce0d724cc28f8f7af4630c32377b4d5c27d",
+        "contract_degen": "0x2445BfFc6aB9EEc6C562f8D7EE325CddF1780814",
+        "version": "v3",
+        "min_bounty_base_arb": "0.001 ETH",
+        "min_bounty_degen": "1000 DEGEN",
+        "protocol_fee": "2.5%",
+        "nft_royalty_suggested": "5%",
+        "funding_distributed": "$65,000",
+        "token": "NONE",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "id": "empire-builder",
+      "name": "Empire Builder",
+      "labels": [
+        "Platform"
+      ],
+      "attributes": {
+        "url": "https://empirebuilder.world",
+        "docs_url": "https://empire-builder.gitbook.io/empire-builder-docs",
+        "leaderboard_types": [
+          "Token Holders",
+          "Stakers",
+          "NFT Holders",
+          "API-Sourced",
+          "CSV Upload"
+        ],
+        "auth_model": "X-API-Key",
+        "chains_supported": [
+          "Base",
+          "Arbitrum"
+        ],
+        "purpose": "Add leaderboard + booster + treasury infrastructure to any ERC-20",
+        "api_endpoint_base": "https://www.empirebuilder.world/api",
+        "supports_apiLeaderboards": true,
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "id": "zabal-empire",
+      "name": "ZABAL Empire",
+      "labels": [
+        "Instance"
+      ],
+      "attributes": {
+        "parent_platform": "Empire Builder",
+        "url": "https://songjam.space/zabal",
+        "token": "ZABAL",
+        "chains": [
+          "Base"
+        ],
+        "guardians": [
+          "yerbearserker (Jordan Oram)",
+          "Adrian (divifly)"
+        ],
+        "boost_types": [
+          "Token Boosters (ZABAL/SANG/ZORO)",
+          "Reputation Boosters (Talent Protocol)"
+        ],
+        "stake_minimum": "250,000 SANG",
+        "stake_multiplier_formula": "1 + sqrt(stakeAmount / 250k SANG min)",
+        "leaderboard_7d_24h_alltime": true,
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "id": "poidh-sentinel",
+      "name": "poidh-sentinel",
+      "labels": [
+        "Agent"
+      ],
+      "attributes": {
+        "url": "https://github.com/0x94t3z/poidh-sentinel",
+        "author_github": "0x94t3z",
+        "author_farcaster": "mr94t3z",
+        "deployed": "2026-05-03",
+        "stars": 4,
+        "language": "TypeScript",
+        "stack": [
+          "Vercel",
+          "Neon Postgres",
+          "Neynar webhooks",
+          "Free LLM (Cerebras/Groq/OpenRouter)"
+        ],
+        "capabilities": [
+          "Suggest bounties",
+          "Create on-chain",
+          "Monitor cron 1m",
+          "Evaluate claims (AI)",
+          "Pick winners",
+          "Pay out atomic",
+          "Cast announcements",
+          "Detect AI images"
+        ],
+        "cost_monthly": "$0 mandatory (free tiers) + bot ETH float",
+        "ai_image_detection_cost": "~$0.007/call optional (gpt-4o)",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "id": "bountycaster",
+      "name": "Bountycaster",
+      "labels": [
+        "Platform"
+      ],
+      "attributes": {
+        "url": "https://bountycaster.xyz",
+        "funding_model": "Off-chain peer-to-peer",
+        "trust_model": "Honor system",
+        "nft_artifact": false,
+        "use_case": "Code/research bounties without on-chain proof required",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "id": "hats-protocol",
+      "name": "Hats Protocol",
+      "labels": [
+        "Platform"
+      ],
+      "attributes": {
+        "url": "https://hatsprotocol.xyz",
+        "contract_base": "0x3bc1A0Ad72417f2d411118085256fC53CBdDd137",
+        "standard": "ERC-1155",
+        "purpose": "On-chain role NFTs (non-transferable)",
+        "use_case": "Portable proof of achievement across ecosystems",
+        "cost_create_tree": "~$0.25 (Base)",
+        "cost_per_mint": "~$0.12 per address (Base)",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "id": "bcz-poidh-leaderboard",
+      "name": "BCZ POIDH Leaderboard",
+      "labels": [
+        "Service"
+      ],
+      "attributes": {
+        "page_url": "https://bettercallzaal.com/poidh.html",
+        "feed_url": "https://bettercallzaal.com/poidh-leaderboard.json",
+        "feed_format": "[{address, score}]",
+        "integration": "Empire Builder apiLeaderboards",
+        "status": "Live Phase 1",
+        "owned_by": "Zaal (bettercallzaal.com)",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "id": "zabal-games-adoptable-projects",
+      "name": "ZABAL Games Adoptable Projects",
+      "labels": [
+        "Mechanism"
+      ],
+      "attributes": {
+        "count": 9,
+        "spec_url": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/adoptable-projects.json",
+        "funding_mechanism": "POIDH bounty adoption + Empire Builder distribution",
+        "projects_include": [
+          "Songjam leaderboard migration",
+          "POIDH bounty leaderboard",
+          "zlank Empire Snap template",
+          "Twitch to Empire feed",
+          "ZOE skill extension",
+          "ZABAL mini app",
+          "COC content pipeline",
+          "Streaming auto-clip",
+          "WaveWarZ Finals settlement"
+        ],
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "id": "poidhv3-contract-events",
+      "name": "PoidhV3 Contract Events",
+      "labels": [
+        "Infrastructure"
+      ],
+      "attributes": {
+        "chains": [
+          "Arbitrum",
+          "Base",
+          "Degen"
+        ],
+        "data_source": "On-chain events (BountyCreated, ClaimSubmitted, ClaimAccepted)",
+        "indexing": "Available via Base RPC or poidh.xyz reverse-engineered API",
+        "use_case": "Real-time submitter list without relying on UI scrape",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "id": "farcaster-snap-protocol",
+      "name": "Farcaster Snap Protocol",
+      "labels": [
+        "Protocol"
+      ],
+      "attributes": {
+        "version": "2.0",
+        "launched": "2026-03-27",
+        "spec_finalized": "2026-04-08",
+        "mime_type": "application/vnd.farcaster.snap+json",
+        "current_sdk": "@farcaster/snap@2.0.3",
+        "hono_middleware": "@farcaster/snap-hono@2.0.5",
+        "description": "Server-driven JSON-UI embedded in Farcaster casts",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "snap-response-v2-0",
+      "name": "Snap Response v2.0",
+      "labels": [
+        "Schema"
+      ],
+      "attributes": {
+        "version": "2.0",
+        "required_fields": [
+          "version",
+          "ui"
+        ],
+        "optional_fields": [
+          "theme",
+          "effects"
+        ],
+        "ui_structure": "{ root: string, elements: Record<string, Element> }",
+        "root_constraint": "max 7 direct children",
+        "total_elements": "max 64",
+        "nesting_depth": "max 4 levels",
+        "height_limit": "500px default, 700px with showOverflowWarning",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "content-negotiation-pattern",
+      "name": "Content Negotiation Pattern",
+      "labels": [
+        "Pattern"
+      ],
+      "attributes": {
+        "description": "Single URL serves both Snap and HTML",
+        "snap_condition": "Accept: application/vnd.farcaster.snap+json",
+        "html_condition": "browser GET or no Accept header",
+        "html_includes": "fc:miniapp meta tag for Mini App fallback",
+        "required_header": "Vary: Accept",
+        "discovery_requirement": "Snap MUST be discoverable on plain GET",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "zlank",
+      "name": "zlank",
+      "labels": [
+        "Platform"
+      ],
+      "attributes": {
+        "url": "zlank.online",
+        "status": "live (FarHack 2026)",
+        "purpose": "No-code Snap builder",
+        "path_pattern": "/s/[uuid]",
+        "sdk_version": "@farcaster/snap@2.1.1",
+        "hono_version": "@farcaster/snap-hono@2.0.5",
+        "snap_ttl": "7 days free",
+        "blocks_v1": 7,
+        "blocks_total": 14,
+        "multipage": true,
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "jfs-json-farcaster-signature",
+      "name": "JFS (JSON Farcaster Signature)",
+      "labels": [
+        "Authentication"
+      ],
+      "attributes": {
+        "purpose": "Sign POST payloads on Snap interactions",
+        "payload_v2_shape": "{ user: { fid }, surface, inputs, timestamp }",
+        "nonce_status": "removed April 2026",
+        "verification": "verifyJFSRequestBody from @farcaster/snap",
+        "production_requirement": "MUST verify in production, MAY skip in dev/emulator",
+        "signature_binding": "JFS header FID must match user.fid",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "snap-element-catalog",
+      "name": "Snap Element Catalog",
+      "labels": [
+        "Components"
+      ],
+      "attributes": {
+        "display_elements": [
+          "badge",
+          "button",
+          "icon",
+          "image",
+          "item",
+          "progress",
+          "separator",
+          "text"
+        ],
+        "containers": [
+          "item_group",
+          "stack"
+        ],
+        "data_viz": [
+          "bar_chart",
+          "cell_grid"
+        ],
+        "form_inputs": [
+          "input",
+          "slider",
+          "switch",
+          "toggle_group"
+        ],
+        "total_components": 16,
+        "element_limit_per_snap": 64,
+        "direct_children_limit": 7,
+        "nested_children_limit": 6,
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "snap-actions",
+      "name": "Snap Actions",
+      "labels": [
+        "Interactions"
+      ],
+      "attributes": {
+        "primary": [
+          "submit"
+        ],
+        "navigation": [
+          "open_url",
+          "open_mini_app",
+          "view_cast",
+          "view_profile"
+        ],
+        "composer": [
+          "compose_cast"
+        ],
+        "wallet": [
+          "view_token",
+          "send_token",
+          "swap_token"
+        ],
+        "total_actions": 9,
+        "submit_target": "POST to server with JFS signature",
+        "open_url_binding": "HTTPS required, validated at spec-check time",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "fc-frame-button-n-deprecated",
+      "name": "fc:frame:button:N (deprecated)",
+      "labels": [
+        "LegacyProtocol"
+      ],
+      "attributes": {
+        "status": "deprecated as of Snap launch",
+        "max_buttons": 4,
+        "rendering": "image-only with text buttons",
+        "replaced_by": "Farcaster Snap Protocol",
+        "reason_deprecated": "Limited UI flexibility, no rich components, 4-button ceiling",
+        "mini_app_alternative": "Frames v2 (full-screen, persistent)",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "fc-miniapp-meta-tag",
+      "name": "fc:miniapp meta tag",
+      "labels": [
+        "MetaTag"
+      ],
+      "attributes": {
+        "protocol": "Farcaster Mini Apps (not Snaps)",
+        "placement": "HTML head, stringified JSON",
+        "structure": "{ version: 1, imageUrl, button: { title, action } }",
+        "action_types": [
+          "launch_miniapp",
+          "launch_frame"
+        ],
+        "purpose": "Render Mini App embed card in cast feeds",
+        "manifest_requirement": "/.well-known/farcaster.json for account association",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "snap-host-whitelist",
+      "name": "Snap Host Whitelist",
+      "labels": [
+        "Infrastructure"
+      ],
+      "attributes": {
+        "known_whitelisted_hosts": [
+          "zlank.online",
+          "vercel-deployed Farcaster official",
+          "Neynar infrastructure"
+        ],
+        "arbitrary_custom_domain_status": "NOT unfurled as Snap by Farcaster caster",
+        "rendering_fallback": "Plain text URL if not whitelisted",
+        "why_whitelist": "Prevent spoofing, ensure protocol safety",
+        "account_association_mechanism": "/.well-known/farcaster.json with EIP-712 signature",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "farcaster-snap-npm-package",
+      "name": "@farcaster/snap npm package",
+      "labels": [
+        "Library"
+      ],
+      "attributes": {
+        "current_version": "2.6.1",
+        "stable_2x_version": "2.0.3",
+        "releases_total": 144,
+        "first_release": "2026-03-30",
+        "exports": [
+          "schemas",
+          "validation",
+          "JFS verification",
+          "types"
+        ],
+        "key_exports": [
+          "verifyJFSRequestBody",
+          "validateSnapResponse",
+          "SnapResponse type"
+        ],
+        "dependencies": 8,
+        "weekly_downloads": 680,
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "snap-v2-0-structural-constraints",
+      "name": "Snap v2.0 Structural Constraints",
+      "labels": [
+        "Validation"
+      ],
+      "attributes": {
+        "max_elements": 64,
+        "max_root_children": 7,
+        "max_nested_children": 6,
+        "max_nesting_depth": 4,
+        "default_height": "500px",
+        "extended_height": "700px with showOverflowWarning",
+        "image_url_validation": "HTTPS required, no extension restrict (PR #153)",
+        "action_url_validation": "HTTPS required, loopback HTTP dev exception",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "id": "wavewarz-v1-solana",
+      "name": "WaveWarZ v1 Solana",
+      "labels": [
+        "Protocol"
+      ],
+      "attributes": {
+        "chain": "Solana Mainnet",
+        "launch_date": "September 2025",
+        "github_org": "CandyToyBox",
+        "repos": "wavewarz-intelligence, Dashboard_wallet_checker, analytics-wave-warz, homepage-redesign",
+        "status": "Live",
+        "founder": "Ikechi Nwachukwu (Hurric4n3Ike)",
+        "twitter": "@WaveWarZ",
+        "program_id": "9TUfEHvk5fN5vogtQyrefgNqzKy2Bqb4nWVhSFUg2fYo",
+        "rpc_provider": "Helius (free tier, 1M credits/mo, 10 RPS, 0 cost)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "wavewarz-base-v2",
+      "name": "WaveWarZ-Base v2",
+      "labels": [
+        "Protocol"
+      ],
+      "attributes": {
+        "chain": "Ethereum Base L2",
+        "status": "In build (testnet: Base Sepolia)",
+        "builders": "Sam + Arthur",
+        "github": "bettercallzaal/wwbase, CandyToyBox/wavewarz-base",
+        "contract_address_testnet": "0xe28709DF5c77eD096f386510240A4118848c1098 (Base Sepolia)",
+        "contracts": [
+          "WaveWarzBase.sol",
+          "EphemeralBattleToken.sol",
+          "WaveWarzMarketplace.sol",
+          "WaveWarzMusicNFT.sol"
+        ],
+        "bonding_curve": "sqrt integral (2/3)(b^(3/2) - a^(3/2))",
+        "payment_token": "WETH (0x4200000000000000000000000000000000000006)",
+        "test_status": "8/8 tests passing",
+        "agentic": true,
+        "target_mainnet_date": "July 2026 (post-audit)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "zabal-games-season-1-finals",
+      "name": "ZABAL Games Season 1 Finals",
+      "labels": [
+        "Event"
+      ],
+      "attributes": {
+        "voting_mechanism": "WaveWarZ-Base (Doc 720)",
+        "date": "August 2026",
+        "finalists_count": "5-8 (8 adoptable projects, one becomes Finals winners test case)",
+        "respect_holder_snapshot": "T-7 days (via Hats Protocol or direct Respect contract read)",
+        "prefund_amount_per_voter": "$1-2 USDC equivalent split across N finalists",
+        "trade_window_hours": "72 (T+0 to T+72h)",
+        "ship_deadline": "T+24h (live URL + repo + 60s demo + cast)",
+        "judge_agents": "x402-paid autonomous scorers, read deployed URL + repo + demo video, score against rubric",
+        "settlement_triggers": [
+          "Build quality",
+          "Is it ZAO-native",
+          "Would I use this",
+          "Shipped in 24h"
+        ],
+        "artist_cut": "1% of total volume → each builder (ongoing post-Finals)",
+        "hats_protocol": "Finisher NFT to all finalists, Champion NFT to top-3",
+        "prize_pool_usdc": "500",
+        "phase_1_start": "June 2026",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "lui",
+      "name": "LUI",
+      "labels": [
+        "Artist"
+      ],
+      "attributes": {
+        "solana_wallet": "B97zbRCUf2jhPj6Cs2QXc9EGyWdNDvQ6ExUeB7sxrTSA",
+        "battles": 71,
+        "wins": 49,
+        "losses": 22,
+        "win_rate": "69%",
+        "total_volume_sol": 29.5888,
+        "career_earnings_sol": 0.528,
+        "biggest_win_song": "Love Languages (2.22 SOL single-song volume)",
+        "main_events_record": "9W-1L (90%)",
+        "soundcloud": "luijoseph",
+        "instagram": "@LuiJoseph__",
+        "email": "LUIJOSEPHIII@gmail.com",
+        "status": "Recruitment priority (v1 dominant player)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "aporkalypse",
+      "name": "APORKALYPSE",
+      "labels": [
+        "Artist"
+      ],
+      "attributes": {
+        "solana_wallet": "CUh7ZWej4qG4daKHA44vV7zNNeonyctt45qHZykz9WGN",
+        "battles": 30,
+        "wins": 22,
+        "losses": 8,
+        "win_rate": "73%",
+        "total_volume_sol": 10.9753,
+        "career_earnings_sol": 0.2223,
+        "soundcloud": "aporkalypse-now",
+        "instagram": "@aporkalypsenownola",
+        "apple_music": "1633048308",
+        "twitter": "@Aporkalypse504",
+        "status": "High-quality performer, volume leader",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "prof-t",
+      "name": "PROF!T",
+      "labels": [
+        "Artist"
+      ],
+      "attributes": {
+        "solana_wallet": "BFM9h9WMxGCYxqexLB5w93iSd5uye9xCyxkjchZirG4X",
+        "battles": 7,
+        "wins": 5,
+        "losses": 2,
+        "win_rate": "71%",
+        "total_volume_sol": 13.8564,
+        "career_earnings_sol": 0.2025,
+        "status": "High-stakes performer (volume leader per battle ratio)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "kata7yst",
+      "name": "Kata7yst",
+      "labels": [
+        "Artist"
+      ],
+      "attributes": {
+        "battles_in_24h": 8,
+        "wins_in_24h": 6,
+        "losses_in_24h": 2,
+        "volume_in_24h_sol": 1.64,
+        "status": "Most active recent entrant (Mar 20-21, 2026 window), not in original 43-wallet list yet, primary opponent: BennyJ504",
+        "solana_wallet": "UNKNOWN",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "hurric4n3ike",
+      "name": "Hurric4n3Ike",
+      "labels": [
+        "Artist + Founder"
+      ],
+      "attributes": {
+        "real_name": "Ikechi Nwachukwu",
+        "founder_role": "Built WaveWarZ v1 Solana + leading v2 Base agentic build (with Sam + Arthur)",
+        "wallets": [
+          "62g5hYiSTqj185F26c3pT6EPx4Gs1P6gL72kGNzvkbjM (wallet A, 60W-18L, 3.6081 SOL)",
+          "4g2wDCUN1WcsMRd2czDSVhxgk5eCLH4CpVLk3thfv5rG (wallet B, 8W-3L, 1.4198 SOL)",
+          "9RbUvEftk..."
+        ],
+        "combined_record": "71W-27L",
+        "beatstars": "hurric4n3ike.beatstars.com",
+        "spotify": "FireWavez",
+        "twitter": "@hurric4n3ike",
+        "github": "hurric4n3ike (personal repos: BlinkBattlesimages, zoundz NFT marketplace, rpc-proxy)",
+        "contact_priority": "X @WaveWarZ (primary) AND GitHub @hurric4n3ike for API/program ID requests",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "dcoopofficial",
+      "name": "DCoopOfficial",
+      "labels": [
+        "Artist + Label Rep"
+      ],
+      "attributes": {
+        "organization": "Coop Records",
+        "farcaster_presence": "Yes (onchain record label)",
+        "product": "Sonata (open-source Farcaster music client, MIT license)",
+        "github": "github.com/Coop-Records/sonata",
+        "status": "Recruitment path via Farcaster-native music community",
+        "solana_wallet": "UNKNOWN",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "candytoybox",
+      "name": "CandyToyBox",
+      "labels": [
+        "Organization"
+      ],
+      "attributes": {
+        "github": "github.com/CandyToyBox",
+        "repo_count": 16,
+        "primary_language": "TypeScript",
+        "key_repos": [
+          "wavewarz-intelligence (Next.js + Supabase, latest Mar 17 2026)",
+          "wavewarz-base (Solidity/Foundry, latest Feb 27 2026)",
+          "analytics-wave-warz (Recharts + Supabase, Feb 28 2026)",
+          "wavewarz-merch-shop (agentic merch, Feb 20 2026)",
+          "Dashboard_wallet_checker (Claim tool, Feb 1 2026)"
+        ],
+        "status": "Active development org for WaveWarZ ecosystem",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "wavewarz-intelligence",
+      "name": "WaveWarZ Intelligence",
+      "labels": [
+        "Application"
+      ],
+      "attributes": {
+        "url": "wavewarz-intelligence.vercel.app",
+        "tech_stack": "Next.js + Supabase (events/calendar tables only, not battle data)",
+        "features": [
+          "Battle history (647 as of Mar 21, 735 as of May 23)",
+          "Artist profiles (43+)",
+          "5 leaderboard types",
+          "Claim tool (wallet scanner for unclaimed winnings)"
+        ],
+        "repo": "CandyToyBox/wavewarz-intelligence",
+        "last_updated": "Mar 17 2026",
+        "artist_profile_url_pattern": "https://wavewarz-intelligence.vercel.app/artist/[WALLET]",
+        "supabase_schema": "platform_events (schedule), calendar_events (one-off), platform_stats (Spotify metrics only). Battle data NOT in this Supabase instance.",
+        "battle_data_source": "Separate backend (unknown), direct Solana RPC reads, or internal API not exposed",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "wavewarz-analytics",
+      "name": "WaveWarZ Analytics",
+      "labels": [
+        "Application"
+      ],
+      "attributes": {
+        "url": "analytics-wave-warz.vercel.app",
+        "tech_stack": "Recharts + Supabase",
+        "features": [
+          "Volume trends",
+          "Platform growth charts",
+          "Battle metrics over time"
+        ],
+        "repo": "CandyToyBox/analytics-wave-warz",
+        "last_updated": "Feb 28 2026",
+        "data_source": "Client-side only (source unknown)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "wavewarz-main-app",
+      "name": "WaveWarZ Main App",
+      "labels": [
+        "Application"
+      ],
+      "attributes": {
+        "url": "wavewarz.com",
+        "features": [
+          "Battle creation",
+          "SOL staking",
+          "Live voting during X Spaces",
+          "Track listening"
+        ],
+        "tech_stack": "PWA",
+        "repo": "CandyToyBox/homepage-redesign",
+        "last_updated": "Feb 22 2026",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "wavewarz-live-mobile-alert-spectator-app",
+      "name": "WaveWarZ Live Mobile Alert + Spectator App",
+      "labels": [
+        "Application"
+      ],
+      "attributes": {
+        "repo": "bettercallzaal/wavewarzapp",
+        "purpose": "Mobile alerts + spectator mode for Solana music battles",
+        "status": "Demo build",
+        "last_updated": "May 7 2026",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "wavewarz-brief-wwbase-repo",
+      "name": "WaveWarZ Brief (wwbase repo)",
+      "labels": [
+        "Documentation"
+      ],
+      "attributes": {
+        "repo": "bettercallzaal/wwbase",
+        "description": "Public brief for WaveWarZ Base v2, agentic music battles on Base L2. Production-proven on Solana. Seeking technical co-founder.",
+        "last_updated": "May 15 2026",
+        "audience": "Potential partners / co-founders for Base build",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "polymarket-agent-apis",
+      "name": "Polymarket Agent APIs",
+      "labels": [
+        "Integration Pattern"
+      ],
+      "attributes": {
+        "frameworks": [
+          "Polymarket/agent-skills (MCP, 40+ tools)",
+          "py-clob-client (Python SDK)",
+          "AION Market SDK (Python + REST)"
+        ],
+        "endpoints": {
+          "clob": "https://clob.polymarket.com",
+          "gamma": "https://gamma-api.polymarket.com",
+          "relayer": "https://relayer-v2.polymarket.com",
+          "websocket": "wss://ws-subscriptions-clob.polymarket.com/ws/[market|user|sports]"
+        },
+        "auth_method": "EIP-712 signing + Builder headers for gasless (Gnosis Safe proxy wallets)",
+        "relevance_to_wavewarz": "Reference architecture for autonomous agent trading on prediction markets",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "agora",
+      "name": "Agora",
+      "labels": [
+        "Agentic Platform"
+      ],
+      "attributes": {
+        "what": "AI-native prediction market with 80 agents trading Super Bowl LX predictions",
+        "agents": "4 frontier model families (GPT, Claude, Gemini variants)",
+        "mechanism": "Constant product AMM (x*y=k), play-money AGP currency",
+        "leaderboard": "Brier score evaluation",
+        "result": "Agent forecasts match Vegas lines; diversity improves accuracy",
+        "date": "Feb 8-11 2026 (Super Bowl LX)",
+        "github": "kevins-openclaw-lab/agora (Feb 2026)",
+        "relevance_to_wavewarz": "Demonstrates agent forecasting at scale; WaveWarZ could use similar model-diversity patterns for judge agents",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "guessmarket",
+      "name": "GuessMarket",
+      "labels": [
+        "Agentic Platform"
+      ],
+      "attributes": {
+        "what": "Permissionless agent prediction market across 5 chains",
+        "blockchains": [
+          "Ethereum",
+          "Polygon",
+          "Base",
+          "Arbitrum",
+          "Solana"
+        ],
+        "features": [
+          "Agents build unsigned trades",
+          "Local signing",
+          "On-chain broadcast",
+          "75% LP fees to liquidity providers",
+          "Agents can CREATE markets autonomously"
+        ],
+        "mcp_server": "14 tools (list_markets, get_market, build_buy_tx, claim_winnings, etc.)",
+        "wallet_encryption": "AgentWallet (server-encrypted signing without key exposure)",
+        "url": "guessmarket.com/en/ai-agents",
+        "status": "Live 2026-05",
+        "relevance_to_wavewarz": "Multi-chain agent architecture; Solana integration; agent-native market creation pattern",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "prediction-arena",
+      "name": "Prediction Arena",
+      "labels": [
+        "Agentic Research"
+      ],
+      "attributes": {
+        "what": "Frontier model (GPT-5.4, Claude 4.6 Opus, Gemini 3.1 Pro) trading on Kalshi + Polymarket",
+        "period": "Jan 12 - Mar 9 2026 (57 days live)",
+        "cohorts": [
+          "Cohort 1: 6 legacy models, real capital",
+          "Cohort 2: 4 next-gen models, paper trading from Mar 6"
+        ],
+        "execution_cycle": "15-45 min trading cycles, web search tools, market discovery, Kelly Criterion sizing",
+        "findings": "Frontier beats legacy on Polymarket; smarter agents more profitable; feedback worsens calibration (surprising)",
+        "capital": "$10,000 per model account",
+        "papers": [
+          "arXiv:2604.07355",
+          "arXiv:2604.20050 (May 2026)"
+        ],
+        "relevance_to_wavewarz": "Demonstrates frontier model trading viability; Kelly Criterion sizing pattern for agent position management",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "polyswarm",
+      "name": "PolySwarm",
+      "labels": [
+        "Agentic Framework"
+      ],
+      "attributes": {
+        "what": "50-persona LLM swarm trading Polymarket concurrently",
+        "mechanism": "Confidence-weighted Bayesian aggregation, KL divergence misprice detection, quarter-Kelly sizing",
+        "innovation": "Latency arbitrage (200ms window on Polygon), agents reason about OTHER agents' knowledge via price observation",
+        "finding": "Swarm aggregation > single-model; simple prompting ineffective for complex info",
+        "paper": "arXiv:2604.03888 (May 2026)",
+        "relevance_to_wavewarz": "Multi-agent reasoning pattern; agent-vs-agent dynamics applicable to agentic battles",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "orca",
+      "name": "Orca",
+      "labels": [
+        "Agentic Platform"
+      ],
+      "attributes": {
+        "what": "Full-stack autonomous agent execution platform (sentiment, routing, risk, execution)",
+        "integrations": [
+          "Polymarket",
+          "Kalshi",
+          "Base (Q2 2026)",
+          "Arbitrum (Q2 2026)",
+          "XRP Ledger"
+        ],
+        "backend": "OpenClaw automation, Nodepay sentiment, x402 payment protocol on XRP",
+        "roadmap": [
+          "Q4 2027: official ORCA ecosystem launch",
+          "2028: mobile-first + AI-native prediction trading UI"
+        ],
+        "announcement": "May 16 2026 (TechBullion)",
+        "relevance_to_wavewarz": "Continuous autonomous operation pattern; x402 payment integration (same as ZABAL Games judge agents); sentiment-driven signal aggregation",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "anansi-ogma-agent-as-judge-pattern",
+      "name": "Anansi × Ogma Agent-as-Judge Pattern",
+      "labels": [
+        "Design Pattern"
+      ],
+      "attributes": {
+        "what": "Economic accountability for evaluation (artist agent + judge agent + x402 payment)",
+        "implementation": "Anansi (storyteller) → Ogma (evaluator) → feedback loop → regeneration",
+        "blockchain": "Celo Sepolia (USDm/KESm stablecoins)",
+        "evaluation_model": "Venice.ai venice-uncensored (cultural authenticity rubric)",
+        "payment": "x402 HTTP 402 status → KES/USD → verdict delivery",
+        "innovation": "Culture becomes tradeable, compensable asset; judge economically incentivized",
+        "source": "nissan/celo-agent-demo (Mar 2026)",
+        "relevance_to_wavewarz": "Direct pattern for WaveWarZ judge agents (Doc 720 Decision #7): agent reads build, scores rubric, gets paid in x402",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "golden-codex-ai-art-curation",
+      "name": "Golden Codex AI Art Curation",
+      "labels": [
+        "Design Pattern"
+      ],
+      "attributes": {
+        "what": "Multiple independent judges (Curator vs Maestro) evaluating same art with different criteria",
+        "criteria": [
+          "Compliance (GCX registration, metadata, C2PA)",
+          "Aesthetic (composition, palette, coherence)"
+        ],
+        "execution": "3 AI artists post autonomously → 2 judges evaluate independently → x402 micropayments (0.009 ETH/decision)",
+        "distribution": "Artist gets 95%, judge/platform 5%",
+        "full_pipeline": "8-agent flow (intake → enrichment → upscaling → metadata → hash seal → archive → NFT mint → verify)",
+        "verification": "C2PA certification, perceptual hash registry, Arweave permanent storage",
+        "source": "codex-curator/golden-codex-kite-novel (Mar 2026)",
+        "relevance_to_wavewarz": "Parallel-judge-with-different-rubrics pattern; reasoning visibility; x402 integration; battle result appeals (different judges = different outcomes possible)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "agentarena-task-bounty-auto-judge",
+      "name": "AgentArena Task Bounty + Auto-Judge",
+      "labels": [
+        "Design Pattern"
+      ],
+      "attributes": {
+        "what": "Task bounties with autonomous LLM judging and instant settlement",
+        "blockchain": "X-Layer (OKX Layer 2), contract: 0x964441A7f7B7E74291C05e66cb98C462c4599381",
+        "flow": "Task poster escrows OKB → AI agents compete → LLM judges on-chain → instant payout to winner",
+        "reputation": "On-chain immutable (avgScore / attempted / completed / winRate)",
+        "wallet": "OKX OnchainOS Agentic Wallet (TEE-secured self-custodial)",
+        "roadmap": [
+          "V2: parallel competitions",
+          "V3: DeFi strategy auction + stake-weighted judges",
+          "V4: reputation staking"
+        ],
+        "source": "DaviRain-Su/agent-arena (Mar 2026)",
+        "relevance_to_wavewarz": "Immediate settlement pattern; reputation scoring for repeated judge agents; stakes-based judging (Respect-holders judge + earn from pool)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "x-spaces-broadcast-schedule",
+      "name": "X Spaces Broadcast Schedule",
+      "labels": [
+        "Venue"
+      ],
+      "attributes": {
+        "schedule": "Mon-Fri 8:30 PM EST",
+        "format": "Live music battles, judge announcements, trader chat, community AMAs",
+        "frequency": "11 shows per week",
+        "community_presence": "Daily on X, no Discord/Telegram official channels found",
+        "twitter_handle": "@WaveWarZ",
+        "status": "Confirmed active as of May 2026",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "zabal-games-doc-720",
+      "name": "ZABAL Games Doc 720",
+      "labels": [
+        "Specification"
+      ],
+      "attributes": {
+        "title": "WaveWarZ as the ZABAL Games Finals Voting Mechanism",
+        "status": "Research-complete, decision locked",
+        "option_selected": "Option B (Hybrid: WaveWarZ-Base market + Respect-holder baseline allocation)",
+        "design_option_a": "Pure market (highest WaveWarZ alignment, lowest Respect weight)",
+        "design_option_c": "Parallel signal (WaveWarZ viewer signal only, Respect 1p1v still decides)",
+        "last_validated": "2026-05-23",
+        "related_docs": [
+          "701 (canonical state)",
+          "711 (Arthur intro call)",
+          "723 (agentic patterns)",
+          "180 (integration blueprints)",
+          "646 (Clanker promote mechanic)"
+        ],
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "sam-arthur",
+      "name": "Sam + Arthur",
+      "labels": [
+        "Builders"
+      ],
+      "attributes": {
+        "role": "WaveWarZ-Base agentic build (smart contracts, security review, Base mainnet deployment)",
+        "timeline": "June 2026 (contracts locked), July 2026 (mainnet deployment + smoke test), August 2026 (Finals production run)",
+        "deliverables": [
+          "2 Solidity contracts from testnet to audit-ready",
+          "June workshop session (WaveWarZ-Base smart contracts)",
+          "airdropPositions call + Respect snapshot mechanism"
+        ],
+        "payment_model": "x402 micropayments for judge-agent evaluations (Doc 723d)",
+        "mentorship": "Arthur is also ZABAL Games mentor (locked per Doc 711)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "id": "zabal-token",
+      "name": "$ZABAL Token",
+      "labels": [
+        "Token"
+      ],
+      "attributes": {
+        "contract": "0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07",
+        "chain": "Base",
+        "decimals": 18,
+        "maxSupply": "100000000000",
+        "holders": 346,
+        "launchMethod": "Clanker",
+        "launchDate": "2026-01-01",
+        "tier": "Ascended (on Empire Builder)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "empire-builder-v3",
+      "name": "Empire Builder V3",
+      "labels": [
+        "Platform"
+      ],
+      "attributes": {
+        "url": "empirebuilder.world",
+        "creator": "Jordan/yerbearzerker + Adrian (diviflyy)",
+        "launchDate": "2026-05-01",
+        "apiBase": "empirebuilder.world/api",
+        "readAccess": "public",
+        "writeAccess": "permissioned (API key required)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "basic-empire",
+      "name": "Basic Empire",
+      "labels": [
+        "Tier"
+      ],
+      "attributes": {
+        "leaderboards": 2,
+        "boosters": 10,
+        "rankedSpotsPerLeaderboard": 250,
+        "cost": "Free",
+        "useCase": "ZABAL Games July submissions, community onboarding",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "ascended-empire",
+      "name": "Ascended Empire",
+      "labels": [
+        "Tier"
+      ],
+      "attributes": {
+        "leaderboards": 10,
+        "boosters": 40,
+        "rankedSpotsPerLeaderboard": 500,
+        "cost": "Token launch via Clanker",
+        "unlockTrigger": "ERC-20 token deployment + Empire Builder UI wrap",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "zabal-empire-leaderboard-holders",
+      "name": "ZABAL Empire Leaderboard - Holders",
+      "labels": [
+        "Leaderboard"
+      ],
+      "attributes": {
+        "uuid": "a0f3b306-169b-4917-a1fa-5e3ea933fa71",
+        "empireAddress": "0xe0faa499d6711870211505bd9ae2105206af1462",
+        "type": "tokenHolders",
+        "rankedSpots": 250,
+        "topHolder": "ticweb3 (rank 1, 433M score)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "zabal-empire-leaderboard-farcaster-only",
+      "name": "ZABAL Empire Leaderboard - Farcaster-Only",
+      "labels": [
+        "Leaderboard"
+      ],
+      "attributes": {
+        "uuid": "709d1f03",
+        "empireAddress": "0xe0faa499d6711870211505bd9ae2105206af1462",
+        "type": "farToken",
+        "description": "ZABAL holders verified on Farcaster only",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "zabal-empire-leaderboard-zabal-voting-miniapp",
+      "name": "ZABAL Empire Leaderboard - Zabal Voting Miniapp",
+      "labels": [
+        "Leaderboard"
+      ],
+      "attributes": {
+        "uuid": "5501171d",
+        "empireAddress": "0xe0faa499d6711870211505bd9ae2105206af1462",
+        "type": "api",
+        "description": "Custom API-fed leaderboard for voting participation",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "quotient-booster",
+      "name": "Quotient Booster",
+      "labels": [
+        "Booster"
+      ],
+      "attributes": {
+        "type": "QUOTIENT",
+        "description": "Reputation booster likely tied to Quotient social-graph",
+        "usedBy": "$ZABAL",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "glonkybot-empire",
+      "name": "glonkybot Empire",
+      "labels": [
+        "Empire"
+      ],
+      "attributes": {
+        "symbol": "GLANKER",
+        "owner": "diviflyy/Adrian",
+        "rank": 9.34,
+        "totalDistributed": "$4061 USD",
+        "boosterCount": 17,
+        "boosterTokens": "MYU, GMYerb, BB, MTDV, CLANKER, CLANKERMON, PUSH, DICKBUTT, RUNNER, PANGEA, ARTBABY, LUM, REAPS, SAUSAGE, SPARTAN, hmbt + 1 NFT",
+        "boosterMultiplier": 5,
+        "strategy": "Token-stack network effect",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "clanker-token",
+      "name": "CLANKER Token",
+      "labels": [
+        "Token"
+      ],
+      "attributes": {
+        "chain": "Base",
+        "description": "Farcaster-native token launcher",
+        "acquiredBy": "Farcaster (Q4 2025)",
+        "feeModel": "0.2% WETH",
+        "creatorFeeControl": "100% to creator wallet",
+        "lpLockDuration": "Until 2100 (90 years)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "sang-token",
+      "name": "SANG Token",
+      "labels": [
+        "Token"
+      ],
+      "attributes": {
+        "description": "SongJam native token",
+        "boosterUsage": "ZABAL booster (ERC20)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "clanker-airdrop-csv-pattern",
+      "name": "Clanker airdrop + CSV pattern",
+      "labels": [
+        "Pattern"
+      ],
+      "attributes": {
+        "workflow": "Build leaderboard -> Export CSV of contributors -> Launch Clanker token -> Upload CSV to airdrop with vesting -> Token arrives as Ascended Empire",
+        "useCase": "ZABAL Games finalists tokenizing their contribution lists",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "zabal-games-season-1",
+      "name": "ZABAL Games Season 1",
+      "labels": [
+        "Event"
+      ],
+      "attributes": {
+        "host": "Zaal (FID 19640)",
+        "duration": "June (prep) + July (build) + August (Finals)",
+        "phase1": "Open build-a-thon (July, ~30 submissions expected)",
+        "phase2": "August Finals (8 mentors, 24h build + 24h promote + 24h vote)",
+        "prizePool": "$500 USDC (1st $150, 2nd $100, 3rd $75, 4th-8th $35 ea)",
+        "empireRequirement": "Every Phase 1 submission creates tokenless Basic Empire",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "apileaderboards",
+      "name": "apiLeaderboards",
+      "labels": [
+        "APIPattern"
+      ],
+      "attributes": {
+        "endpoint": "/api/leaderboards?tokenAddress=0xbB48f19B...",
+        "responseType": "JSON array of leaderboard slot objects",
+        "fields": "uuid, name, type (tokenHolders|farToken|api|null), rankedCount",
+        "readAuth": "None (public)",
+        "writeAuth": "Permissioned API key",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "zaal",
+      "to": "zabal",
+      "type": "founded",
+      "properties": {
+        "fact": "Zaal founded ZABAL ecosystem"
+      }
+    },
+    {
+      "from": "zaal",
+      "to": "bettercallzaal",
+      "type": "owns",
+      "properties": {
+        "fact": "Zaal owns BetterCallZaal personal site"
+      }
+    },
+    {
+      "from": "hermes-runner",
+      "to": "hermes-coder",
+      "type": "SPAWNS",
+      "properties": {
+        "triggers": "on each attempt in loop",
+        "passes": "FixerInput {issueText, workTreePath, branchName, attemptNumber, previousCriticFeedback}",
+        "receives": "FixerOutput {filesChanged, commitMessage, prTitle, inputTokens, outputTokens}",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-coder",
+      "to": "hermes-pre-flight-gate",
+      "type": "OUTPUT_TO",
+      "properties": {
+        "gates_before": "Critic review",
+        "runs": "typecheck + lint + tests",
+        "fails_back_to": "Hermes Runner (retry loop, feedback to Coder)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-pre-flight-gate",
+      "to": "hermes-critic",
+      "type": "GATES_ENTRY_TO",
+      "properties": {
+        "only_if": "pre-flight OK",
+        "passes": "CritiqueInput {workTreePath, branchName, filesChanged, issueText}",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-critic",
+      "to": "hermes-runner",
+      "type": "FEEDBACK_TO",
+      "properties": {
+        "returns": "CritiqueOutput {score, feedback, inputTokens, outputTokens}",
+        "score_decision": "if >=70 then ready, else retry or escalate",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-runner",
+      "to": "hermes-database",
+      "type": "LOGS_TO",
+      "properties": {
+        "writes": "HermesRun record + attempt count + model used + token counts",
+        "timing": "create at start, update at each phase",
+        "immutable": true,
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "zao-devz-bot",
+      "to": "hermes-runner",
+      "type": "DISPATCHES_TO",
+      "properties": {
+        "trigger": "user /fix command in Telegram",
+        "passes": "DispatchInput {triggered_by, issue_text, target_repo}",
+        "returns": "DispatchResult (ready | failed | escalated)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-narrator",
+      "to": "zao-devz-bot",
+      "type": "POSTS_TO",
+      "properties": {
+        "timing": "after each runner phase completes",
+        "messages": "phase-transition updates (Coder started, Critic done, PR opened, etc)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-pr-watcher",
+      "to": "hermes-narrator",
+      "type": "ALERTS_VIA",
+      "properties": {
+        "trigger": "CI failure or CONFLICTING merge state",
+        "medium": "Telegram message",
+        "actionable": "link to CI logs, suggest rebase/re-run",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-runner",
+      "to": "claude-code-sdk",
+      "type": "USES_AS_RUNTIME",
+      "properties": {
+        "spawns": "Coder subprocess (Opus), Critic subprocess (Sonnet)",
+        "auth": "Max plan OAuth bearer",
+        "model_arg": "--model opus / --model sonnet (hardcoded)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-coder",
+      "to": "github-api",
+      "type": "CLONES_AND_PUSHES",
+      "properties": {
+        "operations": [
+          "clone zaoos",
+          "checkout -b hermes/...",
+          "commit",
+          "push origin"
+        ],
+        "auth": "SSH key (bot account)",
+        "scope": "single branch per run",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-runner",
+      "to": "github-api",
+      "type": "OPENS_PR_VIA",
+      "properties": {
+        "command": "gh pr create --head hermes/... --base main",
+        "auth": "gh CLI (bot SSH key)",
+        "titles_from": "Coder prTitle + prBody",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "diff-complexity-classifier",
+      "to": "critic",
+      "type": "INFORMS_MODEL_CHOICE_FOR",
+      "properties": {
+        "future_use": "Sprint 1 (Gap #1) - route simple to Haiku, complex to Sonnet",
+        "today": "unused (all routed to Sonnet)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-coder",
+      "to": "zabal-bonfire-bot",
+      "type": "READS_CONTEXT_FROM",
+      "properties": {
+        "future_use": "Phase 1 post-May (Doc 547 spec)",
+        "query": "constraint entities matching issue_text",
+        "timeout_ms": 2000,
+        "fallback": "silent (proceed without Bonfire context)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-runner",
+      "to": "zabal-bonfire-bot",
+      "type": "WRITES_EVENTS_TO",
+      "properties": {
+        "future_use": "Phase 2 (Doc 547 spec)",
+        "writes": "Contribution node on PR open",
+        "timing": "fire-and-forget (non-blocking)",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "zao-devz-bot",
+      "to": "hermes-http-dispatch",
+      "type": "ALTERNATIVE_TRIGGER_VIA",
+      "properties": {
+        "endpoint": "POST :3007/hermes-dispatch",
+        "auth": "x-hermes-secret header",
+        "today": "used for integration tests, future for cross-bot dispatch",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "hermes-coder",
+      "to": "forbidden-paths",
+      "type": "REFUSES_TO_WRITE",
+      "properties": {
+        "paths": [
+          "bot/src/hermes",
+          ".env*",
+          ".git/hooks",
+          "package.json",
+          "CLAUDE.md",
+          ".claude/rules"
+        ],
+        "enforced_by": "pre-flight forbidden-paths check",
+        "rationale": "prevent self-modification, secrets leak, supply-chain attack",
+        "_source": "zabal-dispatch-hermes-20260523"
+      }
+    },
+    {
+      "from": "zabal-games-builder",
+      "to": "poidh",
+      "type": "CLAIMS_BOUNTY_VIA",
+      "properties": {
+        "flow": "Claim adoptable project -> Create POIDH bounty on Base -> Execute task -> Submit proof NFT -> Issuer accepts -> Funds released to builder wallet",
+        "chain": "Base",
+        "bounty_types_available": [
+          "Solo (builder pays)",
+          "Open (community co-funds)"
+        ],
+        "proof_requirement": "Photo/video + text description minted as ERC-721 NFT",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "poidh",
+      "to": "empire-builder",
+      "type": "FEEDS_LEADERBOARD",
+      "properties": {
+        "mechanism": "BCZ poidh-leaderboard.json pulls submitter addresses + scores -> Empire Builder apiLeaderboards reads via HTTPS",
+        "refresh_trigger": "Manual or Cloudflare Worker cron",
+        "data_format": "[{address, score}]",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "empire-builder",
+      "to": "zabal-empire",
+      "type": "DISTRIBUTES_TOKENS",
+      "properties": {
+        "token": "ZABAL",
+        "recipients": "All POIDH submitter wallets in leaderboard",
+        "booster_stack": "Token Boosters + Reputation Boosters applied onchain",
+        "distribution_trigger": "Empire guardian calls bulk-send or Zaal admin button on /poidh.html",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "poidh-sentinel",
+      "to": "poidh",
+      "type": "MANAGES_AUTONOMOUSLY",
+      "properties": {
+        "actions": [
+          "Suggest bounties",
+          "Validate deposits",
+          "Monitor submissions cron 1m",
+          "Evaluate claims (deterministic + OCR + vision AI)",
+          "Execute payouts",
+          "Announce winners"
+        ],
+        "decision_threshold": "score >= 60 of 100",
+        "channel": "/poidh on Farcaster",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "poidh-sentinel",
+      "to": "empire-builder",
+      "type": "CALLS_DISTRIBUTE_PREPARE",
+      "properties": {
+        "timing": "T+0 when Sentinel picks winner",
+        "endpoint": "POST /api/distribute-prepare on ZABAL Empire",
+        "result": "Atomic moment: ETH lands in winner wallet + ZABAL distributed to all submitters in same second",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "bcz-yapz-episodes",
+      "to": "poidh",
+      "type": "SEEDS_CLIPPING_BOUNTIES",
+      "properties": {
+        "cadence": "Weekly (one per episode)",
+        "task": "Clip best 30-90s moment + post to X/Instagram/YouTube with comment",
+        "proof": "Screenshot of live post + clip link + source video",
+        "example_bounty": "https://poidh.xyz/base/bounty/1151",
+        "prize_range": "0.005-0.01 ETH on Base",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "zabal-games-adoptable-projects",
+      "to": "poidh",
+      "type": "CREATES_BOUNTIES_FOR",
+      "properties": {
+        "adoption_flow": "Builder claims project -> Creates POIDH solo bounty on Base -> Executes work -> Submits proof -> Wins payment + ZABAL",
+        "project_count": 9,
+        "examples": [
+          "POIDH bounty leaderboard",
+          "Streaming auto-clip flywheel",
+          "WaveWarZ Finals settlement"
+        ],
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "poidh",
+      "to": "hats-protocol",
+      "type": "CAN_MINT_PORTABLE_PROOF",
+      "properties": {
+        "mechanism": "Optional Phase 3: Mint ERC-1155 hat to each submitter address",
+        "purpose": "Portable proof of 'I submitted to ZAO POIDH' across all ecosystems",
+        "cost": "~$0.12 per address on Base",
+        "prerequisite": "Zaal confirms cross-platform role intent",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "zao",
+      "to": "poidh-sentinel",
+      "type": "COULD_PARTNER_VIA",
+      "properties": {
+        "option_a": "Sponsor/retainer partnership with 0x94t3z (mr94t3z on Farcaster)",
+        "option_b": "Fork the open-source repo as Sentinel-for-ZAO",
+        "leverage": "100x - saves months of autonomous bounty agent build",
+        "contact": "DM @mr94t3z on Farcaster",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "bettercallzaal-com-poidh-html",
+      "to": "poidhv3-contract-events",
+      "type": "INDEXES_FOR_LEADERBOARD",
+      "properties": {
+        "phase_1": "Parse OG meta from poidh.xyz/a/thezao album (participants query param)",
+        "phase_2": "Read PoidhV3 contract events via Base RPC -> sybil-protected with claim NFT verification",
+        "data_output": "poidh-leaderboard.json",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "empire-builder",
+      "to": "bountycaster",
+      "type": "ALTERNATIVE_TO",
+      "properties": {
+        "zabal_primary": "POIDH 90% (on-chain escrow + NFT artifact + album)",
+        "zabal_secondary": "Bountycaster for code/research without visual proof",
+        "comparison_factor": "POIDH provides trustless payout + collectible; Bountycaster lighter trust model for text-based bounties",
+        "_source": "zabal-dispatch-poidh-20260523"
+      }
+    },
+    {
+      "from": "fc-frame-button-n",
+      "to": "farcaster-snap-protocol",
+      "type": "REPLACED_BY",
+      "properties": {
+        "transition_date": "2026-03-27",
+        "reason": "Snaps offer 16 components vs 4 buttons, multi-page state, JFS auth",
+        "backward_compatibility": "Frame v1 still supported for legacy apps",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "farcaster-snap-protocol",
+      "to": "content-negotiation-pattern",
+      "type": "IMPLEMENTS",
+      "properties": {
+        "snap_header": "Accept: application/vnd.farcaster.snap+json",
+        "response_mime": "application/vnd.farcaster.snap+json; charset=utf-8",
+        "fallback_mime": "text/html; charset=utf-8",
+        "discovery_rule": "Snap MUST be findable on plain GET",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "snap-response-v2-0",
+      "to": "snap-element-catalog",
+      "type": "USES_ELEMENTS",
+      "properties": {
+        "elements_field": "ui.elements",
+        "max_total": 64,
+        "validation_time": "spec-version aware per v2.0",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "snap-response-v2-0",
+      "to": "snap-actions",
+      "type": "DEFINES_ACTIONS",
+      "properties": {
+        "action_binding": "element.on.press.action field",
+        "submit_requires": "target URL and JFS signature",
+        "open_url_requires": "HTTPS target",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "zlank",
+      "to": "farcaster-snap-protocol",
+      "type": "IMPLEMENTS_BUILDER_FOR",
+      "properties": {
+        "build_target": "Snap response v2.0",
+        "render_path": "/s/[uuid]",
+        "content_negotiation": "true",
+        "jfs_verification": "gated by NODE_ENV",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "jfs-json-farcaster-signature",
+      "to": "snap-response-v2-0",
+      "type": "AUTHENTICATES",
+      "properties": {
+        "triggers": "POST from client to snap server",
+        "signature_verification": "verifyJFSRequestBody in @farcaster/snap",
+        "identity_binding": "JFS header FID == user.fid (v2 requirement)",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "farcaster-snap-npm-package",
+      "to": "jfs-json-farcaster-signature",
+      "type": "PROVIDES_VERIFICATION_FOR",
+      "properties": {
+        "export_function": "verifyJFSRequestBody",
+        "compatible_versions": "2.0.3+",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "zlank",
+      "to": "farcaster-snap-npm-package",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "version_pinned": "2.1.1",
+        "usage": "type schemas, validation, JFS verify",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "zlank",
+      "to": "snap-host-whitelist",
+      "type": "WHITELISTED_ON",
+      "properties": {
+        "host": "zlank.online",
+        "status": "live May 2026",
+        "snap_unfurl": "true",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "snap-host-whitelist",
+      "to": "farcaster-snap-protocol",
+      "type": "GATES_RENDERING_OF",
+      "properties": {
+        "enforcement_point": "Farcaster caster client",
+        "non_whitelisted_behavior": "plain text URL fallback",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "fc-miniapp-meta-tag",
+      "to": "farcaster-snap-protocol",
+      "type": "COMPLEMENTARY_TO",
+      "properties": {
+        "snap_usage": "in-feed, lightweight, stateless",
+        "miniapp_usage": "full-screen, persistent, wallet",
+        "interop": "Snap can launch Mini App via open_mini_app action",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "snap-v2-0-structural-constraints",
+      "to": "snap-response-v2-0",
+      "type": "VALIDATES",
+      "properties": {
+        "validation_timing": "client-side on render, server-side on publish",
+        "v1_vs_v2": "v1.0 skips constraints, v2.0 enforces",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "content-negotiation-pattern",
+      "to": "snap-host-whitelist",
+      "type": "WORKS_WITH",
+      "properties": {
+        "discovery_first": "server advertises snap on plain GET",
+        "caster_verification": "caster checks whitelist, then fetches snap+json",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "zlank",
+      "to": "jfs-json-farcaster-signature",
+      "type": "IMPLEMENTS_VERIFICATION_FOR",
+      "properties": {
+        "skip_condition": "NODE_ENV !== 'production' or ZLANK_VERIFY_JFS env",
+        "production_requirement": "MUST verify on /api/snap/[encoded]",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "snap-response-v2-0",
+      "to": "snap-v2-0-structural-constraints",
+      "type": "MUST_SATISFY",
+      "properties": {
+        "constraint_check": "per PR #95 validator",
+        "v1_behavior": "no constraints (legacy)",
+        "v2_behavior": "strict validation (current)",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "farcaster-snap-npm-package",
+      "to": "snap-v2-0-structural-constraints",
+      "type": "ENFORCES",
+      "properties": {
+        "validator_export": "validateSnapResponse",
+        "applies_to": "version 2.0 snaps only",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "zlank",
+      "to": "fc-miniapp-meta-tag",
+      "type": "SERVES_FALLBACK_WITH",
+      "properties": {
+        "snap_response_condition": "Accept: application/vnd.farcaster.snap+json",
+        "html_response_condition": "browser or older client",
+        "html_includes": "fc:miniapp meta JSON for Mini App launch button",
+        "_source": "zabal-dispatch-snap-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-v1-solana",
+      "to": "solana-mainnet",
+      "type": "DEPLOYED_ON",
+      "properties": {
+        "program_id": "9TUfEHvk5fN5vogtQyrefgNqzKy2Bqb4nWVhSFUg2fYo",
+        "pda_type": "Battle Vault (escrow)",
+        "tx_cost_sol": 0.00025,
+        "finality_ms": "sub-millisecond",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-base-v2",
+      "to": "ethereum-base-l2",
+      "type": "DEPLOYED_ON",
+      "properties": {
+        "testnet": "Base Sepolia",
+        "contract_address_sepolia": "0xe28709DF5c77eD096f386510240A4118848c1098",
+        "expected_mainnet_date": "July 2026 (post-audit)",
+        "payment_token": "WETH",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-base-v2",
+      "to": "zabal-games-season-1-finals",
+      "type": "SETTLES_VOTING_FOR",
+      "properties": {
+        "mechanism": "Hybrid: market price (volume + win rate at T+72h) + Respect-holder baseline allocation ($1-2 per voter per finalist)",
+        "decision_doc": "720",
+        "option": "Option B (Hybrid, RECOMMENDED)",
+        "placement_tie": "WaveWarZ smart contract settlement output (not manual)",
+        "prize_integration": "Market payout (1% artist cut + losing pool split) + $500 USDC pool + Hats Protocol NFTs",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "zabal-games-season-1-finals",
+      "to": "x402-payment-protocol",
+      "type": "USES_FOR",
+      "properties": {
+        "purpose": "Judge-agent autonomous evaluation (Doc 723 Decision #7)",
+        "payment_per_evaluation": "Micropayment (amount TBD)",
+        "judge_agents": "Autonomous, score build against rubric, emit scores to public feed",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "candytoybox",
+      "to": "wavewarz-v1-solana",
+      "type": "DEVELOPS",
+      "properties": {
+        "primary_repos": [
+          "wavewarz-intelligence",
+          "wavewarz-base",
+          "analytics-wave-warz",
+          "Dashboard_wallet_checker",
+          "homepage-redesign"
+        ],
+        "type": "Development organization (16 repos total)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "ikechi-nwachukwu-hurric4n3ike",
+      "to": "wavewarz-v1-solana",
+      "type": "FOUNDED",
+      "properties": {
+        "launch": "September 2025",
+        "current_role": "Founder + most-active battler (wallet A: 60W-18L as of Mar 21 2026)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "ikechi-nwachukwu-hurric4n3ike",
+      "to": "wavewarz-base-v2",
+      "type": "LEADS_WITH",
+      "properties": {
+        "collaborators": "Sam + Arthur",
+        "phase": "In-build, targeting mainnet July 2026",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "sam-arthur",
+      "to": "wavewarz-base-v2",
+      "type": "BUILDS",
+      "properties": {
+        "scope": "Smart contracts (Solidity), security review, mainnet deployment",
+        "timeline": "June-July 2026",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "sam-arthur",
+      "to": "zabal-games-season-1-finals",
+      "type": "INTEGRATES_PROTOCOL_INTO",
+      "properties": {
+        "integration_item": "WaveWarZ-Base becomes Finals voting surface",
+        "phase": "July smoke test, August production Finals run",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "lui",
+      "to": "wavewarz-v1-solana",
+      "type": "COMPETES_ON",
+      "properties": {
+        "battles": 71,
+        "wins": 49,
+        "rank": "Dominant player (highest volume, highest win rate combo)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "aporkalypse",
+      "to": "wavewarz-v1-solana",
+      "type": "COMPETES_ON",
+      "properties": {
+        "battles": 30,
+        "wins": 22,
+        "rank": "High-quality performer (73% win rate)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "prof-t",
+      "to": "wavewarz-v1-solana",
+      "type": "COMPETES_ON",
+      "properties": {
+        "battles": 7,
+        "wins": 5,
+        "rank": "High-stakes performer (71% win rate, 13.86 SOL volume for 7 battles)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "kata7yst",
+      "to": "wavewarz-v1-solana",
+      "type": "COMPETES_ON",
+      "properties": {
+        "status": "Most active in current window (Mar 20-21 snapshot: 8 battles / 24h)",
+        "note": "Not in original 43-wallet list; newer entrant; wallet address unknown",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "lui",
+      "to": "the-zao",
+      "type": "RECRUITMENT_TARGET",
+      "properties": {
+        "priority": "High",
+        "reason": "49W-22L record, 29.59 SOL volume (7x more than next leader)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "aporkalypse",
+      "to": "the-zao",
+      "type": "RECRUITMENT_TARGET",
+      "properties": {
+        "priority": "High",
+        "reason": "73% win rate, strong cross-format performer, social profiles on 5+ platforms (SoundCloud, Instagram, Apple Music, X)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "dcoopofficial",
+      "to": "the-zao",
+      "type": "RECRUITMENT_PATH",
+      "properties": {
+        "path": "Farcaster-native via Coop Records + Sonata (music client)",
+        "relevance": "Coop Records runs Sonata (open-source Farcaster music client); existing Farcaster community signal",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-v1-solana",
+      "to": "helius-solana-rpc",
+      "type": "USES",
+      "properties": {
+        "plan": "Free tier integration for ZAO artist discovery pipeline (Doc 101 Part 3)",
+        "credits_per_month": 1000000,
+        "rate_limit_rps": 10,
+        "cost": 0,
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-intelligence",
+      "to": "wavewarz-v1-solana",
+      "type": "READS_FROM",
+      "properties": {
+        "data": "Battle history (647 as of Mar 21, 735 as of May 23), artist profiles (43+)",
+        "method": "Direct Solana RPC or internal API (not exposed in open-source Intelligence repo)",
+        "supabase_note": "Intelligence Supabase only has events/calendar, not battle data",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "zao-os",
+      "to": "wavewarz-v1-solana",
+      "type": "EMBEDS",
+      "properties": {
+        "location": "/wavewarz route on BetterCallZaal + ZAO OS",
+        "tabs": [
+          "Battles",
+          "Intelligence",
+          "Analytics"
+        ],
+        "integration_doc": "180 (WaveWarZ Integration Blueprints)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "zao-os",
+      "to": "solana-wallet-bridge",
+      "type": "USES_FOR",
+      "properties": {
+        "field": "users.solana_wallet",
+        "purpose": "Match ZAO members to WaveWarZ artists (wallet-based linking)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "polymarket-agent-apis",
+      "to": "wavewarz-base-v2",
+      "type": "REFERENCE_ARCHITECTURE_FOR",
+      "properties": {
+        "pattern": "Agent integration for prediction market participation (EIP-712 signing, gasless relayer)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "agora",
+      "to": "wavewarz-base-v2",
+      "type": "INFORMS_DESIGN_OF",
+      "properties": {
+        "pattern": "Multiple frontier model agents trading concurrently with Brier score leaderboard; diversity improves accuracy",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "guessmarket",
+      "to": "wavewarz-base-v2",
+      "type": "INFORMS_DESIGN_OF",
+      "properties": {
+        "pattern": "Multi-chain agent architecture (Solana support), agent-native market creation, 75% LP fee structure",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "prediction-arena",
+      "to": "wavewarz-base-v2",
+      "type": "INFORMS_DESIGN_OF",
+      "properties": {
+        "pattern": "Frontier model trading with Kelly Criterion sizing, web search integration, market discovery",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "polyswarm",
+      "to": "wavewarz-base-v2",
+      "type": "INFORMS_DESIGN_OF",
+      "properties": {
+        "pattern": "Multi-agent swarm reasoning; agents model other agents' knowledge via price observation",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "orca",
+      "to": "wavewarz-base-v2",
+      "type": "INFORMS_DESIGN_OF",
+      "properties": {
+        "pattern": "Continuous autonomous operation, x402 payment integration, sentiment-driven signal aggregation",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "anansi-ogma-pattern",
+      "to": "zabal-games-judge-agents",
+      "type": "DIRECT_IMPLEMENTATION_PATTERN_FOR",
+      "properties": {
+        "doc": "720 Decision #7",
+        "mapping": "Artist agent (finalist builder) → Judge agent (rubric evaluation) → x402 payment → feedback loop",
+        "scope": "Autonomous evaluation of build quality, ZAO-nativeness, usability, shipping speed",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "golden-codex-pattern",
+      "to": "zabal-games-judge-agents",
+      "type": "INFORMS_DESIGN_OF",
+      "properties": {
+        "pattern": "Multiple independent judges with different criteria emit parallel scores; reasoning visible",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "agentarena-pattern",
+      "to": "zabal-games-finals",
+      "type": "INFORMS_DESIGN_OF",
+      "properties": {
+        "pattern": "Bounty escrow + LLM judging + on-chain settlement + reputation scoring; agent judge immutable track record",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "helius-solana-rpc",
+      "to": "zao-os-wavewarz-artist-discovery-pipeline",
+      "type": "PROVIDES_INFRASTRUCTURE_FOR",
+      "properties": {
+        "plan": "Phase 1 data foundation (Doc 101 Part 3.3 Tier 3: Direct Solana RPC)",
+        "method": "getProgramAccounts(WAVEWARZ_PROGRAM_ID) to read Battle Vault PDAs directly",
+        "status": "Unknown program ID (pending Ikechi request via X @WaveWarZ)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "bettercallzaal-wwbase",
+      "to": "bettercallzaal",
+      "type": "REPO_OWNED_BY",
+      "properties": {
+        "brief": "Public brief for WaveWarZ Base v2; agentic music battles; looking for technical co-founder",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "bettercallzaal-wavewarzapp",
+      "to": "bettercallzaal",
+      "type": "REPO_OWNED_BY",
+      "properties": {
+        "purpose": "Mobile alert + spectator app for Solana music battles; demo build",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-base-v2",
+      "to": "wavewarzbase-sol",
+      "type": "CONTAINS_CONTRACT",
+      "properties": {
+        "description": "Core battle mechanics (initialization, settlement, claiming)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-base-v2",
+      "to": "ephemeralbattletoken-sol",
+      "type": "CONTAINS_CONTRACT",
+      "properties": {
+        "description": "Temporary tokens minted per-battle, destroyed after settlement (creates FOMO + scarcity)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-base-v2",
+      "to": "wavewarzmarketplace-sol",
+      "type": "CONTAINS_CONTRACT",
+      "properties": {
+        "description": "Marketplace for buying/selling battle positions (secondary market)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-base-v2",
+      "to": "wavewarzmusicnft-sol",
+      "type": "CONTAINS_CONTRACT",
+      "properties": {
+        "description": "Music NFT contract (new in v2, not in Solana v1)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "zabal-games-finals",
+      "to": "hats-protocol",
+      "type": "USES_FOR",
+      "properties": {
+        "nft_minting": "Finisher NFT (all finalists), Champion NFT (top-3)",
+        "role_check_option": "Respect-holder snapshot via Hats Protocol role check (vs direct Respect contract read)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "zabal-games-season-1-finals",
+      "to": "empire-builder-v3",
+      "type": "INTEGRATES_WITH",
+      "properties": {
+        "relationship": "Empire stays leaderboard layer, WaveWarZ becomes settlement layer (Doc 654)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "zabal-games-season-1-finals",
+      "to": "eas-ethereum-attestation-service",
+      "type": "INTEGRATES_WITH",
+      "properties": {
+        "stack": "EAS on Base for immutable Finals decision records",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "zabal-games-season-1-finals",
+      "to": "bonfire",
+      "type": "INTEGRATES_WITH",
+      "properties": {
+        "stack": "Bonfire knowledge graph stores judge-agent scores + market data as training corpus for future agents",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "zabal-games-season-1-finals",
+      "to": "coinflow",
+      "type": "INTEGRATES_WITH",
+      "properties": {
+        "stack": "Coinflow on Base for payment settlement of $500 USDC prize pool",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "doc-720",
+      "to": "doc-701",
+      "type": "UPDATES_SECTION_OF",
+      "properties": {
+        "section": "Part 12 (WaveWarZ Finals mechanism) TBD, last validated 2026-05-23",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "doc-720",
+      "to": "doc-711",
+      "type": "REFERENCES",
+      "properties": {
+        "doc": "Arthur intro call (May 19 2026); locks Arthur on WaveWarZ-Base smart contracts + ZABAL Games mentor",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "doc-720",
+      "to": "doc-723",
+      "type": "REFERENCES",
+      "properties": {
+        "doc": "Agentic WaveWarZ + x402 research; confirms judge-agent pattern (Decision #7)",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-v1-solana",
+      "to": "x-spaces-broadcast-schedule",
+      "type": "BROADCASTS_ON",
+      "properties": {
+        "schedule": "Mon-Fri 8:30 PM EST",
+        "format": "Live battles, judge announcements, AMAs, trader chat",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "hurric4n3ike",
+      "to": "x-spaces-broadcast-schedule",
+      "type": "HOSTS",
+      "properties": {
+        "role": "Founder community presence",
+        "_source": "zabal-dispatch-wavewarz-20260523"
+      }
+    },
+    {
+      "from": "zabal-token",
+      "to": "empire-builder-v3",
+      "type": "REGISTERED_ON",
+      "properties": {
+        "tier": "Ascended",
+        "empireAddress": "0xe0faa499d6711870211505bd9ae2105206af1462",
+        "activeLeaderboards": 7,
+        "activeBoosters": 5,
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "quotient-booster",
+      "to": "zabal-token",
+      "type": "STACKS_ON",
+      "properties": {
+        "boosterType": "QUOTIENT",
+        "multiplier": "UNKNOWN (likely 1-5x)",
+        "active": true,
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "sang-token",
+      "to": "zabal-token",
+      "type": "STACKS_ON",
+      "properties": {
+        "boosterType": "ERC20",
+        "multiplier": "UNKNOWN",
+        "active": true,
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "zaal-token",
+      "to": "zabal-token",
+      "type": "STACKS_ON",
+      "properties": {
+        "boosterType": "ERC20",
+        "multiplier": "UNKNOWN",
+        "active": true,
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "loanz-token",
+      "to": "zabal-token",
+      "type": "STACKS_ON",
+      "properties": {
+        "boosterType": "ERC20",
+        "multiplier": "UNKNOWN",
+        "active": true,
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "clanker-token",
+      "to": "zabal-empire",
+      "type": "RECOMMENDED_BOOSTER",
+      "properties": {
+        "multiplier": "3-5x",
+        "rationale": "Network effect stacking per Doc 584 (glonkybot pattern)",
+        "priority": "High",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "glanker-token",
+      "to": "zabal-empire",
+      "type": "RECOMMENDED_BOOSTER",
+      "properties": {
+        "multiplier": "3-5x",
+        "rationale": "Farcaster ecosystem token, proven in glonkybot",
+        "priority": "High",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "artbaby-token",
+      "to": "zabal-empire",
+      "type": "RECOMMENDED_BOOSTER",
+      "properties": {
+        "multiplier": "3-5x",
+        "rationale": "Top-20 empire by distribution, cross-creator signal",
+        "priority": "Medium",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "empire-builder-v3",
+      "to": "zabal-games-season-1",
+      "type": "SUPPORTS",
+      "properties": {
+        "mechanism": "Basic Empire for July submissions, Ascended Empire for finalists",
+        "apiIntegration": "Public leaderboard API for real-time scoring",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "zabal-games-season-1",
+      "to": "clanker-airdrop-csv-pattern",
+      "type": "UNLOCKS",
+      "properties": {
+        "timing": "August Finals, optional token Ascension",
+        "beneficiary": "Finalist players launching their own tokens",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "glonkybot-empire",
+      "to": "clanker-token",
+      "type": "BOOSTS_WITH",
+      "properties": {
+        "multiplier": "5x",
+        "holdings_min": "10000000000000000000000000 (10M tokens, 18 decimals)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "glonkybot-empire",
+      "to": "artbaby-token",
+      "type": "BOOSTS_WITH",
+      "properties": {
+        "multiplier": "5x",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "zabal-empire-leaderboard-holders",
+      "to": "zabal-token",
+      "type": "MEASURES",
+      "properties": {
+        "metric": "Token holdings (balance on Base chain)",
+        "refreshFrequency": "Real-time (blockchain state)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "zabal-empire-leaderboard-zabal-voting-miniapp",
+      "to": "zabal-voting-miniapp",
+      "type": "CONSUMES_DATA_FROM",
+      "properties": {
+        "dataSource": "API endpoint (custom score feed)",
+        "updateFrequency": "UNKNOWN",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "jordan-yerbearzerker",
+      "to": "empire-builder-v3",
+      "type": "CREATED",
+      "properties": {
+        "role": "Creator + co-maintainer",
+        "collaborator": "Adrian (diviflyy)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "adrian-diviflyy",
+      "to": "glonkybot-empire",
+      "type": "OWNS",
+      "properties": {
+        "rank": "9.34 (highest in top-20 by computed rank)",
+        "strategy": "17-token booster stack at 5x each",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "adrian-diviflyy",
+      "to": "zabal-token",
+      "type": "HOLDS",
+      "properties": {
+        "rank": "3 in ZABAL leaderboard",
+        "score": "297M",
+        "lifetime_distributed": "$7.41",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "songjam-leaderboard",
+      "to": "zabal-empire",
+      "type": "INTEGRATED_INTO",
+      "properties": {
+        "slot": "Multiple (Season 1, 2 Ep1, 2 Ep2)",
+        "migration": "From X scraper to Empire Builder API (2026 Q1 decision)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "poidh-bounties",
+      "to": "zabal-empire",
+      "type": "CROSS_LISTS_INTO",
+      "properties": {
+        "metric": "Unique bounty submitters (not submission count)",
+        "pattern": "1 wallet per bounty regardless of submission volume",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "distribution-event-raffle",
+      "to": "zabal-token",
+      "type": "DISTRIBUTES",
+      "properties": {
+        "recipientCount": 10,
+        "selectionMethod": "Random",
+        "recentDropAmount": "$12.60 USD (2026-04-29)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "distribution-event-weighted",
+      "to": "zabal-token",
+      "type": "DISTRIBUTES",
+      "properties": {
+        "recipientCount": "50-100",
+        "selectionMethod": "By leaderboard score",
+        "recentDropAmount": "$14.25 USD (2026-04-22, 100 recipients)",
+        "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    }
+  ]
+}

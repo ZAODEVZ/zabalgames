@@ -796,6 +796,30 @@ The relationship usually keeps going. Many ZAO ecosystem collaborations started 
 
 ---
 
+## Bonfire knowledge graph (queryable depth)
+
+This file is a static prompt. The Bonfire knowledge graph at `zabal.bonfires.ai` is the queryable version - 78 entities + 113 edges (and growing) you can ask in natural language. Where this file states "WaveWarZ-Base settles Finals voting (Doc 720)", the graph holds the contract addresses, top performer wallets, Sam + Arthur build status, and every linked rail.
+
+Two paths:
+
+- **Bonfire chat** - DM the ZABAL Bonfire agent on Telegram (or the public Bonfire dashboard) with the entity name. Returns connected entities + edges.
+- **Raw graph dump** - [data/bonfire-graph.json](https://github.com/ZAODEVZ/zabalgames/blob/main/data/bonfire-graph.json) is the source-of-truth file. Re-pushed to Bonfire any time via `node scripts/push-to-bonfire.mjs` (needs `BONFIRE_API_KEY` env var).
+
+Six kEngrams seeded by parallel research subagents (run 2026-05-23):
+
+| kEngram | Ask the graph about | One-line takeaway |
+|---|---|---|
+| `hermes-architecture` | Hermes Coder/Critic | Two Claude Code subprocesses (Opus codes, Sonnet critiques). Loop max 3x, score >=70 ships. Auth via Max plan OAuth. Pre-flight gate (typecheck+lint+test) runs between Coder and Critic. Fleet cap $20/day notional. |
+| `wavewarz-protocol` | WaveWarZ v1 (Solana, live, 735 battles, 472 SOL volume) + v2 (Base agentic, Sam + Arthur, mainnet July 2026, settles ZABAL Games Finals via Doc 720 hybrid Option B). | Top performers: LUI (49W-22L), APORKALYPSE (73%), PROF!T (71%). 11 X Spaces/week. |
+| `zabal-empire` | $ZABAL token + Empire Builder V3 (Basic tokenless vs Ascended). | Contract `0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07` on Base, 346 holders, 5 active boosters (4 ERC20 + 1 QUOTIENT). Glonkybot 17-token 5x stack is the reference network-effect pattern. |
+| `farcaster-snap-2026` | Snap protocol v2.0 (current). | `application/vnd.farcaster.snap+json` MIME + content negotiation on Accept header. Frame v1 buttons dead. `fc:miniapp` meta is for Mini Apps (separate protocol). Caster has a known-hosts whitelist - zlank.online whitelisted, arbitrary custom domains do NOT unfurl as Snaps. Use zlank `/s/[uuid]` template. |
+| `bounty-payment-rails` | POIDH on Base/Arbitrum/Degen + Empire Builder distribution. | POIDH escrows ETH, claim-NFT serves as proof. 2.5% protocol fee. ZABAL Games builders: claim project -> POIDH bounty -> proof -> payout -> Empire Builder pulls submitter feed and airdrops ZABAL. poidh-sentinel agent (open source, 0x94t3z) automates the loop. |
+| `bonfire-push` | How the graph is built. | Subagent runs produce `/tmp/zabal-dispatch-*.md` reports -> `scripts/aggregate-dispatches.mjs` normalizes + dedupes into `data/bonfire-graph.json` -> `scripts/push-to-bonfire.mjs` POSTs to `https://tnt-v2.api.bonfires.ai` (`/kg/entities` + `/kg/edges`, bearer auth). Idempotent on 409. |
+
+If you are an agent: query the graph for any entity name above and traverse 1-2 hops. The depth is there; this file only points at it.
+
+---
+
 ## Deeper context
 
 This file is the lean version. For depth:
