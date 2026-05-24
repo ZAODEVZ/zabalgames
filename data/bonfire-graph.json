@@ -11,7 +11,10 @@
         "farcaster_id": 19640,
         "farcaster_handle": "@zaal",
         "role": "founder",
-        "description": "Engineer, builder, and connector in web3/Farcaster/music ecosystem"
+        "description": "Engineer, builder, and connector in web3/Farcaster/music ecosystem",
+        "team_position": "Ops",
+        "farcaster_fid": "19640",
+        "responsibility": "Overall festival direction, sponsor pitches, team coordination"
       }
     },
     {
@@ -362,7 +365,8 @@
       "id": "zabal-empire",
       "name": "ZABAL Empire",
       "labels": [
-        "Instance"
+        "Instance",
+        "Empire"
       ],
       "attributes": {
         "parent_platform": "Empire Builder",
@@ -382,7 +386,15 @@
         "stake_minimum": "250,000 SANG",
         "stake_multiplier_formula": "1 + sqrt(stakeAmount / 250k SANG min)",
         "leaderboard_7d_24h_alltime": true,
-        "_source": "zabal-dispatch-poidh-20260523"
+        "_source": "zabal-dispatch-poidh-20260523",
+        "token_address": "0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07",
+        "platform": "Empire Builder V3",
+        "leaderboards": "tokenHolders",
+        "active_boosters": [
+          "QUOTIENT",
+          "UNKNOWN_others"
+        ],
+        "ecosystem": "music-web3"
       }
     },
     {
@@ -1358,7 +1370,23 @@
         "apiBase": "empirebuilder.world/api",
         "readAccess": "public",
         "writeAccess": "permissioned (API key required)",
-        "_source": "zabal-dispatch-zabal-empire-20260523"
+        "_source": "zabal-dispatch-zabal-empire-20260523",
+        "domain": "empirebuilder.world",
+        "launch_date": "2026-05-01",
+        "description": "Creator community-rewards and token utility platform built on Base and Arbitrum",
+        "booster_types_supported": [
+          "ERC20",
+          "NFT",
+          "QUOTIENT"
+        ],
+        "leaderboard_templates": [
+          "tokenHolders",
+          "NFTHolders",
+          "social_engagement",
+          "custom_csv",
+          "api_imports"
+        ],
+        "api_base": "https://empirebuilder.world/api"
       }
     },
     {
@@ -1444,7 +1472,14 @@
         "type": "QUOTIENT",
         "description": "Reputation booster likely tied to Quotient social-graph",
         "usedBy": "$ZABAL",
-        "_source": "zabal-dispatch-zabal-empire-20260523"
+        "_source": "zabal-dispatch-zabal-empire-20260523",
+        "booster_type": "QUOTIENT",
+        "platform": "Empire Builder V3",
+        "max_multiplier": "UNKNOWN",
+        "qualification_metric": "quotientScore (0-1 scale)",
+        "quality_threshold": "0.5 (below this, account quality drops significantly)",
+        "status": "Active in Empire Builder",
+        "uses_in_zabal": true
       }
     },
     {
@@ -1534,6 +1569,1671 @@
         "readAuth": "None (public)",
         "writeAuth": "Permissioned API key",
         "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "id": "bonfires-labs",
+      "name": "Bonfires Labs",
+      "labels": [
+        "Company"
+      ],
+      "attributes": {
+        "founder": "Joshua.eth",
+        "github_org": "NERDDAO",
+        "website": "https://bonfires.ai",
+        "api_base": "https://tnt-v2.api.bonfires.ai",
+        "dashboard": "https://app.bonfires.ai/dashboard",
+        "stage": "Pre-Series A (SaaS + protocol)",
+        "deployments_live": "35+ (as of 2026-05-21)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "bonfire-knowledge-network",
+      "name": "Bonfire Knowledge Network",
+      "labels": [
+        "Platform/Service"
+      ],
+      "attributes": {
+        "description": "Federated multi-bonfire query network with cross-KG RAG",
+        "monetization_model": "x402 micropayments per retrieval",
+        "status": "LIVE (April 2026+)",
+        "price_range": "$0.001 to $0.25 USDC per query",
+        "settlement_chain": "Base L2",
+        "settlement_time": "~1 second",
+        "network_effect": "Each bonfire is a node; queries can traverse across bonfires",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "x402-payment-protocol",
+      "name": "x402 Payment Protocol",
+      "labels": [
+        "Protocol"
+      ],
+      "attributes": {
+        "creator": "Coinbase",
+        "version": "2.0 (HTTP transport v2)",
+        "specification": "HTTP 402 status code + standardized payment header flow",
+        "status_code": "402 Payment Required",
+        "payment_header": "PAYMENT-SIGNATURE (client) / PAYMENT-REQUIRED (server)",
+        "settlement_header": "PAYMENT-RESPONSE",
+        "supported_schemes": [
+          "exact"
+        ],
+        "default_token": "USDC (EIP-3009 Transfer with Authorization)",
+        "supported_networks": [
+          "Base",
+          "Optimism",
+          "Ethereum",
+          "Solana",
+          "HyperEVM"
+        ],
+        "facilitators": [
+          "Coinbase CDP",
+          "Pinion",
+          "Custom"
+        ],
+        "github_repo": "https://github.com/coinbase/x402",
+        "protocol_fees": "$0 (zero protocol fees, only network gas)",
+        "launch_date": "May 2025",
+        "payments_processed_7mo": "100M+ payments, $24M volume",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "hyperblogs",
+      "name": "HyperBlogs",
+      "labels": [
+        "Feature"
+      ],
+      "attributes": {
+        "description": "AI-generated blog posts from knowledge graphs with x402 payment gating",
+        "backend": "Graphiti (Neo4j-powered KG traversal)",
+        "generation_method": "Hierarchical Task Network (HTN) + LLM synthesis",
+        "payment_model": "x402 micropayments per blog mint",
+        "mint_price": "0.25 USDC (ETHBoulder trial, 2026-02-28)",
+        "url": "https://hyperblogs.bonfires.ai",
+        "status": "LIVE (trialed at ETHBoulder 2026)",
+        "content_pipeline": "KG node selection -> HTN structure -> Claude 3.5 Sonnet -> Markdown + metadata",
+        "blockchain_verification": "x402 settlement on Base L2",
+        "use_cases": [
+          "Event documentation",
+          "Knowledge monetization",
+          "Content marketplace"
+        ],
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "know-token",
+      "name": "$KNOW Token",
+      "labels": [
+        "Token"
+      ],
+      "attributes": {
+        "token_name": "$KNOW",
+        "layer": "Knowledge economy (network-level, not per-bonfire)",
+        "pre_launch_allocation_method": "Genesis NFT mint ONLY (no other way pre-public-launch)",
+        "public_launch_status": "UNKNOWN (not yet announced)",
+        "supply_distribution": "UNKNOWN",
+        "vesting_schedule": "UNKNOWN",
+        "governance_model": "UNKNOWN (if any)",
+        "liquidity_plan": "UNKNOWN",
+        "earning_mechanics": "UNKNOWN - critical unknown: do contributors earn $KNOW by adding to bonfire or is allocation purely Genesis NFT?",
+        "erc_8004_reputation_tracking": "Yes (agents get on-chain reputation scores, e.g., ZABAL agent = #32009)",
+        "network_effect_hypothesis": "Cross-bonfire RAG queries rewarded in $KNOW, token becomes utility for accessing premium KG features",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "bonfire-genesis-nft",
+      "name": "Bonfire Genesis NFT",
+      "labels": [
+        "NFT"
+      ],
+      "attributes": {
+        "mint_price": "0.1 ETH per bonfire",
+        "mint_url": "https://mint.bonfires.ai",
+        "unlock": "Sole way to receive $KNOW token allocation pre-public-launch",
+        "blockchain": "Base",
+        "quantity": "Unlimited (no supply cap disclosed)",
+        "buyer_profile": "Communities, DAOs, projects wanting bonfire + $KNOW allocation",
+        "example_holder": "The ZAO (ZABAL bonfire minted ~2026-05-15)",
+        "secondary_market": "None (allocation locked to minter, NFT itself not traded)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "zabal-bonfire",
+      "name": "ZABAL Bonfire",
+      "labels": [
+        "Knowledge Graph Instance"
+      ],
+      "attributes": {
+        "owner": "BCZ Strategies (on behalf of The ZAO ecosystem)",
+        "graph_size": "~780 episodes + 31 brands indexed",
+        "ingestion_sources": [
+          "Telegram (primary)",
+          "Audio transcripts",
+          "Documents (PDF/Markdown)",
+          "Links"
+        ],
+        "extraction_cadence": "Automated every 20 minutes via LLM",
+        "vector_db": "Weaviate (Bonfire-hosted SaaS)",
+        "graph_backend": "Neo4j via Graphiti",
+        "agents_deployed": [
+          "@bonfires Telegram agent",
+          "ZOE bot (Phase 1+)",
+          "Hermes Coder (Phase 2+)"
+        ],
+        "monetization_phase": "Phase 1: Memory layer only (no x402 revenue)",
+        "future_phases": [
+          "Phase 2: bonfire-search.zaoos.com public interface",
+          "Phase 3: Multi-bonfire federation + earning mechanics"
+        ],
+        "public_url": "https://zabal.bonfires.ai (slug to be customized)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "nerddao-ecosystem",
+      "name": "NERDDAO Ecosystem",
+      "labels": [
+        "GitHub Organization"
+      ],
+      "attributes": {
+        "github_org": "https://github.com/NERDDAO",
+        "active_repos": "15+",
+        "core_sdk": "bonfires-sdk (Python, pip install bonfires, canon branch)",
+        "web_app": "bonfires-webapp (2.3 MB TypeScript, app.bonfires.ai dashboard)",
+        "dev_tools": "bonfire-tools (ingest.py, memory-explorer.html, pulse.html, server.py proxy)",
+        "integrations": [
+          "bonfire-fetch (ASI:One uAgents)",
+          "obsidian-kengram (Obsidian export), scaffold-x402-bonfires"
+        ],
+        "demos": [
+          "bonfire-rpg (P2P shared-world game)",
+          "memento-mori (MUD with 42 AI agents)",
+          "santa-bonfire (seasonal)"
+        ],
+        "external_customers": [
+          "MesoReefDAO/pepo-the-polyp (coral reef AI guide)"
+        ],
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "kengram",
+      "name": "kEngram",
+      "labels": [
+        "Data Structure"
+      ],
+      "attributes": {
+        "definition": "Verifiable knowledge subgraphs with content-addressed hashing (SHA-256) + merkle roots",
+        "types": [
+          "session (bounded to conversation/event)",
+          "topic (accrues over time)"
+        ],
+        "storage_format": "Canvas (Obsidian-compatible), OWL (ontology), Markdown (portable)",
+        "lifecycle_commands": [
+          "bonfire kengram new",
+          "bonfire kengram use",
+          "bonfire kengram pin",
+          "bonfire kengram edge",
+          "bonfire kengram batch (automation path)",
+          "bonfire kengram export"
+        ],
+        "export_safety": "Exports to Canvas/OWL/Markdown prevent vendor lock-in",
+        "merkle_integrity": "Each kEngram has content-addressed hash + merkle proof",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "ethboulder-boulder-bonfire",
+      "name": "ETHBoulder Boulder Bonfire",
+      "labels": [
+        "Deployment (Reference)"
+      ],
+      "attributes": {
+        "event": "ETHBoulder 2026 (Feb 13-15)",
+        "participants": "200+ attendees, 150+ contributors",
+        "graph_size": "88,000 nodes / 7 days",
+        "ingestion_sources": [
+          "Telegram (primary)",
+          "Audio transcripts",
+          "Twitter search",
+          "Link fetcher",
+          "Document uploads"
+        ],
+        "schema": "7D framework (Ecology, Humans, Language, Artifacts, Methodology, Training, Sessions)",
+        "access_pattern": "Telegram DMs + group chat + graph.bonfires.ai web explorer",
+        "outcome": "Permanent queryable artifact; HyperBlogs minted at 0.25 USDC/mint",
+        "lessons": [
+          "Low-friction Telegram > signup friction",
+          "Real-time ingestion > post-event backfill",
+          "Agentic extraction > manual curation",
+          "Graph stays live post-event for permanent discovery"
+        ],
+        "writeup": "https://paragraph.com/@joshuab/ethboulder-lets-make-sense",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "sanctuary-co-living-bonfire-trial",
+      "name": "Sanctuary Co-Living Bonfire Trial",
+      "labels": [
+        "Deployment (Reference)"
+      ],
+      "attributes": {
+        "location": "Noto, Sicily",
+        "duration": "11 days (July 23 - Aug 3, 2025)",
+        "participants": "5 residents + Josh (founder)",
+        "agent_name": "Andrej 3000 (personality-driven)",
+        "findings_summary": "Mixed success. Bonfire useful but manual facilitation outperformed at small scale (<10 people)",
+        "friction_points": [
+          "Onboarding UX unclear",
+          "Value prop not obvious at 5-person scale",
+          "Personality can't overcome clunky UI"
+        ],
+        "what_worked": [
+          "Privacy transparency + consent → instant trust",
+          "Voice transcription well-received",
+          "Group reflection sessions useful",
+          "Data depersonalization not a concern"
+        ],
+        "post_trial_improvements": [
+          "Upgraded to Claude Sonnet",
+          "Improved agent decision-making",
+          "Dynamic label management",
+          "User-facing agent overview UI",
+          "Automated reminders"
+        ],
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "bonfire-agent-system",
+      "name": "Bonfire Agent System",
+      "labels": [
+        "Software Component"
+      ],
+      "attributes": {
+        "unit": "Persona (LLM-backed, multiple agents per bonfire)",
+        "creation": "UI at app.bonfires.ai/dashboard (post-2026-05)",
+        "tagging": "@agentname on Telegram/Discord",
+        "knowledge_graph_modes": [
+          "adaptive (LLM decides if KG query needed)",
+          "static (no graph)",
+          "regenerate (fresh KG)",
+          "append (add to existing)"
+        ],
+        "semantic_search": "SDK client.agents.chat() with graph_mode parameter",
+        "mcp_integration": "Claude Desktop + Cursor (config pattern published; install not yet public)",
+        "context_retrieval": "Combines KG results + vector search + recent conversation context",
+        "personality_system": "Configurable traits + voice, but only valuable with frictionless UX",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "bcz-strategies",
+      "name": "BCZ Strategies",
+      "labels": [
+        "Organization"
+      ],
+      "attributes": {
+        "entity": "LLC (DBA ZABAL ecosystem brand)",
+        "relationship_to_bonfire": "Genesis NFT holder for ZABAL bonfire (0.1 ETH cost)",
+        "known_revenue_from_bonfire": "$0 (allocation only, earning mechanics unknown)",
+        "use_case": "Internal knowledge graph + ZOE agent memory + onboarding support",
+        "speculative_upside": "$KNOW token allocation (amount unknown, value TBD)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "graphiti-backend",
+      "name": "Graphiti Backend",
+      "labels": [
+        "Technology"
+      ],
+      "attributes": {
+        "database": "Neo4j (graph database)",
+        "purpose": "Structured knowledge graph storage + traversal for KGs and HyperBlogs",
+        "operation": "Owned by Bonfire Labs (SaaS), not self-hostable by customers",
+        "data_format": "Nodes (entities) + edges (relationships) with metadata + timestamps",
+        "query_pattern": "Semantic search + graph traversal + entity relationship extraction",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "weaviate-vector-db",
+      "name": "Weaviate Vector DB",
+      "labels": [
+        "Technology"
+      ],
+      "attributes": {
+        "purpose": "Semantic embeddings of KG chunks + labels for vector search",
+        "operation": "Bonfire-hosted SaaS (customer data lives with Bonfire)",
+        "retrieval": "Semantic similarity search (find content meaning-similar to query)",
+        "integration": "Ingested content chunked -> summarized -> labeled -> embedded",
+        "vendor_risk": "SaaS-only, no self-host option; kEngram export + local Obsidian vault mitigate",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "id": "coinflow-isv",
+      "name": "Coinflow ISV",
+      "labels": [
+        "Platform Tier"
+      ],
+      "attributes": {
+        "tier_name": "Launchpad ISV Program",
+        "setup_cost": "$0",
+        "audience": "Integrated Software Vendors, 20-1000 submerchants",
+        "pricing_model": "Interchange-plus (custom MSA)",
+        "benefits": [
+          "$0 setup",
+          "interchange-plus pricing",
+          "instant settlement",
+          "named engineer support",
+          "automated KYC/KYB",
+          "payment splitting",
+          "co-marketing",
+          "no equity"
+        ],
+        "application_status": "ZAO submitted April 2026",
+        "kEngram": "coinflow-isv",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "coinflow-checkout",
+      "name": "Coinflow Checkout",
+      "labels": [
+        "Payment Gateway"
+      ],
+      "attributes": {
+        "payment_methods": [
+          "card",
+          "ACH",
+          "Apple Pay",
+          "Google Pay",
+          "PIX",
+          "SEPA",
+          "crypto"
+        ],
+        "settlement_types": [
+          "wallet",
+          "contract",
+          "credits",
+          "bank"
+        ],
+        "rate_limit_checkout_attempts": "5 per 10 minutes",
+        "supported_countries": "170+",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "coinflow-payouts",
+      "name": "Coinflow Payouts",
+      "labels": [
+        "Disbursement Service"
+      ],
+      "attributes": {
+        "use_case": "Crypto-to-fiat payouts, prize distributions, creator withdrawals",
+        "settlement_destinations": [
+          "bank (US/EU/UK)",
+          "Solana wallet (USDC)"
+        ],
+        "supported_networks": [
+          "US RTP",
+          "European SEPA",
+          "UK Faster Payments",
+          "Solana"
+        ],
+        "kyc_requirement": "All users KYC before first payout",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "solana",
+      "name": "Solana",
+      "labels": [
+        "Blockchain"
+      ],
+      "attributes": {
+        "settlement_currency": "USDC",
+        "gas_fees": "Coinflow covers 100%",
+        "use_case": "WaveWarZ prediction markets, fast finality",
+        "chainName": "Solana",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "base",
+      "name": "Base",
+      "labels": [
+        "Blockchain"
+      ],
+      "attributes": {
+        "settlement_currency": "USDC",
+        "supported_tokens": [
+          "ETH",
+          "AERO",
+          "cbBTC",
+          "EURC",
+          "GTT",
+          "DEGEN",
+          "HIGHER",
+          "MOXIE",
+          "BUILD"
+        ],
+        "use_case": "ZAO OS memberships, music tips, ZABAL token purchases",
+        "chainName": "Base",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "coinflow-marketplace",
+      "name": "Coinflow Marketplace",
+      "labels": [
+        "Architecture Pattern"
+      ],
+      "attributes": {
+        "participants": [
+          "marketplace (ISV)",
+          "sellers",
+          "end-users",
+          "Coinflow"
+        ],
+        "seller_onboarding": "KYC/KYB via Persona, auto-verification 30sec",
+        "seller_dashboard": "View purchases, withdraw earnings, sales reports",
+        "payout_speeds": [
+          "instant",
+          "same-day",
+          "standard"
+        ],
+        "applicable_to": [
+          "COC Concertz",
+          "FISHBOWLZ",
+          "ZAO Music"
+        ],
+        "fund_distribution": "Automatic split at transaction time",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "zabal-games",
+      "name": "ZABAL Games",
+      "labels": [
+        "Application"
+      ],
+      "attributes": {
+        "payment_flow": "Prize payouts via Coinflow Payouts API",
+        "settlement_method": "Crypto-to-fiat (USDC to bank)",
+        "conversion_destination": "USD/EUR/GBP bank deposits",
+        "isa_submerchant": true,
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "wavewarz",
+      "name": "WaveWarZ",
+      "labels": [
+        "Application"
+      ],
+      "attributes": {
+        "parent_entity": "ZAO OS",
+        "merchant_id": "wavestation",
+        "blockchain": "Solana",
+        "settlement_currency": "USDC",
+        "isa_submerchant": true,
+        "use_cases": [
+          "battle entry fees (credits)",
+          "artist tips (wallet)",
+          "merch/digital goods"
+        ],
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "zao-os",
+      "name": "ZAO OS",
+      "labels": [
+        "Platform"
+      ],
+      "attributes": {
+        "role": "ISV parent",
+        "blockchain": "Base",
+        "settlement_currency": "USDC",
+        "use_cases": [
+          "membership NFT mints",
+          "ZAO Stock tickets",
+          "music tips",
+          "ZABAL token purchases"
+        ],
+        "submerchants": [
+          "WaveWarZ",
+          "COC Concertz",
+          "FISHBOWLZ"
+        ],
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "coinflow-webhooks",
+      "name": "Coinflow Webhooks",
+      "labels": [
+        "Integration Pattern"
+      ],
+      "attributes": {
+        "event_count": "24+ event types",
+        "delivery_model": "At-least-once, retry 36 hours",
+        "response_timeout": "5 seconds",
+        "deduplication": "Required (idempotency by transaction ID)",
+        "event_categories": [
+          "Purchase",
+          "Subscription",
+          "KYC",
+          "Withdraw",
+          "Marketplace"
+        ],
+        "key_events": [
+          "Settled",
+          "Card Payment Authorized",
+          "Card Payment Declined",
+          "Card Payment Suspected Fraud",
+          "ACH Initiated",
+          "ACH Batched",
+          "ACH Returned",
+          "ACH Failed",
+          "Subscription Created",
+          "Subscription Canceled",
+          "Subscription Expired",
+          "Card Payment Chargeback Opened",
+          "Card Payment Chargeback Won",
+          "Card Payment Chargeback Lost",
+          "USDC Payment Received",
+          "Crypto Overpayment",
+          "Crypto Underpayment"
+        ],
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "coinflow-kyc-kyb",
+      "name": "Coinflow KYC/KYB",
+      "labels": [
+        "Compliance Service"
+      ],
+      "attributes": {
+        "kyc_vendor": "Persona",
+        "kyc_turnaround_us": "Under 10 seconds (database check)",
+        "kyb_turnaround": "30 seconds automatic, 24 hours manual",
+        "kyb_approval_rate": "90% first attempt",
+        "supported_methods": [
+          "Persona (prebuilt)",
+          "KYC attestation (reliance)",
+          "Sumsub token sharing",
+          "external KYC data pass-through"
+        ],
+        "documentation": "ID upload for international, instant for US",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "coinflow-smart-payment-orchestration",
+      "name": "Coinflow Smart Payment Orchestration",
+      "labels": [
+        "Technology"
+      ],
+      "attributes": {
+        "processors_per_transaction": "2.3 average",
+        "failover": "Automatic",
+        "cost_reduction": "Up to 6 bps",
+        "fraud_routing": "Routes around risky processors",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "coinflow-series-a",
+      "name": "Coinflow Series A",
+      "labels": [
+        "Funding Round"
+      ],
+      "attributes": {
+        "amount": "$25M",
+        "date": "October 2025",
+        "lead_investor": "Pantera Capital",
+        "other_investors": [
+          "Coinbase Ventures",
+          "CMT Digital",
+          "Jump Capital"
+        ],
+        "total_funding": "$53.7M",
+        "previous_rounds": [
+          "Seed $2.2M (May 2024)",
+          "Pre-Seed $1.4M (April 2023)"
+        ],
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "coinflow-pricing-model",
+      "name": "Coinflow Pricing Model",
+      "labels": [
+        "Economics"
+      ],
+      "attributes": {
+        "setup_fee": "$0 (ISV)",
+        "platform_fee": "$0 (ISV)",
+        "pricing_structure": "Custom MSA, not published",
+        "industry_benchmark": "2.5-3.5% for card-to-stablecoin",
+        "solana_gas": "Coinflow covers 100%",
+        "other_chain_gas": "Negotiable in MSA",
+        "payout_rail_fees": "Varies (ACH per-tx, flat negotiable)",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "id": "fishbowlz",
+      "name": "FISHBOWLZ",
+      "labels": [
+        "Product"
+      ],
+      "attributes": {
+        "status": "paused 2026-04-16 for Juke partnership",
+        "launch_date": "2026-04-04",
+        "pause_date": "2026-04-16",
+        "original_stack": "Next.js + Privy wallet + 100ms (HMS) WebRTC",
+        "original_repo": "/Users/zaalpanthaki/Documents/fishbowlz/",
+        "core_feature": "persistent async audio rooms + fishbowl rotation format + agent participation",
+        "token": "FISHBOWLZ (Clanker, 2026-04-04)",
+        "format_novel": "mute-lockout moderation - audience speaker auto-demoted on self-mute, must re-raise hand",
+        "reason_for_pause": "strategic pivot to Juke's superior native audio + Farcaster integration vs rebuilding custom",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "juke",
+      "name": "Juke",
+      "labels": [
+        "Product"
+      ],
+      "attributes": {
+        "builder": "Nicky Sap (@nickysap on Farcaster)",
+        "announcement_date": "2026-03-27 (Substack: Farcaster Was 'Dead,' So I Started Building)",
+        "build_time": "3 days",
+        "build_method": "10 parallel AI agents, 800-line SPEC.md",
+        "platform": "iOS-native, TestFlight beta open, Android coming soon, web secondary",
+        "transport": "LiveKit (open-source WebRTC SFU, vendor-lock-in avoided)",
+        "auth": "Sign In With Farcaster (SIWF / SIWN, EIP-4361-based, phishing-resistant QR)",
+        "chat": "Farcaster reply-tree (host's space-announcement cast -> reply tree is chat, ephemeral Neynar webhook, zero chat DB, cross-client visible, permanent on-graph artifact)",
+        "roles": "listener, speaker, co-host, host (role-based permission model, host-promotion required for speaking)",
+        "token": "none (no token, nickysap stated explicitly)",
+        "monetization_plan": "charge hosts for premium (scheduled spaces, custom links, analytics, recordings/replays, clipping); core stays free",
+        "open_source_status": "maybe (nickysap: codebase + SPEC.md could be open-source 'if there's demand')",
+        "native_constraint": "iOS kills background WebRTC within seconds without AVAudioSession + UIBackgroundModes:audio; PWA cannot do this; strong audio experience requires native",
+        "web_sdk": "yes - @juke/audio-sdk + iframe embed for listen-in / lobby, not for sustained speaking",
+        "api_surface": "12 SDK methods, 5 public endpoints, 10 developer endpoints (POST /v1/developer/spaces), no webhooks, no demote endpoint, no recording control",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "nicky-sap-nickysap",
+      "name": "Nicky Sap (@nickysap)",
+      "labels": [
+        "Person"
+      ],
+      "attributes": {
+        "role": "founder of Juke",
+        "platform": "Farcaster, Substack",
+        "build_approach": "agentic (10 parallel agents executing SPEC.md), ship-fast (3 days to TestFlight)",
+        "engagement": "open to partnerships (Zaal already hosts spaces on Juke, confirmed by @farcaster cast 2026-04-24), responsive to feature requests, considering open-source (PR-dependent)",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "zaal-zaal-on-farcaster",
+      "name": "Zaal (@zaal on Farcaster)",
+      "labels": [
+        "Person"
+      ],
+      "attributes": {
+        "role": "founder of ZAO, FISHBOWLZ pioneer, early Juke host",
+        "decisions": "paused FISHBOWLZ Apr 16 to pivot to Juke, leading the Juke integration (Path A iframe, Path B space creation), pursuing flagship-community positioning",
+        "status": "negotiating with nickysap on 7 open questions (demote endpoint, webhooks, token lifetime, co-host cap, pricing, recording API, agent surface) before Phase 2 of FISHBOWLZ revival on Juke",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "fishbowlz-legacy-code-zaoos-copy",
+      "name": "FISHBOWLZ Legacy Code (ZAOOS Copy)",
+      "labels": [
+        "Codebase"
+      ],
+      "attributes": {
+        "path": "bettercallzaal/zaoos - src/app/fishbowlz/, src/app/api/fishbowlz/, src/components/fishbowlz/",
+        "files": 22,
+        "composition": "4 pages (list, detail, loading, opengraph) + 13 API routes (gate, recap, transcripts, chat, sessions, users, rooms, export, events, invites, transcribe, privy-webhook, room-detail) + 5 components (Reactions, OnboardingModal, RoomCardSkeleton, EmptyState, TipButton)",
+        "status": "stale, marked for deletion (doc 661h audit + doc 662 decision)",
+        "reason": "original design (custom audio + Privy + HMS + custom transcripts) not compatible with new Juke-based direction",
+        "action": "delete in follow-up PR after Juke direction locks (git tag pre-fishbowlz-removal-2026-05-XX for archive)",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "fishbowlz-standalone-repo",
+      "name": "FISHBOWLZ Standalone Repo",
+      "labels": [
+        "Codebase"
+      ],
+      "attributes": {
+        "path": "/Users/zaalpanthaki/Documents/fishbowlz/",
+        "status": "active, source of truth for FISHBOWLZ",
+        "last_activity": "2026-05-23 (commit 614bca5 - restore features lost by sync overwrite)",
+        "recent_fixes": "HMS component speaker pruning, layout stability, auth consistency, reconnection loops",
+        "features_to_preserve": "anonymous listen mode, room filters (All/Live/Scheduled/Ended/Gated), gating UI (open/farcaster/invite-only/token-gate), reconnection handler",
+        "note": "do NOT sync ZAOOS -> standalone; standalone is canonical; understand Juke pivot before cherry-picking old features",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "juke-integration-path-a-iframe-embed",
+      "name": "Juke Integration Path A (iframe embed)",
+      "labels": [
+        "Feature"
+      ],
+      "attributes": {
+        "status": "shipped, QA'd on production",
+        "effort": "2/10",
+        "what": "keyless iframe (https://juke.audio/embed/{spaceId}) embedded in ZAO OS miniapp, handles room metadata, anonymous listening, SIWF sign-in, reactions, hand-raise, mic control, LiveKit connection",
+        "files": "src/lib/spaces/juke.ts, src/components/spaces/JukeEmbed.tsx, src/app/live/[spaceId]/page.tsx",
+        "home": "ZAO OS Farcaster miniapp (Quick Auth works in miniapp context)",
+        "branding": "must honor 'Powered by Juke' attribution; ZAO gold accent (#f5a623) acceptable (Juke requires attribution, not exact palette match)",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "juke-integration-path-b-server-side-space-creation",
+      "name": "Juke Integration Path B (server-side space creation)",
+      "labels": [
+        "Feature"
+      ],
+      "attributes": {
+        "status": "built (PR #608, #613), waiting for credentials (JUKE_API_KEY, JUKE_USER_TOKEN)",
+        "effort": "4/10",
+        "what": "POST /v1/developer/spaces endpoint, server-side admin/password auth, mints branded spaces for recurring events (ZAOstock standups, fractal calls, COC Concertz)",
+        "files": "src/lib/spaces/juke-api.ts (the ONE Juke client), src/app/api/juke/space/route.ts (the ONE route), src/app/live/create/page.tsx (web creator), scripts/test-juke-space.ts (smoke test)",
+        "next_iteration": "add juke_spaces Supabase table (persistence, listing, idempotency key, audit trail)",
+        "bot_integration": "ZAOcowork bot (ZAODEVZ/ZAOcowork PR #3) POSTs /api/juke/space via JUKE_CREATE_PASSWORD; use crypto.timingSafeEqual for constant-time comparison",
+        "token_risk": "JUKE_USER_TOKEN TTL unknown; if long-lived (30+ days) keep as env var; if short-lived (hours) add juke_credentials table + on-demand refresh with 30s expiry buffer + 401-retry-once logic",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "juke-integration-path-c-fishbowlz-sdk-custom-ui",
+      "name": "Juke Integration Path C (FISHBOWLZ SDK + custom UI)",
+      "labels": [
+        "Feature"
+      ],
+      "attributes": {
+        "status": "re-scoped pending native-vs-web caveat validation",
+        "effort": "8/10",
+        "what": "@juke/audio-sdk + custom Next.js client UI, enforces mute-lockout moderation rule (audience speaker auto-demoted on self-mute, must re-raise hand)",
+        "blocker": "Juke's web SDK loses background audio on iOS screen-lock (same problem nickysap built native to escape); a web FISHBOWLZ with sustained mobile speakers will drop audio. Not a moderation problem, a platform problem.",
+        "re-scope_options": "(1) FISHBOWLZ as room format/template inside Juke's native app (Juke owns native, ZAO owns format + moderation rules), (2) FISHBOWLZ web accepts web tier is listen+lobby, speaking is in Juke native app, (3) FISHBOWLZ stays on ZAO's existing Stream/100ms stack + Juke for discovery",
+        "decision_pending": "awaiting discussion with nickysap re: demote endpoint, webhooks, token model",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "juke-integration-path-d-fip-2-chat-pattern",
+      "name": "Juke Integration Path D (FIP-2 chat pattern)",
+      "labels": [
+        "Feature"
+      ],
+      "attributes": {
+        "status": "independent, no Juke dependency, deferred to doc 695 workstream",
+        "what": "adopt Juke's chat pattern into ZAO OS Spaces: host's space-announcement cast -> reply tree fed by ephemeral Neynar webhook -> zero chat DB, zero WebSocket text server, cross-client visible, permanent on-graph artifact",
+        "effort": "3/10",
+        "why": "Juke's idea is architecture win; ZAO already runs Neynar; kill ZAO's existing Spaces chat DB and refactor to Farcaster-native reply tree",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "zao-as-juke-flagship-community",
+      "name": "ZAO as Juke Flagship Community",
+      "labels": [
+        "Partnership"
+      ],
+      "attributes": {
+        "status": "live (Zaal already hosts on Juke, confirmed by @farcaster cast 2026-04-24)",
+        "recorded_space": "zaal x nickysap x rish (referenced at https://x.com/nicky_sap/status/2047770959403516069 - audio artifact, not transcribed)",
+        "leverage": "co-marketing, roadmap input, early access if Juke open-sources SPEC.md + codebase",
+        "actions": "DM nickysap with doc 695 + 662 + 710; raise 7 open questions; apply for developer access; maintain relationship",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "the-mute-lockout-moderation-rule",
+      "name": "The Mute-Lockout Moderation Rule",
+      "labels": [
+        "Feature/Decision"
+      ],
+      "attributes": {
+        "novel": "only audio platform with this pattern (Clubhouse, X Spaces, Discord Stage, Telegram Voice all keep speaker role after self-mute; FISHBOWLZ auto-demotes)",
+        "rule": "4+ permanent co-hosts have mic always (toggle freely); audience listeners raise hand, co-host picks, listener gets speaker token. Instant self-mute -> auto-downgrade to listener. To speak again, must re-raise + re-pick.",
+        "benefits": "no mic hogging (re-entry costs hand-raise + approval), punchier contributions (one-shot incentive), equity (FIFO hand-raise queue), clear co-host signal (always-on, always-decide), low moderation cost (self-mute = natural exit)",
+        "costs": "back-and-forth conversation gets clunky, accidental mutes are punishing (UX: confirmation modal?), no safety valve for 5-second think (can add 'Pause' button distinct from 'Mute'?), co-host coordination burden (show recent-speaker history?)",
+        "implementation_dependency": "requires Juke to expose server-side demote endpoint or token-reissue mechanism; client-side enforcement alone is bypassable; doc 662 has 7 open Qs for nickysap",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "juke-api-gaps-blockers-for-fishbowlz-zao-integration",
+      "name": "Juke API Gaps (Blockers for FISHBOWLZ + ZAO Integration)",
+      "labels": [
+        "Technical-Gap"
+      ],
+      "attributes": {
+        "no_webhooks": "Juke's developer API documents zero webhooks. LiveKit underneath has room_finished + 11 others; Juke has not exposed them. Impact: ZAO can only poll GET /v1/rooms/{id} to detect space end. No lifecycle events. Mitigated at ZAO's volume (3-5 spaces/week).",
+        "no_demote_endpoint": "No explicit 'demote speaker to listener' endpoint. Options: (1) ask Juke to expose demote, (2) token-reissue (issue new 'listener' token to current speaker), (3) room-rejoin (leave + rejoin as listener). Doc 662 Q1 pending with nickysap.",
+        "no_recording_control": "room.recording is host-side toggle, exposed read-only. No developer API to start/stop recording. Impact: host must toggle in Juke iOS app; ZAO can only read status. No auto-record pipeline possible.",
+        "no_agent_surface": "Agent access explicitly 'separate future surface' per Juke docs. allow_agents flag is forward-declaration for unreleased feature. Do not build ZOE-in-Juke yet.",
+        "scheduled_space_behavior_undocumented": "scheduled_at accepts future ISO timestamp, but pre-start join behavior + metadata visibility not documented. Blocker for recurring-event cron.",
+        "no_recording_replay_clip_api": "Recording/replays/clipping listed as planned host-premium features, not developer-API features.",
+        "token_ttl_unknown": "JUKE_USER_TOKEN lifetime not documented. Determines refresh strategy (env var if long-lived, Supabase table + on-demand refresh if short-lived).",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "the-pause-decision-2026-04-16",
+      "name": "The Pause Decision (2026-04-16)",
+      "labels": [
+        "Decision"
+      ],
+      "attributes": {
+        "what_paused": "FISHBOWLZ development on the Privy + 100ms custom stack",
+        "why": "Strategic pivot opportunity: Juke solved 80% of FISHBOWLZ's hard problems (native audio, Farcaster auth, role-based speaking model, LiveKit SFU) in 3 days with 10 AI agents. FISHBOWLZ was rebuilding all of that custom. Partnership beats rebuild.",
+        "what_continued": "research, architecture design (mute-lockout model, Path A/B/C/D integration paths), standalone repo stabilization and feature preservation",
+        "impact": "ZAOOS FISHBOWLZ code marked for deletion; standalone repo is canonical; Juke becomes the audio platform; FISHBOWLZ becomes either a room format inside Juke native OR a thin web/embed surface on Juke's SDK",
+        "lessons": "native audio is hard (iOS background audio requires AVAudioSession + UIBackgroundModes, PWA can't do it); Farcaster-native partnerships > custom auth; infrastructure partnerships at ZAO's scale trade custom code for leverage",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "id": "quotient",
+      "name": "Quotient",
+      "labels": [
+        "Platform"
+      ],
+      "attributes": {
+        "description": "Farcaster-native reputation system measuring social graph quality and engagement momentum",
+        "category": "social-reputation",
+        "api_host": "api.quotient.social",
+        "product_version": "0.1-beta",
+        "algorithm": "PageRank-variant optimized for Farcaster",
+        "score_range": "0.0-1.0",
+        "algorithm_details": "Weights recent interactions heavily, ignores follower counts to prevent spam/sybil advantages, focuses on genuine engagement patterns",
+        "_source": "zabal-dispatch-quotient-20260523"
+      }
+    },
+    {
+      "id": "quotient-score",
+      "name": "Quotient Score",
+      "labels": [
+        "Metric"
+      ],
+      "attributes": {
+        "description": "Normalized reputation score measuring Farcaster user quality and engagement momentum",
+        "scale": "0.0-1.0",
+        "data_sources": [
+          "incoming_engagement",
+          "recast_interactions",
+          "reply_quality",
+          "mention_interactions"
+        ],
+        "excludes": [
+          "follower_count",
+          "bot_followers"
+        ],
+        "computation_method": "PageRank-variant with recency weighting",
+        "contextLabels": [
+          "Top Trader",
+          "Top Builder/Dev",
+          "Top Clanker Ecosystem Evangelist"
+        ],
+        "_source": "zabal-dispatch-quotient-20260523"
+      }
+    },
+    {
+      "id": "talent-protocol",
+      "name": "Talent Protocol",
+      "labels": [
+        "Platform"
+      ],
+      "attributes": {
+        "description": "Builder reputation and ranking system using verified onchain data",
+        "ecosystem": "crypto-builders",
+        "data_points": [
+          "github_contributions",
+          "onchain_transactions",
+          "hackathon_participation",
+          "farcaster_activity"
+        ],
+        "builder_rank": "relative ranking of builders based on verified activity",
+        "api_host": "api.talentprotocol.com",
+        "integration_notes": "Parallel reputation system to Quotient, focuses on builder activity rather than general engagement",
+        "_source": "zabal-dispatch-quotient-20260523"
+      }
+    },
+    {
+      "id": "zaostock-2026",
+      "name": "ZAOstock 2026",
+      "labels": [
+        "Event"
+      ],
+      "attributes": {
+        "date": "2026-10-03",
+        "venue": "Franklin Street Parklet, Ellsworth ME",
+        "time": "12:00pm - 6:00pm",
+        "year": "Year 1",
+        "artists_count": "10",
+        "expected_attendance": "200-400 in-person, 1000+ livestream",
+        "budget_range": "$5,000 - $25,000",
+        "status": "Scheduled",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "wallace-events",
+      "name": "Wallace Events",
+      "labels": [
+        "Sponsor"
+      ],
+      "attributes": {
+        "tier": "Confirmed Anchor",
+        "role": "Equipment rental (tents, AV, stage setup)",
+        "cost_category": "Venue/Equipment",
+        "status": "Committed",
+        "region": "Maine",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "limone-sponsor",
+      "name": "Limone (Sponsor)",
+      "labels": [
+        "Sponsor"
+      ],
+      "attributes": {
+        "tier": "Medium",
+        "commitment": "$1,000",
+        "status": "Pledged - Payment Pending",
+        "region": "Maine",
+        "payment_status": "Not yet received as of 2026-05-19",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "bangor-savings-bank",
+      "name": "Bangor Savings Bank",
+      "labels": [
+        "Prospect Sponsor"
+      ],
+      "attributes": {
+        "tier": "Likely Small/Medium ($5K target)",
+        "type": "Local Maine Institution",
+        "decision_maker": "VP Marketing (enrichment pending)",
+        "track": "Local Maine SMB",
+        "icp_fit": "HIGH",
+        "outreach_strategy": "Community visibility + local artist support alignment",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "candy-candytoybox",
+      "name": "Candy (candytoybox)",
+      "labels": [
+        "Person"
+      ],
+      "attributes": {
+        "role": "ZAOstock 2nd Lead",
+        "team_position": "Design/Branding",
+        "responsibility": "Co-sponsor outreach, brand kit direction, visual identity",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "failoften",
+      "name": "failoften",
+      "labels": [
+        "Person"
+      ],
+      "attributes": {
+        "role": "Ops Advisor to Zaal",
+        "team_position": "Advisory",
+        "responsibility": "Operations guidance, sponsorship tier formalization, documentation standards",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "tyler-stambaugh",
+      "name": "Tyler Stambaugh",
+      "labels": [
+        "Person"
+      ],
+      "attributes": {
+        "role": "Magnetic Content Portal Founder",
+        "team_position": "Advisory",
+        "responsibility": "Road to ZAOstock content campaign (12 weekly drops), sponsor feature integration",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "steve-peer",
+      "name": "Steve Peer",
+      "labels": [
+        "Person"
+      ],
+      "attributes": {
+        "role": "Sponsor Rolodex / Connector",
+        "team_position": "Advisory",
+        "responsibility": "Introducing local/regional sponsors via personal network",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "roddy-parklet",
+      "name": "Roddy Parklet",
+      "labels": [
+        "Person"
+      ],
+      "attributes": {
+        "role": "Venue Liaison",
+        "team_position": "Operations",
+        "responsibility": "Coordination with Franklin Street Parklet + Parks & Rec, paperwork logistics",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "art-of-ellsworth-committee",
+      "name": "Art of Ellsworth Committee",
+      "labels": [
+        "Organization"
+      ],
+      "attributes": {
+        "role": "Co-Programming Partner",
+        "status": "Confirmed",
+        "relationship": "ZAOstock is add-on to 9th Annual Art of Ellsworth festival",
+        "benefit": "Access to statewide Maine Craft Weekend audience (10-week concert series baseline)",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "black-moon-public-house",
+      "name": "Black Moon Public House",
+      "labels": [
+        "Venue"
+      ],
+      "attributes": {
+        "role": "After-Party Host",
+        "location": "Ellsworth ME",
+        "status": "Planned",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "franklin-street-parklet",
+      "name": "Franklin Street Parklet",
+      "labels": [
+        "Venue"
+      ],
+      "attributes": {
+        "location": "Ellsworth, Maine",
+        "status": "Verbally confirmed, paperwork pending",
+        "cost": "Under $1,000 (likely under $500)",
+        "includes": "Venue + stage + tent rental",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "sponsor-tier-structure",
+      "name": "Sponsor Tier Structure",
+      "labels": [
+        "Framework"
+      ],
+      "attributes": {
+        "tier_1_name": "Small Sponsor",
+        "tier_1_range": "Under $1,000",
+        "tier_1_target": "Local Ellsworth/Maine businesses",
+        "tier_2_name": "Medium Sponsor",
+        "tier_2_range": "$1,000 - $5,000",
+        "tier_2_target": "Maine/Regional brands",
+        "tier_3_name": "Large / Presenting Sponsor",
+        "tier_3_range": "$5,000+",
+        "tier_3_target": "Regional/National brands + music tech companies",
+        "status": "Finalized via email pitch drafts",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "wavewarz-music-battle",
+      "name": "WaveWarZ Music Battle",
+      "labels": [
+        "Festival Feature"
+      ],
+      "attributes": {
+        "role": "Live audience-voted music competition",
+        "web3_integration": "On-chain voting via QR code, direct artist payouts in SOL",
+        "historical_data": "795 battles hosted, 435 SOL ($37K+) trading volume",
+        "sponsor_integration": "Large sponsors get logo on voting interface visible to all attendees",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "the-zao-community",
+      "name": "The ZAO Community",
+      "labels": [
+        "Community"
+      ],
+      "attributes": {
+        "size": "188+ members",
+        "reach": "Farcaster + X + daily newsletter (400+ editions)",
+        "governance": "90+ consecutive weekly sessions",
+        "asset": "Sponsor visibility to engaged musicians/artists/creators",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "finance-team-zaostock",
+      "name": "Finance Team (ZAOstock)",
+      "labels": [
+        "Team"
+      ],
+      "attributes": {
+        "members": [
+          "Tyler Stambaugh",
+          "Ohnahji B",
+          "DFresh",
+          "Craig G",
+          "Maceo"
+        ],
+        "responsibility": "Sponsor tracking spreadsheet, payment follow-up, finders fee structure (20% total: 10% finders + 10% stewardship)",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "sponsor-pipeline-crm",
+      "name": "Sponsor Pipeline (CRM)",
+      "labels": [
+        "System"
+      ],
+      "attributes": {
+        "tool": "SponsorCRM MVP at /stock/team",
+        "features": "Kanban board, contact log, activity trail",
+        "pipeline_stages": [
+          "lead",
+          "contacted",
+          "in_talks",
+          "committed",
+          "paid",
+          "declined"
+        ],
+        "tracks": [
+          "local",
+          "virtual",
+          "ecosystem"
+        ],
+        "target_leads": "15-20 potential sponsors",
+        "automation": "Clay.com enrichment (decision-makers), Claude API email drafting, webhook logging",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "sisla-flickstopfun",
+      "name": "Sisla (FlickstopFun)",
+      "labels": [
+        "Person"
+      ],
+      "attributes": {
+        "role": "Token Launchpad Facilitator",
+        "connection": "Introduced to Zaal for ZAOstock token potential",
+        "timing": "Decision deferred to post-August 2026",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "sponsor-to-livestream-integration",
+      "name": "Sponsor-to-Livestream Integration",
+      "labels": [
+        "Framework"
+      ],
+      "attributes": {
+        "all_tiers": "Logo on livestream overlay + full event visibility to online community",
+        "large_tier": "Logo on WaveWarZ voting interface (highest touchpoint)",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "id": "zoe-bot",
+      "name": "ZOE Bot",
+      "labels": [
+        "Agent"
+      ],
+      "attributes": {
+        "transport": "Telegram",
+        "handle": "@zaoclaw_bot",
+        "model": "Sonnet/Opus/Haiku (selected per message)",
+        "framework": "grammy",
+        "runtime": "Hermes canonical",
+        "auth": "Max plan OAuth",
+        "github_source": "bot/src/zoe/",
+        "status": "production",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-start",
+      "name": "ZOE Skill: /start",
+      "labels": [
+        "Command"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/index.ts:156",
+        "gating": "Zaal-only",
+        "effect": "confirm identity, report memory loaded",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-tasks",
+      "name": "ZOE Skill: /tasks",
+      "labels": [
+        "Command"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/index.ts:163",
+        "gating": "Zaal-only",
+        "effect": "list open tasks from ~/.zao/zoe/tasks.json",
+        "reads": [
+          "tasks memory"
+        ],
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-seed",
+      "name": "ZOE Skill: /seed",
+      "labels": [
+        "Command"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/index.ts:169",
+        "gating": "Zaal-only",
+        "effect": "re-seed 8 starter tasks from doc 601 if queue empty",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-quest",
+      "name": "ZOE Skill: /quest",
+      "labels": [
+        "Command"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/index.ts:179",
+        "gating": "Zaal-only",
+        "effect": "show active side quests",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-quests",
+      "name": "ZOE Skill: /quests",
+      "labels": [
+        "Command"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/index.ts:185",
+        "gating": "Zaal-only",
+        "effect": "list formatted quest pool",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-voicememo",
+      "name": "ZOE Skill: /voicememo",
+      "labels": [
+        "Command"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/posts/voicememo.ts",
+        "aliases": [
+          "/vm"
+        ],
+        "effect": "capture voice memo for post drafter",
+        "writes": [
+          "~/.zao/zoe/voice-memos/YYYY-MM-DD.md"
+        ],
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-zg-group-admin",
+      "name": "ZOE Skill: /zg (group admin)",
+      "labels": [
+        "Command"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/index.ts:235",
+        "gating": "Zaal-only",
+        "subcommands": [
+          "status",
+          "enable",
+          "mode",
+          "add",
+          "remove",
+          "list"
+        ],
+        "effect": "manage per-group ZOE membership + routing mode (silent/mention/all)",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-note-prefix",
+      "name": "ZOE Skill: note: prefix",
+      "labels": [
+        "Command"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/index.ts:422",
+        "aliases": [
+          "cc:",
+          "claude:"
+        ],
+        "effect": "capture feedback for next Claude Code session",
+        "writes": [
+          "~/.zao/zoe/claude-code-notes.md"
+        ],
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-free-form-concierge",
+      "name": "ZOE Skill: free-form concierge",
+      "labels": [
+        "Handler"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/concierge.ts:runConciergeTurn",
+        "effect": "route user message through 4-block memory (persona/human/working/tasks) to Claude, auto-escalate Haiku/Sonnet/Opus based on message content",
+        "reads": [
+          "persona.md",
+          "human.md",
+          "recent.json",
+          "tasks.json",
+          "quests"
+        ],
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-morning-brief",
+      "name": "ZOE Skill: morning brief",
+      "labels": [
+        "Cron"
+      ],
+      "attributes": {
+        "schedule": "0 9 UTC daily (5am EST)",
+        "handler": "bot/src/zoe/brief.ts",
+        "effect": "fetch 24h commits + PRs + top 5 tasks, send 6-line summary",
+        "idempotent": "sentinel flag ~/.zao/zoe/sentinels/morning-brief-YYYY-MM-DD.flag",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-evening-reflection",
+      "name": "ZOE Skill: evening reflection",
+      "labels": [
+        "Cron"
+      ],
+      "attributes": {
+        "schedule": "0 1 UTC daily (9pm EST)",
+        "handler": "bot/src/zoe/reflect.ts",
+        "effect": "3 questions (shipped/stuck/tomorrow) + captures block for Bonfire review",
+        "idempotent": "sentinel flag ~/.zao/zoe/sentinels/evening-reflect-YYYY-MM-DD.flag",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-hourly-nudge",
+      "name": "ZOE Skill: hourly nudge",
+      "labels": [
+        "Cron"
+      ],
+      "attributes": {
+        "schedule": "0 * UTC hourly (skip 9,1)",
+        "handler": "bot/src/zoe/nudges.ts:nextNudge",
+        "effect": "surface real next task from queue, skip empty queue",
+        "togglable": "start/stop nudges / start/stop tips",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-post-slate-v2",
+      "name": "ZOE Skill: post slate v2",
+      "labels": [
+        "Cron"
+      ],
+      "attributes": {
+        "schedule": "random 7x daily",
+        "handler": "bot/src/zoe/posts/scheduler.ts",
+        "effect": "draft social posts (personal/build/ecosystem/event), send with APPROVE/REGEN/SKIP buttons",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-bonfire-recall",
+      "name": "ZOE Skill: Bonfire recall",
+      "labels": [
+        "Handler"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/recall.ts:recall",
+        "effect": "vector search ZABAL knowledge graph for facts, fallback to manual relay @zabal_bonfire DM",
+        "env": [
+          "BONFIRE_API_KEY",
+          "BONFIRE_ID"
+        ],
+        "api": "POST /vector_store/search",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-bonfire-remember",
+      "name": "ZOE Skill: Bonfire remember",
+      "labels": [
+        "Handler"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/recall.ts:remember",
+        "effect": "write captures/tasks/quests to Bonfire as episodes, auto-extract to knowledge graph",
+        "env": [
+          "BONFIRE_API_KEY",
+          "BONFIRE_ID"
+        ],
+        "api": "POST /knowledge_graph/episode/create",
+        "secret_scan": "blocks sk-*/ghp_/PEM keys/eth addresses",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-turn-mirroring",
+      "name": "ZOE Skill: turn mirroring",
+      "labels": [
+        "Handler"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/recall.ts:mirrorTurn",
+        "effect": "fire-and-forget mirror captures/task_ops/quest_ops into Bonfire as episodes",
+        "best_effort": true,
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-post-callback",
+      "name": "ZOE Skill: post callback",
+      "labels": [
+        "Handler"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/posts/buttons.ts:handlePostCallback",
+        "regex": "/^post-(approve|regen|skip):/",
+        "effect": "handle APPROVE/REGEN/SKIP buttons on draft messages",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-skill-nudge-callback",
+      "name": "ZOE Skill: nudge callback",
+      "labels": [
+        "Handler"
+      ],
+      "attributes": {
+        "handler": "bot/src/zoe/index.ts:560",
+        "regex": "/^nudge:(now|later|shelve)$/",
+        "effect": "mark nudge dismissed",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-memory-persona-md",
+      "name": "ZOE Memory: persona.md",
+      "labels": [
+        "Memory"
+      ],
+      "attributes": {
+        "path": "~/.zao/zoe/persona.md",
+        "source": "bot/src/zoe/memory.ts PERSONA_DEFAULT",
+        "content": "Year-of-the-ZABAL voice rules: clear/spartan/active, no emojis/em-dashes, short default 2-3 sentences, lead with outcome",
+        "gating": "versioned in repo, copied on first boot",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-memory-human-md",
+      "name": "ZOE Memory: human.md",
+      "labels": [
+        "Memory"
+      ],
+      "attributes": {
+        "path": "~/.zao/zoe/human.md",
+        "content": "Zaal facts (ENS, schedule, projects, relationships)",
+        "refresh": "daily",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-memory-recent-json",
+      "name": "ZOE Memory: recent.json",
+      "labels": [
+        "Memory"
+      ],
+      "attributes": {
+        "path": "~/.zao/zoe/recent/<chat_id>.json",
+        "content": "last N turns per chat, FIFO ring buffer max 8",
+        "refresh": "every concierge turn",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-memory-tasks-json",
+      "name": "ZOE Memory: tasks.json",
+      "labels": [
+        "Memory"
+      ],
+      "attributes": {
+        "path": "~/.zao/zoe/tasks.json",
+        "content": "open task queue (ZoeTask[])",
+        "schema": "id/title/description/status/priority/source/blocked_by/notes/created_at/updated_at",
+        "updated_by": [
+          "/tasks command",
+          "/seed command",
+          "concierge task_ops"
+        ],
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-memory-quests",
+      "name": "ZOE Memory: quests",
+      "labels": [
+        "Memory"
+      ],
+      "attributes": {
+        "path": "~/.zao/zoe/sidequests.json",
+        "content": "main quest + active/parked side quests",
+        "schema": "id/title/description/alignment(0-10)/status/pinned/created_at/updated_at/scored_at",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "zoe-memory-captures-md",
+      "name": "ZOE Memory: captures.md",
+      "labels": [
+        "Memory"
+      ],
+      "attributes": {
+        "path": "~/.zao/zoe/captures/<YYYY-MM-DD>.json",
+        "content": "meeting/voice/dm captures for Bonfire review",
+        "refresh": "evening reflection",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "bonfire-knowledge-graph",
+      "name": "Bonfire Knowledge Graph",
+      "labels": [
+        "ExternalService"
+      ],
+      "attributes": {
+        "transport": "REST API",
+        "endpoint": "https://tnt-v2.api.bonfires.ai",
+        "auth": "Bearer BONFIRE_API_KEY",
+        "read_endpoint": "/vector_store/search",
+        "write_endpoint": "/knowledge_graph/episode/create",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "labels": [
+        "ExternalService"
+      ],
+      "attributes": {
+        "role": "persistent state for groups/tasks (future expansion)",
+        "auth": "service-role key server-side only",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "id": "claude-cli-subprocess",
+      "name": "Claude CLI subprocess",
+      "labels": [
+        "ExternalService"
+      ],
+      "attributes": {
+        "handler": "bot/src/hermes/claude-cli.ts:callClaudeCli",
+        "auth": "Max plan OAuth via Zaal account",
+        "models": [
+          "claude-3-5-sonnet-20241022",
+          "claude-3-5-opus-20250514",
+          "claude-3-5-haiku-20241022"
+        ],
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
       }
     }
   ],
@@ -2746,6 +4446,1059 @@
         "selectionMethod": "By leaderboard score",
         "recentDropAmount": "$14.25 USD (2026-04-22, 100 recipients)",
         "_source": "zabal-dispatch-zabal-empire-20260523"
+      }
+    },
+    {
+      "from": "bonfire-knowledge-network",
+      "to": "x402-payment-protocol",
+      "type": "USES",
+      "properties": {
+        "fact": "Every cross-bonfire query retrieval settles as x402 micropayment ($0.001-$0.25 USDC) on Base via HTTP 402 flow",
+        "verified": "ETHBoulder + docpull.ai blog post (May 2026) + x402.org",
+        "settlement_time": "~1 second (Base L2 Flashblocks optimization can reach 0.2s)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "hyperblogs",
+      "to": "x402-payment-protocol",
+      "type": "USES",
+      "properties": {
+        "fact": "AI-generated blog post mints gated behind x402 USDC payment (0.25 USDC per mint at ETHBoulder)",
+        "verified": "hyperblogs.bonfires.ai + paragraph.com/@joshuab/ethboulder-lets-make-sense",
+        "backend": "Graphiti HTN generation + payment settlement via x402 middleware",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "know-token",
+      "to": "bonfire-genesis-nft",
+      "type": "ALLOCATED_BY",
+      "properties": {
+        "fact": "Genesis NFT mint (0.1 ETH) is ONLY way to receive $KNOW allocation pre-public-launch",
+        "verified": "docs.bonfires.ai + app.bonfires.ai flow",
+        "note": "Post-launch earning mechanics unknown (must ask Joshua.eth)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "zabal-bonfire",
+      "to": "knowledge-network",
+      "type": "MEMBER_OF",
+      "properties": {
+        "fact": "ZABAL graph is one node in federated Knowledge Network; future queries can cross KGs via x402",
+        "status": "Phase 1: local-only. Phase 2+: federated with cost/earnings unknown.",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "zabal-bonfire",
+      "to": "zoe-bot",
+      "type": "PROVIDES_MEMORY_TO",
+      "properties": {
+        "fact": "ZOE reads from ZABAL bonfire for agent context + long-term memory (replacing 8-turn ring buffer)",
+        "reference": "Doc 669 reverse-engineered workflow; Ryan (Bonfires SDK author) shipping compiled-new-ZOE",
+        "phase": "Phase 1 (~May 26 2026)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "zabal-bonfire",
+      "to": "zaocoworkingbot",
+      "type": "INGESTS_FROM",
+      "properties": {
+        "fact": "ZAOcoworkingBot events auto-write to ZABAL bonfire every 20 min via episodic KG extraction",
+        "phase": "Phase 1 (2026-05-26+)",
+        "corpus_value": "Real recent context for compiled-new-ZOE delivery",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "zabal-bonfire",
+      "to": "bonfire-search-zaoos-com",
+      "type": "POWERS",
+      "properties": {
+        "fact": "Public onboarding interface uses paid-agent endpoint (~$0.01-0.05/query) to serve KG queries to new ZAO members",
+        "phase": "Phase 2 (Week of 2026-05-26)",
+        "question_examples": [
+          "What is WaveWarZ?",
+          "How do I contribute to The ZAO?"
+        ],
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "bonfire-agent-system",
+      "to": "knowledge-network",
+      "type": "READS_FROM",
+      "properties": {
+        "fact": "Agents access KG via semantic search + graph traversal in adaptive/regenerate/append modes",
+        "verified": "doc 669 (agent system section) + bonfires-sdk source",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "nerddao",
+      "to": "bonfire-labs",
+      "type": "IS_GITHUB_ORG_FOR",
+      "properties": {
+        "fact": "NERDDAO hosts all Bonfire Labs open-source repos (bonfires-sdk, bonfire-tools, integrations, demos)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "bonfire-fetch",
+      "to": "asi-one-uagents",
+      "type": "INTEGRATES_WITH",
+      "properties": {
+        "fact": "NERDDAO/bonfire-fetch enables ASI:One agents to query Bonfires via semantic search + context retrieval",
+        "pattern": "Agent-as-consumer (reads KG, doesn't populate manually)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "bcz-strategies",
+      "to": "zabal-bonfire",
+      "type": "MINTED_GENESIS_NFT_FOR",
+      "properties": {
+        "fact": "BCZ minted Genesis NFT (0.1 ETH, ~May 2026) to own ZABAL bonfire + claim $KNOW allocation",
+        "sunk_cost": "0.1 ETH already paid for bonfire infrastructure",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "ethboulder-boulder-bonfire",
+      "to": "hyperblogs",
+      "type": "GENERATED_CONTENT_FOR",
+      "properties": {
+        "fact": "HyperBlogs feature trialed at ETHBoulder 2026 with AI-generated articles minted at 0.25 USDC/mint via x402",
+        "url": "hyperblogs.bonfires.ai (browsable + purchasable)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "graphiti-backend",
+      "to": "kengram",
+      "type": "STORES_AND_EXPORTS",
+      "properties": {
+        "fact": "kEngrams (Canvas/OWL/Markdown) export from Graphiti for portability + backup",
+        "vendor_lock_out_pattern": "Merkle-verified, content-addressed subgraphs can migrate to local Obsidian",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "bonfires-labs",
+      "to": "ethboulder-boulder-bonfire",
+      "type": "DEPLOYED_AT",
+      "properties": {
+        "fact": "Joshua.eth + Bonfire team ran live deployment at ETHBoulder 2026 with 88K nodes / 7 days",
+        "proof": "paragraph.com/@joshuab/ethboulder-lets-make-sense + graph.bonfires.ai archive",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "x402-payment-protocol",
+      "to": "usdc-eip-3009",
+      "type": "SETTLES_VIA",
+      "properties": {
+        "fact": "x402 uses EIP-3009 Transfer with Authorization for gasless USDC transfers on Base",
+        "settlement_speed": "~1 second (Base native), ~0.2 second (Flashblocks optimization)",
+        "token_choice_rationale": "Price stability ($1), fast settlement, sub-penny fees, broad ERC-20 tooling",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "x402-payment-protocol",
+      "to": "coinbase-cdp-facilitator",
+      "type": "FACILITATED_BY",
+      "properties": {
+        "fact": "Payment verification + settlement delegated to Coinbase CDP or custom facilitators",
+        "pattern": "Resource server -> facilitator /verify + /settle -> blockchain",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "hermes-coder",
+      "to": "zabal-bonfire",
+      "type": "WILL_READ_FROM",
+      "properties": {
+        "fact": "Phase 2: Hermes `/fix` tasks access Bonfire MCP for constraint context (artist count, timeline, team decisions)",
+        "latency_requirement": "<2s per query (per Mem0 benchmarks)",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "kengram",
+      "to": "weaviate-vector-db",
+      "type": "INDEXED_IN",
+      "properties": {
+        "fact": "kEngram chunks embedded as vectors for semantic search; labels propagated from summary to chunks",
+        "_source": "zabal-dispatch-bonfire-revenue-20260523"
+      }
+    },
+    {
+      "from": "zao-os",
+      "to": "coinflow-isv",
+      "type": "USES",
+      "properties": {
+        "role": "ISV parent",
+        "application_date": "April 2026",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-isv",
+      "to": "wavewarz",
+      "type": "ENABLES_SUBMERCHANT",
+      "properties": {
+        "merchant_id": "wavestation",
+        "since": "April 2026",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-isv",
+      "to": "coc-concertz",
+      "type": "ENABLES_SUBMERCHANT",
+      "properties": {
+        "role": "future submerchant",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-isv",
+      "to": "fishbowlz",
+      "type": "ENABLES_SUBMERCHANT",
+      "properties": {
+        "role": "future submerchant",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "wavewarz",
+      "to": "solana",
+      "type": "SETTLES_ON",
+      "properties": {
+        "settlement_currency": "USDC",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "zao-os",
+      "to": "base",
+      "type": "SETTLES_ON",
+      "properties": {
+        "settlement_currency": "USDC",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-checkout",
+      "to": "solana",
+      "type": "SUPPORTS",
+      "properties": {
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-checkout",
+      "to": "base",
+      "type": "SUPPORTS",
+      "properties": {
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-payouts",
+      "to": "zabal-games",
+      "type": "POWERS",
+      "properties": {
+        "use_case": "Prize payouts, crypto-to-fiat",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-kyc-kyb",
+      "to": "wavewarz",
+      "type": "VERIFIES_MERCHANT",
+      "properties": {
+        "status": "automated via Persona",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-webhooks",
+      "to": "zao-os",
+      "type": "NOTIFIES",
+      "properties": {
+        "event_count": "24+ types",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-smart-payment-orchestration",
+      "to": "coinflow-checkout",
+      "type": "OPTIMIZES",
+      "properties": {
+        "cost_reduction": "up to 6 bps",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-series-a",
+      "to": "coinflow-isv",
+      "type": "FUNDS",
+      "properties": {
+        "amount": "$25M",
+        "date": "October 2025",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-marketplace",
+      "to": "coinflow-kyc-kyb",
+      "type": "REQUIRES",
+      "properties": {
+        "verification_level": "seller KYB",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "coinflow-pricing-model",
+      "to": "coinflow-isv",
+      "type": "DEFINES",
+      "properties": {
+        "model": "interchange-plus, 30% more vs flat-rate",
+        "_source": "zabal-dispatch-coinflow-20260523"
+      }
+    },
+    {
+      "from": "fishbowlz",
+      "to": "juke",
+      "type": "PAUSED_FOR_PARTNERSHIP",
+      "properties": {
+        "date": "2026-04-16",
+        "direction": "FISHBOWLZ paused, pivoting to Juke audio platform",
+        "shape": "not acquisition; strategic redirect (Juke solves mobile audio + Farcaster auth + role model that FISHBOWLZ rebuilt custom)",
+        "current_state": "mute-lockout design doc (662) + integration paths (695) + operations guide (710) in progress; 7 open questions with Juke pending",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "juke",
+      "to": "nicky-sap-nickysap",
+      "type": "BUILT_BY",
+      "properties": {
+        "timeline": "3 days, 10 parallel AI agents, 800-line SPEC.md, announced 2026-03-27",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "zaal-zaal",
+      "to": "fishbowlz",
+      "type": "FOUNDED",
+      "properties": {
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "zaal-zaal",
+      "to": "juke",
+      "type": "EARLY_HOST",
+      "properties": {
+        "confirmed": "by @farcaster cast 2026-04-24: 'great convo between @nickysap x @zaal x @rish love seeing you host these on @jukeaudio'",
+        "recorded_space": "https://x.com/nicky_sap/status/2047770959403516069",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "zaal-zaal",
+      "to": "fishbowlz-standalone-repo",
+      "type": "MAINTAINS",
+      "properties": {
+        "path": "/Users/zaalpanthaki/Documents/fishbowlz/",
+        "last_commit": "2026-05-23 (614bca5)",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "fishbowlz-legacy-code-zaoos-copy",
+      "to": "fishbowlz-standalone-repo",
+      "type": "STALE_COPY_OF",
+      "properties": {
+        "status": "22 files marked for deletion (doc 661h audit, doc 662 decision)",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "juke-integration-path-a-iframe-embed",
+      "to": "juke",
+      "type": "USES_API",
+      "properties": {
+        "endpoint": "https://juke.audio/embed/{spaceId}",
+        "keys": "none",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "juke-integration-path-b-server-side-space-creation",
+      "to": "juke",
+      "type": "USES_API",
+      "properties": {
+        "endpoint": "POST /v1/developer/spaces",
+        "auth": "X-Juke-Api-Key (server-side only)",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "juke-integration-path-c-fishbowlz-sdk-custom-ui",
+      "to": "juke",
+      "type": "USES_API",
+      "properties": {
+        "endpoints": "@juke/audio-sdk (12 methods) + POST /v1/developer/spaces (role management)",
+        "status": "re-scoped due to native-vs-web caveat",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "the-mute-lockout-moderation-rule",
+      "to": "juke-api-gaps-blockers-for-fishbowlz-zao-integration",
+      "type": "BLOCKED_BY",
+      "properties": {
+        "blocker": "no_demote_endpoint (doc 662 Q1), no_webhooks (for fallback enforcement)",
+        "mitigation_pending": "awaiting Juke response on token-reissue or demote endpoint",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "juke-integration-path-b-server-side-space-creation",
+      "to": "juke-api-gaps-blockers-for-fishbowlz-zao-integration",
+      "type": "REQUIRES_CLARIFICATION_ON",
+      "properties": {
+        "blockers": "token_ttl_unknown (determines refresh strategy), no_webhooks (no lifecycle events)",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "zao-as-juke-flagship-community",
+      "to": "zaal-zaal",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "action": "ongoing relationship with nickysap (DM with docs + 7 Qs)",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "juke-integration-path-d-fip-2-chat-pattern",
+      "to": "zao-os-spaces",
+      "type": "REFACTORS",
+      "properties": {
+        "impact": "kills ZAO Spaces chat DB, replaces with Farcaster reply-tree (ephemeral Neynar webhook), independent of Juke partnership",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "fishbowlz-standalone-repo",
+      "to": "features-to-preserve",
+      "type": "CONTAINS",
+      "properties": {
+        "features": "anonymous listen mode, room filters (All/Live/Scheduled/Ended/Gated), gating UI (open/farcaster/invite-only/token-gate), reconnection handler, transparent speaker UI",
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+      }
+    },
+    {
+      "from": "quotient",
+      "to": "farcaster",
+      "type": "MEASURES_REPUTATION_ON",
+      "properties": {
+        "metric": "quotientScore",
+        "coverage": "all_farcaster_users",
+        "api": "/v1/user-reputation",
+        "_source": "zabal-dispatch-quotient-20260523"
+      }
+    },
+    {
+      "from": "quotient-booster",
+      "to": "empire-builder-v3",
+      "type": "BOOSTER_TYPE_IN",
+      "properties": {
+        "booster_type": "QUOTIENT",
+        "api_field_name": "type",
+        "multiplier_field": "multiplier",
+        "qualification_check": "queryable_via_api",
+        "_source": "zabal-dispatch-quotient-20260523"
+      }
+    },
+    {
+      "from": "quotient-booster",
+      "to": "zabal-empire",
+      "type": "APPLIES_MULTIPLIER_TO",
+      "properties": {
+        "effect": "weighted_leaderboard_positioning",
+        "computation": "score * multiplier where multiplier depends on quotientScore",
+        "_source": "zabal-dispatch-quotient-20260523"
+      }
+    },
+    {
+      "from": "empire-builder-v3",
+      "to": "zabal-empire",
+      "type": "HOSTS_LEADERBOARD_FOR",
+      "properties": {
+        "leaderboard_type": "tokenHolders",
+        "active_boosters": [
+          "QUOTIENT"
+        ],
+        "api_endpoint": "GET /api/leaderboards?tokenAddress=0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07",
+        "_source": "zabal-dispatch-quotient-20260523"
+      }
+    },
+    {
+      "from": "quotient-score",
+      "to": "quotient-booster",
+      "type": "POWERS_QUALIFICATION_FOR",
+      "properties": {
+        "field_queried": "quotientScore",
+        "threshold": "0.5",
+        "below_threshold": "account_quality_drops_significantly",
+        "_source": "zabal-dispatch-quotient-20260523"
+      }
+    },
+    {
+      "from": "talent-protocol",
+      "to": "quotient",
+      "type": "PARALLEL_REPUTATION_SYSTEM",
+      "properties": {
+        "similarity": "both_measure_farcaster_reputation",
+        "difference": "Talent=builder_focus, Quotient=general_engagement_quality",
+        "integration": "UNKNOWN",
+        "_source": "zabal-dispatch-quotient-20260523"
+      }
+    },
+    {
+      "from": "quotient",
+      "to": "quotient-booster",
+      "type": "ENABLES",
+      "properties": {
+        "mechanism": "API_scores_fed_to_booster_qualification",
+        "api_endpoint": "POST /v1/user-reputation",
+        "_source": "zabal-dispatch-quotient-20260523"
+      }
+    },
+    {
+      "from": "zaostock-2026",
+      "to": "wallace-events",
+      "type": "PROVIDES_SERVICES_TO",
+      "properties": {
+        "service": "Equipment rental (tents, stage, AV)",
+        "cost": "Included in under $1K venue budget",
+        "status": "Committed",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "limone-sponsor",
+      "to": "zaostock-2026",
+      "type": "SPONSORS",
+      "properties": {
+        "tier": "Medium",
+        "commitment_amount": "$1,000",
+        "status": "Pledged but payment outstanding",
+        "note": "As of May 19, Zaal flagged slow payment from large branded sponsors as a pattern",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "zaal",
+      "to": "zaostock-2026",
+      "type": "LEADS",
+      "properties": {
+        "role": "Festival organizer + sponsor pitch lead",
+        "responsibility": "Overall festival direction + tier framework development",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "candy-candytoybox",
+      "to": "zaostock-2026",
+      "type": "CO_LEADS",
+      "properties": {
+        "role": "2nd lead, co-sponsor outreach",
+        "responsibility": "Brand identity + visual sponsor integration",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "failoften",
+      "to": "zaal",
+      "type": "ADVISES",
+      "properties": {
+        "topic": "Operations + sponsorship tier clarity",
+        "key_recommendation": "Formalize sponsorship packages Tier 1/2/3 with explicit deliverables; document volunteer expectations upfront",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "tyler-stambaugh",
+      "to": "zaostock-2026",
+      "type": "INTEGRATES_CONTENT_FOR",
+      "properties": {
+        "tool": "Magnetic Portal",
+        "campaign": "Road to ZAOstock - 12 weekly content drops (July launch for Oct 3 event)",
+        "sponsor_benefit": "Sponsor features + reveals across content campaign",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "steve-peer",
+      "to": "sponsor-prospects",
+      "type": "REFERS_TO",
+      "properties": {
+        "mechanism": "Personal rolodex introduction",
+        "tier_focus": "Likely local/regional SMB + corporate connections",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "roddy-parklet",
+      "to": "franklin-street-parklet",
+      "type": "COORDINATES",
+      "properties": {
+        "responsibility": "Venue logistics + Parks & Rec coordination + paperwork finalization",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "franklin-street-parklet",
+      "to": "zaostock-2026",
+      "type": "HOSTS",
+      "properties": {
+        "status": "Verbally confirmed, pending paperwork",
+        "cost": "Under $1K (likely under $500 for stage + tent setup)",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "art-of-ellsworth-committee",
+      "to": "zaostock-2026",
+      "type": "CO_PROGRAMS",
+      "properties": {
+        "context": "ZAOstock is add-on concert to 9th Annual Art of Ellsworth festival",
+        "benefit": "Access to existing Maine Craft Weekend statewide audience",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "black-moon-public-house",
+      "to": "zaostock-2026",
+      "type": "HOSTS_AFTER_PARTY",
+      "properties": {
+        "timing": "Post-festival evening",
+        "audience": "Attendees + artists + VIP sponsors",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "the-zao-community",
+      "to": "zaostock-2026",
+      "type": "PROVIDES_AUDIENCE_TO",
+      "properties": {
+        "size": "188+ members core + 400+ newsletter reach",
+        "channels": "Farcaster, X, daily newsletter (400+ editions)",
+        "value": "Pre-event promotion + day-of audience + post-event engagement",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "finance-team-zaostock",
+      "to": "sponsor-pipeline-crm",
+      "type": "MANAGES",
+      "properties": {
+        "tool": "Shared spreadsheet (payment tracking)",
+        "owners": "Tyler Stambaugh, Ohnahji B, DFresh, Craig G, Maceo",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "finance-team-zaostock",
+      "to": "limone-sponsor",
+      "type": "FOLLOWS_UP_WITH",
+      "properties": {
+        "status": "Working on payment transmission",
+        "context": "Large branded sponsors are slow with actual money (Zaal's pattern observation)",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "wavewarz-music-battle",
+      "to": "zaostock-2026",
+      "type": "INTEGRATES_INTO",
+      "properties": {
+        "format": "Live audience-voted bracket via QR code",
+        "sponsor_touchpoint": "Logo on voting interface visible to all participants",
+        "web3_layer": "Direct on-chain artist payouts in SOL",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "sponsor-tier-structure",
+      "to": "zaostock-2026",
+      "type": "DEFINES",
+      "properties": {
+        "status": "Finalized",
+        "deliverables": "Explicit per-tier benefits documented in email pitch templates (Doc 443)",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "sponsor-pipeline-crm",
+      "to": "sponsorcrm-mvp",
+      "type": "IMPLEMENTS",
+      "properties": {
+        "location": "/stock/team endpoint",
+        "stages": "6-stage pipeline (lead -> contacted -> in_talks -> committed -> paid -> declined)",
+        "automation": "Clay.com (prospect enrichment), Claude API (email drafting), webhook logging",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "zaal",
+      "to": "sisla-flickstopfun",
+      "type": "EXPLORES_TOKEN_WITH",
+      "properties": {
+        "topic": "ZAOstock token launchpad",
+        "timing": "Decision post-August 2026",
+        "approach": "Contribution-validated fractal game (humans share contributions, AI validates)",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "bangor-savings-bank",
+      "to": "zaostock-2026",
+      "type": "PROSPECT_FOR",
+      "properties": {
+        "outreach_plan": "Clay enrichment + Claude email draft + 7-day follow-up cadence",
+        "target_tier": "Small/Medium",
+        "decision_timeline": "Commit by June 15 (ideal)",
+        "icp_fit": "HIGH - local Maine bank, community focus",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "sponsor-to-livestream-integration",
+      "to": "zaostock-2026",
+      "type": "PROVIDES_VISIBILITY_FOR",
+      "properties": {
+        "audience": "1000+ livestream viewers online",
+        "overlay": "Sponsor logos on stream (all tiers)",
+        "_source": "zabal-dispatch-zaostock-sponsor-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-start",
+      "type": "EXPOSES",
+      "properties": {
+        "command": "/start",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-tasks",
+      "type": "EXPOSES",
+      "properties": {
+        "command": "/tasks",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-seed",
+      "type": "EXPOSES",
+      "properties": {
+        "command": "/seed",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-quest",
+      "type": "EXPOSES",
+      "properties": {
+        "command": "/quest",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-quests",
+      "type": "EXPOSES",
+      "properties": {
+        "command": "/quests",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-voicememo",
+      "type": "EXPOSES",
+      "properties": {
+        "command": "/voicememo, /vm",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-zg-group-admin",
+      "type": "EXPOSES",
+      "properties": {
+        "command": "/zg",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-note-prefix",
+      "type": "EXPOSES",
+      "properties": {
+        "prefix": "note:, cc:, claude:",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-free-form-concierge",
+      "type": "ROUTES_TO",
+      "properties": {
+        "default": true,
+        "per_message": true,
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-morning-brief",
+      "type": "SCHEDULES",
+      "properties": {
+        "cron": "0 9 UTC",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-evening-reflection",
+      "type": "SCHEDULES",
+      "properties": {
+        "cron": "0 1 UTC",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-hourly-nudge",
+      "type": "SCHEDULES",
+      "properties": {
+        "cron": "0 * UTC",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "zoe-skill-post-slate-v2",
+      "type": "SCHEDULES",
+      "properties": {
+        "frequency": "random 7x daily",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-free-form-concierge",
+      "to": "zoe-memory-persona-md",
+      "type": "READS",
+      "properties": {
+        "per_turn": true,
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-free-form-concierge",
+      "to": "zoe-memory-human-md",
+      "type": "READS",
+      "properties": {
+        "per_turn": true,
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-free-form-concierge",
+      "to": "zoe-memory-recent-json",
+      "type": "READS",
+      "properties": {
+        "per_turn": true,
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-free-form-concierge",
+      "to": "zoe-memory-tasks-json",
+      "type": "READS_AND_WRITES",
+      "properties": {
+        "via": "task_ops",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-free-form-concierge",
+      "to": "zoe-memory-quests",
+      "type": "READS_AND_WRITES",
+      "properties": {
+        "via": "quest_ops",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-free-form-concierge",
+      "to": "claude-cli-subprocess",
+      "type": "CALLS",
+      "properties": {
+        "model_selection": "Haiku/Sonnet/Opus",
+        "system_prompt": "4 memory blocks",
+        "allowed_tools": [
+          "Read",
+          "Glob",
+          "Grep",
+          "Bash (read-only)",
+          "Playwright MCP"
+        ],
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-tasks",
+      "to": "zoe-memory-tasks-json",
+      "type": "READS",
+      "properties": {
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-seed",
+      "to": "zoe-memory-tasks-json",
+      "type": "WRITES",
+      "properties": {
+        "source": "doc 601",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-quest",
+      "to": "zoe-memory-quests",
+      "type": "READS",
+      "properties": {
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-quests",
+      "to": "zoe-memory-quests",
+      "type": "READS",
+      "properties": {
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-voicememo",
+      "to": "zoe-memory-voice-memos",
+      "type": "WRITES",
+      "properties": {
+        "path": "~/.zao/zoe/voice-memos/YYYY-MM-DD.md",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-zg-group-admin",
+      "to": "supabase",
+      "type": "READS_AND_WRITES",
+      "properties": {
+        "table": "zoe_groups",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-note-prefix",
+      "to": "zoe-memory-claude-code-notes-md",
+      "type": "WRITES",
+      "properties": {
+        "append": true,
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-morning-brief",
+      "to": "zoe-memory-sentinels",
+      "type": "WRITES",
+      "properties": {
+        "file": "morning-brief-YYYY-MM-DD.flag",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-evening-reflection",
+      "to": "zoe-memory-sentinels",
+      "type": "WRITES",
+      "properties": {
+        "file": "evening-reflect-YYYY-MM-DD.flag",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-hourly-nudge",
+      "to": "zoe-memory-tasks-json",
+      "type": "READS",
+      "properties": {
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-bonfire-recall",
+      "to": "bonfire-knowledge-graph",
+      "type": "QUERIES",
+      "properties": {
+        "endpoint": "/vector_store/search",
+        "method": "POST",
+        "fallback": "manual_relay",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-bonfire-remember",
+      "to": "bonfire-knowledge-graph",
+      "type": "WRITES",
+      "properties": {
+        "endpoint": "/knowledge_graph/episode/create",
+        "content": "episodes",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-skill-turn-mirroring",
+      "to": "bonfire-knowledge-graph",
+      "type": "WRITES",
+      "properties": {
+        "fire_and_forget": true,
+        "content": "captures/task_ops/quest_ops as episodes",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zoe-bot",
+      "to": "bonfire-knowledge-graph",
+      "type": "INTEGRATES_WITH",
+      "properties": {
+        "read_unlocked": false,
+        "write_enabled": true,
+        "status": "May 2026 verified",
+        "_source": "zabal-dispatch-zoe-telegram-20260523"
       }
     }
   ]

@@ -798,14 +798,14 @@ The relationship usually keeps going. Many ZAO ecosystem collaborations started 
 
 ## Bonfire knowledge graph (queryable depth)
 
-This file is a static prompt. The Bonfire knowledge graph at `zabal.bonfires.ai` is the queryable version - 78 entities + 113 edges (and growing) you can ask in natural language. Where this file states "WaveWarZ-Base settles Finals voting (Doc 720)", the graph holds the contract addresses, top performer wallets, Sam + Arthur build status, and every linked rail.
+This file is a static prompt. The Bonfire knowledge graph at `zabal.bonfires.ai` is the queryable version - 171 entities + 220 edges (and growing) you can ask in natural language. Where this file states "WaveWarZ-Base settles Finals voting (Doc 720)", the graph holds the contract addresses, top performer wallets, Sam + Arthur build status, and every linked rail.
 
 Two paths:
 
 - **Bonfire chat** - DM the ZABAL Bonfire agent on Telegram (or the public Bonfire dashboard) with the entity name. Returns connected entities + edges.
 - **Raw graph dump** - [data/bonfire-graph.json](https://github.com/ZAODEVZ/zabalgames/blob/main/data/bonfire-graph.json) is the source-of-truth file. Re-pushed to Bonfire any time via `node scripts/push-to-bonfire.mjs` (needs `BONFIRE_API_KEY` env var).
 
-Six kEngrams seeded by parallel research subagents (run 2026-05-23):
+Twelve kEngrams seeded by parallel research subagents (rounds 1+2, both run 2026-05-23):
 
 | kEngram | Ask the graph about | One-line takeaway |
 |---|---|---|
@@ -815,6 +815,12 @@ Six kEngrams seeded by parallel research subagents (run 2026-05-23):
 | `farcaster-snap-2026` | Snap protocol v2.0 (current). | `application/vnd.farcaster.snap+json` MIME + content negotiation on Accept header. Frame v1 buttons dead. `fc:miniapp` meta is for Mini Apps (separate protocol). Caster has a known-hosts whitelist - zlank.online whitelisted, arbitrary custom domains do NOT unfurl as Snaps. Use zlank `/s/[uuid]` template. |
 | `bounty-payment-rails` | POIDH on Base/Arbitrum/Degen + Empire Builder distribution. | POIDH escrows ETH, claim-NFT serves as proof. 2.5% protocol fee. ZABAL Games builders: claim project -> POIDH bounty -> proof -> payout -> Empire Builder pulls submitter feed and airdrops ZABAL. poidh-sentinel agent (open source, 0x94t3z) automates the loop. |
 | `bonfire-push` | How the graph is built. | Subagent runs produce `/tmp/zabal-dispatch-*.md` reports -> `scripts/aggregate-dispatches.mjs` normalizes + dedupes into `data/bonfire-graph.json` -> `scripts/push-to-bonfire.mjs` POSTs to `https://tnt-v2.api.bonfires.ai` (`/kg/entities` + `/kg/edges`, bearer auth). Idempotent on 409. |
+| `coinflow-isv` | Coinflow ISV tier - fiat-to-crypto + ACH + payouts for ZAO music, COC Concertz, ZABAL Games prize pool. | ISV tier = $0 setup + interchange-plus + instant settlement + named engineer. Solana gas 100% covered, Base supported. USDC settlement. KYC <10s users / 30s KYB 90% auto. 24+ webhook event types. Pay methods: card, ACH, Apple/Google Pay, PIX, SEPA. Custom MSA (no public rate card; industry benchmark 2.5-3.5%). |
+| `zaostock-sponsor-mechanics` | ZAOstock 2026 (Oct 3, Franklin St Parklet, Ellsworth ME) sponsor tiers + anchors. | Tiers: Small <$1K / Medium $1K-5K / Large $5K+. Confirmed sponsors: Wallace Events (tents/AV), Limone. Anchors: Steve Peer rolodex, Roddy Parklet (venue, <$1K), Art of Ellsworth (co-programming), Maine indie press. Venue locked. WaveWarZ on-chain voting layer optional. 14-person team, 4 sub-teams (Ops/Finance/Design/Music). |
+| `quotient-booster` | Quotient reputation booster on $ZABAL. | Quotient = Farcaster-native PageRank-variant measuring genuine engagement quality (ignores follower count). Score 0-1 normalized; quality drops below 0.5. QUOTIENT booster type confirmed live in Empire Builder V3. Exact multiplier formula + ZABAL booster config UNKNOWN; ask Adrian. |
+| `fishbowlz-juke-transition` | Why FISHBOWLZ paused, what Juke is, what ZAO did about it. | FISHBOWLZ paused 2026-04-16 to pivot to Juke (Farcaster-native iOS audio app, built in 3 days by nickysap, announced 2026-03-27). Juke uses LiveKit + native background audio + role-based speaking + novel mute-lockout rule. Missing: demote endpoint, webhooks, recording control. ZAO shipped Juke Path A (iframe embed, prod-ready) + Path B (server-side, awaiting creds). ZAO positions as flagship Juke community. |
+| `bonfire-revenue-model` | Bonfire's own business - x402 Knowledge Network, HyperBlogs, $KNOW token, Genesis NFT, NERDDAO. | Tiers: Free / Pro / Genesis (custom, 0.1 ETH Genesis NFT mint). x402 = Coinbase's HTTP 402 micropayment protocol; Bonfire uses it for federated query monetization (pay per retrieval across the Knowledge Network). HyperBlogs turn graphs into x402-monetized AI blog posts. $KNOW token utility partially documented (7 unknowns flagged). NERDDAO is the open-source ecosystem org; Joshua.eth founder. BCZ Strategies bought Genesis tier. |
+| `zoe-telegram-skills` | ZOE bot's command catalog and skill architecture. | 9 explicit commands: `/start`, `/tasks`, `/seed`, `/quest`, `/quests`, `/voicememo`, `/zg`, `note:` prefix, free-form concierge. 5 scheduled crons (morning brief, evening reflection, hourly nudge, post drafting, hourly DevZ tip pending). Bonfire bidirectional integration (writes episodes; vector search read with manual relay fallback). Built on canonical Hermes-style Claude Code subprocess pattern. |
 
 If you are an agent: query the graph for any entity name above and traverse 1-2 hops. The depth is there; this file only points at it.
 
