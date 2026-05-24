@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog - ZABAL Games</title>
+  <meta name="description" content="What shipped, when, and why. The public dev-in-the-open log for ZABAL Games Season 1.">
+  <link rel="canonical" href="https://zabalgames.com/changelog">
+  <meta property="og:title" content="Changelog - ZABAL Games">
+  <meta property="og:description" content="Building ZABAL Games in public.">
+  <meta property="og:url" content="https://zabalgames.com/changelog">
+  <meta property="og:image" content="https://zabalgames.com/assets/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .timeline { position: relative; padding-left: 24px; margin-top: 1rem; }
+    .timeline:before {
+      content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border);
+    }
+    .entry { position: relative; margin-bottom: 18px; padding: 16px 18px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; }
+    .entry:before {
+      content: ''; position: absolute; left: -22px; top: 22px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--orange); border: 2px solid var(--bg);
+    }
+    .entry.feat:before { background: var(--orange); }
+    .entry.decision:before { background: var(--zabal); }
+    .entry.content:before { background: var(--cyan); }
+    .entry.infra:before { background: var(--gold); }
+    .entry.fix:before { background: var(--pink); }
+    .entry-date {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+      color: var(--text-dim); letter-spacing: 0.05em;
+    }
+    .entry-type {
+      display: inline-block; margin-left: 8px;
+      padding: 0.1rem 0.5rem; border-radius: 999px;
+      font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 700; background: var(--surface-2); color: var(--text-muted);
+    }
+    .entry-type.feat { background: rgba(255,107,53,0.12); color: var(--orange); }
+    .entry-type.decision { background: rgba(167,139,250,0.12); color: var(--zabal); }
+    .entry-type.content { background: rgba(0,229,255,0.12); color: var(--cyan); }
+    .entry-type.infra { background: rgba(245,200,66,0.12); color: var(--gold); }
+    .entry-type.fix { background: rgba(255,61,110,0.12); color: var(--pink); }
+    .entry h3 { color: var(--text); font-size: 1rem; margin: 0.4rem 0 0.4rem; }
+    .entry p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0.5rem; }
+    .entry-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.6rem; }
+    .entry-link {
+      font-size: 0.78rem; padding: 0.25rem 0.6rem;
+      background: var(--surface-2); color: var(--cyan);
+      border: 1px solid var(--border); border-radius: 6px;
+      text-decoration: none;
+    }
+    .entry-link:hover { background: var(--border); text-decoration: none; }
+    .entry-commit {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+      color: var(--text-dim); margin-left: 8px;
+    }
+    .filter-row {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin: 1rem 0 1.5rem;
+    }
+    .filter-btn {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 0.3rem 0.8rem; border-radius: 999px;
+      color: var(--text-muted); font-size: 0.78rem;
+      cursor: pointer; font-family: inherit;
+    }
+    .filter-btn:hover { background: var(--surface-2); color: var(--text); }
+    .filter-btn.active { background: var(--orange); color: #fff; border-color: var(--orange); }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/lead.html">Lead</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/research.html">Research</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/about.html">About</a>
+      <a href="/changelog.html" class="active">Log</a>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow">Build in Public</div>
+    <h1>The <span class="accent">Log</span>.</h1>
+    <p class="hero-sub">
+      Every milestone that shipped on ZABAL Games Season 1, newest first. Decisions, features, content drops, infrastructure. Read this to see how the build moves over time.
+    </p>
+  </header>
+
+  <div class="filter-row" id="filter-row">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="decision">Decisions</button>
+    <button class="filter-btn" data-filter="feat">Features</button>
+    <button class="filter-btn" data-filter="content">Content</button>
+    <button class="filter-btn" data-filter="infra">Infra</button>
+  </div>
+
+  <div class="timeline" id="timeline">
+    <p style="color: var(--text-muted); font-size: 0.85rem;">Loading...</p>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div>
+    <a href="/">zabalgames.com</a> -
+    <a href="https://github.com/ZAODEVZ/zabalgames/commits/main" target="_blank" rel="noopener">git history</a> -
+    <a href="/llms.txt">llms.txt</a> -
+    <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+  </div>
+  <p style="margin-top: 0.5rem; color: var(--text-dim);">ZABAL Games Season 1 - the public log.</p>
+</footer>
+
+<script>
+(function() {
+  var allEntries = [];
+  var currentFilter = 'all';
+
+  function render() {
+    var tl = document.getElementById('timeline');
+    var filtered = currentFilter === 'all' ? allEntries : allEntries.filter(function(e) { return e.type === currentFilter; });
+    if (filtered.length === 0) {
+      tl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No entries match.</p>';
+      return;
+    }
+    tl.innerHTML = filtered.map(function(e) {
+      var type = e.type || 'feat';
+      var links = (e.links || []).map(function(L) {
+        return '<a class="entry-link" href="' + L.url + '"' + (L.url.indexOf('http') === 0 ? ' target="_blank" rel="noopener"' : '') + '>' + L.label + '</a>';
+      }).join('');
+      var commit = e.commit ? '<span class="entry-commit">' + e.commit + '</span>' : '';
+      return '<div class="entry ' + type + '">' +
+        '<div class="entry-date">' + e.date + '<span class="entry-type ' + type + '">' + type + '</span>' + commit + '</div>' +
+        '<h3>' + e.title + '</h3>' +
+        '<p>' + e.description + '</p>' +
+        (links ? '<div class="entry-links">' + links + '</div>' : '') +
+        '</div>';
+    }).join('');
+  }
+
+  fetch('/data/changelog.json', { cache: 'no-cache' })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      allEntries = (data.entries || []).slice();
+      // Newest first - assumes input is already chronological-newest-first; sort to be safe
+      allEntries.sort(function(a, b) { return (b.date || '').localeCompare(a.date || ''); });
+      render();
+    })
+    .catch(function() {
+      document.getElementById('timeline').innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">Log unavailable - <a href="https://github.com/ZAODEVZ/zabalgames/commits/main" target="_blank" rel="noopener">view git history</a>.</p>';
+    });
+
+  document.getElementById('filter-row').addEventListener('click', function(e) {
+    if (e.target.matches('.filter-btn')) {
+      var f = e.target.getAttribute('data-filter');
+      currentFilter = f;
+      document.querySelectorAll('.filter-btn').forEach(function(b) {
+        b.classList.toggle('active', b.getAttribute('data-filter') === f);
+      });
+      render();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

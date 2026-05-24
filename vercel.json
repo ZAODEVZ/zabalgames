@@ -3,25 +3,29 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/spec",    "destination": "/docs/research/701-canonical-state.md", "permanent": false },
-    { "source": "/llms",    "destination": "/llms.txt",                              "permanent": false },
-    { "source": "/raw",     "destination": "/llms.txt",                              "permanent": false },
     { "source": "/todo",    "destination": "/TODO.md",                               "permanent": false },
     { "source": "/snap",    "destination": "/docs/snap-design.md",                   "permanent": false },
     { "source": "/kit",     "destination": "/docs/launch-kit.md",                    "permanent": false },
-    { "source": "/brand",   "destination": "/docs/brand-context.md",                 "permanent": false }
+    { "source": "/brand",   "destination": "/docs/brand-context.md",                 "permanent": false },
+    { "source": "/llms",    "destination": "/llms.txt",                              "permanent": false },
+    { "source": "/raw",     "destination": "/llms.txt",                              "permanent": false },
+    { "source": "/log",     "destination": "/changelog",                             "permanent": false },
+    { "source": "/team",    "destination": "/about",                                 "permanent": false }
   ],
   "headers": [
     {
       "source": "/llms.txt",
       "headers": [
         { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
-        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=300" }
+        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=300" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     },
     {
       "source": "/data/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60" }
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     }
   ]

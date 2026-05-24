@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "_schema": {
+    "date": "YYYY-MM-DD",
+    "title": "headline",
+    "type": "feat | docs | decision | fix | infra | content",
+    "description": "1-3 sentence what + why",
+    "links": "array of [{label, url}]",
+    "commit": "short SHA, optional"
+  },
+  "entries": [
+    {
+      "date": "2026-05-23",
+      "title": "Hero stats go live + /context + /finals/live scaffold",
+      "type": "feat",
+      "description": "Homepage stat cards now read from /data/workshop-leads.json + /data/adoptable-projects.json - automatic updates as JSON files change. /context renders llms.txt in browser with per-section copy buttons. /finals/live is the project #09 starting scaffold with 5 DATA/UI TODO cards.",
+      "links": [
+        {"label": "/context", "url": "/context"},
+        {"label": "/finals/live", "url": "/finals/live"}
+      ],
+      "commit": "99ccb35"
+    },
+    {
+      "date": "2026-05-23",
+      "title": "/about page - the team behind ZABAL Games",
+      "type": "content",
+      "description": "Public team page: Hosts (Zaal, The ZAO), Core Builders (Hurric4n3Ike, Sam, Arthur, Iman), Confirmed Workshop Leads (Tyler), Partner Platforms (Magnetic, Empire Builder, Zlank, SongJam, WaveWarZ, Clanker, Neynar/Hats/Bonfire/EAS), Mentors, Open Invitations.",
+      "links": [{"label": "/about", "url": "/about"}]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "Adoptable projects now data-driven across pages",
+      "type": "feat",
+      "description": "Both /projects.html and index.html #projects section now render from /data/adoptable-projects.json. Adding a new project = one JSON edit, two pages update.",
+      "links": [{"label": "/projects", "url": "/projects"}]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "WaveWarZ-Base as the August Finals voting protocol",
+      "type": "decision",
+      "description": "Architectural decision: the August Finals placement is decided by the WaveWarZ-Base prediction-market protocol. Each finalist build = a battle entry. Wallets trade on which wins. Smart contract settles at T+72h. Respect-holders get pre-funded baseline positions. Replaces the original Respect 1p1v vote. Full design in Doc 720.",
+      "links": [
+        {"label": "Doc 720", "url": "/docs/research/720-wavewarz-finals-mechanic.md"},
+        {"label": "/finals", "url": "/finals"},
+        {"label": "Doc 701 Part 12", "url": "/docs/research/701-canonical-state.md"}
+      ]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "Code snippets + anti-patterns + quality bar added to llms.txt",
+      "type": "content",
+      "description": "llms.txt grew from 18KB to 28KB with three new sections: 'Don't build these' (8 anti-patterns), 'Code snippets - the rails' (TypeScript samples for Neynar, Empire Builder, Hats, EAS, Clanker, Coinflow, Hypersub, Bonfire, Farcaster cast composer), and 'What good looks like' (concrete quality bar).",
+      "links": [{"label": "/llms.txt", "url": "/llms.txt"}]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "/research page + adoptable-projects JSON data file",
+      "type": "feat",
+      "description": "Browsable index of the 9 research docs with curated reading order per role (builder / mentor / future organizer). Adoptable projects also now in a JSON data file ready for dynamic render.",
+      "links": [{"label": "/research", "url": "/research"}]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "Zlank template PR for the in-cast 4-button Snap",
+      "type": "infra",
+      "description": "Opened PR #63 on bettercallzaal/zlank adding a 'ZABAL Games signup' partner template. Once merged + published via zlank.online, the resulting /s/[uuid] URL renders as a real in-cast Farcaster Snap. Workaround for Farcaster's caster not probing arbitrary URLs with snap+json Accept.",
+      "links": [{"label": "PR #63", "url": "https://github.com/bettercallzaal/zlank/pull/63"}]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "/lead + /projects standalone pages",
+      "type": "feat",
+      "description": "Two dedicated landing pages, sharable URLs for DM-driven traffic. /lead = workshop-lead recruitment with form + Cal.com slot placeholder + confirmed-leads grid. /projects = all 9 adoptable projects with claim CTAs.",
+      "links": [
+        {"label": "/lead", "url": "/lead"},
+        {"label": "/projects", "url": "/projects"}
+      ]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "Site live at zabalgames.com",
+      "type": "infra",
+      "description": "Vercel deploy connected, DNS propagated, TLS provisioned, deployment protection off. HTTP/2 200. Short URLs working (/spec /todo /snap /kit /brand /llms /raw). cleanUrls enabled (/lead vs /lead.html). Six commits live on first deploy.",
+      "links": [{"label": "zabalgames.com", "url": "/"}]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "Workshop leads + JSON-LD SEO",
+      "type": "feat",
+      "description": "Workshop leads now a JSON data file (data/workshop-leads.json) with dynamic render on the homepage. Adding a lead = edit JSON, page re-renders. JSON-LD Event + WebSite schema added to homepage <head> for rich previews + indexing.",
+      "links": [{"label": "/", "url": "/"}]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "OG share card SVG + sitemap + Confirmed Workshop Leads section",
+      "type": "feat",
+      "description": "1200x630 branded SVG share card (assets/og-card.svg). robots.txt + sitemap.xml. Confirmed Workshop Leads subsection under #workshops with Tyler / Magnetic as 001 + an 'Your slot here' open card.",
+      "links": [{"label": "OG card", "url": "/assets/og-card.svg"}]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "Custom Snap endpoint - 4 in-cast role buttons + Mini App fallback",
+      "type": "feat",
+      "description": "/api/snap/signup serves the proper @farcaster/snap v2.0 JSON for Snap-aware clients (4 role buttons -> POST -> confirmation Snap with open_url buttons), or fc:miniapp HTML for browsers and older clients. Vary: Accept handles CDN caching. Backend = Formspree stub until Supabase lands.",
+      "links": [{"label": "Snap endpoint", "url": "/api/snap/signup"}]
+    },
+    {
+      "date": "2026-05-23",
+      "title": "Claude skill + llms.txt - the build prompt at the site root",
+      "type": "content",
+      "description": "llms.txt is the machine-readable July prompt at zabalgames.com/llms.txt - any AI harness can fetch the full ZAO ecosystem context in one call. Companion Claude skill at .claude/skills/zabal-games/SKILL.md is installable via curl.",
+      "links": [
+        {"label": "/llms.txt", "url": "/llms.txt"},
+        {"label": "/context", "url": "/context"}
+      ]
+    },
+    {
+      "date": "2026-05-22",
+      "title": "Repo moved to ZAODEVZ/zabalgames + everything consolidated",
+      "type": "infra",
+      "description": "Initial commit: 19 files. Site, brand context, launch kit, db schema, 9 research docs (630, 646, 654, 695, 701, 714, 719), README, LICENSE, gitignore, farcaster.json stub, icon asset. ZABAL Games is now its own repo + its own domain. BCZ zabalgames.html became a redirect.",
+      "links": [{"label": "github.com/ZAODEVZ/zabalgames", "url": "https://github.com/ZAODEVZ/zabalgames"}]
+    },
+    {
+      "date": "2026-05-22",
+      "title": "Tyler call - Magnetic hosting + Zabal connector + Finals announcement plan",
+      "type": "decision",
+      "description": "Lock-ins from the 2026-05-22 Tyler Stambaugh call (Magnetic founder): ZABAL Games runs on Magnetic for the workshop library + entry + submissions; the Zabal connector NFT is the anchor magnet (entry mechanic); the July prompt is an llms.txt; Tyler confirmed as first workshop lead; ZABAL Games + ZAOstock launch as separate posts ~05-24.",
+      "links": [{"label": "Doc 714", "url": "/docs/research/714-tyler-call.md"}]
+    },
+    {
+      "date": "2026-05-21",
+      "title": "Canonical state doc 701 - 24 decisions captured",
+      "type": "decision",
+      "description": "Doc 701 consolidates ZABAL Games end-to-end and records 24 decisions from a structured interview. Key shifts: named 8-mentor roster removed (open recruitment), finalist count open, build prompt drops Option A-E tracks, calendar stays month-level (June prep / July build / August Finals).",
+      "links": [{"label": "Doc 701", "url": "/docs/research/701-canonical-state.md"}]
+    },
+    {
+      "date": "2026-05-16",
+      "title": "Empire Builder V3 + calendar pivot (yerbearzerker meeting)",
+      "type": "decision",
+      "description": "Meeting with Jordan Oram (yerbearzerker) + Iman + Zaal. The original all-June plan becomes June prep / July build / August Finals. Empire V3 tier stack locked (Basic tokenless vs Ascended). Build-then-airdrop pattern: build leaderboard during Games, export CSV, that IS the airdrop list.",
+      "links": [{"label": "Doc 654", "url": "/docs/research/654-empire-v3-meeting.md"}]
+    },
+    {
+      "date": "2026-05-08",
+      "title": "ZABAL Games Season 1 spec drafted",
+      "type": "decision",
+      "description": "The original Season 1 working spec + decision log. Format, mentor model, $500 USDC prize, judging (was Respect 1p1v - since updated to WaveWarZ-Base per Doc 720), infra, risks. Drafted by Zaal, iterated through 2026-05-14.",
+      "links": [{"label": "Doc 630", "url": "/docs/research/630-season-1-spec.md"}]
+    }
+  ]
+}
