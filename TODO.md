@@ -48,7 +48,7 @@
 | # | Blocker | What you do | Time | Friction | What I do once unblocked |
 |---|---------|-------------|------|----------|--------------------------|
 | W11 | **OG PNG** | Open `assets/og-card.svg` in browser, screenshot at 1200x630, save as `assets/og-card.png`, push. | 5 min | **NONE - start here** | Swap `<meta property="og:image">` to point at PNG. Test unfurl on X / Telegram / Bluesky. |
-| W2 | **Lu.ma calendar URL** | Create "ZABAL Games Season 1 - June Workshops" calendar on lu.ma. Grab embed URL. | 10 min | Low - one form | Swap `index.html #workshops` left card placeholder for real iframe. |
+| ~~W2~~ | ~~Lu.ma calendar URL~~ | **DONE 2026-05-24.** Using shared ZAO calendar at luma.com/zao (cal-jPH4al7AMlXzdNN). Workshops added as individual events alongside the weekly Fractal + other ZAO events. Embed iframe live in `index.html #workshops` left card. | - | - | - |
 | W3 | **Cal.com event-type URL** | Create "ZABAL Games Workshop Slot" event type, 30-min slots, June. Grab embed URL. | 10 min | Low - one form | Swap right card placeholder for real iframe. |
 | W4 | **Farcaster manifest signatures** | Open Farcaster mini-app dev tools, sign accountAssociation for `zabalgames.com` with FID 19640. Send me 3 values (header, payload, signature). | 10 min | Medium - dev tools | Drop into `.well-known/farcaster.json` so mini app embeds in Warpcast. |
 | W10 | **Zlank Snap published** | (a) Merge `bettercallzaal/zlank` PR #63. (b) 10 min in `zlank.online` per `docs/snap-design.md` Path A to publish a ZABAL Games Snap. Send me the `/s/[uuid]` URL. | 15 min | Medium - 2 steps | Add the Snap URL to `docs/launch-kit.md` + hero CTA on `index.html`. |
