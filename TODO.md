@@ -54,7 +54,10 @@ Ordered by leverage. I can pick these off in parallel to your unblocking.
 
 | # | Build | Why | Est. effort |
 |---|-------|-----|-------------|
-| ~~N1~~ | ~~Custom Snap (path B) scaffold~~ | DONE - now serving the proper in-cast Snap (4 role buttons + confirmation), per @farcaster/snap spec v2.0 (commit `9526388` + Vary fix `<latest>`). Content negotiation: snap+json Accept -> Snap JSON (in-cast 4 buttons -> POST -> confirmation), default Accept -> HTML with fc:miniapp fallback. Backend = Formspree stub. JFS sig still deferred to v2 (Node runtime + SDK install). | done |
+| ~~N1~~ | ~~Custom Snap (path B) scaffold~~ | DONE - serving proper in-cast Snap JSON v2.0 + HTML fallback (commits `9526388` + `c2e716e`). Farcaster's caster doesn't probe `/api/snap/signup` with snap+json Accept though - so we ALSO have a zlank-hosted template (next row) which Farcaster auto-recognizes as a Snap URL. | done |
+| ZLANK | **Zlank template** - `bettercallzaal/zlank` PR [#63](https://github.com/bettercallzaal/zlank/pull/63) adds a "ZABAL Games signup" partner template (4-option poll + links + share + confetti). Once merged + Zaal publishes via zlank.online, the resulting `/s/[uuid]` URL is what casts on /zabal will properly render as an in-cast Snap. | awaiting merge + publish |
+| RESEARCH | `/research.html` - browsable index of the 9 research docs, curated reading order per role. Commit `0ad028b`. | done |
+| PROJ-JSON | `data/adoptable-projects.json` - the 8 adoptable projects as data. Schema mirrors workshop-leads.json. Ready for projects.html / index.html #projects to migrate to dynamic render next pass. | data shipped, render pending |
 | N2 | **Polish `#format` / `#showwork` / `#bigpicture` sections** - currently carry pre-Magnetic framing. Update to reflect Magnetic + connector + the two surfaces. | The launch cast drives traffic here. Stale framing weakens conversion. | ~1 hour |
 | ~~N3~~ | ~~`/lead` standalone page~~ | DONE in commit above. | done |
 | ~~N4~~ | ~~`/projects` standalone page~~ | DONE in commit above. | done |
