@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "_schema": {
+    "id": "two-digit project number (01-99)",
+    "name": "short project title",
+    "description": "1-2 sentence what + why",
+    "spec_url": "deep link to the spec doc (usually docs/research/...)",
+    "spec_label": "short link label (e.g. 'Doc 654')",
+    "color": "ZAO palette key: orange | cyan | gold | pink | zabal",
+    "status": "open | claimed | shipped",
+    "claimed_by": "Farcaster handle of the builder (if claimed)"
+  },
+  "projects": [
+    {
+      "id": "01",
+      "name": "Songjam leaderboard migration",
+      "description": "Move the Songjam leaderboard off the deprecated X scraper onto an Empire Builder API leaderboard. Frees Adam from scraper maintenance, gives ZABAL Farcaster-native data.",
+      "spec_url": "/docs/research/654-empire-v3-meeting.md",
+      "spec_label": "Doc 654",
+      "color": "orange",
+      "status": "open"
+    },
+    {
+      "id": "02",
+      "name": "POIDH bounty leaderboard",
+      "description": "Empire Builder leaderboard pulling on-chain POIDH bounty submissions. Counts unique submitters across all ZABAL bounties. One contract wired, second pending.",
+      "spec_url": "/docs/research/654-empire-v3-meeting.md",
+      "spec_label": "Doc 654",
+      "color": "pink",
+      "status": "open"
+    },
+    {
+      "id": "03",
+      "name": "zlank Empire daily-stats Snap template",
+      "description": "A one-click Today's Empire Builder Stats Snap template on zlank.online. Footy app is the reference. kmac.eth + Zaal collab.",
+      "spec_url": "/docs/research/654-empire-v3-meeting.md",
+      "spec_label": "Doc 654",
+      "color": "cyan",
+      "status": "open"
+    },
+    {
+      "id": "04",
+      "name": "Twitch to Empire Builder stream feed",
+      "description": "StreamElements WebSocket events feed an apiLeaderboard. Stream activity becomes a real-time Empire leaderboard for any creator running Twitch + an empire.",
+      "spec_url": "/docs/research/630-player-context-bundle.md",
+      "spec_label": "Player Bundle",
+      "color": "gold",
+      "status": "open"
+    },
+    {
+      "id": "05",
+      "name": "A new ZOE skill",
+      "description": "Extend the ZOE concierge bot (Telegram @zaoclaw_bot). Backend mirrors the Hermes runtime pattern - Claude Code CLI as subprocess, swap the system prompt.",
+      "spec_url": "/docs/research/630-player-context-bundle.md",
+      "spec_label": "Player Bundle",
+      "color": "zabal",
+      "status": "open"
+    },
+    {
+      "id": "06",
+      "name": "This /zabal mini app",
+      "description": "The Farcaster mini app you are on. Extend the workshops calendar, the submissions board, the connector NFT flow. Highest meta-leverage build.",
+      "spec_url": "https://github.com/ZAODEVZ/zabalgames",
+      "spec_label": "repo",
+      "color": "orange",
+      "status": "open"
+    },
+    {
+      "id": "07",
+      "name": "COC Concertz content pipeline",
+      "description": "Today: record show -> Descript -> newsletter builder generates YouTube descriptions -> manual cross-post. Automate the cross-post end. Bridges to ZAO's src/lib/publish/ module.",
+      "spec_url": "/docs/research/630-player-context-bundle.md",
+      "spec_label": "Player Bundle",
+      "color": "pink",
+      "status": "open"
+    },
+    {
+      "id": "08",
+      "name": "Streaming auto-clip flywheel",
+      "description": "Turn 24h of stream into ~150 short clips for TikTok / Reels / YouTube / Farcaster. The content engine that processes ZABAL Games streams and every future ZAO event.",
+      "spec_url": "/docs/research/701-canonical-state.md",
+      "spec_label": "Doc 701",
+      "color": "cyan",
+      "status": "open"
+    }
+  ]
+}
