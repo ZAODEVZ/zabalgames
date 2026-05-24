@@ -1,0 +1,30 @@
+{
+  "season": 1,
+  "month": "June 2026",
+  "leads": [
+    {
+      "id": "001",
+      "name": "Tyler Stambaugh",
+      "org": "Magnetic",
+      "topic": "Magnetic - the workshop library platform itself",
+      "format": "30-min pitch, livestreamed then clipped",
+      "when": "any day in June",
+      "status": "confirmed",
+      "confirmed_date": "2026-05-22",
+      "spec_url": "https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/714-tyler-call.md",
+      "color": "zabal"
+    }
+  ],
+  "_schema": {
+    "id": "zero-padded 3-digit lead number",
+    "name": "person's name",
+    "org": "their org or project",
+    "topic": "what they're teaching",
+    "format": "session format (default: '30-min, livestreamed, recorded')",
+    "when": "their chosen date or window",
+    "status": "confirmed | tentative",
+    "confirmed_date": "YYYY-MM-DD when they said yes",
+    "spec_url": "optional - link to the deeper spec / meeting recap",
+    "color": "ZAO palette key: orange | cyan | gold | pink | zabal"
+  }
+}

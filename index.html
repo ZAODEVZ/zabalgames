@@ -276,6 +276,50 @@
     .badge.gold { background: rgba(245,200,66,0.1); border-color: rgba(245,200,66,0.3); color: var(--gold); }
     .badge.cyan { background: rgba(0,229,255,0.1); border-color: rgba(0,229,255,0.3); color: var(--cyan); }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Event",
+        "name": "ZABAL Games Season 1",
+        "description": "A Farcaster vibe-coding challenge for the ZAO ecosystem. June workshops, July open build-a-thon, August Finals. Streamer games crossed with a hackathon.",
+        "startDate": "2026-06-01",
+        "endDate": "2026-08-31",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+        "location": {
+          "@type": "VirtualLocation",
+          "url": "https://zabalgames.com"
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "ZAO DEVZ",
+          "url": "https://zabalgames.com"
+        },
+        "image": "https://zabalgames.com/assets/og-card.svg",
+        "url": "https://zabalgames.com",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://zabalgames.com"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "ZABAL Games",
+        "url": "https://zabalgames.com",
+        "description": "Season 1 home for the ZABAL Games - a Farcaster vibe-coding challenge for the ZAO ecosystem.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "ZAO DEVZ"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -574,20 +618,57 @@
         <strong>How it works:</strong> Lu.ma shows what is scheduled (audience RSVPs). Cal.com lets workshop leads book a slot from open availability. Both feed the same calendar - one place, one view. If you do not have a Lu.ma or Cal.com account, the form above + a Farcaster DM works just as well.
       </p>
 
-      <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 2.5rem 0 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase;">Confirmed Workshop Leads</h3>
-      <div class="options-grid" style="grid-template-columns: repeat(2, 1fr);">
-        <div class="option-card">
-          <div class="option-letter" style="color: var(--zabal);">001</div>
-          <h3>Tyler Stambaugh - Magnetic</h3>
-          <p>30-min Magnetic pitch. Builders learn the workshop-library portal that hosts the rest of the June sessions. Livestreamed then clipped. Any day in June.</p>
-          <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">Confirmed 2026-05-22 - see <a href="https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/714-tyler-call.md" target="_blank" rel="noopener" style="color: var(--cyan);">Doc 714</a></p>
-        </div>
-        <div class="option-card" style="border-style: dashed; opacity: 0.85;">
-          <div class="option-letter" style="color: var(--text-muted);">Open</div>
-          <h3>Your slot here</h3>
-          <p>Have something to teach? Sign up via the form above or DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color: var(--cyan);">@bettercallzaal</a>. Empire Builder, agents, Claude Code, tokens, governance, music infra - whatever your edge is.</p>
-        </div>
+      <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 2.5rem 0 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase;">Confirmed Workshop Leads <span id="lead-count" style="color: var(--text-dim); font-weight: 400; margin-left: 0.5rem;"></span></h3>
+      <div id="workshop-leads-grid" class="options-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <noscript>
+          <div class="option-card">
+            <div class="option-letter" style="color: var(--zabal);">001</div>
+            <h3>Tyler Stambaugh - Magnetic</h3>
+            <p>30-min Magnetic pitch. Builders learn the workshop-library portal that hosts the rest of the June sessions. Livestreamed then clipped. Any day in June.</p>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">Confirmed 2026-05-22</p>
+          </div>
+        </noscript>
       </div>
+      <script>
+      (function() {
+        var grid = document.getElementById('workshop-leads-grid');
+        var countEl = document.getElementById('lead-count');
+        fetch('/data/workshop-leads.json', { cache: 'no-cache' })
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            grid.innerHTML = '';
+            (data.leads || []).forEach(function(L) {
+              var card = document.createElement('div');
+              card.className = 'option-card';
+              var color = L.color || 'zabal';
+              var specLink = L.spec_url
+                ? ' - see <a href="' + L.spec_url + '" target="_blank" rel="noopener" style="color: var(--cyan);">spec</a>'
+                : '';
+              card.innerHTML =
+                '<div class="option-letter" style="color: var(--' + color + ');">' + L.id + '</div>' +
+                '<h3>' + L.name + (L.org ? ' - ' + L.org : '') + '</h3>' +
+                '<p>' + L.topic + (L.format ? ' ' + L.format + '.' : '') + (L.when ? ' ' + L.when + '.' : '') + '</p>' +
+                '<p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">Confirmed ' + L.confirmed_date + specLink + '</p>';
+              grid.appendChild(card);
+            });
+            // Open slot card
+            var open = document.createElement('div');
+            open.className = 'option-card';
+            open.style.borderStyle = 'dashed';
+            open.style.opacity = '0.85';
+            open.innerHTML =
+              '<div class="option-letter" style="color: var(--text-muted);">Open</div>' +
+              '<h3>Your slot here</h3>' +
+              '<p>Have something to teach? Sign up via the form above or DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color: var(--cyan);">@bettercallzaal</a>. Empire Builder, agents, Claude Code, tokens, governance, music infra - whatever your edge is.</p>';
+            grid.appendChild(open);
+            countEl.textContent = '(' + (data.leads || []).length + ' confirmed)';
+          })
+          .catch(function() {
+            // Network fail: keep noscript fallback (does nothing here since noscript only renders when JS off)
+            countEl.textContent = '';
+          });
+      })();
+      </script>
     </div>
   </section>
 
