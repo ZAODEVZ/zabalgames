@@ -173,7 +173,7 @@ Yeah.
 Because this will anchor.
 I think what we're going to do with the road to Zastok.
 We have built the villain, not the villain, but so like what is magnetic, right?
-Magnetic is a place where you bring people from social into your own space where you can
+Magnetiq is a place where you bring people from social into your own space where you can
 like captivate them.
 Right.
 And then this is finally the simplest way that it describes what we do.

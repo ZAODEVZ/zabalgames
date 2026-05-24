@@ -9,18 +9,18 @@ tier: STANDARD
 
 # 714 - Tyler x Zaal: ZABAL Games + Road to ZAOstock
 
-> **Goal:** Lock in decisions + action items from the 2026-05-22 Google Meet call between Zaal and Tyler Stambaugh (Magnetic founder) covering the cowork action-item tracker, ZABAL Games, the road-to-ZAOstock content campaign, and the Magnetic retention methodology.
+> **Goal:** Lock in decisions + action items from the 2026-05-22 Google Meet call between Zaal and Tyler Stambaugh (Magnetiq founder) covering the cowork action-item tracker, ZABAL Games, the road-to-ZAOstock content campaign, and the Magnetiq retention methodology.
 
-Direct follow-on to [doc 473](../473-road-to-zaostock-magnetic-portal/) - the April Magnetic-portal spec. This call moves it from spec to a dated plan and folds in ZABAL Games as the on-ramp.
+Direct follow-on to [doc 473](../473-road-to-zaostock-magnetic-portal/) - the April Magnetiq-portal spec. This call moves it from spec to a dated plan and folds in ZABAL Games as the on-ramp.
 
 ## Key Decisions
 
 | # | Decision | Owner | Status |
 |---|----------|-------|--------|
-| 1 | **Tyler pitches Magnetic at ZABAL Games** - a 30-min workshop, live-streamed then clipped | Tyler | TODO |
+| 1 | **Tyler pitches Magnetiq at ZABAL Games** - a 30-min workshop, live-streamed then clipped | Tyler | TODO |
 | 2 | **ZABAL Games workshop month is June** - any day works for the live pitch | Zaal | TODO |
 | 3 | **Road to ZAOstock = 12 weekly content drops** - to land before Oct 3 it launches in July | Zaal | TODO |
-| 4 | **ZABAL Games runs on Magnetic** - the vendor/workshop library plus entry + onboarding all hosted in one Magnetic portal | Both | TODO |
+| 4 | **ZABAL Games runs on Magnetiq** - the vendor/workshop library plus entry + onboarding all hosted in one Magnetiq portal | Both | TODO |
 | 5 | **A "Zabal connector" NFT is the anchor magnet** - collecting it auto-drops the road-to-ZAOstock entry; it behaves like a Discord "general" channel, other magnets are the side channels | Zaal | TODO |
 | 6 | **ZABAL Games + ZAOstock announce together** - one public post this weekend covers both | Zaal | TODO |
 
@@ -44,7 +44,7 @@ Zaal finishes the tracker today and gives Tyler a password. Tyler sends 5-10 ini
 
 ZABAL Games is framed as "streamer games crossed with a hackathon." Month one (June) is workshops and collaboration - Zaal invites everyone in his network who builds something to give a ~30-minute pitch positioning their tool as usable for the hackathon. Month two is open submission: anyone can submit anything, against an LLM-readable prompt on the website describing every ZAO project and its state. The goal is one content library, in one place, that any AI harness can be pointed at.
 
-Tyler said yes to a 30-minute Magnetic pitch, live-streamed (then clipped). It doubles as the marketing-hackathon pitch Magnetic already had on its own to-do list.
+Tyler said yes to a 30-minute Magnetiq pitch, live-streamed (then clipped). It doubles as the marketing-hackathon pitch Magnetiq already had on its own to-do list.
 
 ### Decisions Pending
 
@@ -52,7 +52,7 @@ Whether participants get the paid Claude Code community / WAP tier free for 3-4 
 
 ### Next Step
 
-Zaal builds the ZABAL Games entry on Magnetic - intro video, a poll, and an open UGC submission field (link-only, low friction).
+Zaal builds the ZABAL Games entry on Magnetiq - intro video, a poll, and an open UGC submission field (link-only, low friction).
 
 ## Thread 3 - Road to ZAOstock
 
@@ -66,13 +66,13 @@ ZAOstock has not been announced publicly yet - that happens this weekend, bundle
 
 Zaal decides the exact week count, then builds the connector + the road-to-ZAOstock portal.
 
-## Thread 4 - Magnetic methodology (SNAPS) + opt-in data
+## Thread 4 - Magnetiq methodology (SNAPS) + opt-in data
 
 ### The Idea
 
-Magnetic's frame: social platforms are "rented land and the rent keeps going up" - more work, less reach. Magnetic siphons that audience into a space you own. The retention mechanic is **SNAPS** - Status, Novelty, Access, Power, Stuff - hit some combination and members feel ownership ("emotional loyalty"). Tyler's sharpest point: "anyone can hit a viral post in 2026 - but what does that actually do for your bottom line?" The hard part is not making content, it is getting people in and keeping them.
+Magnetiq's frame: social platforms are "rented land and the rent keeps going up" - more work, less reach. Magnetiq siphons that audience into a space you own. The retention mechanic is **SNAPS** - Status, Novelty, Access, Power, Stuff - hit some combination and members feel ownership ("emotional loyalty"). Tyler's sharpest point: "anyone can hit a viral post in 2026 - but what does that actually do for your bottom line?" The hard part is not making content, it is getting people in and keeping them.
 
-Tied to a live Farcaster conversation about data: every click and swipe in a mini app is visible to the client. Opt-in is "the new currency of the internet" - and the ZAO/Magnetic angle is to lead by example on opt-in data. Concretely, Magnetic offered to build YouTube watch-analytics (viewer drop-off) for ZAO.
+Tied to a live Farcaster conversation about data: every click and swipe in a mini app is visible to the client. Opt-in is "the new currency of the internet" - and the ZAO/Magnetiq angle is to lead by example on opt-in data. Concretely, Magnetiq offered to build YouTube watch-analytics (viewer drop-off) for ZAO.
 
 ## Action Items
 
@@ -83,7 +83,7 @@ All 9 written to the unified Supabase cowork tracker (`project=zaodevz`, `legacy
 | 1 | Send Zaal 5-10 initial road-to-ZAOstock items to seed the tracker | Tyler | Ops | TBD |
 | 2 | Finish the cowork action-item tracker, give Tyler a password | Zaal | Site / Tech | 2026-05-22 |
 | 3 | Build the Zabal connector for ZABAL Games + Farcaster spaces | Zaal | Site / Tech | TBD |
-| 4 | Create 3 ZABAL Games launch assets on Magnetic: intro video, poll wording, UGC wording | Zaal | Content | TBD |
+| 4 | Create 3 ZABAL Games launch assets on Magnetiq: intro video, poll wording, UGC wording | Zaal | Content | TBD |
 | 5 | Post the combined ZABAL Games + ZAOstock public announcement | Zaal | Social | 2026-05-24 |
 | 6 | Go live on Farcaster spaces, DJ old ZAO music for lore | Zaal | Social | 2026-05-24 |
 | 7 | Write a 1-min recap short per ZABAL Games workshop video, linking to YouTube | Unconfirmed | Content | TBD |
@@ -92,7 +92,7 @@ All 9 written to the unified Supabase cowork tracker (`project=zaodevz`, `legacy
 
 ## Verify / Low-confidence
 
-- **Action 7 (recap shorts)** - owner unclear. Transcript: "what I can do is I can make a short ... I'll write a short video recapping." Could be Zaal or Tyler/Magnetic. Written to the tracker `owner_id=null`, `confidence:low`. Confirm before treating as assigned.
+- **Action 7 (recap shorts)** - owner unclear. Transcript: "what I can do is I can make a short ... I'll write a short video recapping." Could be Zaal or Tyler/Magnetiq. Written to the tracker `owner_id=null`, `confidence:low`. Confirm before treating as assigned.
 - **ZABAL Games launch date** - transcript says it is "coming up in eight days" (~2026-05-30). Loose; not set as a hard due date. Confirm.
 
 ## Key Quotes
@@ -107,21 +107,21 @@ All 9 written to the unified Supabase cowork tracker (`project=zaodevz`, `legacy
 
 ## Research Seeds
 
-- ZABAL Games educational vendor library hosted on Magnetic - opt-in emails, per-vendor watch analytics.
+- ZABAL Games educational vendor library hosted on Magnetiq - opt-in emails, per-vendor watch analytics.
 - The "Zabal connector" anchor-magnet NFT pattern - one connector unlocks downstream magnets, modelled on Discord channel structure.
 - Opt-in data norms as an emerging Farcaster conversation (every mini-app click visible to the client) - ZAO leading by example.
-- Magnetic SNAPS methodology (Status / Novelty / Access / Power / Stuff) as a retention framework worth its own doc.
+- Magnetiq SNAPS methodology (Status / Novelty / Access / Power / Stuff) as a retention framework worth its own doc.
 - **Tracker feature request (Zaal, this session):** ping the owner when a to-do is assigned to them. Belongs to the cowork bot build (proactive DMs), not this meeting - flagged for the tracker roadmap.
 
 ## Memory Updates
 
 Files written to `~/.claude/projects/.../memory/`:
 
-- `project_tyler_stambaugh.md` - new. Tyler Stambaugh: Magnetic founder, recurring ZABAL Games / ZAOstock collaborator, SNAPS methodology, doc 473 + 714.
+- `project_tyler_stambaugh.md` - new. Tyler Stambaugh: Magnetiq founder, recurring ZABAL Games / ZAOstock collaborator, SNAPS methodology, doc 473 + 714.
 
 ## Also See
 
-- [Doc 473](../473-road-to-zaostock-magnetic-portal/) - the original Magnetic portal spec this call advances
+- [Doc 473](../473-road-to-zaostock-magnetic-portal/) - the original Magnetiq portal spec this call advances
 - [Doc 701](../701-zabal-games-canonical-state/) - ZABAL Games canonical state
 - [Doc 712](../../business/712-zao-crm-coworking-app/) - ZAO CRM (Tyler is a contact this should hold)
 - [Doc 713](../../dev-workflows/713-zao-ops-meeting-tracker-crm-bonfire/) - the combined meeting/tracker/CRM/Bonfire system

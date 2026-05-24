@@ -229,7 +229,7 @@ Once the Snap is live (either path), I update the launch kit + the site so the S
 
 ## Open questions
 
-- **Should the Snap mint the Zabal connector NFT directly?** Per Doc 714 the connector is the entry mechanic. A Snap with a "Mint connector + sign up" button is the slickest entry flow - but requires the Magnetic mint URL + a `tx` action in the Snap (more complex than `open_url`). Probably v2 of the Snap, after Magnetic + connector are live.
+- **Should the Snap mint the Zabal connector NFT directly?** Per Doc 714 the connector is the entry mechanic. A Snap with a "Mint connector + sign up" button is the slickest entry flow - but requires the Magnetiq mint URL + a `tx` action in the Snap (more complex than `open_url`). Probably v2 of the Snap, after Magnetiq + connector are live.
 - **Backend choice for v1:** zlank's Redis (free, ours, exists) vs Supabase (cleaner schema, ours, needs setup). zlank works now; Supabase wins long-term.
 - **Should the Snap show live signup counts to viewers?** Adds social proof but needs the count rendered into the image - means dynamic OG image generation. Nice-to-have, not v1.
 

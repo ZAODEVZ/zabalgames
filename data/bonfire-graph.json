@@ -2836,7 +2836,7 @@
         "Person"
       ],
       "attributes": {
-        "role": "Magnetic Content Portal Founder",
+        "role": "Magnetiq Content Portal Founder",
         "team_position": "Advisory",
         "responsibility": "Road to ZAOstock content campaign (12 weekly drops), sponsor feature integration",
         "_source": "zabal-dispatch-zaostock-sponsor-20260523"
@@ -5368,7 +5368,7 @@
         "Workflow"
       ],
       "attributes": {
-        "description": "End-to-end automation from lead submission to Magnetic hosting to Farcaster announcement",
+        "description": "End-to-end automation from lead submission to Magnetiq hosting to Farcaster announcement",
         "phases": [
           "lead_capture_formspree",
           "zaal_approval_dm",
@@ -5446,14 +5446,14 @@
         "owner": "Zaal",
         "per_event_creation": "Zaal creates one Lu.ma event per confirmed workshop (title, lead name, date, topic, description)",
         "integration": "No API integration; manual event creation per lead",
-        "rsvp_collection": "Lu.ma handles; opt-in emails sent by Magnetic later",
-        "handoff_to": "Tyler/Magnetic (event URL shared in announcement cast)",
+        "rsvp_collection": "Lu.ma handles; opt-in emails sent by Magnetiq later",
+        "handoff_to": "Tyler/Magnetiq (event URL shared in announcement cast)",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
     {
       "id": "magnetic-workshop-library-portal",
-      "name": "Magnetic Workshop Library Portal",
+      "name": "Magnetiq Workshop Library Portal",
       "labels": [
         "Service"
       ],
@@ -5466,14 +5466,14 @@
         "zabal_connector_nft": "Anchor magnet NFT; collecting it auto-drops road-to-ZAOstock entry",
         "ugc_fields": "Link-based submission for workshop submissions, suggestions, or promotion posts",
         "decisions_locked": [
-          "Magnetic will be the vendor",
-          "Tyler pitches Magnetic as a 30-min session",
+          "Magnetiq will be the vendor",
+          "Tyler pitches Magnetiq as a 30-min session",
           "Educational library model + per-vendor analytics"
         ],
         "action_pending": [
           "Tyler: build Zabal connector magnet + intro video + poll wording + UGC wording"
         ],
-        "timeline": "Zabal Games opens ~Jun 1; Magnetic portal live by then",
+        "timeline": "Zabal Games opens ~Jun 1; Magnetiq portal live by then",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -5553,7 +5553,7 @@
           "date_time": "TBD (loose June window chosen by lead, firmed up with Zaal)",
           "duration_minutes": 30,
           "location": "Online (Farcaster Spaces or Zoom/OBS)",
-          "description": "{lead.topic}. Livestreamed / recorded then clipped. Watch live or after. Studio: Magnetic. Recording link posted after.",
+          "description": "{lead.topic}. Livestreamed / recorded then clipped. Watch live or after. Studio: Magnetiq. Recording link posted after.",
           "image": "ZABAL Games logo or lead.name avatar"
         },
         "rsvp_collection": "Yes; Lu.ma collects RSVP + email opt-in",
@@ -5572,34 +5572,34 @@
         "description": "On confirmed_date, lead streams live or pre-records their 30-min session",
         "format_options": [
           "Live stream on Farcaster Spaces (preferred; allows real-time /zabal chat)",
-          "Screen-recorded + uploaded to Google Drive (Zaal downloads, uploads to Magnetic)",
+          "Screen-recorded + uploaded to Google Drive (Zaal downloads, uploads to Magnetiq)",
           "Both (live + recorded backup)"
         ],
         "visibility_mode": "As per Doc 701, builder shows their work - livestream, recorded clips, AI logs, build casts",
         "recording_owner": "Lead or Zaal (whoever is recording)",
         "file_output": "Either Farcaster Spaces stream URL (extractable for clipping) or MP4 file from OBS/screen-record",
-        "next_step": "Upload to Magnetic",
+        "next_step": "Upload to Magnetiq",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
     {
       "id": "magnetic-upload-clipping",
-      "name": "Magnetic Upload & Clipping",
+      "name": "Magnetiq Upload & Clipping",
       "labels": [
         "Workflow_Step"
       ],
       "attributes": {
-        "description": "Tyler or Zaal uploads the 30-min session to Magnetic native video hosting",
+        "description": "Tyler or Zaal uploads the 30-min session to Magnetiq native video hosting",
         "trigger": "Recording session complete",
-        "responsible_party": "Tyler (Magnetic) or Zaal",
-        "method": "MANUAL: Log into Magnetic portal, upload MP4 to the ZABAL Games workshop library magnet",
-        "compression_note": "Magnetic hosts up to 500GB; longer videos may need compression",
+        "responsible_party": "Tyler (Magnetiq) or Zaal",
+        "method": "MANUAL: Log into Magnetiq portal, upload MP4 to the ZABAL Games workshop library magnet",
+        "compression_note": "Magnetiq hosts up to 500GB; longer videos may need compression",
         "output": [
-          "Video hosted on Magnetic native player (not just YouTube link)",
-          "Magnetic analytics enabled: per-vendor drop-off, viewer heat-map, opt-in email collection"
+          "Video hosted on Magnetiq native player (not just YouTube link)",
+          "Magnetiq analytics enabled: per-vendor drop-off, viewer heat-map, opt-in email collection"
         ],
-        "youtube_mirror": "OPTIONAL: Also upload to YouTube for redundancy + discoverability; Magnetic can link to it",
-        "analytics": "Tyler provides watch-time per vendor; feeds SNAPS methodology (Novelty: early access to Magnetic-exclusive drop)",
+        "youtube_mirror": "OPTIONAL: Also upload to YouTube for redundancy + discoverability; Magnetiq can link to it",
+        "analytics": "Tyler provides watch-time per vendor; feeds SNAPS methodology (Novelty: early access to Magnetiq-exclusive drop)",
         "stored_in": "workshop-leads.json (magnetic_video_url)",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
@@ -5612,17 +5612,17 @@
       ],
       "attributes": {
         "description": "Zaal fires a public cast in /zabal announcing the new workshop + linking to recording",
-        "trigger": "Magnetic upload complete (or YouTube link ready)",
+        "trigger": "Magnetiq upload complete (or YouTube link ready)",
         "channel": "/zabal (Farcaster channel, live as of 2026-05-22)",
         "cast_contents": [
           "Lead's name + Farcaster handle",
           "Topic",
           "Timestamp (just recorded / now live)",
-          "Magnetic recording link (or YouTube if no Magnetic)",
+          "Magnetiq recording link (or YouTube if no Magnetiq)",
           "Lu.ma RSVP link for future workshops",
           "Inline video if Farcaster supports native embed"
         ],
-        "example": "NEW WORKSHOP: @{lead.handle} on {topic}. Just dropped on Magnetic. Watch -> {magnetic_link}. More workshops: {luma_url}. /zabal #ZABAL Games",
+        "example": "NEW WORKSHOP: @{lead.handle} on {topic}. Just dropped on Magnetiq. Watch -> {magnetic_link}. More workshops: {luma_url}. /zabal #ZABAL Games",
         "amplification": "ZAO accounts recast in /zabal + cross-post to X, Telegram, ZAO newsletter",
         "return_value": "cast_hash (for linking)",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
@@ -5655,7 +5655,7 @@
         "content_added": [
           "Workshop title + lead name",
           "Topic summary",
-          "Magnetic link",
+          "Magnetiq link",
           "YouTube mirror (if available)",
           "Key learnings / code snippets from workshop"
         ],
@@ -5676,8 +5676,8 @@
         "current_example": {
           "id": "001",
           "name": "Tyler Stambaugh",
-          "org": "Magnetic",
-          "topic": "Magnetic - the workshop library platform itself",
+          "org": "Magnetiq",
+          "topic": "Magnetiq - the workshop library platform itself",
           "format": "30-min pitch, livestreamed then clipped",
           "when": "any day in June",
           "status": "confirmed",
@@ -5719,7 +5719,7 @@
           "Create Lu.ma events",
           "Collect RSVPs",
           "Coordinate with lead on recording date/time",
-          "Fire Farcaster announcement cast once recording is live on Magnetic",
+          "Fire Farcaster announcement cast once recording is live on Magnetiq",
           "Post-season: index workshops into /llms.txt"
         ],
         "bottleneck": "All calendar + booking steps are manual; automation is the lever",
@@ -5728,21 +5728,21 @@
     },
     {
       "id": "tyler-stambaugh-magnetic",
-      "name": "Tyler Stambaugh (Magnetic)",
+      "name": "Tyler Stambaugh (Magnetiq)",
       "labels": [
         "Person"
       ],
       "attributes": {
         "role": "Workshop content platform vendor + video host + analytics provider",
-        "organization": "Magnetic",
+        "organization": "Magnetiq",
         "responsibilities": [
           "Build Zabal Connector anchor magnet NFT + portal UX",
-          "Host workshop videos (native Magnetic hosting, 500GB capacity)",
+          "Host workshop videos (native Magnetiq hosting, 500GB capacity)",
           "Collect per-vendor watch analytics (drop-off, opt-in emails)",
           "Build YouTube watch-time analytics surface (future, promised in Doc 714)",
           "Write recap shorts linking to workshops (lower-priority, ownership unclear per Doc 714)"
         ],
-        "decision_locked": "Magnetic is the workshop library vendor",
+        "decision_locked": "Magnetiq is the workshop library vendor",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -7825,7 +7825,7 @@
     },
     {
       "id": "magnetic",
-      "name": "Magnetic",
+      "name": "Magnetiq",
       "labels": [
         "Tool|Platform"
       ],
@@ -10512,7 +10512,7 @@
       "to": "zaostock-2026",
       "type": "INTEGRATES_CONTENT_FOR",
       "properties": {
-        "tool": "Magnetic Portal",
+        "tool": "Magnetiq Portal",
         "campaign": "Road to ZAOstock - 12 weekly content drops (July launch for Oct 3 event)",
         "sponsor_benefit": "Sponsor features + reveals across content campaign",
         "_source": "zabal-dispatch-zaostock-sponsor-20260523"
@@ -12176,7 +12176,7 @@
       "to": "magnetic-upload-clipping",
       "type": "generates_content_for",
       "properties": {
-        "fact": "Lead's recorded 30-min session becomes the input for Magnetic native hosting and clipping",
+        "fact": "Lead's recorded 30-min session becomes the input for Magnetiq native hosting and clipping",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -12185,7 +12185,7 @@
       "to": "magnetic-workshop-library-portal",
       "type": "populates",
       "properties": {
-        "fact": "Tyler uploads workshop videos to Magnetic native hosting; analytics enabled per-vendor",
+        "fact": "Tyler uploads workshop videos to Magnetiq native hosting; analytics enabled per-vendor",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -12194,7 +12194,7 @@
       "to": "farcaster-announcement-cast",
       "type": "provides_link_for",
       "properties": {
-        "fact": "Magnetic video URL (or YouTube mirror) is linked in the /zabal announcement cast",
+        "fact": "Magnetiq video URL (or YouTube mirror) is linked in the /zabal announcement cast",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -12212,7 +12212,7 @@
       "to": "telegram-reminder-bot",
       "type": "triggers",
       "properties": {
-        "fact": "Once recording is live on Magnetic, a T+1 reminder with the link is queued for the lead",
+        "fact": "Once recording is live on Magnetiq, a T+1 reminder with the link is queued for the lead",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -12275,7 +12275,7 @@
       "to": "magnetic-workshop-library-portal",
       "type": "owns",
       "properties": {
-        "fact": "Tyler is responsible for the Magnetic vendor relationship, video hosting, analytics, and Zabal Connector NFT",
+        "fact": "Tyler is responsible for the Magnetiq vendor relationship, video hosting, analytics, and Zabal Connector NFT",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -14475,7 +14475,7 @@
       "to": "magnetic",
       "type": "founder-of",
       "properties": {
-        "fact": "Tyler Stambaugh is Chief Product Officer and co-founder at MAGNETIQ, the company behind Magnetic portal platform",
+        "fact": "Tyler Stambaugh is Chief Product Officer and co-founder at MAGNETIQ, the company behind Magnetiq portal platform",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
       }
     },
@@ -14484,7 +14484,7 @@
       "to": "magnetic",
       "type": "uses-for",
       "properties": {
-        "fact": "ZABAL uses Magnetic portal for workshop discovery and opt-in event library; integrates with Cal.com booking via Magnetic workflows",
+        "fact": "ZABAL uses Magnetiq portal for workshop discovery and opt-in event library; integrates with Cal.com booking via Magnetiq workflows",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
       }
     },
@@ -14538,7 +14538,7 @@
       "to": "magnetic",
       "type": "distributes-via",
       "properties": {
-        "fact": "ZABAL Games uses Magnetic portal for workshop registration and opt-in discovery; integrates brand activation with blockchain loyalty",
+        "fact": "ZABAL Games uses Magnetiq portal for workshop registration and opt-in discovery; integrates brand activation with blockchain loyalty",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
       }
     },
@@ -14547,7 +14547,7 @@
       "to": "cal-com",
       "type": "integrates-with",
       "properties": {
-        "fact": "Magnetic portal can webhook into Cal.com slot booking; users opt-in on Magnetic and auto-book slots via Cal.com API",
+        "fact": "Magnetiq portal can webhook into Cal.com slot booking; users opt-in on Magnetiq and auto-book slots via Cal.com API",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
       }
     },
@@ -14574,7 +14574,7 @@
       "to": "composio",
       "type": "mcp-powered-by",
       "properties": {
-        "fact": "Magnetic MCP server bridges AI agents (Claude, AutoGen, Pydantic AI) to Magnetic portal via Composio Tool Router; enables agent-driven contact search, follow-up management, and workflow automation",
+        "fact": "Magnetiq MCP server bridges AI agents (Claude, AutoGen, Pydantic AI) to Magnetiq portal via Composio Tool Router; enables agent-driven contact search, follow-up management, and workflow automation",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
       }
     },

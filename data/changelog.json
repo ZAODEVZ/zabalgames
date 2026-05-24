@@ -65,7 +65,7 @@
       "date": "2026-05-23",
       "title": "/about page - the team behind ZABAL Games",
       "type": "content",
-      "description": "Public team page: Hosts (Zaal, The ZAO), Core Builders (Hurric4n3Ike, Sam, Arthur, Iman), Confirmed Workshop Leads (Tyler), Partner Platforms (Magnetic, Empire Builder, Zlank, SongJam, WaveWarZ, Clanker, Neynar/Hats/Bonfire/EAS), Mentors, Open Invitations.",
+      "description": "Public team page: Hosts (Zaal, The ZAO), Core Builders (Hurric4n3Ike, Sam, Arthur, Iman), Confirmed Workshop Leads (Tyler), Partner Platforms (Magnetiq, Empire Builder, Zlank, SongJam, WaveWarZ, Clanker, Neynar/Hats/Bonfire/EAS), Mentors, Open Invitations.",
       "links": [{"label": "/about", "url": "/about"}]
     },
     {
@@ -135,7 +135,7 @@
       "date": "2026-05-23",
       "title": "OG share card SVG + sitemap + Confirmed Workshop Leads section",
       "type": "feat",
-      "description": "1200x630 branded SVG share card (assets/og-card.svg). robots.txt + sitemap.xml. Confirmed Workshop Leads subsection under #workshops with Tyler / Magnetic as 001 + an 'Your slot here' open card.",
+      "description": "1200x630 branded SVG share card (assets/og-card.svg). robots.txt + sitemap.xml. Confirmed Workshop Leads subsection under #workshops with Tyler / Magnetiq as 001 + an 'Your slot here' open card.",
       "links": [{"label": "OG card", "url": "/assets/og-card.svg"}]
     },
     {
@@ -164,9 +164,9 @@
     },
     {
       "date": "2026-05-22",
-      "title": "Tyler call - Magnetic hosting + Zabal connector + Finals announcement plan",
+      "title": "Tyler call - Magnetiq hosting + Zabal connector + Finals announcement plan",
       "type": "decision",
-      "description": "Lock-ins from the 2026-05-22 Tyler Stambaugh call (Magnetic founder): ZABAL Games runs on Magnetic for the workshop library + entry + submissions; the Zabal connector NFT is the anchor magnet (entry mechanic); the July prompt is an llms.txt; Tyler confirmed as first workshop lead; ZABAL Games + ZAOstock launch as separate posts ~05-24.",
+      "description": "Lock-ins from the 2026-05-22 Tyler Stambaugh call (Magnetiq founder): ZABAL Games runs on Magnetiq for the workshop library + entry + submissions; the Zabal connector NFT is the anchor magnet (entry mechanic); the July prompt is an llms.txt; Tyler confirmed as first workshop lead; ZABAL Games + ZAOstock launch as separate posts ~05-24.",
       "links": [{"label": "Doc 714", "url": "/docs/research/714-tyler-call.md"}]
     },
     {

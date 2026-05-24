@@ -33,7 +33,7 @@
 
 ### Ship-week UI + content (2026-05-24)
 
-- `dbbd06d` - Live signal ticker on hero (workshop-leads + claimed/total projects + mentor slots + countdown to June 1); /winners.html placeholder for Season 1 Finals; /mentor.html?handle=X dynamic profile page + data/mentors.json; post-Magnetic + post-WaveWarZ-Base polish across #format/#judging/#showwork/#bigpicture; canonical-state.md Part 4 updated to confirmed-16 list; expanded Telegram + Twitter OG meta; changelog.json + sitemap.xml updated.
+- `dbbd06d` - Live signal ticker on hero (workshop-leads + claimed/total projects + mentor slots + countdown to June 1); /winners.html placeholder for Season 1 Finals; /mentor.html?handle=X dynamic profile page + data/mentors.json; post-Magnetiq + post-WaveWarZ-Base polish across #format/#judging/#showwork/#bigpicture; canonical-state.md Part 4 updated to confirmed-16 list; expanded Telegram + Twitter OG meta; changelog.json + sitemap.xml updated.
 
 ---
 
@@ -49,7 +49,7 @@
 |---|---------|-------------|------|----------|--------------------------|
 | W11 | **OG PNG** | Open `assets/og-card.svg` in browser, screenshot at 1200x630, save as `assets/og-card.png`, push. | 5 min | **NONE - start here** | Swap `<meta property="og:image">` to point at PNG. Test unfurl on X / Telegram / Bluesky. |
 | ~~W2~~ | ~~Lu.ma calendar URL~~ | **DONE 2026-05-24.** Using shared ZAO calendar at luma.com/zao (cal-jPH4al7AMlXzdNN). Workshops added as individual events alongside the weekly Fractal + other ZAO events. Embed iframe live in `index.html #workshops` left card. | - | - | - |
-| W3 | **Cal.com event-type URL** | Create "ZABAL Games Workshop Slot" event type, 30-min slots, June. Grab embed URL. | 10 min | Low - one form | Swap right card placeholder for real iframe. |
+| ~~W3~~ | ~~Cal.com event-type URL~~ | **DONE 2026-05-24.** Event-type live at cal.com/bettercallzaal/zabal-games-workshop-slot. Embed iframe wired into `index.html #workshops` right card with Restream/Meet flexibility messaging. | - | - | - |
 | W4 | **Farcaster manifest signatures** | Open Farcaster mini-app dev tools, sign accountAssociation for `zabalgames.com` with FID 19640. Send me 3 values (header, payload, signature). | 10 min | Medium - dev tools | Drop into `.well-known/farcaster.json` so mini app embeds in Warpcast. |
 | W10 | **Zlank Snap published** | (a) Merge `bettercallzaal/zlank` PR #63. (b) 10 min in `zlank.online` per `docs/snap-design.md` Path A to publish a ZABAL Games Snap. Send me the `/s/[uuid]` URL. | 15 min | Medium - 2 steps | Add the Snap URL to `docs/launch-kit.md` + hero CTA on `index.html`. |
 
@@ -61,7 +61,7 @@
 |---|------|--------------|
 | W1 | OpenAI API key (connector NFT art) | Z logo placeholder works for soft launch |
 | W5 | Supabase URL + anon key | Formspree handles soft-launch form submissions |
-| W7 | Magnetic portal + Zabal connector live (with Tyler) | "Enter via Connector" CTA placeholder works; swap in when ready |
+| W7 | Magnetiq portal + Zabal connector live (with Tyler) | "Enter via Connector" CTA placeholder works; swap in when ready |
 | W8 | Intro video URL (60-90s) | Text hero section works |
 | W12 | **Cloudflare migration on both domains** (Africa CDN fix) | DEFERRED post-launch per Zaal call 2026-05-24. Doc 730 has the full 30-min plan. Free tier. Do it after May 31 launch settles. Lagos/Nairobi/Cape Town traffic suboptimal until done, but VPN-having users still work. |
 | BONFIRE | `BONFIRE_API_KEY` for live graph push | Graph file is committed; live push proves the queryable-depth promise but isn't a launch-day need |

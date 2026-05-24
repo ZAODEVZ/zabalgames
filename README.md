@@ -31,10 +31,10 @@ Not a generic hackathon. A **Farcaster-creator onboarding event for the ZAO ecos
 
 Hosted on two surfaces (per the [2026-05-22 Tyler call](./docs/research/714-tyler-call.md)):
 
-- **Magnetic portal** - the workshop video library, entry/onboarding, polls, UGC submissions. Tyler Stambaugh's Magnetic platform.
-- **This Farcaster mini app** - the explainer and front door. Light. Links out to Magnetic, the spaces sessions, and the live calendar.
+- **Magnetiq portal** - the workshop video library, entry/onboarding, polls, UGC submissions. Tyler Stambaugh's Magnetiq platform.
+- **This Farcaster mini app** - the explainer and front door. Light. Links out to Magnetiq, the spaces sessions, and the live calendar.
 
-**Entry** is the Zabal connector NFT - the anchor magnet on Magnetic. Collect it, you are in. Auto-drops the road-to-ZAOstock entry alongside.
+**Entry** is the Zabal connector NFT - the anchor magnet on Magnetiq. Collect it, you are in. Auto-drops the road-to-ZAOstock entry alongside.
 
 ---
 
@@ -60,7 +60,7 @@ zabalgames/
 │       ├── 654-empire-v3-meeting.md # the calendar pivot meeting with Jordan/yerbearzerker
 │       ├── 695-context-prompt.md    # the July machine-readable context prompt research
 │       ├── 701-canonical-state.md   # canonical state - the truth doc
-│       ├── 714-tyler-call.md        # Tyler Stambaugh / Magnetic meeting recap
+│       ├── 714-tyler-call.md        # Tyler Stambaugh / Magnetiq meeting recap
 │       ├── 714-tyler-transcript.md  # full transcript
 │       └── 719-jordan-meeting.md    # Empire Builder v3 follow-up
 ├── README.md                        # you are here
@@ -121,7 +121,7 @@ Detailed list in [docs/research/701-canonical-state.md - Part 9](./docs/research
 - **/zabal** Farcaster channel - https://farcaster.xyz/~/channel/zabal
 - **BetterCallZaal** - https://bettercallzaal.com - Zaal's site, where ZABAL Games originated
 - **The ZAO** - the 188-member gated Farcaster music community ZABAL Games serves
-- **Magnetic** - https://getmagnetic.com (or wherever Tyler's portal lives) - the workshop library / entry portal
+- **Magnetiq** - https://getmagnetic.com (or wherever Tyler's portal lives) - the workshop library / entry portal
 
 ---
 

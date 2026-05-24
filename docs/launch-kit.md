@@ -2,7 +2,7 @@
 
 > The public launch announcement for ZABAL Games Season 1. Drafted 2026-05-21, reworked 2026-05-22 after the Tyler call (research Doc 714). ZABAL Games and ZAOstock announce as SEPARATE posts - this kit is the ZABAL Games post. Goal of the launch: announce the event, drive workshop-lead signups for June, point people to the Farcaster spaces session this weekend. No emojis, no em dashes per brand rules. Paste-ready.
 
-> Sign-up: bettercallzaal.com/zabalgames.html. Channel: /zabal on Farcaster. Entry (opening end of month): the Zabal connector on Magnetic.
+> Sign-up: bettercallzaal.com/zabalgames.html. Channel: /zabal on Farcaster. Entry (opening end of month): the Zabal connector on Magnetiq.
 
 ---
 
@@ -28,7 +28,7 @@ bettercallzaal.com/zabalgames.html
 
 **2/** Why it runs this way: the build is the application. You do not pitch, you ship. June seasons you with context and tools. July you build in the open. August the best builds collaborate with a ZAO mentor for the Finals - and every finalist wins.
 
-**3/** Home base is two surfaces. A Magnetic portal holds the full workshop library plus entry and submissions - one place, all the context. A Farcaster mini app is the explainer and the front door. Entry is the Zabal connector: collect it, you are in. Both open end of month.
+**3/** Home base is two surfaces. A Magnetiq portal holds the full workshop library plus entry and submissions - one place, all the context. A Farcaster mini app is the explainer and the front door. Entry is the Zabal connector: collect it, you are in. Both open end of month.
 
 **4/** June is workshop month and I am recruiting leads now. Record one session on what you know - Empire Builder, agents, Claude Code, tokens, governance, music infra, festivals, whatever your edge is. One recording, watchable live or after.
 
@@ -119,7 +119,7 @@ Square 1:1 variant for the Farcaster feed: same spec, 1080x1080, headline stacke
 
 ## 6. Zabal connector - NFT image generation prompt
 
-> The Zabal connector is the anchor magnet - collecting it is entry/RSVP to ZABAL Games, and it auto-drops the road-to-ZAOstock entry. The mechanic is set; it needs art. Generate this and send the file to Tyler for the Magnetic magnet.
+> The Zabal connector is the anchor magnet - collecting it is entry/RSVP to ZABAL Games, and it auto-drops the road-to-ZAOstock entry. The mechanic is set; it needs art. Generate this and send the file to Tyler for the Magnetiq magnet.
 
 ```
 Design a collectible NFT artwork for the "ZABAL CONNECTOR" - the entry token
@@ -147,7 +147,7 @@ thumbnail. No emojis, no people, no photographic elements. Geometric, glowing.
 ## Notes for Zaal
 
 - ZABAL Games and ZAOstock go out as separate posts. This kit is ZABAL Games only.
-- Timeline grounding: workshop-lead signup is live now (the site form). The Magnetic portal + Zabal connector entry open end of month (~May 30) - the announcement says "end of month" so it is not overpromising.
+- Timeline grounding: workshop-lead signup is live now (the site form). The Magnetiq portal + Zabal connector entry open end of month (~May 30) - the announcement says "end of month" so it is not overpromising.
 - Farcaster spaces session is the weekend hook - launch the post, then go live.
-- Open call + seeded asks: these posts are the open call. DM specific people for specific topics (Jordan on Empire Builder, kmac on zlank, Tyler on Magnetic - Tyler already confirmed).
+- Open call + seeded asks: these posts are the open call. DM specific people for specific topics (Jordan on Empire Builder, kmac on zlank, Tyler on Magnetiq - Tyler already confirmed).
 - For the share card and connector art: run the prompts, or share an OpenAI API key and I generate the files directly.

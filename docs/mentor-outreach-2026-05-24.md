@@ -8,7 +8,7 @@
 
 ## What a mentor commits to
 
-- **June (~2 hrs):** drop a 30-60 min workshop session on the Magnetic portal (recorded, stays in the library forever)
+- **June (~2 hrs):** drop a 30-60 min workshop session on the Magnetiq portal (recorded, stays in the library forever)
 - **July (~3 hrs total, async):** browse Phase 1 submissions as they ship, claim one champion that fits your style (first-come first-served per mentor)
 - **August Finals (~6 hrs across 72h):** be the embedded teammate for your champion - on a call during the 24h build window, available in DMs for the promote + voting windows
 - **Reveal stream (~1 hr):** show up live
@@ -74,7 +74,7 @@ Pull from /about.html roster + the 8 mentor slots noted there. Personalize the "
 |---|---|---|---|
 | 1 | **Jordan Oram (yerbearzerker)** | `@yerbearzerker` (Farcaster) / Telegram | Empire Builder V3 creator. Half the adoptables (01, 02, 03, 04) touch Empire. Mentor for builders going deep on the leaderboard layer. Mentor slot is the natural ZABAL deepening of the May 21 working call. |
 | 2 | **Adrian (diviflyy)** | `@diviflyy` | Empire Builder V3 co-maintainer + glonkybot empire architect (17-token 5x stack). Mentor for builders going for the network-effect-stack pattern on their own empires. |
-| 3 | **Tyler Stambaugh** | (already locked as workshop lead 001 - Magnetic) | Already opted in for June workshop. Soft-ask: would he ALSO mentor one champion? The Magnetic portal he hosts is the most-used venue for the whole event - perfect home for a builder doing media/portal work. |
+| 3 | **Tyler Stambaugh** | (already locked as workshop lead 001 - Magnetiq) | Already opted in for June workshop. Soft-ask: would he ALSO mentor one champion? The Magnetiq portal he hosts is the most-used venue for the whole event - perfect home for a builder doing media/portal work. |
 | 4 | **Hurric4n3Ike (Ikechi)** | `@hurric4n3ike` (Farcaster + X) | WaveWarZ founder, leading WaveWarZ-Base v2 with Sam + Arthur. Mentor specifically for any builder who picks adoptable #09 (WaveWarZ-Base Finals settlement surface). Or any music-meets-onchain build. |
 | 5 | **Sam** | (Hurric4n3Ike's WaveWarZ-Base co-builder, handle TBD) | Smart-contract focus. Mentor for any builder going contracts-deep on Base. |
 | 6 | **Arthur** | (the other WaveWarZ-Base co-builder + ZABAL Games architect per Doc 711) | Already in the orbit - locked as a key architect already. Mentor formalization is one DM away. |
@@ -88,7 +88,7 @@ Pull from /about.html roster + the 8 mentor slots noted there. Personalize the "
 | 9 | **DCoopOfficial (Coop Records)** | Sonata creator. Music + Farcaster mentor angle. Less known to Zaal directly. |
 | 10 | **Riley Beans** | (Farcaster builder ecosystem, name surfaces in research). Generalist mentor. |
 | 11 | **0x94t3z (mr94t3z, poidh-sentinel)** | POIDH automation expertise. Specific fit for adoptable #02 builder. |
-| 12 | **A Magnetic alum Zaal can name** | Tyler's recommendations are gold here. |
+| 12 | **A Magnetiq alum Zaal can name** | Tyler's recommendations are gold here. |
 
 ## Outreach sequence
 
