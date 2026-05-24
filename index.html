@@ -992,7 +992,7 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
       <div class="section-eyebrow">Path 1 - Adopt a Project</div>
       <h2 class="section-title">Started ZAO Projects Up for Grabs</h2>
       <p class="section-sub">
-        You do not have to build from scratch. These are real, in-progress ZAO projects that need a builder to ship them forward. Adopt one in your July submission - or build from scratch with the <a href="#ideas" style="color: var(--cyan);">context file</a>. Both paths count.
+        You do not have to build from scratch. Two flavors: <strong>01-09</strong> are feature builds inside the ZAO stack (research doc has the spec). <strong>10-16</strong> are <span style="color: var(--gold); font-weight: 600;">starter repos</span> you adopt + own (you write the spec). Pick either - or build from scratch with the <a href="#ideas" style="color: var(--cyan);">context file</a>. All paths count.
       </p>
 
       <div id="index-projects-grid" class="options-grid" style="margin-top: 1.5rem; grid-template-columns: repeat(2, 1fr);">
@@ -1020,12 +1020,18 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
               var statusBadge = P.status === 'claimed'
                 ? ' <span style="font-size: 0.7rem; color: var(--cyan); background: rgba(0,229,255,0.12); padding: 0.1rem 0.4rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em;">claimed</span>'
                 : '';
+              // Starter-repo badge: 10-16 are whole-repo adoptions (you own the spec),
+              // 01-09 are feature builds inside the ZAO stack (research doc has the spec).
+              var idNum = parseInt(P.id, 10);
+              var typeBadge = idNum >= 10
+                ? ' <span style="font-size: 0.7rem; color: var(--gold); background: rgba(245,166,35,0.12); padding: 0.1rem 0.4rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid rgba(245,166,35,0.3);">starter repo</span>'
+                : '';
               var spec = P.spec_url
                 ? ' Spec: <a href="' + P.spec_url + '" target="_blank" rel="noopener" style="color: var(--cyan);">' + (P.spec_label || 'docs') + '</a>.'
                 : '';
               card.innerHTML =
                 '<div class="option-letter" style="color: var(--' + color + ');">' + P.id + '</div>' +
-                '<h3>' + P.name + statusBadge + '</h3>' +
+                '<h3>' + P.name + statusBadge + typeBadge + '</h3>' +
                 '<p>' + P.description + spec + '</p>';
               grid.appendChild(card);
             });

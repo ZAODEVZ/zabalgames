@@ -83,12 +83,17 @@
             : P.status === 'shipped'
             ? '<span style="background: rgba(34,197,94,0.12); color: #22c55e; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; margin-left: 0.5rem;">shipped</span>'
             : '';
+          // 10-16 are whole-repo adoptions (you write the spec); 01-09 are stack features.
+          var idNum = parseInt(P.id, 10);
+          var typeBadge = idNum >= 10
+            ? '<span style="background: rgba(245,166,35,0.12); color: var(--gold); padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; margin-left: 0.5rem; border: 1px solid rgba(245,166,35,0.3);">starter repo</span>'
+            : '';
           var specLink = P.spec_url
             ? 'Spec: <a href="' + P.spec_url + '">' + (P.spec_label || 'docs') + '</a>'
             : '';
           return '<div class="card">' +
             '<div class="card-label" style="color: var(--' + color + ');">' + P.id + '</div>' +
-            '<h3>' + P.name + statusBadge + '</h3>' +
+            '<h3>' + P.name + statusBadge + typeBadge + '</h3>' +
             '<p>' + P.description + '</p>' +
             '<div class="card-meta">' + specLink + '</div>' +
             '</div>';
