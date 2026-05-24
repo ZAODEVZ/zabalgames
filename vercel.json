@@ -1,0 +1,27 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/spec",    "destination": "/docs/research/701-canonical-state.md", "permanent": false },
+    { "source": "/context", "destination": "/llms.txt",                              "permanent": false },
+    { "source": "/todo",    "destination": "/TODO.md",                               "permanent": false },
+    { "source": "/snap",    "destination": "/docs/snap-design.md",                   "permanent": false },
+    { "source": "/kit",     "destination": "/docs/launch-kit.md",                    "permanent": false },
+    { "source": "/brand",   "destination": "/docs/brand-context.md",                 "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/llms.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=300" }
+      ]
+    },
+    {
+      "source": "/data/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60" }
+      ]
+    }
+  ]
+}
