@@ -43,13 +43,17 @@
 
 | # | Blocker | What you do | Time | What I do once unblocked |
 |---|---------|-------------|------|--------------------------|
-| W4 | **Farcaster manifest signatures** | Open Farcaster mini-app dev tools, sign accountAssociation for `zabalgames.com` with FID 19640. Send me the three values (header, payload, signature). | 10 min | Drop into `.well-known/farcaster.json` so mini app embeds in Warpcast. |
-| W11 | **OG PNG** | Open `assets/og-card.svg` in browser, screenshot 1200x630, save as `assets/og-card.png`. Push. | 5 min | Swap `<meta property="og:image">` to point at the PNG. Test unfurl on X / Telegram / Bluesky. |
-| W10 | **Zlank Snap published** | 10 min in `zlank.online` per `docs/snap-design.md` Path A. Get the `/s/[uuid]` URL. (Requires PR #63 merged on bettercallzaal/zlank first.) | 10 min | Add the Snap URL to `docs/launch-kit.md` + hero CTA on `index.html`. |
-| W2 | **Lu.ma calendar URL** | Create "ZABAL Games Season 1 - June Workshops" calendar on lu.ma. Grab the embed URL. | 10 min | Swap `index.html #workshops` left card placeholder for the real iframe. |
-| W3 | **Cal.com event-type URL** | Create "ZABAL Games Workshop Slot" event type, 30-min slots, June availability. Grab the embed URL. | 10 min | Swap `index.html #workshops` right card placeholder for the real iframe. |
+**EASY-FIRST ORDER** (re-ranked 2026-05-24 per Zaal call - do the friction-free ones first):
 
-**Total Zaal time for ship-readiness: ~45 min.**
+| # | Blocker | What you do | Time | Friction | What I do once unblocked |
+|---|---------|-------------|------|----------|--------------------------|
+| W11 | **OG PNG** | Open `assets/og-card.svg` in browser, screenshot at 1200x630, save as `assets/og-card.png`, push. | 5 min | **NONE - start here** | Swap `<meta property="og:image">` to point at PNG. Test unfurl on X / Telegram / Bluesky. |
+| W2 | **Lu.ma calendar URL** | Create "ZABAL Games Season 1 - June Workshops" calendar on lu.ma. Grab embed URL. | 10 min | Low - one form | Swap `index.html #workshops` left card placeholder for real iframe. |
+| W3 | **Cal.com event-type URL** | Create "ZABAL Games Workshop Slot" event type, 30-min slots, June. Grab embed URL. | 10 min | Low - one form | Swap right card placeholder for real iframe. |
+| W4 | **Farcaster manifest signatures** | Open Farcaster mini-app dev tools, sign accountAssociation for `zabalgames.com` with FID 19640. Send me 3 values (header, payload, signature). | 10 min | Medium - dev tools | Drop into `.well-known/farcaster.json` so mini app embeds in Warpcast. |
+| W10 | **Zlank Snap published** | (a) Merge `bettercallzaal/zlank` PR #63. (b) 10 min in `zlank.online` per `docs/snap-design.md` Path A to publish a ZABAL Games Snap. Send me the `/s/[uuid]` URL. | 15 min | Medium - 2 steps | Add the Snap URL to `docs/launch-kit.md` + hero CTA on `index.html`. |
+
+**Total Zaal time for ship-readiness: ~50 min.**
 
 **Not blockers this week** (can launch without; ship next):
 
@@ -59,9 +63,11 @@
 | W5 | Supabase URL + anon key | Formspree handles soft-launch form submissions |
 | W7 | Magnetic portal + Zabal connector live (with Tyler) | "Enter via Connector" CTA placeholder works; swap in when ready |
 | W8 | Intro video URL (60-90s) | Text hero section works |
+| W12 | **Cloudflare migration on both domains** (Africa CDN fix) | DEFERRED post-launch per Zaal call 2026-05-24. Doc 730 has the full 30-min plan. Free tier. Do it after May 31 launch settles. Lagos/Nairobi/Cape Town traffic suboptimal until done, but VPN-having users still work. |
 | BONFIRE | `BONFIRE_API_KEY` for live graph push | Graph file is committed; live push proves the queryable-depth promise but isn't a launch-day need |
 | GH-DELETE | `gh auth refresh -h github.com -s delete_repo` then delete `bettercallzaal/zaocowork` | One-time cleanup; non-blocking |
-| MENTORS | Lock the 8 mentor roster (names + handles) | Templates ready; populate /data/mentors.json once each confirms |
+| ZAOOS-PR | Review + merge ZAOOS PR #672 (286 MB cleanup) | Non-destructive; deferrable |
+| MENTORS | Lock the 8 mentor roster (names + handles) | Templates ready; populate /data/mentors.json once each confirms. Outreach copy in docs/mentor-outreach-2026-05-24.md |
 
 ---
 
@@ -93,14 +99,18 @@
 
 ## Launch timeline (2026-05-24 -> 2026-06-01)
 
+EASY-FIRST schedule (re-ranked per Zaal call 2026-05-24):
+
 | Day | Zaal | Me |
 |-----|------|-----|
-| Sun May 24 (today) | W4 + W11 + W10 (~25 min) | DONE: A + C + F + H + B + E + I + G |
-| Mon May 25 | W2 + W3 (~20 min) | Stand by for unblocks |
-| Tue-Thu May 26-28 | W7 with Tyler | N5 + N9 (after W10) + final QA |
-| Fri-Sat May 29-30 | Final QA in Warpcast / Telegram / X / Bluesky | Pre-launch polish, cast copy draft |
-| Sun May 31 | LAUNCH CAST FIRES | Monitor + respond + amplify |
+| Sat May 24 (today, easiest first) | **W11 OG PNG (5 min)** then W2 Lu.ma + W3 Cal.com if time | Drop in PNG meta, embed iframes as URLs arrive |
+| Sun May 25 | W4 Farcaster manifest (10 min) + send first mentor DMs (Jordan, Adrian, Tyler - 10 min) | Drop manifest values into farcaster.json, monitor mentor responses |
+| Mon May 26 | Merge zlank PR #63 + publish ZABAL Games Snap (10 min). Mentor DMs round 2 (Hurric4n3Ike, Sam, Arthur). | Wire Snap URL into launch kit + hero CTA. Add confirmed mentors to data/mentors.json. |
+| Tue-Wed May 27-28 | Mentor DMs round 3 (kmac.eth, Joshua.eth + backup list). Test from a friend in Africa (VPN OFF) to gauge how bad the no-CDN issue is. | N5 hero banner SVG, N9 daily-stats Snap (after W10). |
+| Thu-Fri May 29-30 | Final QA in Warpcast / Telegram / X / Bluesky. Approve launch cast copy. | Cast copy draft. Pre-launch polish. |
+| Sat May 31 | LAUNCH CAST FIRES | Monitor + respond + amplify |
 | Mon Jun 1 | Doors open - first workshop | Build whatever comes up |
+| Post-launch week (Jun 2+) | **Cloudflare migration W12** (30 min total + 24h TTL pre-wait). Doc 730 has full plan. | Update DNS configs on my side if needed. |
 
 ---
 
