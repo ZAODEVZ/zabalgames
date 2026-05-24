@@ -52,11 +52,12 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Launched:** 2026-01-01 via Clanker. Co-creators: yerbearserker (Jordan Oram) + Adrian (~divifly).
 
 ### WaveWarZ
-- **What:** Solana-based artist prediction markets. 43 artists battle head-to-head. Wallets bet on outcomes.
-- **Status:** Partner-built (Ikechi Nwachukwu / Hurric4n3Ike), NOT ZAO-built. Live at wavewarz-intelligence.vercel.app.
+- **What:** Music-battle prediction markets. Artists battle head-to-head, wallets trade on outcomes, 1% of trade volume goes to the artist, settled on-chain via smart contract (no custody). 472+ SOL cumulative volume, ~735 battles, 43 artists, 11 shows/week.
+- **Status:** v1 LIVE on Solana (Hurric4n3Ike at wavewarz-intelligence.vercel.app). v2 IN BUILD on Base - agentic version Sam (candytoybox) is shipping with Arthur (Neynar) reviewing smart contracts. Repo: `~/Documents/wwbase` locally; ZAO research Doc 711.
 - **Voice:** Loud arena brand - competitive, sports-energy, stats-forward. The deliberate opposite of the warm ZAO-umbrella tone.
-- **Cross-chain:** ZAO is Base-native, WaveWarZ is Solana-native (Helius free tier for RPC). Bridging is a recurring theme.
-- **Contact:** X @WaveWarZ.
+- **Cross-chain:** WaveWarZ v1 on Solana (Helius free tier for RPC); v2 on Base (matches ZAO rails). Both surfaces are real ZAO infrastructure now.
+- **ZABAL Games Finals integration:** WaveWarZ-Base is the August Finals voting protocol - each finalist build becomes a battle entry, wallets trade on which wins, smart contract settles placement at T+72h. Respect-holders get pre-funded baseline positions so the community has real market weight. See docs/research/720-wavewarz-finals-mechanic.md.
+- **Contact:** X @WaveWarZ. Founders: Hurric4n3Ike + Zaal + Sam (candytoybox). Arthur (Neynar) on smart contracts for the Base build.
 
 ### ZAO Festivals / ZAOstock
 - **What:** ZAO's IRL festival arm. ZAOstock 2026 is the inaugural festival.
@@ -272,10 +273,15 @@ Miss the bar OR fail visibility = no submission.
 
 ## Voting + judging
 
-- **Voter set:** ZAO members with Respect above a threshold. Snapshot at T+0.
-- **Mechanism:** 1-person-1-vote. NOT token-weighted.
-- **Window:** T+48h to T+72h.
-- **Output:** orders the recognition tiers. All finalists win.
+The August Finals placement is decided by the **WaveWarZ-Base prediction-market protocol** (Doc 720). Each finalist build becomes a battle entry on WaveWarZ-Base. Wallets trade on which build wins. Smart contract settles at T+72h based on volume + win rate per finalist.
+
+- **Voter set:** open market - anyone with a Base wallet can trade. PLUS Respect-earning members get pre-funded baseline positions (~$2 USDC of shares split across all finalists) at T+0 so the community has real market weight, not just outside speculators.
+- **Window:** T+0 to T+72h (the whole Finals window is the trade window; market settles at the end).
+- **Output:** the WaveWarZ smart contract distributes the prize ($500 USDC pool maps to placement tiers per Doc 701 Part 5) + the 1% trade cut per WaveWarZ economics (flows to the builder forever, post-Finals too) + the Hats Protocol Finisher / Champion NFTs are minted on-chain in the settlement transaction.
+- **Why the shift:** real economic signal beats a 1p1v poll for "would I actually use this build." Plus the Finals become the V1 launch event for the WaveWarZ-Base agentic build that Sam + Arthur are shipping.
+- **Fallback:** if WaveWarZ-Base isn't mainnet-ready by August, revert to the original Doc 701 model: Respect-earning 1p1v vote, WaveWarZ on Solana as parallel signal (Doc 646 framing).
+
+Judge agents (per Doc 723d + 720): autonomous agents read each finalist's deployed URL + repo + demo, score against the rubric (does it work / is it ZAO-native / would I use this / shipped in 24h), get paid in x402 micropayments. Their scores feed the market as a "fundamental" but do not override it.
 
 ---
 

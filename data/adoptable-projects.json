@@ -82,6 +82,15 @@
       "spec_label": "Doc 701",
       "color": "cyan",
       "status": "open"
+    },
+    {
+      "id": "09",
+      "name": "WaveWarZ-Base Finals settlement surface",
+      "description": "Wire the WaveWarZ-Base smart contracts into the ZABAL Games Finals page. Read live battle state, render the trade view per finalist, trigger settlement readout at T+72h. Pairs with Sam + Arthur's smart-contract work. Makes the Finals the V1 launch event for WaveWarZ-Base.",
+      "spec_url": "/docs/research/720-wavewarz-finals-mechanic.md",
+      "spec_label": "Doc 720",
+      "color": "pink",
+      "status": "open"
     }
   ]
 }

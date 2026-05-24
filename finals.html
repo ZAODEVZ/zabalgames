@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Finals - ZABAL Games Season 1</title>
+  <meta name="description" content="The August Finals - decided by the WaveWarZ-Base prediction-market protocol. Wallets trade on which build wins. Smart contract settles placement on-chain. Respect-holders get pre-funded baseline positions.">
+  <link rel="canonical" href="https://zabalgames.com/finals">
+  <meta property="og:title" content="The Finals - ZABAL Games Season 1">
+  <meta property="og:description" content="The market decides. WaveWarZ-Base settles the Finals on-chain.">
+  <meta property="og:url" content="https://zabalgames.com/finals">
+  <meta property="og:image" content="https://zabalgames.com/assets/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"Read the Finals spec","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/finals","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"Read the Finals spec","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/finals","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/lead.html">Lead</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/research.html">Research</a>
+      <a href="/finals.html" class="active">Finals</a>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow">August - The Finals</div>
+    <h1>The Market <span class="accent">Decides</span>.</h1>
+    <p class="hero-sub">
+      The August Finals are settled by the WaveWarZ-Base prediction-market protocol. Each finalist build becomes a battle entry. Wallets trade on which build wins. The smart contract settles placement on-chain at T+72h. Respect-holders get pre-funded baseline positions so the community has real market weight.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2>Why a market, not a vote</h2>
+    <p>
+      The original plan was a one-person-one-vote Respect ballot. Clean but abstract - a click is a low-commitment signal. A wallet putting money on a build is a different commitment entirely, and the market price aggregates a lot more information than a poll.
+    </p>
+    <p>
+      Switching to WaveWarZ-Base gives the Finals four things at once: a real economic signal for "would I actually use this build", mass participation (anyone with a Base wallet can trade, not just Respect-holders), built-in revenue for builders (1% trade cut flows forever), and a real launch event for the WaveWarZ-Base agentic build Sam (candytoybox) is shipping with Arthur (Neynar).
+    </p>
+    <p>
+      Full architectural decision in <a href="/docs/research/720-wavewarz-finals-mechanic.md">Doc 720</a>. Cross-linked from <a href="/docs/research/701-canonical-state.md">Doc 701 Part 12</a>.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>The 72-hour Finals timeline</h2>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--orange);">T-7 DAYS - PRE-FINALS</div>
+      <h3>Snapshot + mint + pre-fund</h3>
+      <p>Respect-eligible voter set snapshotted (~30-80 long-tenure DAO members). Finalist entries minted on WaveWarZ-Base - one battle per build, metadata = URL + repo + demo + handle. Respect-holders get pre-funded positions: each wakes up at T+0 with ~$2 USDC equivalent of shares, split evenly across all finalists.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--cyan);">T+0 - PROMPT DROPS</div>
+      <h3>Battles open</h3>
+      <p>Sealed prompt fires to every finalist. The WaveWarZ-Base battle entries open for trading. Respect-holders start with their baseline. Anyone with a Base wallet can buy in. Market trades on the build signal so far (early demos, public commits, stream quality).</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--gold);">T+0 to T+24h - BUILD WINDOW</div>
+      <h3>Build with your mentor + trade</h3>
+      <p>Mentor embedded, finalists building in public, market trading on the unfolding builds. Streamers stream, watchers watch, traders position. The market is live the whole time.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--pink);">T+24h - SHIP DEADLINE</div>
+      <h3>Live URL + repo + demo + cast</h3>
+      <p>The four submission requirements lock. Autonomous judge agents start running - they read each finalist's artifacts and emit scores via x402 micropayments. Their scores feed the market as a public signal.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--zabal);">T+24h to T+48h - PROMOTE WINDOW</div>
+      <h3>Amplify + trade</h3>
+      <p>ZAO accounts amplify each finalist on Farcaster, X, Telegram, the newsletter. Market trades on the combined signal of the builds + the judge-agent scores + the amplification reception.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--orange);">T+48h to T+72h - CONVICTION WINDOW</div>
+      <h3>Spreads tighten</h3>
+      <p>No new builds, no new shipping. Just trading. Final 24h is where the market settles. Position prices reflect the market's best estimate of placement.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--cyan);">T+72h - SETTLEMENT</div>
+      <h3>Smart contract settles</h3>
+      <p>WaveWarZ-Base reads final volume + win rates. Distributes prize per protocol economics: 1% of total volume to each builder (artist cut, ongoing), losing-pool partial split feeds winning-pool, the $500 USDC pool maps to placement tiers (Doc 701 Part 5), Hats Protocol Finisher NFTs minted to every finalist, Champion NFTs to top 3. All on-chain in one settlement transaction. Live reveal stream announces the readout.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>The hybrid - market + Respect</h2>
+    <p>
+      The market is open to anyone with a Base wallet, but Respect-holders are not just spectators. At T+0 every Respect-eligible address receives a pre-funded position - a baseline ~$2 USDC equivalent of shares split across all finalists. They can hold, redeploy, buy more, sell. This means the community vote has real market weight, not just rhetorical weight.
+    </p>
+    <p>
+      <strong>The tradeoff:</strong> the protocol is token-weighted by definition. A whale buying a big position skews more than a small one. The Respect baseline is the mitigation - the community has real (not just symbolic) presence in the market. If whale capture becomes a problem in practice, v2 adds a soft per-wallet cap.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Builders get more than the prize pool</h2>
+    <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+      <li><strong>Placement tier prize</strong> per the Doc 701 $500 USDC pool ($150 / $100 / $75 / $35 floor).</li>
+      <li><strong>1% of all trade volume on your battle entry, forever.</strong> Per WaveWarZ protocol. The battle entry stays live post-Finals; new trades keep flowing 1% to you.</li>
+      <li><strong>Hats Protocol Finisher NFT</strong> (every finalist) and Champion NFT (top 3). Permanent onchain credential on Base.</li>
+      <li><strong>Respect earned</strong> during the event itself.</li>
+      <li><strong>Distribution amplification</strong> from ZAO accounts across Farcaster, X, Telegram, newsletter.</li>
+      <li><strong>The open-source repo</strong> + the 24h live-coding footage as content assets.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>The tech timeline (June -> August)</h2>
+
+    <div class="card">
+      <div class="card-label">JUNE</div>
+      <h3>Smart contracts get reviewed</h3>
+      <p>Sam + Arthur lock the WaveWarZ-Base testnet contracts to a security-reviewed state. Arthur records a June workshop session on the smart contracts. The snapshot + airdrop mechanism for Respect-holder pre-funding gets spec'd with Iman + the ORDAO team.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">JULY</div>
+      <h3>Mainnet + smoke test</h3>
+      <p>WaveWarZ-Base on Base mainnet (post-audit). Smoke-test battle runs - one of the 8 adoptable projects becomes a fake finalist for end-to-end testing. Project <a href="/projects.html">#09 (Wire WaveWarZ-Base into the Finals surface)</a> gets adopted by a July builder.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">AUGUST</div>
+      <h3>The real Finals run</h3>
+      <p>5-8 finalists, 30-80 Respect-holder pre-funded voters, market open for 72h, settlement on-chain at T+72h. The Finals becomes the V1 launch event for WaveWarZ-Base.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>If something slips - the fallback</h2>
+    <p>
+      If WaveWarZ-Base is not mainnet-ready by August, the Finals revert to the original framing: Respect-earning members vote 1-person-1-vote (Snapshot or onchain), WaveWarZ on Solana runs as a parallel viewer-signal a la <a href="/docs/research/646-clanker-promote.md">Doc 646's Clanker mechanic</a>. Same prize tier, same collectibles, same recognition - just a different judging instrument.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Go deeper</h2>
+    <ul style="margin-left: 1.5rem;">
+      <li><a href="/docs/research/720-wavewarz-finals-mechanic.md">Doc 720 - WaveWarZ Finals Mechanism</a> - the full architectural decision with three design options and the integration sketch.</li>
+      <li><a href="/docs/research/701-canonical-state.md">Doc 701 Part 12</a> - the canonical-state update folding this in.</li>
+      <li><a href="https://github.com/bettercallzaal/ZAOOS/tree/main/research/events/711-arthur-wavewarz-base-call-may19">ZAO Doc 711</a> - the Arthur intro call (where Sam's Base contracts + Arthur's review came together).</li>
+      <li><a href="https://github.com/bettercallzaal/ZAOOS/tree/main/research/business/723-zabal-avax-x402-wavewarz-agentic">ZAO Doc 723</a> - agentic WaveWarZ + x402 patterns + the judge-agent design.</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div>
+    <a href="/">zabalgames.com</a> -
+    <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">github</a> -
+    <a href="/llms.txt">llms.txt</a> -
+    <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+  </div>
+  <p style="margin-top: 0.5rem; color: var(--text-dim);">ZABAL Games Season 1 - the August Finals.</p>
+</footer>
+
+</body>
+</html>

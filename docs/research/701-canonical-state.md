@@ -304,6 +304,52 @@ June = workshop month: builders across the ecosystem record one ~30-min session 
 
 ---
 
+## Part 12 - WaveWarZ-Base as the Finals voting protocol (2026-05-23)
+
+> **Status:** Architectural decision locked. Full spec in [Doc 720](720-wavewarz-finals-mechanic.md).
+
+**Decision #8 in Part 1 (Voting was OPEN) is now answered.** The August Finals placement is decided by the **WaveWarZ-Base prediction-market protocol**, not the previously-pencilled Snapshot or onchain 1p1v vote.
+
+### The shift
+
+| Was (Doc 701 Part 1, Decision #8) | Now (Doc 720) |
+|-----------------------------------|---------------|
+| Respect-earning members, 1p1v, NOT token-weighted. Mechanism (Snapshot vs onchain) + threshold N still open. | WaveWarZ-Base smart contract settles placement based on volume + win rate per finalist over the 72h Finals window. Respect-holders get a pre-funded baseline position so the community has real market weight. |
+
+### Why
+
+- WaveWarZ-Base is the agentic-on-Base build Sam (candytoybox) is shipping and Arthur (Neynar) is reviewing - per [Doc 711](714-tyler-call.md... actually [Doc 711](711-arthur-wavewarz-base-call-may19.md) hosted in ZAO research; mirrored intent here).
+- The Finals become the V1 launch event for WaveWarZ-Base. Real cohort + real stakes + real prize = best possible first test.
+- Real economic signal beats a 1p1v poll for "would I actually use this build."
+- 1% trade cut per WaveWarZ economics flows to the builder forever post-Finals.
+
+### Pick: Option B - hybrid (per Doc 720 design selection)
+
+WaveWarZ-Base runs the market. Respect-holders get a pre-funded position at T+0 (~$2 USDC equivalent of shares split across all finalists). Anyone with a Base wallet can also trade. Settlement at T+72h on-chain via the WaveWarZ contract. Prize pool ($500 USDC) maps to placement tiers; 1% artist cut + losing-pool feed go to builders per protocol.
+
+### Adoptable project #09 added
+
+- **Wire WaveWarZ-Base into the ZABAL Games Finals settlement surface** - the page in `ZAODEVZ/zabalgames` that reads the live battle state, shows the trade view, and triggers the settlement readout at T+72h. Builder: ideally a July builder takes this as their submission.
+
+### Timeline (next 3 months)
+
+- **June** - Sam + Arthur lock the testnet contracts to security-reviewed state. Arthur records a June workshop session on the smart contracts. Snapshot/airdrop mechanism spec'd with Iman + ORDAO.
+- **July** - WaveWarZ-Base mainnet on Base. Smoke-test battle. Adoptable project #09 picked up by a builder.
+- **August** - real Finals run on WaveWarZ-Base. Settlement on-chain.
+
+### Fallback
+
+If WaveWarZ-Base isn't mainnet-ready by August: revert to Doc 646's "parallel signal" framing - WaveWarZ on Solana for trading-as-signal, Respect 1p1v deciding placement. Plan published in [Doc 720 Open Questions](720-wavewarz-finals-mechanic.md#open-questions).
+
+### Cross-refs
+
+- [Doc 720](720-wavewarz-finals-mechanic.md) - full design + integration sketch
+- [Doc 711](https://github.com/bettercallzaal/ZAOOS/tree/main/research/events/711-arthur-wavewarz-base-call-may19) - Arthur intro call (the ZAO research original)
+- [Doc 723](https://github.com/bettercallzaal/ZAOOS/tree/main/research/business/723-zabal-avax-x402-wavewarz-agentic) - agentic WaveWarZ + x402 patterns
+- [Doc 180](https://github.com/bettercallzaal/ZAOOS/tree/main/research/wavewarz/180-wavewarz-integration-blueprints) - WaveWarZ technical integration patterns
+
+---
+
 ## Also See
 
 - [Doc 714](../714-tyler-zabal-zaostock-may22/) - Tyler x Zaal call - the Magnetic hosting + connector + announcement decisions in Part 11
