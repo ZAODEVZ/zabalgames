@@ -11,6 +11,16 @@
   "entries": [
     {
       "date": "2026-05-24",
+      "title": "Bonfire knowledge graph 20 kEngrams seeded (rounds 5+6+7, 20 parallel subagents)",
+      "type": "infra",
+      "description": "Three batches of parallel subagents added six new kEngrams: music-rights-pipeline (BMI -> MLC -> DistroKid -> 0xSplits chain + post-UMG CD Baby exit), tip-zols-architecture (three-token reconciliation: $TIP not yet deployed, ZOLs off-chain, $ZABAL only freely-tradable layer), tool-stack-deep-dive (32 tools across music/agent/ops/crypto categories with cost+auth+integration each), calendar-automation (Lu.ma + Cal.com end-to-end ZABAL Games workshop flow), talent-vs-quotient (recommendation: Quotient for Empire booster + Respect for governance + Talent Protocol optional external visibility), songjam-x-empire (X scraper retired due to paid API, SANG token mechanics + 250k stake minimum). Graph total now 401 entities + 593 edges (was 254 + 322). All 8 queued topics now done in ZAOcowork research-dispatch queue.",
+      "links": [
+        {"label": "llms.txt - Bonfire pointer section (20 kEngrams)", "url": "/llms.txt"},
+        {"label": "data/bonfire-graph.json (515 KB)", "url": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/bonfire-graph.json"}
+      ]
+    },
+    {
+      "date": "2026-05-24",
       "title": "Live signup counter + /winners + /mentor template + 16 adoptable projects total",
       "type": "feat",
       "description": "Hero now carries a LIVE ticker (workshop leads count / claimed projects / mentor slots / countdown to June 1). /winners page placeholder for Season 1 Finals results (fills in August). /mentor.html?handle=X dynamic profile page reads /data/mentors.json. Adoptable projects grew from 9 to 16 (added 7 starter-repo adoptions from bettercallzaal repo audit, ids 10-16, with visual STARTER REPO badge).",
