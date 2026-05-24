@@ -346,6 +346,7 @@
       <a href="/projects.html">Projects</a>
       <a href="/research.html">Research</a>
       <a href="/finals.html">Finals</a>
+      <a href="/about.html">About</a>
       <a href="#workshops">Calendar</a>
       <a href="#prize">Prizes</a>
       <a href="#judging">Judging</a>
@@ -975,52 +976,46 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
         You do not have to build from scratch. These are real, in-progress ZAO projects that need a builder to ship them forward. Adopt one in your July submission - or build from scratch with the <a href="#ideas" style="color: var(--cyan);">context file</a>. Both paths count.
       </p>
 
-      <div class="options-grid" style="margin-top: 1.5rem; grid-template-columns: repeat(2, 1fr);">
-        <div class="option-card">
-          <div class="option-letter" style="color: var(--orange);">01</div>
-          <h3>Songjam leaderboard migration</h3>
-          <p>Move the Songjam leaderboard off the deprecated X scraper onto an Empire Builder API leaderboard. Frees Adam from scraper maintenance, gives ZABAL Farcaster-native data. Spec: <a href="https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/654-empire-v3-meeting.md" target="_blank" rel="noopener" style="color: var(--cyan);">Doc 654</a>.</p>
-        </div>
-        <div class="option-card">
-          <div class="option-letter" style="color: var(--pink);">02</div>
-          <h3>POIDH bounty leaderboard</h3>
-          <p>Empire Builder leaderboard pulling on-chain POIDH bounty submissions. Counts unique submitters across all ZABAL bounties. One contract wired, second pending. Spec: <a href="https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/654-empire-v3-meeting.md" target="_blank" rel="noopener" style="color: var(--cyan);">Doc 654</a> + <a href="https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/630-player-context-bundle.md" target="_blank" rel="noopener" style="color: var(--cyan);">Player Bundle</a>.</p>
-        </div>
-        <div class="option-card">
-          <div class="option-letter" style="color: var(--cyan);">03</div>
-          <h3>zlank Empire daily-stats Snap template</h3>
-          <p>A one-click "Today's Empire Builder Stats" Snap template on zlank.online. Footy app is the reference. kmac.eth + Zaal collab. Spec: <a href="https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/654-empire-v3-meeting.md" target="_blank" rel="noopener" style="color: var(--cyan);">Doc 654</a>.</p>
-        </div>
-        <div class="option-card">
-          <div class="option-letter" style="color: var(--gold);">04</div>
-          <h3>Twitch -> Empire Builder stream feed</h3>
-          <p>StreamElements WebSocket events feed an apiLeaderboard. Stream activity becomes a real-time Empire leaderboard. Spec: pull Twitch + StreamElements docs from the player context bundle.</p>
-        </div>
-        <div class="option-card">
-          <div class="option-letter" style="color: var(--zabal);">05</div>
-          <h3>A new ZOE skill</h3>
-          <p>Extend the ZOE concierge bot (Telegram @zaoclaw_bot). Backend mirrors the Hermes runtime pattern - Claude Code CLI as subprocess, swap system prompt. Spec: see ZOE / Hermes references in the player bundle.</p>
-        </div>
-        <div class="option-card">
-          <div class="option-letter" style="color: var(--orange);">06</div>
-          <h3>This /zabal mini app</h3>
-          <p>The Farcaster mini app you're on. Extend the workshops calendar, the submissions board, the connector NFT flow. Lives at <code style="font-size: 0.78rem;">github.com/ZAODEVZ/zabalgames</code>.</p>
-        </div>
-        <div class="option-card">
-          <div class="option-letter" style="color: var(--pink);">07</div>
-          <h3>COC Concertz content pipeline</h3>
-          <p>Today: record show -> Descript -> newsletter builder generates YouTube descriptions (MiniMax AI) -> manual cross-post. Automate the cross-post end. Bridges to ZAO's `src/lib/publish/` 10-platform module.</p>
-        </div>
-        <div class="option-card">
-          <div class="option-letter" style="color: var(--cyan);">08</div>
-          <h3>Streaming auto-clip flywheel</h3>
-          <p>Turn 24h of stream into ~150 short clips for TikTok / Reels / YouTube / Farcaster. The content engine that processes Games streams. Spec referenced in <a href="https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/701-canonical-state.md" target="_blank" rel="noopener" style="color: var(--cyan);">Doc 701</a>.</p>
-        </div>
+      <div id="index-projects-grid" class="options-grid" style="margin-top: 1.5rem; grid-template-columns: repeat(2, 1fr);">
+        <noscript>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">See the full curated list at <a href="/projects.html" style="color: var(--cyan);">/projects</a> or in <a href="/llms.txt" style="color: var(--cyan);">llms.txt</a>.</p>
+        </noscript>
       </div>
 
       <p class="section-sub" style="margin-top: 1.5rem; font-size: 0.85rem;">
-        Want one of these? DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color: var(--cyan);">@bettercallzaal</a> with the number. List is curated; status updates as builders claim slots. Full curated list lives in <a href="https://zabalgames.com/llms.txt" style="color: var(--cyan);">llms.txt</a>.
+        Want one of these? DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color: var(--cyan);">@bettercallzaal</a> with the number. List is curated; status updates as builders claim slots. Full curated list also at <a href="/projects.html" style="color: var(--cyan);">/projects</a> and in <a href="https://zabalgames.com/llms.txt" style="color: var(--cyan);">llms.txt</a>.
       </p>
+
+      <script>
+      (function() {
+        var grid = document.getElementById('index-projects-grid');
+        fetch('/data/adoptable-projects.json', { cache: 'no-cache' })
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            var projects = data.projects || [];
+            grid.innerHTML = '';
+            projects.forEach(function(P) {
+              var color = P.color || 'orange';
+              var card = document.createElement('div');
+              card.className = 'option-card';
+              var statusBadge = P.status === 'claimed'
+                ? ' <span style="font-size: 0.7rem; color: var(--cyan); background: rgba(0,229,255,0.12); padding: 0.1rem 0.4rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em;">claimed</span>'
+                : '';
+              var spec = P.spec_url
+                ? ' Spec: <a href="' + P.spec_url + '" target="_blank" rel="noopener" style="color: var(--cyan);">' + (P.spec_label || 'docs') + '</a>.'
+                : '';
+              card.innerHTML =
+                '<div class="option-letter" style="color: var(--' + color + ');">' + P.id + '</div>' +
+                '<h3>' + P.name + statusBadge + '</h3>' +
+                '<p>' + P.description + spec + '</p>';
+              grid.appendChild(card);
+            });
+          })
+          .catch(function() {
+            grid.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">List unavailable - see <a href="/projects.html" style="color: var(--cyan);">/projects</a>.</p>';
+          });
+      })();
+      </script>
     </div>
   </section>
 
