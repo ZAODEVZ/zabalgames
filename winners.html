@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winners - ZABAL Games Season 1</title>
+  <meta name="description" content="Season 1 Finals results. Champions, runners-up, and the Finalist hall. Fills as the August Finals concludes.">
+  <link rel="canonical" href="https://zabalgames.com/winners">
+  <meta property="og:title" content="Winners - ZABAL Games Season 1">
+  <meta property="og:description" content="Season 1 Finals results. Fills as the August Finals concludes.">
+  <meta property="og:url" content="https://zabalgames.com/winners">
+  <meta property="og:image" content="https://zabalgames.com/assets/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"Season 1 winners","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/winners","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"Season 1 winners","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/winners","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/lead.html">Lead</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/winners.html" class="active">Winners</a>
+      <a href="/about.html">About</a>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow">Season 1 Finals - August 2026</div>
+    <h1>The <span class="accent">Winners</span>.</h1>
+    <p class="hero-sub">
+      Empty for now. Fills the moment the August Finals settle. ZABAL Games Season 1 awards $500 USDC across the top 8 finalists, plus a Champion NFT (via Hats on Base) to the top 3, and a Finisher NFT to every Finalist.
+    </p>
+    <p class="hero-sub" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+      Voting protocol: WaveWarZ-Base hybrid (Doc 720). Market price + Respect-holder baseline allocation across a 72h trade window. Sam + Arthur ship the Base contracts in June, mainnet July, real Finals August.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2>Top 3 Champions</h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+      The Hats Protocol Champion NFT, the prize cut, the recurring mentor slot in Season 2.
+    </p>
+
+    <div class="prize-grid">
+      <div class="prize-card first">
+        <div class="prize-place">1st</div>
+        <div class="prize-amount">$150 USDC</div>
+        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 0.5rem 0; color: var(--text-dim);">TBD</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Awaiting Finals.</p>
+      </div>
+      <div class="prize-card second">
+        <div class="prize-place">2nd</div>
+        <div class="prize-amount">$100 USDC</div>
+        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 0.5rem 0; color: var(--text-dim);">TBD</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Awaiting Finals.</p>
+      </div>
+      <div class="prize-card third">
+        <div class="prize-place">3rd</div>
+        <div class="prize-amount">$75 USDC</div>
+        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 0.5rem 0; color: var(--text-dim);">TBD</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Awaiting Finals.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Finishers (4th - 8th)</h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+      $35 USDC each + Finisher NFT (Hats Protocol, on Base). Every Finalist who ships in the 24h Finals build window keeps the Finisher hat permanently.
+    </p>
+
+    <div id="finishers-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
+      <!-- 4-8 placeholders rendered by JS below -->
+    </div>
+
+    <script>
+    (function() {
+      var grid = document.getElementById('finishers-grid');
+      for (var i = 4; i <= 8; i++) {
+        var card = document.createElement('div');
+        card.className = 'card';
+        card.style.textAlign = 'center';
+        card.innerHTML = '<div class="card-label" style="color: var(--text-dim);">' + i + 'th</div>' +
+                         '<div style="font-family: Syne, sans-serif; font-size: 1.4rem; color: var(--gold); margin: 0.3rem 0;">$35</div>' +
+                         '<h3 style="font-family: Syne, sans-serif; font-weight: 700; font-size: 0.95rem; margin: 0.3rem 0; color: var(--text-dim);">TBD</h3>' +
+                         '<p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Awaiting Finals.</p>';
+        grid.appendChild(card);
+      }
+    })();
+    </script>
+  </section>
+
+  <section class="section">
+    <h2>How the Finals Decide</h2>
+    <div class="card">
+      <h3>WaveWarZ-Base hybrid voting (Doc 720)</h3>
+      <p>Each Finalist becomes a tradable battle entry. Respect-holders get pre-funded positions (~$1-2 USDC each). The market trades for 72h. Final ranking = market price weighted with judge-agent rubric scores. Live settlement readout fires at T+72h on <a href="/finals/live" style="color: var(--cyan);">/finals/live</a>.</p>
+      <p style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--text-muted);">
+        Why this and not Respect 1p1v? Because price discovery + skin-in-the-game beats pure popularity vote for "which build will actually get used." The Respect-holder baseline keeps the floor honest for builds that are valuable-but-niche.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Season 2 mentor invite</h2>
+    <div class="card">
+      <h3>The top 3 carry forward</h3>
+      <p>Top-3 champions get an open invitation to mentor in Season 2. The format compounds - the people who win one Season become the teachers in the next. That is how the body of work grows year over year.</p>
+    </div>
+  </section>
+
+  <div style="margin-top: 3rem; padding: 1rem; background: rgba(245, 166, 35, 0.06); border: 1px solid rgba(245, 166, 35, 0.2); border-radius: 8px; text-align: center;">
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+      Want to be on this list? <a href="/lead.html" style="color: var(--gold);">Apply as a workshop lead</a> for June, or submit a build in July. Every spot on this page started as one of those two paths.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>
+      ZABAL Games Season 1 - hosted by <a href="https://bettercallzaal.com" target="_blank" rel="noopener">BetterCallZaal</a> for The ZAO.
+      Source on <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">GitHub</a>.
+    </p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-dim);">
+      <a href="/llms.txt" style="color: var(--cyan);">llms.txt</a> - load this whole site as AI context.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

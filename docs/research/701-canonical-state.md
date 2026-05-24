@@ -120,20 +120,39 @@ No fixed Option A-E tracks. The `OPTIONS.md` referenced by `PROMPT_CONTEXT.md` w
 1. **Adopt a started ZAO project.** A curated list of started / in-progress ZAO projects is given to builders as ideas they can pick up and run with.
 2. **Build from scratch.** Build anything that helps the ZAO ecosystem, using only the platform context.
 
-### Candidate adoptable-project list (NEEDS ZAAL CONFIRMATION)
+### Adoptable-project list (16 entries, source-of-truth is `data/adoptable-projects.json`)
 
-Pulled from Doc 654 action items + Doc 630 PROMPT_CONTEXT Part 7. Zaal to confirm which are real, adoptable, and unclaimed, and add what is missing:
+Updated 2026-05-24. Two flavors render side-by-side on the site at `/projects` and `index.html #projects` (each with a visual badge):
 
-- Songjam leaderboard migration - move the leaderboard off the deprecated X scraper onto an Empire Builder API leaderboard.
-- POIDH bounty leaderboard on Empire Builder - counts unique on-chain bounty submitters.
-- zlank.online "Today's Empire Builder Stats" daily Snap template (kmac.eth template collab).
-- Twitch -> Empire Builder stream score feed.
-- New ZOE skill(s).
-- The `/zabal` Farcaster mini app itself (submission board, starter board).
-- COC Concertz content-pipeline automation (record -> Descript -> newsletter -> cross-post).
-- Streaming auto-clip flywheel (30+ hours of Games stream -> 150+ short clips).
+**01-09: Stack features (build inside the ZAO stack, research doc has the spec)**
 
-**This list is a Next Action - it is NOT yet confirmed.**
+| # | Project | Spec |
+|---|---|---|
+| 01 | Songjam leaderboard migration (X scraper -> Empire Builder API) | Doc 654 |
+| 02 | POIDH bounty leaderboard on Empire Builder | Doc 654 |
+| 03 | zlank "Today's Empire Builder Stats" daily Snap template | Doc 654 |
+| 04 | Twitch -> Empire Builder stream score feed | Player Bundle |
+| 05 | New ZOE skill | Player Bundle |
+| 06 | This `/zabal` Farcaster mini app itself | Repo |
+| 07 | COC Concertz content-pipeline automation | Player Bundle |
+| 08 | Streaming auto-clip flywheel | Doc 701 |
+| 09 | WaveWarZ-Base Finals settlement surface | Doc 720 |
+
+**10-16: Starter repos (whole-repo adoption, you write the spec)**
+
+Added 2026-05-24 from the bettercallzaal repo audit (`/tmp/bettercallzaal-repos-audit-20260524.md`). Each is a real but dormant repo where a builder takes ownership of both the spec and the implementation.
+
+| # | Project | Repo | Scope |
+|---|---|---|---|
+| 10 | ZAOVideoEditor - multi-track web video editor | bettercallzaal/ZAOVideoEditor | Large |
+| 11 | ZAONEXUS - ecosystem connection graph | bettercallzaal/ZAONEXUS | Large |
+| 12 | ZAOFlights - group travel coordinator | bettercallzaal/ZAOFlights | Medium |
+| 13 | CoCConcertZ - concert discovery + calendar | bettercallzaal/CoCConcertZ | Medium |
+| 14 | ZAO 101 - educational onboarding guide | bettercallzaal/zao-101 | Small (best first adoption) |
+| 15 | Aurdour - web DJ platform with Flow Mode | bettercallzaal/Aurdour | Largest |
+| 16 | ZOUNZ - Farcaster music mini app | bettercallzaal/ZOUNZ | Most ambitious (4 protocols) |
+
+**List status: CONFIRMED.** All 16 render live on the site and in llms.txt. Builders can claim by DMing @bettercallzaal on Farcaster with the project number.
 
 ---
 

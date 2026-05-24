@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentor - ZABAL Games Season 1</title>
+  <meta name="description" content="A ZABAL Games Season 1 mentor profile. Loaded dynamically from /data/mentors.json by Farcaster handle.">
+  <link rel="canonical" href="https://zabalgames.com/mentor">
+  <meta property="og:title" content="Mentor - ZABAL Games Season 1">
+  <meta property="og:description" content="A ZABAL Games mentor profile.">
+  <meta property="og:url" content="https://zabalgames.com/mentor">
+  <meta property="og:image" content="https://zabalgames.com/assets/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"See mentor","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/mentor","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"See mentor","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/mentor","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/lead.html">Lead</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/about.html">About</a>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow" id="mentor-eyebrow">Loading mentor...</div>
+    <h1 id="mentor-name">Mentor profile</h1>
+    <p class="hero-sub" id="mentor-tagline" style="min-height: 1.5rem;"></p>
+    <div id="mentor-cta" style="margin-top: 1rem;"></div>
+  </header>
+
+  <section class="section" id="mentor-detail" style="display: none;">
+    <div class="card" id="mentor-card">
+      <!-- Populated by JS below -->
+    </div>
+  </section>
+
+  <section class="section" id="mentor-missing" style="display: none;">
+    <div class="card">
+      <h3>Mentor not found</h3>
+      <p>No mentor matched that handle. The roster is at <a href="/about.html#mentors" style="color: var(--cyan);">/about</a>. To volunteer as a mentor, DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color: var(--cyan);">@bettercallzaal</a> on Farcaster.</p>
+    </div>
+  </section>
+
+  <section class="section" id="mentor-empty" style="display: none;">
+    <div class="card">
+      <h3>No handle in URL</h3>
+      <p>Append a Farcaster handle: <code>/mentor.html?handle=jordan</code> (no @ needed). Or browse the full roster at <a href="/about.html#mentors" style="color: var(--cyan);">/about</a>.</p>
+      <p style="margin-top: 0.6rem; font-size: 0.85rem; color: var(--text-muted);">
+        Want to mentor? DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color: var(--cyan);">@bettercallzaal</a> on Farcaster. 8 slots total, ~0 locked so far.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>
+      ZABAL Games Season 1 - hosted by <a href="https://bettercallzaal.com" target="_blank" rel="noopener">BetterCallZaal</a> for The ZAO.
+      Source on <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">GitHub</a>.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // Read ?handle=foo from query string.
+  var params = new URLSearchParams(window.location.search);
+  var handle = (params.get('handle') || '').toLowerCase().replace(/^@/, '');
+
+  var eyebrow = document.getElementById('mentor-eyebrow');
+  var nameEl = document.getElementById('mentor-name');
+  var taglineEl = document.getElementById('mentor-tagline');
+  var ctaEl = document.getElementById('mentor-cta');
+  var detailWrap = document.getElementById('mentor-detail');
+  var detailCard = document.getElementById('mentor-card');
+  var missingWrap = document.getElementById('mentor-missing');
+  var emptyWrap = document.getElementById('mentor-empty');
+
+  if (!handle) {
+    eyebrow.textContent = 'No handle';
+    nameEl.textContent = 'Pick a mentor';
+    taglineEl.textContent = 'Append ?handle= to the URL.';
+    emptyWrap.style.display = '';
+    return;
+  }
+
+  fetch('/data/mentors.json', { cache: 'no-cache' })
+    .then(function(r) { return r.ok ? r.json() : { mentors: [] }; })
+    .then(function(data) {
+      var mentor = (data.mentors || []).find(function(m) {
+        return (m.handle || '').toLowerCase().replace(/^@/, '') === handle;
+      });
+      if (!mentor) {
+        eyebrow.textContent = 'Mentor not in roster';
+        nameEl.textContent = '@' + handle;
+        taglineEl.textContent = '';
+        missingWrap.style.display = '';
+        return;
+      }
+
+      eyebrow.textContent = 'ZABAL Games Season 1 Mentor' + (mentor.locked ? ' - Locked' : ' - Tentative');
+      nameEl.innerHTML = mentor.name + ' <span class="accent">@' + mentor.handle + '</span>';
+      taglineEl.textContent = mentor.tagline || '';
+
+      var ctas = [];
+      if (mentor.farcaster_url) ctas.push('<a href="' + mentor.farcaster_url + '" target="_blank" rel="noopener" class="btn btn-primary">DM on Farcaster</a>');
+      if (mentor.x_url) ctas.push('<a href="' + mentor.x_url + '" target="_blank" rel="noopener" class="btn btn-secondary">On X</a>');
+      if (mentor.site_url) ctas.push('<a href="' + mentor.site_url + '" target="_blank" rel="noopener" class="btn btn-secondary">Site</a>');
+      ctaEl.innerHTML = ctas.join(' ');
+
+      var bodyHtml = '<div class="card-label" style="color: var(--' + (mentor.color || 'orange') + ');">' +
+        (mentor.expertise_label || 'EXPERTISE') + '</div>' +
+        '<h3>' + mentor.headline + '</h3>' +
+        '<p>' + (mentor.bio || '') + '</p>';
+      if (mentor.what_they_offer) {
+        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">What this mentor offers</h4>' +
+          '<p style="font-size: 0.9rem; color: var(--text-muted);">' + mentor.what_they_offer + '</p>';
+      }
+      if (mentor.best_fit_for) {
+        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Best fit for builders working on</h4>' +
+          '<p style="font-size: 0.9rem; color: var(--text-muted);">' + mentor.best_fit_for + '</p>';
+      }
+      if (mentor.champion_handle) {
+        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Champion locked</h4>' +
+          '<p style="font-size: 0.9rem; color: var(--cyan);">@' + mentor.champion_handle + ' - ' + (mentor.champion_build || '') + '</p>';
+      } else {
+        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Champion slot</h4>' +
+          '<p style="font-size: 0.9rem; color: var(--gold);">Open. This mentor will claim a champion as Phase 1 submissions arrive in July.</p>';
+      }
+      detailCard.innerHTML = bodyHtml;
+      detailWrap.style.display = '';
+    })
+    .catch(function() {
+      eyebrow.textContent = 'Roster unavailable';
+      nameEl.textContent = '@' + handle;
+      taglineEl.textContent = '';
+      missingWrap.style.display = '';
+    });
+})();
+</script>
+
+</body>
+</html>

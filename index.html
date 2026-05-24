@@ -10,8 +10,25 @@
   <meta property="og:title" content="ZABAL Games - the Farcaster Vibe-Coding Challenge">
   <meta property="og:description" content="A Farcaster vibe-coding challenge. June prep, July open build-a-thon, August Finals. Use any vibe-coding harness. Build in public. ZAO amplifies every finalist.">
   <meta property="og:url" content="https://zabalgames.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ZABAL Games">
+  <!-- og:image - swap to /assets/og-card.png once W11 lands (PNG unfurls in more clients than SVG). -->
   <meta property="og:image" content="https://zabalgames.com/assets/icon.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ZABAL Games Season 1 - Farcaster Vibe-Coding Challenge">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@bettercallzaal">
+  <meta name="twitter:creator" content="@bettercallzaal">
+  <meta name="twitter:title" content="ZABAL Games - the Farcaster Vibe-Coding Challenge">
+  <meta name="twitter:description" content="June prep, July build, August Finals. $500 USDC + Hats NFTs.">
+  <meta name="twitter:image" content="https://zabalgames.com/assets/icon.png">
+  <!-- Telegram-specific (most launch DMs route through Telegram) -->
+  <meta name="telegram:channel" content="@zaalp99">
+  <meta name="telegram:title" content="ZABAL Games Season 1">
+  <meta name="telegram:description" content="Farcaster vibe-coding challenge. June workshops, July ship, August Finals.">
+  <meta name="telegram:image" content="https://zabalgames.com/assets/icon.png">
+  <!-- LinkedIn falls back to og:* tags above; no LinkedIn-specific meta needed. -->
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"Sign up - ZABAL Games","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/lead","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
   <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"Sign up - ZABAL Games","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/lead","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
@@ -417,6 +434,60 @@
         });
       })();
       </script>
+
+      <!-- Live signal ticker - claimed/open ratio + countdown to June 1 -->
+      <div class="live-ticker" style="margin-top: 1rem; padding: 0.8rem 1rem; background: rgba(245,166,35,0.06); border: 1px solid rgba(245,166,35,0.2); border-radius: 8px; font-size: 0.78rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px;">
+        <span><span class="live-dot" style="display: inline-block; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; margin-right: 6px; animation: pulse 2s infinite;"></span>LIVE</span>
+        <span id="live-leads-stat">-- workshop leads</span>
+        <span>/</span>
+        <span id="live-projects-stat">--/-- projects claimed</span>
+        <span>/</span>
+        <span id="live-mentors-stat">-- mentor slots open</span>
+        <span>/</span>
+        <span id="live-countdown" style="color: var(--gold);">launch in --</span>
+      </div>
+      <style>
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+      </style>
+      <script>
+      (function() {
+        // Mentors-locked: count anyone tagged as a mentor in about.html.
+        // For now, hardcoded to 0 locked / 8 open per /about. Swap to data/mentors.json once that lands.
+        var MENTORS_LOCKED = 0;
+        var MENTORS_TOTAL = 8;
+        var LAUNCH_DATE = new Date('2026-06-01T00:00:00Z');
+
+        Promise.all([
+          fetch('/data/workshop-leads.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { leads: [] }; }),
+          fetch('/data/adoptable-projects.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { projects: [] }; })
+        ]).then(function(results) {
+          var leads = (results[0].leads || []).length;
+          var projects = results[1].projects || [];
+          var claimed = projects.filter(function(p) { return p.status === 'claimed' || p.status === 'shipped'; }).length;
+          var leadsEl = document.getElementById('live-leads-stat');
+          var projectsEl = document.getElementById('live-projects-stat');
+          var mentorsEl = document.getElementById('live-mentors-stat');
+          if (leadsEl) leadsEl.textContent = leads + (leads === 1 ? ' workshop lead' : ' workshop leads');
+          if (projectsEl) projectsEl.textContent = claimed + '/' + projects.length + ' projects claimed';
+          if (mentorsEl) mentorsEl.textContent = (MENTORS_TOTAL - MENTORS_LOCKED) + ' mentor slots open';
+        });
+
+        // Live countdown ticker
+        function updateCountdown() {
+          var now = new Date();
+          var diff = LAUNCH_DATE - now;
+          var el = document.getElementById('live-countdown');
+          if (!el) return;
+          if (diff <= 0) { el.textContent = 'LIVE - June workshops open'; el.style.color = '#22c55e'; return; }
+          var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          el.textContent = 'launch in ' + days + 'd ' + hours + 'h ' + mins + 'm';
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // refresh once per minute
+      })();
+      </script>
     </div>
   </section>
 
@@ -702,7 +773,7 @@
       <div class="section-eyebrow">The Format</div>
       <h2 class="section-title">The Mechanic - July Build, August Finals</h2>
       <p class="section-sub">
-        Most hackathons make you apply with a paragraph + a vibe. ZABAL Games makes the application itself the work - prove yourself by shipping, not by selling. June seasons you with context; July is when you ship; the most interesting builds advance to the August Finals, each paired with a ZAO mentor as embedded teammate.
+        Most hackathons make you apply with a paragraph + a vibe. ZABAL Games makes the application itself the work - prove yourself by shipping, not by selling. June seasons you with context (workshops hosted on the Magnetic portal so every session lives in one searchable library forever). July is when you ship. The most interesting builds advance to the August Finals, each paired with a ZAO mentor as embedded teammate. Finals voting runs through WaveWarZ-Base - market + Respect baseline, not pure 1p1v.
       </p>
 
       <div class="prize-grid" style="margin-top: 1.5rem;">
@@ -768,15 +839,15 @@
         <div class="timeline-item">
           <div class="timeline-time">T+48h to T+72h</div>
           <div class="timeline-body">
-            <strong>ZAO Governance Voting Window</strong>
-            <small>The ZAO governance vote opens. ZAO members with Respect (peer-validated, earned in fractals, snapshotted at T+0) cast 1-person-1-vote ballots. Not token-weighted. Live tally on /zabal page.</small>
+            <strong>WaveWarZ-Base Trade Window</strong>
+            <small>Each finalist becomes a tradable battle entry on WaveWarZ-Base. Respect-holders (snapshotted at T+0) get pre-funded positions (~$1-2 USDC each). The market trades for 72h. Anyone can buy in alongside the Respect baseline. See <a href="/finals" style="color: var(--cyan);">/finals</a> for the full mechanic. Voting protocol locked by Doc 720.</small>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-time">T+72h</div>
           <div class="timeline-body">
-            <strong>Live Results Reveal</strong>
-            <small>1-hour stream. Top 3 announced. USDC distributed onchain LIVE via 0xSplits. Participation collectibles minted to all finishers.</small>
+            <strong>Live Settlement + Reveal</strong>
+            <small>1-hour stream. WaveWarZ-Base settles all finalist markets. Final ranking = market price weighted with autonomous judge-agent rubric scores (x402-paid). Top 3 announced. USDC distributed onchain LIVE via 0xSplits. Hats Protocol Champion NFT to top 3, Finisher NFT to every Finalist.</small>
           </div>
         </div>
       </div>
@@ -819,14 +890,14 @@
   <section id="judging" class="alt">
     <div class="container">
       <div class="section-eyebrow">Who Decides</div>
-      <h2 class="section-title">The ZAO DAO Votes</h2>
+      <h2 class="section-title">WaveWarZ-Base + Respect Baseline</h2>
       <p class="section-sub">
-        ZAO members who have earned Respect by contributing through fractals are the judging body. Not whoever holds the most tokens. Not a closed panel. The community that's been showing up + earning peer-validated reputation gets to pick which builds serve the ecosystem best.
+        Decision locked by <a href="/docs/research/720-wavewarz-finals-mechanic.md" style="color: var(--cyan);">Doc 720</a>: ZABAL Games Season 1 Finals are settled by the WaveWarZ-Base prediction market protocol (Sam + Arthur ship the Base contracts in June, mainnet July, real Finals August). Not pure 1-person-1-vote, not pure market. A hybrid that combines price discovery with a Respect-holder baseline floor.
       </p>
 
       <div class="judging-card">
-        <strong>How voting works</strong>
-        <p>Eligible voters = ZAO members with Respect above a threshold. Respect is ZAO's soulbound peer-validated reputation - it's earned in weekly fractals over time. So the voter set naturally skews toward long-tenure contributors without needing a separate tenure rule. Voter eligibility is snapshotted at T+0 so the set is locked before the Games start. 1-person-1-vote mechanism for Season 1. Placement by total votes. Reveal stream at T+72h announces placements + distributes USDC + mints collectibles live onchain.</p>
+        <strong>How settlement works</strong>
+        <p>Each Finalist becomes a tradable battle entry on WaveWarZ-Base. ZAO members with Respect above a threshold (snapshotted at T+0) get pre-funded positions (~$1-2 USDC each) - this is the baseline allocation that keeps the floor honest for valuable-but-niche builds. The market trades for 72 hours; anyone can buy in alongside the Respect baseline. At T+72h the market settles. Final ranking combines market price with autonomous judge-agent rubric scores (judges are x402-paid agents that read the deployed URL + repo + demo video and emit scored evaluations). Live settlement on <a href="/finals/live" style="color: var(--cyan);">/finals/live</a>. Top 3 get the Champion NFT (Hats Protocol on Base). All Finalists get the Finisher NFT. USDC distributed onchain via 0xSplits.</p>
       </div>
     </div>
   </section>
@@ -884,8 +955,8 @@
         </div>
         <div class="option-card">
           <div class="option-letter" style="color: var(--cyan);">Tokenization</div>
-          <h3>Stream Tied to a Token (Future)</h3>
-          <p>A future layer: players who want it can launch a Clanker token tied to their build + stream. Viewers back builds financially, trade volume becomes a parallel signal next to the DAO vote. Optional, player-driven, not a requirement - but the design space is open.</p>
+          <h3>WaveWarZ-Base IS the Settlement Layer</h3>
+          <p>Finals voting runs through WaveWarZ-Base (Doc 720, hybrid market + Respect baseline). Finalists who want a permanent token Ascend their Empire via Clanker with an airdrop + vesting to their contribution leaderboard. Optional - the tokenless Empire works fine indefinitely. The Games are the V1 launch event for WaveWarZ-Base; future Seasons graduate to a fully-agentic version (judge agents + autonomous market makers + on-chain x402 payouts).</p>
         </div>
         <div class="option-card">
           <div class="option-letter" style="color: var(--zabal);">The Team</div>

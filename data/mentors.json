@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "_schema": {
+    "handle": "Farcaster handle (no @, lowercase)",
+    "name": "Display name",
+    "headline": "One-line credential",
+    "tagline": "Short hero tagline for /mentor.html?handle=",
+    "bio": "1-2 paragraph background",
+    "what_they_offer": "What builders get from this mentor",
+    "best_fit_for": "What kind of build this mentor is best paired with",
+    "expertise_label": "Label shown on the card (e.g. AGENT INFRA, MUSIC TECH, GOVERNANCE)",
+    "color": "ZAO palette: orange | cyan | gold | pink | zabal",
+    "farcaster_url": "https://farcaster.xyz/handle",
+    "x_url": "optional X profile URL",
+    "site_url": "optional personal site URL",
+    "locked": "true if mentor has confirmed; false if tentative",
+    "champion_handle": "Farcaster handle of the champion this mentor locked from Phase 1 (null until July)",
+    "champion_build": "One-line description of the champion's build (null until July)"
+  },
+  "mentors": [
+    {
+      "handle": "bettercallzaal",
+      "name": "Zaal",
+      "headline": "Organizer + BetterCallZaal + The ZAO operations",
+      "tagline": "Runs the Games. Also a mentor slot in flux - claim a builder if Phase 1 produces a build worth the dedicated time.",
+      "bio": "Engineer, builder, and connector in web3/Farcaster/music ecosystem. Runs BetterCallZaal Strategies LLC (the BCZ holding co), hosts COC Concertz, organizes ZABAL Games.",
+      "what_they_offer": "Direct line into the ZAO ecosystem - intros, context, pattern matching against past builds, infra access.",
+      "best_fit_for": "Builds that touch multiple ZAO surfaces at once (music + governance + agents + Farcaster). Generalists who need cross-domain connective tissue.",
+      "expertise_label": "ECOSYSTEM",
+      "color": "orange",
+      "farcaster_url": "https://farcaster.xyz/bettercallzaal",
+      "x_url": "https://x.com/bettercallzaal",
+      "site_url": "https://bettercallzaal.com",
+      "locked": true,
+      "champion_handle": null,
+      "champion_build": null
+    }
+  ]
+}

@@ -10,6 +10,37 @@
   },
   "entries": [
     {
+      "date": "2026-05-24",
+      "title": "Live signup counter + /winners + /mentor template + 16 adoptable projects total",
+      "type": "feat",
+      "description": "Hero now carries a LIVE ticker (workshop leads count / claimed projects / mentor slots / countdown to June 1). /winners page placeholder for Season 1 Finals results (fills in August). /mentor.html?handle=X dynamic profile page reads /data/mentors.json. Adoptable projects grew from 9 to 16 (added 7 starter-repo adoptions from bettercallzaal repo audit, ids 10-16, with visual STARTER REPO badge).",
+      "links": [
+        {"label": "/winners", "url": "/winners"},
+        {"label": "/mentor?handle=bettercallzaal", "url": "/mentor?handle=bettercallzaal"},
+        {"label": "/projects", "url": "/projects"}
+      ]
+    },
+    {
+      "date": "2026-05-24",
+      "title": "ZABAL Bonfire knowledge graph live (171 entities, 220 edges, 12 kEngrams)",
+      "type": "infra",
+      "description": "data/bonfire-graph.json now seeds the live Bonfire knowledge graph at zabal.bonfires.ai across 12 dimensions (Hermes architecture, WaveWarZ v1+v2, ZABAL Empire, Farcaster Snap 2026, POIDH bounty rails, Bonfire push pattern, Coinflow ISV, ZAOstock sponsor mechanics, Quotient booster, FISHBOWLZ-to-Juke transition, Bonfire revenue model, ZOE Telegram skills). llms.txt has the queryable-depth pointer section. Agents loading this prompt can now query the graph for any kEngram and traverse 1-2 hops for depth that does not bloat the prompt.",
+      "links": [
+        {"label": "llms.txt - Bonfire pointer section", "url": "/llms.txt"},
+        {"label": "data/bonfire-graph.json", "url": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/bonfire-graph.json"}
+      ],
+      "commit": "92cc60b"
+    },
+    {
+      "date": "2026-05-24",
+      "title": "research-dispatch pipeline shipped to ZAODEVZ/ZAOcowork",
+      "type": "infra",
+      "description": "VPS-side autonomous research orchestrator now lives at ZAODEVZ/ZAOcowork/research-dispatch (sibling of agent/ which is ZAOcoworkingBot). Fans out parallel Claude Code subagents on research topics, normalizes findings into Bonfire entities/edges, pushes to live Bonfire, commits the graph back to zabalgames. Triggered by Telegram /research command or weekly Sunday cron. 8 topics queued (32 dimensions).",
+      "links": [
+        {"label": "ZAODEVZ/ZAOcowork", "url": "https://github.com/ZAODEVZ/ZAOcowork/tree/main/research-dispatch"}
+      ]
+    },
+    {
       "date": "2026-05-23",
       "title": "Hero stats go live + /context + /finals/live scaffold",
       "type": "feat",
