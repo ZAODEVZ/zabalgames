@@ -108,17 +108,19 @@ function normalizeEntity(raw, source) {
 function normalizeEdge(raw, nameToId) {
   const fromKey = raw.from;
   const toKey = raw.to;
-  if (!fromKey || !toKey || !raw.type) return null;
+  // Subagents drift on the field name; accept type | relation | relationship | name.
+  const type = raw.type || raw.relation || raw.relationship || raw.name;
+  if (!fromKey || !toKey || !type) return null;
   // Resolve: if value is an entity NAME (matches our map), use the mapped id.
   // Otherwise assume it's already an id.
   const from = nameToId[fromKey] || slug(fromKey);
   const to = nameToId[toKey] || slug(toKey);
-  return {
-    from,
-    to,
-    type: raw.type,
-    properties: raw.properties || {},
-  };
+  // Properties: accept properties OR attributes OR a string `relationship` (treat as fact label).
+  let properties = raw.properties || raw.attributes || {};
+  if (typeof raw.relationship === 'string' && !properties.fact) {
+    properties = { ...properties, fact: raw.relationship };
+  }
+  return { from, to, type, properties };
 }
 
 async function listDispatchFiles() {

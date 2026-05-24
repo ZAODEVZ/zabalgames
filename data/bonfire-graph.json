@@ -2051,7 +2051,12 @@
         ],
         "use_case": "ZAO OS memberships, music tips, ZABAL token purchases",
         "chainName": "Base",
-        "_source": "zabal-dispatch-coinflow-20260523"
+        "_source": "zabal-dispatch-coinflow-20260523",
+        "layer": "Ethereum L2",
+        "zao_contracts": "ZOUNZ DAO, Zora 1155 editions, 0xSplits addresses",
+        "native_asset": "ETH",
+        "stablecoin": "USDC (for USDC payouts via split swapper)",
+        "split_deployment": "all creator fund splits deployed here"
       }
     },
     {
@@ -4062,6 +4067,671 @@
         "live_reveal": "stream announces placements + hats distributed onchain",
         "total_hat_mints": "finalists + 3 (all receivers get Finisher; top-3 get Champion)",
         "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "ardrive",
+      "name": "ArDrive",
+      "labels": [
+        "Platform",
+        "Protocol"
+      ],
+      "attributes": {
+        "chain": "Arweave",
+        "model": "One-time payment permanent storage",
+        "founded": 2020,
+        "license": "MIT (CLI/Core JS)",
+        "status": "Active 2026",
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524",
+        "substrate": "Arweave + ArFS",
+        "pricing_per_gb": "9-12 USD",
+        "payment_model": "one-time",
+        "gui_layer": "consumer-friendly file management"
+      }
+    },
+    {
+      "id": "ardrive-cli",
+      "name": "ArDrive CLI",
+      "labels": [
+        "Tool"
+      ],
+      "attributes": {
+        "language": "Node.js / TypeScript",
+        "latestVersion": "4.0.0",
+        "package": "ardrive-cli npm",
+        "audience": "Power users, bulk uploaders, automation",
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "id": "ardrive-web-app",
+      "name": "ArDrive Web App",
+      "labels": [
+        "Application"
+      ],
+      "attributes": {
+        "url": "https://app.ardrive.io",
+        "interface": "Drag-drop GUI",
+        "encryption": "End-to-end supported",
+        "audience": "Non-technical users",
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "id": "ardrive-turbo",
+      "name": "ArDrive Turbo",
+      "labels": [
+        "Service",
+        "Storage"
+      ],
+      "attributes": {
+        "bundler": "ANS-104 bundler",
+        "paymentMethods": [
+          "Credit card via Stripe",
+          "Crypto wallets",
+          "Turbo Credits"
+        ],
+        "costPerMB": "$0.008-0.04",
+        "bundleLimit": "500 MiB per bundle, 250 files",
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524",
+        "protocol": "Arweave bundler + permanent storage",
+        "upload_cost": "~$0.034 per 5MB track",
+        "permanence": "200+ year guarantee via endowment model",
+        "payment_modes": "Fiat (Stripe), Crypto (AR/ETH), Turbo Credits",
+        "sdk_package": "@ardrive/turbo-sdk",
+        "status": "actively maintained (Irys deprecated as of Nov 2025)",
+        "tag_strategy": "App-Name: ZAO-OS, Type: music-track, Artist, Title, Genre, ISRC, Released"
+      }
+    },
+    {
+      "id": "ardrive-core-js",
+      "name": "ArDrive Core JS",
+      "labels": [
+        "Library"
+      ],
+      "attributes": {
+        "purpose": "Backend SDK for CLI and desktop apps",
+        "runtimes": [
+          "Node.js",
+          "Browser with polyfills"
+        ],
+        "features": [
+          "Drive ops",
+          "Folder ops",
+          "File ops",
+          "Encryption",
+          "Turbo integration"
+        ],
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "id": "arweave",
+      "name": "Arweave",
+      "labels": [
+        "Blockchain",
+        "Protocol"
+      ],
+      "attributes": {
+        "consensus": "Proof of Access",
+        "permanence": "200+ years designed storage",
+        "costPerGB": "$6.35-8.00",
+        "storageModel": "Pay-once endowment",
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524",
+        "storage_model": "one-time permanent",
+        "token": "AR",
+        "ar_price_usd_may2026": 1.97,
+        "endowment_model": "200+ years (Kryder+ 0.5%+ decline)",
+        "market_cap_usd_may2026": 129000000,
+        "node_count": "~8000 nodes",
+        "network": "Permaweb, layer 1",
+        "use_case": "Permanent audio + metadata storage",
+        "uri_format": "ar://{txId} or https://arweave.net/{txId}",
+        "graphql_indexing": "Queryable by tags (App-Name, Type, Artist, etc)",
+        "gateway_decentralized": "ar.io Wayfinder for resilient CDN"
+      }
+    },
+    {
+      "id": "ar-io-gateway-network",
+      "name": "ar.io Gateway Network",
+      "labels": [
+        "Network"
+      ],
+      "attributes": {
+        "gatewayCount": "650+ community-operated nodes",
+        "egress_pricing": "x402 protocol, $0.10/GB default",
+        "monetization": "ARIO token rewards + x402 egress fees",
+        "minimumStake": "10000 ARIO to join",
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "id": "wayfinder",
+      "name": "Wayfinder",
+      "labels": [
+        "SDK"
+      ],
+      "attributes": {
+        "purpose": "Decentralized CDN gateway selection",
+        "package": "@ar.io/wayfinder-core",
+        "features": [
+          "Intelligent routing",
+          "Cryptographic verification",
+          "Multi-gateway fallback"
+        ],
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "id": "ans-104-bundling",
+      "name": "ANS-104 Bundling",
+      "labels": [
+        "Standard"
+      ],
+      "attributes": {
+        "purpose": "Bundle multiple data items into single transaction",
+        "maxBundleSize": "500 MiB",
+        "maxDataItems": "250 per bundle",
+        "unbundlingTime": "5-60 minutes",
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "id": "arfs-protocol",
+      "name": "ArFS Protocol",
+      "labels": [
+        "Standard"
+      ],
+      "attributes": {
+        "purpose": "Arweave File System - file hierarchy on permaweb",
+        "features": [
+          "Folder structure",
+          "File versioning",
+          "Metadata",
+          "Access control"
+        ],
+        "standardDoc": "ANS-105 license support",
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "id": "turbo-credits",
+      "name": "Turbo Credits",
+      "labels": [
+        "Currency"
+      ],
+      "attributes": {
+        "purpose": "Prepaid upload credits for ArDrive Turbo",
+        "sharing": "Shareable between team members",
+        "bulkDiscount": "Bulk purchases available",
+        "expiry": "No expiration",
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "id": "x402-protocol",
+      "name": "x402 Protocol",
+      "labels": [
+        "Standard"
+      ],
+      "attributes": {
+        "purpose": "Internet-native micropayments for gateway egress",
+        "networks": [
+          "Base",
+          "Base Sepolia testnet"
+        ],
+        "settlementAsset": "USDC",
+        "operators": "230+ ar.io nodes tested 2025",
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "id": "cost-per-gb-arweave",
+      "name": "Cost Per GB Arweave",
+      "labels": [
+        "PricingMetric"
+      ],
+      "attributes": {
+        "range_usd": "5-12 USD per GB",
+        "timestamp": "May 2026",
+        "model": "one-time payment",
+        "variation_cause": "AR token price volatility + network demand",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "wavewarz-music-master",
+      "name": "WaveWarZ Music Master",
+      "labels": [
+        "DataAsset"
+      ],
+      "attributes": {
+        "typical_size": "50-100 MB per master WAV",
+        "upload_cost_usd": "0.25-1.20 USD",
+        "storage_duration_years": "200+",
+        "renewal_required": false,
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "irys-bundlr",
+      "name": "Irys (Bundlr)",
+      "labels": [
+        "Protocol"
+      ],
+      "attributes": {
+        "function": "bundled uploads to Arweave",
+        "pricing_model": "ANS-104 bundle optimization",
+        "gas_savings": "up to 40-60% vs unbundled",
+        "supports": "Ethereum, Solana, Polygon, Arbitrum",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "bcz-strategies-treasury",
+      "name": "BCZ Strategies Treasury",
+      "labels": [
+        "FundingEntity"
+      ],
+      "attributes": {
+        "parent": "BetterCallZaal",
+        "funding_cadence": "quarterly top-up (estimated)",
+        "storage_target": "ZAO music masters + metadata",
+        "blockchain_home": "Arweave + AR.IO",
+        "recurring_model": "endowment-style with reserves",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "arweave-endowment",
+      "name": "Arweave Endowment",
+      "labels": [
+        "EconomicMechanism"
+      ],
+      "attributes": {
+        "payment_phase": "upfront, portioned to long-term pool",
+        "miner_reward_schedule": "declining as storage costs fall",
+        "storage_cost_assumption": "Kryder+ 0.5-38% annual hardware cost decline",
+        "sustainability_horizon": "200-10000+ years (simulation-dependent)",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "akord",
+      "name": "Akord",
+      "labels": [
+        "Protocol"
+      ],
+      "attributes": {
+        "substrate": "Arweave (permanent) + AWS (temp storage)",
+        "pricing_permanent": "9-12 USD per GB",
+        "pricing_temp": "subscription hybrid",
+        "ui_barrier": "low (simple registration)",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "filecoin",
+      "name": "Filecoin",
+      "labels": [
+        "Protocol"
+      ],
+      "attributes": {
+        "payment_model": "time-based subscription",
+        "cost_annual": "200-1000 USD per TB per year",
+        "storage_duration": "renewable contracts",
+        "renewal_required": true,
+        "ideal_use": "mutable datasets, active management",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "ipfs-pinning-pinata",
+      "name": "IPFS Pinning (Pinata)",
+      "labels": [
+        "Protocol"
+      ],
+      "attributes": {
+        "cost_monthly": "5-20 USD per month (100MB-1GB)",
+        "storage_duration": "requires active renewal",
+        "abandonment_risk": "high if subscription lapses",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "music-master-archive-roi",
+      "name": "Music Master Archive ROI",
+      "labels": [
+        "CostComparison"
+      ],
+      "attributes": {
+        "arweave_10yr_total": "5-12 USD (one-time)",
+        "filecoin_10yr_total": "2000-10000 USD (recurring, avg 200-1000/TB/yr)",
+        "ipfs_pinning_10yr_total": "600-2400 USD (12x 5-20/month)",
+        "breakeven_horizon_months": "80-120 months (Arweave cheaper long-term)",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "ar-io",
+      "name": "AR.IO",
+      "labels": [
+        "Protocol"
+      ],
+      "attributes": {
+        "role": "AR.IO gateways + node infrastructure",
+        "token": "IO",
+        "pricing_api": "via ar.io node pricing endpoint",
+        "integration_target": "BCZ + ZAO music distribution",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "zabal-token-reserve",
+      "name": "ZABAL Token Reserve",
+      "labels": [
+        "FundingEntity"
+      ],
+      "attributes": {
+        "parent": "ZAO Ecosystem",
+        "role": "backing ArDrive/Arweave uploads for music",
+        "cadence": "periodic reserve deployment",
+        "scalability": "per-submission allocation possible",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "id": "distrokid",
+      "name": "DistroKid",
+      "labels": [
+        "DSP"
+      ],
+      "attributes": {
+        "role": "Music distribution service (centralized)",
+        "isrc_assignment": "automatic, post-upload pre-delivery",
+        "isrc_timing": "DistroKid has ISRC Agency appointment, assigns free ISRCs ~4 weeks before delivery date",
+        "metadata_source": "DistroKid upload form (artist name, title, genre, composer, publisher, explicit flag)",
+        "api_access": "JWT token via browser DevTools Authorization header",
+        "musician_plus_cost": "$44.99/year",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "id": "0xsplits",
+      "name": "0xSplits",
+      "labels": [
+        "SmartContract"
+      ],
+      "attributes": {
+        "chain": "Base (EVM-compatible L2)",
+        "contract_type": "Immutable split contract (ERC-1155 payoutRecipient)",
+        "sdk_package": "@0xsplits/splits-sdk v6.4.1",
+        "split_model": "80% artist, 10% treasury (ZAO DAO), 10% curator",
+        "deployment_timing": "AFTER Zora mint, so NFT revenue auto-flows to split address",
+        "distribution_method": "pull-based (recipients withdraw from contract)",
+        "base_native_support": "full",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "id": "zora_1155",
+      "name": "Zora Protocol ERC-1155",
+      "labels": [
+        "NFT"
+      ],
+      "attributes": {
+        "chain": "Base",
+        "payout_recipient": "split contract address (0xSplits)",
+        "metadata_uri": "ar://{metadata-txId} (Arweave-hosted JSON)",
+        "animation_url": "ar://{audio-txId} (Arweave audio stream)",
+        "deployment_cost": "~$1.05 total via Zora SDK",
+        "mint_price": "configurable per release (e.g., 0.001 ETH)",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "id": "bmi_registry",
+      "name": "BMI (Broadcast Music Inc)",
+      "labels": [
+        "Rights"
+      ],
+      "attributes": {
+        "registration_requirement": "ISRC (from DistroKid) + canonical composer/publisher",
+        "manual_process": "submit via BMI portal or integrated publisher intake",
+        "timing": "post-ISRC assignment, pre-or-concurrent with DSP delivery",
+        "linked_to": "ISRC code (unique per track)",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "id": "ddex_ern",
+      "name": "DDEX ERN (Electronic Release Notification)",
+      "labels": [
+        "Metadata"
+      ],
+      "attributes": {
+        "format": "XML standard for music metadata + rights",
+        "required_fields": "UPC, ISRC per track, title, artist, composer, publisher, territories, ℗ © statements",
+        "flow": "DistroKid generates ERN from upload form -> DSP ingestion",
+        "related_isrc": "ISRC embedded in ERN as track identifier",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "id": "zao_music_flow",
+      "name": "ZAO Music Distribution Flow",
+      "labels": [
+        "Process"
+      ],
+      "attributes": {
+        "phase_1": "Artist uploads to ZAO OS form (title, audio, cover, composer, publisher)",
+        "phase_2": "ArDrive Turbo upload (fiat or crypto), returns ar:// URIs",
+        "phase_3": "Zora 1155 mint on Base with ar:// metadata URI, payoutRecipient = split address",
+        "phase_4": "DistroKid API call with ISRC (post-upload, pre-delivery)",
+        "phase_5": "0xSplits deploy with artist/treasury/curator addresses + percentages",
+        "phase_6": "DistroKid push to DSPs (concurrent with split deployment)",
+        "phase_7": "BMI registration (manual, using ISRC from step 4)",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "id": "metadata_layers",
+      "name": "Three-Layer Metadata Stack",
+      "labels": [
+        "Architecture"
+      ],
+      "attributes": {
+        "layer_1_arweave": "permanent audio master + tags (App-Name, Artist, ISRC, Genre, Duration)",
+        "layer_2_base_onchain": "ERC-1155 tokenURI -> ar:// JSON (metadata), 0xSplits contract addresses",
+        "layer_3_dsp_centralized": "DDEX ERN in DistroKid, then replicated across Spotify/Apple/YouTube",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "id": "entity_ardrive_turbo_sdk",
+      "name": "ArDrive Turbo SDK",
+      "labels": [
+        "Upload Tool"
+      ],
+      "attributes": {
+        "status": "active",
+        "license": "MIT",
+        "bundling_protocol": "ANS-104",
+        "cost_per_5mb": "$0.04",
+        "payment_methods": [
+          "AR token",
+          "ETH",
+          "SOL",
+          "MATIC",
+          "fiat/Stripe"
+        ],
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "id": "entity_ans104_bundling",
+      "name": "ANS-104 Bundled Transactions",
+      "labels": [
+        "Upload Optimization"
+      ],
+      "attributes": {
+        "files_per_bundle": "unlimited",
+        "cost_savings_vs_direct": "20-30%",
+        "finality_time": "fast",
+        "manifest_support": true,
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "id": "entity_music_metadata_schema",
+      "name": "Music Master Metadata Schema",
+      "labels": [
+        "Metadata Standard"
+      ],
+      "attributes": {
+        "isrc_length": 12,
+        "iswc_format": "T-NNNNNNNNN-C",
+        "bpm_range": "30-300",
+        "keys_supported": [
+          "C",
+          "C#",
+          "D",
+          "D#",
+          "E",
+          "F",
+          "F#",
+          "G",
+          "G#",
+          "A",
+          "A#",
+          "B",
+          "minor_variants"
+        ],
+        "frequency_bands": [
+          "bass_20_400hz",
+          "mid_400hz_4khz",
+          "treble_4khz_14khz"
+        ],
+        "license_types": [
+          "UDL",
+          "CC-BY",
+          "CC-BY-SA",
+          "proprietary"
+        ],
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "id": "entity_isrc_codes",
+      "name": "ISRC Codes (International Standard Recording Code)",
+      "labels": [
+        "Music Identifier"
+      ],
+      "attributes": {
+        "format": "CC-XXX-YY-NNNNN",
+        "length": 12,
+        "issuer": "IFPI",
+        "required_by_dsps": [
+          "Spotify",
+          "Apple Music",
+          "Tidal",
+          "Amazon Music",
+          "YouTube Music"
+        ],
+        "reusability": "never_across_tracks",
+        "source": "distributor_free_or_usisrc_$95",
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "id": "entity_iswc_codes",
+      "name": "ISWC Codes (International Standard Musical Work Code)",
+      "labels": [
+        "Music Identifier"
+      ],
+      "attributes": {
+        "format": "T-NNNNNNNNN-C",
+        "length": 11,
+        "issuer": "CISAC / US: ASCAP",
+        "pro_coverage": [
+          "ASCAP",
+          "BMI",
+          "SESAC"
+        ],
+        "reusability": "shared_across_versions",
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "id": "entity_arweave_graphql_indexing",
+      "name": "Arweave GraphQL Indexing",
+      "labels": [
+        "Discovery Layer"
+      ],
+      "attributes": {
+        "endpoints": [
+          "https://arweave.net/graphql",
+          "https://arweave-search.goldsky.com/graphql"
+        ],
+        "query_language": "GraphQL",
+        "tag_searchable": true,
+        "sort_options": [
+          "HEIGHT_DESC",
+          "HEIGHT_ASC"
+        ],
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "id": "entity_ar_io_wayfinder",
+      "name": "ar.io Wayfinder CDN",
+      "labels": [
+        "Gateway Network"
+      ],
+      "attributes": {
+        "package": "@ar.io/wayfinder-core",
+        "version": "1.3.0+",
+        "delivery": "multi-gateway routing",
+        "verification": "cryptographic",
+        "framework_support": [
+          "React",
+          "Node.js",
+          "CLI"
+        ],
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "id": "entity_arweave_permaweb_url",
+      "name": "Arweave Permaweb URLs",
+      "labels": [
+        "Permanent Link"
+      ],
+      "attributes": {
+        "url_formats": [
+          "https://arweave.net/{txId}",
+          "ar://{txId}",
+          "https://{gateway}/{txId}"
+        ],
+        "durability": "200+_years",
+        "playable": true,
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "id": "entity_zao_release_folder_structure",
+      "name": "ZAO Release Folder Convention",
+      "labels": [
+        "Organization"
+      ],
+      "attributes": {
+        "root": "/artist-name/release-slug/",
+        "master_path": "/artist-name/release-slug/master.wav",
+        "stems_path": "/artist-name/release-slug/stems/{stem-name}.wav",
+        "cover_path": "/artist-name/release-slug/cover.jpg",
+        "metadata_path": "/artist-name/release-slug/metadata.json",
+        "example": "/Zaal/wave-warZ-ep-v1/master.wav",
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
       }
     }
   ],
@@ -6459,6 +7129,795 @@
         "supply": "0/1 each",
         "admin": "Governance Council (via Configurator delegation)",
         "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "ardrive",
+      "to": "arweave",
+      "type": "buildsOn",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ardrive-cli",
+      "to": "ardrive-core-js",
+      "type": "uses",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ardrive-web-app",
+      "to": "ardrive-core-js",
+      "type": "uses",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ardrive-turbo",
+      "to": "ans-104-bundling",
+      "type": "implements",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ardrive-cli",
+      "to": "ardrive-turbo",
+      "type": "optionallyUses",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ardrive-web-app",
+      "to": "ardrive-turbo",
+      "type": "defaultBackend",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ardrive",
+      "to": "arfs-protocol",
+      "type": "implements",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ar-io-gateway-network",
+      "to": "arweave",
+      "type": "servesData",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "wayfinder",
+      "to": "ar-io-gateway-network",
+      "type": "routes",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ar-io-gateway-network",
+      "to": "x402-protocol",
+      "type": "supportsPaymentVia",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ardrive-turbo",
+      "to": "turbo-credits",
+      "type": "acceptsPaymentIn",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ardrive-cli",
+      "to": "turbo-credits",
+      "type": "canShareVia",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ans-104-bundling",
+      "to": "arweave",
+      "type": "submitsTxTo",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ardrive-core-js",
+      "to": "ans-104-bundling",
+      "type": "uses",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "ardrive",
+      "to": "ar-io-gateway-network",
+      "type": "streamsFrom",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-ardrive-cli-vs-app-20260524"
+      }
+    },
+    {
+      "from": "bcz-strategies-treasury",
+      "to": "arweave",
+      "type": "funds permanent music archive uploads",
+      "properties": {
+        "cadence": "quarterly",
+        "primary_asset": "music masters",
+        "fact": "funds permanent music archive uploads",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "arweave",
+      "to": "arweave-endowment",
+      "type": "implements economic model for perpetual storage",
+      "properties": {
+        "mechanism": "Kryder+ assumption, miner incentives",
+        "fact": "implements economic model for perpetual storage",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "wavewarz-music-master",
+      "to": "ardrive",
+      "type": "stored permanently via consumer interface",
+      "properties": {
+        "cost_per_file": "0.25-1.20 USD",
+        "fact": "stored permanently via consumer interface",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "irys",
+      "to": "arweave",
+      "type": "bundles multiple uploads for gas optimization",
+      "properties": {
+        "savings": "40-60% per-tx overhead reduction",
+        "fact": "bundles multiple uploads for gas optimization",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "ardrive",
+      "to": "arweave",
+      "type": "built on top of network",
+      "properties": {
+        "layer": "GUI + file system (ArFS)",
+        "fact": "built on top of network",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "akord",
+      "to": "arweave",
+      "type": "permanent storage substrate",
+      "properties": {
+        "competing_feature": "subscription model hybrid",
+        "fact": "permanent storage substrate",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "zabal-token-reserve",
+      "to": "cost-per-gb-arweave",
+      "type": "allocates budget per quarterly upload batch",
+      "properties": {
+        "rate_lock": "no (dynamic AR pricing)",
+        "fact": "allocates budget per quarterly upload batch",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "music-master-archive-roi",
+      "to": "filecoin",
+      "type": "cost-benefit analysis shows Arweave cheaper 10yr+",
+      "properties": {
+        "decision_point": "180 months of storage",
+        "fact": "cost-benefit analysis shows Arweave cheaper 10yr+",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "ar-io",
+      "to": "arweave",
+      "type": "gateway + node infrastructure for access",
+      "properties": {
+        "role": "read-path optimization",
+        "fact": "gateway + node infrastructure for access",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "bcz-strategies-treasury",
+      "to": "zabal-token-reserve",
+      "type": "may allocate ZABAL for Arweave uploads",
+      "properties": {
+        "model": "token-denominated treasury hybrid",
+        "fact": "may allocate ZABAL for Arweave uploads",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "filecoin",
+      "to": "cost-per-gb-arweave",
+      "type": "competitor on long-horizon permanent storage",
+      "properties": {
+        "edge": "Arweave wins 10yr+, Filecoin for mutable data",
+        "fact": "competitor on long-horizon permanent storage",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "ipfs-pinning",
+      "to": "cost-per-gb-arweave",
+      "type": "competitor on low-touch, high-maintenance model",
+      "properties": {
+        "risk": "abandonment if subscription lapses",
+        "fact": "competitor on low-touch, high-maintenance model",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "arweave-endowment",
+      "to": "music-master-archive-roi",
+      "type": "enables 200-year guarantee, reducing long-term sponsor burden",
+      "properties": {
+        "sustainability": "Kryder+ assumption holds",
+        "fact": "enables 200-year guarantee, reducing long-term sponsor burden",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "wavewarz-music-master",
+      "to": "arweave-endowment",
+      "type": "participates in endowment fund as stored asset",
+      "properties": {
+        "benefit": "perpetual care without renewal",
+        "fact": "participates in endowment fund as stored asset",
+        "_source": "zabal-dispatch-ardrive-permastorage-cost-and-funding-20260524"
+      }
+    },
+    {
+      "from": "distrokid",
+      "to": "ardrive-turbo",
+      "type": "precedes_workflow",
+      "properties": {
+        "direction": "sequential",
+        "description": "ISRC assignment happens post-upload to DistroKid, but Arweave upload happens before DistroKid delivery",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "ardrive-turbo",
+      "to": "arweave",
+      "type": "uploads_to",
+      "properties": {
+        "method": "@ardrive/turbo-sdk",
+        "output": "ar:// URIs for audio + metadata",
+        "permanence": "200+ years",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "arweave",
+      "to": "zora-1155",
+      "type": "metadata_source_for",
+      "properties": {
+        "uri_reference": "ar://{metadata-txId} in tokenURI",
+        "animation_url": "ar://{audio-txId}",
+        "immutability": "Arweave permanence guarantees NFT metadata forever",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "zora-1155",
+      "to": "0xsplits",
+      "type": "routes_revenue_to",
+      "properties": {
+        "mechanism": "payoutRecipient = split contract address",
+        "timing": "split MUST be deployed before NFT mint",
+        "revenue_flow": "all primary + secondary sales -> split address",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "0xsplits",
+      "to": "base-chain",
+      "type": "deployed_on",
+      "properties": {
+        "contract_type": "immutable split",
+        "sdk": "@0xsplits/splits-sdk v6.4.1",
+        "recipients": [
+          "artist_wallet",
+          "zao_treasury",
+          "curator_wallet"
+        ],
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "distrokid",
+      "to": "bmi-registry",
+      "type": "provides_isrc_to",
+      "properties": {
+        "isrc_timing": "assigned post-upload, available ~4 weeks pre-delivery",
+        "isrc_retrieval": "DistroKid dashboard or API (JWT auth)",
+        "bmi_requirement": "ISRC + composer/publisher from DistroKid",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "bmi-registry",
+      "to": "ddex-ern",
+      "type": "referenced_in",
+      "properties": {
+        "field": "ISRC code per track",
+        "purpose": "rights tracking, performance royalty registration",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "ddex-ern",
+      "to": "distrokid",
+      "type": "ingested_by",
+      "properties": {
+        "direction": "DistroKid generates ERN from upload form, sends to DSPs",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "zao-music-flow",
+      "to": "ardrive-turbo",
+      "type": "phase_2_step",
+      "properties": {
+        "phase": "2",
+        "action": "Upload audio + metadata to Arweave",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "zao-music-flow",
+      "to": "zora-1155",
+      "type": "phase_3_step",
+      "properties": {
+        "phase": "3",
+        "action": "Deploy NFT with ar:// metadata URI",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "zao-music-flow",
+      "to": "distrokid",
+      "type": "phase_4_step",
+      "properties": {
+        "phase": "4",
+        "action": "Submit release to DistroKid API",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "zao-music-flow",
+      "to": "0xsplits",
+      "type": "phase_5_step",
+      "properties": {
+        "phase": "5",
+        "action": "Deploy 0xSplits contract with creator fund",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "zao-music-flow",
+      "to": "bmi-registry",
+      "type": "phase_7_step",
+      "properties": {
+        "phase": "7",
+        "action": "Manual BMI registration with ISRC",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "metadata-layers",
+      "to": "arweave",
+      "type": "contains_layer_1",
+      "properties": {
+        "layer": "1",
+        "content": "permanent audio master + tags",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "metadata-layers",
+      "to": "base-chain",
+      "type": "contains_layer_2",
+      "properties": {
+        "layer": "2",
+        "content": "ERC-1155 NFT + 0xSplits contracts",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "metadata-layers",
+      "to": "distrokid",
+      "type": "contains_layer_3",
+      "properties": {
+        "layer": "3",
+        "content": "DDEX ERN to DSP networks",
+        "_source": "zabal-dispatch-ardrive-permastorage-integration-with-distrokid-20260524"
+      }
+    },
+    {
+      "from": "entity-ardrive-turbo-sdk",
+      "to": "entity-ans104-bundling",
+      "type": "uses",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "from": "entity-ardrive-turbo-sdk",
+      "to": "entity-arweave-permaweb-url",
+      "type": "produces",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "from": "entity-music-metadata-schema",
+      "to": "entity-isrc-codes",
+      "type": "contains",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "from": "entity-music-metadata-schema",
+      "to": "entity-iswc-codes",
+      "type": "contains",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "from": "entity-zao-release-folder-structure",
+      "to": "entity-music-metadata-schema",
+      "type": "references",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "from": "entity-arweave-permaweb-url",
+      "to": "entity-ar-io-wayfinder",
+      "type": "serves_via",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "from": "entity-arweave-graphql-indexing",
+      "to": "entity-arweave-permaweb-url",
+      "type": "discovers",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "from": "entity-zao-release-folder-structure",
+      "to": "entity-ardrive-turbo-sdk",
+      "type": "uploads_via",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "from": "entity-isrc-codes",
+      "to": "entity-zao-release-folder-structure",
+      "type": "tags",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "from": "entity-iswc-codes",
+      "to": "entity-zao-release-folder-structure",
+      "type": "tags",
+      "properties": {
+        "_source": "zabal-dispatch-ardrive-permastorage-music-master-pipeline-20260524"
+      }
+    },
+    {
+      "from": "zabal-games-s1-finisher-hat",
+      "to": "hat-tree-structure-design-zabal-games-s1",
+      "type": "is_part_of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "zabal-games-s1-champion-hat",
+      "to": "hat-tree-structure-design-zabal-games-s1",
+      "type": "is_part_of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "hat-tree-structure-design-zabal-games-s1",
+      "to": "hats-protocol-base-deployment",
+      "type": "uses",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "zabal-games-s1-finisher-hat",
+      "to": "hat-metadata-schema",
+      "type": "implements",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "zabal-games-s1-champion-hat",
+      "to": "hat-metadata-schema",
+      "type": "implements",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "hat-metadata-schema",
+      "to": "base-network-l2-fees",
+      "type": "incurs_cost_via",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "wavewarz-base-settlement-zabal-finals",
+      "to": "zabal-games-s1-finisher-hat",
+      "type": "triggers_issuance_of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "wavewarz-base-settlement-zabal-finals",
+      "to": "zabal-games-s1-champion-hat",
+      "type": "triggers_issuance_of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "finalist-eligibility-snapshot",
+      "to": "wavewarz-base-settlement-zabal-finals",
+      "type": "feeds_data_to",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "finalist-eligibility-snapshot",
+      "to": "zabal-games-s1-finisher-hat",
+      "type": "determines_recipients_of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "finalist-eligibility-snapshot",
+      "to": "zabal-games-s1-champion-hat",
+      "type": "filters_recipients_of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "poidh-proof-integration-zabal-games",
+      "to": "finalist-eligibility-snapshot",
+      "type": "could_feed_data_to",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "june-tech-delivery-hats-wavewarz",
+      "to": "hat-tree-structure-design-zabal-games-s1",
+      "type": "creates",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "july-mainnet-smoke-test",
+      "to": "zabal-games-s1-finisher-hat",
+      "type": "validates",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "july-mainnet-smoke-test",
+      "to": "zabal-games-s1-champion-hat",
+      "type": "validates",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "august-finals-settlement-execution",
+      "to": "wavewarz-base-settlement-zabal-finals",
+      "type": "executes",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "august-finals-settlement-execution",
+      "to": "zabal-games-s1-finisher-hat",
+      "type": "distributes",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "august-finals-settlement-execution",
+      "to": "zabal-games-s1-champion-hat",
+      "type": "distributes",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "hat-tree-structure-design-zabal-games-s1",
+      "to": "zao-governance-hat-tree-optimism",
+      "type": "is_separate_from",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "hats-protocol-base-deployment",
+      "to": "base-network-l2-fees",
+      "type": "operates_on_chain_with_fees",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "from": "hats-protocol",
+      "to": "zao-tree-226",
+      "type": "Hosts",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "zao-tree-226",
+      "to": "hat-top-hat",
+      "type": "Contains top hat",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "hat-top-hat",
+      "to": "hat-configurator",
+      "type": "Parent of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "hat-configurator",
+      "to": "hat-governance-council",
+      "type": "Parent of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "hat-configurator",
+      "to": "hat-council-members",
+      "type": "Parent of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "hat-governance-council",
+      "to": "hat-coc-concertz",
+      "type": "Parent of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "hat-governance-council",
+      "to": "hat-wavewarz-dao",
+      "type": "Parent of",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "zao-os-gating",
+      "to": "hats-protocol",
+      "type": "Implements access control via",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "zao-hats-api",
+      "to": "zao-os-gating",
+      "type": "Uses",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "zao-hats-api",
+      "to": "hat-top-hat",
+      "type": "Checks hat ownership for",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "zao-hats-api",
+      "to": "hat-governance-council",
+      "type": "Checks hat ownership for",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "zao-os-gating",
+      "to": "zao-telegram-bot",
+      "type": "Gates admin access in",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "wavewarz-finals-mechanic",
+      "to": "hat-governance-council",
+      "type": "Uses Respect snapshot (gated by Council Members hat)",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "hat-council-members",
+      "to": "wavewarz-finals-mechanic",
+      "type": "Eligible for pre-funded positions in",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "from": "zao-tree-226",
+      "to": "wavewarz-finals-mechanic",
+      "type": "Separate from (governance on Optimism, Finals market on Base)",
+      "properties": {
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
       }
     }
   ]
