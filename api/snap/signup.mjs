@@ -192,6 +192,7 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Accept',
+  'Vary': 'Accept',
 };
 
 export default async function handler(req) {
@@ -210,7 +211,7 @@ export default async function handler(req) {
         headers: {
           ...CORS_HEADERS,
           'Content-Type': SNAP_MEDIA_TYPE + '; charset=utf-8',
-          'Cache-Control': 'public, max-age=60, s-maxage=60',
+          'Cache-Control': 'no-store',
         },
       });
     }
@@ -218,7 +219,7 @@ export default async function handler(req) {
       headers: {
         ...CORS_HEADERS,
         'Content-Type': 'text/html; charset=utf-8',
-        'Cache-Control': 'public, max-age=300, s-maxage=300',
+        'Cache-Control': 'no-store',
       },
     });
   }
