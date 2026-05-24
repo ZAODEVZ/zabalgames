@@ -452,6 +452,47 @@ const score = await bonfire.getScore({ address: '0x...' });
 
 ---
 
+## Building Farcaster Snaps (what works in 2026)
+
+If your build involves a Farcaster Snap, save yourself the trap I fell into when building this site's snap endpoint. **The Frames v2 protocol (`fc:frame:button:1`, `fc:frame:button:2`, etc) is deprecated.** Current Farcaster clients ignore those metas and render the cast as a plain link card.
+
+What works today:
+
+| Pattern | When to use | How |
+|---------|-------------|-----|
+| **`fc:miniapp` meta tag** (single JSON in one meta) | Any page you want to embed as a Farcaster Mini App. Cast unfurl shows a "Sign up" launch button -> opens your URL in Farcaster's webview. | Add `<meta name="fc:miniapp" content='{"version":"1","imageUrl":"...","button":{"title":"...","action":{"type":"launch_miniapp","name":"...","url":"...","splashImageUrl":"...","splashBackgroundColor":"#070709"}}}'>` to your HTML head. Also add `fc:frame` with the same JSON for back-compat. |
+| **Snap JSON via content negotiation** | In-cast interactive UI (poll buttons, forms, multi-page flow) without opening a webview. | Server responds with `Content-Type: application/vnd.farcaster.snap+json` when the request `Accept` header includes the same MIME type. Body = `@farcaster/snap` v2.0 schema: `{version: "2.0", theme: {...}, ui: {root, elements: {...}}}`. Plus `Vary: Accept` header so the CDN caches per-format. |
+| **zlank.online template (no-code)** | Fastest path - if you can describe the Snap as blocks (header, poll, link, share, chart), you do not need to write code. | Make or pick a template at `zlank.online/builder`, publish, get `/s/[uuid]` URL. Cast that URL. Farcaster auto-recognizes zlank-hosted Snaps. |
+
+**Critical detail:** Farcaster's caster does NOT probe arbitrary URLs with `Accept: application/vnd.farcaster.snap+json`. Self-hosted Snaps at custom paths (e.g. `yoursite.com/api/snap/foo`) fall back to the OG link card unless the URL is on a known Snap host's allowlist. **zlank-hosted Snaps work because they sit at `zlank.online/s/[uuid]` - a recognized pattern.** For self-hosted in-cast Snaps, use `fc:miniapp` + launch the mini app instead, OR host through zlank.
+
+### Snap-spec quick reference
+
+- **Spec versions:** `1.0` (legacy) and `2.0` (current). Use `2.0`.
+- **MEDIA_TYPE:** `application/vnd.farcaster.snap+json`
+- **Max elements:** 64 total in `ui.elements`, max 7 children on root, max 6 per other container, max 4 levels of nesting depth
+- **Components (16):** badge, button, icon, image, item, progress, separator, text, bar_chart, cell_grid, stack, item_group, input, slider, switch, toggle_group
+- **Actions (10):** `submit` (POST back to your server), `open_url` (external), `open_snap` (inline), `open_mini_app`, `view_cast`, `view_profile`, `compose_cast`, `view_token`, `send_token`, `swap_token`
+- **JFS signature verification:** use `@farcaster/snap/server`'s `parseRequest(body)` for production. Skips replay + signature + origin checks. Optional `skipJFSVerification: true` for dev.
+- **Submit POST payload schema:** `{fid?, inputs: Record<string, string|number|boolean|string[]>, timestamp, audience, user: {fid}, surface: {type: "cast", cast: {hash, author: {fid}}} | {type: "standalone"}}`
+- **Spec source:** `@farcaster/snap` npm package, see `node_modules/@farcaster/snap/llms.txt` for the full schema docs.
+
+### Hosting Snaps
+
+Two real options:
+
+1. **Zlank template (recommended for most cases).** Open-source no-code builder, free hosting at `zlank.online/s/[uuid]`. 14 block types, polls, charts, multi-page, KV-backed vote tallies. Submit a partner template to `bettercallzaal/zlank` to make your Snap reusable by others.
+2. **Self-host as a serverless function.** Use Vercel Edge functions (no SDK install needed for the basic shape) or Node functions (install `@farcaster/snap` for `parseRequest` JFS verification). Return Snap JSON on snap+json Accept, HTML fallback otherwise. Add `Vary: Accept` for CDN sanity. See `zabalgames.com/docs/snap-design.md` for the working pattern + the `/api/snap/signup` reference implementation.
+
+### Don't
+
+- Don't ship `fc:frame:button:1` style Frames v2 metas - deprecated, ignored.
+- Don't hand-roll snap JSON without validating against the SDK schema (max-element, max-depth, max-children traps).
+- Don't forget `Vary: Accept` when content-negotiating, or the CDN serves the wrong body to half your visitors.
+- Don't ship without a fallback HTML for browsers + older Farcaster clients - your Snap URL also needs to be human-loadable.
+
+---
+
 ## What "good" looks like (quality bar examples)
 
 Voters apply the rubric from Part "What good looks like" (above). Concretely:
