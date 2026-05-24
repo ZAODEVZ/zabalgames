@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finals Live - The Market View - ZABAL Games</title>
+  <meta name="description" content="Live market view for the ZABAL Games Finals on WaveWarZ-Base. Pre-launch scaffold; mainnet by August.">
+  <link rel="canonical" href="https://zabalgames.com/finals/live">
+  <meta property="og:title" content="Finals Live - The Market View - ZABAL Games">
+  <meta property="og:description" content="Pre-launch scaffold for the August Finals settlement surface.">
+  <meta property="og:url" content="https://zabalgames.com/finals/live">
+  <meta property="og:image" content="https://zabalgames.com/assets/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .status-banner {
+      background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,61,110,0.06));
+      border: 1px solid rgba(255,107,53,0.4);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .status-banner h2 { margin: 0 0 0.4rem; color: var(--orange); font-family: 'Syne', sans-serif; }
+    .status-banner p { color: var(--text-muted); font-size: 0.95rem; margin: 0; }
+    .market-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; margin-bottom: 1rem;
+    }
+    .market-cell {
+      padding: 1rem; border-right: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .market-cell:last-child { border-right: 0; }
+    .market-label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+    .market-value { font-size: 1.2rem; color: var(--text); font-weight: 700; }
+    .market-value.muted { color: var(--text-dim); }
+    .placeholder-row {
+      background: var(--surface); border: 1px dashed var(--border-hover);
+      border-radius: 10px; padding: 1.2rem;
+      margin-bottom: 0.8rem;
+      display: grid; grid-template-columns: 60px 1fr 1fr 100px;
+      gap: 1rem; align-items: center;
+    }
+    .placeholder-rank { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--text-dim); }
+    .placeholder-name { color: var(--text-muted); font-size: 0.92rem; }
+    .placeholder-name-label { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.2rem; }
+    .placeholder-bars { display: flex; gap: 4px; height: 32px; align-items: flex-end; }
+    .placeholder-bar { flex: 1; background: var(--border); border-radius: 2px 2px 0 0; }
+    .placeholder-trade-btn {
+      background: var(--surface-2); color: var(--text-dim);
+      border: 1px solid var(--border); padding: 0.5rem 1rem;
+      border-radius: 6px; font-family: inherit; font-size: 0.85rem;
+      cursor: not-allowed;
+    }
+    @media (max-width: 640px) {
+      .market-row { grid-template-columns: repeat(2, 1fr); }
+      .market-cell:nth-child(2) { border-right: 0; }
+      .market-cell:nth-child(1), .market-cell:nth-child(2) { border-bottom: 1px solid var(--border); }
+      .placeholder-row { grid-template-columns: 50px 1fr; }
+      .placeholder-bars, .placeholder-trade-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/lead.html">Lead</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/research.html">Research</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/about.html">About</a>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 1rem;">
+    <div class="hero-eyebrow">Finals Live - The Market View</div>
+    <h1>The <span class="accent">Battle Floor</span>.</h1>
+    <p class="hero-sub">
+      Real-time trade view for the August Finals on WaveWarZ-Base. Wallets trade on each finalist; smart contract settles placement at T+72h. This page is the scaffold - real data lights up when WaveWarZ-Base goes mainnet (per <a href="/docs/research/720-wavewarz-finals-mechanic.md">Doc 720</a>) and a builder adopts project <a href="/projects.html">#09</a>.
+    </p>
+  </header>
+
+  <div class="status-banner">
+    <h2>Pre-launch</h2>
+    <p>Market opens for the August Finals window. Smart contracts ship in July, deploy on Base mainnet, smoke-test, then go live for the real Finals in August. Status pulls live below once the contract address is wired.</p>
+  </div>
+
+  <section class="section">
+    <h2>Market state</h2>
+    <div class="market-row">
+      <div class="market-cell">
+        <div class="market-label">Status</div>
+        <div class="market-value muted">Awaiting deploy</div>
+      </div>
+      <div class="market-cell">
+        <div class="market-label">Window</div>
+        <div class="market-value muted">T+0 to T+72h</div>
+      </div>
+      <div class="market-cell">
+        <div class="market-label">Finalists</div>
+        <div class="market-value muted">TBD</div>
+      </div>
+      <div class="market-cell">
+        <div class="market-label">Total volume</div>
+        <div class="market-value muted">--</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Battles</h2>
+    <p>Each finalist build is one battle entry. Volume + win rate at T+72h decides placement. Respect-holders get baseline positions; the open market trades on top.</p>
+
+    <div class="placeholder-row">
+      <div class="placeholder-rank">--</div>
+      <div>
+        <div class="placeholder-name-label">Finalist 1</div>
+        <div class="placeholder-name">Slot opens when finalists are selected from July</div>
+      </div>
+      <div class="placeholder-bars">
+        <div class="placeholder-bar" style="height: 60%;"></div>
+        <div class="placeholder-bar" style="height: 40%;"></div>
+        <div class="placeholder-bar" style="height: 80%;"></div>
+        <div class="placeholder-bar" style="height: 30%;"></div>
+      </div>
+      <button class="placeholder-trade-btn" disabled>Trade</button>
+    </div>
+
+    <div class="placeholder-row">
+      <div class="placeholder-rank">--</div>
+      <div>
+        <div class="placeholder-name-label">Finalist 2</div>
+        <div class="placeholder-name">Slot opens when finalists are selected from July</div>
+      </div>
+      <div class="placeholder-bars">
+        <div class="placeholder-bar" style="height: 45%;"></div>
+        <div class="placeholder-bar" style="height: 70%;"></div>
+        <div class="placeholder-bar" style="height: 55%;"></div>
+        <div class="placeholder-bar" style="height: 90%;"></div>
+      </div>
+      <button class="placeholder-trade-btn" disabled>Trade</button>
+    </div>
+
+    <div class="placeholder-row">
+      <div class="placeholder-rank">--</div>
+      <div>
+        <div class="placeholder-name-label">Finalist 3</div>
+        <div class="placeholder-name">Slot opens when finalists are selected from July</div>
+      </div>
+      <div class="placeholder-bars">
+        <div class="placeholder-bar" style="height: 35%;"></div>
+        <div class="placeholder-bar" style="height: 50%;"></div>
+        <div class="placeholder-bar" style="height: 25%;"></div>
+        <div class="placeholder-bar" style="height: 65%;"></div>
+      </div>
+      <button class="placeholder-trade-btn" disabled>Trade</button>
+    </div>
+
+    <p style="margin-top: 1.2rem; font-size: 0.85rem; color: var(--text-muted);">
+      <strong>For builders:</strong> this page is project <a href="/projects.html">#09</a> - "Wire WaveWarZ-Base into the Finals settlement surface". Adopt it in your July submission. Spec in <a href="/docs/research/720-wavewarz-finals-mechanic.md">Doc 720</a>. The full data plug-in points are marked with TODO comments in the page source.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>How to wire this up (for the project #09 builder)</h2>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--orange);">DATA TODO 1</div>
+      <h3>Read battle state from WaveWarZ-Base</h3>
+      <p>Smart contract address (once deployed): <code>0xTODO_WAVEWARZ_BASE</code>. Read methods needed: <code>getAllBattles()</code>, <code>getBattleVolume(battleId)</code>, <code>getBattlePositions(battleId)</code>. Sam + Arthur own the contract surface; spec lands in June per Doc 711 action items.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--cyan);">DATA TODO 2</div>
+      <h3>Respect-holder snapshot lookup</h3>
+      <p>The pre-funded baseline positions are minted at T+0. The page should display each Respect-holder's current position per finalist. Hats Protocol role check (Hats contract on Base: <code>0x3bc1A0Ad72417f2d411118085256fC53CBdDd137</code>) gives the eligibility set. ORDAO + Iman own the snapshot mechanism spec.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--pink);">DATA TODO 3</div>
+      <h3>Wire the Trade buttons to WaveWarZ-Base writes</h3>
+      <p>Each Trade button should open a wallet flow that calls <code>buyPosition(battleId, side, amount)</code> on the WaveWarZ-Base contract. Use viem + wagmi (already part of the ZAO stack baseline). Show position confirmation + tx hash on success.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--gold);">UI TODO 1</div>
+      <h3>Real-time market data + WebSocket</h3>
+      <p>The placeholder bars + numbers should pull live. Either poll the contract every ~10s, or subscribe to WaveWarZ-Base events via a WebSocket (Helius for Solana / equivalent for Base RPC). On settlement (T+72h), trigger a confetti effect + show the final standings.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" style="color: var(--zabal);">UI TODO 2</div>
+      <h3>Settlement readout view</h3>
+      <p>At T+72h, the smart contract settlement transaction fires. The page should detect this (event subscription), show the final placement, the $500 USDC distribution per Doc 701 Part 5 prize tiers, the 1% trade-cut totals per builder, and trigger the Hats Protocol NFT mint confirmations (Finisher for everyone, Champion for top 3).</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Spec + cross-refs</h2>
+    <ul style="margin-left: 1.5rem;">
+      <li><a href="/docs/research/720-wavewarz-finals-mechanic.md">Doc 720</a> - the full WaveWarZ Finals architecture decision.</li>
+      <li><a href="/docs/research/701-canonical-state.md">Doc 701 Part 12</a> - canonical state folding in the decision.</li>
+      <li><a href="/finals.html">/finals</a> - the public-facing Finals explainer (the why + the 72h timeline).</li>
+      <li><a href="https://github.com/bettercallzaal/ZAOOS/tree/main/research/events/711-arthur-wavewarz-base-call-may19" target="_blank" rel="noopener">ZAO Doc 711</a> - the Arthur intro call (smart contract collaborator).</li>
+      <li><a href="https://github.com/bettercallzaal/ZAOOS/tree/main/research/wavewarz/180-wavewarz-integration-blueprints" target="_blank" rel="noopener">ZAO Doc 180</a> - WaveWarZ integration patterns (Solana original).</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div>
+    <a href="/">zabalgames.com</a> -
+    <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">github</a> -
+    <a href="/finals.html">finals spec</a> -
+    <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+  </div>
+  <p style="margin-top: 0.5rem; color: var(--text-dim);">ZABAL Games Season 1 - the Finals market view (pre-launch scaffold).</p>
+</footer>
+
+</body>
+</html>

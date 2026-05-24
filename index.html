@@ -347,6 +347,7 @@
       <a href="/research.html">Research</a>
       <a href="/finals.html">Finals</a>
       <a href="/about.html">About</a>
+      <a href="/context.html">Context</a>
       <a href="#workshops">Calendar</a>
       <a href="#prize">Prizes</a>
       <a href="#judging">Judging</a>
@@ -382,22 +383,37 @@
     <div class="container">
       <div class="stats">
         <div class="stat-card">
-          <div class="stat-num gold">2</div>
-          <div class="stat-label">Phases</div>
-        </div>
-        <div class="stat-card">
           <div class="stat-num zabal">3</div>
           <div class="stat-label">Months</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">Open</div>
-          <div class="stat-label">Mentor Roster</div>
+          <div class="stat-num gold" id="stat-leads">--</div>
+          <div class="stat-label">Workshop Leads</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-projects">--</div>
+          <div class="stat-label">Adoptable Projects</div>
         </div>
         <div class="stat-card">
           <div class="stat-num orange">$500</div>
           <div class="stat-label">USDC Pool</div>
         </div>
       </div>
+      <script>
+      (function() {
+        Promise.all([
+          fetch('/data/workshop-leads.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { leads: [] }; }),
+          fetch('/data/adoptable-projects.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { projects: [] }; })
+        ]).then(function(results) {
+          var leads = (results[0].leads || []).length;
+          var projects = (results[1].projects || []).length;
+          var leadsEl = document.getElementById('stat-leads');
+          var projectsEl = document.getElementById('stat-projects');
+          if (leadsEl) leadsEl.textContent = leads;
+          if (projectsEl) projectsEl.textContent = projects;
+        });
+      })();
+      </script>
     </div>
   </section>
 

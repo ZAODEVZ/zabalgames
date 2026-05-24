@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Context File - ZABAL Games Season 1</title>
+  <meta name="description" content="ZAO ecosystem + ZABAL Games context, rendered in HTML with per-section copy. Point any AI harness at llms.txt for the same content as a single fetch.">
+  <link rel="canonical" href="https://zabalgames.com/context">
+  <meta property="og:title" content="The Context File - ZABAL Games Season 1">
+  <meta property="og:description" content="One URL. Any harness.">
+  <meta property="og:url" content="https://zabalgames.com/context">
+  <meta property="og:image" content="https://zabalgames.com/assets/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"Read the context","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/context","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"Read the context","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/context","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    /* Markdown-render specifics for the context file */
+    .ctx { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+    .ctx h2 { font-family: 'Syne', sans-serif; color: var(--orange); margin-top: 1.6rem; margin-bottom: 0.6rem; font-size: 1.25rem; }
+    .ctx h2:first-child { margin-top: 0; }
+    .ctx h3 { color: var(--text); font-size: 1.05rem; margin: 1.2rem 0 0.4rem; font-weight: 700; }
+    .ctx h4 { color: var(--text); font-size: 0.95rem; margin: 1rem 0 0.3rem; font-weight: 600; }
+    .ctx blockquote { border-left: 3px solid var(--orange); padding: 0.5rem 1rem; margin: 0.8rem 0; background: rgba(255,107,53,0.04); color: var(--text-muted); font-style: italic; }
+    .ctx code { background: var(--surface-2); color: var(--cyan); padding: 0.1rem 0.4rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85em; }
+    .ctx pre { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; overflow-x: auto; margin: 0.8rem 0; }
+    .ctx pre code { background: transparent; color: var(--text); padding: 0; font-size: 0.82rem; line-height: 1.5; }
+    .ctx table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.88rem; }
+    .ctx th { background: var(--surface-2); color: var(--gold); padding: 0.5rem 0.7rem; text-align: left; border-bottom: 1px solid var(--border); font-weight: 700; }
+    .ctx td { padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text-muted); }
+    .ctx td strong { color: var(--text); }
+    .ctx ul, .ctx ol { margin: 0.5rem 0 0.8rem 1.5rem; color: var(--text-muted); }
+    .ctx li { margin-bottom: 0.3rem; }
+    .ctx hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+    .ctx a { color: var(--cyan); }
+    .ctx p { margin-bottom: 0.6rem; color: var(--text-muted); }
+    .ctx p strong { color: var(--text); }
+    /* Section copy buttons */
+    .section-block { position: relative; padding-top: 8px; }
+    .copy-section-btn {
+      position: absolute; top: 6px; right: 6px;
+      background: var(--surface-2); color: var(--text-muted);
+      border: 1px solid var(--border); padding: 4px 10px;
+      border-radius: 6px; font-size: 11px; cursor: pointer;
+      font-family: inherit; opacity: 0.6; transition: opacity 0.15s;
+    }
+    .section-block:hover .copy-section-btn { opacity: 1; }
+    .copy-section-btn:hover { background: var(--border); color: var(--text); }
+    .copy-section-btn.copied { background: #22c55e; color: #fff; border-color: #22c55e; opacity: 1; }
+    .ctx-toolbar {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;
+      padding: 12px 16px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; font-size: 0.85rem;
+    }
+    .ctx-toolbar-label { color: var(--text-muted); }
+    .ctx-toolbar code { background: var(--surface-2); color: var(--orange); padding: 0.2rem 0.5rem; border-radius: 5px; font-size: 0.8rem; }
+    .ctx-loading { padding: 2rem; text-align: center; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/lead.html">Lead</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/research.html">Research</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/about.html">About</a>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow">The Build Prompt</div>
+    <h1>One URL. <span class="accent">Any Harness.</span></h1>
+    <p class="hero-sub">
+      Below is the contents of <a href="/llms.txt">/llms.txt</a> rendered for browser reading. Same source. Any AI tool can fetch the raw file directly; this page is for humans who want to skim or copy specific sections.
+    </p>
+  </header>
+
+  <div class="ctx-toolbar">
+    <span class="ctx-toolbar-label">Load it directly into your tool:</span>
+    <span><strong>Claude Code:</strong> save as <code>CLAUDE.md</code></span>
+    <span><strong>Cursor:</strong> <code>.cursorrules</code></span>
+    <span><strong>Windsurf:</strong> <code>.windsurfrules</code></span>
+    <span><strong>Aider:</strong> <code>--read CONVENTIONS.md</code></span>
+    <span><strong>Raw:</strong> <a href="/llms.txt">/llms.txt</a></span>
+  </div>
+
+  <div class="ctx-loading" id="ctx-loading">
+    Loading the context file...
+  </div>
+
+  <article class="ctx" id="ctx-body" style="display:none;"></article>
+
+</div>
+
+<footer class="footer">
+  <div>
+    <a href="/">zabalgames.com</a> -
+    <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">github</a> -
+    <a href="/llms.txt">raw llms.txt</a> -
+    <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+  </div>
+  <p style="margin-top: 0.5rem; color: var(--text-dim);">ZABAL Games Season 1 - the context file.</p>
+</footer>
+
+<div class="toast" id="ctx-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:#22c55e;color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px;transition:transform 0.3s ease;z-index:100;">Copied!</div>
+<style>.toast.show{transform:translateX(-50%) translateY(0) !important;}</style>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+<script>
+(function() {
+  function showToast() {
+    var t = document.getElementById('ctx-toast');
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 1500);
+  }
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(function() {
+      var original = btn.textContent;
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      showToast();
+      setTimeout(function() { btn.textContent = original; btn.classList.remove('copied'); }, 1800);
+    });
+  }
+  function splitIntoSections(md) {
+    // Split on top-level ## headings, preserve the heading with its body.
+    // Skip the leading H1 + intro (everything before first ##).
+    var lines = md.split('\n');
+    var sections = [];
+    var current = null;
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (/^##\s+/.test(line)) {
+        if (current) sections.push(current);
+        current = { title: line.replace(/^##\s+/, '').trim(), lines: [line] };
+      } else if (current) {
+        current.lines.push(line);
+      }
+    }
+    if (current) sections.push(current);
+    return sections.map(function(s) {
+      return { title: s.title, md: s.lines.join('\n') };
+    });
+  }
+  fetch('/llms.txt', { cache: 'no-cache' })
+    .then(function(r) { return r.text(); })
+    .then(function(md) {
+      var body = document.getElementById('ctx-body');
+      var loading = document.getElementById('ctx-loading');
+      var sections = splitIntoSections(md);
+      var preamble = md.split(/\n##\s+/)[0]; // text before first ##
+
+      body.innerHTML = '';
+
+      // Preamble (no copy button)
+      if (preamble.trim()) {
+        var pre = document.createElement('div');
+        pre.innerHTML = marked.parse(preamble);
+        body.appendChild(pre);
+      }
+
+      // Sections (with copy buttons)
+      sections.forEach(function(s) {
+        var block = document.createElement('div');
+        block.className = 'section-block';
+        var copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-section-btn';
+        copyBtn.textContent = 'Copy section';
+        copyBtn.addEventListener('click', function() { copyText(s.md, copyBtn); });
+        block.appendChild(copyBtn);
+        var content = document.createElement('div');
+        content.innerHTML = marked.parse(s.md);
+        block.appendChild(content);
+        body.appendChild(block);
+      });
+
+      loading.style.display = 'none';
+      body.style.display = 'block';
+    })
+    .catch(function(e) {
+      document.getElementById('ctx-loading').innerHTML =
+        '<p>Could not load /llms.txt - <a href="/llms.txt">try opening the raw file</a>.</p>' +
+        '<p style="font-size:0.78rem;margin-top:0.5rem;color:#666">' + (e.message || e) + '</p>';
+    });
+})();
+</script>
+
+</body>
+</html>
