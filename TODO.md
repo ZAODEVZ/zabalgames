@@ -16,7 +16,10 @@ Repo + content moved over from `bettercallzaal/bettercallzaalwebsite` + `betterc
 - `e0fb310` - OG share card SVG, robots.txt, sitemap.xml, Confirmed Workshop Leads section (Tyler/Magnetic as 001), `#projects` section with the 8 adoptable projects
 - `d3c04eb` - `docs/snap-design.md` (zlank no-code + custom Vercel-function path)
 - `c9911dc` - workshop leads moved to `data/workshop-leads.json` + JS render; JSON-LD Event + WebSite schema added to `<head>` for SEO; this TODO file
-- (this commit) - `/lead.html` standalone workshop-lead recruitment page (form + Cal.com slot + confirmed-leads grid); `/projects.html` standalone page with all 8 adoptable projects; `assets/style.css` shared stylesheet for the new pages; nav links + sitemap updated
+- `fd42ea0` - `/lead.html` standalone workshop-lead recruitment page (form + Cal.com slot + confirmed-leads grid); `/projects.html` standalone page with all 8 adoptable projects; `assets/style.css` shared stylesheet for the new pages; nav links + sitemap updated
+- `55ebc02` - catch remaining `/zabalgames` channel refs that the earlier perl missed when followed by punctuation
+- `3d35f8c` - `vercel.json` with cleanUrls (so `/lead` and `/projects` work without `.html`) + short-URL redirects (`/spec`, `/context`, `/todo`, `/snap`, `/kit`, `/brand`) + `text/markdown` content-type on `/llms.txt`; index.html title cleanup (dropped stale ` - BetterCallZaal` suffix)
+- `13554b5` - **custom Snap endpoint (Path B) at `/api/snap/signup`** - Vercel Edge serverless function. GET serves Farcaster Frame with 4 role buttons (Builder / Workshop Lead / Audience / Mentor), POST handles tap + forwards to Formspree as stub backend + returns confirmation Frame with full-site + /zabal link buttons. Verified live: GET 200, POST 200. Paste the URL into the launch cast and Farcaster auto-renders the in-cast Snap.
 
 BCZ side (separate repo, BCZ PR #11 merged):
 - `zabalgames.html` -> redirect to `zabalgames.com`
@@ -51,13 +54,13 @@ Ordered by leverage. I can pick these off in parallel to your unblocking.
 
 | # | Build | Why | Est. effort |
 |---|-------|-----|-------------|
-| N1 | **Custom Snap (path B) scaffold** - `api/snap/signup/route.js` Vercel serverless function + `package.json` + `vercel.json`. Backend stub via Formspree until Supabase lands. | Even without Supabase, the Snap can ship - Formspree captures the role-tap as a form submission. When Supabase is up, swap one line. | ~2 hours |
+| ~~N1~~ | ~~Custom Snap (path B) scaffold~~ | DONE in `13554b5`. Live at `https://zabalgames.com/api/snap/signup`. Edge runtime, no JFS sig verification yet (v2). Backend = Formspree. | done |
 | N2 | **Polish `#format` / `#showwork` / `#bigpicture` sections** - currently carry pre-Magnetic framing. Update to reflect Magnetic + connector + the two surfaces. | The launch cast drives traffic here. Stale framing weakens conversion. | ~1 hour |
 | ~~N3~~ | ~~`/lead` standalone page~~ | DONE in commit above. | done |
 | ~~N4~~ | ~~`/projects` standalone page~~ | DONE in commit above. | done |
 | N5 | **Hero banner using the SVG OG card** - embed `assets/og-card.svg` as a visual element in the hero (currently text-only). | Adds visual impact above the fold. | ~15 min |
 | N6 | **`canonical-state.md` Part 4 update** - rewrite the adoptable-projects list to match the version on the site (+ link to it). | The canonical doc and the site shouldn't drift. | ~10 min |
-| N7 | **Vercel deploy config** - `vercel.json` with redirects (`/spec` -> `/docs/research/701-canonical-state.md`, etc) for nice shorter URLs. | Shorter URLs are more shareable in DMs. | ~15 min |
+| ~~N7~~ | ~~Vercel deploy config~~ | DONE in `3d35f8c`. Six short URLs live: /spec /context /todo /snap /kit /brand. | done |
 | N8 | **Telegram preview link unfurl** - add `<meta name="telegram:channel">` + verify the OG works in Telegram (it usually does with PNG, not SVG). | Most launch DMs will route through Telegram. | ~10 min |
 
 ---
