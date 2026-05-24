@@ -285,6 +285,192 @@ Judge agents (per Doc 723d + 720): autonomous agents read each finalist's deploy
 
 ---
 
+## Don't build these (anti-patterns)
+
+| Don't build | Why | Build instead |
+|-------------|-----|---------------|
+| Audio rooms for music communities | FISHBOWLZ tried, paused 2026-04-16. The job belongs to Juke (partnership). Don't compete. | Tools that integrate with Juke, OR a different live-audio job (e.g. agent-only voice spaces). |
+| Your own Farcaster identity layer | Sybil-resistance is already solved by Neynar verified addresses + $25 stake + linked X/phone/GitHub. | Use Neynar's `lookupUserByVerifiedAddress`. Build on top, not under. |
+| Your own leaderboard infrastructure | Empire Builder has it. apiLeaderboards pattern is open. | Build a leaderboard that publishes JSON; Empire Builder pulls. Free distribution. |
+| Token-weighted governance for ZAO matters | ZAO governance is Respect-based (soulbound, peer-validated). Tokens get markets (WaveWarZ Finals), not votes. | Token-weighted markets for prediction / discovery; Respect 1p1v for governance / contribution scoring. |
+| ZK / privacy-focused builds with no ZAO use case | ZAO is open-by-default - all submissions public, all reps onchain, all builds open-source. ZK adds complexity with no member demand. | Public-by-default flows. Optional opt-in privacy at the user level only if a specific job needs it. |
+| Token launches inside the submission (without disclosure) | Doc 646: token mechanic is opt-in, must be disclosed at onboarding. Surprise token launches in a build = DQ risk. | Disclose at T-3 onboarding. Use Clanker via Empire Builder UI; volume becomes parallel signal. |
+| Auth layers that don't accept Farcaster sign-in | Every ZAO member already has a Farcaster identity. Adding email signup = friction with no win. | Sign In With Farcaster (SIWF) + Quick Auth via Neynar / Privy. |
+| Polished-but-disconnected UI demos | Voters click your link. If it's beautiful but doesn't talk to any real ZAO rail, you don't place. | Plug into Empire Builder, Hats, Bonfire, EAS, Coinflow, Hypersub. More rails wired = more votes. |
+
+---
+
+## Code snippets - the rails
+
+Copy-paste-friendly examples for the most-used ZAO rails. Read the linked docs for full SDK depth.
+
+### Neynar - look up a user by verified address (Farcaster identity)
+
+```ts
+import { NeynarAPIClient } from '@neynar/nodejs-sdk';
+
+const neynar = new NeynarAPIClient(process.env.NEYNAR_API_KEY);
+
+const user = await neynar.lookupUserByVerifiedAddress({
+  address: '0x...',
+});
+// user.fid, user.username, user.display_name, user.verified_addresses
+```
+
+Docs: https://docs.neynar.com
+
+### Empire Builder - publish a JSON leaderboard
+
+```ts
+// Your endpoint serves an array Empire Builder pulls hourly:
+//   GET https://yourapp.com/leaderboard
+// returns:
+//   [{ "address": "0xabc...", "score": 42 }, ...]
+
+// Then register the URL once via the Empire Builder dashboard:
+//   apiLeaderboards.add({
+//     empire: '0xZABAL_or_your_empire',
+//     name: 'my-leaderboard',
+//     url: 'https://yourapp.com/leaderboard',
+//     refreshMinutes: 60
+//   })
+```
+
+Docs: https://empire-builder.gitbook.io/empire-builder-docs
+
+### Hats Protocol - mint a role NFT on Base
+
+```ts
+import { HatsClient } from '@hatsprotocol/sdk-v1-core';
+import { createPublicClient, createWalletClient, http } from 'viem';
+import { base } from 'viem/chains';
+
+const hats = new HatsClient({
+  chainId: 8453,
+  publicClient: createPublicClient({ chain: base, transport: http() }),
+  walletClient: createWalletClient({ chain: base, transport: http(), account: yourAccount }),
+});
+
+// Mint an existing Hat (e.g. "ZABAL Games Finisher") to a wearer
+await hats.mintHat({ account: yourAccount, hatId, wearer: '0x...' });
+```
+
+Hats contract on Base: `0x3bc1A0Ad72417f2d411118085256fC53CBdDd137`
+
+### Clanker - launch a token via Farcaster cast
+
+```
+Cast on Farcaster:
+  @clanker launch <Name> $<TICKER>
+  optional: include image attachment
+
+Clanker mints ERC-20 on Base, pairs WETH, locks LP until 2100.
+v4 charges 0.2% trading fee in WETH; 100% creator-collected fees go
+to the caster's wallet. Zero gas cost to the caster.
+```
+
+Docs: https://clanker.gitbook.io/clanker-documentation
+
+### EAS (Ethereum Attestation Service) - sign an attestation on Base
+
+```ts
+import { EAS, SchemaEncoder } from '@ethereum-attestation-service/eas-sdk';
+
+const eas = new EAS('0x4200000000000000000000000000000000000021'); // Base EAS
+eas.connect(signer);
+
+const schemaUid = '0x...your-schema-uid';
+const encoder = new SchemaEncoder('string event,uint256 timestamp');
+const data = encoder.encodeData([
+  { name: 'event', type: 'string', value: 'zabal-games-finalist' },
+  { name: 'timestamp', type: 'uint256', value: Date.now() },
+]);
+
+const tx = await eas.attest({
+  schema: schemaUid,
+  data: { recipient: '0x...', expirationTime: 0n, revocable: true, data },
+});
+```
+
+Docs: https://docs.attest.org
+
+### Farcaster cast composer (open from a Snap or mini app)
+
+```ts
+import { sdk } from '@farcaster/miniapp-sdk';
+
+await sdk.actions.composeCast({
+  text: 'Just shipped at ZABAL Games',
+  embeds: ['https://zabalgames.com/lead'],
+  channelKey: 'zabal',
+});
+```
+
+Docs: https://miniapps.farcaster.xyz
+
+### Hypersub (Fabric STP) - check if an address has an active subscription
+
+```ts
+import { createPublicClient, http } from 'viem';
+import { base } from 'viem/chains';
+
+const client = createPublicClient({ chain: base, transport: http() });
+
+const balance = await client.readContract({
+  address: '0xYOUR_HYPERSUB_CONTRACT',
+  abi: hypersubAbi,
+  functionName: 'balanceOf',
+  args: ['0xWALLET'],
+});
+// > 0n means active subscription
+```
+
+Docs: https://hypersub.xyz
+
+### Coinflow - generate a fiat-to-USDC checkout link
+
+```ts
+const checkoutUrl = `https://app.coinflow.cash/checkout/${MERCHANT_ID}` +
+  `?amount=100` +
+  `&subtotal=100` +
+  `&token=USDC` +
+  `&blockchain=base` +
+  `&webhookUrl=${encodeURIComponent('https://yourapp.com/webhook')}`;
+```
+
+Docs: https://docs.coinflow.cash
+
+### Bonfire - query reputation score for an address
+
+```ts
+// Bonfire SDK or DM relay (per Doc 544 in ZAO research).
+// Bonfire ingests Farcaster activity + GitHub + Twitch + ZAO Respect
+// and produces a per-address score.
+const score = await bonfire.getScore({ address: '0x...' });
+// score.tier, score.attestations, score.lastUpdated
+```
+
+---
+
+## What "good" looks like (quality bar examples)
+
+Voters apply the rubric from Part "What good looks like" (above). Concretely:
+
+- **Plugs into 3+ ZAO rails:** e.g. uses Neynar for identity + Empire Builder for leaderboard + Hats for credentialing. One rail = thin build. Three or more = ecosystem-native.
+- **Demoable in 60 seconds:** open URL, see something work, do one action, see a result. Voters click your link first; if your demo is unclear they bounce.
+- **Has a real first-use:** "today, I can use this to <do something>." Not "imagine if..." or "you could use this for...".
+- **No emojis, no em dashes, hits the brand palette:** ZAO-native voters spot off-brand builds instantly. The palette + Syne/Outfit fonts + the naming glossary aren't aesthetic preferences - they're a signal of "you actually read the context."
+- **Open-source MIT, working CI:** the repo runs out-of-the-box. Voters who clone shouldn't hit npm errors.
+- **Posted on /zabal with the four-thing submission bar:** missing one = no submission, no votes.
+
+Counter-examples that lose votes:
+- Beautiful landing page, broken demo, "coming soon" buttons.
+- Reinvents identity / leaderboard / governance instead of using the rails.
+- Heavy crypto-bro framing ("revolutionary onchain", "tokenize everything").
+- Solana-only when there is no WaveWarZ-related reason.
+
+---
+
 ## Where to get help
 
 | Need | Where |
