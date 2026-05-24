@@ -450,7 +450,9 @@
       "id": "hats-protocol",
       "name": "Hats Protocol",
       "labels": [
-        "Platform"
+        "Platform",
+        "Protocol",
+        "Smart Contract Protocol"
       ],
       "attributes": {
         "url": "https://hatsprotocol.xyz",
@@ -460,7 +462,26 @@
         "use_case": "Portable proof of achievement across ecosystems",
         "cost_create_tree": "~$0.25 (Base)",
         "cost_per_mint": "~$0.12 per address (Base)",
-        "_source": "zabal-dispatch-poidh-20260523"
+        "_source": "zabal-dispatch-poidh-20260523",
+        "non_transferable": true,
+        "chains": [
+          "Ethereum",
+          "Optimism",
+          "Base",
+          "Arbitrum",
+          "Polygon",
+          "Gnosis",
+          "Scroll",
+          "Celo"
+        ],
+        "deterministic_address": "0x3bc1A0Ad72417f2d411118085256fC53CBdDd137",
+        "core_concept": "non-upgradeable singleton contract manages tree-hierarchical roles via minting/revoking NFT-like tokens",
+        "contract_address": "0x3bc1A0Ad72417f2d411118085256fC53CBdDd137",
+        "chain": "Optimism",
+        "chain_id": 10,
+        "non_upgradeable": true,
+        "sdk": "@hatsprotocol/sdk-v1-core",
+        "license": "MIT"
       }
     },
     {
@@ -3235,6 +3256,813 @@
         ],
         "_source": "zabal-dispatch-zoe-telegram-20260523"
       }
+    },
+    {
+      "id": "hats-protocol-core",
+      "name": "Hats Protocol V1 Core",
+      "labels": [
+        "smart_contract_protocol"
+      ],
+      "attributes": {
+        "standard": "ERC-1155",
+        "organizational_model": "Hat trees with admin and accountability relationships",
+        "core_concepts": [
+          "top-hat",
+          "child-hats",
+          "admin-rights",
+          "eligibility-modules",
+          "toggle-modules"
+        ],
+        "deployed_chains": "Ethereum mainnet and EVM L2s",
+        "_source": "zabal-dispatch-hats-protocol-tooling-and-sdk-20260524"
+      }
+    },
+    {
+      "id": "sdk-v1-core-npm",
+      "name": "@hatsprotocol/sdk-v1-core",
+      "labels": [
+        "npm_package"
+      ],
+      "attributes": {
+        "current_version": "0.12.4",
+        "main_exports": [
+          "index.js",
+          "index.mjs"
+        ],
+        "typescript_support": true,
+        "peer_dependencies": [
+          "viem@^2.0.0",
+          "graphql@^16.6.0",
+          "graphql-request@^6.1.0"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-tooling-and-sdk-20260524"
+      }
+    },
+    {
+      "id": "hats-modules-sdk",
+      "name": "@hatsprotocol/modules-sdk",
+      "labels": [
+        "npm_package"
+      ],
+      "attributes": {
+        "purpose": "Deploy and configure module instances from registry",
+        "initialization": "HatsModulesClient init with publicClient and walletClient",
+        "registry_fetch": "prepare() method must be called before use",
+        "peer_dependency": "viem",
+        "_source": "zabal-dispatch-hats-protocol-tooling-and-sdk-20260524"
+      }
+    },
+    {
+      "id": "hats-app",
+      "name": "Hats App UI (app.hatsprotocol.xyz)",
+      "labels": [
+        "web_ui"
+      ],
+      "attributes": {
+        "features": [
+          "tree-visualization",
+          "hat-creation",
+          "module-deployment",
+          "claiming-interface",
+          "admin-management"
+        ],
+        "backend": "GraphQL subgraph queries",
+        "module_registry_integration": true,
+        "_source": "zabal-dispatch-hats-protocol-tooling-and-sdk-20260524"
+      }
+    },
+    {
+      "id": "hats-modules-registry",
+      "name": "Hats Modules Registry",
+      "labels": [
+        "curated_registry"
+      ],
+      "attributes": {
+        "location": "GitHub repo (community PR submissions)",
+        "curation_status": "core-team-managed, roadmap-to-decentralize",
+        "registry_types": [
+          "eligibility_modules",
+          "toggle_modules",
+          "hatter_modules"
+        ],
+        "current_count": "15+ production modules",
+        "_source": "zabal-dispatch-hats-protocol-tooling-and-sdk-20260524"
+      }
+    },
+    {
+      "id": "hats-eligibility-modules",
+      "name": "Eligibility Modules (Mechanistic + Humanistic)",
+      "labels": [
+        "module_category"
+      ],
+      "attributes": {
+        "mechanistic": "IHatsEligibility interface (pull-based, instant revocation via balanceOf hook)",
+        "humanistic": "EOA/multisig/governance (push-based, call ruleOHatWearerStanding)",
+        "concepts": [
+          "wearer-eligibility",
+          "wearer-standing",
+          "bad-standing-revocation"
+        ],
+        "example_modules": [
+          "Agreement Eligibility",
+          "ERC20 Balance",
+          "Staking",
+          "Election Winner"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-tooling-and-sdk-20260524"
+      }
+    },
+    {
+      "id": "hats-toggle-modules",
+      "name": "Toggle Modules (Mechanistic + Humanistic)",
+      "labels": [
+        "module_category"
+      ],
+      "attributes": {
+        "mechanistic": "IHatsToggle interface (pull-based, instant deactivation via checkToggle)",
+        "humanistic": "EOA/multisig/governance (push-based, call toggleHatStatus)",
+        "use_cases": [
+          "time-based-expiry",
+          "conditional-deactivation",
+          "temporary-permission-gates"
+        ],
+        "distinction": "toggles affect hat active status for all wearers, not individual eligibility",
+        "_source": "zabal-dispatch-hats-protocol-tooling-and-sdk-20260524"
+      }
+    },
+    {
+      "id": "hats-module-chains",
+      "name": "Module Chain Composition (HatsEligibilitiesChain, HatsTogglesChain)",
+      "labels": [
+        "smart_contract_module"
+      ],
+      "attributes": {
+        "logic_support": "AND/OR combinations",
+        "format": "disjunction of conjunction clauses, e.g. '(mod1 && mod2) || mod3'",
+        "example_methods": [
+          "createEligibilitiesChain()",
+          "createTogglesChain()",
+          "getRulesets()",
+          "isChain()"
+        ],
+        "immutable_args": [
+          "NUM_CONJUNCTION_CLAUSES",
+          "CONJUNCTION_CLAUSE_LENGTHS",
+          "MODULES"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-tooling-and-sdk-20260524"
+      }
+    },
+    {
+      "id": "hats-subgraph-sdk",
+      "name": "@hatsprotocol/subgraph-sdk",
+      "labels": [
+        "npm_package"
+      ],
+      "attributes": {
+        "purpose": "Query Hats Protocol data from GraphQL subgraph",
+        "integration": "Viem public client based",
+        "use_cases": [
+          "read_tree_state",
+          "fetch_hat_metadata",
+          "query_wearers",
+          "track_permissions"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-tooling-and-sdk-20260524"
+      }
+    },
+    {
+      "id": "zao-governance-tree-treeid-226",
+      "name": "ZAO Governance Tree (treeId 226)",
+      "labels": [
+        "HatTree"
+      ],
+      "attributes": {
+        "treeId": 226,
+        "chain": "Optimism",
+        "contract_address": "0x3bc1A0Ad72417f2d411118085256fC53CBdDd137",
+        "depth": 4,
+        "total_hats": 19,
+        "max_tree_depth": 15,
+        "max_hats_per_level": 65536,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "zao-top-hat",
+      "name": "ZAO Top Hat",
+      "labels": [
+        "Hat"
+      ],
+      "attributes": {
+        "hat_id_hex": "0x000000e2000000000000000000000000000000000000000000000000000000",
+        "hat_id_shorthand": "226",
+        "level": 0,
+        "supply": "1/1",
+        "admin": "self",
+        "mutable": false,
+        "minting_authority": "self-administered",
+        "children_count": 2,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "configurator-hat",
+      "name": "Configurator Hat",
+      "labels": [
+        "Hat"
+      ],
+      "attributes": {
+        "hat_id_hex": "0x000000e2000100000000000000000000000000000000000000000000000000",
+        "hat_id_shorthand": "226.1",
+        "level": 1,
+        "supply": "2/5",
+        "admin_hat": "ZAO Top Hat",
+        "mutable": true,
+        "role_description": "Primary tree administrators, can mint child hats and manage governance roles",
+        "children_count": 2,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "governance-council-hat",
+      "name": "Governance Council Hat",
+      "labels": [
+        "Hat"
+      ],
+      "attributes": {
+        "hat_id_hex": "0x000000e2000100010000000000000000000000000000000000000000000000",
+        "hat_id_shorthand": "226.1.1",
+        "level": 2,
+        "supply": "0/1",
+        "admin_hat": "Configurator Hat",
+        "mutable": true,
+        "role_description": "Reserved governance coordination role (currently unpopulated)",
+        "children_count": 17,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "governance-council-members-hat",
+      "name": "Governance Council Members Hat",
+      "labels": [
+        "Hat"
+      ],
+      "attributes": {
+        "hat_id_hex": "0x000000e2000100020000000000000000000000000000000000000000000000",
+        "hat_id_shorthand": "226.1.2",
+        "level": 2,
+        "supply": "3/5",
+        "admin_hat": "Configurator Hat",
+        "mutable": true,
+        "role_description": "Active governance council members with voting authority",
+        "children_count": 0,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "community-hat",
+      "name": "Community Hat",
+      "labels": [
+        "Hat"
+      ],
+      "attributes": {
+        "hat_id_hex": "0x000000e200010001000100000000000000000000000000000000000000000000",
+        "hat_id_shorthand": "226.1.1.1",
+        "level": 3,
+        "supply": "0/1",
+        "admin_hat": "Governance Council Hat",
+        "mutable": true,
+        "role_description": "Community task force lead",
+        "children_count": 0,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "coc-concertz-hat",
+      "name": "COC Concertz Hat",
+      "labels": [
+        "Hat"
+      ],
+      "attributes": {
+        "hat_id_hex": "0x000000e200010001000d00000000000000000000000000000000000000000000",
+        "hat_id_shorthand": "226.1.1.13",
+        "level": 3,
+        "supply": "1/1",
+        "admin_hat": "Governance Council Hat",
+        "mutable": true,
+        "role_description": "COC Concertz project lead (only fully assigned project hat)",
+        "children_count": 0,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "hatsclient-sdk",
+      "name": "HatsClient SDK",
+      "labels": [
+        "Software"
+      ],
+      "attributes": {
+        "package": "@hatsprotocol/sdk-v1-core",
+        "language": "TypeScript",
+        "license": "MIT",
+        "built_on": "viem",
+        "key_methods": [
+          "isWearerOfHat",
+          "viewHat",
+          "getWornHats",
+          "mintHat",
+          "createHat",
+          "transferHat"
+        ],
+        "chains_supported": 8,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "hat-id-bitmap-encoding",
+      "name": "Hat ID Bitmap Encoding",
+      "labels": [
+        "DataStructure"
+      ],
+      "attributes": {
+        "size_bits": 256,
+        "structure": "top-hat-domain (4 bytes) + 14 x level (16 bits each)",
+        "tree_id_bits": 32,
+        "max_depth_levels": 14,
+        "bits_per_level": 16,
+        "max_children_per_hat": 65536,
+        "semantic_addressing": "IP-address-like (e.g., 226.1.1.2)",
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "erc-1155-non-transferable-mechanic",
+      "name": "ERC-1155 Non-Transferable Mechanic",
+      "labels": [
+        "Standard"
+      ],
+      "attributes": {
+        "token_standard": "ERC-1155-compatible",
+        "token_id": "hat_id (uint256)",
+        "balance_range": "0 or 1 per address per hat",
+        "transferable": false,
+        "minting_authority": "admin hat wearer only",
+        "revocation_methods": [
+          "admin revoke",
+          "eligibility module revoke",
+          "toggle deactivation"
+        ],
+        "querying": "balanceOf(address, hatId) returns 0 or 1",
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "role-check-query-system",
+      "name": "Role-Check Query System",
+      "labels": [
+        "AccessControl"
+      ],
+      "attributes": {
+        "methods": [
+          "isWearerOfHat(address, hatId)",
+          "isAdminOfHat(address, hatId)",
+          "isEligible(address, hatId)"
+        ],
+        "layers": [
+          "SDK read-only",
+          "direct contract view",
+          "subgraph GraphQL"
+        ],
+        "performance": "on-chain queries ~100ms; subgraph ~1s for full tree",
+        "caching": "5-10 minute TTL recommended",
+        "gating_module": "src/lib/hats/gating.ts exports 6 permission types",
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "id": "zao-tree-226",
+      "name": "ZAO Tree 226",
+      "labels": [
+        "Hat Tree"
+      ],
+      "attributes": {
+        "tree_id": 226,
+        "chain": "Optimism",
+        "top_hat_wearer": "Zaal",
+        "total_sub_hats": 17,
+        "status": "live",
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "hat-top-hat",
+      "name": "Top Hat - ZAO",
+      "labels": [
+        "Hat Role"
+      ],
+      "attributes": {
+        "hat_id": "0x000000e2000000000000000000000000000000000000000000000000000000",
+        "wearers": 1,
+        "max_supply": 1,
+        "parent": null,
+        "permissions": [
+          "admin",
+          "moderate",
+          "governance",
+          "feature_tracks",
+          "manage_events",
+          "manage_projects"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "hat-configurator",
+      "name": "Configurator",
+      "labels": [
+        "Hat Role"
+      ],
+      "attributes": {
+        "hat_id": "0x000000e200010000000000000000000000000000000000000000000000000000",
+        "wearers": 2,
+        "max_supply": 5,
+        "parent": "hat-top-hat",
+        "permissions": [
+          "admin",
+          "moderate",
+          "governance",
+          "feature_tracks",
+          "manage_events",
+          "manage_projects"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "hat-governance-council",
+      "name": "Governance Council",
+      "labels": [
+        "Hat Role"
+      ],
+      "attributes": {
+        "hat_id": "0x000000e200010001000000000000000000000000000000000000000000000000",
+        "wearers": 0,
+        "max_supply": 1,
+        "parent": "hat-configurator",
+        "permissions": [
+          "moderate",
+          "governance",
+          "feature_tracks",
+          "manage_events"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "hat-council-members",
+      "name": "Council Members",
+      "labels": [
+        "Hat Role"
+      ],
+      "attributes": {
+        "hat_id": "0x000000e200010002000000000000000000000000000000000000000000000000",
+        "wearers": 3,
+        "max_supply": 5,
+        "parent": "hat-configurator",
+        "permissions": [
+          "governance"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "hat-coc-concertz",
+      "name": "COC ConcertZ",
+      "labels": [
+        "Hat Role"
+      ],
+      "attributes": {
+        "hat_id": "0x000000e200010001000d000000000000000000000000000000000000000000",
+        "wearers": 1,
+        "max_supply": null,
+        "parent": "hat-governance-council",
+        "permissions": [],
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "hat-wavewarz-dao",
+      "name": "Wave WarZ DAO",
+      "labels": [
+        "Hat Role"
+      ],
+      "attributes": {
+        "hat_id": "0x000000e200010001000500000000000000000000000000000000000000000000",
+        "wearers": 0,
+        "max_supply": null,
+        "parent": "hat-governance-council",
+        "permissions": [],
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "zao-os-gating",
+      "name": "Hat-Based Access Control (gating.ts)",
+      "labels": [
+        "Code Module"
+      ],
+      "attributes": {
+        "location": "src/lib/hats/gating.ts",
+        "functions": [
+          "hasPermission",
+          "getPermissions",
+          "getRoles",
+          "isHatAdmin",
+          "requirePermission"
+        ],
+        "permission_types": [
+          "admin",
+          "moderate",
+          "governance",
+          "feature_tracks",
+          "manage_events",
+          "manage_projects"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "zao-hats-api",
+      "name": "Hat Check API",
+      "labels": [
+        "API Endpoint"
+      ],
+      "attributes": {
+        "route": "/api/hats/check",
+        "method": "GET",
+        "auth_required": true,
+        "params": [
+          "wallet",
+          "hatId"
+        ],
+        "location": "src/app/api/hats/check/route.ts",
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "wavewarz-finals-mechanic",
+      "name": "ZABAL Games Finals WaveWarZ Market",
+      "labels": [
+        "Event Mechanics"
+      ],
+      "attributes": {
+        "chain": "Base",
+        "mechanism": "Prediction market for winner selection",
+        "respect_integration": "Pre-funded positions for Respect-holder snapshot",
+        "prize_settlement": "On-chain via WaveWarZ-Base smart contract",
+        "reference": "Doc 720",
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "zao-telegram-bot",
+      "name": "ZAO Telegram Bot",
+      "labels": [
+        "Bot Integration"
+      ],
+      "attributes": {
+        "platform": "Telegram",
+        "uses_hat_gating": "Via admin session check, augmented by isHatAdmin()",
+        "admin_routes": [
+          "publish/telegram"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-zao-governance-usage-20260524"
+      }
+    },
+    {
+      "id": "zabal-games-s1-finisher-hat",
+      "name": "ZABAL Games S1 Finisher Hat",
+      "labels": [
+        "Hats Protocol NFT"
+      ],
+      "attributes": {
+        "network": "Base mainnet",
+        "tree_type": "new tree (separate from ZAO treeId 226 Optimism)",
+        "hat_level": 1,
+        "recipients": "all Finalists (estimated 5-8)",
+        "distribution_event": "WaveWarZ-Base settlement T+72h",
+        "metadata_schema": "IPFS JSON CID (Hats SDK supported)",
+        "batch_mint_function": "Hats.batchMintHats()",
+        "status": "spec locked, implementation pending June",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "zabal-games-s1-champion-hat",
+      "name": "ZABAL Games S1 Champion Hat",
+      "labels": [
+        "Hats Protocol NFT"
+      ],
+      "attributes": {
+        "network": "Base mainnet",
+        "tree_type": "same tree as Finisher hat",
+        "hat_level": 1,
+        "recipients": "top-3 finalists by WaveWarZ settlement",
+        "distribution_event": "WaveWarZ-Base settlement T+72h (same tx)",
+        "metadata_schema": "IPFS JSON CID",
+        "batch_mint_function": "Hats.batchMintHats()",
+        "status": "spec locked, implementation pending June",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "hats-protocol-base-deployment",
+      "name": "Hats Protocol Base Deployment",
+      "labels": [
+        "Smart Contract"
+      ],
+      "attributes": {
+        "contract_address": "0x3bc1A0Ad72417f2d411118085256fC53CBdDd137 (same across all chains)",
+        "network": "Base mainnet",
+        "functions_used": [
+          "mintTophat()",
+          "batchCreateHats()",
+          "batchMintHats()"
+        ],
+        "sdk_available": "yes - v1-sdk on npm",
+        "app_url": "app.hatsprotocol.xyz",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "base-network-l2-fees",
+      "name": "Base Network L2 Fees",
+      "labels": [
+        "Infrastructure Cost"
+      ],
+      "attributes": {
+        "transaction_type": "hat batch mint (8-10 addresses)",
+        "l2_execution_fee": "$0.001-0.007 per tx",
+        "l1_security_fee": "$0.001-0.01 per tx (variable with L1 congestion)",
+        "total_estimated_per_mint": "$0.02-0.20 (batch of 5-8)",
+        "blob_data_savings": "EIP-4844 ~10x cheaper than pre-March 2024",
+        "minimum_base_fee": "5,000,000 wei (0.005 gwei) on Base mainnet",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "hat-tree-structure-design-zabal-games-s1",
+      "name": "Hat Tree Structure Design (ZABAL Games S1)",
+      "labels": [
+        "Hats Protocol Architecture"
+      ],
+      "attributes": {
+        "hat_tree_id": "TBD - minted in June setup phase",
+        "top_hat_wearer": "ZABAL Games admin multisig (TBD)",
+        "autonomous_admin_hat": "recommended for batch mint automation",
+        "finisher_hat_admin": "top hat or autonomous admin",
+        "champion_hat_admin": "top hat or autonomous admin",
+        "max_depth": "15 (Hats Protocol standard)",
+        "branching_factor": "65,536 per level",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "hat-metadata-schema",
+      "name": "Hat Metadata Schema",
+      "labels": [
+        "Data Format"
+      ],
+      "attributes": {
+        "details_field_limit": "7,000 characters",
+        "image_uri_limit": "7,000 characters",
+        "recommended_storage": "IPFS JSON (CID in details field)",
+        "finisher_fields": [
+          "name: ZABAL Games Season 1 Finisher",
+          "description: shipped in 24h, earned $35+ USDC, onchain credential",
+          "image: TBD (Zaal to confirm visual)",
+          "metadata.event_treeId: TBD",
+          "metadata.finalist_number: TBD per finalist"
+        ],
+        "champion_fields": [
+          "name: ZABAL Games Season 1 Champion",
+          "description: top-3 placement, WaveWarZ settlement, $75-150 USDC",
+          "image: TBD (distinct from Finisher)",
+          "metadata.placement: 1st / 2nd / 3rd"
+        ],
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "wavewarz-base-settlement-zabal-finals",
+      "name": "WaveWarZ-Base Settlement (ZABAL Finals)",
+      "labels": [
+        "Event"
+      ],
+      "attributes": {
+        "trigger": "T+72h Finals vote conclusion",
+        "settlement_mechanism": "WaveWarZ-Base smart contract (Sam + Arthur)",
+        "readout_data": "volume, win rates, placement ranking",
+        "hat_issuance_trigger": "automated post-settlement, same tx or next block",
+        "beneficiaries": "all finalists (Finisher) + top-3 (Champion)",
+        "date": "August 2026 (TBD)",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "finalist-eligibility-snapshot",
+      "name": "Finalist Eligibility Snapshot",
+      "labels": [
+        "Data Event"
+      ],
+      "attributes": {
+        "timing": "T-7 days pre-Finals",
+        "purpose": "Respect-holder eligibility for pre-funded positions + Finals roster for hat issuance",
+        "data_captured": [
+          "address[]",
+          "Respect status",
+          "July build submission proof"
+        ],
+        "snapshot_mechanism": "on-chain read (Respect contract or Hats Protocol role check)",
+        "cross_use_1": "WaveWarZ airdropPositions() pre-fund",
+        "cross_use_2": "Hats hat-issuance whitelist",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "poidh-proof-integration-zabal-games",
+      "name": "POIDH Proof Integration (ZABAL Games)",
+      "labels": [
+        "Data Layer"
+      ],
+      "attributes": {
+        "status": "integration not yet designed",
+        "potential_role": "tie July build proof (live URL + repo + cast) to Finalist eligibility",
+        "data_source": "POIDH bounty leaderboard (Doc 654 adoptable project #02)",
+        "open_question": "does POIDH track 'finished a ZABAL Games build'? or just general proof-of-intent?",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "zao-governance-hat-tree-optimism",
+      "name": "ZAO Governance Hat Tree (Optimism)",
+      "labels": [
+        "Hats Protocol Tree"
+      ],
+      "attributes": {
+        "tree_id": "226 (existing)",
+        "network": "Optimism",
+        "purpose": "ZAO governance roles, not ZABAL Games",
+        "separation": "ZABAL Games gets its own new tree on Base",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "june-tech-delivery-hats-wavewarz",
+      "name": "June Tech Delivery (Hats + WaveWarZ)",
+      "labels": [
+        "Milestone"
+      ],
+      "attributes": {
+        "owner": "Sam (candytoybox) + Arthur (Neynar)",
+        "deliverable_1": "WaveWarZ-Base testnet contracts to security-reviewed state",
+        "deliverable_2": "hat tree initialized on Base (top hat + autonomous admin + Finisher/Champion hats created)",
+        "deliverable_3": "batch mint function tested with 5-8 addresses",
+        "deliverable_4": "Arthur workshop session on smart contracts + hat integration",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "july-mainnet-smoke-test",
+      "name": "July Mainnet + Smoke Test",
+      "labels": [
+        "Milestone"
+      ],
+      "attributes": {
+        "owner": "Sam + Arthur (WaveWarZ), Zaal (Finals infra)",
+        "deliverable_1": "WaveWarZ-Base on Base mainnet (post-audit)",
+        "deliverable_2": "smoke-test battle runs with fake finalist",
+        "deliverable_3": "hat batch mint runs successfully (5-8 test addresses)",
+        "deliverable_4": "Adoptable project #09 (Finals settlement surface) picked up",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
+    },
+    {
+      "id": "august-finals-settlement-execution",
+      "name": "August Finals Settlement Execution",
+      "labels": [
+        "Milestone"
+      ],
+      "attributes": {
+        "date": "August 2026 (TBD)",
+        "finalists": "5-8 (decided after July)",
+        "settlement_tx": "single WaveWarZ-Base contract call at T+72h",
+        "parallel_hat_issuance": "batch Finisher + Champion mints in same tx or next block",
+        "live_reveal": "stream announces placements + hats distributed onchain",
+        "total_hat_mints": "finalists + 3 (all receivers get Finisher; top-3 get Champion)",
+        "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
+      }
     }
   ],
   "edges": [
@@ -5499,6 +6327,138 @@
         "write_enabled": true,
         "status": "May 2026 verified",
         "_source": "zabal-dispatch-zoe-telegram-20260523"
+      }
+    },
+    {
+      "from": "zao-top-hat",
+      "to": "configurator-hat",
+      "type": "admin-child",
+      "properties": {
+        "fact": "Top Hat self-administers; Configurator is direct child",
+        "authority": "Top Hat wearer can mint/revoke Configurator",
+        "level_offset": 1,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "configurator-hat",
+      "to": "governance-council-hat",
+      "type": "admin-child",
+      "properties": {
+        "fact": "Configurator administers both Governance Council and Council Members hats",
+        "authority": "Configurator wearer (2/5) can mint Governance Council",
+        "level_offset": 1,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "configurator-hat",
+      "to": "governance-council-members-hat",
+      "type": "admin-child",
+      "properties": {
+        "fact": "Council Members hat is sibling under Configurator with 3/5 active wearers",
+        "authority": "Configurator can mint new council members",
+        "level_offset": 1,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "governance-council-hat",
+      "to": "community-hat",
+      "type": "admin-child",
+      "properties": {
+        "fact": "17 project sub-hats hang under Governance Council (level 3)",
+        "authority": "Governance Council wearer would mint Community hat if active",
+        "level_offset": 1,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "governance-council-hat",
+      "to": "coc-concertz-hat",
+      "type": "admin-child",
+      "properties": {
+        "fact": "COC Concertz is the only assigned project hat (1/1 wearer)",
+        "authority": "Governance Council could revoke or transfer (if mutable)",
+        "level_offset": 1,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "hatsclient-sdk",
+      "to": "hats-protocol",
+      "type": "client-implementation",
+      "properties": {
+        "fact": "@hatsprotocol/sdk-v1-core wraps Hats.sol contract ABI on viem",
+        "chainId": 10,
+        "validates_before_tx": true,
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "hat-id-bitmap-encoding",
+      "to": "zao-governance-tree",
+      "type": "encodes",
+      "properties": {
+        "fact": "Each ZAO hat encoded as uint256 bitmap; treeId 226 appears in first 4 bytes",
+        "example": "226.1 = 0x000000e2 00010000 (rest zeros)",
+        "semantic": "IP-address-like routing within tree",
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "erc-1155-non-transferable-mechanic",
+      "to": "configurator-hat",
+      "type": "implements",
+      "properties": {
+        "fact": "Configurator hat is ERC-1155 token; balanceOf(wearer, configuratorId) = 1 or 0",
+        "minting": "only Configurator admin can call mint()",
+        "revocation": "admin + eligibility module + toggle can revoke",
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "role-check-query-system",
+      "to": "governance-council-members-hat",
+      "type": "queries",
+      "properties": {
+        "fact": "ZAO OS gating.ts calls isWearerOfHat(userAddress, COUNCIL_MEMBERS_HAT_ID) to check governance access",
+        "cached": true,
+        "permission_type": "governance",
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "role-check-query-system",
+      "to": "configurator-hat",
+      "type": "queries",
+      "properties": {
+        "fact": "ZAO OS gating.ts checks hat ownership for admin permission (manage_events, manage_projects)",
+        "cached": true,
+        "permission_type": "admin",
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "zao-governance-tree",
+      "to": "optimism",
+      "type": "deployed-on",
+      "properties": {
+        "fact": "Tree 226 lives on Optimism mainnet (chain ID 10) at 0x3bc1A0Ad72417f2d411118085256fC53CBdDd137",
+        "immutable": true,
+        "last_activity": "2026-05-20 (confirmed live)",
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
+      }
+    },
+    {
+      "from": "configurator-hat",
+      "to": "future-project-hats",
+      "type": "admin-potential-children",
+      "properties": {
+        "fact": "4 placeholder Future Project hats (226.1.1.10-13) reserved for expansion",
+        "supply": "0/1 each",
+        "admin": "Governance Council (via Configurator delegation)",
+        "_source": "zabal-dispatch-hats-protocol-tree-architecture-20260524"
       }
     }
   ]
