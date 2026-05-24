@@ -7916,6 +7916,795 @@
         "ai_credits": "Used for AI-powered tools (transcription, clip generation, speech synthesis, filler removal)",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
       }
+    },
+    {
+      "id": "cloudflare-cdn",
+      "name": "Cloudflare CDN",
+      "labels": [
+        "CDN"
+      ],
+      "attributes": {
+        "pricing_model": "Free tier + Pro/Business",
+        "standard_bandwidth_cost": "Free (capped) or $20+/mo Pro",
+        "african_pops": "Johannesburg, Cairo, Lagos",
+        "setup_complexity": "Low - DNS swap",
+        "minimum_monthly_cost": "$0",
+        "vercel_compatible": true,
+        "strengths": "Workers, R2, Zero Trust, DDoS mitigation, free tier generous",
+        "weaknesses": "Pro plan required for advanced features",
+        "best_for": "Default choice, existing Cloudflare users",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "id": "bunnycdn",
+      "name": "BunnyCDN",
+      "labels": [
+        "CDN"
+      ],
+      "attributes": {
+        "pricing_model": "Pay-as-you-go $/GB",
+        "standard_bandwidth_cost": "$0.06/GB",
+        "volume_bandwidth_cost": "$0.005/GB at 500TB",
+        "african_pops": 3,
+        "african_locations": [
+          "Johannesburg",
+          "Cairo",
+          "Lagos"
+        ],
+        "setup_complexity": "Medium - origin config",
+        "minimum_monthly_cost": "$1",
+        "vercel_compatible": true,
+        "estimated_monthly_zao_1k": "$0.50-$2 (100-400MB bandwidth)",
+        "strengths": "Transparent pricing, fast setup, GDPR native",
+        "weaknesses": "No serverless compute, paid support starts at $1/mo",
+        "best_for": "Cost-conscious teams, high-volume sites",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "id": "aws-cloudfront",
+      "name": "AWS CloudFront",
+      "labels": [
+        "CDN"
+      ],
+      "attributes": {
+        "pricing_model": "Complex tiered $/GB",
+        "african_pops": 4,
+        "african_locations": [
+          "Johannesburg",
+          "Cape Town",
+          "Lagos",
+          "Nairobi"
+        ],
+        "setup_complexity": "Medium-High - AWS console",
+        "minimum_monthly_cost": "$0.50-$5 (estimate)",
+        "vercel_compatible": true,
+        "strengths": "Most African PoPs, integrates with AWS ecosystem, high volume discounts",
+        "weaknesses": "Complex pricing, overkill for small sites",
+        "best_for": "Teams already on AWS, high-volume or compute-heavy workloads",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "id": "fastly",
+      "name": "Fastly",
+      "labels": [
+        "CDN"
+      ],
+      "attributes": {
+        "pricing_model": "Premium $/GB",
+        "african_pops": 1,
+        "african_constraint": "Max 10% traffic from Africa",
+        "setup_complexity": "Medium - config language VCL",
+        "estimated_monthly_zao": "$50+ (Africa penalty surcharge)",
+        "vercel_compatible": true,
+        "strengths": "Powerful edge VCL, DDoS, premium support",
+        "weaknesses": "Expensive for Africa, fewer PoPs than competitors",
+        "best_for": "High-performance premium use cases, not Africa-focused",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "id": "netlify-edge-functions",
+      "name": "Netlify Edge Functions",
+      "labels": [
+        "Edge Platform"
+      ],
+      "attributes": {
+        "pricing_model": "Free tier + usage",
+        "cdn_pops": 16,
+        "runtime": "Deno",
+        "setup_complexity": "Low - framework agnostic",
+        "vercel_compatible": false,
+        "compute_capable": true,
+        "strengths": "Alternative to Vercel, TypeScript native, Deno runtime",
+        "weaknesses": "Smaller network than Vercel (16 vs 126 PoPs), higher latency to Africa",
+        "best_for": "Deno-native stacks, avoiding Vercel lock-in",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "id": "vultr-vps",
+      "name": "Vultr VPS",
+      "labels": [
+        "VPS Provider"
+      ],
+      "attributes": {
+        "regions": 32,
+        "african_regions": [
+          "Johannesburg"
+        ],
+        "pricing_model": "Fixed monthly",
+        "starting_price": "$2.50/mo",
+        "setup_complexity": "High - manual nginx/caching",
+        "vercel_compatible": false,
+        "requires_ops": true,
+        "strengths": "Full control, cheapest option, no bandwidth caps",
+        "weaknesses": "Manual cache management, no serverless, ops overhead",
+        "best_for": "Teams with ops budget, extreme cost sensitivity",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "id": "zao-domains",
+      "name": "ZAO Domains",
+      "labels": [
+        "Service Group"
+      ],
+      "attributes": {
+        "current_host": "Vercel",
+        "current_cdn": "Cloudflare (default)",
+        "monthly_visitors_estimate": 1000,
+        "monthly_bandwidth_estimate": "100-400 MB",
+        "sites": [
+          "zaoos.com",
+          "other ZAO properties"
+        ],
+        "use_case": "Static documentation, ecosystem resources",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "id": "african-network-access-problem",
+      "name": "African Network Access Problem",
+      "labels": [
+        "Ops Issue"
+      ],
+      "attributes": {
+        "symptom": "Slow ZAO domain load times in Africa regions",
+        "affected_regions": [
+          "West Africa",
+          "East Africa",
+          "Southern Africa"
+        ],
+        "root_cause": "Limited edge presence or routing inefficiency",
+        "priority": "Medium - impacts developer/user experience",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "id": "zabalgames-migration-plan",
+      "name": "zabalgames-migration-plan",
+      "labels": [
+        "migration_plan"
+      ],
+      "attributes": {
+        "target_domain": "zabalgames.com",
+        "current_registrar": "Porkbun",
+        "current_nameservers": [
+          "fortaleza.ns.porkbun.com",
+          "maceio.ns.porkbun.com",
+          "curitiba.ns.porkbun.com",
+          "salvador.ns.porkbun.com"
+        ],
+        "current_origin": "Vercel CDN (76.76.21.21)",
+        "problem": "African regions lack Vercel PoPs, causing slow/blocked access",
+        "solution": "Add Cloudflare in front of Vercel as full DNS proxy with 126+ global PoPs",
+        "plan_status": "ready_for_execution",
+        "execution_window": "May 24-25 (before May 31 launch)",
+        "estimated_total_duration": "24-48 hours for full propagation",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "id": "cloudflare-free-tier",
+      "name": "cloudflare-free-tier",
+      "labels": [
+        "service"
+      ],
+      "attributes": {
+        "provider": "Cloudflare",
+        "plan": "Free",
+        "cost": "0 USD/month",
+        "global_pops": 126,
+        "coverage_countries": 51,
+        "africa_coverage": "yes",
+        "dns_management": "included",
+        "ddos_protection": "included_free",
+        "tls_provisioning": "automatic",
+        "suitable_for_launch": true,
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "id": "porkbun-registrar",
+      "name": "porkbun-registrar",
+      "labels": [
+        "service"
+      ],
+      "attributes": {
+        "provider": "Porkbun",
+        "domains_managed": [
+          "zabalgames.com",
+          "bettercallzaal.com"
+        ],
+        "nameserver_change_location": "Domain Settings > Nameservers section",
+        "dnssec_status": "may_need_disable_during_migration",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "id": "vercel-origin-config",
+      "name": "vercel-origin-config",
+      "labels": [
+        "technical_config"
+      ],
+      "attributes": {
+        "hostname": "vercel-dns-0.com or cname.vercel-dns-0.com",
+        "ip_address": "76.76.21.21",
+        "compatible_with_cloudflare": true,
+        "tls_handling": "Vercel auto-provisions for any domain, Cloudflare must set Full or Full Strict mode",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "id": "dns-migration-step1-prepare",
+      "name": "dns-migration-step1-prepare",
+      "labels": [
+        "migration_phase"
+      ],
+      "attributes": {
+        "phase": "Preparation (24h before nameserver change)",
+        "steps": [
+          "Log into Porkbun registrar dashboard",
+          "Find DNS settings for zabalgames.com",
+          "Lower TTL on existing A/CNAME record from 3600 to 300 seconds (5 min)",
+          "Wait 6 hours for TTL reduction to propagate",
+          "Create Cloudflare account if not exists",
+          "Add zabalgames.com domain to Cloudflare"
+        ],
+        "duration_hours": 24,
+        "risk_level": "minimal",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "id": "dns-migration-step2-add-cloudflare",
+      "name": "dns-migration-step2-add-cloudflare",
+      "labels": [
+        "migration_phase"
+      ],
+      "attributes": {
+        "phase": "Cloudflare Setup",
+        "steps": [
+          "In Cloudflare dashboard: Add Site > Enter zabalgames.com > Select Free plan",
+          "Cloudflare auto-scans for existing DNS records",
+          "Add A record pointing to Vercel: 76.76.21.21 (DNS only, gray cloud initially)",
+          "Copy assigned Cloudflare nameservers from Zone Overview (2 servers, e.g. ns1234.cloudflare.com, ns5678.cloudflare.com)",
+          "Save in notepad - you will need these in next step",
+          "In Cloudflare Security: Set TLS mode to 'Full' (compatible with Vercel)"
+        ],
+        "duration_hours": 0.5,
+        "risk_level": "minimal",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "id": "dns-migration-step3-nameserver-switch",
+      "name": "dns-migration-step3-nameserver-switch",
+      "labels": [
+        "migration_phase"
+      ],
+      "attributes": {
+        "phase": "Nameserver Migration (critical phase)",
+        "steps": [
+          "Log into Porkbun > zabalgames.com > Domain Settings > Nameservers",
+          "Delete all 4 Porkbun nameservers",
+          "Enter Cloudflare nameservers (from step 2)",
+          "Disable DNSSEC at Porkbun if enabled",
+          "Click Save/Update",
+          "Note timestamp - propagation starts now"
+        ],
+        "duration_hours": 0.25,
+        "downtime_risk": "less than 5 minutes (if TTL was lowered in step 1)",
+        "propagation_time_hours": "2-4 for fast cache expiry, up to 24 for complete global propagation",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "id": "dns-migration-step4-verification",
+      "name": "dns-migration-step4-verification",
+      "labels": [
+        "migration_phase"
+      ],
+      "attributes": {
+        "phase": "Post-Migration Verification",
+        "steps": [
+          "After 30 mins: Run 'dig zabalgames.com' - should show Cloudflare IP",
+          "Use whatsmydns.net and enter zabalgames.com - track global propagation",
+          "Test from Africa: use VPN to Nigerian/South African server, load zabalgames.com in browser",
+          "Check Cloudflare dashboard: Analytics > Requests should show traffic routing through Cloudflare",
+          "Monitor error logs for 1-2 hours - watch for SSL/TLS errors"
+        ],
+        "duration_hours": 2,
+        "tool_references": [
+          "dig",
+          "whatsmydns.net",
+          "Cloudflare dashboard"
+        ],
+        "success_criteria": "All regions show fast response, no ERR_SSL_VERSION_ERROR or TLS handshake failures",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "id": "rollback-procedure",
+      "name": "rollback-procedure",
+      "labels": [
+        "contingency"
+      ],
+      "attributes": {
+        "trigger": "If zabalgames.com is inaccessible from multiple regions after 1 hour",
+        "steps": [
+          "Log into Porkbun immediately",
+          "Change nameservers back to original Porkbun nameservers (from your saved config)",
+          "Wait 5 mins for local cache to clear",
+          "Verify dig shows Porkbun response",
+          "Site should be live within 5-10 minutes"
+        ],
+        "duration_hours": 0.25,
+        "confidence": "very_high - this is a standard DNS rollback",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "id": "launch-timing-decision",
+      "name": "launch-timing-decision",
+      "labels": [
+        "strategic_decision"
+      ],
+      "attributes": {
+        "decision": "Migrate BEFORE May 31 launch",
+        "reasoning": [
+          "May 31 launch is 7 days away (Sun May 31)",
+          "Nameserver propagation takes 12-24 hours globally",
+          "If migrated May 24-25, African Cloudflare PoPs are live for launch cast",
+          "If migrated during launch week (May 27-30), risk DNS instability during peak traffic",
+          "Risk of incomplete propagation during launch is higher than executing now",
+          "Early execution gives 5+ days buffer for any issues"
+        ],
+        "execution_date": "May 24 or May 25 (this weekend)",
+        "launch_safety_margin": "5-6 days buffer after migration completes",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "id": "bettercallzaal-com-edge-routing",
+      "name": "bettercallzaal.com Edge Routing",
+      "labels": [
+        "Live Test Result"
+      ],
+      "attributes": {
+        "dns_resolution": "216.198.79.1 (Vercel)",
+        "edge_location": "yul1 (Montreal, Canada)",
+        "http_version": "HTTP/2",
+        "quic_support": "Not advertised (no Alt-Svc header)",
+        "ipv6_support": "None (AAAA records absent)",
+        "ttfb_avg_ms": "115",
+        "ttfb_variance": "87-493ms (cache hit vs cold start)",
+        "content_length_bytes": 76321,
+        "cache_status": "HIT",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "id": "zabalgames-com-edge-routing",
+      "name": "zabalgames.com Edge Routing",
+      "labels": [
+        "Live Test Result"
+      ],
+      "attributes": {
+        "dns_resolution": "216.198.79.1 (Vercel)",
+        "edge_location": "yul1 (Montreal, Canada)",
+        "http_version": "HTTP/2",
+        "quic_support": "Not advertised",
+        "ipv6_support": "None",
+        "ttfb_avg_ms": "135",
+        "content_length_bytes": 104136,
+        "cache_status": "HIT",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "id": "vercel-ip-216-198-79-1",
+      "name": "Vercel IP 216.198.79.1",
+      "labels": [
+        "Network Asset"
+      ],
+      "attributes": {
+        "provider": "Vercel",
+        "geo_location": "Montreal, Canada",
+        "geoip_lookup": "Failed (API requires key)",
+        "serves": "Both bettercallzaal.com and zabalgames.com",
+        "dns_nameservers": "Porkbun (fortaleza, curitiba, maceio, salvador - Brazil-hosted)",
+        "ttl": 600,
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "id": "porkbun-dns-nameservers",
+      "name": "Porkbun DNS Nameservers",
+      "labels": [
+        "DNS Infrastructure"
+      ],
+      "attributes": {
+        "servers": [
+          "fortaleza.ns.porkbun.com",
+          "curitiba.ns.porkbun.com",
+          "maceio.ns.porkbun.com",
+          "salvador.ns.porkbun.com"
+        ],
+        "location": "Brazil (all cities are in Brazil)",
+        "risk_for_africa": "South American DNS servers may have higher latency for African clients; no direct Africa presence",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "id": "tls-certificate-bettercallzaal-com",
+      "name": "TLS Certificate bettercallzaal.com",
+      "labels": [
+        "Security Asset"
+      ],
+      "attributes": {
+        "issued_by": "Let's Encrypt R12",
+        "valid_from": "2026-05-17T23:27:20Z",
+        "valid_until": "2026-08-15T23:27:19Z",
+        "subject": "CN=bettercallzaal.com",
+        "status": "Current",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "id": "african-network-routing-test-gap",
+      "name": "African Network Routing Test Gap",
+      "labels": [
+        "Diagnostic Limitation"
+      ],
+      "attributes": {
+        "current_vantage": "US/EU (Canada datacenter)",
+        "cannot_measure": [
+          "African ISP BGP routing",
+          "IXP congestion points",
+          "Regional DNS latency",
+          "TLS handshake timeouts on weak connections"
+        ],
+        "requires_for_empirical_test": [
+          "BrowserStack free trial with Lagos/Cape Town/Nairobi real devices",
+          "WebPageTest free account with African agents",
+          "curl from African mobile hotspot"
+        ],
+        "header_spoofing_result": "X-Forwarded-For does not trigger geo-routing; Vercel uses true client IP geolocation",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "id": "vercel-african-edge-coverage",
+      "name": "Vercel African Edge Coverage",
+      "labels": [
+        "Infrastructure Gap"
+      ],
+      "attributes": {
+        "description": "Vercel operates only 1 compute region in Africa (Cape Town, cpt1) out of 20 total regions. While 126 PoPs exist globally, most African traffic still routes through non-African regions or distant PoPs.",
+        "coverage": "Only South Africa has compute; other 53 African nations rely on distant PoPs or default failover (P20 priority for cpt1 failover)",
+        "source": "Vercel official docs, 2026-03-05",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "id": "cloudflare-african-pop-density",
+      "name": "Cloudflare African PoP Density",
+      "labels": [
+        "Competitive Infrastructure"
+      ],
+      "attributes": {
+        "count": 32,
+        "cities": "Abidjan, Accra, Addis Ababa, Algiers, Annaba, Antananarivo, Cairo, Cape Town, Constantine, Dakar, Dar Es Salaam, Djibouti, Durban, Gaborone, Harare, Johannesburg, Kampala, Kigali, Kinshasa, Lagos, Luanda, Lusaka, Maputo, Mombasa, Nairobi, Oran, Ouagadougou, Port Louis, Saint-Denis, Tunis, Windhoek, Yamoussoukro",
+        "geographic_coverage": "North (Maghreb), East (Kenya/Ethiopia/Tanzania), West (Nigeria/Ghana/Ivory Coast), Southern (SA/Botswana/Zimbabwe)",
+        "advantage": "Cloudflare 32x density vs Vercel 1 compute region = better cache hit ratio, lower latency, more peering options",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "id": "african-isp-bgp-peering-gaps",
+      "name": "African ISP BGP Peering Gaps",
+      "labels": [
+        "Network Topology Issue"
+      ],
+      "attributes": {
+        "description": "Many African ISPs (Safaricom Kenya, MTN Group, Airtel Africa, Vodacom) present at same IXPs but do not peer with each other or international CDNs",
+        "consequence": "Traffic forced off-continent or through slow international backbone routes instead of local PoP handoff",
+        "affected_isp": [
+          "Safaricom",
+          "MTN",
+          "Airtel Africa",
+          "Vodacom"
+        ],
+        "peering_points": "NAPAfrica (6 South African IX locations), other East/West African IXPs",
+        "source": "A First Look at ISP Interconnectivity in Africa, UCSB/NAPAfrica data",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "id": "transparent-tls-proxy-interception",
+      "name": "Transparent TLS Proxy Interception",
+      "labels": [
+        "Carrier Security Appliance"
+      ],
+      "attributes": {
+        "description": "African mobile carriers (Safaricom, MTN, Airtel, Vodacom, Maroc Telecom) intercept and re-encrypt HTTPS at the carrier gateway",
+        "mechanism": "Carrier terminates TLS connection, re-establishes with internal cert signed by carrier CA",
+        "failure_mode": "Clients reject HTTPS if carrier CA not in OS trust store, or if SNI hostname mismatch occurs",
+        "affected_protocols": "HTTPS/TLS 1.2+, HTTP/2",
+        "source": "Medium (Security Compass), DNSFilter ISP transparency report",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "id": "http-3-quic-blocking-uganda-east-africa",
+      "name": "HTTP/3 QUIC Blocking (Uganda/East Africa)",
+      "labels": [
+        "UDP Filtering"
+      ],
+      "attributes": {
+        "description": "Uganda ISPs observed blocking or timing out UDP port 443 (QUIC), forcing fallback to HTTP/2 TCP",
+        "temporal_pattern": "Blocking methods change within days, high variance in enforcement",
+        "failure_mode": "Browsers attempt QUIC handshake, timeout after initial packet, fallback to HTTP/2",
+        "latency_impact": "QUIC timeout ~20-30s per attempt before fallback",
+        "status": "Experimental carrier behavior, not yet standardized",
+        "source": "OTF report on QUIC censorship patterns",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "id": "ipv6-only-carrier-networks-with-broken-aaaa-records",
+      "name": "IPv6-Only Carrier Networks with Broken AAAA Records",
+      "labels": [
+        "Dual-Stack Misconfiguration"
+      ],
+      "attributes": {
+        "description": "Some African mobile carriers force IPv6-only access (e.g., 464XLAT NAT64) while domain AAAA records point to broken or distant routes",
+        "failure_mode": "Client requests AAAA, receives response, attempts IPv6 connect, times out or is slow",
+        "latency_penalty": "Happy Eyeballs timeout delay (300ms-1s per failed connection attempt before IPv4 retry)",
+        "carriers_likely": "Large mobile groups deploying IPv6 core networks (Safaricom, MTN, Vodacom following T-Mobile/Reliance Jio patterns)",
+        "source": "Oneuptime DNS troubleshooting guides, Infoblox ULA analysis",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "id": "dns-resolver-peering-issues-quad9-vs-cloudflare",
+      "name": "DNS Resolver Peering Issues (Quad9 vs Cloudflare)",
+      "labels": [
+        "DNS Routing Asymmetry"
+      ],
+      "attributes": {
+        "description": "Quad9 has stronger African anycast coverage than Cloudflare 1.1.1.1, but both may route queries off-continent depending on ISP peering",
+        "quad9_advantage": "Better African footprint, but blocks legitimate domains as collateral damage",
+        "cloudflare_disadvantage": "Faster general performance, but weaker in Africa; some ISP peering causes timeouts on CDNs",
+        "symptom": "DNS resolution slow, timeout, or returns wrong IP due to ISP interception or poor peering",
+        "source": "Factually DNS speed tests, Cloudflare community reports",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "id": "vercel-default-failover-priority-iad1-primary",
+      "name": "Vercel Default Failover Priority (iad1 primary)",
+      "labels": [
+        "Routing Policy"
+      ],
+      "attributes": {
+        "description": "Vercel Functions default to iad1 (Washington DC). Failover sequence prioritizes European/Asian regions; cpt1 is P20 (last)",
+        "implication": "If origin traffic exceeds PoP capacity, requests fall back through US/EU before reaching Cape Town",
+        "latency": "iad1 to Africa: 180-250ms, cpt1 to Africa: 10-50ms",
+        "source": "Vercel official docs, failover table",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "id": "certificate-chain-tls-1-2-downgrade-issues",
+      "name": "Certificate Chain & TLS 1.2 Downgrade Issues",
+      "labels": [
+        "TLS Handshake Failure"
+      ],
+      "attributes": {
+        "description": "Older Vercel edge certs or carriers forcing TLS 1.2 may fail if cert chain is incomplete or carrier MITM cert is invalid",
+        "failure_mode": "Browser cert validation fails, connection refused, or user sees HSTS preload error",
+        "affected_versions": "TLS 1.2 and earlier (1.3 better protected but some carriers still intercept)",
+        "source": "Sectigo TLS handshake analysis, Cloudflare SNI documentation",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "id": "cloudflare-african-pop-network",
+      "name": "Cloudflare African PoP Network",
+      "labels": [
+        "Infrastructure"
+      ],
+      "attributes": {
+        "pop_count_africa": 18,
+        "key_pops": [
+          "Lagos Nigeria",
+          "Cairo Egypt",
+          "Cape Town South Africa",
+          "Nairobi Kenya",
+          "Johannesburg South Africa",
+          "Casablanca Morocco",
+          "Accra Ghana",
+          "Dar es Salaam Tanzania",
+          "Luanda Angola",
+          "Algiers Algeria",
+          "Kigali Rwanda",
+          "Durban South Africa",
+          "Mombasa Kenya",
+          "Tunis Tunisia"
+        ],
+        "strategy": "1 POP per country, focus on cable landing sites",
+        "coverage_gap": "Vercel has near-zero Africa presence",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "id": "cloudflare-dns-only-mode",
+      "name": "Cloudflare DNS-Only Mode",
+      "labels": [
+        "Configuration"
+      ],
+      "attributes": {
+        "common_name": "Grey cloud setting",
+        "requirement": "DNS management on Cloudflare, no traffic proxy",
+        "critical_reason": "Prevents Vercel SSL/TLS interception",
+        "gotcha": "Orange cloud mode breaks Vercel bot protection and IP visibility",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "id": "cloudflare-cname-flattening",
+      "name": "Cloudflare CNAME Flattening",
+      "labels": [
+        "Technical Feature"
+      ],
+      "attributes": {
+        "problem_solved": "RFC 1912 apex CNAME restriction",
+        "how_it_works": "Cloudflare internally resolves CNAME to IP, returns A record",
+        "benefit": "Allows CNAME at apex domain without DNS spec violation",
+        "target_format": "<project-hash>.vercel-dns-xxx.com",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "id": "full-strict-tls-mode",
+      "name": "Full Strict TLS Mode",
+      "labels": [
+        "SSL/TLS Configuration"
+      ],
+      "attributes": {
+        "requirement_set": [
+          "unexpired certificate",
+          "public CA or Cloudflare Origin CA",
+          "CN or SAN matching hostname"
+        ],
+        "minimum_infrastructure": "Origin HTTPS on port 443",
+        "common_error": "526 SSL Handshake Failure if cert mismatch",
+        "vercel_compatibility": "Works if hostname validation passes",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "id": "vercel-deployment-protection",
+      "name": "Vercel Deployment Protection",
+      "labels": [
+        "Security Feature"
+      ],
+      "attributes": {
+        "affected_systems": [
+          "Bot Protection",
+          "Firewall",
+          "Threat Intelligence",
+          "IP visibility"
+        ],
+        "problem_with_proxy": "Reverse proxies obscure signals, hide real IPs, rotate exit nodes causing re-challenges",
+        "performance_impact": "Additional latency, cache conflicts, degraded speed",
+        "vercel_stance": "Explicitly does not recommend Cloudflare proxy in front",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "id": "argo-smart-routing",
+      "name": "Argo Smart Routing",
+      "labels": [
+        "Performance Service"
+      ],
+      "attributes": {
+        "cost_structure": "$5 per domain per month plus $0.10 per GB",
+        "availability": "All tiers (Free, Pro, Business, Enterprise)",
+        "performance_gain": "35% average latency reduction, 27% fewer connection errors",
+        "africa_strategy": "Real-time routing around congestion, unknown specific Africa benefit data",
+        "scalability_risk": "1 TB traffic = $100+ just for Argo",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "id": "lagos-data-center",
+      "name": "Lagos Data Center",
+      "labels": [
+        "Infrastructure Node"
+      ],
+      "attributes": {
+        "location": "Lekki axis, Lagos Nigeria",
+        "colocation": "MDXI datacentre facility",
+        "connectivity": "Undersea cable operator connection, IXPN, WAF-IX Lagos",
+        "local_impact": "18 of Nigeria's top 50 websites already use Cloudflare",
+        "strategic_role": "West African cable hub",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "id": "cloudflare-pricing-tiers",
+      "name": "Cloudflare Pricing Tiers",
+      "labels": [
+        "Billing Model"
+      ],
+      "attributes": {
+        "free_tier": "DNS only, no Argo",
+        "pro_tier": "$20/month, includes Argo option",
+        "business_tier": "$200/month, includes Argo + prioritization",
+        "enterprise_tier": "Custom, Argo unlimited no metered fees",
+        "argo_requirement": "For Africa optimization, minimum Business",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "id": "dns-migration-vercel-to-cloudflare",
+      "name": "DNS Migration Vercel to Cloudflare",
+      "labels": [
+        "Process"
+      ],
+      "attributes": {
+        "steps": [
+          "Change registrar nameservers to Cloudflare",
+          "Add CNAME record (apex via Flattening)",
+          "Keep proxy grey (DNS only)",
+          "Verify in Vercel (2-10 min)",
+          "Propagation 48 hours"
+        ],
+        "critical_gotcha": "Do not delete old DNS until verified live",
+        "common_mistake": "Multiple NS records if Vercel nameservers not removed at registrar",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "id": "zao-bettercallzaal-deployment",
+      "name": "ZAO / BetterCallZaal Deployment",
+      "labels": [
+        "Use Case"
+      ],
+      "attributes": {
+        "current_host": "Vercel",
+        "desired_improvement": "African traffic latency reduction",
+        "cloudflare_benefit": "18+ PoPs vs Vercel 0",
+        "implementation_challenge": "Cannot proxy without breaking Vercel protections",
+        "actual_solution_needed": "Argo Smart Routing on Business+ OR negotiate Vercel Africa edges",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
     }
   ],
   "edges": [
@@ -13796,6 +14585,602 @@
       "properties": {
         "fact": "Hermes Runner could use Cal.com API v2 to auto-book workshop slots after code review passes; webhook-driven workflow",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
+      }
+    },
+    {
+      "from": "zao-domains",
+      "to": "cloudflare-cdn",
+      "type": "currently_uses",
+      "properties": {
+        "fact": "Cloudflare provides default DNS/CDN layer for ZAO sites",
+        "coverage": "Johannesburg, Cairo, Lagos PoPs",
+        "status": "active",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "zao-domains",
+      "to": "vercel",
+      "type": "hosted_on",
+      "properties": {
+        "fact": "ZAO sites run on Vercel origin",
+        "can_keep_origin": true,
+        "cdn_can_layer_on_top": true,
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "bunnycdn",
+      "to": "cloudflare-cdn",
+      "type": "cost_comparison",
+      "properties": {
+        "recommendation": "BunnyCDN cheaper for pay-as-you-go, Cloudflare better for free tier",
+        "breakeven": "Around $20/mo Cloudflare Pro tier",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "aws-cloudfront",
+      "to": "african-network-access-problem",
+      "type": "solves_with",
+      "properties": {
+        "fact": "Offers 4 African PoPs (most of any major CDN)",
+        "tradeoff": "Complex pricing, overkill for 1k/mo visitors",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "fastly",
+      "to": "african-network-access-problem",
+      "type": "unsuitable_for",
+      "properties": {
+        "reason": "Premium pricing + Africa traffic penalty + limited PoPs",
+        "estimated_cost": "$50+/month for ZAO scale",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "netlify-edge-functions",
+      "to": "vercel",
+      "type": "alternative_to",
+      "properties": {
+        "fact": "Can replace Vercel for static/edge compute stacks",
+        "tradeoff": "16 PoPs vs Vercel's 126, slower Africa latency",
+        "setup": "No origin migration needed, different CDN",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "vultr-vps",
+      "to": "african-network-access-problem",
+      "type": "solves_with",
+      "properties": {
+        "fact": "Johannesburg region + manual nginx caching = local serving",
+        "tradeoff": "Requires ops expertise, no built-in DDoS mitigation",
+        "cost": "$2.50/month + bandwidth",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "bunnycdn",
+      "to": "zao-domains",
+      "type": "recommended_for",
+      "properties": {
+        "fact": "3 African PoPs, transparent $0.06/GB pricing, Vercel origin compatible",
+        "estimated_cost": "$0.50-$2/month at 1k visitors",
+        "setup_effort": "Medium - DNS/origin configuration",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "cloudflare-cdn",
+      "to": "zao-domains",
+      "type": "default_and_best_for",
+      "properties": {
+        "fact": "Already in place, free tier sufficient, no setup needed",
+        "reason": "Lowest setup friction for ZAO scale",
+        "alternative": "Only switch if cost or performance becomes issue",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "aws-cloudfront",
+      "to": "bunnycdn",
+      "type": "cost_comparison",
+      "properties": {
+        "fact": "CloudFront 4 African PoPs vs BunnyCDN 3, but BunnyCDN cheaper at small scale",
+        "cloudfront_advantage": "AWS ecosystem integration, high-volume discounts",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "vercel",
+      "to": "cloudflare-cdn",
+      "type": "can_layer_with",
+      "properties": {
+        "fact": "Keep Vercel origin, add Cloudflare/BunnyCDN/CloudFront in front",
+        "no_migration": true,
+        "dns_swap_only": true,
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "zao-domains",
+      "to": "african-network-access-problem",
+      "type": "experiences",
+      "properties": {
+        "symptom": "Likely latency from limited edge coverage in Johannesburg/Lagos",
+        "solution_tier": "Upgrade CDN PoP coverage or add edge compute layer",
+        "_source": "zabal-dispatch-africa-cdn-routing-alternative-cdns-20260524"
+      }
+    },
+    {
+      "from": "cloudflare-african-pop-network",
+      "to": "lagos-data-center",
+      "type": "contains",
+      "properties": {
+        "role": "West Africa hub",
+        "undersea_cables": "multiple",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "cloudflare-african-pop-network",
+      "to": "cairo-egypt",
+      "type": "contains",
+      "properties": {
+        "partner": "Telecom Egypt",
+        "position_in_history": "3rd Africa POP",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "cloudflare-in-front-of-vercel",
+      "to": "dns-only-mode",
+      "type": "requires",
+      "properties": {
+        "reason": "Orange cloud breaks Vercel SSL",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "dns-only-mode",
+      "to": "cname-flattening",
+      "type": "uses",
+      "properties": {
+        "apex_support": "true",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "full-strict-tls-mode",
+      "to": "vercel-deployment-protection",
+      "type": "compatible_with",
+      "properties": {
+        "caveat": "Only if hostname validation passes",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "vercel-deployment-protection",
+      "to": "argo-smart-routing",
+      "type": "conflict_with",
+      "properties": {
+        "issue": "Proxy hides signals, Argo needs real network data",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "argo-smart-routing",
+      "to": "cloudflare-african-pop-network",
+      "type": "leverages",
+      "properties": {
+        "benefit": "Real-time routing through Africa PoPs",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "lagos-data-center",
+      "to": "west-african-undersea-cables",
+      "type": "interconnected_to",
+      "properties": {
+        "strategic_value": "All West African traffic passes through",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "cloudflare-pricing-tiers",
+      "to": "argo-smart-routing",
+      "type": "gates_access_to",
+      "properties": {
+        "minimum": "Business $200/month for practical Africa routing",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "dns-migration-vercel-to-cloudflare",
+      "to": "cloudflare-in-front-of-vercel",
+      "type": "prerequisite",
+      "properties": {
+        "timing": "48 hours max propagation",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "zao-bettercallzaal-deployment",
+      "to": "argo-smart-routing",
+      "type": "needs",
+      "properties": {
+        "reason": "Only viable path for Africa latency without breaking Vercel protections",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "vercel-deployment-protection",
+      "to": "bot-protection",
+      "type": "provides",
+      "properties": {
+        "loss_when_proxied": "Signals obscured by reverse proxy",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "cloudflare-pricing-tiers",
+      "to": "cloudflare-african-pop-network",
+      "type": "determines_latency_access",
+      "properties": {
+        "free": "DNS management only",
+        "business_plus": "Argo Smart Routing enabled",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "dns-only-mode",
+      "to": "vercel-edge-network",
+      "type": "preserves",
+      "properties": {
+        "benefit": "Allows Vercel optimizations (Edge Middleware, routing)",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "full-strict-tls-mode",
+      "to": "origin-certificate",
+      "type": "requires",
+      "properties": {
+        "options": "Public CA or Cloudflare Origin CA",
+        "critical": "hostname must match CN/SAN",
+        "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
+      }
+    },
+    {
+      "from": "zabalgames-migration-plan",
+      "to": "dns-migration-step1-prepare",
+      "type": "first_step",
+      "properties": {
+        "sequence": 1,
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "dns-migration-step1-prepare",
+      "to": "dns-migration-step2-add-cloudflare",
+      "type": "precedes",
+      "properties": {
+        "sequence": 2,
+        "wait_time_hours": 6,
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "dns-migration-step2-add-cloudflare",
+      "to": "dns-migration-step3-nameserver-switch",
+      "type": "precedes",
+      "properties": {
+        "sequence": 3,
+        "wait_time_hours": 0,
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "dns-migration-step3-nameserver-switch",
+      "to": "dns-migration-step4-verification",
+      "type": "precedes",
+      "properties": {
+        "sequence": 4,
+        "wait_time_hours": 0.5,
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "zabalgames-migration-plan",
+      "to": "cloudflare-free-tier",
+      "type": "requires",
+      "properties": {
+        "fact": "Free tier has sufficient global coverage for launch scale",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "cloudflare-free-tier",
+      "to": "vercel-origin-config",
+      "type": "compatible_with",
+      "properties": {
+        "fact": "Cloudflare proxies Vercel origin without TLS issues in Full mode",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "dns-migration-step1-prepare",
+      "to": "porkbun-registrar",
+      "type": "operates_on",
+      "properties": {
+        "fact": "TTL reduction must occur at registrar before nameserver change",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "dns-migration-step3-nameserver-switch",
+      "to": "porkbun-registrar",
+      "type": "final_action_at",
+      "properties": {
+        "fact": "Nameserver replacement is the critical DNS cutover point",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "rollback-procedure",
+      "to": "dns-migration-step3-nameserver-switch",
+      "type": "emergency_response_to",
+      "properties": {
+        "fact": "Revert nameservers immediately if outage detected",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "launch-timing-decision",
+      "to": "zabalgames-migration-plan",
+      "type": "governs_schedule_for",
+      "properties": {
+        "decision_date": "2026-05-24",
+        "execute_by": "2026-05-25",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "zabalgames-migration-plan",
+      "to": "launch-timing-decision",
+      "type": "requires_execution_before",
+      "properties": {
+        "event": "May 31 ZABAL Games launch",
+        "buffer_days": 5,
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "dns-migration-step4-verification",
+      "to": "cloudflare-free-tier",
+      "type": "monitors",
+      "properties": {
+        "tool": "Cloudflare dashboard analytics for traffic routing confirmation",
+        "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
+      }
+    },
+    {
+      "from": "bettercallzaal-com",
+      "to": "vercel-ip-216-198-79-1",
+      "type": "DNS resolves to",
+      "properties": {
+        "fact": "Both domains resolve to same single IP; no geographic failover or load balancing",
+        "implication": "Single point of failure; no regional redundancy",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "from": "vercel-ip-216-198-79-1",
+      "to": "yul1-montreal-canada",
+      "type": "edge location is",
+      "properties": {
+        "fact": "Consistently serves from Montreal edge regardless of simulated client origin",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "from": "bettercallzaal-com",
+      "to": "porkbun-dns-nameservers",
+      "type": "authoritative nameservers",
+      "properties": {
+        "fact": "All four NS records point to Brazil-hosted servers, creating additional latency for African DNS queries",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "from": "african-network-routing-test-gap",
+      "to": "porkbun-dns-nameservers",
+      "type": "potential bottleneck",
+      "properties": {
+        "concern": "Brazil-hosted DNS may experience higher latency from African regions; no direct Africa presence documented",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "from": "african-network-routing-test-gap",
+      "to": "vercel-yul1-montreal",
+      "type": "long haul latency risk",
+      "properties": {
+        "fact": "Montreal to Lagos ~9000km, Montreal to Cape Town ~10500km, Montreal to Nairobi ~9500km; typical submarine cable latency 150-300ms plus potential IXP congestion",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "from": "bettercallzaal-com",
+      "to": "http-2-without-quic",
+      "type": "connection protocol limitation",
+      "properties": {
+        "risk": "No HTTP/3 QUIC advertised; HTTP/2 over TCP susceptible to packet loss on poor connections common in African networks",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "from": "vercel-ip-216-198-79-1",
+      "to": "ipv4-only",
+      "type": "protocol support",
+      "properties": {
+        "fact": "No AAAA (IPv6) records; some African ISPs may be IPv6-first",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "from": "zabalgames-com",
+      "to": "vercel-ip-216-198-79-1",
+      "type": "DNS resolves to",
+      "properties": {
+        "fact": "Same single Vercel IP as BetterCallZaal",
+        "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
+      }
+    },
+    {
+      "from": "vercel-african-edge-coverage",
+      "to": "bettercallzaal-unreachable-in-most-african-nations",
+      "type": "CAUSES_FAILURE_FOR",
+      "properties": {
+        "fact": "Single Cape Town compute region serves 53+ African countries; no edge nodes in Nigeria, Kenya, Tanzania, Egypt, Ethiopia, Senegal",
+        "mechanism": "Traffic routed to distant PoP or non-African region by default",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "african-isp-bgp-peering-gaps",
+      "to": "vercel-traffic-forced-off-continent",
+      "type": "CAUSES_FAILURE_FOR",
+      "properties": {
+        "fact": "Safaricom, MTN, Airtel do not peer with Vercel at local IXPs; traffic routes via slower intercontinental backbone",
+        "latency_cost": "50-100ms+ additional delay vs direct local handoff",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "transparent-tls-proxy-interception",
+      "to": "https-certificate-validation-failures-on-vercel-domains",
+      "type": "CAUSES_FAILURE_FOR",
+      "properties": {
+        "fact": "Carrier re-encrypts traffic; if client OS does not trust carrier CA or SNI mismatch occurs, connection is refused",
+        "user_experience": "Connection fails silently or shows untrusted cert warning",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "http-3-quic-blocking-uganda-east-africa",
+      "to": "20-30s-latency-increase-before-tcp-fallback",
+      "type": "CAUSES_SLOWDOWN_FOR",
+      "properties": {
+        "fact": "Browser attempts QUIC on UDP 443, times out, falls back to HTTP/2. Repeat for each connection.",
+        "applicable_regions": "Uganda, possibly other East African carriers",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "ipv6-only-carrier-networks-with-broken-aaaa-records",
+      "to": "happy-eyeballs-timeout-delays-on-dual-stack-domains",
+      "type": "CAUSES_SLOWDOWN_FOR",
+      "properties": {
+        "fact": "Client gets AAAA record, attempts IPv6, times out after 300-500ms, retries on IPv4. Doubles connection time.",
+        "affected_carriers": "Safaricom, MTN, Vodacom if running IPv6-only core with broken external routes",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "cloudflare-african-pop-density",
+      "to": "cloudflare-sites-load-faster-in-africa-than-vercel-sites",
+      "type": "OUTPERFORMS",
+      "properties": {
+        "fact": "32 African data centers vs Vercel 1 compute region = higher cache hit ratio, local peering, lower latency",
+        "impact": "Same-continent CDN ~100-150ms faster than trans-continental routing",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "dns-resolver-peering-issues-quad9-vs-cloudflare",
+      "to": "slow-or-failed-dns-resolution-in-africa",
+      "type": "CAUSES_SLOWDOWN_FOR",
+      "properties": {
+        "fact": "ISP peering or resolver anycast routing may send queries far from user, causing timeouts or incorrect IPs",
+        "symptom": "First byte latency inflated by 500ms-2s due to DNS lookup",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "vercel-default-failover-priority-iad1-primary",
+      "to": "african-users-get-routed-to-distant-us-origin-under-load",
+      "type": "CAUSES_SLOWDOWN_FOR",
+      "properties": {
+        "fact": "P20 priority for cpt1 means European/US regions exhausted first before Cape Town handles traffic",
+        "latency_cost": "250ms vs 30ms for same-country access",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "transparent-tls-proxy-interception",
+      "to": "vercel-pop-tls-handshake-failures",
+      "type": "INTERFERES_WITH",
+      "properties": {
+        "fact": "If carrier SNI inspection broken or cert chain incomplete, handshake fails before data transfer begins",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "certificate-chain-tls-1-2-downgrade-issues",
+      "to": "connection-refused-on-carriers-with-old-tls-max-version",
+      "type": "CAUSES_FAILURE_FOR",
+      "properties": {
+        "fact": "Carriers forcing TLS 1.2 or without full cert chain fail Vercel certificate validation",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "african-isp-bgp-peering-gaps",
+      "to": "dns-resolver-also-routed-off-continent",
+      "type": "CAUSES_SLOWDOWN_FOR",
+      "properties": {
+        "fact": "Peering gaps affect both origin CDN and resolver routing; compound latency",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "vercel-african-edge-coverage",
+      "to": "vpn-becomes-essential-workaround-for-african-users",
+      "type": "FORCES_WORKAROUND",
+      "properties": {
+        "fact": "Users bypass carrier inspection and poor routing by VPN to US/EU, defeating all local optimization attempts",
+        "cost": "VPN overhead ~50-100ms + $ for users",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "http-3-quic-blocking-uganda-east-africa",
+      "to": "browsers-degrade-to-http-2-losing-latency-gains",
+      "type": "DEGRADES_PROTOCOL",
+      "properties": {
+        "fact": "Modern HTTP/3 benefits (QUIC 0-RTT, connection migration) unavailable when UDP blocked",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "ipv6-only-carrier-networks-with-broken-aaaa-records",
+      "to": "vercel-s-ipv6-support-becomes-liability-instead-of-advantage",
+      "type": "CAUSES_NEGATIVE_IMPACT",
+      "properties": {
+        "fact": "Publishing AAAA record without guaranteed good route causes slow connections on carriers with broken IPv6",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "dns-resolver-peering-issues-quad9-vs-cloudflare",
+      "to": "isp-default-resolver-better-than-public-alternative-for-some",
+      "type": "CREATES_ASYMMETRY",
+      "properties": {
+        "fact": "ISP resolver may have better local peering despite security trade-offs; Quad9/Cloudflare may route slower",
+        "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
       }
     }
   ]
