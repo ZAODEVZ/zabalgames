@@ -512,6 +512,139 @@ Counter-examples that lose votes:
 
 ---
 
+## After you ship - amplification + outreach
+
+The build is the application; shipping it is the start of the conversation, not the end. ZAO accounts amplify all valid submissions during the promote window (T+24h to T+48h in the August Finals; the equivalent post-cast window in July). Beyond that auto-amplification, the seeded-asks playbook below converts.
+
+### ZAO accounts that auto-amplify
+
+- **@bettercallzaal** on Farcaster (Zaal's personal, the host) - reposts and quotes shipped casts
+- **/zabal Farcaster channel** - the home; all shipped casts land here
+- **/zao Farcaster channel** - the broader ZAO community feed
+- **COC Concertz** - virtual-concert promoter audience (13+ promoters)
+- **@ZAOstockTeamBot** on Telegram - the team chat that runs ZAOstock ops
+- **@WaveWarZ** on X - the prediction-market audience (Hurric4n3Ike runs this)
+- **The ZAO newsletter** - published via Paragraph, distributes to subscribers + Farcaster
+
+### Named-targets - who to DM by topic
+
+Send a personal DM after shipping. Each one converts a built thing into eyeballs.
+
+| Target | Best for | DM angle |
+|--------|----------|----------|
+| **Hurric4n3Ike** (X @hurric4n3ike / Farcaster) | WaveWarZ-related builds, music-prediction, Solana | Reposts to his active WaveWarZ arenas, very engaged with builders |
+| **Jordan Oram / yerbearzerker** | Empire Builder builds, token mechanics, leaderboards | He runs Empire Builder, will boost any Empire-API ship |
+| **Adrian / ~divifly** | Empire Builder smart-contract / SDK builds | The lead engineer; technical depth, will surface to Jordan |
+| **Sam Stambaugh / candytoybox** | WaveWarZ-Base, agentic builds, general ZAO | Core team, multi-surface amplifier |
+| **Arthur (Neynar)** | Smart contracts on Base, EVM patterns | Will route through Neynar circles + give technical feedback |
+| **Tyler Stambaugh / Magnetic** | Magnetic-portal builds, retention plays, opt-in data | Magnetic audience + the retention-marketing crowd |
+| **Adam (SongJam)** | Music-engagement, leaderboards, SongJam integrations | Music-creator audience + $SANG holders |
+| **kmac.eth** | Snap builds, zlank templates, Farcaster mini-app patterns | The Snap-builder audience |
+| **Iman** | ZAO Music team builds, ORDAO governance, ZOE skills | Internal ZAO Music distribution |
+
+### DM templates (personalize the [bracketed] bits)
+
+**Generic ship cast follow-up:**
+
+```
+Yo [name] - just shipped [thing] for ZABAL Games. [One-line what it does].
+Built on [the ZAO rails you used].
+Cast: [farcaster URL]
+Would love your eyes on it - any feedback or repost very appreciated.
+```
+
+**Topic-specific (someone owns the surface you built on):**
+
+```
+Hey [name] - [thing] uses [their thing] - thought you should see it.
+[2-3 lines: what it does, why it matters, link]
+If it works for you, a quote-cast or repost to [their audience] would mean the world.
+```
+
+**Quick ask (very-tight relationship):**
+
+```
+[name] - quick - shipped [thing], think it would land with [their audience].
+[link]
+Anything you would change?
+```
+
+### Cross-platform - where the audience lives
+
+- **Farcaster (auto):** ZAO accounts repost to /zabal + /zao
+- **Telegram (manual):** ZAOstock Team Bot chat, WaveWarZ chats (via Hurric4n3Ike), COC promoter Discord
+- **X / Twitter (manual):** WaveWarZ X account, Neynar circles (via Arthur), your own audience
+- **Newsletter (planned):** ZAO Paragraph drop covers shipped July builds; submit yours to the next issue
+
+---
+
+## Time + dates
+
+> **Status: placeholder structure** - exact dates lock once cohort + mentor availability are confirmed. Pacific Time is the official anchor (per Doc 630). EU / Asia builders coding through their night during the August Finals window is acknowledged; future seasons may run regional variants.
+
+### The three months
+
+| Month | What | Status |
+|-------|------|--------|
+| **June 2026** | Workshop month - recorded sessions + live spaces | dates TBD; bootcamp opens ~June 1 |
+| **July 2026** | Open build-a-thon - the build IS the application | dates TBD; opens ~July 1 |
+| **August 2026** | The Finals - 72-hour window, WaveWarZ-Base settles placement | dates TBD; one week in August, exact week locks when cohort confirms |
+
+### The Finals 72-hour clock (anchored to T+0)
+
+- **T-3 days:** 90-minute onboarding call. Mandatory or forfeit.
+- **T+0:** Thursday 12:00 PT (proposed - to be confirmed). Prompt drops. Voter snapshot. WaveWarZ-Base battle markets open.
+- **T+24h:** Friday 12:00 PT. Ship deadline. The four required artifacts (URL / repo / demo / cast) must all be in.
+- **T+48h:** Saturday 12:00 PT. Promote window closes. Market continues trading.
+- **T+72h:** Sunday 12:00 PT. WaveWarZ-Base smart contract settles. Live reveal stream announces placements + distributes USDC + mints Hats NFTs on-chain.
+
+### Soft launch milestone
+
+- **2026-05-30 (~soft launch):** the minimum-viable surface goes live - UGC submission field, volunteer/interest poll, intro video. Not the full Magnetic portal yet, just a place to land.
+
+### Global accessibility note
+
+The Finals are anchored to Pacific Time because the core team is West Coast US + Maine. EU builders will code through their night for the 24h ship window; Asia builders are mid-day to evening through the window. This is acknowledged and accepted for Season 1; future seasons may run multiple regional Finals windows.
+
+---
+
+## How the mentor + finalist pair works
+
+Per Doc 630 Part 3 + Doc 701. The mentor is **not a judge**. The mentor is an embedded teammate on your build during the August Finals - present, on-call, contributing to project management + distribution + connections while you code.
+
+### What the mentor commits to
+
+- **Live presence during the 24h build window** (T+0 to T+24h). Available in Discord or Google Meet, in DMs, on-call. Not coding for you - but available the whole window.
+- **Screen-share availability** if you are hardware-limited or stuck on tooling.
+- **Project management help** during the build (what to ship, what to cut, when to call it done).
+- **ZAO connections** - mentor introduces you to other ZAO members, partner platforms, mentor-specific networks that strengthen your build.
+- **Distribution help during the promote window** (T+24h to T+48h). Reposts, quote-casts, intros to relevant audiences.
+- **Daily check-ins during July** (the build-a-thon month, before Finals) for finalists who got selected early.
+
+### What the finalist commits to
+
+- **Show up to the T-3 onboarding call.** 90 minutes. Mandatory.
+- **Pick + maintain at least one visibility mode** during the 24h build (live Twitch / recorded sessions / public AI prompt logs / frequent build casts). Anti-cheat verification.
+- **Cast your ship.** No private builds.
+- **Communicate.** If you are stuck or off-track, tell your mentor. They cannot help if they do not know.
+
+### Comms tools (default)
+
+- **Sync:** Discord voice / Google Meet (mentor + finalist pick on the onboarding call)
+- **Async:** Farcaster DMs OR Telegram (mentor's preference)
+- **Stream:** Twitch (default) restreamed to /zabal hub
+- **Code:** GitHub - finalist's repo, mentor has read access for quick reviews
+
+### Mentor pairing curation
+
+Mentors claim champions from July submissions (first-come-first-served per mentor). Each mentor defines their own search style ("looking for a streamer with little vibe-coding experience" / "looking for a hard-coder doing smart contracts") before applications open. Mentors are not pooled - the mentor-finalist match is intentional and locked at curation.
+
+### After the Finals
+
+The relationship usually keeps going. Many ZAO ecosystem collaborations started as mentor-finalist pairs from prior cohorts. No formal obligation either way; the door is open.
+
+---
+
 ## Where to get help
 
 | Need | Where |
