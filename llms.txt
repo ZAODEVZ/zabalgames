@@ -32,9 +32,16 @@ For the full long-form context bundle (every detail, every code path) see [docs/
 The umbrella you are building for. Understand which brand your build serves.
 
 ### The ZAO (umbrella)
-- **What:** Music infrastructure for independent artists using decentralized tools.
+- **Full name:** The ZAO (ZTalent Artist Organization). Always written "The ZAO" when standalone.
+- **What:** Music infrastructure for independent artists using decentralized tools. A guild that teaches indie artists to take back their profit margins, their data, and their IP rights - by learning and building together.
+- **Tagline:** "Community first, technology second." "Here's how it works - we'll learn it together."
 - **Audience:** Independent musician, 100-10k monthly listeners, no label, releasing monthly, crypto-curious not crypto-native, owns/controls masters.
-- **Status:** Live - 188-member gated Farcaster music community. Q1 2026 shipped ZAO OS, launched ZABAL, Crypto Magazine feature.
+- **Mission:** Bring the profit margin, the data, and the IP rights back to independent artists.
+- **Founder:** Zaal Panthaki (@bettercallzaal, FID 19640). BS Electrical Engineering, RIT 2022. Maine-based (Ellsworth area). Background: automation engineer / building automation tech (Jackson Laboratory). 65+ public repos at github.com/bettercallzaal.
+- **Status:** Live - 188 gated Farcaster music community members. Founded 2022. Q1 2026 shipped ZAO OS, launched ZABAL, Crypto Magazine feature.
+- **Proof of work:** ZAO-PALOOZA at NFT NYC 2024 (6-week production, broke even, first member IRL). ZAO-CHELLA at Miami Art Week 2024 (cross-community onchain music). ZAOstock Oct 3 2026 Maine (10 artists, full day + livestream + after-party).
+- **Sites:** thezao.com (about), zaoos.com (the app, under active development).
+- **Code:** github.com/bettercallzaal/ZAOOS (MIT).
 
 ### ZAO OS
 - **What:** The platform layer - a gated Farcaster client for ZAO members.
@@ -86,9 +93,59 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Stack:** Pure static HTML, direct push to main = deploy.
 
 ### Respect + Fractals
-- **What:** Soulbound, peer-validated, Fibonacci-ranked reputation. Earned in weekly fractal sessions.
+- **What:** Soulbound, peer-validated, Fibonacci-ranked reputation. Earned in weekly fractal sessions - 6-person groups consensus-rank each other's contribution. Two Respect types: **OG Respect** (ERC-20, one-time grandfathered) + **ZOR** (ERC-1155, weekly consensus, the active mechanism).
+- **Cadence:** ~90+ weeks running consistently (since August 2024). Mondays 6pm EST + ad-hoc whenever 4+ unplayed members are in the Discord waiting room.
+- **Distribution:** Fibonacci ranks 1-6 award 110 / 68 / 42 / 26 / 16 / 10 Respect points (2x era - doubled from year 1).
+- **Bot infrastructure:** `bettercallzaal/fractalbotmarch2026` v2.1, Discord-based (Python 3.10+, discord.py 2.0+), Supabase storage, 52 slash commands. Snapshot integration for proposal + curation voting, onchain auto-submit, Farcaster linking.
+- **Role tree:** Hats Protocol treeId 226 on **Optimism** (NOT Base - governance roles are on OP; ZABAL Games NFTs are on Base, separate Hats deployment).
 - **Voice:** Ritual, earned, communal. Reputation-with-weight, not gamified-points.
-- **What it gates:** ZABAL Games voter eligibility, plus most ZAO governance.
+- **What it gates:** ZABAL Games voter eligibility (the pre-funded baseline positions in WaveWarZ-Base per Doc 720), proposal + curation voting in fractal sessions, plus most ZAO governance.
+
+---
+
+## ZAO ecosystem - the working parts
+
+### Agent stack (LOCKED architecture)
+
+Five operating bot surfaces, all running the **Hermes pattern**: spawn the Claude Code CLI as a subprocess, never direct Anthropic API calls. Auth via Claude Code Max plan OAuth (`~/.claude/auth.json`), not via `ANTHROPIC_API_KEY`. System prompt injected per invocation via `--append-system-prompt`. Tool restrictions via `--allowedTools` / `--disallowedTools`. Parse responses via `--output-format json`. **Zero marginal cost, no API billing surprises, stable model quality.**
+
+| Surface | Brain | Role |
+|---------|-------|------|
+| **ZOE** (`@zaoclaw_bot` on Telegram) | Sonnet (chitchat) + Opus (hard recall) | Concierge - DMs, recall over Bonfire, basic task management |
+| **Hermes** (PR webhooks only) | Opus (quality-critical) | Coder + Critic dual loop - writes fixes, scores them (target > 80/100 before merge). Allowlist for write paths; npm allowlist + `ignore-scripts=true`. |
+| **ZAOstock team bot** (`@ZAOstockTeamBot` on Telegram) | Sonnet | Festival ops coordination, weekly DMAIC retros, the cowork action-item tracker |
+| **Magnetiq bot** | Sonnet | Cross-platform syndication research (Zaal + Tyler dual research stream) |
+| **AttaBotty** | Sonnet (Opus for stream review) | Twitch + streaming ops, post-stream review |
+
+**Secondary brain for low-stakes only:** Ollama `llama3.1:8b` on VPS port `:11434`. Wrapper: `bot/src/zoe/ollama.ts` (`ollamaChat`, `ollamaClassify`, `ollamaHealth`). USE FOR inbox classification, Bonfire entity-class first-pass, audit subagent fact-check. NEVER FOR brand outputs, concierge replies, research sourcing, anything public.
+
+**Decommissioned (do NOT reincarnate):** openclaw container + 7-agent squad (workspace nuked 2026-05-05), Composio AO orchestrator (paused), ZOE v2 + Agent Zero migration (skipped - Bonfire eats ZOE's recall role), 10-bot branded fleet (folded into ZOE memory blocks), Hermes-on-Telegram (Hermes runs from PR webhooks only).
+
+### Memory layer - Bonfire
+
+ZAO's agent memory partner: **Bonfires** (bonfires.ai). Knowledge graph that ingests cross-platform signals (Farcaster, GitHub, Twitch, ZAO Respect) and produces queryable per-address scores + entity relationships. ZAO has a live bonfire at `zabal.bonfires.ai`. Founded by Joshua.eth / Ryan ("Rskagy" on Telegram, in active ZAO Civilization GC). GitHub org: `NERDDAO` (15+ repos). Genesis NFT minting: 0.1 ETH per bonfire (gates the `$KNOW` token allocation pre-public-launch). SDK: `pip install bonfires`. API base: `tnt-v2.api.bonfires.ai`. Exports kEngrams as Canvas / OWL / Markdown - open standards, no lock-in.
+
+### ZAO repo footprint (65+ public, MIT)
+
+The bettercallzaal GitHub org runs ~1 new repo every 6 days. TypeScript dominates (43 repos), Python next (11). Next.js 14-16 / Vercel / Supabase / Neynar is the default stack. Key reusable / referenceable repos:
+
+| Repo | What | Reuse value |
+|------|------|------------|
+| **ZAOOS** | The main ZAO OS platform (Next.js + Supabase + Neynar). Music-first gated Farcaster client. | Reference patterns for music players, Respect leaderboards, cross-post modules, spaces UI. |
+| **zabalgames** (this repo) | ZABAL Games Season 1 site + docs + Snap + Finals settlement scaffold | The Games surface itself. |
+| **zlank** | No-code Farcaster Snap builder (zlank.online). 14 block types, polls, multi-page, KV vote tallies. | Make a partner template for any ZAO project; reuse the snap-spec.ts patterns. |
+| **zaomusicbot** | Discord music bot (discord.js + Lavalink). YouTube/Spotify/SoundCloud/Audius/Bandcamp/Twitch/Vimeo. | Multi-platform music search + queue patterns. Audius integration extractable. |
+| **ZOUNZ** | Farcaster Music NFT Mini App (React 19, mint.club API, Zora NFT on Base, Attention Markets on Solana, AI music gen + Audius discovery) | Embeddable mini-app for music NFT minting. |
+| **ZAO-Leaderboard** | Respect Token Leaderboard (Next.js 14 + ethers.js v6 + Airtable + Alchemy RPC) | Reference for any Respect-driven UI. |
+| **fractalbotmarch2026** | The Discord bot running the weekly fractal sessions (Python + discord.py, Supabase, Snapshot, Hats) | Reference for governance integrations, Hats Protocol bindings, Snapshot voting. |
+| **bettercallzaalwebsite** | Zaal's personal Farcaster mini-app (pure static HTML) | Reference for the simplest possible Farcaster mini-app pattern. |
+| **NERDDAO/bonfires-sdk** | Bonfire Python CLI + SDK | Memory + knowledge graph integration for ZAO agents. |
+
+Browse the full set at github.com/bettercallzaal - everything is MIT, everything is read-only-friendly. Read patterns; replicate cleanly; don't fork-clone-rebrand wholesale.
+
+### Origin + proof of work
+
+ZAO was founded in 2022, started inside another DAO that didn't survive. The remaining builders shut down the parent + refocused on music. The weekly fractal system + Respect token launched ~August 2024 and has run consistently 90+ weeks. ZAO-PALOOZA (NFT NYC 2024) was the first IRL, 6-week production, broke even, first member-IRL contact. ZAO-CHELLA (Miami Art Week 2024) brought multiple onchain-music communities together. WaveWarZ launched on Solana (Hurric4n3Ike + Zaal + Sam) - in one early battle, a musician earned ~0.5 SOL in 20 minutes of trade-activity alone. That moment proved the model: artists earn from engagement, not just streams. Q1 2026 shipped ZAO OS (the platform), launched ZABAL (token, January 1), Crypto Magazine feature. ZAOstock (Oct 3 2026, Maine) is the inaugural festival.
 
 ---
 
