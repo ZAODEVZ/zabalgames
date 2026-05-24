@@ -3,7 +3,8 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/spec",    "destination": "/docs/research/701-canonical-state.md", "permanent": false },
-    { "source": "/context", "destination": "/llms.txt",                              "permanent": false },
+    { "source": "/llms",    "destination": "/llms.txt",                              "permanent": false },
+    { "source": "/raw",     "destination": "/llms.txt",                              "permanent": false },
     { "source": "/todo",    "destination": "/TODO.md",                               "permanent": false },
     { "source": "/snap",    "destination": "/docs/snap-design.md",                   "permanent": false },
     { "source": "/kit",     "destination": "/docs/launch-kit.md",                    "permanent": false },
