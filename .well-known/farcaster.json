@@ -9,11 +9,19 @@
     "name": "ZABAL Games",
     "iconUrl": "https://zabalgames.com/assets/icon.png",
     "homeUrl": "https://zabalgames.com",
+    "imageUrl": "https://zabalgames.com/assets/icon.png",
+    "buttonTitle": "Sign up",
     "splashImageUrl": "https://zabalgames.com/assets/icon.png",
     "splashBackgroundColor": "#070709",
-    "subtitle": "Farcaster vibe-coding challenge",
-    "description": "ZABAL Games Season 1 - a Farcaster vibe-coding challenge for the ZAO ecosystem. June workshops, July open build-a-thon, August Finals. Streamer games crossed with a hackathon.",
+    "subtitle": "Vibe-code challenge for ZAO",
+    "description": "Vibe-coding challenge for The ZAO. June workshops, July open build-a-thon, August Finals with WaveWarZ-Base settlement. $500 USDC pool + Hats NFTs.",
     "primaryCategory": "social",
-    "tags": ["hackathon", "vibe-coding", "zao", "farcaster", "games"]
+    "tags": ["hackathon", "vibe-coding", "zao", "farcaster", "games"],
+    "heroImageUrl": "https://zabalgames.com/assets/og-card.png",
+    "tagline": "Build for ZAO, get paid",
+    "ogTitle": "ZABAL Games Season 1",
+    "ogDescription": "Farcaster vibe-coding challenge for The ZAO. June-August 2026.",
+    "ogImageUrl": "https://zabalgames.com/assets/og-card.png",
+    "castShareUrl": "https://zabalgames.com"
   }
 }
