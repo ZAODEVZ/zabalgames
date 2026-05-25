@@ -154,6 +154,15 @@
       "spec_label": "Repo",
       "color": "cyan",
       "status": "open"
+    },
+    {
+      "id": "17",
+      "name": "ZABAL Games template suite on zlank (8 templates)",
+      "description": "Build templates 2-9 of the ZABAL Games suite on zlank.online so the category becomes a real surface: workshop-lead book-your-slot, workshop announcement RSVP card, daily Empire stats one-click cast, Finals market view, adopt-a-project picker, build-progress weekly post, winner announce, season recap. Each plugs into existing ZAO rails (Cal.com, Lu.ma, Empire Builder, WaveWarZ-Base, adoptable-projects.json). Template #1 (signup) is already shipped at zlank.online via PR #63. See zlank issue #64 for the full spec.",
+      "spec_url": "https://github.com/bettercallzaal/zlank/issues/64",
+      "spec_label": "Issue 64",
+      "color": "gold",
+      "status": "open"
     }
   ]
 }
