@@ -1,8 +1,8 @@
 {
   "accountAssociation": {
-    "header": "TODO_HEADER_SIGN_WITH_FID_19640",
-    "payload": "TODO_PAYLOAD",
-    "signature": "TODO_SIGNATURE"
+    "header": "eyJmaWQiOjE5NjQwLCJ0eXBlIjoiY3VzdG9keSIsImtleSI6IjB4MDIxQTU2NUM0MzdCN2Q0YzM0MjA0MDcxRjk1RUQ0MzcxNjJBNUZjQiJ9",
+    "payload": "eyJkb21haW4iOiJ6YWJhbGdhbWVzLmNvbSJ9",
+    "signature": "ESowlUyVej158H1W3qN7TsSNt1V0J+hoGbbss8HRnqw9s0x8uaZLxuTlZXayhT4GCGe8v7EP9At/xyW17RmfIRs="
   },
   "miniapp": {
     "version": "1",
