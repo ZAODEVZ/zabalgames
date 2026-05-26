@@ -23,7 +23,7 @@ For the full long-form context bundle (every detail, every code path) see [docs/
 - **This Farcaster mini app** (zabalgames.com) - explainer and front door.
 - **Entry:** collect the Zabal connector NFT on Magnetiq. The connector is the anchor magnet - other ZAO magnets are side channels off it. Collecting it auto-drops the road-to-ZAOstock entry.
 
-**Prize:** $500 USDC pool, tiered. Every finalist who ships gets paid. Plus a Hats Protocol role NFT for every finisher (July + August).
+**Prize:** $500 USDC pool, tiered. Every finalist who ships gets paid. Plus a Hats Protocol role NFT for every finisher (July + August). **Pool sponsor: The ZAO festivals team** - $500 USDC for v0 (Season 1). Looking for more sponsors to grow the v1 prize pool or add support to v0; contact info@thezao.com.
 
 ---
 
