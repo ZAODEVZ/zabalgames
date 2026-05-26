@@ -832,7 +832,7 @@
           <div class="timeline-time">T+48h to T+72h</div>
           <div class="timeline-body">
             <strong>WaveWarZ-Base Trade Window</strong>
-            <small>Each finalist becomes a tradable battle entry on WaveWarZ-Base. Respect-holders (snapshotted at T+0) get pre-funded positions (~$1-2 USDC each). The market trades for 72h. Anyone can buy in alongside the Respect baseline. See <a href="/finals" style="color: var(--cyan);">/finals</a> for the full mechanic. Voting protocol locked by Doc 720.</small>
+            <small>Each finalist becomes a tradable battle entry on WaveWarZ-Base. Market opens for trading. Anyone with a Base wallet can buy in. Respect-holders (The ZAO's soulbound governance signal) have a voice in settlement - exact weight mechanism locked before Finals. See <a href="/finals" style="color: var(--cyan);">/finals</a> for the full mechanic.</small>
           </div>
         </div>
         <div class="timeline-item">
@@ -882,14 +882,19 @@
   <section id="judging" class="alt">
     <div class="container">
       <div class="section-eyebrow">Who Decides</div>
-      <h2 class="section-title">WaveWarZ-Base + Respect Baseline</h2>
+      <h2 class="section-title">WaveWarZ-Base Market + Respect Governance</h2>
       <p class="section-sub">
-        Decision locked by <a href="/docs/research/720-wavewarz-finals-mechanic.md" style="color: var(--cyan);">Doc 720</a>: ZABAL Games Season 1 Finals are settled by the WaveWarZ-Base prediction market protocol (Sam + Arthur ship the Base contracts in June, mainnet July, real Finals August). Not pure 1-person-1-vote, not pure market. A hybrid that combines price discovery with a Respect-holder baseline floor.
+        ZABAL Games Season 1 Finals are settled by the WaveWarZ-Base prediction market protocol (Sam + Arthur ship the Base contracts in June, mainnet July, real Finals August). Anyone with a Base wallet can trade. Respect (The ZAO's soulbound governance signal) has a voice in settlement. The specific Respect-weight mechanism is being designed alongside the contracts and locked before the August Finals.
       </p>
 
       <div class="judging-card">
         <strong>How settlement works</strong>
-        <p>Each Finalist becomes a tradable battle entry on WaveWarZ-Base. ZAO members with Respect above a threshold (snapshotted at T+0) get pre-funded positions (~$1-2 USDC each) - this is the baseline allocation that keeps the floor honest for valuable-but-niche builds. The market trades for 72 hours; anyone can buy in alongside the Respect baseline. At T+72h the market settles. Final ranking combines market price with autonomous judge-agent rubric scores (judges are x402-paid agents that read the deployed URL + repo + demo video and emit scored evaluations). Live settlement on <a href="/finals/live" style="color: var(--cyan);">/finals/live</a>. Top 3 get the Champion NFT (Hats Protocol on Base). All Finalists get the Finisher NFT. USDC distributed onchain via 0xSplits.</p>
+        <p>Each Finalist becomes a tradable battle entry on WaveWarZ-Base. The market trades for 72 hours on real signal (the live demo + repo + cast quality + judge-agent rubric scores). At T+72h the market settles. Final ranking combines market price with autonomous judge-agent rubric scores (judges are x402-paid agents that read the deployed URL + repo + demo video and emit scored evaluations). Respect-holder governance weight feeds into the settlement - exact mechanic TBD with the contracts. Live settlement on <a href="/finals/live" style="color: var(--cyan);">/finals/live</a>. Top 3 get the Champion NFT (Hats Protocol on Base). All Finalists get the Finisher NFT. USDC distributed onchain via 0xSplits.</p>
+      </div>
+
+      <div class="judging-card" style="margin-top: 1rem;">
+        <strong>What Respect actually is</strong>
+        <p>Soulbound. Illiquid. Non-transferable. You cannot sell or trade it. Respect is The ZAO's governance signal earned by participating in the ecosystem. During ZABAL Games: up to 1000 Respect points earnable per active participant, with current ZAO holders determining who counts as active (workshop attendance, July submissions, Finals participation, real contribution).</p>
       </div>
     </div>
   </section>
