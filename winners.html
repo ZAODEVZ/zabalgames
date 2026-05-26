@@ -43,7 +43,7 @@
     <div class="hero-eyebrow">Season 1 Finals - August 2026</div>
     <h1>The <span class="accent">Winners</span>.</h1>
     <p class="hero-sub">
-      Empty for now. Fills the moment the August Finals settle. ZABAL Games Season 1 awards $500 USDC across the top 8 finalists, plus a Champion NFT (via Hats on Base) to the top 3, and a Finisher NFT to every Finalist.
+      Empty for now. Fills the moment the August Finals settle. ZABAL Games Season 1: top 8 finalists share a $500 USDC pool, top 16 get $ZABAL token rewards on top, plus a Champion NFT (via Hats on Base) to the top 3, and a Finisher NFT to every Finalist. Specific per-finalist allocation confirmed before Finals.
     </p>
     <p class="hero-sub" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
       Voting protocol: WaveWarZ-Base hybrid (Doc 720). Market price + Respect-holder baseline allocation across a 72h trade window. Sam + Arthur ship the Base contracts in June, mainnet July, real Finals August.
@@ -56,25 +56,25 @@
   <section class="section">
     <h2>Top 3 Champions</h2>
     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-      The Hats Protocol Champion NFT, the prize cut, the recurring mentor slot in Season 2.
+      The Hats Protocol Champion NFT, the largest USDC slices from the pool, the recurring mentor slot in Season 2.
     </p>
 
     <div class="prize-grid">
       <div class="prize-card first">
         <div class="prize-place">1st</div>
-        <div class="prize-amount">$150 USDC</div>
+        <div class="prize-amount">USDC + ZABAL</div>
         <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 0.5rem 0; color: var(--text-dim);">TBD</h3>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Awaiting Finals.</p>
       </div>
       <div class="prize-card second">
         <div class="prize-place">2nd</div>
-        <div class="prize-amount">$100 USDC</div>
+        <div class="prize-amount">USDC + ZABAL</div>
         <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 0.5rem 0; color: var(--text-dim);">TBD</h3>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Awaiting Finals.</p>
       </div>
       <div class="prize-card third">
         <div class="prize-place">3rd</div>
-        <div class="prize-amount">$75 USDC</div>
+        <div class="prize-amount">USDC + ZABAL</div>
         <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 0.5rem 0; color: var(--text-dim);">TBD</h3>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Awaiting Finals.</p>
       </div>
@@ -84,7 +84,7 @@
   <section class="section">
     <h2>Finishers (4th - 8th)</h2>
     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-      $35 USDC each + Finisher NFT (Hats Protocol, on Base). Every Finalist who ships in the 24h Finals build window keeps the Finisher hat permanently.
+      USDC slice from the $500 pool + $ZABAL token rewards + Finisher NFT (Hats Protocol on Base). Every Finalist who ships in the 24h Finals build window keeps the Finisher hat permanently. Specific per-finalist allocation confirmed before Finals.
     </p>
 
     <div id="finishers-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
@@ -99,13 +99,20 @@
         card.className = 'card';
         card.style.textAlign = 'center';
         card.innerHTML = '<div class="card-label" style="color: var(--text-dim);">' + i + 'th</div>' +
-                         '<div style="font-family: Syne, sans-serif; font-size: 1.4rem; color: var(--gold); margin: 0.3rem 0;">$35</div>' +
+                         '<div style="font-family: Syne, sans-serif; font-size: 1rem; color: var(--gold); margin: 0.3rem 0;">USDC + ZABAL</div>' +
                          '<h3 style="font-family: Syne, sans-serif; font-weight: 700; font-size: 0.95rem; margin: 0.3rem 0; color: var(--text-dim);">TBD</h3>' +
                          '<p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Awaiting Finals.</p>';
         grid.appendChild(card);
       }
     })();
     </script>
+  </section>
+
+  <section class="section">
+    <h2>Ranks 9-16</h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+      $ZABAL token rewards. No USDC, but token-stack stacks with Empire Builder boosters for ongoing distribution.
+    </p>
   </section>
 
   <section class="section">
