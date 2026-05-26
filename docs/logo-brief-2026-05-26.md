@@ -141,12 +141,9 @@ If the designer can only do 2-3 mockups, suggest:
 - One rationale paragraph per concept (why this direction won the internal vote)
 - Open to a fourth wildcard direction we did not list
 
-## Timeline
+<!-- Timeline + Compensation removed 2026-05-26. Neither was authorized.
+     Zaal will provide both directly to the designer. -->
 
-Soft deadline: **Sun May 31** if we want the launch cast OG image to use the new logo. Hard fallback: current Z icon stays as OG image and we swap to new logo in early June.
+## Contact
 
-If timeline is too tight, designer just picks one direction + ships in 2-3 days.
-
-## Compensation
-
-Standard rate. Paid via Coinflow or wire (BCZ Strategies LLC handles invoicing). DM Zaal on Farcaster (@bettercallzaal) to discuss.
+DM Zaal on Farcaster: @bettercallzaal
