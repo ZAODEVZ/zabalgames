@@ -13,6 +13,17 @@
       "confirmed_date": "2026-05-22",
       "spec_url": "https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/714-tyler-call.md",
       "color": "zabal"
+    },
+    {
+      "id": "002",
+      "name": "Thy Revolution",
+      "org": "The ZAO",
+      "topic": "Two workshop sessions - topics TBD",
+      "format": "two sessions, livestreamed and recorded",
+      "when": "June - dates TBD",
+      "status": "confirmed",
+      "confirmed_date": "2026-05-26",
+      "color": "orange"
     }
   ],
   "_schema": {
