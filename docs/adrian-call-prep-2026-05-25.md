@@ -101,7 +101,7 @@ Bonus: ask if **Jordan should ALSO be a workshop lead** (separate session, not c
 
 ### Mentor ask (5 min)
 
-- This is the bigger commitment - ~12 hrs across June-Aug
+- This is the bigger commitment - across June-Aug
 - He picks his champion from the July submission pool (FCFS per mentor)
 - During August Finals, he is the embedded teammate for that builder during the 24h build window
 - Hats Champion NFT if his champion top-3s; permanent Mentor NFT regardless
@@ -181,12 +181,12 @@ If NO on mentor:
 
 ## Optional Pre-Send
 
-If you want, draft a quick "tomorrow's call topics" message to him 12 hrs before:
+If you want, draft a quick "tomorrow's call topics" message to him before:
 
 ```
 hey Adrian - heads up for our call. couple topics:
 1. workshop slot in June (60 min recorded, Empire Builder V3 walkthrough)
-2. optional: mentor slot for Aug Finals (~12 hrs total, pairs you with one builder who picks an Empire-adjacent project)
+2. optional: mentor slot for Aug Finals (pairs you with one builder who picks an Empire-adjacent project)
 3. would love to invite Jordan as separate workshop lead too if that fits
 
 context: zabalgames.com - half the adoptables touch Empire Builder

@@ -8,12 +8,12 @@
 
 ## What a mentor commits to
 
-- **June (~2 hrs):** drop a 30-60 min workshop session on the Magnetiq portal (recorded, stays in the library forever)
-- **July (~3 hrs total, async):** browse Phase 1 submissions as they ship, claim one champion that fits your style (first-come first-served per mentor)
-- **August Finals (~6 hrs across 72h):** be the embedded teammate for your champion - on a call during the 24h build window, available in DMs for the promote + voting windows
-- **Reveal stream (~1 hr):** show up live
+- **June:** drop one 30-60 min workshop session on the Magnetiq portal (recorded, stays in the library forever)
+- **July:** browse Phase 1 submissions as they ship, claim one champion that fits your style (first-come first-served per mentor)
+- **August Finals:** be the embedded teammate for your champion during the 24h build window, available in DMs for the promote + voting windows
+- **Reveal stream:** show up live
 
-Total: ~12 hours over June-August. Public credit. Free.
+Total commitment: spread across June-August. Mostly async, except for the August Finals build window. Public credit. Free.
 
 ## What they get back
 
@@ -30,7 +30,7 @@ Total: ~12 hours over June-August. Public credit. Free.
 ```
 hey @<handle>, would you mentor one builder through the August Finals of ZABAL Games?
 
-quick version - 12 hrs total across June workshop + July curation + 24h Finals build window. 8 mentor slots. you pick your own champion from the July submission pool. champions who top-3 get a Hats Protocol NFT.
+quick version - commitment spread across June workshop + July curation + August 24h Finals build window. 8 mentor slots. you pick your own champion from the July submission pool. champions who top-3 get a Hats Protocol NFT.
 
 why you specifically: <ONE LINE - something specific to their work, e.g. "your fractalbot work is the reference pattern for half the agentic builds I expect to see in Phase 1">
 
@@ -45,7 +45,7 @@ reply yes/no/maybe + I send the full brief
 ```
 mentor slot for ZABAL Games Aug Finals - want one?
 
-12 hrs total - June workshop (1 hr) + July curation (browse + pick a champion) + Aug Finals (24h embedded build window with your champion). 8 slots, claiming as people confirm.
+commitment - June workshop + July curation (browse + pick a champion) + Aug Finals (24h embedded build window with your champion). 8 slots, claiming as people confirm.
 
 reason for you: <ONE LINE specific>
 
@@ -59,7 +59,7 @@ yes/no?
 ```
 @<handle> mentor slot open for ZABAL Games Aug Finals - the Farcaster vibe-coding challenge for The ZAO.
 
-12 hrs total over June-Aug. You pick your champion from the July submission pool. Top-3 champions get a Hats Protocol NFT.
+across June-Aug. You pick your champion from the July submission pool. Top-3 champions get a Hats Protocol NFT.
 
 Why I'm asking you: <ONE LINE>
 
@@ -111,7 +111,7 @@ The fastest unblock is the top 3 - Jordan, Adrian, Tyler. They're already in the
 ```
 hey Jordan - quick ask, would you mentor one builder through the August Finals of ZABAL Games?
 
-12 hrs total over June-Aug. you pick your own champion from the July submission pool. half the adoptables touch Empire Builder (01, 02, 03, 04) so a Jordan-mentored champion has a real home there.
+across June-Aug. you pick your own champion from the July submission pool. half the adoptables touch Empire Builder (01, 02, 03, 04) so a Jordan-mentored champion has a real home there.
 
 if yes: top-3 champions get a Hats Protocol NFT, you get a permanent "Season 1 Mentor" NFT regardless of placement, and you get a per-mentor page at zabalgames.com/mentor?handle=yerbearzerker
 
@@ -123,7 +123,7 @@ yes/no/maybe?
 ### To Adrian (diviflyy)
 
 ```
-Adrian - mentor slot in the August ZABAL Games Finals? 12 hrs total over June-Aug.
+Adrian - mentor slot in the August ZABAL Games Finals? across June-Aug.
 
 your glonkybot 17-token 5x stack is the reference pattern for builders going for the network-effect play on their own empires. mentor for any of those.
 
@@ -136,7 +136,7 @@ yes/no?
 ```
 Tyler - you're already locked as workshop lead 001 for June. soft-ask: would you ALSO take one of the 8 mentor slots for the August Finals?
 
-mentor commitment is ~12 hrs across June-Aug (your workshop already covers June). you pick a champion from the July pool. magnetic is the perfect home for any builder doing media/portal work, so the fit is natural.
+mentor commitment spans June-Aug (your workshop already covers June). you pick a champion from the July pool. Magnetiq is the perfect home for any builder doing media/portal work, so the fit is natural.
 
 if yes I add you to data/mentors.json and your /mentor?handle=tyler page goes live.
 
