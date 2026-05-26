@@ -2,7 +2,8 @@
 
 > The public launch announcement for ZABAL Games Season 1. Drafted 2026-05-21, reworked 2026-05-22 after the Tyler call (research Doc 714). ZABAL Games and ZAOstock announce as SEPARATE posts - this kit is the ZABAL Games post. Goal of the launch: announce the event, drive workshop-lead signups for June, point people to the Farcaster spaces session this weekend. No emojis, no em dashes per brand rules. Paste-ready.
 
-> Sign-up: bettercallzaal.com/zabalgames.html. Channel: /zabal on Farcaster. Entry (opening end of month): the Zabal connector on Magnetiq.
+> Sign-up: zabalgames.com. Channel: /zabal on Farcaster. Entry (opening end of month): the Zabal connector on Magnetiq.
+> **Launch Snap (cast embed):** https://zlank.online/s/OAmekQ - role-picker (Builder / Workshop Lead / Audience / Mentor), unfurls as in-cast widget with confetti. Use this URL when posting the main launch cast.
 
 ---
 
