@@ -184,7 +184,7 @@ Reference for if anyone asks "is X real":
 
 | Live | What |
 |---|---|
-| YES | Hero ticker, countdown to Jun 1, workshop list (currently 1: Tyler), mentor list (currently 1: Arthur) |
+| YES | Hero ticker, countdown to Jun 1, workshop list (currently 3 sessions confirmed: Tyler + Thy Rev x2), mentor roster open (recruiting all 8 slots post-launch) |
 | YES | /lead form (Formspree, tested PASS) |
 | YES | /projects page with 16 adoptable projects |
 | YES | Cal.com booking + Lu.ma calendar embeds |
@@ -262,7 +262,7 @@ Just paste reactions / DMs / screenshots and I'll triage.
 - `docs/luma-events-templates-2026-05-26.md` - Lu.ma event templates for Tyler + Thy Rev
 - `docs/research/750-builder-registration-oauth-flow.md` - the OAuth flow spec
 - `data/workshop-leads.json` - confirmed leads (Tyler, Thy Rev)
-- `data/mentors.json` - confirmed mentors (Arthur)
+- `data/mentors.json` - mentor roster (Zaal pre-locked as ECOSYSTEM mentor; rest recruiting)
 - `.well-known/farcaster.json` - signed manifest
 - `assets/miniapp.js` - SDK bootstrap
 

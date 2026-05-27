@@ -2,8 +2,17 @@
 
 > The live state of the build. Updated as commits land. See `docs/research/701-canonical-state.md` for the canonical event-level decisions; this file tracks the actual build / launch tasks.
 
-**Last updated:** 2026-05-24
+**Last updated:** 2026-05-26 (Tier 2 + Tier 3 audit + announce-day kit shipped)
 **Goal:** Site fully production-ready by Sun May 31 so June workshops open Mon Jun 1.
+
+**Status as of 2026-05-26 evening:**
+- Formspree lead form: TESTED PASS (Zaal confirmed)
+- Site health: 8/8 URL checks return 200 (OG PNG 404 is expected - W11)
+- Audit: Tier 1 + Tier 2 + Tier 3 fabrications all stripped (commits 687c0fc + ff239da)
+- Announce kit: shipped (commit bcaff76 - `docs/announce-day-kit-2026-05-27.md`)
+- Lu.ma templates: ready for Tyler + Thy Rev (commit 99539af - `docs/luma-events-templates-2026-05-26.md`)
+- 4 announce posts: drafted + paste-ready
+- Doc 750 (Builder OAuth): locked, mid-June build target
 
 ---
 
@@ -47,7 +56,7 @@
 
 | # | Blocker | What you do | Time | Friction | What I do once unblocked |
 |---|---------|-------------|------|----------|--------------------------|
-| W11 | **OG PNG** | Open `assets/og-card.svg` in browser, screenshot at 1200x630, save as `assets/og-card.png`, push. | 5 min | **NONE - start here** | Swap `<meta property="og:image">` to point at PNG. Test unfurl on X / Telegram / Bluesky. |
+| W11 | **OG PNG** | Open `assets/og-card.svg` in browser, screenshot at 1200x630, save as `assets/og-card.png`, push. | 5 min | **NONE - only blocker left** | Swap `<meta property="og:image">` to point at PNG. Test unfurl on X / Telegram / Bluesky. (Currently 404 - SVG fallback unfurls in most clients.) |
 | ~~W2~~ | ~~Lu.ma calendar URL~~ | **DONE 2026-05-24.** Using shared ZAO calendar at luma.com/zao (cal-jPH4al7AMlXzdNN). Workshops added as individual events alongside the weekly Fractal + other ZAO events. Embed iframe live in `index.html #workshops` left card. | - | - | - |
 | ~~W3~~ | ~~Cal.com event-type URL~~ | **DONE 2026-05-24.** Event-type live at cal.com/bettercallzaal/zabal-games-workshop-slot. Embed iframe wired into `index.html #workshops` right card with Restream/Meet flexibility messaging. | - | - | - |
 | ~~W4~~ | ~~Farcaster manifest signatures~~ | **DONE 2026-05-25.** Signed with FID 19640 custody key. Dropped into `.well-known/farcaster.json`. zabalgames.com now registered as Mini App. | - | - | - |
