@@ -14,7 +14,7 @@ Framework per brand: One-liner / Mission / Audience / Voice / Visual / Build sur
 - **Voice:** Direct, warm, builder-energy. "We learn it together" not "trust us." Magic words: Respect, Fractal, owns-their-audience, learn-by-shipping, picks-and-shovels, getting-the-right-ears.
 - **Visual:** Dark bg `#070709`. Orange `#ff6b35` + cyan `#00e5ff` + gold `#f5c842` accents, ZABAL purple `#a78bfa`. Syne (headings 700-800) + Outfit (body 300-600) + JetBrains Mono (numbers). Subtle SVG noise texture.
 - **Build surface:** Anything that helps indie artists own distribution, audience, or economy. Farcaster-native, Base-native.
-- **Status:** Live - 188-member gated community. Shipped ZAO OS, launched ZABAL, Crypto Magazine feature, all in Q1 2026.
+- **Status:** Live - 100+ member gated community. Shipped ZAO OS, launched ZABAL, Crypto Magazine feature, all in Q1 2026.
 
 ---
 
@@ -22,7 +22,7 @@ Framework per brand: One-liner / Mission / Audience / Voice / Visual / Build sur
 
 - **One-liner:** The gated Farcaster client - the platform layer of the ZAO.
 - **Mission:** Give ZAO members a music-community home they own and control - feed, spaces, governance - instead of renting it from a mainstream platform.
-- **Audience:** The ~188 ZAO members - musicians, music-industry pros, web3 builders, music fans. Gated, not public.
+- **Audience:** The 100+ ZAO members - musicians, music-industry pros, web3 builders, music fans. Gated, not public.
 - **Voice:** 1:1 with the ZAO umbrella - builder-energy, transparent, ship-in-public, operationally precise. No distinct ZAO OS tone.
 - **Visual:** 1:1 with the ZAO umbrella. Dark, orange/cyan/gold. No distinct ZAO OS treatment.
 - **Build surface:** Next.js 16 + Tailwind v4 + Supabase + Neynar + RainbowKit + viem on Base. Surfaces: `/feed` (Farcaster cast feed), `/spaces` (audio + video streaming), `/respect` (contribution leaderboard), `/ecosystem` (Empire Builder embed), `/governance` (ORDAO + Hats), `/settings` (platform connections). Existing reusable modules: `src/lib/publish/` (10 cross-post platforms), `src/lib/music/`, `src/components/respect/`, `src/components/spaces/`. Players can read patterns, replicate SDKs.
@@ -50,7 +50,7 @@ Framework per brand: One-liner / Mission / Audience / Voice / Visual / Build sur
 - **Voice:** Competitive, sports-energy, hype. Stats-forward (W/L records, volume). The opposite of the warm ZAO-umbrella tone - this brand is the arena, deliberately the loudest brand in the ecosystem. (Confirmed 2026-05-21.)
 - **Visual:** Partner-built (Ikechi), Solana-native. **[TBD - Zaal: pull palette/vibe from the live UI at wavewarz-intelligence.vercel.app.]**
 - **Build surface:** 43 artists fully documented with wallets, W/L records, SOL volume. Live UI at `wavewarz-intelligence.vercel.app`. Helius free tier for Solana RPC reads. `wavewarz_artists` Supabase table pattern (one-to-many wallet-to-artist). Cross-chain consideration: ZAO is Base-native, WaveWarZ is Solana-native - bridging UX is a recurring theme. Builders can ship: AI betting advisors, signal aggregators, fan-sentiment scrapers, meta-leaderboards.
-- **Status:** Live - PARTNER, not ZAO-built. Built by Ikechi Nwachukwu (Hurric4n3Ike). ATH: 734 battles, $37,875 SOL traded, 7.96 SOL paid to artists. Contact via X @WaveWarZ.
+- **Status:** Live - PARTNER, not ZAO-built. Built by Ikechi Nwachukwu (Hurric4n3Ike). Snapshot ~2026-05-23: hundreds of battles + 400+ SOL traded + several SOL paid to artists - current numbers at wavewarz-intelligence.vercel.app. Contact via X @WaveWarZ.
 
 ---
 

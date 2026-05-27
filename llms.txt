@@ -38,7 +38,7 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Audience:** Independent musician, 100-10k monthly listeners, no label, releasing monthly, crypto-curious not crypto-native, owns/controls masters.
 - **Mission:** Bring the profit margin, the data, and the IP rights back to independent artists.
 - **Founder:** Zaal Panthaki (@bettercallzaal, FID 19640). BS Electrical Engineering, RIT 2022. Maine-based (Ellsworth area). Background: automation engineer / building automation tech (Jackson Laboratory). 65+ public repos at github.com/bettercallzaal.
-- **Status:** Live - 188 gated Farcaster music community members. Founded 2022. Q1 2026 shipped ZAO OS, launched ZABAL, Crypto Magazine feature.
+- **Status:** Live - 100+ member gated Farcaster music community. Founded 2022. Q1 2026 shipped ZAO OS, launched ZABAL, Crypto Magazine feature.
 - **Proof of work:** ZAO-PALOOZA at NFT NYC 2024 (6-week production, broke even, first member IRL). ZAO-CHELLA at Miami Art Week 2024 (cross-community onchain music). ZAOstock Oct 3 2026 Maine (10 artists, full day + livestream + after-party).
 - **Sites:** thezao.com (about), zaoos.com (the app, under active development).
 - **Code:** github.com/bettercallzaal/ZAOOS (MIT).
@@ -56,17 +56,17 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Multiplier stack:** `totalPoints = pointsWithoutMultiplier * stakingMultiplier * empireMultiplier`. Staking: 2.1x-3.0x via `1 + sqrt(stakeAmount / 250000 SANG)`. Empire: 4.0x-8.6x via boosters.
 - **API (no auth for reads):** Empire Builder public read endpoints for leaderboards, personal-stats, empires. Docs: empire-builder.gitbook.io/empire-builder-docs.
 - **Tier stack (V3):** Basic Empire (free, tokenless) = 2 leaderboards / 10 boosters / 250 ranked spots. Ascended Empire (token launch unlocks) = 10 leaderboards / 40 boosters / 500 ranked spots.
-- **Launched:** 2026-01-01 via Clanker. Co-creators: yerbearserker (Jordan Oram) + Adrian (~divifly).
+- **Launched:** 2026-01-01 via Clanker. Co-creators: yerbearserker (Jordan Oram) + Adrian (diviflyy).
 
 ### WaveWarZ
-- **What:** Music-battle prediction markets. Artists battle head-to-head, wallets trade on outcomes, 1% of trade volume goes to the artist, settled on-chain via smart contract (no custody). 472+ SOL cumulative volume, ~735 battles, 43 artists, **11 shows/week** (5 morning + 5 night Mon-Fri + Sunday-night battles).
+- **What:** Music-battle prediction markets. Artists battle head-to-head, wallets trade on outcomes, 1% of trade volume goes to the artist, settled on-chain via smart contract (no custody). Snapshot ~2026-05-23: 400+ SOL cumulative volume, hundreds of battles, 40+ artists, ~11 shows/week (5 morning + 5 night Mon-Fri + Sunday-night battles). Current live numbers at wavewarz-intelligence.vercel.app.
 - **The model proof:** in one early battle, a musician earned ~0.5 SOL in 20 minutes of trade activity alone. Artists earn from engagement, not from streams.
-- **Top performers (Doc 180 snapshot):** LUI - 49 wins, 29.59 SOL volume. APORKALYPSE - 73% win rate. PROF!T - 71% win rate, 13.86 SOL. Kata7yst - most active in the snapshot window.
-- **Status:** v1 LIVE on Solana (Hurric4n3Ike at wavewarz-intelligence.vercel.app). v2 IN BUILD on Base - agentic version Sam (candytoybox) is shipping with Arthur (Neynar) reviewing smart contracts. Repo: `~/Documents/wwbase` locally; ZAO research Doc 711.
+- **Top performers (Doc 180 snapshot, dated):** LUI, APORKALYPSE, PROF!T, Kata7yst were the leaders in the snapshot window. Specific stats live on wavewarz-intelligence.vercel.app.
+- **Status:** v1 LIVE on Solana (Hurric4n3Ike at wavewarz-intelligence.vercel.app). v2 IN BUILD on Base - agentic version Sam is shipping with Arthur (Neynar) reviewing smart contracts. Repo: `~/Documents/wwbase` locally; ZAO research Doc 711.
 - **Voice:** Loud arena brand - competitive, sports-energy, stats-forward. The deliberate opposite of the warm ZAO-umbrella tone.
 - **Cross-chain:** WaveWarZ v1 on Solana (Helius free tier for RPC, 1M credits/mo, 10 RPS). v2 on Base (matches ZAO rails). Both surfaces are real ZAO infrastructure now.
 - **ZABAL Games Finals integration:** WaveWarZ-Base is the August Finals voting protocol - each finalist build becomes a battle entry, wallets trade on which wins, smart contract settles placement at T+72h. Respect (The ZAO's soulbound governance signal) has a voice in settlement - exact weight mechanism locked before Finals by Sam + Arthur with the contracts.
-- **Contact:** X @WaveWarZ (no Farcaster/Discord/Telegram presence). Founders: Hurric4n3Ike + Zaal + Sam (candytoybox). Arthur (Neynar) on smart contracts for the Base build.
+- **Contact:** X @WaveWarZ (no Farcaster/Discord/Telegram presence). Founders: Hurric4n3Ike + Sam (WaveWarZ-Base co-builder). Arthur (Neynar) on smart contracts for the Base build.
 
 ### ZAO Festivals / ZAOstock
 - **What:** ZAO's IRL festival arm. ZAOstock 2026 is the inaugural festival; ZAO Festivals is the umbrella for future iterations worldwide.
@@ -673,8 +673,8 @@ Send a personal DM after shipping. Each one converts a built thing into eyeballs
 |--------|----------|----------|
 | **Hurric4n3Ike** (X @hurric4n3ike / Farcaster) | WaveWarZ-related builds, music-prediction, Solana | Reposts to his active WaveWarZ arenas, very engaged with builders |
 | **Jordan Oram / yerbearzerker** | Empire Builder builds, token mechanics, leaderboards | He runs Empire Builder, will boost any Empire-API ship |
-| **Adrian / ~divifly** | Empire Builder smart-contract / SDK builds | The lead engineer; technical depth, will surface to Jordan |
-| **Sam Stambaugh / candytoybox** | WaveWarZ-Base, agentic builds, general ZAO | Core team, multi-surface amplifier |
+| **Adrian / diviflyy** | Empire Builder smart-contract / SDK builds | The lead engineer; technical depth, will surface to Jordan |
+| **Sam** (WaveWarZ-Base co-builder) | WaveWarZ-Base, agentic builds, general ZAO | Core team, multi-surface amplifier |
 | **Arthur (Neynar)** | Smart contracts on Base, EVM patterns | Will route through Neynar circles + give technical feedback |
 | **Tyler Stambaugh / Magnetiq** | Magnetiq-portal builds, retention plays, opt-in data | Magnetiq audience + the retention-marketing crowd |
 | **Adam (SongJam)** | Music-engagement, leaderboards, SongJam integrations | Music-creator audience + $SANG holders |
@@ -810,7 +810,7 @@ Twenty-one kEngrams seeded by parallel research subagents (rounds 1-8, 2026-05-2
 | kEngram | Ask the graph about | One-line takeaway |
 |---|---|---|
 | `hermes-architecture` | Hermes Coder/Critic | Two Claude Code subprocesses (Opus codes, Sonnet critiques). Loop max 3x, score >=70 ships. Auth via Max plan OAuth. Pre-flight gate (typecheck+lint+test) runs between Coder and Critic. Fleet cap $20/day notional. |
-| `wavewarz-protocol` | WaveWarZ v1 (Solana, live, 735 battles, 472 SOL volume) + v2 (Base agentic, Sam + Arthur, mainnet July 2026, settles ZABAL Games Finals via Doc 720 hybrid Option B). | Top performers: LUI (49W-22L), APORKALYPSE (73%), PROF!T (71%). 11 X Spaces/week. |
+| `wavewarz-protocol` | WaveWarZ v1 (Solana, live, hundreds of battles + 400+ SOL volume per ~2026-05-23 snapshot - current at wavewarz-intelligence.vercel.app) + v2 (Base agentic, Sam + Arthur, mainnet July 2026, settles ZABAL Games Finals via Doc 720 hybrid Option B). | Top performers (snapshot): LUI, APORKALYPSE, PROF!T. ~11 X Spaces/week. |
 | `zabal-empire` | $ZABAL token + Empire Builder V3 (Basic tokenless vs Ascended). | Contract `0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07` on Base, 346 holders, 5 active boosters (4 ERC20 + 1 QUOTIENT). Glonkybot 17-token 5x stack is the reference network-effect pattern. |
 | `farcaster-snap-2026` | Snap protocol v2.0 (current). | `application/vnd.farcaster.snap+json` MIME + content negotiation on Accept header. Frame v1 buttons dead. `fc:miniapp` meta is for Mini Apps (separate protocol). Caster has a known-hosts whitelist - zlank.online whitelisted, arbitrary custom domains do NOT unfurl as Snaps. Use zlank `/s/[uuid]` template. |
 | `bounty-payment-rails` | POIDH on Base/Arbitrum/Degen + Empire Builder distribution. | POIDH escrows ETH, claim-NFT serves as proof. 2.5% protocol fee. ZABAL Games builders: claim project -> POIDH bounty -> proof -> payout -> Empire Builder pulls submitter feed and airdrops ZABAL. poidh-sentinel agent (open source, 0x94t3z) automates the loop. |

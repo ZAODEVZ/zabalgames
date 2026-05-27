@@ -6,7 +6,7 @@
 ## Context (give this to the designer)
 
 - **What it is:** ZABAL Games Season 1 - a 3-month Farcaster vibe-coding challenge for the ZAO ecosystem. Streamer games crossed with a hackathon. June workshops + July build-a-thon + August Finals.
-- **Parent brand:** The ZAO (music + web3 community, 188 members, dark navy + gold/cyan accents).
+- **Parent brand:** The ZAO (music + web3 community, 100+ members, dark navy + gold/cyan accents).
 - **Sibling brands:** WaveWarZ (music battles), COC Concertz (virtual concerts), ZAOstock (festival), BetterCallZaal (Zaal's personal).
 - **Recurring format:** This is Season 1. Logo needs to work for Season 2, 3, 4 - season numeral might be a swappable element.
 - **Audience:** Farcaster-native builders + ZAO music community + crypto-curious devs.

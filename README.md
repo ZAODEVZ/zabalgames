@@ -120,7 +120,7 @@ Detailed list in [docs/research/701-canonical-state.md - Part 9](./docs/research
 
 - **/zabal** Farcaster channel - https://farcaster.xyz/~/channel/zabal
 - **BetterCallZaal** - https://bettercallzaal.com - Zaal's site, where ZABAL Games originated
-- **The ZAO** - the 188-member gated Farcaster music community ZABAL Games serves
+- **The ZAO** - the 100+ member gated Farcaster music community ZABAL Games serves
 - **Magnetiq** - https://getmagnetic.com (or wherever Tyler's portal lives) - the workshop library / entry portal
 
 ---
