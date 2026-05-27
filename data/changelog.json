@@ -10,6 +10,51 @@
   },
   "entries": [
     {
+      "date": "2026-05-26",
+      "title": "Tier 2 + Tier 3 fabrication audit complete + announce-day kit shipped",
+      "type": "decision",
+      "description": "Stripped time-bound WaveWarZ stats (now snapshot-flagged + linked to live numbers at wavewarz-intelligence.vercel.app). Fixed Adrian handle (~divifly -> diviflyy) + Sam team attribution (removed candytoybox conflation - that's a GitHub org not a Farcaster handle - added Arthur on WaveWarZ-Base contracts review). Mentor roster reframed as open/recruiting per Q2b. 188-member ZAO count replaced with 100+ everywhere. Announce-day kit + Lu.ma event templates + Doc 750 OAuth spec shipped. Site health: 8/8 URLs return 200 (only OG PNG 404 - W11 still pending).",
+      "commit": "c1f3f8d",
+      "links": [
+        {"label": "Announce-day kit", "url": "https://github.com/ZAODEVZ/zabalgames/blob/main/docs/announce-day-kit-2026-05-27.md"},
+        {"label": "Doc 750 Builder OAuth spec", "url": "https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/750-builder-registration-oauth-flow.md"},
+        {"label": "Lu.ma event templates", "url": "https://github.com/ZAODEVZ/zabalgames/blob/main/docs/luma-events-templates-2026-05-26.md"}
+      ]
+    },
+    {
+      "date": "2026-05-26",
+      "title": "Workshop lead #002 confirmed - Thy Revolution (2 sessions)",
+      "type": "content",
+      "description": "Thy Revolution (Mickey / Rev) confirmed 2 workshop sessions for June. Topics TBD - 4 starter topic suggestions in the Lu.ma templates doc. Workshop slate now 3 confirmed sessions (Tyler #001 + Thy Rev #002a + #002b). 5 of 8 workshop slots still open."
+    },
+    {
+      "date": "2026-05-26",
+      "title": "Prize pool locked + sponsor attribution + Respect threshold",
+      "type": "decision",
+      "description": "$500 USDC v0 prize pool funded by The ZAO festivals team. Top 8 share USDC, Top 16 get $ZABAL tokens (no specific per-finalist amounts published). Sponsor inquiries: info@thezao.com. Respect voter threshold locked at 1000+ - holders can also vote (>=66% supermajority) on a new governance system if they choose. Respect is illiquid, soulbound, earned through fractal sessions.",
+      "links": [
+        {"label": "Finals settlement detail", "url": "/finals"}
+      ]
+    },
+    {
+      "date": "2026-05-26",
+      "title": "Farcaster Mini App SDK ready() fix - splash now dismisses",
+      "type": "fix",
+      "description": "Created assets/miniapp.js bootstrap module calling sdk.actions.ready() to dismiss the splash in Warpcast. Injected module script tag into all 12 HTML pages. Pre-fix: splash hung indefinitely. Also wired window.ZABAL.composeCast() + openUrl() helpers for in-app sharing."
+    },
+    {
+      "date": "2026-05-26",
+      "title": "Zlank signup Snap live + wired into hero CTA",
+      "type": "feat",
+      "description": "ZABAL Games signup Snap published at https://zlank.online/s/OAmekQ. Returns valid Snap v2.0 JSON + 4-option poll + confetti. Added Sign Up Snap button to hero CTA on index.html + launch-kit.md."
+    },
+    {
+      "date": "2026-05-25",
+      "title": "Farcaster manifest signed for zabalgames.com",
+      "type": "infra",
+      "description": "Signed with FID 19640 custody key. accountAssociation header decodes to {fid:19640, type:custody}, payload to {domain:zabalgames.com}. Mini App now registers correctly in Warpcast. Validator passed after subtitle/description char-limit fixes (subtitle <=30, description <=170) + banned-char stripping."
+    },
+    {
       "date": "2026-05-24",
       "title": "Bonfire knowledge graph 20 kEngrams seeded (rounds 5+6+7, 20 parallel subagents)",
       "type": "infra",
