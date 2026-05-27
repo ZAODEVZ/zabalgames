@@ -266,4 +266,32 @@ Just paste reactions / DMs / screenshots and I'll triage.
 - `.well-known/farcaster.json` - signed manifest
 - `assets/miniapp.js` - SDK bootstrap
 
+## Launch-morning prompt for Claude
+
+If you're working with me (Claude Code) tomorrow morning and want me caught up fast, paste this:
+
+```
+goal: ship the ZABAL Games Season 1 announce push today
+
+context check:
+1. read docs/announce-day-kit-2026-05-27.md - this is the kit
+2. confirm site loads (curl https://zabalgames.com)
+3. confirm last commit was the audit/kit ship (git log --oneline main | head -5)
+
+then do these in order:
+- pre-flight checks 1 through 8 (10 min)
+- pull up announce-posts-2026-05-26.md, confirm 4 posts ready
+- prep me for DMs - load media-kit-2026-05-26.md + sponsor-outreach-2026-05-26.md
+- pull up luma-events-templates-2026-05-26.md - i may create Lu.ma events while casts go out
+
+i will paste reactions / DMs / screenshots back to you. you handle:
+- speed-edits to posts that aren't landing
+- new Lu.ma events as i lock dates
+- adding signups to data/workshop-leads.json + data/mentors.json
+- follow-up DM drafts for any conversation that needs more nuance
+- fixing anything broken on the site within minutes
+```
+
+Save that prompt somewhere fast to find (text file, sticky note, your launch-day desktop). I won't have memory of today's session unless you give me this context.
+
 You've got this. Push when ready.
