@@ -80,6 +80,7 @@
 | N10 | Live Bonfire push + integration test | Proves the queryable-depth promise. Builds AFTER BONFIRE_API_KEY shared. | 5 min |
 | N11 | Update llms.txt with kEngram pointers as round-3+ research lands | Ongoing maintenance | 10 min per round |
 | N12 | Per-mentor pages populate as roster locks | Once each mentor confirms, add JSON entry | 5 min per mentor |
+| **N13** | **Builder registration via Farcaster + GitHub OAuth (Doc 750)** | Replace one-shot form submission with "register once, build all month, agents read July GitHub activity." Frictionless connect via Mini App SDK + GitHub `read:user` OAuth. Auto-extract submission bar (live URL + demo + cast) from repo README. Featured-badge for repos with zabalgames.com URL. Fork 1B locked - build mid-June for July go-live. | 3-4 weeks (Week of Jun 1 through Jun 29) |
 
 ---
 
