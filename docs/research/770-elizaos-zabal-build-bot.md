@@ -298,3 +298,379 @@ Net: bot pays for itself after ~50 Tier 2 reviews/month.
 - $ZABAL governance integration (bot reads HAATZ vote state)
 - Voice mode for Spaces participation
 - Multi-language responses
+
+---
+
+# APPENDIX A - Phase 1 Implementation Guide (2026-05-28)
+
+> Per Zaal 2026-05-28: 'lets do all that for 3 and then tell me what other issues may arise.' Expanding the spec into actionable Phase 1 setup. Build target: mid-June so the bot is in /zabal before July open-build month.
+
+## Phase 1 scope (what ships)
+
+Free Tier 1 only. No payment plumbing yet. The goal of Phase 1 is to validate the **content + voice** of bot replies before adding the economic layer.
+
+- Bot listens on /zabal channel + responds to @-mentions
+- Replies in-thread with 1 paragraph + 1 link
+- Reads our context: llms.txt + people.json + adoptable-projects.json + workshop-leads.json
+- HAATZ for any Farcaster reads (user lookup, channel posts)
+- Anthropic API (Claude Sonnet) for the reasoning
+- Rate limited per FID (5 Tier 1 / day) to prevent abuse
+- One VPS (Hetzner CX22 or similar) running ElizaOS
+
+## Phase 1 timeline (target)
+
+| Day | Owner | Task |
+|---|---|---|
+| Jun 1-3 | Zaal | Create bot Farcaster account + signer UUID (steps below) |
+| Jun 4-5 | dev | Stand up ElizaOS locally, wire HAATZ + Anthropic |
+| Jun 6-8 | dev | Knowledge base loader + character file |
+| Jun 9 | dev | Deploy to VPS, smoke test with personal account |
+| Jun 10 | Zaal + dev | First 10 manual @-mention tests in /zabal |
+| Jun 11 | Zaal | Cast announcement of bot in /zabal |
+| Jun 12-15 | both | Iterate from first 50 real interactions |
+
+## Bot Farcaster account setup (Zaal does)
+
+The bot needs its own Farcaster identity. Recommended handle: `zabalbot`.
+
+Two paths:
+
+### Path A: Cassie's Hypersnap signup (recommended - free, no Neynar)
+
+1. Open `https://hypersnap.farcaster.xyz` (or equivalent Hypersnap-aware Farcaster client - confirm URL with Cassie)
+2. Create new account: `@zabalbot`
+3. Verify with a Base ETH address you control (use a fresh wallet for the bot)
+4. The signup process gives you:
+   - **FID** (the bot's stable identity)
+   - **Custody mnemonic** (KEEP SAFE - this controls the FID)
+   - **Signer keypair** for the bot's casts (used by ElizaOS)
+5. Save FID + signer pubkey to `BOT_FARCASTER_FID` + `BOT_FARCASTER_SIGNER_PRIVATE_KEY` env vars
+
+### Path B: Neynar signer flow (faster but paid)
+
+If Path A is blocked by Hypersnap availability:
+
+1. Go to `https://dev.neynar.com` and create an app
+2. Use Sign-In With Farcaster (SIWF) to create the bot's FID
+3. Generate a signer via the Neynar dashboard - cost $5-10 for the FID registration
+4. Use `BOT_FARCASTER_SIGNER_UUID` + `NEYNAR_API_KEY` env vars
+5. Note: this binds the bot's signer to Neynar's signer service. Path A is more sovereign.
+
+## VPS choice
+
+Three options, recommend Hetzner for cost + sovereignty:
+
+| Provider | Tier | Cost | Notes |
+|---|---|---|---|
+| **Hetzner CX22** | 2 vCPU / 4 GB / 40 GB SSD | **5.50 EUR / month** | Recommended. Datacenter in Falkenstein or Helsinki. Up in <5 min. Bring-your-own SSH key. |
+| DigitalOcean Basic | 1 vCPU / 2 GB / 50 GB | $12 / month | Simpler interface, $200 free credit if new. More expensive over time. |
+| Railway | Pay per usage | ~$5-10 / month for this load | Easiest deploy (git push -> live). Black box for resource limits though. |
+
+For Phase 1, Hetzner CX22 has plenty of headroom (we're running 1 ElizaOS process + occasionally hitting Anthropic API). Move up only if memory pressure shows in monitoring.
+
+### Hetzner setup (Zaal does)
+
+```bash
+# After provisioning, SSH in:
+ssh root@<hetzner-ip>
+
+# Install Node 20+ + git + caddy (for HTTPS)
+apt update && apt install -y curl git caddy
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt install -y nodejs
+node --version  # should be v20+
+
+# Create bot user (don't run as root)
+adduser zabalbot --disabled-password --gecos ""
+su - zabalbot
+
+# Clone ElizaOS
+git clone https://github.com/elizaOS/eliza.git
+cd eliza
+git checkout v2.0.0   # or latest tagged release
+npm install
+
+# Set env vars (will use these in next section)
+cp .env.example .env
+nano .env  # add the env vars below
+```
+
+## Environment variables (production)
+
+```
+# Anthropic - reasoning
+ANTHROPIC_API_KEY=<from console.anthropic.com>
+ANTHROPIC_MODEL=claude-sonnet-4-6
+
+# Bot Farcaster identity (from Hypersnap or Neynar signup)
+BOT_FARCASTER_FID=<numeric>
+BOT_FARCASTER_SIGNER_PRIVATE_KEY=<hex - Path A>
+# OR for Path B:
+# BOT_FARCASTER_SIGNER_UUID=<uuid>
+# NEYNAR_API_KEY=<for write operations only>
+
+# HAATZ (free, no key)
+HAATZ_BASE_URL=https://haatz.quilibrium.com
+
+# Neynar (writes only, optional Phase 1)
+NEYNAR_API_KEY=<from dev.neynar.com>
+
+# Knowledge base refresh
+ZABAL_LLMS_URL=https://zabalgames.com/llms.txt
+ZABAL_PEOPLE_URL=https://zabalgames.com/data/people.json
+ZABAL_PROJECTS_URL=https://zabalgames.com/data/adoptable-projects.json
+ZABAL_WORKSHOPS_URL=https://zabalgames.com/data/workshop-leads.json
+ZABAL_CHANGELOG_URL=https://zabalgames.com/data/changelog.json
+
+# Budget controls
+DAILY_ANTHROPIC_BUDGET_USD=10.00       # auto-pause if exceeded
+PER_FID_DAILY_LIMIT=5                  # Tier 1 replies per FID per day
+GLOBAL_RATE_LIMIT_PER_HOUR=120
+
+# Operational
+LOG_LEVEL=info
+SENTRY_DSN=<optional, for error tracking>
+```
+
+## Anthropic API budget setup
+
+Cost model (Phase 1):
+
+| Item | Cost per interaction | At 50 interactions/day | Monthly |
+|---|---|---|---|
+| Input: ~6000 tokens (llms.txt excerpt + DB context + question) | $0.018 (Claude Sonnet 4.6 input) | $0.90 | $27 |
+| Output: ~300 tokens (1-paragraph reply) | $0.0045 (Sonnet output) | $0.225 | $6.75 |
+| **Total** | $0.023 | $1.13 | **~$34** |
+
+Budget alerts (set in Anthropic Console):
+1. Soft alert at $20/month - email to Zaal
+2. Hard cap at $50/month - bot pauses Tier 1 replies, posts "back online in <X hours> - sorry about that" cast
+
+Daily safety:
+- `DAILY_ANTHROPIC_BUDGET_USD=10` in env (script tracks running total in Postgres)
+- If exceeded, bot stops replying + writes a single status cast: "Bot is paused for the day - daily budget hit. Resumes tomorrow."
+
+## Knowledge base loader
+
+ElizaOS character config loads knowledge from these URLs at startup AND refreshes every 4 hours:
+
+```typescript
+// bot/lib/knowledge-loader.ts
+const SOURCES = {
+  llms: process.env.ZABAL_LLMS_URL,
+  people: process.env.ZABAL_PEOPLE_URL,
+  projects: process.env.ZABAL_PROJECTS_URL,
+  workshops: process.env.ZABAL_WORKSHOPS_URL,
+  changelog: process.env.ZABAL_CHANGELOG_URL,
+};
+
+export async function loadKnowledge() {
+  const entries = await Promise.all(
+    Object.entries(SOURCES).map(async ([key, url]) => {
+      try {
+        const res = await fetch(url, { signal: AbortSignal.timeout(10000) });
+        const text = await res.text();
+        return { key, content: text, fetched_at: new Date().toISOString() };
+      } catch (e) {
+        console.error(`[knowledge] failed to load ${key}:`, e);
+        return null;
+      }
+    })
+  );
+  return entries.filter(Boolean);
+}
+
+// Refresh every 4 hours
+setInterval(async () => {
+  const fresh = await loadKnowledge();
+  cachedKnowledge = fresh;
+  console.log('[knowledge] refreshed at', new Date().toISOString());
+}, 4 * 60 * 60 * 1000);
+```
+
+## HAATZ integration code samples
+
+The bot uses HAATZ for any Farcaster reads (lookups, channel feeds).
+
+```typescript
+// bot/lib/haatz.ts
+const HAATZ = process.env.HAATZ_BASE_URL || 'https://haatz.quilibrium.com';
+
+export async function lookupUser(fid: number) {
+  const res = await fetch(`${HAATZ}/v2/farcaster/user/bulk?fids=${fid}`, {
+    signal: AbortSignal.timeout(5000),
+  });
+  if (!res.ok) throw new Error(`haatz lookup failed ${res.status}`);
+  const data = await res.json();
+  return data.users[0]; // { fid, username, display_name, pfp_url, verifications, ... }
+}
+
+export async function getChannelCasts(channelId: string, limit = 10) {
+  const res = await fetch(
+    `${HAATZ}/v2/farcaster/feed/channel?channel_id=${channelId}&limit=${limit}`,
+    { signal: AbortSignal.timeout(5000) }
+  );
+  if (!res.ok) throw new Error(`haatz channel feed failed ${res.status}`);
+  return (await res.json()).casts;
+}
+
+// Failover wrapper - try HAATZ, fall back to Neynar
+export async function lookupUserResilient(fid: number) {
+  try {
+    return await lookupUser(fid);
+  } catch (e) {
+    console.warn('[haatz] miss, falling back to Neynar', e);
+    const { NeynarAPIClient } = await import('@neynar/nodejs-sdk');
+    const neynar = new NeynarAPIClient(process.env.NEYNAR_API_KEY!);
+    return await neynar.lookupUserByFid({ fid });
+  }
+}
+```
+
+## Webhook architecture
+
+Bot subscribes to @-mentions of @zabalbot in /zabal channel. ElizaOS Farcaster plugin handles this.
+
+For Phase 1 (simple polling): bot polls HAATZ every 60 seconds for new mentions:
+
+```typescript
+// bot/lib/mention-watcher.ts
+async function pollMentions() {
+  const lastSeenAt = await getLastSeenTimestamp(); // from Postgres
+  const casts = await getChannelCasts('zabal', 50);
+  const newMentions = casts.filter(c =>
+    c.timestamp > lastSeenAt &&
+    c.text?.toLowerCase().includes('@zabalbot')
+  );
+
+  for (const mention of newMentions) {
+    await handleMention(mention);
+  }
+  await setLastSeenTimestamp(Date.now());
+}
+
+setInterval(pollMentions, 60 * 1000);
+```
+
+Phase 2 will move to event-driven (Neynar webhooks or Farcaster Hub subscription) but polling is fine for 50 interactions/day.
+
+## $ZABAL tip wallet (Phase 2 - skip for Phase 1)
+
+When Tier 2 ships (Phase 2 - July), bot needs a wallet to receive $ZABAL tips.
+
+Pattern per ZAO OS Doc 343 (Agent Wallet Security):
+- Use Privy agentic wallet with key quorum 2-of-3
+- Bot signs tip-claim transactions
+- Zaal co-signs treasury sweeps (hourly cron from tip wallet to treasury)
+- TEE-backed, never exposes private key
+
+Phase 1 skips this entirely - no money flow yet.
+
+## Monitoring + alerting
+
+| Signal | Threshold | Action |
+|---|---|---|
+| Daily Anthropic spend > $10 | Auto-pause bot, post status cast | Email Zaal |
+| Per-FID rate limit hit | Silent (don't reply) | Log only |
+| HAATZ failure rate > 10% over 1h | Fallback to Neynar more aggressively | Slack alert |
+| Bot down for >5 min | Auto-restart via systemd | PagerDuty / Slack |
+| Knowledge base fetch fails 3x in a row | Use last cached version | Slack alert |
+| Memory > 80% | Restart process | Email |
+
+Use Sentry (free tier) for error tracking + a simple uptime check (Better Uptime or self-hosted Cron) for liveness.
+
+## Character file - production version
+
+```jsonc
+// bot/zabal-bot.character.json
+{
+  "name": "ZABAL Bot",
+  "username": "zabalbot",
+  "modelProvider": "anthropic",
+  "settings": {
+    "model": "claude-sonnet-4-6",
+    "maxOutputTokens": 400,
+    "temperature": 0.7
+  },
+  "plugins": [
+    "@elizaos/plugin-farcaster",     // listens + replies
+    "@elizaos/plugin-anthropic"      // reasoning
+  ],
+  "system": "You are the ZABAL Bot - a guide for builders in The ZAO ecosystem. Voice: warm, builder-energy, drop articles when terse helps. RULES: (1) NO emojis. (2) NO em-dashes - use hyphens. (3) NO crypto/web3/onchain language in public copy - use 'digital creators.' (4) Use '100+' for ZAO size, never specific. (5) Brand spellings exact: ZABAL Games, The ZAO, WaveWarZ, COC Concertz, BetterCallZaal, Magnetiq, $ZABAL. (6) Tier 1 reply format: 1 paragraph + 1 link. Always end with a link or next action. (7) If you don't know something, say 'I don't have that locked - dm @bettercallzaal for the canonical answer.' Do not fabricate dates, numbers, names, or sponsor amounts. (8) Knowledge base loaded as system context below.",
+  "bio": [
+    "ZABAL Bot is the in-channel guide for ZABAL Games builders.",
+    "Free Tier 1: 1 paragraph + 1 link per reply.",
+    "Built on ElizaOS. Operated by The ZAO."
+  ],
+  "lore": [
+    "Lives in /zabal channel + zabalgames.com",
+    "Built on ElizaOS using Claude Sonnet",
+    "Knows the ecosystem: ZAO, $ZABAL, Empire Builder, WaveWarZ, Hats, Bonfire, EAS, Magnetiq",
+    "Refers to humans by Farcaster handle",
+    "Reads HAATZ for Farcaster context, never claims it's Neynar"
+  ],
+  "topics": [
+    "ZABAL Games", "ZAO ecosystem", "Farcaster building",
+    "Empire Builder integration", "Hats Protocol", "vibe-coding harness selection",
+    "Magnetiq portal", "WaveWarZ Finals mechanic", "Bonfire knowledge graph"
+  ],
+  "style": {
+    "all": [
+      "Direct, builder-energy",
+      "Drop articles when terse helps",
+      "No emojis. No em-dashes (use hyphens)",
+      "Reply in the thread, never DM unless Tier 2"
+    ],
+    "chat": [
+      "Open with the answer, not 'great question!'",
+      "Always end with 1 link OR 1 next action",
+      "If recommending a profile, link to /p?handle=X on zabalgames.com",
+      "If recommending a project, link to zabalgames.com/projects",
+      "If recommending a workshop, link to zabalgames.com/info#workshops"
+    ]
+  }
+}
+```
+
+## First-week iteration plan (post-deploy)
+
+| Day post-launch | What we measure | Action |
+|---|---|---|
+| 1 | First 10 mentions: how many got useful replies? | Tune system prompt for any fabrication or off-tone |
+| 2-3 | Time-to-reply: <60s p95? | If polling too slow, drop interval to 30s |
+| 4-5 | Anthropic spend pacing - are we under budget? | If over, tighten max tokens or sampling |
+| 6 | First "I want to tip" requests (Phase 2 demand) | Note FIDs - validate $ZABAL tip demand exists |
+| 7 | Public reply quality review | Pick 3 best + 3 worst replies, refine character file |
+
+## Decisions still open (need Zaal input before Phase 1 codes)
+
+1. **Bot Farcaster handle.** `@zabalbot` is my default but I'd rather you pick. Other options: `@zg-bot`, `@gameschan`, `@zabal-helper`.
+
+2. **VPS choice.** Hetzner CX22 (Falkenstein DC) is my recommendation. OK with Hetzner or prefer DigitalOcean / Railway?
+
+3. **Path A vs Path B for bot signup.** Path A (Hypersnap, free, sovereign) needs Cassie's signup flow confirmed. Path B (Neynar) costs $5-10 + binds to Neynar's signer service. Which?
+
+4. **Anthropic API key ownership.** Use your existing Anthropic Console (zaalp99@gmail.com)? Or create a separate `bot@thezao.com` account so spend is isolated?
+
+5. **Bot announcement cast.** When the bot is ready, who casts the announcement - you or the bot's own first cast? My vote: you cast it ("hey /zabal - meet @zabalbot, your in-channel guide. Tag it for help on builds + ecosystem context. Free Tier 1, paid Tier 2 coming in July.") and the bot replies to your cast with its character introduction.
+
+## Reference docs
+
+- Doc 770 (this doc) - the spec
+- Doc 2027 (farcaster) - HAATZ integration patterns
+- Doc 343 (security) - agent wallet via Privy key quorum (Phase 2)
+- Doc 750 - Builder OAuth flow (bot reads builder GitHub once Phase 2 of Doc 750 ships)
+- ElizaOS docs - https://elizaos.ai
+- HAATZ live: https://haatz.quilibrium.com/v2/farcaster/user/bulk?fids=19640
+
+## What I need from Zaal to start Phase 1
+
+Minimal list:
+
+1. Decision on the 5 open items above
+2. Anthropic API key (or new account creation)
+3. SSH key to add to the Hetzner VPS once provisioned
+4. The bot's Farcaster signup completed (Path A or B chosen)
+5. Confirmation that the announce cast goes out from your handle
+
+Once those 5 land, dev work starts. ~5-7 days to mid-June Tier 1 live.
