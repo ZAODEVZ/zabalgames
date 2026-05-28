@@ -147,6 +147,17 @@
       transition: border-color 0.15s;
     }
     .roster-tile:hover { border-color: var(--border-hover); text-decoration: none; }
+    .roster-tile-head { display: flex; gap: 0.7rem; align-items: flex-start; }
+    .roster-tile-avatar {
+      width: 36px; height: 36px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border-hover);
+      object-fit: cover;
+      margin-top: 0.1rem;
+    }
+    .roster-tile-meta { flex: 1; min-width: 0; }
     .roster-tile-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
     .roster-tile-headline { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; line-height: 1.4; }
     .roster-tile-roles { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--text-dim); letter-spacing: 0.1em; margin-top: 0.35rem; text-transform: uppercase; }
@@ -222,23 +233,133 @@
     }).join('');
   }
 
+  // ===================================================================
+  // HAATZ avatar lookup - free Farcaster reads via haatz.quilibrium.com
+  // ===================================================================
+  // Per ZAO OS Doc 2027 (farcaster/2027-haatz-farcaster-identity-api).
+  // Strategy: when avatar_url is null but the person has a Farcaster
+  // handle, fetch their pfp from HAATZ. Cache in localStorage for 24h
+  // on success, 1h on miss (to avoid hammering for handles HAATZ
+  // doesn't recognize). Failure modes are silent - falls back to the
+  // icon.png placeholder already rendered.
+
+  function extractFcHandle(p) {
+    if (p.farcaster_url) {
+      var m = p.farcaster_url.match(/farcaster\.xyz\/([^\/\?#]+)/i);
+      if (m) return m[1].toLowerCase();
+    }
+    return null;
+  }
+
+  function haatzFetch(url) {
+    var ctrl;
+    if (typeof AbortController !== 'undefined') {
+      ctrl = new AbortController();
+      setTimeout(function() { ctrl.abort(); }, 5000);
+    }
+    return fetch(url, ctrl ? { signal: ctrl.signal } : {})
+      .then(function(r) { return r.ok ? r.json() : null; });
+  }
+
+  // Prefer FID (stable + always works). Fall back to by_username.
+  function fetchHaatzPfp(person) {
+    var fid = person.fid;
+    var fcHandle = extractFcHandle(person);
+    if (!fid && !fcHandle) return Promise.resolve(null);
+
+    var cacheKey = 'haatz_pfp_v2_' + (fid || fcHandle);
+    var nowMs = Date.now();
+    try {
+      var cachedRaw = localStorage.getItem(cacheKey);
+      if (cachedRaw) {
+        var cached = JSON.parse(cachedRaw);
+        if (cached && cached.expires > nowMs) return Promise.resolve(cached.pfp);
+      }
+    } catch (e) { /* private mode or corrupt cache */ }
+
+    // Build the right endpoint - bulk?fids=N for FID, by_username for handle
+    var url = fid
+      ? 'https://haatz.quilibrium.com/v2/farcaster/user/bulk?fids=' + fid
+      : 'https://haatz.quilibrium.com/v2/farcaster/user/by_username?username=' + encodeURIComponent(fcHandle);
+
+    return haatzFetch(url)
+      .then(function(data) {
+        var pfp = null;
+        if (data) {
+          if (data.users && data.users.length) pfp = data.users[0].pfp_url || null;
+          else if (data.user) pfp = data.user.pfp_url || null;
+        }
+        try {
+          localStorage.setItem(cacheKey, JSON.stringify({
+            pfp: pfp,
+            expires: nowMs + (pfp ? 86400000 : 3600000),
+            checked_at: nowMs
+          }));
+        } catch (e) { /* ignore */ }
+        return pfp;
+      })
+      .catch(function(err) {
+        try {
+          localStorage.setItem(cacheKey, JSON.stringify({
+            pfp: null,
+            expires: nowMs + 3600000,
+            checked_at: nowMs,
+            error: String(err && err.message || err).slice(0, 100)
+          }));
+        } catch (e) { /* ignore */ }
+        return null;
+      });
+  }
+
+  // Async-hydrate an <img> with the HAATZ pfp once it arrives. The img
+  // already has icon.png as src so we degrade gracefully.
+  function hydrateAvatarImg(imgEl, person) {
+    if (!imgEl) return;
+    if (person.avatar_url) return; // Person has explicit avatar, skip HAATZ
+    fetchHaatzPfp(person).then(function(pfp) {
+      if (!pfp) return;
+      if (!document.body.contains(imgEl)) return;
+      var test = new Image();
+      test.onload = function() {
+        imgEl.src = pfp;
+        imgEl.dataset.avatarSource = 'haatz';
+      };
+      test.onerror = function() {
+        imgEl.dataset.avatarSource = 'haatz-broken';
+      };
+      test.src = pfp;
+    });
+  }
+
   function renderRoster(people) {
     eyebrowEl.textContent = 'The Roster';
     titleEl.innerHTML = 'ZABAL Games <span class="accent">Roster</span>';
     subEl.textContent = 'Everyone confirmed for Season 1. Click any name for the full profile.';
 
     var html = '<div class="roster-grid">';
-    people.forEach(function(p) {
+    people.forEach(function(p, idx) {
       var roles = (p.roles || []).join(', ');
+      var avatarSrc = p.avatar_url || '/assets/icon.png';
       html += '<a href="/p.html?handle=' + encodeURIComponent(p.handle) + '" class="roster-tile">'
-        + '<div class="roster-tile-name">' + escapeHtml(p.name) + '</div>'
-        + '<div class="roster-tile-headline">' + escapeHtml(p.headline || '') + '</div>'
-        + '<div class="roster-tile-roles">' + escapeHtml(roles) + '</div>'
+        + '<div class="roster-tile-head">'
+        +   '<img class="roster-tile-avatar" id="roster-avatar-' + idx + '" src="' + escapeHtml(avatarSrc) + '" alt="' + escapeHtml(p.name) + '" data-avatar-source="' + (p.avatar_url ? 'explicit' : 'fallback') + '">'
+        +   '<div class="roster-tile-meta">'
+        +     '<div class="roster-tile-name">' + escapeHtml(p.name) + '</div>'
+        +     '<div class="roster-tile-headline">' + escapeHtml(p.headline || '') + '</div>'
+        +     '<div class="roster-tile-roles">' + escapeHtml(roles) + '</div>'
+        +   '</div>'
+        + '</div>'
         + '</a>';
     });
     html += '</div>';
     html += '<p style="margin-top: 1.5rem; font-size: 0.88rem; color: var(--text-muted);">Want to be on this list? <a href="/lead.html">Sign up</a>. Open for workshop leads, mentors, and builders.</p>';
     contentEl.innerHTML = html;
+
+    // Hydrate each tile's avatar from HAATZ in parallel
+    people.forEach(function(p, idx) {
+      var img = document.getElementById('roster-avatar-' + idx);
+      hydrateAvatarImg(img, p);
+    });
   }
 
   function renderProfile(p) {
@@ -250,9 +371,8 @@
       escapeHtml(p.name) + ' - ' + escapeHtml(p.headline || '') + '. ZABAL Games Season 1 participant.');
 
     var color = p.color || 'orange';
-    var avatarHtml = p.avatar_url
-      ? '<img class="profile-avatar" src="' + escapeHtml(p.avatar_url) + '" alt="' + escapeHtml(p.name) + '">'
-      : '<img class="profile-avatar" src="/assets/icon.png" alt="' + escapeHtml(p.name) + '">';
+    var avatarSrc = p.avatar_url || '/assets/icon.png';
+    var avatarHtml = '<img class="profile-avatar" id="profile-avatar-img" src="' + escapeHtml(avatarSrc) + '" alt="' + escapeHtml(p.name) + '" data-avatar-source="' + (p.avatar_url ? 'explicit' : 'fallback') + '">';
 
     var html = '<div class="profile-card color-' + escapeHtml(color) + '">';
     html += '<div class="profile-head">' + avatarHtml + '<div class="profile-meta">';
@@ -295,6 +415,10 @@
     html += '</div>';
     html += '<p style="text-align: center; margin-top: 1rem; font-size: 0.88rem;"><a href="/p.html">&larr; Back to the roster</a></p>';
     contentEl.innerHTML = html;
+
+    // After render, attempt to hydrate the avatar from HAATZ
+    var avatarImg = document.getElementById('profile-avatar-img');
+    hydrateAvatarImg(avatarImg, p);
   }
 
   fetch('/data/people.json', { cache: 'no-cache' })

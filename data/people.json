@@ -1,7 +1,8 @@
 {
   "version": 1,
   "_schema": {
-    "handle": "lowercase, no @, Farcaster username preferred",
+    "handle": "internal slug (lowercase, may differ from Farcaster username)",
+    "fid": "Farcaster FID number - PRIMARY identity. If set, HAATZ avatar lookup uses bulk?fids=X (always reliable). If null, falls back to parsing farcaster_url for username.",
     "name": "Display name",
     "roles": "Array of: organizer | mentor | workshop_lead | core_builder | sponsor | partner | builder",
     "headline": "One-line credential or position",
@@ -21,6 +22,7 @@
   "people": [
     {
       "handle": "bettercallzaal",
+      "fid": 19640,
       "name": "Zaal Panthaki",
       "roles": ["organizer", "mentor"],
       "headline": "Organizer + BetterCallZaal + The ZAO operations",
@@ -28,12 +30,12 @@
       "expertise_label": "ECOSYSTEM",
       "color": "orange",
       "avatar_url": null,
-      "farcaster_url": "https://farcaster.xyz/bettercallzaal",
+      "farcaster_url": "https://farcaster.xyz/zaal",
       "x_url": "https://x.com/bettercallzaal",
       "site_url": "https://bettercallzaal.com",
       "what_they_offer": "Direct line into the ZAO ecosystem - intros, context, pattern matching against past builds, infra access.",
       "best_fit_for": "Builds that touch multiple ZAO surfaces (music + governance + agents + Farcaster). Generalists who need cross-domain connective tissue.",
-      "audited_date": "2026-05-27"
+      "audited_date": "2026-05-28"
     },
     {
       "handle": "tylerstambaugh",
