@@ -177,7 +177,8 @@ Frontend:
 Backend:
   Next.js API routes (serverless on Vercel)
   Supabase (Postgres + Auth + Storage)
-  Neynar (Farcaster reads + signers)
+  HAATZ (Farcaster reads, free, no key, haatz.quilibrium.com)
+  Neynar (Farcaster writes + signer + trending/for-you only)
 
 Onchain:
   Base (chainId 8453) - primary ZAO chain
@@ -194,7 +195,8 @@ Streaming / Live:
 | Service | What for | Auth | Cost |
 |---------|----------|------|------|
 | Empire Builder | Token leaderboards, booster mechanics | X-API-Key (reads free) | Free reads |
-| Neynar | Farcaster reads + signers + search | API key | Free dev tier |
+| HAATZ | Farcaster reads (user, feed, search, bulk) | None | Free, public, Neynar-v2 compatible (haatz.quilibrium.com by Cassie / Quilibrium) |
+| Neynar | Farcaster writes (cast, signer, follow) + trending feeds | API key | Free dev tier - use ONLY for writes + endpoints HAATZ doesn't cover |
 | Hats Protocol | Onchain roles on Base | Hats SDK | Gas only (~$5 setup) |
 | Bonfire | Reputation graph, social signals | SDK / DM relay | Free |
 | EAS (Base) | Onchain attestations | EAS SDK | Free offchain, gas onchain |
@@ -376,20 +378,54 @@ Judge agents (per Doc 723d + 720): autonomous agents read each finalist's deploy
 
 Copy-paste-friendly examples for the most-used ZAO rails. Read the linked docs for full SDK depth.
 
-### Neynar - look up a user by verified address (Farcaster identity)
+### HAATZ - look up a user by FID (Farcaster identity, free, no key)
+
+HAATZ is a free public Neynar-v2-compatible API by Cassandra Heart (Cassie) / Quilibrium. Use for all Farcaster READS - 70-90% cost reduction vs Neynar. Source: ZAO OS research Doc 2027 (farcaster/2027-haatz-farcaster-identity-api).
 
 ```ts
-import { NeynarAPIClient } from '@neynar/nodejs-sdk';
-
-const neynar = new NeynarAPIClient(process.env.NEYNAR_API_KEY);
-
-const user = await neynar.lookupUserByVerifiedAddress({
-  address: '0x...',
-});
-// user.fid, user.username, user.display_name, user.verified_addresses
+// Bulk user lookup by FID(s) - the most common read pattern
+const res = await fetch(
+  `https://haatz.quilibrium.com/v2/farcaster/user/bulk?fids=${fid}`,
+  { signal: AbortSignal.timeout(5000) }
+);
+const data = await res.json();
+const user = data.users[0];
+// user.fid, user.username, user.display_name, user.pfp_url, user.verified_addresses
 ```
 
-Docs: https://docs.neynar.com
+### HAATZ + Neynar two-tier failover pattern (production-tested in ZABAL Live Hub)
+
+For reads where uptime matters, fall back to Neynar if HAATZ times out:
+
+```ts
+async function getFarcasterUser(fid: number) {
+  try {
+    const res = await fetch(
+      `https://haatz.quilibrium.com/v2/farcaster/user/bulk?fids=${fid}`,
+      { signal: AbortSignal.timeout(5000) }
+    );
+    if (res.ok) return (await res.json()).users[0];
+  } catch (e) {
+    console.warn('[fc] haatz miss, falling back to Neynar', e);
+  }
+  // Failover to Neynar (paid)
+  const { NeynarAPIClient } = await import('@neynar/nodejs-sdk');
+  const neynar = new NeynarAPIClient(process.env.NEYNAR_API_KEY);
+  return await neynar.lookupUserByFid({ fid });
+}
+```
+
+When to use Neynar instead of HAATZ:
+- Trending / for-you feed endpoints (HAATZ times out on these)
+- Cast posting + signer + follow + any write operation
+- Webhook subscriptions
+
+Live examples of HAATZ usage in our codebase:
+- ZABAL Live Hub `api/calculate-vote-power.js` lines 43 + 77 (user casts + bulk lookup)
+- ZABAL Live Hub `api/empire-leaderboard.js` line 53 (FID -> verified addresses)
+- ZABAL Live Hub `api/neynar.js` (generic proxy fronting HAATZ for v2 read endpoints)
+
+Docs: HAATZ has no formal docs - use Neynar v2 docs (https://docs.neynar.com) since the API surface is compatible.
 
 ### Empire Builder - publish a JSON leaderboard
 
