@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZABAL Games - Profile</title>
+  <meta name="description" content="A ZABAL Games Season 1 participant profile. Loaded dynamically from /data/people.json by handle.">
+  <link rel="canonical" href="https://zabalgames.com/p">
+  <meta property="og:title" content="ZABAL Games - Profile">
+  <meta property="og:description" content="A ZABAL Games Season 1 participant. The roster.">
+  <meta property="og:url" content="https://zabalgames.com/p">
+  <meta property="og:image" content="https://zabalgames.com/assets/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zabalgames.com/assets/logo.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/logo.png","button":{"title":"View the roster","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/p","splashImageUrl":"https://zabalgames.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/logo.png","button":{"title":"View the roster","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/p","splashImageUrl":"https://zabalgames.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem 1.6rem;
+      margin: 1.5rem 0;
+    }
+    .profile-card.color-orange { border-left: 3px solid var(--orange); }
+    .profile-card.color-cyan { border-left: 3px solid var(--cyan); }
+    .profile-card.color-gold { border-left: 3px solid var(--gold); }
+    .profile-card.color-pink { border-left: 3px solid var(--pink); }
+    .profile-card.color-zabal { border-left: 3px solid var(--zabal); }
+
+    .profile-head {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      margin-bottom: 1.2rem;
+    }
+    .profile-avatar {
+      width: 88px; height: 88px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border-hover);
+      object-fit: cover;
+    }
+    .profile-meta { flex: 1; min-width: 0; }
+    .profile-name {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1.6rem; line-height: 1.1;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+    .profile-handle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem; color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+    .profile-headline {
+      font-size: 0.95rem; color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .role-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 0.7rem; }
+    .role-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.22rem 0.65rem;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--border-hover);
+      color: var(--text-muted);
+    }
+    .role-pill.role-organizer { color: var(--orange); border-color: var(--orange); }
+    .role-pill.role-mentor { color: var(--gold); border-color: var(--gold); }
+    .role-pill.role-workshop_lead { color: var(--zabal); border-color: var(--zabal); }
+    .role-pill.role-core_builder { color: var(--cyan); border-color: var(--cyan); }
+    .role-pill.role-sponsor { color: var(--gold); border-color: var(--gold); }
+    .role-pill.role-partner { color: var(--pink); border-color: var(--pink); }
+    .role-pill.role-builder { color: var(--cyan); border-color: var(--cyan); }
+
+    .profile-bio {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+    .profile-section {
+      margin: 1.2rem 0;
+      padding: 0.9rem 1rem;
+      background: var(--bg);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .profile-section h4 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.88rem; letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+    .profile-section p { font-size: 0.9rem; margin: 0; line-height: 1.5; }
+    .profile-section ul { list-style: none; padding: 0; margin: 0; }
+    .profile-section li {
+      font-size: 0.88rem; color: var(--text-muted);
+      padding: 0.25rem 0 0.25rem 0.9rem; position: relative;
+    }
+    .profile-section li::before {
+      content: '-'; position: absolute; left: 0; color: var(--text-dim);
+    }
+
+    .profile-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1rem; }
+    .profile-link {
+      padding: 0.5rem 0.95rem;
+      background: var(--bg);
+      border: 1px solid var(--border-hover);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.85rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .profile-link:hover { background: var(--surface); text-decoration: none; }
+
+    .audit-stamp {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      margin-top: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) { .roster-grid { grid-template-columns: 1fr; } }
+    .roster-tile {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      transition: border-color 0.15s;
+    }
+    .roster-tile:hover { border-color: var(--border-hover); text-decoration: none; }
+    .roster-tile-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+    .roster-tile-headline { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; line-height: 1.4; }
+    .roster-tile-roles { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--text-dim); letter-spacing: 0.1em; margin-top: 0.35rem; text-transform: uppercase; }
+
+    .error-state {
+      padding: 2rem 1.2rem;
+      background: var(--surface);
+      border: 1px dashed var(--border-hover);
+      border-radius: 10px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+  </style>
+  <script type="module" src="/assets/miniapp.js"></script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Main</a>
+      <a href="/info.html">Info</a>
+      <a href="/p.html" class="active">Roster</a>
+      <a href="/lead.html">Sign Up</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow" id="page-eyebrow">The Roster</div>
+    <h1 id="page-title">ZABAL Games <span class="accent">Roster</span></h1>
+    <p class="hero-sub" id="page-sub">
+      Everyone confirmed for Season 1. Workshop leads, mentors, core builders, partners, organizers.
+    </p>
+  </header>
+
+  <div id="profile-content"></div>
+
+</div>
+
+<footer class="footer">
+  <div>
+    <a href="/">main</a> -
+    <a href="/info.html">info</a> -
+    <a href="/lead.html">sign up</a> -
+    <a href="/llms.txt">llms.txt</a> -
+    <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+  </div>
+  <p style="margin-top: 0.5rem; color: var(--text-dim);">ZABAL Games Season 1 - the roster.</p>
+</footer>
+
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var handle = (params.get('handle') || params.get('h') || '').toLowerCase().trim();
+  var contentEl = document.getElementById('profile-content');
+  var titleEl = document.getElementById('page-title');
+  var subEl = document.getElementById('page-sub');
+  var eyebrowEl = document.getElementById('page-eyebrow');
+
+  function escapeHtml(s) {
+    return (s == null ? '' : String(s)).replace(/[&<>"']/g, function(c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  function rolePills(roles) {
+    return (roles || []).map(function(r) {
+      return '<span class="role-pill role-' + escapeHtml(r) + '">' + escapeHtml(r.replace('_', ' ')) + '</span>';
+    }).join('');
+  }
+
+  function renderRoster(people) {
+    eyebrowEl.textContent = 'The Roster';
+    titleEl.innerHTML = 'ZABAL Games <span class="accent">Roster</span>';
+    subEl.textContent = 'Everyone confirmed for Season 1. Click any name for the full profile.';
+
+    var html = '<div class="roster-grid">';
+    people.forEach(function(p) {
+      var roles = (p.roles || []).join(', ');
+      html += '<a href="/p.html?handle=' + encodeURIComponent(p.handle) + '" class="roster-tile">'
+        + '<div class="roster-tile-name">' + escapeHtml(p.name) + '</div>'
+        + '<div class="roster-tile-headline">' + escapeHtml(p.headline || '') + '</div>'
+        + '<div class="roster-tile-roles">' + escapeHtml(roles) + '</div>'
+        + '</a>';
+    });
+    html += '</div>';
+    html += '<p style="margin-top: 1.5rem; font-size: 0.88rem; color: var(--text-muted);">Want to be on this list? <a href="/lead.html">Sign up</a>. Open for workshop leads, mentors, and builders.</p>';
+    contentEl.innerHTML = html;
+  }
+
+  function renderProfile(p) {
+    eyebrowEl.textContent = (p.roles || ['ZABAL']).join(' / ').toUpperCase();
+    titleEl.textContent = p.name;
+    subEl.textContent = p.headline || '';
+    document.title = p.name + ' - ZABAL Games';
+    document.querySelector('meta[name="description"]').setAttribute('content',
+      escapeHtml(p.name) + ' - ' + escapeHtml(p.headline || '') + '. ZABAL Games Season 1 participant.');
+
+    var color = p.color || 'orange';
+    var avatarHtml = p.avatar_url
+      ? '<img class="profile-avatar" src="' + escapeHtml(p.avatar_url) + '" alt="' + escapeHtml(p.name) + '">'
+      : '<img class="profile-avatar" src="/assets/icon.png" alt="' + escapeHtml(p.name) + '">';
+
+    var html = '<div class="profile-card color-' + escapeHtml(color) + '">';
+    html += '<div class="profile-head">' + avatarHtml + '<div class="profile-meta">';
+    html += '<div class="profile-name">' + escapeHtml(p.name) + '</div>';
+    html += '<div class="profile-handle">@' + escapeHtml(p.handle) + '</div>';
+    html += '<div class="profile-headline">' + escapeHtml(p.headline || '') + '</div>';
+    html += '<div class="role-pills">' + rolePills(p.roles) + '</div>';
+    html += '</div></div>';
+
+    if (p.bio) {
+      html += '<div class="profile-bio">' + escapeHtml(p.bio) + '</div>';
+    }
+
+    if (p.session_count && p.session_topics && p.session_topics.length) {
+      html += '<div class="profile-section"><h4>Confirmed sessions (' + p.session_count + ')</h4><ul>';
+      p.session_topics.forEach(function(t) {
+        html += '<li>' + escapeHtml(t) + '</li>';
+      });
+      html += '</ul></div>';
+    }
+
+    if (p.what_they_offer) {
+      html += '<div class="profile-section"><h4>What they offer</h4><p>' + escapeHtml(p.what_they_offer) + '</p></div>';
+    }
+
+    if (p.best_fit_for) {
+      html += '<div class="profile-section"><h4>Best fit for</h4><p>' + escapeHtml(p.best_fit_for) + '</p></div>';
+    }
+
+    var links = '';
+    if (p.farcaster_url) links += '<a class="profile-link" href="' + p.farcaster_url + '" target="_blank" rel="noopener">Farcaster</a>';
+    if (p.x_url) links += '<a class="profile-link" href="' + p.x_url + '" target="_blank" rel="noopener">X</a>';
+    if (p.site_url) links += '<a class="profile-link" href="' + p.site_url + '" target="_blank" rel="noopener">Site</a>';
+    if (links) html += '<div class="profile-links">' + links + '</div>';
+
+    if (p.audited_date) {
+      html += '<div class="audit-stamp">Audited: ' + escapeHtml(p.audited_date) + '</div>';
+    }
+
+    html += '</div>';
+    html += '<p style="text-align: center; margin-top: 1rem; font-size: 0.88rem;"><a href="/p.html">&larr; Back to the roster</a></p>';
+    contentEl.innerHTML = html;
+  }
+
+  fetch('/data/people.json', { cache: 'no-cache' })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var people = data.people || [];
+      if (handle) {
+        var match = people.filter(function(p) { return p.handle.toLowerCase() === handle; })[0];
+        if (match) {
+          renderProfile(match);
+        } else {
+          contentEl.innerHTML = '<div class="error-state">No profile found for <code>@' + escapeHtml(handle) + '</code>. <a href="/p.html">View the full roster</a> or <a href="/lead.html">sign up</a>.</div>';
+        }
+      } else {
+        renderRoster(people);
+      }
+    })
+    .catch(function() {
+      contentEl.innerHTML = '<div class="error-state">Roster unavailable right now. <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">Follow /zabal channel</a> for updates.</div>';
+    });
+})();
+</script>
+
+</body>
+</html>

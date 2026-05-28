@@ -6,11 +6,13 @@
     { "source": "/todo",    "destination": "/TODO.md",                               "permanent": false },
     { "source": "/snap",    "destination": "/docs/snap-design.md",                   "permanent": false },
     { "source": "/kit",     "destination": "/docs/launch-kit.md",                    "permanent": false },
-    { "source": "/brand",   "destination": "/docs/brand-context.md",                 "permanent": false },
+    { "source": "/brand",   "destination": "/docs/brand-kit-2026-05-28.md",          "permanent": false },
     { "source": "/llms",    "destination": "/llms.txt",                              "permanent": false },
     { "source": "/raw",     "destination": "/llms.txt",                              "permanent": false },
     { "source": "/log",     "destination": "/changelog",                             "permanent": false },
-    { "source": "/team",    "destination": "/about",                                 "permanent": false }
+    { "source": "/team",    "destination": "/about",                                 "permanent": false },
+    { "source": "/roster",  "destination": "/p",                                     "permanent": false },
+    { "source": "/people",  "destination": "/p",                                     "permanent": false }
   ],
   "headers": [
     {
