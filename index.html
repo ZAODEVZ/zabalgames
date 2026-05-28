@@ -946,14 +946,14 @@
         '<span>PLAYER 1 READY</span>' +
         '<button class="p1-dismiss" aria-label="Dismiss">[X]</button>';
       document.body.appendChild(toast);
-      toast.querySelector('.p1-dismiss').addEventListener('click', function() {
-        toast.remove();
-        try { localStorage.setItem(P1_KEY, '1'); } catch (e) { /* ignore */ }
-      });
-      // Auto-dismiss after 12s if user ignores
-      setTimeout(function() {
+      function dismissToast() {
         if (toast.parentNode) toast.remove();
-      }, 12000);
+        try { localStorage.setItem(P1_KEY, '1'); } catch (e) { /* ignore */ }
+      }
+      toast.querySelector('.p1-dismiss').addEventListener('click', dismissToast);
+      // Auto-dismiss after 12s if user ignores - also records the flag
+      // so returning visitors don't see it again
+      setTimeout(dismissToast, 12000);
     }, 30000);
   }
 
