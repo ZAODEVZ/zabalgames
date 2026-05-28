@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All The Details - ZABAL Games Season 1</title>
+  <meta name="description" content="The full long-form pitch: format, prize structure, judging, ecosystem, FAQ. For the simple main page see /. ZABAL Games Season 1 - The ZAO's 3-month Build-A-Thon.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://zabalgames.com/info">
+  <meta property="og:title" content="All The Details - ZABAL Games Season 1">
+  <meta property="og:description" content="The full long-form pitch: format, prize structure, judging, ecosystem, FAQ. ZABAL Games Season 1 - The ZAO's 3-month Build-A-Thon.">
+  <meta property="og:url" content="https://zabalgames.com/info">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ZABAL Games">
+  <!-- og:image - swap to /assets/og-card.png once W11 lands (PNG unfurls in more clients than SVG). -->
+  <meta property="og:image" content="https://zabalgames.com/assets/icon.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ZABAL Games Season 1 - Farcaster Vibe-Coding Challenge">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@bettercallzaal">
+  <meta name="twitter:creator" content="@bettercallzaal">
+  <meta name="twitter:title" content="ZABAL Games - the Farcaster Vibe-Coding Challenge">
+  <meta name="twitter:description" content="June prep, July build, August Finals. Top 8 USDC, Top 16 $ZABAL, Hats NFTs.">
+  <meta name="twitter:image" content="https://zabalgames.com/assets/icon.png">
+  <!-- Telegram-specific (most launch DMs route through Telegram) -->
+  <meta name="telegram:channel" content="@zaalp99">
+  <meta name="telegram:title" content="ZABAL Games Season 1">
+  <meta name="telegram:description" content="Farcaster vibe-coding challenge. June workshops, July ship, August Finals.">
+  <meta name="telegram:image" content="https://zabalgames.com/assets/icon.png">
+  <!-- LinkedIn falls back to og:* tags above; no LinkedIn-specific meta needed. -->
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"Sign up - ZABAL Games","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/lead","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/icon.png","button":{"title":"Sign up - ZABAL Games","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/lead","splashImageUrl":"https://zabalgames.com/assets/icon.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Supabase JS client (submission capture + public gallery) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // ===========================================================================
+    // SUPABASE CONFIG - ZAAL: fill these two values, then the form + gallery work.
+    // ---------------------------------------------------------------------------
+    // 1. Create a Supabase project at https://supabase.com
+    // 2. Run zabalgames-schema.sql in the SQL editor (creates the table + RLS)
+    // 3. Project Settings -> API -> copy Project URL + anon/public key below
+    // The anon key is SAFE to expose client-side - that is what it is designed for.
+    // RLS policies (in the schema file) are what actually protect the data.
+    // ===========================================================================
+    window.ZG_SUPABASE_URL  = 'YOUR_SUPABASE_PROJECT_URL';   // e.g. https://abcdefgh.supabase.co
+    window.ZG_SUPABASE_ANON = 'YOUR_SUPABASE_ANON_KEY';      // the long anon/public JWT
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #070709;
+      --surface: #111115;
+      --surface-2: #16161c;
+      --orange: #ff6b35;
+      --cyan: #00e5ff;
+      --gold: #f5c842;
+      --pink: #ff3d6e;
+      --zabal: #a78bfa;
+      --gradient-main: linear-gradient(135deg, #ff6b35, #ff3d6e, #00e5ff);
+      --gradient-zabal: linear-gradient(135deg, #a78bfa, #00e5ff);
+      --gradient-prize: linear-gradient(135deg, #f5c842, #ff6b35);
+      --text: #e4e2dd;
+      --text-muted: #8a8895;
+      --text-dim: #4e4c57;
+      --border: #1f1e26;
+      --border-hover: #2f2d3a;
+      --radius: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 800px 600px at 15% -10%, rgba(167,139,250,0.14), transparent 60%),
+        radial-gradient(ellipse 700px 500px at 90% 10%, rgba(0,229,255,0.10), transparent 60%),
+        radial-gradient(ellipse 600px 400px at 50% 100%, rgba(255,107,53,0.08), transparent 60%);
+      z-index: -1;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      z-index: 9999;
+    }
+
+    a { color: var(--cyan); text-decoration: none; transition: color 0.15s; }
+    a:hover { color: var(--orange); }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .nav { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .nav-brand {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+      background: var(--gradient-main);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-links { display: flex; gap: 1.25rem; align-items: center; }
+    .nav-links a { font-size: 0.85rem; color: var(--text-muted); }
+    .nav-links a:hover { color: var(--text); }
+
+    .subnav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(7,7,9,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 1.5rem;
+    }
+    .subnav-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; gap: 0.4rem; align-items: center;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .subnav-inner::-webkit-scrollbar { display: none; }
+    .subnav a {
+      font-size: 0.72rem; color: var(--text-muted);
+      white-space: nowrap; padding: 0.35rem 0.7rem;
+      border-radius: 6px; transition: background 0.15s, color 0.15s;
+      font-weight: 500; letter-spacing: 0.02em;
+    }
+    .subnav a:hover { background: var(--surface); color: var(--text); }
+    .subnav a.cta { background: var(--gradient-main); color: #0b0b10; font-weight: 700; }
+    .subnav a.cta:hover { color: #0b0b10; opacity: 0.9; }
+
+    .lockgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 720px) { .lockgrid { grid-template-columns: 1fr; } }
+    .lockcol { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
+    .lockcol h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.75rem; }
+    .lockcol.locked h3 { color: var(--cyan); }
+    .lockcol.tbd h3 { color: var(--gold); }
+    .lockcol ul { list-style: none; }
+    .lockcol li { font-size: 0.85rem; color: var(--text-muted); padding: 0.35rem 0; border-bottom: 1px solid var(--border); line-height: 1.5; }
+    .lockcol li:last-child { border-bottom: none; }
+    .lockcol li strong { color: var(--text); font-weight: 500; }
+
+    .hero { padding: 3rem 0 1.5rem; text-align: center; }
+    .hero-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--zabal); font-weight: 600; margin-bottom: 0.8rem;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05;
+      letter-spacing: -0.02em; margin-bottom: 0.8rem;
+      color: var(--text);
+    }
+    .hero h1 .accent { background: var(--gradient-zabal); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: clamp(0.95rem, 1.6vw, 1.1rem); color: var(--text-muted); max-width: 640px; margin: 0 auto 1.2rem; font-weight: 300; }
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+    .hero-meta { margin-top: 1rem; font-size: 0.75rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; }
+    .hero-cta { margin-top: 1.5rem; display: inline-flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-block; padding: 0.85rem 1.5rem;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: var(--radius); border: 1px solid transparent;
+      transition: transform 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--gradient-main); color: #0b0b10; border: none; }
+    .btn-primary:hover { transform: translateY(-2px); color: #0b0b10; }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-hover); }
+    .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    .countdown { display: inline-flex; gap: 0.6rem; margin: 1rem auto 0; padding: 0.6rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+    .countdown span { color: var(--gold); font-weight: 500; }
+    .countdown small { color: var(--text-dim); margin-left: 0.3rem; font-size: 0.7rem; }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 2.5rem 0 2.5rem; }
+    @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem; text-align: center; transition: border-color 0.2s; }
+    .stat-card:hover { border-color: var(--border-hover); }
+    .stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.4rem, 2.8vw, 2rem); color: var(--cyan); line-height: 1; }
+    .stat-num.gold { color: var(--gold); }
+    .stat-num.zabal { color: var(--zabal); }
+    .stat-num.orange { color: var(--orange); }
+    .stat-label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0.5rem; font-weight: 500; }
+
+    section { padding: 2.5rem 0; }
+    section.alt { background: linear-gradient(180deg, transparent, rgba(17,17,21,0.4), transparent); }
+
+    .section-title {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(1.4rem, 2.8vw, 2rem); margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .section-eyebrow { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--zabal); font-weight: 600; margin-bottom: 0.4rem; }
+    .section-sub { color: var(--text-muted); font-size: 0.95rem; max-width: 720px; margin-bottom: 1.5rem; }
+
+    .timeline { display: grid; gap: 0.75rem; }
+    .timeline-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; display: grid; grid-template-columns: 110px 1fr; gap: 1rem; align-items: start; transition: border-color 0.2s; }
+    .timeline-item:hover { border-color: var(--border-hover); }
+    .timeline-time { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: 0.75rem; font-weight: 500; padding-top: 0.15rem; }
+    .timeline-body strong { color: var(--text); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; display: block; margin-bottom: 0.2rem; }
+    .timeline-body small { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; }
+    @media (max-width: 600px) {
+      .timeline-item { grid-template-columns: 1fr; gap: 0.4rem; }
+    }
+
+    .prize-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+    @media (max-width: 720px) { .prize-grid { grid-template-columns: 1fr; } }
+    .prize-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; position: relative; overflow: hidden; }
+    .prize-card.first { border-color: rgba(245,200,66,0.4); background: linear-gradient(180deg, rgba(245,200,66,0.06), var(--surface)); }
+    .prize-card.second { border-color: rgba(167,139,250,0.3); }
+    .prize-card.third { border-color: rgba(0,229,255,0.3); }
+    .prize-place { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .prize-card.first .prize-place { color: var(--gold); }
+    .prize-card.second .prize-place { color: var(--zabal); }
+    .prize-card.third .prize-place { color: var(--cyan); }
+    .prize-amount { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; line-height: 1; margin-bottom: 0.3rem; background: var(--gradient-prize); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .prize-card.second .prize-amount { background: var(--gradient-zabal); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .prize-card.third .prize-amount { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .prize-detail { font-size: 0.78rem; color: var(--text-muted); }
+
+    .prize-floor { background: var(--surface); border: 1px dashed var(--border-hover); border-radius: var(--radius); padding: 1.25rem; text-align: center; }
+    .prize-floor strong { color: var(--text); font-family: 'Syne', sans-serif; font-weight: 700; }
+    .prize-floor small { color: var(--text-muted); font-size: 0.85rem; display: block; margin-top: 0.3rem; }
+
+    .options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    @media (max-width: 720px) { .options-grid { grid-template-columns: 1fr; } }
+    .option-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; transition: border-color 0.2s, transform 0.2s; }
+    .option-card:hover { border-color: var(--border-hover); }
+    .option-letter { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--orange); text-transform: uppercase; margin-bottom: 0.4rem; }
+    .option-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; color: var(--text); }
+    .option-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+    .judging-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-top: 1rem; }
+    .judging-card strong { color: var(--text); font-family: 'Syne', sans-serif; font-weight: 700; display: block; margin-bottom: 0.4rem; }
+    .judging-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    .form-wrapper { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-top: 1rem; }
+    .form-grid { display: grid; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; font-weight: 500; }
+    input, select, textarea {
+      width: 100%; padding: 0.75rem 0.9rem;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+      color: var(--text); font-family: 'Outfit', sans-serif; font-size: 0.9rem;
+      transition: border-color 0.15s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none; border-color: var(--cyan);
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    .form-help { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.3rem; }
+    .form-checkbox { display: flex; gap: 0.5rem; align-items: flex-start; padding: 0.75rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; }
+    .form-checkbox input { width: auto; margin-top: 0.2rem; }
+    .form-checkbox label { margin: 0; text-transform: none; letter-spacing: normal; font-size: 0.85rem; color: var(--text-muted); font-weight: 400; }
+
+    .submit-btn {
+      width: 100%; padding: 1rem;
+      background: var(--gradient-main); color: #0b0b10;
+      border: none; border-radius: var(--radius);
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.95rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; transition: transform 0.15s;
+    }
+    .submit-btn:hover { transform: translateY(-2px); }
+
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.5rem; overflow: hidden; }
+    .faq-question { padding: 1rem 1.25rem; cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
+    .faq-question:hover { background: var(--surface-2); }
+    .faq-answer { padding: 0 1.25rem 1.25rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+    .footer { padding: 2.5rem 0; border-top: 1px solid var(--border); margin-top: 3rem; text-align: center; color: var(--text-dim); font-size: 0.85rem; }
+    .footer a { color: var(--text-muted); margin: 0 0.5rem; }
+
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.3); border-radius: 999px; font-size: 0.7rem; color: var(--zabal); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; }
+    .badge.gold { background: rgba(245,200,66,0.1); border-color: rgba(245,200,66,0.3); color: var(--gold); }
+    .badge.cyan { background: rgba(0,229,255,0.1); border-color: rgba(0,229,255,0.3); color: var(--cyan); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Event",
+        "name": "ZABAL Games Season 1",
+        "description": "A Farcaster vibe-coding challenge for the ZAO ecosystem. June workshops, July open build-a-thon, August Finals. Streamer games crossed with a hackathon.",
+        "startDate": "2026-06-01",
+        "endDate": "2026-08-31",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+        "location": {
+          "@type": "VirtualLocation",
+          "url": "https://zabalgames.com"
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "ZAO DEVZ",
+          "url": "https://zabalgames.com"
+        },
+        "image": "https://zabalgames.com/assets/og-card.svg",
+        "url": "https://zabalgames.com",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://zabalgames.com"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "ZABAL Games",
+        "url": "https://zabalgames.com",
+        "description": "Season 1 home for the ZABAL Games - a Farcaster vibe-coding challenge for the ZAO ecosystem.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "ZAO DEVZ"
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="module" src="/assets/miniapp.js"></script>
+</head>
+<body>
+
+  <div style="background: linear-gradient(90deg, rgba(167,139,250,0.12), rgba(0,229,255,0.10)); border-bottom: 1px solid var(--border); padding: 10px 16px; text-align: center; font-size: 0.85rem;">
+    <a href="/" style="color: var(--cyan); font-weight: 600; text-decoration: none;">&larr; Back to the simple page</a>
+    <span style="color: var(--text-dim); margin: 0 0.6rem;">/</span>
+    <span style="color: var(--text-muted);">You're on the long-form details page.</span>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">ZABAL <span style="background: linear-gradient(135deg, #ff6b35, #ff3d6e, #00e5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">GAMES</span></a>
+      <div class="nav-links">
+        <a href="/">Main</a>
+        <a href="#apply">Submit</a>
+        <a href="#submissions">Board</a>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="subnav">
+    <div class="subnav-inner">
+      <a href="#thesis">Why</a>
+      <a href="#ecosystem">The ZAO</a>
+      <a href="#why">Win-Win-Win</a>
+      <a href="#format">Format</a>
+      <a href="/lead.html">Lead</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/research.html">Research</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/about.html">About</a>
+      <a href="/context.html">Context</a>
+      <a href="/install.html">Install</a>
+      <a href="/spaces.html">Spaces</a>
+      <a href="/changelog.html">Log</a>
+      <a href="#workshops">Calendar</a>
+      <a href="#prize">Prizes</a>
+      <a href="#judging">Judging</a>
+      <a href="#showwork">Show Your Work</a>
+      <a href="#bigpicture">Bigger Picture</a>
+      <a href="#status">Locked + TBD</a>
+      <a href="#starters">Starters</a>
+      <a href="#submissions">Board</a>
+      <a href="#faq">FAQ</a>
+      <a href="#apply" class="cta">Submit a Build</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">A Farcaster Vibe-Coding Challenge - Season 1 - June Prep / July Submissions / August Finals</div>
+      <h1>ZABAL <span class="accent">GAMES</span></h1>
+      <p class="hero-sub">
+        Three months. <strong>June is prep</strong> - ZAO teachers + Vibe Coding instructors run recorded sessions on tools, context, and the ecosystem. <strong>July is the open build-a-thon</strong> - anyone with a vibe-coding harness ships a build for the ZAO ecosystem publicly. <strong>August is the Finals</strong> - a cohort curated from July, each builder paired with a ZAO mentor for the main event + winner reveal.
+      </p>
+      <p class="hero-sub" style="margin-top: 0.5rem;">
+        Use whatever harness you want (Claude Code, Cursor, Windsurf, Aider, Bolt, v0, Lovable). ZAO mentors pick their champions from July ships - the mentor roster is open and recruiting now. All chosen builders win. <strong>You bring the build, we bring the team + distribution.</strong>
+      </p>
+      <div class="hero-cta">
+        <a href="#apply" class="btn btn-primary">Submit a July Build</a>
+        <a href="#mentors" class="btn btn-ghost">Become a Mentor</a>
+        <a href="https://zlank.online/s/OAmekQ" target="_blank" rel="noopener" class="btn btn-ghost">Sign Up Snap</a>
+      </div>
+      <p class="hero-meta">JUNE = LESSONS - JULY = SHIP - AUGUST = FINALS + WINNER REVEAL</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-num zabal">3</div>
+          <div class="stat-label">Months</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num gold" id="stat-leads">--</div>
+          <div class="stat-label">Workshop Leads</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-projects">--</div>
+          <div class="stat-label">Adoptable Projects</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num orange">$500</div>
+          <div class="stat-label">USDC Pool</div>
+        </div>
+      </div>
+      <script>
+      (function() {
+        Promise.all([
+          fetch('/data/workshop-leads.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { leads: [] }; }),
+          fetch('/data/adoptable-projects.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { projects: [] }; })
+        ]).then(function(results) {
+          var leads = (results[0].leads || []).length;
+          var projects = (results[1].projects || []).length;
+          var leadsEl = document.getElementById('stat-leads');
+          var projectsEl = document.getElementById('stat-projects');
+          if (leadsEl) leadsEl.textContent = leads;
+          if (projectsEl) projectsEl.textContent = projects;
+        });
+      })();
+      </script>
+
+      <!-- Live signal ticker - claimed/open ratio + countdown to June 1 -->
+      <div class="live-ticker" style="margin-top: 1rem; padding: 0.8rem 1rem; background: rgba(245,166,35,0.06); border: 1px solid rgba(245,166,35,0.2); border-radius: 8px; font-size: 0.78rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px;">
+        <span><span class="live-dot" style="display: inline-block; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; margin-right: 6px; animation: pulse 2s infinite;"></span>LIVE</span>
+        <span id="live-leads-stat">-- workshop leads</span>
+        <span>/</span>
+        <span id="live-projects-stat">--/-- projects claimed</span>
+        <span>/</span>
+        <span id="live-mentors-stat">-- mentor slots open</span>
+        <span>/</span>
+        <span id="live-countdown" style="color: var(--gold);">launch in --</span>
+      </div>
+      <style>
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+      </style>
+      <script>
+      (function() {
+        // Mentors-locked: count anyone tagged as a mentor in about.html.
+        // For now, hardcoded to 0 locked / 8 open per /about. Swap to data/mentors.json once that lands.
+        var MENTORS_LOCKED = 0;
+        var MENTORS_TOTAL = 8;
+        var LAUNCH_DATE = new Date('2026-06-01T00:00:00Z');
+
+        Promise.all([
+          fetch('/data/workshop-leads.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { leads: [] }; }),
+          fetch('/data/adoptable-projects.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { projects: [] }; })
+        ]).then(function(results) {
+          var leads = (results[0].leads || []).length;
+          var projects = results[1].projects || [];
+          var claimed = projects.filter(function(p) { return p.status === 'claimed' || p.status === 'shipped'; }).length;
+          var leadsEl = document.getElementById('live-leads-stat');
+          var projectsEl = document.getElementById('live-projects-stat');
+          var mentorsEl = document.getElementById('live-mentors-stat');
+          if (leadsEl) leadsEl.textContent = leads + (leads === 1 ? ' workshop lead' : ' workshop leads');
+          if (projectsEl) projectsEl.textContent = claimed + '/' + projects.length + ' projects claimed';
+          if (mentorsEl) mentorsEl.textContent = (MENTORS_TOTAL - MENTORS_LOCKED) + ' mentor slots open';
+        });
+
+        // Live countdown ticker
+        function updateCountdown() {
+          var now = new Date();
+          var diff = LAUNCH_DATE - now;
+          var el = document.getElementById('live-countdown');
+          if (!el) return;
+          if (diff <= 0) { el.textContent = 'LIVE - June workshops open'; el.style.color = '#22c55e'; return; }
+          var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          el.textContent = 'launch in ' + days + 'd ' + hours + 'h ' + mins + 'm';
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // refresh once per minute
+      })();
+      </script>
+    </div>
+  </section>
+
+  <section id="calendar" class="alt">
+    <div class="container">
+      <div class="section-eyebrow">The Three Months</div>
+      <h2 class="section-title">June Prep - July Submissions - August Finals</h2>
+      <p class="section-sub">
+        Three months instead of one. Born from the working session with Jordan (Empire Builder) - the original "all-in-June" plan compressed too much. The new shape gives builders a month to absorb context, a month to ship, and a month for the Finals to breathe.
+      </p>
+      <div class="prize-grid" style="margin-top: 1.5rem;">
+        <div class="prize-card first" style="text-align: left; padding: 1.5rem;">
+          <div class="prize-place" style="text-align: left;">June - Prep Month</div>
+          <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin: 0.5rem 0 0.8rem; color: var(--text);">ZAO Teachers + Vibe Coding Instructors</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">Recorded sessions, Far-Hack style. ZAO teachers cover governance, Respect, ZOLs, fractals. Vibe coding instructors walk through Claude Code, Cursor, MCP, and agent harnesses. Tool specialists drop tutorials on Empire Builder V3 (with Jordan), zlank.online, POIDH bounties, Juke, and Songjam. Watch live or after. The ZABAL/ZAO/WaveWarZ context skill goes live so any agent can load full ecosystem context with one drop.</p>
+        </div>
+        <div class="prize-card second" style="text-align: left; padding: 1.5rem;">
+          <div class="prize-place" style="text-align: left;">July - Submissions Month</div>
+          <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin: 0.5rem 0 0.8rem; color: var(--text);">Open Build-a-Thon Ships</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">Anyone with the chops ships a build aligned with ZABAL, ZAO, or WaveWarZ. Live URL + open-source GitHub repo + 60-second demo + cast on /zabal. Builders can open a tokenless Empire on Empire Builder as a public build home (leaderboard + treasury surface) - encouraged, not required. Mentors watch rolling and claim champions as builds drop - first-come-first-served per mentor.</p>
+        </div>
+        <div class="prize-card third" style="text-align: left; padding: 1.5rem;">
+          <div class="prize-place" style="text-align: left;">August - The Finals</div>
+          <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin: 0.5rem 0 0.8rem; color: var(--text);">The Finals + Winner Reveal</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">The mentor-champion pairs lock. Same Finals prompt for the whole cohort. 24h build with mentor embedded as teammate + 24h promote + 24h ZAO governance vote + live reveal stream. Finalists who want to launch a token Ascend their Empire via Clanker + airdrop with vesting to their contribution leaderboard. Those who do not keep running the tokenless Empire indefinitely.</p>
+        </div>
+      </div>
+      <p class="section-sub" style="margin-top: 1.5rem; font-size: 0.85rem;">
+        <strong>The application is the build (July). The Finals (August) are a collaboration among the cohort.</strong> All chosen finalists get paid + the participation collectible + earn Respect in ZAO governance during the event.
+      </p>
+    </div>
+  </section>
+
+  <section id="thesis">
+    <div class="container">
+      <div class="section-eyebrow">What This Actually Is</div>
+      <h2 class="section-title">The Why</h2>
+      <p class="section-sub">
+        ZABAL Games is not a generic hackathon. It is a Farcaster-creator onboarding event for the ZAO ecosystem - a structured way to bring hungry, Farcaster-active vibe-coders into ZAO by having them build something real, in public, with a ZAO mentor in their corner.
+      </p>
+      <div class="judging-card" style="margin-top: 1rem;">
+        <strong>The core thesis</strong>
+        <p>Bring talented Farcaster builders together. Give them deep context on everything ZAO is building (ZAO OS, WaveWarZ, ZAO Festivals, and the rest). Let them create something that helps the community, with a ZAO mentor as their embedded teammate. Earn governance in the community during the event itself. If they want to keep building with ZAO after - great. If not, they still walked away with a real artifact, a real relationship, and a real onchain credential.</p>
+      </div>
+      <div class="judging-card" style="margin-top: 0.75rem;">
+        <strong>What success looks like</strong>
+        <p>New builders who understand ZAO from the inside. Real artifacts shipped for the ecosystem. A recurring format (this is Season 1) that compounds. The competition is in getting selected through Phase 1 - once you are a Finalist, the Finals are a collaboration, and all finalists win.</p>
+      </div>
+      <div class="judging-card" style="margin-top: 0.75rem;">
+        <strong>Focused on the creator, not the thing they create</strong>
+        <p>The builds matter, but the people matter more. This is about who you are as a builder, how you work in public, how you collaborate with a mentor - not just whether the demo is polished. That is why the application is itself a build (Phase 1): we want to see how you actually ship.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ecosystem" class="alt">
+    <div class="container">
+      <div class="section-eyebrow">Context You Will Build For</div>
+      <h2 class="section-title">The ZAO Ecosystem</h2>
+      <p class="section-sub">
+        ZABAL Games is run by ZAO - music infrastructure for independent artists using decentralized tools. When you build for the Games, you build for this ecosystem. Here is the map.
+      </p>
+      <div class="options-grid">
+        <div class="option-card">
+          <div class="option-letter">The Umbrella</div>
+          <h3>The ZAO</h3>
+          <p>A Farcaster-native music + creator community. Mission: bring the profit margin, the data, and the IP rights back to independent artists. Built on Farcaster + Base. Members hold ZABAL, earn Respect, govern through fractals.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter">The Platform</div>
+          <h3>ZAO OS</h3>
+          <p>The gated Farcaster client - feed, audio + video spaces, Respect leaderboard, governance, ecosystem integrations. Next.js + Supabase + Neynar.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter">The Token</div>
+          <h3>$ZABAL + Empire Builder</h3>
+          <p>ZABAL is the ecosystem token on Base, wrapped in an Empire on Empire Builder - leaderboards, boosters, treasury. Launched via Clanker.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter">Prediction Markets</div>
+          <h3>WaveWarZ</h3>
+          <p>Solana-based artist prediction markets. Artists battle head-to-head, wallets bet on outcomes. 40+ artists with real W/L records and SOL volume.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter">Festivals</div>
+          <h3>ZAO Festivals + ZAOstock</h3>
+          <p>ZAO's IRL festival arm. ZAOstock is the inaugural festival - a curated, paid, no-pay-to-play indie artist showcase.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter">The Label</div>
+          <h3>ZAO Music</h3>
+          <p>The label arm - releases tracks via DistroKid + 0xSplits + BMI, splitting royalties onchain without the major-label tax.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter">Concerts</div>
+          <h3>COC Concertz</h3>
+          <p>Virtual concert community - promoters running streamed shows. Part of the ZAO content + events engine.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter">Reputation</div>
+          <h3>Respect + Fractals</h3>
+          <p>Respect is ZAO's soulbound, peer-validated reputation - earned in weekly fractal sessions. It is what gives you a vote in ZAO governance, including who wins the Games.</p>
+        </div>
+      </div>
+      <p class="section-sub" style="margin-top: 1.25rem; font-size: 0.85rem;">
+        The full context bundle (everything above plus the rails, SDKs, brand guidelines, and research docs) drops to all Finalists as the Phase 2 prompt. Phase 1 builders get a lighter version when the build-a-thon opens.
+      </p>
+    </div>
+  </section>
+
+  <section id="why" class="alt">
+    <div class="container">
+      <div class="section-eyebrow">Why this works</div>
+      <h2 class="section-title">Win-Win-Win</h2>
+      <p class="section-sub">
+        Most challenges are zero-sum. ZABAL Games is built so every party gets something real out of the weekend - the players, the ZAO ecosystem, and the viewers tuning in.
+      </p>
+
+      <div class="options-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--gold);">For You (Farcaster Creators)</div>
+          <h3>Distribution + Cash + Portfolio</h3>
+          <p>Top 8 share the $500 USDC pool (sponsored by the ZAO festivals team). Top 16 get $ZABAL token rewards on top. ZAO accounts boost your stream + casts during the promote window so your audience grows whether you win or not. Open-source GitHub repo as a portfolio piece. 24h of live-coding footage you can repurpose forever. Permanent onchain collectible proving you shipped at Season 1.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--cyan);">For ZAO Ecosystem</div>
+          <h3>8 New Builders + Real Tools</h3>
+          <p>8 ecosystem-aligned builds shipped in 48 hours. Every prompt option ties to existing rails (Empire Builder, Farcaster, Hats, Bonfire, EAS, Coinflow). The Twitch streams feed the ZAO content engine - 30+ hours of live content turns into 150+ short clips. Onchain ZAO governance vote becomes a community engagement event.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--zabal);">For Viewers + Holders</div>
+          <h3>Drama, Tips, Voting Power</h3>
+          <p>24h of live-coding drama across 8 streams - pick a player, switch around, compare approaches. Tip your favorites via Coinflow during the promote window. ZAO members with earned Respect cast onchain votes that actually decide who wins. Governance does real work this weekend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mentors">
+    <div class="container">
+      <div class="section-eyebrow">Join The Team</div>
+      <h2 class="section-title">Mentor or Workshop Lead</h2>
+      <p class="section-sub">
+        Two ways to lend your time to ZABAL Games. <strong>Mentors</strong> claim a champion from July submissions and embed as their teammate during the August Finals. <strong>Workshop leads</strong> record one June bootcamp session on their specialty (Empire Builder, Snaps, agents, tokens, music infra, fractal governance - your call).
+      </p>
+
+      <form id="mentorForm" action="https://formspree.io/f/mjgajyqe" method="POST" style="margin-top: 1.5rem; max-width: 640px;">
+        <input type="hidden" name="form_source" value="zabal-games-mentor-signup">
+        <div class="field">
+          <label for="m-name">Your Name</label>
+          <input type="text" id="m-name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="m-handle">Farcaster / X handle</label>
+          <input type="text" id="m-handle" name="handle" placeholder="@bettercallzaal" required>
+        </div>
+        <div class="field">
+          <label for="m-role">I want to be a</label>
+          <select id="m-role" name="role" required style="width: 100%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: 'Outfit', sans-serif; font-size: 1rem; padding: 0.85rem 1rem; border-radius: var(--radius); outline: none; appearance: none;">
+            <option value="">Pick one</option>
+            <option value="mentor">Mentor (claim a champion, build alongside in August Finals)</option>
+            <option value="speaker">Workshop lead (records one June bootcamp session)</option>
+            <option value="both">Both</option>
+            <option value="partner">Partner / sponsor</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="m-expertise">Your specialty / what you'd bring</label>
+          <textarea id="m-expertise" name="expertise" placeholder="Empire Builder, Snaps, agent harnesses, tokens, music infra, fractal governance, festivals, anything else..." required></textarea>
+        </div>
+        <div class="field">
+          <label for="m-context">Anything else I should know</label>
+          <textarea id="m-context" name="context" placeholder="Time you can commit, why you want in, ideas for what a session/champion-track looks like"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+      <div class="form-success" id="mentorSuccess" style="display: none; margin-top: 1.5rem; padding: 1rem 1.25rem; background: var(--surface); border: 1px solid var(--gold); border-radius: var(--radius);">
+        <strong style="color: var(--gold); font-family: 'Syne', sans-serif;">Got it.</strong>
+        <p style="margin-top: 0.4rem;">I'll reach out in Farcaster DM to lock the details.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="workshops" class="alt">
+    <div class="container">
+      <div class="section-eyebrow">June Workshop Month</div>
+      <h2 class="section-title">The Calendar - Pick a Slot</h2>
+      <p class="section-sub">
+        Two things on this page: the live calendar of June workshops (RSVP to attend any session), and a slot-picker for new workshop leads (book your June date directly). If neither is wired yet, use the form above or DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a>.
+      </p>
+
+      <div class="options-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 1.5rem;">
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--gold);">Calendar</div>
+          <h3>What's on this month</h3>
+          <p>Browse what is on the ZAO calendar this month - June ZABAL Games workshops land here alongside the weekly Fractal + other ZAO events. RSVP to any session directly on Lu.ma.</p>
+          <div id="luma-embed" style="margin-top: 1rem;">
+            <iframe src="https://luma.com/embed/calendar/cal-jPH4al7AMlXzdNN/events?lt=dark" width="100%" height="500" frameborder="0" style="border-radius: var(--radius); border: 1px solid var(--border);" allowfullscreen aria-hidden="false" tabindex="0"></iframe>
+            <p style="margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-muted);">Full calendar: <a href="https://luma.com/zao" target="_blank" rel="noopener" style="color: var(--cyan);">luma.com/zao</a></p>
+          </div>
+        </div>
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--cyan);">Slot Picker</div>
+          <h3>Lead a workshop - book your date</h3>
+          <p>Pick any open day in June and lock your slot. Live on Restream by default (multistreams to YouTube + Twitch + Farcaster) or Google Meet if you prefer. Pre-recorded or hybrid totally fine - flag your preference when you book. Cast credit, a spot on the team, and your session lives in the Magnetiq library forever.</p>
+          <div id="cal-embed" style="margin-top: 1rem;">
+            <iframe src="https://cal.com/bettercallzaal/zabal-games-workshop-slot?theme=dark" width="100%" height="650" frameborder="0" style="border-radius: var(--radius); border: 1px solid var(--border);"></iframe>
+            <p style="margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-muted);">Direct link: <a href="https://cal.com/bettercallzaal/zabal-games-workshop-slot" target="_blank" rel="noopener" style="color: var(--cyan);">cal.com/bettercallzaal/zabal-games-workshop-slot</a></p>
+          </div>
+        </div>
+      </div>
+
+      <p class="section-sub" style="margin-top: 1.5rem; font-size: 0.85rem;">
+        <strong>How it works:</strong> Lu.ma shows what is scheduled (audience RSVPs). Cal.com lets workshop leads book a slot from open availability. Both feed the same calendar - one place, one view. If you do not have a Lu.ma or Cal.com account, the form above + a Farcaster DM works just as well.
+      </p>
+
+      <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 2.5rem 0 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase;">Confirmed Workshop Leads <span id="lead-count" style="color: var(--text-dim); font-weight: 400; margin-left: 0.5rem;"></span></h3>
+      <div id="workshop-leads-grid" class="options-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <noscript>
+          <div class="option-card">
+            <div class="option-letter" style="color: var(--zabal);">001</div>
+            <h3>Tyler Stambaugh - Magnetiq</h3>
+            <p>30-min Magnetiq pitch. Builders learn the workshop-library portal that hosts the rest of the June sessions. Livestreamed then clipped. Any day in June.</p>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">Confirmed 2026-05-22</p>
+          </div>
+        </noscript>
+      </div>
+      <script>
+      (function() {
+        var grid = document.getElementById('workshop-leads-grid');
+        var countEl = document.getElementById('lead-count');
+        fetch('/data/workshop-leads.json', { cache: 'no-cache' })
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            grid.innerHTML = '';
+            (data.leads || []).forEach(function(L) {
+              var card = document.createElement('div');
+              card.className = 'option-card';
+              var color = L.color || 'zabal';
+              var specLink = L.spec_url
+                ? ' - see <a href="' + L.spec_url + '" target="_blank" rel="noopener" style="color: var(--cyan);">spec</a>'
+                : '';
+              card.innerHTML =
+                '<div class="option-letter" style="color: var(--' + color + ');">' + L.id + '</div>' +
+                '<h3>' + L.name + (L.org ? ' - ' + L.org : '') + '</h3>' +
+                '<p>' + L.topic + (L.format ? ' ' + L.format + '.' : '') + (L.when ? ' ' + L.when + '.' : '') + '</p>' +
+                '<p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">Confirmed ' + L.confirmed_date + specLink + '</p>';
+              grid.appendChild(card);
+            });
+            // Open slot card
+            var open = document.createElement('div');
+            open.className = 'option-card';
+            open.style.borderStyle = 'dashed';
+            open.style.opacity = '0.85';
+            open.innerHTML =
+              '<div class="option-letter" style="color: var(--text-muted);">Open</div>' +
+              '<h3>Your slot here</h3>' +
+              '<p>Have something to teach? Sign up via the form above or DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color: var(--cyan);">@bettercallzaal</a>. Empire Builder, agents, Claude Code, tokens, governance, music infra - whatever your edge is.</p>';
+            grid.appendChild(open);
+            countEl.textContent = '(' + (data.leads || []).length + ' confirmed)';
+          })
+          .catch(function() {
+            // Network fail: keep noscript fallback (does nothing here since noscript only renders when JS off)
+            countEl.textContent = '';
+          });
+      })();
+      </script>
+    </div>
+  </section>
+
+  <section id="format">
+    <div class="container">
+      <div class="section-eyebrow">The Format</div>
+      <h2 class="section-title">The Mechanic - July Build, August Finals</h2>
+      <p class="section-sub">
+        Most hackathons make you apply with a paragraph + a vibe. ZABAL Games makes the application itself the work - prove yourself by shipping, not by selling. June seasons you with context (workshops hosted on the Magnetiq portal so every session lives in one searchable library forever). July is when you ship. The most interesting builds advance to the August Finals, each paired with a ZAO mentor as embedded teammate. Finals voting runs through WaveWarZ-Base - market + Respect baseline, not pure 1p1v.
+      </p>
+
+      <div class="prize-grid" style="margin-top: 1.5rem;">
+        <div class="prize-card first" style="text-align: left; padding: 1.5rem;">
+          <div class="prize-place" style="text-align: left;">July - Open Build-a-Thon</div>
+          <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin: 0.5rem 0 0.8rem; color: var(--text);">Anyone Can Apply By Building</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">Vibe-code something - anything - using the ZAO context from June. Ship it publicly with a live URL, an open-source GitHub repo, a 60-second demo, and a cast on /zabal. Use whatever harness fits you (Claude Code, Cursor, Windsurf, Aider, Bolt, v0, Lovable). Open to everyone with the chops to ship. Opening a tokenless Empire on Empire Builder as your public build home is encouraged but not required.</p>
+        </div>
+        <div class="prize-card second" style="text-align: left; padding: 1.5rem;">
+          <div class="prize-place" style="text-align: left;">Late July - Curation</div>
+          <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin: 0.5rem 0 0.8rem; color: var(--text);">Mentors Claim Their Champions</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">As July builds ship, ZAO mentors watch rolling. Each mentor claims one champion - the builder whose work + style fits their search. First-come-first-served by mentor, so build early + build well. The mentor-champion pairs lock the August Finals roster. The mentor roster is open - we are recruiting mentors now.</p>
+        </div>
+        <div class="prize-card third" style="text-align: left; padding: 1.5rem;">
+          <div class="prize-place" style="text-align: left;">August - The Finals</div>
+          <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin: 0.5rem 0 0.8rem; color: var(--text);">The Main 72h Event + Winner Reveal</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">Same Finals prompt for the whole cohort. 24h to build with your mentor embedded as teammate (Discord/Meet, live with you). 24h to promote. ZAO members with earned Respect vote onchain. Live reveal stream. Finalists who want to launch a token Ascend their Empire through Clanker with an airdrop + vesting to their leaderboard. All selected finalists win - cash + collectible + Respect earned during the event.</p>
+        </div>
+      </div>
+
+      <p class="section-sub" style="margin-top: 1.5rem; font-size: 0.85rem;">
+        <strong>The competition is the July ship (getting selected). The August Finals are a collaboration among the cohort.</strong> All chosen finalists get paid + receive the participation collectible + earn Respect in the ZAO governance during the event itself.
+      </p>
+
+      <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 2rem 0 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase;">August Finals - 72-Hour Timeline</h3>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">T-3 DAYS</div>
+          <div class="timeline-body">
+            <strong>Onboarding Call</strong>
+            <small>90-min call. Rules, infra setup, wallet linkage, voting mechanism walkthrough. Mandatory or forfeit.</small>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">T+0</div>
+          <div class="timeline-body">
+            <strong>Prompt Drops</strong>
+            <small>The sealed prompt fires to every finalist simultaneously. Each player gets the same bundle: ecosystem context, the adoptable-project list, starter kit, rules. Streams must start within 30 minutes. ZAO governance voter eligibility snapshotted now.</small>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">T+0 to T+24h</div>
+          <div class="timeline-body">
+            <strong>Build Window</strong>
+            <small>Code in your harness of choice. Stream on Twitch. ZAO restreams every finalist to one /zabal hub. Build in public. Open repos. No pre-built code allowed (empty git log mandated).</small>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">T+24h</div>
+          <div class="timeline-body">
+            <strong>Ship Deadline</strong>
+            <small>Submit: live URL + open-source GitHub repo + 60-second demo video + ship cast on /zabal. Miss any one = no submission.</small>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">T+24h to T+48h</div>
+          <div class="timeline-body">
+            <strong>Promote Window</strong>
+            <small>Cast it. Post it. Demo it. Get viewers, GitHub stars, and tips. ZAO accounts amplify every finalist.</small>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">T+48h to T+72h</div>
+          <div class="timeline-body">
+            <strong>WaveWarZ-Base Trade Window</strong>
+            <small>Each finalist becomes a tradable battle entry on WaveWarZ-Base. Market opens for trading. Anyone with a Base wallet can buy in. Respect-holders (The ZAO's soulbound governance signal) have a voice in settlement - exact weight mechanism locked before Finals. See <a href="/finals" style="color: var(--cyan);">/finals</a> for the full mechanic.</small>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">T+72h</div>
+          <div class="timeline-body">
+            <strong>Live Settlement + Reveal</strong>
+            <small>1-hour stream. WaveWarZ-Base settles all finalist markets. Final ranking = market price weighted with autonomous judge-agent rubric scores (x402-paid). Top 3 announced. USDC distributed onchain LIVE via 0xSplits. Hats Protocol Champion NFT to top 3, Finisher NFT to every Finalist.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prize">
+    <div class="container">
+      <div class="section-eyebrow">Prizes</div>
+      <h2 class="section-title">All Finalists Win</h2>
+      <p class="section-sub">
+        The competition is in <strong>getting selected</strong> (Phase 1). Once you're in the Finals, you're already a winner - the cohort collaborates, not competes. The $500 USDC pool is tiered to recognize standout work, but every finalist walks home paid + with the participation collectible + Respect earned during the event. The DAO vote orders the recognition, doesn't pick winners-vs-losers.
+      </p>
+
+      <div class="prize-grid">
+        <div class="prize-card first">
+          <div class="prize-place">Top 8</div>
+          <div class="prize-amount">USDC</div>
+          <div class="prize-detail">Share the $500 USDC pool + Hats Protocol collectible + Hall of Fame</div>
+        </div>
+        <div class="prize-card second">
+          <div class="prize-place">Top 16</div>
+          <div class="prize-amount">$ZABAL</div>
+          <div class="prize-detail">$ZABAL token rewards on top of any USDC (top 8 stack both)</div>
+        </div>
+      </div>
+
+      <div class="prize-floor">
+        <strong>Specific allocation per finalist confirmed before the August Finals.</strong>
+        <small>$500 USDC pool sponsored by the ZAO festivals team. $ZABAL token allocation set per Empire Builder economics. Hit the submission bar by T+48h and you walk away with rewards + a permanent onchain collectible + Hall of Fame entry + audience growth from ZAO amplification.</small>
+      </div>
+
+      <div class="prize-floor" style="margin-top: 1.5rem; background: rgba(245, 166, 35, 0.06); border-color: rgba(245, 166, 35, 0.3);">
+        <strong>Prize pool sponsor: The ZAO festivals team</strong>
+        <small>The $500 USDC prize pool for v0 (Season 1) is donated by the ZAO festivals team. Want to grow the v1 prize pool or add support to v0? Reach out: <a href="mailto:info@thezao.com" style="color: var(--gold);">info@thezao.com</a></small>
+      </div>
+    </div>
+  </section>
+
+  <section id="judging" class="alt">
+    <div class="container">
+      <div class="section-eyebrow">Who Decides</div>
+      <h2 class="section-title">WaveWarZ-Base Market + Respect Governance</h2>
+      <p class="section-sub">
+        ZABAL Games Season 1 Finals are settled by the WaveWarZ-Base prediction market protocol (Sam + Arthur ship the Base contracts in June, mainnet July, real Finals August). Anyone with a Base wallet can trade. Respect (The ZAO's soulbound governance signal) has a voice in settlement. The specific Respect-weight mechanism is being designed alongside the contracts and locked before the August Finals.
+      </p>
+
+      <div class="judging-card">
+        <strong>How settlement works</strong>
+        <p>Each Finalist becomes a tradable battle entry on WaveWarZ-Base. The market trades for 72 hours on real signal (the live demo + repo + cast quality + judge-agent rubric scores). At T+72h the market settles. Final ranking combines market price with autonomous judge-agent rubric scores (judges are x402-paid agents that read the deployed URL + repo + demo video and emit scored evaluations). Respect-holder governance weight feeds into the settlement - exact mechanic TBD with the contracts. Live settlement on <a href="/finals/live" style="color: var(--cyan);">/finals/live</a>. Top 3 get the Champion NFT (Hats Protocol on Base). All Finalists get the Finisher NFT. USDC distributed onchain via 0xSplits.</p>
+      </div>
+
+      <div class="judging-card" style="margin-top: 1rem;">
+        <strong>What Respect actually is</strong>
+        <p>Soulbound. Illiquid. Non-transferable. You cannot sell or trade it. Respect is The ZAO's governance signal earned by participating in the ecosystem. During ZABAL Games: up to 1000 Respect points earnable per active participant, with current ZAO holders determining who counts as active (workshop attendance, July submissions, Finals participation, real contribution).</p>
+        <p style="margin-top: 0.6rem;"><strong>Voter eligibility:</strong> 1000+ Respect points = eligible to vote in Finals settlement. Threshold may shift as the event unfolds. The 1000+ cohort can also vote (66%+ majority) to change the governance system itself.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="showwork" class="alt">
+    <div class="container">
+      <div class="section-eyebrow">Tooling + Visibility</div>
+      <h2 class="section-title">Use Any Harness - Show Your Work</h2>
+      <p class="section-sub">
+        We don't care if you use Claude Code, Cursor, Windsurf, Aider, Cline, Bolt, v0, Lovable, or hand-roll your own pipeline. <strong>What we care about is that you build in public.</strong> Pick at least one primary visibility mode below. Mix and match welcome.
+      </p>
+
+      <div class="options-grid">
+        <div class="option-card">
+          <div class="option-letter">Mode 1</div>
+          <h3>Live Twitch Stream</h3>
+          <p>Stream the bulk of your build live on Twitch. The default - what we recommend. ZAO restreams every finalist to a single hub page so viewers can switch between players.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter">Mode 2</div>
+          <h3>Recorded Screen Sessions</h3>
+          <p>Screen-record your build sessions and upload to YouTube/Loom within 1h of each session ending. Cast the link to /zabal as you go. Less drama than live but easier on shy builders.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter">Mode 3</div>
+          <h3>Public AI Prompt Logs</h3>
+          <p>Share your AI conversation logs publicly as you go. Cursor + Windsurf composer history, Claude Code transcript dumps, Aider session logs - whatever your tool exports. Post snippets every 1-2 hours.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter">Mode 4</div>
+          <h3>Frequent Build Casts</h3>
+          <p>Cast progress on Farcaster every 1-2 hours with screenshots, snippets, and what you're prompting. Lower bar than streaming, higher cadence required. Tag /zabal + @bettercallzaal.</p>
+        </div>
+      </div>
+
+      <div class="prize-floor" style="margin-top: 1rem;">
+        <strong>The rule: at least one primary visibility mode, plus ongoing /zabal casts</strong>
+        <small>Voters need to verify you actually built it in 24h with AI tools - that's the only constraint. How you show your work is up to you. Pick the mode that fits your personality and ship.</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="bigpicture">
+    <div class="container">
+      <div class="section-eyebrow">Where This Goes</div>
+      <h2 class="section-title">The Bigger Picture</h2>
+      <p class="section-sub">
+        ZABAL Games is Season 1. It is designed to be recurring infrastructure for ZAO, not a one-off event. Here is the longer arc.
+      </p>
+      <div class="options-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--gold);">Seasons</div>
+          <h3>This Is Season 1</h3>
+          <p>The format repeats. Mentors carry across Seasons. Season 1 alumni become eligible to mentor or compete again. Each Season compounds the builder network + the body of shipped work.</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--cyan);">Tokenization</div>
+          <h3>WaveWarZ-Base IS the Settlement Layer</h3>
+          <p>Finals voting runs through WaveWarZ-Base (Doc 720, hybrid market + Respect baseline). Finalists who want a permanent token Ascend their Empire via Clanker with an airdrop + vesting to their contribution leaderboard. Optional - the tokenless Empire works fine indefinitely. The Games are the V1 launch event for WaveWarZ-Base; future Seasons graduate to a fully-agentic version (judge agents + autonomous market makers + on-chain x402 payouts).</p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--zabal);">The Team</div>
+          <h3>Mentors Are On The Team</h3>
+          <p>Being a ZAO Mentor is a real, persistent role - a Hat NFT, a private channel, cast credit, ongoing ZAO ops involvement. The Games are how ZAO grows its core builder + mentor tier over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="status" class="alt">
+    <div class="container">
+      <div class="section-eyebrow">Radical Transparency</div>
+      <h2 class="section-title">What's Locked + What's Still TBD</h2>
+      <p class="section-sub">
+        This is Season 1 and it is being designed in the open. Here is exactly where things stand - what is decided, and what is still being figured out. If you are reading this to decide whether to get involved, you should know both.
+      </p>
+      <div class="lockgrid">
+        <div class="lockcol locked">
+          <h3>Locked</h3>
+          <ul>
+            <li><strong>Two-phase model</strong> - open build-a-thon, then a curated Finals event</li>
+            <li><strong>Open mentor roster</strong> - mentors recruited openly, each picks one champion, embedded as teammate</li>
+            <li><strong>Tool-agnostic</strong> - any vibe-coding harness</li>
+            <li><strong>Show your work</strong> - 4 visibility modes, pick at least one</li>
+            <li><strong>$500 USDC pool</strong> - top 8 share USDC, top 16 get $ZABAL on top, every Finalist gets paid + collectible</li>
+            <li><strong>ZAO governance vote</strong> - Respect-earning members, 1-person-1-vote, not token-weighted</li>
+            <li><strong>Applications public</strong> - by default, on the board below</li>
+            <li><strong>Submission bar</strong> - live URL + open-source repo + 60s demo + /zabal cast</li>
+            <li><strong>Mentor picks</strong> - first-come-first-served, rolling, as Phase 1 builds ship</li>
+            <li><strong>Season 1 framing</strong> - recurring format, not one-off</li>
+          </ul>
+        </div>
+        <div class="lockcol tbd">
+          <h3>Still TBD</h3>
+          <ul>
+            <li><strong>Dates</strong> - lock once the cohort + mentor availability are known</li>
+            <li><strong>Phase 1 prompt content</strong> - Zaal is writing the full ZAO context bundle</li>
+            <li><strong>Phase 1 duration</strong> - how long the open build-a-thon window runs</li>
+            <li><strong>Mentor roster</strong> - open and recruiting; per-mentor search styles defined as mentors join</li>
+            <li><strong>Finals size</strong> - the finalist count locks after July submissions land</li>
+            <li><strong>Participation collectible spec</strong> - likely a Hats Protocol role NFT</li>
+            <li><strong>Governance earned during event</strong> - exact Respect amount + when</li>
+            <li><strong>Start time</strong> - balancing US-centric with global participation</li>
+            <li><strong>Tokenization layer</strong> - opt-in Clanker tokens, design space open, not a Season 1 requirement</li>
+          </ul>
+        </div>
+      </div>
+      <p class="section-sub" style="margin-top: 1.25rem; font-size: 0.85rem;">
+        Full working spec lives in the ZAO research library (Doc 630 + the canonical-state Doc 701). This page is the shareable summary - the docs are the source of truth + the running log of every decision.
+      </p>
+    </div>
+  </section>
+
+  <section id="ideas">
+    <div class="container">
+      <div class="section-eyebrow">The Context File</div>
+      <h2 class="section-title">One URL. Any Harness.</h2>
+      <p class="section-sub">
+        The July build prompt is a single machine-readable file at <a href="https://zabalgames.com/llms.txt" style="color: var(--cyan);"><strong>zabalgames.com/llms.txt</strong></a>. Point your AI tool at it and load the full ZAO ecosystem context in one fetch - what every brand is, the tech stack and rails, the two build paths, the brand guidelines (no emojis, no em dashes, naming glossary), the submission bar, and where the deeper docs live.
+      </p>
+
+      <div class="options-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 1.5rem;">
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--cyan);">Load it</div>
+          <h3>Point your harness at the URL</h3>
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-muted); line-height: 1.7; margin-top: 0.6rem;">
+            <strong style="color: var(--text);">Claude Code:</strong> save as <code>CLAUDE.md</code><br>
+            <strong style="color: var(--text);">Cursor:</strong> save as <code>.cursorrules</code><br>
+            <strong style="color: var(--text);">Windsurf:</strong> save as <code>.windsurfrules</code><br>
+            <strong style="color: var(--text);">Aider:</strong> <code>--read CONVENTIONS.md</code><br>
+            <strong style="color: var(--text);">Cline / Continue:</strong> drop in <code>.cline/instructions/</code>
+          </p>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.6rem;">
+            One file. Any tool. Treat sections as menu items - if you are building Empire Builder tooling, focus on that section.
+          </p>
+        </div>
+        <div class="option-card">
+          <div class="option-letter" style="color: var(--gold);">Claude skill</div>
+          <h3>For Claude Code users</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+            A packaged Claude skill mirror of the context file - install once, available across all your projects. The skill auto-loads when the agent recognises ZABAL Games / ZAO ecosystem work.
+          </p>
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.6rem; background: var(--surface-2); padding: 0.7rem; border-radius: 6px; overflow-x: auto;">
+mkdir -p ~/.claude/skills/zabal-games<br>
+curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
+&nbsp;&nbsp;https://raw.githubusercontent.com/ZAODEVZ/zabalgames/main/.claude/skills/zabal-games/SKILL.md
+          </p>
+        </div>
+      </div>
+
+      <p class="section-sub" style="margin-top: 1.5rem;">
+        <strong>Two build paths.</strong> Adopt a started ZAO project from the list in the context file, or build from scratch. Either way you tie it to real ZAO rails (Empire Builder, Farcaster mini apps, Hats, Bonfire, EAS, Hypersub, Coinflow) and ship within 24h with your AI tool of choice.
+      </p>
+
+      <p class="section-sub" style="margin-top: 0.6rem; font-size: 0.85rem;">
+        The <strong>August Finals</strong> get an additional sealed prompt drop at T+0 - identical for every finalist so the build window starts on equal footing. The July base context (this file) stays public the whole way through.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects" class="alt">
+    <div class="container">
+      <div class="section-eyebrow">Path 1 - Adopt a Project</div>
+      <h2 class="section-title">Started ZAO Projects Up for Grabs</h2>
+      <p class="section-sub">
+        You do not have to build from scratch. Two flavors: <strong>01-09</strong> are feature builds inside the ZAO stack (research doc has the spec). <strong>10-16</strong> are <span style="color: var(--gold); font-weight: 600;">starter repos</span> you adopt + own (you write the spec). Pick either - or build from scratch with the <a href="#ideas" style="color: var(--cyan);">context file</a>. All paths count.
+      </p>
+
+      <div id="index-projects-grid" class="options-grid" style="margin-top: 1.5rem; grid-template-columns: repeat(2, 1fr);">
+        <noscript>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">See the full curated list at <a href="/projects.html" style="color: var(--cyan);">/projects</a> or in <a href="/llms.txt" style="color: var(--cyan);">llms.txt</a>.</p>
+        </noscript>
+      </div>
+
+      <p class="section-sub" style="margin-top: 1.5rem; font-size: 0.85rem;">
+        Want one of these? DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color: var(--cyan);">@bettercallzaal</a> with the number. List is curated; status updates as builders claim slots. Full curated list also at <a href="/projects.html" style="color: var(--cyan);">/projects</a> and in <a href="https://zabalgames.com/llms.txt" style="color: var(--cyan);">llms.txt</a>.
+      </p>
+
+      <script>
+      (function() {
+        var grid = document.getElementById('index-projects-grid');
+        fetch('/data/adoptable-projects.json', { cache: 'no-cache' })
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            var projects = data.projects || [];
+            grid.innerHTML = '';
+            projects.forEach(function(P) {
+              var color = P.color || 'orange';
+              var card = document.createElement('div');
+              card.className = 'option-card';
+              var statusBadge = P.status === 'claimed'
+                ? ' <span style="font-size: 0.7rem; color: var(--cyan); background: rgba(0,229,255,0.12); padding: 0.1rem 0.4rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em;">claimed</span>'
+                : '';
+              // Starter-repo badge: 10-16 are whole-repo adoptions (you own the spec),
+              // 01-09 are feature builds inside the ZAO stack (research doc has the spec).
+              var idNum = parseInt(P.id, 10);
+              var typeBadge = idNum >= 10
+                ? ' <span style="font-size: 0.7rem; color: var(--gold); background: rgba(245,166,35,0.12); padding: 0.1rem 0.4rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid rgba(245,166,35,0.3);">starter repo</span>'
+                : '';
+              var spec = P.spec_url
+                ? ' Spec: <a href="' + P.spec_url + '" target="_blank" rel="noopener" style="color: var(--cyan);">' + (P.spec_label || 'docs') + '</a>.'
+                : '';
+              card.innerHTML =
+                '<div class="option-letter" style="color: var(--' + color + ');">' + P.id + '</div>' +
+                '<h3>' + P.name + statusBadge + typeBadge + '</h3>' +
+                '<p>' + P.description + spec + '</p>';
+              grid.appendChild(card);
+            });
+          })
+          .catch(function() {
+            grid.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">List unavailable - see <a href="/projects.html" style="color: var(--cyan);">/projects</a>.</p>';
+          });
+      })();
+      </script>
+    </div>
+  </section>
+
+  <section id="apply">
+    <div class="container">
+      <div class="section-eyebrow">Submit Your Phase 1 Build</div>
+      <h2 class="section-title">Apply by Shipping</h2>
+      <p class="section-sub">
+        Phase 1 is open to anyone. Build something with the ZAO context prompt (released when applications open) using your vibe-coding harness of choice. Ship publicly. ZAO mentors watch rolling - each claims one champion to bring to the Finals. Build early + build well.
+      </p>
+      <p class="section-sub" style="margin-top: 0.6rem; font-size: 0.85rem;">
+        <strong>Note: applications are public by default.</strong> Your submission is a Farcaster cast - shareable, visible, indexable. If you'd prefer to apply privately, this isn't the right Games for you.
+      </p>
+
+      <div class="form-wrapper">
+        <!-- TODO Zaal: create a new Formspree form at https://formspree.io/forms/new -->
+        <!-- 1. Sign in with zaalp99@gmail.com (already used for BCZ contact + testimonials per CLAUDE.md) -->
+        <!-- 2. Create form named "ZABAL Games Season 1 Applications" -->
+        <!-- 3. Set email notifications to zaalp99@gmail.com (default) -->
+        <!-- Submissions write to Supabase (config block in <head>). -->
+        <!-- The public gallery below reads from the same table. -->
+        <div id="form-error" role="alert" style="display:none;background:rgba(255,61,110,0.12);border:1px solid rgba(255,61,110,0.5);color:#ff8aa6;padding:0.85rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;"></div>
+        <div id="form-success" role="status" style="display:none;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.45);color:var(--cyan);padding:0.85rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;"></div>
+        <form id="zg-apply" class="form-grid" novalidate>
+
+          <div class="form-row">
+            <div>
+              <label for="name">Name or Handle</label>
+              <input type="text" id="name" name="name" required placeholder="What do we call you">
+            </div>
+            <div>
+              <label for="farcaster">Farcaster handle</label>
+              <input type="text" id="farcaster" name="farcaster" required placeholder="@yourhandle">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="twitch">Twitch handle (optional)</label>
+              <input type="text" id="twitch" name="twitch" placeholder="twitch.tv/you">
+            </div>
+            <div>
+              <label for="github">GitHub handle</label>
+              <input type="text" id="github" name="github" required placeholder="@yourgithub">
+            </div>
+          </div>
+
+          <div>
+            <label for="wallet">Verified wallet or ENS (Base)</label>
+            <input type="text" id="wallet" name="wallet" required placeholder="0x... or name.eth" pattern="^(0x[a-fA-F0-9]{40}|[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.eth)$" title="Paste 0x address (Base) or ENS name ending in .eth (e.g. zaal.eth, you.base.eth)">
+            <p class="form-help">Used for prize payout if you make the Finals. Public on your submission.</p>
+          </div>
+
+          <div>
+            <label for="phase1_url">Your Phase 1 build - live URL</label>
+            <input type="url" id="phase1_url" name="phase1_url" required placeholder="https://your-build.vercel.app">
+            <p class="form-help">Must be reachable. Mentors will click + try it.</p>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="phase1_repo">GitHub repo (open source, MIT or similar)</label>
+              <input type="url" id="phase1_repo" name="phase1_repo" required placeholder="https://github.com/you/repo">
+            </div>
+            <div>
+              <label for="phase1_demo">60-sec demo video</label>
+              <input type="url" id="phase1_demo" name="phase1_demo" required placeholder="https://loom.com/... or YouTube">
+            </div>
+          </div>
+
+          <div>
+            <label for="phase1_cast">Your /zabal ship cast (link)</label>
+            <input type="url" id="phase1_cast" name="phase1_cast" required placeholder="https://farcaster.xyz/...">
+            <p class="form-help">A public cast in /zabal channel announcing your build. The cast IS your application visibility.</p>
+          </div>
+
+          <div>
+            <label for="built_on">Built on a starter project? (optional)</label>
+            <input type="text" id="built_on" name="built_on" placeholder="Name of the starter you forked - or leave blank if you started fresh">
+            <p class="form-help">Building on a starter is just as valid as from scratch. Just credit which one.</p>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="timezone">Timezone</label>
+              <input type="text" id="timezone" name="timezone" required placeholder="PT / ET / GMT / etc">
+            </div>
+            <div>
+              <label for="availability_pref">What window works best for you? (we'll pick once the cohort is chosen)</label>
+              <select id="availability_pref" name="availability_pref" required>
+                <option value="">Choose one</option>
+                <option value="any_weekend">Any weekend - I'm flexible</option>
+                <option value="prefer_summer">Prefer summer (Jun-Aug)</option>
+                <option value="prefer_fall">Prefer fall (Sep-Nov)</option>
+                <option value="prefer_specific">I have a specific window - I'll explain below</option>
+                <option value="depends">Depends on the dates - tell me first</option>
+              </select>
+              <p class="form-help">Build window will be 48h. Once the cohort is set we'll find dates that work for the group.</p>
+            </div>
+          </div>
+
+          <div>
+            <label for="harness_pref">Which vibe-coding harness will you use?</label>
+            <select id="harness_pref" name="harness_pref" required>
+              <option value="">Pick one (or "not sure")</option>
+              <option value="claude_code">Claude Code (terminal-native)</option>
+              <option value="cursor">Cursor</option>
+              <option value="windsurf">Windsurf</option>
+              <option value="aider">Aider</option>
+              <option value="cline">Cline / Continue</option>
+              <option value="bolt">Bolt.new</option>
+              <option value="v0">v0 (Vercel)</option>
+              <option value="lovable">Lovable</option>
+              <option value="mix">Mix of several</option>
+              <option value="other">Other (write below)</option>
+              <option value="not_sure">Not sure yet</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="visibility_mode">Primary "show your work" mode</label>
+            <select id="visibility_mode" name="visibility_mode" required>
+              <option value="">Pick one</option>
+              <option value="twitch_stream">Live Twitch stream (Mode 1)</option>
+              <option value="screen_recording">Recorded screen sessions + YouTube uploads (Mode 2)</option>
+              <option value="prompt_logs">Public AI prompt logs (Mode 3)</option>
+              <option value="frequent_casts">Frequent build casts with screenshots (Mode 4)</option>
+              <option value="combo">Combination - I'll lean on multiple modes</option>
+            </select>
+            <p class="form-help">Required: at least one primary mode + ongoing /zabal casts throughout.</p>
+          </div>
+
+          <div>
+            <label for="creator_type">What kind of digital creator are you?</label>
+            <select id="creator_type" name="creator_type" required>
+              <option value="">Pick the closest fit</option>
+              <option value="dev">Developer / engineer</option>
+              <option value="designer">Designer / artist</option>
+              <option value="writer">Writer / journalist / newsletter</option>
+              <option value="video">Video editor / YouTuber</option>
+              <option value="streamer">Streamer / podcaster</option>
+              <option value="musician">Musician / audio creator</option>
+              <option value="multi">Multi-disciplinary - I do a few of these</option>
+              <option value="other">Other - I'll explain below</option>
+            </select>
+            <p class="form-help">Doesn't have to be your day job. We care more about whether you ship in public.</p>
+          </div>
+
+          <div>
+            <label for="streaming_comfort">How comfortable are you streaming the build live?</label>
+            <select id="streaming_comfort" name="streaming_comfort" required>
+              <option value="">Pick one</option>
+              <option value="experienced">I stream regularly - this is normal for me</option>
+              <option value="some">I've streamed before but it's not weekly</option>
+              <option value="new_willing">New to streaming but excited to learn</option>
+              <option value="hesitant">Not comfortable - might not be the right fit</option>
+            </select>
+            <p class="form-help">Honest answers help us pair you with the right onboarding support.</p>
+          </div>
+
+          <div>
+            <label for="creator_links">Links to your work (Farcaster cast, Twitch, GitHub, portfolio - 1-3 links)</label>
+            <textarea id="creator_links" name="creator_links" placeholder="https://... &#10;https://..." style="min-height: 70px;"></textarea>
+            <p class="form-help">Show us what you ship. One favorite cast, your stream, a repo, anything.</p>
+          </div>
+
+          <div>
+            <label for="why_apply">Why do you want to do this?</label>
+            <textarea id="why_apply" name="why" required placeholder="Short answer - 2-4 sentences. What draws you to ZABAL Games specifically? What do you want to build? What's your relationship with ZAO / Farcaster?"></textarea>
+            <p class="form-help">Don't sell us. Tell us.</p>
+          </div>
+
+          <div>
+            <label for="zao_relationship">Existing relationship with ZAO ecosystem (optional)</label>
+            <input type="text" id="zao_relationship" name="zao_relationship" placeholder="ZAO member? COC promoter? FISHBOWLZ? POIDH submitter? Brand new? All good">
+            <p class="form-help">Bonus weight if you're already in the ecosystem. Required: nothing - new builders welcome.</p>
+          </div>
+
+          <div class="form-checkbox">
+            <input type="checkbox" id="conduct" name="conduct" required>
+            <label for="conduct">I agree to the code of conduct: ship in 24h with empty git log at T+0, open-source my repo (MIT or similar), respect fellow players, and accept the ZAO governance vote as final.</label>
+          </div>
+
+          <div class="form-checkbox">
+            <input type="checkbox" id="streaming" name="streaming" required>
+            <label for="streaming">I understand the build is streamed publicly on Twitch and clips will be archived as part of ZAO's content engine.</label>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit Phase 1 Build</button>
+          <p class="form-help" style="text-align:center;margin-top:0.75rem;">Your submission is public. It appears in the gallery below + mentors review it there.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="starters">
+    <div class="container">
+      <div class="section-eyebrow">Starting Points</div>
+      <h2 class="section-title">Starter Projects</h2>
+      <p class="section-sub">
+        Don't want to start from a blank repo? These are seeded starting points - fork one, make it yours, ship it as your Phase 1 build. Building on a starter is just as valid as building from scratch. Note which one you extended on your submission.
+      </p>
+      <div id="starters-status" style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">Loading starter projects...</div>
+      <div id="starters-grid" class="options-grid"></div>
+    </div>
+  </section>
+
+  <section id="submissions" class="alt">
+    <div class="container">
+      <div class="section-eyebrow">Phase 1 Submissions</div>
+      <h2 class="section-title">The Build-a-Thon Board</h2>
+      <p class="section-sub">
+        Every Phase 1 build, public. This is what the ZAO mentors review to claim their champions. Ship early, ship well - the board is live.
+      </p>
+      <div id="submissions-status" style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">Loading submissions...</div>
+      <div id="submissions-grid" class="options-grid"></div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-title">Common Questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">How does the two-phase model actually work? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer"><strong>Phase 1</strong> is open. Anyone can apply by building something with the ZAO context prompt (released when applications open). Use any vibe-coding harness. Ship publicly with a live URL, GitHub repo, demo video, and a cast on /zabal. As builds ship, ZAO mentors watch rolling - each claims one champion (first-come-first-served per mentor). <strong>Phase 2</strong> is the Finals - the mentor-player pairs build for 24h, promote for 24h, and the ZAO DAO votes on builds in a separate 24h window. All finalists win - the competition is in Phase 1 (getting selected), the Finals are a collaboration.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Who is this for? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer">Anyone willing to build in public + ship a real artifact for Phase 1. Phase 1 is genuinely open to everyone with the chops to ship. ZAO mentors then pick their champions based on whose Phase 1 builds resonate with each mentor's search style. You don't need to be a senior engineer - vibe-coding harnesses close a lot of skill gaps. You DO need to be willing to show your work in public.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What does ZAO actually do for me as a creator? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer">Three things. First, distribution - ZAO accounts (BCZ Farcaster, /zao channel, COC Concertz, ZAO OS) amplify every finalist during the promote window so your audience grows whether you place or not. Second, infrastructure - we set up your Twitch/StreamElements onboarding, give you a pre-funded Privy wallet, and provide an Empire Builder API key. Third, content engine - the streaming flywheel auto-clips your build into shorts for TikTok/Reels/YouTube/Farcaster, so 24h of streaming becomes ~20 pieces of content you can use forever.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Do I have to use Claude Code? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer">No. Use whatever vibe-coding harness you want - Claude Code, Cursor, Windsurf, Aider, Cline, Bolt, v0, Lovable, even hand-roll your own pipeline. The constraint is "show your work" not "use this specific tool." Pick one of the 4 visibility modes (live stream, recorded sessions, public prompt logs, or frequent build casts) and ship publicly.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Do I have to stream the entire 24h build? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer">Live streaming is just one of four visibility modes. You can instead record screen sessions and upload to YouTube within 1h, share public AI prompt logs, or cast frequent screenshots every 1-2 hours. Pick what fits your personality. Required: at least one primary mode plus ongoing /zabal casts throughout. Voters need to verify you built it in 24h with AI tools - HOW you show your work is up to you.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Can I work as a team? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer">Solo only for Season 1. Teams of 2 considered for a future Season. The point is to see what one builder can ship in 24 hours.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Who picks the winners? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer">ZAO members who have earned Respect through fractal participation. Respect is ZAO's soulbound, peer-validated reputation - earned in weekly fractal sessions over time. The eligible voter set naturally skews toward long-tenure contributors. Voter set is snapshotted at T+0 so it's locked before the Games begin. 1-person-1-vote mechanism, NOT token-weighted (so a whale holding lots of ZABAL has no extra power - this is governance by earned contribution, not by token holdings). The people deciding are the people who've actually built ZAO and know what's worth building next.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What if my time zone is bad for PT? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer">Season 1 is anchored to Pacific Time. We know this disadvantages EU/Asia. A future Season may run regional variants. For Season 1: if you're up for coding through your night, you're up for it. Otherwise wait for the next Season.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Who owns the code I ship? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer">You do. Open-source mandate (MIT or similar permissive license) is a submission requirement. ZAO doesn't claim IP. We can fork or extend per the license, but ownership stays with you.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What happens after the games? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer">All finalist builds live on as open-source repos in the /zabal Hall of Fame. Some get organically picked up by ZAO ecosystem brands. Some die. Some you keep evolving. No obligation either way - you finished, you got the collectible, you're an alumnus.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Can I read the full spec? <span style="color: var(--text-dim);">+</span></div>
+        <div class="faq-answer">Yes - <a href="https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/630-season-1-spec.md" target="_blank" rel="noopener">Doc 630 in the ZAO research library</a> covers everything: format, prompt design, judging, prize, infra, risks, and strategic considerations. This page is the marketing summary; the doc is the source of truth.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>
+        <a href="/">Home</a> -
+        <a href="/poidh.html">POIDH</a> -
+        <a href="https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/630-season-1-spec.md" target="_blank" rel="noopener">Full Spec</a> -
+        <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">Farcaster /zabal</a>
+      </p>
+      <p style="margin-top: 0.6rem;">ZABAL Games Season 1 - the inaugural Farcaster vibe-coding challenge for the ZAO ecosystem - date locks when cohort is chosen</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var URL_OK  = window.ZG_SUPABASE_URL  && window.ZG_SUPABASE_URL.indexOf('YOUR_') !== 0;
+      var KEY_OK  = window.ZG_SUPABASE_ANON && window.ZG_SUPABASE_ANON.indexOf('YOUR_') !== 0;
+      var CONFIGURED = URL_OK && KEY_OK && window.supabase;
+      var sb = CONFIGURED
+        ? window.supabase.createClient(window.ZG_SUPABASE_URL, window.ZG_SUPABASE_ANON)
+        : null;
+
+      // -----------------------------------------------------------------------
+      // Submission form
+      // -----------------------------------------------------------------------
+      var form = document.getElementById('zg-apply');
+      var errBox = document.getElementById('form-error');
+      var okBox = document.getElementById('form-success');
+
+      var labelOf = function (el) {
+        if (el.labels && el.labels[0]) return el.labels[0].textContent.trim();
+        return el.name || el.id || 'this field';
+      };
+      var prettyReason = function (el) {
+        var v = el.validity;
+        if (v.valueMissing) return 'is required';
+        if (v.patternMismatch && el.name === 'wallet') return 'must be a 0x address or ENS name (.eth)';
+        if (v.patternMismatch) return 'is in wrong format';
+        if (v.typeMismatch && el.type === 'url') return 'must be a full URL (https://...)';
+        return 'is invalid';
+      };
+      var val = function (id) {
+        var el = document.getElementById(id);
+        return el ? el.value.trim() : null;
+      };
+
+      if (form && errBox) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          errBox.style.display = 'none';
+          if (okBox) okBox.style.display = 'none';
+
+          // client-side validation
+          var invalids = form.querySelectorAll(':invalid');
+          if (invalids.length > 0) {
+            var first = invalids[0];
+            var msgs = [];
+            for (var i = 0; i < invalids.length; i++) {
+              msgs.push('- ' + labelOf(invalids[i]) + ' ' + prettyReason(invalids[i]));
+            }
+            errBox.innerHTML = '<strong>Fix these before submitting:</strong><br>' + msgs.join('<br>');
+            errBox.style.display = 'block';
+            first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            try { first.focus({ preventScroll: true }); } catch (err) { first.focus(); }
+            return;
+          }
+
+          if (!CONFIGURED) {
+            errBox.innerHTML = '<strong>Submissions not live yet.</strong><br>The form is built but Supabase config is still placeholder. Check back shortly, or DM @bettercallzaal on Farcaster.';
+            errBox.style.display = 'block';
+            errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+          }
+
+          var btn = form.querySelector('.submit-btn');
+          var btnText = btn ? btn.textContent : '';
+          if (btn) { btn.disabled = true; btn.textContent = 'Submitting...'; }
+
+          var row = {
+            name: val('name'),
+            farcaster: val('farcaster'),
+            twitch: val('twitch') || null,
+            github: val('github'),
+            wallet: val('wallet'),
+            phase1_url: val('phase1_url'),
+            phase1_repo: val('phase1_repo'),
+            phase1_demo: val('phase1_demo'),
+            phase1_cast: val('phase1_cast'),
+            harness: val('harness_pref'),
+            visibility_mode: val('visibility_mode'),
+            creator_type: val('creator_type'),
+            streaming_comfort: val('streaming_comfort'),
+            creator_links: val('creator_links') || null,
+            why: val('why_apply'),
+            zao_relationship: val('zao_relationship') || null,
+            availability_pref: val('availability_pref'),
+            built_on: val('built_on') || null
+          };
+
+          sb.from('zabalgames_submissions').insert(row).then(function (res) {
+            if (btn) { btn.disabled = false; btn.textContent = btnText; }
+            if (res.error) {
+              errBox.innerHTML = '<strong>Submission failed.</strong><br>' + (res.error.message || 'Unknown error') + '<br>Try again, or DM @bettercallzaal.';
+              errBox.style.display = 'block';
+              errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              return;
+            }
+            form.reset();
+            if (okBox) {
+              okBox.innerHTML = '<strong>Submitted.</strong> Your Phase 1 build is on the board below. Mentors review rolling - good luck.';
+              okBox.style.display = 'block';
+              okBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            loadSubmissions();
+          });
+        });
+
+        form.addEventListener('input', function () {
+          if (errBox.style.display === 'block' && form.querySelectorAll(':invalid').length === 0) {
+            errBox.style.display = 'none';
+          }
+        });
+      }
+
+      // -----------------------------------------------------------------------
+      // Public boards - starter projects + submissions
+      // -----------------------------------------------------------------------
+      var subGrid = document.getElementById('submissions-grid');
+      var subStatus = document.getElementById('submissions-status');
+      var startGrid = document.getElementById('starters-grid');
+      var startStatus = document.getElementById('starters-status');
+
+      var esc = function (s) {
+        if (s == null) return '';
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      };
+
+      var linkRow = function (s) {
+        return '<div style="display:flex;gap:0.6rem;flex-wrap:wrap;font-size:0.8rem;">' +
+          (s.phase1_url  ? '<a href="' + esc(s.phase1_url)  + '" target="_blank" rel="noopener">build</a>' : '') +
+          (s.phase1_repo ? '<a href="' + esc(s.phase1_repo) + '" target="_blank" rel="noopener">repo</a>' : '') +
+          (s.phase1_demo ? '<a href="' + esc(s.phase1_demo) + '" target="_blank" rel="noopener">demo</a>' : '') +
+          (s.phase1_cast ? '<a href="' + esc(s.phase1_cast) + '" target="_blank" rel="noopener">cast</a>' : '') +
+        '</div>';
+      };
+
+      var renderSubmissionCard = function (s) {
+        var claimed = s.status === 'claimed' || s.status === 'finalist';
+        var badge = claimed
+          ? '<div class="badge gold" style="margin-bottom:0.5rem;">' + esc(s.status) + (s.claimed_by ? ' by ' + esc(s.claimed_by) : '') + '</div>'
+          : '<div class="badge cyan" style="margin-bottom:0.5rem;">open</div>';
+        var builtOn = s.built_on
+          ? '<p style="font-size:0.72rem;color:var(--text-dim);margin-bottom:0.4rem;">built on: ' + esc(s.built_on) + '</p>'
+          : '';
+        return '' +
+          '<div class="option-card">' +
+            badge +
+            '<h3>' + esc(s.name) + '</h3>' +
+            '<p style="margin-bottom:0.6rem;">' + esc((s.why || '').slice(0, 160)) + ((s.why || '').length > 160 ? '...' : '') + '</p>' +
+            builtOn +
+            '<p style="font-size:0.78rem;color:var(--text-dim);margin-bottom:0.5rem;">' +
+              esc(s.farcaster) + (s.creator_type ? ' &middot; ' + esc(s.creator_type) : '') + (s.harness ? ' &middot; ' + esc(s.harness) : '') +
+            '</p>' +
+            linkRow(s) +
+          '</div>';
+      };
+
+      var renderStarterCard = function (s) {
+        return '' +
+          '<div class="option-card">' +
+            '<div class="badge" style="margin-bottom:0.5rem;">starter - fork it</div>' +
+            '<h3>' + esc(s.name) + '</h3>' +
+            '<p style="margin-bottom:0.6rem;">' + esc((s.why || '').slice(0, 200)) + ((s.why || '').length > 200 ? '...' : '') + '</p>' +
+            linkRow(s) +
+          '</div>';
+      };
+
+      var SELECT_COLS = 'id,created_at,name,farcaster,twitch,github,phase1_url,phase1_repo,phase1_demo,phase1_cast,harness,creator_type,why,status,claimed_by,kind,built_on';
+
+      var loadSubmissions = function () {
+        if (!CONFIGURED) {
+          if (subStatus) subStatus.textContent = 'Board goes live once the build-a-thon opens.';
+          if (startStatus) startStatus.textContent = 'Starter projects appear here once the build-a-thon opens.';
+          return;
+        }
+        if (subStatus) subStatus.textContent = 'Loading submissions...';
+        if (startStatus) startStatus.textContent = 'Loading starter projects...';
+        sb.from('zabalgames_submissions')
+          .select(SELECT_COLS)
+          .order('created_at', { ascending: false })
+          .then(function (res) {
+            if (res.error) {
+              var msg = 'Could not load: ' + (res.error.message || 'error');
+              if (subStatus) subStatus.textContent = msg;
+              if (startStatus) startStatus.textContent = msg;
+              return;
+            }
+            var rows = res.data || [];
+            var starters = rows.filter(function (r) { return r.kind === 'starter'; });
+            var subs = rows.filter(function (r) { return r.kind !== 'starter'; });
+
+            if (startGrid && startStatus) {
+              if (starters.length === 0) {
+                startStatus.textContent = 'No starter projects seeded yet.';
+                startGrid.innerHTML = '';
+              } else {
+                startStatus.textContent = starters.length + ' starter project' + (starters.length === 1 ? '' : 's') + ' - fork one or start fresh';
+                startGrid.innerHTML = starters.map(renderStarterCard).join('');
+              }
+            }
+
+            if (subGrid && subStatus) {
+              if (subs.length === 0) {
+                subStatus.textContent = 'No submissions yet. Be the first to ship.';
+                subGrid.innerHTML = '';
+              } else {
+                subStatus.textContent = subs.length + ' submission' + (subs.length === 1 ? '' : 's') + ' on the board';
+                subGrid.innerHTML = subs.map(renderSubmissionCard).join('');
+              }
+            }
+          });
+      };
+
+      loadSubmissions();
+    })();
+  </script>
+
+  <script>
+    // Mentor / workshop lead signup form
+    (function() {
+      var form = document.getElementById('mentorForm');
+      var success = document.getElementById('mentorSuccess');
+      if (!form || !success) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        }).then(function(res) {
+          if (res.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+          } else {
+            alert('Something went wrong. DM @bettercallzaal on Farcaster instead.');
+          }
+        }).catch(function() {
+          alert('Something went wrong. DM @bettercallzaal on Farcaster instead.');
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
