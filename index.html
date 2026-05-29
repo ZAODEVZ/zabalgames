@@ -888,7 +888,7 @@
 
     // Farcaster: prefer Mini App SDK composeCast() if available, else web compose
     if (window.ZABAL && typeof window.ZABAL.composeCast === 'function') {
-      window.ZABAL.composeCast(text, [SITE]).catch(function(err) {
+      window.ZABAL.composeCast({ text: text, embeds: [SITE] }).catch(function(err) {
         console.warn('SDK composeCast failed, falling back to web compose:', err);
         openFarcasterCompose(text);
       });
@@ -899,7 +899,7 @@
 
   function openFarcasterCompose(text) {
     // Canonical Farcaster compose URL. Encode embeds[] brackets to %5B%5D for parser safety.
-    var url = 'https://warpcast.com/~/compose?text=' + encodeURIComponent(text)
+    var url = 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text)
             + '&embeds%5B%5D=' + encodeURIComponent(SITE);
     var w = window.open(url, '_blank', 'noopener');
     // Popup-blocker fallback: same-tab nav
