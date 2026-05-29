@@ -234,6 +234,22 @@ a:hover { text-decoration: underline; }
 .proof-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; justify-content: center; }
 .proof-badge { font-size: 0.72rem; letter-spacing: 0.03em; text-transform: uppercase; color: var(--gold);
   border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.6rem; }
+/* Outcomes grid - "what you walk away with" */
+.outcomes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.2rem; }
+.outcome-card { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 10px; padding: 1.1rem 1.2rem; background: rgba(255, 255, 255, 0.02); }
+.outcome-card h3 { margin: 0 0 0.4rem; font-size: 1.02rem; color: var(--gold); }
+.outcome-card p { margin: 0; color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; }
+
+/* FAQ accordion */
+.faq-list { margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.faq-item { border: 1px solid var(--border); border-radius: 10px; padding: 0 1.1rem; background: rgba(255, 255, 255, 0.02); }
+.faq-item summary { cursor: pointer; list-style: none; padding: 0.95rem 0; font-weight: 600; color: var(--text); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; color: var(--cyan); font-size: 1.3rem; line-height: 1; flex: none; }
+.faq-item[open] summary::after { content: '-'; }
+.faq-item summary:hover { color: var(--cyan); }
+.faq-item p { margin: 0 0 1rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.55; }
+
 /* Timeline per-entry share */
 .tl-share { font-family: inherit; font-size: 0.74rem; color: var(--cyan); background: none;
   border: 1px solid var(--border); border-radius: 999px; padding: 0.15rem 0.6rem; cursor: pointer; }
