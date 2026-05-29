@@ -1117,9 +1117,11 @@
         ? window.ZABAL.join({ door: 'workshops' })
         : Promise.resolve({ ok: false, reason: 'no-sdk' });
       p.then(function (r) {
+        // True one-tap only when the join was actually stored. Any other outcome
+        // (no KV, not in a Mini App, transient error) falls through to the full
+        // form so the signup is always captured somewhere.
         if (r.ok) { btn.textContent = "You're in"; loadCount(); }
-        else if (r.reason === 'not-in-miniapp' || r.reason === 'no-sdk') { window.location.href = '/lead'; }
-        else { btn.disabled = false; btn.textContent = 'Join with Farcaster'; }
+        else { window.location.href = '/lead'; }
       });
     });
   }

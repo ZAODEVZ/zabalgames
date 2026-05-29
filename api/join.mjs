@@ -123,7 +123,9 @@ export default async function handler(req) {
   const door = String(body.door || 'workshops').slice(0, 24);
   const note = String(body.note || '').slice(0, 280);
 
-  if (!KV_URL || !KV_TOKEN) return json({ ok: true, count: 0, stored: false }, 200, origin);
+  // No KV in this deployment: report not-stored so the client falls through to
+  // the full sign-up form. Never claim success when nothing was captured.
+  if (!KV_URL || !KV_TOKEN) return json({ ok: false, reason: 'unconfigured' }, 200, origin);
 
   const profile = await resolveProfile(fid);
   const joinRecord = JSON.stringify({ door, note, username: profile.username, ts: Date.now() });
