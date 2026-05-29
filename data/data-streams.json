@@ -134,6 +134,29 @@
         "note": "Session metadata lives in data/workshop-leads.json. As recordings land, add transcript files under raw_dir and a timeline entry per session."
       },
       "raw_dir": "data/streams/zabal-games-workshops/raw"
+    },
+    {
+      "id": "zabal-games",
+      "name": "ZABAL Games",
+      "kind": "event",
+      "status": "live",
+      "color": "orange",
+      "summary": "The facts about ZABAL Games itself - the positioning and proof points worth spreading. Each is one-tap shareable into /zabal.",
+      "ties_to_zabal": "This is ZABAL Games. The facts stream turns the strongest, verified points into shareable timeline entries so the brand spreads as facts, not hype.",
+      "links": [
+        {"label": "Sign up", "url": "/lead"},
+        {"label": "Positioning", "url": "/docs/positioning-2026-05-29.md"}
+      ],
+      "ideas": [
+        "Share a fact a day into /zabal during the run-up to June.",
+        "Turn the highest-engagement facts into the homepage proof badges.",
+        "Capture builder quotes as new facts once the cold-DM test returns."
+      ],
+      "pull": {
+        "type": "static",
+        "note": "Facts are curated in timeline.json under stream zabal-games. Keep them verified - proven facts only, no hype."
+      },
+      "raw_dir": "data/streams/zabal-games/raw"
     }
   ]
 }

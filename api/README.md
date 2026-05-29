@@ -23,12 +23,33 @@ Public read for the presence widget (`assets/presence.js`).
 - Returns `{ configured, count, recent: [{ fid, username, pfpUrl, action, target, ts }] }`.
 - `configured: false` when KV env vars are absent - the widget hides itself.
 
+### `GET /api/leaderboard`
+Ranks builders by social-action points (cast 3 / signup 5 / share 2), stored in a
+KV sorted set by `track`.
+
+- Default: Empire Builder `apiLeaderboard` format `[{ address, score }]` (FIDs
+  resolved to Base verified addresses via HAATZ). Register this URL in Empire
+  Builder so activity feeds the $ZABAL empire.
+- `?format=full`: `[{ fid, username, pfpUrl, address, score }]` for the
+  `/leaderboard` page.
+
+### `POST /api/webhook`
+Manifest `webhookUrl`. Farcaster POSTs a JSON Farcaster Signature envelope when a
+user adds the app or toggles notifications. Stores `{ url, token }` per FID in KV
+(`zabal:notif:tokens`). v1 does not verify the JFS signature - a clear next step.
+
+### `POST /api/notify`
+Admin-only sender. `Authorization: Bearer <NOTIFY_SECRET>`. Body
+`{ title (<=32), body (<=128), targetUrl? }`. Groups stored tokens by their
+Farcaster notification URL and sends in batches of 100.
+
 ## Required env vars (Vercel project settings)
 
 | Var | What | Where |
 |-----|------|-------|
 | `KV_REST_API_URL` | Vercel KV / Upstash REST base URL | auto-set when you add a Vercel KV store, or copy from Upstash |
 | `KV_REST_API_TOKEN` | Vercel KV / Upstash REST token | same |
+| `NOTIFY_SECRET` | Bearer secret guarding `POST /api/notify` | set to any long random string; pass it as `Authorization: Bearer <value>` when sending |
 
 Without these the endpoints still respond (verify + no-op store / empty feed),
 so the site never breaks - the activity feed just stays empty until KV exists.

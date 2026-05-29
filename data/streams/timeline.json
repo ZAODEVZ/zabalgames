@@ -12,6 +12,38 @@
   "_note": "Merged chronological feed across all streams. Curated seed entries below; scripts/pull-data-streams.mjs appends pulled entries (e.g. BCZ YapZ episodes) and dedupes by stream + timestamp + title. Sorted newest first.",
   "entries": [
     {
+      "stream": "zabal-games",
+      "timestamp": "2026-05-29",
+      "kind": "fact",
+      "title": "The build IS the application",
+      "summary": "ZABAL Games is The ZAO 3-month Build-A-Thon - a build event for the ecosystem, not a video-game contest. June workshops, July open build, August Finals. Free, any harness.",
+      "link": "/lead"
+    },
+    {
+      "stream": "zabal-games",
+      "timestamp": "2026-05-29",
+      "kind": "fact",
+      "title": "Every finisher gets paid",
+      "summary": "$500 USDC pool from the ZAO festivals team, tiered across finishers, plus a Hats Protocol role NFT for everyone who ships. The cash is the floor - finishers keep the repo and the 1% WaveWarZ trade cut that flows after the Finals.",
+      "link": "/finals"
+    },
+    {
+      "stream": "zabal-games",
+      "timestamp": "2026-05-29",
+      "kind": "fact",
+      "title": "Build for a real community",
+      "summary": "You build on live ZAO rails (Empire Builder, Hats, Bonfire, EAS, Farcaster) for a 100+ member community that needs the tools - not a throwaway demo, with a ZAO mentor as your teammate.",
+      "link": "/streams"
+    },
+    {
+      "stream": "zabal-games",
+      "timestamp": "2026-05-29",
+      "kind": "fact",
+      "title": "Proven crew, proven execution",
+      "summary": "The ZAO has run weekly Respect sessions for 90+ weeks straight since August 2024. Zaal/Zlank won the Snap category at FarHack 2026.",
+      "link": "/about"
+    },
+    {
       "stream": "farcaster-batches",
       "timestamp": "2026-06",
       "kind": "upcoming",

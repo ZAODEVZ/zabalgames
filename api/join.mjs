@@ -1,20 +1,13 @@
-// ZABAL Games - activity tracking endpoint (POST /api/track).
+// ZABAL Games - one-tap join (POST /api/join).
 //
-// Records a deliberate social action (cast / share / signup) attributed to a
-// REAL Farcaster FID, verified server-side from a Quick Auth JWT. Nothing is
-// stored unless the token verifies, so activity cannot be spoofed.
+// Records a workshop join against a verified Farcaster FID (Quick Auth JWT,
+// verified server-side - same model as api/track.mjs). Dedupes per FID via a KV
+// hash, so the count is distinct builders. Also drops a 'signup' into the
+// activity feed + score so the presence widget and leaderboard reflect it.
 //
-// Storage: Vercel KV (Upstash Redis) over the REST API - no npm dependency, so
-// this stays a zero-build edge function like api/snap/signup.mjs. If the KV env
-// vars are not set the endpoint verifies + returns ok without storing.
-//
-// Env:
-//   KV_REST_API_URL     Vercel KV / Upstash REST base URL
-//   KV_REST_API_TOKEN   Vercel KV / Upstash REST token
-//
-// Request:  POST { action: 'cast'|'share'|'signup', target?: string }
-//           Authorization: Bearer <quick-auth-jwt>   (added by sdk.quickAuth.fetch)
-// Response: { ok: true, stored: boolean }
+// Request:  POST { door?: string, note?: string }
+//           Authorization: Bearer <quick-auth-jwt>  (sdk.quickAuth.fetch)
+// Response: { ok: true, count: number }
 
 export const config = { runtime: 'edge' };
 
@@ -23,12 +16,11 @@ const JWKS_URL = 'https://auth.farcaster.xyz/.well-known/jwks.json';
 const KV_URL = process.env.KV_REST_API_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN;
 const HAATZ = 'https://haatz.quilibrium.com';
-const ALLOWED = new Set(['cast', 'share', 'signup']);
-const POINTS = { cast: 3, share: 2, signup: 5 };
+const JOINS_KEY = 'zabal:joins';
 const RECENT_KEY = 'zabal:activity:v1';
 const SCORES_KEY = 'zabal:scores:v1';
 const RECENT_MAX = 50;
-const PRESENT_TTL = 172800; // 2 days
+const SIGNUP_POINTS = 5;
 
 function json(body, status = 200, origin = '*') {
   return new Response(JSON.stringify(body), {
@@ -43,7 +35,6 @@ function json(body, status = 200, origin = '*') {
   });
 }
 
-// --- base64url helpers ---
 function b64urlToBytes(b64url) {
   const b64 = b64url.replace(/-/g, '+').replace(/_/g, '/');
   const bin = atob(b64.padEnd(Math.ceil(b64.length / 4) * 4, '='));
@@ -55,7 +46,6 @@ function b64urlToJson(b64url) {
   return JSON.parse(new TextDecoder().decode(b64urlToBytes(b64url)));
 }
 
-// --- JWKS (cached in the isolate for an hour) ---
 let jwksCache = { keys: null, ts: 0 };
 async function getJwks() {
   if (jwksCache.keys && Date.now() - jwksCache.ts < 3600000) return jwksCache.keys;
@@ -64,17 +54,12 @@ async function getJwks() {
   jwksCache = { keys: j.keys || [], ts: Date.now() };
   return jwksCache.keys;
 }
-
-// Map JWT alg -> Web Crypto import + verify params. Supports the algorithms a
-// hosted JWKS issuer might use (RSA, P-256, Ed25519).
 function algParams(alg) {
   if (alg === 'RS256') return { imp: { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, vrf: { name: 'RSASSA-PKCS1-v1_5' } };
   if (alg === 'ES256') return { imp: { name: 'ECDSA', namedCurve: 'P-256' }, vrf: { name: 'ECDSA', hash: 'SHA-256' } };
   if (alg === 'EdDSA') return { imp: { name: 'Ed25519' }, vrf: { name: 'Ed25519' } };
   return null;
 }
-
-// Verify a Quick Auth JWT and return the FID (payload.sub). Throws on any failure.
 async function verifyQuickAuth(token, domain) {
   const [h, p, s] = token.split('.');
   if (!h || !p || !s) throw new Error('malformed');
@@ -82,16 +67,13 @@ async function verifyQuickAuth(token, domain) {
   const payload = b64urlToJson(p);
   const params = algParams(header.alg);
   if (!params) throw new Error('unsupported alg ' + header.alg);
-
   const keys = await getJwks();
   const jwk = keys.find(k => k.kid === header.kid) || keys[0];
   if (!jwk) throw new Error('no jwk');
-
   const key = await crypto.subtle.importKey('jwk', jwk, params.imp, false, ['verify']);
   const data = new TextEncoder().encode(`${h}.${p}`);
   const ok = await crypto.subtle.verify(params.vrf, key, b64urlToBytes(s), data);
   if (!ok) throw new Error('bad signature');
-
   const now = Math.floor(Date.now() / 1000);
   if (payload.exp && payload.exp < now) throw new Error('expired');
   if (payload.aud && payload.aud !== domain) throw new Error('aud mismatch');
@@ -112,7 +94,6 @@ async function kvPipeline(cmds) {
   return r.json();
 }
 
-// Best-effort profile enrichment so the feed can show @username + pfp.
 async function resolveProfile(fid) {
   try {
     const r = await fetch(`${HAATZ}/v2/farcaster/user/bulk?fids=${fid}`, { signal: AbortSignal.timeout(2000) });
@@ -134,35 +115,38 @@ export default async function handler(req) {
   if (!token) return json({ error: 'no token' }, 401, origin);
 
   let fid;
-  try {
-    fid = await verifyQuickAuth(token, DOMAIN);
-  } catch (e) {
-    return json({ error: 'invalid token', detail: e.message }, 401, origin);
-  }
+  try { fid = await verifyQuickAuth(token, DOMAIN); }
+  catch (e) { return json({ error: 'invalid token', detail: e.message }, 401, origin); }
 
   let body = {};
   try { body = await req.json(); } catch {}
-  const action = String(body.action || '');
-  const target = String(body.target || '').slice(0, 40);
-  if (!ALLOWED.has(action)) return json({ error: 'bad action' }, 400, origin);
+  const door = String(body.door || 'workshops').slice(0, 24);
+  const note = String(body.note || '').slice(0, 280);
 
-  if (!KV_URL || !KV_TOKEN) return json({ ok: true, stored: false, note: 'KV not configured' }, 200, origin);
+  if (!KV_URL || !KV_TOKEN) return json({ ok: true, count: 0, stored: false }, 200, origin);
 
   const profile = await resolveProfile(fid);
-  const entry = JSON.stringify({
-    fid, username: profile.username, pfpUrl: profile.pfpUrl, action, target, ts: Date.now(),
+  const joinRecord = JSON.stringify({ door, note, username: profile.username, ts: Date.now() });
+  const activity = JSON.stringify({
+    fid, username: profile.username, pfpUrl: profile.pfpUrl, action: 'signup', target: door, ts: Date.now(),
   });
   const presentKey = `zabal:present:${new Date().toISOString().slice(0, 10)}`;
+
+  let res;
   try {
-    await kvPipeline([
-      ['LPUSH', RECENT_KEY, entry],
+    res = await kvPipeline([
+      ['HSET', JOINS_KEY, String(fid), joinRecord],
+      ['LPUSH', RECENT_KEY, activity],
       ['LTRIM', RECENT_KEY, '0', String(RECENT_MAX - 1)],
       ['SADD', presentKey, String(fid)],
-      ['EXPIRE', presentKey, String(PRESENT_TTL)],
-      ['ZINCRBY', SCORES_KEY, String(POINTS[action] || 1), String(fid)],
+      ['EXPIRE', presentKey, '172800'],
+      ['ZINCRBY', SCORES_KEY, String(SIGNUP_POINTS), String(fid)],
+      ['HLEN', JOINS_KEY],
     ]);
   } catch (e) {
-    return json({ ok: false, stored: false, detail: e.message }, 502, origin);
+    return json({ ok: false, detail: e.message }, 502, origin);
   }
-  return json({ ok: true, stored: true }, 200, origin);
+
+  const count = Number(res?.[6]?.result || 0);
+  return json({ ok: true, count }, 200, origin);
 }

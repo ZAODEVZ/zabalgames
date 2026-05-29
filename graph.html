@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Graph Explorer - ZABAL Games</title>
+  <meta name="description" content="Search the ZAO ecosystem knowledge graph - people, tools, brands, agents, and data streams, with their connections. Powered by the ZABAL Bonfire.">
+  <link rel="canonical" href="https://zabalgames.com/graph">
+  <meta property="og:title" content="ZAO Graph Explorer - ZABAL Games">
+  <meta property="og:description" content="Search the ZAO ecosystem knowledge graph and its connections.">
+  <meta property="og:image" content="https://zabalgames.com/assets/logo.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/logo.png","button":{"title":"Explore the graph","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/graph","splashImageUrl":"https://zabalgames.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .graph-search { width: 100%; padding: 0.7rem 1rem; font-family: inherit; font-size: 0.95rem;
+      background: var(--surface-2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; }
+    .graph-search:focus { outline: none; border-color: var(--cyan); }
+    .graph-filters { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0; }
+    .graph-chip { font-family: inherit; font-size: 0.74rem; padding: 0.25rem 0.6rem; border-radius: 999px;
+      background: var(--surface-2); color: var(--text-muted); border: 1px solid var(--border); cursor: pointer; }
+    .graph-chip.active { color: var(--bg); background: var(--cyan); border-color: var(--cyan); }
+    .graph-labels { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.3rem 0 0.5rem; }
+    .graph-label { font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--zabal); border: 1px solid var(--border); border-radius: 999px; padding: 0.05rem 0.45rem; }
+    .graph-attrs { font-size: 0.82rem; color: var(--text-muted); margin: 0.3rem 0; }
+    .graph-attrs b { color: var(--text); font-weight: 600; }
+    .graph-edges { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem; }
+    .graph-edges .edge-rel { color: var(--gold); }
+    .graph-edges a { color: var(--cyan); cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/graph.html" class="active">Graph</a>
+      <a href="/research.html">Research</a>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow">Ask the ecosystem</div>
+    <h1>ZAO Graph <span class="accent">Explorer</span>.</h1>
+    <p class="hero-sub">
+      Search the ZAO knowledge graph - people, brands, tools, agents, and <a href="/streams">data streams</a> with the connections between them. This is the same graph the ZABAL Bonfire holds, served from <a href="/data/bonfire-graph.json">bonfire-graph.json</a>.
+    </p>
+  </header>
+
+  <section class="section">
+    <input type="text" id="q" class="graph-search" placeholder="Search people, tools, brands, agents..." autocomplete="off">
+    <div class="graph-filters" id="filters"></div>
+    <p id="graph-count" style="font-size: 0.8rem; color: var(--text-dim);">Loading the graph...</p>
+    <div id="results"></div>
+  </section>
+
+  <script>
+  (function() {
+    var qEl = document.getElementById('q');
+    var filtersEl = document.getElementById('filters');
+    var countEl = document.getElementById('graph-count');
+    var resultsEl = document.getElementById('results');
+    var ENTITIES = [], EDGES = [], BY_ID = {}, activeLabel = '';
+
+    function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+
+    function edgesFor(id) {
+      var out = [];
+      for (var i = 0; i < EDGES.length; i++) {
+        var e = EDGES[i];
+        if (e.from === id) out.push({ dir: 'out', rel: e.type, other: e.to });
+        else if (e.to === id) out.push({ dir: 'in', rel: e.type, other: e.from });
+      }
+      return out.slice(0, 8);
+    }
+
+    function nameOf(id) { return BY_ID[id] ? BY_ID[id].name : id; }
+
+    function card(ent) {
+      var labels = (ent.labels || []).map(function(l){ return '<span class="graph-label">'+esc(l)+'</span>'; }).join('');
+      var attrs = Object.keys(ent.attributes || {})
+        .filter(function(k){ return k[0] !== '_'; })
+        .slice(0, 6)
+        .map(function(k){ return '<div><b>'+esc(k)+':</b> '+esc(String(ent.attributes[k]))+'</div>'; }).join('');
+      var edges = edgesFor(ent.id).map(function(e){
+        var arrow = e.dir === 'out' ? '-&gt;' : '&lt;-';
+        return '<div>'+arrow+' <span class="edge-rel">'+esc(e.rel)+'</span> <a data-goto="'+esc(e.other)+'">'+esc(nameOf(e.other))+'</a></div>';
+      }).join('');
+      return '<div class="card">' +
+        '<h3>'+esc(ent.name)+'</h3>' +
+        '<div class="graph-labels">'+labels+'</div>' +
+        (attrs ? '<div class="graph-attrs">'+attrs+'</div>' : '') +
+        (edges ? '<div class="graph-edges">'+edges+'</div>' : '') +
+        '</div>';
+    }
+
+    function search() {
+      var q = qEl.value.trim().toLowerCase();
+      var hits = ENTITIES.filter(function(ent){
+        if (activeLabel && (ent.labels || []).indexOf(activeLabel) === -1) return false;
+        if (!q) return true;
+        if (ent.name.toLowerCase().indexOf(q) !== -1) return true;
+        if ((ent.labels || []).join(' ').toLowerCase().indexOf(q) !== -1) return true;
+        return JSON.stringify(ent.attributes || {}).toLowerCase().indexOf(q) !== -1;
+      });
+      countEl.textContent = hits.length + ' of ' + ENTITIES.length + ' entities';
+      resultsEl.innerHTML = hits.slice(0, 60).map(card).join('') ||
+        '<p style="color:var(--text-muted);font-size:0.85rem;">No matches.</p>';
+      resultsEl.querySelectorAll('[data-goto]').forEach(function(a){
+        a.addEventListener('click', function(){
+          var id = a.getAttribute('data-goto');
+          qEl.value = nameOf(id); activeLabel=''; renderFilters(); search();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    }
+
+    function renderFilters() {
+      var counts = {};
+      ENTITIES.forEach(function(e){ (e.labels||[]).forEach(function(l){ counts[l]=(counts[l]||0)+1; }); });
+      var top = Object.keys(counts).sort(function(a,b){ return counts[b]-counts[a]; }).slice(0, 12);
+      filtersEl.innerHTML = '<button class="graph-chip'+(activeLabel===''?' active':'')+'" data-label="">all</button>' +
+        top.map(function(l){ return '<button class="graph-chip'+(activeLabel===l?' active':'')+'" data-label="'+esc(l)+'">'+esc(l)+' '+counts[l]+'</button>'; }).join('');
+      filtersEl.querySelectorAll('[data-label]').forEach(function(b){
+        b.addEventListener('click', function(){ activeLabel = b.getAttribute('data-label'); renderFilters(); search(); });
+      });
+    }
+
+    fetch('/data/bonfire-graph.json', { cache: 'force-cache' })
+      .then(function(r){ return r.json(); })
+      .then(function(g){
+        ENTITIES = g.entities || []; EDGES = g.edges || [];
+        ENTITIES.forEach(function(e){ BY_ID[e.id] = e; });
+        renderFilters(); search();
+        qEl.addEventListener('input', search);
+      })
+      .catch(function(){ countEl.textContent = 'Graph unavailable - see /data/bonfire-graph.json'; });
+  })();
+  </script>
+
+</div>
+
+<footer class="footer">
+  <div>
+    <a href="/">zabalgames.com</a> -
+    <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">github</a> -
+    <a href="/llms.txt">llms.txt</a> -
+    <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+  </div>
+  <p style="margin-top: 0.5rem; color: var(--text-dim);">ZAO Graph Explorer - the ecosystem as a knowledge graph.</p>
+</footer>
+
+</body>
+</html>
