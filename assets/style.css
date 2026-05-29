@@ -199,3 +199,26 @@ a:hover { text-decoration: underline; }
   .hero { padding: 36px 0 24px; }
   .nav-links { gap: 10px; font-size: 0.78rem; }
 }
+
+/* Presence widget (assets/presence.js) */
+.presence {
+  margin-top: 1.4rem;
+  padding: 0.9rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.presence-head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.6rem;
+}
+.presence-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+.presence-list li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); }
+.presence-list li.clickable { cursor: pointer; }
+.presence-list li.clickable:hover { color: var(--text); }
+.presence-list img { border-radius: 50%; object-fit: cover; flex: none; }
+

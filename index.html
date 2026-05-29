@@ -668,6 +668,8 @@
     </div>
   </header>
 
+  <div id="zabal-presence" class="presence" style="display:none;"></div>
+
   <section class="section">
     <h2>What is it?</h2>
     <p>Three months. Different doors open in different months. You can step in any of them.</p>
@@ -877,18 +879,20 @@
       console.warn('No share text for key:', key);
       return;
     }
+    if (window.ZABAL && typeof window.ZABAL.track === 'function') {
+      window.ZABAL.track(platform === 'x' ? 'share' : 'cast', key);
+    }
     var url;
 
     if (platform === 'x') {
       url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
-      var w = window.open(url, '_blank', 'noopener');
-      if (!w) window.location.href = url;
+      openNewTab(url);
       return;
     }
 
     // Farcaster: prefer Mini App SDK composeCast() if available, else web compose
     if (window.ZABAL && typeof window.ZABAL.composeCast === 'function') {
-      window.ZABAL.composeCast({ text: text, embeds: [SITE] }).catch(function(err) {
+      window.ZABAL.composeCast({ text: text, embeds: [SITE], channelKey: 'zabal' }).catch(function(err) {
         console.warn('SDK composeCast failed, falling back to web compose:', err);
         openFarcasterCompose(text);
       });
@@ -899,11 +903,24 @@
 
   function openFarcasterCompose(text) {
     // Canonical Farcaster compose URL. Encode embeds[] brackets to %5B%5D for parser safety.
+    // channelKey=zabal posts into the /zabal channel.
     var url = 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text)
-            + '&embeds%5B%5D=' + encodeURIComponent(SITE);
-    var w = window.open(url, '_blank', 'noopener');
-    // Popup-blocker fallback: same-tab nav
-    if (!w) window.location.href = url;
+            + '&embeds%5B%5D=' + encodeURIComponent(SITE)
+            + '&channelKey=zabal';
+    openNewTab(url);
+  }
+
+  function openNewTab(url) {
+    // Open a new tab on the user gesture WITHOUT navigating the current tab.
+    // window.open(..., 'noopener') returns null even on success, so we cannot
+    // rely on its return value for a same-tab fallback - that double-opens.
+    var a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   // -------------------------------------------------------------------
@@ -966,6 +983,8 @@
   }
 })();
 </script>
+
+<script src="/assets/presence.js"></script>
 
 </body>
 </html>

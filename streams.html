@@ -19,6 +19,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .stream-share { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.1rem; }
+    .stream-share-btn {
+      font-family: inherit; font-size: 0.82rem; font-weight: 600;
+      padding: 0.45rem 0.9rem; border-radius: 8px; cursor: pointer;
+      background: var(--surface-2); color: var(--text); border: 1px solid var(--border);
+    }
+    .stream-share-btn:hover { border-color: var(--zabal); }
+    .stream-share-btn.x:hover { border-color: var(--text); }
+  </style>
 </head>
 <body>
 
@@ -46,6 +56,11 @@
     <p class="hero-sub">
       The active sources feeding ZABAL Games. Each stream keeps its full raw files plus a summary and the ideas it surfaces, organized chronologically by where it comes from. All of it lands in Bonfire - the ZAO memory layer - so any bot can read it and build on top.
     </p>
+    <div class="stream-share">
+      <button type="button" class="stream-share-btn farcaster" data-share-platform="farcaster">Cast on /zabal</button>
+      <button type="button" class="stream-share-btn x" data-share-platform="x">Share on X</button>
+    </div>
+    <div id="zabal-presence" class="presence" style="display:none;"></div>
   </header>
 
   <section class="section">
@@ -72,6 +87,30 @@
       <p style="color: var(--text-muted); font-size: 0.85rem;">Loading...</p>
     </div>
   </section>
+
+  <script>
+  (function() {
+    var SHARE_URL = 'https://zabalgames.com/streams';
+    var SHARE_TEXT = 'Zabal Data Streams - the active sources feeding ZABAL Games, organized chronologically and fed into Bonfire so bots build on top.';
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-share-platform]');
+      if (!btn) return;
+      e.preventDefault();
+      var platform = btn.getAttribute('data-share-platform');
+      if (window.ZABAL && typeof window.ZABAL.share === 'function') {
+        window.ZABAL.share({ platform: platform, text: SHARE_TEXT, url: SHARE_URL });
+        return;
+      }
+      // Fallback if the Mini App SDK helper did not load.
+      var url = platform === 'x'
+        ? 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(SHARE_TEXT + ' ' + SHARE_URL)
+        : 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(SHARE_TEXT) + '&embeds%5B%5D=' + encodeURIComponent(SHARE_URL) + '&channelKey=zabal';
+      var a = document.createElement('a');
+      a.href = url; a.target = '_blank'; a.rel = 'noopener';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    });
+  })();
+  </script>
 
   <section class="section">
     <h2>For bots and builders</h2>
@@ -181,5 +220,6 @@
   <p style="margin-top: 0.5rem; color: var(--text-dim);">Zabal Data Streams - raw files, summaries, and ideas, fed into Bonfire so bots build on top.</p>
 </footer>
 
+<script src="/assets/presence.js"></script>
 </body>
 </html>
