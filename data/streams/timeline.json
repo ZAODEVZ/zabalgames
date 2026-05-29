@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "_schema": {
+    "stream": "stream id from data-streams.json",
+    "timestamp": "YYYY-MM-DD (exact) or YYYY-MM (month-level when the day is uncertain)",
+    "kind": "episode | session | milestone | announcement | bounty | cast | upcoming",
+    "title": "short headline",
+    "summary": "1-2 sentence what happened",
+    "link": "outbound url (optional)",
+    "raw_ref": "path to a captured raw file under data/streams/<id>/raw/ (optional - present once pulled)"
+  },
+  "_note": "Merged chronological feed across all streams. Curated seed entries below; scripts/pull-data-streams.mjs appends pulled entries (e.g. BCZ YapZ episodes) and dedupes by stream + timestamp + title. Sorted newest first.",
+  "entries": [
+    {
+      "stream": "farcaster-batches",
+      "timestamp": "2026-06",
+      "kind": "upcoming",
+      "title": "Farcaster Batches expected on GM Farcaster X spaces",
+      "summary": "Farcaster Batches is expected to be introduced on GM Farcaster during its X spaces. Exact date pending - watch the GM Farcaster channel. Marked upcoming, not yet shipped.",
+      "link": "https://www.gmfarcaster.com/"
+    },
+    {
+      "stream": "zabal-games-workshops",
+      "timestamp": "2026-06-01",
+      "kind": "milestone",
+      "title": "Season 1 begins - workshop month opens",
+      "summary": "Insert Coin. June is workshop month - ZAO builders record ~30-min sessions on the tools they have built, landing in the Magnetiq portal.",
+      "link": "/lead"
+    },
+    {
+      "stream": "bcz-yapz",
+      "timestamp": "2026-05-29",
+      "kind": "milestone",
+      "title": "BCZ YapZ wired as a Zabal Data Stream",
+      "summary": "BCZ YapZ registered as a data stream. Episode transcripts and content/bonfire-ingest files pull from the bcz-yapz repo into the timeline and the ZABAL Bonfire.",
+      "link": "https://www.bczyapz.com/"
+    },
+    {
+      "stream": "zao-festivals-bounty",
+      "timestamp": "2026-05-26",
+      "kind": "bounty",
+      "title": "Prize pool locked - $500 USDC v0",
+      "summary": "The ZAO festivals team funds the Season 1 prize pool: $500 USDC for v0, tiered across finalists, plus a Hats Protocol role NFT for every finisher. Sponsor inquiries: info@thezao.com.",
+      "link": "/finals"
+    },
+    {
+      "stream": "zabal-games-workshops",
+      "timestamp": "2026-05-26",
+      "kind": "session",
+      "title": "Workshop lead #002 confirmed - Thy Revolution (2 sessions)",
+      "summary": "Thy Revolution (Mickey / Rev) confirmed 2 June workshop sessions. Slate now 3 confirmed sessions (Tyler #001 + Thy Revolution #002a + #002b).",
+      "link": "/data/workshop-leads.json"
+    },
+    {
+      "stream": "farcaster-agentic-bootcamp",
+      "timestamp": "2026-04",
+      "kind": "milestone",
+      "title": "FarHack 2026 - Zaal/Zlank win the Snap category ($1,000)",
+      "summary": "Coming out of the bootcamp, Zaal/Zlank won the Snap category at FarHack 2026 - a $1,000 prize that went to ZAOstock. Month-level date; exact day pending confirmation.",
+      "link": "https://github.com/farhackxyz/farhack"
+    },
+    {
+      "stream": "farcaster-agentic-bootcamp",
+      "timestamp": "2026-04-10",
+      "kind": "milestone",
+      "title": "Farcaster Agentic Bootcamp ends",
+      "summary": "Two-week program wraps. Builds deployed live, ready to compete in FarHack Online 2026.",
+      "link": "https://builders-garden.notion.site/farcaster-agentic-bootcamp"
+    },
+    {
+      "stream": "farcaster-agentic-bootcamp",
+      "timestamp": "2026-03-30",
+      "kind": "milestone",
+      "title": "Farcaster Agentic Bootcamp begins",
+      "summary": "Builders Garden + Dev3Pack open a two-week online program: zero to autonomous agents and miniapps on the Farcaster social graph.",
+      "link": "https://luma.com/f7ok6tbp"
+    }
+  ]
+}

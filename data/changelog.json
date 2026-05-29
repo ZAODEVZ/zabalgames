@@ -10,6 +10,17 @@
   },
   "entries": [
     {
+      "date": "2026-05-29",
+      "title": "Zabal Data Streams shipped - registry + chronological feed + Bonfire ingest",
+      "type": "feat",
+      "description": "New /streams surface. Five active sources feeding ZABAL Games (BCZ YapZ, Farcaster Agentic Bootcamp, ZAO Festivals $500 Bounty, Farcaster Batches, ZABAL Games Workshops), each keeping raw files + summary + ideas together. Registry at data/data-streams.json, merged chronological feed at data/streams/timeline.json. scripts/pull-data-streams.mjs pulls live sources (github-content + HAATZ), writes raw captures, appends the feed, and emits a dispatch the existing aggregate-dispatches -> push-to-bonfire pipeline merges into the graph (streams land as DataStream entities with FEEDS edges into ZABAL Games). Documented in llms.txt.",
+      "links": [
+        {"label": "Streams", "url": "/streams"},
+        {"label": "Registry", "url": "/data/data-streams.json"},
+        {"label": "Timeline", "url": "/data/streams/timeline.json"}
+      ]
+    },
+    {
       "date": "2026-05-26",
       "title": "Tier 2 + Tier 3 fabrication audit complete + announce-day kit shipped",
       "type": "decision",
