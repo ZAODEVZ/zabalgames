@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard - ZABAL Games</title>
+  <meta name="description" content="Most active builders in ZABAL Games - points for casting on /zabal, sharing, and signing up. Published as an Empire Builder leaderboard.">
+  <link rel="canonical" href="https://zabalgames.com/leaderboard">
+  <meta property="og:title" content="Leaderboard - ZABAL Games">
+  <meta property="og:description" content="Most active builders in ZABAL Games Season 1.">
+  <meta property="og:image" content="https://zabalgames.com/assets/logo.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/logo.png","button":{"title":"See the leaderboard","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/leaderboard","splashImageUrl":"https://zabalgames.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .lb { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+    .lb li { display: flex; align-items: center; gap: 0.7rem; padding: 0.6rem 0.8rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+    .lb li.clickable { cursor: pointer; }
+    .lb li.clickable:hover { border-color: var(--cyan); }
+    .lb-rank { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--text-dim); width: 2rem; flex: none; }
+    .lb-rank.top { color: var(--gold); }
+    .lb img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex: none; }
+    .lb-name { flex: 1; font-size: 0.92rem; }
+    .lb-score { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/graph.html">Graph</a>
+      <a href="/leaderboard.html" class="active">Leaderboard</a>
+      <a href="/research.html">Research</a>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow">Most active builders</div>
+    <h1>Leaderboard.</h1>
+    <p class="hero-sub">
+      Points for showing up - casting on /zabal, sharing ZABAL Games, signing up. Earned from inside the Mini App against your verified Farcaster identity. This same board is published in Empire Builder format at <a href="/api/leaderboard">/api/leaderboard</a> so the activity feeds the $ZABAL empire.
+    </p>
+  </header>
+
+  <section class="section">
+    <p style="font-size: 0.82rem; color: var(--text-dim);">Scoring: cast 3 - signup 5 - share 2.</p>
+    <ol class="lb" id="lb"><p style="color: var(--text-muted); font-size: 0.85rem;">Loading...</p></ol>
+  </section>
+
+  <script>
+  (function() {
+    var el = document.getElementById('lb');
+    function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+    fetch('/api/leaderboard?format=full', { cache: 'no-store' })
+      .then(function(r){ return r.json(); })
+      .then(function(rows){
+        if (!rows || !rows.length) {
+          el.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;">No activity yet. Cast on /zabal from inside the Mini App to get on the board.</p>';
+          return;
+        }
+        el.innerHTML = rows.map(function(r, i){
+          var who = '@' + esc(r.username || r.fid);
+          var pfp = r.pfpUrl ? '<img src="'+esc(r.pfpUrl)+'" alt="">' : '';
+          return '<li class="clickable" data-fid="'+esc(r.fid)+'">' +
+            '<span class="lb-rank'+(i<3?' top':'')+'">'+(i+1)+'</span>' +
+            pfp + '<span class="lb-name">'+who+'</span>' +
+            '<span class="lb-score">'+esc(r.score)+'</span></li>';
+        }).join('');
+        el.querySelectorAll('[data-fid]').forEach(function(li){
+          li.addEventListener('click', function(){
+            var fid = Number(li.getAttribute('data-fid'));
+            if (fid && window.ZABAL && window.ZABAL.viewProfile) window.ZABAL.viewProfile(fid);
+          });
+        });
+      })
+      .catch(function(){ el.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;">Leaderboard unavailable right now.</p>'; });
+  })();
+  </script>
+
+</div>
+
+<footer class="footer">
+  <div>
+    <a href="/">zabalgames.com</a> -
+    <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">github</a> -
+    <a href="/llms.txt">llms.txt</a> -
+    <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+  </div>
+</footer>
+
+</body>
+</html>

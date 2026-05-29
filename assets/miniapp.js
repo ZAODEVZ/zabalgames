@@ -92,6 +92,21 @@ window.ZABAL.viewProfile = async function viewProfile(fid) {
   window.open('https://farcaster.xyz/~/profiles/' + fid, '_blank', 'noopener');
 };
 
+// Prompt the user to add ZABAL Games (enables notifications via /api/webhook).
+// Returns true if the prompt ran, false outside a Mini App. Safe to call anywhere.
+window.ZABAL.addApp = async function addApp() {
+  try {
+    const ctx = await sdk.context;
+    if (ctx && ctx.client) {
+      await sdk.actions.addMiniApp();
+      return true;
+    }
+  } catch (e) {
+    // Not in a Mini App, or the user dismissed the prompt.
+  }
+  return false;
+};
+
 // Open a cast - native viewer inside a Mini App, web conversation otherwise.
 window.ZABAL.viewCast = async function viewCast(hash) {
   if (!hash) return;

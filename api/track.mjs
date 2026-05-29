@@ -24,7 +24,9 @@ const KV_URL = process.env.KV_REST_API_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN;
 const HAATZ = 'https://haatz.quilibrium.com';
 const ALLOWED = new Set(['cast', 'share', 'signup']);
+const POINTS = { cast: 3, share: 2, signup: 5 };
 const RECENT_KEY = 'zabal:activity:v1';
+const SCORES_KEY = 'zabal:scores:v1';
 const RECENT_MAX = 50;
 const PRESENT_TTL = 172800; // 2 days
 
@@ -157,6 +159,7 @@ export default async function handler(req) {
       ['LTRIM', RECENT_KEY, '0', String(RECENT_MAX - 1)],
       ['SADD', presentKey, String(fid)],
       ['EXPIRE', presentKey, String(PRESENT_TTL)],
+      ['ZINCRBY', SCORES_KEY, String(POINTS[action] || 1), String(fid)],
     ]);
   } catch (e) {
     return json({ ok: false, stored: false, detail: e.message }, 502, origin);

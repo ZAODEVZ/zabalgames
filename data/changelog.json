@@ -11,6 +11,17 @@
   "entries": [
     {
       "date": "2026-05-29",
+      "title": "Graph explorer, activity leaderboard, notifications, SIWF on submissions",
+      "type": "feat",
+      "description": "Four mini app builds. /graph searches the 449-entity Bonfire knowledge graph (people, tools, brands, data streams) with connections. /leaderboard ranks builders by social-action points and publishes the same board in Empire Builder format at /api/leaderboard. Notifications: addMiniApp button + /api/webhook token store + guarded /api/notify sender (manifest webhookUrl). Submissions now auto-detect the applicant's Farcaster identity via the Mini App SDK and prefill the existing Supabase form.",
+      "links": [
+        {"label": "Graph", "url": "/graph"},
+        {"label": "Leaderboard", "url": "/leaderboard"},
+        {"label": "API docs", "url": "https://github.com/ZAODEVZ/zabalgames/blob/main/api/README.md"}
+      ]
+    },
+    {
+      "date": "2026-05-29",
       "title": "Mini app profile, sharing, and live presence",
       "type": "feat",
       "description": "Profile chip in the nav (pfp + username from sdk.context, tap to viewProfile). Reusable window.ZABAL share helpers wired to cast into /zabal, with Cast/Share buttons on /streams. New /share share-extension handler (manifest castShareUrl). Live presence: zero-dependency edge functions /api/track (Quick Auth JWT verified server-side) + /api/activity over Vercel KV, surfaced by a presence widget on / and /streams that shows builders-here-today plus recent cast/share/signup actions. Records only deliberate social actions, never page views.",

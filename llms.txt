@@ -195,6 +195,31 @@ Adding a stream: drop it in `data/data-streams.json`, run the pull script. Live 
 
 ---
 
+## Mini app surfaces + activity
+
+The site is a Farcaster Mini App. `assets/miniapp.js` exposes `window.ZABAL`:
+`getUser`, `viewProfile`, `viewCast`, `share({platform,text,url})`, `track`,
+`addApp`, `openNewTab`. It auto-injects a profile chip into the nav inside a Mini
+App, and casts post into `/zabal` with the page embedded.
+
+- **/streams** - Zabal Data Streams (see above) with Cast/Share/Add buttons.
+- **/graph** - searches the Bonfire knowledge graph (`data/bonfire-graph.json`),
+  people + tools + brands + agents + data streams with their edges.
+- **/leaderboard** - ranks builders by social-action points; also published in
+  Empire Builder `apiLeaderboard` format at `/api/leaderboard`.
+- **/share** - share-extension target (manifest `castShareUrl`); receives a
+  shared cast and routes it back to the data-streams story.
+
+Backend (zero-dep Vercel **edge** functions, no build step):
+`POST /api/track` (Quick Auth JWT verified server-side -> records cast/share/signup
+to Vercel KV), `GET /api/activity` (presence feed), `GET /api/leaderboard`,
+`POST /api/webhook` (manifest `webhookUrl`, stores notification tokens),
+`POST /api/notify` (admin sender, `NOTIFY_SECRET`). Privacy: only deliberate
+social actions are recorded, never page views. Env: `KV_REST_API_URL`,
+`KV_REST_API_TOKEN`, `NOTIFY_SECRET`. Full notes in `api/README.md`.
+
+---
+
 ## Tech stack + rails (the defaults)
 
 ```

@@ -1652,5 +1652,34 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
     })();
   </script>
 
+  <!-- Sign In With Farcaster: prefill the applicant's identity when inside a Mini App. -->
+  <script type="module">
+    (async function () {
+      if (!(window.ZABAL && window.ZABAL.getUser)) return;
+      var user = await window.ZABAL.getUser();
+      if (!user || !user.fid) return;
+      var fc = document.getElementById('farcaster');
+      var nm = document.getElementById('name');
+      if (fc && !fc.value) fc.value = '@' + (user.username || user.fid);
+      if (nm && !nm.value && user.displayName) nm.value = user.displayName;
+      var form = document.getElementById('zg-apply');
+      if (form && !document.getElementById('siwf-banner')) {
+        var b = document.createElement('div');
+        b.id = 'siwf-banner';
+        b.style.cssText = 'display:flex;align-items:center;gap:0.6rem;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:var(--cyan);padding:0.7rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;';
+        if (user.pfpUrl) {
+          var img = document.createElement('img');
+          img.src = user.pfpUrl; img.width = 24; img.height = 24;
+          img.style.cssText = 'border-radius:50%;object-fit:cover;flex:none';
+          b.appendChild(img);
+        }
+        var t = document.createElement('span');
+        t.textContent = 'Signed in as @' + (user.username || user.fid) + ' - your Farcaster identity is prefilled.';
+        b.appendChild(t);
+        form.parentNode.insertBefore(b, form);
+      }
+    })();
+  </script>
+
 </body>
 </html>
