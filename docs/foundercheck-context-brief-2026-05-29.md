@@ -84,3 +84,33 @@ workshop content library - measured in ecosystem value, not subscription revenue
 - Pull-demand from cold builders is unproven until the 72h experiment returns numbers.
 - July dropout rate is unobserved - first run.
 - Whether the ongoing-economics pitch out-competes larger cash prizes elsewhere is untested.
+
+## What raises each score (and what does not)
+
+The score is now gated on evidence, not description. "TEST FIRST" is the tool telling
+you to run the experiment. Honest read per dimension at 7.2:
+
+- Ease of sale (6.5 - lowest, best target). Raise it with friction-reducers you have
+  already shipped, not by claiming demand:
+  - One-tap Sign In With Farcaster on the signup form (built) - identity auto-prefilled,
+    near-zero signup friction.
+  - Every finisher is paid and gets a Hats NFT - removes the "what if I get nothing" risk.
+  - Three doors, and July can be a weekend - shrinks the perceived ask.
+  - Social proof: the FarHack Snap win, named confirmed workshop leads, and a live
+    presence feed showing who is building right now.
+- Reach strategy (7.0). Raise it with a concrete, repeatable motion plus a number: the
+  size of the FarHack / Bootcamp alumni list you can DM, a referral mechanic (each
+  signup refers one builder), Magnetiq as evergreen cold discovery, the leaderboard +
+  presence widgets as public proof loops.
+- Customer clarity (8.0). Already strong. To push toward 9, name ONE beachhead and lead
+  with it: "Farcaster Agentic Bootcamp alumni who shipped an agent or mini app but have
+  no users, no distribution, and no crew to keep building with." Narrower is clearer.
+- Problem severity (7.5). Only moves with evidence the pain is acute. Capture 3-5
+  verbatim quotes from the cold DMs ("I shipped at FarHack and then nothing happened").
+  Real quotes raise severity; assertions do not.
+
+What will NOT raise it (and would backfire): claiming demand before the test, padding
+the pool number, or marking dropout "solved." Those are tested, not stated.
+
+The real unlock: run the 72h cold-DM test (30 DMs -> 10 signups). Proving cold
+pull-demand moves problem severity AND ease of sale at once. Nothing you paste does that.
