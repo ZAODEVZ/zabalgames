@@ -870,8 +870,12 @@
   </section>
 
   <section class="section">
-    <h2>Sign up for a workshop session</h2>
-    <p>Pick a session that looks interesting. Free. Live on stream and recorded.</p>
+    <h2>June workshop schedule</h2>
+    <p>Free, livestreamed, and recorded. Leads lock exact dates through May - RSVP on Lu.ma to get notified.</p>
+
+    <div id="workshop-schedule" class="ws-grid">
+      <p class="ws-loading">Loading sessions...</p>
+    </div>
 
     <div class="cta-band">
       <h3>Workshop calendar</h3>
@@ -1120,6 +1124,36 @@
     });
   }
   loadCount();
+
+  // June workshop schedule - rendered live from data/workshop-leads.json so the
+  // page reflects whatever leads have locked, and dates fill in as they confirm.
+  var wsEl = document.getElementById('workshop-schedule');
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  if (wsEl) {
+    fetch('/data/workshop-leads.json', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var leads = (d && d.leads) || [];
+        if (!leads.length) { wsEl.innerHTML = '<p class="ws-loading">Sessions are being scheduled - check the Lu.ma calendar below.</p>'; return; }
+        wsEl.innerHTML = leads.map(function (L) {
+          var c = L.color || 'orange';
+          var scheduled = /^\d{4}-\d{2}-\d{2}/.test(L.when || '');
+          var whenLabel = scheduled ? esc(L.when) : (esc(L.when) || 'Date to be announced');
+          var statusCls = L.status === 'confirmed' ? 'ws-confirmed' : 'ws-tentative';
+          return '<div class="ws-card" style="border-left: 3px solid var(--' + c + ');">' +
+            '<div class="ws-when">' + whenLabel + '</div>' +
+            '<h3>' + esc(L.topic || 'Workshop session') + '</h3>' +
+            '<p class="ws-by">' + esc(L.name) + (L.org ? ' - ' + esc(L.org) : '') + '</p>' +
+            (L.format ? '<p class="ws-format">' + esc(L.format) + '</p>' : '') +
+            '<span class="ws-status ' + statusCls + '">' + esc(L.status || 'planned') + '</span>' +
+            '</div>';
+        }).join('');
+      })
+      .catch(function () {
+        wsEl.innerHTML = '<p class="ws-loading">Schedule unavailable right now - see the Lu.ma calendar below.</p>';
+      });
+  }
 })();
 </script>
 
