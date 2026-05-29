@@ -24,7 +24,11 @@ try {
 // Outside, fall back to the Warpcast intent URL.
 window.ZABAL = window.ZABAL || {};
 
-window.ZABAL.composeCast = async function composeCast({ text, embeds }) {
+window.ZABAL.composeCast = async function composeCast(textOrOpts, maybeEmbeds) {
+  // Accept either composeCast({ text, embeds }) or composeCast(text, embeds).
+  const { text, embeds } = typeof textOrOpts === 'string'
+    ? { text: textOrOpts, embeds: maybeEmbeds }
+    : (textOrOpts || {});
   try {
     const ctx = await sdk.context;
     if (ctx && ctx.client) {
