@@ -25,14 +25,14 @@ try {
 window.ZABAL = window.ZABAL || {};
 
 window.ZABAL.composeCast = async function composeCast(textOrOpts, maybeEmbeds) {
-  // Accept either composeCast({ text, embeds }) or composeCast(text, embeds).
-  const { text, embeds } = typeof textOrOpts === 'string'
+  // Accept either composeCast({ text, embeds, channelKey }) or composeCast(text, embeds).
+  const { text, embeds, channelKey } = typeof textOrOpts === 'string'
     ? { text: textOrOpts, embeds: maybeEmbeds }
     : (textOrOpts || {});
   try {
     const ctx = await sdk.context;
     if (ctx && ctx.client) {
-      await sdk.actions.composeCast({ text, embeds });
+      await sdk.actions.composeCast({ text, embeds, channelKey });
       return;
     }
   } catch (e) {
@@ -41,6 +41,7 @@ window.ZABAL.composeCast = async function composeCast(textOrOpts, maybeEmbeds) {
   const params = new URLSearchParams();
   if (text) params.set('text', text);
   if (Array.isArray(embeds)) embeds.forEach(e => params.append('embeds[]', e));
+  if (channelKey) params.set('channelKey', channelKey);
   window.open('https://farcaster.xyz/~/compose?' + params.toString(), '_blank', 'noopener');
 };
 
