@@ -164,6 +164,37 @@ ZAO was founded in 2022, started inside another DAO that didn't survive. The rem
 
 ---
 
+## Zabal Data Streams
+
+The active sources of raw activity that feed ZABAL Games. Each stream keeps three things together - the full raw files, a summary, and the ideas it surfaces - organized chronologically by where it comes from. Everything lands in Bonfire (the ZAO memory layer) so any bot can read it and build on top. Surfaced at zabalgames.com/streams.
+
+**Three layers (reuse the rails the ecosystem already runs on):**
+
+1. **Registry** - `data/data-streams.json`. The source of truth. Each stream declares: id, name, kind, status (live | upcoming | archived), color, summary, ties_to_zabal, links, ideas, a `pull` config (type: `github-content` | `haatz` | `static`), and a raw_dir.
+2. **Raw + chronological store** - `data/streams/<id>/raw/` holds the full raw captures per stream; `data/streams/timeline.json` is the merged chronological feed across all streams (newest first, deduped by stream + timestamp + title).
+3. **Bonfire ingest** - `scripts/pull-data-streams.mjs` fetches each live source, writes raw captures, appends to the timeline, and emits `/tmp/zabal-dispatch-streams-<date>.md`. The existing `scripts/aggregate-dispatches.mjs` merges that dispatch into `data/bonfire-graph.json` (streams land as entities labelled `DataStream` with `FEEDS` edges into ZABAL Games), and `scripts/push-to-bonfire.mjs` pushes the graph to the ZABAL Bonfire.
+
+```bash
+node scripts/pull-data-streams.mjs            # pull live + write timeline + emit dispatch
+node scripts/pull-data-streams.mjs --dry      # show what would change, write nothing
+node scripts/aggregate-dispatches.mjs         # merge the dispatch into the graph
+node scripts/push-to-bonfire.mjs              # push the graph to Bonfire
+```
+
+**Season 1 streams:**
+
+| Stream | Kind | Status | What it feeds |
+|--------|------|--------|---------------|
+| BCZ YapZ | interview-archive | live | Zaal's long-form interview show (bczyapz.com, bettercallzaal/bcz-yapz). Already emits `content/bonfire-ingest/` from each transcript - a native Bonfire feeder. Pulled via github-content. |
+| Farcaster Agentic Bootcamp | bootcamp | archived | Builders Garden + Dev3Pack 2-week program (Mar 30 - Apr 10 2026). The origin thread: fed FarHack, where Zaal/Zlank won the Snap category ($1,000), funding ZAOstock. |
+| ZAO Festivals $500 Bounty | bounty | live | The Season 1 prize pool ($500 USDC v0) funded by the ZAO festivals team. Grow it: info@thezao.com. |
+| Farcaster Batches | protocol-feature | upcoming | An upcoming Farcaster protocol feature, being introduced on GM Farcaster X spaces. A new rail to design ZABAL Games builds around. |
+| ZABAL Games Workshops | workshop | live | June workshop month - ~30-min builder sessions landing in the Magnetiq portal. Raw recordings + transcripts + summaries are the richest stream. |
+
+Adding a stream: drop it in `data/data-streams.json`, run the pull script. Live sources (github-content, haatz) pull automatically; static sources keep curated timeline entries. The github-content + haatz pulls need outbound access to api.github.com / raw.githubusercontent.com / haatz.quilibrium.com - in a sandbox where those are blocked the script logs the miss and continues, still emitting the registry-derived Bonfire entities.
+
+---
+
 ## Tech stack + rails (the defaults)
 
 ```

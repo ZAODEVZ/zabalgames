@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "_schema": {
+    "id": "slug (lowercase, hyphenated) - also the folder name under data/streams/<id>/",
+    "name": "display name (exact brand spelling)",
+    "kind": "interview-archive | bootcamp | bounty | protocol-feature | workshop | space",
+    "status": "live | upcoming | archived",
+    "color": "ZAO palette key: orange | cyan | gold | pink | zabal",
+    "summary": "1-2 sentence what it is",
+    "ties_to_zabal": "how this stream feeds ZABAL Games",
+    "links": "array of {label, url}",
+    "ideas": "array of strings - ideas/threads surfaced from this stream that bots or builders can pick up",
+    "pull": "ingest config the pull script reads. type: github-content | haatz | static. plus type-specific fields (repo, paths, ref, fid, channel)",
+    "raw_dir": "where captured raw files land (relative to repo root)"
+  },
+  "_pipeline": "Each entry is an active (or upcoming) source of raw activity that feeds ZABAL Games. scripts/pull-data-streams.mjs reads each stream's `pull` config, fetches live data, writes raw captures to raw_dir, appends normalized entries to data/streams/timeline.json (the merged chronological feed), and emits a /tmp/zabal-dispatch-streams-*.md dispatch. The existing scripts/aggregate-dispatches.mjs then merges that dispatch into data/bonfire-graph.json, and scripts/push-to-bonfire.mjs pushes it to the ZABAL Bonfire. Raw files + summary + ideas stay together per stream; Bonfire holds the graph; any bot reads the registry, the timeline, or the graph and builds on top.",
+  "streams": [
+    {
+      "id": "bcz-yapz",
+      "name": "BCZ YapZ",
+      "kind": "interview-archive",
+      "status": "live",
+      "color": "cyan",
+      "summary": "Zaal's long-form interview show - conversations with a builder, founder, or organizer working on something worth understanding.",
+      "ties_to_zabal": "Episode transcripts surface the people, tools, and threads moving through the ZAO ecosystem. BCZ YapZ already generates content/bonfire-ingest/ files from each transcript, so it is a native Bonfire feeder - the same memory layer ZABAL Games runs on.",
+      "links": [
+        {"label": "bczyapz.com", "url": "https://www.bczyapz.com/"},
+        {"label": "github - bettercallzaal/bcz-yapz", "url": "https://github.com/bettercallzaal/bcz-yapz"}
+      ],
+      "ideas": [
+        "Auto-link each YapZ guest to their Bonfire entity + Farcaster FID so a guest's other ZAO activity threads into the same graph node.",
+        "A ZABAL Games surface that pulls the latest YapZ episode and renders its bonfire-ingest summary as a card.",
+        "Cross-reference YapZ guests against the ZABAL Games mentor + workshop-lead roster - overlap is a recruiting signal."
+      ],
+      "pull": {
+        "type": "github-content",
+        "repo": "bettercallzaal/bcz-yapz",
+        "ref": "main",
+        "paths": ["content/transcripts", "content/bonfire-ingest"]
+      },
+      "raw_dir": "data/streams/bcz-yapz/raw"
+    },
+    {
+      "id": "farcaster-agentic-bootcamp",
+      "name": "Farcaster Agentic Bootcamp",
+      "kind": "bootcamp",
+      "status": "archived",
+      "color": "zabal",
+      "summary": "Two-week online program (Mar 30 - Apr 10 2026) co-hosted by Builders Garden + Dev3Pack - zero to building autonomous agents and miniapps on the Farcaster social graph, deployed live to compete in FarHack Online 2026.",
+      "ties_to_zabal": "This is the origin thread. The bootcamp fed FarHack, where Zaal/Zlank won the Snap category ($1,000), and that prize money went to ZAOstock. The agent + miniapp patterns taught here are the same rails ZABAL Games builds on.",
+      "links": [
+        {"label": "Bootcamp portal (Notion)", "url": "https://builders-garden.notion.site/farcaster-agentic-bootcamp"},
+        {"label": "Luma", "url": "https://luma.com/f7ok6tbp"},
+        {"label": "FarHack", "url": "https://github.com/farhackxyz/farhack"}
+      ],
+      "ideas": [
+        "Distill the bootcamp curriculum (agents, memory, identity, wallets, onchain commerce, viral distribution, multi-agent) into a ZABAL Games builder prep track.",
+        "Map the FarHack -> $1,000 -> ZAOstock funding path as a worked example of the ZAO flywheel for the about / context page.",
+        "Index the bootcamp session videos as timeline entries so the lineage is queryable in Bonfire."
+      ],
+      "pull": {
+        "type": "static",
+        "note": "Notion portal + YouTube sessions are not API-pulled. Timeline entries for this stream are curated in timeline.json."
+      },
+      "raw_dir": "data/streams/farcaster-agentic-bootcamp/raw"
+    },
+    {
+      "id": "zao-festivals-bounty",
+      "name": "ZAO Festivals $500 Bounty",
+      "kind": "bounty",
+      "status": "live",
+      "color": "gold",
+      "summary": "The ZAO festivals team funds the ZABAL Games Season 1 prize pool - $500 USDC for v0, tiered across finalists, plus a Hats Protocol role NFT for every finisher.",
+      "ties_to_zabal": "This is the prize pool itself. Every finalist who ships gets paid from it. Sponsor inquiries to grow the v1 pool: info@thezao.com.",
+      "links": [
+        {"label": "Finals settlement", "url": "/finals"},
+        {"label": "Sponsor outreach", "url": "/docs/sponsor-outreach-2026-05-26.md"},
+        {"label": "thezao.com", "url": "https://thezao.com"}
+      ],
+      "ideas": [
+        "Live bounty tracker: total pool, committed sponsors, per-tier payout, settled-to-date - published as a JSON leaderboard Empire Builder can pull.",
+        "Onchain attestation (EAS) per finisher tied to the bounty payout tx.",
+        "Sponsor pipeline board - who is in conversation to grow the v1 pool."
+      ],
+      "pull": {
+        "type": "static",
+        "note": "Bounty milestones are curated in timeline.json. A future onchain pull (payout txs on Base) can replace the static entries."
+      },
+      "raw_dir": "data/streams/zao-festivals-bounty/raw"
+    },
+    {
+      "id": "farcaster-batches",
+      "name": "Farcaster Batches",
+      "kind": "protocol-feature",
+      "status": "upcoming",
+      "color": "orange",
+      "summary": "An upcoming Farcaster protocol feature, being introduced on GM Farcaster (Farcaster's #1 news show) during its X spaces.",
+      "ties_to_zabal": "A new rail to design around. ZABAL Games builds that batch onchain or social actions get cheaper / more composable when Batches ships. Tracked here so builders catch it the week it lands.",
+      "links": [
+        {"label": "GM Farcaster", "url": "https://www.gmfarcaster.com/"},
+        {"label": "GM Farcaster mini app", "url": "https://miniapp.gmfarcaster.com/"}
+      ],
+      "ideas": [
+        "When Batches ships, audit which ZABAL Games rails (cast composer, Hats mint, EAS attest, Clanker) can be batched into one user action.",
+        "Capture the GM Farcaster spaces explainer as the canonical timeline entry the day it launches.",
+        "Watch for a public spec / SDK and add a github-content pull config once a repo exists."
+      ],
+      "pull": {
+        "type": "static",
+        "note": "Not yet shipped. Launch entry curated in timeline.json. Swap to a haatz pull on the GM Farcaster channel once the announcement casts land."
+      },
+      "raw_dir": "data/streams/farcaster-batches/raw"
+    },
+    {
+      "id": "zabal-games-workshops",
+      "name": "ZABAL Games Workshops",
+      "kind": "workshop",
+      "status": "live",
+      "color": "pink",
+      "summary": "June workshop month - ZAO builders each record a ~30-min session on tools they have built. The whole library lands in the Magnetiq portal, watchable live or after.",
+      "ties_to_zabal": "The workshops are the deep-context onboarding for builders. Raw session recordings + transcripts + summaries are the richest ZABAL Games data stream - they directly seed what people build in July.",
+      "links": [
+        {"label": "Workshop sign-up", "url": "/lead"},
+        {"label": "Workshop leads", "url": "/data/workshop-leads.json"},
+        {"label": "Magnetiq portal", "url": "https://magnetiq.xyz"}
+      ],
+      "ideas": [
+        "Per-session: raw recording link + auto-transcript + 3-bullet summary + the tool/rail it covers, all landing as one timeline entry.",
+        "Tag each session to the Bonfire entity for the tool it covers, so a builder querying that tool finds the workshop.",
+        "Generate a 'which workshop should I watch' recommender from a builder's declared project."
+      ],
+      "pull": {
+        "type": "static",
+        "note": "Session metadata lives in data/workshop-leads.json. As recordings land, add transcript files under raw_dir and a timeline entry per session."
+      },
+      "raw_dir": "data/streams/zabal-games-workshops/raw"
+    }
+  ]
+}

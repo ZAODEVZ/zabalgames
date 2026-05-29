@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zabal Data Streams - ZABAL Games Season 1</title>
+  <meta name="description" content="The active sources feeding ZABAL Games - raw files, summaries, and ideas kept together and organized chronologically by where they come from. All of it lands in Bonfire so bots can build on top.">
+  <link rel="canonical" href="https://zabalgames.com/streams">
+  <meta property="og:title" content="Zabal Data Streams - ZABAL Games Season 1">
+  <meta property="og:description" content="Active sources feeding ZABAL Games - raw convos organized chronologically, fed into Bonfire so bots build on top.">
+  <meta property="og:url" content="https://zabalgames.com/streams">
+  <meta property="og:image" content="https://zabalgames.com/assets/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/logo.png","button":{"title":"See the data streams","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/streams","splashImageUrl":"https://zabalgames.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/logo.png","button":{"title":"See the data streams","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/streams","splashImageUrl":"https://zabalgames.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row">
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/lead.html">Lead</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/streams.html" class="active">Streams</a>
+      <a href="/research.html">Research</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/about.html">About</a>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow">The raw feed</div>
+    <h1>Zabal <span class="accent">Data Streams</span>.</h1>
+    <p class="hero-sub">
+      The active sources feeding ZABAL Games. Each stream keeps its full raw files plus a summary and the ideas it surfaces, organized chronologically by where it comes from. All of it lands in Bonfire - the ZAO memory layer - so any bot can read it and build on top.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2>What this is</h2>
+    <p>
+      A data stream is a live (or upcoming) source of activity that matters to ZABAL Games - an interview show, a bootcamp lineage, a bounty, a protocol feature, the workshops themselves. We keep three things together for each: the <strong>raw files</strong>, a <strong>summary</strong>, and the <strong>ideas</strong> worth picking up.
+    </p>
+    <p>
+      The pipeline reuses the rails the ecosystem already runs on: <code>scripts/pull-data-streams.mjs</code> fetches each live source, writes raw captures, appends to the chronological feed, and emits a dispatch that <code>aggregate-dispatches.mjs</code> merges into the Bonfire graph and <code>push-to-bonfire.mjs</code> pushes to the ZABAL Bonfire. Registry: <a href="/data/data-streams.json">data-streams.json</a>. Feed: <a href="/data/streams/timeline.json">timeline.json</a>.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>The streams <span id="stream-count" style="font-weight: 400; color: var(--text-dim); font-size: 0.9rem; margin-left: 0.5rem;"></span></h2>
+    <div id="streams-list">
+      <p style="color: var(--text-muted); font-size: 0.85rem;">Loading...</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Chronological feed</h2>
+    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Newest first, color-coded by source.</p>
+    <div id="timeline-list">
+      <p style="color: var(--text-muted); font-size: 0.85rem;">Loading...</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>For bots and builders</h2>
+    <p>
+      Everything here is machine-readable. Read the registry for what each stream is and its <code>pull</code> config, read the timeline for the chronological feed, or query the <a href="/data/bonfire-graph.json">Bonfire graph</a> for the streams as entities (label <code>DataStream</code>) and their <code>FEEDS</code> edges into ZABAL Games.
+    </p>
+    <p>
+      To add or refresh a stream: drop it in <a href="/data/data-streams.json">data-streams.json</a>, then run <code>node scripts/pull-data-streams.mjs</code>. Live sources (GitHub content, Farcaster reads via HAATZ) pull automatically; static sources keep curated timeline entries. Full notes in <a href="/llms.txt">llms.txt</a>.
+    </p>
+  </section>
+
+  <script>
+  (function() {
+    var streamsEl = document.getElementById('streams-list');
+    var countEl = document.getElementById('stream-count');
+    var timelineEl = document.getElementById('timeline-list');
+
+    var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function fmtDate(ts) {
+      var parts = String(ts).split('-');
+      var mo = MONTHS[parseInt(parts[1], 10) - 1] || '';
+      if (parts.length === 2) return mo + ' ' + parts[0];
+      return mo + ' ' + parseInt(parts[2], 10) + ', ' + parts[0];
+    }
+    function statusBadge(status) {
+      var map = {
+        live: ['rgba(34,197,94,0.12)', '#22c55e', 'LIVE'],
+        upcoming: ['rgba(245,166,35,0.12)', 'var(--gold)', 'UPCOMING'],
+        archived: ['rgba(138,136,149,0.12)', 'var(--text-muted)', 'ARCHIVED']
+      };
+      var s = map[status] || map.archived;
+      return '<span style="background: ' + s[0] + '; color: ' + s[1] + '; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; margin-left: 0.5rem;">' + s[2] + '</span>';
+    }
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    Promise.all([
+      fetch('/data/data-streams.json', { cache: 'no-cache' }).then(function(r){ return r.json(); }),
+      fetch('/data/streams/timeline.json', { cache: 'no-cache' }).then(function(r){ return r.json(); })
+    ]).then(function(res) {
+      var streams = (res[0] && res[0].streams) || [];
+      var entries = (res[1] && res[1].entries) || [];
+
+      // id -> {name, color} for the feed.
+      var byId = {};
+      streams.forEach(function(s){ byId[s.id] = { name: s.name, color: s.color || 'orange' }; });
+
+      // --- streams cards ---
+      countEl.textContent = '(' + streams.length + ' total)';
+      streamsEl.innerHTML = streams.map(function(S) {
+        var color = S.color || 'orange';
+        var links = (S.links || []).map(function(L){
+          return '<a href="' + esc(L.url) + '"' + (/^https?:/.test(L.url) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(L.label) + '</a>';
+        }).join(' - ');
+        var ideas = (S.ideas || []).map(function(i){ return '<li>' + esc(i) + '</li>'; }).join('');
+        var ideasBlock = ideas
+          ? '<details style="margin-top: 0.6rem;"><summary style="cursor: pointer; font-size: 0.78rem; color: var(--' + color + ');">' + (S.ideas.length) + ' idea' + (S.ideas.length === 1 ? '' : 's') + ' open</summary><ul style="margin: 0.5rem 0 0; padding-left: 1.1rem; font-size: 0.82rem; color: var(--text-muted);">' + ideas + '</ul></details>'
+          : '';
+        return '<div class="card">' +
+          '<div class="card-label" style="color: var(--' + color + ');">' + esc(S.kind) + '</div>' +
+          '<h3>' + esc(S.name) + statusBadge(S.status) + '</h3>' +
+          '<p>' + esc(S.summary) + '</p>' +
+          '<p style="font-size: 0.82rem; color: var(--text-muted);"><strong style="color: var(--text);">Ties to ZABAL Games:</strong> ' + esc(S.ties_to_zabal) + '</p>' +
+          '<div class="card-meta">' + links + '</div>' +
+          ideasBlock +
+          '</div>';
+      }).join('');
+
+      // --- chronological feed ---
+      if (!entries.length) {
+        timelineEl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No feed entries yet.</p>';
+        return;
+      }
+      timelineEl.innerHTML = entries.map(function(E) {
+        var meta = byId[E.stream] || { name: E.stream, color: 'orange' };
+        var c = meta.color;
+        var linkEl = E.link
+          ? '<a href="' + esc(E.link) + '"' + (/^https?:/.test(E.link) ? ' target="_blank" rel="noopener"' : '') + ' style="font-size: 0.78rem;">open</a>'
+          : '';
+        return '<div class="card" style="border-left: 3px solid var(--' + c + ');">' +
+          '<div class="card-label" style="color: var(--' + c + '); display: flex; justify-content: space-between; gap: 0.5rem;">' +
+            '<span>' + esc(meta.name) + ' - ' + esc(E.kind) + '</span>' +
+            '<span style="color: var(--text-dim); font-variant-numeric: tabular-nums;">' + fmtDate(E.timestamp) + '</span>' +
+          '</div>' +
+          '<h3>' + esc(E.title) + '</h3>' +
+          '<p>' + esc(E.summary) + '</p>' +
+          (linkEl ? '<div class="card-meta">' + linkEl + '</div>' : '') +
+          '</div>';
+      }).join('');
+    }).catch(function() {
+      streamsEl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">Streams unavailable right now - see <a href="/data/data-streams.json">data-streams.json</a>.</p>';
+      timelineEl.innerHTML = '';
+    });
+  })();
+  </script>
+
+</div>
+
+<footer class="footer">
+  <div>
+    <a href="/">zabalgames.com</a> -
+    <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">github</a> -
+    <a href="/llms.txt">llms.txt</a> -
+    <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+  </div>
+  <p style="margin-top: 0.5rem; color: var(--text-dim);">Zabal Data Streams - raw files, summaries, and ideas, fed into Bonfire so bots build on top.</p>
+</footer>
+
+</body>
+</html>

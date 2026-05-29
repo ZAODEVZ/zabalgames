@@ -8705,6 +8705,86 @@
         "actual_solution_needed": "Argo Smart Routing on Business+ OR negotiate Vercel Africa edges",
         "_source": "zabal-dispatch-africa-cdn-routing-cloudflare-setup-20260524"
       }
+    },
+    {
+      "id": "bcz-yapz",
+      "name": "BCZ YapZ",
+      "labels": [
+        "DataStream",
+        "interview-archive"
+      ],
+      "attributes": {
+        "stream_id": "bcz-yapz",
+        "status": "live",
+        "summary": "Zaal's long-form interview show - conversations with a builder, founder, or organizer working on something worth understanding.",
+        "ties_to_zabal": "Episode transcripts surface the people, tools, and threads moving through the ZAO ecosystem. BCZ YapZ already generates content/bonfire-ingest/ files from each transcript, so it is a native Bonfire feeder - the same memory layer ZABAL Games runs on.",
+        "url": "https://www.bczyapz.com/",
+        "_source": "data-streams-registry"
+      }
+    },
+    {
+      "id": "farcaster-agentic-bootcamp",
+      "name": "Farcaster Agentic Bootcamp",
+      "labels": [
+        "DataStream",
+        "bootcamp"
+      ],
+      "attributes": {
+        "stream_id": "farcaster-agentic-bootcamp",
+        "status": "archived",
+        "summary": "Two-week online program (Mar 30 - Apr 10 2026) co-hosted by Builders Garden + Dev3Pack - zero to building autonomous agents and miniapps on the Farcaster social graph, deployed live to compete in FarHack Online 2026.",
+        "ties_to_zabal": "This is the origin thread. The bootcamp fed FarHack, where Zaal/Zlank won the Snap category ($1,000), and that prize money went to ZAOstock. The agent + miniapp patterns taught here are the same rails ZABAL Games builds on.",
+        "url": "https://builders-garden.notion.site/farcaster-agentic-bootcamp",
+        "_source": "data-streams-registry"
+      }
+    },
+    {
+      "id": "zao-festivals-500-bounty",
+      "name": "ZAO Festivals $500 Bounty",
+      "labels": [
+        "DataStream",
+        "bounty"
+      ],
+      "attributes": {
+        "stream_id": "zao-festivals-bounty",
+        "status": "live",
+        "summary": "The ZAO festivals team funds the ZABAL Games Season 1 prize pool - $500 USDC for v0, tiered across finalists, plus a Hats Protocol role NFT for every finisher.",
+        "ties_to_zabal": "This is the prize pool itself. Every finalist who ships gets paid from it. Sponsor inquiries to grow the v1 pool: info@thezao.com.",
+        "url": "/finals",
+        "_source": "data-streams-registry"
+      }
+    },
+    {
+      "id": "farcaster-batches",
+      "name": "Farcaster Batches",
+      "labels": [
+        "DataStream",
+        "protocol-feature"
+      ],
+      "attributes": {
+        "stream_id": "farcaster-batches",
+        "status": "upcoming",
+        "summary": "An upcoming Farcaster protocol feature, being introduced on GM Farcaster (Farcaster's #1 news show) during its X spaces.",
+        "ties_to_zabal": "A new rail to design around. ZABAL Games builds that batch onchain or social actions get cheaper / more composable when Batches ships. Tracked here so builders catch it the week it lands.",
+        "url": "https://www.gmfarcaster.com/",
+        "_source": "data-streams-registry"
+      }
+    },
+    {
+      "id": "zabal-games-workshops",
+      "name": "ZABAL Games Workshops",
+      "labels": [
+        "DataStream",
+        "workshop"
+      ],
+      "attributes": {
+        "stream_id": "zabal-games-workshops",
+        "status": "live",
+        "summary": "June workshop month - ZAO builders each record a ~30-min session on tools they have built. The whole library lands in the Magnetiq portal, watchable live or after.",
+        "ties_to_zabal": "The workshops are the deep-context onboarding for builders. Raw session recordings + transcripts + summaries are the richest ZABAL Games data stream - they directly seed what people build in July.",
+        "url": "/lead",
+        "_source": "data-streams-registry"
+      }
     }
   ],
   "edges": [
@@ -15181,6 +15261,51 @@
       "properties": {
         "fact": "ISP resolver may have better local peering despite security trade-offs; Quad9/Cloudflare may route slower",
         "_source": "zabal-dispatch-africa-cdn-routing-root-cause-20260524"
+      }
+    },
+    {
+      "from": "bcz-yapz",
+      "to": "zabal-games",
+      "type": "FEEDS",
+      "properties": {
+        "fact": "Episode transcripts surface the people, tools, and threads moving through the ZAO ecosystem. BCZ YapZ already generates content/bonfire-ingest/ files from each transcript, so it is a native Bonfire feeder - the same memory layer ZABAL Games runs on.",
+        "_source": "zabal-dispatch-streams-2026-05-29"
+      }
+    },
+    {
+      "from": "farcaster-agentic-bootcamp",
+      "to": "zabal-games",
+      "type": "FEEDS",
+      "properties": {
+        "fact": "This is the origin thread. The bootcamp fed FarHack, where Zaal/Zlank won the Snap category ($1,000), and that prize money went to ZAOstock. The agent + miniapp patterns taught here are the same rails ZABAL Games builds on.",
+        "_source": "zabal-dispatch-streams-2026-05-29"
+      }
+    },
+    {
+      "from": "zao-festivals-500-bounty",
+      "to": "zabal-games",
+      "type": "FEEDS",
+      "properties": {
+        "fact": "This is the prize pool itself. Every finalist who ships gets paid from it. Sponsor inquiries to grow the v1 pool: info@thezao.com.",
+        "_source": "zabal-dispatch-streams-2026-05-29"
+      }
+    },
+    {
+      "from": "farcaster-batches",
+      "to": "zabal-games",
+      "type": "FEEDS",
+      "properties": {
+        "fact": "A new rail to design around. ZABAL Games builds that batch onchain or social actions get cheaper / more composable when Batches ships. Tracked here so builders catch it the week it lands.",
+        "_source": "zabal-dispatch-streams-2026-05-29"
+      }
+    },
+    {
+      "from": "zabal-games-workshops",
+      "to": "zabal-games",
+      "type": "FEEDS",
+      "properties": {
+        "fact": "The workshops are the deep-context onboarding for builders. Raw session recordings + transcripts + summaries are the richest ZABAL Games data stream - they directly seed what people build in July.",
+        "_source": "zabal-dispatch-streams-2026-05-29"
       }
     }
   ]
