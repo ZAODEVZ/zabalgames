@@ -56,7 +56,7 @@ Each Magnetiq memento page should hit these beats (use this as a template):
 
 **Who it serves:** Independent musicians (100-10k monthly listeners), crypto-curious not crypto-native, releasing monthly, no label, own their distribution. Plus the music-industry pros, web3 builders, and fans who join to support the work.
 
-**What's live now:** 100+ member gated Farcaster music community. Shipped ZAO OS, launched $ZABAL token, Crypto Magazine feature - all in Q1 2026. Active fractal governance every week. 8 sub-brands across the ecosystem.
+**What's live now:** 100+ member gated Farcaster music community. Shipped ZAO OS, launched $ZABAL token, Crypto Magazine feature - all in Q1 2026. Active fractal governance every week. 7+ sub-brands across the ecosystem (ZAO OS, $ZABAL + Empire Builder, WaveWarZ, ZAO Festivals, ZAO Music, COC Concertz, Respect + Fractals - plus smaller initiatives evolving in parallel).
 
 **How it fits ZABAL Games:** The ZAO is the parent. ZABAL Games is one of its three-month seasonal initiatives. Every Finalist in August gets paired with a ZAO mentor. The voter set for the Finals is Respect-holders inside The ZAO.
 
@@ -90,7 +90,8 @@ ecosystem, building tools the rest of us use.
 What's live: ZAO OS is the platform. $ZABAL is the token. WaveWarZ is
 the artist prediction market. ZAOstock is the festival. ZAO Music
 is the label. COC Concertz is the virtual show network. Respect is
-the governance.
+the governance. Plus smaller initiatives running in parallel - 7+
+brands total under the ZAO umbrella.
 
 ZABAL Games is one of our seasonal initiatives. Three months. Open
 to anyone. The ZAO is what they are joining.
@@ -226,7 +227,7 @@ Mechanism-forward. Not hype. The math + the contract are the pitch.
 
 **Who it serves:** Music fans who want stake in artist discovery. The 40+ battling artists themselves. Traders looking for a real-signal market on cultural taste. Builders pitching for ZABAL Games who want to compose with the protocol.
 
-**What's live now:** v1 LIVE on Solana - wavewarz-intelligence.vercel.app. Snapshot ~2026-05-23: 400+ SOL cumulative volume, hundreds of battles, 40+ artists. ~11 X Spaces per week (5 morning + 5 night Mon-Fri + Sunday-night). v2 IN BUILD on Base - agentic version by Sam, smart contracts reviewed by Arthur (Neynar). Mainnet target July 2026. Founder: Hurric4n3Ike.
+**What's live now:** v1 LIVE on Solana - real-time numbers at wavewarz-intelligence.vercel.app. Snapshot from 2026-05-23: 400+ SOL cumulative volume, hundreds of battles, 40+ artists registered (current count + volume always at wavewarz-intelligence.vercel.app). ~11 X Spaces per week (5 morning + 5 night Mon-Fri + Sunday-night). v2 IN BUILD on Base - agentic version by Sam, smart contracts reviewed by Arthur (Neynar). Mainnet target July 2026. Founder: Hurric4n3Ike.
 
 **How it fits ZABAL Games:** WaveWarZ-Base is the August Finals settlement protocol. Each Finalist becomes a tradable battle entry. Market trades for 72 hours - early demos, repos, casts, judge-agent scores all feed the signal. Smart contract settles placements at T+72h. Respect-holders get a voice in the settlement formula. Doc 720 has the full mechanic.
 
@@ -255,8 +256,9 @@ custody. The artist is the asset, the listener is the trader, the
 market is the discovery engine.
 
 v1 has been live on Solana for over a year. Built by Hurric4n3Ike.
-Snapshot from late May: 400+ SOL cumulative volume, hundreds of
-battles, 40+ artists registered. About 11 X Spaces per week as the
+Snapshot from late May 2026: 400+ SOL cumulative volume, hundreds
+of battles, 40+ artists registered. Current live numbers always at
+wavewarz-intelligence.vercel.app. About 11 X Spaces per week as the
 live arena.
 
 v2 is being built on Base right now. Agentic version. Sam is
@@ -291,7 +293,7 @@ the deliverable.
 
 **Who it serves:** Independent Maine + Northeast US artists with a real live set, who want a booked stage with venue infra handled. Community that values warm operational competence over hype.
 
-**What's live now:** ZAOstock 2026 active - **October 3, Franklin Street Parklet, Ellsworth Maine**. 10 artists. Full day + livestream + after-party. `/stock/team` dashboard for kanban-based ops. Lean Six Sigma DMAIC weekly cycles. 14-person team across 4 sub-teams (Ops, Finance, Design, Music). Confirmed sponsors: Wallace Events (tents/AV), Limone. ZAO Festivals umbrella holds ZAO-PALOOZA (NYC 2024) + ZAO-CHELLA (Miami 2024) as prior chapters. NextZAOville planned DMV July 2026.
+**What's live now:** ZAOstock 2026 active - **October 3, Franklin Street Parklet, Ellsworth Maine**. 5+ artists confirmed across different genres (final lineup still locking in). Full day + livestream + after-party. `/stock/team` dashboard for kanban-based ops. Lean Six Sigma DMAIC weekly cycles. 20+ people across 6+ different teams. Confirmed sponsors: Wallace Events (tents/AV), Limone. ZAO Festivals umbrella holds ZAO-PALOOZA (NYC 2024) + ZAO-CHELLA (Miami 2024) as prior chapters. NextZAOville planned DMV July 2026.
 
 **How it fits ZABAL Games:** The $500 v0 prize pool for ZABAL Games is sponsored by The ZAO Festivals team. They funded the pool because they want indie artists in the games + the games' winners flowing into next year's festival lineup. Builders who ship festival-ops tools, lineup management, livestream infra, or artist-booking pipelines have a built-in customer in ZAOstock.
 
@@ -318,11 +320,12 @@ booked stage, real pay, venue infrastructure handled. Respect
 artists as artists, not as content units. That is the line.
 
 ZAOstock 2026 is Friday October 3 at Franklin Street Parklet in
-Ellsworth Maine. 10 artists. Full day plus livestream plus after-
-party. We run the build with Lean Six Sigma DMAIC weekly cycles
-because indie festival ops without a system collapses fast. 14
-person team across Ops, Finance, Design, and Music. Wallace Events
-on tents and AV. Limone supporting.
+Ellsworth Maine. 5+ artists confirmed across different genres, full
+lineup still locking in. Full day plus livestream plus after-party.
+We run the build with Lean Six Sigma DMAIC weekly cycles because
+indie festival ops without a system collapses fast. 20+ people
+across 6+ teams - Ops, Finance, Design, Music, and others.
+Wallace Events on tents and AV. Limone supporting.
 
 ZAO Festivals also holds the umbrella for chapters that already
 happened. ZAO-PALOOZA at NFT NYC 2024. ZAO-CHELLA at Miami Art
