@@ -192,12 +192,15 @@
         timelineEl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No feed entries yet.</p>';
         return;
       }
-      timelineEl.innerHTML = entries.map(function(E) {
+      timelineEl.innerHTML = entries.map(function(E, i) {
         var meta = byId[E.stream] || { name: E.stream, color: 'orange' };
         var c = meta.color;
         var linkEl = E.link
           ? '<a href="' + esc(E.link) + '"' + (/^https?:/.test(E.link) ? ' target="_blank" rel="noopener"' : '') + ' style="font-size: 0.78rem;">open</a>'
           : '';
+        // Cast affordance per entry - spread the fact into /zabal. data-idx looks up
+        // the entry object so nothing user-facing is interpolated into an attribute.
+        var shareEl = '<button type="button" class="tl-share" data-idx="' + i + '">Cast</button>';
         return '<div class="card" style="border-left: 3px solid var(--' + c + ');">' +
           '<div class="card-label" style="color: var(--' + c + '); display: flex; justify-content: space-between; gap: 0.5rem;">' +
             '<span>' + esc(meta.name) + ' - ' + esc(E.kind) + '</span>' +
@@ -205,9 +208,20 @@
           '</div>' +
           '<h3>' + esc(E.title) + '</h3>' +
           '<p>' + esc(E.summary) + '</p>' +
-          (linkEl ? '<div class="card-meta">' + linkEl + '</div>' : '') +
+          '<div class="card-meta" style="display:flex; gap:0.6rem; align-items:center;">' + linkEl + shareEl + '</div>' +
           '</div>';
       }).join('');
+      // Wire per-entry share via the entries array (no attribute injection).
+      timelineEl.querySelectorAll('.tl-share').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var E = entries[Number(btn.getAttribute('data-idx'))];
+          if (!E) return;
+          var text = E.title + ' - ' + E.summary;
+          var url = /^https?:/.test(E.link || '') ? E.link : 'https://zabalgames.com/streams';
+          if (window.ZABAL && window.ZABAL.share) window.ZABAL.share({ platform: 'farcaster', text: text, url: url });
+          else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds%5B%5D=' + encodeURIComponent(url) + '&channelKey=zabal', '_blank', 'noopener');
+        });
+      });
     }).catch(function() {
       streamsEl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">Streams unavailable right now - see <a href="/data/data-streams.json">data-streams.json</a>.</p>';
       timelineEl.innerHTML = '';

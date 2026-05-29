@@ -136,8 +136,8 @@ window.ZABAL.openNewTab = function openNewTab(url) {
 };
 
 // Record a deliberate social action against the user's verified FID.
-// Uses sdk.quickAuth.fetch so the request carries a Quick Auth JWT the
-// server verifies - only works inside a Mini App, no-ops everywhere else.
+// Uses sdk.quickAuth.fetch so the request carries a Quick Auth JWT the server
+// verifies - only works inside a Mini App, no-ops everywhere else.
 window.ZABAL.track = async function track(action, target) {
   try {
     const ctx = await sdk.context;
@@ -149,6 +149,24 @@ window.ZABAL.track = async function track(action, target) {
     });
   } catch (e) {
     // Tracking is best-effort; never block the share on it.
+  }
+};
+
+// One-tap join (verified). Inside a Mini App, POSTs the join to /api/join with a
+// Quick Auth JWT. Returns { ok, reason } so the UI can react or fall back to the
+// full sign-up form outside a Mini App.
+window.ZABAL.join = async function join(payload) {
+  try {
+    const ctx = await sdk.context;
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/join', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload || {}),
+    });
+    return res.ok ? { ok: true } : { ok: false, reason: 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
   }
 };
 

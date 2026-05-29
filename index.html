@@ -637,11 +637,24 @@
     <img src="/assets/logo.png" alt="ZABAL Games - Insert Coin" class="hero-logo" width="420" height="420">
     <h1 class="visually-hidden">ZABAL Games</h1>
     <p class="pitch">
-      <strong>3 months of building with The ZAO.</strong> Free to join. Anyone welcome.
+      <strong>Build for a real community - don't win a weekend and disappear.</strong> Free to join. Any harness.
     </p>
     <p class="pitch-sub">
-      A community Build-A-Thon for digital creators. June workshops + July open build month + August Finals.
+      ZABAL Games is The ZAO's 3-month Build-A-Thon - a build event for the ecosystem, not a video-game contest. Ship something that matters, gets used, and keeps paying you, with a ZAO mentor as your teammate. June workshops, July open build, August Finals.
     </p>
+    <p class="pitch-derisk">
+      Pick one door - the July build can be a weekend. Every finisher gets paid and a Hats NFT.
+    </p>
+    <div class="join-block">
+      <button type="button" id="zg-join" class="join-btn">Join with Farcaster</button>
+      <a href="/lead" class="join-alt">or full sign-up</a>
+      <p id="join-count" class="join-count" aria-live="polite"></p>
+    </div>
+    <div class="proof-row">
+      <span class="proof-badge">FarHack Snap winner</span>
+      <span class="proof-badge">$500 USDC pool - ZAO festivals</span>
+      <span class="proof-badge">3 workshop sessions confirmed</span>
+    </div>
 
     <div class="countdown-block">
       <span class="label">Doors open in</span>
@@ -985,6 +998,39 @@
 </script>
 
 <script src="/assets/presence.js"></script>
+
+<script>
+(function () {
+  // One-tap join + live builders-joined counter.
+  function loadCount() {
+    fetch('/api/activity', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var el = document.getElementById('join-count');
+        if (el && d && d.joinsTotal > 0) {
+          el.textContent = d.joinsTotal + ' builder' + (d.joinsTotal === 1 ? '' : 's') + ' in';
+        }
+      })
+      .catch(function () {});
+  }
+  var btn = document.getElementById('zg-join');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      btn.disabled = true;
+      btn.textContent = 'Joining...';
+      var p = (window.ZABAL && window.ZABAL.join)
+        ? window.ZABAL.join({ door: 'workshops' })
+        : Promise.resolve({ ok: false, reason: 'no-sdk' });
+      p.then(function (r) {
+        if (r.ok) { btn.textContent = "You're in"; loadCount(); }
+        else if (r.reason === 'not-in-miniapp' || r.reason === 'no-sdk') { window.location.href = '/lead'; }
+        else { btn.disabled = false; btn.textContent = 'Join with Farcaster'; }
+      });
+    });
+  }
+  loadCount();
+})();
+</script>
 
 </body>
 </html>

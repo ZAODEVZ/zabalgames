@@ -222,3 +222,20 @@ a:hover { text-decoration: underline; }
 .presence-list li.clickable:hover { color: var(--text); }
 .presence-list img { border-radius: 50%; object-fit: cover; flex: none; }
 
+/* Homepage hero: de-risk line, one-tap join, social proof */
+.pitch-derisk { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.4rem; }
+.join-block { display: flex; align-items: center; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.1rem; }
+.join-btn { font-family: inherit; font-size: 0.95rem; font-weight: 700; padding: 0.6rem 1.2rem;
+  border-radius: 8px; cursor: pointer; color: var(--bg); background: var(--cyan); border: 1px solid var(--cyan); }
+.join-btn:hover { box-shadow: 0 0 14px rgba(0, 229, 255, 0.4); }
+.join-btn[disabled] { opacity: 0.6; cursor: default; }
+.join-alt { color: var(--text-muted); font-size: 0.85rem; }
+.join-count { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-size: 0.85rem; margin: 0; }
+.proof-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; justify-content: center; }
+.proof-badge { font-size: 0.72rem; letter-spacing: 0.03em; text-transform: uppercase; color: var(--gold);
+  border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.6rem; }
+/* Timeline per-entry share */
+.tl-share { font-family: inherit; font-size: 0.74rem; color: var(--cyan); background: none;
+  border: 1px solid var(--border); border-radius: 999px; padding: 0.15rem 0.6rem; cursor: pointer; }
+.tl-share:hover { border-color: var(--cyan); }
+

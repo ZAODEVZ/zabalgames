@@ -44,15 +44,17 @@ export default async function handler() {
     res = await kvPipeline([
       ['LRANGE', RECENT_KEY, '0', '49'],
       ['SCARD', `zabal:present:${today}`],
+      ['HLEN', 'zabal:joins'],
     ]);
   } catch {
-    return json({ configured: true, count: 0, recent: [] });
+    return json({ configured: true, count: 0, recent: [], joinsTotal: 0 });
   }
 
   const list = res?.[0]?.result || [];
   const count = Number(res?.[1]?.result || 0);
+  const joinsTotal = Number(res?.[2]?.result || 0);
   const recent = list
     .map(s => { try { return JSON.parse(s); } catch { return null; } })
     .filter(Boolean);
-  return json({ configured: true, count, recent });
+  return json({ configured: true, count, recent, joinsTotal });
 }
