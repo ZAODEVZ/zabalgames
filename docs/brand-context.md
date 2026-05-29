@@ -85,7 +85,7 @@ Framework per brand: One-liner / Mission / Audience / Voice / Visual / Build sur
 - **Audience:** 13+ concert promoters + the audiences who attend virtual + metaverse concerts.
 - **Voice:** Warm, communal, builder-energy - the same family as the ZAO umbrella. COC reads as part of the ecosystem, not a separate vibe. (Confirmed 2026-05-22.)
 - **Visual:** Its own distinct brand - colors, logo, vibe separate from the ZAO umbrella. **[TBD - Zaal describing the spec.]**
-- **Build surface:** Next.js 16 + Firebase + Cloudinary. Surfaces: `/portal/newsletter` (newsletter builder), `/stage` (concert stream interface), `/team` (promoter dashboard). Existing content pipeline: record show -> Descript edit -> newsletter builder generates YouTube descriptions (MiniMax AI) -> manual cross-post. 150+ concerts run. Builders can ship: concert streaming tools, the content pipeline automation, promoter dashboards, ticketing/RSVP, metaverse concert UX.
+- **Build surface:** Next.js 16 + Firebase + Cloudinary. Surfaces: `/portal/newsletter` (newsletter builder), `/stage` (concert stream interface), `/team` (promoter dashboard). Existing content pipeline: record show -> Descript edit -> newsletter builder generates YouTube descriptions (MiniMax AI) -> manual cross-post. 5 COC Concertz shows produced (going on #6 Sat Jun 13 at Stilo World Spatial). Builders can ship: concert streaming tools, the content pipeline automation, promoter dashboards, ticketing/RSVP, metaverse concert UX.
 - **Status:** Live - COC Concertz #3 ran March 2026 (metaverse concert with DUO DO, JOSEPH GOATS, STILO WORLD).
 
 ---

@@ -20,7 +20,7 @@ Architecture recap: zabalgames.com is the games operational center. Magnetiq hol
 | 4 | WaveWarZ | Live v1 Solana, v2 Base in build | Music fans + traders + artists | 90s |
 | 5 | ZAO Festivals + ZAOstock | ZAOstock active (Oct 3 2026) | Indie artists + Maine community | 85s |
 | 6 | ZAO Music | First release in progress | Members ready to release | 70s |
-| 7 | COC Concertz | 150+ concerts run | Virtual concert promoters + audiences | 70s |
+| 7 | COC Concertz | 5 concerts done, #6 going live Sat Jun 13 | Virtual concert promoters + audiences | 70s |
 | 8 | Respect + Fractals | Live (core governance) | All ZAO members earning Respect | 80s |
 
 ---
@@ -411,7 +411,7 @@ Proving the label-less model. That is the whole point.
 
 **Who it serves:** 13+ active concert promoters + the audiences who attend virtual + metaverse concerts.
 
-**What's live now:** 150+ concerts run. Next.js 16 + Firebase + Cloudinary stack. Surfaces: `/portal/newsletter` (newsletter builder), `/stage` (concert stream interface), `/team` (promoter dashboard). Content pipeline: record show -> Descript edit -> newsletter generator (MiniMax AI) -> cross-post. COC Concertz #3 ran March 2026 - metaverse concert with DUO DO, JOSEPH GOATS, STILO WORLD. COC Concertz #6 = Saturday June 13 at 4pm EST at Stilo World Spatial.
+**What's live now:** 5 COC Concertz shows produced to date. COC Concertz #6 going live Saturday June 13 at 4pm EST at Stilo World Spatial - the 6th show. Next.js 16 + Firebase + Cloudinary stack. Surfaces: `/portal/newsletter` (newsletter builder), `/stage` (concert stream interface), `/team` (promoter dashboard). Content pipeline: record show -> Descript edit -> newsletter generator (MiniMax AI) -> cross-post. COC Concertz #3 ran March 2026 - metaverse concert with DUO DO, JOSEPH GOATS, STILO WORLD.
 
 **How it fits ZABAL Games:** Builders shipping concert streaming tools, content-pipeline automation, promoter dashboards, ticketing / RSVP flows, or metaverse concert UX have COC Concertz as their built-in test customer. Also - one of the August Finals reveal events could be a COC concert format. Promoter mentors in our mentor pool.
 
@@ -436,7 +436,7 @@ active organizers running streamed + metaverse shows + a content
 pipeline that turns each one into a permanent newsletter, clips,
 and audience-building artifact.
 
-150+ concerts run. Stack is Next.js 16, Firebase, Cloudinary.
+5 shows produced to date. Number 6 going live Saturday June 13 at Stilo World Spatial. Stack is Next.js 16, Firebase, Cloudinary.
 Promoter dashboard at /portal. Stream interface at /stage.
 Newsletter builder generates YouTube descriptions using MiniMax AI
 - one of the cleaner uses of AI in music ops I have seen.

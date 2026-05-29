@@ -91,7 +91,7 @@ The umbrella you are building for. Understand which brand your build serves.
 ### COC Concertz
 - **What:** Virtual concert community - 13+ promoters running streamed shows.
 - **Stack:** Next.js 16 + Firebase + Cloudinary.
-- **Surfaces:** `/portal/newsletter`, `/stage`, `/team`. 150+ concerts run.
+- **Surfaces:** `/portal/newsletter`, `/stage`, `/team`. 5 COC Concertz shows produced (COC Concertz #6 going live Sat Jun 13 at Stilo World Spatial).
 - **Mission:** Give virtual concerts a real home - for the metaverse + streamed shows and the promoters who run them.
 - **Content pipeline (today, manual):** Record show -> Descript edit -> newsletter builder generates YouTube descriptions (MiniMax AI) -> manual cross-post. Automating the cross-post end is adoptable project #07.
 - **Recent:** COC Concertz #3 ran March 2026 - metaverse concert with DUO DO, JOSEPH GOATS, STILO WORLD.
