@@ -13,6 +13,23 @@
   promising, tighten the offer. Under 5 = the offer or the audience is off; fix
   before scaling spend. The score is not the validation - the signups are.
 
+### What counts as "outside the immediate circle"
+
+Decide this before you post, not after, or the test grades itself generously.
+
+- COUNTS (cold-ish): someone you have not built with, not a current ZAO member, found
+  you via the /zabal cast, a reshare, or a cold-ish DM. FarHack / Agentic Bootcamp
+  alumni you have not worked with count.
+- DOES NOT count toward the 10: current ZAO members, people you have shipped with,
+  close friends, anyone you would have texted anyway. Log them, but in a separate
+  "warm" tally.
+
+Target is 10 from the COUNTS column. If 8 of your signups are warm, that is real
+enthusiasm worth noting - but it validates your circle, not external demand. Per the
+advisor: hit 10+ from outside and the offer has proven it resonates when framed right
+(Ease of sale 5 -> 6).
+
+
 ## 1. The /zabal announce cast (primary lever)
 
 Variant A - lead with the frame:
