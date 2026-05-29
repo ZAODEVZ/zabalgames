@@ -668,6 +668,8 @@
     </div>
   </header>
 
+  <div id="zabal-presence" class="presence" style="display:none;"></div>
+
   <section class="section">
     <h2>What is it?</h2>
     <p>Three months. Different doors open in different months. You can step in any of them.</p>
@@ -877,6 +879,9 @@
       console.warn('No share text for key:', key);
       return;
     }
+    if (window.ZABAL && typeof window.ZABAL.track === 'function') {
+      window.ZABAL.track(platform === 'x' ? 'share' : 'cast', key);
+    }
     var url;
 
     if (platform === 'x') {
@@ -978,6 +983,8 @@
   }
 })();
 </script>
+
+<script src="/assets/presence.js"></script>
 
 </body>
 </html>

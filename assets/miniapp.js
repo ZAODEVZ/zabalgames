@@ -120,15 +120,34 @@ window.ZABAL.openNewTab = function openNewTab(url) {
   document.body.removeChild(a);
 };
 
+// Record a deliberate social action against the user's verified FID.
+// Uses sdk.quickAuth.fetch so the request carries a Quick Auth JWT the
+// server verifies - only works inside a Mini App, no-ops everywhere else.
+window.ZABAL.track = async function track(action, target) {
+  try {
+    const ctx = await sdk.context;
+    if (!ctx || !ctx.client || !sdk.quickAuth) return;
+    await sdk.quickAuth.fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: action, target: target || '' }),
+    });
+  } catch (e) {
+    // Tracking is best-effort; never block the share on it.
+  }
+};
+
 // One share entry point for every page. platform: 'farcaster' | 'x'.
 // Farcaster casts post into the /zabal channel with the page as an embed.
-window.ZABAL.share = function share({ platform, text, url }) {
+window.ZABAL.share = function share({ platform, text, url, target }) {
   if (platform === 'x') {
     const t = text + (url ? ' ' + url : '');
     window.ZABAL.openNewTab('https://twitter.com/intent/tweet?text=' + encodeURIComponent(t));
+    window.ZABAL.track('share', target || url || '');
     return;
   }
   window.ZABAL.composeCast({ text: text, embeds: url ? [url] : [], channelKey: 'zabal' });
+  window.ZABAL.track('cast', target || url || '');
 };
 
 // Inject a small "you" chip into the nav when running inside a Mini App.
