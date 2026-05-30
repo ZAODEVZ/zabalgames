@@ -24,6 +24,16 @@
       "status": "confirmed",
       "confirmed_date": "2026-05-26",
       "color": "orange"
+    },
+    {
+      "id": "003",
+      "name": "Yerbearzeker",
+      "topic": "June workshop session",
+      "format": "30 min, livestreamed and recorded",
+      "when": "Mon Jun 1 2026, 6-7am",
+      "status": "confirmed",
+      "confirmed_date": "2026-05-30",
+      "color": "cyan"
     }
   ],
   "_schema": {
