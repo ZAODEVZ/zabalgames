@@ -1,4 +1,4 @@
-# ZABAL Games - FounderCheck Context Brief
+# ZABAL Gamez - FounderCheck Context Brief
 
 > Date: 2026-05-29. Extra context to feed FounderCheck so it scores against real
 > evidence, not assumptions. Paste the relevant blocks. Evidence is labelled
@@ -7,7 +7,7 @@
 
 ## One-line (the frame)
 
-ZABAL Games is a 3-month Build-A-Thon run by The ZAO, a 100+ member Farcaster music
+ZABAL Gamez is a 3-month Build-A-Thon run by The ZAO, a 100+ member Farcaster music
 and creator ecosystem. It onboards Farcaster builders with deep context, a mentor as
 an embedded teammate, a $500 USDC pool plus ongoing on-chain economics, governance
 (Respect), and distribution - in exchange for shipping real open-source tools on The
@@ -26,7 +26,7 @@ ZAO's rails. It is an event and an onboarding funnel, not a SaaS.
 - [early signal] Workshop supply is already committing: 3 confirmed June sessions
   (Tyler #001, Thy Revolution #002a + #002b), 5 of 8 slots open. Builders are
   volunteering to teach before any push - supply-side demand.
-- [proven] Live surface: zabalgames.com (Farcaster Mini App), a machine-readable
+- [proven] Live surface: zabalgamez.com (Farcaster Mini App), a machine-readable
   context file at /llms.txt, a submissions pipeline on Supabase, and the /zabal channel.
 - [proven] Sponsor committed: the ZAO festivals team funds the $500 v0 pool; pipeline
   open for more (info@thezao.com).

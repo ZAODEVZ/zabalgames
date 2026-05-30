@@ -1,4 +1,4 @@
-// ZABAL Games - one-tap join (POST /api/join).
+// ZABAL Gamez - one-tap join (POST /api/join).
 //
 // Records a workshop join against a verified Farcaster FID (Quick Auth JWT,
 // verified server-side - same model as api/track.mjs). Dedupes per FID via a KV
@@ -11,7 +11,7 @@
 
 export const config = { runtime: 'edge' };
 
-const DOMAIN = 'zabalgames.com';
+const DOMAIN = 'zabalgamez.com';
 const JWKS_URL = 'https://auth.farcaster.xyz/.well-known/jwks.json';
 const KV_URL = process.env.KV_REST_API_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN;

@@ -1,4 +1,4 @@
-# Adrian (diviflyy) Call Prep - ZABAL Games Workshop Lead
+# Adrian (diviflyy) Call Prep - ZABAL Gamez Workshop Lead
 
 > **Date drafted:** 2026-05-25
 > **Source for context:** BCZ YapZ Episode 8 - https://bczyapz.com/ep/2026-02-11-diviflyy-empire-builder
@@ -36,9 +36,9 @@
 - **Autonomous agent integration** (read/interact with Empire Builder)
 - Custom leaderboards from Quotient + Ethos reputation
 
-## Why Adrian Specifically For ZABAL Games
+## Why Adrian Specifically For ZABAL Gamez
 
-Four ZABAL Games adoptable projects depend on Empire Builder:
+Four ZABAL Gamez adoptable projects depend on Empire Builder:
 - **#01** Songjam leaderboard migration to Empire Builder apiLeaderboards
 - **#02** POIDH bounty leaderboard on Empire Builder
 - **#03** zlank "Today's Empire Builder Stats" daily Snap
@@ -52,7 +52,7 @@ He's the natural next call after Jordan (who is also Empire Builder, May 21 work
 
 - Re-read `docs/research/654-empire-v3-meeting.md` for Jordan's prior commitments
 - Check Adrian's last 3-5 Farcaster casts at https://farcaster.xyz/diviflyy
-- Have https://zabalgames.com open in a tab for share-screen
+- Have https://zabalgamez.com open in a tab for share-screen
 - Have `docs/mentor-outreach-2026-05-24.md` open (his pitch is row 2)
 - Pull glonkybot status: https://empirebuilder.world/empire/glanker (or whatever the URL is)
 
@@ -69,8 +69,8 @@ Bonus: ask if **Jordan should ALSO be a workshop lead** (separate session, not c
 
 ## What We Offer (the value props ranked)
 
-1. **30-60 min of Empire Builder V3 distribution** - recorded, lives forever in Magnetiq library, the entire ZABAL Games cohort watches
-2. **Mentor page** at `zabalgames.com/mentor?handle=diviflyy` - shareable URL, drives traffic to his work
+1. **30-60 min of Empire Builder V3 distribution** - recorded, lives forever in Magnetiq library, the entire ZABAL Gamez cohort watches
+2. **Mentor page** at `zabalgamez.com/mentor?handle=diviflyy` - shareable URL, drives traffic to his work
 3. **First-look at 2026 builders** - he sees the July cohort before anyone else
 4. **Cast amplification** - ZAO accounts amplify the workshop drop
 5. **Mentor NFT** (Hats Protocol on Base) if mentor slot accepted + his champion ships in August
@@ -81,7 +81,7 @@ Bonus: ask if **Jordan should ALSO be a workshop lead** (separate session, not c
 ### Opening (3 min)
 
 - "Saw your BCZ YapZ episode - the 'use infra that exists' line is exactly the ethos we want builders absorbing in June. That's why this call."
-- Quick state of ZABAL Games: 16 adoptable projects, /lead form live, weekly Fractal continues, May 31 launch cast
+- Quick state of ZABAL Gamez: 16 adoptable projects, /lead form live, weekly Fractal continues, May 31 launch cast
 - "Half the adoptables touch Empire Builder. You're the most natural workshop lead after Tyler."
 
 ### Workshop pitch (8 min)
@@ -97,7 +97,7 @@ Bonus: ask if **Jordan should ALSO be a workshop lead** (separate session, not c
 - Adoptable #01, #02, #03, #04 all touch Empire Builder
 - Adoptable #11 ZAONEXUS + #16 ZOUNZ also relevant
 - Walk through quickly - he might have opinions / improvements / new adoptable suggestions
-- Live URL: https://zabalgames.com/projects (or /llms.txt for the full list)
+- Live URL: https://zabalgamez.com/projects (or /llms.txt for the full list)
 
 ### Mentor ask (5 min)
 
@@ -105,7 +105,7 @@ Bonus: ask if **Jordan should ALSO be a workshop lead** (separate session, not c
 - He picks his champion from the July submission pool (FCFS per mentor)
 - During August Finals, he is the embedded teammate for that builder during the 24h build window
 - Hats Champion NFT if his champion top-3s; permanent Mentor NFT regardless
-- Per-mentor page at zabalgames.com/mentor?handle=diviflyy goes live the moment he confirms
+- Per-mentor page at zabalgamez.com/mentor?handle=diviflyy goes live the moment he confirms
 - "Maybe" is fine - he can decide post-workshop
 
 ### Open Q + his asks (10 min)
@@ -120,7 +120,7 @@ Likely questions he might have:
 His likely asks:
 - Cast amplification on workshop drop (yes, ZAO accounts + Tyler)
 - A way for him to claim a champion explicitly (we have a pending decision on the mechanism - see grill Q1 in mentor-outreach doc)
-- Co-marketing for Empire Builder V3 launch tie-in (yes, ZABAL Games can be the V3 launch event if timing works)
+- Co-marketing for Empire Builder V3 launch tie-in (yes, ZABAL Gamez can be the V3 launch event if timing works)
 
 ### Lock + next steps (3 min)
 
@@ -189,7 +189,7 @@ hey Adrian - heads up for our call. couple topics:
 2. optional: mentor slot for Aug Finals (pairs you with one builder who picks an Empire-adjacent project)
 3. would love to invite Jordan as separate workshop lead too if that fits
 
-context: zabalgames.com - half the adoptables touch Empire Builder
+context: zabalgamez.com - half the adoptables touch Empire Builder
 talk tomorrow
 ```
 
@@ -199,7 +199,7 @@ This pre-loads his thinking so the call moves faster.
 
 If Adrian + Jordan both commit as workshop leads, that's:
 - 2 of 8 mentor slots filled with the most-touched ecosystem brand
-- Empire Builder V3 launch tied to ZABAL Games as a marketing surface for them
+- Empire Builder V3 launch tied to ZABAL Gamez as a marketing surface for them
 - Adoptables 01-04 have direct mentor coverage
 - The "ZAO Snaps tab on zlank" idea (issue #64) gets Empire Builder credibility from its co-creators
 

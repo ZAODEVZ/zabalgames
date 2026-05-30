@@ -1,16 +1,16 @@
-# ZABAL Games
+# ZABAL Gamez
 
 > A Farcaster vibe-coding challenge for the ZAO ecosystem - streamer games crossed with a hackathon. Season 1 runs **June 2026 (workshops) -> July (open build-a-thon) -> August (Finals)**.
 
-Live at **zabalgames.com**. Cast channel: **/zabal** on Farcaster.
+Live at **zabalgamez.com**. Cast channel: **/zabal** on Farcaster.
 
-This repo is the single source of truth for ZABAL Games - the live site, the research docs that shaped the format, the brand identity guide, the launch kit, and the DB schema for submissions.
+This repo is the single source of truth for ZABAL Gamez - the live site, the research docs that shaped the format, the brand identity guide, the launch kit, and the DB schema for submissions.
 
 ---
 
 ## Quick links
 
-- **Site:** [index.html](./index.html) -> deploys to zabalgames.com
+- **Site:** [index.html](./index.html) -> deploys to zabalgamez.com
 - **Brand identity:** [docs/brand-context.md](./docs/brand-context.md) - the voice + visual guide for every ZAO brand the cohort builds for
 - **Launch kit:** [docs/launch-kit.md](./docs/launch-kit.md) - paste-ready announcement posts (Farcaster, X, Telegram, newsletter), share-card image prompt, Zabal connector NFT image prompt
 - **Canonical state:** [docs/research/701-canonical-state.md](./docs/research/701-canonical-state.md) - what is locked, what is open, what is being built
@@ -19,7 +19,7 @@ This repo is the single source of truth for ZABAL Games - the live site, the res
 
 ---
 
-## What ZABAL Games is
+## What ZABAL Gamez is
 
 Not a generic hackathon. A **Farcaster-creator onboarding event for the ZAO ecosystem.** Bring hungry, Farcaster-active vibe-coders into ZAO by having them ship something real, in public, with a ZAO mentor in their corner.
 
@@ -89,7 +89,7 @@ Designed for Vercel zero-config static deploy:
 
 1. Connect this repo to Vercel.
 2. Point Vercel project at the repo root (no framework, no build command).
-3. Add the `zabalgames.com` domain in Vercel project settings.
+3. Add the `zabalgamez.com` domain in Vercel project settings.
 4. Push to `main` deploys.
 
 ### Farcaster mini app
@@ -119,8 +119,8 @@ Detailed list in [docs/research/701-canonical-state.md - Part 9](./docs/research
 ## Related
 
 - **/zabal** Farcaster channel - https://farcaster.xyz/~/channel/zabal
-- **BetterCallZaal** - https://bettercallzaal.com - Zaal's site, where ZABAL Games originated
-- **The ZAO** - the 100+ member gated Farcaster music community ZABAL Games serves
+- **BetterCallZaal** - https://bettercallzaal.com - Zaal's site, where ZABAL Gamez originated
+- **The ZAO** - the 100+ member gated Farcaster music community ZABAL Gamez serves
 - **Magnetiq** - https://getmagnetic.com (or wherever Tyler's portal lives) - the workshop library / entry portal
 
 ---

@@ -1,6 +1,6 @@
-# docs/ - ZABAL Games Launch Library
+# docs/ - ZABAL Gamez Launch Library
 
-> All non-research docs for ZABAL Games Season 1. Research docs (numbered 1xx-7xx) live in `docs/research/` instead.
+> All non-research docs for ZABAL Gamez Season 1. Research docs (numbered 1xx-7xx) live in `docs/research/` instead.
 
 ## Launch-day (2026-05-26 ship)
 

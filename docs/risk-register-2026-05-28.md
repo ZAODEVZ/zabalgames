@@ -1,6 +1,6 @@
 # Risk Register - 2026-05-28
 
-> Comprehensive sweep of what could go wrong across every moving piece for ZABAL Games Season 1. Per Zaal 2026-05-28: 'tell me what other issues may arise.'
+> Comprehensive sweep of what could go wrong across every moving piece for ZABAL Gamez Season 1. Per Zaal 2026-05-28: 'tell me what other issues may arise.'
 
 Risks ranked by **severity x likelihood**. Severity scale: launch-blocker / functional / cosmetic. Likelihood: high / medium / low. Mitigation strategies inline.
 
@@ -45,7 +45,7 @@ Browser private mode disables localStorage. Some users intentionally disable it.
 
 ### R2.1 - Bot hallucination on ecosystem facts - severity: functional, likelihood: high
 
-Claude Sonnet, even with system prompt + knowledge base, can confidently state false facts. "ZABAL Games has $5000 prize pool" or "Workshop #1 is on June 15" when neither is locked.
+Claude Sonnet, even with system prompt + knowledge base, can confidently state false facts. "ZABAL Gamez has $5000 prize pool" or "Workshop #1 is on June 15" when neither is locked.
 
 **Mitigation:**
 - System prompt explicitly says "if you don't know, say 'I don't have that locked - dm @bettercallzaal'"
@@ -324,7 +324,7 @@ Per ZAO OS Doc 489: 12-month coexistence window expected. If protocols diverge e
 Preview URLs return 401 (Vercel SSO) - happened during PR #2 review.
 
 **Mitigation:**
-- Now: merged to main, prod is public (zabalgames.com)
+- Now: merged to main, prod is public (zabalgamez.com)
 - Future: when testing PR previews, share via Vercel "view deployment" button or generate bypass tokens for external testers
 
 ### R6.12 - Single point of failure: zaal - severity: functional, likelihood: high

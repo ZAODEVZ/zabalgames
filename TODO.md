@@ -1,4 +1,4 @@
-# ZABAL Games - Running TODO
+# ZABAL Gamez - Running TODO
 
 > The live state of the build. Updated as commits land. See `docs/research/701-canonical-state.md` for the canonical event-level decisions; this file tracks the actual build / launch tasks.
 
@@ -59,7 +59,7 @@
 | W11 | **OG PNG** | Open `assets/og-card.svg` in browser, screenshot at 1200x630, save as `assets/og-card.png`, push. | 5 min | **NONE - only blocker left** | Swap `<meta property="og:image">` to point at PNG. Test unfurl on X / Telegram / Bluesky. (Currently 404 - SVG fallback unfurls in most clients.) |
 | ~~W2~~ | ~~Lu.ma calendar URL~~ | **DONE 2026-05-24.** Using shared ZAO calendar at luma.com/zao (cal-jPH4al7AMlXzdNN). Workshops added as individual events alongside the weekly Fractal + other ZAO events. Embed iframe live in `index.html #workshops` left card. | - | - | - |
 | ~~W3~~ | ~~Cal.com event-type URL~~ | **DONE 2026-05-24.** Event-type live at cal.com/bettercallzaal/zabal-games-workshop-slot. Embed iframe wired into `index.html #workshops` right card with Restream/Meet flexibility messaging. | - | - | - |
-| ~~W4~~ | ~~Farcaster manifest signatures~~ | **DONE 2026-05-25.** Signed with FID 19640 custody key. Dropped into `.well-known/farcaster.json`. zabalgames.com now registered as Mini App. | - | - | - |
+| ~~W4~~ | ~~Farcaster manifest signatures~~ | **DONE 2026-05-25.** Signed with FID 19640 custody key. Dropped into `.well-known/farcaster.json`. zabalgamez.com now registered as Mini App. | - | - | - |
 | ~~W10~~ | ~~Zlank Snap published~~ | **DONE 2026-05-26.** Snap live at https://zlank.online/s/OAmekQ. Verified snap+json + HTML both return 200, Snap v2.0 JSON valid, confetti + 4-option poll renders. Wired into docs/launch-kit.md + hero CTA on index.html. | - | - | - |
 
 **Total Zaal time for ship-readiness: ~50 min.**
@@ -89,7 +89,7 @@
 | N10 | Live Bonfire push + integration test | Proves the queryable-depth promise. Builds AFTER BONFIRE_API_KEY shared. | 5 min |
 | N11 | Update llms.txt with kEngram pointers as round-3+ research lands | Ongoing maintenance | 10 min per round |
 | N12 | Per-mentor pages populate as roster locks | Once each mentor confirms, add JSON entry | 5 min per mentor |
-| **N13** | **Builder registration via Farcaster + GitHub OAuth (Doc 750)** | Replace one-shot form submission with "register once, build all month, agents read July GitHub activity." Frictionless connect via Mini App SDK + GitHub `read:user` OAuth. Auto-extract submission bar (live URL + demo + cast) from repo README. Featured-badge for repos with zabalgames.com URL. Fork 1B locked - build mid-June for July go-live. | 3-4 weeks (Week of Jun 1 through Jun 29) |
+| **N13** | **Builder registration via Farcaster + GitHub OAuth (Doc 750)** | Replace one-shot form submission with "register once, build all month, agents read July GitHub activity." Frictionless connect via Mini App SDK + GitHub `read:user` OAuth. Auto-extract submission bar (live URL + demo + cast) from repo README. Featured-badge for repos with zabalgamez.com URL. Fork 1B locked - build mid-June for July go-live. | 3-4 weeks (Week of Jun 1 through Jun 29) |
 
 ---
 
@@ -115,7 +115,7 @@ EASY-FIRST schedule (re-ranked per Zaal call 2026-05-24):
 |-----|------|-----|
 | Sat May 24 (today, easiest first) | **W11 OG PNG (5 min)** then W2 Lu.ma + W3 Cal.com if time | Drop in PNG meta, embed iframes as URLs arrive |
 | Sun May 25 | W4 Farcaster manifest (10 min) + send first mentor DMs (Jordan, Adrian, Tyler - 10 min) | Drop manifest values into farcaster.json, monitor mentor responses |
-| Mon May 26 | Merge zlank PR #63 + publish ZABAL Games Snap (10 min). Mentor DMs round 2 (Hurric4n3Ike, Sam, Arthur). | Wire Snap URL into launch kit + hero CTA. Add confirmed mentors to data/mentors.json. |
+| Mon May 26 | Merge zlank PR #63 + publish ZABAL Gamez Snap (10 min). Mentor DMs round 2 (Hurric4n3Ike, Sam, Arthur). | Wire Snap URL into launch kit + hero CTA. Add confirmed mentors to data/mentors.json. |
 | Tue-Wed May 27-28 | Mentor DMs round 3 (kmac.eth, Joshua.eth + backup list). Test from a friend in Africa (VPN OFF) to gauge how bad the no-CDN issue is. | N5 hero banner SVG, N9 daily-stats Snap (after W10). |
 | Thu-Fri May 29-30 | Final QA in Warpcast / Telegram / X / Bluesky. Approve launch cast copy. | Cast copy draft. Pre-launch polish. |
 | Sat May 31 | LAUNCH CAST FIRES | Monitor + respond + amplify |

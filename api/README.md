@@ -1,4 +1,4 @@
-# ZABAL Games API
+# ZABAL Gamez API
 
 Zero-dependency Vercel **edge** functions (no `package.json`, no build step - same
 model as `api/snap/signup.mjs`).

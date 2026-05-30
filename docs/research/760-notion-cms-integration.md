@@ -1,4 +1,4 @@
-# 760 - Notion CMS Integration for zabalgames.com
+# 760 - Notion CMS Integration for zabalgamez.com
 
 > **Status:** Spec locked 2026-05-28. Build target: this week (post-launch tighten).
 > **Origin:** Zaal call 2026-05-28 - 'we can put more of the info overall all in notion, but it would be great if we can display the notion info on the website automatically.'
@@ -53,7 +53,7 @@ Inside Zaal's command center at https://app.notion.com/p/ZABAL-Games-Command-Cen
 
 | Property | Type | Example |
 |---|---|---|
-| `Name` | Title | "Magnetiq - The Workshop Library Behind ZABAL Games" |
+| `Name` | Title | "Magnetiq - The Workshop Library Behind ZABAL Gamez" |
 | `Lead` | Relation -> People DB | -> Tyler Stambaugh |
 | `Status` | Select | confirmed / tentative / open |
 | `Date` | Date | 2026-06-12 (or empty if TBD) |
@@ -381,8 +381,8 @@ Recommended: keep /data in git as fallback. Sync overwrites at build but if buil
 ## Adjacent docs
 
 - ZAO OS Doc 2027 - Notion + Claude best practices (full research, validated 2026-05-28)
-- ZABAL Games Doc 750 - Builder OAuth registration (the builders.json may also move to Notion in Phase 2)
-- ZABAL Games TODO N15 (new) - Implement this spec
+- ZABAL Gamez Doc 750 - Builder OAuth registration (the builders.json may also move to Notion in Phase 2)
+- ZABAL Gamez TODO N15 (new) - Implement this spec
 
 ## Risk register
 

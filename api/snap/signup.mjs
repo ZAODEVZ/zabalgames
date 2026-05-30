@@ -1,4 +1,4 @@
-// ZABAL Games signup Snap - hybrid endpoint.
+// ZABAL Gamez signup Snap - hybrid endpoint.
 //
 // Content negotiation per @farcaster/snap spec:
 // - Accept: application/vnd.farcaster.snap+json -> return Snap JSON (in-cast
@@ -21,7 +21,7 @@
 
 export const config = { runtime: 'edge' };
 
-const SITE = 'https://zabalgames.com';
+const SITE = 'https://zabalgamez.com';
 const ENDPOINT = `${SITE}/api/snap/signup`;
 const IMG = `${SITE}/assets/icon.png`;
 const FORMSPREE_URL = 'https://formspree.io/f/mlgvvoyd';
@@ -57,7 +57,7 @@ function initialSnap() {
         },
         title: {
           type: 'text',
-          props: { content: 'ZABAL Games Season 1', weight: 'bold' },
+          props: { content: 'ZABAL Gamez Season 1', weight: 'bold' },
         },
         subtitle: {
           type: 'text',
@@ -130,7 +130,7 @@ const MINIAPP_CONFIG = JSON.stringify({
     title: 'Are you in? Sign up',
     action: {
       type: 'launch_miniapp',
-      name: 'ZABAL Games',
+      name: 'ZABAL Gamez',
       url: `${SITE}/lead`,
       splashImageUrl: IMG,
       splashBackgroundColor: '#070709',
@@ -144,10 +144,10 @@ function html() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZABAL Games Season 1 - Are You In?</title>
+<title>ZABAL Gamez Season 1 - Are You In?</title>
 <meta name="description" content="Pick your role. Builder, workshop lead, audience, or mentor.">
 <link rel="canonical" href="${SITE}/lead">
-<meta property="og:title" content="ZABAL Games Season 1 - Are You In?">
+<meta property="og:title" content="ZABAL Gamez Season 1 - Are You In?">
 <meta property="og:description" content="Pick your role. Builder, workshop lead, audience, or mentor.">
 <meta property="og:image" content="${IMG}">
 <meta property="og:url" content="${SITE}/lead">
@@ -166,7 +166,7 @@ p{margin-bottom:0.75rem}
 </head>
 <body>
 <div class="card">
-<h1>ZABAL Games Season 1</h1>
+<h1>ZABAL Gamez Season 1</h1>
 <p>This URL is a Farcaster Snap - cast it on /zabal and the in-feed unfurl shows 4 role buttons.</p>
 <p>On the web?</p>
 <a class="btn" href="${SITE}/lead">Sign up to lead a workshop</a>

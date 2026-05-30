@@ -1,11 +1,11 @@
-// ZABAL Games - send a notification to everyone who added the app (POST /api/notify).
+// ZABAL Gamez - send a notification to everyone who added the app (POST /api/notify).
 //
 // Admin-only: requires Authorization: Bearer <NOTIFY_SECRET>. Reads the stored
 // per-FID notification tokens (written by api/webhook.mjs), groups them by their
 // Farcaster notification server URL, and POSTs the notification in batches.
 //
 // Body: { "title": string (<=32), "body": string (<=128), "targetUrl"?: string }
-//   targetUrl defaults to https://zabalgames.com and must be within the domain.
+//   targetUrl defaults to https://zabalgamez.com and must be within the domain.
 //
 // Env: NOTIFY_SECRET (required), KV_REST_API_URL, KV_REST_API_TOKEN.
 
@@ -15,7 +15,7 @@ const KV_URL = process.env.KV_REST_API_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN;
 const NOTIFY_SECRET = process.env.NOTIFY_SECRET;
 const TOKENS_KEY = 'zabal:notif:tokens';
-const SITE = 'https://zabalgames.com';
+const SITE = 'https://zabalgamez.com';
 const BATCH = 100;
 
 function json(body, status = 200) {

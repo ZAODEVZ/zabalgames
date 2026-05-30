@@ -1,4 +1,4 @@
-// ZABAL Games - presence widget.
+// ZABAL Gamez - presence widget.
 //
 // Fills an element with id="zabal-presence" with a live count of builders
 // active today plus the most recent social actions (cast / share / signup),
@@ -12,7 +12,7 @@
   var host = document.getElementById('zabal-presence');
   if (!host) return;
 
-  var VERB = { cast: 'cast on /zabal', share: 'shared ZABAL Games', signup: 'signed up' };
+  var VERB = { cast: 'cast on /zabal', share: 'shared ZABAL Gamez', signup: 'signed up' };
 
   function clear(el) { while (el.firstChild) el.removeChild(el.firstChild); }
 

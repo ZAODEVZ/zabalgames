@@ -1,4 +1,4 @@
-// ZABAL Games - Farcaster Mini App webhook (POST /api/webhook).
+// ZABAL Gamez - Farcaster Mini App webhook (POST /api/webhook).
 //
 // Farcaster POSTs a JSON Farcaster Signature envelope here when a user adds the
 // app or toggles notifications (referenced by `webhookUrl` in the manifest).

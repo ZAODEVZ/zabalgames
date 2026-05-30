@@ -8,14 +8,14 @@ Run these checks before the first cast. If any fail, fix before posting.
 
 | # | Check | URL | Expected | What if broken |
 |---|---|---|---|---|
-| 1 | Site loads | https://zabalgames.com | Hero with live ticker + countdown to Jun 1 | Vercel deploy might have stalled. Run `vercel --prod` from `/Users/zaalpanthaki/Documents/zabalgames` |
+| 1 | Site loads | https://zabalgamez.com | Hero with live ticker + countdown to Jun 1 | Vercel deploy might have stalled. Run `vercel --prod` from `/Users/zaalpanthaki/Documents/zabalgames` |
 | 2 | Lead form returns OK | Submit a test from `/lead.html` with name = TEST | `{"ok":true,"next":"/thanks"}` | Formspree quota hit -> swap to backup form. Last test: PASS |
-| 3 | Cal.com book widget loads | https://zabalgames.com/#workshops (scroll to right card) | iframe shows time slots for Jun + beyond | If blank: re-check the embed URL `cal.com/bettercallzaal/zabal-games-workshop-slot` |
-| 4 | Lu.ma calendar embeds load | https://zabalgames.com/#workshops (left card) | iframe shows upcoming ZAO events | If blank: re-check `luma.com/embed/calendar/cal-jPH4al7AMlXzdNN/events` |
+| 3 | Cal.com book widget loads | https://zabalgamez.com/#workshops (scroll to right card) | iframe shows time slots for Jun + beyond | If blank: re-check the embed URL `cal.com/bettercallzaal/zabal-games-workshop-slot` |
+| 4 | Lu.ma calendar embeds load | https://zabalgamez.com/#workshops (left card) | iframe shows upcoming ZAO events | If blank: re-check `luma.com/embed/calendar/cal-jPH4al7AMlXzdNN/events` |
 | 5 | Zlank Snap unfurls in Warpcast | Cast `https://zlank.online/s/OAmekQ` to a draft (don't send) | Should show the signup Snap preview | If broken: the Snap URL changed. Pull latest from zlank.online dashboard |
-| 6 | Farcaster manifest live | https://zabalgames.com/.well-known/farcaster.json | Returns JSON with FID 19640 accountAssociation | Should pass - validator passed yesterday |
-| 7 | OG card unfurls | Paste https://zabalgames.com into a fresh tweet (don't send) | Big card with ZABAL Games | If only text: OG PNG might still be SVG-only - either upload the PNG or just push the SVG-meta version |
-| 8 | Mini App SDK ready() called | Open in Warpcast on phone, scan QR for https://zabalgames.com | Splash dismisses + main UI appears | If splash stuck: `assets/miniapp.js` not loading. Check Network tab on phone |
+| 6 | Farcaster manifest live | https://zabalgamez.com/.well-known/farcaster.json | Returns JSON with FID 19640 accountAssociation | Should pass - validator passed yesterday |
+| 7 | OG card unfurls | Paste https://zabalgamez.com into a fresh tweet (don't send) | Big card with ZABAL Gamez | If only text: OG PNG might still be SVG-only - either upload the PNG or just push the SVG-meta version |
+| 8 | Mini App SDK ready() called | Open in Warpcast on phone, scan QR for https://zabalgamez.com | Splash dismisses + main UI appears | If splash stuck: `assets/miniapp.js` not loading. Check Network tab on phone |
 
 ## Cast Schedule (spread across the day - don't fire-and-forget all at once)
 
@@ -31,19 +31,19 @@ Run these checks before the first cast. If any fail, fix before posting.
 **Post 1 - @bettercallzaal (X):**
 
 ```
-ZABAL Games Season 1 is funded. $500 prize pool landed via The ZAO festivals team.
+ZABAL Gamez Season 1 is funded. $500 prize pool landed via The ZAO festivals team.
 
 3 months: June workshops, July build, August Finals. 8 finalists, all win.
 
 Looking for workshop presenters + mentors. ZAO network + digital creators welcome.
 
-zabalgames.com
+zabalgamez.com
 ```
 
 **Post 2 - @thezao (Farcaster):**
 
 ```
-ZABAL Games Season 1 - The ZAO's 3-month Build-A-Thon.
+ZABAL Gamez Season 1 - The ZAO's 3-month Build-A-Thon.
 
 June: open workshops
 July: open Build-A-Thon submissions
@@ -51,13 +51,13 @@ August: 8 ZAO finalists pick champions from submissions, build together
 
 $500 prize pool funded. All 8 Finalists win.
 
-Workshop + mentor signups open at zabalgames.com
+Workshop + mentor signups open at zabalgamez.com
 ```
 
 **Post 3 - @ZAOFestivals (Farcaster):**
 
 ```
-The ZAO Festivals sponsors ZABAL Games Season 1.
+The ZAO Festivals sponsors ZABAL Gamez Season 1.
 
 $500 prize pool secured. 3 months, 8 Finalists, all win.
 
@@ -65,13 +65,13 @@ June workshop slots opening. August mentor roster filling.
 
 Builders from ZAOstock, COC Concertz, ZAO-PALOOZA, ZAOville welcome.
 
-zabalgames.com
+zabalgamez.com
 ```
 
 **Post 4 - /zabal Farcaster channel:**
 
 ```
-ZABAL Games Season 1 is funded.
+ZABAL Gamez Season 1 is funded.
 
 $500 prize pool from The ZAO festivals team. 8 Finalists. All win.
 
@@ -80,25 +80,25 @@ $500 prize pool from The ZAO festivals team. 8 Finalists. All win.
 - July open Build-A-Thon
 - August Finals with mentor pairs
 
-Pitch a workshop or volunteer as mentor at zabalgames.com
+Pitch a workshop or volunteer as mentor at zabalgamez.com
 ```
 
 ### Bonus: Embed/Cover for each cast
 
-When posting on Farcaster, attach the link `https://zabalgames.com` so Warpcast unfurls the OG card. Twitter/X auto-unfurls.
+When posting on Farcaster, attach the link `https://zabalgamez.com` so Warpcast unfurls the OG card. Twitter/X auto-unfurls.
 
 ## Response Templates (for incoming DMs / replies)
 
 Drop these in your DMs / replies. Adjust names + specifics.
 
-### Someone asks "what is ZABAL Games?"
+### Someone asks "what is ZABAL Gamez?"
 
 ```
 3 months of building with The ZAO. June = workshops, July = build, August = 8 finalists pick projects + ship.
 
 Anyone can join.
 
-zabalgames.com walks through it.
+zabalgamez.com walks through it.
 ```
 
 ### Someone wants to lead a workshop
@@ -130,7 +130,7 @@ Current pool: $500 USDC for Top 8 + $ZABAL for Top 16. Sponsor adds expand the U
 ### Someone asks "but I'm not in The ZAO yet, can I still join?"
 
 ```
-Yes. ZABAL Games is open. The ZAO membership matters for the August Finals voting (you need 1000+ Respect to vote on champions), but ANYONE can build in July + present in June.
+Yes. ZABAL Gamez is open. The ZAO membership matters for the August Finals voting (you need 1000+ Respect to vote on champions), but ANYONE can build in July + present in June.
 
 If you want into The ZAO: thezao.com.
 ```
@@ -147,7 +147,7 @@ Empire Builder leaderboard tracks holders.
 ### Someone asks "what about crypto / web3 / blockchain"
 
 ```
-ZABAL Games is for digital creators - musicians, builders, designers, organizers. 
+ZABAL Gamez is for digital creators - musicians, builders, designers, organizers. 
 
 The platform happens to run on Base + Farcaster, but you don't need to know any of it to participate. We've got people teaching workshops on how it all works in June.
 ```
@@ -170,7 +170,7 @@ Where to check who came in:
 | Cal.com bookings | Cal dashboard: https://cal.com/bookings |
 | Lu.ma RSVPs (Tyler + Thy Rev events once created) | luma.com/zao -> per-event |
 | Farcaster /zabal channel new follows | Warpcast > Channel > Members tab |
-| @bettercallzaal mentions on X | Manual scroll or x.com/search?q=zabalgames.com |
+| @bettercallzaal mentions on X | Manual scroll or x.com/search?q=zabalgamez.com |
 
 ### After each signup
 
@@ -271,11 +271,11 @@ Just paste reactions / DMs / screenshots and I'll triage.
 If you're working with me (Claude Code) tomorrow morning and want me caught up fast, paste this:
 
 ```
-goal: ship the ZABAL Games Season 1 announce push today
+goal: ship the ZABAL Gamez Season 1 announce push today
 
 context check:
 1. read docs/announce-day-kit-2026-05-27.md - this is the kit
-2. confirm site loads (curl https://zabalgames.com)
+2. confirm site loads (curl https://zabalgamez.com)
 3. confirm last commit was the audit/kit ship (git log --oneline main | head -5)
 
 then do these in order:

@@ -1,4 +1,4 @@
-// ZABAL Games - activity feed endpoint (GET /api/activity).
+// ZABAL Gamez - activity feed endpoint (GET /api/activity).
 //
 // Public read for the presence widget. Returns the recent social actions and a
 // count of distinct builders active today. Reads Vercel KV (Upstash) over REST.

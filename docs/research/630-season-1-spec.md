@@ -7,9 +7,9 @@ related-docs: 701, 654, 646, 629, 628, 627, 626, 584, 361, 324, 322, 311
 tier: STANDARD
 ---
 
-# 630 - ZABAL Games Season 1: Farcaster Vibe-Coding Challenge
+# 630 - ZABAL Gamez Season 1: Farcaster Vibe-Coding Challenge
 
-> **Goal:** Define ZABAL Games Season 1 - a Farcaster-creator onboarding event for the ZAO ecosystem. Two phases: an open build-a-thon (anyone applies by shipping), then a Finals (8 builders curated by 8 ZAO mentors, each mentor embedded as a teammate). The competition is in getting selected; the Finals are a collaboration. All 8 Finalists win.
+> **Goal:** Define ZABAL Gamez Season 1 - a Farcaster-creator onboarding event for the ZAO ecosystem. Two phases: an open build-a-thon (anyone applies by shipping), then a Finals (8 builders curated by 8 ZAO mentors, each mentor embedded as a teammate). The competition is in getting selected; the Finals are a collaboration. All 8 Finalists win.
 
 > **Status:** DRAFT - working spec, designed in the open. Heavily iterated 2026-05-08 through 2026-05-14. The shareable public summary lives at `bettercallzaal.com/zabalgames.html` (with live Supabase-backed submission tech). This doc is the source-of-truth working spec + decision log.
 
@@ -39,7 +39,7 @@ tier: STANDARD
 
 ## Part 1 - The Thesis
 
-ZABAL Games is **not a generic hackathon**. It is a Farcaster-creator onboarding event.
+ZABAL Gamez is **not a generic hackathon**. It is a Farcaster-creator onboarding event.
 
 The thesis: bring talented Farcaster builders together, give them deep context on everything the ZAO is building, let them create something that helps the community with a ZAO mentor as embedded teammate, and have them earn governance in the community during the event itself. If they keep building with ZAO after - great. If not, they still walked away with a real artifact, a real relationship, and a real onchain credential.
 
@@ -284,7 +284,7 @@ Blocking step: Zaal creates the Supabase project, runs the schema, pastes the UR
 
 ## Also See
 
-- [Doc 646 - Clanker + Empire Builder for ZABAL Games promote window](../../business/646-clanker-empire-builder-zabal-games-promote/) - the optional tokenization layer
+- [Doc 646 - Clanker + Empire Builder for ZABAL Gamez promote window](../../business/646-clanker-empire-builder-zabal-games-promote/) - the optional tokenization layer
 - [Doc 629 - Streaming as main media source](../../infrastructure/629-streaming-as-main-media-source-flywheel/) - the content flywheel that processes Games streams
 - [Doc 628 - Web3 streaming + ZABAL Empire bridge](../../business/628-web3-streaming-zabal-empire-bridge/)
 - [Doc 627 - Twitch + StreamElements](../../cross-platform/627-twitch-streaming-streamelements-integration/) - streaming infra

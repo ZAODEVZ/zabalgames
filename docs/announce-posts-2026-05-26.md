@@ -1,4 +1,4 @@
-# ZABAL Games Season 1 - Announce Posts Draft (2026-05-26)
+# ZABAL Gamez Season 1 - Announce Posts Draft (2026-05-26)
 
 > Four platform-specific posts for the workshop + mentor signup push. Money landed (first sponsor, ZAO festivals team), structure locked, recruiting open.
 
@@ -16,13 +16,13 @@
 ## Post 1 - @bettercallzaal (X) - personal, Zaal's voice
 
 ```
-ZABAL Games Season 1 is funded. $500 prize pool landed via The ZAO festivals team.
+ZABAL Gamez Season 1 is funded. $500 prize pool landed via The ZAO festivals team.
 
 3 months: June workshops, July build, August Finals. 8 finalists, all win.
 
 Looking for workshop presenters + mentors. ZAO network + digital creators welcome.
 
-zabalgames.com
+zabalgamez.com
 ```
 
 ~250 chars.
@@ -30,7 +30,7 @@ zabalgames.com
 ## Post 2 - @thezao - umbrella, drier, ecosystem-positioned
 
 ```
-ZABAL Games Season 1 - The ZAO's 3-month Build-A-Thon.
+ZABAL Gamez Season 1 - The ZAO's 3-month Build-A-Thon.
 
 June: open workshops
 July: open Build-A-Thon submissions
@@ -38,7 +38,7 @@ August: 8 ZAO finalists pick champions from submissions, build together
 
 $500 prize pool funded. All 8 Finalists win.
 
-Workshop + mentor signups open at zabalgames.com
+Workshop + mentor signups open at zabalgamez.com
 ```
 
 ~280 chars.
@@ -46,7 +46,7 @@ Workshop + mentor signups open at zabalgames.com
 ## Post 3 - @ZAOFestivals - chapter-narrative voice
 
 ```
-The ZAO Festivals sponsors ZABAL Games Season 1.
+The ZAO Festivals sponsors ZABAL Gamez Season 1.
 
 $500 prize pool secured. 3 months, 8 Finalists, all win.
 
@@ -54,7 +54,7 @@ June workshop slots opening. August mentor roster filling.
 
 Builders from ZAOstock, COC Concertz, ZAO-PALOOZA, ZAOville welcome.
 
-zabalgames.com
+zabalgamez.com
 ```
 
 ~260 chars.
@@ -62,7 +62,7 @@ zabalgames.com
 ## Post 4 - /zabal (Farcaster channel) - native, builder-direct
 
 ```
-ZABAL Games Season 1 is funded.
+ZABAL Gamez Season 1 is funded.
 
 $500 prize pool from The ZAO festivals team. 8 Finalists. All win.
 
@@ -71,7 +71,7 @@ $500 prize pool from The ZAO festivals team. 8 Finalists. All win.
 - July open Build-A-Thon
 - August Finals with mentor pairs
 
-Pitch a workshop or volunteer as mentor at zabalgames.com
+Pitch a workshop or volunteer as mentor at zabalgamez.com
 ```
 
 ~270 chars / fits in one Farcaster cast.

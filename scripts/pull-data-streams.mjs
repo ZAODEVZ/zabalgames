@@ -194,10 +194,10 @@ function emitDispatch(streams) {
       _source: 'data-streams-registry',
     },
   }));
-  // Every stream feeds ZABAL Games.
+  // Every stream feeds ZABAL Gamez.
   const edges = streams.map(s => ({
     from: s.name,
-    to: 'ZABAL Games',
+    to: 'ZABAL Gamez',
     type: 'FEEDS',
     relationship: s.ties_to_zabal,
   }));

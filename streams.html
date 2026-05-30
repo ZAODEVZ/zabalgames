@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zabal Data Streams - ZABAL Games Season 1</title>
-  <meta name="description" content="The active sources feeding ZABAL Games - raw files, summaries, and ideas kept together and organized chronologically by where they come from. All of it lands in Bonfire so bots can build on top.">
-  <link rel="canonical" href="https://zabalgames.com/streams">
-  <meta property="og:title" content="Zabal Data Streams - ZABAL Games Season 1">
-  <meta property="og:description" content="Active sources feeding ZABAL Games - raw convos organized chronologically, fed into Bonfire so bots build on top.">
-  <meta property="og:url" content="https://zabalgames.com/streams">
-  <meta property="og:image" content="https://zabalgames.com/assets/logo.png">
+  <title>Zabal Data Streams - ZABAL Gamez Season 1</title>
+  <meta name="description" content="The active sources feeding ZABAL Gamez - raw files, summaries, and ideas kept together and organized chronologically by where they come from. All of it lands in Bonfire so bots can build on top.">
+  <link rel="canonical" href="https://zabalgamez.com/streams">
+  <meta property="og:title" content="Zabal Data Streams - ZABAL Gamez Season 1">
+  <meta property="og:description" content="Active sources feeding ZABAL Gamez - raw convos organized chronologically, fed into Bonfire so bots build on top.">
+  <meta property="og:url" content="https://zabalgamez.com/streams">
+  <meta property="og:image" content="https://zabalgamez.com/assets/logo.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/logo.png","button":{"title":"See the data streams","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/streams","splashImageUrl":"https://zabalgames.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
-  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/logo.png","button":{"title":"See the data streams","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/streams","splashImageUrl":"https://zabalgames.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/logo.png","button":{"title":"See the data streams","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/streams","splashImageUrl":"https://zabalgamez.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/logo.png","button":{"title":"See the data streams","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/streams","splashImageUrl":"https://zabalgamez.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,7 +56,7 @@
     <div class="hero-eyebrow">The raw feed</div>
     <h1>Zabal <span class="accent">Data Streams</span>.</h1>
     <p class="hero-sub">
-      The active sources feeding ZABAL Games. Each stream keeps its full raw files plus a summary and the ideas it surfaces, organized chronologically by where it comes from. All of it lands in Bonfire - the ZAO memory layer - so any bot can read it and build on top.
+      The active sources feeding ZABAL Gamez. Each stream keeps its full raw files plus a summary and the ideas it surfaces, organized chronologically by where it comes from. All of it lands in Bonfire - the ZAO memory layer - so any bot can read it and build on top.
     </p>
     <div class="stream-share">
       <button type="button" class="stream-share-btn farcaster" data-share-platform="farcaster">Cast on /zabal</button>
@@ -69,7 +69,7 @@
   <section class="section">
     <h2>What this is</h2>
     <p>
-      A data stream is a live (or upcoming) source of activity that matters to ZABAL Games - an interview show, a bootcamp lineage, a bounty, a protocol feature, the workshops themselves. We keep three things together for each: the <strong>raw files</strong>, a <strong>summary</strong>, and the <strong>ideas</strong> worth picking up.
+      A data stream is a live (or upcoming) source of activity that matters to ZABAL Gamez - an interview show, a bootcamp lineage, a bounty, a protocol feature, the workshops themselves. We keep three things together for each: the <strong>raw files</strong>, a <strong>summary</strong>, and the <strong>ideas</strong> worth picking up.
     </p>
     <p>
       The pipeline reuses the rails the ecosystem already runs on: <code>scripts/pull-data-streams.mjs</code> fetches each live source, writes raw captures, appends to the chronological feed, and emits a dispatch that <code>aggregate-dispatches.mjs</code> merges into the Bonfire graph and <code>push-to-bonfire.mjs</code> pushes to the ZABAL Bonfire. Registry: <a href="/data/data-streams.json">data-streams.json</a>. Feed: <a href="/data/streams/timeline.json">timeline.json</a>.
@@ -93,8 +93,8 @@
 
   <script>
   (function() {
-    var SHARE_URL = 'https://zabalgames.com/streams';
-    var SHARE_TEXT = 'Zabal Data Streams - the active sources feeding ZABAL Games, organized chronologically and fed into Bonfire so bots build on top.';
+    var SHARE_URL = 'https://zabalgamez.com/streams';
+    var SHARE_TEXT = 'Zabal Data Streams - the active sources feeding ZABAL Gamez, organized chronologically and fed into Bonfire so bots build on top.';
     document.addEventListener('click', function(e) {
       var btn = e.target.closest('[data-share-platform]');
       if (!btn) return;
@@ -122,7 +122,7 @@
   <section class="section">
     <h2>For bots and builders</h2>
     <p>
-      Everything here is machine-readable. Read the registry for what each stream is and its <code>pull</code> config, read the timeline for the chronological feed, or query the <a href="/data/bonfire-graph.json">Bonfire graph</a> for the streams as entities (label <code>DataStream</code>) and their <code>FEEDS</code> edges into ZABAL Games.
+      Everything here is machine-readable. Read the registry for what each stream is and its <code>pull</code> config, read the timeline for the chronological feed, or query the <a href="/data/bonfire-graph.json">Bonfire graph</a> for the streams as entities (label <code>DataStream</code>) and their <code>FEEDS</code> edges into ZABAL Gamez.
     </p>
     <p>
       To add or refresh a stream: drop it in <a href="/data/data-streams.json">data-streams.json</a>, then run <code>node scripts/pull-data-streams.mjs</code>. Live sources (GitHub content, Farcaster reads via HAATZ) pull automatically; static sources keep curated timeline entries. Full notes in <a href="/llms.txt">llms.txt</a>.
@@ -181,7 +181,7 @@
           '<div class="card-label" style="color: var(--' + color + ');">' + esc(S.kind) + '</div>' +
           '<h3>' + esc(S.name) + statusBadge(S.status) + '</h3>' +
           '<p>' + esc(S.summary) + '</p>' +
-          '<p style="font-size: 0.82rem; color: var(--text-muted);"><strong style="color: var(--text);">Ties to ZABAL Games:</strong> ' + esc(S.ties_to_zabal) + '</p>' +
+          '<p style="font-size: 0.82rem; color: var(--text-muted);"><strong style="color: var(--text);">Ties to ZABAL Gamez:</strong> ' + esc(S.ties_to_zabal) + '</p>' +
           '<div class="card-meta">' + links + '</div>' +
           ideasBlock +
           '</div>';
@@ -217,7 +217,7 @@
           var E = entries[Number(btn.getAttribute('data-idx'))];
           if (!E) return;
           var text = E.title + ' - ' + E.summary;
-          var url = /^https?:/.test(E.link || '') ? E.link : 'https://zabalgames.com/streams';
+          var url = /^https?:/.test(E.link || '') ? E.link : 'https://zabalgamez.com/streams';
           if (window.ZABAL && window.ZABAL.share) window.ZABAL.share({ platform: 'farcaster', text: text, url: url });
           else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds%5B%5D=' + encodeURIComponent(url) + '&channelKey=zabal', '_blank', 'noopener');
         });
@@ -233,7 +233,7 @@
 
 <footer class="footer">
   <div>
-    <a href="/">zabalgames.com</a> -
+    <a href="/">zabalgamez.com</a> -
     <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">github</a> -
     <a href="/llms.txt">llms.txt</a> -
     <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>

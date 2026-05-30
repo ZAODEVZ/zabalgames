@@ -1,4 +1,4 @@
-// ZABAL Games - activity tracking endpoint (POST /api/track).
+// ZABAL Gamez - activity tracking endpoint (POST /api/track).
 //
 // Records a deliberate social action (cast / share / signup) attributed to a
 // REAL Farcaster FID, verified server-side from a Quick Auth JWT. Nothing is
@@ -18,7 +18,7 @@
 
 export const config = { runtime: 'edge' };
 
-const DOMAIN = 'zabalgames.com';
+const DOMAIN = 'zabalgamez.com';
 const JWKS_URL = 'https://auth.farcaster.xyz/.well-known/jwks.json';
 const KV_URL = process.env.KV_REST_API_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN;

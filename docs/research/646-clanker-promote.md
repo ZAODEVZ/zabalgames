@@ -3,14 +3,14 @@ topic: business
 type: guide
 status: research-complete
 last-validated: 2026-05-21
-original-query: "How can ZABAL Games v0 integrate Clanker tokens and Empire Builder for player tokens and viewer signals? (reconstructed)"
+original-query: "How can ZABAL Gamez v0 integrate Clanker tokens and Empire Builder for player tokens and viewer signals? (reconstructed)"
 related-docs: 630, 628, 626, 584, 583, 582, 361, 324, 258, 631
 tier: STANDARD
 ---
 
-# 646 - Clanker + Empire Builder for ZABAL Games Promote Window
+# 646 - Clanker + Empire Builder for ZABAL Gamez Promote Window
 
-> **Goal:** Design the optional "stream tied to a token" mechanic for ZABAL Games v0. Players who opt in can launch a Clanker token during their build, viewers trade it during the promote window, the token becomes a parallel viewer-signal next to the DAO 1-person-1-vote that decides actual placements. Token survives the Games as ongoing identity/revenue for the player. Empire Builder is the wrapping layer that turns a player's Clanker token into an empire with leaderboards + boosters tied to ZABAL.
+> **Goal:** Design the optional "stream tied to a token" mechanic for ZABAL Gamez v0. Players who opt in can launch a Clanker token during their build, viewers trade it during the promote window, the token becomes a parallel viewer-signal next to the DAO 1-person-1-vote that decides actual placements. Token survives the Games as ongoing identity/revenue for the player. Empire Builder is the wrapping layer that turns a player's Clanker token into an empire with leaderboards + boosters tied to ZABAL.
 
 > **Status:** Spec proposal for v0 optional mechanic. NOT yet locked - this doc surfaces how it COULD work to inform the user-decision on whether to include it in v0 or defer to v1.
 
@@ -20,7 +20,7 @@ tier: STANDARD
 
 | Decision | Recommendation |
 |----------|----------------|
-| **Inclusion in v0** | INCLUDE as fully opt-in mechanic. Default behaviour = no token. Players who want "stream tied to token" can mint via Clanker during their build window. ZABAL Games doesn't subsidize, doesn't mandate, doesn't gate placements on it. |
+| **Inclusion in v0** | INCLUDE as fully opt-in mechanic. Default behaviour = no token. Players who want "stream tied to token" can mint via Clanker during their build window. ZABAL Gamez doesn't subsidize, doesn't mandate, doesn't gate placements on it. |
 | **Launch vehicle** | USE Clanker (not Zora). Per existing Empire Builder docs (Doc 584), top empires (glonkybot rank 9.34) already deploy via Clanker. ZABAL itself launched via Clanker 2026-01-01. Native Farcaster fit. v4 charges 0.2% fee in WETH (vs Zora's 50% trade + 50% LP heavy model). |
 | **Empire Builder wrap** | OPTIONAL. A player's Clanker token can be wrapped as a mini-empire via Empire Builder if they want booster mechanics + leaderboards. Player decides post-Games whether to commit. For v0, ZAO doesn't need to wrap every player token. |
 | **Fee flow to player** | 100% creator-collected fees from Clanker LP go to the player wallet (Farcaster v4 update transferred control back). Player can claim or burn at their discretion. This is ongoing trade-fee dividend forever. |
@@ -29,7 +29,7 @@ tier: STANDARD
 | **Anti-whale-buy protection** | Since token volume doesn't influence placement, whale-buy is just free liquidity for player. No protective mechanism needed. |
 | **Token decay post-Games** | Player choice. Clanker LP is locked until 2100 (90 years), so the token persists. If player abandons it, it dies naturally. If player keeps marketing it, ongoing trade-fee dividend continues. |
 | **ZABAL Empire booster slot** | RECOMMENDED post-v0 ask: Adrian adds player Clanker tokens as 2-3x boosters in the ZABAL empire. Players' tokens benefit from the network effect Doc 584 documents (glonkybot's 17-ERC20-booster stack). Decided AFTER v0 cohort ships, not committed upfront. |
-| **Cohort coin alternative** | SKIP for v0. A single "ZABAL Games v0 Cohort" Clanker token (where 8 players share creator-of-record) sounds elegant but complicates fee splits + identity. Each player launches their own (if at all) is cleaner. |
+| **Cohort coin alternative** | SKIP for v0. A single "ZABAL Gamez v0 Cohort" Clanker token (where 8 players share creator-of-record) sounds elegant but complicates fee splits + identity. Each player launches their own (if at all) is cleaner. |
 
 ---
 
@@ -65,9 +65,9 @@ Per Doc 584 (live 2026-05-01):
 - glonkybot's pattern: 17 ERC20 boosters at 5x for CLANKER, ARTBABY, PUSH, BB, MTDV, hmbt, GMYerb - network-effect stacking
 - ZABAL currently has 4 ERC20 boosters (LOANZ, zaal, SANG, ZAAL) + 1 QUOTIENT
 
-Doc 584 specifically recommended adding CLANKER, $GLANKER, ARTBABY, BB as 3-5x boosters to ZABAL to ride the network effect. ZABAL Games player tokens would be a natural extension of that pattern.
+Doc 584 specifically recommended adding CLANKER, $GLANKER, ARTBABY, BB as 3-5x boosters to ZABAL to ride the network effect. ZABAL Gamez player tokens would be a natural extension of that pattern.
 
-### How they fit together for ZABAL Games
+### How they fit together for ZABAL Gamez
 
 ```
 [Player decides to launch a token during build window]
@@ -103,7 +103,7 @@ Token launch cost to player: zero (just a cast). Token launch cost to ZAO: zero 
 
 ---
 
-## Part 2 - The ZABAL Games Promote-Window Use Case
+## Part 2 - The ZABAL Gamez Promote-Window Use Case
 
 ### What the player does (if opted in)
 
@@ -111,7 +111,7 @@ Token launch cost to player: zero (just a cast). Token launch cost to ZAO: zero 
 |------|--------|
 | Onboarding call (T-3 days) | Player decides yes/no on token mechanic. Both are valid. |
 | Build window (T+0 to T+24h) | Build the project. Token doesn't exist yet. |
-| Ship moment (~T+24h) | Player casts `@clanker launch [Name] $[TICKER] - my ZABAL Games v0 build` in /zabalgames. Clanker mints. Token live on Uniswap V3. |
+| Ship moment (~T+24h) | Player casts `@clanker launch [Name] $[TICKER] - my ZABAL Gamez v0 build` in /zabalgames. Clanker mints. Token live on Uniswap V3. |
 | Promote window (T+24h to T+48h) | Player casts about their build, includes token contract address. Viewers can buy/sell. |
 | Voting window (T+48h to T+72h) | Token keeps trading. Volume displayed on /zabalgames hub alongside DAO vote tally. Volume is NOT vote. |
 | Reveal stream (T+72h) | Top 3 by DAO vote announced (decides prize). "Most loved by the market" rankings shown as side narrative. |
@@ -143,7 +143,7 @@ Player streams their build live on Twitch (per locked visibility Mode 1). At shi
 
 ### Why this is novel
 
-Existing creator-coin patterns (Zora content coins, Friend.tech) tokenize a person or a post. The ZABAL Games pattern tokenizes a **build sprint** - a defined 24h creative window with a specific output.
+Existing creator-coin patterns (Zora content coins, Friend.tech) tokenize a person or a post. The ZABAL Gamez pattern tokenizes a **build sprint** - a defined 24h creative window with a specific output.
 
 This is closer to ETHDenver hackathon ribbons or buildspace cohort NFTs, but with tradeable liquidity and ongoing fee dividends.
 
@@ -154,7 +154,7 @@ This is closer to ETHDenver hackathon ribbons or buildspace cohort NFTs, but wit
 | Provenance | Token name + cast cite the build URL + GitHub repo. Anyone can verify the link |
 | Liquidity | Uniswap V3 pair, locked LP until 2100 - tradeable forever |
 | Creator stake | 100% of LP fees flow to player wallet permanently |
-| Identity | Permanent Farcaster-cast record of "I shipped at ZABAL Games v0" |
+| Identity | Permanent Farcaster-cast record of "I shipped at ZABAL Gamez v0" |
 | Composability | Empire Builder wrap optional - can become a mini-empire |
 | Stream-to-token link | Stream archive + token launch cast share a timestamp window - on-chain proof of when the build happened |
 
@@ -189,7 +189,7 @@ Recommend: **mentioned in onboarding only** for v0. Public page stays clean. Pla
 
 ## Part 5 - The Cohort-Coin Alternative (Why Skip)
 
-We could have ONE token: "ZABAL Games v0" - shared across all 8 finishers. Pros:
+We could have ONE token: "ZABAL Gamez v0" - shared across all 8 finishers. Pros:
 - Single narrative ("the cohort coin")
 - Combined liquidity = better trading
 - All players benefit from any single player's marketing
@@ -200,7 +200,7 @@ Cons (why skip):
 - Token identity baggage: if any one player does something embarrassing, the whole cohort-coin's reputation gets hit
 - Doesn't satisfy "stream tied to token" - it ties to the cohort, not to individual streams
 
-If players want a shared coin, they can do it organically after v0. Multiple v0 alumni could spin up a "ZABAL Games v0 Alumni" Clanker token themselves and share LP. ZAO doesn't need to mediate.
+If players want a shared coin, they can do it organically after v0. Multiple v0 alumni could spin up a "ZABAL Gamez v0 Alumni" Clanker token themselves and share LP. ZAO doesn't need to mediate.
 
 ---
 
@@ -209,7 +209,7 @@ If players want a shared coin, they can do it organically after v0. Multiple v0 
 Empire Builder side per Doc 584:
 - glonkybot is rank 9.34 (highest) by holding + cross-boosting 17 ERC20 tokens from other empires
 - ZABAL needs more cross-empire booster relationships to climb
-- Player Clanker tokens from ZABAL Games are natural additions to ZABAL's booster stack
+- Player Clanker tokens from ZABAL Gamez are natural additions to ZABAL's booster stack
 
 **Proposed post-Games flow:**
 
@@ -263,7 +263,7 @@ No new line item in ZAO budget. The mechanic adds 2 hours of dev work + an exist
 | Does any v0 player actually opt in? | After v0 ships - empirical |
 | Do player tokens drive viewer participation up or distract? | Post-v0 retrospective |
 | Should v1 default-on the mechanic? | Decided at v0 retro based on v0 opt-in rate |
-| Should ZAO launch a meta-token (ZABAL Games as an empire of empires)? | v1+ design discussion |
+| Should ZAO launch a meta-token (ZABAL Gamez as an empire of empires)? | v1+ design discussion |
 | Should top-3 placement come with auto-add to ZABAL booster slots? | Adrian's call - post-v0 |
 | Can players coordinate a Hypersub subscription tied to their token holders? | v1+ - composability play |
 
@@ -271,7 +271,7 @@ No new line item in ZAO budget. The mechanic adds 2 hours of dev work + an exist
 
 ## Also See
 
-- [Doc 630 - ZABAL Games v0 spec](../../events/630-zabal-games-claude-code-hackathon-v0/) - The Games this mechanic plugs into
+- [Doc 630 - ZABAL Gamez v0 spec](../../events/630-zabal-games-claude-code-hackathon-v0/) - The Games this mechanic plugs into
 - [Doc 628 - Web3 Streaming + ZABAL Empire Bridge](../628-web3-streaming-zabal-empire-bridge/) - Where creator coins first surfaced
 - [Doc 626 - Empire Builder + ZABAL POIDH airdrop](../626-empire-builder-zabal-poidh-airdrop/) - apiLeaderboards pattern + $ZABAL Empire mechanics
 - [Doc 584 - Empire Builder Farcaster Creator Playbooks](../584-empire-builder-farcaster-creator-playbooks/) - Network-effect booster stacking strategy
@@ -294,7 +294,7 @@ No new line item in ZAO budget. The mechanic adds 2 hours of dev work + an exist
 | Spike: /zabalgames hub displays per-build volume via Empire Builder API or Uniswap subgraph | @Zaal | PR | When mini-app builds |
 | Post-v0: identify top-trading player tokens, DM Adrian to add as ZABAL booster slots | @Zaal | DM | T+10 days after v0 |
 | Pressure-test: would you DM 1-2 Farcaster vibe-coders + ask if "I can launch a token tied to my build during this" makes them MORE or LESS likely to apply? | @Zaal | Outreach | This week |
-| Consider: is there a v1 evolution where ZABAL Games launches its OWN Clanker token + opens trading to the audience BEFORE the cohort is announced? | @Zaal | Brainstorm | v1 planning |
+| Consider: is there a v1 evolution where ZABAL Gamez launches its OWN Clanker token + opens trading to the audience BEFORE the cohort is announced? | @Zaal | Brainstorm | v1 planning |
 
 ---
 
@@ -306,7 +306,7 @@ No new line item in ZAO budget. The mechanic adds 2 hours of dev work + an exist
 - Doc 582 - Empire Builder V3 live launch - API surface + ZABAL state
 - Doc 583 - Empire Builder ZAO OS integration ideas - 15 concepts
 - Doc 361, 324, 258 - earlier Empire Builder + ZABAL tokenomics docs
-- Doc 630 - ZABAL Games v0 spec (this mechanic plugs into Part 6 Prize Structure + Part 5 Visibility Modes)
+- Doc 630 - ZABAL Gamez v0 spec (this mechanic plugs into Part 6 Prize Structure + Part 5 Visibility Modes)
 
 ### External - Clanker
 

@@ -1,4 +1,4 @@
-# Magnetiq Mementos - ZAO Brand Bundle for ZABAL Games
+# Magnetiq Mementos - ZAO Brand Bundle for ZABAL Gamez
 
 > Per Zaal 2026-05-28: 'give tyler all the info to create mementos under the magnet for the ZABAL games for all the ZAO brands and give me a script for each one of the projects as a video.'
 
@@ -8,7 +8,7 @@ This doc has two halves:
 
 Each memento is a Magnetiq-hosted page that connector-holders can visit to learn one ZAO brand deeply. The mementos are also the post-ZABAL-Games retention surface - someone who built or watched can go deeper on whichever brand grabbed them.
 
-Architecture recap: zabalgames.com is the games operational center. Magnetiq holds these brand mementos + the connector NFT + workshop recordings. Notion (Tyler-managed) syncs to zabalgames.com only.
+Architecture recap: zabalgamez.com is the games operational center. Magnetiq holds these brand mementos + the connector NFT + workshop recordings. Notion (Tyler-managed) syncs to zabalgamez.com only.
 
 ## Brand index
 
@@ -35,7 +35,7 @@ Each Magnetiq memento page should hit these beats (use this as a template):
 4. **Mission** (1 paragraph, ~40 words)
 5. **Who it serves** (audience description)
 6. **What's live now** (status proof - shipped products, member counts, real artifacts)
-7. **How it fits ZABAL Games** (the bridge - why this brand matters for builders / watchers in the games)
+7. **How it fits ZABAL Gamez** (the bridge - why this brand matters for builders / watchers in the games)
 8. **Watch the deep-dive video** (Zaal's recorded video script - 60-90 sec)
 9. **Learn more / participate** (links to live surfaces + signup)
 10. **Earned: brand badge** (the connector-holder gets a brand-specific signal on their profile when they finish the memento)
@@ -58,7 +58,7 @@ Each Magnetiq memento page should hit these beats (use this as a template):
 
 **What's live now:** 100+ member gated Farcaster music community. Shipped ZAO OS, launched $ZABAL token, Crypto Magazine feature - all in Q1 2026. Active fractal governance every week. 7+ sub-brands across the ecosystem (ZAO OS, $ZABAL + Empire Builder, WaveWarZ, ZAO Festivals, ZAO Music, COC Concertz, Respect + Fractals - plus smaller initiatives evolving in parallel).
 
-**How it fits ZABAL Games:** The ZAO is the parent. ZABAL Games is one of its three-month seasonal initiatives. Every Finalist in August gets paired with a ZAO mentor. The voter set for the Finals is Respect-holders inside The ZAO.
+**How it fits ZABAL Gamez:** The ZAO is the parent. ZABAL Gamez is one of its three-month seasonal initiatives. Every Finalist in August gets paired with a ZAO mentor. The voter set for the Finals is Respect-holders inside The ZAO.
 
 **Watch the deep-dive video:** [Zaal's video - 75s]
 
@@ -66,7 +66,7 @@ Each Magnetiq memento page should hit these beats (use this as a template):
 - thezao.com (about)
 - zaoos.com (the app)
 - /zabal Farcaster channel
-- ZABAL Games Season 1: zabalgames.com
+- ZABAL Gamez Season 1: zabalgamez.com
 
 **Earned badge:** "ZAO Umbrella Initiate"
 
@@ -93,7 +93,7 @@ is the label. COC Concertz is the virtual show network. Respect is
 the governance. Plus smaller initiatives running in parallel - 7+
 brands total under the ZAO umbrella.
 
-ZABAL Games is one of our seasonal initiatives. Three months. Open
+ZABAL Gamez is one of our seasonal initiatives. Three months. Open
 to anyone. The ZAO is what they are joining.
 
 Bring the profit margin, the data, and the IP rights back to the
@@ -118,7 +118,7 @@ artists. That is the work. The rest is plumbing.
 
 **What's live now:** Shipped March 2026. Next.js + Tailwind + Supabase + Farcaster Hubs + RainbowKit + viem on Base. Surfaces: `/feed`, `/spaces`, `/respect`, `/ecosystem`, `/governance`, `/settings`. 88 internal research docs. Encrypted DMs. Music players inline.
 
-**How it fits ZABAL Games:** Builders can study ZAO OS for patterns - cross-post modules, music player components, governance integration, Respect leaderboard. The codebase shows what real ZAO rails look like composed cleanly. Builders adopting ZAO OS components for July submissions get faster onboarding from mentors.
+**How it fits ZABAL Gamez:** Builders can study ZAO OS for patterns - cross-post modules, music player components, governance integration, Respect leaderboard. The codebase shows what real ZAO rails look like composed cleanly. Builders adopting ZAO OS components for July submissions get faster onboarding from mentors.
 
 **Watch the deep-dive video:** [Zaal's video - 65s]
 
@@ -147,7 +147,7 @@ this in March. About 100+ members use it daily.
 Why it matters for builders: every component we built is a pattern
 you can re-use. Cross-posting to 10 platforms - we have a module
 for it. Music player with queue + reactions - working code. Respect
-leaderboard - drop-in. If you ship for ZABAL Games this July, the
+leaderboard - drop-in. If you ship for ZABAL Gamez this July, the
 ZAO OS repo is your shortest path to a real-feeling Farcaster app.
 
 Look at it like a kit. Take what helps, leave the rest.
@@ -163,7 +163,7 @@ Look at it like a kit. Take what helps, leave the rest.
 
 **One-liner:** Token economy that rewards contribution, not speculation.
 
-**Tagline:** The ecosystem rail $ZABAL Games runs on. Composable, transparent, mechanism-forward.
+**Tagline:** The ecosystem rail $ZABAL Gamez runs on. Composable, transparent, mechanism-forward.
 
 **Mission:** $ZABAL is the umbrella token across Zaal-led ZAO brands. Wrapped in an Empire on Empire Builder - the leaderboard + booster + treasury substrate for token communities. Mission: a participation rail, not a speculative coin. Hold to vote. Stake to multiply. Contribute to earn.
 
@@ -171,7 +171,7 @@ Look at it like a kit. Take what helps, leave the rest.
 
 **What's live now:** Token launched 2026-01-01 via Clanker. Contract `0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07` on Base. Empire address `0xe0faa499d6711870211505bd9ae2105206af1462`. Empire Builder V3 live since 2026-05-01. 7 active leaderboard slots. Multiplier stack: staking 2.1-3.0x, empire 4.0-8.6x. Co-creators: Jordan Oram (yerbearzerker) + Adrian (diviflyy).
 
-**How it fits ZABAL Games:** Top 16 Finalists earn $ZABAL rewards on top of the USDC pool. Builders can open a free tokenless Empire as a public build home (leaderboard + treasury). Finalists who want to launch a token Ascend their Empire via Clanker. The token IS the games' name + its base economy.
+**How it fits ZABAL Gamez:** Top 16 Finalists earn $ZABAL rewards on top of the USDC pool. Builders can open a free tokenless Empire as a public build home (leaderboard + treasury). Finalists who want to launch a token Ascend their Empire via Clanker. The token IS the games' name + its base economy.
 
 **Watch the deep-dive video:** [Zaal's video - 80s]
 
@@ -199,7 +199,7 @@ all. Ascended Empire if you launch one and unlock the full
 leaderboard plus booster stack. Multiplier ranges - staking 2.1 to
 3.0x, empire 4.0 to 8.6x. Real network effect math.
 
-Three - ZABAL Games top 16 builders get $ZABAL rewards on top of
+Three - ZABAL Gamez top 16 builders get $ZABAL rewards on top of
 whatever USDC the top 8 share. Finalists who want to launch their
 own token can Ascend their Empire via Clanker. The token IS the
 games' name + its economy.
@@ -225,11 +225,11 @@ Mechanism-forward. Not hype. The math + the contract are the pitch.
 
 **Mission:** WaveWarZ treats independent artists like sports teams - turns music discovery into a market with real skin in the game. Artists earn from engagement, not from streams. 1% of every trade flows to the artist forever via smart contract, no custody.
 
-**Who it serves:** Music fans who want stake in artist discovery. The 40+ battling artists themselves. Traders looking for a real-signal market on cultural taste. Builders pitching for ZABAL Games who want to compose with the protocol.
+**Who it serves:** Music fans who want stake in artist discovery. The 40+ battling artists themselves. Traders looking for a real-signal market on cultural taste. Builders pitching for ZABAL Gamez who want to compose with the protocol.
 
 **What's live now:** v1 LIVE on Solana - real-time numbers at wavewarz-intelligence.vercel.app. Snapshot from 2026-05-23: 400+ SOL cumulative volume, hundreds of battles, 40+ artists registered (current count + volume always at wavewarz-intelligence.vercel.app). ~11 X Spaces per week (5 morning + 5 night Mon-Fri + Sunday-night). v2 IN BUILD on Base - agentic version by Sam, smart contracts reviewed by Arthur (Neynar). Mainnet target July 2026. Founder: Hurric4n3Ike.
 
-**How it fits ZABAL Games:** WaveWarZ-Base is the August Finals settlement protocol. Each Finalist becomes a tradable battle entry. Market trades for 72 hours - early demos, repos, casts, judge-agent scores all feed the signal. Smart contract settles placements at T+72h. Respect-holders get a voice in the settlement formula. Doc 720 has the full mechanic.
+**How it fits ZABAL Gamez:** WaveWarZ-Base is the August Finals settlement protocol. Each Finalist becomes a tradable battle entry. Market trades for 72 hours - early demos, repos, casts, judge-agent scores all feed the signal. Smart contract settles placements at T+72h. Respect-holders get a voice in the settlement formula. Doc 720 has the full mechanic.
 
 **Watch the deep-dive video:** [Zaal's video - 90s]
 
@@ -237,7 +237,7 @@ Mechanism-forward. Not hype. The math + the contract are the pitch.
 - v1 live: wavewarz-intelligence.vercel.app
 - v2 codebase: github.com/CandyToyBox/wavewarz-base
 - Founder: @hurric4n3ike on X
-- Finals mechanic spec: zabalgames.com/finals + Doc 720
+- Finals mechanic spec: zabalgamez.com/finals + Doc 720
 
 **Earned badge:** "WaveWarZ Trader"
 
@@ -265,7 +265,7 @@ v2 is being built on Base right now. Agentic version. Sam is
 shipping the contracts. Arthur from Neynar is reviewing security
 patterns. Mainnet target July 2026.
 
-Here is why this matters for ZABAL Games: WaveWarZ-Base is the
+Here is why this matters for ZABAL Gamez: WaveWarZ-Base is the
 settlement protocol for the August Finals. Each Finalist becomes a
 tradable battle entry. The market trades for 72 hours - on early
 demos, on repo activity, on cast quality, on judge-agent scores.
@@ -295,7 +295,7 @@ the deliverable.
 
 **What's live now:** ZAOstock 2026 active - **October 3, Franklin Street Parklet, Ellsworth Maine**. 5+ artists confirmed across different genres (final lineup still locking in). Full day + livestream + after-party. `/stock/team` dashboard for kanban-based ops. Lean Six Sigma DMAIC weekly cycles. 20+ people across 6+ different teams. Confirmed sponsors: Wallace Events (tents/AV), Limone. ZAO Festivals umbrella holds ZAO-PALOOZA (NYC 2024) + ZAO-CHELLA (Miami 2024) as prior chapters. NextZAOville planned DMV July 2026.
 
-**How it fits ZABAL Games:** The $500 v0 prize pool for ZABAL Games is sponsored by The ZAO Festivals team. They funded the pool because they want indie artists in the games + the games' winners flowing into next year's festival lineup. Builders who ship festival-ops tools, lineup management, livestream infra, or artist-booking pipelines have a built-in customer in ZAOstock.
+**How it fits ZABAL Gamez:** The $500 v0 prize pool for ZABAL Gamez is sponsored by The ZAO Festivals team. They funded the pool because they want indie artists in the games + the games' winners flowing into next year's festival lineup. Builders who ship festival-ops tools, lineup management, livestream infra, or artist-booking pipelines have a built-in customer in ZAOstock.
 
 **Watch the deep-dive video:** [Zaal's video - 85s]
 
@@ -331,7 +331,7 @@ ZAO Festivals also holds the umbrella for chapters that already
 happened. ZAO-PALOOZA at NFT NYC 2024. ZAO-CHELLA at Miami Art
 Week 2024. NextZAOville in the DMV in July 2026.
 
-Here is the ZABAL Games connection. The $500 USDC v0 prize pool
+Here is the ZABAL Gamez connection. The $500 USDC v0 prize pool
 for the games is sponsored by the ZAO Festivals team. They funded
 the pool because they want indie artists building tools for next
 year's festival operations. If you ship something for ZAO Festivals
@@ -360,7 +360,7 @@ parklet at a time.
 
 **What's live now:** First release in progress - Cipher = #1 (multi-artist collaborative cypher). Team: DCoop, GodCloud, Iman. DBA entity. Flow: members record -> DistroKid to DSPs -> 0xSplits royalty contract on Base -> BMI performance rights -> cross-post to /music + /rcrdshp on Farcaster.
 
-**How it fits ZABAL Games:** Builders shipping release pipelines, royalty-split dashboards, distribution trackers, or cypher coordination tooling have ZAO Music as their first customer. Mentors include label-experienced ZAO members who can pair on music infra builds.
+**How it fits ZABAL Gamez:** Builders shipping release pipelines, royalty-split dashboards, distribution trackers, or cypher coordination tooling have ZAO Music as their first customer. Mentors include label-experienced ZAO members who can pair on music infra builds.
 
 **Watch the deep-dive video:** [Zaal's video - 70s]
 
@@ -390,7 +390,7 @@ performance rights. The margin stays with the artists.
 First release is Cipher = #1 - a multi-artist collaborative cypher.
 Team running it is DCoop, GodCloud, and Iman.
 
-For ZABAL Games builders: if you ship release pipelines, royalty
+For ZABAL Gamez builders: if you ship release pipelines, royalty
 dashboards, distribution trackers, or cypher coordination tools,
 ZAO Music is your first customer. Music infra mentors in our
 mentor pool. Real product, real artists, real revenue split.
@@ -416,7 +416,7 @@ Proving the label-less model. That is the whole point.
 
 **What's live now:** 5 COC Concertz shows produced to date. COC Concertz #6 going live Saturday June 13 at 4pm EST at Stilo World Spatial - the 6th show. Next.js 16 + Firebase + Cloudinary stack. Surfaces: `/portal/newsletter` (newsletter builder), `/stage` (concert stream interface), `/team` (promoter dashboard). Content pipeline: record show -> Descript edit -> newsletter generator (MiniMax AI) -> cross-post. COC Concertz #3 ran March 2026 - metaverse concert with DUO DO, JOSEPH GOATS, STILO WORLD.
 
-**How it fits ZABAL Games:** Builders shipping concert streaming tools, content-pipeline automation, promoter dashboards, ticketing / RSVP flows, or metaverse concert UX have COC Concertz as their built-in test customer. Also - one of the August Finals reveal events could be a COC concert format. Promoter mentors in our mentor pool.
+**How it fits ZABAL Gamez:** Builders shipping concert streaming tools, content-pipeline automation, promoter dashboards, ticketing / RSVP flows, or metaverse concert UX have COC Concertz as their built-in test customer. Also - one of the August Finals reveal events could be a COC concert format. Promoter mentors in our mentor pool.
 
 **Watch the deep-dive video:** [Zaal's video - 70s]
 
@@ -449,7 +449,7 @@ DUO DO, JOSEPH GOATS, and STILO WORLD. Number 6 is Saturday June 13
 at 4pm Eastern at Stilo World Spatial. luma.com slash njzxpsgn for
 RSVP.
 
-For ZABAL Games builders: if you ship concert streaming tools,
+For ZABAL Gamez builders: if you ship concert streaming tools,
 ticketing flows, promoter dashboards, or metaverse concert UX -
 COC has 13 promoters who would adopt your build week one. Real
 audience, real shows.
@@ -471,18 +471,18 @@ Virtual concerts deserve a real home. We are building it.
 
 **Mission:** Respect is The ZAO's soulbound, peer-validated reputation. Fractals are the weekly group ritual where members rank contributions and earn it. Mission: governance as practice - reputation you earn by showing up + contributing, not by buying tokens. The thing that gives you a real voice in The ZAO.
 
-**Who it serves:** All ZAO members. Earning Respect is how you go from member to governance participant. Earning enough Respect is how you become eligible to vote in ZABAL Games Finals settlement.
+**Who it serves:** All ZAO members. Earning Respect is how you go from member to governance participant. Earning enough Respect is how you become eligible to vote in ZABAL Gamez Finals settlement.
 
 **What's live now:** Live as core governance mechanic. Soulbound (non-transferable). Fibonacci-ranked. Weekly 4-6 person fractal sessions where members rank each other's contributions for the week. `src/components/respect/` in ZAO OS. Respect-above-threshold = eligible to vote on Finals. Threshold: 1000+ points (set May 2026, may shift). 66% supermajority required to change the governance system itself.
 
-**How it fits ZABAL Games:** Respect-holders are the voter set for the August Finals. Each Finalist's settlement has Respect-holder governance weight feeding into the WaveWarZ-Base market formula. Up to 1000 Respect points are earnable per active participant during the Games - workshop attendance, July submissions, August Finals participation. Current ZAO holders determine activity scoring. Respect is illiquid - cannot sell. Pure governance signal.
+**How it fits ZABAL Gamez:** Respect-holders are the voter set for the August Finals. Each Finalist's settlement has Respect-holder governance weight feeding into the WaveWarZ-Base market formula. Up to 1000 Respect points are earnable per active participant during the Games - workshop attendance, July submissions, August Finals participation. Current ZAO holders determine activity scoring. Respect is illiquid - cannot sell. Pure governance signal.
 
 **Watch the deep-dive video:** [Zaal's video - 80s]
 
 **Learn more / participate:**
 - ZAO OS Respect leaderboard: live in the app
 - Weekly fractal sessions: 4-6 person groups, Sunday evenings
-- Voter threshold for ZABAL Games: 1000+ points
+- Voter threshold for ZABAL Gamez: 1000+ points
 
 **Earned badge:** "Fractal Participant"
 
@@ -503,12 +503,12 @@ That is what we mean by governance as practice. It is not a Discord
 poll. It is not a token vote. It is humans ranking humans in real
 time on actual work.
 
-Threshold for voting in ZABAL Games Finals - 1000 Respect points.
+Threshold for voting in ZABAL Gamez Finals - 1000 Respect points.
 Set in May 2026, may shift as the event unfolds. If you have 1000
 plus, you also have a vote on changing the governance system itself
 - 66% supermajority needed.
 
-For ZABAL Games specifically. Up to 1000 Respect is earnable per
+For ZABAL Gamez specifically. Up to 1000 Respect is earnable per
 active participant during the Games. Workshop attendance, July
 submissions, August Finals - all count. Current ZAO Respect-holders
 determine who counts as active. That is by design - active members
@@ -540,14 +540,14 @@ You earn governance. You do not buy it. That is the line.
 |---|---|
 | Logo / visual mark | Magnetiq brand asset library + ZAO docs/brand-context.md |
 | One-liner, tagline, mission, audience, status | This doc (sections above) |
-| ZABAL Games bridge copy | This doc |
+| ZABAL Gamez bridge copy | This doc |
 | Video file | Zaal sends after recording |
 | Earned badge | Magnetiq's badging system - badge name suggested above |
 | Links to live surfaces | This doc |
 
 ## Distribution plan
 
-- Mementos live on Magnetiq under a ZABAL Games season landing page
+- Mementos live on Magnetiq under a ZABAL Gamez season landing page
 - Each memento accessible via Zabal connector NFT (after mint)
 - Connector-holders complete a memento (watch + read) -> earn brand badge
 - Site links from `/info` ecosystem grid -> direct deep-link to each brand memento on Magnetiq
@@ -576,4 +576,4 @@ You earn governance. You do not buy it. That is the line.
 - Tyler builds all 8 mementos in Magnetiq this week (or however his cadence works)
 - Site links to Magnetiq mementos go live alongside Workshop #001
 - Connector NFT mint flow goes live with Workshop #001 too
-- ZABAL Games announce post on /zabal references the mementos as the "go deeper" surface for curious watchers
+- ZABAL Gamez announce post on /zabal references the mementos as the "go deeper" surface for curious watchers

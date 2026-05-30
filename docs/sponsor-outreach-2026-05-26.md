@@ -11,11 +11,11 @@ The $500 v0 pool from The ZAO Festivals team is the floor. Anything additional g
 ## Letter template (copy-paste, adjust the bracketed bits)
 
 ```
-Subject: ZABAL Games Season 1 - sponsor a piece?
+Subject: ZABAL Gamez Season 1 - sponsor a piece?
 
 Hey [Name],
 
-Quick context - ZABAL Games is The ZAO's 3-month Build-A-Thon for digital
+Quick context - ZABAL Gamez is The ZAO's 3-month Build-A-Thon for digital
 creators in the Farcaster ecosystem. June workshops, July open build month,
 August Finals with 8 builders picking champions for a 5-day paired build
 window.
@@ -36,8 +36,8 @@ Why this might be a fit for [you/your team]:
 Reply to info@thezao.com (the ZAO Festivals team handles sponsor
 inquiries + invoicing) or DM me directly if you want to talk specifics.
 
-Site: zabalgames.com
-Public log: zabalgames.com/changelog
+Site: zabalgamez.com
+Public log: zabalgamez.com/changelog
 
 Thanks for taking a look,
 Zaal
@@ -94,7 +94,7 @@ These all sit with The ZAO Festivals team to commit to once they're in the conve
 
 Honest statements you can make:
 
-- "The site is at zabalgames.com - we will list your name + link on the sponsor card"
+- "The site is at zabalgamez.com - we will list your name + link on the sponsor card"
 - "Your name + thank-you will land on the Finals livestream credits"
 - "You will get cast attribution on /zabal channel when v1 announcement goes out"
 - "If you want a custom integration (booth at a future ZAO event, etc.), we can talk that through ZAO Festivals separately"

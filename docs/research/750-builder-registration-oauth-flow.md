@@ -8,14 +8,14 @@
 
 **Before:** builders submit a form at T+48h with `live URL + repo + 60s demo + cast`. Manual. One-shot. Easy to miss.
 
-**After:** builders register once at zabalgames.com. Connect Farcaster (auto via Mini App SDK) + GitHub (one OAuth tap). Then build all month. Agents read public GitHub activity in July + extract the submission bar from the repo README. Zero deadline pressure.
+**After:** builders register once at zabalgamez.com. Connect Farcaster (auto via Mini App SDK) + GitHub (one OAuth tap). Then build all month. Agents read public GitHub activity in July + extract the submission bar from the repo README. Zero deadline pressure.
 
 ## Grill answers locked
 
 | Fork | Decision |
 |---|---|
 | 1 - Build path | **1B** - launch May 31 with current Formspree, build OAuth flow mid-June so it's live before July 1 |
-| 2 - What counts | **2A + 2D** - any public commit in July counts. Repos with `zabalgames.com/projects` URL in README get featured-badge. |
+| 2 - What counts | **2A + 2D** - any public commit in July counts. Repos with `zabalgamez.com/projects` URL in README get featured-badge. |
 | 3 - Submission bar | **3A** - GitHub history IS the submission. README must include: live URL + 60s demo link + cast link. Agents auto-extract. |
 | 4 - Non-GitHub fallback | **4B** - keep current form for builders who don't use GitHub (Replit-only, Lovable, etc). Two paths supported. |
 | 5 - OAuth scope | **5A** - `read:user` only. Public profile + we query public events via API. |
@@ -24,7 +24,7 @@
 ## Architecture
 
 ```
-Builder visits zabalgames.com (browser OR inside Warpcast Mini App)
+Builder visits zabalgamez.com (browser OR inside Warpcast Mini App)
             |
             v
   +----------------------------------------+
@@ -78,7 +78,7 @@ Builder visits zabalgames.com (browser OR inside Warpcast Mini App)
   |    - Filter to July 2026 commits + PRs |
   |    - Score by rubric (see below)       |
   |    - Detect "featured" repos with      |
-  |        zabalgames.com URL in README    |
+  |        zabalgamez.com URL in README    |
   |    - Persist scores to builders.score  |
   +----------------------------------------+
             |
@@ -105,7 +105,7 @@ Builder visits zabalgames.com (browser OR inside Warpcast Mini App)
 Append to existing `db/schema.sql`:
 
 ```sql
--- Builders registered for ZABAL Games Season 1 (Phase 1 submission pool)
+-- Builders registered for ZABAL Gamez Season 1 (Phase 1 submission pool)
 CREATE TABLE IF NOT EXISTS builders (
   id BIGSERIAL PRIMARY KEY,
   fid INTEGER NOT NULL UNIQUE,
@@ -166,7 +166,7 @@ Each registered builder gets a score from agent-evaluated public GitHub activity
 | Public repos created | 5 per repo, max 50 | Encourages building OPEN |
 | PullRequestEvent (opened) | 3 per PR, max 60 | Engages with other projects |
 | WatchEvent stars given | 0.2 per star, max 10 | Community signal |
-| Repos with zabalgames.com in README | 50 per repo (featured-badge bonus) | Self-flagged ZABAL Games builds |
+| Repos with zabalgamez.com in README | 50 per repo (featured-badge bonus) | Self-flagged ZABAL Gamez builds |
 | Repo with live URL + demo + cast in README | 100 per repo (submission-bar complete) | Auto-detects the 4-bar submission |
 
 Cap: 1000 points (aligns with Respect 1000-threshold).
@@ -177,9 +177,9 @@ Cap: 1000 points (aligns with Respect 1000-threshold).
 
 1. Go to https://github.com/settings/developers
 2. New OAuth App:
-   - Application name: `ZABAL Games`
-   - Homepage URL: `https://zabalgames.com`
-   - Authorization callback URL: `https://zabalgames.com/api/auth/github/callback`
+   - Application name: `ZABAL Gamez`
+   - Homepage URL: `https://zabalgamez.com`
+   - Authorization callback URL: `https://zabalgamez.com/api/auth/github/callback`
 3. Click Register
 4. Copy Client ID + generate Client Secret
 5. Set Vercel env vars:

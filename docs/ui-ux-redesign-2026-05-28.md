@@ -1,4 +1,4 @@
-# ZABAL Games UI/UX Redesign Plan - 2026-05-28
+# ZABAL Gamez UI/UX Redesign Plan - 2026-05-28
 
 > Per Zaal: '/design the website we need to really amp up the UI / UX.' This doc plans the upgrade in layered tiers so we ship incrementally without breaking the simplicity feedback.
 
@@ -159,7 +159,7 @@ Use `<picture>` element to serve responsive variants:
 <picture>
   <source media="(max-width: 600px)" srcset="/assets/logo-480.webp">
   <source media="(min-width: 601px)" srcset="/assets/logo-840.webp">
-  <img src="/assets/logo.png" alt="ZABAL Games - Insert Coin" class="hero-logo">
+  <img src="/assets/logo.png" alt="ZABAL Gamez - Insert Coin" class="hero-logo">
 </picture>
 ```
 

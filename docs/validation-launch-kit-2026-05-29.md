@@ -1,4 +1,4 @@
-# ZABAL Games - Validation Launch Kit
+# ZABAL Gamez - Validation Launch Kit
 
 > Date: 2026-05-29. Purpose: run the FounderCheck VALIDATE experiment - 10 June
 > workshop signups in 72 hours from builders outside the immediate circle. Pulls
@@ -34,11 +34,11 @@ advisor: hit 10+ from outside and the offer has proven it resonates when framed 
 
 Variant A - lead with the frame:
 
-> ZABAL Games is open. The ZAO's 3-month Build-A-Thon - not a weekend-and-gone.
+> ZABAL Gamez is open. The ZAO's 3-month Build-A-Thon - not a weekend-and-gone.
 > June: builders teach the tools they made. July: ship something real for the
 > ecosystem. August: Finals, paired with a ZAO mentor as your teammate.
 > Free to join. Any harness. You keep the repo and the credit.
-> Pick your path. Insert coin: zabalgames.com/lead
+> Pick your path. Insert coin: zabalgamez.com/lead
 
 Variant B - lead with the door choice:
 
@@ -46,9 +46,9 @@ Variant B - lead with the door choice:
 > June - watch builders teach the tools they shipped.
 > July - build something real for The ZAO. The build IS the application.
 > August - Finals, with a ZAO mentor as your teammate.
-> Free. Any harness. Workshops just opened: zabalgames.com/lead
+> Free. Any harness. Workshops just opened: zabalgamez.com/lead
 
-Post in /zabal, embed zabalgames.com/lead, one CTA. Tag a couple of FarHack alumni
+Post in /zabal, embed zabalgamez.com/lead, one CTA. Tag a couple of FarHack alumni
 who would actually be into it (not a mass tag).
 
 ## 2. DM templates - FarHack + Agentic Bootcamp alumni
@@ -57,7 +57,7 @@ Personalize every [bracket]. Send 10. Do not paste the same line ten times.
 
 Template A - FarHack alum who shipped:
 
-> Hey [name] - saw you ship [thing] at FarHack. We are running ZABAL Games, The
+> Hey [name] - saw you ship [thing] at FarHack. We are running ZABAL Gamez, The
 > ZAO's 3-month Build-A-Thon, and I want you in it. June workshops just opened. Not
 > a weekend-and-gone thing - you build for a real 100+ member community, get a ZAO
 > mentor as a teammate, keep the repo, and earn governance. Want the signup link?
@@ -65,19 +65,19 @@ Template A - FarHack alum who shipped:
 Template B - bootcamp alum wanting an ongoing crew:
 
 > [name] - you shipped at the Farcaster Agentic Bootcamp, figured you might want
-> somewhere to keep building with people. That is what ZABAL Games is: 3 months,
+> somewhere to keep building with people. That is what ZABAL Gamez is: 3 months,
 > mentors, real rails (Empire Builder, Hats, Bonfire), and your build is the
 > application. June workshops are live - can I grab you a spot?
 
 Template C - strong builder / mentor-curious:
 
-> [name] - quick one. We are onboarding builders into The ZAO through ZABAL Games
+> [name] - quick one. We are onboarding builders into The ZAO through ZABAL Gamez
 > (3-month Build-A-Thon, $500 pool, mentor pairs, Respect governance). I think you
 > would [crush July / make a great mentor]. Worth 2 minutes to see the workshop slate?
 
 ## 3. ZAO core endorsement request (DM)
 
-> [name] - ZABAL Games workshops just opened and I am going for our first 10 signups
+> [name] - ZABAL Gamez workshops just opened and I am going for our first 10 signups
 > from outside the usual circle in 72h. Would you do one public cast in /zabal
 > vouching for it? Even a line on why builders should jump in helps. Happy to draft
 > it for you.

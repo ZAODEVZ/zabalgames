@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zabalgames.com/sitemap.xml
+Sitemap: https://zabalgamez.com/sitemap.xml

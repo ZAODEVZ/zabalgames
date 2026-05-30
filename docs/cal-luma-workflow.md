@@ -17,7 +17,7 @@ Luma event, without writing any integration code.
 ## One-time Cal.com setup
 
 1. Create a Cal.com account (or use the team account).
-2. New event type: **ZABAL Games Workshop Session**.
+2. New event type: **ZABAL Gamez Workshop Session**.
    - Slug: `zabal-games-workshop` (so the link is `USERNAME/zabal-games-workshop`).
    - Duration: 30 min (matches the workshop format).
    - Availability: June only, open 24/7 within that window. Cal.com handles the

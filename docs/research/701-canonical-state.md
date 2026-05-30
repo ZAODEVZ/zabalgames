@@ -8,9 +8,9 @@ original-query: "zabal games in its interity and then grill me on anything thats
 tier: STANDARD
 ---
 
-# 701 - ZABAL Games: Canonical State (post mentor-open pivot)
+# 701 - ZABAL Gamez: Canonical State (post mentor-open pivot)
 
-> **Goal:** One consolidated source of truth for ZABAL Games as of 2026-05-21. Folds Doc 630 (Season 1 spec), Doc 654 (Empire V3 / June-July-August calendar pivot), and Doc 646 (Clanker token mechanic) into a single state-of-the-event, then records 24 decisions taken in a structured decision interview with Zaal on 2026-05-21.
+> **Goal:** One consolidated source of truth for ZABAL Gamez as of 2026-05-21. Folds Doc 630 (Season 1 spec), Doc 654 (Empire V3 / June-July-August calendar pivot), and Doc 646 (Clanker token mechanic) into a single state-of-the-event, then records 24 decisions taken in a structured decision interview with Zaal on 2026-05-21.
 
 > **Status:** research-complete. This doc is canonical for FORMAT, CALENDAR, MENTOR MODEL, and INFRA STATE. Where it conflicts with Doc 630 or Doc 654, this doc wins (it is later and reflects live decisions). Doc 630 stays the long-form spec and decision log; Doc 654 stays the meeting record. Both get a superseded-for-state note pointing here.
 
@@ -41,9 +41,9 @@ Recommendations and locked calls first.
 
 ---
 
-## Part 1 - What ZABAL Games Is
+## Part 1 - What ZABAL Gamez Is
 
-ZABAL Games is **not a generic hackathon**. It is a **Farcaster-creator onboarding event for the ZAO ecosystem** - a structured way to bring hungry, Farcaster-active vibe-coders into ZAO by having them build something real, in public, with a ZAO mentor in their corner.
+ZABAL Gamez is **not a generic hackathon**. It is a **Farcaster-creator onboarding event for the ZAO ecosystem** - a structured way to bring hungry, Farcaster-active vibe-coders into ZAO by having them build something real, in public, with a ZAO mentor in their corner.
 
 - **Host:** Zaal / BetterCallZaal (FID 19640).
 - **Framing:** "Season 1" - a recurring format. Earlier drafts called it "v0" / "Claude Code Hackathon"; current framing is Season 1 + "Farcaster Vibe-Coding Challenge" (tool-agnostic).
@@ -172,13 +172,13 @@ Every finalist who ships gets paid - tiering is recognition of standout work, no
 
 ### Participation collectible - locked
 
-A Hats Protocol role NFT on Base (Decision #9, locked 2026-05-22). Every finisher gets one: every July build that hits the submission bar, plus every August finalist. It is the universal "I shipped at ZABAL Games S1" credential, sitting alongside the Respect every July ship earns.
+A Hats Protocol role NFT on Base (Decision #9, locked 2026-05-22). Every finisher gets one: every July build that hits the submission bar, plus every August finalist. It is the universal "I shipped at ZABAL Gamez S1" credential, sitting alongside the Respect every July ship earns.
 
 ### Respect
 
 - Every July submission that hits the bar earns Respect (Decision #4).
 - Finalists earn additional Respect during the August Finals.
-- Respect is ZAO's soulbound, peer-validated, Fibonacci-ranked reputation - earned in weekly fractal sessions. It is also what defines the ZABAL Games voter set.
+- Respect is ZAO's soulbound, peer-validated, Fibonacci-ranked reputation - earned in weekly fractal sessions. It is also what defines the ZABAL Gamez voter set.
 
 ### Total ZAO cost
 
@@ -286,22 +286,22 @@ The `/zabal` channel exists; everything else is still ahead.
 
 ## Part 11 - Build + Hosting Decisions (Tyler call, 2026-05-22)
 
-Two layers landed after the original 2026-05-21 interview: a mini app grilling, then the 2026-05-22 Tyler Stambaugh call ([Doc 714](../714-tyler-zabal-zaostock-may22/)). Tyler is the Magnetiq founder and a confirmed ZABAL Games collaborator.
+Two layers landed after the original 2026-05-21 interview: a mini app grilling, then the 2026-05-22 Tyler Stambaugh call ([Doc 714](../714-tyler-zabal-zaostock-may22/)). Tyler is the Magnetiq founder and a confirmed ZABAL Gamez collaborator.
 
 ### Hosting - two surfaces
 
-ZABAL Games runs on TWO surfaces, split by job:
+ZABAL Gamez runs on TWO surfaces, split by job:
 
 | Surface | Repo / platform | Job |
 |---------|-----------------|-----|
 | **Magnetiq portal** | Magnetiq (Tyler's platform) | The connection point - the full workshop video library in one place, entry/onboarding, polls, and the UGC field for submissions + suggestions. Magnetiq gives native video hosting, NFT-gated magnets, opt-in email capture, and per-vendor watch analytics out of the box. |
-| **Farcaster mini app** | new standalone repo `bettercallzaal/zabalgames`, deployed on a `zabal.art` subdomain | The explainer + front door only. Explains ZABAL Games and links out to the important things (Magnetiq portal, the page, `/zabal`). Light - NOT the full event hub the earlier grill scoped. |
+| **Farcaster mini app** | new standalone repo `bettercallzaal/zabalgames`, deployed on a `zabal.art` subdomain | The explainer + front door only. Explains ZABAL Gamez and links out to the important things (Magnetiq portal, the page, `/zabal`). Light - NOT the full event hub the earlier grill scoped. |
 
 The `zabalgames.html` page stays the public marketing page. The mini app + page share no heavy backend; Magnetiq is the system of record for entry + submissions.
 
 ### Entry - the Zabal connector NFT
 
-Entry / RSVP to ZABAL Games is collecting the **Zabal connector** - the anchor magnet. It behaves like a Discord "general" channel; other magnets are side channels. Low-friction: opting into road-to-ZAOstock auto-drops the connector. Mechanic is decided; it needs art only - generate the image and send to Tyler for the Magnetiq magnet.
+Entry / RSVP to ZABAL Gamez is collecting the **Zabal connector** - the anchor magnet. It behaves like a Discord "general" channel; other magnets are side channels. Low-friction: opting into road-to-ZAOstock auto-drops the connector. Mechanic is decided; it needs art only - generate the image and send to Tyler for the Magnetiq magnet.
 
 ### The July build prompt - llms.txt + Claude skill
 
@@ -313,13 +313,13 @@ June = workshop month: builders across the ecosystem record one ~30-min session 
 
 ### Launch sequence
 
-- **~2026-05-24 (this weekend):** public announcement. ZABAL Games and ZAOstock go out as SEPARATE posts (not combined). Plus Zaal live on Farcaster spaces, DJing old ZAO music for lore.
+- **~2026-05-24 (this weekend):** public announcement. ZABAL Gamez and ZAOstock go out as SEPARATE posts (not combined). Plus Zaal live on Farcaster spaces, DJing old ZAO music for lore.
 - **~2026-05-30 (soft launch):** minimum viable surface live - a UGC submission field, a volunteer/interest poll, and Zaal's intro video. Not everything, just a place to land.
 
 ### Still undecided (Tyler layer)
 
 - Whether participants get the paid Claude Code community tier (via WAP) free for 3-4 months - Zaal floated it, explicitly "not worried about that yet."
-- Magnetiq's SNAPS retention framework (Status, Novelty, Access, Power, Stuff) - relevant to how ZABAL Games retains participants; not yet designed in.
+- Magnetiq's SNAPS retention framework (Status, Novelty, Access, Power, Stuff) - relevant to how ZABAL Gamez retains participants; not yet designed in.
 
 ---
 
@@ -348,7 +348,7 @@ WaveWarZ-Base runs the market. Respect-holders get a pre-funded position at T+0 
 
 ### Adoptable project #09 added
 
-- **Wire WaveWarZ-Base into the ZABAL Games Finals settlement surface** - the page in `ZAODEVZ/zabalgames` that reads the live battle state, shows the trade view, and triggers the settlement readout at T+72h. Builder: ideally a July builder takes this as their submission.
+- **Wire WaveWarZ-Base into the ZABAL Gamez Finals settlement surface** - the page in `ZAODEVZ/zabalgames` that reads the live battle state, shows the trade view, and triggers the settlement readout at T+72h. Builder: ideally a July builder takes this as their submission.
 
 ### Timeline (next 3 months)
 
@@ -372,7 +372,7 @@ If WaveWarZ-Base isn't mainnet-ready by August: revert to Doc 646's "parallel si
 ## Also See
 
 - [Doc 714](../714-tyler-zabal-zaostock-may22/) - Tyler x Zaal call - the Magnetiq hosting + connector + announcement decisions in Part 11
-- [Doc 630](../630-zabal-games-claude-code-hackathon-v0/) - ZABAL Games Season 1 long-form spec + decision log + `PROMPT_CONTEXT.md`
+- [Doc 630](../630-zabal-games-claude-code-hackathon-v0/) - ZABAL Gamez Season 1 long-form spec + decision log + `PROMPT_CONTEXT.md`
 - [Doc 654](../654-zabal-games-empire-v3-yerbearzerker-meeting/) - Empire V3 + June/July/August calendar pivot meeting
 - [Doc 646](../../business/646-clanker-empire-builder-zabal-games-promote/) - Clanker + Empire Builder optional token mechanic
 - [Doc 626](../../business/626-empire-builder-zabal-poidh-airdrop/) - Empire Builder apiLeaderboards + POIDH airdrop pattern
