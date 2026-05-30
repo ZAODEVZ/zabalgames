@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="zabalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd23f"/>
+      <stop offset="100%" stop-color="#ff8c1a"/>
+    </linearGradient>
+    <linearGradient id="gamezGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="60%" stop-color="#3df0ff"/>
+      <stop offset="100%" stop-color="#ff3d6e"/>
+    </linearGradient>
+    <radialGradient id="screenGlow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#1b2b6b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#070709" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="px" x="0" y="0" width="34" height="34" patternUnits="userSpaceOnUse">
+      <rect width="34" height="34" fill="none"/>
+      <circle cx="2" cy="2" r="1.3" fill="#15203f"/>
+    </pattern>
+  </defs>
+
+  <!-- backdrop -->
+  <rect width="1200" height="800" fill="#0a0b1e"/>
+  <rect width="1200" height="800" fill="url(#px)" opacity="0.7"/>
+  <ellipse cx="600" cy="360" rx="560" ry="340" fill="url(#screenGlow)"/>
+
+  <!-- arcade brick border (top + bottom rows) -->
+  <g>
+    <!-- top row -->
+    <g>
+      <rect x="60"  y="54" width="48" height="26" rx="4" fill="#ff3d6e"/>
+      <rect x="116" y="54" width="48" height="26" rx="4" fill="#ffd23f"/>
+      <rect x="172" y="54" width="48" height="26" rx="4" fill="#00e5ff"/>
+      <rect x="228" y="54" width="48" height="26" rx="4" fill="#7c4dff"/>
+      <rect x="284" y="54" width="48" height="26" rx="4" fill="#2bd66a"/>
+      <rect x="868" y="54" width="48" height="26" rx="4" fill="#2bd66a"/>
+      <rect x="924" y="54" width="48" height="26" rx="4" fill="#7c4dff"/>
+      <rect x="980" y="54" width="48" height="26" rx="4" fill="#00e5ff"/>
+      <rect x="1036" y="54" width="48" height="26" rx="4" fill="#ffd23f"/>
+      <rect x="1092" y="54" width="48" height="26" rx="4" fill="#ff3d6e"/>
+    </g>
+    <!-- bottom row -->
+    <g>
+      <rect x="60"  y="720" width="48" height="26" rx="4" fill="#00e5ff"/>
+      <rect x="116" y="720" width="48" height="26" rx="4" fill="#2bd66a"/>
+      <rect x="172" y="720" width="48" height="26" rx="4" fill="#ff3d6e"/>
+      <rect x="980" y="720" width="48" height="26" rx="4" fill="#ff3d6e"/>
+      <rect x="1036" y="720" width="48" height="26" rx="4" fill="#2bd66a"/>
+      <rect x="1092" y="720" width="48" height="26" rx="4" fill="#00e5ff"/>
+    </g>
+  </g>
+
+  <!-- ZABAL -->
+  <text x="600" y="300" text-anchor="middle"
+        font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-weight="900" font-size="150" letter-spacing="2" fill="url(#zabalGrad)"
+        stroke="#7a2b00" stroke-width="3" paint-order="stroke">ZABAL</text>
+
+  <!-- GAMEZ -->
+  <text x="600" y="450" text-anchor="middle"
+        font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-weight="900" font-size="150" letter-spacing="8" fill="url(#gamezGrad)"
+        stroke="#06303a" stroke-width="3" paint-order="stroke">GAMEZ</text>
+
+  <!-- INSERT COIN -->
+  <text x="600" y="520" text-anchor="middle"
+        font-family="'JetBrains Mono', ui-monospace, monospace"
+        font-weight="700" font-size="30" letter-spacing="12" fill="#e4e2dd">INSERT COIN</text>
+
+  <!-- tagline -->
+  <text x="600" y="610" text-anchor="middle"
+        font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-weight="700" font-size="26" letter-spacing="3" fill="#f5c842">THE ZAO'S 3-MONTH BUILD-A-THON</text>
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="800" font-size="20" letter-spacing="3">
+    <text x="340" y="668" text-anchor="middle" fill="#00e5ff">JUNE WORKSHOPS</text>
+    <text x="600" y="668" text-anchor="middle" fill="#00e5ff">JULY BUILD</text>
+    <text x="860" y="668" text-anchor="middle" fill="#00e5ff">AUGUST FINALS</text>
+  </g>
+
+  <text x="600" y="700" text-anchor="middle"
+        font-family="'JetBrains Mono', ui-monospace, monospace"
+        font-weight="500" font-size="15" letter-spacing="2" fill="#5a5870">zabalgamez.com</text>
+</svg>
