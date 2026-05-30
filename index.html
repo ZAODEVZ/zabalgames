@@ -652,6 +652,11 @@
 </head>
 <body class="ui-polish-v1">
 
+<div class="top-cta" id="top-cta">
+  <span class="top-cta-text">ZABAL Games Season 1 is live.</span>
+  <button type="button" id="top-cta-cast" class="top-cta-btn">I'm in - tell Farcaster</button>
+</div>
+
 <nav class="nav">
   <div class="nav-row">
     <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
@@ -1126,6 +1131,24 @@
     });
   }
   loadCount();
+
+  // Top CTA: one-tap cast of excitement into /zabal with the site embedded.
+  // This is the share-to-timeline growth loop - the cast ends on an open
+  // question to pull replies and tags back toward the page.
+  var topCast = document.getElementById('top-cta-cast');
+  if (topCast) {
+    topCast.addEventListener('click', function () {
+      var text = "I'm excited to be part of ZABAL Games Season 1 with The ZAO.\n\n"
+        + "Build for a real community, don't win a weekend and disappear. June workshops, July open build, August Finals.\n\n"
+        + "Come build with me. Who else is in?";
+      if (window.ZABAL && window.ZABAL.share) {
+        window.ZABAL.share({ platform: 'farcaster', text: text, url: 'https://zabalgames.com', target: 'top-cta' });
+      } else {
+        window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text)
+          + '&embeds%5B%5D=' + encodeURIComponent('https://zabalgames.com') + '&channelKey=zabal', '_blank', 'noopener');
+      }
+    });
+  }
 
   // June workshop schedule - rendered live from data/workshop-leads.json so the
   // page reflects whatever leads have locked, and dates fill in as they confirm.

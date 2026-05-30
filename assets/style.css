@@ -222,6 +222,15 @@ a:hover { text-decoration: underline; }
 .presence-list li.clickable:hover { color: var(--text); }
 .presence-list img { border-radius: 50%; object-fit: cover; flex: none; }
 
+/* Top CTA bar - one-tap "tell Farcaster" share-to-timeline loop */
+.top-cta { display: flex; align-items: center; justify-content: center; gap: 0.9rem; flex-wrap: wrap;
+  padding: 0.55rem 1rem; background: linear-gradient(90deg, rgba(167, 139, 250, 0.18), rgba(0, 229, 255, 0.18));
+  border-bottom: 1px solid var(--border); font-size: 0.9rem; text-align: center; }
+.top-cta-text { color: var(--text); font-weight: 600; }
+.top-cta-btn { font-family: inherit; font-size: 0.85rem; font-weight: 700; padding: 0.4rem 1.1rem;
+  border-radius: 999px; cursor: pointer; color: var(--bg); background: var(--cyan); border: 1px solid var(--cyan); }
+.top-cta-btn:hover { box-shadow: 0 0 14px rgba(0, 229, 255, 0.45); }
+
 /* Homepage hero: de-risk line, one-tap join, social proof */
 .pitch-derisk { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.4rem; }
 .join-block { display: flex; align-items: center; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.1rem; }
