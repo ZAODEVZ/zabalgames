@@ -24,7 +24,7 @@ export const config = { runtime: 'edge' };
 const SITE = 'https://zabalgames.com';
 const ENDPOINT = `${SITE}/api/snap/signup`;
 const IMG = `${SITE}/assets/icon.png`;
-const FORMSPREE_URL = 'https://formspree.io/f/mjgajyqe';
+const FORMSPREE_URL = 'https://formspree.io/f/mlgvvoyd';
 const SNAP_MEDIA_TYPE = 'application/vnd.farcaster.snap+json';
 const CHANNEL_URL = 'https://farcaster.xyz/~/channel/zabal';
 
