@@ -17,11 +17,11 @@
     "description": "The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Build for a real community, get paid, and keep what you ship. $500 USDC pool + Hats NFTs.",
     "primaryCategory": "social",
     "tags": ["zao", "farcaster", "build", "community", "base"],
-    "heroImageUrl": "https://zabalgamez.com/assets/logo.png",
+    "heroImageUrl": "https://zabalgamez.com/assets/embed-card.png",
     "tagline": "Build for a real community",
     "ogTitle": "ZABAL Gamez Season 1",
     "ogDescription": "The ZAO's 3-month Build-A-Thon. June-August 2026. Build something that lasts.",
-    "ogImageUrl": "https://zabalgamez.com/assets/logo.png",
+    "ogImageUrl": "https://zabalgamez.com/assets/embed-card.png",
     "castShareUrl": "https://zabalgamez.com/share",
     "webhookUrl": "https://zabalgamez.com/api/webhook"
   }
