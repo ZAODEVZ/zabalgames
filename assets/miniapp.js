@@ -1,11 +1,11 @@
-// ZABAL Games - Farcaster Mini App SDK bootstrap.
+// ZABAL Gamez - Farcaster Mini App SDK bootstrap.
 // Loads the SDK, dismisses the splash screen on every page that includes this script,
 // and exposes a small composeCast helper for in-mini-app sharing.
 //
 // Usage in HTML head:
 //   <script type="module" src="/assets/miniapp.js"></script>
 //
-// All zabalgames.com pages should include this. Without sdk.actions.ready(),
+// All zabalgamez.com pages should include this. Without sdk.actions.ready(),
 // Warpcast hangs on the splash image forever.
 
 import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk@0.1.x';
@@ -92,7 +92,7 @@ window.ZABAL.viewProfile = async function viewProfile(fid) {
   window.open('https://farcaster.xyz/~/profiles/' + fid, '_blank', 'noopener');
 };
 
-// Prompt the user to add ZABAL Games (enables notifications via /api/webhook).
+// Prompt the user to add ZABAL Gamez (enables notifications via /api/webhook).
 // Returns true if the prompt ran, false outside a Mini App. Safe to call anywhere.
 window.ZABAL.addApp = async function addApp() {
   try {

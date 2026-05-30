@@ -7,8 +7,8 @@
 
 1. Go to https://luma.com/zao -> hit New Event
 2. Fill the fields with the template below
-3. Set Cover image: upload `og-card.png` once Zaal pushes it, OR use the existing icon at `https://zabalgames.com/assets/icon.png` for now
-4. Set tag: `zabal-games` so it shows in the filtered embed on zabalgames.com #workshops
+3. Set Cover image: upload `og-card.png` once Zaal pushes it, OR use the existing icon at `https://zabalgamez.com/assets/icon.png` for now
+4. Set tag: `zabal-games` so it shows in the filtered embed on zabalgamez.com #workshops
 5. Set host: the workshop lead's Lu.ma account (co-invite them via their email)
 6. Set Location: Link Meeting type, paste Restream studio URL once event date locked
 7. Publish
@@ -17,19 +17,19 @@
 
 **Title:**
 ```
-Magnetiq - The Workshop Library Behind ZABAL Games
+Magnetiq - The Workshop Library Behind ZABAL Gamez
 ```
 
 **Subtitle / short description:**
 ```
-30-min pitch from Tyler Stambaugh, founder of Magnetiq, on the platform hosting every ZABAL Games workshop session.
+30-min pitch from Tyler Stambaugh, founder of Magnetiq, on the platform hosting every ZABAL Gamez workshop session.
 ```
 
 **Full description:**
 ```
-ZABAL Games Season 1 - Workshop #001
+ZABAL Gamez Season 1 - Workshop #001
 
-Tyler Stambaugh, founder of Magnetiq, presents the workshop library platform that hosts every recorded session of ZABAL Games Season 1.
+Tyler Stambaugh, founder of Magnetiq, presents the workshop library platform that hosts every recorded session of ZABAL Gamez Season 1.
 
 What you will learn:
 - Magnetiq as the workshop-library home for the whole Season
@@ -43,15 +43,15 @@ Format: 30-min talk, livestreamed on Restream (multistreams to YouTube + Twitch 
 Audience: anyone in The ZAO ecosystem + digital creators thinking about owned audiences. Builders pitching for July submissions, mentors, workshop leads.
 
 Hosted by: Tyler Stambaugh (Magnetiq founder)
-Part of: ZABAL Games Season 1 - June workshops
-More: zabalgames.com
+Part of: ZABAL Gamez Season 1 - June workshops
+More: zabalgamez.com
 ```
 
 **Date placeholder:** `<PICK A DATE - any weekday in June 2026>`
 **Time:** `<PICK A TIME - default 8pm EST to match ZAO Fractal cadence>`
 **Duration:** 45 min (30 min talk + 15 min Q&A buffer)
 **Tag:** `zabal-games`
-**Cover:** `https://zabalgames.com/assets/og-card.png` (or icon.png until OG card lands)
+**Cover:** `https://zabalgamez.com/assets/og-card.png` (or icon.png until OG card lands)
 
 ---
 
@@ -64,14 +64,14 @@ Thy Revolution Workshop Session 1 - <TOPIC TBD>
 
 **Subtitle:**
 ```
-First of two workshop sessions from Thy Revolution (Mickey / Rev) for ZABAL Games Season 1.
+First of two workshop sessions from Thy Revolution (Mickey / Rev) for ZABAL Gamez Season 1.
 ```
 
 **Full description:**
 ```
-ZABAL Games Season 1 - Workshop #002a (1 of 2)
+ZABAL Gamez Season 1 - Workshop #002a (1 of 2)
 
-Thy Revolution presents the first of two workshop sessions for ZABAL Games Season 1.
+Thy Revolution presents the first of two workshop sessions for ZABAL Gamez Season 1.
 
 Topic: <TOPIC TBD - confirm with Thy Revolution before publishing>
 
@@ -80,8 +80,8 @@ Format: livestreamed on Restream, recorded, lives in the Magnetiq library foreve
 Audience: anyone in The ZAO ecosystem + builders looking for July submission inspiration.
 
 Hosted by: Thy Revolution
-Part of: ZABAL Games Season 1 - June workshops
-More: zabalgames.com
+Part of: ZABAL Gamez Season 1 - June workshops
+More: zabalgamez.com
 ```
 
 **Date placeholder:** `<PICK A DATE - any weekday in June 2026>`
@@ -101,14 +101,14 @@ Thy Revolution Workshop Session 2 - <TOPIC TBD>
 
 **Subtitle:**
 ```
-Second of two workshop sessions from Thy Revolution for ZABAL Games Season 1.
+Second of two workshop sessions from Thy Revolution for ZABAL Gamez Season 1.
 ```
 
 **Full description:**
 ```
-ZABAL Games Season 1 - Workshop #002b (2 of 2)
+ZABAL Gamez Season 1 - Workshop #002b (2 of 2)
 
-Thy Revolution presents the second of two workshop sessions for ZABAL Games Season 1.
+Thy Revolution presents the second of two workshop sessions for ZABAL Gamez Season 1.
 
 Topic: <TOPIC TBD - confirm with Thy Revolution before publishing>
 
@@ -117,8 +117,8 @@ Format: livestreamed on Restream, recorded, lives in the Magnetiq library foreve
 Audience: anyone in The ZAO ecosystem + builders looking for July submission inspiration.
 
 Hosted by: Thy Revolution
-Part of: ZABAL Games Season 1 - June workshops
-More: zabalgames.com
+Part of: ZABAL Gamez Season 1 - June workshops
+More: zabalgamez.com
 ```
 
 **Date placeholder:** `<PICK A SECOND DATE - different week from Session 1>`
@@ -134,13 +134,13 @@ More: zabalgames.com
 Before publishing each event, DM the lead with:
 
 ```
-hey - drafting your ZABAL Games workshop Lu.ma event.
+hey - drafting your ZABAL Gamez workshop Lu.ma event.
 
 confirm:
 - topic: <suggest one OR ask them>
 - date: <propose 2-3 options>
 - time: 8pm EST OK or different?
-- cover image: using ZABAL Games icon unless you want yours
+- cover image: using ZABAL Gamez icon unless you want yours
 
 i ll publish + send you the cohost invite link. you confirm + share with your audience.
 ```

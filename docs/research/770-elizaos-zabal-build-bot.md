@@ -2,19 +2,19 @@
 
 > **Status:** Spec drafted 2026-05-28. Implementation: post-launch sprint (mid-June).
 > **Origin:** Zaal call 2026-05-28 - 'this might be a great opportunity to create an elizaOS bot for this it accepts \$zabal and gives you suggestions on your build.'
-> **Lives at:** TBD - probably `/zabal` Farcaster channel as a tag-mentionable bot, plus a Mini App pop-in on zabalgames.com.
+> **Lives at:** TBD - probably `/zabal` Farcaster channel as a tag-mentionable bot, plus a Mini App pop-in on zabalgamez.com.
 
 ## The shift
 
 **Before:** builders join /zabal channel, ask questions, hope someone knowledgeable replies. Async friction. New builders bounce.
 
-**After:** builders mention the bot, it reads their repo (auto-detected from their Farcaster connected GitHub via Doc 750 OAuth) + their question, returns concrete suggestions tuned to the ZABAL Games context (ecosystem rails, brand glossary, submission bar, mentor-claim rubric). Free baseline. \$ZABAL micropayment unlocks deeper review.
+**After:** builders mention the bot, it reads their repo (auto-detected from their Farcaster connected GitHub via Doc 750 OAuth) + their question, returns concrete suggestions tuned to the ZABAL Gamez context (ecosystem rails, brand glossary, submission bar, mentor-claim rubric). Free baseline. \$ZABAL micropayment unlocks deeper review.
 
 ## Who this is for
 
 | User | Use case |
 |---|---|
-| First-time builder browsing /zabal | "What should I build for ZABAL Games?" - bot gives 3 project suggestions tuned to their stated interest |
+| First-time builder browsing /zabal | "What should I build for ZABAL Gamez?" - bot gives 3 project suggestions tuned to their stated interest |
 | Mid-build builder | "How does Empire Builder integration work for my build?" - bot points at the right rail + a code snippet from llms.txt |
 | Mentor-curious lurker | "Which builders need a contracts mentor?" - bot reads builders.json + people.json + suggests pairings |
 | Pre-Finals finalist | "Review my submission bar for Finals readiness" - bot scores their README + URL + demo against the rubric |
@@ -128,12 +128,12 @@ Character file at `bot/zabal-bot.character.json`:
   },
   "system": "You are the ZABAL Bot - a guide for builders in The ZAO ecosystem. Voice: warm, builder-energy, drop articles when terse helps, no emojis, no em-dashes, no specific holder counts (use '100+'). You know the ecosystem deeply (you have llms.txt, brand-kit, research docs, roster). Tier 1 answers are 1 paragraph + 1 link. Tier 2 (paid) answers are full reviews with concrete suggestions.",
   "bio": [
-    "ZABAL Bot is the in-channel guide for ZABAL Games builders.",
+    "ZABAL Bot is the in-channel guide for ZABAL Gamez builders.",
     "Free Tier: 1 suggestion + 1 link in reply cast.",
     "Tip ZABAL for deep review."
   ],
   "lore": [
-    "Lives in /zabal channel + zabalgames.com",
+    "Lives in /zabal channel + zabalgamez.com",
     "Built on ElizaOS",
     "Knows the ecosystem: ZAO, $ZABAL, Empire Builder, WaveWarZ, Hats, Bonfire, EAS, Magnetiq",
     "Refers to humans by Farcaster handle"
@@ -142,7 +142,7 @@ Character file at `bot/zabal-bot.character.json`:
     "(loaded from llms.txt + people.json + research docs at startup)"
   ],
   "topics": [
-    "ZABAL Games",
+    "ZABAL Gamez",
     "ZAO ecosystem",
     "Farcaster building",
     "Empire Builder integration",
@@ -171,7 +171,7 @@ At startup, bot reads:
 
 | Source | What it gets |
 |---|---|
-| `zabalgames.com/llms.txt` | Full ecosystem context (~30KB) |
+| `zabalgamez.com/llms.txt` | Full ecosystem context (~30KB) |
 | `data/people.json` | Confirmed roster + mentor offers + best-fits |
 | `data/adoptable-projects.json` | 16 starter projects with rails + difficulty |
 | `data/workshop-leads.json` | Session schedule + topics |
@@ -180,23 +180,23 @@ At startup, bot reads:
 | `docs/research/720-wavewarz-finals-mechanic.md` | Finals settlement detail |
 | `docs/research/750-builder-registration-oauth-flow.md` | Builder OAuth spec for self-reference |
 
-Refreshed on each Vercel deploy of zabalgames.com via webhook (same pattern as Doc 760 Notion CMS).
+Refreshed on each Vercel deploy of zabalgamez.com via webhook (same pattern as Doc 760 Notion CMS).
 
 ## Tier 1 example interaction
 
-**Builder casts:** "@zabalbot I want to build something for ZABAL Games but no idea what. I'm a TypeScript dev, never used Farcaster"
+**Builder casts:** "@zabalbot I want to build something for ZABAL Gamez but no idea what. I'm a TypeScript dev, never used Farcaster"
 
 **Bot replies:**
 
 ```
 Pick an adoptable project - lowest gate to start. The 16 list at
-zabalgames.com/projects has 9 stack-feature projects (small, plug-in
+zabalgamez.com/projects has 9 stack-feature projects (small, plug-in
 to an existing rail) + 7 starter-repo projects (full repos to fork +
 ship). For a TypeScript dev new to Farcaster, try the SongJam leader-
 board migration (project #1) - small Empire Builder API integration,
 done in a weekend, zero Farcaster-specific surface.
 
-zabalgames.com/projects.html
+zabalgamez.com/projects.html
 
 Tip 1 ZABAL for the full pairing breakdown.
 ```
@@ -221,7 +221,7 @@ Why: matches TS strength, single rail (Empire Builder API), no Farcaster
 2. Submission bar checklist for July: live URL on Vercel, repo
    public on github.com/yourhandle, 60-sec demo recorded with Riverside
    or QuickTime, cast on /zabal with #zabalgames tag. Include
-   zabalgames.com/projects URL in your README for the featured-badge.
+   zabalgamez.com/projects URL in your README for the featured-badge.
 3. Mentor pairing: @bettercallzaal is best-fit for cross-rail builds
    (your ID is generalist). Reach via DM on Farcaster.
 
@@ -237,7 +237,7 @@ Audit kEngram pushed to Bonfire: zabal-build-001-yourhandle.
 | 3. Build @zabal/bot-rubric-plugin (loads knowledge base + scoring) | dev | 1 day |
 | 4. Wire \$ZABAL tip detection via Base RPC | dev | 4 hours |
 | 5. Deploy to VPS (existing or new Hetzner box) | dev | 2 hours |
-| 6. Update DNS: bot.zabalgames.com -> VPS | dev | 30 min |
+| 6. Update DNS: bot.zabalgamez.com -> VPS | dev | 30 min |
 | 7. Add bot to /zabal channel + announce | dev + Zaal | 1 hour |
 | 8. Iterate based on first 10 interactions | dev + community | 1 week |
 
@@ -272,8 +272,8 @@ Net: bot pays for itself after ~50 Tier 2 reviews/month.
 
 ## Adjacent docs
 
-- ZABAL Games Doc 750 - Builder OAuth (enables bot to read builder's GitHub history once Phase 1 of that ships)
-- ZABAL Games Doc 760 - Notion CMS (the knowledge base may eventually live in Notion + sync to bot at deploy)
+- ZABAL Gamez Doc 750 - Builder OAuth (enables bot to read builder's GitHub history once Phase 1 of that ships)
+- ZABAL Gamez Doc 760 - Notion CMS (the knowledge base may eventually live in Notion + sync to bot at deploy)
 - ZAO OS Doc 343 - Agent wallet security (Privy key quorum for bot tip address)
 - ZAO OS Doc 489 - Hypersnap fork (monitor for Farcaster plugin compat)
 
@@ -416,11 +416,11 @@ HAATZ_BASE_URL=https://haatz.quilibrium.com
 NEYNAR_API_KEY=<from dev.neynar.com>
 
 # Knowledge base refresh
-ZABAL_LLMS_URL=https://zabalgames.com/llms.txt
-ZABAL_PEOPLE_URL=https://zabalgames.com/data/people.json
-ZABAL_PROJECTS_URL=https://zabalgames.com/data/adoptable-projects.json
-ZABAL_WORKSHOPS_URL=https://zabalgames.com/data/workshop-leads.json
-ZABAL_CHANGELOG_URL=https://zabalgames.com/data/changelog.json
+ZABAL_LLMS_URL=https://zabalgamez.com/llms.txt
+ZABAL_PEOPLE_URL=https://zabalgamez.com/data/people.json
+ZABAL_PROJECTS_URL=https://zabalgamez.com/data/adoptable-projects.json
+ZABAL_WORKSHOPS_URL=https://zabalgamez.com/data/workshop-leads.json
+ZABAL_CHANGELOG_URL=https://zabalgamez.com/data/changelog.json
 
 # Budget controls
 DAILY_ANTHROPIC_BUDGET_USD=10.00       # auto-pause if exceeded
@@ -596,21 +596,21 @@ Use Sentry (free tier) for error tracking + a simple uptime check (Better Uptime
     "@elizaos/plugin-farcaster",     // listens + replies
     "@elizaos/plugin-anthropic"      // reasoning
   ],
-  "system": "You are the ZABAL Bot - a guide for builders in The ZAO ecosystem. Voice: warm, builder-energy, drop articles when terse helps. RULES: (1) NO emojis. (2) NO em-dashes - use hyphens. (3) NO crypto/web3/onchain language in public copy - use 'digital creators.' (4) Use '100+' for ZAO size, never specific. (5) Brand spellings exact: ZABAL Games, The ZAO, WaveWarZ, COC Concertz, BetterCallZaal, Magnetiq, $ZABAL. (6) Tier 1 reply format: 1 paragraph + 1 link. Always end with a link or next action. (7) If you don't know something, say 'I don't have that locked - dm @bettercallzaal for the canonical answer.' Do not fabricate dates, numbers, names, or sponsor amounts. (8) Knowledge base loaded as system context below.",
+  "system": "You are the ZABAL Bot - a guide for builders in The ZAO ecosystem. Voice: warm, builder-energy, drop articles when terse helps. RULES: (1) NO emojis. (2) NO em-dashes - use hyphens. (3) NO crypto/web3/onchain language in public copy - use 'digital creators.' (4) Use '100+' for ZAO size, never specific. (5) Brand spellings exact: ZABAL Gamez, The ZAO, WaveWarZ, COC Concertz, BetterCallZaal, Magnetiq, $ZABAL. (6) Tier 1 reply format: 1 paragraph + 1 link. Always end with a link or next action. (7) If you don't know something, say 'I don't have that locked - dm @bettercallzaal for the canonical answer.' Do not fabricate dates, numbers, names, or sponsor amounts. (8) Knowledge base loaded as system context below.",
   "bio": [
-    "ZABAL Bot is the in-channel guide for ZABAL Games builders.",
+    "ZABAL Bot is the in-channel guide for ZABAL Gamez builders.",
     "Free Tier 1: 1 paragraph + 1 link per reply.",
     "Built on ElizaOS. Operated by The ZAO."
   ],
   "lore": [
-    "Lives in /zabal channel + zabalgames.com",
+    "Lives in /zabal channel + zabalgamez.com",
     "Built on ElizaOS using Claude Sonnet",
     "Knows the ecosystem: ZAO, $ZABAL, Empire Builder, WaveWarZ, Hats, Bonfire, EAS, Magnetiq",
     "Refers to humans by Farcaster handle",
     "Reads HAATZ for Farcaster context, never claims it's Neynar"
   ],
   "topics": [
-    "ZABAL Games", "ZAO ecosystem", "Farcaster building",
+    "ZABAL Gamez", "ZAO ecosystem", "Farcaster building",
     "Empire Builder integration", "Hats Protocol", "vibe-coding harness selection",
     "Magnetiq portal", "WaveWarZ Finals mechanic", "Bonfire knowledge graph"
   ],
@@ -624,9 +624,9 @@ Use Sentry (free tier) for error tracking + a simple uptime check (Better Uptime
     "chat": [
       "Open with the answer, not 'great question!'",
       "Always end with 1 link OR 1 next action",
-      "If recommending a profile, link to /p?handle=X on zabalgames.com",
-      "If recommending a project, link to zabalgames.com/projects",
-      "If recommending a workshop, link to zabalgames.com/info#workshops"
+      "If recommending a profile, link to /p?handle=X on zabalgamez.com",
+      "If recommending a project, link to zabalgamez.com/projects",
+      "If recommending a workshop, link to zabalgamez.com/info#workshops"
     ]
   }
 }

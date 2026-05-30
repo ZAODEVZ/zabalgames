@@ -1,23 +1,23 @@
 ---
 name: zabal-games
-description: ZAO ecosystem + ZABAL Games context. Use when building a project for ZABAL Games, the ZAO community, or any ZAO ecosystem brand (ZAO OS, $ZABAL, WaveWarZ, COC Concertz, ZAO Festivals, ZAO Music, BetterCallZaal). Loads brand guidelines (no emojis, no em dashes, naming glossary), tech stack (Next.js 16, Farcaster mini apps, Base, Supabase, Empire Builder, Hats, Bonfire, EAS), the two build paths (adopt a started project or build from scratch), and the ZABAL Games submission bar.
+description: ZAO ecosystem + ZABAL Gamez context. Use when building a project for ZABAL Gamez, the ZAO community, or any ZAO ecosystem brand (ZAO OS, $ZABAL, WaveWarZ, COC Concertz, ZAO Festivals, ZAO Music, BetterCallZaal). Loads brand guidelines (no emojis, no em dashes, naming glossary), tech stack (Next.js 16, Farcaster mini apps, Base, Supabase, Empire Builder, Hats, Bonfire, EAS), the two build paths (adopt a started project or build from scratch), and the ZABAL Gamez submission bar.
 ---
 
-# ZABAL Games / ZAO ecosystem context
+# ZABAL Gamez / ZAO ecosystem context
 
 Use this skill any time you write code, copy, or content for:
 
-- A ZABAL Games submission (June workshop, July build, August Finals).
+- A ZABAL Gamez submission (June workshop, July build, August Finals).
 - A project for any ZAO ecosystem brand.
 - Anything that uses the ZAO Farcaster channel `/zabal`, ZAO OS, $ZABAL, WaveWarZ, COC Concertz, ZAO Festivals, ZAO Music, or related rails (Empire Builder, Hats Protocol, Bonfire, EAS, Hypersub, Coinflow, 0xSplits, Clanker).
 
-The full context lives at **https://zabalgames.com/llms.txt** (mirrored in this repo at `/llms.txt`). That is the canonical, machine-readable, harness-agnostic version. This skill is the Claude Code-packaged variant of the same source, with load-once-and-respect instructions for an agent.
+The full context lives at **https://zabalgamez.com/llms.txt** (mirrored in this repo at `/llms.txt`). That is the canonical, machine-readable, harness-agnostic version. This skill is the Claude Code-packaged variant of the same source, with load-once-and-respect instructions for an agent.
 
 ---
 
 ## Always do
 
-1. **Read `/llms.txt` (or the URL above) at the start of any ZABAL Games / ZAO task.** It carries the full ecosystem context, tech stack defaults, build paths, and brand guidelines. Treat its sections as menu items - if you are building Empire Builder tooling, focus on that section.
+1. **Read `/llms.txt` (or the URL above) at the start of any ZABAL Gamez / ZAO task.** It carries the full ecosystem context, tech stack defaults, build paths, and brand guidelines. Treat its sections as menu items - if you are building Empire Builder tooling, focus on that section.
 2. **Apply the brand guidelines without exception:**
    - **No emojis** anywhere - not in code, commits, casts, UI copy.
    - **No em dashes** - use hyphens.
@@ -36,7 +36,7 @@ The full context lives at **https://zabalgames.com/llms.txt** (mirrored in this 
 - Use marketing fluff ("revolutionary", "game-changing", "transform your X").
 - Roll your own identity layer - use Farcaster verified addresses + Neynar.
 
-## When the task is a ZABAL Games submission
+## When the task is a ZABAL Gamez submission
 
 Hit ALL four by T+24h:
 
@@ -49,7 +49,7 @@ Plus maintain at least one **show-your-work visibility mode** during the build (
 
 ## Picking your build path
 
-ZABAL Games gives two paths:
+ZABAL Gamez gives two paths:
 
 - **Adopt a started ZAO project** from the curated list in `/llms.txt` (Songjam migration, POIDH leaderboard, zlank Snap template, Twitch -> Empire feed, new ZOE skills, this `/zabal` mini app, COC content pipeline, streaming auto-clip flywheel). Pick one, ship it forward.
 - **Build from scratch** with the ecosystem context. Tie it to real ZAO rails.
@@ -94,7 +94,7 @@ curl -o .claude/skills/zabal-games/SKILL.md https://raw.githubusercontent.com/ZA
 
 Then either start a new Claude Code session in that project, or `/skill list` to confirm it loaded.
 
-For Cursor / Windsurf / Aider / Cline equivalents, just point them at `https://zabalgames.com/llms.txt` directly (see the file's "How to use this file with your harness" section).
+For Cursor / Windsurf / Aider / Cline equivalents, just point them at `https://zabalgamez.com/llms.txt` directly (see the file's "How to use this file with your harness" section).
 
 ---
 

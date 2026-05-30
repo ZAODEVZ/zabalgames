@@ -4,13 +4,13 @@ type: decision
 status: research-complete
 last-validated: 2026-05-23
 related-docs: "701, 711, 723, 180, 646, 654"
-original-query: "use wavewarz tech to decide the ZABAL Games Finals winner - build the integration into ZABAL Games over the next few months"
+original-query: "use wavewarz tech to decide the ZABAL Gamez Finals winner - build the integration into ZABAL Gamez over the next few months"
 tier: STANDARD
 ---
 
-# 720 - WaveWarZ as the ZABAL Games Finals Voting Mechanism
+# 720 - WaveWarZ as the ZABAL Gamez Finals Voting Mechanism
 
-> **Goal:** Lock in the design for using WaveWarZ's prediction-market protocol to decide ZABAL Games Season 1 Finals winners. Replaces (or layers on top of) the original Respect 1-person-1-vote framing. Targets the Base-native agentic build of WaveWarZ that Sam is shipping and Arthur is reviewing - the same tech becomes the Finals judging surface AND a real-world stress test for WaveWarZ Base.
+> **Goal:** Lock in the design for using WaveWarZ's prediction-market protocol to decide ZABAL Gamez Season 1 Finals winners. Replaces (or layers on top of) the original Respect 1-person-1-vote framing. Targets the Base-native agentic build of WaveWarZ that Sam is shipping and Arthur is reviewing - the same tech becomes the Finals judging surface AND a real-world stress test for WaveWarZ Base.
 
 > **Note:** This is the canonical voting decision for the August Finals. Doc 701 Part 12 captures the high-level state; this doc holds the protocol design + integration sketch.
 
@@ -25,9 +25,9 @@ tier: STANDARD
 | 3 | **Respect-earning members get a baseline allocation** | Each eligible Respect-holder gets a small pre-funded position (e.g. equivalent of $1-2) so the community vote still has weight inside the market, not just outside-money speculators. |
 | 4 | **1% artist cut goes to the builder** | Per WaveWarZ economics - 1% of trade volume to the artist. In the Finals, this is the builder. Provides real revenue beyond the $500 USDC pool. |
 | 5 | **The losing-side pool partly feeds the winning-side pool** | Per WaveWarZ protocol. Means the prize-as-USDC structure can be augmented (or replaced) by the market settlement. |
-| 6 | **Base, not Solana** | The agentic WaveWarZ-Base build (Sam + Arthur, Doc 711) is the surface. Base matches ZABAL Games' rails (Empire Builder, Hats, Bonfire, EAS, Coinflow all on Base). |
+| 6 | **Base, not Solana** | The agentic WaveWarZ-Base build (Sam + Arthur, Doc 711) is the surface. Base matches ZABAL Gamez' rails (Empire Builder, Hats, Bonfire, EAS, Coinflow all on Base). |
 | 7 | **Autonomous judge agents (x402 paid) score build quality** | Per Doc 723d agentic patterns - judge agents read the deployed URL + the repo + the demo video, score against the rubric (does it work / is it ZAO-native / would I use this / shipped in 24h), get paid in x402 micropayments. Their scores become a "fundamental" the market trades on. |
-| 8 | **Build the integration over June-July, dogfood on Finals in August** | Sam + Arthur ship the agentic Base contracts. The ZABAL Games team plugs them in as the Finals voting surface. The Finals BECOMES the V1 launch event for WaveWarZ-Base. |
+| 8 | **Build the integration over June-July, dogfood on Finals in August** | Sam + Arthur ship the agentic Base contracts. The ZABAL Gamez team plugs them in as the Finals voting surface. The Finals BECOMES the V1 launch event for WaveWarZ-Base. |
 
 ---
 
@@ -41,7 +41,7 @@ The shift gives you:
 - **Real economic signal.** A wallet putting money on a build is a different commitment than a click. The market price aggregates more information than a poll.
 - **Mass participation.** Anyone with a wallet can trade. Not just Respect-holders. Wider funnel = more eyes on the cohort.
 - **Built-in revenue for builders.** 1% trade cut to the builder = ongoing income post-Finals, not just the $500 USDC.
-- **A real stress test for WaveWarZ-Base.** The Finals are the perfect first event - controlled cohort, real participants, real incentives. Sam + Arthur ship and ZABAL Games is their first deployment.
+- **A real stress test for WaveWarZ-Base.** The Finals are the perfect first event - controlled cohort, real participants, real incentives. Sam + Arthur ship and ZABAL Gamez is their first deployment.
 - **Composability with ZAO rails.** Base-native + Empire Builder + Hats + EAS all stack cleanly.
 
 The tradeoff: **token-weighted by definition.** A whale buying a position skews more than a small holder. The Respect baseline allocation (Decision #3) is the mitigation - every Respect-holder starts with a position, so the community has real (not just rhetorical) weight in the market.
@@ -133,13 +133,13 @@ T+72h     SETTLEMENT. WaveWarZ-Base smart contract reads final volume +
 
 ### June (workshop month)
 - Sam + Arthur lock the WaveWarZ-Base smart contracts (per Doc 711 action items). Sam already has 2 contracts on testnet; Arthur reviews security + suggests references.
-- **Workshop:** Arthur or Sam records a session "WaveWarZ-Base smart contracts" for the June workshop library. Doubles as the spec walkthrough for ZABAL Games builders.
+- **Workshop:** Arthur or Sam records a session "WaveWarZ-Base smart contracts" for the June workshop library. Doubles as the spec walkthrough for ZABAL Gamez builders.
 - **Decision sub-doc:** Spec the `airdropPositions(voters[], amount, finalists[])` call + the Respect-holder snapshot mechanism. Either reuses the Respect contract directly or a Hats Protocol role check.
 
 ### July (open build-a-thon)
 - WaveWarZ-Base goes to Base mainnet (post-audit).
 - A test "battle" runs - one of the 8 adoptable projects becomes a fake finalist. Smoke-test the full flow with Respect-holder pre-funding + market trading + settlement.
-- **Adoptable project #09 (added):** "Wire WaveWarZ-Base into the ZABAL Games Finals surface" - lives in `ZAODEVZ/zabalgames` repo as the Finals settlement page. Builder: ideally a July builder takes it as their submission.
+- **Adoptable project #09 (added):** "Wire WaveWarZ-Base into the ZABAL Gamez Finals surface" - lives in `ZAODEVZ/zabalgames` repo as the Finals settlement page. Builder: ideally a July builder takes it as their submission.
 
 ### August (the Finals)
 - Real Finals run on WaveWarZ-Base. ~5-8 finalists, 30-80 Respect-holder pre-funded voters, market open for 72h, settlement on-chain at T+72h.
@@ -163,12 +163,12 @@ T+72h     SETTLEMENT. WaveWarZ-Base smart contract reads final volume +
 
 ## Cross-references
 
-- [Doc 711](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/711-arthur-wavewarz-base-call-may19.md) - Arthur intro call. Locks Arthur on the WaveWarZ-Base smart contracts + as ZABAL Games mentor.
+- [Doc 711](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/711-arthur-wavewarz-base-call-may19.md) - Arthur intro call. Locks Arthur on the WaveWarZ-Base smart contracts + as ZABAL Gamez mentor.
 - [Doc 723](https://github.com/bettercallzaal/ZAOOS/tree/main/research/business/723-zabal-avax-x402-wavewarz-agentic) - Agentic WaveWarZ + x402 research. Confirms WaveWarZ is Solana for v1; Base for the agentic build; the judge-agent pattern + autonomous trader pattern.
 - [Doc 180](https://github.com/bettercallzaal/ZAOOS/tree/main/research/wavewarz/180-wavewarz-integration-blueprints) - WaveWarZ Artist Discovery Pipeline. The technical integration patterns for reading battle data + program ID + Helius RPC.
 - [Doc 101](https://github.com/bettercallzaal/ZAOOS/tree/main/research/wavewarz) - WaveWarZ ZAO whitepaper. The economic model + protocol mechanics.
 - [Doc 646](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/646-clanker-promote.md) - Clanker + Empire Builder promote-window. The pattern this supersedes (Clanker was the "parallel signal"; WaveWarZ becomes the "actual decision").
-- [Doc 701](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/701-canonical-state.md) - ZABAL Games canonical state. Part 12 (next update) folds in this WaveWarZ Finals mechanism.
+- [Doc 701](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/701-canonical-state.md) - ZABAL Gamez canonical state. Part 12 (next update) folds in this WaveWarZ Finals mechanism.
 - [Doc 654](https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/654-empire-v3-meeting.md) - Empire Builder V3 + the calendar pivot. Empire stays the leaderboard layer; WaveWarZ is the settlement layer.
 
 ---
@@ -183,7 +183,7 @@ T+72h     SETTLEMENT. WaveWarZ-Base smart contract reads final volume +
 | Add adoptable project #09: "Wire WaveWarZ-Base into the Finals surface" | Zaal | This week (add to /projects + JSON) |
 | Update Doc 701 with Part 12 (WaveWarZ Finals) | Zaal | This session |
 | Update llms.txt with the WaveWarZ Finals mechanic | Zaal | This session |
-| Build /finals page on zabalgames.com with the WaveWarZ framing | Zaal | This session |
+| Build /finals page on zabalgamez.com with the WaveWarZ framing | Zaal | This session |
 | Mainnet deploy WaveWarZ-Base + run smoke-test battle | Sam + Arthur | July |
 | Define the prize-pool / market-settlement mapping (how $500 USDC + protocol settlement coexist) | Zaal + Sam + Arthur | July |
 | Run the real Finals on WaveWarZ-Base | Whole team | August |

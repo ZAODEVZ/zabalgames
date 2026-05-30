@@ -11,7 +11,7 @@ tools to build games" and the problem as "struggling to distribute their vibe-co
 games and share knowledge." That is a **SaaS for vibe-coder game distribution +
 knowledge sharing**.
 
-That is not ZABAL Games. ZABAL Games is The ZAO's 3-month Build-A-Thon - a
+That is not ZABAL Gamez. ZABAL Gamez is The ZAO's 3-month Build-A-Thon - a
 creator-onboarding event (see `docs/positioning-2026-05-29.md`). Grading it as a
 subscription tool is like grading a music festival on its app-store rating.
 
@@ -21,7 +21,7 @@ will people. That is a brand-clarity problem, addressed in the positioning doc.
 
 ## Score-by-score reframe
 
-| FounderCheck score | What it assumed | ZABAL Games reality | Right metric |
+| FounderCheck score | What it assumed | ZABAL Gamez reality | Right metric |
 |---|---|---|---|
 | pain_severity 3 | vibe coders can't distribute games | The job is onboarding builders into The ZAO and getting tools built on its rails - not solving game distribution | Builder demand for context + mentorship + a community to build for |
 | customer_clarity 7 | a payer persona | Audience is real and reachable (Farcaster builders), but they are participants, not subscribers | Number of qualified builders reached |
@@ -45,7 +45,7 @@ will people. That is a brand-clarity problem, addressed in the positioning doc.
 
 Feed it this description so it scores the right thing:
 
-> ZABAL Games is a 3-month Build-A-Thon run by The ZAO, a 100+ member Farcaster music
+> ZABAL Gamez is a 3-month Build-A-Thon run by The ZAO, a 100+ member Farcaster music
 > and creator ecosystem. It onboards Farcaster builders by giving them deep ecosystem
 > context, a mentor as an embedded teammate, a shared $500 USDC prize pool plus ongoing
 > on-chain economics, governance (Respect), and distribution - in exchange for shipping

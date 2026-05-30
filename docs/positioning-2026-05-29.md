@@ -1,4 +1,4 @@
-# ZABAL Games - Positioning One-Pager
+# ZABAL Gamez - Positioning One-Pager
 
 > Date: 2026-05-29. Canonical brand spine. Other copy (site, casts, decks, recruiting
 > DMs) pulls from this. Voice + glossary live in `docs/brand-kit-2026-05-28.md`;
@@ -6,7 +6,7 @@
 
 ## Positioning (one sentence)
 
-ZABAL Games is The ZAO's 3-month Build-A-Thon - ship something real for the
+ZABAL Gamez is The ZAO's 3-month Build-A-Thon - ship something real for the
 ecosystem, get a ZAO mentor as your teammate, and earn a place in how The ZAO is run.
 
 ## What it is / what it is not
@@ -70,7 +70,7 @@ or Discord.
 - Finals placement settles through the WaveWarZ-Base prediction market, with a Respect
   baseline (fallback: Respect 1p1v if WaveWarZ-Base is not mainnet-ready).
 - Lineage: the Farcaster Agentic Bootcamp fed FarHack, where Zaal/Zlank won the Snap
-  category ($1,000), which funded ZAOstock. ZABAL Games carries that thread forward.
+  category ($1,000), which funded ZAOstock. ZABAL Gamez carries that thread forward.
 - The ZAO: a 100+ member gated Farcaster music community, founded 2022.
 
 ## Voice reminders

@@ -1,6 +1,6 @@
-# ZABAL Games - Brand Context Guide
+# ZABAL Gamez - Brand Context Guide
 
-> The brand identity spine for every ZAO ecosystem brand. This feeds the ZABAL Games prompt bundle - players read this to understand what they're building for. Updated 2026-05-21 - most voice/visual gaps resolved (see ZAO research Doc 701 Part 7). Remaining **[TBD - Zaal]** markers still need input.
+> The brand identity spine for every ZAO ecosystem brand. This feeds the ZABAL Gamez prompt bundle - players read this to understand what they're building for. Updated 2026-05-21 - most voice/visual gaps resolved (see ZAO research Doc 701 Part 7). Remaining **[TBD - Zaal]** markers still need input.
 
 Framework per brand: One-liner / Mission / Audience / Voice / Visual / Build surface / Status.
 
@@ -97,7 +97,7 @@ Framework per brand: One-liner / Mission / Audience / Voice / Visual / Build sur
 - **Audience:** All ZAO members. Earning Respect is how you go from member to governance participant.
 - **Voice:** Ritual, earned, communal. "Fractal governance as practice." Not gamified-points-energy - reputation-with-weight energy. (Confirmed 2026-05-21.)
 - **Visual:** Has a visual motif tied to the Fibonacci ranking + the weekly fractal sessions. Worth carrying into any Respect or leaderboard UI.
-- **Build surface:** Respect = soulbound, non-transferable, Fibonacci-ranked peer reputation. Fractal = weekly 4-6 person group ranking ritual. `src/components/respect/` in ZAO OS. Respect is what defines the ZABAL Games voter set (Respect-above-threshold = eligible to vote). Builders can ship: fractal tooling, Respect visualizations, contribution trackers, the voter-eligibility surface for the Games itself.
+- **Build surface:** Respect = soulbound, non-transferable, Fibonacci-ranked peer reputation. Fractal = weekly 4-6 person group ranking ritual. `src/components/respect/` in ZAO OS. Respect is what defines the ZABAL Gamez voter set (Respect-above-threshold = eligible to vote). Builders can ship: fractal tooling, Respect visualizations, contribution trackers, the voter-eligibility surface for the Games itself.
 - **Status:** Live - core governance mechanic. Drove the Q1 cascade (fractal bot -> ZAO OS shipped).
 
 ---

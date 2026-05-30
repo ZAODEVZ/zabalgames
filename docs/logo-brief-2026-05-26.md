@@ -1,11 +1,11 @@
-# ZABAL Games Logo Brief - 10 Directions
+# ZABAL Gamez Logo Brief - 10 Directions
 
 > Brief for the designer. Pick any combo. Mix two. We want options.
 > Drafted 2026-05-26.
 
 ## Context (give this to the designer)
 
-- **What it is:** ZABAL Games Season 1 - a 3-month Farcaster vibe-coding challenge for the ZAO ecosystem. Streamer games crossed with a hackathon. June workshops + July build-a-thon + August Finals.
+- **What it is:** ZABAL Gamez Season 1 - a 3-month Farcaster vibe-coding challenge for the ZAO ecosystem. Streamer games crossed with a hackathon. June workshops + July build-a-thon + August Finals.
 - **Parent brand:** The ZAO (music + web3 community, 100+ members, dark navy + gold/cyan accents).
 - **Sibling brands:** WaveWarZ (music battles), COC Concertz (virtual concerts), ZAOstock (festival), BetterCallZaal (Zaal's personal).
 - **Recurring format:** This is Season 1. Logo needs to work for Season 2, 3, 4 - season numeral might be a swappable element.
@@ -50,7 +50,7 @@ Deliverables we want back:
 
 ### 1. Arcade Cabinet Wordmark
 - **Vibe:** 1982 arcade, Atari/Sega nostalgia
-- **Visual:** Chunky beveled letters (ZABAL GAMES), drop shadow, optional CRT scanlines overlay
+- **Visual:** Chunky beveled letters (ZABAL GAMEZ), drop shadow, optional CRT scanlines overlay
 - **Reference:** Stranger Things arcade scenes, Reigns, The Last Starfighter
 - **Why it fits:** "Streamer games" half of the pitch. Plays to nostalgia. Square format friendly.
 - **Risk:** Too literal-game = might mislead vibe-coding builders into thinking it's a Twitch-only thing
@@ -71,7 +71,7 @@ Deliverables we want back:
 
 ### 4. Builder/Terminal Mark
 - **Vibe:** Vibe-coding native - half code editor, half game
-- **Visual:** Wordmark in monospace (JetBrains Mono / IBM Plex Mono) with a blinking cursor `_` replacing one character, OR a `>` prompt prefix: `> ZABAL GAMES_`
+- **Visual:** Wordmark in monospace (JetBrains Mono / IBM Plex Mono) with a blinking cursor `_` replacing one character, OR a `>` prompt prefix: `> ZABAL GAMEZ_`
 - **Reference:** Vercel wordmark + cursor, Replit logo, Linear's monospace pull, Repl.it
 - **Why it fits:** Vibe-coding is the actual medium. Builder DNA explicit. Reads as a CLI command which is the audience.
 - **Risk:** Might feel too "dev tool" and miss the play/fun energy
@@ -85,7 +85,7 @@ Deliverables we want back:
 
 ### 6. Synthwave / Vaporwave Glow
 - **Vibe:** Late-80s neon, Drive soundtrack, Stranger Things season 4
-- **Visual:** Pink/cyan/purple gradient sunset-grid background, ZABAL GAMES in clean retro-futurist type centered, soft glow
+- **Visual:** Pink/cyan/purple gradient sunset-grid background, ZABAL GAMEZ in clean retro-futurist type centered, soft glow
 - **Reference:** Stranger Things title cards, FM-84, The Midnight album art, ROY G BIV
 - **Why it fits:** Music + games + community vibe. Photogenic on cast unfurls. Distinctive.
 - **Risk:** Synthwave is overused 2020-2026. Need a twist to not feel dated.
@@ -106,7 +106,7 @@ Deliverables we want back:
 
 ### 9. Hand-Drawn / Sketch Energy
 - **Vibe:** Indie game jam, itch.io, Are.na, post-Figma rebellion
-- **Visual:** Hand-drawn-feel ZABAL GAMES wordmark with imperfect lines, ink-bleed details, sketch arrows pointing at things
+- **Visual:** Hand-drawn-feel ZABAL GAMEZ wordmark with imperfect lines, ink-bleed details, sketch arrows pointing at things
 - **Reference:** Are.na typography, Hundred Rabbits, Itch.io game jam pages, Notion's hand-drawn icons
 - **Why it fits:** Counter-positions against polished VC-web3 brands. Says "small team, real humans, building in public." Matches Zaal's voice (caveman, terse, no fluff).
 - **Risk:** Looks unprofessional in formal contexts (sponsor decks). Might not scale to tiny sizes.

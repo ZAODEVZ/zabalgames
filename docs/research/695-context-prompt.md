@@ -7,19 +7,19 @@ related-docs: 432, 609, 630, 649, 681, 682, 684
 tier: DEEP
 ---
 
-# 695 - ZABAL Games: Ecosystem Context Prompt
+# 695 - ZABAL Gamez: Ecosystem Context Prompt
 
-> **Goal:** The full paste-ready context prompt for ZABAL Games builders and the AI coding agents they build with. Built from a 15-agent audit (two waves) of Zaal Panthaki, The ZAO, WaveWarZ, ZAO Festivals, the people, governance, agent stack, music, tech, economy, partnerships, and web properties. Everything below the line is the prompt - hand it to a builder as their orientation brief, or paste it whole into their coding agent as context.
+> **Goal:** The full paste-ready context prompt for ZABAL Gamez builders and the AI coding agents they build with. Built from a 15-agent audit (two waves) of Zaal Panthaki, The ZAO, WaveWarZ, ZAO Festivals, the people, governance, agent stack, music, tech, economy, partnerships, and web properties. Everything below the line is the prompt - hand it to a builder as their orientation brief, or paste it whole into their coding agent as context.
 
 ---
 
 ## THE PROMPT
 
-You are building during ZABAL Games, a 3-month build-a-thon run by The ZAO. This document is your context. Read all of it before you write anything. It tells you who you are building for, what the ecosystem is, who is in it, how it governs itself, and how to talk about it correctly.
+You are building during ZABAL Gamez, a 3-month build-a-thon run by The ZAO. This document is your context. Read all of it before you write anything. It tells you who you are building for, what the ecosystem is, who is in it, how it governs itself, and how to talk about it correctly.
 
-### 1. What ZABAL Games is
+### 1. What ZABAL Gamez is
 
-ZABAL Games is a 3-month builder event that brings new builders into the ZAO ecosystem by having them ship real things alongside ZAO members as embedded teammates. The canonical name is **ZABAL Games**, always written exactly that way. (Zaal calls it "Z of All Games" out loud as a pun - never write that down.)
+ZABAL Gamez is a 3-month builder event that brings new builders into the ZAO ecosystem by having them ship real things alongside ZAO members as embedded teammates. The canonical name is **ZABAL Gamez**, always written exactly that way. (Zaal calls it "Z of All Games" out loud as a pun - never write that down.)
 
 The three months:
 
@@ -35,7 +35,7 @@ You build in the open. Visibility is the anti-cheat and the point: live stream, 
 
 ### 2. Who Zaal is
 
-ZABAL Games is run by **Zaal Panthaki**, who builds publicly as **BetterCallZaal**. Handles: `@zaal` on Farcaster, `@bettercallzaal` on X and YouTube, plus Twitch livestreams of his build sessions. He founded The ZAO.
+ZABAL Gamez is run by **Zaal Panthaki**, who builds publicly as **BetterCallZaal**. Handles: `@zaal` on Farcaster, `@bettercallzaal` on X and YouTube, plus Twitch livestreams of his build sessions. He founded The ZAO.
 
 The origin story explains every decision downstream. In college (2018-19) Zaal was close to an independent musician known as JANGOUU FOREVER. Watching how hard it was for a genuinely talented independent artist to capture the value of their own work set Zaal on building systems that return the profit margin, the data, and the IP rights to creators. The ZAO is the through-line of that idea.
 
@@ -55,7 +55,7 @@ The ZAO is **a decentralized impact network focused on bringing the profit margi
 
 The ZAO has roughly 188 members on the Base chain (as of May 2026), most of them crypto-native Farcaster users.
 
-**The ZAO is an incubator.** This is the core model: a community member pitches or builds something, The ZAO incubates it, and Zaal plus a community cofounder back it with shared infrastructure (the agent stack, the token, the community, distribution). WaveWarZ was the first project incubated this way and is the proof the model works. ZABAL Games is itself an on-ramp into this model - a strong build can become an incubated project.
+**The ZAO is an incubator.** This is the core model: a community member pitches or builds something, The ZAO incubates it, and Zaal plus a community cofounder back it with shared infrastructure (the agent stack, the token, the community, distribution). WaveWarZ was the first project incubated this way and is the proof the model works. ZABAL Gamez is itself an on-ramp into this model - a strong build can become an incubated project.
 
 The ZAO's product is organized as **four pillars**:
 1. **Artist Org** - the social and music layer: chat, the music player, the social graph, contribution circles.
@@ -67,7 +67,7 @@ The 12-month vision: ecosystem primitives built so that **any digital creator** 
 
 ### 4. How The ZAO governs itself
 
-The ZAO runs on **fractal governance** - a weekly peer-evaluation process, going 90-plus weeks, every Monday at 6pm EST in Discord. This is also how ZABAL Games Finals are judged, so understand it.
+The ZAO runs on **fractal governance** - a weekly peer-evaluation process, going 90-plus weeks, every Monday at 6pm EST in Discord. This is also how ZABAL Gamez Finals are judged, so understand it.
 
 How a session works: members are split into small breakout groups (3-6 people). Each person gets a few minutes to share what they contributed that week - code, music, events, onboarding, anything. The group ranks the contributions together. Higher ranks earn more **Respect**, a non-transferable reputation token, on a Fibonacci curve (the top contributor in a group of six earns 13, the next 8, then 5, 3, 2, 1). Respect is earned, never bought. Respect is how voting weight and standing work across The ZAO.
 
@@ -77,18 +77,18 @@ The system traces to the "fractal" lineage (Optimism Fractal, Eden Fractal) and 
 
 You are not building for a faceless org. Key people:
 
-- **Zaal** - founder, runs ZABAL Games.
-- **candytoybox** (Samantha, she/her) - ZAO cofounder and WaveWarZ cofounder. ZABAL Games mentor.
+- **Zaal** - founder, runs ZABAL Gamez.
+- **candytoybox** (Samantha, she/her) - ZAO cofounder and WaveWarZ cofounder. ZABAL Gamez mentor.
 - **AttaBotty** - ZAO cofounder, 20-plus years in music production, leads ZAOstock production.
 - **Hurric4n3ike** (that exact spelling, digits 4 and 3) - founder and lead developer of WaveWarZ, based in Houston.
-- **Iman** - leads ZAO Devz, owns the songchaindao GitHub org, built the team coworking tracker, runs a bot VPS. ZABAL Games mentor.
-- **Thy Revolution** - cofounder and community lead of COC Concertz. ZABAL Games mentor.
-- **Ohnahji** - the education pillar, runs an onchain education effort. ZABAL Games mentor.
-- **Tom Fellenz** - composer and guitarist, metaverse music builder. ZABAL Games mentor.
+- **Iman** - leads ZAO Devz, owns the songchaindao GitHub org, built the team coworking tracker, runs a bot VPS. ZABAL Gamez mentor.
+- **Thy Revolution** - cofounder and community lead of COC Concertz. ZABAL Gamez mentor.
+- **Ohnahji** - the education pillar, runs an onchain education effort. ZABAL Gamez mentor.
+- **Tom Fellenz** - composer and guitarist, metaverse music builder. ZABAL Gamez mentor.
 - **DCoop** - hip-hop artist, leads music operations and a satellite festival.
 - **Steve Peer** - a 37-year Ellsworth, Maine music fixture, co-curates ZAOstock and anchors it locally.
 
-The remaining ZABAL Games mentors are **eduard**, **freezetheverse**, and **Adam SongJam**.
+The remaining ZABAL Gamez mentors are **eduard**, **freezetheverse**, and **Adam SongJam**.
 
 ### 6. The brands and your four build tracks
 
@@ -130,13 +130,13 @@ If you need to point at something live: `zaoos.com` (the app), `zaostock.com` (t
 
 ### 10. The rules for everything you write and build
 
-- **Brand spellings are exact. Never autocorrect them.** WaveWarZ. COC Concertz. The ZAO. BetterCallZaal. ZABAL. ZABAL Games. ZAOstock. ZAOCHELLA. ZAO Festivals. SongJam. ZOE. FISHBOWLZ. Thy Revolution. Tom Fellenz. Hurric4n3ike. candytoybox.
+- **Brand spellings are exact. Never autocorrect them.** WaveWarZ. COC Concertz. The ZAO. BetterCallZaal. ZABAL. ZABAL Gamez. ZAOstock. ZAOCHELLA. ZAO Festivals. SongJam. ZOE. FISHBOWLZ. Thy Revolution. Tom Fellenz. Hurric4n3ike. candytoybox.
 - **No emojis. No em dashes.** Use plain hyphens and text labels, not decorative symbols.
 - **Mobile-first.** Most of the audience is on a phone. Design for the phone; treat desktop as the enhancement.
 - **Music first, community second, technology third.** Lead with the artist outcome, not the blockchain.
 - **Do not invent.** No fake partnerships, numbers, dates, or rewards. If you do not know it, leave it out.
 
-### 11. What a winning ZABAL Games build looks like
+### 11. What a winning ZABAL Gamez build looks like
 
 - **It ships and it works.** A small live thing beats a big described thing.
 - **It serves an independent creator** - it gives an artist more reach, more ownership, or more income.
@@ -152,7 +152,7 @@ That is the context. Now go build something a creator would actually use.
 
 - This is the shared, all-tracks context prompt. The four per-brand deep-dive prompts (ZAOstock, ZABAL, WaveWarZ, The ZAO) should extend this base with track-specific repos, APIs, and example builds.
 - Numbers kept deliberately soft where the two audit waves disagreed - WaveWarZ battle counts and SOL volume, follower counts, exact Respect-contract details. Verify against live sources before any of those go on a public page.
-- Verify the mentor roster, the prize tiers, and the August Finals mechanics against the live ZABAL Games spec (doc 630 / doc 681) before publishing - they were correct as of 2026-05-20 but the program is young.
+- Verify the mentor roster, the prize tiers, and the August Finals mechanics against the live ZABAL Gamez spec (doc 630 / doc 681) before publishing - they were correct as of 2026-05-20 but the program is young.
 - The optional Clanker per-build token mechanic (doc 646) is intentionally left out of this prompt - that decision was still pending Zaal's sign-off.
 - Source: a 15-agent audit on 2026-05-20 across Zaal, The ZAO, WaveWarZ, ZAO Festivals, the community, governance, the agent stack, music, the tech stack, the economy, partnerships, and web properties.
 
@@ -160,12 +160,12 @@ That is the context. Now go build something a creator would actually use.
 
 | Action | Owner | Type | By When |
 |--------|-------|------|---------|
-| Review the prompt for voice + accuracy; correct any ZABAL Games mechanics that moved | @Zaal | Review | Before June workshops |
+| Review the prompt for voice + accuracy; correct any ZABAL Gamez mechanics that moved | @Zaal | Review | Before June workshops |
 | Write the 4 per-brand deep-dive prompts that extend this shared base | next session | Docs | Before July open build |
 | Verify the soft numbers (WaveWarZ stats, mentor roster, prize tiers) against live sources | @Zaal | Decision | Before publishing |
 
 ## Sources
 
-- 15-agent research audit, 2026-05-20 (two waves): Zaal profile + public footprint, The ZAO, WaveWarZ, ZAO Festivals + ZABAL Games, portfolio + brand architecture, community + people, governance + fractals, the agent stack, music, the ZAOOS tech architecture, token + economy, partnerships, live web properties
-- Doc 432 (ZAO master context), Doc 609 (six circles), Doc 630 (ZABAL Games spec), Doc 649 (84-repo builder survey), Doc 681/682 (ZAOstock 5/19 standup)
+- 15-agent research audit, 2026-05-20 (two waves): Zaal profile + public footprint, The ZAO, WaveWarZ, ZAO Festivals + ZABAL Gamez, portfolio + brand architecture, community + people, governance + fractals, the agent stack, music, the ZAOOS tech architecture, token + economy, partnerships, live web properties
+- Doc 432 (ZAO master context), Doc 609 (six circles), Doc 630 (ZABAL Gamez spec), Doc 649 (84-repo builder survey), Doc 681/682 (ZAOstock 5/19 standup)
 - ZAO OS V1 memory: user_zaal*, project_zao_*, project_zabal_games, project_candytoybox_samantha, project_hurric4n3ike, project_jangouu_forever, project_fractal_process, and the project memory cluster

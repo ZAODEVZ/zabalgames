@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZABAL Games - Profile</title>
-  <meta name="description" content="A ZABAL Games Season 1 participant profile. Loaded dynamically from /data/people.json by handle.">
-  <link rel="canonical" href="https://zabalgames.com/p">
-  <meta property="og:title" content="ZABAL Games - Profile">
-  <meta property="og:description" content="A ZABAL Games Season 1 participant. The roster.">
-  <meta property="og:url" content="https://zabalgames.com/p">
-  <meta property="og:image" content="https://zabalgames.com/assets/logo.png">
+  <title>ZABAL Gamez - Profile</title>
+  <meta name="description" content="A ZABAL Gamez Season 1 participant profile. Loaded dynamically from /data/people.json by handle.">
+  <link rel="canonical" href="https://zabalgamez.com/p">
+  <meta property="og:title" content="ZABAL Gamez - Profile">
+  <meta property="og:description" content="A ZABAL Gamez Season 1 participant. The roster.">
+  <meta property="og:url" content="https://zabalgamez.com/p">
+  <meta property="og:image" content="https://zabalgamez.com/assets/logo.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://zabalgames.com/assets/logo.png">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/logo.png","button":{"title":"View the roster","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/p","splashImageUrl":"https://zabalgames.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
-  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgames.com/assets/logo.png","button":{"title":"View the roster","action":{"type":"launch_miniapp","name":"ZABAL Games","url":"https://zabalgames.com/p","splashImageUrl":"https://zabalgames.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/logo.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/logo.png","button":{"title":"View the roster","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/p","splashImageUrl":"https://zabalgamez.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/logo.png","button":{"title":"View the roster","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/p","splashImageUrl":"https://zabalgamez.com/assets/logo.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -191,7 +191,7 @@
 
   <header class="hero">
     <div class="hero-eyebrow" id="page-eyebrow">The Roster</div>
-    <h1 id="page-title">ZABAL Games <span class="accent">Roster</span></h1>
+    <h1 id="page-title">ZABAL Gamez <span class="accent">Roster</span></h1>
     <p class="hero-sub" id="page-sub">
       Everyone confirmed for Season 1. Workshop leads, mentors, core builders, partners, organizers.
     </p>
@@ -209,7 +209,7 @@
     <a href="/llms.txt">llms.txt</a> -
     <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
   </div>
-  <p style="margin-top: 0.5rem; color: var(--text-dim);">ZABAL Games Season 1 - the roster.</p>
+  <p style="margin-top: 0.5rem; color: var(--text-dim);">ZABAL Gamez Season 1 - the roster.</p>
 </footer>
 
 <script>
@@ -333,7 +333,7 @@
 
   function renderRoster(people) {
     eyebrowEl.textContent = 'The Roster';
-    titleEl.innerHTML = 'ZABAL Games <span class="accent">Roster</span>';
+    titleEl.innerHTML = 'ZABAL Gamez <span class="accent">Roster</span>';
     subEl.textContent = 'Everyone confirmed for Season 1. Click any name for the full profile.';
 
     var html = '<div class="roster-grid">';
@@ -366,9 +366,9 @@
     eyebrowEl.textContent = (p.roles || ['ZABAL']).join(' / ').toUpperCase();
     titleEl.textContent = p.name;
     subEl.textContent = p.headline || '';
-    document.title = p.name + ' - ZABAL Games';
+    document.title = p.name + ' - ZABAL Gamez';
     document.querySelector('meta[name="description"]').setAttribute('content',
-      escapeHtml(p.name) + ' - ' + escapeHtml(p.headline || '') + '. ZABAL Games Season 1 participant.');
+      escapeHtml(p.name) + ' - ' + escapeHtml(p.headline || '') + '. ZABAL Gamez Season 1 participant.');
 
     var color = p.color || 'orange';
     var avatarSrc = p.avatar_url || '/assets/icon.png';

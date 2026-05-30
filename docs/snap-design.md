@@ -1,6 +1,6 @@
-# ZABAL Games Snap - Design + Build Plan
+# ZABAL Gamez Snap - Design + Build Plan
 
-> A Farcaster Snap that lives inside a cast: a viewer signs up to ZABAL Games in one tap, never leaving the feed. Higher conversion than the website form. Goes in the launch cast on `/zabal`.
+> A Farcaster Snap that lives inside a cast: a viewer signs up to ZABAL Gamez in one tap, never leaving the feed. Higher conversion than the website form. Goes in the launch cast on `/zabal`.
 
 ## Research synthesis (what we know)
 
@@ -15,8 +15,8 @@
 |---|---|---|
 | Time to ship | 10 minutes | 2-3 hours |
 | Skill required | Drag-drop in browser | TypeScript + Snap SDK |
-| Hosted at | `zlank.online/s/[uuid]` (7-day free expiry) | `zabalgames.com/api/snap/signup` (forever, ours) |
-| Branding | Zlank footer auto-appended | Fully branded ZABAL Games |
+| Hosted at | `zlank.online/s/[uuid]` (7-day free expiry) | `zabalgamez.com/api/snap/signup` (forever, ours) |
+| Branding | Zlank footer auto-appended | Fully branded ZABAL Gamez |
 | Backend | Zlank's Redis (KV votes) | Our Supabase or Formspree |
 | Best for | Launch THIS WEEK | Sustained polished version |
 
@@ -29,8 +29,8 @@ One Snap, four-question flow. Anyone who sees the launch cast can self-sort in o
 ### Initial state (GET)
 
 ```
-[Image: ZABAL GAMES share card]
-Headline:   ZABAL Games Season 1 - are you in?
+[Image: ZABAL GAMEZ share card]
+Headline:   ZABAL Gamez Season 1 - are you in?
 Subhead:    Pick your role. Takes 5 seconds.
 
 Buttons (4):
@@ -48,7 +48,7 @@ Headline:   You're in - role: <ROLE>.
 Subhead:    Next: <role-specific CTA>
 
 Buttons (2):
-  [Open full site]   -> open_url zabalgames.com
+  [Open full site]   -> open_url zabalgamez.com
   [Join /zabal]      -> open_url farcaster.xyz/~/channel/zabal
 ```
 
@@ -63,7 +63,7 @@ Role-specific CTA copy:
 
 Each POST writes: `{fid, role, timestamp, source: "snap-signup"}` to a backend table. Used to:
 1. Send the role-specific follow-up DM (manual at first, automated later via ZOE).
-2. Show real "live signup count" on zabalgames.com (`fetch('/api/snap/signups/count')`).
+2. Show real "live signup count" on zabalgamez.com (`fetch('/api/snap/signups/count')`).
 3. Build the cohort lists for each phase.
 
 For zlank version: writes go to zlank's Redis (HINCRBY pattern per Doc 527). Export weekly to our Supabase.
@@ -79,8 +79,8 @@ For custom version: writes go straight to our Supabase `zabalgames_snap_signups`
 1. Go to **zlank.online**, sign in with Farcaster.
 2. Click "Create Snap." Pick the **Poll** template (closest to our 4-button flow).
 3. Build the blocks in order:
-   - **Image block:** upload the ZABAL Games share card (assets/og-card.svg in this repo, or convert to PNG first).
-   - **Headline block:** `ZABAL Games Season 1 - are you in?`
+   - **Image block:** upload the ZABAL Gamez share card (assets/og-card.svg in this repo, or convert to PNG first).
+   - **Headline block:** `ZABAL Gamez Season 1 - are you in?`
    - **Text block:** `Pick your role. Takes 5 seconds.`
    - **Poll block** with 4 options:
      - Builder - July ship
@@ -88,7 +88,7 @@ For custom version: writes go straight to our Supabase `zabalgames_snap_signups`
      - Audience - RSVP to sessions
      - Mentor - August embed
    - **Confirmation page block:** "You're in. Check your DMs for next steps."
-   - **Link button:** `Open the full site -> https://zabalgames.com`
+   - **Link button:** `Open the full site -> https://zabalgamez.com`
    - **Link button:** `Join /zabal -> https://farcaster.xyz/~/channel/zabal`
 4. Publish. Copy the `zlank.online/s/[uuid]` URL.
 5. Paste it into the launch cast on `/zabal` (the Snap auto-renders inline).
@@ -167,14 +167,14 @@ export async function POST(req: Request) {
 
 function snapInitial() {
   return {
-    image: 'https://zabalgames.com/assets/og-card.png',
+    image: 'https://zabalgamez.com/assets/og-card.png',
     buttons: [
       { label: 'Builder - July ship' },
       { label: 'Workshop Lead - June teach' },
       { label: 'Audience - RSVP' },
       { label: 'Mentor - August embed' },
     ],
-    post_url: 'https://zabalgames.com/api/snap/signup',
+    post_url: 'https://zabalgamez.com/api/snap/signup',
   };
 }
 
@@ -187,9 +187,9 @@ function snapConfirmation(role: string) {
   }[role];
 
   return {
-    image: `https://zabalgames.com/api/snap/image?role=${role}`,
+    image: `https://zabalgamez.com/api/snap/image?role=${role}`,
     buttons: [
-      { label: 'Open full site', action: 'open_url', target: 'https://zabalgames.com' },
+      { label: 'Open full site', action: 'open_url', target: 'https://zabalgamez.com' },
       { label: 'Join /zabal',    action: 'open_url', target: 'https://farcaster.xyz/~/channel/zabal' },
     ],
   };

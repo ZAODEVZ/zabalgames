@@ -6,23 +6,23 @@
   },
   "miniapp": {
     "version": "1",
-    "name": "ZABAL Games",
-    "iconUrl": "https://zabalgames.com/assets/icon.png",
-    "homeUrl": "https://zabalgames.com",
-    "imageUrl": "https://zabalgames.com/assets/icon.png",
+    "name": "ZABAL Gamez",
+    "iconUrl": "https://zabalgamez.com/assets/icon.png",
+    "homeUrl": "https://zabalgamez.com",
+    "imageUrl": "https://zabalgamez.com/assets/icon.png",
     "buttonTitle": "Sign up",
-    "splashImageUrl": "https://zabalgames.com/assets/icon.png",
+    "splashImageUrl": "https://zabalgamez.com/assets/icon.png",
     "splashBackgroundColor": "#070709",
     "subtitle": "Build-a-thon for The ZAO",
     "description": "The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Build for a real community, get paid, and keep what you ship. $500 USDC pool + Hats NFTs.",
     "primaryCategory": "social",
     "tags": ["zao", "farcaster", "build", "community", "base"],
-    "heroImageUrl": "https://zabalgames.com/assets/logo.png",
+    "heroImageUrl": "https://zabalgamez.com/assets/logo.png",
     "tagline": "Build for a real community",
-    "ogTitle": "ZABAL Games Season 1",
+    "ogTitle": "ZABAL Gamez Season 1",
     "ogDescription": "The ZAO's 3-month Build-A-Thon. June-August 2026. Build something that lasts.",
-    "ogImageUrl": "https://zabalgames.com/assets/logo.png",
-    "castShareUrl": "https://zabalgames.com/share",
-    "webhookUrl": "https://zabalgames.com/api/webhook"
+    "ogImageUrl": "https://zabalgamez.com/assets/logo.png",
+    "castShareUrl": "https://zabalgamez.com/share",
+    "webhookUrl": "https://zabalgamez.com/api/webhook"
   }
 }

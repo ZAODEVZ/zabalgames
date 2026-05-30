@@ -7,9 +7,9 @@ related-docs: 701, 630, 646, 631, 584, 599, 498, 505, 527, 322, 324
 tier: STANDARD
 ---
 
-# 654 - ZABAL Games + Empire Builder V3: Meeting with yerbearzerker (Jordan)
+# 654 - ZABAL Gamez + Empire Builder V3: Meeting with yerbearzerker (Jordan)
 
-> **Goal:** Capture decisions + new direction from the 2026-05-16 working session with Jordan (Empire Builder) + Iman + Zaal. Two big shifts: (1) ZABAL Games timeline moves to June prep / July submissions / August finals, (2) every Phase 2 finalist creates a tokenless Empire as their pre-launch home, then optionally Ascends with a token + Clanker airdrop using their own leaderboard as the airdrop list.
+> **Goal:** Capture decisions + new direction from the 2026-05-16 working session with Jordan (Empire Builder) + Iman + Zaal. Two big shifts: (1) ZABAL Gamez timeline moves to June prep / July submissions / August finals, (2) every Phase 2 finalist creates a tokenless Empire as their pre-launch home, then optionally Ascends with a token + Clanker airdrop using their own leaderboard as the airdrop list.
 
 > **Status:** research-complete. Supersedes the "all-in-June" framing from Doc 630. Doc 630 spec stays canonical for format; this doc updates the calendar + adds the Empire V3 mechanic.
 
@@ -27,7 +27,7 @@ tier: STANDARD
 | 4 | **Songjam leaderboard migration** | Adam (Songjam) deprecating Twitter scraper for cost reasons. **MIGRATE** the Songjam leaderboard from X scraper to an Empire Builder API leaderboard. Lives inside Empire Builder alongside other ZABAL leaderboards. |
 | 5 | **POIDH leaderboard** | Build an Empire Builder leaderboard pulling on-chain POIDH bounty submissions. Counts unique submitters across all ZABAL bounties (5 submits on one bounty = 1, but bounty-1 + bounty-2 submitters both count). Replaces manual $1-ZABAL-per-submitter outreach. |
 | 6 | **kmac.eth template collab** | zlank.online "use template" mechanic - Empire Builder daily stats template (one-click cast for "today's Empire Builder update"). Footy app is the reference template. |
-| 7 | **Empire Builder API access** | Jordan to provide API key + access so ZABAL Games interface can let participants deploy Empires directly from the submission flow. |
+| 7 | **Empire Builder API access** | Jordan to provide API key + access so ZABAL Gamez interface can let participants deploy Empires directly from the submission flow. |
 | 8 | **Master prompt deliverable** | Zaal commits to shipping a "ZABAL/ZAO/WaveWarZ context skill" (drop into any vibe-coding agent) by end of May, before June bootcamp opens. |
 | 9 | **Bootcamp format** | Borrow Far-Hack model - recorded specialist sessions ("here's Empire, here's how to use it, here's why"). Watchable live or after. Jordan signs up to record an Empire Builder session. |
 | 10 | **Pre-launch discipline** | Jordan's advice locked in: 2-week pre-launch marketing cadence on anything that ships. June bootcamp doubles as the pre-launch window for July. |
@@ -57,7 +57,7 @@ The prior framing in Doc 630 had Phase 1 building + Phase 2 Finals compressed in
 
 ### August - Final 8 + Winner
 
-- **Purpose:** Phase 2 Finals - 8 builders, 8 mentors, the actual ZABAL Games.
+- **Purpose:** Phase 2 Finals - 8 builders, 8 mentors, the actual ZABAL Gamez.
 - **Format:** Same as Doc 630 Phase 2 - 24h build with mentor embedded + 24h promote + 24h DAO vote + reveal stream. Compressed to a single week inside August (week TBD).
 - **Token decision:** Each finalist decides during August whether to Ascend their Empire with a Clanker token launch. Those who do get auto-airdrop to their leaderboard with a vesting schedule. Those who don't keep running the tokenless Empire indefinitely.
 
@@ -78,7 +78,7 @@ Jordan walked through the V3 tier delta. This locks the participant flow:
 | Ranked spots per leaderboard | 250 |
 | Cost | Free |
 
-Used by every ZABAL Games participant from day 1 of July. Captures who's contributing to their build, who's amplifying their casts, on-chain interactions, anything you can stick on a leaderboard.
+Used by every ZABAL Gamez participant from day 1 of July. Captures who's contributing to their build, who's amplifying their casts, on-chain interactions, anything you can stick on a leaderboard.
 
 ### Ascended Empire (token launch unlocks)
 
@@ -96,7 +96,7 @@ Triggered when a participant launches their token via Empire Builder's Clanker i
 This is the unlock the meeting locked in:
 
 ```
-Step 1  Create tokenless Empire in July as ZABAL Games submission home
+Step 1  Create tokenless Empire in July as ZABAL Gamez submission home
 Step 2  Build the project. Build leaderboards. Identify who's actually contributing value.
 Step 3  When ready, take leaderboard → export CSV → that IS your airdrop list
 Step 4  Launch token through Empire Builder UI → instantly Ascended Empire
@@ -143,11 +143,11 @@ Jordan dropped a Clanker token called In-Rememberium for Dish (who left Clanker)
 - Jubjub runs Farcaster builder batches out of Melbourne
 - Adrian (Empire Builder co) is his neighbor - they met up for a beer
 - Zaal DM'd Jubjub + pinged on the timeline - no response yet
-- Worth re-pinging once ZABAL Games calendar is public. Jubjub's batch model is what June-prep is borrowing from in spirit.
+- Worth re-pinging once ZABAL Gamez calendar is public. Jubjub's batch model is what June-prep is borrowing from in spirit.
 
 ### Estuary Frame
 
-Jordan's framing for Farcaster's role in the ecosystem - "Farcaster is the estuary where baby projects grow big and strong before going into the ocean. Saltwater + freshwater. You incubate here, then go out into the greater world." Useful for any ZABAL Games marketing copy.
+Jordan's framing for Farcaster's role in the ecosystem - "Farcaster is the estuary where baby projects grow big and strong before going into the ocean. Saltwater + freshwater. You incubate here, then go out into the greater world." Useful for any ZABAL Gamez marketing copy.
 
 ---
 
@@ -164,7 +164,7 @@ Jordan's framing for Farcaster's role in the ecosystem - "Farcaster is the estua
 
 ## Also See
 
-- [Doc 630](../630-zabal-games-claude-code-hackathon-v0/) - Canonical ZABAL Games Season 1 spec (format + mentor model)
+- [Doc 630](../630-zabal-games-claude-code-hackathon-v0/) - Canonical ZABAL Gamez Season 1 spec (format + mentor model)
 - [Doc 646](../../business/646-clanker-empire-builder-zabal-games-promote/) - Clanker + Empire Builder promotion mechanic (token-launch optionality)
 - [Doc 584](../../business/584-empire-builder-farcaster-creator-playbooks/) - Empire Builder creator playbooks + booster stacks
 - [Doc 631](../../business/631-poidh-zabal-sentinel-convergence/) - POIDH + ZABAL convergence (on-chain bounty submission data)
@@ -195,8 +195,8 @@ Jordan's framing for Farcaster's role in the ecosystem - "Farcaster is the estua
 ## Sources
 
 - Meeting recording 2026-05-16 (Zaal + Jordan/yerbearzerker + Iman)
-- [Doc 630 ZABAL Games Season 1 spec](../630-zabal-games-claude-code-hackathon-v0/)
-- [Doc 646 Clanker + Empire Builder for ZABAL Games](../../business/646-clanker-empire-builder-zabal-games-promote/)
+- [Doc 630 ZABAL Gamez Season 1 spec](../630-zabal-games-claude-code-hackathon-v0/)
+- [Doc 646 Clanker + Empire Builder for ZABAL Gamez](../../business/646-clanker-empire-builder-zabal-games-promote/)
 - [Doc 584 Empire Builder creator playbooks](../../business/584-empire-builder-farcaster-creator-playbooks/)
 - [Empire Builder V3 (mentioned in meeting; verify tier specs against live UI at empire builder dashboard)](https://www.empirebuilder.world)
 - [POIDH bounty platform](https://poidh.xyz)

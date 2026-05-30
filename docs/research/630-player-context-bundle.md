@@ -1,4 +1,4 @@
-# ZABAL Games Season 1 - Player Context Bundle
+# ZABAL Gamez Season 1 - Player Context Bundle
 
 > **This is the comprehensive context primer for the ZAO ecosystem.** July builders get a lighter cut; August Finalists get the full bundle as their sealed prompt. Read it once cover to cover, then load it into your AI coding tool's context (Claude Code uses `CLAUDE.md`, Cursor uses `.cursorrules`, Windsurf uses `.windsurfrules`, Aider supports conventions files, etc.).
 
@@ -213,12 +213,12 @@ Contract reads are FREE via any Base RPC - skip API keys for read paths if all y
 
 **Status:** Paused. Per Doc 601 / Doc 526, the audio-room job is now Juke's. FISHBOWLZ failed at the job layer not the tech layer.
 
-**Why this matters for ZABAL Games:** Don't build something that competes with Juke. If you want to build audio infra, find a different job-to-be-done than "audio rooms for music."
+**Why this matters for ZABAL Gamez:** Don't build something that competes with Juke. If you want to build audio infra, find a different job-to-be-done than "audio rooms for music."
 
 ### BetterCallZaal (BCZ)
 
 **What it is:** Two things:
-1. Zaal's personal brand (the host of ZABAL Games) - portfolio + Farcaster Mini App at https://bettercallzaal.com
+1. Zaal's personal brand (the host of ZABAL Gamez) - portfolio + Farcaster Mini App at https://bettercallzaal.com
 2. BCZ Strategies (LLC) - Maine local SMB consulting agency
 
 **Personal-brand stack:** Pure static HTML, no build step. Direct edit + git push to main = deploy.
@@ -341,8 +341,8 @@ Hats are ERC-1155 role NFTs on Base. ZAO uses Hats for:
 - ZAO Music label member
 - COC Concertz promoter
 - ZAOstock team member (4 team-specific roles)
-- ZABAL Games S1 Champion (1st place - if collectible spec lands on Hats)
-- ZABAL Games S1 Finisher (every finisher)
+- ZABAL Gamez S1 Champion (1st place - if collectible spec lands on Hats)
+- ZABAL Gamez S1 Finisher (every finisher)
 
 **Hats contract on Base:** `0x3bc1A0Ad72417f2d411118085256fC53CBdDd137`
 
@@ -470,13 +470,13 @@ Google Fonts CDN:
 
 ## Part 7 - Useful Research Docs (Curated)
 
-You have read-only access to the full ZAO research library (~700 docs as of 2026-05-21). Don't try to read all of them - here's the curated subset relevant to ZABAL Games builds.
+You have read-only access to the full ZAO research library (~700 docs as of 2026-05-21). Don't try to read all of them - here's the curated subset relevant to ZABAL Gamez builds.
 
 ### Foundation reading (read first)
 
 | Doc | Topic | Why |
 |-----|-------|-----|
-| 630 (this folder) | ZABAL Games Season 1 spec | The event rules itself |
+| 630 (this folder) | ZABAL Gamez Season 1 spec | The event rules itself |
 | 627 | Twitch + StreamElements integration | Your streaming infra |
 | 628 | Web3 streaming + ZABAL Empire bridge | Score feeds, tip flow, Hypersub, EAS |
 | 629 | Streaming as main media source | The auto-clip flywheel |
@@ -765,7 +765,7 @@ Submit by the T+24h ship deadline:
 
 ## Appendix B - Key Links
 
-- ZABAL Games landing page: https://bettercallzaal.com/zabalgames.html
+- ZABAL Gamez landing page: https://bettercallzaal.com/zabalgames.html
 - /zabal Farcaster channel: https://farcaster.xyz/~/channel/zabal
 - $ZABAL Empire leaderboard: https://songjam.space/zabal
 - $ZABAL creative hub: https://zabal.art/
@@ -799,4 +799,4 @@ Tech docs:
 
 ---
 
-*This CONTEXT.md is the Season 1 player primer for ZABAL Games. If you see something missing or wrong, flag it in /zabal channel before T+0 and we'll fix it. After T+0, this version is sealed for the duration of the August Finals to keep all finalists on equal context footing.*
+*This CONTEXT.md is the Season 1 player primer for ZABAL Gamez. If you see something missing or wrong, flag it in /zabal channel before T+0 and we'll fix it. After T+0, this version is sealed for the duration of the August Finals to keep all finalists on equal context footing.*

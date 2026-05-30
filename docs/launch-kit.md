@@ -1,8 +1,8 @@
-# ZABAL Games Season 1 - Launch Kit
+# ZABAL Gamez Season 1 - Launch Kit
 
-> The public launch announcement for ZABAL Games Season 1. Drafted 2026-05-21, reworked 2026-05-22 after the Tyler call (research Doc 714). ZABAL Games and ZAOstock announce as SEPARATE posts - this kit is the ZABAL Games post. Goal of the launch: announce the event, drive workshop-lead signups for June, point people to the Farcaster spaces session this weekend. No emojis, no em dashes per brand rules. Paste-ready.
+> The public launch announcement for ZABAL Gamez Season 1. Drafted 2026-05-21, reworked 2026-05-22 after the Tyler call (research Doc 714). ZABAL Gamez and ZAOstock announce as SEPARATE posts - this kit is the ZABAL Gamez post. Goal of the launch: announce the event, drive workshop-lead signups for June, point people to the Farcaster spaces session this weekend. No emojis, no em dashes per brand rules. Paste-ready.
 
-> Sign-up: zabalgames.com. Channel: /zabal on Farcaster. Entry (opening end of month): the Zabal connector on Magnetiq.
+> Sign-up: zabalgamez.com. Channel: /zabal on Farcaster. Entry (opening end of month): the Zabal connector on Magnetiq.
 > **Launch Snap (cast embed):** https://zlank.online/s/OAmekQ - role-picker (Builder / Workshop Lead / Audience / Mentor), unfurls as in-cast widget with confetti. Use this URL when posting the main launch cast.
 
 ---
@@ -11,7 +11,7 @@
 
 ### Main cast
 
-ZABAL Games Season 1.
+ZABAL Gamez Season 1.
 
 A Farcaster vibe-coding challenge for the ZAO ecosystem - streamer games crossed with a hackathon. Three months:
 
@@ -39,7 +39,7 @@ bettercallzaal.com/zabalgames.html
 
 ## 2. X / Twitter
 
-ZABAL Games Season 1.
+ZABAL Gamez Season 1.
 
 A Farcaster vibe-coding challenge for the ZAO ecosystem - streamer games meets hackathon.
 
@@ -55,7 +55,7 @@ bettercallzaal.com/zabalgames.html
 
 ## 3. Telegram + group chats
 
-ZABAL Games Season 1 is happening.
+ZABAL Gamez Season 1 is happening.
 
 It is a Farcaster vibe-coding challenge for the ZAO ecosystem - think streamer games crossed with a hackathon. Three months:
 
@@ -74,9 +74,9 @@ Casts go to the /zabal channel on Farcaster.
 
 ## 4. Newsletter / Paragraph
 
-### ZABAL Games Season 1
+### ZABAL Gamez Season 1
 
-ZABAL Games is the ZAO ecosystem's Farcaster vibe-coding challenge - streamer games crossed with a hackathon. It runs three months: June to learn, July to build, August to compete.
+ZABAL Gamez is the ZAO ecosystem's Farcaster vibe-coding challenge - streamer games crossed with a hackathon. It runs three months: June to learn, July to build, August to compete.
 
 June is workshop month. Builders from across the ecosystem record one session each on the tools they have built, and the whole library lands in one place. July is an open build-a-thon - anyone ships a build for ZABAL, ZAO, or WaveWarZ, pointed at a single machine-readable context file describing every ZAO project and where it stands. August is the Finals, where the strongest builds get a ZAO mentor embedded as a teammate, followed by a live reveal stream. Every finalist wins.
 
@@ -91,12 +91,12 @@ Sign up at bettercallzaal.com/zabalgames.html. This weekend, catch the launch on
 > Paste into ChatGPT image mode / DALL-E. Target: 1200x630 OG card. Brand fonts: Syne (headings), Outfit (body).
 
 ```
-Design a 1200x630 social share card for an event called "ZABAL GAMES".
+Design a 1200x630 social share card for an event called "ZABAL GAMEZ".
 
 Style: dark, premium, web3-native. Background near-black (#070709) with a
 faint fractal-noise texture and a soft off-center radial glow.
 
-Headline: "ZABAL GAMES" in a heavy geometric sans-serif (Syne-style, weight
+Headline: "ZABAL GAMEZ" in a heavy geometric sans-serif (Syne-style, weight
 800), large, centered in the upper half. Render "ZABAL" in off-white
 (#e4e2dd) and "GAMES" in a left-to-right gradient running orange (#ff6b35)
 to pink (#ff3d6e) to cyan (#00e5ff).
@@ -110,7 +110,7 @@ A thin single line near the bottom, in cyan (#00e5ff), evenly spaced:
 Accent: one subtle purple (#a78bfa) gradient orb or a few faint geometric
 lines, low opacity, not busy. Generous negative space, high contrast.
 
-No emojis. No people. No logos other than the "ZABAL GAMES" wordmark.
+No emojis. No people. No logos other than the "ZABAL GAMEZ" wordmark.
 Clean, confident, modern. Landscape, 1200x630.
 ```
 
@@ -120,11 +120,11 @@ Square 1:1 variant for the Farcaster feed: same spec, 1080x1080, headline stacke
 
 ## 6. Zabal connector - NFT image generation prompt
 
-> The Zabal connector is the anchor magnet - collecting it is entry/RSVP to ZABAL Games, and it auto-drops the road-to-ZAOstock entry. The mechanic is set; it needs art. Generate this and send the file to Tyler for the Magnetiq magnet.
+> The Zabal connector is the anchor magnet - collecting it is entry/RSVP to ZABAL Gamez, and it auto-drops the road-to-ZAOstock entry. The mechanic is set; it needs art. Generate this and send the file to Tyler for the Magnetiq magnet.
 
 ```
 Design a collectible NFT artwork for the "ZABAL CONNECTOR" - the entry token
-for ZABAL Games.
+for ZABAL Gamez.
 
 Concept: a connector / hub / node - something that reads instantly as "this
 links you in". A central glowing node with luminous lines radiating out to
@@ -147,7 +147,7 @@ thumbnail. No emojis, no people, no photographic elements. Geometric, glowing.
 
 ## Notes for Zaal
 
-- ZABAL Games and ZAOstock go out as separate posts. This kit is ZABAL Games only.
+- ZABAL Gamez and ZAOstock go out as separate posts. This kit is ZABAL Gamez only.
 - Timeline grounding: workshop-lead signup is live now (the site form). The Magnetiq portal + Zabal connector entry open end of month (~May 30) - the announcement says "end of month" so it is not overpromising.
 - Farcaster spaces session is the weekend hook - launch the post, then go live.
 - Open call + seeded asks: these posts are the open call. DM specific people for specific topics (Jordan on Empire Builder, kmac on zlank, Tyler on Magnetiq - Tyler already confirmed).

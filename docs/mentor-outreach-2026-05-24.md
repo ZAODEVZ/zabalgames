@@ -1,10 +1,10 @@
-# Mentor Outreach Templates - ZABAL Games Season 1
+# Mentor Outreach Templates - ZABAL Gamez Season 1
 
 > Last updated: 2026-05-24. Use for Sun May 25 - Fri May 30 outreach window. Goal: lock 5-8 mentor slots before the launch cast fires Sun May 31.
 
 ## The ask in one sentence
 
-> "Mentor one builder through the August Finals of ZABAL Games - 24h embedded build window + a Hats Protocol Champion NFT if your champion top-3s. Free, public credit, recurring role across Seasons."
+> "Mentor one builder through the August Finals of ZABAL Gamez - 24h embedded build window + a Hats Protocol Champion NFT if your champion top-3s. Free, public credit, recurring role across Seasons."
 
 ## What a mentor commits to
 
@@ -19,7 +19,7 @@ Total commitment: spread across June-August. Mostly async, except for the August
 
 - **Hats Protocol Champion NFT** (top-3 champion only) - on Base, permanent role NFT
 - **Champion NFT to their mentor wallet** - regardless of placement, every mentor with a champion who ships gets a "Season 1 Mentor" hat
-- **Public credit + per-mentor page** at `zabalgames.com/mentor?handle=<their-handle>` - shareable URL, drives traffic to their work
+- **Public credit + per-mentor page** at `zabalgamez.com/mentor?handle=<their-handle>` - shareable URL, drives traffic to their work
 - **Recurring role across Seasons** - they're locked into the mentor pool for Season 2+ if they want it
 - **Direct relationship with their champion** - one of the highest-leverage ZAO contributors of 2026 by definition
 - **Inside view of every Finals build** - they see the cohort, the patterns, the failures, before anyone else
@@ -28,14 +28,14 @@ Total commitment: spread across June-August. Mostly async, except for the August
 ## Template 1 - Farcaster cold DM (default)
 
 ```
-hey @<handle>, would you mentor one builder through the August Finals of ZABAL Games?
+hey @<handle>, would you mentor one builder through the August Finals of ZABAL Gamez?
 
 quick version - commitment spread across June workshop + July curation + August 24h Finals build window. 8 mentor slots. you pick your own champion from the July submission pool. champions who top-3 get a Hats Protocol NFT.
 
 why you specifically: <ONE LINE - something specific to their work, e.g. "your fractalbot work is the reference pattern for half the agentic builds I expect to see in Phase 1">
 
-context: zabalgames.com
-mentor page once you confirm: zabalgames.com/mentor?handle=<their-handle>
+context: zabalgamez.com
+mentor page once you confirm: zabalgamez.com/mentor?handle=<their-handle>
 
 reply yes/no/maybe + I send the full brief
 ```
@@ -43,13 +43,13 @@ reply yes/no/maybe + I send the full brief
 ## Template 2 - Telegram DM (existing relationship)
 
 ```
-mentor slot for ZABAL Games Aug Finals - want one?
+mentor slot for ZABAL Gamez Aug Finals - want one?
 
 commitment - June workshop + July curation (browse + pick a champion) + Aug Finals (24h embedded build window with your champion). 8 slots, claiming as people confirm.
 
 reason for you: <ONE LINE specific>
 
-brief if interested: zabalgames.com
+brief if interested: zabalgamez.com
 
 yes/no?
 ```
@@ -57,13 +57,13 @@ yes/no?
 ## Template 3 - X (when Farcaster reach is thin for that person)
 
 ```
-@<handle> mentor slot open for ZABAL Games Aug Finals - the Farcaster vibe-coding challenge for The ZAO.
+@<handle> mentor slot open for ZABAL Gamez Aug Finals - the Farcaster vibe-coding challenge for The ZAO.
 
 across June-Aug. You pick your champion from the July submission pool. Top-3 champions get a Hats Protocol NFT.
 
 Why I'm asking you: <ONE LINE>
 
-Brief: zabalgames.com - DM for the full pitch.
+Brief: zabalgamez.com - DM for the full pitch.
 ```
 
 ## Candidate target list (8 priority outreach)
@@ -77,7 +77,7 @@ Pull from /about.html roster + the 8 mentor slots noted there. Personalize the "
 | 3 | **Tyler Stambaugh** | (already locked as workshop lead 001 - Magnetiq) | Already opted in for June workshop. Soft-ask: would he ALSO mentor one champion? The Magnetiq portal he hosts is the most-used venue for the whole event - perfect home for a builder doing media/portal work. |
 | 4 | **Hurric4n3Ike (Ikechi)** | `@hurric4n3ike` (Farcaster + X) | WaveWarZ founder, leading WaveWarZ-Base v2 with Sam + Arthur. Mentor specifically for any builder who picks adoptable #09 (WaveWarZ-Base Finals settlement surface). Or any music-meets-onchain build. |
 | 5 | **Sam** | (Hurric4n3Ike's WaveWarZ-Base co-builder, handle TBD) | Smart-contract focus. Mentor for any builder going contracts-deep on Base. |
-| 6 | **Arthur** | (the other WaveWarZ-Base co-builder + ZABAL Games architect per Doc 711) | Already in the orbit - locked as a key architect already. Mentor formalization is one DM away. |
+| 6 | **Arthur** | (the other WaveWarZ-Base co-builder + ZABAL Gamez architect per Doc 711) | Already in the orbit - locked as a key architect already. Mentor formalization is one DM away. |
 | 7 | **kmac.eth** | Farcaster handle / X | Zlank co-creator. Mentor for any builder going hard on adoptable #03 (zlank daily-stats Snap template) or any Snap-pattern build. |
 | 8 | **Joshua.eth (NERDDAO)** | `@joshua.eth` (Farcaster) | Bonfire founder. Mentor for any builder going hard on knowledge-graph integration (adoptable #11 ZAONEXUS is the obvious fit; also any agent that should query Bonfire as its memory). |
 
@@ -109,13 +109,13 @@ The fastest unblock is the top 3 - Jordan, Adrian, Tyler. They're already in the
 ### To Jordan (yerbearzerker)
 
 ```
-hey Jordan - quick ask, would you mentor one builder through the August Finals of ZABAL Games?
+hey Jordan - quick ask, would you mentor one builder through the August Finals of ZABAL Gamez?
 
 across June-Aug. you pick your own champion from the July submission pool. half the adoptables touch Empire Builder (01, 02, 03, 04) so a Jordan-mentored champion has a real home there.
 
-if yes: top-3 champions get a Hats Protocol NFT, you get a permanent "Season 1 Mentor" NFT regardless of placement, and you get a per-mentor page at zabalgames.com/mentor?handle=yerbearzerker
+if yes: top-3 champions get a Hats Protocol NFT, you get a permanent "Season 1 Mentor" NFT regardless of placement, and you get a per-mentor page at zabalgamez.com/mentor?handle=yerbearzerker
 
-context: zabalgames.com - this is the May 21 working call deepened into a season
+context: zabalgamez.com - this is the May 21 working call deepened into a season
 
 yes/no/maybe?
 ```
@@ -123,11 +123,11 @@ yes/no/maybe?
 ### To Adrian (diviflyy)
 
 ```
-Adrian - mentor slot in the August ZABAL Games Finals? across June-Aug.
+Adrian - mentor slot in the August ZABAL Gamez Finals? across June-Aug.
 
 your glonkybot 17-token 5x stack is the reference pattern for builders going for the network-effect play on their own empires. mentor for any of those.
 
-context: zabalgames.com
+context: zabalgamez.com
 yes/no?
 ```
 

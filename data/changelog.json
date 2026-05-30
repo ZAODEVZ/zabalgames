@@ -13,7 +13,7 @@
       "date": "2026-05-29",
       "title": "Validation-driven homepage: framing, one-tap join, social proof, shareable facts",
       "type": "feat",
-      "description": "Acting on the FounderCheck validation. Homepage hero reframed to the validated positioning (build for a real community, not win a weekend and disappear; not a video-game contest) with a de-risk line (pick one door, finishers paid + Hats NFT). One-tap Join with Farcaster via Quick Auth (api/join.mjs, KV-deduped per FID) with a live builders-joined counter and proof badges. New ZABAL Games facts stream: verified facts on the timeline, each one-tap shareable into /zabal as the growth loop.",
+      "description": "Acting on the FounderCheck validation. Homepage hero reframed to the validated positioning (build for a real community, not win a weekend and disappear; not a video-game contest) with a de-risk line (pick one door, finishers paid + Hats NFT). One-tap Join with Farcaster via Quick Auth (api/join.mjs, KV-deduped per FID) with a live builders-joined counter and proof badges. New ZABAL Gamez facts stream: verified facts on the timeline, each one-tap shareable into /zabal as the growth loop.",
       "links": [
         {"label": "Home", "url": "/"},
         {"label": "Streams", "url": "/streams"},
@@ -45,7 +45,7 @@
       "date": "2026-05-29",
       "title": "Zabal Data Streams shipped - registry + chronological feed + Bonfire ingest",
       "type": "feat",
-      "description": "New /streams surface. Five active sources feeding ZABAL Games (BCZ YapZ, Farcaster Agentic Bootcamp, ZAO Festivals $500 Bounty, Farcaster Batches, ZABAL Games Workshops), each keeping raw files + summary + ideas together. Registry at data/data-streams.json, merged chronological feed at data/streams/timeline.json. scripts/pull-data-streams.mjs pulls live sources (github-content + HAATZ), writes raw captures, appends the feed, and emits a dispatch the existing aggregate-dispatches -> push-to-bonfire pipeline merges into the graph (streams land as DataStream entities with FEEDS edges into ZABAL Games). Documented in llms.txt.",
+      "description": "New /streams surface. Five active sources feeding ZABAL Gamez (BCZ YapZ, Farcaster Agentic Bootcamp, ZAO Festivals $500 Bounty, Farcaster Batches, ZABAL Gamez Workshops), each keeping raw files + summary + ideas together. Registry at data/data-streams.json, merged chronological feed at data/streams/timeline.json. scripts/pull-data-streams.mjs pulls live sources (github-content + HAATZ), writes raw captures, appends the feed, and emits a dispatch the existing aggregate-dispatches -> push-to-bonfire pipeline merges into the graph (streams land as DataStream entities with FEEDS edges into ZABAL Gamez). Documented in llms.txt.",
       "links": [
         {"label": "Streams", "url": "/streams"},
         {"label": "Registry", "url": "/data/data-streams.json"},
@@ -89,19 +89,19 @@
       "date": "2026-05-26",
       "title": "Zlank signup Snap live + wired into hero CTA",
       "type": "feat",
-      "description": "ZABAL Games signup Snap published at https://zlank.online/s/OAmekQ. Returns valid Snap v2.0 JSON + 4-option poll + confetti. Added Sign Up Snap button to hero CTA on index.html + launch-kit.md."
+      "description": "ZABAL Gamez signup Snap published at https://zlank.online/s/OAmekQ. Returns valid Snap v2.0 JSON + 4-option poll + confetti. Added Sign Up Snap button to hero CTA on index.html + launch-kit.md."
     },
     {
       "date": "2026-05-25",
-      "title": "Farcaster manifest signed for zabalgames.com",
+      "title": "Farcaster manifest signed for zabalgamez.com",
       "type": "infra",
-      "description": "Signed with FID 19640 custody key. accountAssociation header decodes to {fid:19640, type:custody}, payload to {domain:zabalgames.com}. Mini App now registers correctly in Warpcast. Validator passed after subtitle/description char-limit fixes (subtitle <=30, description <=170) + banned-char stripping."
+      "description": "Signed with FID 19640 custody key. accountAssociation header decodes to {fid:19640, type:custody}, payload to {domain:zabalgamez.com}. Mini App now registers correctly in Warpcast. Validator passed after subtitle/description char-limit fixes (subtitle <=30, description <=170) + banned-char stripping."
     },
     {
       "date": "2026-05-24",
       "title": "Bonfire knowledge graph 20 kEngrams seeded (rounds 5+6+7, 20 parallel subagents)",
       "type": "infra",
-      "description": "Three batches of parallel subagents added six new kEngrams: music-rights-pipeline (BMI -> MLC -> DistroKid -> 0xSplits chain + post-UMG CD Baby exit), tip-zols-architecture (three-token reconciliation: $TIP not yet deployed, ZOLs off-chain, $ZABAL only freely-tradable layer), tool-stack-deep-dive (32 tools across music/agent/ops/crypto categories with cost+auth+integration each), calendar-automation (Lu.ma + Cal.com end-to-end ZABAL Games workshop flow), talent-vs-quotient (recommendation: Quotient for Empire booster + Respect for governance + Talent Protocol optional external visibility), songjam-x-empire (X scraper retired due to paid API, SANG token mechanics + 250k stake minimum). Graph total now 401 entities + 593 edges (was 254 + 322). All 8 queued topics now done in ZAOcowork research-dispatch queue.",
+      "description": "Three batches of parallel subagents added six new kEngrams: music-rights-pipeline (BMI -> MLC -> DistroKid -> 0xSplits chain + post-UMG CD Baby exit), tip-zols-architecture (three-token reconciliation: $TIP not yet deployed, ZOLs off-chain, $ZABAL only freely-tradable layer), tool-stack-deep-dive (32 tools across music/agent/ops/crypto categories with cost+auth+integration each), calendar-automation (Lu.ma + Cal.com end-to-end ZABAL Gamez workshop flow), talent-vs-quotient (recommendation: Quotient for Empire booster + Respect for governance + Talent Protocol optional external visibility), songjam-x-empire (X scraper retired due to paid API, SANG token mechanics + 250k stake minimum). Graph total now 401 entities + 593 edges (was 254 + 322). All 8 queued topics now done in ZAOcowork research-dispatch queue.",
       "links": [
         {"label": "llms.txt - Bonfire pointer section (20 kEngrams)", "url": "/llms.txt"},
         {"label": "data/bonfire-graph.json (515 KB)", "url": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/bonfire-graph.json"}
@@ -151,7 +151,7 @@
     },
     {
       "date": "2026-05-23",
-      "title": "/about page - the team behind ZABAL Games",
+      "title": "/about page - the team behind ZABAL Gamez",
       "type": "content",
       "description": "Public team page: Hosts (Zaal, The ZAO), Core Builders (Hurric4n3Ike, Sam, Arthur, Iman), Confirmed Workshop Leads (Tyler), Partner Platforms (Magnetiq, Empire Builder, Zlank, SongJam, WaveWarZ, Clanker, Neynar/Hats/Bonfire/EAS), Mentors, Open Invitations.",
       "links": [{"label": "/about", "url": "/about"}]
@@ -192,7 +192,7 @@
       "date": "2026-05-23",
       "title": "Zlank template PR for the in-cast 4-button Snap",
       "type": "infra",
-      "description": "Opened PR #63 on bettercallzaal/zlank adding a 'ZABAL Games signup' partner template. Once merged + published via zlank.online, the resulting /s/[uuid] URL renders as a real in-cast Farcaster Snap. Workaround for Farcaster's caster not probing arbitrary URLs with snap+json Accept.",
+      "description": "Opened PR #63 on bettercallzaal/zlank adding a 'ZABAL Gamez signup' partner template. Once merged + published via zlank.online, the resulting /s/[uuid] URL renders as a real in-cast Farcaster Snap. Workaround for Farcaster's caster not probing arbitrary URLs with snap+json Accept.",
       "links": [{"label": "PR #63", "url": "https://github.com/bettercallzaal/zlank/pull/63"}]
     },
     {
@@ -207,10 +207,10 @@
     },
     {
       "date": "2026-05-23",
-      "title": "Site live at zabalgames.com",
+      "title": "Site live at zabalgamez.com",
       "type": "infra",
       "description": "Vercel deploy connected, DNS propagated, TLS provisioned, deployment protection off. HTTP/2 200. Short URLs working (/spec /todo /snap /kit /brand /llms /raw). cleanUrls enabled (/lead vs /lead.html). Six commits live on first deploy.",
-      "links": [{"label": "zabalgames.com", "url": "/"}]
+      "links": [{"label": "zabalgamez.com", "url": "/"}]
     },
     {
       "date": "2026-05-23",
@@ -237,7 +237,7 @@
       "date": "2026-05-23",
       "title": "Claude skill + llms.txt - the build prompt at the site root",
       "type": "content",
-      "description": "llms.txt is the machine-readable July prompt at zabalgames.com/llms.txt - any AI harness can fetch the full ZAO ecosystem context in one call. Companion Claude skill at .claude/skills/zabal-games/SKILL.md is installable via curl.",
+      "description": "llms.txt is the machine-readable July prompt at zabalgamez.com/llms.txt - any AI harness can fetch the full ZAO ecosystem context in one call. Companion Claude skill at .claude/skills/zabal-games/SKILL.md is installable via curl.",
       "links": [
         {"label": "/llms.txt", "url": "/llms.txt"},
         {"label": "/context", "url": "/context"}
@@ -247,21 +247,21 @@
       "date": "2026-05-22",
       "title": "Repo moved to ZAODEVZ/zabalgames + everything consolidated",
       "type": "infra",
-      "description": "Initial commit: 19 files. Site, brand context, launch kit, db schema, 9 research docs (630, 646, 654, 695, 701, 714, 719), README, LICENSE, gitignore, farcaster.json stub, icon asset. ZABAL Games is now its own repo + its own domain. BCZ zabalgames.html became a redirect.",
+      "description": "Initial commit: 19 files. Site, brand context, launch kit, db schema, 9 research docs (630, 646, 654, 695, 701, 714, 719), README, LICENSE, gitignore, farcaster.json stub, icon asset. ZABAL Gamez is now its own repo + its own domain. BCZ zabalgames.html became a redirect.",
       "links": [{"label": "github.com/ZAODEVZ/zabalgames", "url": "https://github.com/ZAODEVZ/zabalgames"}]
     },
     {
       "date": "2026-05-22",
       "title": "Tyler call - Magnetiq hosting + Zabal connector + Finals announcement plan",
       "type": "decision",
-      "description": "Lock-ins from the 2026-05-22 Tyler Stambaugh call (Magnetiq founder): ZABAL Games runs on Magnetiq for the workshop library + entry + submissions; the Zabal connector NFT is the anchor magnet (entry mechanic); the July prompt is an llms.txt; Tyler confirmed as first workshop lead; ZABAL Games + ZAOstock launch as separate posts ~05-24.",
+      "description": "Lock-ins from the 2026-05-22 Tyler Stambaugh call (Magnetiq founder): ZABAL Gamez runs on Magnetiq for the workshop library + entry + submissions; the Zabal connector NFT is the anchor magnet (entry mechanic); the July prompt is an llms.txt; Tyler confirmed as first workshop lead; ZABAL Gamez + ZAOstock launch as separate posts ~05-24.",
       "links": [{"label": "Doc 714", "url": "/docs/research/714-tyler-call.md"}]
     },
     {
       "date": "2026-05-21",
       "title": "Canonical state doc 701 - 24 decisions captured",
       "type": "decision",
-      "description": "Doc 701 consolidates ZABAL Games end-to-end and records 24 decisions from a structured interview. Key shifts: named 8-mentor roster removed (open recruitment), finalist count open, build prompt drops Option A-E tracks, calendar stays month-level (June prep / July build / August Finals).",
+      "description": "Doc 701 consolidates ZABAL Gamez end-to-end and records 24 decisions from a structured interview. Key shifts: named 8-mentor roster removed (open recruitment), finalist count open, build prompt drops Option A-E tracks, calendar stays month-level (June prep / July build / August Finals).",
       "links": [{"label": "Doc 701", "url": "/docs/research/701-canonical-state.md"}]
     },
     {
@@ -273,7 +273,7 @@
     },
     {
       "date": "2026-05-08",
-      "title": "ZABAL Games Season 1 spec drafted",
+      "title": "ZABAL Gamez Season 1 spec drafted",
       "type": "decision",
       "description": "The original Season 1 working spec + decision log. Format, mentor model, $500 USDC prize, judging (was Respect 1p1v - since updated to WaveWarZ-Base per Doc 720), infra, risks. Drafted by Zaal, iterated through 2026-05-14.",
       "links": [{"label": "Doc 630", "url": "/docs/research/630-season-1-spec.md"}]

@@ -583,7 +583,7 @@
     },
     {
       "id": "zabal-games-adoptable-projects",
-      "name": "ZABAL Games Adoptable Projects",
+      "name": "ZABAL Gamez Adoptable Projects",
       "labels": [
         "Mechanism"
       ],
@@ -930,7 +930,7 @@
     },
     {
       "id": "zabal-games-season-1-finals",
-      "name": "ZABAL Games Season 1 Finals",
+      "name": "ZABAL Gamez Season 1 Finals",
       "labels": [
         "Event"
       ],
@@ -1318,7 +1318,7 @@
           "2028: mobile-first + AI-native prediction trading UI"
         ],
         "announcement": "May 16 2026 (TechBullion)",
-        "relevance_to_wavewarz": "Continuous autonomous operation pattern; x402 payment integration (same as ZABAL Games judge agents); sentiment-driven signal aggregation",
+        "relevance_to_wavewarz": "Continuous autonomous operation pattern; x402 payment integration (same as ZABAL Gamez judge agents); sentiment-driven signal aggregation",
         "_source": "zabal-dispatch-wavewarz-20260523"
       }
     },
@@ -1401,12 +1401,12 @@
     },
     {
       "id": "zabal-games-doc-720",
-      "name": "ZABAL Games Doc 720",
+      "name": "ZABAL Gamez Doc 720",
       "labels": [
         "Specification"
       ],
       "attributes": {
-        "title": "WaveWarZ as the ZABAL Games Finals Voting Mechanism",
+        "title": "WaveWarZ as the ZABAL Gamez Finals Voting Mechanism",
         "status": "Research-complete, decision locked",
         "option_selected": "Option B (Hybrid: WaveWarZ-Base market + Respect-holder baseline allocation)",
         "design_option_a": "Pure market (highest WaveWarZ alignment, lowest Respect weight)",
@@ -1437,7 +1437,7 @@
           "airdropPositions call + Respect snapshot mechanism"
         ],
         "payment_model": "x402 micropayments for judge-agent evaluations (Doc 723d)",
-        "mentorship": "Arthur is also ZABAL Games mentor (locked per Doc 711)",
+        "mentorship": "Arthur is also ZABAL Gamez mentor (locked per Doc 711)",
         "_source": "zabal-dispatch-wavewarz-20260523"
       }
     },
@@ -1531,7 +1531,7 @@
         "boosters": 10,
         "rankedSpotsPerLeaderboard": 250,
         "cost": "Free",
-        "useCase": "ZABAL Games July submissions, community onboarding",
+        "useCase": "ZABAL Gamez July submissions, community onboarding",
         "_source": "zabal-dispatch-zabal-empire-20260523"
       }
     },
@@ -1689,13 +1689,13 @@
       ],
       "attributes": {
         "workflow": "Build leaderboard -> Export CSV of contributors -> Launch Clanker token -> Upload CSV to airdrop with vesting -> Token arrives as Ascended Empire",
-        "useCase": "ZABAL Games finalists tokenizing their contribution lists",
+        "useCase": "ZABAL Gamez finalists tokenizing their contribution lists",
         "_source": "zabal-dispatch-zabal-empire-20260523"
       }
     },
     {
       "id": "zabal-games-season-1",
-      "name": "ZABAL Games Season 1",
+      "name": "ZABAL Gamez Season 1",
       "labels": [
         "Event"
       ],
@@ -2233,7 +2233,7 @@
     },
     {
       "id": "zabal-games",
-      "name": "ZABAL Games",
+      "name": "ZABAL Gamez",
       "labels": [
         "Application",
         "event"
@@ -4014,7 +4014,7 @@
     },
     {
       "id": "wavewarz-finals-mechanic",
-      "name": "ZABAL Games Finals WaveWarZ Market",
+      "name": "ZABAL Gamez Finals WaveWarZ Market",
       "labels": [
         "Event Mechanics"
       ],
@@ -4044,7 +4044,7 @@
     },
     {
       "id": "zabal-games-s1-finisher-hat",
-      "name": "ZABAL Games S1 Finisher Hat",
+      "name": "ZABAL Gamez S1 Finisher Hat",
       "labels": [
         "Hats Protocol NFT"
       ],
@@ -4062,7 +4062,7 @@
     },
     {
       "id": "zabal-games-s1-champion-hat",
-      "name": "ZABAL Games S1 Champion Hat",
+      "name": "ZABAL Gamez S1 Champion Hat",
       "labels": [
         "Hats Protocol NFT"
       ],
@@ -4115,13 +4115,13 @@
     },
     {
       "id": "hat-tree-structure-design-zabal-games-s1",
-      "name": "Hat Tree Structure Design (ZABAL Games S1)",
+      "name": "Hat Tree Structure Design (ZABAL Gamez S1)",
       "labels": [
         "Hats Protocol Architecture"
       ],
       "attributes": {
         "hat_tree_id": "TBD - minted in June setup phase",
-        "top_hat_wearer": "ZABAL Games admin multisig (TBD)",
+        "top_hat_wearer": "ZABAL Gamez admin multisig (TBD)",
         "autonomous_admin_hat": "recommended for batch mint automation",
         "finisher_hat_admin": "top hat or autonomous admin",
         "champion_hat_admin": "top hat or autonomous admin",
@@ -4141,14 +4141,14 @@
         "image_uri_limit": "7,000 characters",
         "recommended_storage": "IPFS JSON (CID in details field)",
         "finisher_fields": [
-          "name: ZABAL Games Season 1 Finisher",
+          "name: ZABAL Gamez Season 1 Finisher",
           "description: shipped in 24h, earned $35+ USDC, onchain credential",
           "image: TBD (Zaal to confirm visual)",
           "metadata.event_treeId: TBD",
           "metadata.finalist_number: TBD per finalist"
         ],
         "champion_fields": [
-          "name: ZABAL Games Season 1 Champion",
+          "name: ZABAL Gamez Season 1 Champion",
           "description: top-3 placement, WaveWarZ settlement, $75-150 USDC",
           "image: TBD (distinct from Finisher)",
           "metadata.placement: 1st / 2nd / 3rd"
@@ -4194,7 +4194,7 @@
     },
     {
       "id": "poidh-proof-integration-zabal-games",
-      "name": "POIDH Proof Integration (ZABAL Games)",
+      "name": "POIDH Proof Integration (ZABAL Gamez)",
       "labels": [
         "Data Layer"
       ],
@@ -4202,7 +4202,7 @@
         "status": "integration not yet designed",
         "potential_role": "tie July build proof (live URL + repo + cast) to Finalist eligibility",
         "data_source": "POIDH bounty leaderboard (Doc 654 adoptable project #02)",
-        "open_question": "does POIDH track 'finished a ZABAL Games build'? or just general proof-of-intent?",
+        "open_question": "does POIDH track 'finished a ZABAL Gamez build'? or just general proof-of-intent?",
         "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
       }
     },
@@ -4215,8 +4215,8 @@
       "attributes": {
         "tree_id": "226 (existing)",
         "network": "Optimism",
-        "purpose": "ZAO governance roles, not ZABAL Games",
-        "separation": "ZABAL Games gets its own new tree on Base",
+        "purpose": "ZAO governance roles, not ZABAL Gamez",
+        "separation": "ZABAL Gamez gets its own new tree on Base",
         "_source": "zabal-dispatch-hats-protocol-zabal-games-finisher-champion-20260524"
       }
     },
@@ -5304,7 +5304,7 @@
     },
     {
       "id": "zabal-games-workshop-calendar",
-      "name": "ZABAL Games Workshop Calendar",
+      "name": "ZABAL Gamez Workshop Calendar",
       "labels": [
         "UseCase"
       ],
@@ -5346,7 +5346,7 @@
       ],
       "attributes": {
         "definition": "Farcaster builder who commits to deliver a ~30-minute recorded session on a ZAO topic",
-        "form_source": "zabalgames.com/lead.html",
+        "form_source": "zabalgamez.com/lead.html",
         "confirmation_channel": "Farcaster DM",
         "data_fields": [
           "name",
@@ -5363,7 +5363,7 @@
     },
     {
       "id": "zabal-games-calendar-flow",
-      "name": "ZABAL Games Calendar Flow",
+      "name": "ZABAL Gamez Calendar Flow",
       "labels": [
         "Workflow"
       ],
@@ -5397,7 +5397,7 @@
         "endpoint": "https://formspree.io/f/mjgajyqe",
         "form_id": "mjgajyqe",
         "current_role": "Workshop lead form submission handler (soft launch)",
-        "location": "zabalgames.com/lead.html",
+        "location": "zabalgamez.com/lead.html",
         "fields_captured": [
           "name",
           "handle",
@@ -5419,7 +5419,7 @@
       ],
       "attributes": {
         "vendor": "cal.com",
-        "event_type": "ZABAL Games Workshop Slot (pending creation)",
+        "event_type": "ZABAL Gamez Workshop Slot (pending creation)",
         "slot_duration_minutes": 30,
         "availability": "June 1-30, 2026",
         "booking_model": "Self-serve embed iframe on /lead.html",
@@ -5439,7 +5439,7 @@
       ],
       "attributes": {
         "vendor": "luma.xyz",
-        "event_name": "ZABAL Games Season 1 - June Workshops",
+        "event_name": "ZABAL Gamez Season 1 - June Workshops",
         "calendar_type": "Public calendar with per-workshop event creation",
         "embed_url": "https://lu.ma/zabal-games-workshops (placeholder)",
         "status": "NOT YET CREATED (Waiting blocker W2)",
@@ -5459,7 +5459,7 @@
       ],
       "attributes": {
         "vendor": "magnetic.ai / Tyler Stambaugh",
-        "role": "The workshop library + retention hub for ZABAL Games",
+        "role": "The workshop library + retention hub for ZABAL Gamez",
         "native_video_hosting": "500GB capacity, natively hosted, no YouTube required",
         "analytics": "Per-vendor watch-time drop-off tracking, opt-in email collection",
         "snaps_methodology": "Status (badges), Novelty (time-limited access), Access (vendor-exclusive content), Power (voting), Stuff (merch) to drive emotional loyalty",
@@ -5473,7 +5473,7 @@
         "action_pending": [
           "Tyler: build Zabal connector magnet + intro video + poll wording + UGC wording"
         ],
-        "timeline": "Zabal Games opens ~Jun 1; Magnetiq portal live by then",
+        "timeline": "Zabal Gamez opens ~Jun 1; Magnetiq portal live by then",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -5528,7 +5528,7 @@
         "slot_properties": {
           "duration_minutes": 30,
           "date": "confirmed_date from workshop-leads.json",
-          "title": "ZABAL Games Workshop: {lead.topic}",
+          "title": "ZABAL Gamez Workshop: {lead.topic}",
           "description": "{lead.name} on {lead.topic}",
           "organizer": "Zaal (bettercallzaal)"
         },
@@ -5549,12 +5549,12 @@
         "method": "CURRENT: Manual - Zaal logs into luma, creates event with title/description/date, gets RSVP link",
         "method_FUTURE": "API integration; POST to lu.ma/api/events",
         "event_properties": {
-          "title": "ZABAL Games Workshop: {lead.topic} with {lead.name}",
+          "title": "ZABAL Gamez Workshop: {lead.topic} with {lead.name}",
           "date_time": "TBD (loose June window chosen by lead, firmed up with Zaal)",
           "duration_minutes": 30,
           "location": "Online (Farcaster Spaces or Zoom/OBS)",
           "description": "{lead.topic}. Livestreamed / recorded then clipped. Watch live or after. Studio: Magnetiq. Recording link posted after.",
-          "image": "ZABAL Games logo or lead.name avatar"
+          "image": "ZABAL Gamez logo or lead.name avatar"
         },
         "rsvp_collection": "Yes; Lu.ma collects RSVP + email opt-in",
         "return_value": "luma_url, luma_event_id",
@@ -5592,7 +5592,7 @@
         "description": "Tyler or Zaal uploads the 30-min session to Magnetiq native video hosting",
         "trigger": "Recording session complete",
         "responsible_party": "Tyler (Magnetiq) or Zaal",
-        "method": "MANUAL: Log into Magnetiq portal, upload MP4 to the ZABAL Games workshop library magnet",
+        "method": "MANUAL: Log into Magnetiq portal, upload MP4 to the ZABAL Gamez workshop library magnet",
         "compression_note": "Magnetiq hosts up to 500GB; longer videos may need compression",
         "output": [
           "Video hosted on Magnetiq native player (not just YouTube link)",
@@ -5622,7 +5622,7 @@
           "Lu.ma RSVP link for future workshops",
           "Inline video if Farcaster supports native embed"
         ],
-        "example": "NEW WORKSHOP: @{lead.handle} on {topic}. Just dropped on Magnetiq. Watch -> {magnetic_link}. More workshops: {luma_url}. /zabal #ZABAL Games",
+        "example": "NEW WORKSHOP: @{lead.handle} on {topic}. Just dropped on Magnetiq. Watch -> {magnetic_link}. More workshops: {luma_url}. /zabal #ZABAL Gamez",
         "amplification": "ZAO accounts recast in /zabal + cross-post to X, Telegram, ZAO newsletter",
         "return_value": "cast_hash (for linking)",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
@@ -5638,7 +5638,7 @@
         "description": "Day-after (T+1) reminder sent to lead with recording link + stats (if available)",
         "method": "FUTURE: Telegram bot or email; CURRENT: Manual DM",
         "trigger": "workshop-leads.json.status = 'recorded'",
-        "message_template": "Your ZABAL Games workshop is live! Watch here: {magnetic_link}. Share it with your audience. Viewer stats: {watch_time_avg}. Questions? DM in /zabal.",
+        "message_template": "Your ZABAL Gamez workshop is live! Watch here: {magnetic_link}. Share it with your audience. Viewer stats: {watch_time_avg}. Questions? DM in /zabal.",
         "leads_to": "Lead shares recording in their own channels, driving cross-promotion",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
@@ -5650,7 +5650,7 @@
         "Workflow_Step"
       ],
       "attributes": {
-        "description": "Post-season, workshop recordings are indexed into zabalgames.com/llms.txt as kEngram pointers for July builders",
+        "description": "Post-season, workshop recordings are indexed into zabalgamez.com/llms.txt as kEngram pointers for July builders",
         "timeline": "After June workshops complete (Jun 30)",
         "content_added": [
           "Workshop title + lead name",
@@ -5660,8 +5660,8 @@
           "Key learnings / code snippets from workshop"
         ],
         "purpose": "July builders can load /llms.txt into any AI harness and ask 'which workshop covers Empire Builder integration?' and get a direct link",
-        "stored_in": "zabalgames.com/llms.txt (additions in July prep phase)",
-        "query_example": "Claude Code @ zabalgames.com/llms.txt -> 'What workshops teach Claude Code?' -> returns 3 workshop links with watch summaries",
+        "stored_in": "zabalgamez.com/llms.txt (additions in July prep phase)",
+        "query_example": "Claude Code @ zabalgamez.com/llms.txt -> 'What workshops teach Claude Code?' -> returns 3 workshop links with watch summaries",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -5710,7 +5710,7 @@
         "Person"
       ],
       "attributes": {
-        "role": "ZABAL Games host + calendar orchestrator + announcement caster",
+        "role": "ZABAL Gamez host + calendar orchestrator + announcement caster",
         "farcaster_id": 19640,
         "responsibilities": [
           "Review workshop lead form submissions (Formspree)",
@@ -6645,7 +6645,7 @@
         "dataSource": "SongJam Music Engagement API",
         "metric": "Music engagement (plays + reposts + comments)",
         "rankedSpots": 250,
-        "useCase": "ZABAL Games Phase 1 (July open submissions)",
+        "useCase": "ZABAL Gamez Phase 1 (July open submissions)",
         "migrationStatus": "Planned Q2 2026",
         "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
       }
@@ -6703,7 +6703,7 @@
         "Pattern"
       ],
       "attributes": {
-        "trigger": "SongJam builder launches Clanker token in August (ZABAL Games finalist)",
+        "trigger": "SongJam builder launches Clanker token in August (ZABAL Gamez finalist)",
         "inputSource": "SongJam leaderboard CSV export (top 250 contributors)",
         "airdropMechanism": "Clanker UI + vesting schedule",
         "result": "Builder's token launches into Ascended Empire with SongJam engagement as airdrop vector",
@@ -7087,7 +7087,7 @@
         "mechanism": "Soulbound consensus ranking (OG ERC-20 + ZOR ERC-1155)",
         "cadence": "weekly, ~90+ weeks running since Aug 2024",
         "distribution": "Fibonacci 1-6 ranks award 110/68/42/26/16/10 points",
-        "gates": "ZABAL Games voter eligibility, governance voting, leaderboard weighting",
+        "gates": "ZABAL Gamez voter eligibility, governance voting, leaderboard weighting",
         "_source": "zabal-dispatch-talent-vs-quotient-zao-fit-20260524",
         "full_name": "ZAO Reputation Token",
         "accrual_mechanism": "Weekly fractal sessions - peer-evaluation by 3-6 person breakout groups",
@@ -7103,7 +7103,7 @@
         "on_chain": true,
         "soulbound": true,
         "transferable": false,
-        "governance_weight": "Voting weight in ZAO governance (ZABAL Games Finals, ZAO Fund curation, DAO votes)",
+        "governance_weight": "Voting weight in ZAO governance (ZABAL Gamez Finals, ZAO Fund curation, DAO votes)",
         "minimum_threshold_for_voting": "N threshold UNKNOWN (Doc 701 Decision #8: 'still undecided')",
         "contract_family": "ORDAO contract set (Optimism/Eden Fractal lineage)"
       }
@@ -7364,7 +7364,7 @@
         "on_chain": false,
         "soulbound": true,
         "transferable": false,
-        "scope": "ZAO event ecosystem (ZAOstock, ZABAL Games, COC Concertz, fractal sessions)",
+        "scope": "ZAO event ecosystem (ZAOstock, ZABAL Gamez, COC Concertz, fractal sessions)",
         "governance_weight": "Peer-validated contribution signal; influences standing in weekly fractal peer-evaluation",
         "_source": "zabal-dispatch-tip-zols-architecture-zols-credits-system-20260524"
       }
@@ -7414,7 +7414,7 @@
     },
     {
       "id": "zabal-games-event",
-      "name": "ZABAL Games Event",
+      "name": "ZABAL Gamez Event",
       "labels": [
         "hackathon"
       ],
@@ -7838,7 +7838,7 @@
         "integration": "MCP (Model Context Protocol) via Composio; AI agent toolkits for follow-up management, contact search, tag retrieval, user listing",
         "mcp_capabilities": "list upcoming follow-ups, search client contacts by company, get tags for contact, show users in organization",
         "framework_support": "AutoGen (via Composio Tool Router), Pydantic AI (via Composio), Claude via MCP",
-        "zao_usage": "Workshop discovery library, opt-in portal for ZAO events, brand activation for COC Concertz, ZABAL Games registration",
+        "zao_usage": "Workshop discovery library, opt-in portal for ZAO events, brand activation for COC Concertz, ZABAL Gamez registration",
         "parent_company": "MAGNETIQ Inc (web3 marketing infrastructure for brands)",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
       }
@@ -7875,7 +7875,7 @@
         "role": "Live audio streaming and discussion, community conversations",
         "category": "ops-infra",
         "integration": "Web, mobile app native; no public API for automated scheduling (manual creation via X interface)",
-        "zao_usage": "ZABAL Games announcements, live Q&A sessions, music producer interviews, community calls",
+        "zao_usage": "ZABAL Gamez announcements, live Q&A sessions, music producer interviews, community calls",
         "platform": "Twitter/X native feature",
         "host_requirements": "X account, no minimum follower count but algorithmic visibility favors established accounts",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
@@ -7893,7 +7893,7 @@
         "category": "ops-infra",
         "recording_quality": "Up to 4K video + uncompressed audio, unaffected by internet connection (local capture)",
         "distribution": "YouTube, Spotify, Apple, LinkedIn, Instagram, Twitch, and 20+ platforms",
-        "zao_usage": "COC Concertz high-fidelity recording, ZABAL Games tutorial capture, workshop documentation",
+        "zao_usage": "COC Concertz high-fidelity recording, ZABAL Gamez tutorial capture, workshop documentation",
         "api_status": "No public developer API documented; primarily UI-driven platform",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
       }
@@ -7911,7 +7911,7 @@
         "free_tier": "1 media hour/month, 100 AI credits, 720p export, watermark-free",
         "hobbyist": "10 media hours/month, 400 AI credits, 1080p export, full Underlord access",
         "creator": "30 media hours/month, 800 AI credits, 4K export, full AI tools, stock media",
-        "zao_usage": "COC Concertz content pipeline (audio extraction, editing, clip generation), ZABAL Games video tutorials",
+        "zao_usage": "COC Concertz content pipeline (audio extraction, editing, clip generation), ZABAL Gamez video tutorials",
         "api_status": "No public API for automation documented; subscription-tier based feature access",
         "ai_credits": "Used for AI-powered tools (transcription, clip generation, speech synthesis, filler removal)",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
@@ -8090,7 +8090,7 @@
         "migration_plan"
       ],
       "attributes": {
-        "target_domain": "zabalgames.com",
+        "target_domain": "zabalgamez.com",
         "current_registrar": "Porkbun",
         "current_nameservers": [
           "fortaleza.ns.porkbun.com",
@@ -8136,7 +8136,7 @@
       "attributes": {
         "provider": "Porkbun",
         "domains_managed": [
-          "zabalgames.com",
+          "zabalgamez.com",
           "bettercallzaal.com"
         ],
         "nameserver_change_location": "Domain Settings > Nameservers section",
@@ -8168,11 +8168,11 @@
         "phase": "Preparation (24h before nameserver change)",
         "steps": [
           "Log into Porkbun registrar dashboard",
-          "Find DNS settings for zabalgames.com",
+          "Find DNS settings for zabalgamez.com",
           "Lower TTL on existing A/CNAME record from 3600 to 300 seconds (5 min)",
           "Wait 6 hours for TTL reduction to propagate",
           "Create Cloudflare account if not exists",
-          "Add zabalgames.com domain to Cloudflare"
+          "Add zabalgamez.com domain to Cloudflare"
         ],
         "duration_hours": 24,
         "risk_level": "minimal",
@@ -8188,7 +8188,7 @@
       "attributes": {
         "phase": "Cloudflare Setup",
         "steps": [
-          "In Cloudflare dashboard: Add Site > Enter zabalgames.com > Select Free plan",
+          "In Cloudflare dashboard: Add Site > Enter zabalgamez.com > Select Free plan",
           "Cloudflare auto-scans for existing DNS records",
           "Add A record pointing to Vercel: 76.76.21.21 (DNS only, gray cloud initially)",
           "Copy assigned Cloudflare nameservers from Zone Overview (2 servers, e.g. ns1234.cloudflare.com, ns5678.cloudflare.com)",
@@ -8209,7 +8209,7 @@
       "attributes": {
         "phase": "Nameserver Migration (critical phase)",
         "steps": [
-          "Log into Porkbun > zabalgames.com > Domain Settings > Nameservers",
+          "Log into Porkbun > zabalgamez.com > Domain Settings > Nameservers",
           "Delete all 4 Porkbun nameservers",
           "Enter Cloudflare nameservers (from step 2)",
           "Disable DNSSEC at Porkbun if enabled",
@@ -8231,9 +8231,9 @@
       "attributes": {
         "phase": "Post-Migration Verification",
         "steps": [
-          "After 30 mins: Run 'dig zabalgames.com' - should show Cloudflare IP",
-          "Use whatsmydns.net and enter zabalgames.com - track global propagation",
-          "Test from Africa: use VPN to Nigerian/South African server, load zabalgames.com in browser",
+          "After 30 mins: Run 'dig zabalgamez.com' - should show Cloudflare IP",
+          "Use whatsmydns.net and enter zabalgamez.com - track global propagation",
+          "Test from Africa: use VPN to Nigerian/South African server, load zabalgamez.com in browser",
           "Check Cloudflare dashboard: Analytics > Requests should show traffic routing through Cloudflare",
           "Monitor error logs for 1-2 hours - watch for SSL/TLS errors"
         ],
@@ -8254,7 +8254,7 @@
         "contingency"
       ],
       "attributes": {
-        "trigger": "If zabalgames.com is inaccessible from multiple regions after 1 hour",
+        "trigger": "If zabalgamez.com is inaccessible from multiple regions after 1 hour",
         "steps": [
           "Log into Porkbun immediately",
           "Change nameservers back to original Porkbun nameservers (from your saved config)",
@@ -8309,7 +8309,7 @@
     },
     {
       "id": "zabalgames-com-edge-routing",
-      "name": "zabalgames.com Edge Routing",
+      "name": "zabalgamez.com Edge Routing",
       "labels": [
         "Live Test Result"
       ],
@@ -8335,7 +8335,7 @@
         "provider": "Vercel",
         "geo_location": "Montreal, Canada",
         "geoip_lookup": "Failed (API requires key)",
-        "serves": "Both bettercallzaal.com and zabalgames.com",
+        "serves": "Both bettercallzaal.com and zabalgamez.com",
         "dns_nameservers": "Porkbun (fortaleza, curitiba, maceio, salvador - Brazil-hosted)",
         "ttl": 600,
         "_source": "zabal-dispatch-africa-cdn-routing-live-test-20260524"
@@ -8717,7 +8717,7 @@
         "stream_id": "bcz-yapz",
         "status": "live",
         "summary": "Zaal's long-form interview show - conversations with a builder, founder, or organizer working on something worth understanding.",
-        "ties_to_zabal": "Episode transcripts surface the people, tools, and threads moving through the ZAO ecosystem. BCZ YapZ already generates content/bonfire-ingest/ files from each transcript, so it is a native Bonfire feeder - the same memory layer ZABAL Games runs on.",
+        "ties_to_zabal": "Episode transcripts surface the people, tools, and threads moving through the ZAO ecosystem. BCZ YapZ already generates content/bonfire-ingest/ files from each transcript, so it is a native Bonfire feeder - the same memory layer ZABAL Gamez runs on.",
         "url": "https://www.bczyapz.com/",
         "_source": "data-streams-registry"
       }
@@ -8733,7 +8733,7 @@
         "stream_id": "farcaster-agentic-bootcamp",
         "status": "archived",
         "summary": "Two-week online program (Mar 30 - Apr 10 2026) co-hosted by Builders Garden + Dev3Pack - zero to building autonomous agents and miniapps on the Farcaster social graph, deployed live to compete in FarHack Online 2026.",
-        "ties_to_zabal": "This is the origin thread. The bootcamp fed FarHack, where Zaal/Zlank won the Snap category ($1,000), and that prize money went to ZAOstock. The agent + miniapp patterns taught here are the same rails ZABAL Games builds on.",
+        "ties_to_zabal": "This is the origin thread. The bootcamp fed FarHack, where Zaal/Zlank won the Snap category ($1,000), and that prize money went to ZAOstock. The agent + miniapp patterns taught here are the same rails ZABAL Gamez builds on.",
         "url": "https://builders-garden.notion.site/farcaster-agentic-bootcamp",
         "_source": "data-streams-registry"
       }
@@ -8748,7 +8748,7 @@
       "attributes": {
         "stream_id": "zao-festivals-bounty",
         "status": "live",
-        "summary": "The ZAO festivals team funds the ZABAL Games Season 1 prize pool - $500 USDC for v0, tiered across finalists, plus a Hats Protocol role NFT for every finisher.",
+        "summary": "The ZAO festivals team funds the ZABAL Gamez Season 1 prize pool - $500 USDC for v0, tiered across finalists, plus a Hats Protocol role NFT for every finisher.",
         "ties_to_zabal": "This is the prize pool itself. Every finalist who ships gets paid from it. Sponsor inquiries to grow the v1 pool: info@thezao.com.",
         "url": "/finals",
         "_source": "data-streams-registry"
@@ -8765,14 +8765,14 @@
         "stream_id": "farcaster-batches",
         "status": "upcoming",
         "summary": "An upcoming Farcaster protocol feature, being introduced on GM Farcaster (Farcaster's #1 news show) during its X spaces.",
-        "ties_to_zabal": "A new rail to design around. ZABAL Games builds that batch onchain or social actions get cheaper / more composable when Batches ships. Tracked here so builders catch it the week it lands.",
+        "ties_to_zabal": "A new rail to design around. ZABAL Gamez builds that batch onchain or social actions get cheaper / more composable when Batches ships. Tracked here so builders catch it the week it lands.",
         "url": "https://www.gmfarcaster.com/",
         "_source": "data-streams-registry"
       }
     },
     {
       "id": "zabal-games-workshops",
-      "name": "ZABAL Games Workshops",
+      "name": "ZABAL Gamez Workshops",
       "labels": [
         "DataStream",
         "workshop"
@@ -8781,7 +8781,7 @@
         "stream_id": "zabal-games-workshops",
         "status": "live",
         "summary": "June workshop month - ZAO builders each record a ~30-min session on tools they have built. The whole library lands in the Magnetiq portal, watchable live or after.",
-        "ties_to_zabal": "The workshops are the deep-context onboarding for builders. Raw session recordings + transcripts + summaries are the richest ZABAL Games data stream - they directly seed what people build in July.",
+        "ties_to_zabal": "The workshops are the deep-context onboarding for builders. Raw session recordings + transcripts + summaries are the richest ZABAL Gamez data stream - they directly seed what people build in July.",
         "url": "/lead",
         "_source": "data-streams-registry"
       }
@@ -9745,7 +9745,7 @@
       "to": "doc-711",
       "type": "REFERENCES",
       "properties": {
-        "doc": "Arthur intro call (May 19 2026); locks Arthur on WaveWarZ-Base smart contracts + ZABAL Games mentor",
+        "doc": "Arthur intro call (May 19 2026); locks Arthur on WaveWarZ-Base smart contracts + ZABAL Gamez mentor",
         "_source": "zabal-dispatch-wavewarz-20260523"
       }
     },
@@ -12211,7 +12211,7 @@
       "to": "cal-com-workshop-slots",
       "type": "creates_in",
       "properties": {
-        "fact": "Zaal or automation creates a new event in the cal.com ZABAL Games event type",
+        "fact": "Zaal or automation creates a new event in the cal.com ZABAL Gamez event type",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -12229,7 +12229,7 @@
       "to": "lu-ma-workshop-calendar",
       "type": "creates_in",
       "properties": {
-        "fact": "Zaal or automation creates a new event in the ZABAL Games Season 1 Lu.ma calendar",
+        "fact": "Zaal or automation creates a new event in the ZABAL Gamez Season 1 Lu.ma calendar",
         "_source": "zabal-dispatch-calendar-automation-zabal-games-flow-20260524"
       }
     },
@@ -13367,7 +13367,7 @@
       "to": "zabal-games",
       "type": "participates_in",
       "properties": {
-        "fact": "SongJam leaderboard becomes ZABAL Games participant surface via Empire Builder integration",
+        "fact": "SongJam leaderboard becomes ZABAL Gamez participant surface via Empire Builder integration",
         "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
       }
     },
@@ -13376,7 +13376,7 @@
       "to": "zabal-games",
       "type": "committed_to",
       "properties": {
-        "fact": "committed to complete Empire Builder leaderboard migration before ZABAL Games June 1 launch",
+        "fact": "committed to complete Empire Builder leaderboard migration before ZABAL Gamez June 1 launch",
         "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
       }
     },
@@ -13940,7 +13940,7 @@
       "to": "zabal-token",
       "type": "ELIGIBLE_FOR_AIRDROP",
       "properties": {
-        "fact": "ZABAL Games finalists export ZOL-documented contributors to CSV, airdrop personal Clanker tokens. ZOL count may influence airdrop share (UNKNOWN).",
+        "fact": "ZABAL Gamez finalists export ZOL-documented contributors to CSV, airdrop personal Clanker tokens. ZOL count may influence airdrop share (UNKNOWN).",
         "pending_decision": "Should ZOL count = airdrop amount (e.g., 5 ZOLs = 5M tokens)? Or binary inclusion only?",
         "_source": "zabal-dispatch-tip-zols-architecture-tip-vs-zol-vs-zabal-20260524"
       }
@@ -13980,7 +13980,7 @@
       "to": "zabal-games-event",
       "type": "earned_at",
       "properties": {
-        "fact": "Mentors, volunteers, and team members earn ZOLs for ZABAL Games event work (June prep, July judge, August Finals support)",
+        "fact": "Mentors, volunteers, and team members earn ZOLs for ZABAL Gamez event work (June prep, July judge, August Finals support)",
         "status": "Mechanism planned but not yet documented (Doc 701 Part 4: 'mentor incentive is Hats Protocol role NFT + status, no cash or ZOLs specified for mentors')",
         "note": "Different from Respect earned by builders who submit (Respect is automatic for all July submissions)",
         "_source": "zabal-dispatch-tip-zols-architecture-zols-credits-system-20260524"
@@ -14104,9 +14104,9 @@
       "type": "optional_tool_for",
       "properties": {
         "fact": "Builders can use Empire Builder Clanker integration to launch optional per-project tokens",
-        "mechanic": "Build contribution leaderboard during ZABAL Games -> export CSV -> use as airdrop list -> launch token via Clanker/Empire -> distribute to contributors",
+        "mechanic": "Build contribution leaderboard during ZABAL Gamez -> export CSV -> use as airdrop list -> launch token via Clanker/Empire -> distribute to contributors",
         "design_principle": "Token is an assist, not a gate. Default = no token. Anti-pattern: launch token first, figure out project later.",
-        "status": "Documented in Doc 646 / Doc 701 Part 6; not yet live in ZABAL Games play",
+        "status": "Documented in Doc 646 / Doc 701 Part 6; not yet live in ZABAL Gamez play",
         "_source": "zabal-dispatch-tip-zols-architecture-zols-credits-system-20260524"
       }
     },
@@ -14618,7 +14618,7 @@
       "to": "magnetic",
       "type": "distributes-via",
       "properties": {
-        "fact": "ZABAL Games uses Magnetiq portal for workshop registration and opt-in discovery; integrates brand activation with blockchain loyalty",
+        "fact": "ZABAL Gamez uses Magnetiq portal for workshop registration and opt-in discovery; integrates brand activation with blockchain loyalty",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
       }
     },
@@ -14645,7 +14645,7 @@
       "to": "x-spaces",
       "type": "announces-via",
       "properties": {
-        "fact": "ZABAL Games announcements and live producer interviews broadcast on X Spaces; free audio channel for community engagement",
+        "fact": "ZABAL Gamez announcements and live producer interviews broadcast on X Spaces; free audio channel for community engagement",
         "_source": "zabal-dispatch-tool-stack-deep-dive-ops-infra-tools-20260524"
       }
     },
@@ -15032,7 +15032,7 @@
       "to": "launch-timing-decision",
       "type": "requires_execution_before",
       "properties": {
-        "event": "May 31 ZABAL Games launch",
+        "event": "May 31 ZABAL Gamez launch",
         "buffer_days": 5,
         "_source": "zabal-dispatch-africa-cdn-routing-fix-plan-20260524"
       }
@@ -15268,7 +15268,7 @@
       "to": "zabal-games",
       "type": "FEEDS",
       "properties": {
-        "fact": "Episode transcripts surface the people, tools, and threads moving through the ZAO ecosystem. BCZ YapZ already generates content/bonfire-ingest/ files from each transcript, so it is a native Bonfire feeder - the same memory layer ZABAL Games runs on.",
+        "fact": "Episode transcripts surface the people, tools, and threads moving through the ZAO ecosystem. BCZ YapZ already generates content/bonfire-ingest/ files from each transcript, so it is a native Bonfire feeder - the same memory layer ZABAL Gamez runs on.",
         "_source": "zabal-dispatch-streams-2026-05-29"
       }
     },
@@ -15277,7 +15277,7 @@
       "to": "zabal-games",
       "type": "FEEDS",
       "properties": {
-        "fact": "This is the origin thread. The bootcamp fed FarHack, where Zaal/Zlank won the Snap category ($1,000), and that prize money went to ZAOstock. The agent + miniapp patterns taught here are the same rails ZABAL Games builds on.",
+        "fact": "This is the origin thread. The bootcamp fed FarHack, where Zaal/Zlank won the Snap category ($1,000), and that prize money went to ZAOstock. The agent + miniapp patterns taught here are the same rails ZABAL Gamez builds on.",
         "_source": "zabal-dispatch-streams-2026-05-29"
       }
     },
@@ -15295,7 +15295,7 @@
       "to": "zabal-games",
       "type": "FEEDS",
       "properties": {
-        "fact": "A new rail to design around. ZABAL Games builds that batch onchain or social actions get cheaper / more composable when Batches ships. Tracked here so builders catch it the week it lands.",
+        "fact": "A new rail to design around. ZABAL Gamez builds that batch onchain or social actions get cheaper / more composable when Batches ships. Tracked here so builders catch it the week it lands.",
         "_source": "zabal-dispatch-streams-2026-05-29"
       }
     },
@@ -15304,7 +15304,7 @@
       "to": "zabal-games",
       "type": "FEEDS",
       "properties": {
-        "fact": "The workshops are the deep-context onboarding for builders. Raw session recordings + transcripts + summaries are the richest ZABAL Games data stream - they directly seed what people build in July.",
+        "fact": "The workshops are the deep-context onboarding for builders. Raw session recordings + transcripts + summaries are the richest ZABAL Gamez data stream - they directly seed what people build in July.",
         "_source": "zabal-dispatch-streams-2026-05-29"
       }
     }

@@ -3,7 +3,7 @@
 > **Status:** Research-complete. Decision pending. Estimated 30-min execution time.
 > **Last validated:** 2026-05-24
 > **Recommended action window:** Sun May 25 - Tue May 27 (5+ days before May 31 launch)
-> **Affects:** `zabalgames.com`, `bettercallzaal.com`, any other Vercel-hosted ZAO domain
+> **Affects:** `zabalgamez.com`, `bettercallzaal.com`, any other Vercel-hosted ZAO domain
 
 ## TL;DR
 
@@ -46,14 +46,14 @@ The bot-protection concern only matters if you use Vercel's Pro plan bot managem
 
 ### Pre-flight (do 24h before cutover)
 
-1. **Log in to Porkbun.** Both domains (`zabalgames.com`, `bettercallzaal.com`) are registered there (confirmed via live-test dispatch).
+1. **Log in to Porkbun.** Both domains (`zabalgamez.com`, `bettercallzaal.com`) are registered there (confirmed via live-test dispatch).
 2. **Lower all DNS TTLs to 300s.** Edit each A/CNAME/MX record and set TTL = 300 (5 minutes). This means when you flip nameservers, DNS caches expire in 5 min instead of hours/days.
 3. **Wait 24h** for the lowered TTL to propagate through global resolver caches.
 
 ### Cutover (30 min total)
 
 4. **Create a Cloudflare account** if you don't have one - https://dash.cloudflare.com/sign-up. Free tier.
-5. **Add `zabalgames.com`** as the first test domain. Cloudflare scans existing DNS records at Porkbun, imports them. **Review** the imported list - make sure A records point at Vercel's IPs (currently `216.198.79.1` per live test) and the `_vercel` TXT record is there for ownership verification.
+5. **Add `zabalgamez.com`** as the first test domain. Cloudflare scans existing DNS records at Porkbun, imports them. **Review** the imported list - make sure A records point at Vercel's IPs (currently `216.198.79.1` per live test) and the `_vercel` TXT record is there for ownership verification.
 6. **Set TLS mode to Full (strict)** in Cloudflare SSL/TLS settings. NOT Flexible (insecure). NOT Full (allows self-signed). Strict mode requires valid origin cert which Vercel provides.
 7. **Enable orange-cloud proxy** on the apex `@` record and `www` CNAME. Leave the `_vercel` TXT as DNS-only (grey).
 8. **Copy Cloudflare's nameservers** (something like `lara.ns.cloudflare.com` and `dan.ns.cloudflare.com`).
@@ -62,9 +62,9 @@ The bot-protection concern only matters if you use Vercel's Pro plan bot managem
 
 ### Verify (5 min)
 
-11. `dig +short NS zabalgames.com` should return the Cloudflare nameservers.
-12. `curl -v https://zabalgames.com 2>&1 | grep -i "server:"` should show `cloudflare`. (Was `vercel` before.)
-13. Open https://zabalgames.com in browser. Site should load. Headers in DevTools show `cf-ray` (Cloudflare) AND `x-vercel-id` (Vercel origin). Both visible = working.
+11. `dig +short NS zabalgamez.com` should return the Cloudflare nameservers.
+12. `curl -v https://zabalgamez.com 2>&1 | grep -i "server:"` should show `cloudflare`. (Was `vercel` before.)
+13. Open https://zabalgamez.com in browser. Site should load. Headers in DevTools show `cf-ray` (Cloudflare) AND `x-vercel-id` (Vercel origin). Both visible = working.
 14. Vercel dashboard should still show the domain as "valid configuration" (it sees the `_vercel` TXT and confirms ownership).
 15. Test from a free African vantage:
     - https://www.webpagetest.org/ - free account, pick Lagos / Cape Town / Nairobi vantage
@@ -81,7 +81,7 @@ Risk window: <5 min. The lowered TTL ensures fast rollback.
 
 ### Repeat for `bettercallzaal.com`
 
-Once `zabalgames.com` is verified working, repeat steps 5-15 for `bettercallzaal.com`. Independent operations, can do same day.
+Once `zabalgamez.com` is verified working, repeat steps 5-15 for `bettercallzaal.com`. Independent operations, can do same day.
 
 ## What you do NOT need
 
@@ -121,7 +121,7 @@ Tools Zaal can use to validate the fix improved African access:
 1. **WebPageTest** (free) - https://www.webpagetest.org - test from Lagos, Cape Town, Nairobi before + after. Should see TTFB drop from 1-3s to <500ms.
 2. **Cloudflare Analytics** (free) - shows requests by country. Watch for traffic from African countries that wasn't there before.
 3. **Real-user reports** - DM 2-3 friends in different African countries the link. Pre-fix some couldn't load; post-fix they can.
-4. **Mobile carrier check** - try https://zabalgames.com on a phone using mobile data from a known-broken carrier (Safaricom, MTN). Should load.
+4. **Mobile carrier check** - try https://zabalgamez.com on a phone using mobile data from a known-broken carrier (Safaricom, MTN). Should load.
 
 ## Bonfire kEngram
 
@@ -133,7 +133,7 @@ Dispatch reports at `/tmp/zabal-dispatch-africa-cdn-routing-*.md`:
 - `root-cause-20260524.md` - infrastructure gap + peering + carrier proxy diagnosis
 - `cloudflare-setup-20260524.md` - the paradox-flagging report (overstated, addressed above)
 - `alternative-cdns-20260524.md` - BunnyCDN vs CloudFront vs Fastly comparison
-- `live-test-20260524.md` - empirical state of zabalgames.com + bettercallzaal.com (both on Montreal yul1 edge, no IPv6, no HTTP/3, Porkbun NS in Brazil)
+- `live-test-20260524.md` - empirical state of zabalgamez.com + bettercallzaal.com (both on Montreal yul1 edge, no IPv6, no HTTP/3, Porkbun NS in Brazil)
 - `fix-plan-20260524.md` - the 4-step migration plan, validated and adopted as Section "The fix" above
 
 External:
@@ -148,7 +148,7 @@ External:
 | # | Action | Owner | When |
 |---|---|---|---|
 | 1 | Log into Porkbun, lower TTL on both domains to 300s | Zaal | Sat May 24 evening |
-| 2 | Create Cloudflare account, add zabalgames.com, set TLS Full Strict, enable orange-cloud | Zaal | Sun May 25 |
+| 2 | Create Cloudflare account, add zabalgamez.com, set TLS Full Strict, enable orange-cloud | Zaal | Sun May 25 |
 | 3 | At Porkbun: replace nameservers with Cloudflare's, save | Zaal | Sun May 25 |
 | 4 | Verify with dig + curl + WebPageTest from Lagos vantage | Zaal | Sun May 25 + Mon May 26 |
 | 5 | Repeat for bettercallzaal.com once zabalgames is confirmed working | Zaal | Mon May 26 |

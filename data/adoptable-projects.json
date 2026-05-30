@@ -77,7 +77,7 @@
     {
       "id": "08",
       "name": "Streaming auto-clip flywheel",
-      "description": "Turn 24h of stream into ~150 short clips for TikTok / Reels / YouTube / Farcaster. The content engine that processes ZABAL Games streams and every future ZAO event.",
+      "description": "Turn 24h of stream into ~150 short clips for TikTok / Reels / YouTube / Farcaster. The content engine that processes ZABAL Gamez streams and every future ZAO event.",
       "spec_url": "/docs/research/701-canonical-state.md",
       "spec_label": "Doc 701",
       "color": "cyan",
@@ -86,7 +86,7 @@
     {
       "id": "09",
       "name": "WaveWarZ-Base Finals settlement surface",
-      "description": "Wire the WaveWarZ-Base smart contracts into the ZABAL Games Finals page. Read live battle state, render the trade view per finalist, trigger settlement readout at T+72h. Pairs with Sam + Arthur's smart-contract work. Makes the Finals the V1 launch event for WaveWarZ-Base.",
+      "description": "Wire the WaveWarZ-Base smart contracts into the ZABAL Gamez Finals page. Read live battle state, render the trade view per finalist, trigger settlement readout at T+72h. Pairs with Sam + Arthur's smart-contract work. Makes the Finals the V1 launch event for WaveWarZ-Base.",
       "spec_url": "/docs/research/720-wavewarz-finals-mechanic.md",
       "spec_label": "Doc 720",
       "color": "pink",
@@ -157,8 +157,8 @@
     },
     {
       "id": "17",
-      "name": "ZAO Snaps tab on zlank - ZABAL Games slice (8 templates)",
-      "description": "Part of the bigger ZAO Snaps featured-collab tab on zlank (issue #64). This adoptable scope is the ZABAL Games slice - 8 unbuilt templates: workshop-lead book-your-slot, workshop RSVP card, daily Empire stats one-click cast, Finals market view, adopt-a-project picker, build-progress weekly post, winner announce, season recap. Each plugs into existing ZAO rails (Cal.com, Lu.ma, Empire Builder, WaveWarZ-Base, adoptable-projects.json). Template #1 (signup) is shipped via PR #63. Other slices (Fractal, COC Concertz, WaveWarZ, ZAOstock, ZAO Music) are open for separate adoptables.",
+      "name": "ZAO Snaps tab on zlank - ZABAL Gamez slice (8 templates)",
+      "description": "Part of the bigger ZAO Snaps featured-collab tab on zlank (issue #64). This adoptable scope is the ZABAL Gamez slice - 8 unbuilt templates: workshop-lead book-your-slot, workshop RSVP card, daily Empire stats one-click cast, Finals market view, adopt-a-project picker, build-progress weekly post, winner announce, season recap. Each plugs into existing ZAO rails (Cal.com, Lu.ma, Empire Builder, WaveWarZ-Base, adoptable-projects.json). Template #1 (signup) is shipped via PR #63. Other slices (Fractal, COC Concertz, WaveWarZ, ZAOstock, ZAO Music) are open for separate adoptables.",
       "spec_url": "https://github.com/bettercallzaal/zlank/issues/64",
       "spec_label": "Issue 64",
       "color": "gold",

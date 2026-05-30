@@ -1,4 +1,4 @@
-// ZABAL Games - activity leaderboard (GET /api/leaderboard).
+// ZABAL Gamez - activity leaderboard (GET /api/leaderboard).
 //
 // Ranks builders by the social-action points they earn (cast / share / signup),
 // stored in a KV sorted set by api/track.mjs. Two output shapes:

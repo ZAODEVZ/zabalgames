@@ -1,19 +1,19 @@
-# Tyler Brief - ZABAL Games Notion Sync + Magnetiq Scope
+# Tyler Brief - ZABAL Gamez Notion Sync + Magnetiq Scope
 
 > Updated 2026-05-28 after Tyler's Telegram reaction ("I'm a bit lost lol"). Original brief was too dense + miscast Magnetiq's role. This version: tight, agreed framing first, only the Qs that still need answers.
 
 ## TL;DR
 
-1. **zabalgames.com is the center** for games ops (schedule, signup, roster, prizes, finals)
+1. **zabalgamez.com is the center** for games ops (schedule, signup, roster, prizes, finals)
 2. **Magnetiq is the collectible + brand-learning hub** (Zabal connector NFT + ZAO project deep-dives + workshop recordings)
-3. **Notion (your workspace) syncs to zabalgames.com** - Magnetiq is independent
+3. **Notion (your workspace) syncs to zabalgamez.com** - Magnetiq is independent
 
 You don't have to run the games infra. We don't expect to. Magnetiq is the "stay longer + learn the ecosystem" surface that pairs with the site.
 
 ## Mental map
 
 ```
-zabalgames.com (center, source of truth for ops)
+zabalgamez.com (center, source of truth for ops)
   - games schedule + signup + prizes + roster + finals
   - calendar of workshop sessions (Lu.ma RSVPs)
   - reads from your Notion DBs at build time
@@ -55,7 +55,7 @@ The site links to Magnetiq for these. No data sync needed in either direction.
 ## What we'd update on our side (this week)
 
 - Main page "Stay up to date - get the collectible" section: reframe to "Magnetiq = brand education + connector," not "the workshop library that drives the site"
-- Doc 760 Notion CMS spec: explicit that sync is one-way Notion -> zabalgames.com static JSON, Magnetiq independent
+- Doc 760 Notion CMS spec: explicit that sync is one-way Notion -> zabalgamez.com static JSON, Magnetiq independent
 - Tyler brief: this doc (already cleaner)
 
 ## Open question for you (just one for now)

@@ -1,4 +1,4 @@
-# Transcript - Tyler x Zaal: ZABAL Games + Road to ZAOstock (2026-05-22)
+# Transcript - Tyler x Zaal: ZABAL Gamez + Road to ZAOstock (2026-05-22)
 
 Source: `Tyler x zaal - 2026_05_22 08_30 EDT - Recording.mp4`, transcribed locally
 with mlx-whisper (whisper-large-v3-turbo). ~34 min, Google Meet.
