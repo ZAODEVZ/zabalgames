@@ -250,6 +250,19 @@ a:hover { text-decoration: underline; }
 .faq-item summary:hover { color: var(--cyan); }
 .faq-item p { margin: 0 0 1rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.55; }
 
+/* June workshop schedule (data-driven from workshop-leads.json) */
+.ws-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+.ws-loading { color: var(--text-muted); font-size: 0.9rem; }
+.ws-card { border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.2rem; background: rgba(255, 255, 255, 0.02); }
+.ws-when { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.02em; color: var(--cyan); margin-bottom: 0.4rem; }
+.ws-card h3 { margin: 0 0 0.3rem; font-size: 1.0rem; }
+.ws-by { margin: 0 0 0.4rem; color: var(--gold); font-size: 0.88rem; }
+.ws-format { margin: 0 0 0.7rem; color: var(--text-muted); font-size: 0.85rem; }
+.ws-status { display: inline-block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 0.15rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); }
+.ws-status.ws-confirmed { color: var(--cyan); border-color: var(--cyan); }
+.ws-status.ws-tentative { color: var(--text-dim); }
+
 /* Timeline per-entry share */
 .tl-share { font-family: inherit; font-size: 0.74rem; color: var(--cyan); background: none;
   border: 1px solid var(--border); border-radius: 999px; padding: 0.15rem 0.6rem; cursor: pointer; }
