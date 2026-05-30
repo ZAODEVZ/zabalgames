@@ -99,16 +99,30 @@
 
   <section class="section">
     <h2>Pick your slot</h2>
-    <p>Cal.com self-serve booking is the fastest path - pick any open day in June.</p>
+    <p>Cal.com self-serve booking is the fastest path - pick any open day in June, write your topic, and it locks the time. Slots stay open 24/7 and overlaps are blocked automatically.</p>
     <div class="embed-box">
-      <div>
+      <div id="cal-embed" style="width:100%;min-height:620px;"></div>
+      <div id="cal-fallback">
         <p style="color: var(--text-muted);">Cal.com slot picker - link drops in once the event type is set up.</p>
         <p style="margin-top: 0.5rem;">Use the form below in the meantime, or DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a>.</p>
       </div>
     </div>
-    <!-- Once the Cal.com URL exists, drop in:
-         <iframe src="https://cal.com/<handle>/zabal-games-workshop" width="100%" height="650" frameborder="0" style="border-radius: var(--radius);"></iframe>
-    -->
+    <script>
+    (function () {
+      // Set CAL_LINK to your Cal.com event path (e.g. "bettercallzaal/zabal-games-workshop")
+      // to switch on the embedded slot picker. Empty string = keep the form-only
+      // fallback, so the page never shows a broken embed before Cal is connected.
+      var CAL_LINK = "";
+      var embed = document.getElementById('cal-embed');
+      var fallback = document.getElementById('cal-fallback');
+      if (!CAL_LINK) { if (embed) embed.style.display = 'none'; return; }
+      if (fallback) fallback.style.display = 'none';
+      (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "workshop", { origin: "https://cal.com" });
+      Cal.ns.workshop("inline", { elementOrSelector: "#cal-embed", calLink: CAL_LINK, layout: "month_view" });
+      Cal.ns.workshop("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    })();
+    </script>
   </section>
 
   <section class="section">
