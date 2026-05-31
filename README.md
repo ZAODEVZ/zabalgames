@@ -1,129 +1,79 @@
 # ZABAL Gamez
 
-> A Farcaster vibe-coding challenge for the ZAO ecosystem - streamer games crossed with a hackathon. Season 1 runs **June 2026 (workshops) -> July (open build-a-thon) -> August (Finals)**.
+> The ZAO's 3-month Build-A-Thon - a build event for the Farcaster/ZAO ecosystem, not a video-game contest. Season 1: **June 2026 (workshops) -> July (open build) -> August (Finals)**. Free, open to anyone, any harness.
 
 Live at **zabalgamez.com**. Cast channel: **/zabal** on Farcaster.
 
-This repo is the single source of truth for ZABAL Gamez - the live site, the research docs that shaped the format, the brand identity guide, the launch kit, and the DB schema for submissions.
+This repo is the single source of truth for ZABAL Gamez: the live site, the Vercel edge functions, the Farcaster Mini App, the content data, and the research/brand docs that shaped the format.
+
+> **Working on this repo?** Start with **[CLAUDE.md](./CLAUDE.md)** - current state, storage, conventions, and what's left. Dated files under `docs/` are point-in-time records; trust CLAUDE.md where they disagree.
 
 ---
 
 ## Quick links
 
+- **Working context (canonical):** [CLAUDE.md](./CLAUDE.md)
 - **Site:** [index.html](./index.html) -> deploys to zabalgamez.com
-- **Brand identity:** [docs/brand-context.md](./docs/brand-context.md) - the voice + visual guide for every ZAO brand the cohort builds for
-- **Launch kit:** [docs/launch-kit.md](./docs/launch-kit.md) - paste-ready announcement posts (Farcaster, X, Telegram, newsletter), share-card image prompt, Zabal connector NFT image prompt
-- **Canonical state:** [docs/research/701-canonical-state.md](./docs/research/701-canonical-state.md) - what is locked, what is open, what is being built
-- **Research library:** [docs/research/](./docs/research/) - the full decision log and meeting recaps
-- **Submission schema:** [db/schema.sql](./db/schema.sql) - Supabase table for the submissions board (run when the project is created)
+- **API:** [api/README.md](./api/README.md) - the edge functions (presence, join, leaderboard, notifications)
+- **Decision log:** [docs/research/701-canonical-state.md](./docs/research/701-canonical-state.md) - what's locked / open
+- **Brand identity:** [docs/brand-context.md](./docs/brand-context.md)
+- **Docs index:** [docs/README.md](./docs/README.md)
 
 ---
 
 ## What ZABAL Gamez is
 
-Not a generic hackathon. A **Farcaster-creator onboarding event for the ZAO ecosystem.** Bring hungry, Farcaster-active vibe-coders into ZAO by having them ship something real, in public, with a ZAO mentor in their corner.
+A Farcaster-creator onboarding event for the ZAO ecosystem: bring Farcaster-active builders into ZAO by having them ship something real, in public, with a ZAO mentor in their corner. Three tracks so everyone has a lane - **artist** (musical/visual), **builder** (developer/aspiring), **creator** (media/distribution).
 
 **Three months:**
 
-- **June - workshops.** Builders across the ecosystem record one ~30-minute session each on the tools they have built. The whole library lands in one place.
-- **July - open build-a-thon.** Anyone ships a build for ZABAL, ZAO, or WaveWarZ. The build IS the application. Builders point any AI harness at one machine-readable context file describing every ZAO project + state.
-- **August - the Finals.** The strongest builds get a ZAO mentor embedded as a teammate for a 24h build + 24h promote window + ZAO governance vote + live reveal stream. Every finalist wins.
+- **June - workshops.** Builders across the ecosystem each record a ~30-minute session on the tools they have built. The library lands on Magnetiq.
+- **July - open build month.** Anyone ships a build for ZABAL, ZAO, or WaveWarZ. The build IS the application.
+- **August - the Finals.** The strongest builds get a ZAO mentor embedded as a teammate for a build + promote window, governance vote, and a live reveal. Every finalist wins.
 
-Hosted on two surfaces (per the [2026-05-22 Tyler call](./docs/research/714-tyler-call.md)):
-
-- **Magnetiq portal** - the workshop video library, entry/onboarding, polls, UGC submissions. Tyler Stambaugh's Magnetiq platform.
-- **This Farcaster mini app** - the explainer and front door. Light. Links out to Magnetiq, the spaces sessions, and the live calendar.
-
-**Entry** is the Zabal connector NFT - the anchor magnet on Magnetiq. Collect it, you are in. Auto-drops the road-to-ZAOstock entry alongside.
+**Registration** is the ZABAL Gamez collectible on Magnetiq (`app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez`): claim it to follow the season, unlock the ZAO brand mementos, and access the open UGC upload.
 
 ---
 
-## Repo structure
+## Architecture
+
+Static HTML pages + zero-build Vercel **edge functions**, also published as a **Farcaster Mini App**. No framework, no build step.
 
 ```
 zabalgames/
-├── index.html                       # the live site
-├── .well-known/
-│   └── farcaster.json               # Farcaster mini-app manifest (TODO: sign accountAssociation)
-├── assets/
-│   └── icon.png                     # the Z icon
-├── db/
-│   └── schema.sql                   # Supabase submissions schema
-├── docs/
-│   ├── brand-context.md             # brand identity per ZAO brand
-│   ├── launch-kit.md                # paste-ready announcement posts + image prompts
-│   └── research/                    # the decision log
-│       ├── README.md                # index of the research docs
-│       ├── 630-season-1-spec.md     # long-form Season 1 spec
-│       ├── 630-player-context-bundle.md  # the player context bundle (sealed at T+0)
-│       ├── 646-clanker-promote.md   # Clanker + Empire Builder optional token mechanic
-│       ├── 654-empire-v3-meeting.md # the calendar pivot meeting with Jordan/yerbearzerker
-│       ├── 695-context-prompt.md    # the July machine-readable context prompt research
-│       ├── 701-canonical-state.md   # canonical state - the truth doc
-│       ├── 714-tyler-call.md        # Tyler Stambaugh / Magnetiq meeting recap
-│       ├── 714-tyler-transcript.md  # full transcript
-│       └── 719-jordan-meeting.md    # Empire Builder v3 follow-up
-├── README.md                        # you are here
-├── LICENSE                          # MIT
-└── .gitignore
+├── index.html, lead.html, info.html, streams.html, ...  # the pages
+├── .well-known/farcaster.json     # Mini App manifest (signed for zabalgamez.com)
+├── assets/                        # logo-gamez.png (brand mark), icon.png, embed-card-gamez.png, miniapp.js, style.css
+├── api/                           # edge functions (Upstash Redis) - see api/README.md
+│   └── README.md
+├── data/                          # workshop-leads.json, data-streams.json, streams/, changelog.json
+├── db/schema.sql                  # Postgres schema for the JULY submission gallery (not yet wired)
+├── docs/                          # launch kits, brand, positioning + research/ decision log
+├── CLAUDE.md                      # canonical working context
+└── vercel.json                    # redirects + headers
 ```
 
----
+## Storage
+
+- **Activity backend** (presence, one-tap join + counter, leaderboard, notifications) runs on **Upstash Redis** over the REST API. Env: `KV_REST_API_URL` + `KV_REST_API_TOKEN`. Connected and live. The functions no-op gracefully if the vars are absent. Details in [api/README.md](./api/README.md).
+- **July submission gallery** (`info.html`) is a separate, not-yet-wired Postgres store (`db/schema.sql`). Revisit before July.
+- **Signups** go to Formspree (`/f/mlgvvoyd`); **scheduling** to Cal.com (`cal.com/zabal-games/workshop-session`). Neither needs the DB.
 
 ## Develop + deploy
 
-Pure static HTML - no build step. Edit `index.html`, push to `main`, Vercel deploys.
-
 ```bash
-# Local preview
-open index.html
-
-# Or any static server
-python3 -m http.server 8000
-# then visit http://localhost:8000
+python3 -m http.server 8000   # local preview, then visit http://localhost:8000
 ```
 
-### Deploy
-
-Designed for Vercel zero-config static deploy:
-
-1. Connect this repo to Vercel.
-2. Point Vercel project at the repo root (no framework, no build command).
-3. Add the `zabalgamez.com` domain in Vercel project settings.
-4. Push to `main` deploys.
-
-### Farcaster mini app
-
-`/.well-known/farcaster.json` is the mini-app manifest. The `accountAssociation` block currently has placeholder values. To activate the mini app on Farcaster:
-
-1. Sign the manifest with Zaal's FID (19640) - either via the Farcaster mini-app dev tools or the manual signing flow.
-2. Replace the `TODO_HEADER` / `TODO_PAYLOAD` / `TODO_SIGNATURE` fields.
-3. Push.
-
-Until signed, the site is browsable on the web but does not appear as a Farcaster mini app.
-
----
-
-## What needs to happen before launch
-
-Detailed list in [docs/research/701-canonical-state.md - Part 9](./docs/research/701-canonical-state.md). Short version:
-
-- **Sign the Farcaster manifest** (above).
-- **Wire the workshop calendar** - swap the placeholder embeds in `index.html` `#workshops` for the real Lu.ma calendar URL and the Cal.com slot-picker URL.
-- **Wire the submissions board** - create the Supabase project, run `db/schema.sql`, paste URL + anon key into `index.html`. Until then the form shows an error fallback.
-- **Run the [launch-kit.md](./docs/launch-kit.md) posts** across all four channels this weekend.
-- **Generate the share card + Zabal connector NFT art** from the prompts in launch-kit.md.
+Deploys on Vercel zero-config: push to `main`, Vercel builds and deploys to zabalgamez.com. See [CLAUDE.md](./CLAUDE.md) for git conventions and the pre-push validation commands.
 
 ---
 
 ## Related
 
-- **/zabal** Farcaster channel - https://farcaster.xyz/~/channel/zabal
-- **BetterCallZaal** - https://bettercallzaal.com - Zaal's site, where ZABAL Gamez originated
-- **The ZAO** - the 100+ member gated Farcaster music community ZABAL Gamez serves
-- **Magnetiq** - https://getmagnetic.com (or wherever Tyler's portal lives) - the workshop library / entry portal
-
----
+- **/zabal** channel - https://farcaster.xyz/~/channel/zabal
+- **The ZAO** - the 100+ member Farcaster community ZABAL Gamez serves
+- **Magnetiq** - https://app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez
 
 ## License
 
