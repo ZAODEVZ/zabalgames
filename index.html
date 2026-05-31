@@ -647,6 +647,93 @@
       }
       .ui-polish-v1 .hero::after { display: none; }
     }
+
+    /* =====================================================================
+       ARCADE CONTENT POLISH (2026-05-31) - homepage content sections lifted
+       to the shared arcade system. Reuses tokens from assets/style.css
+       (--font-pixel, --glow-*, --r-*, --sp-*); no second system, no global
+       restyle. Honors prefers-reduced-motion at the end of this block.
+       ===================================================================== */
+
+    /* Hero - arcade attract screen. The pixel eyebrow + logo become the mark. */
+    .hero-eyebrow {
+      background: rgba(245, 200, 66, 0.08);
+      box-shadow: 0 0 18px rgba(245, 200, 66, 0.16);
+    }
+    .hero-logo {
+      box-shadow:
+        0 0 0 1px rgba(245, 200, 66, 0.22),
+        0 8px 40px rgba(167, 139, 250, 0.28),
+        0 0 56px rgba(0, 229, 255, 0.10),
+        0 2px 12px rgba(0, 0, 0, 0.5);
+    }
+    @media (hover: hover) {
+      .hero-logo { animation: heroAttract 5s ease-in-out infinite; }
+    }
+    @keyframes heroAttract {
+      0%, 100% { box-shadow: 0 0 0 1px rgba(245,200,66,0.22), 0 8px 40px rgba(167,139,250,0.28), 0 0 50px rgba(0,229,255,0.08), 0 2px 12px rgba(0,0,0,0.5); }
+      50%      { box-shadow: 0 0 0 1px rgba(245,200,66,0.38), 0 10px 48px rgba(167,139,250,0.36), 0 0 76px rgba(0,229,255,0.18), 0 2px 12px rgba(0,0,0,0.5); }
+    }
+    .pitch strong { text-shadow: 0 0 18px rgba(245, 200, 66, 0.25); }
+
+    /* Three doors - arcade cabinet tiles. .path-coin is the level badge
+       (pixel font already applied site-wide); add per-track chip + edge glow. */
+    .path-coin {
+      display: inline-block;
+      padding: 0.4rem 0.7rem;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border-hover);
+      margin-bottom: 0.85rem;
+      line-height: 1;
+    }
+    .path-card.learn .path-coin { color: var(--gold);   border-color: rgba(245,200,66,0.45); background: rgba(245,200,66,0.08); }
+    .path-card.build .path-coin { color: var(--orange); border-color: rgba(255,107,53,0.45); background: rgba(255,107,53,0.08); }
+    .path-card.watch .path-coin { color: var(--cyan);   border-color: rgba(0,229,255,0.45); background: rgba(0,229,255,0.08); }
+    @media (hover: hover) {
+      .path-card.learn:hover { border-color: var(--gold);   box-shadow: var(--glow-gold); }
+      .path-card.build:hover { border-color: var(--orange); box-shadow: var(--glow-orange); }
+      .path-card.watch:hover { border-color: var(--cyan);   box-shadow: var(--glow-cyan); }
+    }
+
+    /* Workshop schedule - arcade "level select" tiles. Scoped to the homepage
+       grid so the shared .ws-* render classes are untouched elsewhere. */
+    #workshop-schedule .ws-card { transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+    #workshop-schedule .ws-when { font-family: var(--font-pixel); font-size: 0.58rem; letter-spacing: 0.03em; line-height: 1.6; color: var(--cyan); }
+    @media (hover: hover) {
+      #workshop-schedule .ws-card:hover { transform: translateY(-2px); border-color: var(--border-hover); box-shadow: var(--glow-cyan); }
+    }
+    #workshop-schedule .ws-status.ws-confirmed { box-shadow: 0 0 12px rgba(0, 229, 255, 0.22); }
+
+    /* Ways to take part - these were unstyled; give them arcade tiles. */
+    .ways-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--sp-4); margin-top: var(--sp-5); }
+    .way-card {
+      display: flex; flex-direction: column;
+      border: 1px solid var(--border); border-radius: var(--r-md);
+      padding: 1.2rem 1.25rem; background: rgba(255,255,255,0.02);
+      transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
+    .way-card h3 { font-size: 1.02rem; margin: 0 0 0.45rem; }
+    .way-card p { font-size: 0.9rem; margin: 0 0 1rem; line-height: 1.5; flex: 1; }
+    .way-link {
+      font-family: var(--font-pixel); font-size: 0.55rem; letter-spacing: 0.05em;
+      text-transform: uppercase; color: var(--cyan); text-decoration: none; margin-top: auto;
+    }
+    .way-link:hover { text-decoration: none; color: var(--text); }
+    @media (hover: hover) {
+      .way-card:hover { transform: translateY(-2px); border-color: var(--cyan); box-shadow: var(--glow-cyan); }
+    }
+
+    /* Outcomes - keep the gold identity, add the same lift/glow as the rest. */
+    @media (hover: hover) {
+      .outcome-card:hover { border-color: var(--gold); box-shadow: var(--glow-gold); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-logo { animation: none; }
+      .path-card:hover, .way-card:hover, .outcome-card:hover,
+      #workshop-schedule .ws-card:hover { transform: none; box-shadow: none; }
+    }
+    /* ===================== END ARCADE CONTENT POLISH ===================== */
   </style>
 </head>
 <body class="ui-polish-v1">
@@ -839,7 +926,7 @@
     <h2 style="text-align: center;">Three doors. Open as many as you want.</h2>
     <p class="one-liner">Learn the tools. <span class="accent">Build the work.</span> Watch it unfold.</p>
     <p style="text-align: center; max-width: 600px; margin: 0 auto;">
-      These aren't picks - they're commitments. Most folks do all three. Workshops in June. Build in July. Finals in August. Each card below is one path. Claim yours by casting publicly - or claim all three with the green button at the bottom.
+      These aren't picks - they're commitments. Workshops in June. Build in July. Finals in August. Each card below is one path - claim yours by casting publicly.
     </p>
 
     <div class="path-row">
