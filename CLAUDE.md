@@ -89,6 +89,11 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
    arrive with context.
 3. Announcements (yerbearzerker first-workshop post + Day 0) - ON HOLD per the owner.
    Reference asset: BCZ YapZ Episode 7 features yerbearzerker / Empire Builder.
+4. Workshop roster - fill `docs/workshop-roster.md` and lock ~4-5 more June sessions
+   (target ~8). Topic ideas per track in `docs/workshop-topics-by-track.md`. Confirmed +
+   scheduled leads get mirrored into `data/workshop-leads.json` (drives the schedule).
+5. Vercel Web Analytics - the `/_vercel/insights/script.js` tag is on every page; enable
+   Web Analytics in the Vercel dashboard (Analytics tab) to start collecting.
 
 ## Decision history
 The "why" behind the format lives in `docs/research/701-canonical-state.md` (canonical
