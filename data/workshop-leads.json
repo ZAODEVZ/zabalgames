@@ -12,7 +12,8 @@
       "status": "confirmed",
       "confirmed_date": "2026-05-22",
       "spec_url": "https://github.com/ZAODEVZ/zabalgames/blob/main/docs/research/714-tyler-call.md",
-      "color": "zabal"
+      "color": "zabal",
+      "track": "builder"
     },
     {
       "id": "002",
@@ -46,6 +47,7 @@
     "status": "confirmed | tentative",
     "confirmed_date": "YYYY-MM-DD when they said yes",
     "spec_url": "optional - link to the deeper spec / meeting recap",
-    "color": "ZAO palette key: orange | cyan | gold | pink | zabal"
+    "color": "ZAO palette key: orange | cyan | gold | pink | zabal",
+    "track": "optional - artist | builder | creator. Shows a colored track badge on the schedule when set."
   }
 }
