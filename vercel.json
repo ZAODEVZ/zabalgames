@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "crons": [
-    { "path": "/api/commit-watcher", "schedule": "0 * * * *" }
+    { "path": "/api/commit-watcher", "schedule": "0 0 * * *" }
   ],
   "redirects": [
     { "source": "/spec",    "destination": "/docs/research/701-canonical-state.md", "permanent": false },
