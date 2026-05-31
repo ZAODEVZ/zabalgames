@@ -427,5 +427,18 @@ img { } /* placeholder to keep block boundaries clear */
   .why-card:hover, .option-card:hover, .path-card:hover,
   .btn-primary:hover, .join-btn:hover, .top-cta-btn:hover { transform: none; }
 }
+/* "Ways to take part" grid (homepage participation block) */
+.ways-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.3rem; }
+.way-card {
+  border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem 1.25rem;
+  background: rgba(255,255,255,0.02); box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.way-card:hover { transform: translateY(-2px); border-color: var(--border-hover); box-shadow: var(--shadow-md); }
+.way-card h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+.way-card p { margin: 0 0 0.9rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; flex: 1; }
+.way-link { color: var(--cyan); font-weight: 600; font-size: 0.88rem; align-self: flex-start; }
+@media (prefers-reduced-motion: reduce) { .way-card:hover { transform: none; } }
 /* ============================ END UI QUALITY PASS ====================== */
 
