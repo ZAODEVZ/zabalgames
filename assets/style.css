@@ -298,3 +298,134 @@ a:hover { text-decoration: underline; }
   border: 1px solid var(--border); border-radius: 999px; padding: 0.15rem 0.6rem; cursor: pointer; }
 .tl-share:hover { border-color: var(--cyan); }
 
+/* =========================================================================
+   UI QUALITY PASS (2026-05-31) - site-wide polish, CSS only.
+   Self-contained override block: delete from here to EOF to fully revert.
+   Lifts depth, motion, focus states, typography and link feel across every
+   page that uses this stylesheet. No markup or JS depends on it.
+   ========================================================================= */
+
+:root {
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.35);
+  --shadow-glow-cyan: 0 4px 24px rgba(0,229,255,0.18);
+  --radius: 12px;
+}
+
+/* Smoother global feel + kinder text rendering */
+html { scroll-behavior: smooth; }
+body { text-rendering: optimizeLegibility; letter-spacing: 0.002em; }
+*, *::before, *::after { -webkit-tap-highlight-color: transparent; }
+
+/* Branded selection */
+::selection { background: rgba(167,139,250,0.35); color: #fff; }
+
+/* Tasteful custom scrollbar (WebKit) */
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 999px; border: 3px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: #3a3a46; }
+
+/* Links: no more harsh full underline - offset underline that animates in */
+a { text-underline-offset: 0.18em; text-decoration-thickness: 1px; transition: color 0.18s var(--ease); }
+a:hover { text-decoration: none; color: var(--text); }
+.footer a, .nav-links a { transition: color 0.18s var(--ease); }
+
+/* Visible, on-brand keyboard focus (replaces the default browser ring) */
+a:focus-visible, button:focus-visible, summary:focus-visible,
+input:focus-visible, textarea:focus-visible, select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Headings: tighter tracking for that designed feel */
+h1, h2, h3 { letter-spacing: -0.015em; }
+h2 { line-height: 1.2; }
+
+/* Typographic scale + rhythm refinements */
+h2 { font-size: 1.65rem; }
+.hero-sub, .pitch-sub { line-height: 1.6; }
+
+/* Cards: real depth, smoother lift, layered hover */
+.card, .outcome-card, .faq-item, .ws-card, .commit-card,
+.phase-card, .why-card, .path-card, .option-card {
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s var(--ease);
+}
+.card:hover, .ws-card:hover, .outcome-card:hover,
+.phase-card:hover, .why-card:hover, .option-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+.path-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* Buttons: depth, spring, sheen on hover (keep brand colors) */
+.btn, .join-btn, .top-cta-btn, .path-btn, .share-btn, .join-addapp, .track-chip, .ws-filter-btn {
+  transition: transform 0.12s var(--ease), box-shadow 0.2s var(--ease),
+              background 0.2s var(--ease), border-color 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+.btn { letter-spacing: 0.01em; box-shadow: var(--shadow-sm); }
+.btn-primary {
+  background: linear-gradient(135deg, #ff7a45, #ff5a2c);
+  box-shadow: 0 4px 16px rgba(255,107,53,0.28);
+}
+.btn-primary:hover { opacity: 1; transform: translateY(-1px); box-shadow: 0 6px 22px rgba(255,107,53,0.4); }
+.btn-ghost:hover { border-color: var(--cyan); background: rgba(0,229,255,0.06); }
+.btn:active, .join-btn:active, .path-btn:active { transform: translateY(1px); }
+.join-btn:hover, .top-cta-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-glow-cyan); }
+
+/* Inputs: softer resting state, clear focus ring */
+.field input, .field textarea, .field select {
+  background: var(--bg);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s var(--ease);
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0,229,255,0.12);
+  background: var(--surface);
+}
+
+/* Nav: deeper blur + subtle bottom shadow so it reads as a real bar */
+.nav { background: rgba(7,7,9,0.82); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4); box-shadow: 0 1px 0 rgba(255,255,255,0.03); }
+.nav-links a { position: relative; padding-bottom: 2px; }
+.nav-links a::after {
+  content: ''; position: absolute; left: 0; right: 100%; bottom: -2px; height: 2px;
+  background: var(--gradient-main); border-radius: 2px; transition: right 0.22s var(--ease);
+}
+.nav-links a:hover::after, .nav-links a.active::after { right: 0; }
+.nav-links a.active { color: var(--text); }
+
+/* Section dividers: hairline gradient instead of a flat 1px line */
+.section { border-top: 1px solid transparent; border-image: linear-gradient(90deg, transparent, var(--border), transparent) 1; }
+.section:first-of-type { border-image: none; border-top: 0; }
+
+/* FAQ + details: animate the marker, smoother open */
+.faq-item { transition: border-color 0.2s var(--ease), background 0.2s var(--ease); }
+.faq-item:hover { border-color: var(--border-hover); }
+.faq-item summary::after { transition: transform 0.2s var(--ease); }
+.faq-item[open] summary::after { content: '+'; transform: rotate(45deg); }
+
+/* Badges/chips: gentle hover so they feel interactive where they are */
+.proof-badge { transition: border-color 0.2s var(--ease), color 0.2s var(--ease); }
+
+/* Images load less jarringly */
+img { } /* placeholder to keep block boundaries clear */
+
+/* Honor reduced-motion: kill transforms/animations for those who ask */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .card:hover, .ws-card:hover, .outcome-card:hover, .phase-card:hover,
+  .why-card:hover, .option-card:hover, .path-card:hover,
+  .btn-primary:hover, .join-btn:hover, .top-cta-btn:hover { transform: none; }
+}
+/* ============================ END UI QUALITY PASS ====================== */
+
