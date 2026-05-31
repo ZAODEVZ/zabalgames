@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZABAL Gamez - 3 Months of Building With The ZAO</title>
   <meta name="description" content="ZABAL Gamez Season 1 - The ZAO's 3-month Build-A-Thon. June workshops, July open build month, August Finals. Free to join. Anyone welcome.">
-  <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://zabalgamez.com/">
 
   <meta property="og:title" content="ZABAL Gamez - 3 Months of Building With The ZAO">
@@ -659,7 +658,7 @@
 
 <nav class="nav">
   <div class="nav-row">
-    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMES</span></a>
+    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMEZ</span></a>
     <div class="nav-links">
       <a href="/p.html">Roster</a>
       <a href="/info.html">All The Details</a>
@@ -693,6 +692,7 @@
     </div>
     <div class="join-block">
       <button type="button" id="zg-join" class="join-btn">Join with Farcaster</button>
+      <button type="button" id="zg-addapp" class="join-addapp" style="display:none;">Add + get updates</button>
       <a href="/lead" class="join-alt" id="zg-join-alt">or full sign-up</a>
       <p id="join-count" class="join-count" aria-live="polite"></p>
     </div>
@@ -1184,6 +1184,20 @@
     });
   }
   loadCount();
+
+  // Add Mini App prompt (notifications = the #1 retention lever). Only shown inside
+  // a Farcaster Mini App, where adding the app is possible; hidden on the web.
+  var addBtn = document.getElementById('zg-addapp');
+  if (addBtn && window.ZABAL && window.ZABAL.context) {
+    window.ZABAL.context.then(function (ctx) {
+      if (ctx && ctx.client) {
+        addBtn.style.display = '';
+        addBtn.addEventListener('click', function () {
+          if (window.ZABAL.addApp) window.ZABAL.addApp();
+        });
+      }
+    }).catch(function () {});
+  }
 
   // Top CTA: one-tap cast of excitement into /zabal with the site embedded.
   // This is the share-to-timeline growth loop - the cast ends on an open
