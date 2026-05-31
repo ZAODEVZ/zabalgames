@@ -1,20 +1,20 @@
 // ZABAL Gamez - send a notification to everyone who added the app (POST /api/notify).
 //
 // Admin-only: requires Authorization: Bearer <NOTIFY_SECRET>. Reads the stored
-// per-FID notification tokens (zg_notif_tokens, written by api/webhook.mjs),
-// groups them by their Farcaster notification server URL, and POSTs the
-// notification in batches.
+// per-FID notification tokens (written by api/webhook.mjs), groups them by their
+// Farcaster notification server URL, and POSTs the notification in batches.
 //
 // Body: { "title": string (<=32), "body": string (<=128), "targetUrl"?: string }
 //   targetUrl defaults to https://zabalgamez.com and must be within the domain.
 //
-// Env: NOTIFY_SECRET (required), SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY.
+// Env: NOTIFY_SECRET (required), KV_REST_API_URL, KV_REST_API_TOKEN.
 
 export const config = { runtime: 'edge' };
 
-const SB_URL = process.env.SUPABASE_URL;
-const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
+const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const NOTIFY_SECRET = process.env.NOTIFY_SECRET;
+const TOKENS_KEY = 'zabal:notif:tokens';
 const SITE = 'https://zabalgamez.com';
 const BATCH = 100;
 
@@ -25,12 +25,14 @@ function json(body, status = 200) {
   });
 }
 
-async function sbSelect(path) {
-  const r = await fetch(`${SB_URL}/rest/v1/${path}`, {
-    headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` },
+async function kv(cmds) {
+  const r = await fetch(`${KV_URL}/pipeline`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${KV_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(cmds),
     signal: AbortSignal.timeout(4000),
   });
-  if (!r.ok) throw new Error('sb ' + r.status);
+  if (!r.ok) throw new Error('kv ' + r.status);
   return r.json();
 }
 
@@ -44,7 +46,7 @@ export default async function handler(req) {
   if (req.method !== 'POST') return json({ error: 'method' }, 405);
   const auth = req.headers.get('authorization') || '';
   if (!NOTIFY_SECRET || auth !== `Bearer ${NOTIFY_SECRET}`) return json({ error: 'unauthorized' }, 401);
-  if (!SB_URL || !SB_KEY) return json({ error: 'storage not configured' }, 503);
+  if (!KV_URL || !KV_TOKEN) return json({ error: 'KV not configured' }, 503);
 
   let body = {};
   try { body = await req.json(); } catch {}
@@ -54,12 +56,17 @@ export default async function handler(req) {
   if (!title || !text) return json({ error: 'title and body required' }, 400);
   if (!targetUrl.startsWith(SITE)) return json({ error: 'targetUrl must be within ' + SITE }, 400);
 
-  let rows;
-  try { rows = await sbSelect('zg_notif_tokens?select=url,token'); } catch (e) { return json({ error: e.message }, 502); }
+  let res;
+  try { res = await kv([['HGETALL', TOKENS_KEY]]); } catch (e) { return json({ error: e.message }, 502); }
 
+  // HGETALL -> flat [field, value, field, value, ...]
+  const flat = res?.[0]?.result || [];
   const byUrl = {};
-  for (const row of (Array.isArray(rows) ? rows : [])) {
-    if (row && row.url && row.token) (byUrl[row.url] = byUrl[row.url] || []).push(row.token);
+  for (let i = 0; i < flat.length; i += 2) {
+    try {
+      const { url, token } = JSON.parse(flat[i + 1]);
+      if (url && token) (byUrl[url] = byUrl[url] || []).push(token);
+    } catch { /* skip malformed */ }
   }
 
   const notificationId = `zabal-${Date.now()}`;

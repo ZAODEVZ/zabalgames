@@ -4,15 +4,13 @@
 // REAL Farcaster FID, verified server-side from a Quick Auth JWT. Nothing is
 // stored unless the token verifies, so activity cannot be spoofed.
 //
-// Storage: Supabase Postgres over the PostgREST API - no npm dependency, so
-// this stays a zero-build edge function. The atomic feed-append + score-bump is
-// done in the public.zg_track RPC (see db/supabase-activity.sql). If the
-// Supabase env vars are not set the endpoint verifies + returns ok without
-// storing.
+// Storage: Vercel KV (Upstash Redis) over the REST API - no npm dependency, so
+// this stays a zero-build edge function like api/snap/signup.mjs. If the KV env
+// vars are not set the endpoint verifies + returns ok without storing.
 //
 // Env:
-//   SUPABASE_URL                Supabase project URL (https://xxxx.supabase.co)
-//   SUPABASE_SERVICE_ROLE_KEY   service-role key (server-only; bypasses RLS)
+//   KV_REST_API_URL     Vercel KV / Upstash REST base URL
+//   KV_REST_API_TOKEN   Vercel KV / Upstash REST token
 //
 // Request:  POST { action: 'cast'|'share'|'signup', target?: string }
 //           Authorization: Bearer <quick-auth-jwt>   (added by sdk.quickAuth.fetch)
@@ -22,11 +20,15 @@ export const config = { runtime: 'edge' };
 
 const DOMAIN = 'zabalgamez.com';
 const JWKS_URL = 'https://auth.farcaster.xyz/.well-known/jwks.json';
-const SB_URL = process.env.SUPABASE_URL;
-const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
+const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const HAATZ = 'https://haatz.quilibrium.com';
 const ALLOWED = new Set(['cast', 'share', 'signup']);
 const POINTS = { cast: 3, share: 2, signup: 5 };
+const RECENT_KEY = 'zabal:activity:v1';
+const SCORES_KEY = 'zabal:scores:v1';
+const RECENT_MAX = 50;
+const PRESENT_TTL = 172800; // 2 days
 
 function json(body, status = 200, origin = '*') {
   return new Response(JSON.stringify(body), {
@@ -99,25 +101,15 @@ async function verifyQuickAuth(token, domain) {
   return fid;
 }
 
-// Call a Supabase RPC over PostgREST with the service-role key.
-async function sbRpc(fn, args) {
-  const r = await fetch(`${SB_URL}/rest/v1/rpc/${fn}`, {
+async function kvPipeline(cmds) {
+  const r = await fetch(`${KV_URL}/pipeline`, {
     method: 'POST',
-    headers: {
-      apikey: SB_KEY,
-      Authorization: `Bearer ${SB_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(args),
+    headers: { Authorization: `Bearer ${KV_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(cmds),
     signal: AbortSignal.timeout(4000),
   });
-  if (!r.ok) {
-    // Log the DB detail to the server (Vercel function logs); do not return it.
-    console.error('zg_track sb error', r.status, (await r.text()).slice(0, 200));
-    throw new Error('storage error ' + r.status);
-  }
-  const t = await r.text();
-  return t ? JSON.parse(t) : null;
+  if (!r.ok) throw new Error('kv ' + r.status);
+  return r.json();
 }
 
 // Best-effort profile enrichment so the feed can show @username + pfp.
@@ -154,18 +146,21 @@ export default async function handler(req) {
   const target = String(body.target || '').slice(0, 40);
   if (!ALLOWED.has(action)) return json({ error: 'bad action' }, 400, origin);
 
-  if (!SB_URL || !SB_KEY) return json({ ok: true, stored: false, note: 'storage not configured' }, 200, origin);
+  if (!KV_URL || !KV_TOKEN) return json({ ok: true, stored: false, note: 'KV not configured' }, 200, origin);
 
   const profile = await resolveProfile(fid);
+  const entry = JSON.stringify({
+    fid, username: profile.username, pfpUrl: profile.pfpUrl, action, target, ts: Date.now(),
+  });
+  const presentKey = `zabal:present:${new Date().toISOString().slice(0, 10)}`;
   try {
-    await sbRpc('zg_track', {
-      p_fid: fid,
-      p_username: profile.username || null,
-      p_pfp: profile.pfpUrl || null,
-      p_action: action,
-      p_target: target || null,
-      p_points: POINTS[action] || 1,
-    });
+    await kvPipeline([
+      ['LPUSH', RECENT_KEY, entry],
+      ['LTRIM', RECENT_KEY, '0', String(RECENT_MAX - 1)],
+      ['SADD', presentKey, String(fid)],
+      ['EXPIRE', presentKey, String(PRESENT_TTL)],
+      ['ZINCRBY', SCORES_KEY, String(POINTS[action] || 1), String(fid)],
+    ]);
   } catch (e) {
     return json({ ok: false, stored: false, detail: e.message }, 502, origin);
   }
