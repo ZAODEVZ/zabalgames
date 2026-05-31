@@ -1,253 +1,133 @@
-# ZABAL Gamez - Launch Announcement: Pinned Thread + Posting Playbook
+# ZABAL Gamez - Launch Announcement: Firefly Cross-Post Thread + Playbook
 
-> Date: 2026-05-31. Paste-ready. Farcaster thread, matching X thread, posting playbook,
-> pre-flight checklist. Brand rules applied (no emojis, hyphens only, "100+" never a
-> number). Grounded in repo facts; research sources cited at the bottom.
-
----
-
-## RESEARCH SUMMARY (what shaped these drafts)
-
-### Farcaster - IMPORTANT correction
-- **The 320-character cap is outdated.** Current protocol: **1024 characters** for a
-  standard cast, up to **10,000** for a Farcaster Pro account (tagged `TEN_K_CAST`).
-  [farcaster protocol FIP "Farcaster Pro" #236; cast-limit synthesis]
-- We still wrote **every cast under 320** on purpose: punchy, scannable casts read better
-  on mobile and recast cleaner. 320 is a self-imposed style ceiling, not a technical limit -
-  there is headroom if a line needs it.
-- **Embeds:** up to **2 per cast** (standard) / 4 (Pro), each URL up to 256 bytes.
-  [Farcaster Docs - Create casts]
-- **Mentions** do not count against the character limit; up to 10 per cast.
-- **Threads** are replies chained to the parent cast. **Reach** is driven by recasts,
-  posting into a channel (a channel cast hits every channel follower's home feed plus your
-  followers'), reply velocity, and tagging people who will recast. [Farcaster Docs -
-  Channels; Create casts]
-- **Pinned casts:** Warpcast supports pinning a cast to the top of your **profile** (not
-  just channel pins). Pin the hook. [PERCS - pinned casts]
-
-### X / Twitter
-- **Thread length:** 5-8 tweets is the engagement sweet spot (7 ideal); drop-off climbs
-  past 15. Ours is 8. [HipClip; UseVisuals; SocialPilot]
-- **Hook tweet:** open with a concrete, specific claim + a credibility marker + a curiosity
-  gap, and signal there is more. No link in tweet 1 (external links in the first tweet
-  suppress reach) - put the link in the final tweet. [HipClip; 1percentbetter]
-- **Per-tweet:** keep under ~200 chars, scannable; a visual every 3-4 tweets lifts
-  completion. Media-first on the hook. [UseVisuals]
-- **Timing:** Tue-Thu, 9-11am or 12-6pm local; Tuesday ~9am is the single best slot.
-  [Sprout Social; Buffer; SocialPilot]
-
-### Cross-post strategy (Farcaster -> X)
-Same story, re-cut per platform. Farcaster gets a many-cast thread that leans native
-(channel post to /zabal, Lu.ma embeds that auto-preview, recast-friendly length). X gets a
-tighter numbered thread, media-first hook, link held to the last tweet. This is derived from
-the platform research above, not a single cited source - flagged as judgment.
-
-### Timing note for THIS launch (overrides the generic "post Tuesday" advice)
-The first workshop (yerbearserker) is **Mon Jun 1, 6-7am EST** - tomorrow. The calendar
-forces the hand: **post today (Sun May 31, evening) or first thing Mon morning** to drive
-Jun 1 RSVPs. Generic best-time data is for evergreen posts; a dated event beats it.
+> Date: 2026-05-31. Paste-ready. ONE thread, cross-posted to Farcaster + X via Firefly.
+> Bound by X's 280-char limit (Firefly caps cross-posts to the shorter platform), one link
+> per post. Brand rules applied (no emojis, hyphens only, "100+" never a number). Grounded
+> in repo facts; sources at the bottom. Reflects the fact-check pass (PR #43): commemorative
+> collectible (not Hats) as the finisher reward, $500 pool firm/funded, no "spot on the team."
 
 ---
 
-## 1. FARCASTER PINNED THREAD
+## RESEARCH SUMMARY (what shaped this)
 
-Post the whole thread into **/zabal**. Pin **Cast 1** to your profile. Char counts shown;
-all under the 320 style ceiling (and far under the 1024 technical cap).
+### Firefly cross-post (the format that drove this rewrite)
+- Firefly (Mask Network) posts the same content to Farcaster + X (+ Lens) in one click.
+  [Firefly - App Store]
+- Cross-posting is capped to the shorter platform's limit, so **every post is written for
+  X's 280** - it then works on Farcaster (1024 cap) without edits. [Firefly cross-post note]
+- **One link per post** (your rule): one link = one clean preview card on each network, no
+  ambiguity about which embed renders. The hook carries an image instead of a link.
+- Handle tagging is per-network: a Farcaster @handle and an X @handle for the same person
+  can differ. Firefly tags within each network - you confirm/adjust per platform at compose.
 
-**Handle placeholders:** yerbearserker is `@yerbearserker`. Plat0x and Ohnahji handles are
-still TBD - fill `[@plat0x-handle]` and `[@ohnahji-handle]` before posting (mentions do not
-cost characters).
+### Thread craft (applies to both platforms)
+- Hook: concrete claim + credibility marker + curiosity gap. Media-first, NO link on post 1
+  (links in the first post suppress X reach). [HipClip; 1percentbetter]
+- Keep posts scannable; post the thread as a back-to-back reply chain (reply velocity is a
+  reach signal on both). [UseVisuals]
+- Timing: this launch posts tonight (Sun) or early Mon to catch the Jun 1 sessions; generic
+  best slot (Tue-Thu 9-11am / 12-6pm) is only for an evergreen re-share. [Sprout; Buffer]
 
 ---
 
-**Cast 1 - hook (PIN THIS) [211]**
+## THE THREAD (11 posts - cross-post in Firefly, Farcaster + X)
+
+Each post is under 280 and has at most one link. Post 1 carries the launch-card image, no
+link. Tag the leads in their own session posts (you tag per-network in Firefly).
+
+**Post 1 - hook   [215]   media: assets/embed-card-gamez.png   |   NO link**
+> ZM
+>
 > We went to the Farcaster Agentic Bootcamp. Built ZLANK. Won the Snap category at FarHack 2026. That win funded ZAOstock - and the thread keeps going. Today it becomes ZABAL Gamez: The ZAO's 3-month Build-A-Thon.
 
-`Embed: zabalgamez.com` (renders the arcade launch card via the site's preview image)
-
-**Cast 2 - what it is [201]**
+**Post 2 - what it is   [201]   |   no link**
 > ZABAL Gamez is a build event for The ZAO, a 100+ member Farcaster music + creator community. Not a weekend hackathon. Three months: June workshops, July open build, August Finals. Free. Any AI harness.
 
-**Cast 3 - three tracks [178]**
+**Post 3 - three tracks   [178]   |   no link**
 > Three doors, pick yours:
 > - Artist: musical or visual
 > - Builder: developer or aspiring
 > - Creator: media + distribution
 > You bring the build. We bring the team and the distribution.
 
-**Cast 4 - why it is real [213]**
-> Why it is real: a ZAO mentor as your teammate, not a judge. A share of the $500 USDC pool. Respect, earned governance in how The ZAO runs. A commemorative collectible for finishers. You keep the repo, the credit, the economics.
+**Post 4 - why it is real   [216]   |   no link**
+> Why it is real: a ZAO mentor as your teammate, not a judge. A share of the $500 USDC pool. Respect - earned governance in how The ZAO runs. A commemorative collectible for finishers. You keep the repo and the credit.
 
-**Cast 5 - first session [120]**
-> June starts now. First live session, RSVP free:
-> yerbearserker on Empire Builder - Mon Jun 1, 6-7am EST
-> luma.com/7nfside5
+**Post 5 - first session   [185]   link: luma.com/7nfside5   |   tag @yerbearserker**
+> First workshop is live. @yerbearserker on Empire Builder - leaderboards, Empires, token mechanics, and why they matter for your build. Mon Jun 1, 6-7am EST. RSVP free: luma.com/7nfside5
 
-`Embed: luma.com/7nfside5` · `Tag: @yerbearserker`
+**Post 6 - session   [152]   link: luma.com/y189qk8p   |   tag @plat0x**
+> @plat0x on Bonfire and the ZABAL Bonfire bot - point your agent at it and follow ZABAL Gamez in real time. Mon Jun 1, 5-6pm EST. RSVP: luma.com/y189qk8p
 
-**Cast 6 - next two sessions [181]**
-> Two more to open June:
-> Plat0x on Bonfire and the ZABAL Bonfire bot - Mon Jun 1, 5-6pm EST
-> luma.com/y189qk8p
-> Ohnahji on growing a live stream - Tue Jun 2, 5-6pm EST
-> luma.com/xa3bsp21
+**Post 7 - session   [113]   link: luma.com/xa3bsp21   |   tag @ohnahji**
+> @ohnahji on live streaming - how to start and grow your own stream. Tue Jun 2, 5-6pm EST. RSVP: luma.com/xa3bsp21
 
-`Embeds (2 max): luma.com/y189qk8p + luma.com/xa3bsp21` · `Tag: [@plat0x-handle] [@ohnahji-handle]`
-
-**Cast 7 - what you can build [153]**
+**Post 8 - what you can build   [153]   link: zabalgamez.com/projects**
 > Not sure what to build? 17 started ZAO projects are up for adoption - pick one and ship it forward, or bring your own. Full list: zabalgamez.com/projects
 
-`Embed: zabalgamez.com/projects`
-
-**Cast 8 - teach a session [182]**
+**Post 9 - teach a session   [183]   link: cal.com/zabal-gamez/workshop-session**
 > Built something worth teaching? Lead a 30-min June workshop. Cast credit on launch and reveal, and your session lives in the library. Grab a slot: cal.com/zabal-gamez/workshop-session
 
-`Embed: cal.com/zabal-gamez/workshop-session`
-
-**Cast 9 - the bounty [148]**
+**Post 10 - the bounty   [148]   link: poidh.xyz/base/bounty/1180**
 > Make us an ad. Best ad for ZABAL Gamez wins 0.0125 ETH on Base (about $25) and becomes our pinned promo. Ends Sun Jun 14: poidh.xyz/base/bounty/1180
 
-`Embed: poidh.xyz/base/bounty/1180`
-
-**Cast 10 - close, three ways in [161]**
-> Three ways in, starting today:
-> 1. Register: collect.zabalgamez.com
-> 2. RSVP a June session (links above)
-> 3. Cast what you will build in /zabal
-> Come build with us.
-
-`Embed: collect.zabalgamez.com`
+**Post 11 - close   [163]   link: zabalgamez.com (ends on the Mini App card)**
+> ZABAL Gamez starts today. Pick your door, RSVP a June session above, and cast what you will build in /zabal. Come build with us. Everything is here: zabalgamez.com
 
 ---
 
-## 2. X / TWITTER THREAD
+## POSTING PLAYBOOK (Firefly)
 
-Hook is media-first with no link; link held to the last tweet. 8 tweets (in the 5-8 sweet
-spot). All under 280.
-
-**Tweet 1 - hook (attach the launch card image) [203]**
-> We won the Snap category at FarHack 2026 with ZLANK. That win funded ZAOstock. Today the same thread becomes something bigger: ZABAL Gamez, The ZAO's 3-month Build-A-Thon. How it works and how to get in:
-
-`Media: assets/embed-card-gamez.png` · no link in this tweet
-
-**Tweet 2 - what it is [222]**
-> Not a weekend hackathon. Three months: June workshops, July open build, August Finals. Free, any AI harness, for a 100+ member Farcaster music and creator community. You bring the build, we bring the team and distribution.
-
-**Tweet 3 - tracks [124]**
-> Three tracks, pick your door:
-> - Artist: musical or visual
-> - Builder: developer or aspiring
-> - Creator: media and distribution
-
-**Tweet 4 - why it is real [202]**
-> Why it is real: a ZAO mentor as your teammate, not a judge. A share of the $500 USDC pool. Earned governance (Respect) in how The ZAO runs. A commemorative collectible for finishers. You keep the repo and the credit.
-
-**Tweet 5 - first sessions (attach a schedule screenshot if you have one) [203]**
-> June starts now. First three live sessions, free on Lu.ma:
-> - yerbearserker on Empire Builder, Mon Jun 1 6-7am EST
-> - Plat0x on Bonfire, Mon Jun 1 5-6pm EST
-> - Ohnahji on live streaming, Tue Jun 2 5-6pm EST
-
-**Tweet 6 - what to build [109]**
-> Not sure what to ship? 17 started ZAO projects are up for adoption, or bring your own idea. Both paths count.
-
-**Tweet 7 - teach + bounty [150]**
-> Two more ways in: teach a 30-min workshop (cast credit and your session in the library), or make our best ad and win 0.0125 ETH on Base. Ad bounty ends Jun 14.
-
-**Tweet 8 - CTA, link last [101]**
-> Register, see the full schedule, and RSVP the June sessions: zabalgamez.com
->
-> Come build with The ZAO.
+- **Compose in Firefly** with Farcaster + X toggled on (and Lens if you want it). Firefly
+  enforces the 280 cap across networks - every post above already fits.
+- **Post as a thread:** post 1, then reply 2-11 to your own previous post, back to back. The
+  fast reply chain is a reach signal on both networks.
+- **Post 1 = media, no link:** attach `assets/embed-card-gamez.png`. Keeps X reach (no link
+  in the hook) and gives Farcaster the launch card.
+- **One link per post** (posts 5-11). Firefly renders one preview card per network - clean.
+- **Tag the leads in their session posts** (5/6/7). Firefly tags per-network, so check the
+  @handle resolves on BOTH Farcaster and X before sending - the same person may have a
+  different handle on each. You said you will tag their accounts - do it at compose time.
+- **Pin the hook** (post 1) to your Farcaster profile and your X profile after posting.
+- **Recast / repost the hook** (not the whole thread) ~8-12h later for EU/Asia, and again
+  Jun 1 morning with a "first session today" nudge.
+- **Promo audio** (optional): the 50-sec promo at
+  `bettercallzaal.com/assets/zabal-games-brand/zabal-gamez-promo.mp3` can ride a follow-up
+  post; do not bury the schedule links under it.
 
 ---
 
-## 3. POSTING PLAYBOOK
+## PRE-FLIGHT CHECKLIST (before posting)
 
-**Where**
-- Post the Farcaster thread **in /zabal** (a channel post reaches every /zabal follower's
-  home feed plus your own followers'). The hook can also be cross-posted to your home feed
-  if /zabal is small, but keep the canonical thread in /zabal.
-- **Pin Cast 1 to your profile** right after posting so every profile visit lands on the
-  launch.
-
-**Order + reply velocity**
-- Post Cast 1, then reply Casts 2-10 to your own previous cast, in order, back to back. Do
-  not space them out - a fast, complete thread reads as one unit and the reply velocity in
-  the first minutes is a reach signal.
-- Within the first 30-60 minutes, ask 3-5 people to recast Cast 1 (the hook), not a mid
-  thread cast - the hook is what carries the rest.
-
-**Who to tag / ask to recast**
-- Tag the confirmed leads on their session casts: @yerbearserker (Cast 5), and
-  [@plat0x-handle] + [@ohnahji-handle] (Cast 6) once you have the handles. They are the most
-  likely recasters and it notifies their audiences.
-- Ask The ZAO core + FarHack / Farcaster Agentic Bootcamp alumni to recast the hook. These
-  are the warmest audiences (the origin story is literally theirs).
-
-**Embeds / assets per cast (Farcaster, 2 embeds max each)**
-- Cast 1 (hook): embed `zabalgamez.com` -> auto-renders `assets/embed-card-gamez.png`.
-- Cast 5: embed `luma.com/7nfside5`.
-- Cast 6: embed both `luma.com/y189qk8p` + `luma.com/xa3bsp21` (exactly 2, the max).
-- Cast 7: embed `zabalgamez.com/projects`. Cast 8: `cal.com/zabal-gamez/workshop-session`.
-- Cast 9: `poidh.xyz/base/bounty/1180`. Cast 10: `collect.zabalgamez.com`.
-- Promo audio (50-sec): `bettercallzaal.com/assets/zabal-games-brand/zabal-gamez-promo.mp3`
-  - use on a follow-up cast or the bounty cast if you want sound; do not bury the schedule
-  links under it.
-
-**X specifics**
-- Media-first hook (launch card on Tweet 1), no link in Tweet 1, link only on Tweet 8.
-- Attach a visual around Tweet 5 (schedule) to keep completion up.
-- Pin the hook tweet to your X profile.
-
-**Timing + recast cadence (timezones)**
-- This launch: post **Sun May 31 evening EST or Mon Jun 1 early** to catch the Jun 1
-  sessions. (Generic best slot is Tue-Thu 9-11am / 12-6pm - use that only for the evergreen
-  re-share later in the week.)
-- Recast the hook once more ~8-12 hours later to catch EU/Asia, and again the morning of
-  Jun 1 with a "first session today" nudge. Do not re-post the whole thread - recast the
-  pinned hook.
-
----
-
-## 4. PRE-FLIGHT CHECKLIST (must be true before posting)
-
-- [ ] **Lu.ma event titles** read "ZABAL Gamez" (not "Games") and **yerbearserker** is
-  spelled correctly on luma.com/7nfside5, luma.com/y189qk8p, luma.com/xa3bsp21.
-- [ ] **Cal.com booking questions** are set on `cal.com/zabal-gamez/workshop-session` so
-  workshop bookings arrive with handle/topic/format/notes.
-- [x] **PR #42 merged** - live schedule, Luma RSVP buttons, fixed Cal embed, and a11y pass
-  are on production (`zabalgamez.com`). Confirmed merged (commit e4c44a2).
-- [ ] **Plat0x + Ohnahji Farcaster/X handles** filled into Cast 6 / Tweet 5 (replace the
-  `[@...-handle]` placeholders).
-- [ ] **Confirm the Bootcamp claim.** Cast 1 / Tweet 1 say "We went to the Farcaster Agentic
-  Bootcamp." The repo docs reference the Bootcamp as the scene/lineage and "alumni," but no
-  doc states first-person attendance. If Zaal attended, keep it; if not, soften to "Out of
-  the Farcaster Agentic Bootcamp scene..." (the FarHack ZLANK Snap win is proven either way).
-- [ ] Open `zabalgamez.com`, `collect.zabalgamez.com`, `zabalgamez.com/projects`, all three
-  Lu.ma links, the Cal link, and `poidh.xyz/base/bounty/1180` once each - confirm they load
-  and the embed card renders.
-- [ ] Decide pin target on both platforms (profile pin = the hook).
+- [x] **Lu.ma: yerbearserker spelling fixed** (was "Yerbearzeker"). Confirmed by owner.
+- [x] **Lu.ma "ZABAL GameZ" casing** - owner keeps the capital Z. Fine as-is.
+- [x] **Bootcamp claim (post 1) confirmed by owner** - "We went to the Farcaster Agentic
+  Bootcamp" stays as-is.
+- [ ] **Mini App embed:** post 11 ends on `zabalgamez.com` so Farcaster renders the ZABAL
+  Gamez Mini App launch card. Confirm the card renders in the Firefly preview before sending.
+- [ ] **Per-network @handles** for yerbearserker / plat0x / ohnahji resolve on BOTH Farcaster
+  and X in Firefly. You are tagging these.
+- [ ] **Cal.com booking questions** set on `cal.com/zabal-gamez/workshop-session`.
+- [ ] **Merge PR #43** (commemorative-collectible / $500-secured / honest perks / Arthur
+  removal) so the site matches the thread. PR #42 (schedule/RSVP/Cal/a11y) already merged.
+- [ ] **Optional 4-line scrub:** `data/streams/timeline.json`, `data/data-streams.json`,
+  `data/changelog.json` still say "Hats NFT for finisher" on /streams + /changelog - swap to
+  commemorative collectible so the public site does not contradict the thread.
+- [ ] **Attach `assets/embed-card-gamez.png`** to post 1.
 
 ---
 
 ## SOURCES
 
-Farcaster:
-- Farcaster Docs - Create casts (embeds, threads): https://docs.farcaster.xyz/developers/guides/writing/casts
-- Farcaster Docs - Channels (reach, channel pins): https://docs.farcaster.xyz/learn/what-is-farcaster/channels
-- Farcaster protocol - FIP "Farcaster Pro" (1024 / 10k cast limits): https://github.com/farcasterxyz/protocol/discussions/236
-- PERCS - what cast to pin (profile pinned casts): https://percs.app/blog/pinned-casts/
+- Firefly (Mask Network) cross-post: https://apps.apple.com/us/app/firefly-web3-everything-app/id1640183078
+- Farcaster - Create casts (limits, embeds, threads): https://docs.farcaster.xyz/developers/guides/writing/casts
+- Farcaster - Channels (reach): https://docs.farcaster.xyz/learn/what-is-farcaster/channels
+- Farcaster protocol - FIP Farcaster Pro (1024/10k cap): https://github.com/farcasterxyz/protocol/discussions/236
+- HipClip - X threads 2025: https://www.hipclip.ai/workflows/how-to-create-x-twitter-threads-that-actually-go-viral-in-2025
+- UseVisuals - Twitter threads 2025: https://usevisuals.com/blog/writing-effective-twitter-threads-2025
+- 1percentbetter - viral X hook formula: https://www.1percentbetter.io/p/formula-viral-x-posts
+- Sprout Social / Buffer - best time to post on X: https://sproutsocial.com/insights/best-times-to-post-on-twitter/ , https://buffer.com/resources/best-time-to-post-on-twitter-x/
 
-X / Twitter:
-- HipClip - X threads that go viral in 2025: https://www.hipclip.ai/workflows/how-to-create-x-twitter-threads-that-actually-go-viral-in-2025
-- UseVisuals - writing effective Twitter threads 2025: https://usevisuals.com/blog/writing-effective-twitter-threads-2025
-- SocialPilot - best time to post on X: https://www.socialpilot.co/insights/best-time-to-post-on-twitter
-- Sprout Social - best times to post on X: https://sproutsocial.com/insights/best-times-to-post-on-twitter/
-- Buffer - best time to post on X (1M posts analyzed): https://buffer.com/resources/best-time-to-post-on-twitter-x/
-- Alex Finn - formula for viral X posts (hook structure): https://www.1percentbetter.io/p/formula-viral-x-posts
-
-Repo grounding (facts, not invented):
-- docs/positioning-2026-05-29.md, docs/foundercheck-context-brief-2026-05-29.md (origin story, value exchange, 100+ community)
-- data/workshop-leads.json (the 3 dated sessions + Luma links)
-- docs/poidh-bounty-best-ad.md (bounty terms + promo MP3)
-- data/adoptable-projects.json (17 projects)
+Repo grounding: docs/positioning-2026-05-29.md, docs/foundercheck-context-brief-2026-05-29.md,
+data/workshop-leads.json, docs/poidh-bounty-best-ad.md, data/adoptable-projects.json,
+docs/research/701-canonical-state.md (prize/collectible/Respect, post-fact-check).
