@@ -21,6 +21,21 @@ Status: **scheduled** (date locked) -> **confirmed** (yes, no date yet) -> **inv
 |---|---|---|---|
 | Tyler Stambaugh (Magnetiq) | builder | Magnetiq - the workshop library platform | "any day in June" - send the Cal link to lock it |
 | Thy Revolution (The ZAO) | TBD | 2 sessions, topics TBD | Confirmed 2 slots; needs topics + dates + track |
+| Dúo Dø | TBD | TBD | Lined up - confirm handle, topic, track |
+| Ohnahji | TBD | TBD | Lined up - confirm handle, topic, track |
+| candytoybox | TBD | TBD | Lined up - confirm handle, topic, track |
+| hurric4n3ike (Ikechi) | creator? | WaveWarZ / distribution | Lined up - confirm topic + track |
+| Cassie | builder? | identity/HAATZ stack? | Lined up - confirm topic + track |
+| The Dude | TBD | TBD | Lined up - confirm handle, topic, track |
+| saltoriuous | TBD | TBD | Lined up - confirm handle (Sagittarius?), topic, track |
+| kmac.eth | builder | zlank.online templates | Lined up - confirm topic, lock date |
+| Kenny | TBD | TBD | Lined up - confirm handle, topic, track |
+| nickysap | TBD | TBD | Lined up - confirm handle, topic, track |
+
+> 11 leads lined up beyond the 1 scheduled. Each needs a track + topic + date locked
+> (Cal link: cal.com/zabal-games/workshop-session), then mirror into workshop-leads.json.
+> That comfortably clears the ~8-session June target. Send me the per-person details
+> and I'll fill these in + push the scheduled ones to the live homepage schedule.
 
 ## Invited - awaiting yes
 
