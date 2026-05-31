@@ -1384,7 +1384,7 @@
   var topRsvp = document.getElementById('top-cta-rsvp');
   var topCal = document.getElementById('top-cta-cal');
   var topCast = document.getElementById('top-cta-cast');
-  var ctaShareText = "ZABAL Gamez is live - The ZAO's 3-month Build-A-Thon. Come build with us.";
+  var ctaShareText = "ZABAL Gamez is live. The ZAO's 3-month Build-A-Thon - learn the tools, build something real, ship it. Free, any harness, three tracks. Come build with us.";
   var ctaShareUrl = 'https://zabalgamez.com';
 
   fetch('/data/workshop-leads.json', { cache: 'no-store' })
@@ -1410,14 +1410,14 @@
       if (topText) topText.textContent = headline;
       if (topRsvp && eventUrl) { topRsvp.href = eventUrl; topRsvp.textContent = eventLabel; topRsvp.style.display = ''; }
       if (topCal && cal) { topCal.href = cal; topCal.style.display = ''; }
-      if (who) ctaShareText = "ZABAL Gamez is live. Next workshop: " + who + ". RSVP on Luma and come build with The ZAO.";
+      if (who) ctaShareText = "ZABAL Gamez is live. Next workshop: " + who + ". RSVP on Lu.ma and come build with The ZAO.";
     })
     .catch(function () {});
 
   if (topCast) {
     topCast.addEventListener('click', function () {
       if (window.ZABAL && window.ZABAL.share) {
-        window.ZABAL.share({ platform: 'farcaster', text: ctaShareText, url: ctaShareUrl, target: 'top-cta' });
+        window.ZABAL.share({ platform: 'farcaster', text: ctaShareText, url: ctaShareUrl, channelKey: 'zabal', target: 'top-cta' });
       } else {
         window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(ctaShareText)
           + '&embeds%5B%5D=' + encodeURIComponent(ctaShareUrl) + '&channelKey=zabal', '_blank', 'noopener');
