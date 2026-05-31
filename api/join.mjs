@@ -5,7 +5,7 @@
 // hash, so the count is distinct builders. Also drops a 'signup' into the
 // activity feed + score so the presence widget and leaderboard reflect it.
 //
-// Request:  POST { door?: string, note?: string }
+// Request:  POST { door?: string, note?: string, track?: 'artist'|'builder'|'creator' }
 //           Authorization: Bearer <quick-auth-jwt>  (sdk.quickAuth.fetch)
 // Response: { ok: true, count: number }
 
@@ -122,13 +122,15 @@ export default async function handler(req) {
   try { body = await req.json(); } catch {}
   const door = String(body.door || 'workshops').slice(0, 24);
   const note = String(body.note || '').slice(0, 280);
+  const rawTrack = String(body.track || '').toLowerCase();
+  const track = ['artist', 'builder', 'creator'].includes(rawTrack) ? rawTrack : null;
 
   // No KV in this deployment: report not-stored so the client falls through to
   // the full sign-up form. Never claim success when nothing was captured.
   if (!KV_URL || !KV_TOKEN) return json({ ok: false, reason: 'unconfigured' }, 200, origin);
 
   const profile = await resolveProfile(fid);
-  const joinRecord = JSON.stringify({ door, note, username: profile.username, ts: Date.now() });
+  const joinRecord = JSON.stringify({ door, note, track, username: profile.username, ts: Date.now() });
   const activity = JSON.stringify({
     fid, username: profile.username, pfpUrl: profile.pfpUrl, action: 'signup', target: door, ts: Date.now(),
   });

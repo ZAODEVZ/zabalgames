@@ -140,6 +140,15 @@
         <input type="text" id="l-handle" name="handle" placeholder="@bettercallzaal" required>
       </div>
       <div class="field">
+        <label for="l-track">Your track</label>
+        <select id="l-track" name="track">
+          <option value="">Pick one (optional)</option>
+          <option value="artist">Artist - musical or visual</option>
+          <option value="builder">Builder - developer or aspiring</option>
+          <option value="creator">Creator - media and distribution</option>
+        </select>
+      </div>
+      <div class="field">
         <label for="l-topic">What will you teach?</label>
         <input type="text" id="l-topic" name="topic" placeholder="Empire Builder, agents, music infra..." required>
       </div>
@@ -187,6 +196,13 @@
 
 <script>
 (function() {
+  // Prefill the track select if the homepage passed ?track=artist|builder|creator.
+  try {
+    var t = new URLSearchParams(location.search).get('track');
+    var sel = document.getElementById('l-track');
+    if (sel && t && ['artist', 'builder', 'creator'].indexOf(t) !== -1) sel.value = t;
+  } catch (e) {}
+
   var listEl = document.getElementById('leads-list');
   fetch('/data/workshop-leads.json', { cache: 'no-cache' })
     .then(function(r) { return r.json(); })
