@@ -293,6 +293,74 @@
     .badge { display: inline-block; padding: 0.2rem 0.6rem; background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.3); border-radius: 999px; font-size: 0.7rem; color: var(--zabal); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; }
     .badge.gold { background: rgba(245,200,66,0.1); border-color: rgba(245,200,66,0.3); color: var(--gold); }
     .badge.cyan { background: rgba(0,229,255,0.1); border-color: rgba(0,229,255,0.3); color: var(--cyan); }
+
+    /* =====================================================================
+       ARCADE CONTENT POLISH (2026-05-31) - info.html body sections lifted
+       to the shared arcade design system. Reuses style.css tokens
+       (var(--font-pixel), --glow-*, --r-*, --ease); scoped to this page's
+       own section classes. Honors prefers-reduced-motion.
+       ===================================================================== */
+
+    /* Hero eyebrow -> glowing pixel coin chip */
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.5rem; line-height: 1.7; letter-spacing: 0.12em;
+      padding: 0.55rem 0.9rem; border-radius: var(--r-pill);
+      border: 1px solid rgba(167,139,250,0.4);
+      background: rgba(167,139,250,0.08);
+      box-shadow: 0 0 18px rgba(167,139,250,0.16);
+    }
+    .hero-meta { color: var(--gold); }
+
+    /* Eyebrows + arcade labels -> pixel font accents */
+    .section-eyebrow, .option-letter, .prize-place, .timeline-time {
+      font-family: var(--font-pixel);
+    }
+    .section-eyebrow { font-size: 0.55rem; letter-spacing: 0.1em; line-height: 1.7; }
+    .option-letter   { font-size: 0.54rem; letter-spacing: 0.06em; line-height: 1.6; }
+    .prize-place     { font-size: 0.58rem; letter-spacing: 0.08em; line-height: 1.6; }
+    .timeline-time   { font-size: 0.56rem; letter-spacing: 0.02em; line-height: 1.6; }
+
+    /* Cabinet tiles - neon edge on hover (color-keyed to existing accents) */
+    .judging-card, .timeline-item, .stat-card {
+      transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+    @media (hover: hover) {
+      .option-card:hover  { box-shadow: var(--glow-cyan); }
+      .judging-card:hover { border-color: var(--border-hover); box-shadow: var(--glow-zabal); transform: translateY(-2px); }
+      .stat-card:hover    { box-shadow: var(--glow-cyan); }
+      .timeline-item:hover{ box-shadow: var(--glow-gold); }
+    }
+
+    /* Prize + lock cabinets - resting neon by palette */
+    .prize-card.first  { box-shadow: 0 0 22px rgba(245,200,66,0.12); }
+    .prize-card.second { box-shadow: 0 0 22px rgba(167,139,250,0.12); }
+    .prize-card.third  { box-shadow: 0 0 22px rgba(0,229,255,0.12); }
+    .lockcol.locked    { box-shadow: 0 0 18px rgba(0,229,255,0.08); }
+    .lockcol.tbd       { box-shadow: 0 0 18px rgba(245,200,66,0.08); }
+
+    /* Forms - arcade field focus + submit glow */
+    input:focus, select:focus, textarea:focus { box-shadow: var(--glow-cyan); }
+    .submit-btn { transition: transform 0.15s var(--ease), box-shadow 0.2s var(--ease); }
+    @media (hover: hover) {
+      .submit-btn:hover  { box-shadow: var(--glow-orange); }
+      .btn-primary:hover { box-shadow: var(--glow-orange); }
+      .btn-ghost:hover   { box-shadow: var(--glow-cyan); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .judging-card:hover, .submit-btn:hover, .btn-primary:hover { transform: none; }
+    }
+
+    /* Responsive option grids: columns are driven by .grid-2 / .grid-3
+       classes (not inline styles, which would override the breakpoint) so
+       they collapse to a single column on small screens - kills the mobile
+       horizontal overflow while keeping the multi-column desktop layout. */
+    .options-grid.grid-3 { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 720px) {
+      .options-grid.grid-2, .options-grid.grid-3 { grid-template-columns: 1fr; }
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -587,7 +655,7 @@
         Most challenges are zero-sum. ZABAL Gamez is built so every party gets something real out of the weekend - the players, the ZAO ecosystem, and the viewers tuning in.
       </p>
 
-      <div class="options-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="options-grid grid-3">
         <div class="option-card">
           <div class="option-letter" style="color: var(--gold);">For You (Farcaster Creators)</div>
           <h3>Distribution + Cash + Portfolio</h3>
@@ -660,7 +728,7 @@
         Two things on this page: the live calendar of June workshops (RSVP to attend any session), and a slot-picker for new workshop leads (book your June date directly). If neither is wired yet, use the form above or DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a>.
       </p>
 
-      <div class="options-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 1.5rem;">
+      <div class="options-grid grid-2" style="margin-top: 1.5rem;">
         <div class="option-card">
           <div class="option-letter" style="color: var(--gold);">Calendar</div>
           <h3>What's on this month</h3>
@@ -686,7 +754,7 @@
       </p>
 
       <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 2.5rem 0 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase;">Confirmed Workshop Leads <span id="lead-count" style="color: var(--text-dim); font-weight: 400; margin-left: 0.5rem;"></span></h3>
-      <div id="workshop-leads-grid" class="options-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div id="workshop-leads-grid" class="options-grid grid-2">
         <noscript>
           <div class="option-card">
             <div class="option-letter" style="color: var(--zabal);">001</div>
@@ -924,7 +992,7 @@
       <p class="section-sub">
         ZABAL Gamez is Season 1. It is designed to be recurring infrastructure for ZAO, not a one-off event. Here is the longer arc.
       </p>
-      <div class="options-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="options-grid grid-3">
         <div class="option-card">
           <div class="option-letter" style="color: var(--gold);">Seasons</div>
           <h3>This Is Season 1</h3>
@@ -996,7 +1064,7 @@
         The July build prompt is a single machine-readable file at <a href="https://zabalgamez.com/llms.txt" style="color: var(--cyan);"><strong>zabalgamez.com/llms.txt</strong></a>. Point your AI tool at it and load the full ZAO ecosystem context in one fetch - what every brand is, the tech stack and rails, the two build paths, the brand guidelines (no emojis, no em dashes, naming glossary), the submission bar, and where the deeper docs live.
       </p>
 
-      <div class="options-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 1.5rem;">
+      <div class="options-grid grid-2" style="margin-top: 1.5rem;">
         <div class="option-card">
           <div class="option-letter" style="color: var(--cyan);">Load it</div>
           <h3>Point your harness at the URL</h3>
@@ -1017,7 +1085,7 @@
           <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
             A packaged Claude skill mirror of the context file - install once, available across all your projects. The skill auto-loads when the agent recognises ZABAL Gamez / ZAO ecosystem work.
           </p>
-          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.6rem; background: var(--surface-2); padding: 0.7rem; border-radius: 6px; overflow-x: auto;">
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.6rem; background: var(--surface-2); padding: 0.7rem; border-radius: 6px; overflow-x: auto; overflow-wrap: anywhere;">
 mkdir -p ~/.claude/skills/zabal-games<br>
 curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
 &nbsp;&nbsp;https://raw.githubusercontent.com/ZAODEVZ/zabalgames/main/.claude/skills/zabal-games/SKILL.md
@@ -1043,7 +1111,7 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
         You do not have to build from scratch. Two flavors: <strong>01-09</strong> are feature builds inside the ZAO stack (research doc has the spec). <strong>10-16</strong> are <span style="color: var(--gold); font-weight: 600;">starter repos</span> you adopt + own (you write the spec). Pick either - or build from scratch with the <a href="#ideas" style="color: var(--cyan);">context file</a>. All paths count.
       </p>
 
-      <div id="index-projects-grid" class="options-grid" style="margin-top: 1.5rem; grid-template-columns: repeat(2, 1fr);">
+      <div id="index-projects-grid" class="options-grid grid-2" style="margin-top: 1.5rem;">
         <noscript>
           <p style="color: var(--text-muted); font-size: 0.85rem;">See the full curated list at <a href="/projects.html" style="color: var(--cyan);">/projects</a> or in <a href="/llms.txt" style="color: var(--cyan);">llms.txt</a>.</p>
         </noscript>

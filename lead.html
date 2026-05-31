@@ -19,6 +19,53 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
+
+  <style>
+    /* =====================================================================
+       ARCADE CONTENT POLISH (2026-05-31) - /lead body lifted to the shared
+       arcade design system. Reuses style.css tokens (var(--font-pixel),
+       --glow-*, --r-*, --ease); scoped to this page. Reduced-motion safe.
+       ===================================================================== */
+
+    /* Hero eyebrow -> glowing pixel coin chip (pixel font promoted in style.css) */
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.5rem; line-height: 1.7; letter-spacing: 0.12em;
+      padding: 0.55rem 0.9rem; border-radius: var(--r-pill);
+      border: 1px solid rgba(245,200,66,0.4);
+      background: rgba(245,200,66,0.08);
+      box-shadow: 0 0 18px rgba(245,200,66,0.16);
+    }
+
+    /* Section headings get an arcade coin marker */
+    .section h2 { display: flex; align-items: center; gap: 0.6rem; }
+    .section h2::before {
+      content: ''; width: 10px; height: 10px; flex: none;
+      background: var(--gold); border-radius: 2px;
+      box-shadow: 0 0 10px rgba(245,200,66,0.7);
+    }
+
+    /* Cards + lead-list tiles - neon cyan edge on hover */
+    @media (hover: hover) {
+      .card:hover { border-color: var(--cyan); box-shadow: var(--glow-cyan); }
+    }
+
+    /* Topic tags -> level chips */
+    .tag { transition: border-color 0.18s var(--ease), color 0.18s var(--ease), box-shadow 0.18s var(--ease); }
+    .tag:hover { border-color: var(--cyan); color: var(--text); box-shadow: var(--glow-cyan); }
+
+    /* Embed surround - faint arcade frame glow */
+    .embed-box { box-shadow: inset 0 0 24px rgba(0,229,255,0.05); }
+
+    /* Submit CTA - orange neon on hover */
+    @media (hover: hover) {
+      .btn-primary:hover { box-shadow: 0 0 0 1px rgba(255,107,53,0.5), 0 6px 22px rgba(255,107,53,0.4); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card:hover, .tag:hover { box-shadow: none; }
+    }
+  </style>
 </head>
 <body>
 
