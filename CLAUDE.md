@@ -64,7 +64,7 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
 ## Integrations
 - **Signups:** Formspree team form `https://formspree.io/f/mlgvvoyd` (lead, mentor,
   snap), each tagged by `form_source`.
-- **Scheduling:** Cal.com `cal.com/zabal-games/workshop-session`, embedded on /lead + /info.
+- **Scheduling:** Cal.com `cal.com/zabal-gamez/workshop-session`, embedded on /lead + /info.
 - **Magnetiq:** the ZABAL Gamez collectible/magnet is the season registration +
   brand-mementos + UGC-upload surface, at `app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez`.
 

@@ -57,7 +57,7 @@ zabalgames/
 
 - **Activity backend** (presence, one-tap join + counter, leaderboard, notifications) runs on **Upstash Redis** over the REST API. Env: `KV_REST_API_URL` + `KV_REST_API_TOKEN`. Connected and live. The functions no-op gracefully if the vars are absent. Details in [api/README.md](./api/README.md).
 - **July submission gallery** (`info.html`) is a separate, not-yet-wired Postgres store (`db/schema.sql`). Revisit before July.
-- **Signups** go to Formspree (`/f/mlgvvoyd`); **scheduling** to Cal.com (`cal.com/zabal-games/workshop-session`). Neither needs the DB.
+- **Signups** go to Formspree (`/f/mlgvvoyd`); **scheduling** to Cal.com (`cal.com/zabal-gamez/workshop-session`). Neither needs the DB.
 
 ## Develop + deploy
 

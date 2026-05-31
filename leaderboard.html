@@ -44,7 +44,9 @@
   </div>
 </nav>
 
-<div class="container" id="main">
+<main id="main">
+
+<div class="container">
 
   <header class="hero">
     <div class="hero-eyebrow">Most active builders</div>
@@ -73,15 +75,19 @@
         el.innerHTML = rows.map(function(r, i){
           var who = '@' + esc(r.username || r.fid);
           var pfp = r.pfpUrl ? '<img src="'+esc(r.pfpUrl)+'" alt="">' : '';
-          return '<li class="clickable" data-fid="'+esc(r.fid)+'">' +
+          return '<li class="clickable" data-fid="'+esc(r.fid)+'" tabindex="0" role="button" aria-label="View profile of '+esc(r.username || r.fid)+'">' +
             '<span class="lb-rank'+(i<3?' top':'')+'">'+(i+1)+'</span>' +
             pfp + '<span class="lb-name">'+who+'</span>' +
             '<span class="lb-score">'+esc(r.score)+'</span></li>';
         }).join('');
         el.querySelectorAll('[data-fid]').forEach(function(li){
-          li.addEventListener('click', function(){
+          function activate(){
             var fid = Number(li.getAttribute('data-fid'));
             if (fid && window.ZABAL && window.ZABAL.viewProfile) window.ZABAL.viewProfile(fid);
+          }
+          li.addEventListener('click', activate);
+          li.addEventListener('keydown', function(e){
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); activate(); }
           });
         });
       })
@@ -90,6 +96,8 @@
   </script>
 
 </div>
+
+</main>
 
 <footer class="arcade-foot" aria-label="Site directory">
   <div class="arcade-foot-inner">

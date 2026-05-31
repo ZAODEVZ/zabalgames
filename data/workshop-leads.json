@@ -44,26 +44,28 @@
     {
       "id": "004",
       "name": "Plat0x",
-      "topic": "ZABAL Gamez presentation",
+      "topic": "Bonfire and the ZABAL Bonfire bot - point your agent at it to follow ZABAL Gamez in real time.",
       "format": "Livestreamed and recorded",
       "when": "Mon Jun 1 2026, 5-6pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-05-31",
       "color": "gold",
       "track": "builder",
-      "date": "2026-06-01"
+      "date": "2026-06-01",
+      "luma_url": "https://luma.com/y189qk8p"
     },
     {
       "id": "005",
       "name": "Ohnahji",
-      "topic": "ZABAL Gamez presentation",
+      "topic": "His journey in live streaming - how to start and grow your own stream.",
       "format": "Livestreamed and recorded",
       "when": "Tue Jun 2 2026, 5-6pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-05-31",
       "color": "pink",
       "track": "creator",
-      "date": "2026-06-02"
+      "date": "2026-06-02",
+      "luma_url": "https://luma.com/xa3bsp21"
     }
   ],
   "_schema": {

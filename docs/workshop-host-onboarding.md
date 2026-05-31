@@ -11,7 +11,7 @@ topic ideas in `docs/workshop-topics-by-track.md`.
 **The ask:** one ~30-minute session on something you know - the tool you built, the
 thing you do best. Livestreamed and recorded. That is the whole ask.
 
-**Pick your slot:** book any open June day at `cal.com/zabal-games/workshop-session` -
+**Pick your slot:** book any open June day at `cal.com/zabal-gamez/workshop-session` -
 pick a time, drop your topic. Slots stay open and overlaps are blocked automatically.
 
 **What to prepare:**
@@ -69,7 +69,7 @@ Short, warm, gets them to self-book. Per-person tweak the track + topic.
 ```
 Hey [name] - ZABAL Gamez Season 1 kicks off and you're on the workshop roster.
 
-Grab your June slot here: cal.com/zabal-games/workshop-session - pick a time, drop your
+Grab your June slot here: cal.com/zabal-gamez/workshop-session - pick a time, drop your
 topic. 30 minutes, livestreamed + recorded, we clip it and cross-promote across the ZAO
 accounts. Cast credit + a spot on the team.
 

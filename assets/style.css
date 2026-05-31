@@ -13,7 +13,7 @@
   --zabal: #a78bfa;
   --text: #e4e2dd;
   --text-muted: #8a8895;
-  --text-dim: #4e4c57;
+  --text-dim: #807f8c;
   --border: #1f1e26;
   --border-hover: #2a2a35;
   --radius: 10px;
@@ -387,6 +387,9 @@ h2 { font-size: 1.65rem; }
   border-color: var(--cyan);
   box-shadow: 0 0 0 3px rgba(0,229,255,0.12);
   background: var(--surface);
+  /* Outline fallback so keyboard focus is always visible (not just on :focus-visible) */
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
 }
 
 /* Nav: deeper blur + subtle bottom shadow so it reads as a real bar */
