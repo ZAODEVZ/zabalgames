@@ -6,7 +6,7 @@
 // 'signup' into the activity feed + score so the presence widget and
 // leaderboard reflect it. All done atomically in the public.zg_join RPC.
 //
-// Request:  POST { door?: string, note?: string }
+// Request:  POST { door?: string, note?: string, track?: 'artist'|'builder'|'creator' }
 //           Authorization: Bearer <quick-auth-jwt>  (sdk.quickAuth.fetch)
 // Response: { ok: true, count: number }
 
@@ -127,6 +127,8 @@ export default async function handler(req) {
   try { body = await req.json(); } catch {}
   const door = String(body.door || 'workshops').slice(0, 24);
   const note = String(body.note || '').slice(0, 280);
+  const rawTrack = String(body.track || '').toLowerCase();
+  const track = ['artist', 'builder', 'creator'].includes(rawTrack) ? rawTrack : null;
 
   // No storage in this deployment: report not-stored so the client falls
   // through to the full sign-up form. Never claim success when nothing was kept.
@@ -143,6 +145,7 @@ export default async function handler(req) {
       p_username: profile.username || null,
       p_pfp: profile.pfpUrl || null,
       p_points: SIGNUP_POINTS,
+      p_track: track,
     });
   } catch (e) {
     return json({ ok: false, detail: e.message }, 502, origin);

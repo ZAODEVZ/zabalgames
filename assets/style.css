@@ -240,6 +240,19 @@ a:hover { text-decoration: underline; }
 .join-btn[disabled] { opacity: 0.6; cursor: default; }
 .join-alt { color: var(--text-muted); font-size: 0.85rem; }
 .join-count { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-size: 0.85rem; margin: 0; }
+
+/* Track pick (optional) on the join block + filter on the schedule */
+.track-pick { display: flex; align-items: center; justify-content: center; gap: 0.45rem; flex-wrap: wrap; margin-top: 1rem; }
+.track-pick-label { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.04em; }
+.track-chip, .ws-filter-btn { font-family: inherit; font-size: 0.8rem; font-weight: 600; padding: 0.32rem 0.85rem;
+  border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--text-muted);
+  cursor: pointer; transition: border-color 0.15s, color 0.15s, background 0.15s; }
+.track-chip:hover, .ws-filter-btn:hover { border-color: var(--border-hover); color: var(--text); }
+.track-chip[data-track="artist"].sel  { border-color: var(--pink);  color: var(--pink);  background: rgba(255, 61, 110, 0.08); }
+.track-chip[data-track="builder"].sel { border-color: var(--zabal); color: var(--zabal); background: rgba(167, 139, 250, 0.08); }
+.track-chip[data-track="creator"].sel { border-color: var(--cyan);  color: var(--cyan);  background: rgba(0, 229, 255, 0.08); }
+.ws-filter { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0 0 1.1rem; }
+.ws-filter-btn.sel { border-color: var(--gold); color: var(--gold); }
 .proof-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; justify-content: center; }
 .proof-badge { font-size: 0.72rem; letter-spacing: 0.03em; text-transform: uppercase; color: var(--gold);
   border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.6rem; }

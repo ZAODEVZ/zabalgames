@@ -40,8 +40,12 @@ create table if not exists public.zg_joins (
   door       text,
   note       text,
   username   text,
+  track      text,
   created_at timestamptz not null default now()
 );
+-- track added after the fact; keep re-runs of this migration working on an
+-- existing table.
+alter table public.zg_joins add column if not exists track text;
 
 create table if not exists public.zg_notif_tokens (
   fid        integer primary key,
@@ -101,9 +105,11 @@ end; $$;
 -- one-tap join: upsert the join (deduped per fid), drop a signup into the feed,
 -- bump the score, and return the distinct-builder count. Mirrors the old
 -- HSET + LPUSH + ZINCRBY + HLEN pipeline (score increments on every call).
+-- p_track is optional; the 7-arg signature replaces the old 6-arg one.
+drop function if exists public.zg_join(integer, text, text, text, text, integer);
 create or replace function public.zg_join(
   p_fid integer, p_door text, p_note text,
-  p_username text, p_pfp text, p_points integer
+  p_username text, p_pfp text, p_points integer, p_track text default null
 ) returns integer
 language plpgsql security definer set search_path = '' as $$
 declare v_count integer;
@@ -112,11 +118,16 @@ begin
   p_pfp      := substr(p_pfp, 1, 400);
   p_door     := substr(p_door, 1, 32);
   p_note     := substr(p_note, 1, 400);
+  -- only the three known tracks are stored; anything else becomes null.
+  if p_track is not null and p_track not in ('artist', 'builder', 'creator') then
+    p_track := null;
+  end if;
 
-  insert into public.zg_joins (fid, door, note, username)
-  values (p_fid, p_door, p_note, p_username)
+  insert into public.zg_joins (fid, door, note, username, track)
+  values (p_fid, p_door, p_note, p_username, p_track)
   on conflict (fid) do update
-    set door = excluded.door, note = excluded.note, username = excluded.username;
+    set door = excluded.door, note = excluded.note, username = excluded.username,
+        track = coalesce(excluded.track, zg_joins.track);
 
   insert into public.zg_activity (fid, username, pfp_url, action, target)
   values (p_fid, p_username, p_pfp, 'signup', p_door);
@@ -159,10 +170,10 @@ $$;
 -- ---------- grants: service_role only, never anon ----------
 
 revoke all on function public.zg_track(integer, text, text, text, text, integer)        from public, anon, authenticated;
-revoke all on function public.zg_join(integer, text, text, text, text, integer)          from public, anon, authenticated;
+revoke all on function public.zg_join(integer, text, text, text, text, integer, text)     from public, anon, authenticated;
 revoke all on function public.zg_activity_summary()                                      from public, anon, authenticated;
 grant execute on function public.zg_track(integer, text, text, text, text, integer)      to service_role;
-grant execute on function public.zg_join(integer, text, text, text, text, integer)       to service_role;
+grant execute on function public.zg_join(integer, text, text, text, text, integer, text) to service_role;
 grant execute on function public.zg_activity_summary()                                   to service_role;
 
 -- ---------- retention (optional) ----------
