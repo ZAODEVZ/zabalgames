@@ -293,6 +293,65 @@
     .badge { display: inline-block; padding: 0.2rem 0.6rem; background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.3); border-radius: 999px; font-size: 0.7rem; color: var(--zabal); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; }
     .badge.gold { background: rgba(245,200,66,0.1); border-color: rgba(245,200,66,0.3); color: var(--gold); }
     .badge.cyan { background: rgba(0,229,255,0.1); border-color: rgba(0,229,255,0.3); color: var(--cyan); }
+
+    /* =====================================================================
+       ARCADE CONTENT POLISH (2026-05-31) - info.html body sections lifted
+       to the shared arcade design system. Reuses style.css tokens
+       (var(--font-pixel), --glow-*, --r-*, --ease); scoped to this page's
+       own section classes. Honors prefers-reduced-motion.
+       ===================================================================== */
+
+    /* Hero eyebrow -> glowing pixel coin chip */
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.5rem; line-height: 1.7; letter-spacing: 0.12em;
+      padding: 0.55rem 0.9rem; border-radius: var(--r-pill);
+      border: 1px solid rgba(167,139,250,0.4);
+      background: rgba(167,139,250,0.08);
+      box-shadow: 0 0 18px rgba(167,139,250,0.16);
+    }
+    .hero-meta { color: var(--gold); }
+
+    /* Eyebrows + arcade labels -> pixel font accents */
+    .section-eyebrow, .option-letter, .prize-place, .timeline-time {
+      font-family: var(--font-pixel);
+    }
+    .section-eyebrow { font-size: 0.55rem; letter-spacing: 0.1em; line-height: 1.7; }
+    .option-letter   { font-size: 0.54rem; letter-spacing: 0.06em; line-height: 1.6; }
+    .prize-place     { font-size: 0.58rem; letter-spacing: 0.08em; line-height: 1.6; }
+    .timeline-time   { font-size: 0.56rem; letter-spacing: 0.02em; line-height: 1.6; }
+
+    /* Cabinet tiles - neon edge on hover (color-keyed to existing accents) */
+    .judging-card, .timeline-item, .stat-card {
+      transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+    @media (hover: hover) {
+      .option-card:hover  { box-shadow: var(--glow-cyan); }
+      .judging-card:hover { border-color: var(--border-hover); box-shadow: var(--glow-zabal); transform: translateY(-2px); }
+      .stat-card:hover    { box-shadow: var(--glow-cyan); }
+      .timeline-item:hover{ box-shadow: var(--glow-gold); }
+    }
+
+    /* Prize + lock cabinets - resting neon by palette */
+    .prize-card.first  { box-shadow: 0 0 22px rgba(245,200,66,0.12); }
+    .prize-card.second { box-shadow: 0 0 22px rgba(167,139,250,0.12); }
+    .prize-card.third  { box-shadow: 0 0 22px rgba(0,229,255,0.12); }
+    .lockcol.locked    { box-shadow: 0 0 18px rgba(0,229,255,0.08); }
+    .lockcol.tbd       { box-shadow: 0 0 18px rgba(245,200,66,0.08); }
+
+    /* Forms - arcade field focus + submit glow */
+    input:focus, select:focus, textarea:focus { box-shadow: var(--glow-cyan); }
+    .submit-btn { transition: transform 0.15s var(--ease), box-shadow 0.2s var(--ease); }
+    @media (hover: hover) {
+      .submit-btn:hover  { box-shadow: var(--glow-orange); }
+      .btn-primary:hover { box-shadow: var(--glow-orange); }
+      .btn-ghost:hover   { box-shadow: var(--glow-cyan); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .judging-card:hover, .submit-btn:hover, .btn-primary:hover { transform: none; }
+    }
   </style>
   <script type="application/ld+json">
   {
