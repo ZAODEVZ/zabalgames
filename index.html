@@ -747,6 +747,29 @@
   </section>
 
   <section class="section">
+    <h2>Three tracks - pick your lane</h2>
+    <p>Whoever you are, there is a way in. Every workshop, build, and collectible is tagged to one of three tracks.</p>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-month" style="color: var(--pink);">Artist</div>
+        <h3>Musical or visual</h3>
+        <p>Musicians, producers, visual artists, designers. Bring sound and image to the ZAO ecosystem.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-month" style="color: var(--zabal);">Builder</div>
+        <h3>Developer or aspiring</h3>
+        <p>Coders, vibe-coders, no-code builders. Ship a working project with any tool you like.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-month" style="color: var(--cyan);">Creator</div>
+        <h3>Media and distribution</h3>
+        <p>Video, writing, streaming, growth, community. Tell the story and move it to the world.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <h2>What you walk away with</h2>
     <p>Not a weekend you win and forget. The payoff keeps going after the Finals.</p>
 
@@ -893,15 +916,15 @@
   </section>
 
   <section class="section">
-    <h2>Go deeper - get the collectible</h2>
-    <p>The Zabal connector NFT lives on the Magnetiq portal. Mint it to unlock the ZAO brand-education library - deep-dive memento pages per brand (ZAO, ZAO OS, $ZABAL, WaveWarZ, ZAO Festivals, ZAO Music, COC Concertz, Respect) with video shorts narrated by Zaal. The games run on this site. Magnetiq is where you learn the ecosystem.</p>
+    <h2>Get the ZABAL Gamez collectible</h2>
+    <p>The collectible is how you follow along. Grab it on the Magnetiq magnet and you are registered for ZABAL Gamez across all three months - every workshop, build, and Finals update reaches you as we go. It also opens the ZAO brand mementos: a deep-dive page per brand (ZAO, ZAO OS, $ZABAL, WaveWarZ, ZAO Festivals, ZAO Music, COC Concertz, Respect) with short videos narrated by Zaal. The games run on this site. Magnetiq is where you register and go deeper.</p>
 
     <div class="cta-band">
-      <h3>Magnetiq portal + Zabal connector</h3>
-      <p>Drops with Workshop #001 by Tyler Stambaugh. Mint the connector, watch the brand mementos, earn one badge per ZAO brand you explore.</p>
+      <h3>Register on Magnetiq</h3>
+      <p>One collectible does three things: keeps you posted for the whole season, opens every ZAO brand memento, and unlocks the open upload - suggest anything for ZABAL Gamez, from build ideas to people we should know.</p>
       <div class="btn-row">
-        <a href="https://getmagnetic.com" target="_blank" rel="noopener" class="btn btn-primary">Visit Magnetiq</a>
-        <a href="/lead.html" class="btn btn-ghost">Email me when it's live</a>
+        <a href="https://app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez" target="_blank" rel="noopener" class="btn btn-primary">Get the collectible</a>
+        <a href="/lead.html" class="btn btn-ghost">Sign up for the season</a>
       </div>
     </div>
   </section>
@@ -1161,16 +1184,24 @@
       .then(function (d) {
         var leads = (d && d.leads) || [];
         if (!leads.length) { wsEl.innerHTML = '<p class="ws-loading">Sessions are being scheduled - check the Lu.ma calendar below.</p>'; return; }
+        var TRACKS = {
+          artist:  { label: 'Artist',  color: 'pink' },
+          builder: { label: 'Builder', color: 'zabal' },
+          creator: { label: 'Creator', color: 'cyan' }
+        };
         wsEl.innerHTML = leads.map(function (L) {
           var c = L.color || 'orange';
           var scheduled = /^\d{4}-\d{2}-\d{2}/.test(L.when || '');
           var whenLabel = scheduled ? esc(L.when) : (esc(L.when) || 'Date to be announced');
           var statusCls = L.status === 'confirmed' ? 'ws-confirmed' : 'ws-tentative';
+          var tk = TRACKS[L.track];
+          var trackBadge = tk ? '<span class="ws-track" style="display:inline-block;margin-right:0.5rem;padding:0.1rem 0.55rem;border:1px solid var(--' + tk.color + ');border-radius:999px;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--' + tk.color + ');vertical-align:middle;">' + tk.label + '</span>' : '';
           return '<div class="ws-card" style="border-left: 3px solid var(--' + c + ');">' +
             '<div class="ws-when">' + whenLabel + '</div>' +
             '<h3>' + esc(L.topic || 'Workshop session') + '</h3>' +
             '<p class="ws-by">' + esc(L.name) + (L.org ? ' - ' + esc(L.org) : '') + '</p>' +
             (L.format ? '<p class="ws-format">' + esc(L.format) + '</p>' : '') +
+            trackBadge +
             '<span class="ws-status ' + statusCls + '">' + esc(L.status || 'planned') + '</span>' +
             '</div>';
         }).join('');
