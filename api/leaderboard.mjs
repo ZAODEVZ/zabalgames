@@ -1,7 +1,7 @@
 // ZABAL Gamez - activity leaderboard (GET /api/leaderboard).
 //
 // Ranks builders by the social-action points they earn (cast / share / signup),
-// stored in the zg_scores table by api/track.mjs. Two output shapes:
+// stored in a KV sorted set by api/track.mjs. Two output shapes:
 //
 //   GET /api/leaderboard              -> Empire Builder apiLeaderboard format:
 //                                        [{ "address": "0x..", "score": N }, ...]
@@ -12,13 +12,14 @@
 // Register the default URL once in Empire Builder so casts/ships earn empire
 // points - composing this app's activity into the $ZABAL leaderboard.
 //
-// Empty array when Supabase is not configured.
+// Empty array when KV is not configured.
 
 export const config = { runtime: 'edge' };
 
-const SB_URL = process.env.SUPABASE_URL;
-const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
+const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const HAATZ = 'https://haatz.quilibrium.com';
+const SCORES_KEY = 'zabal:scores:v1';
 const TOP_N = 50;
 
 function json(body, maxAge = 30) {
@@ -31,12 +32,14 @@ function json(body, maxAge = 30) {
   });
 }
 
-async function sbSelect(path) {
-  const r = await fetch(`${SB_URL}/rest/v1/${path}`, {
-    headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` },
+async function kvPipeline(cmds) {
+  const r = await fetch(`${KV_URL}/pipeline`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${KV_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(cmds),
     signal: AbortSignal.timeout(4000),
   });
-  if (!r.ok) throw new Error('sb ' + r.status);
+  if (!r.ok) throw new Error('kv ' + r.status);
   return r.json();
 }
 
@@ -61,16 +64,20 @@ async function resolveProfiles(fids) {
 export default async function handler(req) {
   const url = new URL(req.url);
   const full = url.searchParams.get('format') === 'full';
-  if (!SB_URL || !SB_KEY) return json([]);
+  if (!KV_URL || !KV_TOKEN) return json([]);
 
-  let rows;
+  let res;
   try {
-    rows = await sbSelect(`zg_scores?select=fid,score&order=score.desc&limit=${TOP_N}`);
+    res = await kvPipeline([['ZRANGE', SCORES_KEY, '0', String(TOP_N - 1), 'REV', 'WITHSCORES']]);
   } catch {
     return json([]);
   }
-  if (!Array.isArray(rows) || !rows.length) return json([]);
-  rows = rows.map(r => ({ fid: Number(r.fid), score: Number(r.score) }));
+
+  // Flat [member, score, member, score, ...] -> [{ fid, score }]
+  const flat = res?.[0]?.result || [];
+  const rows = [];
+  for (let i = 0; i < flat.length; i += 2) rows.push({ fid: Number(flat[i]), score: Number(flat[i + 1]) });
+  if (!rows.length) return json([]);
 
   const profiles = await resolveProfiles(rows.map(r => r.fid));
 

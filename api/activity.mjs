@@ -1,17 +1,18 @@
 // ZABAL Gamez - activity feed endpoint (GET /api/activity).
 //
 // Public read for the presence widget. Returns the recent social actions and a
-// count of distinct builders active today. Reads Supabase via the
-// public.zg_activity_summary RPC. If Supabase is not configured it returns an
-// empty, unconfigured payload so the widget can hide itself.
+// count of distinct builders active today. Reads Vercel KV (Upstash) over REST.
+// If KV is not configured it returns an empty, unconfigured payload so the
+// widget can hide itself.
 //
-// Response: { configured: boolean, count: number, joinsTotal: number, recent:
-//   Array<{ fid, username, pfpUrl, action, target, ts }> }
+// Response: { configured: boolean, count: number, recent: Array<{
+//   fid, username, pfpUrl, action, target, ts }> }
 
 export const config = { runtime: 'edge' };
 
-const SB_URL = process.env.SUPABASE_URL;
-const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
+const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
+const RECENT_KEY = 'zabal:activity:v1';
 
 function json(body, maxAge = 10) {
   return new Response(JSON.stringify(body), {
@@ -23,36 +24,37 @@ function json(body, maxAge = 10) {
   });
 }
 
-async function sbRpc(fn, args) {
-  const r = await fetch(`${SB_URL}/rest/v1/rpc/${fn}`, {
+async function kvPipeline(cmds) {
+  const r = await fetch(`${KV_URL}/pipeline`, {
     method: 'POST',
-    headers: {
-      apikey: SB_KEY,
-      Authorization: `Bearer ${SB_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(args || {}),
+    headers: { Authorization: `Bearer ${KV_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(cmds),
     signal: AbortSignal.timeout(4000),
   });
-  if (!r.ok) throw new Error('sb ' + r.status);
-  const t = await r.text();
-  return t ? JSON.parse(t) : null;
+  if (!r.ok) throw new Error('kv ' + r.status);
+  return r.json();
 }
 
 export default async function handler() {
-  if (!SB_URL || !SB_KEY) return json({ configured: false, count: 0, recent: [], joinsTotal: 0 });
+  if (!KV_URL || !KV_TOKEN) return json({ configured: false, count: 0, recent: [] });
 
-  let summary;
+  const today = new Date().toISOString().slice(0, 10);
+  let res;
   try {
-    summary = await sbRpc('zg_activity_summary', {});
+    res = await kvPipeline([
+      ['LRANGE', RECENT_KEY, '0', '49'],
+      ['SCARD', `zabal:present:${today}`],
+      ['HLEN', 'zabal:joins'],
+    ]);
   } catch {
     return json({ configured: true, count: 0, recent: [], joinsTotal: 0 });
   }
 
-  return json({
-    configured: true,
-    count: Number(summary?.count || 0),
-    joinsTotal: Number(summary?.joinsTotal || 0),
-    recent: Array.isArray(summary?.recent) ? summary.recent : [],
-  });
+  const list = res?.[0]?.result || [];
+  const count = Number(res?.[1]?.result || 0);
+  const joinsTotal = Number(res?.[2]?.result || 0);
+  const recent = list
+    .map(s => { try { return JSON.parse(s); } catch { return null; } })
+    .filter(Boolean);
+  return json({ configured: true, count, recent, joinsTotal });
 }
