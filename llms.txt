@@ -764,7 +764,7 @@ Send a personal DM after shipping. Each one converts a built thing into eyeballs
 | Target | Best for | DM angle |
 |--------|----------|----------|
 | **Hurric4n3Ike** (X @hurric4n3ike / Farcaster) | WaveWarZ-related builds, music-prediction, Solana | Reposts to his active WaveWarZ arenas, very engaged with builders |
-| **Jordan Oram / yerbearzerker** | Empire Builder builds, token mechanics, leaderboards | He runs Empire Builder, will boost any Empire-API ship |
+| **Jordan Oram / yerbearserker** | Empire Builder builds, token mechanics, leaderboards | He runs Empire Builder, will boost any Empire-API ship |
 | **Adrian / diviflyy** | Empire Builder smart-contract / SDK builds | The lead engineer; technical depth, will surface to Jordan |
 | **Sam** (WaveWarZ-Base co-builder) | WaveWarZ-Base, agentic builds, general ZAO | Core team, multi-surface amplifier |
 | **Arthur (Neynar)** | Smart contracts on Base, EVM patterns | Will route through Neynar circles + give technical feedback |

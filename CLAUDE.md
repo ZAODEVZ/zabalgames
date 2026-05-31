@@ -87,8 +87,8 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
    copy in `docs/magnetiq-zabal-gamez-collectible-page.md` + `docs/magnetiq-mementos-zao-brands-2026-05-28.md`).
 2. Cal.com booking questions - add handle/topic/format/notes to the event so bookings
    arrive with context.
-3. Announcements (yerbearzerker first-workshop post + Day 0) - ON HOLD per the owner.
-   Reference asset: BCZ YapZ Episode 7 features yerbearzerker / Empire Builder.
+3. Announcements (yerbearserker first-workshop post + Day 0) - ON HOLD per the owner.
+   Reference asset: BCZ YapZ Episode 7 features yerbearserker / Empire Builder.
 4. Workshop roster - fill `docs/workshop-roster.md` and lock ~4-5 more June sessions
    (target ~8). Topic ideas per track in `docs/workshop-topics-by-track.md`. Confirmed +
    scheduled leads get mirrored into `data/workshop-leads.json` (drives the schedule).
@@ -99,7 +99,7 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
    callout once the bounty link exists.
 
 ## Live links (do not break)
-- Luma calendar: https://luma.com/zao | yerbearzerker Jun 1 RSVP: https://luma.com/7nfside5
+- Luma calendar: https://luma.com/zao | yerbearserker Jun 1 RSVP: https://luma.com/7nfside5
 - Magnetiq magnet (register + collectibles): https://app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez
 - /zabal channel + group chat: farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ
 
