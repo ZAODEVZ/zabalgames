@@ -32,10 +32,10 @@ Recommendations and locked calls first.
 | 6 | **Tokenless Empire** | OPTIONAL mention, NOT a gate. A July build without an Empire still counts if it has live URL + repo + demo + cast. Empire Builder is presented as an available tool, not a requirement. |
 | 7 | **Prize pool** | UNCHANGED. $500 USDC, tiered 1st $150 / 2nd $100 / 3rd $75 / 4th-8th $35 each, all finalists paid. NOTE: tier table assumes 8 finalists - if Finals size lands below 8 (Decision #2), the 4th-8th band needs re-cutting. |
 | 8 | **Voting** | OPEN. Locked: Respect-earning members, 1-person-1-vote, NOT token-weighted. Still undecided: mechanism (Snapshot vs onchain) and the Respect threshold N for voter eligibility. |
-| 9 | **Participation collectible** | LOCKED (2026-05-22). A Hats Protocol role NFT on Base. Every finisher gets one - every July build that hits the bar, plus every August finalist. |
+| 9 | **Participation collectible** | LOCKED (2026-05-22). A Magnetiq commemorative collectible (Hats dropped as the reward mechanism). Every finisher gets one - every July build that hits the bar, plus every August finalist. |
 | 10 | **Context skill** | Does NOT exist (filesystem-verified). Status was unknown to Zaal; now confirmed. Doc 654's "ship by end of May" deadline has zero skill behind it as of 2026-05-21. |
 | 11 | **PROMPT_CONTEXT.md** | REWRITE to the June/July/August open-roster model now. The current file is stale (v0 naming, T+0 2026-06-27, dropped $20/mo subsidy, all-in-June framing). |
-| 12 | **Infra** | The `/zabal` Farcaster channel is live (created 2026-05-22). Everything else is still ahead: no Supabase backend, no `$500 USDC` secured, no `zabalgames.dev` domain. |
+| 12 | **Infra** | The `/zabal` Farcaster channel is live (created 2026-05-22). The `$500 USDC` prize pool is funded and secured (proof in wallet). Still ahead: no Supabase backend, no `zabalgames.dev` domain. |
 | 13 | **Brand context** | The 7 `[TBD-Zaal]` voice/visual gaps in `zabalgames-brand-context.md` resolved in interview - see Part 7. |
 | 14 | **This session scope** | Full sweep: this doc + fix `zabalgames.html` mentor copy + rewrite `PROMPT_CONTEXT.md` + draft a public recruitment post. |
 
@@ -172,7 +172,7 @@ Every finalist who ships gets paid - tiering is recognition of standout work, no
 
 ### Participation collectible - locked
 
-A Hats Protocol role NFT on Base (Decision #9, locked 2026-05-22). Every finisher gets one: every July build that hits the submission bar, plus every August finalist. It is the universal "I shipped at ZABAL Gamez S1" credential, sitting alongside the Respect every July ship earns.
+A Magnetiq commemorative collectible (Decision #9, locked 2026-05-22; Hats dropped as the reward mechanism). Every finisher gets one: every July build that hits the submission bar, plus every August finalist. It is the universal "I shipped at ZABAL Gamez S1" credential, sitting alongside the Respect every July ship earns.
 
 ### Respect
 
@@ -182,7 +182,7 @@ A Hats Protocol role NFT on Base (Decision #9, locked 2026-05-22). Every finishe
 
 ### Total ZAO cost
 
-~$510-525: $500 USDC pool + ~$10 Hats mints on Base. Submission tech (Supabase free tier) and voting infra are $0. Tooling subsidy was dropped 2026-05-11.
+~$500: the $500 USDC pool (funded + secured). Finisher/Champion commemorative collectibles run on Magnetiq. Submission tech (Supabase free tier) and voting infra are $0. Tooling subsidy was dropped 2026-05-11.
 
 ---
 
@@ -239,7 +239,7 @@ The `/zabal` channel exists; everything else is still ahead.
 |------|--------|-------|
 | Supabase submission backend | NOT LIVE | `zabalgames-schema.sql` exists (5.2 KB). Project not created, schema not run, no URL/anon key in `zabalgames.html`. The form + board are non-functional. |
 | `/zabal` Farcaster channel | LIVE | The cast destination - farcaster.xyz/~/channel/zabal. Created 2026-05-22. All copy uses `/zabal` (the page stays `zabalgames.html`). |
-| `$500 USDC` prize wallet | NOT SECURED | No dedicated wallet funded. |
+| `$500 USDC` prize wallet | SECURED | Funded; proof in wallet. |
 | `zabalgames.dev` domain | NOT REGISTERED | `PROMPT_CONTEXT.md` promises `<player>.zabalgames.dev` subdomains. |
 | ZAO context skill | DOES NOT EXIST | Filesystem-verified - no skill folder in `~/.claude/skills`, `.agents/skills`, or ZAO OS. Raw material only: `zabalgames-brand-context.md` (7 gaps) + `PROMPT_CONTEXT.md` (stale). |
 | `zabalgames.html` page | LIVE | Calendar already updated to June/July/August. Mentor copy still says "8 ZAO mentors" in ~15 places - needs the open-roster rewrite. |
