@@ -652,8 +652,10 @@
 <body class="ui-polish-v1">
 
 <div class="top-cta" id="top-cta">
-  <span class="top-cta-text">ZABAL Gamez Season 1 is live.</span>
-  <button type="button" id="top-cta-cast" class="top-cta-btn">I'm in - tell Farcaster</button>
+  <span class="top-cta-text" id="top-cta-text">ZABAL Gamez Season 1 is live.</span>
+  <a href="#" id="top-cta-rsvp" class="top-cta-btn" target="_blank" rel="noopener" style="display:none;">RSVP</a>
+  <a href="#" id="top-cta-cal" class="top-cta-link" target="_blank" rel="noopener" style="display:none;">All workshops</a>
+  <button type="button" id="top-cta-cast" class="top-cta-link">Tell Farcaster</button>
 </div>
 
 <nav class="nav">
@@ -1199,20 +1201,51 @@
     }).catch(function () {});
   }
 
-  // Top CTA: one-tap cast of excitement into /zabal with the site embedded.
-  // This is the share-to-timeline growth loop - the cast ends on an open
-  // question to pull replies and tags back toward the page.
+  // Top CTA: event-aware. Reads data/workshop-leads.json -> shows the next workshop
+  // (RSVP via its Luma invite) + the full Luma calendar, plus a one-tap cast. Uses
+  // cta_override when active (the manual Day-0 message); otherwise auto-picks the
+  // earliest upcoming dated lead, so it advances itself as sessions pass.
+  var topText = document.getElementById('top-cta-text');
+  var topRsvp = document.getElementById('top-cta-rsvp');
+  var topCal = document.getElementById('top-cta-cal');
   var topCast = document.getElementById('top-cta-cast');
+  var ctaShareText = "ZABAL Gamez is live - The ZAO's 3-month Build-A-Thon. Come build with us.";
+  var ctaShareUrl = 'https://zabalgamez.com';
+
+  fetch('/data/workshop-leads.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var cal = d.luma_calendar;
+      var ov = d.cta_override;
+      var headline, eventUrl, eventLabel, who;
+      if (ov && ov.active) {
+        headline = ov.headline; eventUrl = ov.event_url; eventLabel = ov.event_label || 'RSVP';
+      } else {
+        var today = new Date().toISOString().slice(0, 10);
+        var up = (d.leads || []).filter(function (l) { return l.date && l.luma_url && l.date >= today; })
+          .sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+        if (up[0]) {
+          who = up[0].name;
+          headline = 'ZABAL Gamez is live. Next workshop: ' + who + ' - ' + (up[0].when || up[0].date) + '.';
+          eventUrl = up[0].luma_url; eventLabel = 'RSVP: ' + who;
+        } else {
+          headline = 'ZABAL Gamez Season 1 is live.';
+        }
+      }
+      if (topText) topText.textContent = headline;
+      if (topRsvp && eventUrl) { topRsvp.href = eventUrl; topRsvp.textContent = eventLabel; topRsvp.style.display = ''; }
+      if (topCal && cal) { topCal.href = cal; topCal.style.display = ''; }
+      if (who) ctaShareText = "ZABAL Gamez is live. Next workshop: " + who + ". RSVP on Luma and come build with The ZAO.";
+    })
+    .catch(function () {});
+
   if (topCast) {
     topCast.addEventListener('click', function () {
-      var text = "I'm excited to be part of ZABAL Gamez Season 1 with The ZAO.\n\n"
-        + "Build for a real community, don't win a weekend and disappear. June workshops, July open build, August Finals.\n\n"
-        + "Come build with me. Who else is in?";
       if (window.ZABAL && window.ZABAL.share) {
-        window.ZABAL.share({ platform: 'farcaster', text: text, url: 'https://zabalgamez.com', target: 'top-cta' });
+        window.ZABAL.share({ platform: 'farcaster', text: ctaShareText, url: ctaShareUrl, target: 'top-cta' });
       } else {
-        window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text)
-          + '&embeds%5B%5D=' + encodeURIComponent('https://zabalgamez.com') + '&channelKey=zabal', '_blank', 'noopener');
+        window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(ctaShareText)
+          + '&embeds%5B%5D=' + encodeURIComponent(ctaShareUrl) + '&channelKey=zabal', '_blank', 'noopener');
       }
     });
   }
