@@ -247,6 +247,7 @@ a:hover { text-decoration: underline; }
   border-radius: 8px; cursor: pointer; color: var(--cyan); background: transparent; border: 1px solid var(--cyan); }
 .join-addapp:hover { background: rgba(0, 229, 255, 0.08); }
 .join-count { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-size: 0.85rem; margin: 0; }
+.join-help { font-size: 0.82rem; color: var(--text-muted); margin: 0.5rem 0 0; }
 
 /* Track pick (optional) on the join block + filter on the schedule */
 .track-pick { display: flex; align-items: center; justify-content: center; gap: 0.45rem; flex-wrap: wrap; margin-top: 1rem; }
