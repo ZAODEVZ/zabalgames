@@ -2,6 +2,12 @@
 
 > All non-research docs for ZABAL Gamez Season 1. Research docs (numbered 1xx-7xx) live in `docs/research/` instead.
 
+> **Canonical current state + conventions: [/CLAUDE.md](../CLAUDE.md).** Most files
+> below are dated, point-in-time records (kits, briefs, recaps) - useful history, but
+> trust CLAUDE.md for what's true now. Newer references: `positioning-2026-05-29.md`,
+> `foundercheck-reframe-2026-05-29.md`, `validation-launch-kit-2026-05-29.md`,
+> `magnetiq-zabal-gamez-collectible-page.md`, `cal-luma-workflow.md`.
+
 ## Launch-day (2026-05-26 ship)
 
 For the announce push:
