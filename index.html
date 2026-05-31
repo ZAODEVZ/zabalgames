@@ -696,13 +696,32 @@
     }
 
     /* Workshop schedule - arcade "level select" tiles. Scoped to the homepage
-       grid so the shared .ws-* render classes are untouched elsewhere. */
-    #workshop-schedule .ws-card { transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
-    #workshop-schedule .ws-when { font-family: var(--font-pixel); font-size: 0.58rem; letter-spacing: 0.03em; line-height: 1.6; color: var(--cyan); }
+       grids so the shared .ws-* render classes are untouched elsewhere. */
+    #workshop-schedule .ws-card, #workshop-tba .ws-card { transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+    #workshop-schedule .ws-when, #workshop-tba .ws-when { font-family: var(--font-pixel); font-size: 0.58rem; letter-spacing: 0.03em; line-height: 1.6; color: var(--cyan); }
     @media (hover: hover) {
-      #workshop-schedule .ws-card:hover { transform: translateY(-2px); border-color: var(--border-hover); box-shadow: var(--glow-cyan); }
+      #workshop-schedule .ws-card:hover, #workshop-tba .ws-card:hover { transform: translateY(-2px); border-color: var(--border-hover); box-shadow: var(--glow-cyan); }
     }
-    #workshop-schedule .ws-status.ws-confirmed { box-shadow: 0 0 12px rgba(0, 229, 255, 0.22); }
+    #workshop-schedule .ws-status.ws-confirmed, #workshop-tba .ws-status.ws-confirmed { box-shadow: 0 0 12px rgba(0, 229, 255, 0.22); }
+
+    /* "Dates to be announced" subsection heading */
+    .ws-tba-head {
+      font-family: var(--font-pixel); font-size: 0.62rem; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin: var(--sp-6) 0 var(--sp-3);
+    }
+
+    /* Per-card RSVP button - arcade cyan pill, matches the schedule accent */
+    .ws-rsvp {
+      display: inline-block; margin-top: 0.7rem;
+      font-family: var(--font-pixel); font-size: 0.5rem; letter-spacing: 0.06em;
+      text-transform: uppercase; line-height: 1;
+      color: var(--cyan); text-decoration: none;
+      border: 1px solid var(--cyan); border-radius: var(--r-pill);
+      padding: 0.55rem 0.9rem;
+      transition: box-shadow 0.2s var(--ease), background 0.2s var(--ease);
+    }
+    .ws-rsvp:hover { text-decoration: none; background: rgba(0, 229, 255, 0.08); box-shadow: var(--glow-cyan); }
 
     /* Ways to take part - these were unstyled; give them arcade tiles. */
     .ways-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--sp-4); margin-top: var(--sp-5); }
@@ -731,12 +750,14 @@
     @media (prefers-reduced-motion: reduce) {
       .hero-logo { animation: none; }
       .path-card:hover, .way-card:hover, .outcome-card:hover,
-      #workshop-schedule .ws-card:hover { transform: none; box-shadow: none; }
+      #workshop-schedule .ws-card:hover, #workshop-tba .ws-card:hover { transform: none; box-shadow: none; }
     }
     /* ===================== END ARCADE CONTENT POLISH ===================== */
   </style>
 </head>
 <body class="ui-polish-v1">
+
+<a class="arcade-skip" href="#main">Skip to content</a>
 
 <div class="top-cta" id="top-cta">
   <span class="top-cta-text" id="top-cta-text">ZABAL Gamez Season 1 is live.</span>
@@ -745,7 +766,6 @@
   <button type="button" id="top-cta-cast" class="top-cta-link">Tell Farcaster</button>
 </div>
 
-<a class="arcade-skip" href="#main">Skip to content</a>
 <nav class="arcade-nav" aria-label="Primary">
   <div class="arcade-nav-inner">
     <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
@@ -758,7 +778,9 @@
   </div>
 </nav>
 
-<div class="container" id="main">
+<main id="main">
+
+<div class="container">
 
   <header class="hero">
     <div class="hero-eyebrow">Season 1 - Insert Coin Mon Jun 1</div>
@@ -1009,6 +1031,9 @@
       <p class="ws-loading">Loading sessions...</p>
     </div>
 
+    <h3 id="workshop-tba-head" class="ws-tba-head" style="display: none;">Dates to be announced</h3>
+    <div id="workshop-tba" class="ws-grid" style="display: none;"></div>
+
     <div class="cta-band">
       <h3>Workshop calendar</h3>
       <p>Browse + RSVP via Lu.ma. Sessions get added as workshop leads lock dates.</p>
@@ -1076,6 +1101,8 @@
   </div>
 
 </div>
+
+</main>
 
 <footer class="arcade-foot" aria-label="Site directory">
   <div class="arcade-foot-inner">
@@ -1401,43 +1428,65 @@
   // June workshop schedule - rendered live from data/workshop-leads.json so the
   // page reflects whatever leads have locked, and dates fill in as they confirm.
   var wsEl = document.getElementById('workshop-schedule');
+  var tbaEl = document.getElementById('workshop-tba');
+  var tbaHead = document.getElementById('workshop-tba-head');
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var TRACKS = {
+    artist:  { label: 'Artist',  color: 'pink' },
+    builder: { label: 'Builder', color: 'zabal' },
+    creator: { label: 'Creator', color: 'cyan' }
+  };
+  function renderCard(L) {
+    var c = L.color || 'orange';
+    var whenLabel = esc(L.when) || 'Date to be announced';
+    var statusCls = L.status === 'confirmed' ? 'ws-confirmed' : 'ws-tentative';
+    var tk = TRACKS[L.track];
+    var trackBadge = tk ? '<span class="ws-track" style="display:inline-block;margin-right:0.5rem;padding:0.1rem 0.55rem;border:1px solid var(--' + tk.color + ');border-radius:999px;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--' + tk.color + ');vertical-align:middle;">' + tk.label + '</span>' : '';
+    var rsvp = L.luma_url ? '<a class="ws-rsvp" href="' + esc(L.luma_url) + '" target="_blank" rel="noopener">RSVP on Luma</a>' : '';
+    return '<div class="ws-card" data-track="' + (L.track || 'none') + '" style="border-left: 3px solid var(--' + c + ');">' +
+      '<div class="ws-when">' + whenLabel + '</div>' +
+      '<h3>' + esc(L.topic || 'Workshop session') + '</h3>' +
+      '<p class="ws-by">' + esc(L.name) + (L.org ? ' - ' + esc(L.org) : '') + '</p>' +
+      (L.format ? '<p class="ws-format">' + esc(L.format) + '</p>' : '') +
+      trackBadge +
+      '<span class="ws-status ' + statusCls + '">' + esc(L.status || 'planned') + '</span>' +
+      rsvp +
+      '</div>';
+  }
   if (wsEl) {
     fetch('/data/workshop-leads.json', { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (d) {
         var leads = (d && d.leads) || [];
         if (!leads.length) { wsEl.innerHTML = '<p class="ws-loading">Sessions are being scheduled - check the Lu.ma calendar below.</p>'; return; }
-        var TRACKS = {
-          artist:  { label: 'Artist',  color: 'pink' },
-          builder: { label: 'Builder', color: 'zabal' },
-          creator: { label: 'Creator', color: 'cyan' }
-        };
-        wsEl.innerHTML = leads.map(function (L) {
-          var c = L.color || 'orange';
-          var scheduled = /^\d{4}-\d{2}-\d{2}/.test(L.when || '');
-          var whenLabel = scheduled ? esc(L.when) : (esc(L.when) || 'Date to be announced');
-          var statusCls = L.status === 'confirmed' ? 'ws-confirmed' : 'ws-tentative';
-          var tk = TRACKS[L.track];
-          var trackBadge = tk ? '<span class="ws-track" style="display:inline-block;margin-right:0.5rem;padding:0.1rem 0.55rem;border:1px solid var(--' + tk.color + ');border-radius:999px;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--' + tk.color + ');vertical-align:middle;">' + tk.label + '</span>' : '';
-          return '<div class="ws-card" data-track="' + (L.track || 'none') + '" style="border-left: 3px solid var(--' + c + ');">' +
-            '<div class="ws-when">' + whenLabel + '</div>' +
-            '<h3>' + esc(L.topic || 'Workshop session') + '</h3>' +
-            '<p class="ws-by">' + esc(L.name) + (L.org ? ' - ' + esc(L.org) : '') + '</p>' +
-            (L.format ? '<p class="ws-format">' + esc(L.format) + '</p>' : '') +
-            trackBadge +
-            '<span class="ws-status ' + statusCls + '">' + esc(L.status || 'planned') + '</span>' +
-            '</div>';
-        }).join('');
+        // Dated leads render into the live schedule; undated confirmed leads go
+        // to the "Dates to be announced" subsection.
+        var dated = leads.filter(function (L) { return L.date; });
+        var undated = leads.filter(function (L) { return !L.date; });
+        wsEl.innerHTML = dated.length
+          ? dated.map(renderCard).join('')
+          : '<p class="ws-loading">Dates are being locked - see the leads below + the Lu.ma calendar.</p>';
+        if (tbaEl && tbaHead) {
+          if (undated.length) {
+            tbaEl.innerHTML = undated.map(renderCard).join('');
+            tbaEl.style.display = '';
+            tbaHead.style.display = '';
+          } else {
+            tbaEl.innerHTML = '';
+            tbaEl.style.display = 'none';
+            tbaHead.style.display = 'none';
+          }
+        }
       })
       .catch(function () {
         wsEl.innerHTML = '<p class="ws-loading">Schedule unavailable right now - see the Lu.ma calendar below.</p>';
       });
   }
 
-  // Per-track filter on the schedule. Buttons query the current cards at click
-  // time, so it works no matter when the async render finishes.
+  // Per-track filter. Toggles cards in BOTH the live schedule and the TBA grid.
+  // Buttons query the current cards at click time, so it works no matter when
+  // the async render finishes.
   var filterWrap = document.getElementById('ws-filter');
   if (filterWrap) {
     filterWrap.addEventListener('click', function (e) {
@@ -1445,7 +1494,7 @@
       if (!b) return;
       var f = b.getAttribute('data-filter');
       filterWrap.querySelectorAll('.ws-filter-btn').forEach(function (x) { x.classList.toggle('sel', x === b); });
-      document.querySelectorAll('#workshop-schedule .ws-card').forEach(function (card) {
+      document.querySelectorAll('#workshop-schedule .ws-card, #workshop-tba .ws-card').forEach(function (card) {
         card.style.display = (f === 'all' || card.getAttribute('data-track') === f) ? '' : 'none';
       });
     });

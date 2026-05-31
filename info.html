@@ -410,13 +410,14 @@
 </head>
 <body>
 
+  <a class="arcade-skip" href="#main">Skip to content</a>
+
   <div style="background: linear-gradient(90deg, rgba(167,139,250,0.12), rgba(0,229,255,0.10)); border-bottom: 1px solid var(--border); padding: 10px 16px; text-align: center; font-size: 0.85rem;">
     <a href="/" style="color: var(--cyan); font-weight: 600; text-decoration: none;">&larr; Back to the simple page</a>
     <span style="color: var(--text-dim); margin: 0 0.6rem;">/</span>
     <span style="color: var(--text-muted);">You're on the long-form details page.</span>
   </div>
 
-  <a class="arcade-skip" href="#main">Skip to content</a>
   <nav class="arcade-nav" aria-label="Primary">
     <div class="arcade-nav-inner">
       <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
@@ -429,8 +430,10 @@
     </div>
   </nav>
 
+<main id="main">
+
   <header class="hero">
-    <div class="container" id="main">
+    <div class="container">
       <div class="hero-eyebrow">A 3-month Build-A-Thon - Season 1 - June Prep / July Submissions / August Finals</div>
       <h1>ZABAL <span class="accent">GAMEZ</span></h1>
       <p class="hero-sub">
@@ -743,8 +746,8 @@
           <h3>Lead a workshop - book your date</h3>
           <p>Pick any open day in June and lock your slot. Live on Restream by default (multistreams to YouTube + Twitch + Farcaster) or Google Meet if you prefer. Pre-recorded or hybrid totally fine - flag your preference when you book. Cast credit, a spot on the team, and your session lives in the Magnetiq library forever.</p>
           <div id="cal-embed" style="margin-top: 1rem;">
-            <iframe src="https://cal.com/zabal-games/workshop-session?theme=dark" width="100%" height="650" frameborder="0" style="border-radius: var(--radius); border: 1px solid var(--border);"></iframe>
-            <p style="margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-muted);">Direct link: <a href="https://cal.com/zabal-games/workshop-session" target="_blank" rel="noopener" style="color: var(--cyan);">cal.com/zabal-games/workshop-session</a></p>
+            <iframe src="https://cal.com/zabal-gamez/workshop-session?theme=dark" width="100%" height="650" frameborder="0" style="border-radius: var(--radius); border: 1px solid var(--border);"></iframe>
+            <p style="margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-muted);">Direct link: <a href="https://cal.com/zabal-gamez/workshop-session" target="_blank" rel="noopener" style="color: var(--cyan);">cal.com/zabal-gamez/workshop-session</a></p>
           </div>
         </div>
       </div>
@@ -1435,7 +1438,9 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
     </div>
   </section>
 
-  <footer class="arcade-foot" aria-label="Site directory">
+  </main>
+
+<footer class="arcade-foot" aria-label="Site directory">
     <div class="arcade-foot-inner">
       <div class="arcade-foot-brand">
         <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>

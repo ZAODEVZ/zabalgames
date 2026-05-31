@@ -33,7 +33,7 @@ Status: **scheduled** (date locked) -> **confirmed** (yes, no date yet) -> **inv
 | nickysap | TBD | TBD | Lined up - confirm handle, topic, track |
 
 > 11 leads lined up beyond the 1 scheduled. Each needs a track + topic + date locked
-> (Cal link: cal.com/zabal-games/workshop-session), then mirror into workshop-leads.json.
+> (Cal link: cal.com/zabal-gamez/workshop-session), then mirror into workshop-leads.json.
 > That comfortably clears the ~8-session June target. Send me the per-person details
 > and I'll fill these in + push the scheduled ones to the live homepage schedule.
 
@@ -70,7 +70,7 @@ _(Zaal: add the rest of the people you have in mind here, with a track + a one-l
 
 ## Workflow when someone confirms a date
 
-1. They book via Cal (`cal.com/zabal-games/workshop-session`) or you lock it manually.
+1. They book via Cal (`cal.com/zabal-gamez/workshop-session`) or you lock it manually.
 2. Add them to `data/workshop-leads.json` (name, org, handle, topic, format, `when`,
    `status: confirmed`, `color`, `track`) -> they appear on the homepage schedule.
 3. Publish the matching Luma event (see `docs/cal-luma-workflow.md`).
