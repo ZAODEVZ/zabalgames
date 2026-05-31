@@ -1,9 +1,10 @@
 // ZABAL Gamez - one-tap join (POST /api/join).
 //
 // Records a workshop join against a verified Farcaster FID (Quick Auth JWT,
-// verified server-side - same model as api/track.mjs). Dedupes per FID via a KV
-// hash, so the count is distinct builders. Also drops a 'signup' into the
-// activity feed + score so the presence widget and leaderboard reflect it.
+// verified server-side - same model as api/track.mjs). Dedupes per FID via the
+// zg_joins primary key, so the count is distinct builders. Also drops a
+// 'signup' into the activity feed + score so the presence widget and
+// leaderboard reflect it. All done atomically in the public.zg_join RPC.
 //
 // Request:  POST { door?: string, note?: string }
 //           Authorization: Bearer <quick-auth-jwt>  (sdk.quickAuth.fetch)
@@ -13,13 +14,9 @@ export const config = { runtime: 'edge' };
 
 const DOMAIN = 'zabalgamez.com';
 const JWKS_URL = 'https://auth.farcaster.xyz/.well-known/jwks.json';
-const KV_URL = process.env.KV_REST_API_URL;
-const KV_TOKEN = process.env.KV_REST_API_TOKEN;
+const SB_URL = process.env.SUPABASE_URL;
+const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const HAATZ = 'https://haatz.quilibrium.com';
-const JOINS_KEY = 'zabal:joins';
-const RECENT_KEY = 'zabal:activity:v1';
-const SCORES_KEY = 'zabal:scores:v1';
-const RECENT_MAX = 50;
 const SIGNUP_POINTS = 5;
 
 function json(body, status = 200, origin = '*') {
@@ -83,15 +80,20 @@ async function verifyQuickAuth(token, domain) {
   return fid;
 }
 
-async function kvPipeline(cmds) {
-  const r = await fetch(`${KV_URL}/pipeline`, {
+async function sbRpc(fn, args) {
+  const r = await fetch(`${SB_URL}/rest/v1/rpc/${fn}`, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${KV_TOKEN}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(cmds),
+    headers: {
+      apikey: SB_KEY,
+      Authorization: `Bearer ${SB_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(args),
     signal: AbortSignal.timeout(4000),
   });
-  if (!r.ok) throw new Error('kv ' + r.status);
-  return r.json();
+  if (!r.ok) throw new Error('sb ' + r.status + ' ' + (await r.text()).slice(0, 120));
+  const t = await r.text();
+  return t ? JSON.parse(t) : null;
 }
 
 async function resolveProfile(fid) {
@@ -123,32 +125,25 @@ export default async function handler(req) {
   const door = String(body.door || 'workshops').slice(0, 24);
   const note = String(body.note || '').slice(0, 280);
 
-  // No KV in this deployment: report not-stored so the client falls through to
-  // the full sign-up form. Never claim success when nothing was captured.
-  if (!KV_URL || !KV_TOKEN) return json({ ok: false, reason: 'unconfigured' }, 200, origin);
+  // No storage in this deployment: report not-stored so the client falls
+  // through to the full sign-up form. Never claim success when nothing was kept.
+  if (!SB_URL || !SB_KEY) return json({ ok: false, reason: 'unconfigured' }, 200, origin);
 
   const profile = await resolveProfile(fid);
-  const joinRecord = JSON.stringify({ door, note, username: profile.username, ts: Date.now() });
-  const activity = JSON.stringify({
-    fid, username: profile.username, pfpUrl: profile.pfpUrl, action: 'signup', target: door, ts: Date.now(),
-  });
-  const presentKey = `zabal:present:${new Date().toISOString().slice(0, 10)}`;
 
-  let res;
+  let count;
   try {
-    res = await kvPipeline([
-      ['HSET', JOINS_KEY, String(fid), joinRecord],
-      ['LPUSH', RECENT_KEY, activity],
-      ['LTRIM', RECENT_KEY, '0', String(RECENT_MAX - 1)],
-      ['SADD', presentKey, String(fid)],
-      ['EXPIRE', presentKey, '172800'],
-      ['ZINCRBY', SCORES_KEY, String(SIGNUP_POINTS), String(fid)],
-      ['HLEN', JOINS_KEY],
-    ]);
+    count = await sbRpc('zg_join', {
+      p_fid: fid,
+      p_door: door,
+      p_note: note || null,
+      p_username: profile.username || null,
+      p_pfp: profile.pfpUrl || null,
+      p_points: SIGNUP_POINTS,
+    });
   } catch (e) {
     return json({ ok: false, detail: e.message }, 502, origin);
   }
 
-  const count = Number(res?.[6]?.result || 0);
-  return json({ ok: true, count }, 200, origin);
+  return json({ ok: true, count: Number(count || 0) }, 200, origin);
 }

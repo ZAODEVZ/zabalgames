@@ -2,7 +2,8 @@
 //
 // Farcaster POSTs a JSON Farcaster Signature envelope here when a user adds the
 // app or toggles notifications (referenced by `webhookUrl` in the manifest).
-// We store the notification token + url per FID so api/notify.mjs can reach them.
+// We store the notification token + url per FID (zg_notif_tokens) so
+// api/notify.mjs can reach them.
 //
 // v1 stores tokens without verifying the JFS signature (low abuse surface - the
 // worst case is a junk token that simply fails on send). Signature verification
@@ -10,9 +11,8 @@
 
 export const config = { runtime: 'edge' };
 
-const KV_URL = process.env.KV_REST_API_URL;
-const KV_TOKEN = process.env.KV_REST_API_TOKEN;
-const TOKENS_KEY = 'zabal:notif:tokens';
+const SB_URL = process.env.SUPABASE_URL;
+const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -29,15 +29,29 @@ function b64urlToJson(b64url) {
   return JSON.parse(decodeURIComponent(escape(s)));
 }
 
-async function kv(cmds) {
-  const r = await fetch(`${KV_URL}/pipeline`, {
+// Upsert a row (Prefer: merge-duplicates resolves the primary-key conflict).
+async function sbUpsert(table, row) {
+  const r = await fetch(`${SB_URL}/rest/v1/${table}`, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${KV_TOKEN}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(cmds),
+    headers: {
+      apikey: SB_KEY,
+      Authorization: `Bearer ${SB_KEY}`,
+      'Content-Type': 'application/json',
+      Prefer: 'resolution=merge-duplicates',
+    },
+    body: JSON.stringify(row),
     signal: AbortSignal.timeout(4000),
   });
-  if (!r.ok) throw new Error('kv ' + r.status);
-  return r.json();
+  if (!r.ok) throw new Error('sb ' + r.status);
+}
+
+async function sbDelete(table, query) {
+  const r = await fetch(`${SB_URL}/rest/v1/${table}?${query}`, {
+    method: 'DELETE',
+    headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` },
+    signal: AbortSignal.timeout(4000),
+  });
+  if (!r.ok) throw new Error('sb ' + r.status);
 }
 
 export default async function handler(req) {
@@ -57,16 +71,18 @@ export default async function handler(req) {
   const fid = header && header.fid;
   const event = payload && payload.event;
   if (!fid || !event) return json({ error: 'missing fid/event' }, 400);
-  if (!KV_URL || !KV_TOKEN) return json({ ok: true, stored: false });
+  if (!SB_URL || !SB_KEY) return json({ ok: true, stored: false });
 
   try {
     if (event === 'frame_added' || event === 'notifications_enabled') {
       const nd = payload.notificationDetails;
       if (nd && nd.token && nd.url) {
-        await kv([['HSET', TOKENS_KEY, String(fid), JSON.stringify({ url: nd.url, token: nd.token })]]);
+        await sbUpsert('zg_notif_tokens', {
+          fid: Number(fid), url: nd.url, token: nd.token, updated_at: new Date().toISOString(),
+        });
       }
     } else if (event === 'frame_removed' || event === 'notifications_disabled') {
-      await kv([['HDEL', TOKENS_KEY, String(fid)]]);
+      await sbDelete('zg_notif_tokens', `fid=eq.${Number(fid)}`);
     }
   } catch (e) {
     return json({ ok: false, detail: e.message }, 502);
