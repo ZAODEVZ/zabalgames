@@ -876,6 +876,25 @@ The relationship usually keeps going. Many ZAO ecosystem collaborations started 
 
 ---
 
+## Active POIDH bounty (creator track, while open)
+
+There's a live BCZ POIDH bounty asking creators to make the best ad for ZABAL Gamez. Any format. Best one wins 0.0125 ETH on Base and gets pinned as the official ZABAL Gamez promo across `@bettercallzaal` channels. Open through Sunday June 14, 2026 11:59pm PT. Winner cast Monday June 15.
+
+- Bounty: https://poidh.xyz/base (filter for "ZABAL Gamez" - canonical URL added once cast)
+- Asset kit (CC-BY): https://bettercallzaal.com/assets/zabal-games-brand/
+- Official 50-second promo audio: https://bettercallzaal.com/assets/zabal-games-brand/zabal-gamez-promo.mp3
+- Arcade hero logo: https://bettercallzaal.com/assets/zabal-games-brand/logo.png
+- Approved + banned phrases + glossary: https://bettercallzaal.com/assets/zabal-games-brand/phrases.md
+- Bounty best practices (canonical bar): https://bettercallzaal.com/poidh-bounty-best-practices.html
+
+How submitters earn beyond the prize: every floor-pass submission lands on slot 8 of $ZABAL Empire on Empire Builder (`0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07`). The leaderboard score is the count of BCZ POIDH bounties a wallet has submitted to, so multi-round submitters compound. This is an OPEN POIDH bounty - other ZAO ecosystem wallets can stack contributions on top of the 0.0125 ETH seed.
+
+Hard rules for submissions: any format welcome, must tag `@bettercallzaal` on X, must cross-post in `/zabal` on Farcaster, must submit the public URL on the POIDH bounty page. Audio rule: use the official promo MP3 OR source-episode audio OR one clear instrumental - layered melodic music over spoken dialog is an automatic floor fail.
+
+Brand guardrails on every submission: no emojis, no em dashes (use hyphens), no crypto/web3 jargon in public copy, "100+" for ZAO member count, "ZABAL Gamez" spelling (NOT ZABAL Games), "build for a real community" + "build event not a video-game contest" canonical phrases.
+
+---
+
 ## Where to get help
 
 | Need | Where |
@@ -884,6 +903,7 @@ The relationship usually keeps going. Many ZAO ecosystem collaborations started 
 | ZAO infra question | `/zabal` Farcaster channel, tag `@bettercallzaal` |
 | Stream tech issue | StreamElements docs + `/zabal` |
 | Wallet / Empire Builder | DM `@bettercallzaal` on Farcaster |
+| POIDH bounty question | DM `@bettercallzaal` on Farcaster OR ask in `/poidh` channel |
 | Real emergency | Text Zaal (number in your onboarding email) |
 
 ---
