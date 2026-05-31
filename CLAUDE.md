@@ -94,6 +94,14 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
    scheduled leads get mirrored into `data/workshop-leads.json` (drives the schedule).
 5. Vercel Web Analytics - the `/_vercel/insights/script.js` tag is on every page; enable
    Web Analytics in the Vercel dashboard (Analytics tab) to start collecting.
+6. POIDH bounty - "Best ad for ZABAL Gamez", $25, ends Jun 14. Paste-ready copy +
+   promo cast in `docs/poidh-bounty-best-ad.md`. Post on POIDH; optionally add a homepage
+   callout once the bounty link exists.
+
+## Live links (do not break)
+- Luma calendar: https://luma.com/zao | yerbearzerker Jun 1 RSVP: https://luma.com/7nfside5
+- Magnetiq magnet (register + collectibles): https://app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez
+- /zabal channel + group chat: farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ
 
 ## Decision history
 The "why" behind the format lives in `docs/research/701-canonical-state.md` (canonical
