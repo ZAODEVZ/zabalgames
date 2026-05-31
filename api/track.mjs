@@ -111,7 +111,11 @@ async function sbRpc(fn, args) {
     body: JSON.stringify(args),
     signal: AbortSignal.timeout(4000),
   });
-  if (!r.ok) throw new Error('sb ' + r.status + ' ' + (await r.text()).slice(0, 120));
+  if (!r.ok) {
+    // Log the DB detail to the server (Vercel function logs); do not return it.
+    console.error('zg_track sb error', r.status, (await r.text()).slice(0, 200));
+    throw new Error('storage error ' + r.status);
+  }
   const t = await r.text();
   return t ? JSON.parse(t) : null;
 }

@@ -91,7 +91,10 @@ async function sbRpc(fn, args) {
     body: JSON.stringify(args),
     signal: AbortSignal.timeout(4000),
   });
-  if (!r.ok) throw new Error('sb ' + r.status + ' ' + (await r.text()).slice(0, 120));
+  if (!r.ok) {
+    console.error('zg_join sb error', r.status, (await r.text()).slice(0, 200));
+    throw new Error('storage error ' + r.status);
+  }
   const t = await r.text();
   return t ? JSON.parse(t) : null;
 }

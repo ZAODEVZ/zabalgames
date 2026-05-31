@@ -68,9 +68,9 @@ export default async function handler(req) {
     return json({ error: 'bad envelope' }, 400);
   }
 
-  const fid = header && header.fid;
+  const fid = Number(header && header.fid);
   const event = payload && payload.event;
-  if (!fid || !event) return json({ error: 'missing fid/event' }, 400);
+  if (!Number.isInteger(fid) || fid < 1 || !event) return json({ error: 'missing fid/event' }, 400);
   if (!SB_URL || !SB_KEY) return json({ ok: true, stored: false });
 
   try {
@@ -78,11 +78,11 @@ export default async function handler(req) {
       const nd = payload.notificationDetails;
       if (nd && nd.token && nd.url) {
         await sbUpsert('zg_notif_tokens', {
-          fid: Number(fid), url: nd.url, token: nd.token, updated_at: new Date().toISOString(),
+          fid, url: nd.url, token: nd.token, updated_at: new Date().toISOString(),
         });
       }
     } else if (event === 'frame_removed' || event === 'notifications_disabled') {
-      await sbDelete('zg_notif_tokens', `fid=eq.${Number(fid)}`);
+      await sbDelete('zg_notif_tokens', `fid=eq.${fid}`);
     }
   } catch (e) {
     return json({ ok: false, detail: e.message }, 502);

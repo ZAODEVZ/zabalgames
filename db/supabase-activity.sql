@@ -71,6 +71,9 @@ revoke all
   from anon, authenticated;
 
 -- ---------- RPCs (atomic writes) ----------
+-- These are SECURITY DEFINER: they run as the owner and bypass RLS on the
+-- zg_* tables. That is intended - the edge layer calls them with service_role.
+-- Direct PostgREST table access still respects RLS (denied for anon).
 
 -- track a social action: append to the feed + bump the score in one statement.
 create or replace function public.zg_track(
@@ -79,6 +82,13 @@ create or replace function public.zg_track(
 ) returns void
 language plpgsql security definer set search_path = '' as $$
 begin
+  -- Bound stored text in the function itself (not just the edge layer) so a
+  -- direct/future caller cannot bloat rows. substr() passes nulls through.
+  p_username := substr(p_username, 1, 80);
+  p_pfp      := substr(p_pfp, 1, 400);
+  p_action   := substr(p_action, 1, 16);
+  p_target   := substr(p_target, 1, 80);
+
   insert into public.zg_activity (fid, username, pfp_url, action, target)
   values (p_fid, p_username, p_pfp, p_action, p_target);
 
@@ -98,6 +108,11 @@ create or replace function public.zg_join(
 language plpgsql security definer set search_path = '' as $$
 declare v_count integer;
 begin
+  p_username := substr(p_username, 1, 80);
+  p_pfp      := substr(p_pfp, 1, 400);
+  p_door     := substr(p_door, 1, 32);
+  p_note     := substr(p_note, 1, 400);
+
   insert into public.zg_joins (fid, door, note, username)
   values (p_fid, p_door, p_note, p_username)
   on conflict (fid) do update
@@ -130,6 +145,9 @@ language sql security definer set search_path = '' as $$
         limit 50
       ) r
     ), '[]'::json),
+    -- "active today" = distinct FIDs seen since UTC midnight. The trailing
+    -- "at time zone 'utc'" casts the truncated value back to a timestamptz
+    -- instant so the compare is correct regardless of the DB session timezone.
     'count', (
       select count(distinct fid) from public.zg_activity
       where created_at >= date_trunc('day', now() at time zone 'utc') at time zone 'utc'
@@ -146,3 +164,10 @@ revoke all on function public.zg_activity_summary()                             
 grant execute on function public.zg_track(integer, text, text, text, text, integer)      to service_role;
 grant execute on function public.zg_join(integer, text, text, text, text, integer)       to service_role;
 grant execute on function public.zg_activity_summary()                                   to service_role;
+
+-- ---------- retention (optional) ----------
+-- zg_activity is append-only. For a 3-month event the volume is trivial and no
+-- pruning is required. If it ever needs trimming, this keeps ~90 days of feed
+-- history (the API only ever reads the newest 50 rows + today's distinct FIDs):
+--   delete from public.zg_activity where created_at < now() - interval '90 days';
+-- Run it manually, or schedule it with pg_cron if that extension is enabled.
