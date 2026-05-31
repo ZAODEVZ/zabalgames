@@ -40,6 +40,30 @@
       "track": "builder",
       "date": "2026-06-01",
       "luma_url": "https://luma.com/7nfside5"
+    },
+    {
+      "id": "004",
+      "name": "Plat0x",
+      "topic": "ZABAL Gamez presentation",
+      "format": "Livestreamed and recorded",
+      "when": "Mon Jun 1 2026, 5-6pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-05-31",
+      "color": "gold",
+      "track": "builder",
+      "date": "2026-06-01"
+    },
+    {
+      "id": "005",
+      "name": "Ohnahji",
+      "topic": "ZABAL Gamez presentation",
+      "format": "Livestreamed and recorded",
+      "when": "Tue Jun 2 2026, 5-6pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-05-31",
+      "color": "pink",
+      "track": "creator",
+      "date": "2026-06-02"
     }
   ],
   "_schema": {
