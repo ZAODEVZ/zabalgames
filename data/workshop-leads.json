@@ -37,7 +37,9 @@
       "status": "confirmed",
       "confirmed_date": "2026-05-30",
       "color": "cyan",
-      "track": "builder"
+      "track": "builder",
+      "date": "2026-06-01",
+      "luma_url": "https://luma.com/7nfside5"
     }
   ],
   "_schema": {
@@ -52,6 +54,16 @@
     "confirmed_date": "YYYY-MM-DD when they said yes",
     "spec_url": "optional - link to the deeper spec / meeting recap",
     "color": "ZAO palette key: orange | cyan | gold | pink | zabal",
-    "track": "optional - artist | builder | creator. Shows a colored track badge on the schedule when set."
+    "track": "optional - artist | builder | creator. Shows a colored track badge on the schedule when set.",
+    "date": "optional - YYYY-MM-DD start date; the top CTA auto-picks the earliest upcoming dated lead",
+    "luma_url": "optional - per-event Luma invite link (used by the top CTA RSVP button + schedule)"
+  },
+  "luma_calendar": "https://luma.com/zao",
+  "cta_override": {
+    "_comment": "manual override for the top CTA. active:true uses headline/event_url/event_label; active:false = auto (next dated workshop).",
+    "active": true,
+    "headline": "Day 0: ZABAL Gamez is live. First workshop tomorrow - yerbearzerker on Empire Builder.",
+    "event_url": "https://luma.com/7nfside5",
+    "event_label": "RSVP: yerbearzerker, Jun 1"
   }
 }
