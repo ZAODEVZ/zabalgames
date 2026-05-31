@@ -1,6 +1,6 @@
 # ZABAL Gamez Season 1
 
-> A Farcaster vibe-coding challenge for the ZAO ecosystem - streamer games crossed with a hackathon. June workshops, July open build-a-thon, August Finals. Use any AI coding tool to ship a build that helps the ZAO community.
+> A 3-month Build-A-Thon for the ZAO ecosystem - a build event for the ecosystem, not a video-game contest. June workshops, July open build-a-thon, August Finals. Use any AI coding tool to ship a build that helps the ZAO community.
 
 This file is the machine-readable context for ZABAL Gamez builders. Point your AI harness at `https://zabalgamez.com/llms.txt` (Claude Code: save as `CLAUDE.md`; Cursor: `.cursorrules`; Windsurf: `.windsurfrules`; Aider: `CONVENTIONS.md`). Treat sections as menu items - if you are building Empire Builder tooling, focus on that section.
 
