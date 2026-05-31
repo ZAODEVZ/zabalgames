@@ -16,31 +16,26 @@
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-row">
-    <a href="/" class="nav-brand">ZABAL <span class="accent">GAMEZ</span></a>
-    <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/lead.html">Lead</a>
-      <a href="/projects.html" class="active">Projects</a>
-      <a href="/streams.html">Streams</a>
-      <a href="/graph.html">Graph</a>
-      <a href="/leaderboard.html">Leaderboard</a>
-      <a href="/research.html">Research</a>
-      <a href="/finals.html">Finals</a>
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
       <a href="/about.html">About</a>
-      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
     </div>
   </div>
 </nav>
 
-<div class="container">
+<div class="container" id="main">
 
   <header class="hero">
     <div class="hero-eyebrow">Path 1 - Adopt a Project</div>
@@ -128,14 +123,52 @@
 
 </div>
 
-<footer class="footer">
-  <div>
-    <a href="/">zabalgamez.com</a> -
-    <a href="https://github.com/ZAODEVZ/zabalgames" target="_blank" rel="noopener">github</a> -
-    <a href="/llms.txt">llms.txt</a> -
-    <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/lead.html">Lead a Workshop</a>
+      <a href="/mentor.html">Mentor</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Season">
+      <h4>Season</h4>
+      <a href="/projects.html">Projects</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/finals/live.html">Finals Live</a>
+      <a href="/winners.html">Winners</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/spaces.html">Spaces</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/streams.html">Streams</a>
+      <a href="/graph.html">ZAO Graph</a>
+      <a href="/research.html">Research</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/context.html">Context</a>
+      <a href="/p.html">Player Roster</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="/install.html">Install Context</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+      <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener">Claim Collectible</a>
+    </nav>
   </div>
-  <p style="margin-top: 0.5rem; color: var(--text-dim);">ZABAL Gamez Season 1 - the eight adoptable projects.</p>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
 </footer>
 
   <script defer src="/_vercel/insights/script.js"></script>
