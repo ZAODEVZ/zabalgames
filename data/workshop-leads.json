@@ -28,9 +28,9 @@
     },
     {
       "id": "003",
-      "name": "yerbearzerker",
+      "name": "yerbearserker",
       "org": "Empire Builder",
-      "handle": "@yerbearzerker",
+      "handle": "@yerbearserker",
       "topic": "Empire Builder V3 - leaderboards, Empires, and token mechanics. How it works, how to use it, and why it matters for your build.",
       "format": "30 min, livestreamed and recorded",
       "when": "Mon Jun 1 2026, 6-7am EST",
@@ -86,8 +86,8 @@
   "cta_override": {
     "_comment": "manual override for the top CTA. active:true uses headline/event_url/event_label; active:false = auto (next dated workshop).",
     "active": true,
-    "headline": "Day 0: ZABAL Gamez is live. First workshop tomorrow - yerbearzerker on Empire Builder.",
+    "headline": "Day 0: ZABAL Gamez is live. First workshop tomorrow - yerbearserker on Empire Builder.",
     "event_url": "https://luma.com/7nfside5",
-    "event_label": "RSVP: yerbearzerker, Jun 1"
+    "event_label": "RSVP: yerbearserker, Jun 1"
   }
 }
