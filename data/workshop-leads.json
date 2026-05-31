@@ -29,18 +29,22 @@
     {
       "id": "003",
       "name": "Yerbearzeker",
-      "topic": "June workshop session",
+      "org": "Empire Builder",
+      "handle": "@yerbearzerker",
+      "topic": "Empire Builder V3 - leaderboards, Empires, and token mechanics. How it works, how to use it, and why it matters for your build.",
       "format": "30 min, livestreamed and recorded",
       "when": "Mon Jun 1 2026, 6-7am",
       "status": "confirmed",
       "confirmed_date": "2026-05-30",
-      "color": "cyan"
+      "color": "cyan",
+      "track": "builder"
     }
   ],
   "_schema": {
     "id": "zero-padded 3-digit lead number",
     "name": "person's name",
     "org": "their org or project",
+    "handle": "optional - Farcaster/X handle",
     "topic": "what they're teaching",
     "format": "session format (default: '30-min, livestreamed, recorded')",
     "when": "their chosen date or window",
