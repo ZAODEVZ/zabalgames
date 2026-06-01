@@ -285,13 +285,13 @@ the booster.
 
 The agent skill is in the top - click it, copy-paste into your LLM, and you're good to go. Let
 me find one of my own Empires. Here's my tokenless Empire. We did the Yerbearserker Mate NFT,
-a collab mint from the DotA (Defense of the Agents) game by AZ Flynn - so this is how you do
+a collab mint from the DotA (Defense of the Agents) game by @azflin - so this is how you do
 co-marketing collabs. It's a game available as a mini app or on the website, with in-game
 assets. When you think how to use Empire and what to do with your build, having NFTs people can
 buy that are involved in the app gives you more surfaces for utility. I own the Yerbearserker
 Mate, it's an in-game asset, people can mint it in the armory - right now a dollar, 58 minted
-of 1,000, going up about a dollar a day until Wednesday when Zaal, AZ Flynn and I present as
-part of Farcon Batches, and we'll run raffles to the holders.
+of 1,000, going up about a dollar a day until Wednesday when Zaal, @azflin and I present as
+part of Farcaster Batches, and we'll run raffles to the holders.
 
 Back to my leaderboard: this DotA NFT holders board is based on holders of that NFT, the core
 score is the number of those NFTs held, then the boosters apply. In boosters I've saved
