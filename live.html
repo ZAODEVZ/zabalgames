@@ -375,7 +375,7 @@
   var LIVE_URL = 'https://zabalgamez.com/live';
   var GROUP_URL = 'https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ';
   var TZ = 'America/New_York'; // workshop times are quoted in US Eastern
-  var DEFAULT_DURATION_MIN = 60; // when a lead has a start time but no end time
+  var DEFAULT_DURATION_MIN = 30; // when a lead has a start time but no end time
 
   var TRACKS = {
     artist:  { label: 'Artist',  color: 'pink' },
@@ -400,7 +400,7 @@
   // timestamps so the comparison is correct regardless of the viewer's
   // own timezone. If a dated lead has no parseable time, it never shows
   // as "live" (we will not guess a window) - it only appears in the
-  // Also-today list, and a default 60-min duration is applied when only
+  // Also-today list, and a default 30-min duration is applied when only
   // a single start time is present.
   // ------------------------------------------------------------------
   function timePartOf(s) {
