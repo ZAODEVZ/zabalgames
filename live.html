@@ -249,6 +249,61 @@
     }
     .live-foot-note a { color: var(--cyan); font-weight: 600; }
 
+    /* ---- Watch stage: player + chat, Twitch/YouTube toggle, collapsible ---- */
+    .watch { margin: 22px 0 8px; }
+    .watch-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .watch-tabs { display: inline-flex; gap: 6px; }
+    .watch-tab {
+      font-family: var(--font-pixel); font-size: 0.54rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+      background: var(--surface); border: 1px solid var(--border-hover);
+      border-radius: var(--r-pill); padding: 0.55rem 0.95rem; cursor: pointer; line-height: 1;
+      transition: color 0.15s var(--ease), border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
+    }
+    .watch-tab:hover { color: var(--text); }
+    .watch-tab.sel[data-platform="twitch"] { color: var(--zabal); border-color: var(--zabal); box-shadow: var(--glow-zabal); }
+    .watch-tab.sel[data-platform="youtube"] { color: var(--pink); border-color: var(--pink); box-shadow: var(--glow-pink); }
+    .watch-controls { display: inline-flex; gap: 6px; }
+    .watch-toggle {
+      font-size: 0.74rem; color: var(--text-muted); background: transparent;
+      border: 1px solid var(--border-hover); border-radius: var(--r-md);
+      padding: 0.45rem 0.7rem; cursor: pointer; font-family: inherit;
+      transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
+    }
+    .watch-toggle:hover { color: var(--text); border-color: var(--cyan); }
+    .watch-body { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 860px) { .watch-body.has-chat { grid-template-columns: minmax(0, 1fr) 340px; } }
+    .watch-video {
+      border: 1px solid var(--border-hover); border-radius: var(--r-lg);
+      overflow: hidden; background: #000;
+    }
+    .watch-video .ar { position: relative; width: 100%; aspect-ratio: 16 / 9; }
+    .watch-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .watch-chat {
+      border: 1px solid var(--border-hover); border-radius: var(--r-lg);
+      overflow: hidden; background: #000; display: flex; flex-direction: column;
+    }
+    .chat-head {
+      display: flex; align-items: center; padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid var(--border); background: var(--surface);
+    }
+    .chat-head span {
+      font-family: var(--font-pixel); font-size: 0.5rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .chat-frame { flex: 1; min-height: 360px; }
+    @media (min-width: 860px) { .chat-frame { min-height: 480px; } }
+    .chat-frame iframe { width: 100%; height: 100%; min-height: inherit; border: 0; display: block; }
+    .chat-fallback { padding: 1rem; font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; }
+    .chat-fallback a { color: var(--cyan); font-weight: 600; }
+    .watch-note { font-size: 0.8rem; color: var(--text-dim); margin: 12px 0 0; line-height: 1.45; }
+    .watch.player-collapsed .watch-body,
+    .watch.player-collapsed .watch-note { display: none; }
+    .watch.chat-collapsed .watch-chat { display: none; }
+
     @media (prefers-reduced-motion: reduce) {
       .live-pill.is-live .dot::after, .stage-card.now .stage-eyebrow .dot::after { animation: none; }
     }
@@ -296,6 +351,27 @@
     <span class="lo-text" id="live-override-text"></span>
     <a id="live-override-cta" href="#" target="_blank" rel="noopener">RSVP</a>
   </div>
+
+  <section class="watch" id="watch" aria-label="Live stream player">
+    <div class="watch-head">
+      <div class="watch-tabs" role="tablist" aria-label="Choose stream platform">
+        <button type="button" class="watch-tab sel" data-platform="twitch" role="tab">Twitch</button>
+        <button type="button" class="watch-tab" data-platform="youtube" role="tab">YouTube</button>
+      </div>
+      <div class="watch-controls">
+        <button type="button" class="watch-toggle" id="chat-collapse" aria-expanded="true">Hide chat</button>
+        <button type="button" class="watch-toggle" id="watch-collapse" aria-expanded="true">Hide player</button>
+      </div>
+    </div>
+    <div class="watch-body has-chat" id="watch-body">
+      <div class="watch-video" id="watch-video"></div>
+      <div class="watch-chat" id="watch-chat">
+        <div class="chat-head"><span>Live chat</span></div>
+        <div class="chat-frame" id="chat-frame"></div>
+      </div>
+    </div>
+    <p class="watch-note" id="watch-note"></p>
+  </section>
 
   <section class="live-stage" id="live-stage" aria-live="polite">
     <div class="stage-card next">
@@ -715,6 +791,124 @@
   }
 
   load();
+})();
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  // ------------------------------------------------------------------
+  // Watch stage - Twitch + YouTube player and chat, both collapsible.
+  // Workshops multicast via Restream to twitch.tv/bettercallzaal +
+  // youtube.com/@bettercallzaal; the viewer picks which to watch.
+  // Players show their offline/channel state when nothing is live, so
+  // this stage is evergreen. Choices persist in localStorage.
+  // ------------------------------------------------------------------
+  var TWITCH = 'bettercallzaal';
+  var YT_CHANNEL = 'UCCxaboWZfS8igtPLGxBlggQ'; // youtube.com/@bettercallzaal
+  var YT_HANDLE = 'bettercallzaal';
+  // Twitch player + chat embeds require parent = the serving hostname, so
+  // read it at runtime (works on prod, preview deploys, and localhost).
+  var HOST = window.location.hostname || 'zabalgamez.com';
+
+  var LS_PLATFORM = 'zg_live_platform';
+  var LS_PLAYER = 'zg_live_player_hidden';
+  var LS_CHAT = 'zg_live_chat_hidden';
+
+  var watch = document.getElementById('watch');
+  if (!watch) return;
+  var videoEl = document.getElementById('watch-video');
+  var chatFrame = document.getElementById('chat-frame');
+  var bodyEl = document.getElementById('watch-body');
+  var noteEl = document.getElementById('watch-note');
+  var playerBtn = document.getElementById('watch-collapse');
+  var chatBtn = document.getElementById('chat-collapse');
+
+  function ls(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function setLs(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
+
+  var platform = ls(LS_PLATFORM) === 'youtube' ? 'youtube' : 'twitch';
+  var playerHidden = ls(LS_PLAYER) === '1';
+  var chatHidden = ls(LS_CHAT) === '1';
+
+  function videoSrc(p) {
+    return p === 'youtube'
+      ? 'https://www.youtube.com/embed/live_stream?channel=' + YT_CHANNEL
+      : 'https://player.twitch.tv/?channel=' + TWITCH + '&parent=' + encodeURIComponent(HOST) + '&muted=false';
+  }
+  function iframe(src, title) {
+    return '<iframe src="' + src + '" title="' + title + '" allowfullscreen ' +
+           'allow="autoplay; fullscreen; encrypted-media; picture-in-picture"></iframe>';
+  }
+
+  function renderVideo() {
+    // Blank the iframe entirely when the player is collapsed so audio stops.
+    if (playerHidden) { videoEl.innerHTML = ''; return; }
+    videoEl.innerHTML = '<div class="ar">' +
+      iframe(videoSrc(platform), platform === 'youtube' ? 'BetterCallZaal on YouTube' : 'BetterCallZaal on Twitch') +
+      '</div>';
+  }
+
+  function renderChat() {
+    if (playerHidden || chatHidden) { chatFrame.innerHTML = ''; return; }
+    if (platform === 'twitch') {
+      chatFrame.innerHTML = iframe(
+        'https://www.twitch.tv/embed/' + TWITCH + '/chat?parent=' + encodeURIComponent(HOST) + '&darkpopout',
+        'Twitch chat');
+    } else {
+      // YouTube live chat needs the current live video id, which changes per
+      // stream and is not in our static data - so we link out to the live page
+      // where the player and chat live together.
+      chatFrame.innerHTML = '<div class="chat-fallback">YouTube live chat opens on the stream itself. ' +
+        '<a href="https://www.youtube.com/@' + YT_HANDLE + '/live" target="_blank" rel="noopener">' +
+        'Open the live stream and chat on YouTube -&gt;</a></div>';
+    }
+  }
+
+  function renderNote() {
+    noteEl.textContent = platform === 'youtube'
+      ? 'Streaming on youtube.com/@' + YT_HANDLE + '. The player shows the live feed when we are on, otherwise the channel.'
+      : 'Streaming on twitch.tv/' + TWITCH + '. Shows an offline panel when we are not live.';
+  }
+
+  function apply() {
+    watch.classList.toggle('player-collapsed', playerHidden);
+    watch.classList.toggle('chat-collapsed', chatHidden);
+    bodyEl.classList.toggle('has-chat', !chatHidden);
+
+    document.querySelectorAll('.watch-tab').forEach(function (t) {
+      t.classList.toggle('sel', t.getAttribute('data-platform') === platform);
+    });
+    playerBtn.textContent = playerHidden ? 'Show player' : 'Hide player';
+    playerBtn.setAttribute('aria-expanded', String(!playerHidden));
+    chatBtn.textContent = chatHidden ? 'Show chat' : 'Hide chat';
+    chatBtn.setAttribute('aria-expanded', String(!chatHidden));
+
+    renderVideo();
+    renderChat();
+    renderNote();
+  }
+
+  document.querySelectorAll('.watch-tab').forEach(function (t) {
+    t.addEventListener('click', function () {
+      platform = t.getAttribute('data-platform');
+      setLs(LS_PLATFORM, platform);
+      apply();
+    });
+  });
+  playerBtn.addEventListener('click', function () {
+    playerHidden = !playerHidden;
+    setLs(LS_PLAYER, playerHidden ? '1' : '0');
+    apply();
+  });
+  chatBtn.addEventListener('click', function () {
+    chatHidden = !chatHidden;
+    setLs(LS_CHAT, chatHidden ? '1' : '0');
+    apply();
+  });
+
+  apply();
 })();
 </script>
 
