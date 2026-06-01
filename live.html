@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live - ZABAL Gamez</title>
+  <meta name="description" content="What's on now at ZABAL Gamez. Live June workshop sessions, what's next, and how to tune in. The ZAO's 3-month Build-A-Thon.">
+  <link rel="canonical" href="https://zabalgamez.com/live">
+
+  <meta property="og:title" content="ZABAL Gamez - Live">
+  <meta property="og:description" content="What's on now - live June workshops and what's next. The ZAO's 3-month Build-A-Thon. Free to join.">
+  <meta property="og:url" content="https://zabalgamez.com/live">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ZABAL Gamez">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez Season 1">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@bettercallzaal">
+  <meta name="twitter:creator" content="@bettercallzaal">
+  <meta name="twitter:title" content="ZABAL Gamez - Live">
+  <meta name="twitter:description" content="What's on now - live June workshops and what's next.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"What is on now","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/live","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"What is on now","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/live","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+
+  <script type="module" src="/assets/miniapp.js"></script>
+
+  <style>
+    /* =====================================================================
+       ZABAL Gamez /live - "what's on now" hub.
+       Live-stage layout (top status bar with a pulsing dot, title block,
+       action pills, a big stage card) styled with the shared arcade tokens
+       from assets/style.css. Mobile-first - opened from a feed on a phone.
+       ===================================================================== */
+    .live-wrap { max-width: 920px; margin: 0 auto; padding: 18px 18px 8px; }
+
+    /* Top status bar - back link on the left, live/standby pill on the right */
+    .live-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 12px 0 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .live-back {
+      font-size: 0.82rem; color: var(--text-muted); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .live-back:hover { color: var(--cyan); text-decoration: none; }
+    .live-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-pixel); font-size: 0.56rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--text-muted);
+      border: 1px solid var(--border-hover); border-radius: var(--r-pill);
+      padding: 0.5rem 0.85rem; line-height: 1;
+    }
+    .live-pill .dot {
+      position: relative; display: inline-flex; height: 9px; width: 9px;
+    }
+    .live-pill .dot::before {
+      content: ''; position: absolute; inset: 0; border-radius: 50%;
+      background: var(--text-dim);
+    }
+    /* LIVE state - red pulsing dot, like a broadcast indicator */
+    .live-pill.is-live { color: var(--pink); border-color: rgba(255,61,110,0.5); box-shadow: var(--glow-pink); }
+    .live-pill.is-live .dot::before { background: var(--pink); }
+    .live-pill.is-live .dot::after {
+      content: ''; position: absolute; inset: 0; border-radius: 50%;
+      background: var(--pink); animation: livePing 1.4s cubic-bezier(0,0,0.2,1) infinite;
+    }
+    .live-pill.is-next { color: var(--gold); border-color: rgba(245,200,66,0.45); }
+    .live-pill.is-next .dot::before { background: var(--gold); }
+    @keyframes livePing { 75%, 100% { transform: scale(2.4); opacity: 0; } }
+
+    /* Title block */
+    .live-head { padding: 22px 0 6px; }
+    .live-head h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(1.9rem, 6vw, 3rem); letter-spacing: -0.02em; line-height: 1;
+      margin: 0 0 0.6rem;
+    }
+    .live-head h1 .accent {
+      background: var(--gradient-main); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .live-head p { color: var(--text-muted); font-size: 0.98rem; max-width: 560px; margin: 0; line-height: 1.45; }
+
+    /* Action pills - top-right style links */
+    .live-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
+    .live-action {
+      font-size: 0.82rem; text-decoration: none; color: var(--text);
+      border: 1px solid var(--border-hover); background: var(--surface);
+      border-radius: var(--r-md); padding: 0.55rem 0.85rem;
+      transition: border-color 0.15s var(--ease), background 0.15s var(--ease);
+    }
+    .live-action:hover { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
+
+    /* Pinned override banner (honors cta_override.active in workshop-leads.json) */
+    .live-override {
+      display: none; align-items: center; gap: 12px; flex-wrap: wrap;
+      margin-top: 16px; padding: 0.9rem 1.05rem;
+      background: rgba(245,200,66,0.07); border: 1px solid rgba(245,200,66,0.3);
+      border-radius: var(--r-md);
+    }
+    .live-override .lo-text { font-size: 0.88rem; color: var(--text); flex: 1; min-width: 200px; line-height: 1.4; }
+    .live-override a {
+      font-family: var(--font-pixel); font-size: 0.5rem; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--gold); text-decoration: none;
+      border: 1px solid var(--gold); border-radius: var(--r-pill); padding: 0.6rem 0.95rem; line-height: 1;
+    }
+    .live-override a:hover { background: rgba(245,200,66,0.1); text-decoration: none; box-shadow: var(--glow-gold); }
+
+    /* The stage - the big focal card */
+    .live-stage { margin: 22px 0 8px; }
+    .stage-card {
+      border: 1px solid var(--border-hover); border-radius: var(--r-lg);
+      background: linear-gradient(180deg, var(--surface), rgba(17,17,21,0.6));
+      padding: 1.6rem 1.4rem;
+      position: relative; overflow: hidden;
+    }
+    .stage-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .stage-card.now::before { background: linear-gradient(90deg, var(--pink), var(--orange)); }
+    .stage-card.next::before { background: linear-gradient(90deg, var(--gold), var(--cyan)); }
+    .stage-card.empty::before { background: linear-gradient(90deg, var(--zabal), var(--cyan)); }
+
+    .stage-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-pixel); font-size: 0.58rem; letter-spacing: 0.16em;
+      text-transform: uppercase; margin-bottom: 0.9rem;
+    }
+    .stage-card.now .stage-eyebrow { color: var(--pink); }
+    .stage-card.next .stage-eyebrow { color: var(--gold); }
+    .stage-card.empty .stage-eyebrow { color: var(--zabal); }
+    .stage-eyebrow .dot { position: relative; display: inline-flex; height: 9px; width: 9px; }
+    .stage-eyebrow .dot::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: currentColor; }
+    .stage-card.now .stage-eyebrow .dot::after {
+      content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--pink);
+      animation: livePing 1.4s cubic-bezier(0,0,0.2,1) infinite;
+    }
+
+    .stage-card h2 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: clamp(1.3rem, 4vw, 1.9rem); line-height: 1.12; margin: 0 0 0.5rem;
+    }
+    .stage-by { font-size: 0.95rem; color: var(--text); margin: 0 0 0.3rem; }
+    .stage-by strong { color: var(--gold); font-weight: 600; }
+    .stage-meta { font-size: 0.85rem; color: var(--text-muted); margin: 0 0 0.5rem; line-height: 1.45; }
+    .stage-when {
+      font-family: var(--font-pixel); font-size: 0.56rem; letter-spacing: 0.04em;
+      color: var(--cyan); line-height: 1.6; margin: 0.4rem 0 0;
+    }
+    .stage-track {
+      display: inline-block; margin: 0.7rem 0 0; padding: 0.15rem 0.6rem;
+      border-radius: var(--r-pill); font-size: 0.68rem; letter-spacing: 0.06em;
+      text-transform: uppercase; vertical-align: middle;
+    }
+
+    /* Countdown for the NEXT session */
+    .stage-countdown {
+      display: flex; gap: 10px; margin: 1.1rem 0 0.4rem; flex-wrap: wrap;
+    }
+    .cd-unit {
+      min-width: 62px; text-align: center;
+      border: 1px solid var(--border-hover); border-radius: var(--r-md);
+      background: var(--bg); padding: 0.6rem 0.4rem;
+    }
+    .cd-num {
+      font-family: var(--font-pixel); font-size: 1rem; color: var(--cyan);
+      letter-spacing: 0.02em; line-height: 1.1;
+    }
+    .cd-lab {
+      font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-dim); margin-top: 0.4rem;
+    }
+    @media (max-width: 460px) { .cd-unit { min-width: 0; flex: 1; } }
+
+    /* Stage action buttons */
+    .stage-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1.3rem; }
+    .stage-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 0.88rem; text-decoration: none; cursor: pointer;
+      border-radius: var(--r-md); padding: 0.7rem 1.15rem; border: 1px solid var(--border-hover);
+      background: var(--surface); color: var(--text); font-family: inherit;
+      transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease), background 0.15s var(--ease);
+    }
+    .stage-btn.primary { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .stage-btn.primary:hover { box-shadow: 0 6px 22px rgba(255,107,53,0.4); text-decoration: none; }
+    .stage-btn.live { background: var(--pink); color: #fff; border-color: var(--pink); }
+    .stage-btn.live:hover { box-shadow: var(--glow-pink); text-decoration: none; }
+    .stage-btn.ghost:hover { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
+
+    /* Empty-state season triptych */
+    .season-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 1.2rem;
+    }
+    @media (max-width: 620px) { .season-strip { grid-template-columns: 1fr; } }
+    .season-cell {
+      border: 1px solid var(--border); border-radius: var(--r-md);
+      background: rgba(255,255,255,0.02); padding: 1rem 0.95rem;
+    }
+    .season-cell .sc-month {
+      font-family: var(--font-pixel); font-size: 0.56rem; letter-spacing: 0.14em;
+      text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .season-cell.june .sc-month { color: var(--cyan); }
+    .season-cell.july .sc-month { color: var(--orange); }
+    .season-cell.august .sc-month { color: var(--gold); }
+    .season-cell h3 { font-size: 0.98rem; margin: 0 0 0.3rem; }
+    .season-cell p { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.45; }
+
+    /* TODAY list */
+    .today-sec { margin: 26px 0 8px; }
+    .today-sec h2 {
+      font-family: var(--font-pixel); font-size: 0.64rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); margin: 0 0 0.9rem;
+    }
+    .today-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 620px) { .today-grid { grid-template-columns: 1fr; } }
+    .today-card {
+      border: 1px solid var(--border); border-left-width: 3px; border-radius: var(--r-md);
+      background: var(--surface); padding: 0.95rem 1rem;
+    }
+    .today-card .tc-when {
+      font-family: var(--font-pixel); font-size: 0.52rem; letter-spacing: 0.03em;
+      color: var(--cyan); line-height: 1.5; margin-bottom: 0.45rem;
+    }
+    .today-card h3 { font-size: 0.98rem; margin: 0 0 0.3rem; line-height: 1.25; }
+    .today-card p { font-size: 0.82rem; color: var(--text-muted); margin: 0; }
+    .today-card a.tc-rsvp {
+      display: inline-block; margin-top: 0.7rem;
+      font-family: var(--font-pixel); font-size: 0.48rem; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--cyan); text-decoration: none;
+      border: 1px solid var(--cyan); border-radius: var(--r-pill); padding: 0.5rem 0.85rem; line-height: 1;
+    }
+    .today-card a.tc-rsvp:hover { background: rgba(0,229,255,0.08); text-decoration: none; }
+
+    .live-foot-note {
+      text-align: center; margin: 2rem auto 0; padding: 1.2rem 1rem;
+      border-top: 1px dashed var(--border-hover); color: var(--text-muted); font-size: 0.86rem;
+    }
+    .live-foot-note a { color: var(--cyan); font-weight: 600; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .live-pill.is-live .dot::after, .stage-card.now .stage-eyebrow .dot::after { animation: none; }
+    }
+  </style>
+</head>
+<body class="ui-polish-v1">
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/live" class="active">Live</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="live-wrap">
+
+  <div class="live-bar">
+    <a href="/" class="live-back">&larr; ZABAL Gamez home</a>
+    <span class="live-pill" id="live-pill">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="live-pill-text">Checking</span>
+    </span>
+  </div>
+
+  <header class="live-head">
+    <h1>ZABAL Gamez <span class="accent">Live</span></h1>
+    <p>What's on now in the June workshop run. Live sessions, what's next, and how to tune in. Free, livestreamed, recorded.</p>
+  </header>
+
+  <div class="live-actions">
+    <a class="live-action" id="live-cal" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>
+    <a class="live-action" href="https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ" target="_blank" rel="noopener">/zabal group chat</a>
+    <a class="live-action" href="/#schedule">Full schedule</a>
+  </div>
+
+  <div class="live-override" id="live-override">
+    <span class="lo-text" id="live-override-text"></span>
+    <a id="live-override-cta" href="#" target="_blank" rel="noopener">RSVP</a>
+  </div>
+
+  <section class="live-stage" id="live-stage" aria-live="polite">
+    <div class="stage-card next">
+      <div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Loading</div>
+      <h2>Checking what's on now...</h2>
+      <p class="stage-meta">Reading the workshop schedule.</p>
+    </div>
+  </section>
+
+  <section class="today-sec" id="today-sec" style="display:none;">
+    <h2>Also today</h2>
+    <div class="today-grid" id="today-grid"></div>
+  </section>
+
+  <div class="live-foot-note">
+    <p>Workshops run all June. July is the open build month, August is the Finals. <a href="/info.html">Read all the details -&gt;</a></p>
+  </div>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/lead.html">Lead a Workshop</a>
+      <a href="/mentor.html">Mentor</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Season">
+      <h4>Season</h4>
+      <a href="/projects.html">Projects</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/finals/live.html">Finals Live</a>
+      <a href="/winners.html">Winners</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/spaces.html">Spaces</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/streams.html">Streams</a>
+      <a href="/graph.html">ZAO Graph</a>
+      <a href="/research.html">Research</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/context.html">Context</a>
+      <a href="/p.html">Player Roster</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="/install.html">Install Context</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+      <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener">Claim Collectible</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ------------------------------------------------------------------
+  // Config
+  // ------------------------------------------------------------------
+  var LIVE_URL = 'https://zabalgamez.com/live';
+  var GROUP_URL = 'https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ';
+  var TZ = 'America/New_York'; // workshop times are quoted in US Eastern
+  var DEFAULT_DURATION_MIN = 60; // when a lead has a start time but no end time
+
+  var TRACKS = {
+    artist:  { label: 'Artist',  color: 'pink' },
+    builder: { label: 'Builder', color: 'zabal' },
+    creator: { label: 'Creator', color: 'cyan' }
+  };
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // ------------------------------------------------------------------
+  // Time handling
+  //
+  // workshop-leads.json gives `date` (YYYY-MM-DD) plus a freeform `when`
+  // like "Mon Jun 1 2026, 6-7am EST". There is no structured start/end
+  // field, so we parse the time window out of `when`. To avoid colliding
+  // with the date digits, we only parse the text after the last comma.
+  // Times are interpreted as US Eastern wall-clock and converted to real
+  // timestamps so the comparison is correct regardless of the viewer's
+  // own timezone. If a dated lead has no parseable time, it never shows
+  // as "live" (we will not guess a window) - it only appears in the
+  // Also-today list, and a default 60-min duration is applied when only
+  // a single start time is present.
+  // ------------------------------------------------------------------
+  function timePartOf(s) {
+    if (!s) return '';
+    var i = s.lastIndexOf(',');
+    return i >= 0 ? s.slice(i + 1) : s;
+  }
+
+  function to24(h, mi, mer) {
+    mer = (mer || '').toLowerCase();
+    if (mer === 'pm' && h !== 12) h += 12;
+    if (mer === 'am' && h === 12) h = 0;
+    return h * 60 + mi;
+  }
+
+  // Returns { startMin, endMin } in minutes-from-midnight, or null.
+  function parseWindow(str) {
+    if (!str) return null;
+    var range = str.match(/(\d{1,2})(?::(\d{2}))?\s*(am|pm)?\s*-\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)/i);
+    if (range) {
+      var startMer = range[3] || range[6];
+      var endMer = range[6] || range[3];
+      var start = to24(+range[1], +(range[2] || 0), startMer);
+      var end = to24(+range[4], +(range[5] || 0), endMer);
+      if (end <= start) end = start + DEFAULT_DURATION_MIN;
+      return { startMin: start, endMin: end };
+    }
+    var one = str.match(/(\d{1,2})(?::(\d{2}))?\s*(am|pm)/i);
+    if (one) {
+      var s1 = to24(+one[1], +(one[2] || 0), one[3]);
+      return { startMin: s1, endMin: s1 + DEFAULT_DURATION_MIN };
+    }
+    return null;
+  }
+
+  // Offset (ms) between US Eastern wall-clock and UTC at a given instant.
+  function tzOffset(ts) {
+    var dtf = new Intl.DateTimeFormat('en-US', {
+      timeZone: TZ, hour12: false,
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+    var p = {};
+    dtf.formatToParts(new Date(ts)).forEach(function (x) { p[x.type] = x.value; });
+    var hour = p.hour === '24' ? 0 : +p.hour;
+    var asUTC = Date.UTC(+p.year, +p.month - 1, +p.day, hour, +p.minute, +p.second);
+    return asUTC - ts;
+  }
+
+  // Convert a US Eastern wall-clock time to a real epoch ms timestamp.
+  function easternToTs(y, mo, d, h, mi) {
+    var guess = Date.UTC(y, mo - 1, d, h, mi);
+    return guess - tzOffset(guess);
+  }
+
+  // Today's date string (YYYY-MM-DD) in US Eastern.
+  function easternDateStr(ts) {
+    return new Intl.DateTimeFormat('en-CA', {
+      timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit'
+    }).format(new Date(ts));
+  }
+
+  // Attach computed timing to a dated lead. Returns null for undated leads.
+  function enrich(L) {
+    if (!L.date) return null;
+    var m = L.date.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!m) return null;
+    var y = +m[1], mo = +m[2], d = +m[3];
+    var w = parseWindow(timePartOf(L.when));
+    var out = Object.assign({}, L);
+    if (w) {
+      out._start = easternToTs(y, mo, d, Math.floor(w.startMin / 60), w.startMin % 60);
+      out._end = easternToTs(y, mo, d, Math.floor(w.endMin / 60), w.endMin % 60);
+      out._timed = true;
+    } else {
+      // No parseable time - sort key at midnight Eastern, but never "live".
+      out._start = easternToTs(y, mo, d, 0, 0);
+      out._end = out._start + 86400000;
+      out._timed = false;
+    }
+    return out;
+  }
+
+  // ------------------------------------------------------------------
+  // Sharing
+  // ------------------------------------------------------------------
+  function shareText(state, name) {
+    if (state === 'now') {
+      return "Tuning into ZABAL Gamez right now - " + name + " is live. The ZAO's 3-month Build-A-Thon, free and open to anyone. See what's on:";
+    }
+    if (state === 'next') {
+      return "Next up at ZABAL Gamez: " + name + ". The ZAO's 3-month Build-A-Thon - June workshops, July open build, August Finals. See what's on now:";
+    }
+    return "ZABAL Gamez is The ZAO's 3-month Build-A-Thon - June workshops, July open build, August Finals. Free, open to anyone. See what's on now:";
+  }
+
+  function tellFarcaster(text) {
+    if (window.ZABAL && typeof window.ZABAL.share === 'function') {
+      window.ZABAL.share({ platform: 'farcaster', text: text, url: LIVE_URL, target: 'live' });
+      return;
+    }
+    var url = 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text)
+            + '&embeds%5B%5D=' + encodeURIComponent(LIVE_URL) + '&channelKey=zabal';
+    var a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+
+  // ------------------------------------------------------------------
+  // Rendering helpers
+  // ------------------------------------------------------------------
+  function byLine(L) {
+    return esc(L.name) + (L.org ? ' - ' + esc(L.org) : '');
+  }
+  function trackBadge(L) {
+    var t = TRACKS[L.track];
+    if (!t) return '';
+    return '<span class="stage-track" style="border:1px solid var(--' + t.color + ');color:var(--' + t.color + ');">' + t.label + '</span>';
+  }
+  function rsvpBtn(L, cls, label) {
+    if (!L.luma_url) return '';
+    return '<a class="stage-btn ' + cls + '" href="' + esc(L.luma_url) + '" target="_blank" rel="noopener">' + label + '</a>';
+  }
+
+  function setPill(state) {
+    var pill = document.getElementById('live-pill');
+    var txt = document.getElementById('live-pill-text');
+    pill.className = 'live-pill' + (state === 'now' ? ' is-live' : state === 'next' ? ' is-next' : '');
+    txt.textContent = state === 'now' ? 'Live now' : state === 'next' ? 'Next up' : 'Standby';
+  }
+
+  function bindShare(state, name) {
+    var btn = document.getElementById('live-share-btn');
+    if (btn) btn.addEventListener('click', function () { tellFarcaster(shareText(state, name)); });
+  }
+
+  var EMPTY_HTML =
+    '<div class="stage-card empty">' +
+      '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Standby</div>' +
+      '<h2>No session live right now</h2>' +
+      '<p class="stage-meta">More June workshops are landing soon. Sessions are free, livestreamed, and recorded - RSVP on Lu.ma and we will let you know when the next one goes live.</p>' +
+      '<div class="season-strip">' +
+        '<div class="season-cell june"><div class="sc-month">June</div><h3>Workshops</h3><p>Recorded sessions on the tools and the ecosystem. Watch live or anytime.</p></div>' +
+        '<div class="season-cell july"><div class="sc-month">July</div><h3>Open build</h3><p>Build a project for the ecosystem with any tool. Ship in public.</p></div>' +
+        '<div class="season-cell august"><div class="sc-month">August</div><h3>Finals</h3><p>Finalists pair with ZAO mentors. Live reveal stream, prize pool, collectibles.</p></div>' +
+      '</div>' +
+      '<div class="stage-actions">' +
+        '<a class="stage-btn primary" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>' +
+        '<a class="stage-btn ghost" href="' + GROUP_URL + '" target="_blank" rel="noopener">Join /zabal group</a>' +
+        '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
+      '</div>' +
+    '</div>';
+
+  function renderNow(L) {
+    setPill('now');
+    document.getElementById('live-stage').innerHTML =
+      '<div class="stage-card now">' +
+        '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Live now</div>' +
+        '<h2>' + esc(L.topic || 'Workshop session') + '</h2>' +
+        '<p class="stage-by"><strong>' + byLine(L) + '</strong></p>' +
+        (L.format ? '<p class="stage-meta">' + esc(L.format) + '</p>' : '') +
+        '<p class="stage-when">' + esc(L.when || '') + '</p>' +
+        trackBadge(L) +
+        '<div class="stage-actions">' +
+          rsvpBtn(L, 'live', 'Watch on Lu.ma') +
+          '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
+        '</div>' +
+      '</div>';
+    bindShare('now', L.name);
+  }
+
+  function renderNext(L) {
+    setPill('next');
+    var cd = L._timed
+      ? '<div class="stage-countdown" id="live-countdown">' +
+          '<div class="cd-unit"><div class="cd-num" data-cd="d">--</div><div class="cd-lab">Days</div></div>' +
+          '<div class="cd-unit"><div class="cd-num" data-cd="h">--</div><div class="cd-lab">Hrs</div></div>' +
+          '<div class="cd-unit"><div class="cd-num" data-cd="m">--</div><div class="cd-lab">Min</div></div>' +
+          '<div class="cd-unit"><div class="cd-num" data-cd="s">--</div><div class="cd-lab">Sec</div></div>' +
+        '</div>'
+      : '';
+    document.getElementById('live-stage').innerHTML =
+      '<div class="stage-card next">' +
+        '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Next up</div>' +
+        '<h2>' + esc(L.topic || 'Workshop session') + '</h2>' +
+        '<p class="stage-by"><strong>' + byLine(L) + '</strong></p>' +
+        (L.format ? '<p class="stage-meta">' + esc(L.format) + '</p>' : '') +
+        '<p class="stage-when">' + esc(L.when || '') + '</p>' +
+        trackBadge(L) +
+        cd +
+        '<div class="stage-actions">' +
+          rsvpBtn(L, 'primary', 'RSVP on Lu.ma') +
+          '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
+        '</div>' +
+      '</div>';
+    bindShare('next', L.name);
+    if (L._timed) startCountdown(L._start);
+  }
+
+  function renderEmpty() {
+    setPill('empty');
+    document.getElementById('live-stage').innerHTML = EMPTY_HTML;
+    bindShare('empty', '');
+  }
+
+  // ------------------------------------------------------------------
+  // Countdown - ticks each second; on rollover, reloads to flip to LIVE.
+  // ------------------------------------------------------------------
+  var cdTimer = null;
+  function startCountdown(targetTs) {
+    if (cdTimer) { clearInterval(cdTimer); cdTimer = null; }
+    function set(sel, val) {
+      var el = document.querySelector('#live-countdown [data-cd="' + sel + '"]');
+      if (el) el.textContent = val < 10 ? '0' + val : '' + val;
+    }
+    function tick() {
+      var diff = targetTs - Date.now();
+      if (diff <= 0) {
+        clearInterval(cdTimer); cdTimer = null;
+        load(); // a session just started - re-evaluate NOW/NEXT
+        return;
+      }
+      set('d', Math.floor(diff / 86400000));
+      set('h', Math.floor((diff % 86400000) / 3600000));
+      set('m', Math.floor((diff % 3600000) / 60000));
+      set('s', Math.floor((diff % 60000) / 1000));
+    }
+    tick();
+    cdTimer = setInterval(tick, 1000);
+  }
+
+  // ------------------------------------------------------------------
+  // Today list
+  // ------------------------------------------------------------------
+  function renderToday(list) {
+    var sec = document.getElementById('today-sec');
+    var grid = document.getElementById('today-grid');
+    if (!list.length) { sec.style.display = 'none'; return; }
+    grid.innerHTML = list.map(function (L) {
+      var c = L.color || 'orange';
+      var rsvp = L.luma_url ? '<a class="tc-rsvp" href="' + esc(L.luma_url) + '" target="_blank" rel="noopener">RSVP on Lu.ma</a>' : '';
+      return '<div class="today-card" style="border-left-color: var(--' + c + ');">' +
+        '<div class="tc-when">' + esc(L.when || '') + '</div>' +
+        '<h3>' + esc(L.topic || 'Workshop session') + '</h3>' +
+        '<p>' + byLine(L) + '</p>' +
+        rsvp +
+        '</div>';
+    }).join('');
+    sec.style.display = '';
+  }
+
+  // ------------------------------------------------------------------
+  // Override banner (mirrors index.html's cta_override behavior)
+  // ------------------------------------------------------------------
+  function renderOverride(ov) {
+    if (!ov || !ov.active) return;
+    var wrap = document.getElementById('live-override');
+    var txt = document.getElementById('live-override-text');
+    var cta = document.getElementById('live-override-cta');
+    txt.textContent = ov.headline || '';
+    if (ov.event_url) { cta.href = ov.event_url; cta.textContent = ov.event_label || 'RSVP'; cta.style.display = ''; }
+    else { cta.style.display = 'none'; }
+    wrap.style.display = 'flex';
+  }
+
+  // ------------------------------------------------------------------
+  // Main load
+  // ------------------------------------------------------------------
+  function load() {
+    fetch('/data/workshop-leads.json', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var cal = d.luma_calendar;
+        if (cal) document.getElementById('live-cal').href = cal;
+        renderOverride(d.cta_override);
+
+        var now = Date.now();
+        var today = easternDateStr(now);
+        var dated = ((d && d.leads) || []).map(enrich).filter(Boolean);
+
+        // LIVE: a timed session whose window contains now.
+        var live = dated
+          .filter(function (L) { return L._timed && L._start <= now && now < L._end; })
+          .sort(function (a, b) { return a._start - b._start; })[0] || null;
+
+        // NEXT: soonest future session. Timed leads use their real start;
+        // undated-time future leads use midnight of their date as the key.
+        var next = dated
+          .filter(function (L) {
+            if (live && L === live) return false;
+            if (L._timed) return L._start > now;
+            return L.date > today; // untimed: only future days count as "next"
+          })
+          .sort(function (a, b) { return a._start - b._start; })[0] || null;
+
+        // TODAY: other sessions dated today, excluding the NOW + NEXT cards.
+        var todayList = dated.filter(function (L) {
+          return L.date === today && L !== live && L !== next;
+        }).sort(function (a, b) { return a._start - b._start; });
+
+        if (live) renderNow(live);
+        else if (next) renderNext(next);
+        else renderEmpty();
+
+        renderToday(todayList);
+      })
+      .catch(function () {
+        // Network/parse failure - fall back to the evergreen empty state.
+        renderEmpty();
+        document.getElementById('today-sec').style.display = 'none';
+      });
+  }
+
+  load();
+})();
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
