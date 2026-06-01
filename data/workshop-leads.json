@@ -43,7 +43,10 @@
     },
     {
       "id": "004",
-      "name": "Plat0x",
+      "name": "Joshua.eth",
+      "org": "Bonfire",
+      "handle": "@joshua.eth",
+      "co_host": "Plat0x",
       "topic": "Bonfire and the ZABAL Bonfire bot - point your agent at it to follow ZABAL Gamez in real time.",
       "format": "Livestreamed and recorded",
       "when": "Mon Jun 1 2026, 5-6pm EST",
@@ -128,6 +131,18 @@
       "status": "confirmed",
       "confirmed_date": "2026-05-30",
       "color": "orange"
+    },
+    {
+      "id": "011",
+      "name": "Plat0x",
+      "handle": "@plat0x",
+      "topic": "His own Bonfire builder session - going deeper on the ZABAL Bonfire and building on the graph.",
+      "format": "Livestreamed and recorded",
+      "when": "later this week - date TBD",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-01",
+      "color": "gold",
+      "track": "builder"
     }
   ],
   "_schema": {
@@ -135,6 +150,7 @@
     "name": "person's name",
     "org": "their org or project",
     "handle": "optional - Farcaster/X handle",
+    "co_host": "optional - co-presenter's name",
     "topic": "what they're teaching",
     "format": "session format (default: '30-min, livestreamed, recorded')",
     "when": "their chosen date or window",
@@ -150,8 +166,8 @@
   "cta_override": {
     "_comment": "manual override for the top CTA. active:true uses headline/event_url/event_label; active:false = auto (next dated workshop).",
     "active": true,
-    "headline": "ZABAL Gamez is live. Next workshop today: Plat0x on Bonfire and the ZABAL Bonfire bot, 5-6pm EST.",
+    "headline": "ZABAL Gamez is live. Today: Joshua.eth on Bonfire and the ZABAL Bonfire bot, with Plat0x, 5-6pm EST.",
     "event_url": "https://luma.com/y189qk8p",
-    "event_label": "RSVP: Plat0x, Jun 1"
+    "event_label": "RSVP: Joshua.eth and Plat0x, Jun 1"
   }
 }
