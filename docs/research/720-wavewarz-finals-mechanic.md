@@ -116,8 +116,8 @@ T+72h     SETTLEMENT. WaveWarZ-Base smart contract reads final volume +
             - Losing-pool partial split -> winning-pool
             - The $500 USDC pool maps to the prize-tier table (Doc 701
               Part 5) with positions resolved on-chain
-            - Hats Protocol "Finisher" NFT minted to every finalist
-            - Hats Protocol "Champion" NFT minted to top-3
+            - Magnetiq commemorative collectible (Finisher) for every finalist
+            - Magnetiq commemorative collectible (Champion) for top-3
           All on-chain in one settlement transaction.
 ```
 

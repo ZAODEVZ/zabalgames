@@ -70,22 +70,6 @@
       "audited_date": "2026-05-26"
     },
     {
-      "handle": "arthur-neynar",
-      "name": "Arthur",
-      "roles": ["core_builder", "workshop_lead"],
-      "headline": "Neynar - WaveWarZ-Base contract review + June workshop",
-      "bio": "Joined the WaveWarZ-Base team via the 2026-05-19 intro call. Reviewing smart contracts + providing agent-security references. Recording a June workshop session on the contracts. EVM-native, better with Base than Solana.",
-      "expertise_label": "SMART CONTRACTS",
-      "color": "gold",
-      "avatar_url": null,
-      "farcaster_url": null,
-      "x_url": null,
-      "site_url": "https://neynar.com",
-      "session_count": 1,
-      "session_topics": ["WaveWarZ-Base smart contracts + agent-security patterns"],
-      "audited_date": "2026-05-19"
-    },
-    {
       "handle": "hurric4n3ike",
       "name": "Hurric4n3Ike",
       "roles": ["core_builder", "partner"],
@@ -104,7 +88,7 @@
       "name": "Sam",
       "roles": ["core_builder"],
       "headline": "WaveWarZ-Base co-builder",
-      "bio": "Shipping the Base agentic version of WaveWarZ alongside Hurric4n3Ike + Arthur. Two smart contracts on testnet, mainnet-bound for July. Full handle + surname pending confirmation.",
+      "bio": "Shipping the Base agentic version of WaveWarZ alongside Hurric4n3Ike. Two smart contracts on testnet, mainnet-bound for July. Full handle + surname pending confirmation.",
       "expertise_label": "WAVEWARZ-BASE",
       "color": "cyan",
       "avatar_url": null,
