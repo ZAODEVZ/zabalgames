@@ -1384,7 +1384,16 @@
   var topRsvp = document.getElementById('top-cta-rsvp');
   var topCal = document.getElementById('top-cta-cal');
   var topCast = document.getElementById('top-cta-cast');
-  var ctaShareText = "ZABAL Gamez is live. The ZAO's 3-month Build-A-Thon - learn the tools, build something real, ship it. Free, any harness, three tracks. Come build with us.";
+  // Rotating first-person share casts - tap twice, get two different ones, so a feed
+  // never looks botted. Posts from the sharer's account into /zabal with the page embed.
+  var ctaShareVariants = [
+    "I'm building in ZABAL Gamez Season 1 - The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, any harness, pick your track. Come build with me.",
+    "Joining ZABAL Gamez Season 1 - The ZAO's 3-month Build-A-Thon for a 100+ creator community. Learn the tools in June, ship something real in July. Free, any harness. Build it with me.",
+    "I'm in for ZABAL Gamez Season 1 - The ZAO's 3-month Build-A-Thon. The build is the application: ship for a real community, a ZAO mentor as your teammate. Free, any harness. Come build.",
+    "ZABAL Gamez Season 1 is on and I'm building - The ZAO's 3-month Build-A-Thon. June learn, July build, August Finals. Free, any harness, three tracks. Pull up and build with me.",
+    "Doing ZABAL Gamez Season 1 - The ZAO's 3-month Build-A-Thon. Three doors: learn the tools, build something real, watch it ship. Free, any harness. Come build with me."
+  ];
+  var ctaShareIdx = Math.floor(Math.random() * ctaShareVariants.length);
   var ctaShareUrl = 'https://zabalgamez.com';
 
   fetch('/data/workshop-leads.json', { cache: 'no-store' })
@@ -1410,12 +1419,13 @@
       if (topText) topText.textContent = headline;
       if (topRsvp && eventUrl) { topRsvp.href = eventUrl; topRsvp.textContent = eventLabel; topRsvp.style.display = ''; }
       if (topCal && cal) { topCal.href = cal; topCal.style.display = ''; }
-      if (who) ctaShareText = "ZABAL Gamez is live. Next workshop: " + who + ". RSVP on Lu.ma and come build with The ZAO.";
     })
     .catch(function () {});
 
   if (topCast) {
     topCast.addEventListener('click', function () {
+      var ctaShareText = ctaShareVariants[ctaShareIdx % ctaShareVariants.length];
+      ctaShareIdx++;
       if (window.ZABAL && window.ZABAL.share) {
         window.ZABAL.share({ platform: 'farcaster', text: ctaShareText, url: ctaShareUrl, channelKey: 'zabal', target: 'top-cta' });
       } else {
