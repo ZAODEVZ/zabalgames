@@ -19,6 +19,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
+
+  <style>
+    /* Adoptable projects - maturity-sorted, brand-grouped. Reuses the arcade design system. */
+    .proj-mat-head { font-family: var(--font-pixel); font-size: 0.8rem; letter-spacing: 0.04em; margin: 2.6rem 0 0.2rem; color: var(--text); }
+    .proj-mat-head:first-of-type { margin-top: 0.6rem; }
+    .proj-mat-sub { display: block; font-family: 'Outfit', sans-serif; font-weight: 400; font-size: 0.82rem; color: var(--text-muted); letter-spacing: normal; margin-top: 0.35rem; }
+    .proj-brand-head { font-family: var(--font-pixel); font-size: 0.55rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin: 1.5rem 0 0.6rem; }
+    .proj-card-top { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin-bottom: 0.55rem; }
+    .proj-badge { font-family: var(--font-pixel); font-size: 0.48rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.34rem 0.52rem; border-radius: var(--r-pill); border: 1px solid var(--border-hover); line-height: 1; }
+    .proj-badge.m-shipped { color: var(--cyan); border-color: rgba(0,229,255,0.4); background: rgba(0,229,255,0.07); }
+    .proj-badge.m-working { color: var(--gold); border-color: rgba(245,200,66,0.4); background: rgba(245,200,66,0.07); }
+    .proj-badge.m-early { color: var(--orange); border-color: rgba(255,107,53,0.4); background: rgba(255,107,53,0.07); }
+    .proj-badge.m-concept { color: var(--zabal); border-color: rgba(167,139,250,0.4); background: rgba(167,139,250,0.07); }
+    .proj-badge.adopt { color: var(--text-muted); background: transparent; }
+    .proj-status { font-size: 0.68rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.04em; }
+    .proj-ship { font-size: 0.86rem; color: var(--text-muted); margin: 0.5rem 0 0.6rem; line-height: 1.5; }
+    .proj-ship b { font-family: var(--font-pixel); font-size: 0.5rem; letter-spacing: 0.06em; color: var(--gold); text-transform: uppercase; margin-right: 0.45rem; }
+    .proj-links { font-size: 0.82rem; display: flex; gap: 0.9rem; flex-wrap: wrap; }
+  </style>
 </head>
 <body>
 
@@ -43,17 +62,22 @@
     <div class="hero-eyebrow">Path 1 - Adopt a Project</div>
     <h1>Started ZAO Projects <span class="accent">Up for Grabs</span>.</h1>
     <p class="hero-sub">
-      You do not have to build from scratch. These are real, in-progress ZAO ecosystem projects that need a builder to pick them up and ship them forward. Adopt one in your July submission, OR build from scratch with the <a href="/llms.txt">context file</a>. Both paths count.
+      The real ZAO ecosystem build surface - sorted by how finished each project is, most-shipped first, grouped by brand. Adopt one for your build, or start fresh with the <a href="/llms.txt">context file</a>. Every path counts.
     </p>
   </header>
 
   <section class="section">
     <h2>How adoption works</h2>
     <p>
-      Pick a project. DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a> with the project number to claim it (first-come-first-served, one builder per project). You ship it for ZABAL Gamez Season 1 - keep the repo + the credit. The project stays open-source MIT.
+      The list is sorted by how finished each project is - shipped products at the top, ideas at the bottom - and grouped by ZAO brand within each tier. Three ways to adopt:
     </p>
     <p>
-      Status updates here as builders claim slots. Full curated list also in <a href="/llms.txt">llms.txt</a> for any AI harness to load.
+      - <strong>EXTEND</strong> - a live, shipped product. Build a new feature on top of it. The "ship next" line on each card is a concrete first one.<br>
+      - <strong>FORK</strong> - a starter repo or template you take over and own.<br>
+      - <strong>BUILD</strong> - a concept with no repo yet. Build it from scratch on the rail it names.
+    </p>
+    <p>
+      Pick one, DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a> with the project number to claim it (first-come-first-served, one builder per project). You keep the repo and the credit; it stays open-source MIT. Full set also in <a href="/llms.txt">llms.txt</a> for any AI harness to load.
     </p>
   </section>
 
@@ -68,6 +92,14 @@
   (function() {
     var listEl = document.getElementById('projects-list');
     var countEl = document.getElementById('proj-count');
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function(c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    var MAT = {
+      shipped: { label: 'SHIPPED', sub: 'Live and working - adopt and extend it' },
+      working: { label: 'WORKING', sub: 'Real code that runs - build on it' },
+      early:   { label: 'EARLY',   sub: 'Scaffold or MVP - shape it and ship it' },
+      concept: { label: 'CONCEPT', sub: 'An idea on existing rails - build it from scratch' }
+    };
     fetch('/data/adoptable-projects.json', { cache: 'no-cache' })
       .then(function(r) { return r.json(); })
       .then(function(data) {
@@ -77,31 +109,47 @@
           listEl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No projects in the list yet.</p>';
           return;
         }
-        listEl.innerHTML = projects.map(function(P) {
-          var color = P.color || 'orange';
-          var statusBadge = P.status === 'claimed'
-            ? '<span style="background: rgba(0,229,255,0.12); color: var(--cyan); padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; margin-left: 0.5rem;">claimed by ' + (P.claimed_by || '@?') + '</span>'
-            : P.status === 'shipped'
-            ? '<span style="background: rgba(34,197,94,0.12); color: #22c55e; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; margin-left: 0.5rem;">shipped</span>'
-            : '';
-          // 10-16 are whole-repo adoptions (you write the spec); 01-09 are stack features.
-          var idNum = parseInt(P.id, 10);
-          var typeBadge = idNum >= 10
-            ? '<span style="background: rgba(245,166,35,0.12); color: var(--gold); padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; margin-left: 0.5rem; border: 1px solid rgba(245,166,35,0.3);">starter repo</span>'
-            : '';
-          var specLink = P.spec_url
-            ? 'Spec: <a href="' + P.spec_url + '">' + (P.spec_label || 'docs') + '</a>'
-            : '';
-          return '<div class="card">' +
-            '<div class="card-label" style="color: var(--' + color + ');">' + P.id + '</div>' +
-            '<h3>' + P.name + statusBadge + typeBadge + '</h3>' +
-            '<p>' + P.description + '</p>' +
-            '<div class="card-meta">' + specLink + '</div>' +
-            '</div>';
-        }).join('');
+        var matOrder = data.maturity_order || ['shipped', 'working', 'early', 'concept'];
+        var brandOrder = data.brand_order || [];
+        var html = '';
+        matOrder.forEach(function(mat) {
+          var inMat = projects.filter(function(p) { return p.maturity === mat; });
+          if (!inMat.length) return;
+          var m = MAT[mat] || { label: String(mat).toUpperCase(), sub: '' };
+          html += '<h3 class="proj-mat-head">' + m.label + '<span class="proj-mat-sub">' + m.sub + '</span></h3>';
+          var brands = brandOrder.filter(function(b) { return inMat.some(function(p) { return p.brand === b; }); });
+          inMat.forEach(function(p) { if (brands.indexOf(p.brand) === -1) brands.push(p.brand); });
+          brands.forEach(function(brand) {
+            var inBrand = inMat.filter(function(p) { return p.brand === brand; });
+            if (!inBrand.length) return;
+            html += '<div class="proj-brand-head">' + esc(brand) + '</div>';
+            inBrand.forEach(function(P) {
+              var color = P.color || 'orange';
+              var status = P.status === 'claimed'
+                ? '<span class="proj-status">claimed by ' + esc(P.claimed_by || '@?') + '</span>'
+                : P.status === 'shipped' ? '<span class="proj-status">shipped</span>' : '';
+              var links = [];
+              if (P.repo) links.push('<a href="' + esc(P.repo) + '" target="_blank" rel="noopener">repo</a>');
+              if (P.live) links.push('<a href="' + esc(P.live) + '" target="_blank" rel="noopener">live</a>');
+              if (P.spec_url && P.spec_url !== P.repo) links.push('<a href="' + esc(P.spec_url) + '">' + esc(P.spec_label || 'spec') + '</a>');
+              html += '<div class="card proj-card" style="border-left: 3px solid var(--' + color + ');">' +
+                '<div class="proj-card-top">' +
+                  '<span class="proj-badge m-' + esc(P.maturity) + '">' + esc(P.maturity) + '</span>' +
+                  (P.adopt_type ? '<span class="proj-badge adopt">' + esc(P.adopt_type) + '</span>' : '') +
+                  status +
+                '</div>' +
+                '<h3>' + esc(P.name) + '</h3>' +
+                '<p>' + esc(P.description) + '</p>' +
+                (P.ship_next ? '<p class="proj-ship"><b>ship next</b>' + esc(P.ship_next) + '</p>' : '') +
+                (links.length ? '<div class="proj-links">' + links.join(' ') + '</div>' : '') +
+                '</div>';
+            });
+          });
+        });
+        listEl.innerHTML = html;
       })
       .catch(function() {
-        listEl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">List unavailable right now - see <a href="/llms.txt">llms.txt</a> for the full curated set.</p>';
+        listEl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">List unavailable right now - see <a href="/llms.txt">llms.txt</a> for the full set.</p>';
       });
   })();
   </script>
@@ -119,7 +167,7 @@
   <section class="section">
     <h2>Claim a project</h2>
     <p>
-      DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a> on Farcaster with the project number (01-08) and a one-line "why you." First-come-first-served. We confirm in DM and announce on <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>.
+      DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a> on Farcaster with the project number and a one-line "why you." First-come-first-served. We confirm in DM and announce on <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>.
     </p>
   </section>
 
