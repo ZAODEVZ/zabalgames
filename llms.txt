@@ -295,6 +295,8 @@ A curated list of started / in-progress ZAO projects builders can pick up and ru
 
 Build anything that helps the ZAO community. Tie it to existing ZAO rails (Empire Builder, Farcaster, Hats, Bonfire, EAS, Coinflow, Hypersub). Composability is the point - do not reinvent identity, leaderboards, or attestations.
 
+Test with a general-market call-to-action, not just insiders. A cozy corner of Farcaster users trying your app is not product-market fit - it is the trap that stalls most builds. Aim the build at someone outside The ZAO and watch whether they stick. The strongest July submissions prove pull beyond the people who already know you.
+
 Suggestion sparks (non-binding):
 - A Farcaster mini app for [some specific job-to-be-done in the ZAO ecosystem]
 - A bot that ingests [some signal] and posts to a ZAO surface

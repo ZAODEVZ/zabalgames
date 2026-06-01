@@ -7576,7 +7576,7 @@
         "export_formats": "Canvas, OWL, Markdown (open standards, no vendor lock-in)",
         "zao_instance": "zabal.bonfires.ai (254 entities, 322+ edges as of 2026-05-24)",
         "github_org": "NERDDAO (15+ repos, source: github.com/NERDDAO/bonfires-sdk)",
-        "founders": "Joshua.eth, Ryan (Rskagy on Telegram, active ZAO Civilization GC)",
+        "founder": "Joshua.eth (founder). Carlos (Plat0x) is the technical architect; Ryan (Rskagy on Telegram, active ZAO Civilization GC) is associated and authors the Bonfires SDK.",
         "zao_adoption": "Production-active - queryable depth for agent memory + reputation scoring",
         "entity_depth": "Multi-hop relationships across ZAO ecosystem (tools, people, orgs, governance)",
         "pull_mechanism": "graph dump at data/bonfire-graph.json, pushed via node scripts/push-to-bonfire.mjs (needs BONFIRE_API_KEY)",
