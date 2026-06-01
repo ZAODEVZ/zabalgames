@@ -66,6 +66,65 @@
       "track": "creator",
       "date": "2026-06-02",
       "luma_url": "https://luma.com/xa3bsp21"
+    },
+    {
+      "id": "006",
+      "name": "Adrian",
+      "org": "Empire Builder",
+      "handle": "@diviflyy",
+      "topic": "Empire Builder API workshop - V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.",
+      "format": "recorded API workshop",
+      "when": "June - date TBD",
+      "status": "confirmed",
+      "confirmed_date": "2026-05-26",
+      "color": "cyan",
+      "track": "builder"
+    },
+    {
+      "id": "007",
+      "name": "Duo Do",
+      "org": "Clementine + Santiago",
+      "topic": "Musician on Farcaster, and the road to Farcon.",
+      "format": "pre-recorded talk plus live Q and A",
+      "when": "first week of June - date TBD",
+      "status": "confirmed",
+      "confirmed_date": "2026-05-23",
+      "color": "pink",
+      "track": "artist"
+    },
+    {
+      "id": "008",
+      "name": "Jonathan Colton",
+      "org": "FounderCheck",
+      "topic": "Two talks - FounderCheck (founder validation), and propagating your work on Farcaster as a developer.",
+      "format": "two sessions, livestreamed and recorded",
+      "when": "June - dates TBD",
+      "status": "confirmed",
+      "confirmed_date": "2026-05-28",
+      "color": "gold",
+      "track": "creator"
+    },
+    {
+      "id": "009",
+      "name": "kmac.eth",
+      "handle": "@kmac.eth",
+      "topic": "Farcaster Snaps - building and shipping interactive Snaps.",
+      "format": "30 min, livestreamed and recorded",
+      "when": "June - date TBD",
+      "status": "confirmed",
+      "confirmed_date": "2026-05-30",
+      "color": "zabal",
+      "track": "builder"
+    },
+    {
+      "id": "010",
+      "name": "Cassie",
+      "topic": "Topic TBD - recruited by kmac for a June presentation.",
+      "format": "30 min, livestreamed and recorded",
+      "when": "June - date TBD",
+      "status": "confirmed",
+      "confirmed_date": "2026-05-30",
+      "color": "orange"
     }
   ],
   "_schema": {
