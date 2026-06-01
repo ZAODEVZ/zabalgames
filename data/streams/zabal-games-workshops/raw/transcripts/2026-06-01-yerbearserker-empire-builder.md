@@ -10,6 +10,7 @@ co_host: diviflyy (Adrian) - co-founder, Empire Builder
 host: Zaal
 date: 2026-06-01T00:00:00.000Z
 format: video-livestream-workshop
+thumbnail: /assets/workshops/2026-06-01-yerbearserker-empire-builder.png
 language: en
 track: builder
 topics:

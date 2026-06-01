@@ -39,7 +39,8 @@
       "color": "cyan",
       "track": "builder",
       "date": "2026-06-01",
-      "luma_url": "https://luma.com/7nfside5"
+      "luma_url": "https://luma.com/7nfside5",
+      "thumbnail": "/assets/workshops/2026-06-01-yerbearserker-empire-builder.png"
     },
     {
       "id": "004",
@@ -55,7 +56,8 @@
       "color": "gold",
       "track": "builder",
       "date": "2026-06-01",
-      "luma_url": "https://luma.com/y189qk8p"
+      "luma_url": "https://luma.com/y189qk8p",
+      "thumbnail": "/assets/workshops/2026-06-01-bonfire-josh-plat0x.png"
     },
     {
       "id": "005",
@@ -160,7 +162,8 @@
     "color": "ZAO palette key: orange | cyan | gold | pink | zabal",
     "track": "optional - artist | builder | creator. Shows a colored track badge on the schedule when set.",
     "date": "optional - YYYY-MM-DD start date; the top CTA auto-picks the earliest upcoming dated lead",
-    "luma_url": "optional - per-event Luma invite link (used by the top CTA RSVP button + schedule)"
+    "luma_url": "optional - per-event Luma invite link (used by the top CTA RSVP button + schedule)",
+    "thumbnail": "optional - /assets path to the workshop thumbnail image"
   },
   "luma_calendar": "https://luma.com/zao",
   "cta_override": {
