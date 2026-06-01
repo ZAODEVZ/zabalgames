@@ -13,7 +13,7 @@
       "date": "2026-05-29",
       "title": "Validation-driven homepage: framing, one-tap join, social proof, shareable facts",
       "type": "feat",
-      "description": "Acting on the FounderCheck validation. Homepage hero reframed to the validated positioning (build for a real community, not win a weekend and disappear; not a video-game contest) with a de-risk line (pick one door, finishers paid + Hats NFT). One-tap Join with Farcaster via Quick Auth (api/join.mjs, KV-deduped per FID) with a live builders-joined counter and proof badges. New ZABAL Gamez facts stream: verified facts on the timeline, each one-tap shareable into /zabal as the growth loop.",
+      "description": "Acting on the FounderCheck validation. Homepage hero reframed to the validated positioning (build for a real community, not win a weekend and disappear; not a video-game contest) with a de-risk line (pick one door, finishers paid + a commemorative collectible). One-tap Join with Farcaster via Quick Auth (api/join.mjs, KV-deduped per FID) with a live builders-joined counter and proof badges. New ZABAL Gamez facts stream: verified facts on the timeline, each one-tap shareable into /zabal as the growth loop.",
       "links": [
         {"label": "Home", "url": "/"},
         {"label": "Streams", "url": "/streams"},
