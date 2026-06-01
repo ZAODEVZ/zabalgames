@@ -84,6 +84,7 @@
       "id": "007",
       "name": "Duo Do",
       "org": "Clementine + Santiago",
+      "handle": "@duodomusica",
       "topic": "Musician on Farcaster, and the road to Farcon.",
       "format": "pre-recorded talk plus live Q and A",
       "when": "first week of June - date TBD",
@@ -96,6 +97,7 @@
       "id": "008",
       "name": "Jonathan Colton",
       "org": "FounderCheck",
+      "handle": "@jonathancolton",
       "topic": "Two talks - FounderCheck (founder validation), and propagating your work on Farcaster as a developer.",
       "format": "two sessions, livestreamed and recorded",
       "when": "June - dates TBD",
@@ -119,6 +121,7 @@
     {
       "id": "010",
       "name": "Cassie",
+      "handle": "@cassie",
       "topic": "Topic TBD - recruited by kmac for a June presentation.",
       "format": "30 min, livestreamed and recorded",
       "when": "June - date TBD",

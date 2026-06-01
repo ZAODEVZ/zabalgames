@@ -663,6 +663,19 @@
       "status": "open",
       "spec_url": "/docs/research/701-canonical-state.md",
       "spec_label": "Doc 701"
+    },
+    {
+      "id": "45",
+      "name": "ZABAL Gamez GitHub-auth judging system",
+      "brand": "ZABAL Gamez",
+      "maturity": "concept",
+      "adopt_type": "BUILD",
+      "description": "The July judging rail. Signup links a wallet or Farcaster identity to a GitHub account (multiple accounts OK). A skill file pushes a builder's work to GitHub with their wallet in an MD file and makes one call to a register server that keeps a wallet-to-repo map; a cron turns new commits into Bonfire episodes scored by value to the ZAO ecosystem. Rolling admission, built in public.",
+      "ship_next": "Build the register server - a wallet-to-repo map plus one endpoint the skill file calls - and the cron that turns new commits into scored Bonfire episodes.",
+      "color": "gold",
+      "status": "open",
+      "spec_url": "/docs/meetings-synthesis-2026-05-30.md",
+      "spec_label": "Synthesis 05-30"
     }
   ]
 }
