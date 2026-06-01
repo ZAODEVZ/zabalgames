@@ -72,9 +72,21 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
 - Work happens from web AND terminal sessions. ALWAYS `git fetch origin --prune` +
   `git pull --ff-only origin main` at the start of a session - commits have been
   stranded and storage decisions have diverged when this was skipped.
-- Branch as `ws/<short-name>` off main. Push ALL commits, THEN open the PR, and confirm
-  the branch is even with what you intend to merge. The user merges PRs via GitHub.
-- After a merge, re-sync main before new work.
+- Branch as `ws/<short-name>` off main. One PR = one finished unit of work.
+- BEFORE EVERY commit or push, confirm the current branch's PR is still OPEN. Run
+  `gh pr view <branch> --json state,number`. If it returns MERGED or CLOSED - or you
+  are on `main` - STOP and branch fresh off updated main. Pushing onto an
+  already-merged branch silently strands the commits: they build as Vercel Previews
+  and look shipped, but never reach production. This is the single most common way
+  work gets lost in this repo (happened on PR #54: the PR merged ~2 min after it was
+  opened, and the next two commits pushed to the dead branch never made it to main).
+- Do NOT open the PR until ALL commits for the unit are pushed. Once a PR is open,
+  do NOT keep pushing new work to that branch - the user can merge at any moment. A
+  follow-up request after a PR exists is a NEW branch off fresh main, not more commits
+  on the old one.
+- Push ALL commits, THEN open the PR, and confirm the branch is even with what you
+  intend to merge. The user merges PRs via GitHub.
+- After a merge, re-sync main before new work. Never reuse a merged branch.
 
 ## Validate before pushing (no test suite)
 - JSON: `for f in $(git ls-files '*.json'); do node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" || echo BAD $f; done`
