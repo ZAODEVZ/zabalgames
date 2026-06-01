@@ -82,6 +82,12 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
 - Inline HTML JS: extract `<script>...</script>` blocks and `new Function(body)` each.
 - Manifest payload must decode to `{"domain":"zabalgamez.com"}`.
 
+## 3-month roadmap
+The full June -> July -> August prep plan lives in `docs/season-1-roadmap-3month.md` -
+every phase task split into `[OWNER]` (DMs, dates, assets) vs `[BUILD]` (repo work), with a
+"what ready means" bar per phase. Read it for the arc; the list below is the near-term
+owner-action subset.
+
 ## What's left (not code-blocked - owner actions)
 1. Magnetiq magnet - upload the 8 ZAO brand mementos + the collectible video (paste-ready
    copy in `docs/magnetiq-zabal-gamez-collectible-page.md` + `docs/magnetiq-mementos-zao-brands-2026-05-28.md`).
