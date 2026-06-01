@@ -17,7 +17,7 @@ ZM
 First ZABAL Gamez workshop is today. @yerbearserker on Empire Builder - leaderboards, Empires, token mechanics, and why they matter for your build. 6-7am EST, livestreamed and recorded. Free: luma.com/7nfside5
 ```
 
-`[211 chars] - tag @yerbearserker - link luma.com/7nfside5`
+`[213 chars] - tag @yerbearserker - link luma.com/7nfside5`
 
 ---
 
@@ -29,7 +29,7 @@ Quote-cast onto the pinned launch thread.
 Next up today: @plat0x on Bonfire and the ZABAL Bonfire bot - point your agent at it and follow ZABAL Gamez in real time. 5-6pm EST, livestreamed and recorded. Free: luma.com/y189qk8p
 ```
 
-`[211 chars] - tag @plat0x - link luma.com/y189qk8p`
+`[183 chars] - tag @plat0x - link luma.com/y189qk8p`
 
 ---
 
@@ -41,7 +41,7 @@ Reply to the midday Plat0x cast above.
 Live in 30: @plat0x on Bonfire and the ZABAL Bonfire bot. Point your agent at it and follow ZABAL Gamez in real time. 5-6pm EST. luma.com/y189qk8p
 ```
 
-`[137 chars] - tag @plat0x - link luma.com/y189qk8p`
+`[146 chars] - tag @plat0x - link luma.com/y189qk8p`
 
 ---
 
