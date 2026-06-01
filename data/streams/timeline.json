@@ -22,6 +22,15 @@
     {
       "stream": "zabal-games-workshops",
       "timestamp": "2026-06-01",
+      "kind": "session",
+      "title": "Workshop 1 - yerbearserker on Empire Builder",
+      "summary": "The first official ZABAL Gamez workshop. yerbearserker (Jordan Oram), co-founder of Empire Builder, walks builders through Empire Builder V3 and the message: do not launch a token until you are ready. Covers the Triple-A framework (Assemble, Affirm, Ascend), the tokenless Empire, leaderboards, boosters, staking and tactical generosity, then stands up a tokenless ZABAL Gamez Empire live.",
+      "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
+      "raw_ref": "data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md"
+    },
+    {
+      "stream": "zabal-games-workshops",
+      "timestamp": "2026-06-01",
       "kind": "milestone",
       "title": "Season 1 begins - workshop month opens",
       "summary": "Insert Coin. June is workshop month - ZAO builders record ~30-min sessions on the tools they have built, landing in the Magnetiq portal.",
