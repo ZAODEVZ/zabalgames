@@ -37,7 +37,7 @@ Builders get:
 - A share of the $500 USDC pool (sponsored by the ZAO festivals team) plus the 1%
   WaveWarZ trade cut that keeps flowing to the builder after the Finals.
 - Respect - The ZAO's soulbound governance signal - earned during the event.
-- A Hats Protocol Finisher NFT, on Base.
+- A commemorative collectible on Magnetiq for everyone who ships.
 - ZAO distribution and amplification behind their ship, and a repo they keep.
 
 The ZAO gets:
@@ -65,8 +65,8 @@ or Discord.
 ## Proof points (grounded - keep these honest)
 
 - Three months, three doors: workshops (June), open build (July), Finals (August).
-- $500 USDC v0 pool, sponsored by the ZAO festivals team. Hats Finisher NFT for every
-  finisher. Sponsor inquiries: info@thezao.com.
+- $500 USDC v0 pool, sponsored by the ZAO festivals team. A commemorative collectible
+  for every finisher. Sponsor inquiries: info@thezao.com.
 - Finals placement settles through the WaveWarZ-Base prediction market, with a Respect
   baseline (fallback: Respect 1p1v if WaveWarZ-Base is not mainnet-ready).
 - Lineage: the Farcaster Agentic Bootcamp fed FarHack, where Zaal/Zlank won the Snap

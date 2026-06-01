@@ -45,14 +45,14 @@ ZAO's rails. It is an event and an onboarding funnel, not a SaaS.
      (opt-in, selected builds only). A builder can do one door.
    - [proven] 90+ weeks of sustained weekly participation shows the community tolerates
      long engagement.
-   - Completion is incentivised: every finisher gets paid and a Hats NFT; Respect
-     (up to 1000 points) is earned during the event.
+   - Completion is incentivised: every finisher gets paid and a commemorative
+     collectible; Respect (up to 1000 points) is earned during the event.
    - Mentor-as-teammate (not judge) structurally reduces dropout.
 
 3. "Prize pool is small vs other builder programs."
    - $500 USDC is the floor, not the comp. Total builder value: the pool + the 1%
      WaveWarZ trade-volume cut that keeps flowing to the builder after the Finals + a
-     Hats Finisher NFT + Respect (soulbound governance weight) + ZAO distribution +
+     commemorative collectible + Respect (soulbound governance weight) + ZAO distribution +
      a repo they keep and the credit.
    - Most programs give a one-time prize and nothing after. Here the ongoing economics
      and ownership are the draw; the cash is a bonus.
@@ -94,7 +94,7 @@ you to run the experiment. Honest read per dimension at 7.2:
   already shipped, not by claiming demand:
   - One-tap Sign In With Farcaster on the signup form (built) - identity auto-prefilled,
     near-zero signup friction.
-  - Every finisher is paid and gets a Hats NFT - removes the "what if I get nothing" risk.
+  - Every finisher is paid and gets a commemorative collectible - removes the "what if I get nothing" risk.
   - Three doors, and July can be a weekend - shrinks the perceived ask.
   - Social proof: the FarHack Snap win, named confirmed workshop leads, and a live
     presence feed showing who is building right now.
