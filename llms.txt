@@ -276,9 +276,38 @@ const user = await client.lookupUserByVerifiedAddress({ address });
 
 ---
 
+## How to enter July (the build-a-thon)
+
+July is the open build month. Rolling admission, built in public. The entry flow (the
+GitHub-auth judging rail) works like this:
+
+1. **Sign up.** Connect a wallet or Farcaster identity, then authenticate a GitHub account.
+   Multiple GitHub accounts are fine. Signup links {identity -> GitHub}.
+2. **Build in public, on GitHub.** Ship a real build for the ZAO ecosystem. A skill file
+   pushes your work to GitHub with your wallet address in a Markdown file, and makes one call
+   to a register server that keeps a {wallet -> repo} map. (Register server is being built -
+   project #45; the exact skill-file install lands when it ships.)
+3. **Get indexed + scored.** A cron turns your new commits into Bonfire knowledge-graph
+   episodes, scored by value to the ZAO ecosystem. You do not submit once at a deadline - you
+   build in the open and the graph picks it up as you go.
+4. **Rolling admission.** The strongest July builds advance to the August Finals, each paired
+   with a ZAO mentor as embedded teammate.
+
+You can also play the **knowledge game** alongside code: write REPORTS (Markdown) about the
+ZAO ecosystem to GitHub. Reports are indexed into the same graph; the score is how often the
+agent's daily summaries cite your report. See docs/july-knowledge-game-2026-07-01.md.
+
+A submission still needs the four basics to count as a finished build: live URL + open-source
+GitHub repo + 60-second demo + a cast on /zabal. See the submission bar below.
+
 ## Build paths
 
 ### Path 1 - Adopt a started ZAO project
+
+Pick one of the started / in-progress ZAO projects and ship it forward. The full, current,
+maturity-sorted list (shipped products to fresh ideas, grouped by brand, with a concrete
+"ship next" for each) is at zabalgamez.com/projects (source: data/adoptable-projects.json).
+A few examples:
 
 A curated list of started / in-progress ZAO projects builders can pick up and run with. Adopt one and ship it forward. (List below is a candidate list pending final confirmation - check Doc 701 Part 4 for current.)
 
@@ -305,7 +334,9 @@ Suggestion sparks (non-binding):
 - A wallet / agent flow that [does something onchain]
 
 ### What "good" looks like (judging rubric)
-ZAO members with Respect vote 1-person-1-vote on which build best serves the ecosystem. Implicit criteria:
+July builds are scored by value to the ZAO ecosystem and indexed into the knowledge graph; the
+August Finals settle through the WaveWarZ-Base hybrid (market price + a Respect-holder baseline
+allocation across a 72h trade window, not pure 1-person-1-vote). Implicit criteria either way:
 1. **Does it work?** Deployed, demoable, no crashes. Voters click your link.
 2. **Is it ZAO-native?** Plugs into real rails (ZABAL, Empire, Farcaster, Hats, Bonfire, EAS, Coinflow, Hypersub). More rails wired = more votes.
 3. **Would I use this?** ZABAL holders vote for things they would open again next week.
