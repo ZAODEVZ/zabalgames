@@ -1384,7 +1384,7 @@
   var topRsvp = document.getElementById('top-cta-rsvp');
   var topCal = document.getElementById('top-cta-cal');
   var topCast = document.getElementById('top-cta-cast');
-  var ctaShareText = "ZABAL Gamez is live. The ZAO's 3-month Build-A-Thon - learn the tools, build something real, ship it. Free, any harness, three tracks. Come build with us.";
+  var ctaShareText = "Putting you onto ZABAL Gamez - The ZAO's 3-month Build-A-Thon for a 100+ creator community. June workshops, July open build, August Finals. Free, any harness, three tracks. The build is the application.";
   var ctaShareUrl = 'https://zabalgamez.com';
 
   fetch('/data/workshop-leads.json', { cache: 'no-store' })
@@ -1410,7 +1410,7 @@
       if (topText) topText.textContent = headline;
       if (topRsvp && eventUrl) { topRsvp.href = eventUrl; topRsvp.textContent = eventLabel; topRsvp.style.display = ''; }
       if (topCal && cal) { topCal.href = cal; topCal.style.display = ''; }
-      if (who) ctaShareText = "ZABAL Gamez is live. Next workshop: " + who + ". RSVP on Lu.ma and come build with The ZAO.";
+      if (who) ctaShareText = "Putting you onto ZABAL Gamez - The ZAO's 3-month Build-A-Thon. Next workshop: " + who + ". Free and recorded, RSVP on Lu.ma.";
     })
     .catch(function () {});
 
