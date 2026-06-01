@@ -62,8 +62,8 @@ link. Tag the leads in their own session posts (you tag per-network in Firefly).
 **Post 7 - session   [113]   link: luma.com/xa3bsp21   |   tag @ohnahji**
 > @ohnahji on live streaming - how to start and grow your own stream. Tue Jun 2, 5-6pm EST. RSVP: luma.com/xa3bsp21
 
-**Post 8 - what you can build   [153]   link: zabalgamez.com/projects**
-> Not sure what to build? 17 started ZAO projects are up for adoption - pick one and ship it forward, or bring your own. Full list: zabalgamez.com/projects
+**Post 8 - what you can build   [227]   link: zabalgamez.com/projects**
+> Not sure what to build? Dozens of started ZAO projects are up for adoption, sorted by how built-out they are - shipped products to fresh ideas. Pick one and ship it forward, or bring your own. Full list: zabalgamez.com/projects
 
 **Post 9 - teach a session   [183]   link: cal.com/zabal-gamez/workshop-session**
 > Built something worth teaching? Lead a 30-min June workshop. Cast credit on launch and reveal, and your session lives in the library. Grab a slot: cal.com/zabal-gamez/workshop-session
