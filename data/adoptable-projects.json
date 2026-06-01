@@ -676,6 +676,19 @@
       "status": "open",
       "spec_url": "/docs/meetings-synthesis-2026-05-30.md",
       "spec_label": "Synthesis 05-30"
+    },
+    {
+      "id": "46",
+      "name": "July knowledge-game report scorer",
+      "brand": "ZABAL Gamez",
+      "maturity": "concept",
+      "adopt_type": "BUILD",
+      "description": "The July knowledge game. Builders write reports (Markdown) to GitHub about the ZAO ecosystem; reports are indexed into the Bonfire graph; the agent's daily summary cites the reports it drew from. The score is citations - whose reports get used most. Pairs with the judging system (#45) and seeds the graph the agent runs on.",
+      "ship_next": "Build the citation counter - parse the daily-summary agent output for report citations, tally per report and per author, and publish a standings JSON (exclude self-citations).",
+      "color": "gold",
+      "status": "open",
+      "spec_url": "/docs/july-knowledge-game-2026-07-01.md",
+      "spec_label": "Knowledge Game"
     }
   ]
 }
