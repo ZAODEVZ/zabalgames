@@ -8,17 +8,18 @@
 
 ## The short version
 
-FounderCheck took ZABAL Gamez from a **3.35 BLOCK** to a **7.2 RETHINK** (latest live read
-nudging Reach to 7.5) - and, just as usefully, it refused to inflate past that until we run
-a real cold-demand test. The number going up taught me one thing; the number refusing to go
-up taught me a more important one.
+FounderCheck took ZABAL Gamez from a **3.35 BLOCK** to a **7.8 TEST FIRST** across three
+runs - and, just as usefully, it refused to inflate past that until we run a real
+cold-demand test. The number going up taught me one thing; the number refusing to go up
+taught me a more important one.
 
 | Run | Score | Gate | What it actually did for me |
 |---|---|---|---|
-| Update 1 - first run | 3.35 | BLOCK | Caught that my materials read as the **wrong product** |
-| Update 2 - after reframe + evidence | 7.2 (Reach now 7.5) | RETHINK | Named the **one** assumption blocking the gate and designed the test for it |
+| 1 - first run | 3.35 | BLOCK | Caught that my materials read as the **wrong product** |
+| 2 - after reframe + evidence | 7.2 | RETHINK | Named the **one** assumption blocking the gate and designed the test for it |
+| 3 - after shipping its fixes | 7.8 | TEST FIRST | Ease of sale 6.5 -> 8.0 once I surfaced the tiny first ask on-site; now parked until the cold test returns |
 
-That is roughly a +3.85 swing, but the swing is not the point - what each gate taught me is.
+That is a +4.45 swing (3.35 -> 7.8), but the swing is not the point - what each gate taught me is.
 
 ## Update 1: the BLOCK that was secretly the most useful read
 
@@ -48,13 +49,28 @@ Fed the right product and real evidence, it landed at **7.2, RETHINK**, with:
 
 The thing I want you to know it did well: a RETHINK at 7.2 with three strong dimensions is
 **not** "weak idea." It is "de-risk one assumption." It told me precisely which one:
-**pull-demand from cold builders is unproven.** Everything scoring well - 90+ weeks of
+**pull-demand from cold builders is unproven.** Everything scoring well - 100+ weeks of
 weekly Respect, 65+ repos, volunteering workshop leads, the FarHack Snap win - is warm:
 people already in the ZAO orbit. FounderCheck would not credit strangers until strangers
 showed up. And it would not let me talk the number up - it held at TEST FIRST.
 
 That refusal is the feature. It kept me honest and stopped me optimizing share copy when
 the real gap was evidence.
+
+## Update 3: the fix that actually moved a number (6.5 -> 8.0)
+
+This is the part worth the most to you as proof the loop works. FounderCheck pinned ease of
+sale as my lowest dimension (6.5) and was specific about why: I was reading the *3-month
+arc* as the *ask*. So I shipped its prescription on-site - made the primary call-to-action
+the tiny first ask (one free 30-minute recorded workshop), surfaced the ongoing economics
+("keep a cut + Respect + distribution") in "What you walk away with," and added a one-line
+objection-killer near the hero (enter at any door). Re-ran it. **Ease of sale went 6.5 ->
+8.0, overall 7.2 -> 7.8.**
+
+That is the whole pitch for the tool in one move: it gave a concrete, on-site fix - not a
+vibe - I shipped it, and the number moved the predicted direction. The dimensions it could
+not move (cold pull-demand, July dropout) it correctly held at TEST FIRST, because those are
+data I do not have yet.
 
 ## What FounderCheck concretely did for me (the value, named)
 
@@ -90,10 +106,11 @@ ZABAL Gamez is a clean worked example for a builder audience. The arc:
 
 ## Where it stands, honestly
 
-The cold-DM experiment is specced and pre-committed but **not yet run**. So the 7.2 is real
-and so is the gap. Next is to run the 30 DMs, capture a cold conversion, 3-5 verbatim pain
-quotes, and one stranger recruited through a channel that is not me - then re-run FounderCheck
-with numbers instead of a new pitch. I will send you the result either way, pass or fail -
+The cold-DM experiment is specced and pre-committed but **not yet run**. So the 7.8 is real
+and so is the gap - the gate sits at TEST FIRST by design, and no amount of re-pitching moves
+it to GO. Next is to run the 30 DMs, capture a cold conversion, 3-5 verbatim pain quotes, and
+one stranger recruited through a channel that is not me - then re-run FounderCheck with numbers
+instead of a new pitch. I will send you the result either way, pass or fail -
 that is the honest version of the loop you built the tool to run.
 
 Thanks for FounderCheck. The score going up was nice. The score refusing to go up until I

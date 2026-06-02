@@ -10,19 +10,21 @@
 
 ## Where the number is stuck (and why)
 
-Three of four dimensions are already strong. The gate (RETHINK at 7.2) is held down by a
-single unproven assumption: **cold pull-demand**. Everything that scores well so far -
-90+ weeks of weekly Respect, 65+ repos, volunteering workshop leads, the FarHack Snap win -
-came from people **already in the ZAO orbit**. FounderCheck will not give credit for
-strangers until strangers show up. So the one move that raises the score is to **run the
-72h cold-DM experiment and capture the three pieces of evidence below**.
+Three of four dimensions are already strong, and ease of sale just climbed 6.5 -> 8.0 after
+the on-site funnel fixes shipped (overall 7.2 -> 7.8). The gate still sits at **TEST FIRST**,
+held down by a single unproven assumption: **cold pull-demand**. Everything that scores well
+so far - 100+ weeks of weekly Respect, 65+ repos, volunteering workshop leads, the FarHack
+Snap win - came from people **already in the ZAO orbit**. FounderCheck will not give credit
+for strangers until strangers show up, so the score cannot pass 7.8 on words. The one move
+that moves it is to **run the 72h cold-DM experiment and capture the three pieces of evidence
+below**.
 
-Current live read (from the Session 2 follow-up):
+Current live read (7.8, TEST FIRST):
 
 | Dimension | Now | Target | What moves it (evidence, not claims) |
 |---|---|---|---|
 | Reach strategy | 7.5 | 8.5+ | A cold conversion rate from the 72h test, AND one external channel that recruits a stranger **without Zaal** |
-| Ease of sale | 6.5 | 8.5+ | One builder who committed after seeing the site **cold** - no DM warmup, no prior ZAO tie |
+| Ease of sale | 8.0 | 8.5+ | One builder who committed after seeing the site **cold** - no DM warmup, no prior ZAO tie |
 | Problem severity | 7.5 | ceiling until proven | 3-5 verbatim quotes of real time/effort lost - the gold quote is someone who **left a competing thing** for this |
 | Customer clarity | 8.0 | 9.0 | Lead with ONE beachhead segment, not the full list |
 
