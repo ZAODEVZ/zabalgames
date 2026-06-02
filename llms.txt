@@ -16,7 +16,7 @@ For the full long-form context bundle (every detail, every code path) see [docs/
 
 - **June - workshop month.** Builders across the ecosystem record one ~30-min session each on tools they have built. The whole library lands in one Magnetiq portal. Watchable live or after.
 - **July - open build-a-thon.** Anyone with the chops ships a build for ZABAL, ZAO, or WaveWarZ. **The build IS the application.** Live URL + open-source repo + 60s demo + cast on `/zabal`. Adopt a started ZAO project from the list below, or build from scratch with this context.
-- **August - the Finals.** The strongest July builds get curated in. Each finalist pairs with a ZAO mentor as embedded teammate for a 24h build + 24h promote + 24h ZAO governance vote + live reveal stream. **Every finalist wins** - the competition is in getting selected, the Finals are a collaboration.
+- **August - the Finals.** The strongest July builds get curated in. Each finalist pairs with a ZAO mentor as embedded teammate for a 24h build + 24h promote + 24h ZAO governance vote + live reveal stream. **Getting selected is the first win** - every finalist gets paid and keeps the ongoing economics - and the Finals are a real competition that crowns the season's best builder (ZAO vote + WaveWarZ-Base settlement).
 
 **Two surfaces:**
 - **Magnetiq portal** (Tyler Stambaugh's platform) - workshop library, entry/onboarding, polls, UGC submissions.
