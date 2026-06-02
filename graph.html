@@ -32,6 +32,8 @@
     .graph-edges { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem; }
     .graph-edges .edge-rel { color: var(--gold); }
     .graph-edges a { color: var(--cyan); cursor: pointer; }
+    .graph-try { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0.6rem 0; }
+    .graph-try-label { font-size: 0.72rem; color: var(--text-dim); margin-right: 0.2rem; }
   </style>
 </head>
 <body>
@@ -54,15 +56,16 @@
 <div class="container">
 
   <header class="hero">
-    <div class="hero-eyebrow">Ask the ecosystem</div>
-    <h1>ZAO Graph <span class="accent">Explorer</span>.</h1>
+    <div class="hero-eyebrow">Ask the ZABAL Bonfire</div>
+    <h1>Ask me about <span class="accent">ZABAL Gamez</span>.</h1>
     <p class="hero-sub">
-      Search the ZAO knowledge graph - people, brands, tools, agents, and <a href="/streams">data streams</a> with the connections between them. This is the same graph the ZABAL Bonfire holds, served from <a href="/data/bonfire-graph.json">bonfire-graph.json</a>.
+      The ZABAL Bonfire is the ZAO's shared memory - people, brands, tools, agents, and <a href="/streams">data streams</a> with the connections between them. Ask about ZABAL Gamez, a workshop, a project, or anyone in the ecosystem. Served from <a href="/data/bonfire-graph.json">bonfire-graph.json</a>.
     </p>
   </header>
 
   <section class="section">
-    <input type="text" id="q" class="graph-search" placeholder="Search people, tools, brands, agents..." autocomplete="off">
+    <input type="text" id="q" class="graph-search" placeholder="Ask about ZABAL Gamez, Empire Builder, Bonfire, a person..." autocomplete="off">
+    <div class="graph-try" id="try" aria-label="Suggested questions"></div>
     <div class="graph-filters" id="filters"></div>
     <p id="graph-count" style="font-size: 0.8rem; color: var(--text-dim);">Loading the graph...</p>
     <div id="results"></div>
@@ -140,13 +143,44 @@
       });
     }
 
+    // Log what people ask, so we can see what the community searches for (the
+    // read-spot "querying people's searches"). Debounced, anonymous, best-effort.
+    var LOG_URL = '/api/bonfire-ask', lastLogged = '', logTimer = null;
+    function logQuery(q) {
+      q = (q || '').trim();
+      if (q.length < 2 || q === lastLogged) return;
+      lastLogged = q;
+      try {
+        fetch(LOG_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ q: q.slice(0, 120) }), keepalive: true }).catch(function(){});
+      } catch (e) {}
+    }
+
+    function renderTry() {
+      var tryEl = document.getElementById('try');
+      if (!tryEl) return;
+      var examples = ['ZABAL Gamez', 'Empire Builder', 'Bonfire', 'WaveWarZ', 'yerbearserker'];
+      tryEl.innerHTML = '<span class="graph-try-label">Try:</span>' +
+        examples.map(function(x){ return '<button class="graph-chip" data-try="'+esc(x)+'">'+esc(x)+'</button>'; }).join('');
+      tryEl.querySelectorAll('[data-try]').forEach(function(b){
+        b.addEventListener('click', function(){
+          qEl.value = b.getAttribute('data-try'); activeLabel = ''; renderFilters(); search(); logQuery(qEl.value);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    }
+
     fetch('/data/bonfire-graph.json', { cache: 'force-cache' })
       .then(function(r){ return r.json(); })
       .then(function(g){
         ENTITIES = g.entities || []; EDGES = g.edges || [];
         ENTITIES.forEach(function(e){ BY_ID[e.id] = e; });
-        renderFilters(); search();
-        qEl.addEventListener('input', search);
+        renderFilters(); renderTry(); search();
+        qEl.addEventListener('input', function(){
+          search();
+          clearTimeout(logTimer);
+          logTimer = setTimeout(function(){ logQuery(qEl.value); }, 1200);
+        });
       })
       .catch(function(){ countEl.textContent = 'Graph unavailable - see /data/bonfire-graph.json'; });
   })();
