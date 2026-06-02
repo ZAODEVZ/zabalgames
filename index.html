@@ -810,9 +810,10 @@
     </div>
     <p class="join-help">New here or have questions? <a href="https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ" target="_blank" rel="noopener">Join the ZABAL group chat</a>.</p>
     <div class="proof-row">
+      <span class="proof-badge">90+ weeks, never missed</span>
       <span class="proof-badge">FarHack Snap winner</span>
-      <span class="proof-badge">$500 USDC pool - ZAO festivals</span>
-      <span class="proof-badge">3 workshop sessions confirmed</span>
+      <span class="proof-badge">$500 USDC pool + ongoing 1% cut</span>
+      <span class="proof-badge">Workshops live now</span>
     </div>
 
     <div class="countdown-block">
@@ -1343,13 +1344,23 @@
   function syncAlt() { if (alt) alt.setAttribute('href', '/lead' + (selectedTrack ? '?track=' + selectedTrack : '')); }
   chips.forEach(function (c) { c.addEventListener('click', syncAlt); });
 
+  // Capture an outreach source tag (e.g. ?src=cold-dm) so cold-experiment signups
+  // are attributable. Persist for the session so it survives in-app navigation.
+  var ZG_SRC = (function () {
+    try {
+      var u = new URLSearchParams(window.location.search).get('src');
+      if (u) { u = u.toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 24); if (u) sessionStorage.setItem('zg_src', u); return u; }
+      return sessionStorage.getItem('zg_src') || '';
+    } catch (e) { return ''; }
+  })();
+
   var btn = document.getElementById('zg-join');
   if (btn) {
     btn.addEventListener('click', function () {
       btn.disabled = true;
       btn.textContent = 'Joining...';
       var p = (window.ZABAL && window.ZABAL.join)
-        ? window.ZABAL.join({ door: 'workshops', track: selectedTrack })
+        ? window.ZABAL.join({ door: 'workshops', track: selectedTrack, source: ZG_SRC || undefined })
         : Promise.resolve({ ok: false, reason: 'no-sdk' });
       p.then(function (r) {
         // True one-tap only when the join was actually stored. Any other outcome
