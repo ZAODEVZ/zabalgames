@@ -29,6 +29,8 @@ For the announce push:
 | [brand-context.md](brand-context.md) | The brand spine for every ZAO ecosystem brand. Voice + visual + audience + status per brand. |
 | [launch-kit.md](launch-kit.md) | Asset + copy bundle: SVG OG card prompt, intro video script outline, Zlank Snap URL, signup CTA copy. |
 | [mentor-outreach-2026-05-24.md](mentor-outreach-2026-05-24.md) | DM scripts + target list for mentor recruitment. |
+| [workshop-roster.md](workshop-roster.md) | The guest tracker - status funnel + outreach cadence (Asked on / Reply / Next nudge). Single source of truth for who we are talking to. |
+| [warm-dm-kit-2026-06-02.md](warm-dm-kit-2026-06-02.md) | Paste-ready warm DMs: date-lock the 8 confirmed leads (assumptive scheduling), confirm the 6 lined up, plus a reusable /zabal attendee cast. |
 | [snap-design.md](snap-design.md) | Zlank no-code Snap design + custom Vercel-function path. |
 
 ## Research library

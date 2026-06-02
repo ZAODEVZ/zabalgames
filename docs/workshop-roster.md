@@ -11,6 +11,11 @@ date / window"). Or DM Zaal and he locks it.
 **Status funnel:** delivered -> scheduled (date locked) -> confirmed (yes, no date) ->
 lined up (mentioned, details TBD) -> invited (asked, awaiting yes) -> prospect (want to ask).
 
+**Outreach cadence (fill as you send):** the actionable tables below carry `Asked on` /
+`Reply` / `Next nudge` columns. Log every DM so warm leads do not fall through. Paste-ready
+copy is in `docs/warm-dm-kit-2026-06-02.md`. Rule of thumb: nudge once after ~3 days of
+silence, once more after ~4, then let it rest.
+
 ---
 
 ## Delivered (sessions that ran)
@@ -28,35 +33,39 @@ lined up (mentioned, details TBD) -> invited (asked, awaiting yes) -> prospect (
 
 ## Confirmed - needs a date (in workshop-leads.json)
 
-| Lead | Track | Topic | Note |
-|---|---|---|---|
-| Tyler Stambaugh (Magnetiq) | builder | Magnetiq - the workshop library platform | "any day in June" - send the Cal link to lock |
-| Thy Revolution (The ZAO) | TBD | 2 sessions, topics TBD | Needs topics + dates + track |
-| Adrian (@diviflyy, Empire Builder) | builder | Empire Builder API workshop - V3 endpoints | Lock a date |
-| Duo Do (@duodomusica) | artist | Musician on Farcaster, road to Farcon | First week of June - lock date |
-| Jonathan Colton (@jonathancolton, FounderCheck) | creator | FounderCheck (founder validation) + propagating work on Farcaster | 2 talks - lock dates |
-| kmac.eth | builder | Farcaster Snaps - building + shipping interactive Snaps | Lock a date |
-| Cassie (@cassie) | TBD | Topic TBD (recruited by kmac) | Confirm topic + date |
-| Plat0x (@plat0x) | builder | His own Bonfire builder session - building on the graph | "later this week" - lock date + Luma |
+DM copy for this batch: `docs/warm-dm-kit-2026-06-02.md` section A.
+
+| Lead | Track | Topic | Note | Asked on | Reply | Next nudge |
+|---|---|---|---|---|---|---|
+| Tyler Stambaugh (Magnetiq) | builder | Magnetiq - the workshop library platform | "any day in June" - send the Cal link to lock |  |  |  |
+| Thy Revolution (The ZAO) | TBD | 2 sessions, topics TBD | Needs topics + dates + track |  |  |  |
+| Adrian (@diviflyy, Empire Builder) | builder | Empire Builder API workshop - V3 endpoints | Lock a date |  |  |  |
+| Duo Do (@duodomusica) | artist | Musician on Farcaster, road to Farcon | First week of June - lock date |  |  |  |
+| Jonathan Colton (@jonathancolton, FounderCheck) | creator | FounderCheck (founder validation) + propagating work on Farcaster | 2 talks - lock dates |  |  |  |
+| kmac.eth | builder | Farcaster Snaps - building + shipping interactive Snaps | Lock a date |  |  |  |
+| Cassie (@cassie) | TBD | Topic TBD (recruited by kmac) | Confirm topic + date |  |  |  |
+| Plat0x (@plat0x) | builder | His own Bonfire builder session - building on the graph | "later this week" - lock date + Luma |  |  |  |
 
 ## Lined up - confirm details (mentioned, not yet in workshop-leads.json)
 
-| Lead | Track | Note |
-|---|---|---|
-| candytoybox | TBD | Confirm topic, track, date |
-| hurric4n3ike (Ikechi) | creator? | WaveWarZ / distribution - confirm topic + track |
-| The Dude | TBD | Confirm handle, topic, track |
-| saltoriuous | TBD | Confirm handle (Sagittarius?), topic, track |
-| Kenny | TBD | Confirm handle, topic, track |
-| nickysap | TBD | Confirm handle, topic, track |
+DM copy for this batch: `docs/warm-dm-kit-2026-06-02.md` section B.
+
+| Lead | Track | Note | Asked on | Reply | Next nudge |
+|---|---|---|---|---|---|
+| candytoybox | TBD | Confirm topic, track, date |  |  |  |
+| hurric4n3ike (Ikechi) | creator? | WaveWarZ / distribution - confirm topic + track |  |  |  |
+| The Dude | TBD | Confirm handle, topic, track |  |  |  |
+| saltoriuous | TBD | Confirm handle (Sagittarius?), topic, track |  |  |  |
+| Kenny | TBD | Confirm handle, topic, track |  |  |  |
+| nickysap | TBD | Confirm handle, topic, track |  |  |  |
 
 ## Invited - awaiting yes
 
 _(Zaal to fill - people already asked. Add: name, track, the topic you pitched, date sent.)_
 
-| Lead | Track | Pitched topic | Asked on |
-|---|---|---|---|
-| | | | |
+| Lead | Track | Pitched topic | Asked on | Reply | Next nudge |
+|---|---|---|---|---|---|
+| | | | | | |
 
 ## Prospects - want to invite (by track)
 
