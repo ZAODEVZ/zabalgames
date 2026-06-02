@@ -34,6 +34,14 @@
     .graph-edges a { color: var(--cyan); cursor: pointer; }
     .graph-try { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0.6rem 0; }
     .graph-try-label { font-size: 0.72rem; color: var(--text-dim); margin-right: 0.2rem; }
+    .contribute { margin-top: 1.6rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+    .contribute summary { cursor: pointer; font-family: var(--font-pixel); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--zabal); }
+    .contribute form { display: grid; gap: 0.5rem; margin-top: 0.8rem; max-width: 560px; }
+    .contribute select, .contribute input, .contribute textarea { width: 100%; padding: 0.55rem 0.7rem; background: var(--surface-2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; }
+    .contribute textarea { min-height: 90px; resize: vertical; }
+    .contribute button { font-family: var(--font-pixel); font-size: 0.55rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bg); background: var(--cyan); border: none; border-radius: 999px; padding: 0.6rem 1rem; cursor: pointer; justify-self: start; }
+    .contribute-note { font-size: 0.8rem; color: var(--text-dim); margin: 0.3rem 0 0; line-height: 1.45; }
+    .contribute-status { font-size: 0.84rem; color: var(--text-muted); margin: 0.2rem 0 0; }
   </style>
 </head>
 <body>
@@ -69,6 +77,25 @@
     <div class="graph-filters" id="filters"></div>
     <p id="graph-count" style="font-size: 0.8rem; color: var(--text-dim);">Loading the graph...</p>
     <div id="results"></div>
+  </section>
+
+  <section class="section contribute" id="contribute">
+    <details>
+      <summary>Add to the ZABAL Bonfire</summary>
+      <p class="contribute-note">Submit a fact, project, or doc. Submissions are reviewed before they become canonical. Open this page in the Farcaster app to contribute - your account verifies it.</p>
+      <form id="contribute-form">
+        <select id="c-type" aria-label="Type">
+          <option value="fact">Fact</option>
+          <option value="project">Project</option>
+          <option value="doc">Doc or link</option>
+        </select>
+        <input id="c-title" type="text" placeholder="Short title (optional)" maxlength="120" autocomplete="off">
+        <textarea id="c-body" placeholder="The fact, project, or note..." maxlength="2000"></textarea>
+        <input id="c-url" type="url" placeholder="Link (optional)" maxlength="300" autocomplete="off">
+        <button type="submit">Submit for review</button>
+        <p class="contribute-status" id="c-status" role="status"></p>
+      </form>
+    </details>
   </section>
 
   <script>
@@ -183,6 +210,35 @@
         });
       })
       .catch(function(){ countEl.textContent = 'Graph unavailable - see /data/bonfire-graph.json'; });
+  })();
+  </script>
+
+  <script>
+  (function(){
+    var form = document.getElementById('contribute-form');
+    if (!form) return;
+    var statusEl = document.getElementById('c-status');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var text = document.getElementById('c-body').value.trim();
+      if (!text) { statusEl.textContent = 'Add some text first.'; return; }
+      var payload = {
+        type: document.getElementById('c-type').value,
+        title: document.getElementById('c-title').value.trim(),
+        body: text,
+        url: document.getElementById('c-url').value.trim()
+      };
+      statusEl.textContent = 'Submitting...';
+      if (!(window.ZABAL && window.ZABAL.submitBonfire)) {
+        statusEl.textContent = 'Open this page in the Farcaster app to contribute.';
+        return;
+      }
+      window.ZABAL.submitBonfire(payload).then(function(res){
+        if (res && res.ok) { statusEl.textContent = 'Submitted for review. Thank you.'; form.reset(); }
+        else if (res && res.reason === 'not-in-miniapp') { statusEl.textContent = 'Open this page in the Farcaster app to contribute (it verifies your account).'; }
+        else { statusEl.textContent = 'Could not submit right now. Try again later.'; }
+      });
+    });
   })();
   </script>
 
