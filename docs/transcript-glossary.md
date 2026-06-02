@@ -26,6 +26,17 @@ This is a living file - add new names and mishears as each transcript is process
 | **Plat0x** (Carlos) | Bonfire technical architect, from Ecuador. Pronounced "Plato". Keep the name "Plat0x". No Farcaster; X is @at0x_eth (https://x.com/at0x_eth). | PlatoX, Plato, Platox, Plateaux, Platos |
 | **Carlos** | Real name of Plat0x - keep as Carlos when used as a first name. | (keep as heard) |
 | **Push** | Community member, top Empire. | (keep as heard) |
+| **Adriene** | GM Farcaster co-host; hosted Farcaster Batches Day 1. Note: distinct from Adrian (Diviflyy). | Adrian, Adrienne |
+| **Nounish Prof** (Prof) | GM Farcaster co-host. Appears as "Prof". | Profit (as in "Prof and"), Professor |
+| **JubJub** | Organizer of Farcaster Batches; based in Australia. | Jub Jub, Jubjub |
+| **Chris Dolinsky** | Founder, Vinny App. | Juan Dolinsky |
+| **Nick** (Nikolai) | Chris Dolinsky's Vinny App teammate. | Nikolai |
+| **Kenny** | Founder, POIDH. Builds in public on Farcaster. | (keep as heard) |
+| **Nikki Sapp** | Founder, Juke (audio Farcaster client). | Nikki Sap, Nicky Sapp |
+| **Jonathan Colton** | Founder Check; co-creator of Fotocaster. | Jonathan Colten |
+| **Dr. Deeks** | Multi-project Farcaster builder (email remittance pro, Crafters, Ghostwriter, Journey Through Time). | Dr. Deeks, Doctor Deeks, Dr Deex |
+| **Erik** | Co-creator of Fotocaster with Jonathan Colton. | Eric, Eric S, Erik S |
+| **Rish** | Farcaster team; shipped native audio Spaces. | Rich, Reesh |
 
 ## Projects and brands
 | Canonical | Notes | Common mishears |
@@ -42,6 +53,16 @@ This is a living file - add new names and mishears as each transcript is process
 | **Magnetiq** | Workshop portal. | Magnetic |
 | **The ZAO** | The community. | the Zao, The Zow |
 | **ZAONEXUS** | The ZAO ecosystem directory + brand map (zaonexus.vercel.app). | ZAO Nexus, Zao Nexus, "the nexus" |
+| **GM Farcaster** | Daily Farcaster show / StreamYard studio run by Adriene + Nounish Prof. Hosted Farcaster Batches Day 1. | GM Forecaster |
+| **Vinny App** | Chris Dolinsky's natural-language app builder on a Web3 stack; runs the Vinny-a-thon. Umbrella "Vinny" token. | VINI, Venny, Vinnyapp, Vinny-a-thon (event) |
+| **POIDH** | Kenny's fully on-chain social bounty platform. poidh.xyz. | POID, Poydee |
+| **Juke** | Nikki Sapp's open-source, audio-native Farcaster client; voice notes + audio SDK. | Duke |
+| **Founder Check** | Jonathan Colton's agent-driven GTM/validation mini app, from "Distribution Is Hard, Don't F It Up". | a founder check |
+| **Fotocaster** | Photo-mint platform (Jonathan Colton + Erik), maximum artist sovereignty. | Photocaster, Photo Caster, Foto Caster |
+| **Crafters** | Dr. Deeks' AI word-combination game; first-creator Megamind NFTs. | Crafter, Crafters Two |
+| **Ghostwriter** | Dr. Deeks' Madlib-style community storytelling game. | Ghost Writer |
+| **Tavern** / **Farhouse** | Early Farcaster audio apps (pre-native Spaces). | Far house, Far House |
+| **quorum** | A Farcaster client (referenced re: unified audio Spaces). | Quorum, Corum |
 
 ## Tech, tools and terms
 | Canonical | Notes | Common mishears |
@@ -95,6 +116,15 @@ and the tiers Assembled / Awakened / Ascended.
 ## Confirm before use (unverified)
 - **Fred Disick** - community handle heard in Workshop 1; spelling unconfirmed.
 - Other community handles in raffles/chat (Jellyfish, Jerry D, Golden Pipes) - keep as heard.
+- **Vinny App** / Vinny token - product + token spelling unconfirmed (heard "Vinny" / "VINI").
+- **Justin (AHN.eth)** and his project ("Quiddle" / "Quiddy") - spelling unconfirmed.
+- **Dave Bachinsky** (kickflip world record, POIDH bounty) - spelling best-effort.
+- **Cashless Man** and **Royal Aid** - Farcaster Batches Thursday workshop builders; spelling unconfirmed.
+- **Cassie** / **quorum** (Farcaster client, unified audio) - spelling unconfirmed.
+- **Uchi** (token-as-tipping app by Nick) and **2048 Farcaster** (by Diviflyy) - heard as-is.
+- **CEF grant** (POIDH, Farcaster ecosystem grant) - exact name unconfirmed.
+- **Synthesis hackathon** (Dr. Deeks' email remittance pro) - spelling unconfirmed.
+- **Journey Through Time** - a fourth Dr. Deeks project named but not described.
 
 ## How to use this
 1. Before publishing a transcript or caption file, run the global replacements above.
