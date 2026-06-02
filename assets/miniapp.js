@@ -170,6 +170,25 @@ window.ZABAL.join = async function join(payload) {
   }
 };
 
+// Submit a contribution to the ZABAL Bonfire pending queue (verified). Inside a Mini
+// App, POSTs to /api/bonfire-ask with a Quick Auth JWT; ZOE reviews + promotes it into
+// the canonical graph. Returns { ok, reason } so the form can react or ask the user to
+// open in Farcaster.
+window.ZABAL.submitBonfire = async function submitBonfire(payload) {
+  try {
+    const ctx = await sdk.context;
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/bonfire-ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.assign({ action: 'submit' }, payload || {})),
+    });
+    return res.ok ? { ok: true } : { ok: false, reason: 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 // One share entry point for every page. platform: 'farcaster' | 'x'.
 // Farcaster casts post into the /zabal channel with the page as an embed.
 window.ZABAL.share = function share({ platform, text, url, target }) {
