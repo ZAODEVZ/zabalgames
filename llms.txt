@@ -27,6 +27,20 @@ For the full long-form context bundle (every detail, every code path) see [docs/
 
 ---
 
+## Season 1 log (live)
+
+**Day 1 - Mon Jun 1 2026.** Two workshops shipped:
+- **Workshop 1 - yerbearserker (Jordan Oram, Empire Builder)** on going from an idea to something real. Core message: do not launch a token until you are ready - assemble the tools and the community first; the token is the amplifier, not the foundation. Covers the Triple-A framework (Assemble, Affirm, Ascend) and the tokenless Empire tier. A tokenless **ZABAL Gamez Empire** was stood up live on the call (empirebuilder.world/empire/zabalgamez01e9af). Transcript: `data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md`.
+- **Workshop 2 - Joshua.eth (Josh, Bonfire founder) + Plat0x (Carlos, Bonfire technical architect)** on Bonfire as a shared AI workspace / knowledge graph - point an agent at the ZABAL Bonfire to follow ZABAL Gamez in real time. Bonfire is the shared source of truth; the contribution model is open-submit, items land pending, curators promote.
+
+**Day 2 - Tue Jun 2 2026.** Ohnahji on starting and growing your own livestream (5-6pm EST).
+
+**Ecosystem map:** the full ZAO ecosystem (35 brands with parent-child hierarchy) is catalogued in **ZAONEXUS** (zaonexus.vercel.app) and mirrored as entities in the ZABAL Bonfire graph (`data/bonfire-graph.json`), searchable at `/graph`.
+
+**Read spot:** `/graph` ("Ask the ZABAL Bonfire about ZABAL Gamez") searches the graph; community search queries are logged for signal. A submit-to-pending contribution path (ZOE promotes to canonical) is in build.
+
+---
+
 ## The ZAO ecosystem (brand-by-brand)
 
 The umbrella you are building for. Understand which brand your build serves.
