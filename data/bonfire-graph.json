@@ -8830,15 +8830,14 @@
       "name": "Farcaster Batches",
       "labels": [
         "DataStream",
-        "protocol-feature"
+        "event"
       ],
       "attributes": {
         "stream_id": "farcaster-batches",
-        "status": "upcoming",
-        "summary": "An upcoming Farcaster protocol feature, being introduced on GM Farcaster (Farcaster's #1 news show) during its X spaces.",
-        "ties_to_zabal": "A new rail to design around. ZABAL Gamez builds that batch onchain or social actions get cheaper / more composable when Batches ships. Tracked here so builders catch it the week it lands.",
-        "url": "https://www.gmfarcaster.com/",
-        "_source": "data-streams-registry"
+        "status": "live",
+        "summary": "A Farcaster builder showcase / demo event where projects present their work live. ZABAL Gamez builders take part.",
+        "ties_to_zabal": "A stage for ZABAL Gamez work. yerbearserker, Zaal and azflin presented as part of Farcaster Batches on Jun 3 2026, with NFT raffles to Yerbearserker Mate holders.",
+        "_source": "data-streams-registry + correction-2026-06-02"
       }
     },
     {
