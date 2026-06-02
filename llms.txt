@@ -138,7 +138,7 @@ Five operating bot surfaces, all running the **Hermes pattern**: spawn the Claud
 
 ### Memory layer - Bonfire
 
-ZAO's agent memory partner: **Bonfires** (bonfires.ai). Knowledge graph that ingests cross-platform signals (Farcaster, GitHub, Twitch, ZAO Respect) and produces queryable per-address scores + entity relationships. ZAO has a live bonfire at `zabal.bonfires.ai`. Founded by Joshua.eth / Ryan ("Rskagy" on Telegram, in active ZAO Civilization GC). GitHub org: `NERDDAO` (15+ repos). Genesis NFT minting: 0.1 ETH per bonfire (gates the `$KNOW` token allocation pre-public-launch). SDK: `pip install bonfires`. API base: `tnt-v2.api.bonfires.ai`. Exports kEngrams as Canvas / OWL / Markdown - open standards, no lock-in.
+ZAO's agent memory partner: **Bonfires** (bonfires.ai). Knowledge graph that ingests cross-platform signals (Farcaster, GitHub, Twitch, ZAO Respect) and produces queryable per-address scores + entity relationships. ZAO has a live bonfire at `zabal.bonfires.ai`. Founded by Joshua.eth (Josh). Ryan ("Rskagy" on Telegram, active in the ZAO Civilization GC) is a separate person who authors the Bonfires SDK. GitHub org: `NERDDAO` (15+ repos). Genesis NFT minting: 0.1 ETH per bonfire (gates the `$KNOW` token allocation pre-public-launch). SDK: `pip install bonfires`. API base: `tnt-v2.api.bonfires.ai`. Exports kEngrams as Canvas / OWL / Markdown - open standards, no lock-in.
 
 ### ZAO repo footprint (65+ public, MIT)
 
