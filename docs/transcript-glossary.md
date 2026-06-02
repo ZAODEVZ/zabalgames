@@ -41,6 +41,7 @@ This is a living file - add new names and mishears as each transcript is process
 | **Clanker** | Token deployer, partner. | Lanker, Clinker |
 | **Magnetiq** | Workshop portal. | Magnetic |
 | **The ZAO** | The community. | the Zao, The Zow |
+| **ZAONEXUS** | The ZAO ecosystem directory + brand map (zaonexus.vercel.app). | ZAO Nexus, Zao Nexus, "the nexus" |
 
 ## Tech, tools and terms
 | Canonical | Notes | Common mishears |

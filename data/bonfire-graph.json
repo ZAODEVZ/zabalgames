@@ -8785,6 +8785,23 @@
         "url": "/lead",
         "_source": "data-streams-registry"
       }
+    },
+    {
+      "id": "zaonexus",
+      "name": "ZAONEXUS",
+      "labels": [
+        "Project",
+        "Directory"
+      ],
+      "attributes": {
+        "description": "The ZAO ecosystem directory and map: a community link directory (118 links across 10 categories) plus an ecosystem brand showcase (35 brands with parent-child hierarchy and per-brand detail pages).",
+        "url": "https://zaonexus.vercel.app",
+        "repo": "github.com/bettercallzaal/ZAONEXUS",
+        "stack": "Next.js 14, React 18, TypeScript, Tailwind",
+        "routes": "/community (link directory), /ecosystem (brand showcase + detail)",
+        "live_data": "Farcaster (haatz), GitHub last-commit, $ZABAL holder count (Alchemy)",
+        "_source": "zaonexus-repo-survey-2026-06-02"
+      }
     }
   ],
   "edges": [
@@ -15306,6 +15323,30 @@
       "properties": {
         "fact": "The workshops are the deep-context onboarding for builders. Raw session recordings + transcripts + summaries are the richest ZABAL Gamez data stream - they directly seed what people build in July.",
         "_source": "zabal-dispatch-streams-2026-05-29"
+      }
+    },
+    {
+      "from": "zaal",
+      "to": "zaonexus",
+      "type": "built",
+      "properties": {
+        "fact": "Zaal built ZAONEXUS, the ZAO ecosystem directory and map"
+      }
+    },
+    {
+      "from": "zaonexus",
+      "to": "the-zao",
+      "type": "maps",
+      "properties": {
+        "fact": "ZAONEXUS maps the ZAO ecosystem (brands, projects, links)"
+      }
+    },
+    {
+      "from": "zaonexus",
+      "to": "zabal",
+      "type": "part_of",
+      "properties": {
+        "fact": "ZAONEXUS is part of the ZABAL ecosystem"
       }
     }
   ]
