@@ -31,6 +31,20 @@ For the announce push:
 | [mentor-outreach-2026-05-24.md](mentor-outreach-2026-05-24.md) | DM scripts + target list for mentor recruitment. |
 | [snap-design.md](snap-design.md) | Zlank no-code Snap design + custom Vercel-function path. |
 
+## Validation / FounderCheck
+
+The validation arc - feeding ZABAL Gamez through Jonathan Colton's FounderCheck and acting on it.
+
+| File | What it is |
+|---|---|
+| [foundercheck-reframe-2026-05-29.md](foundercheck-reframe-2026-05-29.md) | The first run (3.35 BLOCK) reframed - why it scored the wrong product, and how to re-run it correctly. |
+| [foundercheck-context-brief-2026-05-29.md](foundercheck-context-brief-2026-05-29.md) | The evidence brief to paste into FounderCheck so it scores against real traction, not assumptions. |
+| [foundercheck-session2-2026-06-02.md](foundercheck-session2-2026-06-02.md) | Session 2 log (7.2 RETHINK) - challenges to the assessment + the sharpened experiment + teaching writeup. |
+| [foundercheck-score-raising-2026-06-02.md](foundercheck-score-raising-2026-06-02.md) | What to actually do to move the score now - each lever mapped to a runnable action + the evidence instrument. |
+| [cold-dm-experiment-2026-06.md](cold-dm-experiment-2026-06.md) | The 72h cold-outreach scorecard - pre-committed decision matrix + the tracker to fill. |
+| [validation-launch-kit-2026-05-29.md](validation-launch-kit-2026-05-29.md) | The DM templates, announce cast, and objection handlers for the experiment. |
+| [foundercheck-recap-for-jonathan-2026-06-02.md](foundercheck-recap-for-jonathan-2026-06-02.md) | Recap to send Jonathan: how FounderCheck moved the project, update 1 vs update 2. Doubles as workshop teaching material. |
+
 ## Research library
 
 [research/](research/) - numbered research docs:
