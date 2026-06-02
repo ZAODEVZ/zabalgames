@@ -169,8 +169,8 @@
   "cta_override": {
     "_comment": "manual override for the top CTA. active:true uses headline/event_url/event_label; active:false = auto (next dated workshop).",
     "active": true,
-    "headline": "ZABAL Gamez is live. Today: Ohnahji on starting and growing your own livestream, 5-6pm EST.",
-    "event_url": "https://luma.com/xa3bsp21",
-    "event_label": "RSVP: Ohnahji, Jun 2"
+    "headline": "Ohnahji is live now - how to start and grow your own livestream.",
+    "event_url": "/live",
+    "event_label": "Watch live now"
   }
 }
