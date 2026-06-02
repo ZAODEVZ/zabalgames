@@ -34,12 +34,21 @@
       "name": "BetterCallZaal",
       "labels": [
         "Website",
-        "Personal Site"
+        "Personal Site",
+        "Umbrella",
+        "ZAO Brand"
       ],
       "attributes": {
         "domain": "bettercallzaal.com",
         "description": "Personal site and Farcaster Mini App for Zaal",
-        "platform": "Farcaster"
+        "platform": "Farcaster",
+        "stage": "active",
+        "tier": "umbrella",
+        "url": "https://bettercallzaal.com",
+        "github": "https://github.com/bettercallzaal",
+        "farcaster": "bettercallzaal",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://bettercallzaal.com https://bettercallzaal.com/nexus.html https://x.com/bettercallzaal"
       }
     },
     {
@@ -309,7 +318,9 @@
       "id": "poidh",
       "name": "POIDH",
       "labels": [
-        "Platform"
+        "Platform",
+        "Project",
+        "ZAO Brand"
       ],
       "attributes": {
         "full_name": "Pics Or It Didn't Happen",
@@ -340,7 +351,12 @@
           "Atomic settlement",
           "Farcaster cast announcements"
         ],
-        "use_case": "ZABAL adoptable projects bounties"
+        "use_case": "ZABAL adoptable projects bounties",
+        "description": "ZABAL track. Community bounty platform. First ZAO POIDH clip-up bounty live 2026-04-27 at poidh.xyz/base/bounty/1151.",
+        "stage": "zabal-track",
+        "tier": "project",
+        "parent": "bettercallzaal",
+        "_links": "https://poidh.xyz https://poidh.xyz/base/bounty/1151"
       }
     },
     {
@@ -349,7 +365,9 @@
       "labels": [
         "Platform",
         "platform",
-        "distribution-platform"
+        "distribution-platform",
+        "Project",
+        "ZAO Brand"
       ],
       "attributes": {
         "url": "https://empirebuilder.world",
@@ -408,7 +426,11 @@
           "Treasury infrastructure",
           "Empire Snaps"
         ],
-        "use_case": "ZABAL token leaderboards + SongJam leaderboards"
+        "use_case": "ZABAL token leaderboards + SongJam leaderboards",
+        "stage": "zabal-track",
+        "tier": "project",
+        "parent": "bettercallzaal",
+        "_links": "https://bettercallzaal.com"
       }
     },
     {
@@ -1445,7 +1467,9 @@
       "id": "zabal-token",
       "name": "$ZABAL Token",
       "labels": [
-        "Token"
+        "Token",
+        "Project",
+        "ZAO Brand"
       ],
       "attributes": {
         "contract": "0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07",
@@ -1461,7 +1485,12 @@
         "earning": "Raffle (10 random) + weighted (50-100 by leaderboard score) distributions",
         "distribution_frequency": "Monthly",
         "distribution_amount": "$10-15 USD per drop",
-        "booster_integration": "Empire Builder (40+ ERC-20 + 1 QUOTIENT booster stacks)"
+        "booster_integration": "Empire Builder (40+ ERC-20 + 1 QUOTIENT booster stacks)",
+        "description": "The ZABAL token. ERC-20 on Base representing ecosystem participation and value.",
+        "stage": "active",
+        "url": "https://empirebuilder.world/profile/0x7234c36A71ec237c2Ae7698e8916e0735001E9Af",
+        "token": "0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07",
+        "_links": "https://empirebuilder.world/profile/0x7234c36A71ec237c2Ae7698e8916e0735001E9Af https://empirebuilder.world/api/leaderboards?tokenAddress=0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07 https://app.magnetiq.xyz/brand/ZABAL/magnet/Zabal%20Connector https://graph.bonfires.ai/zabal https://incented.co/organizations/zabal https://songjam.space/zabal"
       }
     },
     {
@@ -2253,7 +2282,9 @@
       "id": "wavewarz",
       "name": "WaveWarZ",
       "labels": [
-        "Application"
+        "Application",
+        "Project",
+        "ZAO Brand"
       ],
       "attributes": {
         "parent_entity": "ZAO OS",
@@ -2266,14 +2297,24 @@
           "artist tips (wallet)",
           "merch/digital goods"
         ],
-        "_source": "zabal-dispatch-coinflow-20260523"
+        "_source": "zabal-dispatch-coinflow-20260523",
+        "description": "First ZAO incubated project. A decentralized music production platform where artists create, remix, and collaborate on-chain. Built by Hurric4n3ike with Zaal and Samantha (candytoybox) as cofounders.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://wavewarz.io",
+        "github": "https://github.com/wavewarz",
+        "farcaster": "wavewarz",
+        "parent": "the-zao",
+        "_links": "https://wavewarz.io https://github.com/wavewarz"
       }
     },
     {
       "id": "zao-os",
       "name": "ZAO OS",
       "labels": [
-        "Platform"
+        "Platform",
+        "Project",
+        "ZAO Brand"
       ],
       "attributes": {
         "role": "ISV parent",
@@ -2290,7 +2331,14 @@
           "COC Concertz",
           "FISHBOWLZ"
         ],
-        "_source": "zabal-dispatch-coinflow-20260523"
+        "_source": "zabal-dispatch-coinflow-20260523",
+        "description": "The lab and substrate where ZAO projects are built. Monorepo containing the Farcaster client, agent stack (ZOE, Hermes), research library, and infrastructure for The ZAO ecosystem.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://zaoos.com",
+        "github": "https://github.com/bettercallzaal/ZAOOS",
+        "parent": "the-zao",
+        "_links": "https://zaoos.com https://github.com/bettercallzaal/ZAOOS"
       }
     },
     {
@@ -2412,7 +2460,9 @@
       "id": "fishbowlz",
       "name": "FISHBOWLZ",
       "labels": [
-        "Product"
+        "Product",
+        "Project",
+        "ZAO Brand"
       ],
       "attributes": {
         "status": "paused 2026-04-16 for Juke partnership",
@@ -2424,7 +2474,12 @@
         "token": "FISHBOWLZ (Clanker, 2026-04-04)",
         "format_novel": "mute-lockout moderation - audience speaker auto-demoted on self-mute, must re-raise hand",
         "reason_for_pause": "strategic pivot to Juke's superior native audio + Farcaster integration vs rebuilding custom",
-        "_source": "zabal-dispatch-fishbowlz-juke-20260523"
+        "_source": "zabal-dispatch-fishbowlz-juke-20260523",
+        "description": "PAUSED 2026-04-16. Pivoted to partnership with Juke. Was exploring community bounties and on-chain collaboration.",
+        "stage": "paused",
+        "tier": "project",
+        "url": "https://fishbowlz.com",
+        "_links": "https://fishbowlz.com"
       }
     },
     {
@@ -7064,7 +7119,9 @@
       "id": "the-zao",
       "name": "The ZAO",
       "labels": [
-        "Community"
+        "Community",
+        "Organization",
+        "ZAO Brand"
       ],
       "attributes": {
         "description": "Farcaster-native music infrastructure guild for independent artists",
@@ -7072,7 +7129,13 @@
         "reputation_system": "Respect (peer-validated Fibonacci ranks)",
         "core_members": 188,
         "ecosystem": "music-web3",
-        "_source": "zabal-dispatch-talent-vs-quotient-zao-fit-20260524"
+        "_source": "zabal-dispatch-talent-vs-quotient-zao-fit-20260524",
+        "stage": "active",
+        "tier": "organization",
+        "url": "https://thezao.com",
+        "github": "https://github.com/bettercallzaal/ZAOOS",
+        "farcaster": "thezao",
+        "_links": "https://thezao.com https://github.com/bettercallzaal/ZAOOS https://thezao.com/fractals"
       }
     },
     {
@@ -8711,7 +8774,9 @@
       "name": "BCZ YapZ",
       "labels": [
         "DataStream",
-        "interview-archive"
+        "interview-archive",
+        "Project",
+        "ZAO Brand"
       ],
       "attributes": {
         "stream_id": "bcz-yapz",
@@ -8719,7 +8784,13 @@
         "summary": "Zaal's long-form interview show - conversations with a builder, founder, or organizer working on something worth understanding.",
         "ties_to_zabal": "Episode transcripts surface the people, tools, and threads moving through the ZAO ecosystem. BCZ YapZ already generates content/bonfire-ingest/ files from each transcript, so it is a native Bonfire feeder - the same memory layer ZABAL Gamez runs on.",
         "url": "https://www.bczyapz.com/",
-        "_source": "data-streams-registry"
+        "_source": "data-streams-registry",
+        "description": "ZABAL track. Graduated from ZAOOS to own repo and domain May 2026. Social identity and reputation system. Available at bczyapz.com.",
+        "stage": "zabal-track",
+        "tier": "project",
+        "github": "https://github.com/bettercallzaal/bcz-yapz",
+        "parent": "bettercallzaal",
+        "_links": "https://bczyapz.com https://github.com/bettercallzaal/bcz-yapz"
       }
     },
     {
@@ -8801,6 +8872,441 @@
         "routes": "/community (link directory), /ecosystem (brand showcase + detail)",
         "live_data": "Farcaster (haatz), GitHub last-commit, $ZABAL holder count (Alchemy)",
         "_source": "zaonexus-repo-survey-2026-06-02"
+      }
+    },
+    {
+      "id": "zao-festivals",
+      "name": "ZAO Festivals",
+      "labels": [
+        "Project",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "The live events arm of The ZAO. Produces flagship festivals connecting artists, fans, and builders in person. Umbrella for ZAOstock (Oct 3 2026) and music releases like Cipher.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://zaofestivals.com",
+        "farcaster": "zaofestivals",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://zaofestivals.com https://instagram.com/zaofestivals https://x.com/zaofestivals https://www.facebook.com/zaofestivals https://www.linkedin.com/company/zaofestivals https://www.youtube.com/c/zaofestivals https://merch.zaofestivals.com"
+      }
+    },
+    {
+      "id": "zaostock",
+      "name": "ZAOstock 2026",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "The primary ZAO Festivals event. Oct 3 2026, Franklin St Parklet, Ellsworth. Celebrating independent artists with performances, art installations, and community connection.",
+        "stage": "incubating",
+        "tier": "sub-brand",
+        "url": "https://zaofestivals.com/zaostock",
+        "farcaster": "zaostock",
+        "parent": "zao-festivals",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://zaofestivals.com/zaostock https://t.me/ZAOstockTeamBot"
+      }
+    },
+    {
+      "id": "cipher",
+      "name": "Cipher",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "The inaugural music release from the ZAO Festivals program. Showcasing original tracks from ZAO community artists.",
+        "stage": "incubating",
+        "tier": "sub-brand",
+        "url": "https://zaofestivals.com",
+        "parent": "zao-festivals",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://zaofestivals.com"
+      }
+    },
+    {
+      "id": "wavewarz-africa",
+      "name": "WaveWarZ Africa",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "WaveWarZ's Africa initiative led by Iman. Bringing music production tools and community to creators across the African continent.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "url": "https://wavewarz.io",
+        "parent": "wavewarz",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://wavewarz.io"
+      }
+    },
+    {
+      "id": "zao-fractals",
+      "name": "ZAO Fractals",
+      "labels": [
+        "Project",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Recurring Monday 6pm EST governance meetings. Both a decision-making structure AND a project deliverable. Community members discuss priorities, allocate resources, and align on strategy.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://thezao.com/fractals",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://thezao.com/fractals"
+      }
+    },
+    {
+      "id": "zabal-newsletter",
+      "name": "ZABAL Newsletter",
+      "labels": [
+        "Project",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "The official newsletter covering ZABAL ecosystem updates. Published daily via ZOE concierge bot. Curated insights on projects, community, and the vision.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://paragraph.com/@thezao",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://paragraph.com/@thezao"
+      }
+    },
+    {
+      "id": "zao-devz",
+      "name": "ZAO Devz",
+      "labels": [
+        "Project",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Developer community led by Iman. Dispatch, collaboration, and hourly learning tips. Features the @zaodevz_bot Telegram bot for group coordination.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://t.me/zaodevz_bot",
+        "farcaster": "zaodevz_bot",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://t.me/zaodevz_bot"
+      }
+    },
+    {
+      "id": "web3-podcast",
+      "name": "Web3 Podcast",
+      "labels": [
+        "Project",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "A ZAO project podcast exploring web3, music, and technology. Hosted by Zaal with Ohnahji B.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://zaofestivals.com",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://zaofestivals.com"
+      }
+    },
+    {
+      "id": "zoe",
+      "name": "ZOE",
+      "labels": [
+        "Project",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Single autonomous concierge bot handling tasks, captures, briefs, reflection, and recall. Lives in ZAO OS. Available as @zaoclaw_bot on Telegram.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://chat.zaoos.com",
+        "farcaster": "zaoclaw_bot",
+        "parent": "zao-os",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://chat.zaoos.com https://t.me/zaoclaw_bot"
+      }
+    },
+    {
+      "id": "hermes",
+      "name": "Hermes",
+      "labels": [
+        "Project",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Autonomous agent that handles code reviews, fixes, and pull request creation. Part of the ZAO agent stack. Available as @zoe_hermes_bot on Telegram.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://github.com/bettercallzaal/ZAOOS",
+        "parent": "zao-os",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://github.com/bettercallzaal/ZAOOS"
+      }
+    },
+    {
+      "id": "coc-concertz",
+      "name": "COC Concertz",
+      "labels": [
+        "Project",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Graduated from The ZAO into its own brand. Livestreaming team also handles ZAO Festivals production. Independent brand with operational overlap.",
+        "stage": "graduated",
+        "tier": "project",
+        "url": "https://cocconcertz.com",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://cocconcertz.com"
+      }
+    },
+    {
+      "id": "bonfire",
+      "name": "Bonfire Integration",
+      "labels": [
+        "Project",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "ZABAL track. Personal and community knowledge graph at bonfires.ai. Integrated into ZOE via Hermes-brain pattern. Auto-push pipeline for knowledge capture.",
+        "stage": "zabal-track",
+        "tier": "project",
+        "url": "https://bonfires.ai",
+        "parent": "bettercallzaal",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://bonfires.ai"
+      }
+    },
+    {
+      "id": "tom-fellenz",
+      "name": "Tom Fellenz",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Artist and collaborator within The ZAO ecosystem.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "url": "https://x.com/tomfellenz",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://x.com/tomfellenz"
+      }
+    },
+    {
+      "id": "stilo-world",
+      "name": "Stilo World",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Artist and creator within The ZAO community.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "url": "https://stiloworld.com",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://stiloworld.com"
+      }
+    },
+    {
+      "id": "joseph-goats",
+      "name": "Joseph Goats",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Artist and collaborator. Formerly known as Jose Goats, now Joseph Goats.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "url": "https://farcaster.xyz/~/user/josephgoats",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://farcaster.xyz/~/user/josephgoats"
+      }
+    },
+    {
+      "id": "jangouu-forever",
+      "name": "JANGOUU FOREVER",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Foundational musician relationship from college 2018/2019. The collaboration that triggered Zaal's entrepreneurial thinking about supporting independent artists. Semi-active in ZAO orbit.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "url": "https://x.com/jangouuforever",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://x.com/jangouuforever https://instagram.com/jangouuforever https://open.spotify.com/artist/5nc2dgefoPLfvsrJVx3PNz https://beacons.ai/jango.uu"
+      }
+    },
+    {
+      "id": "ritzy-periwinkle",
+      "name": "Ritzy Periwinkle",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Artist and creator within The ZAO ecosystem.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02"
+      }
+    },
+    {
+      "id": "ohnahji-b",
+      "name": "Ohnahji B",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Artist and collaborator in The ZAO ecosystem. Co-host of the Web3 Podcast with Zaal.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "url": "https://linktr.ee/ohnahji",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://linktr.ee/ohnahji"
+      }
+    },
+    {
+      "id": "midipunkz",
+      "name": "MidiPunkZ",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Community and collaboration partner within The ZAO ecosystem. Platform for music creation, gaming, and collectible avatars. Collaborates with ZAO on music tracks and community spaces.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "url": "https://midipunkz.com",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://midipunkz.com https://midipunkz.com/games https://ima.midipunkz.com/communities/midipunkz https://ima.midipunkz.com/communities/featherfrogs https://midipunkz.com/midiezz https://ima.midipunkz.com/communities/the-zao"
+      }
+    },
+    {
+      "id": "godcloud",
+      "name": "GodCloud",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "ZAO community musician and artist. Active contributor to The ZAO ecosystem.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "url": "https://godcloud.org",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://godcloud.org https://drip.haus/godcloud"
+      }
+    },
+    {
+      "id": "jed-xo",
+      "name": "Jed XO",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Community member within The ZAO ecosystem.",
+        "stage": "incubating",
+        "tier": "sub-brand",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02"
+      }
+    },
+    {
+      "id": "defi-space-donkeys",
+      "name": "Defi Space Donkeys",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Upcoming project within The ZAO ecosystem. Details coming soon.",
+        "stage": "incubating",
+        "tier": "sub-brand",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02"
+      }
+    },
+    {
+      "id": "impact-concerts",
+      "name": "Impact Concerts",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Upcoming concert initiative within The ZAO ecosystem. Details coming soon.",
+        "stage": "incubating",
+        "tier": "sub-brand",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02"
+      }
+    },
+    {
+      "id": "ez-in-crypto",
+      "name": "EZinCrypto",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "ZAO ecosystem contributor and staff member. Part of the core team supporting The ZAO.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02"
+      }
+    },
+    {
+      "id": "magnetiq",
+      "name": "Magnetiq",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "Magnetiq powers the ZABAL Connector magnet at zabal.lol -> app.magnetiq.xyz/brand/ZABAL. Partnership for ecosystem activation flows.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "url": "https://app.magnetiq.xyz/brand/ZABAL/magnet/Zabal%20Connector",
+        "parent": "bettercallzaal",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://app.magnetiq.xyz/brand/ZABAL/magnet/Zabal%20Connector"
+      }
+    },
+    {
+      "id": "iykyk",
+      "name": "iykyk",
+      "labels": [
+        "Sub-brand",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "iykyk - partner brand within The ZAO ecosystem. Hosted on blank.space creator infrastructure.",
+        "stage": "active",
+        "tier": "sub-brand",
+        "url": "https://iykyk.blank.space/home/Explore",
+        "parent": "the-zao",
+        "_source": "zaonexus-2026-06-02",
+        "_links": "https://iykyk.blank.space/home/Explore"
       }
     }
   ],
@@ -15347,6 +15853,246 @@
       "type": "part_of",
       "properties": {
         "fact": "ZAONEXUS is part of the ZABAL ecosystem"
+      }
+    },
+    {
+      "from": "zao-festivals",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "ZAO Festivals is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "zaostock",
+      "to": "zao-festivals",
+      "type": "part_of",
+      "properties": {
+        "fact": "ZAOstock 2026 is part of zao-festivals (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "cipher",
+      "to": "zao-festivals",
+      "type": "part_of",
+      "properties": {
+        "fact": "Cipher is part of zao-festivals (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "wavewarz",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "WaveWarZ is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "wavewarz-africa",
+      "to": "wavewarz",
+      "type": "part_of",
+      "properties": {
+        "fact": "WaveWarZ Africa is part of wavewarz (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "zao-fractals",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "ZAO Fractals is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "zabal-newsletter",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "ZABAL Newsletter is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "zao-devz",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "ZAO Devz is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "web3-podcast",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "Web3 Podcast is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "zao-os",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "ZAO OS is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "zoe",
+      "to": "zao-os",
+      "type": "part_of",
+      "properties": {
+        "fact": "ZOE is part of zao-os (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "hermes",
+      "to": "zao-os",
+      "type": "part_of",
+      "properties": {
+        "fact": "Hermes is part of zao-os (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "empire-builder",
+      "to": "bettercallzaal",
+      "type": "part_of",
+      "properties": {
+        "fact": "Empire Builder is part of bettercallzaal (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "bonfire",
+      "to": "bettercallzaal",
+      "type": "part_of",
+      "properties": {
+        "fact": "Bonfire Integration is part of bettercallzaal (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "poidh",
+      "to": "bettercallzaal",
+      "type": "part_of",
+      "properties": {
+        "fact": "POIDH Bounties is part of bettercallzaal (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "bcz-yapz",
+      "to": "bettercallzaal",
+      "type": "part_of",
+      "properties": {
+        "fact": "BCZ YapZ is part of bettercallzaal (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "tom-fellenz",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "Tom Fellenz is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "stilo-world",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "Stilo World is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "joseph-goats",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "Joseph Goats is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "jangouu-forever",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "JANGOUU FOREVER is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "ritzy-periwinkle",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "Ritzy Periwinkle is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "ohnahji-b",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "Ohnahji B is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "midipunkz",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "MidiPunkZ is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "godcloud",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "GodCloud is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "jed-xo",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "Jed XO is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "defi-space-donkeys",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "Defi Space Donkeys is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "impact-concerts",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "Impact Concerts is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "ez-in-crypto",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "EZinCrypto is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "magnetiq",
+      "to": "bettercallzaal",
+      "type": "part_of",
+      "properties": {
+        "fact": "Magnetiq is part of bettercallzaal (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "iykyk",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "iykyk is part of the-zao (ZAONEXUS ecosystem map)"
       }
     }
   ]
