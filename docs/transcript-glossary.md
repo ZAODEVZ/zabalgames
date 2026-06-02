@@ -23,7 +23,7 @@ This is a living file - add new names and mishears as each transcript is process
 | **Diviflyy** (Adrian) | Empire Builder co-founder, technical. Spelled D-I-V-I-F-L-Y-Y. | Divi Fly, divifly, Divvy Fly |
 | **azflin** (AZ) | Creator of DotA (Defense of the Agents). farcaster.xyz/azflin | AZ Flynn |
 | **Joshua.eth** (Josh) | Bonfire founder. Handle @joshua.eth. | Joshua eth, Josh ua |
-| **Plat0x** (Carlos) | Bonfire technical architect, from Ecuador. Pronounced "Plato". No Farcaster; X handle @0x_eth. | PlatoX, Plato, Platox, Plateaux, Platos |
+| **Plat0x** (Carlos) | Bonfire technical architect, from Ecuador. Pronounced "Plato". Keep the name "Plat0x". No Farcaster; X is @at0x_eth (https://x.com/at0x_eth). | PlatoX, Plato, Platox, Plateaux, Platos |
 | **Carlos** | Real name of Plat0x - keep as Carlos when used as a first name. | (keep as heard) |
 | **Push** | Community member, top Empire. | (keep as heard) |
 
