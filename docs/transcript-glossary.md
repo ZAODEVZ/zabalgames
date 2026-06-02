@@ -23,7 +23,7 @@ This is a living file - add new names and mishears as each transcript is process
 | **Diviflyy** (Adrian) | Empire Builder co-founder, technical. Spelled D-I-V-I-F-L-Y-Y. | Divi Fly, divifly, Divvy Fly |
 | **azflin** (AZ) | Creator of DotA (Defense of the Agents). farcaster.xyz/azflin | AZ Flynn |
 | **Joshua.eth** (Josh) | Bonfire founder. Handle @joshua.eth. | Joshua eth, Josh ua |
-| **Plat0x** (Carlos) | Bonfire technical architect, from Ecuador. Pronounced "Plato". Handle @plat0x. | PlatoX, Plato, Platox, Plateaux, Platos |
+| **Plat0x** (Carlos) | Bonfire technical architect, from Ecuador. Pronounced "Plato". No Farcaster; X handle @0x_eth. | PlatoX, Plato, Platox, Plateaux, Platos |
 | **Carlos** | Real name of Plat0x - keep as Carlos when used as a first name. | (keep as heard) |
 | **Push** | Community member, top Empire. | (keep as heard) |
 
@@ -82,6 +82,9 @@ This is a living file - add new names and mishears as each transcript is process
 | "first to vibe coders" | first-time vibe coders |
 | "ship-a-thing" | ship-a-thon (or Build-A-Thon) |
 | "buildathon" | Build-A-Thon |
+| "mold book" | Moltbook |
+| "dash projects page" | /projects page |
+| "Zaal teachers" / "Zaal mentor" (season blurb) | ZAO teachers / ZAO mentor |
 
 ## Correct as-heard (do not "fix")
 Clanker, Privy, Rabby, Warplet, Splits, Base, Arbitrum, Monad, BNB, Polygon, ERC-20,
@@ -89,12 +92,6 @@ Empire Builder, Farcaster Batches, Bonfire, Bonfires, Magnetiq, The ZAO, ChatGPT
 and the tiers Assembled / Awakened / Ascended.
 
 ## Confirm before use (unverified)
-- **Carlos / Plat0x Twitter handle** - heard as "playducks_ eightducks_eth"; confirm exact
-  handle (sounds like @8ducks_eth). His Bonfire/Farcaster handle is @plat0x.
-- **"mold book" example** - an app Carlos references; spelling/name unconfirmed.
-- **"dash projects page"** - likely "/projects page" (the projects.html surface); confirm.
-- **"Zaal teachers" / "Zaal mentor"** (in the season blurb) - likely "ZAO teachers" / "ZAO
-  mentor" per site copy; confirm before changing.
 - **Fred Disick** - community handle heard in Workshop 1; spelling unconfirmed.
 - Other community handles in raffles/chat (Jellyfish, Jerry D, Golden Pipes) - keep as heard.
 
