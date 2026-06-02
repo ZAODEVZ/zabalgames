@@ -91,23 +91,19 @@
     {
       "id": "farcaster-batches",
       "name": "Farcaster Batches",
-      "kind": "protocol-feature",
-      "status": "upcoming",
+      "kind": "event",
+      "status": "live",
       "color": "orange",
-      "summary": "An upcoming Farcaster protocol feature, being introduced on GM Farcaster (Farcaster's #1 news show) during its X spaces.",
-      "ties_to_zabal": "A new rail to design around. ZABAL Gamez builds that batch onchain or social actions get cheaper / more composable when Batches ships. Tracked here so builders catch it the week it lands.",
-      "links": [
-        {"label": "GM Farcaster", "url": "https://www.gmfarcaster.com/"},
-        {"label": "GM Farcaster mini app", "url": "https://miniapp.gmfarcaster.com/"}
-      ],
+      "summary": "A Farcaster builder showcase / demo event where projects present their work live. ZABAL Gamez builders take part.",
+      "ties_to_zabal": "A stage for ZABAL Gamez work. yerbearserker, Zaal and azflin presented as part of Farcaster Batches on Jun 3 2026, running NFT raffles to holders of the Yerbearserker Mate collab mint. Session transcripts will be added here as they are shared.",
+      "links": [],
       "ideas": [
-        "When Batches ships, audit which ZABAL Gamez rails (cast composer, Hats mint, EAS attest, Clanker) can be batched into one user action.",
-        "Capture the GM Farcaster spaces explainer as the canonical timeline entry the day it launches.",
-        "Watch for a public spec / SDK and add a github-content pull config once a repo exists."
+        "Add Farcaster Batches session transcripts under raw/transcripts as they are shared, same convention as the workshop transcripts.",
+        "Cross-link each ZABAL Gamez project that presents at a Batches showcase to its workshop lead and Bonfire entity."
       ],
       "pull": {
         "type": "static",
-        "note": "Not yet shipped. Launch entry curated in timeline.json. Swap to a haatz pull on the GM Farcaster channel once the announcement casts land."
+        "note": "Event/showcase. Sessions are curated in timeline.json; transcripts land under raw_dir as they are shared."
       },
       "raw_dir": "data/streams/farcaster-batches/raw"
     },
