@@ -40,7 +40,7 @@
       ],
       "attributes": {
         "domain": "bettercallzaal.com",
-        "description": "Personal site and Farcaster Mini App for Zaal",
+        "description": "BCZ Strategies LLC is the legal hub and umbrella for all ZABAL projects. Zaal's solo founder track incubating community ideas into The ZAO. Home for Empire Builder, Bonfire integration, POIDH bounties, and cross-project tooling.",
         "platform": "Farcaster",
         "stage": "active",
         "tier": "umbrella",
@@ -342,7 +342,7 @@
         "nft_royalty_suggested": "5%",
         "funding_distributed": "$65,000",
         "token": "NONE",
-        "_source": "zabal-dispatch-poidh-20260523",
+        "_source": "zaonexus-2026-06-02",
         "category": "crypto-infra",
         "role": "Bounty + proof-of-contribution",
         "cost": "Onchain fees only",
@@ -370,7 +370,7 @@
         "ZAO Brand"
       ],
       "attributes": {
-        "url": "https://empirebuilder.world",
+        "url": "https://bettercallzaal.com",
         "docs_url": "https://empire-builder.gitbook.io/empire-builder-docs",
         "leaderboard_types": [
           "Token Holders",
@@ -387,8 +387,8 @@
         "purpose": "Add leaderboard + booster + treasury infrastructure to any ERC-20",
         "api_endpoint_base": "https://www.empirebuilder.world/api",
         "supports_apiLeaderboards": true,
-        "_source": "zabal-dispatch-poidh-20260523",
-        "description": "Farcaster creator toolkit with leaderboards, boosters, tokenization",
+        "_source": "zaonexus-2026-06-02",
+        "description": "ZABAL track project. Token launch + ecosystem primitive. Featured at two crypto conferences. Being integrated into ZAO OS. Used live in ZABAL Gamez S1 (Jun 1 2026) to spin up a tokenless ZABAL Gamez Empire. Pending formal proposal to become a ZAO Project.",
         "maintainer": "Jordan (yerbearzerker)",
         "tiers": "Basic (free, tokenless) and Ascended (token-launched)",
         "api_status": "available for integration",
@@ -430,7 +430,7 @@
         "stage": "zabal-track",
         "tier": "project",
         "parent": "bettercallzaal",
-        "_links": "https://bettercallzaal.com"
+        "_links": "https://bettercallzaal.com https://empirebuilder.world/empire/zabalgamez01e9af"
       }
     },
     {
@@ -1479,8 +1479,8 @@
         "holders": 346,
         "launchMethod": "Clanker",
         "launchDate": "2026-01-01",
-        "tier": "Ascended (on Empire Builder)",
-        "_source": "zabal-dispatch-zabal-empire-20260523",
+        "tier": "project",
+        "_source": "zaonexus-2026-06-02",
         "transfer": "Freely tradable (ERC-20)",
         "earning": "Raffle (10 random) + weighted (50-100 by leaderboard score) distributions",
         "distribution_frequency": "Monthly",
@@ -2297,15 +2297,16 @@
           "artist tips (wallet)",
           "merch/digital goods"
         ],
-        "_source": "zabal-dispatch-coinflow-20260523",
-        "description": "First ZAO incubated project. A decentralized music production platform where artists create, remix, and collaborate on-chain. Built by Hurric4n3ike with Zaal and Samantha (candytoybox) as cofounders.",
+        "_source": "zaonexus-2026-06-02",
+        "description": "First ZAO incubated project. A decentralized music production and prediction platform where artists create, remix, and collaborate on-chain. Production runs on Solana with an agentic port on Base. Built by Hurric4n3ike with Zaal and Samantha (candytoybox) as cofounders.",
         "stage": "active",
         "tier": "project",
-        "url": "https://wavewarz.io",
-        "github": "https://github.com/wavewarz",
+        "url": "https://wavewarz.com",
+        "github": "https://github.com/CandyToyBox",
         "farcaster": "wavewarz",
         "parent": "the-zao",
-        "_links": "https://wavewarz.io https://github.com/wavewarz"
+        "_links": "https://wavewarz.com https://wavewarz-intelligence.vercel.app https://github.com/CandyToyBox",
+        "chain": "Solana"
       }
     },
     {
@@ -2331,7 +2332,7 @@
           "COC Concertz",
           "FISHBOWLZ"
         ],
-        "_source": "zabal-dispatch-coinflow-20260523",
+        "_source": "zaonexus-2026-06-02",
         "description": "The lab and substrate where ZAO projects are built. Monorepo containing the Farcaster client, agent stack (ZOE, Hermes), research library, and infrastructure for The ZAO ecosystem.",
         "stage": "active",
         "tier": "project",
@@ -2474,12 +2475,12 @@
         "token": "FISHBOWLZ (Clanker, 2026-04-04)",
         "format_novel": "mute-lockout moderation - audience speaker auto-demoted on self-mute, must re-raise hand",
         "reason_for_pause": "strategic pivot to Juke's superior native audio + Farcaster integration vs rebuilding custom",
-        "_source": "zabal-dispatch-fishbowlz-juke-20260523",
-        "description": "PAUSED 2026-04-16. Pivoted to partnership with Juke. Was exploring community bounties and on-chain collaboration.",
+        "_source": "zaonexus-2026-06-02",
+        "description": "PAUSED 2026-04-16. Pivoted to partnership with Juke. Was an audio rooms platform at fishbowlz.xyz.",
         "stage": "paused",
         "tier": "project",
-        "url": "https://fishbowlz.com",
-        "_links": "https://fishbowlz.com"
+        "url": "https://fishbowlz.xyz",
+        "_links": "https://fishbowlz.xyz https://fishbowlz.xyz/rooms/"
       }
     },
     {
@@ -7124,12 +7125,12 @@
         "ZAO Brand"
       ],
       "attributes": {
-        "description": "Farcaster-native music infrastructure guild for independent artists",
+        "description": "A collective impact network that operates as an incubator for community-driven projects. Founded by Zaal to help digital creators build their brand and scale. The ZAO is the hub where artists, developers, and builders collaborate to ship projects.",
         "primary_medium": "Farcaster",
         "reputation_system": "Respect (peer-validated Fibonacci ranks)",
         "core_members": 188,
         "ecosystem": "music-web3",
-        "_source": "zabal-dispatch-talent-vs-quotient-zao-fit-20260524",
+        "_source": "zaonexus-2026-06-02",
         "stage": "active",
         "tier": "organization",
         "url": "https://thezao.com",
@@ -7355,7 +7356,9 @@
       "id": "respect-game",
       "name": "Respect Game",
       "labels": [
-        "Mechanism"
+        "Mechanism",
+        "Project",
+        "ZAO Brand"
       ],
       "attributes": {
         "session": "Weekly (Monday 6pm EST)",
@@ -7372,7 +7375,15 @@
         "voting_window": "48 hours (YES/NO weighted)",
         "veto_window": "48 hours (NO only, challenge period)",
         "sybil_resistance": "Random group assignment, 3-6 person limit, Ultimatum Game frame",
-        "_source": "zabal-dispatch-tip-zols-architecture-tip-vs-zol-vs-zabal-20260524"
+        "_source": "zaonexus-2026-06-02",
+        "description": "The ZAO governance role tree built on Hats Protocol (the Respect Game). Lives on Optimism as tree id 226. Surfaces the org structure at hats.thezao.com.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://hats.thezao.com",
+        "chain": "Optimism",
+        "hatsTreeId": "226",
+        "parent": "the-zao",
+        "_links": "https://hats.thezao.com"
       }
     },
     {
@@ -8783,8 +8794,8 @@
         "status": "live",
         "summary": "Zaal's long-form interview show - conversations with a builder, founder, or organizer working on something worth understanding.",
         "ties_to_zabal": "Episode transcripts surface the people, tools, and threads moving through the ZAO ecosystem. BCZ YapZ already generates content/bonfire-ingest/ files from each transcript, so it is a native Bonfire feeder - the same memory layer ZABAL Gamez runs on.",
-        "url": "https://www.bczyapz.com/",
-        "_source": "data-streams-registry",
+        "url": "https://bczyapz.com",
+        "_source": "zaonexus-2026-06-02",
         "description": "ZABAL track. Graduated from ZAOOS to own repo and domain May 2026. Social identity and reputation system. Available at bczyapz.com.",
         "stage": "zabal-track",
         "tier": "project",
@@ -9077,7 +9088,9 @@
         "url": "https://bonfires.ai",
         "parent": "bettercallzaal",
         "_source": "zaonexus-2026-06-02",
-        "_links": "https://bonfires.ai"
+        "_links": "https://bonfires.ai",
+        "founders": "Joshua.eth (Josh)",
+        "staff": "Plat0x / Carlos (technical architect); Ryan / Rskagy (Bonfires SDK author); Jen Tran (business strategy - unconfirmed)"
       }
     },
     {
@@ -9125,10 +9138,10 @@
         "description": "Artist and collaborator. Formerly known as Jose Goats, now Joseph Goats.",
         "stage": "active",
         "tier": "sub-brand",
-        "url": "https://farcaster.xyz/~/user/josephgoats",
+        "url": "https://soundcloud.com/luijoseph",
         "parent": "the-zao",
         "_source": "zaonexus-2026-06-02",
-        "_links": "https://farcaster.xyz/~/user/josephgoats"
+        "_links": "https://soundcloud.com/luijoseph https://farcaster.xyz/~/user/josephgoats"
       }
     },
     {
@@ -9160,7 +9173,9 @@
         "stage": "active",
         "tier": "sub-brand",
         "parent": "the-zao",
-        "_source": "zaonexus-2026-06-02"
+        "_source": "zaonexus-2026-06-02",
+        "url": "https://www.ritzyperiwinkle.com",
+        "_links": "https://www.ritzyperiwinkle.com https://x.com/ritzy_p https://instagram.com/ritzyp https://linkedin.com/in/ritzyp"
       }
     },
     {
@@ -9222,8 +9237,8 @@
         "ZAO Brand"
       ],
       "attributes": {
-        "description": "Community member within The ZAO ecosystem.",
-        "stage": "incubating",
+        "description": "Community member within The ZAO ecosystem. No public brand surface yet.",
+        "stage": "paused",
         "tier": "sub-brand",
         "parent": "the-zao",
         "_source": "zaonexus-2026-06-02"
@@ -9238,7 +9253,7 @@
       ],
       "attributes": {
         "description": "Upcoming project within The ZAO ecosystem. Details coming soon.",
-        "stage": "incubating",
+        "stage": "paused",
         "tier": "sub-brand",
         "parent": "the-zao",
         "_source": "zaonexus-2026-06-02"
@@ -9253,7 +9268,7 @@
       ],
       "attributes": {
         "description": "Upcoming concert initiative within The ZAO ecosystem. Details coming soon.",
-        "stage": "incubating",
+        "stage": "paused",
         "tier": "sub-brand",
         "parent": "the-zao",
         "_source": "zaonexus-2026-06-02"
@@ -9306,6 +9321,23 @@
         "parent": "the-zao",
         "_source": "zaonexus-2026-06-02",
         "_links": "https://iykyk.blank.space/home/Explore"
+      }
+    },
+    {
+      "id": "zabal-gamez",
+      "name": "ZABAL Gamez",
+      "labels": [
+        "Project",
+        "ZAO Brand"
+      ],
+      "attributes": {
+        "description": "ZABAL Gamez Season 1 is live: a 3-month buildathon running daily workshops. Day 1 (Jun 1 2026) shipped two workshops - yerbearserker on Empire Builder (a tokenless ZABAL Gamez Empire was created live) and Joshua.eth + Plat0x on Bonfire. Day 2 (Jun 2 2026) Ohnahji on livestreaming.",
+        "stage": "active",
+        "tier": "project",
+        "url": "https://empirebuilder.world/empire/zabalgamez01e9af",
+        "parent": "bettercallzaal",
+        "_links": "https://empirebuilder.world/empire/zabalgamez01e9af",
+        "_source": "zaonexus-2026-06-02"
       }
     }
   ],
@@ -16092,6 +16124,22 @@
       "type": "part_of",
       "properties": {
         "fact": "iykyk is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "zabal-gamez",
+      "to": "bettercallzaal",
+      "type": "part_of",
+      "properties": {
+        "fact": "ZABAL Gamez is part of bettercallzaal (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "respect-game",
+      "to": "the-zao",
+      "type": "part_of",
+      "properties": {
+        "fact": "Respect Game (ZAO Hats Tree) is part of the-zao (ZAONEXUS ecosystem map)"
       }
     }
   ]
