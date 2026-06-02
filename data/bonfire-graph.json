@@ -7149,7 +7149,7 @@
       "attributes": {
         "description": "ZAO peer-validated Fibonacci-ranked contributor reputation via weekly fractal consensus",
         "mechanism": "Soulbound consensus ranking (OG ERC-20 + ZOR ERC-1155)",
-        "cadence": "weekly, ~90+ weeks running since Aug 2024",
+        "cadence": "weekly, 100+ weeks running",
         "distribution": "Fibonacci 1-6 ranks award 110/68/42/26/16/10 points",
         "gates": "ZABAL Gamez voter eligibility, governance voting, leaderboard weighting",
         "_source": "zabal-dispatch-talent-vs-quotient-zao-fit-20260524",
@@ -7512,7 +7512,7 @@
       ],
       "attributes": {
         "cadence": "Weekly, Mondays 6pm EST",
-        "duration_weeks": "90+ weeks running",
+        "duration_weeks": "100+ weeks running",
         "group_size": "3-6 person breakout groups",
         "mechanism": "Peer-evaluation of weekly contributions (code, music, events, onboarding)",
         "reputation_earned": "Respect tokens on Fibonacci curve (13, 8, 5, 3, 2, 1)",
@@ -14670,7 +14670,7 @@
       "type": "generates",
       "properties": {
         "fact": "Weekly Monday 6pm EST fractals are the sole mechanism for earning Respect",
-        "cadence": "Every Monday, 90+ weeks running",
+        "cadence": "Every Monday, 100+ weeks running",
         "mechanism": "3-6 person breakout groups peer-evaluate contributions; top contributor earns 13 Respect, 2nd 8, etc. (Fibonacci)",
         "facilitators": "Dan + Tadas",
         "_source": "zabal-dispatch-tip-zols-architecture-zols-credits-system-20260524"

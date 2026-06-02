@@ -123,7 +123,7 @@ The umbrella you are building for. Understand which brand your build serves.
 
 ### Respect + Fractals
 - **What:** Soulbound, peer-validated, Fibonacci-ranked reputation. Earned in weekly fractal sessions - 6-person groups consensus-rank each other's contribution. Two Respect types: **OG Respect** (ERC-20, one-time grandfathered) + **ZOR** (ERC-1155, weekly consensus, the active mechanism).
-- **Cadence:** ~90+ weeks running consistently (since August 2024). Mondays 6pm EST + ad-hoc whenever 4+ unplayed members are in the Discord waiting room.
+- **Cadence:** 100+ weeks running consistently. Mondays 6pm EST + ad-hoc whenever 4+ unplayed members are in the Discord waiting room.
 - **Distribution:** Fibonacci ranks 1-6 award 110 / 68 / 42 / 26 / 16 / 10 Respect points (2x era - doubled from year 1).
 - **Bot infrastructure:** `bettercallzaal/fractalbotmarch2026` v2.1, Discord-based (Python 3.10+, discord.py 2.0+), Supabase storage, 52 slash commands. Snapshot integration for proposal + curation voting, onchain auto-submit, Farcaster linking.
 - **Role tree:** Hats Protocol treeId 226 on **Optimism** (NOT Base - governance roles are on OP; ZABAL Gamez NFTs are on Base, separate Hats deployment).
@@ -174,7 +174,7 @@ Browse the full set at github.com/bettercallzaal - everything is MIT, everything
 
 ### Origin + proof of work
 
-ZAO was founded in 2022, started inside another DAO that didn't survive. The remaining builders shut down the parent + refocused on music. The weekly fractal system + Respect token launched ~August 2024 and has run consistently 90+ weeks. ZAO-PALOOZA (NFT NYC 2024) was the first IRL, 6-week production, broke even, first member-IRL contact. ZAO-CHELLA (Miami Art Week 2024) brought multiple onchain-music communities together. WaveWarZ launched on Solana (Hurric4n3Ike + Zaal + Sam) - in one early battle, a musician earned ~0.5 SOL in 20 minutes of trade-activity alone. That moment proved the model: artists earn from engagement, not just streams. Q1 2026 shipped ZAO OS (the platform), launched ZABAL (token, January 1), Crypto Magazine feature. ZAOstock (Oct 3 2026, Maine) is the inaugural festival.
+ZAO was founded in 2022, started inside another DAO that didn't survive. The remaining builders shut down the parent + refocused on music. The weekly fractal system + Respect token launched in 2024 and has run consistently for 100+ weeks. ZAO-PALOOZA (NFT NYC 2024) was the first IRL, 6-week production, broke even, first member-IRL contact. ZAO-CHELLA (Miami Art Week 2024) brought multiple onchain-music communities together. WaveWarZ launched on Solana (Hurric4n3Ike + Zaal + Sam) - in one early battle, a musician earned ~0.5 SOL in 20 minutes of trade-activity alone. That moment proved the model: artists earn from engagement, not just streams. Q1 2026 shipped ZAO OS (the platform), launched ZABAL (token, January 1), Crypto Magazine feature. ZAOstock (Oct 3 2026, Maine) is the inaugural festival.
 
 ---
 
