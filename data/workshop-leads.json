@@ -169,8 +169,8 @@
   "cta_override": {
     "_comment": "manual override for the top CTA. active:true uses headline/event_url/event_label; active:false = auto (next dated workshop).",
     "active": true,
-    "headline": "ZABAL Gamez is live. Today: Joshua.eth on Bonfire and the ZABAL Bonfire bot, with Plat0x, 5-6pm EST.",
-    "event_url": "https://luma.com/y189qk8p",
-    "event_label": "RSVP: Joshua.eth and Plat0x, Jun 1"
+    "headline": "ZABAL Gamez is live. Today: Ohnahji on starting and growing your own livestream, 5-6pm EST.",
+    "event_url": "https://luma.com/xa3bsp21",
+    "event_label": "RSVP: Ohnahji, Jun 2"
   }
 }
