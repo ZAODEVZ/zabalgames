@@ -1,10 +1,10 @@
-# Year of the ZAO - Day [N] (Wed Jun 3, 2026)
+# Year of the ZAO - Day 154 (Wed Jun 3, 2026)
 
 > Day 3 of ZABAL Gamez. Written in the BetterCallZaal / Year of the ZAO voice: direct, warm,
 > builder-energy, first-person where it counts, short parallel lines, arcade nods, the
 > "build is the application" refrain. Today's card is Let your life be transformed (the
-> agreement is Don't Make Assumptions). Recap links go to each recorded session. Confirm the
-> running day number, then copy the block as-is (Paragraph renders the markdown links).
+> agreement is Don't Make Assumptions). Recap links go to each recorded session. Day number is
+> the day-of-year (154 of 365). Copy the block as-is (Paragraph renders the markdown links).
 
 ```
 Good morning, and happy Wednesday in the Year of the ZAO.
