@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://zabalgamez.com/">
 
   <meta property="og:title" content="ZABAL Gamez - 3 Months of Building With The ZAO">
-  <meta property="og:description" content="Ship for a 90+ week community and keep earning from what you build. Workshops now, open build in July, Finals in August. Free, any harness.">
+  <meta property="og:description" content="Ship for a 100+ week community and keep earning from what you build. Workshops now, open build in July, Finals in August. Free, any harness.">
   <meta property="og:url" content="https://zabalgamez.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ZABAL Gamez">
@@ -20,7 +20,7 @@
   <meta name="twitter:site" content="@bettercallzaal">
   <meta name="twitter:creator" content="@bettercallzaal">
   <meta name="twitter:title" content="ZABAL Gamez - 3 Months of Building With The ZAO">
-  <meta name="twitter:description" content="Ship for a 90+ week community and keep earning from what you build. Workshops now, July open build, August Finals.">
+  <meta name="twitter:description" content="Ship for a 100+ week community and keep earning from what you build. Workshops now, July open build, August Finals.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="telegram:channel" content="@zaalp99">
   <meta name="telegram:title" content="ZABAL Gamez Season 1">
@@ -1412,7 +1412,7 @@
   var ctaShareVariants = [
     "I'm building in ZABAL Gamez - shipping for a community that has been here 100+ weeks, and keeping a cut of what I build. Workshops now, open build in July. Free, any harness. Come build with me.",
     "Joining ZABAL Gamez - The ZAO has run weekly for 100+ weeks straight. Build something real for that community, keep an ongoing cut, with a ZAO mentor on your team. Free, any harness. Build it with me.",
-    "I'm in for ZABAL Gamez - ship for a 90+ week community and keep earning from what you build, not a one-time trophy. A ZAO mentor as your teammate. Free, any harness. Come build.",
+    "I'm in for ZABAL Gamez - ship for a 100+ week community and keep earning from what you build, not a one-time trophy. A ZAO mentor as your teammate. Free, any harness. Come build.",
     "ZABAL Gamez is live and I'm building - workshops now, open build in July, Finals in August. Build for a real community and keep a cut of what it earns. Free, any harness. Pull up and build with me.",
     "Doing ZABAL Gamez - not a weekend trophy. Ship for a community that has been here 100+ weeks and keep earning from your build. Free, any harness. Come build with me."
   ];
@@ -1450,9 +1450,11 @@
       var ctaShareText = ctaShareVariants[ctaShareIdx % ctaShareVariants.length];
       ctaShareIdx++;
       if (window.ZABAL && window.ZABAL.share) {
+        // share() -> composeCast tags @zaal automatically (see miniapp.js).
         window.ZABAL.share({ platform: 'farcaster', text: ctaShareText, url: ctaShareUrl, channelKey: 'zabal', target: 'top-cta' });
       } else {
-        window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(ctaShareText)
+        // No-SDK fallback: tag @zaal inline so the cast still credits the team.
+        window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(ctaShareText + ' @zaal')
           + '&embeds%5B%5D=' + encodeURIComponent(ctaShareUrl) + '&channelKey=zabal', '_blank', 'noopener');
       }
     });

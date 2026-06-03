@@ -24,11 +24,21 @@ try {
 // Outside, fall back to the Warpcast intent URL.
 window.ZABAL = window.ZABAL || {};
 
+// Every Farcaster cast from the app credits @zaal so the team can see who is
+// sharing. Idempotent - never doubles up if a caller already tagged the text.
+window.ZABAL.withZaal = function withZaal(text) {
+  const t = (text || '').trim();
+  if (!t) return '@zaal';
+  return /(^|\s)@zaal\b/.test(t) ? t : t + ' @zaal';
+};
+
 window.ZABAL.composeCast = async function composeCast(textOrOpts, maybeEmbeds) {
   // Accept either composeCast({ text, embeds, channelKey }) or composeCast(text, embeds).
-  const { text, embeds, channelKey } = typeof textOrOpts === 'string'
+  const opts = typeof textOrOpts === 'string'
     ? { text: textOrOpts, embeds: maybeEmbeds }
     : (textOrOpts || {});
+  const text = window.ZABAL.withZaal(opts.text);
+  const { embeds, channelKey } = opts;
   try {
     const ctx = await sdk.context;
     if (ctx && ctx.client) {
