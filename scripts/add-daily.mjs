@@ -14,6 +14,11 @@
 //        [--thumb /assets/workshops/x.png] [--link "Label|https://..."] \
 //        [--take "Takeaway one." --take "Takeaway two."]
 //
+//   node scripts/add-daily.mjs mindful --day 4 --date 2026-06-04 \
+//        --card "Card title" --quote "The card's line." \
+//        [--source "From The Four Agreements, Don Miguel Ruiz."] \
+//        [--take "How it lands for the build."]
+//
 // Entries are inserted newest-first. The target file is created with the right
 // shape if it does not exist yet. DATA_DIR overrides the data directory (used
 // by the test fixture).
@@ -110,11 +115,29 @@ function addRecap(args) {
   console.log(`Added recap "${entry.title}" (${entry.date}) to ${file}. Total: ${data.recaps.length}.`);
 }
 
+function addMindful(args) {
+  need(args, ['day', 'date', 'card', 'quote']);
+  const file = join(DATA_DIR, 'mindful.json');
+  const data = loadOrInit(file, { season: 1, cards: [] });
+  if (data.cards.some((c) => String(c.day) === String(args.day))) {
+    console.error(`Day ${args.day} already exists in ${file}. Edit it by hand or pick a new day.`);
+    process.exit(1);
+  }
+  const entry = { date: args.date, day: Number(args.day), card: args.card, quote: args.quote };
+  if (args.source) entry.source = args.source;
+  if (args.take.length) entry.take = args.take.join(' ');
+  data.cards.unshift(entry);
+  data.cards.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  save(file, data);
+  console.log(`Added mindful card Day ${entry.day} (${entry.date}) to ${file}. Total: ${data.cards.length}.`);
+}
+
 const args = parseArgs(process.argv.slice(2));
 const cmd = args._[0];
 if (cmd === 'daily') addDaily(args);
 else if (cmd === 'recap') addRecap(args);
+else if (cmd === 'mindful') addMindful(args);
 else {
-  console.error('Usage: node scripts/add-daily.mjs <daily|recap> [flags]  (see file header)');
+  console.error('Usage: node scripts/add-daily.mjs <daily|recap|mindful> [flags]  (see file header)');
   process.exit(1);
 }
