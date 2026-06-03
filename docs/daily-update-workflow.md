@@ -1,7 +1,7 @@
 # Daily update workflow
 
 How the on-site daily surfaces stay current through the season. These mirror the
-Year of the ZAO newsletter (paragraph.com/@thezao) but live on zabalgamez.com so
+Year of the ZABAL newsletter (paragraph.com/@thezao) but live on zabalgamez.com so
 the day's pulse is one tap from anywhere.
 
 ## The surfaces
