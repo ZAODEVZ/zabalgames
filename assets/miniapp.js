@@ -10,19 +10,43 @@
 
 import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk@0.1.x';
 
-// Dismiss splash + signal page is ready as soon as DOM is parsed.
-// Wrap in try/catch so a non-mini-app context (regular browser tab) does not throw.
+// Expose the namespace early so helpers can attach to it.
+window.ZABAL = window.ZABAL || {};
+
+// Race any SDK promise against a timeout so a slow or hanging client never blocks the
+// page. Resolves null on timeout, which callers treat as "not in a Mini App".
+function withTimeout(promise, ms) {
+  return Promise.race([
+    Promise.resolve(promise).catch(function () { return null; }),
+    new Promise(function (res) { setTimeout(function () { res(null); }, ms); }),
+  ]);
+}
+// Shared, timeout-guarded context read. Every helper below uses this instead of
+// awaiting sdk.context directly, so none of them can hang on a slow client.
+async function getContext() {
+  return withTimeout(sdk.context, 2000);
+}
+window.ZABAL.getContext = getContext;
+
+// Dismiss splash + signal page is ready as soon as DOM is parsed. Timeout-guarded so a
+// hung ready() never leaves the splash up; try/catch covers regular browser loads.
 try {
-  await sdk.actions.ready();
+  await withTimeout(sdk.actions.ready(), 2500);
 } catch (e) {
   // Not running inside a Farcaster Mini App context (regular browser load).
   // Silent fail is correct - the page works as a normal website.
 }
+// Enable the client back button for in-app navigation. Guarded so it no-ops on older
+// SDKs (our pin is 0.1.x) or outside a Mini App.
+try {
+  if (sdk.back && typeof sdk.back.enableWebNavigation === 'function') {
+    await sdk.back.enableWebNavigation();
+  }
+} catch (e) { /* older SDK or not in a Mini App */ }
 
 // Expose helpers for share buttons + role-pick CTAs.
 // Inside a mini app, sdk.actions.composeCast() opens the native Warpcast composer.
 // Outside, fall back to the Warpcast intent URL.
-window.ZABAL = window.ZABAL || {};
 
 // Every Farcaster cast from the app credits @zaal so the team can see who is
 // sharing. Idempotent - never doubles up if a caller already tagged the text.
@@ -40,7 +64,7 @@ window.ZABAL.composeCast = async function composeCast(textOrOpts, maybeEmbeds) {
   const text = window.ZABAL.withZaal(opts.text);
   const { embeds, channelKey } = opts;
   try {
-    const ctx = await sdk.context;
+    const ctx = await getContext();
     if (ctx && ctx.client) {
       // Returns { cast } - cast is null if the user cancels the composer. Callers
       // read this to count only real casts and capture the cast hash.
@@ -58,7 +82,7 @@ window.ZABAL.composeCast = async function composeCast(textOrOpts, maybeEmbeds) {
 
 window.ZABAL.openUrl = async function openUrl(url) {
   try {
-    const ctx = await sdk.context;
+    const ctx = await getContext();
     if (ctx && ctx.client) {
       await sdk.actions.openUrl(url);
       return;
@@ -81,7 +105,7 @@ window.ZABAL.context = sdk.context.catch(() => null);
 // Shape: { fid, username, displayName, pfpUrl }.
 window.ZABAL.getUser = async function getUser() {
   try {
-    const ctx = await sdk.context;
+    const ctx = await getContext();
     return ctx && ctx.user ? ctx.user : null;
   } catch (e) {
     return null;
@@ -92,7 +116,7 @@ window.ZABAL.getUser = async function getUser() {
 window.ZABAL.viewProfile = async function viewProfile(fid) {
   if (!fid) return;
   try {
-    const ctx = await sdk.context;
+    const ctx = await getContext();
     if (ctx && ctx.client) {
       await sdk.actions.viewProfile({ fid });
       return;
@@ -107,7 +131,7 @@ window.ZABAL.viewProfile = async function viewProfile(fid) {
 // Returns true if the prompt ran, false outside a Mini App. Safe to call anywhere.
 window.ZABAL.addApp = async function addApp() {
   try {
-    const ctx = await sdk.context;
+    const ctx = await getContext();
     if (ctx && ctx.client) {
       await sdk.actions.addMiniApp();
       return true;
@@ -122,7 +146,7 @@ window.ZABAL.addApp = async function addApp() {
 window.ZABAL.viewCast = async function viewCast(hash) {
   if (!hash) return;
   try {
-    const ctx = await sdk.context;
+    const ctx = await getContext();
     if (ctx && ctx.client) {
       await sdk.actions.viewCast({ hash });
       return;
@@ -151,7 +175,7 @@ window.ZABAL.openNewTab = function openNewTab(url) {
 // verifies - only works inside a Mini App, no-ops everywhere else.
 window.ZABAL.track = async function track(action, target, castHash) {
   try {
-    const ctx = await sdk.context;
+    const ctx = await getContext();
     if (!ctx || !ctx.client || !sdk.quickAuth) return;
     await sdk.quickAuth.fetch('/api/track', {
       method: 'POST',
@@ -168,13 +192,14 @@ window.ZABAL.track = async function track(action, target, castHash) {
 // full sign-up form outside a Mini App.
 window.ZABAL.join = async function join(payload) {
   try {
-    const ctx = await sdk.context;
+    const ctx = await getContext();
     if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
     const res = await sdk.quickAuth.fetch('/api/join', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload || {}),
     });
+    if (res.ok) window.ZABAL.haptic('medium');
     return res.ok ? { ok: true } : { ok: false, reason: 'server' };
   } catch (e) {
     return { ok: false, reason: 'error' };
@@ -187,7 +212,7 @@ window.ZABAL.join = async function join(payload) {
 // open in Farcaster.
 window.ZABAL.submitBonfire = async function submitBonfire(payload) {
   try {
-    const ctx = await sdk.context;
+    const ctx = await getContext();
     if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
     const res = await sdk.quickAuth.fetch('/api/bonfire-ask', {
       method: 'POST',
@@ -210,9 +235,20 @@ window.ZABAL.withXHandle = function withXHandle(text) {
   return /@bettercallzaal\b/.test(t) ? t : t + ' ' + tag;
 };
 
+// Light tactile feedback on deliberate actions (share, join). No-ops outside a Mini
+// App or on SDKs without haptics (our pin is 0.1.x), so it is always safe to call.
+window.ZABAL.haptic = async function haptic(type) {
+  try {
+    if (sdk.haptics && typeof sdk.haptics.impactOccurred === 'function') {
+      await sdk.haptics.impactOccurred(type || 'medium');
+    }
+  } catch (e) { /* unsupported on this client / SDK */ }
+};
+
 // One share entry point for every page. platform: 'farcaster' | 'x'.
 // Farcaster casts post into the /zabal channel with the page as an embed.
 window.ZABAL.share = async function share({ platform, text, url, target }) {
+  window.ZABAL.haptic('light');
   if (platform === 'x') {
     const t = window.ZABAL.withXHandle(text) + (url ? ' ' + url : '');
     window.ZABAL.openNewTab('https://twitter.com/intent/tweet?text=' + encodeURIComponent(t));
