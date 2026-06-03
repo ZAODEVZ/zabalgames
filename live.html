@@ -77,6 +77,9 @@
     }
     .live-pill.is-next { color: var(--gold); border-color: rgba(245,200,66,0.45); }
     .live-pill.is-next .dot::before { background: var(--gold); }
+    /* Live "here now" presence count */
+    .live-pill.live-here { color: var(--cyan); border-color: rgba(0,229,255,0.4); }
+    .live-pill.live-here .dot::before { background: var(--cyan); }
     @keyframes livePing { 75%, 100% { transform: scale(2.4); opacity: 0; } }
 
     /* Title block */
@@ -336,6 +339,10 @@
     <span class="live-pill" id="live-pill">
       <span class="dot" aria-hidden="true"></span>
       <span id="live-pill-text">Checking</span>
+    </span>
+    <span class="live-pill live-here" id="live-here" hidden>
+      <span class="dot" aria-hidden="true"></span>
+      <span id="live-here-text"></span>
     </span>
   </div>
 
@@ -924,6 +931,42 @@
 })();
 </script>
 
+<script>
+// Live "here now" presence. Heartbeats an anonymous per-tab id to /api/present every
+// 30s; the endpoint counts tabs seen in the last ~75s. Hides itself when KV is off.
+(function () {
+  var el = document.getElementById('live-here');
+  var txt = document.getElementById('live-here-text');
+  if (!el || !txt) return;
+  var pid;
+  try {
+    pid = sessionStorage.getItem('zabal_pid');
+    if (!pid) { pid = Date.now().toString(36) + Math.random().toString(36).slice(2, 10); sessionStorage.setItem('zabal_pid', pid); }
+  } catch (e) { pid = Date.now().toString(36) + Math.random().toString(36).slice(2, 10); }
+
+  function render(count) {
+    if (!count || count < 1) { el.hidden = true; return; }
+    txt.textContent = count + ' here now';
+    el.hidden = false;
+  }
+  function beat() {
+    fetch('/api/present', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: pid }),
+      cache: 'no-store',
+    }).then(function (r) { return r.json(); })
+      .then(function (d) { if (d && d.configured) render(d.count); else el.hidden = true; })
+      .catch(function () {});
+  }
+  beat();
+  var iv = setInterval(beat, 30000);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { if (iv) { clearInterval(iv); iv = null; } }
+    else if (!iv) { beat(); iv = setInterval(beat, 30000); }
+  });
+})();
+</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
