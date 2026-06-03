@@ -31,6 +31,7 @@
     .recap-link { font-size: 0.8rem; padding: 0.3rem 0.7rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); }
     .recap-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
     .recap-link:hover { filter: brightness(1.1); }
+    .recap-share { font-family: inherit; cursor: pointer; }
   </style>
   <script type="module" src="/assets/miniapp.js"></script>
 </head>
@@ -123,6 +124,20 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   var el = document.getElementById('recaps');
+  // Delegated so it survives the innerHTML render below. Builds a takeaways cast from
+  // the clicked recap and shares it into /zabal (share() tags @zaal + embeds the URL).
+  el.addEventListener('click', function (ev) {
+    var b = ev.target.closest('.recap-share');
+    if (!b) return;
+    var takeaways = [];
+    try { takeaways = JSON.parse(b.getAttribute('data-takeaways') || '[]'); } catch (e) {}
+    var lines = takeaways.map(function (t) { return '- ' + t; }).join('\n');
+    var text = "Takeaways from " + b.getAttribute('data-presenter') + "'s ZABAL Gamez session - " +
+      b.getAttribute('data-title') + ':' + (lines ? '\n' + lines : '');
+    if (window.ZABAL && window.ZABAL.share) {
+      window.ZABAL.share({ platform: 'farcaster', text: text, url: b.getAttribute('data-url'), target: 'recap-share' });
+    }
+  });
   fetch('/data/recaps.json', { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (d) {
@@ -136,6 +151,7 @@
         if (r.recording) links += '<a class="recap-link primary" href="' + esc(r.recording) + '" target="_blank" rel="noopener">Watch the recording</a>';
         if (r.transcript) links += '<a class="recap-link" href="' + esc(r.transcript) + '" target="_blank" rel="noopener">Read the transcript</a>';
         if (r.link) links += '<a class="recap-link" href="' + esc(r.link) + '" target="_blank" rel="noopener">' + esc(r.link_label || 'More') + '</a>';
+        links += '<button class="recap-link recap-share" type="button" data-title="' + esc(r.title) + '" data-presenter="' + esc(r.presenter) + '" data-url="' + esc(r.recording || 'https://zabalgamez.com/recaps') + '" data-takeaways="' + esc(JSON.stringify(r.takeaways || [])) + '">Share takeaways</button>';
         var track = r.track ? '<span class="recap-track">' + esc(r.track) + '</span>' : '';
         return '<div class="recap">' + thumb + '<div class="recap-body">' +
           '<span class="recap-date">' + esc(r.date) + '</span>' + track +
