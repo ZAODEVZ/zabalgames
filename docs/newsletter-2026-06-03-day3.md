@@ -13,10 +13,7 @@ Two days in and I am already proud of this room. Day 1 we hit start. yerbearserk
 
 Today we go deeper. Day 3 is back on the builder track, and Cassie from Quilibrium takes us through the Farcaster protocol, ins and outs, as a live build-along. Not a lecture, a build. The pieces, how they fit, and what you can actually do with them once you see under the hood. If that is your lane, or you want it to be, pull up. 4pm EST, livestreamed and recorded. [RSVP here](https://luma.com/fdrdxpuj).
 
-Miss one? Nothing disappears here. Catch up on every session so far:
-- [Day 1 - yerbearserker on Empire Builder V3](https://luma.com/7nfside5)
-- [Day 1 - Joshua.eth and Plat0x on Bonfire and the ZABAL Bonfire bot](https://luma.com/y189qk8p)
-- [Day 2 - Ohnahji on starting and growing your own livestream](https://luma.com/xa3bsp21)
+Miss one? Nothing disappears here. Every session so far is recorded and kept - yerbearserker on Empire Builder, Joshua and Plat0x on Bonfire, and Ohnahji on growing your stream. [Watch them all on the recaps page](https://zabalgamez.com/recaps).
 
 Mindful moment
 
