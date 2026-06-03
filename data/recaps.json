@@ -1,15 +1,19 @@
 {
   "season": 1,
-  "_note": "Recap library for delivered ZABAL Gamez workshops. Newest first. recording/transcript optional - only include links that exist.",
+  "_note": "Recap library for delivered ZABAL Gamez workshops. Newest first. recording/transcript/thumbnail optional - only include links + files that exist. Fields: date, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, transcript, link, link_label, takeaways[].",
   "recaps": [
     {
       "date": "2026-06-02",
       "title": "Starting and growing your own livestream",
       "presenter": "Ohnahji",
       "track": "creator",
+      "format": "Live session, recorded",
       "recording": "https://luma.com/xa3bsp21",
+      "summary": "Day 2 and the first creator-track session of the season. Ohnahji shared his journey in live streaming - how he started, how he found his people, and how you grow an audience while you are still building everything else.",
+      "topics": ["livestreaming", "audience growth", "creator track", "showing up consistently"],
       "takeaways": [
         "How to start streaming and grow an audience while you build everything else.",
+        "Consistency beats production value early - the audience comes from showing up.",
         "The first creator-track session of ZABAL Gamez Season 1."
       ]
     },
@@ -17,24 +21,35 @@
       "date": "2026-06-01",
       "title": "Bonfire and the ZABAL Bonfire bot",
       "presenter": "Joshua.eth and Plat0x",
+      "handle": "@joshua.eth",
+      "org": "Bonfire",
       "track": "builder",
+      "format": "Live workshop, recorded",
       "thumbnail": "/assets/workshops/2026-06-01-bonfire-josh-plat0x.png",
       "recording": "https://luma.com/y189qk8p",
+      "summary": "Day 1, builder track. Joshua.eth walked through Bonfire and the ZABAL Bonfire bot - the ecosystem's shared memory that bots and builds sit on top of - and how to point your own agent at it to follow ZABAL Gamez in real time. Plat0x went deeper on building on the graph.",
+      "topics": ["Bonfire", "knowledge graph", "agents", "ZABAL Bonfire bot", "shared memory"],
       "takeaways": [
         "Point your agent at the ZABAL Bonfire to follow ZABAL Gamez in real time.",
-        "Bonfire is the ecosystem's shared memory - the layer bots and builds sit on top of."
+        "Bonfire is the ecosystem's shared memory - the layer bots and builds sit on top of.",
+        "Your build can read from and write to the graph, so it stays in sync with the season."
       ]
     },
     {
       "date": "2026-06-01",
       "title": "Empire Builder V3",
       "presenter": "yerbearserker",
+      "handle": "@yerbearserker",
+      "org": "Empire Builder",
       "track": "builder",
+      "format": "Live workshop, 30 min, recorded",
       "thumbnail": "/assets/workshops/2026-06-01-yerbearserker-empire-builder.png",
       "recording": "https://luma.com/7nfside5",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md",
       "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
       "link_label": "The ZABAL Gamez Empire",
+      "summary": "Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up a tokenless ZABAL Gamez Empire live during the session. His message: build the foundation before you launch anything.",
+      "topics": ["Empire Builder", "tokenless Empire", "leaderboards", "boosters", "staking", "Triple-A framework", "distribution"],
       "takeaways": [
         "Do not launch a token until you are ready - build the foundation first.",
         "The Triple-A framework: Assemble, Affirm, Ascend.",

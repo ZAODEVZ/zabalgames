@@ -25,7 +25,14 @@
     .recap-track { display: inline-block; margin-left: 8px; padding: 0.08rem 0.5rem; border-radius: 999px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--border); color: var(--text-muted); }
     .recap h3 { color: var(--text); font-size: 1.05rem; margin: 0.5rem 0 0.2rem; }
     .recap-by { color: var(--text-muted); font-size: 0.85rem; margin: 0 0 0.6rem; }
-    .recap-takeaways { margin: 0.4rem 0 0.6rem; padding-left: 1.1rem; }
+    .recap-meta { color: var(--text-muted); font-size: 0.84rem; margin: 0 0 0.5rem; }
+    .recap-meta .dot { color: var(--text-dim); padding: 0 0.3rem; }
+    .recap-meta .recap-format { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
+    .recap-summary { color: var(--text); font-size: 0.92rem; line-height: 1.55; margin: 0.2rem 0 0.6rem; }
+    .recap-topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.2rem 0 0.7rem; }
+    .recap-topic { font-size: 0.68rem; letter-spacing: 0.02em; padding: 0.12rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-2); }
+    .recap-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 0.5rem 0 0.15rem; }
+    .recap-takeaways { margin: 0.2rem 0 0.6rem; padding-left: 1.1rem; }
     .recap-takeaways li { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0.3rem; line-height: 1.5; }
     .recap-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.6rem; }
     .recap-link { font-size: 0.8rem; padding: 0.3rem 0.7rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); }
@@ -146,6 +153,12 @@
       rs.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
       el.innerHTML = rs.map(function (r) {
         var thumb = r.thumbnail ? '<img class="recap-thumb" src="' + esc(r.thumbnail) + '" alt="' + esc(r.presenter) + ' workshop" loading="lazy">' : '';
+        var by = esc(r.presenter) +
+          (r.handle ? ' <span class="dot">&middot;</span> ' + esc(r.handle) : '') +
+          (r.org ? ' <span class="dot">&middot;</span> ' + esc(r.org) : '') +
+          (r.format ? ' <span class="dot">&middot;</span> <span class="recap-format">' + esc(r.format) + '</span>' : '');
+        var summary = r.summary ? '<p class="recap-summary">' + esc(r.summary) + '</p>' : '';
+        var topics = (r.topics || []).map(function (t) { return '<span class="recap-topic">' + esc(t) + '</span>'; }).join('');
         var takeaways = (r.takeaways || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
         var links = '';
         if (r.recording) links += '<a class="recap-link primary" href="' + esc(r.recording) + '" target="_blank" rel="noopener">Watch the recording</a>';
@@ -156,8 +169,10 @@
         return '<div class="recap">' + thumb + '<div class="recap-body">' +
           '<span class="recap-date">' + esc(r.date) + '</span>' + track +
           '<h3>' + esc(r.title) + '</h3>' +
-          '<p class="recap-by">' + esc(r.presenter) + '</p>' +
-          (takeaways ? '<ul class="recap-takeaways">' + takeaways + '</ul>' : '') +
+          '<p class="recap-meta">' + by + '</p>' +
+          summary +
+          (topics ? '<div class="recap-topics">' + topics + '</div>' : '') +
+          (takeaways ? '<div class="recap-label">Key takeaways</div><ul class="recap-takeaways">' + takeaways + '</ul>' : '') +
           (links ? '<div class="recap-links">' + links + '</div>' : '') +
           '</div></div>';
       }).join('');
