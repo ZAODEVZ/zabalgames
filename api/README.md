@@ -43,6 +43,18 @@ Admin-only sender. `Authorization: Bearer <NOTIFY_SECRET>`. Body
 `{ title (<=32), body (<=128), targetUrl? }`. Groups stored tokens by their
 Farcaster notification URL and sends in batches of 100.
 
+### `POST/GET /api/present`
+Live "here now" heartbeat for `/live`. Each tab POSTs `{ id }` (an anonymous
+per-tab token); a timestamp-scored ZSET counts ids seen in the last ~75s.
+Ephemeral, no identity. `{ configured, count }`. No-ops when KV is absent.
+
+### `GET /api/daily-cast` (cron)
+On a day with a workshop dated today in `data/workshop-leads.json`, casts
+"what's on today" into `/zabal` via Neynar. KV-sentinel idempotency
+(`zabal:cron:daily-cast:<date>`) so a retry never double-posts; a failed post
+releases the claim for the next run. No-ops cleanly if KV/Neynar are unset or
+there is no session today. Runs daily via `vercel.json` crons.
+
 ## Required env vars (Vercel project settings)
 
 | Var | What | Where |
@@ -50,6 +62,9 @@ Farcaster notification URL and sends in batches of 100.
 | `KV_REST_API_URL` | Vercel KV / Upstash REST base URL | auto-set when you add a Vercel KV store, or copy from Upstash |
 | `KV_REST_API_TOKEN` | Vercel KV / Upstash REST token | same |
 | `NOTIFY_SECRET` | Bearer secret guarding `POST /api/notify` | set to any long random string; pass it as `Authorization: Bearer <value>` when sending |
+| `NEYNAR_API_KEY` | Neynar key for `POST /api/daily-cast` to publish the cast | Neynar dev dashboard (free tier) |
+| `NEYNAR_SIGNER_UUID` | Approved Neynar signer that posts the daily cast | Neynar managed signer (approve once) |
+| `CRON_SECRET` | Optional bearer enforced on cron endpoints when set | any long random string; Vercel injects it on cron calls |
 
 Without these the endpoints still respond (verify + no-op store / empty feed),
 so the site never breaks - the activity feed just stays empty until KV exists.
