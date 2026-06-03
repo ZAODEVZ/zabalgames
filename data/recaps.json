@@ -8,9 +8,13 @@
       "presenter": "Ohnahji",
       "track": "creator",
       "recording": "https://luma.com/xa3bsp21",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md",
       "takeaways": [
-        "How to start streaming and grow an audience while you build everything else.",
-        "The first creator-track session of ZABAL Gamez Season 1."
+        "Do not abandon what already works to chase the newest thing - the proven platforms still out-distribute the shiny ones.",
+        "Consistency is king. The early weeks are frustrating for everyone; a daily streak forces you to show up and get better. Ohnahji is on day 288 of 365.",
+        "It is live, so things will break on any tool (OBS, Restream, StreamYard). Drop the perfectionism and keep going.",
+        "Use the platform: Twitch raids and Stream Together connect communities, and you can build your own chat bots instead of renting them.",
+        "Treat your screen like a wallet. Keep API keys in env files, never on stream, and when in doubt slow down - rushing is where mistakes happen."
       ]
     },
     {
