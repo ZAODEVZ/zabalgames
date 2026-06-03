@@ -705,6 +705,7 @@
     #workshop-schedule .ws-status.ws-confirmed, #workshop-tba .ws-status.ws-confirmed { box-shadow: 0 0 12px rgba(0, 229, 255, 0.22); }
     #workshop-schedule .ws-status.ws-delivered, #workshop-tba .ws-status.ws-delivered { box-shadow: none; opacity: 0.7; }
     #workshop-schedule .ws-card.is-delivered, #workshop-tba .ws-card.is-delivered { opacity: 0.82; }
+    #workshop-schedule .ws-thumb, #workshop-tba .ws-thumb { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; margin-bottom: 0.7rem; background: var(--surface-2); }
 
     /* "Dates to be announced" subsection heading */
     .ws-tba-head {
@@ -1473,10 +1474,16 @@
     var statusLabel = isPast ? 'delivered' : (L.status || 'planned');
     var tk = TRACKS[L.track];
     var trackBadge = tk ? '<span class="ws-track" style="display:inline-block;margin-right:0.5rem;padding:0.1rem 0.55rem;border:1px solid var(--' + tk.color + ');border-radius:999px;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--' + tk.color + ');vertical-align:middle;">' + tk.label + '</span>' : '';
+    // Delivered: link the session's own Lu.ma (where the recording lands) if we
+    // have it, otherwise the /streams recap hub.
     var action = isPast
-      ? '<a class="ws-rsvp" href="/streams">Watch the recap</a>'
+      ? (L.luma_url
+          ? '<a class="ws-rsvp" href="' + esc(L.luma_url) + '" target="_blank" rel="noopener">Watch the recap</a>'
+          : '<a class="ws-rsvp" href="/streams">Watch the recap</a>')
       : (L.luma_url ? '<a class="ws-rsvp" href="' + esc(L.luma_url) + '" target="_blank" rel="noopener">RSVP on Luma</a>' : '');
+    var thumb = L.thumbnail ? '<img class="ws-thumb" src="' + esc(L.thumbnail) + '" alt="' + esc(L.name) + ' workshop" loading="lazy">' : '';
     return '<div class="ws-card' + (isPast ? ' is-delivered' : '') + '" data-track="' + (L.track || 'none') + '" style="border-left: 3px solid var(--' + c + ');">' +
+      thumb +
       '<div class="ws-when">' + whenLabel + '</div>' +
       '<h3>' + esc(L.topic || 'Workshop session') + '</h3>' +
       '<p class="ws-by">' + esc(L.name) + (L.org ? ' - ' + esc(L.org) : '') + '</p>' +
@@ -1516,6 +1523,31 @@
             tbaHead.style.display = 'none';
           }
         }
+        // Emit Event structured data for dated sessions (SEO / rich results).
+        try {
+          var events = dated.map(function (L) {
+            var ev = {
+              '@context': 'https://schema.org',
+              '@type': 'Event',
+              'name': (L.topic || 'Workshop session') + ' - ' + L.name,
+              'startDate': L.date,
+              'eventAttendanceMode': 'https://schema.org/OnlineEventAttendanceMode',
+              'eventStatus': 'https://schema.org/EventScheduled',
+              'location': { '@type': 'VirtualLocation', 'url': L.luma_url || 'https://zabalgamez.com/live' },
+              'organizer': { '@type': 'Organization', 'name': 'ZABAL Gamez', 'url': 'https://zabalgamez.com' },
+              'performer': { '@type': 'Person', 'name': L.name },
+              'url': L.luma_url || 'https://zabalgamez.com/#schedule'
+            };
+            if (L.thumbnail) ev.image = 'https://zabalgamez.com' + L.thumbnail;
+            return ev;
+          });
+          if (events.length) {
+            var ld = document.createElement('script');
+            ld.type = 'application/ld+json';
+            ld.textContent = JSON.stringify(events.length === 1 ? events[0] : events);
+            document.head.appendChild(ld);
+          }
+        } catch (e) {}
       })
       .catch(function () {
         wsEl.innerHTML = '<p class="ws-loading">Schedule unavailable right now - see the Lu.ma calendar below.</p>';
