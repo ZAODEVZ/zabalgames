@@ -1,0 +1,32 @@
+{
+  "season": 1,
+  "newsletter_url": "https://paragraph.com/@thezao",
+  "_note": "On-site daily log for ZABAL Gamez. Newest day first. Mirrors the Year of the ZAO newsletter; add one entry per build day.",
+  "updates": [
+    {
+      "day": 3,
+      "date": "2026-06-03",
+      "title": "Cassie on Snapchain and building on Farcaster",
+      "body": "Day 3 goes deeper on the builder track. Cassie breaks down Snapchain and what it means for anyone building on Farcaster - how the pieces fit and what to do with them. 4-5pm EST, livestreamed and recorded.",
+      "mindful": "Always Do Your Best. You do your best because you want to do it, not to please the Judge and not to please anyone else.",
+      "links": [
+        { "label": "Watch live", "url": "/live" },
+        { "label": "RSVP", "url": "https://luma.com/zao" }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-06-02",
+      "title": "Ohnahji opens the creator track",
+      "body": "Ohnahji on his journey in live streaming - how to start and grow your own stream. The first creator-track session of the season.",
+      "links": [ { "label": "Recap", "url": "/recaps" } ]
+    },
+    {
+      "day": 1,
+      "date": "2026-06-01",
+      "title": "Season 1 begins - yerbearserker and Bonfire",
+      "body": "Insert Coin. yerbearserker opened on Empire Builder - leaderboards, Empires, and the message to build the foundation before you rush. Then Joshua and Plat0x walked through Bonfire and the ZABAL Bonfire bot. Two live builds, a strong first day.",
+      "links": [ { "label": "Recaps", "url": "/recaps" } ]
+    }
+  ]
+}

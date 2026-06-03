@@ -1,0 +1,46 @@
+{
+  "season": 1,
+  "_note": "Recap library for delivered ZABAL Gamez workshops. Newest first. recording/transcript optional - only include links that exist.",
+  "recaps": [
+    {
+      "date": "2026-06-02",
+      "title": "Starting and growing your own livestream",
+      "presenter": "Ohnahji",
+      "track": "creator",
+      "recording": "https://luma.com/xa3bsp21",
+      "takeaways": [
+        "How to start streaming and grow an audience while you build everything else.",
+        "The first creator-track session of ZABAL Gamez Season 1."
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "title": "Bonfire and the ZABAL Bonfire bot",
+      "presenter": "Joshua.eth and Plat0x",
+      "track": "builder",
+      "thumbnail": "/assets/workshops/2026-06-01-bonfire-josh-plat0x.png",
+      "recording": "https://luma.com/y189qk8p",
+      "takeaways": [
+        "Point your agent at the ZABAL Bonfire to follow ZABAL Gamez in real time.",
+        "Bonfire is the ecosystem's shared memory - the layer bots and builds sit on top of."
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "title": "Empire Builder V3",
+      "presenter": "yerbearserker",
+      "track": "builder",
+      "thumbnail": "/assets/workshops/2026-06-01-yerbearserker-empire-builder.png",
+      "recording": "https://luma.com/7nfside5",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md",
+      "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
+      "link_label": "The ZABAL Gamez Empire",
+      "takeaways": [
+        "Do not launch a token until you are ready - build the foundation first.",
+        "The Triple-A framework: Assemble, Affirm, Ascend.",
+        "Leaderboards, boosters, staking, and tactical generosity power a tokenless Empire.",
+        "yerbearserker stood up a tokenless ZABAL Gamez Empire live during the session."
+      ]
+    }
+  ]
+}
