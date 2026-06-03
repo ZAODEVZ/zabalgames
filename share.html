@@ -108,7 +108,7 @@
       var text = 'Found this in ZABAL Gamez Season 1 - the ZAO build-a-thon.';
       var url = 'https://zabalgamez.com';
       if (window.ZABAL && window.ZABAL.share) window.ZABAL.share({ platform: 'farcaster', text: text, url: url });
-      else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds%5B%5D=' + encodeURIComponent(url) + '&channelKey=zabal', '_blank', 'noopener');
+      else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text + ' @zaal') + '&embeds%5B%5D=' + encodeURIComponent(url) + '&channelKey=zabal', '_blank', 'noopener');
     });
   })();
   </script>

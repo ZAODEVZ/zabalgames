@@ -24,16 +24,27 @@ try {
 // Outside, fall back to the Warpcast intent URL.
 window.ZABAL = window.ZABAL || {};
 
+// Every Farcaster cast from the app credits @zaal so the team can see who is
+// sharing. Idempotent - never doubles up if a caller already tagged the text.
+window.ZABAL.withZaal = function withZaal(text) {
+  const t = (text || '').trim();
+  if (!t) return '@zaal';
+  return /(^|\s)@zaal\b/.test(t) ? t : t + ' @zaal';
+};
+
 window.ZABAL.composeCast = async function composeCast(textOrOpts, maybeEmbeds) {
   // Accept either composeCast({ text, embeds, channelKey }) or composeCast(text, embeds).
-  const { text, embeds, channelKey } = typeof textOrOpts === 'string'
+  const opts = typeof textOrOpts === 'string'
     ? { text: textOrOpts, embeds: maybeEmbeds }
     : (textOrOpts || {});
+  const text = window.ZABAL.withZaal(opts.text);
+  const { embeds, channelKey } = opts;
   try {
     const ctx = await sdk.context;
     if (ctx && ctx.client) {
-      await sdk.actions.composeCast({ text, embeds, channelKey });
-      return;
+      // Returns { cast } - cast is null if the user cancels the composer. Callers
+      // read this to count only real casts and capture the cast hash.
+      return await sdk.actions.composeCast({ text, embeds, channelKey });
     }
   } catch (e) {
     // Fall through to browser fallback.
@@ -138,14 +149,14 @@ window.ZABAL.openNewTab = function openNewTab(url) {
 // Record a deliberate social action against the user's verified FID.
 // Uses sdk.quickAuth.fetch so the request carries a Quick Auth JWT the server
 // verifies - only works inside a Mini App, no-ops everywhere else.
-window.ZABAL.track = async function track(action, target) {
+window.ZABAL.track = async function track(action, target, castHash) {
   try {
     const ctx = await sdk.context;
     if (!ctx || !ctx.client || !sdk.quickAuth) return;
     await sdk.quickAuth.fetch('/api/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: action, target: target || '' }),
+      body: JSON.stringify({ action: action, target: target || '', castHash: castHash || '' }),
     });
   } catch (e) {
     // Tracking is best-effort; never block the share on it.
@@ -189,17 +200,30 @@ window.ZABAL.submitBonfire = async function submitBonfire(payload) {
   }
 };
 
+// Credit the team's X account on tweets, mirroring @zaal on casts. This is the
+// twitter:site / twitter:creator handle. Idempotent. Not used on casts, where an
+// X handle would not map to the same account.
+window.ZABAL.withXHandle = function withXHandle(text) {
+  const t = (text || '').trim();
+  const tag = 'via @bettercallzaal';
+  if (!t) return tag;
+  return /@bettercallzaal\b/.test(t) ? t : t + ' ' + tag;
+};
+
 // One share entry point for every page. platform: 'farcaster' | 'x'.
 // Farcaster casts post into the /zabal channel with the page as an embed.
-window.ZABAL.share = function share({ platform, text, url, target }) {
+window.ZABAL.share = async function share({ platform, text, url, target }) {
   if (platform === 'x') {
-    const t = text + (url ? ' ' + url : '');
+    const t = window.ZABAL.withXHandle(text) + (url ? ' ' + url : '');
     window.ZABAL.openNewTab('https://twitter.com/intent/tweet?text=' + encodeURIComponent(t));
     window.ZABAL.track('share', target || url || '');
     return;
   }
-  window.ZABAL.composeCast({ text: text, embeds: url ? [url] : [], channelKey: 'zabal' });
-  window.ZABAL.track('cast', target || url || '');
+  // composeCast resolves to { cast } - cast is null if the user cancelled. Inside a
+  // Mini App we count only real casts and pass the hash for attribution. The web
+  // fallback resolves to undefined (outcome unknown), so count it best-effort.
+  const res = await window.ZABAL.composeCast({ text: text, embeds: url ? [url] : [], channelKey: 'zabal' });
+  if (!res || res.cast) window.ZABAL.track('cast', target || url || '', res && res.cast && res.cast.hash);
 };
 
 // Inject a small "you" chip into the nav when running inside a Mini App.
