@@ -18,6 +18,8 @@
   <url><loc>https://zabalgamez.com/winners.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/mentor.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/spaces.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/farcaster-batches.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/links.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/llms.txt</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://zabalgamez.com/.well-known/farcaster.json</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>
