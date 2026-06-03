@@ -6,13 +6,11 @@
     {
       "day": 3,
       "date": "2026-06-03",
-      "title": "Cassie on the Farcaster protocol, ins and outs",
-      "body": "Day 3 goes deeper on the builder track. Cassie (Quilibrium) takes you through the Farcaster protocol, ins and outs, as a live build-along - how the pieces fit and what to do with them. 4pm EST, livestreamed and recorded.",
+      "title": "ZABAL Gamez on Farcaster Batches",
+      "body": "Day 3. I shared ZABAL Gamez on GM Farcaster's Farcaster Batches, on stage with Empire Builder, Defense of the Agents, Booster, and Celebration Hub - what we are building and how the ecosystem connects. Cassie's Farcaster protocol session moved to next week.",
       "mindful": "Let your life be transformed. The agreement: Don't Make Assumptions. When you stop making assumptions, your word becomes impeccable and your life is completely transformed.",
       "links": [
-        { "label": "Watch live", "url": "/live" },
-        { "label": "RSVP", "url": "https://luma.com/fdrdxpuj" },
-        { "label": "HyperSnap docs", "url": "http://hypersnap-docs.qstorage.quilibrium.com" }
+        { "label": "The builders on Farcaster Batches", "url": "/farcaster-batches" }
       ]
     },
     {
