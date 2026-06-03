@@ -97,7 +97,9 @@
       "summary": "A Farcaster builder showcase / demo event where projects present their work live. ZABAL Gamez builders take part.",
       "ties_to_zabal": "A stage for ZABAL Gamez work. Day 1 (Jun 2 2026) was a GM Farcaster-hosted showcase with Adrian (diviflyy) co-hosting, featuring Vinny App, POIDH, Juke, Founder Check, Fotocaster and Dr. Deeks - captured as a transcript here. yerbearserker, Zaal and azflin present on a later day (Jun 3), running NFT raffles to holders of the Yerbearserker Mate collab mint.",
       "links": [
-        { "label": "Day 1 - the builders", "url": "/farcaster-batches" }
+        { "label": "The builders (Day 1 + Day 3)", "url": "/farcaster-batches" },
+        { "label": "Day 1 transcript (Jun 2)", "url": "/data/streams/farcaster-batches/raw/transcripts/2026-06-02-farcaster-batches.md" },
+        { "label": "Day 3 transcript (Jun 3)", "url": "/data/streams/farcaster-batches/raw/transcripts/2026-06-03-farcaster-batches.md" }
       ],
       "ideas": [
         "Add Farcaster Batches session transcripts under raw/transcripts as they are shared, same convention as the workshop transcripts.",
