@@ -126,10 +126,11 @@
     {
       "id": "010",
       "name": "Cassie",
+      "org": "Quilibrium",
       "handle": "@cassie",
-      "topic": "Snapchain and building on Farcaster - how it works and what it means for builders.",
-      "format": "30 min, livestreamed and recorded",
-      "when": "Wed Jun 3 2026, 4-5pm EST",
+      "topic": "The Farcaster protocol, ins and outs - a live build-along.",
+      "format": "30-min live demo / build-along, recorded",
+      "when": "Wed Jun 3 2026, 4pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-05-30",
       "color": "orange",
@@ -172,7 +173,7 @@
   "cta_override": {
     "_comment": "manual override for the top CTA. active:true uses headline/event_url/event_label; active:false = auto (next dated workshop).",
     "active": true,
-    "headline": "Next workshop: Cassie on Snapchain and building on Farcaster - Wed Jun 3, 4pm EST.",
+    "headline": "Next workshop: Cassie on the Farcaster protocol, ins and outs - Wed Jun 3, 4pm EST.",
     "event_url": "https://luma.com/fdrdxpuj",
     "event_label": "RSVP: Cassie, Jun 3"
   }
