@@ -89,10 +89,13 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
 - After a merge, re-sync main before new work. Never reuse a merged branch.
 
 ## Validate before pushing (no test suite)
-- JSON: `for f in $(git ls-files '*.json'); do node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" || echo BAD $f; done`
-- Edge fns: `for f in $(git ls-files 'api/*.mjs'); do node --check --input-type=module < "$f" || echo BAD $f; done`
-- Inline HTML JS: extract `<script>...</script>` blocks and `new Function(body)` each.
-- Manifest payload must decode to `{"domain":"zabalgamez.com"}`.
+- **One command: `node scripts/validate.mjs`** - runs all four checks below and exits
+  non-zero on any failure. A SessionStart hook (`.claude/settings.json`) runs it
+  with `--quiet` at the start of every session, so a broken repo state shows up
+  immediately. Run it by hand before every push too.
+- It covers: every tracked `*.json` parses; every `api/*.mjs` passes `node --check`;
+  every classic inline `<script>` in `*.html` compiles; the manifest payload decodes
+  to `{"domain":"zabalgamez.com"}`.
 
 ## 3-month roadmap
 The full June -> July -> August prep plan lives in `docs/season-1-roadmap-3month.md` -
