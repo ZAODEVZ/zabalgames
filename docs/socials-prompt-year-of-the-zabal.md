@@ -42,6 +42,11 @@ VOICE AND STYLE (hard rules)
 - Marks that fit the family, used only when true: "the build is the application", "Insert Coin".
 - End naturally. Add a soft question only if it is honest, never as engagement bait.
 - Each platform must sound distinct. Do not reuse the same sentences across posts.
+- When spotlighting a builder, say what the project does for a person in plain language.
+  Minimize token, NFT, or onchain wording even if the project is crypto-native - lead with the
+  use, not the mechanism. Same for any tags.
+- Confirm @-handles before posting. Never guess a handle - leave it for the human to tag if unsure.
+- Socials are opt-in and downstream of the newsletter. Generate only the platforms you intend to post.
 
 PLATFORMS (one post each)
 
