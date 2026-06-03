@@ -78,17 +78,19 @@ Then the build-a-thon itself:
 Confirmed:
 - ZABAL Gamez: https://zabalgamez.com
 - The ZAO: https://thezao.com  | ZAO app: https://zaoos.com
+- The ZAO newsletter (Year of the ZAO): https://paragraph.com/@thezao
 - WaveWarZ: https://wavewarz-intelligence.vercel.app  (X: https://x.com/WaveWarZ)
+- ZAO Festivals: https://zaofestivals.com  (ZAOstock: https://zaofestivals.com/zaostock)
 - $ZABAL Empire: https://empirebuilder.world/empire/zabalgamez01e9af
 - Magnetiq connector (register): https://app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez
 - /zabal group chat: https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ
 - Luma calendar: https://luma.com/zao
 - BCZ YapZ: https://bczyapz.com
+- COC Concertz: https://cocconcertz.com
+- MidiPunkZ x ZAO (the collab): https://ima.midipunkz.com/communities/the-zao  (brand: https://midipunkz.com)
 - Ecosystem map (ZAONEXUS): https://zaonexus.vercel.app
 
-To fill in before presenting (no canonical link on file yet):
-- The ZAO newsletter: [add link]
-- Let's Talk About Web Three: [add link]
-- Let's Talk About ETH: [add link]
-- COC Concertz: [add link]
-- Midi-ZAO-NKZ: [confirm exact name + add link]
+Still need from you (no canonical URL on file - you'll know these instantly):
+- Let's Talk About Web Three - the graph lists a "Web3 Podcast" (Zaal with Ohnahji B) but no dedicated link. Where does it live - a Farcaster channel, YouTube?
+- Let's Talk About ETH - closest on file is the LTAE Snap (https://ltaesnap.vercel.app). Want that, or does the show have a home page?
+- Confirm "Midi-ZAO-NKZ" is the MidiPunkZ x ZAO collab above (that is the match in our ecosystem map), or point me to the right one.
