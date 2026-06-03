@@ -170,3 +170,48 @@ Pick based on what they want to teach. These are starters, not prescriptions.
 8 total workshop slots planned for June. Confirmed so far: 1 (Tyler) + 2 (Thy Rev) = 3 of 8.
 
 5 slots open. Next outreach per docs/mentor-outreach-2026-05-24.md target list (note: that doc is for MENTORS - workshop leads are a separate ask, both can come from the same network).
+
+---
+
+## Event - Cassie (Workshop #010) - Builder track - Wed Jun 3, 4pm EST
+
+**Title:**
+```
+Snapchain and Building on Farcaster - ZABAL Gamez Workshop
+```
+
+**Subtitle / short description:**
+```
+Cassie on Snapchain and what it means for builders on Farcaster. A ZABAL Gamez Season 1 builder-track session.
+```
+
+**Full description:**
+```
+ZABAL Gamez Season 1 - Builder track
+
+Cassie breaks down Snapchain and building on Farcaster - how the pieces fit together and what they mean for anyone building on the protocol.
+
+What you will learn:
+- What Snapchain is and why it matters
+- How it changes the way you build on Farcaster
+- Practical takeaways for builders shipping on the protocol
+
+Format: 30-min session, livestreamed and recorded, then it lives on for re-watching.
+
+Audience: builders in The ZAO ecosystem, anyone shipping on Farcaster, and July submission hopefuls.
+
+Hosted by: Cassie
+Part of: ZABAL Gamez Season 1 - June workshops
+More: zabalgamez.com
+```
+
+**Date:** Wed Jun 3, 2026
+**Time:** 4:00 PM EST (set the end time to your planned length - default 4:00-5:00 PM EST)
+**Duration:** 45 min (30 min talk + 15 min Q&A buffer)
+**Tag:** `zabal-games`
+**Cover:** `https://zabalgamez.com/assets/og-card.png` (or `icon.png` until the OG card lands)
+**Host:** co-invite Cassie (@cassie) via her Lu.ma account
+
+> After you publish: paste the per-event Lu.ma URL back to me. I will swap it into
+> Cassie's `luma_url` + the homepage CTA (both currently point at the luma.com/zao
+> calendar as an interim).

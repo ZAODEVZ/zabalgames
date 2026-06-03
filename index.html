@@ -703,6 +703,9 @@
       #workshop-schedule .ws-card:hover, #workshop-tba .ws-card:hover { transform: translateY(-2px); border-color: var(--border-hover); box-shadow: var(--glow-cyan); }
     }
     #workshop-schedule .ws-status.ws-confirmed, #workshop-tba .ws-status.ws-confirmed { box-shadow: 0 0 12px rgba(0, 229, 255, 0.22); }
+    #workshop-schedule .ws-status.ws-delivered, #workshop-tba .ws-status.ws-delivered { box-shadow: none; opacity: 0.7; }
+    #workshop-schedule .ws-card.is-delivered, #workshop-tba .ws-card.is-delivered { opacity: 0.82; }
+    #workshop-schedule .ws-thumb, #workshop-tba .ws-thumb { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; margin-bottom: 0.7rem; background: var(--surface-2); }
 
     /* "Dates to be announced" subsection heading */
     .ws-tba-head {
@@ -1120,6 +1123,8 @@
       <a href="/live.html">Live - What's On Now</a>
       <a href="/lead.html">Lead a Workshop</a>
       <a href="/mentor.html">Mentor</a>
+      <a href="/playbook.html">Playbook</a>
+      <a href="/recaps.html">Session Recaps</a>
     </nav>
     <nav class="arcade-foot-col" aria-label="Season">
       <h4>Season</h4>
@@ -1139,10 +1144,13 @@
       <a href="/changelog.html">Changelog</a>
       <a href="/context.html">Context</a>
       <a href="/p.html">Player Roster</a>
+      <a href="/today.html">Daily Update</a>
+      <a href="/mindful.html">Mindful Moments</a>
     </nav>
     <nav class="arcade-foot-col" aria-label="Connect">
       <h4>Connect</h4>
       <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
       <a href="/install.html">Install Context</a>
       <a href="/links.html">All Links</a>
       <a href="/share.html">Share</a>
@@ -1460,21 +1468,34 @@
     builder: { label: 'Builder', color: 'zabal' },
     creator: { label: 'Creator', color: 'cyan' }
   };
+  var todayStr = new Date().toISOString().slice(0, 10);
   function renderCard(L) {
     var c = L.color || 'orange';
     var whenLabel = esc(L.when) || 'Date to be announced';
-    var statusCls = L.status === 'confirmed' ? 'ws-confirmed' : 'ws-tentative';
+    // A dated session whose day has passed reads as delivered - it auto-updates
+    // as days roll over, so the schedule never shows a stale "RSVP" for a past talk.
+    var isPast = L.date && L.date < todayStr;
+    var statusCls = isPast ? 'ws-delivered' : (L.status === 'confirmed' ? 'ws-confirmed' : 'ws-tentative');
+    var statusLabel = isPast ? 'delivered' : (L.status || 'planned');
     var tk = TRACKS[L.track];
     var trackBadge = tk ? '<span class="ws-track" style="display:inline-block;margin-right:0.5rem;padding:0.1rem 0.55rem;border:1px solid var(--' + tk.color + ');border-radius:999px;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--' + tk.color + ');vertical-align:middle;">' + tk.label + '</span>' : '';
-    var rsvp = L.luma_url ? '<a class="ws-rsvp" href="' + esc(L.luma_url) + '" target="_blank" rel="noopener">RSVP on Luma</a>' : '';
-    return '<div class="ws-card" data-track="' + (L.track || 'none') + '" style="border-left: 3px solid var(--' + c + ');">' +
+    // Delivered: link the session's own Lu.ma (where the recording lands) if we
+    // have it, otherwise the /streams recap hub.
+    var action = isPast
+      ? (L.luma_url
+          ? '<a class="ws-rsvp" href="' + esc(L.luma_url) + '" target="_blank" rel="noopener">Watch the recap</a>'
+          : '<a class="ws-rsvp" href="/streams">Watch the recap</a>')
+      : (L.luma_url ? '<a class="ws-rsvp" href="' + esc(L.luma_url) + '" target="_blank" rel="noopener">RSVP on Luma</a>' : '');
+    var thumb = L.thumbnail ? '<img class="ws-thumb" src="' + esc(L.thumbnail) + '" alt="' + esc(L.name) + ' workshop" loading="lazy">' : '';
+    return '<div class="ws-card' + (isPast ? ' is-delivered' : '') + '" data-track="' + (L.track || 'none') + '" style="border-left: 3px solid var(--' + c + ');">' +
+      thumb +
       '<div class="ws-when">' + whenLabel + '</div>' +
       '<h3>' + esc(L.topic || 'Workshop session') + '</h3>' +
       '<p class="ws-by">' + esc(L.name) + (L.org ? ' - ' + esc(L.org) : '') + '</p>' +
       (L.format ? '<p class="ws-format">' + esc(L.format) + '</p>' : '') +
       trackBadge +
-      '<span class="ws-status ' + statusCls + '">' + esc(L.status || 'planned') + '</span>' +
-      rsvp +
+      '<span class="ws-status ' + statusCls + '">' + esc(statusLabel) + '</span>' +
+      action +
       '</div>';
   }
   if (wsEl) {
@@ -1486,6 +1507,12 @@
         // Dated leads render into the live schedule; undated confirmed leads go
         // to the "Dates to be announced" subsection.
         var dated = leads.filter(function (L) { return L.date; });
+        // Upcoming and today first (soonest first), delivered sessions below (newest first).
+        dated.sort(function (a, b) {
+          var ap = a.date < todayStr, bp = b.date < todayStr;
+          if (ap !== bp) return ap ? 1 : -1;
+          return ap ? (a.date < b.date ? 1 : -1) : (a.date < b.date ? -1 : 1);
+        });
         var undated = leads.filter(function (L) { return !L.date; });
         wsEl.innerHTML = dated.length
           ? dated.map(renderCard).join('')
@@ -1501,6 +1528,31 @@
             tbaHead.style.display = 'none';
           }
         }
+        // Emit Event structured data for dated sessions (SEO / rich results).
+        try {
+          var events = dated.map(function (L) {
+            var ev = {
+              '@context': 'https://schema.org',
+              '@type': 'Event',
+              'name': (L.topic || 'Workshop session') + ' - ' + L.name,
+              'startDate': L.date,
+              'eventAttendanceMode': 'https://schema.org/OnlineEventAttendanceMode',
+              'eventStatus': 'https://schema.org/EventScheduled',
+              'location': { '@type': 'VirtualLocation', 'url': L.luma_url || 'https://zabalgamez.com/live' },
+              'organizer': { '@type': 'Organization', 'name': 'ZABAL Gamez', 'url': 'https://zabalgamez.com' },
+              'performer': { '@type': 'Person', 'name': L.name },
+              'url': L.luma_url || 'https://zabalgamez.com/#schedule'
+            };
+            if (L.thumbnail) ev.image = 'https://zabalgamez.com' + L.thumbnail;
+            return ev;
+          });
+          if (events.length) {
+            var ld = document.createElement('script');
+            ld.type = 'application/ld+json';
+            ld.textContent = JSON.stringify(events.length === 1 ? events[0] : events);
+            document.head.appendChild(ld);
+          }
+        } catch (e) {}
       })
       .catch(function () {
         wsEl.innerHTML = '<p class="ws-loading">Schedule unavailable right now - see the Lu.ma calendar below.</p>';
