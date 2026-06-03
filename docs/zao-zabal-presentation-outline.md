@@ -78,7 +78,7 @@ Then the build-a-thon itself:
 Confirmed:
 - ZABAL Gamez: https://zabalgamez.com
 - The ZAO: https://thezao.com  | ZAO app: https://zaoos.com
-- The ZAO newsletter (Year of the ZAO): https://paragraph.com/@thezao
+- The ZAO newsletter (Year of the ZABAL): https://paragraph.com/@thezao
 - WaveWarZ: https://wavewarz-intelligence.vercel.app  (X: https://x.com/WaveWarZ)
 - ZAO Festivals: https://zaofestivals.com  (ZAOstock: https://zaofestivals.com/zaostock)
 - $ZABAL Empire: https://empirebuilder.world/empire/zabalgamez01e9af

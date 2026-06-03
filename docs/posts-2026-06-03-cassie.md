@@ -9,7 +9,7 @@ Brand rules applied: no emojis, no em dashes (hyphens only), tight and warm.
 Note: confirm the HyperSnap docs link resolves on https before sharing - the entry
 currently has it as `http://hypersnap-docs.qstorage.quilibrium.com`.
 
-## Newsletter - Year of the ZAO (paragraph.com/@thezao)
+## Newsletter - Year of the ZABAL (paragraph.com/@thezao)
 
 **ZABAL Gamez - Day 3: Cassie on the Farcaster protocol**
 
