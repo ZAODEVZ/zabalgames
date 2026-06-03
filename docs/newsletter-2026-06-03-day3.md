@@ -19,9 +19,9 @@ Catch up on every session so far:
 
 Mindful moment
 
-Let your life be transformed.
+Today's card: Let your life be transformed.
 
-Today's card: Don't Make Assumptions, from The Four Agreements.
+The agreement: Don't Make Assumptions, from The Four Agreements.
 
 "When you stop making assumptions, your word becomes impeccable, and your life is completely transformed. Magic just happens in your life. What you need comes to you easily because spirit moves freely through you."
 
