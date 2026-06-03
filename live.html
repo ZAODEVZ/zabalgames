@@ -584,11 +584,13 @@
   }
 
   function tellFarcaster(text) {
+    // Tag @zaal so the team sees who's sharing the live page.
+    var castText = text + ' @zaal';
     if (window.ZABAL && typeof window.ZABAL.share === 'function') {
-      window.ZABAL.share({ platform: 'farcaster', text: text, url: LIVE_URL, target: 'live' });
+      window.ZABAL.share({ platform: 'farcaster', text: castText, url: LIVE_URL, target: 'live' });
       return;
     }
-    var url = 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text)
+    var url = 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(castText)
             + '&embeds%5B%5D=' + encodeURIComponent(LIVE_URL) + '&channelKey=zabal';
     var a = document.createElement('a');
     a.href = url; a.target = '_blank'; a.rel = 'noopener';
