@@ -135,7 +135,7 @@
       "color": "orange",
       "track": "builder",
       "date": "2026-06-03",
-      "luma_url": "https://luma.com/zao"
+      "luma_url": "https://luma.com/fdrdxpuj"
     },
     {
       "id": "011",
@@ -173,7 +173,7 @@
     "_comment": "manual override for the top CTA. active:true uses headline/event_url/event_label; active:false = auto (next dated workshop).",
     "active": true,
     "headline": "Next workshop: Cassie on Snapchain and building on Farcaster - Wed Jun 3, 4pm EST.",
-    "event_url": "https://luma.com/zao",
+    "event_url": "https://luma.com/fdrdxpuj",
     "event_label": "RSVP: Cassie, Jun 3"
   }
 }
