@@ -1227,14 +1227,16 @@
       return;
     }
 
-    // Farcaster: prefer Mini App SDK composeCast() if available, else web compose
+    // Farcaster: tag @zaal so the team sees who's sharing. Cast only - not the X tweet,
+    // where @zaal would not map to the same account.
+    var castText = text + ' @zaal';
     if (window.ZABAL && typeof window.ZABAL.composeCast === 'function') {
-      window.ZABAL.composeCast({ text: text, embeds: [SITE], channelKey: 'zabal' }).catch(function(err) {
+      window.ZABAL.composeCast({ text: castText, embeds: [SITE], channelKey: 'zabal' }).catch(function(err) {
         console.warn('SDK composeCast failed, falling back to web compose:', err);
-        openFarcasterCompose(text);
+        openFarcasterCompose(castText);
       });
     } else {
-      openFarcasterCompose(text);
+      openFarcasterCompose(castText);
     }
   });
 
