@@ -1371,7 +1371,12 @@
         // True one-tap only when the join was actually stored. Any other outcome
         // (no KV, not in a Mini App, transient error) falls through to the full
         // form so the signup is always captured somewhere - carry the track over.
-        if (r.ok) { btn.textContent = "You're in"; loadCount(); }
+        if (r.ok) {
+          btn.textContent = "You're in"; loadCount();
+          // The moment right after a join is the documented best time to prompt +Add
+          // (notifications - the top retention lever). No-ops outside a Mini App.
+          if (window.ZABAL && window.ZABAL.addApp) window.ZABAL.addApp();
+        }
         else { window.location.href = '/lead' + (selectedTrack ? '?track=' + selectedTrack : ''); }
       });
     });
@@ -1407,7 +1412,8 @@
     "Joining ZABAL Gamez - The ZAO has run weekly for 100+ weeks straight. Build something real for that community, keep an ongoing cut, with a ZAO mentor on your team. Free, any harness. Build it with me.",
     "I'm in for ZABAL Gamez - ship for a 100+ week community and keep earning from what you build, not a one-time trophy. A ZAO mentor as your teammate. Free, any harness. Come build.",
     "ZABAL Gamez is live and I'm building - workshops now, open build in July, Finals in August. Build for a real community and keep a cut of what it earns. Free, any harness. Pull up and build with me.",
-    "Doing ZABAL Gamez - not a weekend trophy. Ship for a community that has been here 100+ weeks and keep earning from your build. Free, any harness. Come build with me."
+    "Doing ZABAL Gamez - not a weekend trophy. Ship for a community that has been here 100+ weeks and keep earning from your build. Free, any harness. Come build with me.",
+    "What would you build if you kept earning from it, not just a one-time trophy? I'm in for ZABAL Gamez - ship for a 100+ week community with a ZAO mentor on your team. Free, any harness. Build with me."
   ];
   var ctaShareIdx = Math.floor(Math.random() * ctaShareVariants.length);
   var ctaShareUrl = 'https://zabalgamez.com';
