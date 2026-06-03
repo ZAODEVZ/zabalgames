@@ -1,13 +1,13 @@
-# Year of the ZAO - Day 154 (Wed Jun 3, 2026)
+# Year of the ZABAL - Day 154 (Wed Jun 3, 2026)
 
-> Day 3 of ZABAL Gamez. Written in the BetterCallZaal / Year of the ZAO voice: direct, warm,
+> Day 3 of ZABAL Gamez. Written in the BetterCallZaal / Year of the ZABAL voice: direct, warm,
 > builder-energy, first-person where it counts, short parallel lines, arcade nods, the
 > "build is the application" refrain. Today's card is Let your life be transformed (the
 > agreement is Don't Make Assumptions). Recap links go to each recorded session. Day number is
 > the day-of-year (154 of 365). Copy the block as-is (Paragraph renders the markdown links).
 
 ```
-Good morning, and happy Wednesday in the Year of the ZAO.
+Good morning, and happy Wednesday in the Year of the ZABAL.
 
 Two days in and I am already proud of this room. Day 1 we hit start. yerbearserker opened on Empire Builder - leaderboards, Empires, and one line that stuck: do not rush, build the foundation first. Then Joshua and Plat0x took us into Bonfire and the ZABAL Bonfire bot. Day 2, Ohnahji opened the creator track and got real about the stream - how he started, how he grew, how you build an audience while you build everything else. Two days, three live builds, a lot of people showing up for each other. Thank you. That is the whole thing.
 
