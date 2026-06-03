@@ -1196,12 +1196,15 @@
 
   // Share buttons
   var SITE = 'https://zabalgamez.com';
+  // Cast copy carries NO inline URL - the site is passed as the embed (a rich card),
+  // so a link in the text would be redundant. The X path re-adds the URL since tweets
+  // have no embed card. share() appends @zaal (casts) / @bettercallzaal (X).
   var SHARE_TEXT = {
-    builder: "I'll be part of ZABAL Gamez Season 1 as a builder. Shipping something real for The ZAO's 3-month Build-A-Thon - a ZAO mentor as my teammate, the build is the application. Free, any harness. Come build with me: " + SITE,
-    workshop: "I'll be part of ZABAL Gamez Season 1 - teaching a June workshop. The ZAO's 3-month Build-A-Thon, builders teaching the tools they made. Free and recorded. Join in: " + SITE,
-    watcher: "I'll be part of ZABAL Gamez Season 1, following along. The ZAO's 3-month Build-A-Thon - June workshops, July open build, August Finals where the strongest builds pair with a ZAO mentor: " + SITE,
-    learner: "I'll be part of ZABAL Gamez Season 1, learning at the June workshops. The ZAO's 3-month Build-A-Thon - builders across the ecosystem teaching the tools they made. Free and recorded: " + SITE,
-    'all-in': "I'm all in on ZABAL Gamez Season 1 - learning in June, building in July, the Finals in August. The ZAO's 3-month Build-A-Thon. Bring an idea, leave with something real and shipped: " + SITE
+    builder: "I'll be part of ZABAL Gamez Season 1 as a builder. Shipping something real for The ZAO's 3-month Build-A-Thon - a ZAO mentor as my teammate, the build is the application. Free, any harness. Come build with me.",
+    workshop: "I'll be part of ZABAL Gamez Season 1 - teaching a June workshop. The ZAO's 3-month Build-A-Thon, builders teaching the tools they made. Free and recorded. Join in.",
+    watcher: "I'll be part of ZABAL Gamez Season 1, following along. The ZAO's 3-month Build-A-Thon - June workshops, July open build, August Finals where the strongest builds pair with a ZAO mentor.",
+    learner: "I'll be part of ZABAL Gamez Season 1, learning at the June workshops. The ZAO's 3-month Build-A-Thon - builders across the ecosystem teaching the tools they made. Free and recorded.",
+    'all-in': "I'm all in on ZABAL Gamez Season 1 - learning in June, building in July, the Finals in August. The ZAO's 3-month Build-A-Thon. Bring an idea, leave with something real and shipped."
   };
 
   // Match ANY element with data-share + data-platform (covers .share-btn hero + .path-btn path cards)
@@ -1216,27 +1219,17 @@
       console.warn('No share text for key:', key);
       return;
     }
-    if (window.ZABAL && typeof window.ZABAL.track === 'function') {
-      window.ZABAL.track(platform === 'x' ? 'share' : 'cast', key);
-    }
-    var url;
-
-    if (platform === 'x') {
-      url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
-      openNewTab(url);
+    // One entry point: share() tags @zaal on casts and @bettercallzaal on X, embeds
+    // the site as the card, and tracks only real casts (with the cast hash).
+    if (window.ZABAL && typeof window.ZABAL.share === 'function') {
+      window.ZABAL.share({ platform: platform, text: text, url: SITE, target: key });
       return;
     }
-
-    // Farcaster: tag @zaal so the team sees who's sharing. Cast only - not the X tweet,
-    // where @zaal would not map to the same account.
-    var castText = text + ' @zaal';
-    if (window.ZABAL && typeof window.ZABAL.composeCast === 'function') {
-      window.ZABAL.composeCast({ text: castText, embeds: [SITE], channelKey: 'zabal' }).catch(function(err) {
-        console.warn('SDK composeCast failed, falling back to web compose:', err);
-        openFarcasterCompose(castText);
-      });
+    // No-SDK fallback (miniapp.js did not load): tag inline and add the URL ourselves.
+    if (platform === 'x') {
+      openNewTab('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text + ' via @bettercallzaal ' + SITE));
     } else {
-      openFarcasterCompose(castText);
+      openFarcasterCompose(text + ' @zaal');
     }
   });
 

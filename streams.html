@@ -101,10 +101,10 @@
         window.ZABAL.share({ platform: platform, text: SHARE_TEXT, url: SHARE_URL });
         return;
       }
-      // Fallback if the Mini App SDK helper did not load. Tag @zaal on the cast
-      // (not the X tweet, where it would not map to the same account).
+      // Fallback if the Mini App SDK helper did not load. Credit @bettercallzaal on
+      // the tweet and @zaal on the cast (handles do not map across the two networks).
       var url = platform === 'x'
-        ? 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(SHARE_TEXT + ' ' + SHARE_URL)
+        ? 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(SHARE_TEXT + ' via @bettercallzaal ' + SHARE_URL)
         : 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(SHARE_TEXT + ' @zaal') + '&embeds%5B%5D=' + encodeURIComponent(SHARE_URL) + '&channelKey=zabal';
       var a = document.createElement('a');
       a.href = url; a.target = '_blank'; a.rel = 'noopener';

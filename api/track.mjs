@@ -12,7 +12,8 @@
 //   KV_REST_API_URL     Vercel KV / Upstash REST base URL
 //   KV_REST_API_TOKEN   Vercel KV / Upstash REST token
 //
-// Request:  POST { action: 'cast'|'share'|'signup', target?: string }
+// Request:  POST { action: 'cast'|'share'|'signup', target?: string, castHash?: string }
+//           castHash is the real cast hash from composeCast - stored for attribution.
 //           Authorization: Bearer <quick-auth-jwt>   (added by sdk.quickAuth.fetch)
 // Response: { ok: true, stored: boolean }
 
@@ -144,13 +145,15 @@ export default async function handler(req) {
   try { body = await req.json(); } catch {}
   const action = String(body.action || '');
   const target = String(body.target || '').slice(0, 40);
+  const castHash = String(body.castHash || '').slice(0, 80);
   if (!ALLOWED.has(action)) return json({ error: 'bad action' }, 400, origin);
 
   if (!KV_URL || !KV_TOKEN) return json({ ok: true, stored: false, note: 'KV not configured' }, 200, origin);
 
   const profile = await resolveProfile(fid);
   const entry = JSON.stringify({
-    fid, username: profile.username, pfpUrl: profile.pfpUrl, action, target, ts: Date.now(),
+    fid, username: profile.username, pfpUrl: profile.pfpUrl, action, target,
+    castHash: castHash || null, ts: Date.now(),
   });
   const presentKey = `zabal:present:${new Date().toISOString().slice(0, 10)}`;
   try {
