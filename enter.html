@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enter the July Build - ZABAL Gamez Season 1</title>
+  <meta name="description" content="How to enter the July open build-a-thon: ship a build for the ZAO ecosystem, then register your wallet and repo so it counts. The build is the application.">
+  <link rel="canonical" href="https://zabalgamez.com/enter">
+  <meta property="og:title" content="Enter the July Build - ZABAL Gamez Season 1">
+  <meta property="og:description" content="The build is the application. Ship for the ZAO ecosystem, register your wallet and repo, and you are in.">
+  <meta property="og:url" content="https://zabalgamez.com/enter">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:description" content="The build is the application. Ship for the ZAO ecosystem, register your wallet and repo, and you are in.">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Enter the July build","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/enter","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Enter the July build","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/enter","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+
+  <style>
+    /* July entry - reuses the arcade design system. */
+    .enter-steps { counter-reset: step; list-style: none; padding: 0; margin: 1rem 0 0; }
+    .enter-steps li { position: relative; padding: 0 0 1.4rem 2.6rem; }
+    .enter-steps li:before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 1.7rem; height: 1.7rem; border-radius: 50%; border: 1px solid var(--border-hover); color: var(--gold); font-family: var(--font-pixel); font-size: 0.6rem; display: flex; align-items: center; justify-content: center; }
+    .enter-steps li:not(:last-child):after { content: ''; position: absolute; left: 0.83rem; top: 1.9rem; bottom: 0.1rem; width: 1px; background: var(--border-hover); }
+    .enter-steps h3 { margin: 0 0 0.3rem; font-size: 1rem; }
+    .enter-steps p { margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+    .enter-form { margin-top: 0.4rem; }
+    .enter-field { margin-bottom: 1rem; }
+    .enter-field label { display: block; font-family: var(--font-pixel); font-size: 0.55rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .enter-field input { width: 100%; box-sizing: border-box; background: rgba(255,255,255,0.03); border: 1px solid var(--border-hover); border-radius: var(--r-pill); color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; padding: 0.7rem 1rem; }
+    .enter-field input:focus { outline: none; border-color: var(--zabal); }
+    .enter-hint { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.4rem; }
+    .enter-msg { margin-top: 1rem; font-size: 0.88rem; line-height: 1.5; min-height: 1.2rem; }
+    .enter-msg.ok { color: var(--cyan); }
+    .enter-msg.err { color: var(--orange); }
+    .enter-btn[disabled] { opacity: 0.55; cursor: default; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/about.html">About</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow">July - Open Build-A-Thon</div>
+    <h1>Enter the build. <span class="accent">The build is the application.</span></h1>
+    <p class="hero-sub">
+      No paragraph pitch, no waitlist. In July you ship something that helps the ZAO ecosystem, in public, then register it here so it counts. The strongest July builds get curated into the August Finals - each finalist paired with a ZAO mentor, every finisher paid and given the commemorative collectible.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2>How to enter</h2>
+    <ol class="enter-steps">
+      <li>
+        <h3>Build for the ecosystem</h3>
+        <p>Make something for ZABAL, ZAO, or WaveWarZ with any harness you like (Claude Code, Cursor, Windsurf, Aider, Bolt, v0, Lovable). <a href="/projects.html">Adopt a started project</a> or start fresh with the <a href="/llms.txt">context file</a> - both paths count.</p>
+      </li>
+      <li>
+        <h3>Ship it in public</h3>
+        <p>A live URL, an open-source repo, a 60-second demo, and a cast on <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>. Building in the open is the point - the work is visible as it grows.</p>
+      </li>
+      <li>
+        <h3>Register your wallet and repo</h3>
+        <p>One call, below. It maps your wallet to your repo so the season tracker follows your commits into Bonfire, the ZAO memory layer the judging reads from. Moved repos? Register again - the same wallet just updates, no duplicates.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section">
+    <h2>Register your build</h2>
+    <p>Your wallet address is how prizes reach you and how your build is tracked. Your repo is where the season tracker watches for commits. Both are required.</p>
+    <form class="enter-form" id="enter-form" novalidate>
+      <div class="enter-field">
+        <label for="wallet">Wallet address</label>
+        <input id="wallet" name="wallet" type="text" inputmode="latin" autocomplete="off" spellcheck="false" placeholder="0x..." aria-describedby="wallet-hint">
+        <div class="enter-hint" id="wallet-hint">An address starting with 0x, 40 hex characters. Used for payouts and per-build tracking.</div>
+      </div>
+      <div class="enter-field">
+        <label for="repo">GitHub repo</label>
+        <input id="repo" name="repo" type="text" autocomplete="off" spellcheck="false" placeholder="owner/repo" aria-describedby="repo-hint">
+        <div class="enter-hint" id="repo-hint">Either owner/repo or a full github.com URL. Must be public.</div>
+      </div>
+      <button class="btn btn-primary enter-btn" id="enter-submit" type="submit">Register my build</button>
+      <div class="enter-msg" id="enter-msg" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <section class="section">
+    <h2>What happens after you register</h2>
+    <p>
+      A scheduled tracker reads your public repo and pushes each new commit into Bonfire as part of the season's shared record - it never judges or ranks on its own, it just keeps the memory current. Mentors watch July ships and pick their champions; the most interesting builds advance to the August Finals. Getting selected is the first win.
+    </p>
+    <p>
+      Two ways to start if you have not yet: <a href="/projects.html">adopt a started ZAO project</a> from the maturity-sorted list, or <a href="/llms.txt">load the context file</a> into your harness and find the gap that wants filling. Full details on the season are in <a href="/info.html">All the Details</a>.
+    </p>
+  </section>
+
+  <script>
+  (function() {
+    var form = document.getElementById('enter-form');
+    if (!form) return;
+    var walletEl = document.getElementById('wallet');
+    var repoEl = document.getElementById('repo');
+    var btn = document.getElementById('enter-submit');
+    var msg = document.getElementById('enter-msg');
+
+    function setMsg(text, kind) {
+      msg.textContent = text || '';
+      msg.className = 'enter-msg' + (kind ? ' ' + kind : '');
+    }
+    // Mirror the server's validation so bad input is caught before the call.
+    function normalizeWallet(raw) {
+      var w = String(raw || '').trim().toLowerCase();
+      return /^0x[0-9a-f]{40}$/.test(w) ? w : null;
+    }
+    function normalizeRepo(raw) {
+      var s = String(raw || '').trim();
+      if (!s) return null;
+      s = s.replace(/^https?:\/\//i, '').replace(/^github\.com\//i, '');
+      s = s.replace(/\.git$/i, '').replace(/^\/+|\/+$/g, '');
+      var m = s.match(/^([A-Za-z0-9._-]{1,39})\/([A-Za-z0-9._-]{1,100})$/);
+      return m ? (m[1] + '/' + m[2]) : null;
+    }
+    function shortWallet(w) { return w.slice(0, 6) + '...' + w.slice(-4); }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var wallet = normalizeWallet(walletEl.value);
+      if (!wallet) { setMsg('That wallet does not look right - it should start with 0x and have 40 hex characters.', 'err'); walletEl.focus(); return; }
+      var repo = normalizeRepo(repoEl.value);
+      if (!repo) { setMsg('That repo does not look right - use owner/repo or a full github.com URL.', 'err'); repoEl.focus(); return; }
+
+      btn.disabled = true;
+      setMsg('Registering...', '');
+      fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ wallet: wallet, github_repo: repo })
+      })
+        .then(function(r) { return r.json().catch(function() { return {}; }); })
+        .then(function(data) {
+          if (data && data.ok) {
+            var tail = data.count ? ' ' + data.count + ' build' + (data.count === 1 ? '' : 's') + ' entered so far.' : '';
+            setMsg('You are in. ' + data.github_repo + ' is registered to ' + shortWallet(data.wallet) + '.' + tail, 'ok');
+            form.reset();
+          } else if (data && data.reason === 'unconfigured') {
+            setMsg('Registration is not open yet - it goes live with the July backend. Try again closer to July 1.', 'err');
+            btn.disabled = false;
+          } else {
+            setMsg('Could not register: ' + ((data && data.reason) || 'unexpected response') + '. Check the values and try again.', 'err');
+            btn.disabled = false;
+          }
+        })
+        .catch(function() {
+          setMsg('Could not reach the server - check your connection and try again.', 'err');
+          btn.disabled = false;
+        });
+    });
+  })();
+  </script>
+
+</div>
+
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/live.html">Live - What's On Now</a>
+      <a href="/lead.html">Lead a Workshop</a>
+      <a href="/mentor.html">Mentor</a>
+      <a href="/playbook.html">Playbook</a>
+      <a href="/recaps.html">Session Recaps</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Season">
+      <h4>Season</h4>
+      <a href="/enter.html">Enter the Build</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/finals/live.html">Finals Live</a>
+      <a href="/winners.html">Winners</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/spaces.html">Spaces</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/streams.html">Streams</a>
+      <a href="/farcaster-batches.html">Farcaster Batches</a>
+      <a href="/graph.html">ZAO Graph</a>
+      <a href="/research.html">Research</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/context.html">Context</a>
+      <a href="/p.html">Player Roster</a>
+      <a href="/today.html">Daily Update</a>
+      <a href="/mindful.html">Mindful Moments</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/install.html">Install Context</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+      <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener">Claim Collectible</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
