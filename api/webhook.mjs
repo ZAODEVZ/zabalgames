@@ -6,16 +6,24 @@
 //
 // The JSON Farcaster Signature (JFS) envelope is verified before anything is
 // stored: the Ed25519 signature must check out against the app key carried in the
-// header (type 'app_key') over the compact `${header}.${payload}` message. A bad
-// or missing signature is rejected. Residual hardening: bind that app key to the
-// claimed FID via an on-chain Key Registry / hub lookup - left out here because
-// this edge runtime has no allowlisted hub endpoint to query.
+// header (type 'app_key') over the compact `${header}.${payload}` message, and -
+// when FARCASTER_HUB_URL is set - that app key must be an active on-chain signer
+// for the claimed FID (Key Registry, read via the hub's onChainSignersByFid).
+// A bad/missing signature is ALWAYS rejected. The FID binding fails OPEN on hub
+// errors or an unparseable response, so a hub outage never blocks a legitimate
+// registration; without FARCASTER_HUB_URL it is skipped (signature-only, no
+// extra network call). Point FARCASTER_HUB_URL at a hub exposing /v1/* and
+// verify on a Preview before relying on it.
 
 export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const TOKENS_KEY = 'zabal:notif:tokens';
+// Optional Farcaster hub base URL exposing /v1/onChainSignersByFid. When set,
+// the webhook binds the signing app key to the claimed FID; when unset, the
+// binding step is skipped entirely (no network call).
+const HUB_URL = (process.env.FARCASTER_HUB_URL || '').replace(/\/$/, '');
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -63,6 +71,50 @@ async function verifyJfs(envelope) {
   if (!ok) throw new Error('bad signature');
 }
 
+// Normalize a key from any reasonable hub serialization (0x-hex, bare hex, or
+// base64/base64url bytes) to lowercase 0x-hex for comparison. Returns null if
+// the value is not a recognizable key.
+function normalizeKey(v) {
+  if (typeof v !== 'string' || !v) return null;
+  if (/^0x[0-9a-fA-F]+$/.test(v)) return v.toLowerCase();
+  if (/^[0-9a-fA-F]+$/.test(v) && v.length % 2 === 0) return '0x' + v.toLowerCase();
+  try {
+    let hex = '';
+    for (const b of b64urlToBytes(v)) hex += b.toString(16).padStart(2, '0');
+    return hex ? '0x' + hex : null;
+  } catch { return null; }
+}
+
+// Is `keyHex` an ACTIVE on-chain signer for `fid`? Returns true / false /
+// null (indeterminate). Callers MUST fail open on null. Folds the signer event
+// log (ADD then REMOVE) into the live set; if we parse zero keys we assume our
+// parser does not match this hub's shape and return null rather than reject.
+async function keyBoundToFid(fid, keyHex) {
+  if (!HUB_URL) return null;
+  let j;
+  try {
+    const r = await fetch(`${HUB_URL}/v1/onChainSignersByFid?fid=${encodeURIComponent(fid)}`, {
+      signal: AbortSignal.timeout(3000),
+    });
+    if (!r.ok) return null;
+    j = await r.json();
+  } catch { return null; }
+  const events = Array.isArray(j && j.events) ? j.events : null;
+  const want = normalizeKey(keyHex);
+  if (!events || !want) return null;
+  const active = new Set();
+  for (const ev of events) {
+    const body = ev && ev.signerEventBody;
+    const k = body && normalizeKey(body.key);
+    if (!k) continue;
+    const t = body.eventType;
+    if (t === 'SIGNER_EVENT_TYPE_ADD' || t === 1) active.add(k);
+    else if (t === 'SIGNER_EVENT_TYPE_REMOVE' || t === 2) active.delete(k);
+  }
+  if (active.size === 0) return null;
+  return active.has(want);
+}
+
 async function kv(cmds) {
   const r = await fetch(`${KV_URL}/pipeline`, {
     method: 'POST',
@@ -98,6 +150,12 @@ export default async function handler(req) {
   const event = payload && payload.event;
   if (!fid || !event) return json({ error: 'missing fid/event' }, 400);
   if (!KV_URL || !KV_TOKEN) return json({ ok: true, stored: false });
+
+  // Bind the signing app key to the claimed FID (only when a hub is configured;
+  // null = indeterminate, so we proceed on the verified signature alone).
+  if ((await keyBoundToFid(fid, header.key)) === false) {
+    return json({ error: 'key not registered to fid' }, 401);
+  }
 
   try {
     if (event === 'frame_added' || event === 'notifications_enabled') {

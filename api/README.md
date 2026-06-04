@@ -48,8 +48,11 @@ KV sorted set by `track`.
 Manifest `webhookUrl`. Farcaster POSTs a JSON Farcaster Signature envelope when a
 user adds the app or toggles notifications. Stores `{ url, token }` per FID in KV
 (`zabal:notif:tokens`). The JFS Ed25519 signature is verified (app-key header,
-fail-closed) before storing; binding the app key to the FID on-chain is the
-remaining hardening step.
+fail-closed) before storing. When `FARCASTER_HUB_URL` is set, the app key is also
+bound to the claimed FID via the hub's `onChainSignersByFid` (active-signer set,
+ADD/REMOVE folded); this binding fails OPEN on hub errors and is skipped entirely
+when the env var is unset. Set it to a hub exposing `/v1/*` and verify on a
+Preview before relying on it.
 
 ### `POST /api/notify`
 Admin-only sender. `Authorization: Bearer <NOTIFY_SECRET>`. Body
