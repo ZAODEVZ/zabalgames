@@ -17,6 +17,17 @@ Records a deliberate social action against a verified Farcaster FID.
 - Stores to KV: pushes onto a capped recent-activity list and adds the FID to a
   per-day "present" set (2-day TTL) for the live count.
 
+### `POST /api/join`
+One-tap workshop join against a verified Farcaster FID (Quick Auth JWT, same
+verification model as `/api/track`).
+
+- Auth: `Authorization: Bearer <quick-auth-jwt>` (`sdk.quickAuth.fetch`, see
+  `window.ZABAL.join`).
+- Body: `{ door?, note?, track?: 'artist'|'builder'|'creator', source? }`
+- Dedupes per FID via a KV hash so the count is distinct builders, and drops a
+  `signup` into the activity feed + score so the presence widget and leaderboard
+  reflect it. Returns `{ ok: true, count }`.
+
 ### `GET /api/activity`
 Public read for the presence widget (`assets/presence.js`).
 
@@ -36,7 +47,9 @@ KV sorted set by `track`.
 ### `POST /api/webhook`
 Manifest `webhookUrl`. Farcaster POSTs a JSON Farcaster Signature envelope when a
 user adds the app or toggles notifications. Stores `{ url, token }` per FID in KV
-(`zabal:notif:tokens`). v1 does not verify the JFS signature - a clear next step.
+(`zabal:notif:tokens`). The JFS Ed25519 signature is verified (app-key header,
+fail-closed) before storing; binding the app key to the FID on-chain is the
+remaining hardening step.
 
 ### `POST /api/notify`
 Admin-only sender. `Authorization: Bearer <NOTIFY_SECRET>`. Body
@@ -54,6 +67,47 @@ On a day with a workshop dated today in `data/workshop-leads.json`, casts
 (`zabal:cron:daily-cast:<date>`) so a retry never double-posts; a failed post
 releases the claim for the next run. No-ops cleanly if KV/Neynar are unset or
 there is no session today. Runs daily via `vercel.json` crons.
+
+### `POST /api/register`
+The thin builder-registration layer from the GitHub-as-submission /
+Bonfire-as-backend architecture (research doc 784). A builder's harness makes one
+call after pushing work to GitHub.
+
+- No Quick Auth: the builder identifies by wallet, not a Farcaster JWT. Inputs are
+  shape-validated and length-capped.
+- Body: `{ wallet: "0x...", github_repo: "owner/repo" | full URL }`
+- Keeps a single Redis hash `zabal:builds` { wallet -> github_repo }. Idempotent:
+  re-registering the same wallet overwrites its repo. Returns
+  `{ ok: true, wallet, github_repo, count }`. Never touches Bonfire.
+
+### `GET /api/commit-watcher` (cron)
+The scheduled push side of doc 784. Reads `zabal:builds`, checks each public repo
+for new commits, and pushes them to the Bonfire knowledge graph as episodes. This
+is the ONLY component that talks to Bonfire (server-side). Graceful no-op when KV
+or the Bonfire env is absent; a single repo erroring does not stop the rest. Does
+no judging/ranking - that stays in Bonfire's existing pipeline.
+
+### `POST /api/bonfire-ask`
+Backs the Bonfire read spot on `graph.html`. Two actions:
+
+- `action: 'query'` (default, anonymous, no auth): logs what people search to
+  `zg:bonfire:queries:v1` so we can see what the community looks for.
+- `action: 'submit'` (Quick Auth required): contribution intake. Pushes an
+  author-tagged item to `zg:bonfire:pending` with the FID verified server-side
+  (never a client-sent FID). ZOE drains that queue and promotes approved items
+  into the canonical graph (docs/research/771). The pending queue can live in a
+  dedicated Upstash DB (`BONFIRE_QUEUE_KV_REST_API_URL/TOKEN`) so the ZOE token
+  cannot reach the query logs; falls back to the site KV if unset.
+- Returns `{ ok: true, stored, id? }`. No-ops gracefully if the relevant KV is
+  absent.
+
+### `POST/GET /api/snap/signup`
+Hybrid signup endpoint with content negotiation per the `@farcaster/snap` spec.
+`Accept: application/vnd.farcaster.snap+json` returns interactive Snap JSON (the
+in-cast 4-role-button signup + confirmation Snap on POST); any other `Accept`
+returns HTML with `fc:miniapp` meta as the fallback. Submissions forward to the
+Formspree team form as the stub backend. v1 reads FID + cast hash as untrusted
+(JFS signature verification skipped until a Node runtime adds `@farcaster/snap`).
 
 ## Required env vars (Vercel project settings)
 

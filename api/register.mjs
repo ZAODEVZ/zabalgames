@@ -24,6 +24,7 @@ export const config = { runtime: 'edge' };
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const BUILDS_KEY = 'zabal:builds';
+const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 
 function json(body, status = 200, origin = '*') {
   return new Response(JSON.stringify(body), {
@@ -68,7 +69,8 @@ function normalizeRepo(raw) {
 }
 
 export default async function handler(req) {
-  const origin = req.headers.get('origin') || '*';
+  const reqOrigin = req.headers.get('origin') || '';
+  const origin = ALLOWED_ORIGINS.has(reqOrigin) ? reqOrigin : 'https://zabalgamez.com';
   if (req.method === 'OPTIONS') return json({}, 204, origin);
   if (req.method !== 'POST') return json({ ok: false, reason: 'method not allowed' }, 405, origin);
 

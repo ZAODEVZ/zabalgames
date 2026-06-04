@@ -194,7 +194,7 @@ Reference for if anyone asks "is X real":
 | YES | Doc 750 builder OAuth registration flow spec (build target: mid-June) |
 | PLACEHOLDER | OG card PNG (using SVG fallback for now - you can ship the PNG anytime) |
 | PLACEHOLDER | Builder dashboard at /builder/[fid] (build target: mid-June per Doc 750) |
-| PLACEHOLDER | Supabase write path (still using Formspree until Doc 750 build) |
+| PLACEHOLDER | Builder registration write path - shipped on Redis via `api/register.mjs` (not Supabase); signups still on Formspree |
 
 ## Quick Troubleshooting
 

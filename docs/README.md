@@ -57,11 +57,10 @@ The validation arc - feeding ZABAL Gamez through Jonathan Colton's FounderCheck 
 | 646 | Clanker promote optional Finals mechanic |
 | 654 | Empire Builder V3 |
 | 701 | Canonical state (the canonical event-level decisions) |
-| 711 | Arthur intro call recap |
 | 714 | Tyler Stambaugh call recap (Magnetiq) |
 | 720 | WaveWarZ Finals voting mechanic (Hybrid Option B) |
 | 730 | Africa CDN routing (Cloudflare migration plan) |
-| 750 | Builder registration via Farcaster + GitHub OAuth (mid-June build target) |
+| 750 | Builder registration OAuth flow (SUPERSEDED - see `api/register.mjs` + `api/commit-watcher.mjs` for what shipped) |
 
 (Full list at [research/README.md](research/README.md).)
 

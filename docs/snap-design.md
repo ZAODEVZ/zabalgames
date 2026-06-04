@@ -2,6 +2,14 @@
 
 > A Farcaster Snap that lives inside a cast: a viewer signs up to ZABAL Gamez in one tap, never leaving the feed. Higher conversion than the website form. Goes in the launch cast on `/zabal`.
 
+> **SUPERSEDED (storage + filename).** This is a point-in-time design doc. What
+> actually shipped is `api/snap/signup.mjs` (an `.mjs` edge function, not the
+> `api/snap/signup.ts` named below), and the signup backend is the **Formspree**
+> team form, not Supabase. The repo's activity backend is Upstash Redis (see
+> `CLAUDE.md` + `api/README.md`); it is NOT on Supabase. Ignore the Supabase
+> wiring steps and `createClient` snippets below - they describe a path that was
+> not taken. Kept for the Snap protocol / UX design notes only.
+
 ## Research synthesis (what we know)
 
 - **What a Snap is:** Farcaster's in-cast interactive primitive. SDK: `@farcaster/snap v2.0.3`. JFS auth via `parseRequest`. Snaps are GET-then-POST-loops; each tap is a POST that returns the next state with new buttons / images.

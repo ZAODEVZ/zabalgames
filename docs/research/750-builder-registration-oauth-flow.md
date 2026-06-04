@@ -1,5 +1,12 @@
 # 750 - Builder Registration via Farcaster + GitHub OAuth (Mid-June Build)
 
+> **SUPERSEDED by doc 784 / `api/register.mjs`.** The registration that shipped
+> uses a wallet-keyed Redis hash `zabal:builds` (builder's harness calls
+> `POST /api/register` after pushing to GitHub; `api/commit-watcher.mjs` pushes
+> commits to Bonfire). It does NOT use the GitHub-OAuth + Supabase flow specified
+> here. Read this only as the earlier exploration; trust doc 784 + `api/README.md`
+> for what is live.
+>
 > **Status:** Spec locked 2026-05-26. Build target: mid-June 2026 (during workshops month, ready for July).
 > **Origin:** Zaal call - frictionless connect flow to replace the current form-based submission bar with auto-detected GitHub activity.
 > **Replaces:** the current `index.html #apply` Formspree form for builders. Workshop leads + mentor signups stay on the current form path.

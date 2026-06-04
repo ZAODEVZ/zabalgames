@@ -33,6 +33,7 @@
     .graph-edges { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem; }
     .graph-edges .edge-rel { color: var(--gold); }
     .graph-edges a { color: var(--cyan); cursor: pointer; }
+    .graph-edges .edge-missing { color: var(--text-dim); }
     .graph-try { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0.6rem 0; }
     .graph-try-label { font-size: 0.72rem; color: var(--text-dim); margin-right: 0.2rem; }
     .contribute { margin-top: 1.6rem; border-top: 1px solid var(--border); padding-top: 1rem; }
@@ -119,7 +120,11 @@
       return out.slice(0, 8);
     }
 
-    function nameOf(id) { return BY_ID[id] ? BY_ID[id].name : id; }
+    function nameOf(id) {
+      if (BY_ID[id]) return BY_ID[id].name;
+      // No entity for this id (a dangling edge target) - humanize the slug.
+      return String(id).replace(/[-_]/g, ' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+    }
 
     function card(ent) {
       var labels = (ent.labels || []).map(function(l){ return '<span class="graph-label">'+esc(l)+'</span>'; }).join('');
@@ -129,7 +134,12 @@
         .map(function(k){ return '<div><b>'+esc(k)+':</b> '+esc(String(ent.attributes[k]))+'</div>'; }).join('');
       var edges = edgesFor(ent.id).map(function(e){
         var arrow = e.dir === 'out' ? '-&gt;' : '&lt;-';
-        return '<div>'+arrow+' <span class="edge-rel">'+esc(e.rel)+'</span> <a data-goto="'+esc(e.other)+'">'+esc(nameOf(e.other))+'</a></div>';
+        // Only linkify edges that point to an entity we actually have. Dangling
+        // targets render as plain (humanized) text so there are no dead links.
+        var target = BY_ID[e.other]
+          ? '<a data-goto="'+esc(e.other)+'">'+esc(nameOf(e.other))+'</a>'
+          : '<span class="edge-missing">'+esc(nameOf(e.other))+'</span>';
+        return '<div>'+arrow+' <span class="edge-rel">'+esc(e.rel)+'</span> '+target+'</div>';
       }).join('');
       return '<div class="card">' +
         '<h3>'+esc(ent.name)+'</h3>' +

@@ -88,13 +88,13 @@
     <div class="hero-eyebrow">Finals Live - August (scaffold, not live yet)</div>
     <h1>The <span class="accent">Battle Floor</span>.</h1>
     <p class="hero-sub">
-      Real-time trade view for the August Finals on WaveWarZ-Base. Wallets trade on each finalist; smart contract settles placement at T+72h. This page is the scaffold - real data lights up when WaveWarZ-Base goes mainnet (per <a href="/docs/research/720-wavewarz-finals-mechanic.md">Doc 720</a>) and a builder adopts project <a href="/projects.html">#09</a>.
+      Real-time trade view for the August Finals on WaveWarZ-Base. Wallets trade on each finalist; WaveWarZ-Base settles placement at T+72h. This page is the scaffold - real data lights up when WaveWarZ-Base goes mainnet (per <a href="/docs/research/720-wavewarz-finals-mechanic.md">Doc 720</a>) and a builder adopts project <a href="/projects.html">#09</a>.
     </p>
   </header>
 
   <div class="status-banner">
     <h2>Pre-launch</h2>
-    <p>Market opens for the August Finals window. Smart contracts ship in July, deploy on Base mainnet, smoke-test, then go live for the real Finals in August. Status pulls live below once the contract address is wired.</p>
+    <p>Market opens for the August Finals window. WaveWarZ-Base ships in July, deploys on Base mainnet, smoke-tests, then goes live for the real Finals in August. Status pulls live below once the protocol address is wired.</p>
   </div>
 
   <section class="section">
@@ -179,7 +179,7 @@
     <div class="card">
       <div class="card-label" style="color: var(--orange);">DATA TODO 1</div>
       <h3>Read battle state from WaveWarZ-Base</h3>
-      <p>Smart contract address (once deployed): <code>0xTODO_WAVEWARZ_BASE</code>. Read methods needed: <code>getAllBattles()</code>, <code>getBattleVolume(battleId)</code>, <code>getBattlePositions(battleId)</code>. Sam owns the contract surface; spec lands in June per Doc 711 action items.</p>
+      <p>Protocol address (once deployed): <code>0xTODO_WAVEWARZ_BASE</code>. Read methods needed: <code>getAllBattles()</code>, <code>getBattleVolume(battleId)</code>, <code>getBattlePositions(battleId)</code>. Sam owns the protocol surface; spec lands in June.</p>
     </div>
 
     <div class="card">
@@ -203,7 +203,7 @@
     <div class="card">
       <div class="card-label" style="color: var(--zabal);">UI TODO 2</div>
       <h3>Settlement readout view</h3>
-      <p>At T+72h, the smart contract settlement transaction fires. The page should detect this (event subscription), show the final placement, the $500 USDC pool distribution to top 8 finalists (per-finalist allocation confirmed before Finals), $ZABAL token distribution to top 16, the 1% trade-cut totals per builder, and the commemorative collectibles open on Magnetiq (Finisher for everyone, Champion for top 3).</p>
+      <p>At T+72h, the WaveWarZ-Base settlement transaction fires. The page should detect this (event subscription), show the final placement, the $500 USDC pool distribution to top 8 finalists (per-finalist allocation confirmed before Finals), $ZABAL token distribution to top 16, the 1% trade-cut totals per builder, and the commemorative collectibles open on Magnetiq (Finisher for everyone, Champion for top 3).</p>
     </div>
   </section>
 

@@ -53,9 +53,11 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
 - `assets/miniapp.js` - Mini App SDK bootstrap + `window.ZABAL` helpers (composeCast,
   share, track, join, getUser, addApp, viewProfile). ES module from esm.sh.
 - `api/*.mjs` - Vercel EDGE functions: track, activity, join, leaderboard, notify,
-  webhook, snap/signup. Upstash Redis over REST. Quick Auth JWT verified server-side
-  (`DOMAIN = 'zabalgamez.com'`, JWKS from auth.farcaster.xyz). All no-op gracefully
-  if Redis env vars are absent. See `api/README.md`.
+  webhook, present, daily-cast (cron), register + commit-watcher (cron, the doc-784
+  GitHub-as-submission / Bonfire-as-backend pair), bonfire-ask, snap/signup. Upstash
+  Redis over REST. Quick Auth JWT verified server-side (`DOMAIN = 'zabalgamez.com'`,
+  JWKS from auth.farcaster.xyz). All no-op gracefully if Redis env vars are absent.
+  See `api/README.md` for the per-endpoint contracts.
 - `data/workshop-leads.json` - schedule source of truth (curated file, not a DB).
 - `data/data-streams.json`, `data/streams/timeline.json`, `data/changelog.json` - content.
 - `.well-known/farcaster.json` - Mini App manifest (signed).

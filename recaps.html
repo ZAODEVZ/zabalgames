@@ -90,6 +90,7 @@
       <a href="/live.html">Live - What's On Now</a>
       <a href="/lead.html">Lead a Workshop</a>
       <a href="/mentor.html">Mentor</a>
+      <a href="/playbook.html">Playbook</a>
     </nav>
     <nav class="arcade-foot-col" aria-label="Season">
       <h4>Season</h4>
@@ -102,6 +103,7 @@
     </nav>
     <nav class="arcade-foot-col" aria-label="Data">
       <h4>Data</h4>
+      <a href="/recordings.html">Recordings</a>
       <a href="/streams.html">Streams</a>
       <a href="/farcaster-batches.html">Farcaster Batches</a>
       <a href="/graph.html">ZAO Graph</a>
@@ -109,6 +111,8 @@
       <a href="/changelog.html">Changelog</a>
       <a href="/context.html">Context</a>
       <a href="/p.html">Player Roster</a>
+      <a href="/today.html">Daily Update</a>
+      <a href="/mindful.html">Mindful Moments</a>
     </nav>
     <nav class="arcade-foot-col" aria-label="Connect">
       <h4>Connect</h4>
@@ -152,7 +156,7 @@
       if (!rs.length) { el.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No recaps yet - sessions are recorded and posted here after they run.</p>'; return; }
       rs.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
       el.innerHTML = rs.map(function (r) {
-        var thumb = r.thumbnail ? '<img class="recap-thumb" src="' + esc(r.thumbnail) + '" alt="' + esc(r.presenter) + ' workshop" loading="lazy">' : '';
+        var thumb = r.thumbnail ? '<img class="recap-thumb" src="' + esc(r.thumbnail) + '" alt="' + esc(r.presenter) + ' workshop" loading="lazy" onerror="this.style.display=\'none\'">' : '';
         var by = esc(r.presenter) +
           (r.handle ? ' <span class="dot">&middot;</span> ' + esc(r.handle) : '') +
           (r.org ? ' <span class="dot">&middot;</span> ' + esc(r.org) : '') +
@@ -161,10 +165,10 @@
         var topics = (r.topics || []).map(function (t) { return '<span class="recap-topic">' + esc(t) + '</span>'; }).join('');
         var takeaways = (r.takeaways || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
         var links = '';
-        if (r.recording) links += '<a class="recap-link primary" href="' + esc(r.recording) + '" target="_blank" rel="noopener">Watch the recording</a>';
+        if (r.recording) links += '<a class="recap-link primary" href="/recordings">Watch the recording</a>';
         if (r.transcript) links += '<a class="recap-link" href="' + esc(r.transcript) + '" target="_blank" rel="noopener">Read the transcript</a>';
         if (r.link) links += '<a class="recap-link" href="' + esc(r.link) + '" target="_blank" rel="noopener">' + esc(r.link_label || 'More') + '</a>';
-        links += '<button class="recap-link recap-share" type="button" data-title="' + esc(r.title) + '" data-presenter="' + esc(r.presenter) + '" data-url="' + esc(r.recording || 'https://zabalgamez.com/recaps') + '" data-takeaways="' + esc(JSON.stringify(r.takeaways || [])) + '">Share takeaways</button>';
+        links += '<button class="recap-link recap-share" type="button" data-title="' + esc(r.title) + '" data-presenter="' + esc(r.presenter) + '" data-url="https://zabalgamez.com/recordings" data-takeaways="' + esc(JSON.stringify(r.takeaways || [])) + '">Share takeaways</button>';
         var track = r.track ? '<span class="recap-track">' + esc(r.track) + '</span>' : '';
         return '<div class="recap">' + thumb + '<div class="recap-body">' +
           '<span class="recap-date">' + esc(r.date) + '</span>' + track +
