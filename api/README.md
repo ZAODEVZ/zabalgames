@@ -47,7 +47,9 @@ KV sorted set by `track`.
 ### `POST /api/webhook`
 Manifest `webhookUrl`. Farcaster POSTs a JSON Farcaster Signature envelope when a
 user adds the app or toggles notifications. Stores `{ url, token }` per FID in KV
-(`zabal:notif:tokens`). v1 does not verify the JFS signature - a clear next step.
+(`zabal:notif:tokens`). The JFS Ed25519 signature is verified (app-key header,
+fail-closed) before storing; binding the app key to the FID on-chain is the
+remaining hardening step.
 
 ### `POST /api/notify`
 Admin-only sender. `Authorization: Bearer <NOTIFY_SECRET>`. Body

@@ -21,6 +21,7 @@ export const config = { runtime: 'edge' };
 
 const DOMAIN = 'zabalgamez.com';
 const JWKS_URL = 'https://auth.farcaster.xyz/.well-known/jwks.json';
+const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const HAATZ = 'https://haatz.quilibrium.com';
@@ -85,18 +86,21 @@ async function verifyQuickAuth(token, domain) {
   if (!params) throw new Error('unsupported alg ' + header.alg);
 
   const keys = await getJwks();
-  const jwk = keys.find(k => k.kid === header.kid) || keys[0];
-  if (!jwk) throw new Error('no jwk');
+  const jwk = keys.find(k => k.kid === header.kid);
+  if (!jwk) throw new Error('unknown kid');
+  if (jwk.alg && jwk.alg !== header.alg) throw new Error('alg mismatch');
 
   const key = await crypto.subtle.importKey('jwk', jwk, params.imp, false, ['verify']);
   const data = new TextEncoder().encode(`${h}.${p}`);
   const ok = await crypto.subtle.verify(params.vrf, key, b64urlToBytes(s), data);
   if (!ok) throw new Error('bad signature');
 
+  // Claims are REQUIRED, not optional: a token that omits exp/aud/iss must be
+  // rejected, never silently accepted (60s skew allowance on exp).
   const now = Math.floor(Date.now() / 1000);
-  if (payload.exp && payload.exp < now) throw new Error('expired');
-  if (payload.aud && payload.aud !== domain) throw new Error('aud mismatch');
-  if (payload.iss && !String(payload.iss).includes('auth.farcaster.xyz')) throw new Error('iss mismatch');
+  if (typeof payload.exp !== 'number' || payload.exp < now - 60) throw new Error('expired');
+  if (payload.aud !== domain) throw new Error('aud mismatch');
+  if (!payload.iss || !String(payload.iss).includes('auth.farcaster.xyz')) throw new Error('iss mismatch');
   const fid = Number(payload.sub);
   if (!fid) throw new Error('no sub');
   return fid;
@@ -126,7 +130,8 @@ async function resolveProfile(fid) {
 }
 
 export default async function handler(req) {
-  const origin = req.headers.get('origin') || '*';
+  const reqOrigin = req.headers.get('origin') || '';
+  const origin = ALLOWED_ORIGINS.has(reqOrigin) ? reqOrigin : 'https://zabalgamez.com';
   if (req.method === 'OPTIONS') return json({}, 204, origin);
   if (req.method !== 'POST') return json({ error: 'method not allowed' }, 405, origin);
 
