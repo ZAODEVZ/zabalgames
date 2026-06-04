@@ -27,7 +27,9 @@ ZAO's rails. It is an event and an onboarding funnel, not a SaaS.
   (Tyler #001, Thy Revolution #002a + #002b), 5 of 8 slots open. Builders are
   volunteering to teach before any push - supply-side demand.
 - [proven] Live surface: zabalgamez.com (Farcaster Mini App), a machine-readable
-  context file at /llms.txt, a submissions pipeline on Supabase, and the /zabal channel.
+  context file at /llms.txt, an activity + signup pipeline live on Upstash Redis
+  (the July project-submission gallery on Supabase is still pending), and the
+  /zabal channel.
 - [proven] Sponsor committed: the ZAO festivals team funds the $500 v0 pool; pipeline
   open for more (info@thezao.com).
 
