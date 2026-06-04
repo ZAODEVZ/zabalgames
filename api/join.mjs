@@ -5,6 +5,13 @@
 // hash, so the count is distinct builders. Also drops a 'signup' into the
 // activity feed + score so the presence widget and leaderboard reflect it.
 //
+// First-join honesty: the COUNT was always idempotent (HSET into a per-FID hash,
+// counted with HLEN). The score award (+5) and the 'signup' activity entry are
+// now gated behind the first join too, so a re-tap updates the builder's record
+// (e.g. a changed track) without re-awarding points or spamming the feed. Daily
+// presence still re-asserts on every tap - it is a per-day set, legitimately
+// re-stated by someone showing up again.
+//
 // Request:  POST { door?: string, note?: string, track?: 'artist'|'builder'|'creator', source?: string }
 //           Authorization: Bearer <quick-auth-jwt>  (sdk.quickAuth.fetch)
 // Response: { ok: true, count: number }
@@ -93,21 +100,40 @@ export default async function handler(req) {
   });
   const presentKey = `zabal:present:${new Date().toISOString().slice(0, 10)}`;
 
-  let res;
+  // First-join detection: HEXISTS before HSET tells us whether this FID has joined
+  // before, so the score + feed only fire once. (Upstash runs a pipeline as one
+  // round-trip but without conditionals, so we read first, then write.)
+  let firstJoin = true;
   try {
-    res = await kvPipeline([
-      ['HSET', JOINS_KEY, String(fid), joinRecord],
-      ['LPUSH', RECENT_KEY, activity],
-      ['LTRIM', RECENT_KEY, '0', String(RECENT_MAX - 1)],
-      ['SADD', presentKey, String(fid)],
-      ['EXPIRE', presentKey, '172800'],
-      ['ZINCRBY', SCORES_KEY, String(SIGNUP_POINTS), String(fid)],
-      ['HLEN', JOINS_KEY],
-    ]);
+    const pre = await kvPipeline([['HEXISTS', JOINS_KEY, String(fid)]]);
+    firstJoin = Number(pre?.[0]?.result || 0) === 0;
   } catch (e) {
     return json({ ok: false, detail: e.message }, 502, origin);
   }
 
-  const count = Number(res?.[6]?.result || 0);
-  return json({ ok: true, count }, 200, origin);
+  // Always: persist/refresh the record + re-assert daily presence. Once per FID:
+  // push the 'signup' activity and award the signup points.
+  const cmds = [['HSET', JOINS_KEY, String(fid), joinRecord]];
+  if (firstJoin) {
+    cmds.push(
+      ['LPUSH', RECENT_KEY, activity],
+      ['LTRIM', RECENT_KEY, '0', String(RECENT_MAX - 1)],
+      ['ZINCRBY', SCORES_KEY, String(SIGNUP_POINTS), String(fid)],
+    );
+  }
+  cmds.push(
+    ['SADD', presentKey, String(fid)],
+    ['EXPIRE', presentKey, '172800'],
+    ['HLEN', JOINS_KEY],
+  );
+
+  let res;
+  try {
+    res = await kvPipeline(cmds);
+  } catch (e) {
+    return json({ ok: false, detail: e.message }, 502, origin);
+  }
+
+  const count = Number(res?.[res.length - 1]?.result || 0);
+  return json({ ok: true, count, firstJoin }, 200, origin);
 }
