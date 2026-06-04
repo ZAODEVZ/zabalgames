@@ -165,10 +165,10 @@
         var topics = (r.topics || []).map(function (t) { return '<span class="recap-topic">' + esc(t) + '</span>'; }).join('');
         var takeaways = (r.takeaways || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
         var links = '';
-        if (r.recording) links += '<a class="recap-link primary" href="' + esc(r.recording) + '" target="_blank" rel="noopener">Watch the recording</a>';
+        if (r.recording) links += '<a class="recap-link primary" href="/recordings">Watch the recording</a>';
         if (r.transcript) links += '<a class="recap-link" href="' + esc(r.transcript) + '" target="_blank" rel="noopener">Read the transcript</a>';
         if (r.link) links += '<a class="recap-link" href="' + esc(r.link) + '" target="_blank" rel="noopener">' + esc(r.link_label || 'More') + '</a>';
-        links += '<button class="recap-link recap-share" type="button" data-title="' + esc(r.title) + '" data-presenter="' + esc(r.presenter) + '" data-url="' + esc(r.recording || 'https://zabalgamez.com/recaps') + '" data-takeaways="' + esc(JSON.stringify(r.takeaways || [])) + '">Share takeaways</button>';
+        links += '<button class="recap-link recap-share" type="button" data-title="' + esc(r.title) + '" data-presenter="' + esc(r.presenter) + '" data-url="https://zabalgamez.com/recordings" data-takeaways="' + esc(JSON.stringify(r.takeaways || [])) + '">Share takeaways</button>';
         var track = r.track ? '<span class="recap-track">' + esc(r.track) + '</span>' : '';
         return '<div class="recap">' + thumb + '<div class="recap-body">' +
           '<span class="recap-date">' + esc(r.date) + '</span>' + track +
