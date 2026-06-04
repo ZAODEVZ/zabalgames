@@ -205,7 +205,7 @@
             '<span style="color: var(--text-dim); font-variant-numeric: tabular-nums;">' + fmtDate(E.timestamp) + '</span>' +
           '</div>' +
           '<h3>' + esc(E.title) + '</h3>' +
-          '<p>' + esc(E.summary) + '</p>' +
+          (E.summary ? '<p>' + esc(E.summary) + '</p>' : '') +
           '<div class="card-meta" style="display:flex; gap:0.6rem; align-items:center;">' + linkEl + shareEl + '</div>' +
           '</div>';
       }).join('');
@@ -214,7 +214,7 @@
         btn.addEventListener('click', function() {
           var E = entries[Number(btn.getAttribute('data-idx'))];
           if (!E) return;
-          var text = E.title + ' - ' + E.summary;
+          var text = E.summary ? E.title + ' - ' + E.summary : E.title;
           var url = /^https?:/.test(E.link || '') ? E.link : 'https://zabalgamez.com/streams';
           if (window.ZABAL && window.ZABAL.share) window.ZABAL.share({ platform: 'farcaster', text: text, url: url });
           else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text + ' @zaal') + '&embeds%5B%5D=' + encodeURIComponent(url) + '&channelKey=zabal', '_blank', 'noopener');

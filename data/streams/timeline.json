@@ -104,7 +104,7 @@
       "timestamp": "2026-05-12T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Erik and Jonathan (Fotocaster)",
-      "summary": "|",
+      "summary": "",
       "link": "https://www.youtube.com/watch?v=58_kbRsXvf4",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-05-12-eriks-jonathan-fotocaster.md"
     },
@@ -113,7 +113,7 @@
       "timestamp": "2026-05-05T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Kenny (POIDH)",
-      "summary": "|",
+      "summary": "",
       "link": "https://www.youtube.com/watch?v=IFG_34K7Vig",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-05-05-kenny-poidh.md"
     },
@@ -122,7 +122,7 @@
       "timestamp": "2026-04-26T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Andy Minton (Hangry Animals)",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/HH0zCQgYgq0",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-04-26-andy-minton-hangry-animals.md"
     },
@@ -131,7 +131,7 @@
       "timestamp": "2026-04-21T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Dish (Clanker)",
-      "summary": ">-",
+      "summary": "",
       "link": "https://youtu.be/gHbktZC6HbA",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-04-21-dish-clanker.md"
     },
@@ -140,7 +140,7 @@
       "timestamp": "2026-04-21T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Hannah (Farm Drop)",
-      "summary": ">-",
+      "summary": "",
       "link": "https://youtu.be/hw-6IHaziV0",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-04-21-hannah-farmdrop.md"
     },
@@ -157,7 +157,7 @@
       "timestamp": "2026-04-14T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Nikoline (Hubs Network)",
-      "summary": ">-",
+      "summary": "",
       "link": "https://youtu.be/RuYxRBfLGCc",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-04-14-nikoline-hubs-network.md"
     },
@@ -174,7 +174,7 @@
       "timestamp": "2026-04-01T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Jordan (Ryft)",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/IbhHxFR4yxE",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-04-01-jordan-ryft.md"
     },
@@ -191,7 +191,7 @@
       "timestamp": "2026-03-25T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Ali (Inflynce)",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/WTyafqHKQqM",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-03-25-ali-inflynce.md"
     },
@@ -200,7 +200,7 @@
       "timestamp": "2026-03-18T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Roaring Sensei",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/DIeav3o8t9M",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-03-18-roaring-sensei.md"
     },
@@ -209,7 +209,7 @@
       "timestamp": "2026-03-18T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Saltorious.eth (Among Traitors)",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/0Tevgpr5TUQ",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-03-18-saltorious-among-traitors.md"
     },
@@ -218,7 +218,7 @@
       "timestamp": "2026-02-23T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/GIU (Pinetree)",
-      "summary": ">-",
+      "summary": "",
       "link": "https://youtu.be/loSOniPcJx0",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-02-23-giu-pinetree.md"
     },
@@ -227,7 +227,7 @@
       "timestamp": "2026-02-23T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/SNAX (Pizza DAO)",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/4CpblYpIO8Q",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-02-23-snax-pizza-dao.md"
     },
@@ -236,7 +236,7 @@
       "timestamp": "2026-02-11T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Diviflyy",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/0tyVpLGVxkA",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-02-11-diviflyy-empire-builder.md"
     },
@@ -245,7 +245,7 @@
       "timestamp": "2026-01-05T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Yerbearserker",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/EH-FWD7ySKk",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2026-01-05-yerbearserker.md"
     },
@@ -254,7 +254,7 @@
       "timestamp": "2025-12-16T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ Yaps w/Sven (Incented)",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/O7-1weR0Qog",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2025-12-16-sven-incented.md"
     },
@@ -263,7 +263,7 @@
       "timestamp": "2025-12-11T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ Yaps w/Daya (Flix.Fun)",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/9ePU4qEc67Y",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2025-12-11-daya-flix-fun.md"
     },
@@ -272,7 +272,7 @@
       "timestamp": "2025-11-30T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Rock Opera",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/43GPWLE6W5Q",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2025-11-30-rockopera.md"
     },
@@ -281,7 +281,7 @@
       "timestamp": "2025-10-19T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Yoni Dubz",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/HopaeW7POis",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2025-10-19-yoni-dubz.md"
     },
@@ -290,7 +290,7 @@
       "timestamp": "2025-10-14T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Rich Bartuc",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/AOcp8Jpyw3k",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2025-10-14-rich-bartuc.md"
     },
@@ -299,7 +299,7 @@
       "timestamp": "2025-08-22T00:00:00.000Z",
       "kind": "episode",
       "title": "BCZ YapZ w/Deepa",
-      "summary": "|",
+      "summary": "",
       "link": "https://youtu.be/3vUAFwXqdeo",
       "raw_ref": "data/streams/bcz-yapz/raw/transcripts/2025-08-22-deepa-grantorb.md"
     }

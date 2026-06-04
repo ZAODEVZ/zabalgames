@@ -152,7 +152,7 @@
       if (!rs.length) { el.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No recaps yet - sessions are recorded and posted here after they run.</p>'; return; }
       rs.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
       el.innerHTML = rs.map(function (r) {
-        var thumb = r.thumbnail ? '<img class="recap-thumb" src="' + esc(r.thumbnail) + '" alt="' + esc(r.presenter) + ' workshop" loading="lazy">' : '';
+        var thumb = r.thumbnail ? '<img class="recap-thumb" src="' + esc(r.thumbnail) + '" alt="' + esc(r.presenter) + ' workshop" loading="lazy" onerror="this.style.display=\'none\'">' : '';
         var by = esc(r.presenter) +
           (r.handle ? ' <span class="dot">&middot;</span> ' + esc(r.handle) : '') +
           (r.org ? ' <span class="dot">&middot;</span> ' + esc(r.org) : '') +
