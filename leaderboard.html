@@ -31,6 +31,9 @@
     .lb img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex: none; }
     .lb-name { flex: 1; font-size: 0.92rem; }
     .lb-score { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-size: 0.9rem; }
+    .lb-h { font-family: 'Syne', sans-serif; font-size: 1.15rem; margin: 0 0 0.2rem; }
+    .lb-cap { font-size: 0.82rem; color: var(--text-dim); margin: 0 0 0.7rem; }
+    .lb-load { color: var(--text-muted); font-size: 0.85rem; }
   </style>
 </head>
 <body>
@@ -56,46 +59,85 @@
     <div class="hero-eyebrow">Most active builders</div>
     <h1>Leaderboard.</h1>
     <p class="hero-sub">
-      Points for showing up - casting on /zabal, sharing ZABAL Gamez, signing up. Earned from inside the Mini App against your verified Farcaster identity. This same board is published in Empire Builder format at <a href="/api/leaderboard">/api/leaderboard</a> so the activity feeds the $ZABAL empire.
+      Two views of who is showing up. The /zabal channel board is live engagement on Farcaster, scored by Empire Builder for the ZABAL Gamez empire. Mini App activity tracks points earned inside the app - casting on /zabal, sharing, signing up.
     </p>
   </header>
 
   <section class="section">
-    <p style="font-size: 0.82rem; color: var(--text-dim);">Scoring: cast 3 - signup 5 - share 2.</p>
-    <ol class="lb" id="lb"><p style="color: var(--text-muted); font-size: 0.85rem;">Loading...</p></ol>
+    <h2 class="lb-h">/zabal channel</h2>
+    <p class="lb-cap">Live engagement on the /zabal Farcaster channel, scored by Empire Builder. Tap a name to open their profile.</p>
+    <ol class="lb" id="lb-empire"><p class="lb-load">Loading...</p></ol>
+  </section>
+
+  <section class="section">
+    <h2 class="lb-h">Mini App activity</h2>
+    <p class="lb-cap">Points for showing up from inside the Mini App - cast 3, signup 5, share 2. Also published at <a href="/api/leaderboard">/api/leaderboard</a>.</p>
+    <ol class="lb" id="lb"><p class="lb-load">Loading...</p></ol>
   </section>
 
   <script>
   (function() {
-    var el = document.getElementById('lb');
     function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
-    fetch('/api/leaderboard?format=full', { cache: 'no-store' })
-      .then(function(r){ return r.json(); })
-      .then(function(rows){
-        if (!rows || !rows.length) {
-          el.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;">No activity yet. Cast on /zabal from inside the Mini App to get on the board.</p>';
-          return;
-        }
-        el.innerHTML = rows.map(function(r, i){
-          var who = '@' + esc(r.username || r.fid);
-          var pfp = r.pfpUrl ? '<img src="'+esc(r.pfpUrl)+'" alt="">' : '';
-          return '<li class="clickable" data-fid="'+esc(r.fid)+'" tabindex="0" role="button" aria-label="View profile of '+esc(r.username || r.fid)+'">' +
-            '<span class="lb-rank'+(i<3?' top':'')+'">'+(i+1)+'</span>' +
-            pfp + '<span class="lb-name">'+who+'</span>' +
-            '<span class="lb-score">'+esc(r.score)+'</span></li>';
-        }).join('');
-        el.querySelectorAll('[data-fid]').forEach(function(li){
-          function activate(){
-            var fid = Number(li.getAttribute('data-fid'));
-            if (fid && window.ZABAL && window.ZABAL.viewProfile) window.ZABAL.viewProfile(fid);
-          }
-          li.addEventListener('click', activate);
-          li.addEventListener('keydown', function(e){
-            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); activate(); }
+    function bindKeys(li, activate){
+      li.addEventListener('click', activate);
+      li.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); activate(); }
+      });
+    }
+
+    // Primary: the live /zabal channel board, read from Empire Builder.
+    (function(){
+      var el = document.getElementById('lb-empire');
+      fetch('/api/empire-leaderboard', { cache: 'no-store' })
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var rows = (d && d.entries) || [];
+          if (!d || d.ok === false || d.configured === false) { el.innerHTML = '<p class="lb-load">Leaderboard unavailable right now.</p>'; return; }
+          if (!rows.length) { el.innerHTML = '<p class="lb-load">No channel activity yet. Cast on /zabal to get on the board.</p>'; return; }
+          el.innerHTML = rows.map(function(r, i){
+            var who = '@' + esc(r.username || r.displayName);
+            var pfp = r.pfpUrl ? '<img src="'+esc(r.pfpUrl)+'" alt="">' : '';
+            return '<li class="clickable" data-username="'+esc(r.username)+'" tabindex="0" role="button" aria-label="View profile of '+esc(r.username)+'">' +
+              '<span class="lb-rank'+(i<3?' top':'')+'">'+esc(r.rank || i+1)+'</span>' +
+              pfp + '<span class="lb-name">'+who+'</span>' +
+              '<span class="lb-score">'+esc(r.score)+'</span></li>';
+          }).join('');
+          el.querySelectorAll('[data-username]').forEach(function(li){
+            bindKeys(li, function(){
+              var u = li.getAttribute('data-username'); if (!u) return;
+              var url = 'https://farcaster.xyz/' + u;
+              if (window.ZABAL && window.ZABAL.openNewTab) window.ZABAL.openNewTab(url);
+              else window.open(url, '_blank', 'noopener');
+            });
           });
-        });
-      })
-      .catch(function(){ el.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;">Leaderboard unavailable right now.</p>'; });
+        })
+        .catch(function(){ el.innerHTML = '<p class="lb-load">Leaderboard unavailable right now.</p>'; });
+    })();
+
+    // Secondary: in-app activity board (our own API).
+    (function(){
+      var el = document.getElementById('lb');
+      fetch('/api/leaderboard?format=full', { cache: 'no-store' })
+        .then(function(r){ return r.json(); })
+        .then(function(rows){
+          if (!rows || !rows.length) { el.innerHTML = '<p class="lb-load">No activity yet. Cast on /zabal from inside the Mini App to get on the board.</p>'; return; }
+          el.innerHTML = rows.map(function(r, i){
+            var who = '@' + esc(r.username || r.fid);
+            var pfp = r.pfpUrl ? '<img src="'+esc(r.pfpUrl)+'" alt="">' : '';
+            return '<li class="clickable" data-fid="'+esc(r.fid)+'" tabindex="0" role="button" aria-label="View profile of '+esc(r.username || r.fid)+'">' +
+              '<span class="lb-rank'+(i<3?' top':'')+'">'+(i+1)+'</span>' +
+              pfp + '<span class="lb-name">'+who+'</span>' +
+              '<span class="lb-score">'+esc(r.score)+'</span></li>';
+          }).join('');
+          el.querySelectorAll('[data-fid]').forEach(function(li){
+            bindKeys(li, function(){
+              var fid = Number(li.getAttribute('data-fid'));
+              if (fid && window.ZABAL && window.ZABAL.viewProfile) window.ZABAL.viewProfile(fid);
+            });
+          });
+        })
+        .catch(function(){ el.innerHTML = '<p class="lb-load">Leaderboard unavailable right now.</p>'; });
+    })();
   })();
   </script>
 
