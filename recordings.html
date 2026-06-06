@@ -61,7 +61,7 @@
       <h3>ZABAL Gamez Workshops</h3>
       <p class="rec-builder">June workshop month - ZAO and Farcaster builders each record a session on tools they have built.</p>
       <p>Every workshop, livestreamed and kept. Watch the recording, read the transcript where we have it, and take the key points. Day 1 (yerbearserker on Empire Builder, Joshua and Plat0x on Bonfire), Day 2 (Ohnahji on growing a livestream), and more landing through June.</p>
-      <div class="card-meta"><a href="/recordings/1">Watch Workshop #1: yerbearserker on Empire Builder</a> &nbsp;-&nbsp; <a href="/recaps">Open the recaps</a></div>
+      <div class="card-meta" id="workshop-recordings"><a href="/recordings/1">Watch Workshop #1: yerbearserker on Empire Builder</a> &nbsp;-&nbsp; <a href="/recaps">Open the recaps</a></div>
     </div>
 
     <div class="card">
@@ -151,6 +151,30 @@
     <span>zabalgamez.com - built with The ZAO</span>
   </div>
 </footer>
+
+<script>
+// Auto-list ZABAL Gamez recordings that have a dedicated /recordings/N page, newest
+// first, from data/recaps.json. Progressive enhancement: the hardcoded Workshop #1
+// link stays as the no-JS fallback, and we only swap it in once we have entries.
+(function () {
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  var el = document.getElementById('workshop-recordings');
+  if (!el) return;
+  fetch('/data/recaps.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var recaps = (d && d.recaps) || [];
+      var withPage = recaps.filter(function (r) { return r.page && /^\/recordings\//.test(r.page); });
+      if (!withPage.length) return; // keep the fallback
+      var links = withPage.map(function (r) {
+        return '<a href="' + esc(r.page) + '">Watch: ' + esc(r.title) + '</a>';
+      });
+      links.push('<a href="/recaps">Open the recaps</a>');
+      el.innerHTML = links.join(' &nbsp;-&nbsp; ');
+    })
+    .catch(function () { /* keep the fallback */ });
+})();
+</script>
 
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
