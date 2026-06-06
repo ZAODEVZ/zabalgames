@@ -18,7 +18,16 @@
   - Sources: miniapps.farcaster.xyz/docs/guides/loading, /docs/sdk/detecting-capabilities, /docs/sdk/actions/ready, /docs/specification.
 
 ### Up next (build)
-- **Empire Builder leaderboard integration** - BLOCKED on the API contract. Pull the real leaderboard for our tokenless empire (`zabalgamez01e9af`) from the Empire Builder API and show it (today the only board is the internal /zabal posters leaderboard, `/api/leaderboard`). Plan: new edge fn `api/empire-leaderboard.mjs` reading `EMPIRE_API_KEY` (env to add) + a display surface. Needed from the GitBook docs (bot-blocked to the build env): API base URL, auth header name + key format, the leaderboard GET endpoint (method + path), how the empire is identified (id vs address), and the response JSON shape.
+- **Empire Builder leaderboard integration** - proxy SHIPPED, two things to finish.
+  `api/empire-leaderboard.mjs` reads our tokenless empire's board from Empire Builder
+  (`empirebuilder.world`, open GETs) and normalizes any shape to a stable contract.
+  Remaining: (1) set `EMPIRE_ID` env to the real Empire ID (`fid<digits>` or slug -
+  NOT the `zabalgamez01e9af` I guessed earlier), optional `EMPIRE_API_KEY`; (2) after
+  deploy, hit `/api/empire-leaderboard?tokenAddress=<id>&debug=1` to confirm the real
+  upstream field shape, refine the normalizer if needed, then build the display surface
+  (homepage block or streams.html). NOTE: a tokenless empire can't use an
+  `apiLeaderboard` (ERC-20 only) - its board is a `farcasterChannel`/`cast`/`interaction`
+  type, so confirm one exists on the empire first (a /zabal channel board is the fit).
 - **Part 2 (demo) YouTube package** - title / description / chapters / tags. Reuse the Part 1 template once the demo cut exists.
 - **Notion Command Center** - content fully drafted (all 9 sections: ZABAL Games, BCZ Drive assets, Sprint Dates, Existing Channels, KPI Tracker, Activation Menu, Onboarding/Activation Calendar, Magnet Grid, Owner Actions). Paste into the Notion page. Confirm 3 open cells: Magnet Grid video-recorded status, Activation Menu "register your build" URL, and renaming the "Untitled" block.
 
