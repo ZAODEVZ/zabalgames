@@ -192,13 +192,13 @@
     "one Bonfire, many agents: a federated crew sharing context"
   ];
 
-  // Share buttons - tag Carlos (platform-appropriate handle) and Zaal, with a random topic.
+  // Share buttons - tag Carlos on X (no Farcaster account) and Zaal, with a random topic.
   document.querySelectorAll('.rec-watch-share').forEach(function (b) {
     b.addEventListener('click', function () {
       if (!(window.ZABAL && window.ZABAL.share)) return;
       var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
       var zaal = platform === 'x' ? '@bettercallzaal' : '@zaal';
-      var guest = platform === 'x' ? '@at0x_eth' : '@plat0x';
+      var guest = platform === 'x' ? '@at0x_eth' : 'Carlos (Plat0x)';
       var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
       var text = "I'm at the ZABAL Gamez fireside with " + guest + " and " + zaal +
         " - " + topic;

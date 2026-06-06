@@ -4,7 +4,6 @@ show: ZABAL Gamez Firesides
 episode: 1
 guest: Carlos (Plat0x, Bonfires)
 guest_links:
-  - "farcaster: plat0x"
   - "twitter: at0x_eth"
 host: Zaal
 date: 2026-06-06T00:00:00.000Z
