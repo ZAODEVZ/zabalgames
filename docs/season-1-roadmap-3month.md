@@ -68,9 +68,10 @@ change Claude can make. `[x]` done, `[ ]` open.
   file calls) and the commit-to-Bonfire cron. Send to Plat0x.
 - [ ] [DECISION] Bonfires dependency fallback - judging + graph are Bonfires-owned. Decide a
   fallback before the whole submission flow depends on it.
-- [ ] [BUILD] A builder-facing "how to enter July" page or llms.txt section: signup = wallet/
-  Farcaster + GitHub auth, push via the skill file, rolling admission. (Spec exists; wire when
-  the register server is real.)
+- [x] [BUILD] A builder-facing "how to enter July" page or llms.txt section: signup = wallet/
+  Farcaster + GitHub auth, push via the skill file, rolling admission. DONE - `enter.html`
+  (form wired to `/api/register`, "how to enter" + "what happens after") now discoverable
+  site-wide: linked from the homepage Builder card and the Season footer column on all 27 pages.
 
 ### The knowledge game (project #46)
 - [ ] [BUILD] llms.txt of all ZAO brand assets shipped by July 1 (the existing llms.txt is most
