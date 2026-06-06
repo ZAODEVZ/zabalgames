@@ -18,7 +18,7 @@
   - Sources: miniapps.farcaster.xyz/docs/guides/loading, /docs/sdk/detecting-capabilities, /docs/sdk/actions/ready, /docs/specification.
 
 ### Up next (build)
-- **Part 2 (demo) YouTube package** - title / description / chapters / tags. Reuse the Part 1 template once the demo cut exists.
+- **Recording 2 (Empire Builder Part 2 / demo) page** - BLOCKED on the demo cut: need the YouTube ID + chapter timestamps. The pipeline is ready: `docs/recordings-workflow.md` + the edit sheet `docs/recordings/workshop-1-empire-builder.md` (holds the intern's corrections, the 13:27-13:45 cut, and Part 1 clip ranges). Once the video lands, copy `recordings/1.html` -> `recordings/2.html`, swap fields per the workflow, add the recaps entry.
 - **Notion Command Center** - content fully drafted (all 9 sections: ZABAL Games, BCZ Drive assets, Sprint Dates, Existing Channels, KPI Tracker, Activation Menu, Onboarding/Activation Calendar, Magnet Grid, Owner Actions). Paste into the Notion page. Confirm 3 open cells: Magnet Grid video-recorded status, Activation Menu "register your build" URL, and renaming the "Untitled" block.
 
 ### Owner actions (not code-blocked)
@@ -30,6 +30,7 @@
 - **Announcements** (yerbearserker first-workshop + Day 0) - ON HOLD per owner.
 
 ### Shipped this session (2026-06-06)
+- Recordings workflow: a repeatable pipeline for turning a raw workshop recording into a corrected video, distribution clips, and a `/recordings/N` page. `docs/recordings-workflow.md` (process), `data/transcript-corrections.json` (reusable brand-term glossary seeded from the intern's notes - safe auto-fixes vs context-dependent review flags), `scripts/fix-transcript.mjs` (applies safe fixes to any caption/transcript file, flags the rest), and an edit-sheet template + filled Workshop #1 example.
 - July entry discoverability: `enter.html` (the "how to enter July" page, form wired to `/api/register`) was fully built but orphaned - now linked from the homepage Builder card and the Season footer column on all 27 pages.
 - Workshop #1 recording page `/recordings/1` (embed + clickable chapters + share buttons), recap YouTube link, recordings-hub link (PR #126).
 - Activity-backend audit follow-ups: join first-join idempotency, register hybrid identity + many-repos, commit-watcher ownership proof (PR #126).
