@@ -37,6 +37,40 @@
     },
     {
       "date": "2026-06-01",
+      "title": "Empire Builder Part 2: the live build",
+      "presenter": "yerbearserker",
+      "handle": "@yerbearserker",
+      "org": "Empire Builder",
+      "track": "builder",
+      "format": "Live workshop demo, recorded",
+      "thumbnail": "/assets/workshops/2026-06-01-yerbearserker-empire-builder.png",
+      "recording": "https://luma.com/7nfside5",
+      "youtube": "https://youtu.be/RXYTCHRh_rY",
+      "page": "/recordings/2",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder-part-2.md",
+      "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
+      "link_label": "The ZABAL Gamez Empire",
+      "share_topics": [
+        "standing up a tokenless empire live",
+        "leaderboards scored by holders times boosters",
+        "a live Warplet raffle airdrop",
+        "adding a $Zabal token booster on the spot",
+        "reading boosters to find your real people",
+        "distribution: airdrops, NFTs, and raffles",
+        "your main empire is the tree, sub-empires are the branches",
+        "the token is the amplifier, not the foundation"
+      ],
+      "summary": "Part 2 of the first ZABAL Gamez workshop - the live build that follows the Part 1 framework talk. yerbearserker (Jordan Oram) of Empire Builder gives a hands-on tour of the Empire tool stack from inside Farcaster, walks the top empires and how leaderboards score holders times boosters, runs a live Warplet raffle airdrop to DotA NFT holders, adds a $Zabal token booster, and stands up a fresh tokenless ZABAL Gamez empire on the spot, then wires two leaderboards (channel activity in /zabal and cast reactions).",
+      "topics": ["Empire Builder", "tokenless Empire", "leaderboards", "boosters", "airdrops", "raffles", "treasury", "distribution"],
+      "takeaways": [
+        "See a tokenless empire stood up live, start to finish.",
+        "Leaderboards score a base component multiplied by boosters - NFT holdings, token thresholds, or staking.",
+        "Distribution in practice: a live Warplet raffle airdrop to the most active DotA NFT holders.",
+        "A $Zabal token booster added live (10M minimum, 3x), funded from the treasury."
+      ]
+    },
+    {
+      "date": "2026-06-01",
       "title": "Empire Builder V3",
       "presenter": "yerbearserker",
       "handle": "@yerbearserker",
