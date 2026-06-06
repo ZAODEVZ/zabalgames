@@ -72,6 +72,11 @@ prompt in [docs/recordings/caption-style-prompt.md](recordings/caption-style-pro
 (paste it into Descript Underlord). The caption *look* and the caption *spelling* (the
 glossary fixes above) are two separate passes.
 
+**Caption spelling, preemptive:** feed Underlord the brand vocabulary *before* it
+transcribes -
+[docs/recordings/recording-vocabulary.md](recordings/recording-vocabulary.md) - so the ZAO
+proper nouns come out right the first time and the editor stops re-fixing the same words.
+
 ## Stage 3 - Clips
 
 Hand the editor the **Clip suggestions** ranges; each becomes a standalone short for

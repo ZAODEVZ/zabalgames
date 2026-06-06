@@ -55,4 +55,8 @@ person).
 
 The caption *look* (the prompt above) and the caption *spelling* (this list) are two
 separate passes - do both before exporting.
+
+> Even better: feed Underlord the brand vocabulary *before* it transcribes, so the words
+> come out right the first time - see
+> [recording-vocabulary.md](recording-vocabulary.md).
 </content>
