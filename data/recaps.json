@@ -1,6 +1,6 @@
 {
   "season": 1,
-  "_note": "Recap library for delivered ZABAL Gamez workshops. Newest first. recording/transcript/thumbnail optional - only include links + files that exist. Fields: date, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, transcript, link, link_label, takeaways[].",
+  "_note": "Recap library for delivered ZABAL Gamez workshops. Newest first. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/N landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[].",
   "recaps": [
     {
       "date": "2026-06-02",
@@ -45,9 +45,22 @@
       "format": "Live workshop, 30 min, recorded",
       "thumbnail": "/assets/workshops/2026-06-01-yerbearserker-empire-builder.png",
       "recording": "https://luma.com/7nfside5",
+      "youtube": "https://youtu.be/Ej7Wm-v6WXo",
+      "page": "/recordings/1",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md",
       "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
       "link_label": "The ZABAL Gamez Empire",
+      "share_topics": [
+        "why you shouldn't launch a token yet",
+        "the Triple A framework: Assemble, Affirm, Ascend",
+        "the token is the amplifier, not the foundation",
+        "tactical generosity and rewarding your real people",
+        "building a tokenless Empire",
+        "leaderboards, boosters, and staking",
+        "staking without becoming a security",
+        "generative not extractive, symbiotic not parasitic",
+        "reaching real holders, not Web2 cohorts"
+      ],
       "summary": "Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up a tokenless ZABAL Gamez Empire live during the session. His message: build the foundation before you launch anything.",
       "topics": ["Empire Builder", "tokenless Empire", "leaderboards", "boosters", "staking", "Triple-A framework", "distribution"],
       "takeaways": [

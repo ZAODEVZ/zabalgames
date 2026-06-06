@@ -130,3 +130,6 @@ owner-action subset.
 The "why" behind the format lives in `docs/research/701-canonical-state.md` (canonical
 decisions) and the numbered research docs. The reframe to the current positioning is in
 `docs/positioning-2026-05-29.md` + `docs/foundercheck-reframe-2026-05-29.md`.
+Backend/policy resolutions from the 2026-06-04 activity-backend audit (join idempotency,
+register hybrid identity + ownership proof, July judging, public-count) are in
+`docs/audit-decisions-2026-06-04.md`. Workshop 1 recap: `docs/workshop-1-empire-builder-recap-2026-06-04.md`.

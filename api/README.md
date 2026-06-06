@@ -26,7 +26,9 @@ verification model as `/api/track`).
 - Body: `{ door?, note?, track?: 'artist'|'builder'|'creator', source? }`
 - Dedupes per FID via a KV hash so the count is distinct builders, and drops a
   `signup` into the activity feed + score so the presence widget and leaderboard
-  reflect it. Returns `{ ok: true, count }`.
+  reflect it. The `signup` activity and the +5 score fire only on a FID's FIRST
+  join (a re-tap updates the record but does not re-award or re-spam the feed);
+  daily presence re-asserts every tap. Returns `{ ok: true, count, firstJoin }`.
 
 ### `GET /api/activity`
 Public read for the presence widget (`assets/presence.js`).
@@ -76,19 +78,25 @@ The thin builder-registration layer from the GitHub-as-submission /
 Bonfire-as-backend architecture (research doc 784). A builder's harness makes one
 call after pushing work to GitHub.
 
-- No Quick Auth: the builder identifies by wallet, not a Farcaster JWT. Inputs are
+- Wallet is the auth-free baseline so any harness can submit. An OPTIONAL
+  `Authorization: Bearer <quick-auth-jwt>` links the wallet to a verified FID (the
+  anchor when present); an absent/invalid token never blocks. Inputs are
   shape-validated and length-capped.
 - Body: `{ wallet: "0x...", github_repo: "owner/repo" | full URL }`
-- Keeps a single Redis hash `zabal:builds` { wallet -> github_repo }. Idempotent:
-  re-registering the same wallet overwrites its repo. Returns
-  `{ ok: true, wallet, github_repo, count }`. Never touches Bonfire.
+- Keeps `zabal:builds` { wallet -> JSON array of repos } (many repos per builder,
+  de-duped; legacy single-string values still read) and `zabal:builds:fid`
+  { wallet -> fid } for the optional link. Returns
+  `{ ok: true, wallet, github_repo, repos, fid, count }`. Never touches Bonfire.
 
 ### `GET /api/commit-watcher` (cron)
 The scheduled push side of doc 784. Reads `zabal:builds`, checks each public repo
 for new commits, and pushes them to the Bonfire knowledge graph as episodes. This
-is the ONLY component that talks to Bonfire (server-side). Graceful no-op when KV
-or the Bonfire env is absent; a single repo erroring does not stop the rest. Does
-no judging/ranking - that stays in Bonfire's existing pipeline.
+is the ONLY component that talks to Bonfire (server-side). Ownership proof at this
+boundary: before pushing, the repo must contain the registrant's wallet in a known
+file (`ZABAL.md`, then the README, case-insensitive) - this is what stops someone
+registering a repo they do not control; unverified repos are skipped, not pushed.
+Graceful no-op when KV or the Bonfire env is absent; a single repo erroring does
+not stop the rest. Does no judging/ranking - that stays in Bonfire's existing pipeline.
 
 ### `POST /api/bonfire-ask`
 Backs the Bonfire read spot on `graph.html`. Two actions:

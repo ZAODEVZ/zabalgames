@@ -2,9 +2,16 @@
 //
 // The scheduled push from the GitHub-as-submission / Bonfire-as-backend
 // architecture (research doc 784). Runs on a Vercel cron (see vercel.json).
-// Reads the `zabal:builds` { wallet -> github_repo } hash that api/register.mjs
-// fills, checks each public repo for new commits, and pushes them to the Bonfire
-// knowledge graph as episodes.
+// Reads the `zabal:builds` { wallet -> [repos] } hash that api/register.mjs fills
+// (legacy single-string values still read), checks each public repo for new
+// commits, and pushes them to the Bonfire knowledge graph as episodes.
+//
+// Ownership proof (audit 2026-06-04): this cron is the trust boundary. register is
+// a thin, auth-free claim, so before pushing a repo's commits we verify the repo
+// actually contains the registrant's wallet in a known file (ZABAL.md, then the
+// README). Only the repo's owner can put their wallet there, so this is what stops
+// someone registering a public repo they do not control. Unverified repos are
+// skipped, never pushed.
 //
 // This is the ONLY component that talks to Bonfire, and it does so server-side.
 // The builder skill never calls Bonfire; that separation is intentional and load-
@@ -85,6 +92,36 @@ async function fetchCommits(owner, repo) {
   return list;
 }
 
+// Fetch a single file's raw text via the GitHub contents API (null on any miss).
+async function fetchRepoFile(owner, repo, path) {
+  const headers = { 'Accept': 'application/vnd.github.raw', 'User-Agent': 'zabal-gamez-commit-watcher' };
+  if (GITHUB_TOKEN) headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
+  const url = `https://api.github.com/repos/${owner}/${repo}/${path}`;
+  const r = await fetch(url, { headers, signal: AbortSignal.timeout(8000) });
+  if (!r.ok) return null;
+  return r.text();
+}
+
+// Ownership proof: the repo must contain the registrant's wallet in a known claim
+// file. Checks ZABAL.md first (the convention), then falls back to the README.
+// Case-insensitive. Only the repo owner can commit their wallet into the repo, so
+// a match proves control - this is the gate that defeats repo-spoofing.
+async function verifyOwnership(owner, repo, wallet) {
+  const needle = String(wallet || '').toLowerCase();
+  if (!needle) return false;
+  const sources = [
+    () => fetchRepoFile(owner, repo, 'contents/ZABAL.md'),
+    () => fetchRepoFile(owner, repo, 'readme'),
+  ];
+  for (const get of sources) {
+    try {
+      const txt = await get();
+      if (txt && txt.toLowerCase().includes(needle)) return true;
+    } catch { /* try next source */ }
+  }
+  return false;
+}
+
 function buildEpisodeBody(wallet, owner, repo, fresh) {
   const lines = fresh.map((c) => {
     const sha = String(c.sha || '').slice(0, 7);
@@ -143,17 +180,38 @@ export default async function handler(req) {
     return json({ ok: false, reason: 'storage error', detail: e.message }, 502);
   }
 
-  const wallets = Object.keys(builds).slice(0, MAX_REPOS);
+  // Flatten { wallet -> [repos] } into (wallet, repo) pairs, bounded. Back-compat:
+  // a legacy bare-string value counts as a single repo.
+  const pairs = [];
+  for (const wallet of Object.keys(builds)) {
+    let repos;
+    try {
+      const p = JSON.parse(builds[wallet]);
+      repos = Array.isArray(p) ? p : (typeof p === 'string' ? [p] : []);
+    } catch {
+      repos = builds[wallet] ? [builds[wallet]] : [];
+    }
+    for (const rp of repos) pairs.push([wallet, rp]);
+  }
+  const bounded = pairs.slice(0, MAX_REPOS);
+
   const summary = { ok: true, checked: 0, pushed: 0, skipped: 0, failed: 0, details: [] };
   const seenUpdates = [];
 
-  for (const wallet of wallets) {
-    const repoPath = builds[wallet];
+  for (const [wallet, repoPath] of bounded) {
     const [owner, repo] = String(repoPath || '').split('/');
     if (!owner || !repo) { summary.skipped++; continue; }
     summary.checked++;
 
     try {
+      // Trust boundary: never push a repo the registrant cannot prove they own.
+      const owns = await verifyOwnership(owner, repo, wallet);
+      if (!owns) {
+        summary.skipped++;
+        summary.details.push(`${owner}/${repo}: unverified (wallet not in ZABAL.md/README)`);
+        continue;
+      }
+
       const commits = await fetchCommits(owner, repo);
       if (commits.length === 0) { summary.skipped++; continue; }
 
