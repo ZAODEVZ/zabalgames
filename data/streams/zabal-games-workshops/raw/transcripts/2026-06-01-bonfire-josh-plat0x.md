@@ -37,7 +37,7 @@ entities:
 links:
   - label: Bonfire
     url: https://bonfires.ai
-youtube: PENDING_UPLOAD
+youtube: https://youtu.be/3jKfYdOYxSw
 source:
   capture: live workshop recording, auto-transcript with proper nouns corrected
 summary: |

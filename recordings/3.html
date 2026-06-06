@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bonfire and the ZABAL Bonfire bot: build on shared memory - ZABAL Gamez Season 1</title>
+  <meta name="description" content="ZABAL Gamez Workshop, Day 1, builder track. Joshua.eth and Plat0x (Carlos) on Bonfire - a shared AI workspace and shared memory (knowledge graph), the data-loss problem, curation as the last scarce asset, and a live look at the ZABAL Bonfire bot. Watch, jump to a chapter, read the transcript.">
+  <link rel="canonical" href="https://zabalgamez.com/recordings/3">
+  <meta property="og:title" content="Bonfire and the ZABAL Bonfire bot: build on shared memory - ZABAL Gamez">
+  <meta property="og:description" content="Joshua.eth and Plat0x on Bonfire - shared memory for builders, the data-loss problem, curation as the last scarce asset, and a live look at the ZABAL Bonfire bot.">
+  <meta property="og:type" content="video.other">
+  <meta property="og:url" content="https://zabalgamez.com/recordings/3">
+  <meta property="og:image" content="https://zabalgamez.com/assets/workshops/2026-06-01-bonfire-josh-plat0x.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bonfire and the ZABAL Bonfire bot - ZABAL Gamez">
+  <meta name="twitter:description" content="Joshua.eth and Plat0x on building on shared memory. The second ZABAL Gamez workshop.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/workshops/2026-06-01-bonfire-josh-plat0x.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch the Bonfire workshop","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/3","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <!-- Video embed + clickable chapters: opt out of native swipe gestures so a stray swipe doesn't close the Mini App. -->
+  <meta name="fc:disable-native-gestures" content="1">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); }
+    .rec-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
+    .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
+    .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
+    .rec-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.9rem 0 0.2rem; }
+    .rec-link { font-size: 0.82rem; padding: 0.34rem 0.75rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); font-family: inherit; cursor: pointer; }
+    .rec-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .rec-link:hover { filter: brightness(1.12); }
+    .rec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 1.3rem 0 0.4rem; }
+    .rec-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+    .rec-chapters li { margin: 0; }
+    .rec-chapter { display: flex; gap: 0.7rem; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 0.34rem 0.5rem; color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer; }
+    .rec-chapter:hover { background: var(--surface-2); }
+    .rec-chapter .t { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); min-width: 3.2rem; }
+    .rec-topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.3rem 0 0; }
+    .rec-topic { font-size: 0.7rem; letter-spacing: 0.02em; padding: 0.14rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-2); }
+    .rec-takeaways { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+    .rec-takeaways li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.6rem;">
+    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / Bonfire workshop</div>
+    <h1>Build on shared memory - <span class="accent">Bonfire and the ZABAL Bonfire bot</span>.</h1>
+    <p class="rec-by">
+      Joshua.eth and Plat0x <span class="dot">&middot;</span> Bonfire
+      <span class="dot">&middot;</span> <span class="rec-format">Day 1, builder track - live workshop, recorded</span>
+    </p>
+  </header>
+
+  <div class="rec-embed">
+    <iframe id="rec-player"
+      src="https://www.youtube.com/embed/3jKfYdOYxSw?rel=0"
+      title="ZABAL Gamez Workshop: Bonfire and the ZABAL Bonfire bot, with Joshua.eth and Plat0x"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
+  </div>
+
+  <div class="rec-links">
+    <a class="rec-link primary" href="https://youtu.be/3jKfYdOYxSw" target="_blank" rel="noopener">Watch on YouTube</a>
+    <a class="rec-link" href="https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-bonfire-josh-plat0x.md" target="_blank" rel="noopener">Read the transcript</a>
+    <a class="rec-link" href="https://bonfires.ai" target="_blank" rel="noopener">Bonfire</a>
+    <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
+    <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
+  </div>
+
+  <section class="section" style="margin-top: 1.4rem;">
+    <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
+      The second ZABAL Gamez workshop. Joshua.eth and Plat0x (Carlos) introduce Bonfire - a shared AI workspace where a group shares agents and, in the process of using them, grows a shared memory: a knowledge graph that becomes a collective, ownable asset. They get into the data-loss problem (most of what is said at a conference or in a community is lost or siloed), why curation is the last scarce asset, a vision for hackathons where every project is interoperable by design - one protocol with a hundred features instead of a hundred isolated proofs of concept - and a live look at querying the ZABAL Bonfire bot.
+    </p>
+
+    <div class="rec-label">Chapters</div>
+    <ul class="rec-chapters" id="rec-chapters">
+      <li><button class="rec-chapter" data-start="0"><span class="t">0:00</span><span>Intro</span></button></li>
+      <li><button class="rec-chapter" data-start="13"><span class="t">0:13</span><span>Welcome - the second ZABAL Gamez workshop</span></button></li>
+      <li><button class="rec-chapter" data-start="56"><span class="t">0:56</span><span>What Bonfire is: a shared AI workspace</span></button></li>
+      <li><button class="rec-chapter" data-start="95"><span class="t">1:35</span><span>Shared memory: a knowledge graph that grows as you use it</span></button></li>
+      <li><button class="rec-chapter" data-start="153"><span class="t">2:33</span><span>How Bonfire fits ZABAL Gamez (from ETH Boulder)</span></button></li>
+      <li><button class="rec-chapter" data-start="213"><span class="t">3:33</span><span>Meet Carlos (Plat0x): big data, swarms, and AI</span></button></li>
+      <li><button class="rec-chapter" data-start="376"><span class="t">6:16</span><span>The data-loss problem</span></button></li>
+      <li><button class="rec-chapter" data-start="423"><span class="t">7:03</span><span>Being part of something, not pay-to-win</span></button></li>
+      <li><button class="rec-chapter" data-start="497"><span class="t">8:17</span><span>Value lost: musicians and middlemen</span></button></li>
+      <li><button class="rec-chapter" data-start="555"><span class="t">9:15</span><span>Vibe coding changes the game for independent artists</span></button></li>
+      <li><button class="rec-chapter" data-start="627"><span class="t">10:27</span><span>"Software as a service is dead"</span></button></li>
+      <li><button class="rec-chapter" data-start="707"><span class="t">11:47</span><span>Curation: the last scarce asset</span></button></li>
+      <li><button class="rec-chapter" data-start="843"><span class="t">14:03</span><span>Retrieval: catching anyone up on ZABAL Gamez</span></button></li>
+      <li><button class="rec-chapter" data-start="884"><span class="t">14:44</span><span>Hackathons: single cells vs one interoperable protocol</span></button></li>
+      <li><button class="rec-chapter" data-start="960"><span class="t">16:00</span><span>Mapping who's building what in the ZAO ecosystem</span></button></li>
+      <li><button class="rec-chapter" data-start="1032"><span class="t">17:12</span><span>Everyone gets an agent; Bonfire as the orchestrator</span></button></li>
+      <li><button class="rec-chapter" data-start="1091"><span class="t">18:11</span><span>Live: querying the ZABAL Bonfire bot</span></button></li>
+      <li><button class="rec-chapter" data-start="1139"><span class="t">18:59</span><span>Read agents, notifications, and async teamwork</span></button></li>
+      <li><button class="rec-chapter" data-start="1239"><span class="t">20:39</span><span>The cost of LLMs and parsing data</span></button></li>
+      <li><button class="rec-chapter" data-start="1266"><span class="t">21:06</span><span>Indexing for (almost) free with language and grammar</span></button></li>
+      <li><button class="rec-chapter" data-start="1359"><span class="t">22:39</span><span>How memory systems change app design</span></button></li>
+      <li><button class="rec-chapter" data-start="1412"><span class="t">23:32</span><span>Wrap and ideas: bounties, insert-coin bot, POIDH</span></button></li>
+      <li><button class="rec-chapter" data-start="1512"><span class="t">25:12</span><span>Where to find Carlos and Bonfire</span></button></li>
+      <li><button class="rec-chapter" data-start="1535"><span class="t">25:35</span><span>Outro</span></button></li>
+    </ul>
+
+    <div class="rec-label">Topics</div>
+    <div class="rec-topics">
+      <span class="rec-topic">Bonfire</span>
+      <span class="rec-topic">shared memory</span>
+      <span class="rec-topic">knowledge graph</span>
+      <span class="rec-topic">agents</span>
+      <span class="rec-topic">curation</span>
+      <span class="rec-topic">hackathons</span>
+      <span class="rec-topic">async teamwork</span>
+      <span class="rec-topic">ZABAL Bonfire bot</span>
+    </div>
+
+    <div class="rec-label">Key takeaways</div>
+    <ul class="rec-takeaways">
+      <li>Bonfire is the ecosystem's shared memory - the layer bots and builds sit on top of.</li>
+      <li>A group grows a knowledge graph just by using its agents, and the curators own it.</li>
+      <li>Curation is the last scarce asset: structured taste and knowledge stay unique and ownable.</li>
+      <li>The hackathon vision: one interoperable protocol out of a season, not a hundred isolated demos.</li>
+      <li>The ZABAL Bonfire bot is live and queryable, so anyone joining mid-season can get caught up.</li>
+    </ul>
+  </section>
+
+  <p style="margin-top: 1.4rem; font-size: 0.85rem;"><a href="/recordings">All recordings</a> &nbsp;-&nbsp; <a href="/recaps">Session recaps</a> &nbsp;-&nbsp; <a href="/#schedule">Upcoming schedule</a></p>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/live.html">Live - What's On Now</a>
+      <a href="/lead.html">Lead a Workshop</a>
+      <a href="/mentor.html">Mentor</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/recordings.html">Recordings</a>
+      <a href="/recaps">Session Recaps</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/graph.html">ZAO Graph</a>
+      <a href="/changelog.html">Changelog</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var YT_ID = '3jKfYdOYxSw';
+  var PAGE_URL = 'https://zabalgamez.com/recordings/3';
+  // Random share topics for the "I'm watching" buttons - one picked per click.
+  var TOPICS = [
+    "Bonfire as the ecosystem's shared memory",
+    "a knowledge graph that grows just by using your agents",
+    "the data-loss problem at conferences and communities",
+    "curation as the last scarce asset",
+    "hackathons that produce one interoperable protocol",
+    "querying the ZABAL Bonfire bot live",
+    "everyone gets an agent, with Bonfire as the orchestrator",
+    "the curators own the knowledge they build"
+  ];
+
+  // Clickable chapters - reload the embed starting at the chapter time and play.
+  var player = document.getElementById('rec-player');
+  var chapters = document.getElementById('rec-chapters');
+  if (player && chapters) {
+    chapters.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.rec-chapter');
+      if (!b) return;
+      var start = parseInt(b.getAttribute('data-start') || '0', 10) || 0;
+      player.src = 'https://www.youtube.com/embed/' + YT_ID + '?rel=0&autoplay=1&start=' + start;
+      player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  // Share buttons - tag a guest (platform-appropriate handle) and Zaal, with a random
+  // topic. Shares this page.
+  document.querySelectorAll('.rec-watch-share').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!(window.ZABAL && window.ZABAL.share)) return;
+      var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
+      var zaal = platform === 'x' ? '@bettercallzaal' : '@zaal';
+      var guest = platform === 'x' ? '@at0x_eth' : '@joshua.eth';
+      var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+      var text = "I'm watching ZABAL Gamez with " + guest + " and " + zaal +
+        " on Bonfire - " + topic;
+      window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-3-' + platform });
+    });
+  });
+})();
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

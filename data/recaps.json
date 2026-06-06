@@ -27,12 +27,28 @@
       "format": "Live workshop, recorded",
       "thumbnail": "/assets/workshops/2026-06-01-bonfire-josh-plat0x.png",
       "recording": "https://luma.com/y189qk8p",
-      "summary": "Day 1, builder track. Joshua.eth walked through Bonfire and the ZABAL Bonfire bot - the ecosystem's shared memory that bots and builds sit on top of - and how to point your own agent at it to follow ZABAL Gamez in real time. Plat0x went deeper on building on the graph.",
-      "topics": ["Bonfire", "knowledge graph", "agents", "ZABAL Bonfire bot", "shared memory"],
+      "youtube": "https://youtu.be/3jKfYdOYxSw",
+      "page": "/recordings/3",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-bonfire-josh-plat0x.md",
+      "link": "https://bonfires.ai",
+      "link_label": "Bonfire",
+      "share_topics": [
+        "Bonfire as the ecosystem's shared memory",
+        "a knowledge graph that grows just by using your agents",
+        "the data-loss problem at conferences and communities",
+        "curation as the last scarce asset",
+        "hackathons that produce one interoperable protocol",
+        "querying the ZABAL Bonfire bot live",
+        "everyone gets an agent, with Bonfire as the orchestrator",
+        "the curators own the knowledge they build"
+      ],
+      "summary": "The second ZABAL Gamez workshop. Joshua.eth and Plat0x (Carlos) introduce Bonfire - a shared AI workspace where a group shares agents and, in the process of using them, grows a shared memory: a knowledge graph that becomes a collective, ownable asset. They get into the data-loss problem, why curation is the last scarce asset, a vision for hackathons where every project is interoperable by design, and a live look at querying the ZABAL Bonfire bot.",
+      "topics": ["Bonfire", "shared memory", "knowledge graph", "agents", "curation", "hackathons", "ZABAL Bonfire bot"],
       "takeaways": [
-        "Point your agent at the ZABAL Bonfire to follow ZABAL Gamez in real time.",
         "Bonfire is the ecosystem's shared memory - the layer bots and builds sit on top of.",
-        "Your build can read from and write to the graph, so it stays in sync with the season."
+        "A group grows a knowledge graph just by using its agents, and the curators own it.",
+        "Curation is the last scarce asset: structured taste and knowledge stay unique and ownable.",
+        "The ZABAL Bonfire bot is live and queryable, so anyone joining mid-season can get caught up."
       ]
     },
     {
