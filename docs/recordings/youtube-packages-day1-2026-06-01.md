@@ -47,8 +47,8 @@ Workshop calendar: https://luma.com/zao
 
 Guests:
 Joshua.eth - https://farcaster.xyz/joshua.eth
-Plat0x - https://farcaster.xyz/plat0x        [confirm exact handle]
-Bonfire - [add link]                         [confirm Bonfire link]
+Plat0x - https://x.com/at0x_eth
+Bonfire - https://x.com/bonfiresai
 ```
 
 **Tags:**
@@ -110,7 +110,7 @@ ZABAL Gamez, The ZAO, Empire Builder, yerbearserker, tokenless empire, leaderboa
 - Final video IDs (and public vs unlisted).
 - Final chapter timestamps after intro/outro are added (the `[ :  ]` slots above).
 - The downloaded transcripts (drop into `data/streams/zabal-games-workshops/raw/transcripts/`).
-- Confirm Plat0x handle + the Bonfire link.
+- Plat0x = @at0x_eth (https://x.com/at0x_eth); Bonfire = @bonfiresai (https://x.com/bonfiresai). Confirmed.
 
 With those: `cp recordings/1.html recordings/2.html` (and `/3`), swap per `docs/recordings-workflow.md`, add `data/recaps.json` entries (set `page` + `youtube` + `transcript`).
 </content>
