@@ -32,6 +32,7 @@ For the announce push:
 | [workshop-roster.md](workshop-roster.md) | The guest tracker - status funnel + outreach cadence (Asked on / Reply / Next nudge). Single source of truth for who we are talking to. |
 | [warm-dm-kit-2026-06-02.md](warm-dm-kit-2026-06-02.md) | Paste-ready warm DMs: date-lock the 8 confirmed leads (assumptive scheduling), confirm the 6 lined up, plus a reusable /zabal attendee cast. |
 | [snap-design.md](snap-design.md) | Zlank no-code Snap design + custom Vercel-function path. |
+| [zao-video-editor-descript-reference.md](zao-video-editor-descript-reference.md) | What Descript + Underlord can do (prompt-driven editing, captions, vocabulary, visual layers), captured from the recordings work as reference for the ZAO video editor project. |
 
 ## Validation / FounderCheck
 
