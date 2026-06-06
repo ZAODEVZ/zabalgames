@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dream Workshop Leads - ZABAL Gamez Season 1</title>
+  <meta name="description" content="The people the ZABAL Gamez community wants to see teach. Nominate someone by their GitHub, Farcaster, or X, upvote the ones you want, and tag them on Farcaster to invite them to lead a workshop.">
+  <link rel="canonical" href="https://zabalgamez.com/dream-leads">
+  <meta property="og:title" content="Dream Workshop Leads - ZABAL Gamez">
+  <meta property="og:description" content="Who do you want to see teach? Nominate them, upvote them, and tag them to come lead a ZABAL Gamez workshop.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/dream-leads">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dream Workshop Leads - ZABAL Gamez">
+  <meta name="twitter:description" content="Nominate, upvote, and tag the people you want to see teach at ZABAL Gamez.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Pick a dream lead","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/dream-leads","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .dream-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.4rem 0 1.2rem; }
+    .dream-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .dream-card { border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 10px; background: var(--surface-2); padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.55rem; }
+    .dream-card[data-track="artist"]  { border-left-color: var(--pink); }
+    .dream-card[data-track="builder"] { border-left-color: var(--zabal); }
+    .dream-card[data-track="creator"] { border-left-color: var(--cyan); }
+    .dream-top { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+    .dream-top h3 { margin: 0; font-size: 1.05rem; }
+    .dream-track { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.12rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); }
+    .dream-why { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0; }
+    .dream-handles { display: flex; flex-wrap: wrap; gap: 0.5rem 0.9rem; font-size: 0.8rem; }
+    .dream-handles a { color: var(--cyan); }
+    .dream-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.25rem; }
+    .dream-btn { font-size: 0.82rem; padding: 0.38rem 0.8rem; border-radius: 6px; font-family: inherit; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+    .dream-btn:hover { filter: brightness(1.12); }
+    .dream-vote { color: var(--gold); border-color: var(--gold); background: transparent; }
+    .dream-vote.voted { background: var(--gold); color: var(--bg); }
+    .dream-vote .vc { font-family: 'JetBrains Mono', monospace; opacity: 0.85; }
+    .dream-tag { color: var(--bg); background: var(--zabal); border-color: var(--zabal); }
+    .dream-empty { color: var(--text-muted); font-size: 0.92rem; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/lead.html">Lead</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.6rem;">
+    <h1>Dream <span class="accent">workshop leads</span>.</h1>
+    <p class="lede">Who do you want to see teach? This is the community's wishlist. Upvote the people you want, tag them on Farcaster to invite them, and nominate anyone we are missing - by their GitHub, Farcaster, X, or any profile.</p>
+  </header>
+
+  <section class="section">
+    <div class="dream-filter" id="dream-filter">
+      <button type="button" class="ws-filter-btn sel" data-filter="all">All</button>
+      <button type="button" class="track-chip" data-filter="artist">Artist</button>
+      <button type="button" class="track-chip" data-filter="builder">Builder</button>
+      <button type="button" class="track-chip" data-filter="creator">Creator</button>
+    </div>
+    <div class="dream-grid" id="dream-board">
+      <p class="dream-empty">Loading the wishlist...</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Nominate a lead</h2>
+    <p>Someone built something worth teaching? Put them forward. We review nominations and add the strong ones to the board, then the community can upvote and tag them in.</p>
+    <form action="https://formspree.io/f/mlgvvoyd" method="POST" style="margin-top: 1.2rem; max-width: 560px;">
+      <input type="hidden" name="form_source" value="zabal-games-dream-lead-nomination">
+      <div class="field">
+        <label for="d-name">Who are they?</label>
+        <input type="text" id="d-name" name="name" placeholder="Name or handle" required>
+      </div>
+      <div class="field">
+        <label for="d-farcaster">Farcaster</label>
+        <input type="text" id="d-farcaster" name="farcaster" placeholder="username (no @)">
+      </div>
+      <div class="field">
+        <label for="d-github">GitHub</label>
+        <input type="text" id="d-github" name="github" placeholder="github username">
+      </div>
+      <div class="field">
+        <label for="d-x">X / other</label>
+        <input type="text" id="d-x" name="x_or_other" placeholder="x username or any link">
+      </div>
+      <div class="field">
+        <label for="d-track">Track</label>
+        <select id="d-track" name="track">
+          <option value="builder">Builder - developer / aspiring</option>
+          <option value="artist">Artist - musical / visual</option>
+          <option value="creator">Creator - media / distribution</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="d-why">Why them?</label>
+        <textarea id="d-why" name="why" placeholder="What would you love them to teach? What have they built?" required></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Nominate</button>
+    </form>
+  </section>
+
+  <p style="margin-top: 1rem; font-size: 0.85rem;"><a href="/lead.html">Want to lead one yourself?</a> &nbsp;-&nbsp; <a href="/#schedule">See the schedule</a></p>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/lead.html">Lead a Workshop</a>
+      <a href="/dream-leads.html">Dream Leads</a>
+      <a href="/mentor.html">Mentor</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/recordings.html">Recordings</a>
+      <a href="/recaps.html">Session Recaps</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var board = document.getElementById('dream-board');
+  if (!board) return;
+  var LEADS = [];
+  var COUNTS = {};
+  var filter = 'all';
+
+  function handleLinks(L) {
+    var out = [];
+    if (L.farcaster) out.push('<a href="https://farcaster.xyz/' + esc(L.farcaster) + '" target="_blank" rel="noopener">@' + esc(L.farcaster) + '</a>');
+    if (L.github) out.push('<a href="https://github.com/' + esc(L.github) + '" target="_blank" rel="noopener">github/' + esc(L.github) + '</a>');
+    if (L.x) out.push('<a href="https://x.com/' + esc(L.x) + '" target="_blank" rel="noopener">x/' + esc(L.x) + '</a>');
+    return out.join('');
+  }
+
+  function render() {
+    var rows = LEADS.slice().filter(function (L) { return filter === 'all' || L.track === filter; });
+    rows.sort(function (a, b) {
+      var d = (COUNTS[b.id] || 0) - (COUNTS[a.id] || 0);
+      return d !== 0 ? d : String(a.name || '').localeCompare(String(b.name || ''));
+    });
+    if (!rows.length) { board.innerHTML = '<p class="dream-empty">No nominations here yet. Use the form below to add someone.</p>'; return; }
+    board.innerHTML = rows.map(function (L) {
+      var n = COUNTS[L.id] || 0;
+      return '<div class="dream-card" data-track="' + esc(L.track || 'builder') + '" data-id="' + esc(L.id) + '">' +
+        '<div class="dream-top"><h3>' + esc(L.name || L.id) + '</h3><span class="dream-track">' + esc(L.track || '') + '</span></div>' +
+        (L.why ? '<p class="dream-why">' + esc(L.why) + '</p>' : '') +
+        (handleLinks(L) ? '<div class="dream-handles">' + handleLinks(L) + '</div>' : '') +
+        '<div class="dream-actions">' +
+          '<button type="button" class="dream-btn dream-vote" data-id="' + esc(L.id) + '">+1 want them <span class="vc">(' + n + ')</span></button>' +
+          '<button type="button" class="dream-btn dream-tag" data-fc="' + esc(L.farcaster || '') + '" data-name="' + esc(L.name || L.id) + '" data-track="' + esc(L.track || '') + '">Tag on Farcaster</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  // Load the curated board + the live vote counts, then render.
+  Promise.all([
+    fetch('/data/dream-leads.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return { leads: [] }; }),
+    fetch('/api/dream-vote', { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return { counts: {} }; }),
+  ]).then(function (res) {
+    LEADS = (res[0] && res[0].leads) || [];
+    COUNTS = (res[1] && res[1].counts) || {};
+    render();
+  });
+
+  // Filter chips.
+  document.getElementById('dream-filter').addEventListener('click', function (ev) {
+    var b = ev.target.closest('[data-filter]');
+    if (!b) return;
+    filter = b.getAttribute('data-filter');
+    this.querySelectorAll('[data-filter]').forEach(function (x) { x.classList.toggle('sel', x === b); });
+    render();
+  });
+
+  // +1 and Tag actions (delegated).
+  board.addEventListener('click', function (ev) {
+    var vote = ev.target.closest('.dream-vote');
+    if (vote) {
+      var id = vote.getAttribute('data-id');
+      if (vote.classList.contains('voted')) return;
+      if (!(window.ZABAL && window.ZABAL.dreamVote)) return;
+      vote.disabled = true;
+      window.ZABAL.dreamVote(id).then(function (r) {
+        vote.disabled = false;
+        if (r && r.ok) {
+          COUNTS[id] = r.count;
+          vote.classList.add('voted');
+          var vc = vote.querySelector('.vc'); if (vc) vc.textContent = '(' + r.count + ')';
+        } else if (r && r.reason === 'not-in-miniapp') {
+          if (window.ZABAL.toast) window.ZABAL.toast('Open in Farcaster to vote');
+        }
+      });
+      return;
+    }
+    var tag = ev.target.closest('.dream-tag');
+    if (tag) {
+      var fc = tag.getAttribute('data-fc');
+      var name = tag.getAttribute('data-name');
+      var track = tag.getAttribute('data-track');
+      var who = fc ? '@' + fc : name;
+      var trackBit = track ? ' (' + track + ' track)' : '';
+      var text = fc
+        ? 'We want ' + who + ' to lead a ZABAL Gamez workshop' + trackBit + '. Pull up: zabalgamez.com/lead'
+        : 'We want ' + who + ' to lead a ZABAL Gamez workshop' + trackBit + '. Who can connect us? zabalgamez.com/lead';
+      if (window.ZABAL && window.ZABAL.composeCast) {
+        window.ZABAL.composeCast({ text: text, channelKey: 'zabal' });
+      }
+    }
+  });
+})();
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

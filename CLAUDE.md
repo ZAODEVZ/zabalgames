@@ -57,7 +57,7 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
   inverse of leaderboard), notify, webhook, present, daily-cast (cron),
   workshop-reminders (cron, day-of push to added-app users), register + commit-watcher
   (cron, the doc-784 GitHub-as-submission / Bonfire-as-backend pair), bonfire-ask,
-  snap/signup. Upstash
+  dream-vote (the /dream-leads board's +1 demand counter), snap/signup. Upstash
   Redis over REST. Quick Auth JWT verified server-side (`DOMAIN = 'zabalgamez.com'`,
   JWKS from auth.farcaster.xyz). All no-op gracefully if Redis env vars are absent.
   See `api/README.md` for the per-endpoint contracts.

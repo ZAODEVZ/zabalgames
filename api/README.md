@@ -30,6 +30,17 @@ verification model as `/api/track`).
   join (a re-tap updates the record but does not re-award or re-spam the feed);
   daily presence re-asserts every tap. Returns `{ ok: true, count, firstJoin }`.
 
+### `GET/POST /api/dream-vote`
+Demand signal for the `/dream-leads` board (the board itself is curated in
+`data/dream-leads.json`; this endpoint only holds the vote counts).
+
+- `GET`: open read, returns `{ configured, counts: { <id>: n } }` (`configured:false`
+  when KV is absent so the board still renders, just without counts).
+- `POST { id }`: `Authorization: Bearer <quick-auth-jwt>` (`window.ZABAL.dreamVote`).
+  One `+1` per verified FID per lead (SADD voter set, then increment only on the first
+  vote - same read-then-write model as `/api/join`), so demand cannot be spoofed or
+  spammed. Returns `{ ok, id, count, firstVote }`.
+
 ### `GET /api/activity`
 Public read for the presence widget (`assets/presence.js`).
 
