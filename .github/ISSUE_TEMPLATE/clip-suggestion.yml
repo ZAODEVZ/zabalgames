@@ -1,0 +1,36 @@
+name: Clip suggestion
+description: Suggest a short moment worth cutting as a standalone clip
+title: "[Clip] "
+labels: ["recordings", "clips"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Flag the great 10-30 second moments worth cutting as a short for /zabal or X.
+  - type: input
+    id: recording
+    attributes:
+      label: Which recording?
+      description: A title or the YouTube link.
+      placeholder: e.g. Bonfire workshop, or https://youtu.be/...
+    validations:
+      required: true
+  - type: textarea
+    id: ranges
+    attributes:
+      label: Clip ranges
+      description: One range per line, as `start - end`.
+      placeholder: |
+        01:28 - 01:48
+        06:30 - 06:36
+        21:45 - 22:08
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why these moments (optional)
+      placeholder: e.g. "great one-liner on sequencing"
+    validations:
+      required: false

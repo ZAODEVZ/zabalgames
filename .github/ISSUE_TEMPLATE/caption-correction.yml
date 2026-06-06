@@ -1,0 +1,40 @@
+name: Caption correction
+description: Fix a misheard word or phrase in a recording's captions
+title: "[Captions] "
+labels: ["recordings", "captions"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping. You do NOT need to list the common ZAO brand fixes
+        (Gamez, $Zabal, Bonfire, Plat0x, Farcaster, Neynar, WaveWarz, DotA...) - those
+        are auto-applied. List only what that glossary would miss: names, one-off
+        mishearings, and anything ambiguous.
+  - type: input
+    id: recording
+    attributes:
+      label: Which recording?
+      description: A title or the YouTube link.
+      placeholder: e.g. Empire Builder Part 2, or https://youtu.be/...
+    validations:
+      required: true
+  - type: textarea
+    id: corrections
+    attributes:
+      label: Corrections
+      description: One per line, as `time  Original -> Edit`.
+      placeholder: |
+        12:03  Forecaster -> Farcaster
+        14:30  Saval games -> Zabal Gamez
+        25:49  at Playducks_ -> at0x_eth
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Context notes (optional)
+      description: Anything where the fix depends on meaning.
+      placeholder: e.g. "Zaal here means the org (ZAO), not the person."
+    validations:
+      required: false

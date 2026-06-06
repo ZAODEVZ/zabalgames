@@ -1,0 +1,54 @@
+name: Recording submission / processing request
+description: Point us at a session that should be processed and published
+title: "[Recording] "
+labels: ["recordings"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Think a session should be processed (corrected, clipped) and published as a
+        `/recordings/N` page plus a recap entry? Tell us about it.
+  - type: input
+    id: title
+    attributes:
+      label: Title / topic
+      placeholder: e.g. Growing a livestream from zero
+    validations:
+      required: true
+  - type: input
+    id: presenter
+    attributes:
+      label: Presenter and handle(s)
+      placeholder: e.g. Ohnahji (@ohnahji)
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      placeholder: YYYY-MM-DD
+    validations:
+      required: false
+  - type: input
+    id: link
+    attributes:
+      label: Link to the raw video or stream
+      placeholder: YouTube, Luma, or wherever it lives
+    validations:
+      required: true
+  - type: dropdown
+    id: transcript
+    attributes:
+      label: Is there a transcript yet?
+      options:
+        - "Not yet"
+        - "Yes - I can share it"
+        - "Not sure"
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else we should know
+    validations:
+      required: false

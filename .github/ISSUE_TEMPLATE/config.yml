@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Not on GitHub? Post in the /zabal channel
+    url: https://farcaster.xyz/~/channel/zabal
+    about: Just post your correction, clip idea, or recording in /zabal and tag the team. We will take it from there.
+  - name: How recordings get processed
+    url: https://github.com/ZAODEVZ/zabalgames/blob/main/docs/recordings/CONTRIBUTING.md
+    about: The full contributor guide - what to send and what happens to it.
