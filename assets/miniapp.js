@@ -298,10 +298,34 @@ window.ZABAL.withXHandle = function withXHandle(text) {
 // App or on SDKs without haptics (our pin is 0.1.10), so it is always safe to call.
 window.ZABAL.haptic = async function haptic(type) {
   try {
-    if (sdk.haptics && typeof sdk.haptics.impactOccurred === 'function') {
+    if (sdk && sdk.haptics && typeof sdk.haptics.impactOccurred === 'function') {
       await sdk.haptics.impactOccurred(type || 'medium');
     }
   } catch (e) { /* unsupported on this client / SDK */ }
+};
+
+// Tiny transient toast for deliberate-action feedback (e.g. a confirmed share).
+// Pure DOM, no deps, self-removing, wrapped so it can never break a flow.
+window.ZABAL.toast = function toast(message) {
+  try {
+    if (!document.body || !message) return;
+    const el = document.createElement('div');
+    el.textContent = message;
+    el.setAttribute('role', 'status');
+    el.style.cssText = [
+      'position:fixed', 'left:50%', 'bottom:24px', 'transform:translateX(-50%) translateY(8px)',
+      'z-index:2147483647', 'max-width:90vw', 'padding:10px 16px', 'border-radius:999px',
+      'background:#16161c', 'color:#fff', 'border:1px solid rgba(255,255,255,0.14)',
+      'font:500 14px/1.2 Outfit,system-ui,sans-serif', 'box-shadow:0 6px 24px rgba(0,0,0,0.4)',
+      'opacity:0', 'transition:opacity .18s ease, transform .18s ease', 'pointer-events:none',
+    ].join(';');
+    document.body.appendChild(el);
+    requestAnimationFrame(function () { el.style.opacity = '1'; el.style.transform = 'translateX(-50%) translateY(0)'; });
+    setTimeout(function () {
+      el.style.opacity = '0'; el.style.transform = 'translateX(-50%) translateY(8px)';
+      setTimeout(function () { el.remove(); }, 240);
+    }, 2400);
+  } catch (e) { /* never let a toast break a flow */ }
 };
 
 // One share entry point for every page. platform: 'farcaster' | 'x'.
@@ -312,6 +336,7 @@ window.ZABAL.share = async function share({ platform, text, url, target }) {
     const t = window.ZABAL.withXHandle(text) + (url ? ' ' + url : '');
     window.ZABAL.openNewTab('https://twitter.com/intent/tweet?text=' + encodeURIComponent(t));
     window.ZABAL.track('share', target || url || '');
+    window.ZABAL.toast('Shared to X');
     return;
   }
   // composeCast resolves to { cast } - cast is null if the user cancelled. Inside a
@@ -319,6 +344,9 @@ window.ZABAL.share = async function share({ platform, text, url, target }) {
   // fallback resolves to undefined (outcome unknown), so count it best-effort.
   const res = await window.ZABAL.composeCast({ text: text, embeds: url ? [url] : [], channelKey: 'zabal' });
   if (!res || res.cast) window.ZABAL.track('cast', target || url || '', res && res.cast && res.cast.hash);
+  // Only confirm a real, completed cast (in-app). A cancelled cast (res.cast === null)
+  // or an unknown web-fallback outcome (res === undefined) gets no false confirmation.
+  if (res && res.cast) { window.ZABAL.haptic('medium'); window.ZABAL.toast('Shared into /zabal'); }
 };
 
 // Inject a small "you" chip into the nav when running inside a Mini App.

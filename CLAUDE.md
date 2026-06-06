@@ -52,9 +52,12 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
 - `streams.html` - data streams + chronological timeline; per-entry Cast buttons.
 - `assets/miniapp.js` - Mini App SDK bootstrap + `window.ZABAL` helpers (composeCast,
   share, track, join, getUser, addApp, viewProfile). ES module from esm.sh.
-- `api/*.mjs` - Vercel EDGE functions: track, activity, join, leaderboard, notify,
-  webhook, present, daily-cast (cron), register + commit-watcher (cron, the doc-784
-  GitHub-as-submission / Bonfire-as-backend pair), bonfire-ask, snap/signup. Upstash
+- `api/*.mjs` - Vercel EDGE functions: track, activity, join, leaderboard,
+  empire-leaderboard (reads our tokenless empire's board FROM Empire Builder - the
+  inverse of leaderboard), notify, webhook, present, daily-cast (cron),
+  workshop-reminders (cron, day-of push to added-app users), register + commit-watcher
+  (cron, the doc-784 GitHub-as-submission / Bonfire-as-backend pair), bonfire-ask,
+  snap/signup. Upstash
   Redis over REST. Quick Auth JWT verified server-side (`DOMAIN = 'zabalgamez.com'`,
   JWKS from auth.farcaster.xyz). All no-op gracefully if Redis env vars are absent.
   See `api/README.md` for the per-endpoint contracts.

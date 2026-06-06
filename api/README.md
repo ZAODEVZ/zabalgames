@@ -46,6 +46,22 @@ KV sorted set by `track`.
 - `?format=full`: `[{ fid, username, pfpUrl, address, score }]` for the
   `/leaderboard` page.
 
+### `GET /api/empire-leaderboard`
+Read-only proxy that pulls our tokenless empire's live leaderboard from the Empire
+Builder API (`empirebuilder.world`) and normalizes any upstream shape to one stable
+contract: `{ ok, configured, source, empireId, board, count, entries:[{ rank,
+address, fid, username, displayName, pfpUrl, score }] }`.
+
+- Reads are open GETs upstream; works without a key. Sends `x-api-key: EMPIRE_API_KEY`
+  if that env is set (future-proofing for partner-gated reads).
+- Query: `tokenAddress` (Empire ID; defaults to `EMPIRE_ID` env), `id` (one board by
+  id, else the empire's `consolidated` board), `limit` (1..250, default 50),
+  `debug=1` (include the raw upstream payload to confirm field shapes post-deploy).
+- Graceful no-op: no empire id configured -> `{ ok:true, configured:false }`.
+- READ direction (Empire Builder -> us). Inverse of `/api/leaderboard`, which exposes
+  OUR data FOR Empire Builder. Note: an `apiLeaderboard` requires an ERC-20 empire;
+  a TOKENLESS empire's board is a `farcasterChannel`/`cast`/`interaction` type.
+
 ### `POST /api/webhook`
 Manifest `webhookUrl`. Farcaster POSTs a JSON Farcaster Signature envelope when a
 user adds the app or toggles notifications. Stores `{ url, token }` per FID in KV
@@ -130,6 +146,8 @@ Formspree team form as the stub backend. v1 reads FID + cast hash as untrusted
 | `NEYNAR_API_KEY` | Neynar key for `POST /api/daily-cast` to publish the cast | Neynar dev dashboard (free tier) |
 | `NEYNAR_SIGNER_UUID` | Approved Neynar signer that posts the daily cast | Neynar managed signer (approve once) |
 | `CRON_SECRET` | Optional bearer enforced on cron endpoints when set | any long random string; Vercel injects it on cron calls |
+| `EMPIRE_ID` | Optional override for `GET /api/empire-leaderboard`. Defaults to `zabalgamez01e9af` (our tokenless empire), so no config is needed | Empire Builder |
+| `EMPIRE_API_KEY` | Optional; sent as `x-api-key` to Empire Builder. Reads work without it | Empire Builder |
 
 Without these the endpoints still respond (verify + no-op store / empty feed),
 so the site never breaks - the activity feed just stays empty until KV exists.

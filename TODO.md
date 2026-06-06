@@ -18,6 +18,17 @@
   - Sources: miniapps.farcaster.xyz/docs/guides/loading, /docs/sdk/detecting-capabilities, /docs/sdk/actions/ready, /docs/specification.
 
 ### Up next (build)
+- **Empire Builder leaderboard integration** - proxy SHIPPED, two things to finish.
+  `api/empire-leaderboard.mjs` reads our tokenless empire's board from Empire Builder
+  (`empirebuilder.world`, open GETs) and normalizes any shape to a stable contract.
+  Empire ID = `zabalgamez01e9af` (custom tokenless slug, confirmed from the Workshop #1
+  recap + our live empire links), baked in as the default so no env is needed.
+  Remaining: (1) after deploy, hit `/api/empire-leaderboard?debug=1` to confirm the real
+  upstream field shape, refine the normalizer if needed, then build the display surface
+  (homepage block or streams.html); optional `EMPIRE_API_KEY` (reads are open).
+  NOTE: a tokenless empire can't use an
+  `apiLeaderboard` (ERC-20 only) - its board is a `farcasterChannel`/`cast`/`interaction`
+  type, so confirm one exists on the empire first (a /zabal channel board is the fit).
 - **Part 2 (demo) YouTube package** - title / description / chapters / tags. Reuse the Part 1 template once the demo cut exists.
 - **Notion Command Center** - content fully drafted (all 9 sections: ZABAL Games, BCZ Drive assets, Sprint Dates, Existing Channels, KPI Tracker, Activation Menu, Onboarding/Activation Calendar, Magnet Grid, Owner Actions). Paste into the Notion page. Confirm 3 open cells: Magnet Grid video-recorded status, Activation Menu "register your build" URL, and renaming the "Untitled" block.
 
@@ -33,6 +44,8 @@
 - Workshop #1 recording page `/recordings/1` (embed + clickable chapters + share buttons), recap YouTube link, recordings-hub link (PR #126).
 - Activity-backend audit follow-ups: join first-join idempotency, register hybrid identity + many-repos, commit-watcher ownership proof (PR #126).
 - Mini App splash hardening: exact SDK pin + `esm.sh` preconnect (PR #127).
+- Mini App hardening pass: self-host-first SDK loader, capability detection, gesture opt-out (PR #128).
+- Mini App growth/retention: workshop reminder notifications cron (`api/workshop-reminders.mjs`, daily 12:00 UTC) + "Shared into /zabal" / "Shared to X" toast in `share()`. Note: add-app-after-Join and a question-framed reply-bait CTA variant were already in place.
 
 ---
 
