@@ -67,6 +67,16 @@ Hand the editor the **Cuts** ranges from the edit sheet; they remove those segme
 the master before export. Note any cut that shifts the timeline (chapter/clip timestamps
 after a cut move earlier by the cut's length).
 
+**Caption look:** keep the on-screen animated captions consistent with the reusable
+prompt in [docs/recordings/caption-style-prompt.md](recordings/caption-style-prompt.md)
+(paste it into Descript Underlord). The caption *look* and the caption *spelling* (the
+glossary fixes above) are two separate passes.
+
+**Caption spelling, preemptive:** feed Underlord the brand vocabulary *before* it
+transcribes -
+[docs/recordings/recording-vocabulary.md](recordings/recording-vocabulary.md) - so the ZAO
+proper nouns come out right the first time and the editor stops re-fixing the same words.
+
 ## Stage 3 - Clips
 
 Hand the editor the **Clip suggestions** ranges; each becomes a standalone short for
