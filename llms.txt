@@ -35,6 +35,10 @@ For the full long-form context bundle (every detail, every code path) see [docs/
 
 **Day 2 - Tue Jun 2 2026.** Ohnahji on starting and growing your own livestream (5-6pm EST).
 
+**Fri Jun 6 2026 - ZABAL Gamez Fireside #1.** Carlos (Plat0x, the Bonfires developer) x Zaal, live X Space. Half working session (the Bonfires rewrite with a June 14 deadline, ZAO's second Bonfire agent, auto-pushing context to the Bonfire on every git commit, Bonfires as a "sense-making tool") and half vibe-coding masterclass (plan-then-goal with a measurable threshold, Bob-and-Alice diagramming before code, types-first prompting + protocol/adapter contracts, documentation-as-code, the Linus Torvalds compiler analogy, and Carlos's three skills: plan-making, sub-agents, adversarial agents). Page: `/recordings/fireside/1`. Transcript: `data/streams/zabal-games-workshops/raw/transcripts/2026-06-06-bonfire-fireside-carlos.md`.
+
+**Recordings index (for agents):** the whole recording library - workshops, firesides, and BCZ workshops, with titles, presenters, tracks, summaries, topics, takeaways, transcripts, and chapters - is a single machine-readable file at `https://zabalgamez.com/recordings/index.json`. The `/recordings` hub also carries it as schema.org JSON-LD.
+
 **Ecosystem map:** the full ZAO ecosystem (35 brands with parent-child hierarchy) is catalogued in **ZAONEXUS** (zaonexus.vercel.app) and mirrored as entities in the ZABAL Bonfire graph (`data/bonfire-graph.json`), searchable at `/graph`.
 
 **Read spot:** `/graph` ("Ask the ZABAL Bonfire about ZABAL Gamez") searches the graph; community search queries are logged for signal. A submit-to-pending contribution path (ZOE promotes to canonical) is in build.

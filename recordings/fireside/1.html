@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bonfires + a vibe-coding masterclass: Carlos (Plat0x) x Zaal - ZABAL Gamez Season 1</title>
+  <meta name="description" content="ZABAL Gamez fireside. Carlos (Plat0x, the Bonfires developer) and Zaal - half working session on Bonfires + ZAO, half vibe-coding masterclass: plan-then-goal, Bob-and-Alice diagramming, types-first prompting, documentation-as-code, and sub-agents. Read the summary, the outline, and the full transcript.">
+  <link rel="canonical" href="https://zabalgamez.com/recordings/fireside/1">
+  <meta property="og:title" content="Bonfires + a vibe-coding masterclass: Carlos (Plat0x) x Zaal - ZABAL Gamez">
+  <meta property="og:description" content="Half working session on Bonfires + ZAO, half vibe-coding masterclass: plan-then-goal, Bob-and-Alice diagramming, types-first prompting, and documentation-as-code.">
+  <meta property="og:type" content="video.other">
+  <meta property="og:url" content="https://zabalgamez.com/recordings/fireside/1">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bonfires + a vibe-coding masterclass - ZABAL Gamez">
+  <meta name="twitter:description" content="Carlos (Plat0x) x Zaal on Bonfires and how to vibe code well. The first ZABAL Gamez fireside.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Open the fireside","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/fireside/1","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <meta name="fc:disable-native-gestures" content="1">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
+    .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
+    .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
+    .rec-note { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 10px; background: var(--surface-2); padding: 0.85rem 1rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; }
+    .rec-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.9rem 0 0.2rem; }
+    .rec-link { font-size: 0.82rem; padding: 0.34rem 0.75rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); font-family: inherit; cursor: pointer; }
+    .rec-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .rec-link:hover { filter: brightness(1.12); }
+    .rec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 1.3rem 0 0.4rem; }
+    .rec-outline { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+    .rec-outline > li { margin: 0; }
+    .rec-outline .grp { font-weight: 600; color: var(--text); margin: 0.5rem 0 0.1rem; font-size: 0.92rem; }
+    .rec-outline .sub { color: var(--text-muted); font-size: 0.88rem; padding-left: 1.1rem; line-height: 1.5; }
+    .rec-topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.3rem 0 0; }
+    .rec-topic { font-size: 0.7rem; letter-spacing: 0.02em; padding: 0.14rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-2); }
+    .rec-takeaways { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+    .rec-takeaways li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.6rem;">
+    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / Fireside #1</div>
+    <h1>Bonfires, and how to <span class="accent">vibe code well</span>.</h1>
+    <p class="rec-by">
+      Carlos (Plat0x) and Zaal <span class="dot">&middot;</span> Bonfires
+      <span class="dot">&middot;</span> <span class="rec-format">Builder track - live X Space fireside, recorded</span>
+    </p>
+  </header>
+
+  <div class="rec-note">
+    Audio from a live ZABAL Gamez X Space on 2026-06-06. The replay link will be added here -
+    the full summary, outline, and word-for-word transcript are below.
+  </div>
+
+  <div class="rec-links">
+    <a class="rec-link primary" href="https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-06-bonfire-fireside-carlos.md" target="_blank" rel="noopener">Read the transcript</a>
+    <a class="rec-link" href="https://bonfires.ai" target="_blank" rel="noopener">Bonfires</a>
+    <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
+    <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
+  </div>
+
+  <section class="section" style="margin-top: 1.4rem;">
+    <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
+      A live ZABAL Gamez fireside between Zaal and Carlos (Plat0x), the Bonfires developer. It opens with the BetterCallZaal / WaveWarZ theme, then runs as half working session and half vibe-coding masterclass. The working session covers the Bonfires rewrite (hard deadline June 14), ZAO's second Bonfire agent, a CLI that auto-pushes context to the Bonfire on every git commit, and the positioning of Bonfires as a "sense-making tool" where the agent is "the librarian of a library." The masterclass is builder-track gold: plan-then-goal with a measurable threshold, Bob-and-Alice diagramming before any code, types-first prompting, documentation-as-code, the Linus Torvalds compiler analogy, and Carlos's three skills.
+    </p>
+
+    <div class="rec-label">What's covered</div>
+    <ul class="rec-outline">
+      <li class="grp">Opening</li>
+      <li class="sub">The BetterCallZaal / WaveWarZ theme</li>
+      <li class="grp">Working session - Bonfires + ZAO</li>
+      <li class="sub">The Bonfires rewrite and the hard June 14 deadline</li>
+      <li class="sub">ZAO's second Bonfire agent: works in DMs, not in groups (deferred to post-June 14)</li>
+      <li class="sub">A CLI that auto-pushes context to the Bonfire on every git commit</li>
+      <li class="sub">Storing recordings on a subpage and pointing Bonfire episodes at the media URL</li>
+      <li class="sub">Positioning: a "sense-making tool"; the agent as the librarian of a library</li>
+      <li class="sub">One Bonfire, many agents: shared context, separate episode stacks (a federated crew)</li>
+      <li class="grp">Vibe-coding masterclass</li>
+      <li class="sub">Plan-then-goal: a plan plus one goal with a measurable threshold</li>
+      <li class="sub">Bob and Alice: diagram the exchange and sequence before any code</li>
+      <li class="sub">Types-first prompting and a protocol/adapter contract</li>
+      <li class="sub">Documentation-as-code: the docs should reproduce the code 1:1</li>
+      <li class="sub">The Linus Torvalds compiler analogy</li>
+      <li class="sub">Punch above your weight: let AI read the papers and docs first</li>
+      <li class="sub">Carlos's three skills: plan-making, sub-agents, adversarial agents</li>
+    </ul>
+
+    <div class="rec-label">Topics</div>
+    <div class="rec-topics">
+      <span class="rec-topic">Bonfires</span>
+      <span class="rec-topic">vibe coding</span>
+      <span class="rec-topic">planning</span>
+      <span class="rec-topic">sub-agents</span>
+      <span class="rec-topic">documentation-as-code</span>
+      <span class="rec-topic">types-first</span>
+      <span class="rec-topic">knowledge graph</span>
+      <span class="rec-topic">agents</span>
+    </div>
+
+    <div class="rec-label">Key takeaways</div>
+    <ul class="rec-takeaways">
+      <li>Plan-then-goal: give Claude a plan plus one goal with a measurable threshold (e.g. under 5s query latency) so it runs until it hits the number, instead of stopping after "phase 1."</li>
+      <li>Diagram Bob and Alice before any code - define the exchange and the sequence first, pick the language last.</li>
+      <li>Prompt types-first ("define types in Python for an app that does X") and use a protocol/adapter contract, so you can swap the database later without a rewrite.</li>
+      <li>Documentation-as-code: remove all the code and the docs alone should reproduce it 1:1.</li>
+      <li>Carlos's three skills: plan-making (built from papers), sub-agents (the senior-dev orchestrator), and adversarial agents (one for, one against).</li>
+      <li>One Bonfire can host many agents - they share context but keep their own episode stacks, so a federated crew stays distinct.</li>
+    </ul>
+  </section>
+
+  <p style="margin-top: 1.4rem; font-size: 0.85rem;"><a href="/recordings">All recordings</a> &nbsp;-&nbsp; <a href="/recaps">Session recaps</a> &nbsp;-&nbsp; <a href="/#schedule">Upcoming schedule</a></p>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/live.html">Live - What's On Now</a>
+      <a href="/lead.html">Lead a Workshop</a>
+      <a href="/mentor.html">Mentor</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/recordings.html">Recordings</a>
+      <a href="/recaps">Session Recaps</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/graph.html">ZAO Graph</a>
+      <a href="/changelog.html">Changelog</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var PAGE_URL = 'https://zabalgamez.com/recordings/fireside/1';
+  // Random share topics for the "I'm watching" buttons - one picked per click.
+  var TOPICS = [
+    "plan-then-goal: give the agent a measurable threshold and let it run",
+    "Bob and Alice diagramming before you write any code",
+    "types-first prompting to dodge the rewrite spiral",
+    "documentation-as-code: docs should reproduce the code 1:1",
+    "the Linus Torvalds compiler analogy",
+    "punching above your weight by having AI read the papers first",
+    "sub-agents and adversarial agents as skills",
+    "one Bonfire, many agents: a federated crew sharing context"
+  ];
+
+  // Share buttons - tag Carlos (platform-appropriate handle) and Zaal, with a random topic.
+  document.querySelectorAll('.rec-watch-share').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!(window.ZABAL && window.ZABAL.share)) return;
+      var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
+      var zaal = platform === 'x' ? '@bettercallzaal' : '@zaal';
+      var guest = platform === 'x' ? '@at0x_eth' : '@plat0x';
+      var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+      var text = "I'm at the ZABAL Gamez fireside with " + guest + " and " + zaal +
+        " - " + topic;
+      window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'fireside-1-' + platform });
+    });
+  });
+})();
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
