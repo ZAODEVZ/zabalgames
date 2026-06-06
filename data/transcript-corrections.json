@@ -1,0 +1,30 @@
+{
+  "_note": "Canonical caption/transcript corrections for ZABAL Gamez recordings. YouTube auto-captions consistently mis-hear the ZAO brand vocabulary; this file is the reusable fix list so the intern stops re-listing the same ones every video. Used by scripts/fix-transcript.mjs. See docs/recordings-workflow.md. 'safe' rules are auto-applied (whole-word, case-insensitive by default). 'review' rules are context-dependent and ONLY flagged for a human - never auto-replaced - because the same misheard word maps to different fixes depending on meaning (e.g. Zaal the person vs ZAO the org; $Zabal the token vs Zabal the project).",
+  "safe": [
+    { "from": "Zibal", "to": "$Zabal", "note": "token reference in these talks; reviewer drops the $ if it's the project/brand" },
+    { "from": "Xibal", "to": "$Zabal", "note": "same as Zibal" },
+    { "from": "Zebal", "to": "Zabal" },
+    { "from": "Saval", "to": "Zabal" },
+    { "from": "Naynar", "to": "Neynar" },
+    { "from": "Forecaster", "to": "Farcaster" },
+    { "from": "Bone First", "to": "Bonfire" },
+    { "from": "PlatoX", "to": "Plat0x" },
+    { "from": "POID", "to": "POIDH" },
+    { "from": "Wave Wars", "to": "WaveWarz" },
+    { "from": "Doda", "to": "DotA" },
+    { "from": "Dota", "to": "DotA" },
+    { "from": "Zal", "to": "Zaal", "note": "the bare misheard 'Zal'; the longer 'Zaal' is left intact by the word boundary" },
+    { "from": "X402", "to": "x402" },
+    { "from": "Berserker", "to": "Bearserker", "note": "yerbeARSERKER; standalone 'Berserker' is the mishearing" },
+    { "from": "Zabalgames.com", "to": "Zabalgamez.com" },
+    { "from": "Zao", "to": "ZAO", "note": "casing fix; word boundary keeps ZAODEVZ etc. intact" }
+  ],
+  "review": [
+    { "from": "Games", "to": "Gamez", "note": "almost always the brand 'ZABAL Gamez' - but SKIP generic uses like 'video games'. Most frequent correction; confirm each." },
+    { "from": "Zaal", "to": "ZAO", "note": "ONLY when the speaker means the org/community, not the person Zaal. Context-dependent - do not blanket replace." },
+    { "from": "Visible", "to": "The Zabal", "note": "pure mishearing of a phrase; only where context fits." },
+    { "from": "ETH Bogota", "to": "ETH Boulder", "note": "event name - confirm which event was actually said." },
+    { "from": "first to vibe", "to": "first-of-vibe", "note": "specific phrasing; confirm in context." },
+    { "from": "Saas", "to": "SAS", "note": "confirm - 'SaaS' is also a real term." }
+  ]
+}
