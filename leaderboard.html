@@ -99,13 +99,15 @@
           el.innerHTML = rows.map(function(r, i){
             var who = '@' + esc(r.username || r.displayName);
             var pfp = r.pfpUrl ? '<img src="'+esc(r.pfpUrl)+'" alt="">' : '';
-            return '<li class="clickable" data-username="'+esc(r.username)+'" tabindex="0" role="button" aria-label="View profile of '+esc(r.username)+'">' +
+            return '<li class="clickable" data-username="'+esc(r.username)+'" data-fid="'+esc(r.fid || '')+'" tabindex="0" role="button" aria-label="View profile of '+esc(r.username)+'">' +
               '<span class="lb-rank'+(i<3?' top':'')+'">'+esc(r.rank || i+1)+'</span>' +
               pfp + '<span class="lb-name">'+who+'</span>' +
               '<span class="lb-score">'+esc(r.score)+'</span></li>';
           }).join('');
           el.querySelectorAll('[data-username]').forEach(function(li){
             bindKeys(li, function(){
+              var fid = Number(li.getAttribute('data-fid'));
+              if (fid && window.ZABAL && window.ZABAL.viewProfile) { window.ZABAL.viewProfile(fid); return; }
               var u = li.getAttribute('data-username'); if (!u) return;
               var url = 'https://farcaster.xyz/' + u;
               if (window.ZABAL && window.ZABAL.openNewTab) window.ZABAL.openNewTab(url);

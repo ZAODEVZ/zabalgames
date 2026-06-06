@@ -26,7 +26,8 @@
 //   debug=1       - include the raw upstream payload
 //
 // Graceful no-op: no empire id configured -> 200 { ok:true, configured:false }.
-// Env: EMPIRE_ID (defaults to our empire), EMPIRE_API_KEY (optional).
+// Env: EMPIRE_ID (defaults to our empire), EMPIRE_API_KEY (optional), NEYNAR_API_KEY
+// (optional, enables avatars/fid by resolving usernames).
 
 export const config = { runtime: 'edge' };
 
@@ -36,6 +37,10 @@ const BASE = 'https://empirebuilder.world';
 // NOT the $ZABAL TOKEN empire (0xbB48...0b07), which is ERC-20 based.
 const EMPIRE_ID = process.env.EMPIRE_ID || 'zabalgamez01e9af';
 const EMPIRE_API_KEY = process.env.EMPIRE_API_KEY || '';
+// Empire Builder returns username + score only. We resolve username -> fid / pfp /
+// displayName via Neynar so the board can show avatars and open the in-app profile.
+// Optional: with no key, the board still renders (username + score, no avatar).
+const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY || '';
 
 function json(body, status = 200, cache = 'no-store') {
   return new Response(JSON.stringify(body), {
@@ -113,6 +118,28 @@ function selectBoard(boards, sel) {
   return boards.find((b) => b.main && b.count) || boards.find((b) => b.count) || boards[0] || null;
 }
 
+// Resolve username -> { fid, displayName, pfpUrl } via Neynar, in parallel. Mutates
+// entries in place. Best-effort: no key, or any per-user failure, just leaves that
+// row as username + score (the frontend renders fine without an avatar).
+async function enrich(entries) {
+  if (!NEYNAR_API_KEY || !entries.length) return;
+  await Promise.allSettled(entries.map(async (e) => {
+    if (!e.username) return;
+    try {
+      const r = await fetch(
+        `https://api.neynar.com/v2/farcaster/user/by_username?username=${encodeURIComponent(e.username)}`,
+        { headers: { 'x-api-key': NEYNAR_API_KEY, Accept: 'application/json' }, signal: AbortSignal.timeout(3000) },
+      );
+      if (!r.ok) return;
+      const u = (await r.json())?.user;
+      if (!u) return;
+      e.fid = u.fid ?? e.fid;
+      e.displayName = u.display_name || u.displayName || e.displayName;
+      e.pfpUrl = u.pfp_url || (u.pfp && u.pfp.url) || e.pfpUrl;
+    } catch { /* leave username-only */ }
+  }));
+}
+
 export default async function handler(req) {
   const { searchParams } = new URL(req.url);
   const tokenAddress = (searchParams.get('tokenAddress') || EMPIRE_ID).trim();
@@ -132,6 +159,8 @@ export default async function handler(req) {
 
   const boards = parseConsolidated(raw);
   const chosen = selectBoard(boards, sel);
+  const entries = chosen ? chosen.entries.slice(0, limit) : [];
+  await enrich(entries); // best-effort avatars/fid; leaves username-only on any failure
   const out = {
     ok: true,
     configured: true,
@@ -139,8 +168,8 @@ export default async function handler(req) {
     empireId: tokenAddress,
     board: chosen ? { key: chosen.key, name: chosen.name, main: chosen.main } : null,
     boards: boards.map((b) => ({ key: b.key, name: b.name, main: b.main, count: b.count })),
-    count: chosen ? Math.min(chosen.count, limit) : 0,
-    entries: chosen ? chosen.entries.slice(0, limit) : [],
+    count: entries.length,
+    entries,
   };
   if (debug) out.raw = raw;
   return json(out, 200, debug ? 'no-store' : 's-maxage=120, stale-while-revalidate=600');

@@ -1051,6 +1051,44 @@
     </div>
   </section>
 
+  <section class="section" id="leaderboard-preview" style="display:none;">
+    <style>
+      #leaderboard-preview .lbp { list-style:none; margin:0 0 1rem; padding:0; display:flex; flex-direction:column; gap:0.4rem; max-width:560px; }
+      #leaderboard-preview .lbp li { display:flex; align-items:center; gap:0.7rem; padding:0.55rem 0.8rem; background:var(--surface); border:1px solid var(--border); border-radius:8px; }
+      #leaderboard-preview .lbp-rank { font-family:'JetBrains Mono',monospace; font-size:0.85rem; color:var(--text-dim); width:1.6rem; flex:none; }
+      #leaderboard-preview .lbp-rank.top { color:var(--gold); }
+      #leaderboard-preview .lbp img { width:26px; height:26px; border-radius:50%; object-fit:cover; flex:none; }
+      #leaderboard-preview .lbp-name { flex:1; font-size:0.9rem; }
+      #leaderboard-preview .lbp-score { font-family:'JetBrains Mono',monospace; color:var(--cyan); font-size:0.85rem; }
+    </style>
+    <h2>Top builders on /zabal</h2>
+    <p>Live engagement on the /zabal channel, scored by Empire Builder for the ZABAL Gamez empire.</p>
+    <ol class="lbp" id="lb-preview"></ol>
+    <div class="btn-row">
+      <a href="/leaderboard" class="btn btn-ghost">Full leaderboard</a>
+    </div>
+    <script>
+    (function(){
+      function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+      var sec = document.getElementById('leaderboard-preview');
+      var el = document.getElementById('lb-preview');
+      fetch('/api/empire-leaderboard?limit=5', { cache: 'no-store' })
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var rows = (d && d.entries) || [];
+          if (!rows.length) return; // stay hidden if there is nothing to show
+          el.innerHTML = rows.map(function(r, i){
+            var who = '@' + esc(r.username || r.displayName);
+            var pfp = r.pfpUrl ? '<img src="'+esc(r.pfpUrl)+'" alt="">' : '';
+            return '<li><span class="lbp-rank'+(i<3?' top':'')+'">'+esc(r.rank || i+1)+'</span>'+pfp+'<span class="lbp-name">'+who+'</span><span class="lbp-score">'+esc(r.score)+'</span></li>';
+          }).join('');
+          sec.style.display = '';
+        })
+        .catch(function(){ /* leave hidden on error */ });
+    })();
+    </script>
+  </section>
+
   <section class="section">
     <h2>Get the ZABAL Gamez collectible</h2>
     <p>The collectible is how you follow along. Grab it on the Magnetiq magnet and you are registered for ZABAL Gamez across all three months - every workshop, build, and Finals update reaches you as we go, you tell us where you want those updates, and you can suggest anything for the season. As a bonus, ZAO brand mementos are rolling onto the magnet over the season: short deep-dive videos on the ZAO brands (ZAO, ZAO OS, $ZABAL, WaveWarZ, ZAO Festivals, ZAO Music, COC Concertz, Respect). The games run on this site. Magnetiq is where you register and go deeper.</p>
