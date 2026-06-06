@@ -77,14 +77,26 @@ What you walk away with:
 
 Chapters
 0:00 Intro
-[ :  ] Recap: from dream to empire (Part 1)
-[ :  ] Standing up the ZABAL Gamez empire live
-[ :  ] Configuring the tool stack
-[ :  ] Leaderboards and boosters in practice
-[ :  ] The $Zabal airdrop demo
-[ :  ] Distribution: airdrops, USDC, NFTs, raffles
-[ :  ] Questions with yerbearserker
-[ :  ] Outro
+0:13 The live demo: a tour of the Empire tools
+0:43 Farcaster as home base
+1:26 Empire Builder inside Farcaster: launch or attach a token
+1:52 Go Tokenless: any project, any profile
+3:03 Top empires: Push, treasuries, social proof
+3:44 Bizarre Beasts: the anatomy of an empire
+4:23 Leaderboards: base score times boosters
+4:45 Boosters: NFT, token, and staking multipliers
+5:58 The DotA collab and the Yerba Bearserker Mate
+7:50 In-game assets and the armory mint
+9:27 Adding a $Zabal token booster
+11:26 Buying $Zabal and funding the treasury
+13:03 A live raffle to the DotA NFT holders
+14:14 Picking and raffling Warplets
+16:15 Addendum: a tokenless empire in minutes
+17:34 Deploying the ZABAL Gamez empire live
+18:13 Leaderboard options: NFT, ERC-20, Farcaster, CSV, API
+19:50 Sub-empires and the generative ecosystem
+20:44 Wrap: find yerbearserker and diviflyy
+23:21 Outro
 
 ZABAL Gamez is The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone, any harness.
 
