@@ -7,8 +7,15 @@
 //
 // All zabalgamez.com pages should include this. Without sdk.actions.ready(),
 // Warpcast hangs on the splash image forever.
+//
+// Pinned to an EXACT version (not a 0.1.x range) on purpose: a range makes esm.sh
+// do a resolve-redirect on every cold load, and if that hangs, the import below
+// never resolves, ready() is never reached, and the splash sticks forever. An exact
+// version is cached hard by the CDN. Pair this with <link rel="preconnect"
+// href="https://esm.sh"> in each page head so the connection is warm. Bump the pin
+// deliberately when adopting newer SDK actions (keep the back/haptics guards below).
 
-import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk@0.1.x';
+import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk@0.1.10';
 
 // Expose the namespace early so helpers can attach to it.
 window.ZABAL = window.ZABAL || {};
@@ -37,7 +44,7 @@ try {
   // Silent fail is correct - the page works as a normal website.
 }
 // Enable the client back button for in-app navigation. Guarded so it no-ops on older
-// SDKs (our pin is 0.1.x) or outside a Mini App.
+// SDKs (our pin is 0.1.10) or outside a Mini App.
 try {
   if (sdk.back && typeof sdk.back.enableWebNavigation === 'function') {
     await sdk.back.enableWebNavigation();
@@ -236,7 +243,7 @@ window.ZABAL.withXHandle = function withXHandle(text) {
 };
 
 // Light tactile feedback on deliberate actions (share, join). No-ops outside a Mini
-// App or on SDKs without haptics (our pin is 0.1.x), so it is always safe to call.
+// App or on SDKs without haptics (our pin is 0.1.10), so it is always safe to call.
 window.ZABAL.haptic = async function haptic(type) {
   try {
     if (sdk.haptics && typeof sdk.haptics.impactOccurred === 'function') {
