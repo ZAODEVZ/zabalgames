@@ -16,6 +16,7 @@
     { "from": "Zal", "to": "Zaal", "note": "the bare misheard 'Zal'; the longer 'Zaal' is left intact by the word boundary" },
     { "from": "X402", "to": "x402" },
     { "from": "Berserker", "to": "Bearserker", "note": "yerbeARSERKER; standalone 'Berserker' is the mishearing" },
+    { "from": "yerbearzerker", "to": "yerbearserker", "note": "the handle with a stray 'z'; Underlord surfaced this variant on the yerb 2 transcript" },
     { "from": "Zabalgames.com", "to": "Zabalgamez.com" },
     { "from": "Zao", "to": "ZAO", "note": "casing fix; word boundary keeps ZAODEVZ etc. intact" }
   ],
