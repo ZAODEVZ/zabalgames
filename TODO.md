@@ -31,6 +31,7 @@
 
 ### Shipped this session (2026-06-06)
 - Recordings workflow: a repeatable pipeline for turning a raw workshop recording into a corrected video, distribution clips, and a `/recordings/N` page. `docs/recordings-workflow.md` (process), `data/transcript-corrections.json` (reusable brand-term glossary seeded from the intern's notes - safe auto-fixes vs context-dependent review flags), `scripts/fix-transcript.mjs` (applies safe fixes to any caption/transcript file, flags the rest), and an edit-sheet template + filled Workshop #1 example.
+- July entry discoverability: `enter.html` (the "how to enter July" page, form wired to `/api/register`) was fully built but orphaned - now linked from the homepage Builder card and the Season footer column on all 27 pages.
 - Workshop #1 recording page `/recordings/1` (embed + clickable chapters + share buttons), recap YouTube link, recordings-hub link (PR #126).
 - Activity-backend audit follow-ups: join first-join idempotency, register hybrid identity + many-repos, commit-watcher ownership proof (PR #126).
 - Mini App splash hardening: exact SDK pin + `esm.sh` preconnect (PR #127).
