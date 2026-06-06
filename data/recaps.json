@@ -1,6 +1,6 @@
 {
   "season": 1,
-  "_note": "Recap library for delivered ZABAL Gamez workshops. Newest first. recording/youtube/transcript/thumbnail optional - only include links + files that exist. youtube renders a 'Watch on YouTube' button; share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, transcript, link, link_label, takeaways[], share_topics[].",
+  "_note": "Recap library for delivered ZABAL Gamez workshops. Newest first. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/N landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[].",
   "recaps": [
     {
       "date": "2026-06-02",
@@ -46,6 +46,7 @@
       "thumbnail": "/assets/workshops/2026-06-01-yerbearserker-empire-builder.png",
       "recording": "https://luma.com/7nfside5",
       "youtube": "https://youtu.be/Ej7Wm-v6WXo",
+      "page": "/recordings/1",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md",
       "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
       "link_label": "The ZABAL Gamez Empire",

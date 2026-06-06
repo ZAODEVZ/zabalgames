@@ -183,7 +183,8 @@
         var topics = (r.topics || []).map(function (t) { return '<span class="recap-topic">' + esc(t) + '</span>'; }).join('');
         var takeaways = (r.takeaways || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
         var links = '';
-        if (r.youtube) links += '<a class="recap-link primary" href="' + esc(r.youtube) + '" target="_blank" rel="noopener">Watch on YouTube</a>';
+        if (r.page) links += '<a class="recap-link primary" href="' + esc(r.page) + '">Watch the recording</a>';
+        else if (r.youtube) links += '<a class="recap-link primary" href="' + esc(r.youtube) + '" target="_blank" rel="noopener">Watch on YouTube</a>';
         else if (r.recording) links += '<a class="recap-link primary" href="/recordings">Watch the recording</a>';
         if (r.transcript) links += '<a class="recap-link" href="' + esc(r.transcript) + '" target="_blank" rel="noopener">Read the transcript</a>';
         if (r.link) links += '<a class="recap-link" href="' + esc(r.link) + '" target="_blank" rel="noopener">' + esc(r.link_label || 'More') + '</a>';
