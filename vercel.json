@@ -3,7 +3,8 @@
   "trailingSlash": false,
   "crons": [
     { "path": "/api/commit-watcher", "schedule": "0 0 * * *" },
-    { "path": "/api/daily-cast", "schedule": "0 13 * * *" }
+    { "path": "/api/daily-cast", "schedule": "0 13 * * *" },
+    { "path": "/api/workshop-reminders", "schedule": "0 12 * * *" }
   ],
   "redirects": [
     { "source": "/spec",    "destination": "/docs/research/701-canonical-state.md", "permanent": false },

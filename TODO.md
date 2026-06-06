@@ -18,6 +18,7 @@
   - Sources: miniapps.farcaster.xyz/docs/guides/loading, /docs/sdk/detecting-capabilities, /docs/sdk/actions/ready, /docs/specification.
 
 ### Up next (build)
+- **Empire Builder leaderboard integration** - BLOCKED on the API contract. Pull the real leaderboard for our tokenless empire (`zabalgamez01e9af`) from the Empire Builder API and show it (today the only board is the internal /zabal posters leaderboard, `/api/leaderboard`). Plan: new edge fn `api/empire-leaderboard.mjs` reading `EMPIRE_API_KEY` (env to add) + a display surface. Needed from the GitBook docs (bot-blocked to the build env): API base URL, auth header name + key format, the leaderboard GET endpoint (method + path), how the empire is identified (id vs address), and the response JSON shape.
 - **Part 2 (demo) YouTube package** - title / description / chapters / tags. Reuse the Part 1 template once the demo cut exists.
 - **Notion Command Center** - content fully drafted (all 9 sections: ZABAL Games, BCZ Drive assets, Sprint Dates, Existing Channels, KPI Tracker, Activation Menu, Onboarding/Activation Calendar, Magnet Grid, Owner Actions). Paste into the Notion page. Confirm 3 open cells: Magnet Grid video-recorded status, Activation Menu "register your build" URL, and renaming the "Untitled" block.
 
@@ -33,6 +34,8 @@
 - Workshop #1 recording page `/recordings/1` (embed + clickable chapters + share buttons), recap YouTube link, recordings-hub link (PR #126).
 - Activity-backend audit follow-ups: join first-join idempotency, register hybrid identity + many-repos, commit-watcher ownership proof (PR #126).
 - Mini App splash hardening: exact SDK pin + `esm.sh` preconnect (PR #127).
+- Mini App hardening pass: self-host-first SDK loader, capability detection, gesture opt-out (PR #128).
+- Mini App growth/retention: workshop reminder notifications cron (`api/workshop-reminders.mjs`, daily 12:00 UTC) + "Shared into /zabal" / "Shared to X" toast in `share()`. Note: add-app-after-Join and a question-framed reply-bait CTA variant were already in place.
 
 ---
 
