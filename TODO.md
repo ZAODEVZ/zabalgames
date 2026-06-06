@@ -21,11 +21,12 @@
 - **Empire Builder leaderboard integration** - proxy SHIPPED, two things to finish.
   `api/empire-leaderboard.mjs` reads our tokenless empire's board from Empire Builder
   (`empirebuilder.world`, open GETs) and normalizes any shape to a stable contract.
-  Remaining: (1) set `EMPIRE_ID` env to the real Empire ID (`fid<digits>` or slug -
-  NOT the `zabalgamez01e9af` I guessed earlier), optional `EMPIRE_API_KEY`; (2) after
-  deploy, hit `/api/empire-leaderboard?tokenAddress=<id>&debug=1` to confirm the real
+  Empire ID = `zabalgamez01e9af` (custom tokenless slug, confirmed from the Workshop #1
+  recap + our live empire links), baked in as the default so no env is needed.
+  Remaining: (1) after deploy, hit `/api/empire-leaderboard?debug=1` to confirm the real
   upstream field shape, refine the normalizer if needed, then build the display surface
-  (homepage block or streams.html). NOTE: a tokenless empire can't use an
+  (homepage block or streams.html); optional `EMPIRE_API_KEY` (reads are open).
+  NOTE: a tokenless empire can't use an
   `apiLeaderboard` (ERC-20 only) - its board is a `farcasterChannel`/`cast`/`interaction`
   type, so confirm one exists on the empire first (a /zabal channel board is the fit).
 - **Part 2 (demo) YouTube package** - title / description / chapters / tags. Reuse the Part 1 template once the demo cut exists.

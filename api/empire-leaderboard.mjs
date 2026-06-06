@@ -27,7 +27,11 @@
 export const config = { runtime: 'edge' };
 
 const BASE = 'https://empirebuilder.world';
-const EMPIRE_ID = process.env.EMPIRE_ID || '';
+// Our ZABAL Gamez tokenless empire's Empire ID (a custom slug, public - it is on our
+// live pages, e.g. empirebuilder.world/empire/zabalgamez01e9af). Env can override it;
+// the default means the integration works on deploy with no config. NOT the $ZABAL
+// TOKEN empire (0xbB48...0b07) - that one is ERC-20 based.
+const EMPIRE_ID = process.env.EMPIRE_ID || 'zabalgamez01e9af';
 const EMPIRE_API_KEY = process.env.EMPIRE_API_KEY || '';
 
 function json(body, status = 200, cache = 'no-store') {

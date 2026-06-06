@@ -146,7 +146,7 @@ Formspree team form as the stub backend. v1 reads FID + cast hash as untrusted
 | `NEYNAR_API_KEY` | Neynar key for `POST /api/daily-cast` to publish the cast | Neynar dev dashboard (free tier) |
 | `NEYNAR_SIGNER_UUID` | Approved Neynar signer that posts the daily cast | Neynar managed signer (approve once) |
 | `CRON_SECRET` | Optional bearer enforced on cron endpoints when set | any long random string; Vercel injects it on cron calls |
-| `EMPIRE_ID` | Our tokenless empire's Empire ID, read by `GET /api/empire-leaderboard` (e.g. `fid<digits>` or a custom slug) | Empire Builder |
+| `EMPIRE_ID` | Optional override for `GET /api/empire-leaderboard`. Defaults to `zabalgamez01e9af` (our tokenless empire), so no config is needed | Empire Builder |
 | `EMPIRE_API_KEY` | Optional; sent as `x-api-key` to Empire Builder. Reads work without it | Empire Builder |
 
 Without these the endpoints still respond (verify + no-op store / empty feed),
