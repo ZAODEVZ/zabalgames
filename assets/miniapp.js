@@ -7,18 +7,37 @@
 //
 // All zabalgamez.com pages should include this. Without sdk.actions.ready(),
 // Warpcast hangs on the splash image forever.
-//
-// Pinned to an EXACT version (not a 0.1.x range) on purpose: a range makes esm.sh
-// do a resolve-redirect on every cold load, and if that hangs, the import below
-// never resolves, ready() is never reached, and the splash sticks forever. An exact
-// version is cached hard by the CDN. Pair this with <link rel="preconnect"
-// href="https://esm.sh"> in each page head so the connection is warm. Bump the pin
-// deliberately when adopting newer SDK actions (keep the back/haptics guards below).
-
-import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk@0.1.10';
 
 // Expose the namespace early so helpers can attach to it.
 window.ZABAL = window.ZABAL || {};
+
+// Load the SDK self-host-first, with the esm.sh CDN as the fallback. The splash
+// only dismisses when sdk.actions.ready() runs, so the SDK load is the load-bearing
+// step: a single hard dependency on a third-party CDN is what strands the splash
+// when that CDN is slow, down, or network-blocked. Trying a vendored same-origin
+// copy first removes that single point of failure; esm.sh stays as the safety net.
+//
+//   1. /assets/vendor/miniapp-sdk-0.1.10.js  - vendored, same-origin (see that
+//      folder's README to (re)generate; pinned exact version, cached hard).
+//   2. https://esm.sh/@farcaster/miniapp-sdk@0.1.10  - exact pin (no range = no
+//      resolve-redirect), warmed by <link rel="preconnect" href="https://esm.sh">.
+//
+// Dynamic import per source so a missing/broken vendored file or a hung CDN can
+// never halt the module: each is tried in turn and `sdk` simply stays null if all
+// fail, in which case every helper below degrades to "not in a Mini App". Until the
+// vendored file is added, source 1 404s and we transparently use esm.sh (identical
+// to before) - so this can only improve reliability, never regress it.
+const SDK_SOURCES = [
+  '/assets/vendor/miniapp-sdk-0.1.10.js',
+  'https://esm.sh/@farcaster/miniapp-sdk@0.1.10',
+];
+let sdk = null;
+for (const src of SDK_SOURCES) {
+  try {
+    const mod = await import(src);
+    if (mod && mod.sdk) { sdk = mod.sdk; break; }
+  } catch (e) { /* try the next source */ }
+}
 
 // Race any SDK promise against a timeout so a slow or hanging client never blocks the
 // page. Resolves null on timeout, which callers treat as "not in a Mini App".
@@ -31,14 +50,47 @@ function withTimeout(promise, ms) {
 // Shared, timeout-guarded context read. Every helper below uses this instead of
 // awaiting sdk.context directly, so none of them can hang on a slow client.
 async function getContext() {
+  if (!sdk) return null; // SDK failed to load from every source - treat as not-in-app.
   return withTimeout(sdk.context, 2000);
 }
 window.ZABAL.getContext = getContext;
 
+// Capability detection. Newer hosts expose sdk.getCapabilities() -> an array of
+// supported method paths (e.g. 'actions.composeCast', 'actions.addMiniApp'); we use
+// it to avoid invoking an action a host does not implement. Read once, then cached.
+// When the host predates getCapabilities (or the call times out) we cannot enumerate,
+// so hasCapability returns true and we lean on the existing try/catch around each
+// call - never blocking an action just because support could not be confirmed.
+let capsCache;
+async function getCaps() {
+  if (capsCache !== undefined) return capsCache;
+  try {
+    if (sdk && typeof sdk.getCapabilities === 'function') {
+      const caps = await withTimeout(sdk.getCapabilities(), 2000);
+      capsCache = Array.isArray(caps) ? caps : null;
+    } else {
+      capsCache = null;
+    }
+  } catch (e) {
+    capsCache = null;
+  }
+  return capsCache;
+}
+window.ZABAL.hasCapability = async function hasCapability(path) {
+  const caps = await getCaps();
+  if (!caps) return true; // can't enumerate -> attempt anyway (call is try/catch-guarded)
+  return caps.includes(path);
+};
+
 // Dismiss splash + signal page is ready as soon as DOM is parsed. Timeout-guarded so a
 // hung ready() never leaves the splash up; try/catch covers regular browser loads.
+// A page with swipe-conflicting UI (a video embed, a horizontal carousel) can opt out
+// of native gestures - which otherwise close the app on a stray swipe - by adding
+// <meta name="fc:disable-native-gestures" content="1"> to its head. Off by default so
+// normal pages keep the native back/close gestures.
 try {
-  await withTimeout(sdk.actions.ready(), 2500);
+  const noGestures = !!document.querySelector('meta[name="fc:disable-native-gestures"]');
+  await withTimeout(sdk.actions.ready(noGestures ? { disableNativeGestures: true } : {}), 2500);
 } catch (e) {
   // Not running inside a Farcaster Mini App context (regular browser load).
   // Silent fail is correct - the page works as a normal website.
@@ -72,7 +124,7 @@ window.ZABAL.composeCast = async function composeCast(textOrOpts, maybeEmbeds) {
   const { embeds, channelKey } = opts;
   try {
     const ctx = await getContext();
-    if (ctx && ctx.client) {
+    if (ctx && ctx.client && await window.ZABAL.hasCapability('actions.composeCast')) {
       // Returns { cast } - cast is null if the user cancels the composer. Callers
       // read this to count only real casts and capture the cast hash.
       return await sdk.actions.composeCast({ text, embeds, channelKey });
@@ -102,7 +154,7 @@ window.ZABAL.openUrl = async function openUrl(url) {
 
 // Optional: expose context for pages that want to render differently
 // when running inside a Mini App vs a regular browser tab.
-window.ZABAL.context = sdk.context.catch(() => null);
+window.ZABAL.context = sdk ? sdk.context.catch(() => null) : Promise.resolve(null);
 
 // -------------------------------------------------------------------
 // Profile + sharing helpers (used by the nav chip + per-page share buttons)
@@ -139,7 +191,7 @@ window.ZABAL.viewProfile = async function viewProfile(fid) {
 window.ZABAL.addApp = async function addApp() {
   try {
     const ctx = await getContext();
-    if (ctx && ctx.client) {
+    if (ctx && ctx.client && await window.ZABAL.hasCapability('actions.addMiniApp')) {
       await sdk.actions.addMiniApp();
       return true;
     }
