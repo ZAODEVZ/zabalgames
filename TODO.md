@@ -30,6 +30,7 @@
 - **Announcements** (yerbearserker first-workshop + Day 0) - ON HOLD per owner.
 
 ### Shipped this session (2026-06-06)
+- July entry discoverability: `enter.html` (the "how to enter July" page, form wired to `/api/register`) was fully built but orphaned - now linked from the homepage Builder card and the Season footer column on all 27 pages.
 - Workshop #1 recording page `/recordings/1` (embed + clickable chapters + share buttons), recap YouTube link, recordings-hub link (PR #126).
 - Activity-backend audit follow-ups: join first-join idempotency, register hybrid identity + many-repos, commit-watcher ownership proof (PR #126).
 - Mini App splash hardening: exact SDK pin + `esm.sh` preconnect (PR #127).
