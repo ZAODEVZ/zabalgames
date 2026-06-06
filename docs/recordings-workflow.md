@@ -8,6 +8,11 @@ The proven reference is Workshop #1: `recordings/1.html` (page), the
 `data/recaps.json` entry, and `docs/recordings/workshop-1-empire-builder.md`
 (the filled edit sheet).
 
+**Anyone can help** (corrections, clip suggestions, recording submissions) without
+touching this pipeline - see the public contributor guide,
+[docs/recordings/CONTRIBUTING.md](recordings/CONTRIBUTING.md), and the GitHub issue
+forms under `.github/ISSUE_TEMPLATE/`. This doc is the internal side of those inputs.
+
 ---
 
 ## Inputs (from the ZAO intern, per recording)

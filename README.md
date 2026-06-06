@@ -18,6 +18,7 @@ This repo is the single source of truth for ZABAL Gamez: the live site, the Verc
 - **Decision log:** [docs/research/701-canonical-state.md](./docs/research/701-canonical-state.md) - what's locked / open
 - **Brand identity:** [docs/brand-context.md](./docs/brand-context.md)
 - **Docs index:** [docs/README.md](./docs/README.md)
+- **Help with recordings:** [docs/recordings/CONTRIBUTING.md](./docs/recordings/CONTRIBUTING.md) - submit caption corrections, clip suggestions, or a recording (no dev experience needed)
 
 ---
 
