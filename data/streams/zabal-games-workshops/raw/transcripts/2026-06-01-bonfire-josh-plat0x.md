@@ -73,9 +73,7 @@ status: cleaned
 
 ## Transcript
 
-[00:00:00] 
-
-[00:00:13] Welcome, welcome, welcome everybody. We are back for our second ZABAL Gamez workshop on day one. I got Joshua and, um, Pla- Plat0x. How do you pronounce- Carlos. Uh- It's like Plato. Oh, okay. Like Plato. Plato. You can go ahead. All right. I got Carlos and Josh here with me.
+[00:00:00] Visit zabalgamez.com. That's Z-A-B-A-L gamez.com and sign up. Decentralized energy. Let's talk about ways Welcome, welcome, welcome everybody. We are back for our second ZABAL Gamez workshop on day one. I got Joshua and, um, Plat0x. How do you pronounce- Carlos. Uh- It's like Plat0x. Oh, okay. Like Plat0x. Plat0x. You can go ahead. All right. I got Carlos and Josh here with me.
 
 [00:00:30] How are you guys doing today? Good. Doing good, thank you, mate. Good. Doing good. Yeah, I'm super excited. I think there's gonna be a lot we can chat about with Bonfires, but, um, Josh, do you... If you wanna give, um, a quick intro on what Bonfires is, and then we can kick it over to Carlos to also give an intro, and then we can chat a little bit more, um, you know, about how I learned about Bonfires and what we might be able to do here in the ZABAL Gamez.
 
@@ -191,7 +189,7 @@ status: cleaned
 
 [00:23:03] Mm-hmm. So like the, the role of the, of the front end changes because it now it's not the primary interaction place, but rather maybe some- somewhere you go to find more information or, you know- And, and even the way that you make an interface changes. Uh, so like there's a lot of cool levers, and I think it's a, it's a very fruitful conversation to have these days because now we're writing code.
 
-[00:23:32] So like- Yeah, giving the context and ability to more people is always super helpful. So thank you, Carlos. Uh, I think that was an awesome first session. We definitely will have to dive deeper into the Zabal Bonfire, but then also what else is capable here. Maybe we'll do a build, um, of something on top of the Bonfire during a session and, and that could be cool to watch your workflow of how you use your tools, because I think- Yeah
+[00:23:32] So like- Yeah, giving the context and ability to more people is always super helpful. So thank you, Carlos. Uh, I think that was an awesome first session. We definitely will have to dive deeper into the ZABAL Bonfire, but then also what else is capable here. Maybe we'll do a build, um, of something on top of the Bonfire during a session and, and that could be cool to watch your workflow of how you use your tools, because I think- Yeah
 
 [00:23:59] that can [00:24:00] always be super powerful. That'd be awesome. Like I'm, I'm up for a challenge. I need to think up of something. Exactly. Maybe we can make a little magic 8-ball. Awesome. I love it. Yeah. And then it'll tell you a project to work on. Right. Right. Perfect. Yeah. No, one of the ideas I've also had is potentially a bot where because the, the logo is insert coin, um, putting, but you can kinda choose between one and 100 billion, a billion, whatever, however many tokens you wanna put in, and it can give you something based on that, whether it's a additional piece of information, whether we put a bunch of NFTs with different rarities in a, you know, a pool and it just picks from that.
 
@@ -201,4 +199,4 @@ status: cleaned
 
 [00:25:12] Uh, yeah. I'm on Twitter .. @plat0x_ at0x.eth. Uh, and you can find us in, in bonfires.ai. Um, we are raising, so if you wanna get rich, like just call. It's a good opportunity. Uh, so yeah. Thanks for having me, and let's, let's have another one soon. Awesome. Thank you, Carlos. Have a good 
 
-[00:25:35]
+[00:25:35] Zaal keep it a Zaali. From the Zaal down come proper. We eat rappers for lunch and if some left, we eat 'em for supper. I keep it a Zaal, homie a Zaali. Heard the streets calling E3. I man to a sign mans. Now the whole world hear about me
