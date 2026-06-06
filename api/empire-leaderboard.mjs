@@ -38,9 +38,11 @@ const BASE = 'https://empirebuilder.world';
 const EMPIRE_ID = process.env.EMPIRE_ID || 'zabalgamez01e9af';
 const EMPIRE_API_KEY = process.env.EMPIRE_API_KEY || '';
 // Empire Builder returns username + score only. We resolve username -> fid / pfp /
-// displayName via Neynar so the board can show avatars and open the in-app profile.
-// Optional: with no key, the board still renders (username + score, no avatar).
+// displayName so the board can show avatars and open the in-app profile. Tries the
+// keyless HAATZ Neynar mirror first (same source the rest of the app uses), then real
+// Neynar if NEYNAR_API_KEY is set. No resolver available just leaves username + score.
 const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY || '';
+const HAATZ = 'https://haatz.quilibrium.com';
 
 function json(body, status = 200, cache = 'no-store') {
   return new Response(JSON.stringify(body), {
@@ -118,25 +120,36 @@ function selectBoard(boards, sel) {
   return boards.find((b) => b.main && b.count) || boards.find((b) => b.count) || boards[0] || null;
 }
 
-// Resolve username -> { fid, displayName, pfpUrl } via Neynar, in parallel. Mutates
-// entries in place. Best-effort: no key, or any per-user failure, just leaves that
-// row as username + score (the frontend renders fine without an avatar).
+// Resolve one username -> Neynar user object. HAATZ (keyless mirror) first, then real
+// Neynar if a key is set. Returns null on any failure so the caller leaves the row as-is.
+async function resolveProfile(username) {
+  const q = encodeURIComponent(username);
+  try {
+    const r = await fetch(`${HAATZ}/v2/farcaster/user/by_username?username=${q}`, { signal: AbortSignal.timeout(3000) });
+    if (r.ok) { const u = (await r.json())?.user; if (u && u.fid) return u; }
+  } catch { /* fall through to Neynar */ }
+  if (NEYNAR_API_KEY) {
+    try {
+      const r = await fetch(`https://api.neynar.com/v2/farcaster/user/by_username?username=${q}`,
+        { headers: { 'x-api-key': NEYNAR_API_KEY, Accept: 'application/json' }, signal: AbortSignal.timeout(3000) });
+      if (r.ok) { const u = (await r.json())?.user; if (u && u.fid) return u; }
+    } catch { /* leave username-only */ }
+  }
+  return null;
+}
+
+// Resolve username -> { fid, displayName, pfpUrl } in parallel. Mutates entries in
+// place. Best-effort: any per-user failure just leaves that row as username + score.
 async function enrich(entries) {
-  if (!NEYNAR_API_KEY || !entries.length) return;
+  if (!entries.length) return;
   await Promise.allSettled(entries.map(async (e) => {
     if (!e.username) return;
-    try {
-      const r = await fetch(
-        `https://api.neynar.com/v2/farcaster/user/by_username?username=${encodeURIComponent(e.username)}`,
-        { headers: { 'x-api-key': NEYNAR_API_KEY, Accept: 'application/json' }, signal: AbortSignal.timeout(3000) },
-      );
-      if (!r.ok) return;
-      const u = (await r.json())?.user;
-      if (!u) return;
+    const u = await resolveProfile(e.username);
+    if (u) {
       e.fid = u.fid ?? e.fid;
       e.displayName = u.display_name || u.displayName || e.displayName;
       e.pfpUrl = u.pfp_url || (u.pfp && u.pfp.url) || e.pfpUrl;
-    } catch { /* leave username-only */ }
+    }
   }));
 }
 
