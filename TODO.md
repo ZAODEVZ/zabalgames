@@ -2,8 +2,39 @@
 
 > The live state of the build. Updated as commits land. See `docs/research/701-canonical-state.md` for the canonical event-level decisions; this file tracks the actual build / launch tasks.
 
-**Last updated:** 2026-05-26 (Tier 2 + Tier 3 audit + announce-day kit shipped)
-**Goal:** Site fully production-ready by Sun May 31 so June workshops open Mon Jun 1.
+**Last updated:** 2026-06-06 (June workshop month - live list in [CURRENT] below; the pre-launch ship log is preserved beneath it).
+**Goal (launch):** Site production-ready by Sun May 31 so June workshops open Mon Jun 1. (Met - doors opened Jun 1.)
+
+---
+
+## [CURRENT - 2026-06-06] - June workshop month
+
+### In progress
+- **Farcaster Mini App hardening** - research + first implementation pass done 2026-06-06. Splash fix shipped earlier (PR #127: exact SDK pin `0.1.10` + `esm.sh` preconnect on all 27 pages). Status of the four hardening items:
+  - **[P1] Self-host the SDK - loader SHIPPED, vendored file PENDING.** `assets/miniapp.js` now loads self-host-first (`/assets/vendor/miniapp-sdk-0.1.10.js`) with esm.sh as fallback, via a null-safe dynamic-import loop. The vendored binary is NOT in yet - this build env can't reach esm.sh (outbound allowlist), so source 1 404s and it transparently uses esm.sh (no regression). **Action: drop in the bundle via the recipe in `assets/vendor/README.md` (run where esm.sh is reachable), then test in a real client.** That flips the app to same-origin and is the actual cure for the stuck splash.
+  - **[P2] Capability detection - SHIPPED.** Added `sdk.getCapabilities()`-backed `window.ZABAL.hasCapability()` (cached; returns true when a host can't enumerate, so older clients still attempt). Gates `composeCast` and `addMiniApp`; try/catch remains the backstop.
+  - **[P3] disableNativeGestures - SHIPPED.** `ready()` reads `<meta name="fc:disable-native-gestures" content="1">`; added to `/recordings/1` (video embed + chapters). Per-page opt-in, off by default.
+  - **[P4] Manifest review - RESOLVED, no change.** Deliberately keep `requiredChains`/`requiredCapabilities` EMPTY for max host reach (the site degrades to a normal website, so requiring them would only cut reach). `splashImageUrl` left as icon.png (correct square splash; logo-gamez is wide). Optional later: `screenshotUrls` (needs real portrait screenshot assets).
+  - Sources: miniapps.farcaster.xyz/docs/guides/loading, /docs/sdk/detecting-capabilities, /docs/sdk/actions/ready, /docs/specification.
+
+### Up next (build)
+- **Part 2 (demo) YouTube package** - title / description / chapters / tags. Reuse the Part 1 template once the demo cut exists.
+- **Notion Command Center** - content fully drafted (all 9 sections: ZABAL Games, BCZ Drive assets, Sprint Dates, Existing Channels, KPI Tracker, Activation Menu, Onboarding/Activation Calendar, Magnet Grid, Owner Actions). Paste into the Notion page. Confirm 3 open cells: Magnet Grid video-recorded status, Activation Menu "register your build" URL, and renaming the "Untitled" block.
+
+### Owner actions (not code-blocked)
+- **Magnetiq** - upload the 8 ZAO brand mementos + the collectible video (paste-ready copy in `docs/magnetiq-mementos-zao-brands-2026-05-28.md` + `docs/magnetiq-zabal-gamez-collectible-page.md`).
+- **Cal.com** - add booking questions (handle / topic / format / notes).
+- **Workshop roster** - lock ~4-5 more June sessions (target ~8); mirror confirmed leads into `data/workshop-leads.json`.
+- **Vercel Web Analytics** - enable in the dashboard (the tag is already on every page).
+- **POIDH bounty** - "Best ad for ZABAL Gamez", $25, ends Jun 14. Post + optional homepage callout (`docs/poidh-bounty-best-ad.md`).
+- **Announcements** (yerbearserker first-workshop + Day 0) - ON HOLD per owner.
+
+### Shipped this session (2026-06-06)
+- Workshop #1 recording page `/recordings/1` (embed + clickable chapters + share buttons), recap YouTube link, recordings-hub link (PR #126).
+- Activity-backend audit follow-ups: join first-join idempotency, register hybrid identity + many-repos, commit-watcher ownership proof (PR #126).
+- Mini App splash hardening: exact SDK pin + `esm.sh` preconnect (PR #127).
+
+---
 
 **Status as of 2026-05-26 evening:**
 - Formspree lead form: TESTED PASS (Zaal confirmed)
