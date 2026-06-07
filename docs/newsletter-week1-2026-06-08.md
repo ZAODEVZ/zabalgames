@@ -10,25 +10,24 @@
 
 ## STATUS - what's ready vs what's needed before sending
 
-Week 1 actual lineup (corrected): **Jun 1** three sessions, **Jun 3** the Farcaster Batches
-showcase, **Jun 6** the fireside. Ohnahji (Jun 2) was moved - dropped from this recap.
+Week 1 actual lineup: **Jun 1** the season opener (three ZABAL sessions) + Farcaster Batches Day 1,
+**Jun 1-5** GM Farcaster's Farcaster Batches every day (we presented ZABAL Gamez on Day 3),
+**Jun 6** our first fireside. Ohnahji (Jun 2) was moved - not in this recap.
 
-### Ready now
+### Ready now (all merged + live)
 - [x] Recap copy written (block below), in the established voice.
-- [x] Day 1 - 3 sessions fully recorded + on the site (watch page + YouTube + transcript):
+- [x] Day 1 - 3 ZABAL sessions fully recorded (watch page + YouTube + transcript):
   - Empire Builder V3 - yerbearserker - https://zabalgamez.com/recordings/1 (YouTube: https://youtu.be/Ej7Wm-v6WXo)
   - Empire Builder Part 2 - yerbearserker - https://zabalgamez.com/recordings/2 (YouTube: https://youtu.be/RXYTCHRh_rY)
   - Bonfire + the ZABAL Bonfire bot - Joshua.eth + Plat0x - https://zabalgamez.com/recordings/3 (YouTube: https://youtu.be/3jKfYdOYxSw)
-- [x] Day 3 - Farcaster Batches showcase has a page + transcript + the five-builder lineup: https://zabalgamez.com/farcaster-batches
-- [x] Day 6 - Fireside has a page + transcript: https://zabalgamez.com/recordings/fireside/1
-- [x] Recordings hub + recaps page live to link: https://zabalgamez.com/recordings , https://zabalgamez.com/recaps
+- [x] **The whole Farcaster Batches week is captured** - all four days transcribed and on the site: https://zabalgamez.com/farcaster-batches (Day 1 Jun 1, Day 2 Founder Check workshop Jun 2, Day 3 Jun 3, Day 5 Jun 5).
+- [x] Fireside (Jun 6) - page + transcript: https://zabalgamez.com/recordings/fireside/1
+- [x] **New recordings home** - every session, one tap to watch or read the transcript, plus a plain-text feed for agents: https://zabalgamez.com/recordings and https://zabalgamez.com/recordings.txt
 
 ### NEEDED before sending (gaps)
-- [ ] **Farcaster Batches (Jun 3)** - page + transcript are up, but no video link. NEED: the recording (YouTube / X Space) to add a player, OR we ship it transcript-only.
-- [ ] **Fireside (Jun 6)** - page + transcript up, no replay. NEED: the X Space or YouTube link.
-- [ ] **Ohnahji on the live site** - it moved, but it's still listed as a recorded session on /recaps + /recordings (with a Luma link). DECISION: pull it from those pages (so the newsletter links stay accurate), or leave it? Tell me and I'll scrub it.
-- [ ] **Jun 4 / Jun 5** - nothing logged. Confirm there were no sessions (then we're complete).
-- [ ] **X posts to embed** - send the post URLs (see list at bottom).
+- [ ] **Video links** - the Batches episodes (2/3/5) and the fireside replay have transcripts but no player yet. NEED the YouTube / X Space URLs, or we ship transcript-only (totally fine).
+- [ ] **Ohnahji on the live site** - it moved but is still listed on /recaps + /recordings (Luma link). DECISION: pull it so the links stay accurate, or leave it?
+- [ ] **X posts to embed** - send the post URLs (see list at the bottom).
 - [ ] **Subject line + send** - confirm the Paragraph subject + publish to paragraph.com/@thezao.
 
 ---
@@ -38,21 +37,21 @@ showcase, **Jun 6** the fireside. Ohnahji (Jun 2) was moved - dropped from this 
 ```
 Good morning, and happy Monday in the Year of the ZABAL.
 
-Week one is in the books, and what a start. We said ZABAL Gamez would be three months of building in public with The ZAO. Week one, we hit Start. Here is everything that happened, all of it recorded and kept, so if you missed a session you have missed nothing.
+Week one is in the books, and what a start. We said ZABAL Gamez would be three months of building in public with The ZAO. Week one, we hit Start - and we kept the receipts. Every session is recorded, transcribed, and kept, so if you missed something live, you have missed nothing.
 
-Day 1 we went big. yerbearserker opened the whole season on Empire Builder - leaderboards, Empires, boosters, and the line that set the tone: do not launch a token until you are ready, build the foundation first. Then he backed it with a live build, standing up a tokenless ZABAL Gamez Empire right there on the call, start to finish. Same day, Joshua and Plat0x took us into Bonfire and the ZABAL Bonfire bot - a shared memory for the whole ecosystem, a knowledge graph that grows just by using your agents. Three sessions in one day. A real opening.
+Day 1 we went big. yerbearserker opened the whole season on Empire Builder - leaderboards, Empires, boosters, and the line that set the tone: do not launch a token until you are ready, build the foundation first. Then he backed it with a live build, standing up a tokenless ZABAL Gamez Empire right there on the call. Same day, Joshua and Plat0x took us into Bonfire and the ZABAL Bonfire bot - a shared memory for the whole ecosystem, a knowledge graph that grows just by using your agents. A real opening.
 
 [X EMBED: the Day 1 / launch post goes here]
 
-Midweek we took the show on the road. I spent Day 3 on GM Farcaster's Farcaster Batches with five builders shipping in and around Farcaster - yerbearserker on going from dream to empire, AZ Flynn on Defense of the Agents, Cashless Man on Booster, Duckfax on Celebration Hub, and more. Builder to builder, no hype, just people showing their work. We captured the whole thing. Full lineup and transcript: https://zabalgamez.com/farcaster-batches
+All week we were also part of GM Farcaster's Farcaster Batches - a builder showcase organized by JubJub, hosted by Adriene and Nounish Prof, with Adrian (diviflyy) co-hosting. Five days of builders showing their work: Vinny App, POIDH, Juke, Founder Check, Defense of the Agents, Booster, Celebration Hub, DEKEY, POWER, Betterment, Runner, and more. On Day 3 I got to bring ZABAL Gamez to the room. We captured every single day, builder by builder, so nobody who missed it live misses it. Read the whole week: https://zabalgamez.com/farcaster-batches
 
 [X EMBED: a Batches spotlight / quote post goes here]
 
 To close the week we ran our first fireside. I sat down with Carlos (Plat0x), the developer behind Bonfires, and it turned into half working session, half vibe-coding masterclass. Plan, then goal. Diagram Bob and Alice before you write a line of code. Types first. Documentation that reproduces the code one to one. If you are on the builder track, this one is gold.
 
-Miss any of it? Nothing disappears here. Every session is recorded, transcribed, and kept. Watch the whole week on the recordings page: https://zabalgamez.com/recordings
+And we built a home for all of it. Every recording now lives in one place, with the transcript one tap away - and a plain-text version for the agents, because the build is the application. Browse it: https://zabalgamez.com/recordings
 
-What is next. More workshops are landing through June - check the schedule: https://zabalgamez.com/#schedule . And the real thing starts in July: the open build. Anyone ships something for the ecosystem, in public, and the build is the application. Here is how to enter (https://zabalgamez.com/enter), and here are projects to adopt (https://zabalgamez.com/projects).
+What is next. More workshops are landing through June - check the schedule: https://zabalgamez.com/#schedule . Then July is the open build: anyone ships something for the ecosystem, in public. Here is how to enter (https://zabalgamez.com/enter), and here are projects to adopt (https://zabalgamez.com/projects).
 
 To everyone who showed up, taught, asked a question, or just listened in - thank you. That is the whole thing. One week down. Insert Coin.
 
@@ -63,13 +62,18 @@ BetterCallZaal from the ZAO Team
 
 ## THE WEEK'S LIBRARY (for an inline recordings section, if you want it)
 
-| Session | Day | Watch | Status |
+| Session | Day | Watch / read | Status |
 |---|---|---|---|
-| Empire Builder V3 - yerbearserker | Jun 1 | https://zabalgamez.com/recordings/1 | ready |
-| Empire Builder Part 2 - yerbearserker | Jun 1 | https://zabalgamez.com/recordings/2 | ready |
-| Bonfire + the ZABAL Bonfire bot - Joshua.eth + Plat0x | Jun 1 | https://zabalgamez.com/recordings/3 | ready |
-| Farcaster Batches showcase (5 builders) | Jun 3 | https://zabalgamez.com/farcaster-batches | page + transcript, NEED video |
-| Fireside: Bonfires + vibe-coding - Carlos (Plat0x) | Jun 6 | https://zabalgamez.com/recordings/fireside/1 | page + transcript, NEED replay |
+| Empire Builder V3 - yerbearserker | Jun 1 | https://zabalgamez.com/recordings/1 | ready (video + transcript) |
+| Empire Builder Part 2 - yerbearserker | Jun 1 | https://zabalgamez.com/recordings/2 | ready (video + transcript) |
+| Bonfire + the ZABAL Bonfire bot - Joshua.eth + Plat0x | Jun 1 | https://zabalgamez.com/recordings/3 | ready (video + transcript) |
+| Farcaster Batches Day 1 - builder chat | Jun 1 | https://zabalgamez.com/farcaster-batches | transcript live, video TBD |
+| Farcaster Batches Day 2 - Founder Check workshop | Jun 2 | https://zabalgamez.com/farcaster-batches | transcript live, video TBD |
+| Farcaster Batches Day 3 - builder chat (ZABAL Gamez presents) | Jun 3 | https://zabalgamez.com/farcaster-batches | transcript live, video TBD |
+| Farcaster Batches Day 5 - builder chat | Jun 5 | https://zabalgamez.com/farcaster-batches | transcript live, video TBD |
+| Fireside: Bonfires + vibe-coding - Carlos (Plat0x) | Jun 6 | https://zabalgamez.com/recordings/fireside/1 | transcript live, replay TBD |
+
+For agents: the whole library as plain text - https://zabalgamez.com/recordings.txt - or structured JSON - https://zabalgamez.com/recordings/index.json
 
 ---
 
