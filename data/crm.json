@@ -1,0 +1,574 @@
+{
+  "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
+  "generated": "2026-06-07",
+  "count": 36,
+  "people": [
+    {
+      "name": "Adam Miller",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "",
+      "color": "pink",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop (Fri Jun 12 2026)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Adrian",
+      "farcaster": "diviflyy",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "cyan",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Empire Builder API workshop (June - date TBD)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Arthur (Neynar)",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "",
+      "roles": [
+        "Dream lead"
+      ],
+      "involvement": [
+        "On the Dream Leads board"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "AZ Flynn (Defense of the Agents)",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "",
+      "roles": [
+        "Dream lead",
+        "Batches builder"
+      ],
+      "involvement": [
+        "On the Dream Leads board",
+        "Farcaster Batches: Defense of the Agents (Day 3)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Cashless Man (Booster)",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "",
+      "roles": [
+        "Dream lead",
+        "Batches builder"
+      ],
+      "involvement": [
+        "On the Dream Leads board",
+        "Farcaster Batches: Booster (Day 3)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Cassie",
+      "farcaster": "cassie",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "orange",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: The Farcaster protocol, ins and outs (Wed Jun 3 2026)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Chris Dolinsky (Vini App)",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "",
+      "roles": [
+        "Dream lead",
+        "Batches builder"
+      ],
+      "involvement": [
+        "On the Dream Leads board",
+        "Farcaster Batches: Vini App (Day 1)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Darko (Runner)",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "creator",
+      "color": "",
+      "roles": [
+        "Dream lead",
+        "Batches builder"
+      ],
+      "involvement": [
+        "On the Dream Leads board",
+        "Farcaster Batches: Runner (Day 5)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "DCoopOfficial (Coop Records)",
+      "farcaster": "",
+      "x": "DCoopOfficial",
+      "github": "",
+      "track": "artist",
+      "color": "",
+      "roles": [
+        "Dream lead"
+      ],
+      "involvement": [
+        "On the Dream Leads board"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Dr. Deeks",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "",
+      "roles": [
+        "Batches builder"
+      ],
+      "involvement": [
+        "Farcaster Batches: email remittance pro, Crafters, Ghostwriter (Day 1)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Duckfax",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "creator",
+      "color": "",
+      "roles": [
+        "Batches builder"
+      ],
+      "involvement": [
+        "Farcaster Batches: Celebration Hub (Day 3)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Duo Do",
+      "farcaster": "duodomusica",
+      "x": "",
+      "github": "",
+      "track": "artist",
+      "color": "pink",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Musician on Farcaster, and the road to Farcon. (first week of June - date TBD)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Fireside chat with Sopha",
+      "farcaster": "zaal",
+      "x": "",
+      "github": "",
+      "track": "artist",
+      "color": "zabal",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: A special event introducing Sopha to the community (Mon Jun 8 2026)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Hurric4n3Ike",
+      "farcaster": "hurric4n3ike",
+      "x": "",
+      "github": "",
+      "track": "",
+      "color": "pink",
+      "roles": [
+        "Core builder",
+        "Partner"
+      ],
+      "involvement": [
+        "WaveWarZ founder - Solana music battle markets"
+      ],
+      "profile_url": "/p?handle=hurric4n3ike"
+    },
+    {
+      "name": "Jonathan Colton",
+      "farcaster": "jonathancolton",
+      "x": "",
+      "github": "",
+      "track": "creator",
+      "color": "gold",
+      "roles": [
+        "Workshop lead",
+        "Batches builder"
+      ],
+      "involvement": [
+        "Workshop: Two talks (June - dates TBD)",
+        "Farcaster Batches: Founder Check / Fotocaster (Day 1)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Jose Cabrera",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "artist",
+      "color": "pink",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Owning your music as an independent artist on Farcaster (Tue Jun 9 2026)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Joshua.eth",
+      "farcaster": "joshua.eth",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "gold",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Bonfire and the ZABAL Bonfire bot (Mon Jun 1 2026)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "JubJub",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "",
+      "color": "",
+      "roles": [
+        "Organizer"
+      ],
+      "involvement": [
+        "Organized Farcaster Batches"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Kenny (POIDH)",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "",
+      "roles": [
+        "Dream lead",
+        "Batches builder"
+      ],
+      "involvement": [
+        "On the Dream Leads board",
+        "Farcaster Batches: POIDH (Day 1)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "kmac.eth",
+      "farcaster": "kmac.eth",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "zabal",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Farcaster Snaps (June - date TBD)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Max (POWER)",
+      "farcaster": "baseddesigner.eth",
+      "x": "",
+      "github": "",
+      "track": "creator",
+      "color": "",
+      "roles": [
+        "Dream lead",
+        "Batches builder"
+      ],
+      "involvement": [
+        "On the Dream Leads board",
+        "Farcaster Batches: POWER (Day 5)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Nikki Sapp (Juke)",
+      "farcaster": "",
+      "x": "nicky_sap",
+      "github": "",
+      "track": "builder",
+      "color": "",
+      "roles": [
+        "Dream lead",
+        "Batches builder"
+      ],
+      "involvement": [
+        "On the Dream Leads board",
+        "Farcaster Batches: Juke (Day 1)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Node (DEKEY)",
+      "farcaster": "noad",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "",
+      "roles": [
+        "Dream lead",
+        "Batches builder"
+      ],
+      "involvement": [
+        "On the Dream Leads board",
+        "Farcaster Batches: DEKEY (Day 5)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Ohnahji",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "creator",
+      "color": "pink",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: His journey in live streaming (Tue Jun 2 2026)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Plat0x",
+      "farcaster": "plat0x",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "gold",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: His own Bonfire builder session (later this week - date TBD)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "realproject7",
+      "farcaster": "",
+      "x": "",
+      "github": "realproject7",
+      "track": "builder",
+      "color": "",
+      "roles": [
+        "Dream lead"
+      ],
+      "involvement": [
+        "On the Dream Leads board"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Riley Beans",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "artist",
+      "color": "",
+      "roles": [
+        "Dream lead"
+      ],
+      "involvement": [
+        "On the Dream Leads board"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Sam",
+      "farcaster": "sam-wwbase",
+      "x": "",
+      "github": "",
+      "track": "",
+      "color": "cyan",
+      "roles": [
+        "Core builder"
+      ],
+      "involvement": [
+        "WaveWarZ-Base co-builder"
+      ],
+      "profile_url": "/p?handle=sam-wwbase"
+    },
+    {
+      "name": "Thy Revolution",
+      "farcaster": "thyrevolution",
+      "x": "",
+      "github": "",
+      "track": "",
+      "color": "orange",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Indie music + creator-tools workshop lead",
+        "Workshop: Two workshop sessions (June - dates TBD)"
+      ],
+      "profile_url": "/p?handle=thyrevolution"
+    },
+    {
+      "name": "Toady Hawk (betrmint)",
+      "farcaster": "betrmint",
+      "x": "betrmint",
+      "github": "",
+      "track": "creator",
+      "color": "",
+      "roles": [
+        "Dream lead",
+        "Batches builder"
+      ],
+      "involvement": [
+        "On the Dream Leads board",
+        "Farcaster Batches: betrmint (Day 5)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Tyler Stambaugh",
+      "farcaster": "tylerstambaugh",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "zabal",
+      "roles": [
+        "Workshop lead",
+        "Partner"
+      ],
+      "involvement": [
+        "Founder, Magnetiq - workshop library platform",
+        "Workshop: Magnetiq (any day in June)"
+      ],
+      "profile_url": "/p?handle=tylerstambaugh"
+    },
+    {
+      "name": "Ven (The Open Machine)",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "",
+      "roles": [
+        "Dream lead"
+      ],
+      "involvement": [
+        "On the Dream Leads board"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Will T",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "creator",
+      "color": "cyan",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Building KFMedia (Wed Jun 10 2026)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "yerbearserker",
+      "farcaster": "yerbearserker",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "cyan",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Empire Builder V3 (Mon Jun 1 2026)"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Zaal",
+      "farcaster": "zaal",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "zabal",
+      "roles": [
+        "Workshop lead",
+        "Mentor"
+      ],
+      "involvement": [
+        "Workshop: ZABAL Gamez and the projects you can build on (Thu Jun 11 2026)",
+        "Organizer + BetterCallZaal + The ZAO operations"
+      ],
+      "profile_url": null
+    },
+    {
+      "name": "Zaal Panthaki",
+      "farcaster": "bettercallzaal",
+      "x": "",
+      "github": "",
+      "track": "",
+      "color": "orange",
+      "roles": [
+        "Organizer",
+        "Mentor"
+      ],
+      "involvement": [
+        "Organizer + BetterCallZaal + The ZAO operations"
+      ],
+      "profile_url": "/p?handle=bettercallzaal"
+    }
+  ]
+}
