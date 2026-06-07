@@ -45,7 +45,7 @@ entities:
     - Defense of the Agents
     - Planks
     - The Lobby
-    - Vinny App
+    - Vini App
 links:
   - label: betrmint
     url: https://betrmint.fun
@@ -66,7 +66,7 @@ summary: |
   his first public appearance in two years on Farcaster. Toady Hawk presents betrmint, a
   "dopamine distribution machine" for creators and founders ($1 USDC collectibles plus a flywheel
   with prizes up to 100x, the BTR token, staking rewards from real app revenue, and NFT-utility
-  collabs with Defense of the Agents, Planks and Vinny), and drops live alpha: holders of 50M+
+  collabs with Defense of the Agents, Planks and Vini), and drops live alpha: holders of 50M+
   BTR no longer see "better luck next time," and a new referral program pays liquid BTR. Darko
   presents Runner, which began as the first Clanker meme and is becoming a Strava-integrated
   running app with auto leaderboards, monthly seasons, a referral program, Privy login with small
@@ -98,7 +98,7 @@ status: cleaned
 - **betrmint** (Toady Hawk): a "dopamine distribution machine" for creators and founders. Collect
   $1 USDC limited editions, earn flywheel spins for prizes up to 100x; the **BTR token** can be staked
   for daily rewards funded by real app revenue. NFT-utility collabs: a buff in AZ Flynn's Defense of
-  the Agents, a Planks ball pack, a free Vinny build. **Live alpha:** holders of **50M+ BTR** no longer
+  the Agents, a Planks ball pack, a free Vini build. **Live alpha:** holders of **50M+ BTR** no longer
   see "better luck next time" (a karma-cash slot instead); a new **referral program pays liquid BTR**
   for shares that convert. Burr (community lead) is spinning her in-house games out into "The Lobby"
   with Planks.

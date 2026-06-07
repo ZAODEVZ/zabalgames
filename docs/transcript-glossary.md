@@ -29,8 +29,8 @@ This is a living file - add new names and mishears as each transcript is process
 | **Adriene** | GM Farcaster co-host; hosted Farcaster Batches Day 1. Note: distinct from Adrian (Diviflyy). | Adrian, Adrienne |
 | **Nounish Prof** (Prof) | GM Farcaster co-host. Appears as "Prof". | Profit (as in "Prof and"), Professor |
 | **JubJub** | Organizer of Farcaster Batches; based in Australia. | Jub Jub, Jubjub |
-| **Chris Dolinsky** | Founder, Vinny App. | Juan Dolinsky |
-| **Nick** (Nikolai) | Chris Dolinsky's Vinny App teammate. | Nikolai |
+| **Chris Dolinsky** | Founder, Vini App. | Juan Dolinsky |
+| **Nick** (Nikolai) | Chris Dolinsky's Vini App teammate. | Nikolai |
 | **Kenny** | Founder, POIDH. Builds in public on Farcaster. | (keep as heard) |
 | **Nikki Sapp** | Founder, Juke (audio Farcaster client). | Nikki Sap, Nicky Sapp |
 | **Jonathan Colton** | Founder Check; co-creator of Fotocaster. | Jonathan Colten |
@@ -54,7 +54,7 @@ This is a living file - add new names and mishears as each transcript is process
 | **The ZAO** | The community. | the Zao, The Zow |
 | **ZAONEXUS** | The ZAO ecosystem directory + brand map (zaonexus.vercel.app). | ZAO Nexus, Zao Nexus, "the nexus" |
 | **GM Farcaster** | Daily Farcaster show / StreamYard studio run by Adriene + Nounish Prof. Hosted Farcaster Batches Day 1. | GM Forecaster |
-| **Vinny App** | Chris Dolinsky's natural-language app builder on a Web3 stack; runs the Vinny-a-thon. Umbrella "Vinny" token. | VINI, Venny, Vinnyapp, Vinny-a-thon (event) |
+| **Vini App** | Chris Dolinsky's natural-language app builder on a Web3 stack; runs the Vini-a-thon. Umbrella "Vini" token. | VINI, Venny, Viniapp, Vini-a-thon (event) |
 | **POIDH** | Kenny's fully on-chain social bounty platform. poidh.xyz. | POID, Poydee |
 | **Juke** | Nikki Sapp's open-source, audio-native Farcaster client; voice notes + audio SDK. | Duke |
 | **Founder Check** | Jonathan Colton's agent-driven GTM/validation mini app, from "Distribution Is Hard, Don't F It Up". | a founder check |
@@ -116,7 +116,7 @@ and the tiers Assembled / Awakened / Ascended.
 ## Confirm before use (unverified)
 - **Fred Disick** - community handle heard in Workshop 1; spelling unconfirmed.
 - Other community handles in raffles/chat (Jellyfish, Jerry D, Golden Pipes) - keep as heard.
-- **Vinny App** / Vinny token - product + token spelling unconfirmed (heard "Vinny" / "VINI").
+- **Vini App** / Vini token - product + token spelling unconfirmed (heard "Vini" / "VINI").
 - **Justin (AHN.eth)** and his project ("Quiddle" / "Quiddy") - spelling unconfirmed.
 - **Dave Bachinsky** (kickflip world record, POIDH bounty) - spelling best-effort.
 - **Cashless Man** and **Royal Aid** - Farcaster Batches Thursday workshop builders; spelling unconfirmed.
