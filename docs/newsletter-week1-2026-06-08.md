@@ -10,20 +10,25 @@
 
 ## STATUS - what's ready vs what's needed before sending
 
+Week 1 actual lineup (corrected): **Jun 1** three sessions, **Jun 3** the Farcaster Batches
+showcase, **Jun 6** the fireside. Ohnahji (Jun 2) was moved - dropped from this recap.
+
 ### Ready now
 - [x] Recap copy written (block below), in the established voice.
-- [x] 3 sessions fully recorded + on the site (watch page + YouTube + transcript):
+- [x] Day 1 - 3 sessions fully recorded + on the site (watch page + YouTube + transcript):
   - Empire Builder V3 - yerbearserker - https://zabalgamez.com/recordings/1 (YouTube: https://youtu.be/Ej7Wm-v6WXo)
   - Empire Builder Part 2 - yerbearserker - https://zabalgamez.com/recordings/2 (YouTube: https://youtu.be/RXYTCHRh_rY)
   - Bonfire + the ZABAL Bonfire bot - Joshua.eth + Plat0x - https://zabalgamez.com/recordings/3 (YouTube: https://youtu.be/3jKfYdOYxSw)
+- [x] Day 3 - Farcaster Batches showcase has a page + transcript + the five-builder lineup: https://zabalgamez.com/farcaster-batches
+- [x] Day 6 - Fireside has a page + transcript: https://zabalgamez.com/recordings/fireside/1
 - [x] Recordings hub + recaps page live to link: https://zabalgamez.com/recordings , https://zabalgamez.com/recaps
 
 ### NEEDED before sending (gaps)
-- [ ] **Ohnahji (Jun 2, creator track)** - only a Luma recording (https://luma.com/xa3bsp21). NEED: the YouTube link so it sits next to the others. (Then I build /recordings/4.) Until then the recap links to the recaps page.
-- [ ] **Cassie (Jun 3, Farcaster protocol)** - this was announced for Day 3 but is NOT in our recaps. CONFIRM: did it run? If yes, NEED the recording link + I add the recap entry + a line in the newsletter.
-- [ ] **Any Jun 4 / Jun 5 sessions?** - we have nothing logged for those days. CONFIRM there were none (or send links).
-- [ ] **Fireside (Jun 6, Carlos/Plat0x)** - page + transcript live (https://zabalgamez.com/recordings/fireside/1) but NO replay link. NEED: the X Space replay or YouTube link to add the player.
-- [ ] **X posts to embed** - send the post URLs you want embedded (see the list at the bottom). Paste each into Paragraph on its own line where marked.
+- [ ] **Farcaster Batches (Jun 3)** - page + transcript are up, but no video link. NEED: the recording (YouTube / X Space) to add a player, OR we ship it transcript-only.
+- [ ] **Fireside (Jun 6)** - page + transcript up, no replay. NEED: the X Space or YouTube link.
+- [ ] **Ohnahji on the live site** - it moved, but it's still listed as a recorded session on /recaps + /recordings (with a Luma link). DECISION: pull it from those pages (so the newsletter links stay accurate), or leave it? Tell me and I'll scrub it.
+- [ ] **Jun 4 / Jun 5** - nothing logged. Confirm there were no sessions (then we're complete).
+- [ ] **X posts to embed** - send the post URLs (see list at bottom).
 - [ ] **Subject line + send** - confirm the Paragraph subject + publish to paragraph.com/@thezao.
 
 ---
@@ -39,11 +44,11 @@ Day 1 we went big. yerbearserker opened the whole season on Empire Builder - lea
 
 [X EMBED: the Day 1 / launch post goes here]
 
-Day 2, Ohnahji opened the creator track and got honest about the stream - how he started, how he found his people, how you grow an audience while you are still building everything else. Consistency over polish. Show up, and the room fills.
+Midweek we took the show on the road. I spent Day 3 on GM Farcaster's Farcaster Batches with five builders shipping in and around Farcaster - yerbearserker on going from dream to empire, AZ Flynn on Defense of the Agents, Cashless Man on Booster, Duckfax on Celebration Hub, and more. Builder to builder, no hype, just people showing their work. We captured the whole thing. Full lineup and transcript: https://zabalgamez.com/farcaster-batches
 
-Then on Friday we ran our first fireside. I sat down with Carlos (Plat0x), the developer behind Bonfires, and it turned into half working session, half vibe-coding masterclass. Plan, then goal. Diagram Bob and Alice before you write a line of code. Types first. Documentation that reproduces the code one to one. If you are on the builder track, this one is gold.
+[X EMBED: a Batches spotlight / quote post goes here]
 
-[X EMBED: a session clip / quote post goes here]
+To close the week we ran our first fireside. I sat down with Carlos (Plat0x), the developer behind Bonfires, and it turned into half working session, half vibe-coding masterclass. Plan, then goal. Diagram Bob and Alice before you write a line of code. Types first. Documentation that reproduces the code one to one. If you are on the builder track, this one is gold.
 
 Miss any of it? Nothing disappears here. Every session is recorded, transcribed, and kept. Watch the whole week on the recordings page: https://zabalgamez.com/recordings
 
@@ -56,26 +61,25 @@ BetterCallZaal from the ZAO Team
 
 ---
 
-## THE WEEK'S LIBRARY (for the recordings section, if you want it inline)
+## THE WEEK'S LIBRARY (for an inline recordings section, if you want it)
 
-| Session | Track | Watch | Transcript |
+| Session | Day | Watch | Status |
 |---|---|---|---|
-| Empire Builder V3 - yerbearserker | builder | https://zabalgamez.com/recordings/1 | in repo |
-| Empire Builder Part 2 - yerbearserker | builder | https://zabalgamez.com/recordings/2 | in repo |
-| Bonfire + the ZABAL Bonfire bot - Joshua.eth + Plat0x | builder | https://zabalgamez.com/recordings/3 | in repo |
-| Starting + growing your livestream - Ohnahji | creator | https://luma.com/xa3bsp21 (NEED YouTube) | - |
-| Cassie - Farcaster protocol (CONFIRM it ran) | builder | NEED link | - |
-| Fireside: Bonfires + vibe-coding - Carlos (Plat0x) | builder | https://zabalgamez.com/recordings/fireside/1 (NEED replay) | in repo |
+| Empire Builder V3 - yerbearserker | Jun 1 | https://zabalgamez.com/recordings/1 | ready |
+| Empire Builder Part 2 - yerbearserker | Jun 1 | https://zabalgamez.com/recordings/2 | ready |
+| Bonfire + the ZABAL Bonfire bot - Joshua.eth + Plat0x | Jun 1 | https://zabalgamez.com/recordings/3 | ready |
+| Farcaster Batches showcase (5 builders) | Jun 3 | https://zabalgamez.com/farcaster-batches | page + transcript, NEED video |
+| Fireside: Bonfires + vibe-coding - Carlos (Plat0x) | Jun 6 | https://zabalgamez.com/recordings/fireside/1 | page + transcript, NEED replay |
 
 ---
 
 ## X POSTS TO EMBED - send me the URLs
 
-Paragraph auto-embeds an X post when you paste its URL on its own line. Tell me which to use
-(send the full https://x.com/.../status/... links) and where they go:
+Paragraph auto-embeds an X post when you paste its URL on its own line. Send the full
+https://x.com/.../status/... links and I'll slot them:
 
 1. Launch / Day 1 post (top of the recap).
-2. A standout session clip or quote post (mid-recap).
-3. Optional: the fireside clip, or a guest's own post (yerbearserker, Bonfire, Ohnahji).
+2. A Farcaster Batches spotlight or quote post (midweek).
+3. Optional: a fireside clip, or a guest's own post.
 
-Known accounts to pull from: @bettercallzaal, @bonfiresai, @at0x_eth, @hurric4n3ike, @zaofestivals, @WaveWarZ.
+Known accounts to pull from: @bettercallzaal, @bonfiresai, @at0x_eth, @zaofestivals, @WaveWarZ.
