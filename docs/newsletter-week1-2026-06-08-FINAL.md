@@ -2,7 +2,7 @@
 
 > Copy-paste ready for Paragraph (paragraph.com/@thezao). Subject below, then the body.
 > Detailed weekly-recap version, researched from the session transcripts/recaps and the live
-> pages. The three x.com lines auto-embed in Paragraph (leave them on their own lines). Greeting
+> pages. The x.com lines auto-embed in Paragraph (leave them on their own lines). Greeting
 > is set for a Sunday send (GM ZM). Brand: no emojis, no em dashes.
 
 ## Subject (pick one)
@@ -18,6 +18,8 @@ GM ZM, and happy Sunday in the Year of the ZABAL.
 
 Week one is in the books, and what a start. We said ZABAL Gamez would be three months of building in public with The ZAO, and week one we hit Start. Here is the whole week - every session, every builder, every link - because nothing here disappears. It is all recorded, transcribed, and kept.
 
+https://x.com/bettercallzaal/status/2061236082377990180
+
 New here? ZABAL Gamez is The ZAO's three-month build event. June is workshop month, July is the open build, August is the Finals. It is free, open to anyone, and you can bring any harness. Three tracks, pick your lane: artist (musical or visual), builder (developer or aspiring), creator (media and distribution). What you walk away with: a shipped product that gets used, income that keeps flowing, proof you can show, and a crew, not a leaderboard. The build is the application. Start here: https://zabalgamez.com/info
 
 ## Day 1 - we hit Start
@@ -32,7 +34,7 @@ Then Joshua and Plat0x took us into Bonfire and the ZABAL Bonfire bot. Bonfire i
 
 ## Day 2 - the creator track opens
 
-Ohnahji opened the creator track with how to start and grow your own livestream - how he found his people and built an audience while building everything else. The lesson: consistency beats production value, you grow by showing up. Watch: https://luma.com/xa3bsp21
+Ohnahji opened the creator track with how to start and grow your own livestream - how he found his people and built an audience while building everything else. The lesson: consistency beats production value, you grow by showing up. Watch and read: https://zabalgamez.com/recordings/4
 
 ## All week - Farcaster Batches, with GM Farcaster
 
@@ -70,6 +72,16 @@ Missing a session live should never mean missing the knowledge. So this week we 
 - The data streams feed - the full chronological record across the workshops, Farcaster Batches, the agentic bootcamp, and BCZ YapZ: https://zabalgamez.com/streams
 - Ask the ZABAL Bonfire - put a question to the whole record and get an answer from the memory layer the season runs on: https://zabalgamez.com/graph
 - The Dream Leads board - the builders we would love to see teach. Nominate someone, or vote one up: https://zabalgamez.com/dream-leads
+
+## Next week - the schedule keeps rolling
+
+Three more sessions, free and recorded:
+
+- Tue Jun 9, 5pm EST - Jose Cabrera opens the artist track: owning your music as an independent artist. RSVP: https://luma.com/nxfm7edg
+- Wed Jun 10, 7:30pm EST - Will T
+- Fri Jun 12, 6pm EST - Adam Miller
+
+And I am presenting ZABAL Gamez at the WIP meetup on Thursday Jun 11, 3pm EST. More workshops are landing all month - the full schedule: https://zabalgamez.com/#schedule
 
 ## What is next - July is the open build
 
