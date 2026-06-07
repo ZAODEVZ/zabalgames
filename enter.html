@@ -42,6 +42,12 @@
     .enter-msg.ok { color: var(--cyan); }
     .enter-msg.err { color: var(--orange); }
     .enter-btn[disabled] { opacity: 0.55; cursor: default; }
+    .builds-count { font-weight: 400; color: var(--text-dim); font-size: 0.9rem; margin-left: 0.5rem; }
+    .builds-list { display: grid; gap: 8px; margin-top: 0.8rem; }
+    .build-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.6rem; border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 8px; background: var(--surface-2); padding: 0.6rem 0.85rem; }
+    .build-row a { color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+    .build-row .by { color: var(--text-dim); font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; }
+    .builds-empty { color: var(--text-muted); font-size: 0.9rem; }
   </style>
 </head>
 <body>
@@ -117,6 +123,41 @@
       Two ways to start if you have not yet: <a href="/projects.html">adopt a started ZAO project</a> from the maturity-sorted list, or <a href="/llms.txt">load the context file</a> into your harness and find the gap that wants filling. New to building for the ecosystem? The <a href="/playbook.html">Builder Playbook</a> walks the tracks, the rails you build on, and the July bar. Full details on the season are in <a href="/info.html">All the Details</a>.
     </p>
   </section>
+
+  <section class="section">
+    <h2>Building in public <span class="builds-count" id="builds-count"></span></h2>
+    <p>Every registered build shows up here - the repos people are shipping for the ecosystem this season. Register above and yours joins the board.</p>
+    <div class="builds-list" id="builds-list">
+      <p class="builds-empty">Loading...</p>
+    </div>
+  </section>
+
+  <script>
+  // Public "building in public" board - reads the registry via /api/builds.
+  (function() {
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    var listEl = document.getElementById('builds-list');
+    var countEl = document.getElementById('builds-count');
+    if (!listEl) return;
+    fetch('/api/builds', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var builds = (d && d.builds) || [];
+        if (!builds.length) {
+          listEl.innerHTML = '<p class="builds-empty">No builds registered yet - in July, yours shows up here the moment you register.</p>';
+          return;
+        }
+        if (countEl) countEl.textContent = d.count + ' build' + (d.count === 1 ? '' : 's') + ' from ' + d.builders + ' builder' + (d.builders === 1 ? '' : 's');
+        listEl.innerHTML = builds.map(function (b) {
+          return '<div class="build-row"><a href="https://github.com/' + esc(b.repo) + '" target="_blank" rel="noopener">' + esc(b.repo) + '</a>' +
+            '<span class="by">by ' + esc(b.wallet) + '</span></div>';
+        }).join('');
+      })
+      .catch(function () {
+        listEl.innerHTML = '<p class="builds-empty">Builds board unavailable right now.</p>';
+      });
+  })();
+  </script>
 
   <script>
   (function() {

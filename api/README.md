@@ -115,6 +115,15 @@ call after pushing work to GitHub.
   { wallet -> fid } for the optional link. Returns
   `{ ok: true, wallet, github_repo, repos, fid, count }`. Never touches Bonfire.
 
+### `GET /api/builds`
+Public read side of the registry - the "building in public" board (`/enter`). Reads
+`zabal:builds` (+ the optional `zabal:builds:fid` link) and flattens it to a list.
+Never writes, never touches Bonfire; the repos are public GitHub anyway.
+
+- Returns `{ configured, builders, count, builds: [{ repo, owner, wallet, fid }] }`
+  (`builders` = distinct wallets, `count` = total repos; `wallet` shortened). No-ops
+  to `{ configured:false, builds:[] }` when KV is absent.
+
 ### `GET /api/commit-watcher` (cron)
 The scheduled push side of doc 784. Reads `zabal:builds`, checks each public repo
 for new commits, and pushes them to the Bonfire knowledge graph as episodes. This
