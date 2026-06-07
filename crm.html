@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>People - ZABAL Gamez Season 1</title>
-  <meta name="description" content="The ZABAL Gamez people directory - everyone who has led a workshop, presented, built, or been nominated this season, and what they were in for. Find their profiles and handles.">
+  <meta name="description" content="The ZABAL Gamez people directory - everyone who has led a workshop, presented, built, or been nominated this season, plus the live players board of everyone who has joined, shared, and shown up. Find their profiles and handles.">
   <link rel="canonical" href="https://zabalgamez.com/crm">
   <meta property="og:title" content="People - ZABAL Gamez">
-  <meta property="og:description" content="Everyone in the ZABAL Gamez orbit - workshop leads, builders, dream leads, mentors - and what they were in for.">
+  <meta property="og:description" content="Everyone in the ZABAL Gamez orbit - workshop leads, builders, dream leads, mentors - and the live players board of everyone showing up this season.">
   <meta property="og:url" content="https://zabalgamez.com/crm">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -22,11 +22,24 @@
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
   <style>
-    .crm-controls { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin: 0.6rem 0 1.2rem; }
+    .crm-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.6rem; margin: 0.4rem 0 1.1rem; }
+    .crm-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.7rem 0.8rem; }
+    .crm-stat b { display: block; font-family: 'Syne', sans-serif; font-size: 1.45rem; line-height: 1; color: var(--text); }
+    .crm-stat span { display: block; font-size: 0.68rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim); margin-top: 0.3rem; }
+    .crm-stat.live b { color: var(--zabal); }
+    .crm-tabs { display: flex; gap: 0.4rem; border-bottom: 1px solid var(--border); margin: 0 0 1rem; }
+    .crm-tab { background: none; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); font: inherit; font-weight: 600; font-size: 0.92rem; padding: 0.5rem 0.3rem; margin-bottom: -1px; cursor: pointer; }
+    .crm-tab.active { color: var(--text); border-bottom-color: var(--zabal); }
+    .crm-tab .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--zabal); margin-left: 0.35rem; vertical-align: middle; }
+    .crm-controls { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin: 0.2rem 0 0.6rem; }
     .crm-search { flex: 1; min-width: 200px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.55rem 0.8rem; color: var(--text); font: inherit; font-size: 0.9rem; }
-    .crm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .crm-filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 0.9rem; }
+    .crm-filter-label { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim); margin-right: 0.1rem; }
     .crm-chip { font-size: 0.75rem; padding: 0.3rem 0.7rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-muted); cursor: pointer; }
     .crm-chip.active { border-color: var(--zabal); color: var(--text); }
+    .crm-chip.t-artist.active { border-color: var(--pink); color: var(--pink); }
+    .crm-chip.t-builder.active { border-color: var(--zabal); color: var(--zabal); }
+    .crm-chip.t-creator.active { border-color: var(--cyan); color: var(--cyan); }
     .crm-count { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
     .crm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.9rem; }
     .crm-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--border); border-radius: 10px; padding: 0.95rem 1rem; }
@@ -41,6 +54,17 @@
     .crm-links { display: flex; flex-wrap: wrap; gap: 0.6rem; font-size: 0.78rem; }
     .crm-links a { color: var(--cyan); text-decoration: none; }
     .crm-links a:hover { text-decoration: underline; }
+    .crm-note { color: var(--text-muted); font-size: 0.86rem; margin: 0 0 1rem; line-height: 1.5; }
+    .player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.7rem; }
+    .player-card { display: flex; align-items: center; gap: 0.65rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 0.8rem; }
+    .player-rank { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); min-width: 1.8rem; }
+    .player-card.top .player-rank { color: var(--zabal); font-weight: 600; }
+    .player-pfp { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: var(--surface-2); flex-shrink: 0; }
+    .player-meta { min-width: 0; flex: 1; }
+    .player-meta a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .player-meta a:hover { color: var(--zabal); }
+    .player-score { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
+    [hidden] { display: none !important; }
   </style>
 </head>
 <body>
@@ -65,19 +89,37 @@
     <div class="hero-eyebrow">The people</div>
     <h1>Everyone in the <span class="accent">ZABAL Gamez</span> orbit.</h1>
     <p class="hero-sub">
-      The directory of who has led a workshop, presented, built, mentored, or been nominated this season - and what they were in for. Search, filter, and find their profiles and handles. Generated from the season's record.
+      Two angles on the season's people. The Roster is everyone who led a workshop, presented, built, mentored, or was nominated, and what they were in for. The Players board is live: everyone earning points by joining, sharing, and showing up. Search, filter, and find their profiles and handles.
     </p>
   </header>
 
-  <div class="crm-controls">
-    <input id="crm-search" class="crm-search" type="search" placeholder="Search people, projects, handles..." aria-label="Search people">
-    <div class="crm-chips" id="crm-chips"></div>
-    <span class="crm-count" id="crm-count"></span>
+  <div class="crm-stats" id="crm-stats" aria-label="Season at a glance"></div>
+
+  <div class="crm-tabs" role="tablist">
+    <button class="crm-tab active" data-view="roster" role="tab" aria-selected="true">The Roster</button>
+    <button class="crm-tab" data-view="players" role="tab" aria-selected="false">The Players<span class="dot" aria-hidden="true"></span></button>
   </div>
 
-  <div class="crm-grid" id="crm-grid">
-    <p style="color: var(--text-muted); font-size: 0.9rem;">Loading the directory. Or read it directly: <a href="/data/crm.json">/data/crm.json</a>.</p>
-  </div>
+  <section id="view-roster">
+    <div class="crm-controls">
+      <input id="crm-search" class="crm-search" type="search" placeholder="Search people, projects, handles..." aria-label="Search people">
+      <span class="crm-count" id="crm-count"></span>
+    </div>
+    <div class="crm-filters" id="crm-roles" aria-label="Filter by role"></div>
+    <div class="crm-filters" id="crm-tracks" aria-label="Filter by track"></div>
+    <div class="crm-grid" id="crm-grid">
+      <p style="color: var(--text-muted); font-size: 0.9rem;">Loading the roster. Or read it directly: <a href="/data/crm.json">/data/crm.json</a>.</p>
+    </div>
+  </section>
+
+  <section id="view-players" hidden>
+    <p class="crm-note">
+      The live players board. Everyone earning points this season by joining a workshop, sharing, or casting through the Mini App. It is the same activity that feeds the <a href="/leaderboard">leaderboard</a>. Get on it: <a href="/#schedule">join a session</a> or <a href="/share.html">share the season</a>.
+    </p>
+    <div class="player-grid" id="players-grid">
+      <p style="color: var(--text-muted); font-size: 0.9rem;">Loading the players board.</p>
+    </div>
+  </section>
 
 </div>
 </main>
@@ -96,6 +138,7 @@
       <a href="/streams.html">Streams</a>
       <a href="/farcaster-batches.html">Farcaster Batches</a>
       <a href="/crm">People</a>
+      <a href="/leaderboard.html">Leaderboard</a>
       <a href="/graph.html">ZAO Graph</a>
     </nav>
     <nav class="arcade-foot-col" aria-label="Connect">
@@ -115,14 +158,50 @@
 <script>
 (function () {
   var grid = document.getElementById('crm-grid');
-  var chipsEl = document.getElementById('crm-chips');
+  var rolesEl = document.getElementById('crm-roles');
+  var tracksEl = document.getElementById('crm-tracks');
   var searchEl = document.getElementById('crm-search');
   var countEl = document.getElementById('crm-count');
+  var statsEl = document.getElementById('crm-stats');
+  var playersGrid = document.getElementById('players-grid');
   if (!grid) return;
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   var TRACKCOLOR = { artist: 'pink', builder: 'zabal', creator: 'cyan' };
-  var ALL = [], activeRole = 'All', q = '';
+  var ALL = [], activeRole = 'All', activeTrack = 'All', q = '';
 
+  // --- view tabs ---
+  var playersLoaded = false;
+  document.querySelectorAll('.crm-tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var view = tab.getAttribute('data-view');
+      document.querySelectorAll('.crm-tab').forEach(function (t) {
+        var on = t === tab;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      document.getElementById('view-roster').hidden = view !== 'roster';
+      document.getElementById('view-players').hidden = view !== 'players';
+      if (view === 'players' && !playersLoaded) loadPlayers();
+    });
+  });
+
+  // --- stats ---
+  function renderStats(players) {
+    var by = {};
+    ALL.forEach(function (p) { (p.roles || []).forEach(function (r) { by[r] = (by[r] || 0) + 1; }); });
+    var cells = [
+      ['People', ALL.length, false],
+      ['Workshop leads', by['Workshop lead'] || 0, false],
+      ['Batches builders', by['Batches builder'] || 0, false],
+      ['Dream leads', by['Dream lead'] || 0, false],
+    ];
+    if (players != null) cells.push(['On the board', players, true]);
+    statsEl.innerHTML = cells.map(function (c) {
+      return '<div class="crm-stat' + (c[2] ? ' live' : '') + '"><b>' + c[1] + '</b><span>' + esc(c[0]) + '</span></div>';
+    }).join('');
+  }
+
+  // --- roster ---
   function card(p) {
     var profile = p.profile_url || (p.farcaster ? 'https://farcaster.xyz/' + p.farcaster : (p.x ? 'https://x.com/' + p.x : null));
     var nameHtml = profile ? '<a href="' + esc(profile) + '"' + (/^https?:/.test(profile) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(p.name) + '</a>' : esc(p.name);
@@ -146,6 +225,7 @@
   function render() {
     var list = ALL.filter(function (p) {
       if (activeRole !== 'All' && !(p.roles || []).includes(activeRole)) return false;
+      if (activeTrack !== 'All' && p.track !== activeTrack) return false;
       if (!q) return true;
       var hay = (p.name + ' ' + (p.roles || []).join(' ') + ' ' + (p.involvement || []).join(' ') + ' ' + p.farcaster + ' ' + p.x).toLowerCase();
       return hay.indexOf(q) !== -1;
@@ -154,22 +234,63 @@
     grid.innerHTML = list.length ? list.map(card).join('') : '<p style="color:var(--text-muted);font-size:0.9rem;">No one matches that.</p>';
   }
 
+  // --- players (live leaderboard) ---
+  function loadPlayers() {
+    playersLoaded = true;
+    fetch('/api/leaderboard?format=full', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (rows) {
+        if (!Array.isArray(rows) || !rows.length) {
+          playersGrid.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No one is on the board yet. <a href="/#schedule">Join a session</a> or <a href="/share.html">share the season</a> to be first.</p>';
+          return;
+        }
+        playersGrid.innerHTML = rows.map(function (p, i) {
+          var name = p.username ? '@' + p.username : ('fid ' + p.fid);
+          var href = p.username ? 'https://farcaster.xyz/' + p.username : null;
+          var nameHtml = href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener">' + esc(name) + '</a>' : '<span>' + esc(name) + '</span>';
+          var pfp = p.pfpUrl ? '<img class="player-pfp" src="' + esc(p.pfpUrl) + '" alt="" loading="lazy">' : '<div class="player-pfp"></div>';
+          var pts = (p.score != null ? p.score : 0) + ' pts';
+          return '<div class="player-card' + (i < 3 ? ' top' : '') + '">' +
+            '<span class="player-rank">#' + (i + 1) + '</span>' + pfp +
+            '<div class="player-meta">' + nameHtml + '<span class="player-score">' + esc(pts) + '</span></div>' +
+          '</div>';
+        }).join('');
+        renderStats(rows.length);
+      })
+      .catch(function () {
+        playersGrid.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">The board is unavailable right now. See the full <a href="/leaderboard">leaderboard</a>.</p>';
+      });
+  }
+
   fetch('/data/crm.json', { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (d) {
       ALL = d.people || [];
+      renderStats(null);
+      // role chips, most common first
       var roles = {};
       ALL.forEach(function (p) { (p.roles || []).forEach(function (r) { roles[r] = (roles[r] || 0) + 1; }); });
       var order = ['All'].concat(Object.keys(roles).sort(function (a, b) { return roles[b] - roles[a]; }));
-      chipsEl.innerHTML = order.map(function (r) { return '<button class="crm-chip' + (r === 'All' ? ' active' : '') + '" data-role="' + esc(r) + '">' + esc(r) + '</button>'; }).join('');
-      chipsEl.addEventListener('click', function (ev) {
+      rolesEl.innerHTML = '<span class="crm-filter-label">Role</span>' + order.map(function (r) { return '<button class="crm-chip' + (r === 'All' ? ' active' : '') + '" data-role="' + esc(r) + '">' + esc(r) + '</button>'; }).join('');
+      rolesEl.addEventListener('click', function (ev) {
         var b = ev.target.closest('.crm-chip'); if (!b) return;
         activeRole = b.getAttribute('data-role');
-        chipsEl.querySelectorAll('.crm-chip').forEach(function (c) { c.classList.toggle('active', c === b); });
+        rolesEl.querySelectorAll('.crm-chip').forEach(function (c) { c.classList.toggle('active', c === b); });
+        render();
+      });
+      // track chips
+      var tracks = ['All', 'artist', 'builder', 'creator'];
+      tracksEl.innerHTML = '<span class="crm-filter-label">Track</span>' + tracks.map(function (t) { return '<button class="crm-chip t-' + esc(t) + (t === 'All' ? ' active' : '') + '" data-track="' + esc(t) + '">' + esc(t) + '</button>'; }).join('');
+      tracksEl.addEventListener('click', function (ev) {
+        var b = ev.target.closest('.crm-chip'); if (!b) return;
+        activeTrack = b.getAttribute('data-track');
+        tracksEl.querySelectorAll('.crm-chip').forEach(function (c) { c.classList.toggle('active', c === b); });
         render();
       });
       searchEl.addEventListener('input', function () { q = searchEl.value.toLowerCase().trim(); render(); });
       render();
+      // warm the players count in the stats strip without switching tabs
+      loadPlayers();
     })
     .catch(function () { /* keep fallback */ });
 })();
