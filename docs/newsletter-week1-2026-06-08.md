@@ -44,7 +44,7 @@ Day 1 we went big. yerbearserker opened the whole season on Empire Builder - lea
 
 (Optional: drop your own Day 1 launch cast here.)
 
-All week we were also part of GM Farcaster's Farcaster Batches - a builder showcase organized by JubJub, hosted by Adriene and Nounish Prof, with Adrian (diviflyy) co-hosting. Five days of builders showing their work: Vinny App, POIDH, Juke, Founder Check, Defense of the Agents, Booster, Celebration Hub, DEKEY, POWER, Betterment, Runner, and more. On Day 3 I got to bring ZABAL Gamez to the room. GM Farcaster ran the whole week and hosts every episode publicly - go watch the videos on their site. We added a summary and full transcript for each day so it stays searchable. Read the whole week: https://zabalgamez.com/farcaster-batches
+All week we were also part of GM Farcaster's Farcaster Batches - a builder showcase organized by JubJub, hosted by GM Farcaster (Adriene and Nounish Prof). Five days of builders showing their work: Vini App, POIDH, Juke, Founder Check, Defense of the Agents, Booster, Celebration Hub, DEKEY, POWER, betrmint, Runner, and more. On Day 3 I got to bring ZABAL Gamez to the room. GM Farcaster ran the whole week and hosts every episode publicly - go watch the videos on their site. We added a summary and full transcript for each day so it stays searchable. Read the whole week: https://zabalgamez.com/farcaster-batches
 
 https://x.com/gmfarcaster/status/2060477182959354002
 

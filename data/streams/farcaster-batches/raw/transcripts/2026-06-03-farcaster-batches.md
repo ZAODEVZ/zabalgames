@@ -9,7 +9,6 @@ guests:
   - Cashless Man (Booster)
   - Duckfax (Celebration Hub)
 host: Adriene and Nounish Prof (GM Farcaster)
-co_host: Adrian (diviflyy) - co-founder, Empire Builder
 organizer: JubJub
 date: 2026-06-03T00:00:00.000Z
 format: audio-space-showcase
@@ -54,7 +53,7 @@ entities:
     - Defense of the Agents
     - Booster
     - Celebration Hub
-    - Vinny App
+    - Vini App
     - Joysender
 source: GM Farcaster (Restream / X Space), captured by ZABAL Gamez
 video: https://www.gmfarcaster.com/episodes/Batches3
@@ -66,7 +65,7 @@ note: Raw auto-transcript, lightly processed. Crosstalk and filler preserved for
 Part of GM Farcaster's week-long Farcaster Batches. Day 1 was a builder-showcase Space,
 Day 2 was a workshop with Jonathan Colton, and Day 3 (this session) brought six builders to
 talk about what they are building in and around Farcaster. Hosted by Adriene and Nounish Prof,
-co-hosted by Adrian (diviflyy), organized by JubJub.
+organized by JubJub.
 
 ## Builders in this session
 
@@ -81,7 +80,7 @@ co-hosted by Adrian (diviflyy), organized by JubJub.
   option. An integrity-first message: not here to tell you to launch a token, here to help you
   build something wonderful and only reach for a token when it actually helps. Ran a Yerba Mate
   NFT collab with AZ Flynn and a holder leaderboard dropping BLNKER to holders, and put $250
-  toward the Vinny App buildathon for builds that use Empire.
+  toward the Vini App buildathon for builds that use Empire.
 - **AZ Flynn - Defense of the Agents.** A casual idle MOBA (humans vs orcs): pick a lane, your
   hero auto-attacks, level up skills. A strong, daily Farcaster mini-app community driving
   strategy and features. Collabs with betrmint (Ring of Regen $1 mint) and yerbearserker
@@ -100,7 +99,7 @@ co-hosted by Adrian (diviflyy), organized by JubJub.
 
 ## Also surfaced
 
-- The Vinny App buildathon (the "Vinnie-athon") runs through June 5.
+- The Vini App buildathon (the "Vinnie-athon") runs through June 5.
 - FarHack is where the ZABAL Gamez prize money originated (Zlanked Online, Snaps category).
 - Zaal's goal: capture transcripts from ZABAL Gamez, Farcaster Batches, and the agentic
   bootcamp in one place for anyone to query with their LLM.
