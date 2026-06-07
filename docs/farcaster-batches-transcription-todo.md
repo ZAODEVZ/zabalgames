@@ -37,7 +37,7 @@ There is no Batches4 (Jun 4 was Spaces-only workshops with Royal Aid + Cashless 
 - **Batches2 / Jun 2:** Founder Check workshop - Jonathan Colton walks Kenny (POIDH) through it live.
 - **Batches3 / Jun 3:** ZABAL Gamez / The ZAO (Zaal), Empire Builder (yerbearserker + diviflyy),
   Defense of the Agents (AZ Flynn), Booster (Cashless Man), Celebration Hub (Duckfax).
-- **Batches5 / Jun 5:** DEKEY (Node), POWER (Max / baseddesigner.eth), Betterment (Toady Hawk),
+- **Batches5 / Jun 5:** DEKEY (Node), POWER (Max / baseddesigner.eth), betrmint (Toady Hawk),
   Runner (Darko).
 
 ## Remaining (the only open items)
