@@ -25,7 +25,7 @@ You are the ZABAL Bonfire. Your last Week 1 recap was wrong - you invented peopl
 
 Ground truth for ZABAL Gamez Week 1 (June 1-7, 2026), the only sessions that happened:
 - Jun 1: Empire Builder V3, led by yerbearserker (NOT Adrian). Then Empire Builder Part 2, a live tokenless-Empire build, also yerbearserker. Then Bonfire and the ZABAL Bonfire bot, led by Joshua.eth and Plat0x.
-- Jun 1-5: GM Farcaster's Farcaster Batches (organized by JubJub; hosted by Adriene and Nounish Prof; co-hosted by Adrian / diviflyy). Day 1: Vinny App (Chris Dolinsky), POIDH (Kenny), Juke (Nikki Sapp), Founder Check + Fotocaster (Jonathan Colton), Dr. Deeks. Day 2: a live Founder Check workshop (Jonathan Colton + Kenny). Day 3: ZABAL Gamez (Zaal), Empire Builder (yerbearserker), Defense of the Agents (AZ Flynn), Booster (Cashless Man), Celebration Hub (Duckfax). Day 5: DEKEY (Node), POWER (Max / baseddesigner.eth), betrmint (Toady Hawk), Runner (Darko).
+- Jun 1-5: GM Farcaster's Farcaster Batches (organized by JubJub; hosted by Adriene and Nounish Prof; co-hosted by Adrian / diviflyy). Day 1: Vini App (Chris Dolinsky), POIDH (Kenny), Juke (Nikki Sapp), Founder Check + Fotocaster (Jonathan Colton), Dr. Deeks. Day 2: a live Founder Check workshop (Jonathan Colton + Kenny). Day 3: ZABAL Gamez (Zaal), Empire Builder (yerbearserker), Defense of the Agents (AZ Flynn), Booster (Cashless Man), Celebration Hub (Duckfax). Day 5: DEKEY (Node), POWER (Max / baseddesigner.eth), betrmint (Toady Hawk), Runner (Darko).
 - Jun 6: a fireside, Zaal with Carlos (Plat0x), on vibe coding.
 
 Do NOT repeat these earlier errors - none of these are real and none appear in our sources:
