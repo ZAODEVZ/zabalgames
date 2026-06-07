@@ -37,7 +37,7 @@ entities:
     - Empire Builder
     - Farcaster
     - Clanker
-    - BetterMint
+    - betrmint
   people:
     - Adriene (GM Farcaster)
     - Nounish Prof (GM Farcaster)
@@ -84,7 +84,7 @@ co-hosted by Adrian (diviflyy), organized by JubJub.
   toward the Vinny App buildathon for builds that use Empire.
 - **AZ Flynn - Defense of the Agents.** A casual idle MOBA (humans vs orcs): pick a lane, your
   hero auto-attacks, level up skills. A strong, daily Farcaster mini-app community driving
-  strategy and features. Collabs with BetterMint (Ring of Regen $1 mint) and yerbearserker
+  strategy and features. Collabs with betrmint (Ring of Regen $1 mint) and yerbearserker
   (Yerba NFT utility). Praises the Farcaster mini-app UX - wallet attached, zero spend friction.
   defenseoftheagents.com.
 - **Cashless Man - Booster.** A permissionless marketplace to boost a cast or earn by boosting
@@ -268,13 +268,13 @@ Super slept on. Super, super slept on. It's a great spot, um, as a dev to make g
 
 It's a very good UX. So I, I hope people really catch up to the, to the technology here. But, um, in terms of future plans, you know, I've got a good, good start here, good base of users, but I do wanna grow it into a more mainstream game. I'm actually thinking of a, a little rebrand to make it more, um, accessible to like normie users, but I really wanna use, you know, what I have now as a jumping point to expand into the mainstream.
 
-Love it. I love how you were using the NFT collabs for extra, like, different power-ups and things within the game. Like, I loved all the, you know, how you're approaching that, where, you know, the ... A lot of times with BetterMint, you know, art for art's sake, which is also great, but it was very cool to see, like, oh, with this particular one, you're actually getting, um, something in this game.
+Love it. I love how you were using the NFT collabs for extra, like, different power-ups and things within the game. Like, I loved all the, you know, how you're approaching that, where, you know, the ... A lot of times with betrmint, you know, art for art's sake, which is also great, but it was very cool to see, like, oh, with this particular one, you're actually getting, um, something in this game.
 
 And I loved that that one NFT can have multiple utility, and so that's been, uh, fun to see how you're approaching that, for sure. Um, and I love that, you know, I really appreciate you, you know, you, you were a little bit newer to building in the Farcaster community, and I love how you div- you dove in, and you really described it well of, like, the sum of these things are slept on, especially for- Hmm
 
 MVP-style things, like the first, first approach of a game or something like that, and finding your early users. It's so much easier to do that, I think, over on Farcaster than, than most places. So awesome. Love it. Adrian, do you have some questions- Yeah ... for Azlynn? You know, um, hey, Azlynn. One of the, um, I think one of, like, the themes that Jubjub had or kind of visions for this week was being able to, um, create a space for people to meet other people in the ecosystem, like find collaborators.
 
-And I love ... It's like you jumped in, and, uh, you, you found people to collaborate with right away. So you're bringing up the BetterMint and your Berserker and Empire and all that. I just wonder if you have any advice for other people for, like, if they're new builders or new to Farcaster, like, how do you go about finding people to collaborate with?
+And I love ... It's like you jumped in, and, uh, you, you found people to collaborate with right away. So you're bringing up the betrmint and your Berserker and Empire and all that. I just wonder if you have any advice for other people for, like, if they're new builders or new to Farcaster, like, how do you go about finding people to collaborate with?
 
 Yeah, that's a good idea. Um, I usually just like DM-- I, I just read the feed and I DM people that I think are cool and are building cool things. But I think, uh, one little tip here is to present them with an interesting idea, um, something useful, something new, something novel, something that excites them. Um, but a simple like, you know, partnership tweet that does nothing is like, it's cool, but like, yeah, it does nothing at the end of the day, right?
 
