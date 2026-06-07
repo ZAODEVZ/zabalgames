@@ -153,13 +153,14 @@
       "id": "012",
       "name": "Jose Cabrera",
       "org": "",
-      "topic": "To be announced",
+      "topic": "Owning your music as an independent artist on Farcaster - releasing, owning your masters and your audience, and turning listeners into a community that pays you directly.",
       "format": "30 min, livestreamed and recorded",
       "when": "Tue Jun 9 2026, 5pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-06-07",
-      "color": "orange",
-      "date": "2026-06-09"
+      "color": "pink",
+      "date": "2026-06-09",
+      "track": "artist"
     },
     {
       "id": "013",
