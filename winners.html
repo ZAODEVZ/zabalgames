@@ -60,7 +60,7 @@
       The Champion commemorative collectible, the largest USDC slices from the pool, the recurring mentor slot in Season 2.
     </p>
 
-    <div class="prize-grid">
+    <div class="prize-grid" id="champions-grid">
       <div class="prize-card first">
         <div class="prize-place">1st</div>
         <div class="prize-amount">USDC + ZABAL</div>
@@ -114,6 +114,7 @@
     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
       $ZABAL token rewards. No USDC, but token-stack stacks with Empire Builder boosters for ongoing distribution.
     </p>
+    <div id="ranks-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.8rem;"></div>
   </section>
 
   <section class="section">
@@ -151,6 +152,53 @@
   </div>
 
 </div>
+
+<script>
+// Render real Finals results from data/finals.json once settled. Until then the
+// hardcoded "Awaiting Finals" placeholders stand (progressive enhancement).
+(function () {
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function nameHtml(f){
+    var label = esc(f.name || f.handle || 'Finalist');
+    var href = f.demo || (f.repo ? 'https://github.com/' + f.repo : '');
+    return href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener" style="color: var(--cyan);">' + label + '</a>' : label;
+  }
+  var ORD = { 1: '1st', 2: '2nd', 3: '3rd' };
+  var PLACE = { 1: 'first', 2: 'second', 3: 'third' };
+  function championCard(f){
+    return '<div class="prize-card ' + (PLACE[f.rank] || '') + '">' +
+      '<div class="prize-place">' + (ORD[f.rank] || (f.rank + 'th')) + '</div>' +
+      '<div class="prize-amount">' + esc(f.prize || 'USDC + ZABAL') + '</div>' +
+      '<h3 style="font-family: \'Syne\', sans-serif; font-weight: 700; font-size: 1rem; margin: 0.5rem 0;">' + nameHtml(f) + '</h3>' +
+      (f.handle ? '<p style="font-size: 0.85rem; color: var(--text-muted);">' + esc(f.handle) + '</p>' : '') +
+    '</div>';
+  }
+  function smallCard(f){
+    return '<div class="card" style="text-align:center;">' +
+      '<div class="card-label" style="color: var(--text-dim);">' + (f.rank + 'th') + '</div>' +
+      '<div style="font-family: Syne, sans-serif; font-size: 1rem; color: var(--gold); margin: 0.3rem 0;">' + esc(f.prize || 'USDC + ZABAL') + '</div>' +
+      '<h3 style="font-family: Syne, sans-serif; font-weight: 700; font-size: 0.95rem; margin: 0.3rem 0;">' + nameHtml(f) + '</h3>' +
+      (f.handle ? '<p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">' + esc(f.handle) + '</p>' : '') +
+    '</div>';
+  }
+  fetch('/data/finals.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var fs = (d && d.finalists) || [];
+      if (!d || !d.settled || !fs.length) return; // keep the placeholders
+      var ranked = fs.slice().sort(function (a, b) { return (a.rank || 99) - (b.rank || 99); });
+      function fill(id, lo, hi, fn) {
+        var rows = ranked.filter(function (f) { return f.rank >= lo && f.rank <= hi; });
+        var el = document.getElementById(id);
+        if (el && rows.length) el.innerHTML = rows.map(fn).join('');
+      }
+      fill('champions-grid', 1, 3, championCard);
+      fill('finishers-grid', 4, 8, smallCard);
+      fill('ranks-grid', 9, 16, smallCard);
+    })
+    .catch(function () { /* keep the placeholders */ });
+})();
+</script>
 
 <footer class="arcade-foot" aria-label="Site directory">
   <div class="arcade-foot-inner">

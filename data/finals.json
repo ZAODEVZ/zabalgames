@@ -1,0 +1,8 @@
+{
+  "season": 1,
+  "_note": "Single source for the August Finals surfaces (/finals, /finals/live, /winners). status: 'pending' (no finalists yet) | 'live' (finalists locked, trading open) | 'settled' (results final). finalists[] stays empty until the set is locked after July; the pages render their built-in 'awaiting Finals' placeholders until then (progressive enhancement). When finalists are added, /finals/live renders the roster and (once settled:true with ranks filled) /winners renders the results. The WaveWarZ-Base market/trade wiring is separate and blocked on the contract addresses. Each finalist: rank (final placement 1..N, or null pre-settlement), name, handle (e.g. @builder), repo (owner/repo), demo (URL), track (artist|builder|creator), prize (e.g. '$150 USDC + $ZABAL'), collectible ('champion'|'finisher').",
+  "status": "pending",
+  "settled": false,
+  "window": { "starts": null, "settles": null },
+  "finalists": []
+}
