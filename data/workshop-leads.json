@@ -148,6 +148,42 @@
       "confirmed_date": "2026-06-01",
       "color": "gold",
       "track": "builder"
+    },
+    {
+      "id": "012",
+      "name": "Jose Cabrera",
+      "org": "",
+      "topic": "To be announced",
+      "format": "30 min, livestreamed and recorded",
+      "when": "Tue Jun 9 2026, 5pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-07",
+      "color": "orange",
+      "date": "2026-06-09"
+    },
+    {
+      "id": "013",
+      "name": "Will T",
+      "org": "",
+      "topic": "To be announced",
+      "format": "30 min, livestreamed and recorded",
+      "when": "Wed Jun 10 2026, 7:30pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-07",
+      "color": "gold",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "014",
+      "name": "Adam Miller",
+      "org": "",
+      "topic": "To be announced",
+      "format": "30 min, livestreamed and recorded",
+      "when": "Fri Jun 12 2026, 6pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-07",
+      "color": "pink",
+      "date": "2026-06-12"
     }
   ],
   "_schema": {
