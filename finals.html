@@ -50,6 +50,12 @@
     </p>
   </header>
 
+  <section class="section" id="shortlist-section" hidden>
+    <h2>The shortlist, forming <span id="shortlist-count" style="font-weight: 400; color: var(--text-dim); font-size: 0.9rem;"></span></h2>
+    <p>How the road to the Finals works: the community upvotes July builds on the <a href="/enter.html">builds board</a>, that shortlists per track, and mentors pick the finalists from the shortlist. These are the mentor picks so far - the set locks here when July closes.</p>
+    <div id="shortlist-list" style="display: grid; gap: 8px; margin-top: 0.8rem;"></div>
+  </section>
+
   <section class="section">
     <h2>Why a market, not a vote</h2>
     <p>
@@ -240,6 +246,35 @@
     <span>zabalgamez.com - built with The ZAO</span>
   </div>
 </footer>
+
+  <script>
+  // Progressive enhancement: show the mentor picks (the forming shortlist) from
+  // /api/finals-picks. Hidden until there is at least one pick; the locked finalist
+  // set still lives in data/finals.json once the Finals settle.
+  (function () {
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    var section = document.getElementById('shortlist-section');
+    var list = document.getElementById('shortlist-list');
+    var countEl = document.getElementById('shortlist-count');
+    if (!section || !list) return;
+    var TRACKCOLOR = { artist: 'pink', builder: 'zabal', creator: 'cyan' };
+    fetch('/api/finals-picks', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var picks = (d && d.picks) || [];
+        if (!picks.length) return; // stay hidden until mentors start picking
+        section.hidden = false;
+        countEl.textContent = picks.length + ' pick' + (picks.length === 1 ? '' : 's') + ' so far';
+        list.innerHTML = picks.map(function (p) {
+          var track = p.track ? '<span style="font-size:0.62rem;letter-spacing:0.05em;text-transform:uppercase;padding:0.05rem 0.45rem;border-radius:999px;border:1px solid var(--' + (TRACKCOLOR[p.track] || 'zabal') + ');color:var(--' + (TRACKCOLOR[p.track] || 'zabal') + ');margin-left:0.5rem;">' + esc(p.track) + '</span>' : '';
+          return '<div style="border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;background:var(--surface-2);padding:0.6rem 0.85rem;">' +
+            '<a href="https://github.com/' + esc(p.repo) + '" target="_blank" rel="noopener" style="color:var(--cyan);font-family:\'JetBrains Mono\',monospace;font-size:0.9rem;">' + esc(p.repo) + '</a>' + track +
+          '</div>';
+        }).join('');
+      })
+      .catch(function () { /* stay hidden on error */ });
+  })();
+  </script>
 
   <script defer src="/_vercel/insights/script.js"></script>
 </body>

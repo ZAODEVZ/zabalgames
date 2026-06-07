@@ -286,6 +286,27 @@ window.ZABAL.dreamVote = async function dreamVote(id) {
   }
 };
 
+// July build +1 (verified). Inside a Mini App, POSTs the vote to /api/build-vote with
+// a Quick Auth JWT - one +1 per FID per repo. Returns { ok, count, reason } so the
+// builds board can update the count or, outside a Mini App, prompt to open in Farcaster.
+window.ZABAL.buildVote = async function buildVote(repo) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/build-vote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ repo }),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    if (data && data.ok) window.ZABAL.haptic('medium');
+    return data && data.ok ? { ok: true, count: data.count, firstVote: data.firstVote } : { ok: false, reason: data.reason || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 // Submit a contribution to the ZABAL Bonfire pending queue (verified). Inside a Mini
 // App, POSTs to /api/bonfire-ask with a Quick Auth JWT; ZOE reviews + promotes it into
 // the canonical graph. Returns { ok, reason } so the form can react or ask the user to

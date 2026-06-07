@@ -40,7 +40,9 @@ const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_UR
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const BUILDS_KEY = 'zabal:builds';
 const FIDS_KEY = 'zabal:builds:fid';
+const TRACK_KEY = 'zabal:builds:track'; // repo -> 'artist'|'builder'|'creator', for per-track judging
 const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
+const TRACKS = new Set(['artist', 'builder', 'creator']);
 
 function json(body, status = 200, origin = '*') {
   return new Response(JSON.stringify(body), {
@@ -136,8 +138,13 @@ export default async function handler(req) {
     return json({ ok: false, reason: 'storage error', detail: e.message }, 502, origin);
   }
 
+  // Optional track for per-track judging. Keyed by repo (not wallet) so each build
+  // carries its own lane. Ignored unless it is one of the three real tracks.
+  const track = TRACKS.has(String(body.track || '').toLowerCase()) ? String(body.track).toLowerCase() : '';
+
   const cmds = [['HSET', BUILDS_KEY, wallet, JSON.stringify(repos)]];
   if (fid) cmds.push(['HSET', FIDS_KEY, wallet, String(fid)]);
+  if (track) cmds.push(['HSET', TRACK_KEY, github_repo, track]);
   cmds.push(['HLEN', BUILDS_KEY]);
 
   let res;

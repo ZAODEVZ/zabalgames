@@ -16,6 +16,8 @@ const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_UR
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const BUILDS_KEY = 'zabal:builds';
 const FIDS_KEY = 'zabal:builds:fid';
+const TRACK_KEY = 'zabal:builds:track';   // repo -> track (written by register.mjs)
+const VOTES_KEY = 'zabal:buildvotes:v1';  // repo -> community vote count (written by build-vote.mjs)
 const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 
 function json(body, status = 200, origin = '*') {
@@ -73,11 +75,16 @@ export default async function handler(req) {
 
   if (!KV_URL || !KV_TOKEN) return json({ configured: false, builders: 0, count: 0, builds: [] }, 200, origin);
 
-  let buildsHash, fidsHash;
+  let buildsHash, fidsHash, trackHash, votesHash;
   try {
-    const res = await kvPipeline([['HGETALL', BUILDS_KEY], ['HGETALL', FIDS_KEY]]);
+    const res = await kvPipeline([
+      ['HGETALL', BUILDS_KEY], ['HGETALL', FIDS_KEY],
+      ['HGETALL', TRACK_KEY], ['HGETALL', VOTES_KEY],
+    ]);
     buildsHash = foldHash(res?.[0]?.result);
     fidsHash = foldHash(res?.[1]?.result);
+    trackHash = foldHash(res?.[2]?.result);
+    votesHash = foldHash(res?.[3]?.result);
   } catch (e) {
     return json({ configured: true, builders: 0, count: 0, builds: [], detail: e.message }, 502, origin);
   }
@@ -86,9 +93,14 @@ export default async function handler(req) {
   for (const wallet of Object.keys(buildsHash)) {
     const fid = fidsHash[wallet] ? Number(fidsHash[wallet]) : null;
     for (const repo of parseRepos(buildsHash[wallet])) {
-      builds.push({ repo, owner: repo.split('/')[0], wallet: shortWallet(wallet), fid });
+      builds.push({
+        repo, owner: repo.split('/')[0], wallet: shortWallet(wallet), fid,
+        track: trackHash[repo] || '', votes: Number(votesHash[repo]) || 0,
+      });
     }
   }
+  // Rank by community votes so the board reads as a shortlist; repo as a stable tiebreak.
+  builds.sort((a, b) => b.votes - a.votes || a.repo.localeCompare(b.repo));
 
   return json({ configured: true, builders: Object.keys(buildsHash).length, count: builds.length, builds }, 200, origin);
 }
