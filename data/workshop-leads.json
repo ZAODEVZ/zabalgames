@@ -167,13 +167,14 @@
       "id": "013",
       "name": "Will T",
       "org": "",
-      "topic": "To be announced",
+      "topic": "Building KFMedia - what he is building, how he is doing it, and the lessons so far.",
       "format": "30 min, livestreamed and recorded",
       "when": "Wed Jun 10 2026, 7:30pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-06-07",
-      "color": "gold",
-      "date": "2026-06-10"
+      "color": "cyan",
+      "date": "2026-06-10",
+      "track": "creator"
     },
     {
       "id": "014",
