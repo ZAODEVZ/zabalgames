@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starting and growing your own livestream - Ohnahji - ZABAL Gamez Season 1</title>
+  <meta name="description" content="ZABAL Gamez Day 2, creator track. Ohnahji (Brian) with Zaal on starting and growing your own livestream - consistency is king, the tools (OBS, Restream, StreamYard), Twitch Streamed Together and raids, building your own bots, API keys and env vars, and streaming opsec. Watch the recording, read the transcript.">
+  <link rel="canonical" href="https://zabalgamez.com/recordings/4">
+  <meta property="og:title" content="Starting and growing your own livestream - Ohnahji - ZABAL Gamez">
+  <meta property="og:description" content="Ohnahji with Zaal on starting and growing a livestream - consistency, the tools, raids, building your own bots, and streaming opsec. The first creator-track session.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://zabalgamez.com/recordings/4">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Starting and growing your own livestream - Ohnahji - ZABAL Gamez">
+  <meta name="twitter:description" content="The first ZABAL Gamez creator-track session: Ohnahji with Zaal on building a livestream.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch the Ohnahji session","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/4","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
+    .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
+    .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
+    .rec-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.9rem 0 0.2rem; }
+    .rec-link { font-size: 0.82rem; padding: 0.34rem 0.75rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); font-family: inherit; cursor: pointer; }
+    .rec-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .rec-link:hover { filter: brightness(1.12); }
+    .rec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 1.3rem 0 0.4rem; }
+    .rec-topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.3rem 0 0; }
+    .rec-topic { font-size: 0.7rem; letter-spacing: 0.02em; padding: 0.14rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-2); }
+    .rec-takeaways { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+    .rec-takeaways li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.6rem;">
+    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / Growing your livestream</div>
+    <h1>Starting and growing your own <span class="accent">livestream</span>.</h1>
+    <p class="rec-by">
+      Ohnahji (Brian), with Zaal <span class="dot">&middot;</span> creator track
+      <span class="dot">&middot;</span> <span class="rec-format">Day 2 - live on Twitch, recorded</span>
+    </p>
+  </header>
+
+  <div class="rec-links">
+    <a class="rec-link primary" href="https://luma.com/xa3bsp21" target="_blank" rel="noopener">Watch the recording on Luma</a>
+    <a class="rec-link" href="https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md" target="_blank" rel="noopener">Read the transcript</a>
+    <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
+    <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
+  </div>
+
+  <section class="section" style="margin-top: 1.4rem;">
+    <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
+      Day 2 of ZABAL Gamez and the first creator-track session. Ohnahji (Brian), co-founder of the Ohnahji community - a 2022 project that grew into "blockchain's first HBCU," a safe space for Black, brown, and allied folks learning emerging tech - joins Zaal on Twitch to talk about starting and growing a livestream. Ohnahji is ~288 days into a 365 daily-stream journey. The throughline: consistency is king. Every tool glitches, the early days are frustrating for everyone, and you only get better by showing up. They cover Twitch's Streamed Together and shared chat for collaborating live, raids as a discovery and gamification tool, building your own chat bots, the builder basics of API keys and environment variables, and streaming opsec - be careful what you screen-share, and when in doubt, slow down.
+    </p>
+
+    <div class="rec-label">Topics</div>
+    <div class="rec-topics">
+      <span class="rec-topic">livestreaming</span>
+      <span class="rec-topic">consistency</span>
+      <span class="rec-topic">Twitch</span>
+      <span class="rec-topic">OBS / Restream / StreamYard</span>
+      <span class="rec-topic">raids</span>
+      <span class="rec-topic">shared chat</span>
+      <span class="rec-topic">building your own bots</span>
+      <span class="rec-topic">API keys + env vars</span>
+      <span class="rec-topic">opsec</span>
+    </div>
+
+    <div class="rec-label">Key takeaways</div>
+    <ul class="rec-takeaways">
+      <li>Consistency is king. Every tool glitches and the first weeks are frustrating for everyone - you only improve by streaming daily and not quitting.</li>
+      <li>Embrace the tech that already works. Web2 distribution (Twitch) still reaches people; bring things on-chain only when on-chain is genuinely better.</li>
+      <li>Twitch Streamed Together / Knock + shared chat lets you collaborate live and merge chats; raids are a powerful community-discovery and gamification tool.</li>
+      <li>Build your own bots and tooling - API keys are account-scoped secrets; keep them in .env files, never published and never on screen.</li>
+      <li>Operational security: double-check what you screen-share, and when in doubt slow down - nine times out of ten rushing is the mistake.</li>
+    </ul>
+  </section>
+
+  <p style="margin-top: 1.4rem; font-size: 0.85rem;"><a href="/recordings">All recordings</a> &nbsp;-&nbsp; <a href="/recaps">Session recaps</a> &nbsp;-&nbsp; <a href="/#schedule">Upcoming schedule</a></p>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/live.html">Live - What's On Now</a>
+      <a href="/lead.html">Lead a Workshop</a>
+      <a href="/mentor.html">Mentor</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/recordings.html">Recordings</a>
+      <a href="/recaps">Session Recaps</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/graph.html">ZAO Graph</a>
+      <a href="/changelog.html">Changelog</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var PAGE_URL = 'https://zabalgamez.com/recordings/4';
+  var TOPICS = [
+    "starting and growing your own livestream",
+    "why consistency is king",
+    "the tools - OBS, Restream, StreamYard - and that they all glitch",
+    "Twitch Streamed Together and merging chats live",
+    "raids as a community-discovery tool",
+    "building your own chat bots",
+    "API keys, env vars, and streaming opsec",
+    "when in doubt, slow down"
+  ];
+  document.querySelectorAll('.rec-watch-share').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!(window.ZABAL && window.ZABAL.share)) return;
+      var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
+      var zaal = platform === 'x' ? '@bettercallzaal' : '@zaal';
+      var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+      var text = "I'm watching ZABAL Gamez with Ohnahji and " + zaal + " on " + topic;
+      window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-4-' + platform });
+    });
+  });
+})();
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
