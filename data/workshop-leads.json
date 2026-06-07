@@ -188,6 +188,19 @@
       "confirmed_date": "2026-06-07",
       "color": "pink",
       "date": "2026-06-12"
+    },
+    {
+      "id": "015",
+      "name": "Zaal",
+      "org": "WIP Meetup",
+      "handle": "@zaal",
+      "topic": "ZABAL Gamez and the projects you can build on - an overview plus a tour of the ecosystem, including ZAO Fractals.",
+      "format": "Live at the WIP meetup, recorded",
+      "when": "Thu Jun 11 2026, 3pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-08",
+      "color": "zabal",
+      "date": "2026-06-11"
     }
   ],
   "_schema": {
