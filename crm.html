@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>People - ZABAL Gamez Season 1</title>
+  <meta name="description" content="The ZABAL Gamez people directory - everyone who has led a workshop, presented, built, or been nominated this season, and what they were in for. Find their profiles and handles.">
+  <link rel="canonical" href="https://zabalgamez.com/crm">
+  <meta property="og:title" content="People - ZABAL Gamez">
+  <meta property="og:description" content="Everyone in the ZABAL Gamez orbit - workshop leads, builders, dream leads, mentors - and what they were in for.">
+  <meta property="og:url" content="https://zabalgamez.com/crm">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"The ZABAL Gamez people","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/crm","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .crm-controls { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin: 0.6rem 0 1.2rem; }
+    .crm-search { flex: 1; min-width: 200px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.55rem 0.8rem; color: var(--text); font: inherit; font-size: 0.9rem; }
+    .crm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .crm-chip { font-size: 0.75rem; padding: 0.3rem 0.7rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-muted); cursor: pointer; }
+    .crm-chip.active { border-color: var(--zabal); color: var(--text); }
+    .crm-count { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
+    .crm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.9rem; }
+    .crm-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--border); border-radius: 10px; padding: 0.95rem 1rem; }
+    .crm-card h3 { font-family: 'Syne', sans-serif; font-size: 1.02rem; margin: 0 0 0.15rem; }
+    .crm-card h3 a { color: var(--text); text-decoration: none; }
+    .crm-card h3 a:hover { color: var(--zabal); }
+    .crm-roles { display: flex; flex-wrap: wrap; gap: 5px; margin: 0.35rem 0; }
+    .crm-role { font-size: 0.65rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--border-hover); color: var(--text-dim); }
+    .crm-track { font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; }
+    .crm-inv { margin: 0.45rem 0 0.5rem; padding-left: 1rem; }
+    .crm-inv li { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.2rem; line-height: 1.45; }
+    .crm-links { display: flex; flex-wrap: wrap; gap: 0.6rem; font-size: 0.78rem; }
+    .crm-links a { color: var(--cyan); text-decoration: none; }
+    .crm-links a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.6rem;">
+    <div class="hero-eyebrow">The people</div>
+    <h1>Everyone in the <span class="accent">ZABAL Gamez</span> orbit.</h1>
+    <p class="hero-sub">
+      The directory of who has led a workshop, presented, built, mentored, or been nominated this season - and what they were in for. Search, filter, and find their profiles and handles. Generated from the season's record.
+    </p>
+  </header>
+
+  <div class="crm-controls">
+    <input id="crm-search" class="crm-search" type="search" placeholder="Search people, projects, handles..." aria-label="Search people">
+    <div class="crm-chips" id="crm-chips"></div>
+    <span class="crm-count" id="crm-count"></span>
+  </div>
+
+  <div class="crm-grid" id="crm-grid">
+    <p style="color: var(--text-muted); font-size: 0.9rem;">Loading the directory. Or read it directly: <a href="/data/crm.json">/data/crm.json</a>.</p>
+  </div>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/recordings.html">Recordings</a>
+      <a href="/recaps">Session Recaps</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/farcaster-batches.html">Farcaster Batches</a>
+      <a href="/crm">People</a>
+      <a href="/graph.html">ZAO Graph</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var grid = document.getElementById('crm-grid');
+  var chipsEl = document.getElementById('crm-chips');
+  var searchEl = document.getElementById('crm-search');
+  var countEl = document.getElementById('crm-count');
+  if (!grid) return;
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  var TRACKCOLOR = { artist: 'pink', builder: 'zabal', creator: 'cyan' };
+  var ALL = [], activeRole = 'All', q = '';
+
+  function card(p) {
+    var profile = p.profile_url || (p.farcaster ? 'https://farcaster.xyz/' + p.farcaster : (p.x ? 'https://x.com/' + p.x : null));
+    var nameHtml = profile ? '<a href="' + esc(profile) + '"' + (/^https?:/.test(profile) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(p.name) + '</a>' : esc(p.name);
+    var roles = (p.roles || []).map(function (r) { return '<span class="crm-role">' + esc(r) + '</span>'; }).join('');
+    var track = p.track ? '<span class="crm-track" style="border:1px solid var(--' + (TRACKCOLOR[p.track] || 'zabal') + ');color:var(--' + (TRACKCOLOR[p.track] || 'zabal') + ');">' + esc(p.track) + '</span>' : '';
+    var inv = (p.involvement || []).map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('');
+    var links = [];
+    if (p.profile_url) links.push('<a href="' + esc(p.profile_url) + '">Profile</a>');
+    if (p.farcaster) links.push('<a href="https://farcaster.xyz/' + esc(p.farcaster) + '" target="_blank" rel="noopener">Farcaster</a>');
+    if (p.x) links.push('<a href="https://x.com/' + esc(p.x) + '" target="_blank" rel="noopener">X</a>');
+    if (p.github) links.push('<a href="https://github.com/' + esc(p.github) + '" target="_blank" rel="noopener">GitHub</a>');
+    var border = p.track ? 'var(--' + (TRACKCOLOR[p.track] || 'zabal') + ')' : (p.color ? 'var(--' + p.color + ')' : 'var(--border)');
+    return '<div class="crm-card" style="border-left-color:' + border + ';">' +
+      '<h3>' + nameHtml + '</h3>' +
+      '<div class="crm-roles">' + roles + track + '</div>' +
+      (inv ? '<ul class="crm-inv">' + inv + '</ul>' : '') +
+      (links.length ? '<div class="crm-links">' + links.join('') + '</div>' : '') +
+    '</div>';
+  }
+
+  function render() {
+    var list = ALL.filter(function (p) {
+      if (activeRole !== 'All' && !(p.roles || []).includes(activeRole)) return false;
+      if (!q) return true;
+      var hay = (p.name + ' ' + (p.roles || []).join(' ') + ' ' + (p.involvement || []).join(' ') + ' ' + p.farcaster + ' ' + p.x).toLowerCase();
+      return hay.indexOf(q) !== -1;
+    });
+    countEl.textContent = list.length + ' of ' + ALL.length;
+    grid.innerHTML = list.length ? list.map(card).join('') : '<p style="color:var(--text-muted);font-size:0.9rem;">No one matches that.</p>';
+  }
+
+  fetch('/data/crm.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      ALL = d.people || [];
+      var roles = {};
+      ALL.forEach(function (p) { (p.roles || []).forEach(function (r) { roles[r] = (roles[r] || 0) + 1; }); });
+      var order = ['All'].concat(Object.keys(roles).sort(function (a, b) { return roles[b] - roles[a]; }));
+      chipsEl.innerHTML = order.map(function (r) { return '<button class="crm-chip' + (r === 'All' ? ' active' : '') + '" data-role="' + esc(r) + '">' + esc(r) + '</button>'; }).join('');
+      chipsEl.addEventListener('click', function (ev) {
+        var b = ev.target.closest('.crm-chip'); if (!b) return;
+        activeRole = b.getAttribute('data-role');
+        chipsEl.querySelectorAll('.crm-chip').forEach(function (c) { c.classList.toggle('active', c === b); });
+        render();
+      });
+      searchEl.addEventListener('input', function () { q = searchEl.value.toLowerCase().trim(); render(); });
+      render();
+    })
+    .catch(function () { /* keep fallback */ });
+})();
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
