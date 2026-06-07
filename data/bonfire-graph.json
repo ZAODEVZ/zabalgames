@@ -9339,6 +9339,465 @@
         "_links": "https://empirebuilder.world/empire/zabalgamez01e9af",
         "_source": "zaonexus-2026-06-02"
       }
+    },
+    {
+      "id": "gm-farcaster",
+      "name": "GM Farcaster",
+      "labels": [
+        "Organization",
+        "Show"
+      ],
+      "attributes": {
+        "description": "Farcaster's longest-running news show; ran and publicly hosts Farcaster Batches.",
+        "url": "https://www.gmfarcaster.com"
+      }
+    },
+    {
+      "id": "yerbearserker",
+      "name": "yerbearserker (Jordan Oram)",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "farcaster_handle": "@yerbearserker",
+        "role": "co-founder, Empire Builder",
+        "description": "Led Empire Builder V3 + the live tokenless Empire build on Day 1."
+      }
+    },
+    {
+      "id": "plat0x",
+      "name": "Carlos (Plat0x)",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "x_handle": "@at0x_eth",
+        "role": "developer, Bonfires",
+        "description": "Co-led the Bonfire workshop and the Day 6 vibe-coding fireside."
+      }
+    },
+    {
+      "id": "joshua-eth",
+      "name": "Joshua.eth",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "farcaster_handle": "@joshua.eth",
+        "role": "Bonfire",
+        "description": "Co-led the Bonfire + ZABAL Bonfire bot workshop on Day 1."
+      }
+    },
+    {
+      "id": "diviflyy",
+      "name": "Adrian (diviflyy)",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "farcaster_handle": "@diviflyy",
+        "role": "co-founder, Empire Builder",
+        "description": "Empire Builder co-founder; co-hosted Farcaster Batches."
+      }
+    },
+    {
+      "id": "chris-dolinsky",
+      "name": "Chris Dolinsky",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "project": "Vinny App",
+        "description": "Presented Vinny App on Batches Day 1."
+      }
+    },
+    {
+      "id": "kenny",
+      "name": "Kenny",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "project": "POIDH",
+        "description": "Presented POIDH on Batches Day 1; subject of the Day 2 Founder Check workshop."
+      }
+    },
+    {
+      "id": "nikki-sapp",
+      "name": "Nikki Sapp",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "x_handle": "@nicky_sap",
+        "project": "Juke",
+        "description": "Presented Juke on Batches Day 1."
+      }
+    },
+    {
+      "id": "jonathan-colton",
+      "name": "Jonathan Colton",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "farcaster_handle": "@jonathancolton",
+        "project": "Founder Check / Fotocaster",
+        "description": "Presented Founder Check + Fotocaster (Day 1); ran the Day 2 workshop."
+      }
+    },
+    {
+      "id": "dr-deeks",
+      "name": "Dr. Deeks",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "description": "Presented a slate of mini apps on Batches Day 1 (email remittance pro, Crafters, Ghostwriter)."
+      }
+    },
+    {
+      "id": "az-flynn",
+      "name": "AZ Flynn",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "farcaster_handle": "@AzFlin",
+        "project": "Defense of the Agents",
+        "description": "Presented Defense of the Agents on Batches Day 3."
+      }
+    },
+    {
+      "id": "cashless-man",
+      "name": "Cashless Man",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "project": "Booster",
+        "description": "Presented Booster on Batches Day 3; ran a Day 4 self-hosting workshop."
+      }
+    },
+    {
+      "id": "duckfax",
+      "name": "Duckfax",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "project": "Celebration Hub",
+        "description": "Presented Celebration Hub on Batches Day 3."
+      }
+    },
+    {
+      "id": "node-builder",
+      "name": "Node",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "farcaster_handle": "@noad",
+        "project": "DEKEY",
+        "description": "Presented DEKEY on Batches Day 5."
+      }
+    },
+    {
+      "id": "max-power",
+      "name": "Max (baseddesigner.eth)",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "farcaster_handle": "@baseddesigner.eth",
+        "project": "POWER",
+        "description": "Presented POWER on Batches Day 5."
+      }
+    },
+    {
+      "id": "toady-hawk",
+      "name": "Toady Hawk",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "x_handle": "@toady_hawk",
+        "project": "betrmint",
+        "description": "Presented betrmint on Batches Day 5."
+      }
+    },
+    {
+      "id": "darko",
+      "name": "Darko",
+      "labels": [
+        "Person",
+        "Builder"
+      ],
+      "attributes": {
+        "project": "Runner",
+        "description": "Presented Runner on Batches Day 5."
+      }
+    },
+    {
+      "id": "jubjub",
+      "name": "JubJub",
+      "labels": [
+        "Person",
+        "Organizer"
+      ],
+      "attributes": {
+        "description": "Organized GM Farcaster Farcaster Batches."
+      }
+    },
+    {
+      "id": "adriene-gmf",
+      "name": "Adriene",
+      "labels": [
+        "Person",
+        "Host"
+      ],
+      "attributes": {
+        "role": "GM Farcaster",
+        "description": "Co-hosted Farcaster Batches."
+      }
+    },
+    {
+      "id": "nounish-prof",
+      "name": "Nounish Prof",
+      "labels": [
+        "Person",
+        "Host"
+      ],
+      "attributes": {
+        "role": "GM Farcaster",
+        "description": "Co-hosted Farcaster Batches."
+      }
+    },
+    {
+      "id": "vinny-app",
+      "name": "Vinny App",
+      "labels": [
+        "Project"
+      ],
+      "attributes": {
+        "description": "Natural-language app builder; prompt a working app into existence in minutes. Ran the Vinny-a-thon."
+      }
+    },
+    {
+      "id": "founder-check",
+      "name": "Founder Check",
+      "labels": [
+        "Project"
+      ],
+      "attributes": {
+        "description": "Agent-driven go-to-market validation mini app. Four pillars: who, what, reach, ease of sale."
+      }
+    },
+    {
+      "id": "fotocaster",
+      "name": "Fotocaster",
+      "labels": [
+        "Project"
+      ],
+      "attributes": {
+        "description": "Photo mint built for maximum artist sovereignty - artists keep ~100% of proceeds."
+      }
+    },
+    {
+      "id": "defense-of-the-agents",
+      "name": "Defense of the Agents",
+      "labels": [
+        "Project"
+      ],
+      "attributes": {
+        "url": "https://defenseoftheagents.com",
+        "description": "A casual idle MOBA Farcaster mini app by AZ Flynn."
+      }
+    },
+    {
+      "id": "booster",
+      "name": "Booster",
+      "labels": [
+        "Project"
+      ],
+      "attributes": {
+        "description": "Permissionless marketplace to boost a cast or earn by boosting others."
+      }
+    },
+    {
+      "id": "celebration-hub",
+      "name": "Celebration Hub",
+      "labels": [
+        "Project"
+      ],
+      "attributes": {
+        "description": "A social app for events, gifts, and celebrations, with the Joysender agent."
+      }
+    },
+    {
+      "id": "dekey",
+      "name": "DEKEY",
+      "labels": [
+        "Project"
+      ],
+      "attributes": {
+        "description": "Peer-to-peer encrypted file marketplace with zero-knowledge key proofs and enforced royalties."
+      }
+    },
+    {
+      "id": "power",
+      "name": "POWER",
+      "labels": [
+        "Project"
+      ],
+      "attributes": {
+        "url": "https://powerpawr.link",
+        "description": "Link-in-bio page builder with embeddable widgets and a referral program."
+      }
+    },
+    {
+      "id": "betrmint",
+      "name": "betrmint",
+      "labels": [
+        "Project"
+      ],
+      "attributes": {
+        "url": "https://betrmint.fun",
+        "description": "A rewards-and-distribution app for creators (token BTR). NOT \"Betterment\" - that is an unrelated finance company."
+      }
+    },
+    {
+      "id": "runner",
+      "name": "Runner",
+      "labels": [
+        "Project"
+      ],
+      "attributes": {
+        "description": "A meme (first Clanker) becoming a Strava-connected running app."
+      }
+    },
+    {
+      "id": "s-empire-v3",
+      "name": "Empire Builder V3 (workshop)",
+      "labels": [
+        "Event",
+        "Session"
+      ],
+      "attributes": {
+        "date": "2026-06-01",
+        "track": "builder",
+        "url": "https://zabalgamez.com/recordings/1",
+        "description": "yerbearserker on Empire Builder V3; do not launch a token until ready; the Triple-A framework."
+      }
+    },
+    {
+      "id": "s-empire-part2",
+      "name": "Empire Builder Part 2 - tokenless Empire live",
+      "labels": [
+        "Event",
+        "Session"
+      ],
+      "attributes": {
+        "date": "2026-06-01",
+        "track": "builder",
+        "url": "https://zabalgamez.com/recordings/2",
+        "description": "yerbearserker stands up a tokenless ZABAL Gamez Empire live; leaderboard math, a live raffle, a $Zabal booster."
+      }
+    },
+    {
+      "id": "s-bonfire",
+      "name": "Bonfire and the ZABAL Bonfire bot (workshop)",
+      "labels": [
+        "Event",
+        "Session"
+      ],
+      "attributes": {
+        "date": "2026-06-01",
+        "track": "builder",
+        "url": "https://zabalgamez.com/recordings/3",
+        "description": "Joshua.eth + Plat0x on Bonfire as the ecosystem shared memory; curation as the scarce asset."
+      }
+    },
+    {
+      "id": "s-fireside-carlos",
+      "name": "Fireside: Bonfires + a vibe-coding masterclass",
+      "labels": [
+        "Event",
+        "Session"
+      ],
+      "attributes": {
+        "date": "2026-06-06",
+        "track": "builder",
+        "url": "https://zabalgamez.com/recordings/fireside/1",
+        "description": "Zaal + Carlos (Plat0x): plan-then-goal, diagram Bob and Alice, types-first, documentation-as-code."
+      }
+    },
+    {
+      "id": "batches-day1",
+      "name": "Farcaster Batches Day 1 (Jun 1)",
+      "labels": [
+        "Event",
+        "Session"
+      ],
+      "attributes": {
+        "date": "2026-06-01",
+        "url": "https://www.gmfarcaster.com/episodes/Batches1",
+        "description": "Builder showcase: Vinny App, POIDH, Juke, Founder Check, Fotocaster, Dr. Deeks."
+      }
+    },
+    {
+      "id": "batches-day2",
+      "name": "Farcaster Batches Day 2 - Founder Check workshop (Jun 2)",
+      "labels": [
+        "Event",
+        "Session"
+      ],
+      "attributes": {
+        "date": "2026-06-02",
+        "url": "https://www.gmfarcaster.com/episodes/Batches2",
+        "description": "Live Founder Check workshop: Jonathan Colton walks Kenny through it."
+      }
+    },
+    {
+      "id": "batches-day3",
+      "name": "Farcaster Batches Day 3 (Jun 3)",
+      "labels": [
+        "Event",
+        "Session"
+      ],
+      "attributes": {
+        "date": "2026-06-03",
+        "url": "https://www.gmfarcaster.com/episodes/Batches3",
+        "description": "Builder showcase: ZABAL Gamez, Empire Builder, Defense of the Agents, Booster, Celebration Hub."
+      }
+    },
+    {
+      "id": "batches-day5",
+      "name": "Farcaster Batches Day 5 (Jun 5)",
+      "labels": [
+        "Event",
+        "Session"
+      ],
+      "attributes": {
+        "date": "2026-06-05",
+        "url": "https://www.gmfarcaster.com/episodes/Batches5",
+        "description": "Builder showcase: DEKEY, POWER, betrmint, Runner."
+      }
     }
   ],
   "edges": [
@@ -16140,6 +16599,406 @@
       "type": "part_of",
       "properties": {
         "fact": "Respect Game (ZAO Hats Tree) is part of the-zao (ZAONEXUS ecosystem map)"
+      }
+    },
+    {
+      "from": "yerbearserker",
+      "to": "s-empire-v3",
+      "type": "led",
+      "properties": {
+        "fact": "yerbearserker led Empire Builder V3"
+      }
+    },
+    {
+      "from": "yerbearserker",
+      "to": "s-empire-part2",
+      "type": "led",
+      "properties": {
+        "fact": "yerbearserker led the live tokenless Empire build"
+      }
+    },
+    {
+      "from": "joshua-eth",
+      "to": "s-bonfire",
+      "type": "led",
+      "properties": {
+        "fact": "Joshua.eth co-led the Bonfire workshop"
+      }
+    },
+    {
+      "from": "plat0x",
+      "to": "s-bonfire",
+      "type": "led",
+      "properties": {
+        "fact": "Plat0x co-led the Bonfire workshop"
+      }
+    },
+    {
+      "from": "plat0x",
+      "to": "s-fireside-carlos",
+      "type": "led",
+      "properties": {
+        "fact": "Carlos (Plat0x) led the vibe-coding fireside"
+      }
+    },
+    {
+      "from": "s-empire-v3",
+      "to": "zabal-gamez",
+      "type": "part_of",
+      "properties": {
+        "fact": "Empire Builder V3 was a ZABAL Gamez workshop"
+      }
+    },
+    {
+      "from": "s-empire-part2",
+      "to": "zabal-gamez",
+      "type": "part_of",
+      "properties": {
+        "fact": "Part 2 was a ZABAL Gamez workshop"
+      }
+    },
+    {
+      "from": "s-bonfire",
+      "to": "zabal-gamez",
+      "type": "part_of",
+      "properties": {
+        "fact": "The Bonfire workshop was a ZABAL Gamez session"
+      }
+    },
+    {
+      "from": "s-fireside-carlos",
+      "to": "zabal-gamez",
+      "type": "part_of",
+      "properties": {
+        "fact": "The fireside was a ZABAL Gamez session"
+      }
+    },
+    {
+      "from": "yerbearserker",
+      "to": "empire-builder",
+      "type": "co_founded",
+      "properties": {
+        "fact": "yerbearserker co-founded Empire Builder"
+      }
+    },
+    {
+      "from": "diviflyy",
+      "to": "empire-builder",
+      "type": "co_founded",
+      "properties": {
+        "fact": "Adrian (diviflyy) co-founded Empire Builder"
+      }
+    },
+    {
+      "from": "joshua-eth",
+      "to": "bonfire",
+      "type": "builds",
+      "properties": {
+        "fact": "Joshua.eth builds Bonfire"
+      }
+    },
+    {
+      "from": "plat0x",
+      "to": "bonfire",
+      "type": "builds",
+      "properties": {
+        "fact": "Carlos (Plat0x) develops Bonfires"
+      }
+    },
+    {
+      "from": "jubjub",
+      "to": "farcaster-batches",
+      "type": "organized",
+      "properties": {
+        "fact": "JubJub organized Farcaster Batches"
+      }
+    },
+    {
+      "from": "gm-farcaster",
+      "to": "farcaster-batches",
+      "type": "hosts",
+      "properties": {
+        "fact": "GM Farcaster ran and hosts Farcaster Batches"
+      }
+    },
+    {
+      "from": "adriene-gmf",
+      "to": "farcaster-batches",
+      "type": "hosted",
+      "properties": {
+        "fact": "Adriene co-hosted Farcaster Batches"
+      }
+    },
+    {
+      "from": "nounish-prof",
+      "to": "farcaster-batches",
+      "type": "hosted",
+      "properties": {
+        "fact": "Nounish Prof co-hosted Farcaster Batches"
+      }
+    },
+    {
+      "from": "diviflyy",
+      "to": "farcaster-batches",
+      "type": "co_hosted",
+      "properties": {
+        "fact": "Adrian (diviflyy) co-hosted Farcaster Batches"
+      }
+    },
+    {
+      "from": "batches-day1",
+      "to": "farcaster-batches",
+      "type": "part_of",
+      "properties": {
+        "fact": "Day 1 is part of Farcaster Batches"
+      }
+    },
+    {
+      "from": "batches-day2",
+      "to": "farcaster-batches",
+      "type": "part_of",
+      "properties": {
+        "fact": "Day 2 is part of Farcaster Batches"
+      }
+    },
+    {
+      "from": "batches-day3",
+      "to": "farcaster-batches",
+      "type": "part_of",
+      "properties": {
+        "fact": "Day 3 is part of Farcaster Batches"
+      }
+    },
+    {
+      "from": "batches-day5",
+      "to": "farcaster-batches",
+      "type": "part_of",
+      "properties": {
+        "fact": "Day 5 is part of Farcaster Batches"
+      }
+    },
+    {
+      "from": "chris-dolinsky",
+      "to": "batches-day1",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Chris Dolinsky presented Vinny App"
+      }
+    },
+    {
+      "from": "kenny",
+      "to": "batches-day1",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Kenny presented POIDH"
+      }
+    },
+    {
+      "from": "nikki-sapp",
+      "to": "batches-day1",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Nikki Sapp presented Juke"
+      }
+    },
+    {
+      "from": "jonathan-colton",
+      "to": "batches-day1",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Jonathan Colton presented Founder Check + Fotocaster"
+      }
+    },
+    {
+      "from": "dr-deeks",
+      "to": "batches-day1",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Dr. Deeks presented a slate of mini apps"
+      }
+    },
+    {
+      "from": "chris-dolinsky",
+      "to": "vinny-app",
+      "type": "builds",
+      "properties": {
+        "fact": "Chris Dolinsky builds Vinny App"
+      }
+    },
+    {
+      "from": "kenny",
+      "to": "poidh",
+      "type": "builds",
+      "properties": {
+        "fact": "Kenny builds POIDH"
+      }
+    },
+    {
+      "from": "nikki-sapp",
+      "to": "juke",
+      "type": "builds",
+      "properties": {
+        "fact": "Nikki Sapp builds Juke"
+      }
+    },
+    {
+      "from": "jonathan-colton",
+      "to": "founder-check",
+      "type": "builds",
+      "properties": {
+        "fact": "Jonathan Colton builds Founder Check"
+      }
+    },
+    {
+      "from": "jonathan-colton",
+      "to": "fotocaster",
+      "type": "builds",
+      "properties": {
+        "fact": "Jonathan Colton co-built Fotocaster"
+      }
+    },
+    {
+      "from": "jonathan-colton",
+      "to": "batches-day2",
+      "type": "led",
+      "properties": {
+        "fact": "Jonathan Colton ran the Founder Check workshop"
+      }
+    },
+    {
+      "from": "kenny",
+      "to": "batches-day2",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Kenny was the live subject of the workshop"
+      }
+    },
+    {
+      "from": "zaal",
+      "to": "batches-day3",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Zaal presented ZABAL Gamez"
+      }
+    },
+    {
+      "from": "yerbearserker",
+      "to": "batches-day3",
+      "type": "presented_at",
+      "properties": {
+        "fact": "yerbearserker presented Empire Builder"
+      }
+    },
+    {
+      "from": "az-flynn",
+      "to": "batches-day3",
+      "type": "presented_at",
+      "properties": {
+        "fact": "AZ Flynn presented Defense of the Agents"
+      }
+    },
+    {
+      "from": "cashless-man",
+      "to": "batches-day3",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Cashless Man presented Booster"
+      }
+    },
+    {
+      "from": "duckfax",
+      "to": "batches-day3",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Duckfax presented Celebration Hub"
+      }
+    },
+    {
+      "from": "az-flynn",
+      "to": "defense-of-the-agents",
+      "type": "builds",
+      "properties": {
+        "fact": "AZ Flynn builds Defense of the Agents"
+      }
+    },
+    {
+      "from": "cashless-man",
+      "to": "booster",
+      "type": "builds",
+      "properties": {
+        "fact": "Cashless Man builds Booster"
+      }
+    },
+    {
+      "from": "duckfax",
+      "to": "celebration-hub",
+      "type": "builds",
+      "properties": {
+        "fact": "Duckfax builds Celebration Hub"
+      }
+    },
+    {
+      "from": "node-builder",
+      "to": "batches-day5",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Node presented DEKEY"
+      }
+    },
+    {
+      "from": "max-power",
+      "to": "batches-day5",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Max presented POWER"
+      }
+    },
+    {
+      "from": "toady-hawk",
+      "to": "batches-day5",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Toady Hawk presented betrmint"
+      }
+    },
+    {
+      "from": "darko",
+      "to": "batches-day5",
+      "type": "presented_at",
+      "properties": {
+        "fact": "Darko presented Runner"
+      }
+    },
+    {
+      "from": "node-builder",
+      "to": "dekey",
+      "type": "builds",
+      "properties": {
+        "fact": "Node builds DEKEY"
+      }
+    },
+    {
+      "from": "max-power",
+      "to": "power",
+      "type": "builds",
+      "properties": {
+        "fact": "Max builds POWER"
+      }
+    },
+    {
+      "from": "toady-hawk",
+      "to": "betrmint",
+      "type": "builds",
+      "properties": {
+        "fact": "Toady Hawk builds betrmint"
+      }
+    },
+    {
+      "from": "darko",
+      "to": "runner",
+      "type": "builds",
+      "properties": {
+        "fact": "Darko builds Runner"
       }
     }
   ]
