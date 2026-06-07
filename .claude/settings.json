@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node scripts/validate.mjs --quiet"
+            "command": "node scripts/validate.mjs --quiet && node scripts/test-crm.mjs"
           }
         ]
       }

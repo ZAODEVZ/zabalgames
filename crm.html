@@ -469,6 +469,14 @@
     .tick { display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; }
     .tick span { white-space: nowrap; }
     .tick b { color: var(--text-muted); font-weight: 600; }
+    .spotlight { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.2rem 1.3rem; margin: 0.2rem 0 1.2rem; }
+    .spotlight-eyebrow { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; }
+    .spotlight-back { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--cyan); text-decoration: none; }
+    .spotlight-back:hover { text-decoration: underline; }
+    .spotlight h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; margin: 0 0 0.2rem; }
+    .spotlight h2 a { color: var(--text); text-decoration: none; }
+    .spotlight .crm-tierline { margin: 0.3rem 0 0.5rem; }
+    .spotlight .crm-inv li { font-size: 0.9rem; }
     [hidden] { display: none !important; }
   </style>
 </head>
@@ -500,6 +508,8 @@
       <button id="crm-share" class="btn btn-ghost" type="button">Share the directory</button>
     </div>
   </header>
+
+  <div id="crm-spotlight" hidden></div>
 
   <div class="crm-stats" id="crm-stats" aria-label="Season at a glance"></div>
 
@@ -598,7 +608,9 @@
   var playersGrid = document.getElementById('players-grid');
   var tickerEl = document.getElementById('crm-ticker');
   var shareBtn = document.getElementById('crm-share');
+  var spotlightEl = document.getElementById('crm-spotlight');
   if (!grid) return;
+  var spotHandle = null; // lowercased ?handle= for the per-person deep card
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   var TRACKCOLOR = { artist: 'pink', builder: 'zabal', creator: 'cyan' };
   var ALL = [], activeRole = 'All', activeTrack = 'All', activeTier = 'All', q = '', sortBy = 'name';
@@ -624,6 +636,7 @@
     if (p.get('track')) activeTrack = p.get('track');
     if (p.get('sort')) sortBy = p.get('sort');
     if (p.get('q')) q = p.get('q');
+    if (p.get('handle')) spotHandle = p.get('handle').toLowerCase().replace(/^@/, '');
   }
 
   // --- tiers (tier + xp are baked into crm.json by scripts/build-crm.mjs) ---
@@ -717,6 +730,41 @@
     grid.innerHTML = list.length ? list.map(card).join('') : '<p style="color:var(--text-muted);font-size:0.9rem;">No one matches that.</p>';
   }
 
+  // --- per-person deep card (/crm?handle=) ---
+  function slug(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  function findByHandle(h) {
+    if (!h) return null;
+    return ALL.filter(function (p) { return (p.farcaster && p.farcaster.toLowerCase() === h) || (p.x && p.x.toLowerCase() === h); })[0]
+        || ALL.filter(function (p) { return slug(p.name) === h; })[0] || null;
+  }
+  function renderSpotlight() {
+    if (!spotHandle) { spotlightEl.hidden = true; spotlightEl.innerHTML = ''; return; }
+    var p = findByHandle(spotHandle);
+    if (!p) { spotlightEl.hidden = true; return; }
+    var tier = contribTier(p);
+    var onBoard = p.farcaster && PLAYERMAP[p.farcaster.toLowerCase()];
+    var profile = p.profile_url || (p.farcaster ? 'https://farcaster.xyz/' + p.farcaster : (p.x ? 'https://x.com/' + p.x : null));
+    var nameHtml = profile ? '<a href="' + esc(profile) + '"' + (/^https?:/.test(profile) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(p.name) + '</a>' : esc(p.name);
+    var roles = (p.roles || []).map(function (r) { return '<span class="crm-role">' + esc(r) + '</span>'; }).join('');
+    var track = p.track ? '<span class="crm-track" style="border:1px solid var(--' + (TRACKCOLOR[p.track] || 'zabal') + ');color:var(--' + (TRACKCOLOR[p.track] || 'zabal') + ');">' + esc(p.track) + '</span>' : '';
+    var board = onBoard ? '<span class="crm-board" title="' + onBoard.score + ' pts">On the board #' + onBoard.rank + '</span>' : '';
+    var inv = (p.involvement || []).map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('');
+    var links = [];
+    if (p.farcaster) links.push('<a href="https://farcaster.xyz/' + esc(p.farcaster) + '" target="_blank" rel="noopener">Farcaster</a>');
+    if (p.x) links.push('<a href="https://x.com/' + esc(p.x) + '" target="_blank" rel="noopener">X</a>');
+    if (p.github) links.push('<a href="https://github.com/' + esc(p.github) + '" target="_blank" rel="noopener">GitHub</a>');
+    if (p.profile_url) links.push('<a href="' + esc(p.profile_url) + '">Full profile</a>');
+    spotlightEl.innerHTML = '<div class="spotlight">' +
+      '<div class="spotlight-eyebrow"><span class="crm-level">LVL ' + zabalLevel(p) + '</span><a class="spotlight-back" href="/crm">View everyone</a></div>' +
+      '<h2>' + nameHtml + '</h2>' +
+      '<div class="crm-tierline"><span class="crm-tier tier-' + tier + '">' + tier + '</span><span class="crm-breadth">' + esc(breadthTier(p)) + '</span></div>' +
+      '<div class="crm-roles">' + roles + track + board + '</div>' +
+      (inv ? '<ul class="crm-inv">' + inv + '</ul>' : '') +
+      (links.length ? '<div class="crm-links">' + links.join('') + '</div>' : '') +
+    '</div>';
+    spotlightEl.hidden = false;
+  }
+
   // --- players (live leaderboard) ---
   function loadPlayers() {
     fetch('/api/leaderboard?format=full', { cache: 'no-store' })
@@ -755,6 +803,7 @@
         playersCount = rows.length;
         renderStats();
         render(); // re-render the roster so On-the-board badges appear
+        renderSpotlight(); // refresh the deep card with live badges/level
       })
       .catch(function () {
         playersGrid.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">The board is unavailable right now. See the full <a href="/leaderboard">leaderboard</a>.</p>';
@@ -841,6 +890,7 @@
       searchEl.addEventListener('input', function () { q = searchEl.value.toLowerCase().trim(); render(); syncURL(); });
       sortEl.addEventListener('change', function () { sortBy = sortEl.value; render(); syncURL(); });
       render();
+      renderSpotlight();
       // open the Players tab if the shared link asked for it
       if (new URLSearchParams(location.search).get('view') === 'players') {
         var pt = document.querySelector('.crm-tab[data-view="players"]');

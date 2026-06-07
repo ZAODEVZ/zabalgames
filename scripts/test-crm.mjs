@@ -133,5 +133,14 @@ const headlinerCount = crmJson.people.filter(p => p.tier === 'Headliner').length
 ok((grid2.match(/crm-card/g) || []).length === headlinerCount, `?tier=Headliner shows only ${headlinerCount} cards`);
 ok(!r2.els['view-players'].hidden, '?view=players opened the Players tab');
 
+// --- 6. per-person deep card: ?handle=bettercallzaal spotlights Zaal ---
+const r3 = runPage('?handle=bettercallzaal');
+await new Promise(r => setTimeout(r, 50));
+const spot = r3.els['crm-spotlight'].innerHTML;
+ok(!r3.els['crm-spotlight'].hidden, '?handle= reveals the spotlight panel');
+ok(/class="spotlight"/.test(spot) && /Zaal Panthaki/.test(spot), 'spotlight renders the matched person (Zaal)');
+ok(/LVL \d/.test(spot) && /crm-tier tier-/.test(spot), 'spotlight shows the level + tier');
+ok(/View everyone/.test(spot), 'spotlight has a back-to-everyone link');
+
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
