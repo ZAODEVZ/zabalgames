@@ -49,20 +49,24 @@ To close the week I sat down with Carlos (Plat0x), the developer behind Bonfires
 
 ## We built a home for all of it
 
-Missing a session live should never mean missing the knowledge. So this week we shipped the place it all lives:
+Missing a session live should never mean missing the knowledge. So this week we shipped the place it all lives - for people and for agents:
 
 - The recordings hub - every session, newest first, one tap to watch or read the transcript: https://zabalgamez.com/recordings
-- A plain-text feed for the agents, because the build is the application: https://zabalgamez.com/recordings.txt
+- A dedicated page for each session with the video, a summary, the key takeaways, and the full transcript - start with Empire Builder V3: https://zabalgamez.com/recordings/1
+- A plain-text feed and a structured index for the agents, because the build is the application: https://zabalgamez.com/recordings.txt
 - The data streams feed - the full chronological record across the workshops, Farcaster Batches, the agentic bootcamp, and BCZ YapZ: https://zabalgamez.com/streams
 - The Dream Leads board - the builders we would love to see teach. Nominate someone, or vote one up: https://zabalgamez.com/dream-leads
 
-## What is next - July is the real thing
+## What is next - July is the open build
 
-June is the warm-up. July is the open build: anyone ships something for the ecosystem, in public, and the build is the application. Every finisher shares the prize pool and keeps a commemorative collectible.
+June is the warm-up. July is the open build: anyone ships something real for the ZAO ecosystem, in public, and the build is the application. Three tracks - artist, builder, creator - no waitlist, any harness. Every finisher shares the $500 USDC pool and keeps a commemorative collectible, the strongest builds get the biggest slices, and the top builds get curated into the August Finals, each one paired with a ZAO mentor.
 
-- How to enter: https://zabalgamez.com/enter
-- Projects to adopt: https://zabalgamez.com/projects
-- The Finals and the prize pool: https://zabalgamez.com/finals
+We spent this week getting the build path ready so you can start the moment July opens:
+
+- The Playbook - the full guide to building and shipping your project, start to finish: https://zabalgamez.com/playbook
+- How to enter, then register your build and watch the live builds board fill: https://zabalgamez.com/enter
+- Projects to adopt - real, started repos that just need a builder: https://zabalgamez.com/projects
+- The Finals and how the prize pool settles: https://zabalgamez.com/finals
 - The June schedule, with more workshops landing all month: https://zabalgamez.com/#schedule
 
 ## Get involved this week
