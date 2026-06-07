@@ -26,15 +26,17 @@ Free, livestreamed, and recorded. RSVP to get notified, and catch the replay at 
 The build is the application. zabalgamez.com
 ```
 
+**Luma:** https://luma.com/nxfm7edg
+
 **DM to Jose (confirm topic + ask for a second):**
 ```
-Yo Jose! Stoked to have you open the ZABAL Gamez artist track. I have you down for Tue Jun 9, 5pm EST - 30 to 60 min, livestreamed on X / YouTube / Twitch and recorded so it lives on the site after.
+Yo Jose! Stoked to have you open the ZABAL Gamez artist track. You are locked for Tue Jun 9, 5pm EST - 30 to 60 min, livestreamed on X / YouTube / Twitch and recorded so it lives on the site after. Here is your event page + RSVP: https://luma.com/nxfm7edg
 
 Topic I have: being an onchain musician - releasing your music, owning your masters and your audience, and turning listeners into a community that pays you directly. Draft title: "Owning Your Music as an Independent Artist."
 
 Two things: does that capture what you want to talk about, or want to reshape the angle? And is there a second topic you would want to cover or write up - happy to give you more than one slot if you have it in you.
 
-Give me the thumbs up and I will fire off the Luma invite. Appreciate you - great one to open the artist track with.
+Take a look and give me the thumbs up. Appreciate you - great one to open the artist track with.
 ```
 
 ## 2. Will T - Wed Jun 10, 2026, 7:30pm EST
