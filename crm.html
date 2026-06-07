@@ -57,14 +57,26 @@
     .crm-note { color: var(--text-muted); font-size: 0.86rem; margin: 0 0 1rem; line-height: 1.5; }
     .player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.7rem; }
     .player-card { display: flex; align-items: center; gap: 0.65rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 0.8rem; }
-    .player-rank { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); min-width: 1.8rem; }
-    .player-card.top .player-rank { color: var(--zabal); font-weight: 600; }
+    .player-rank { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); min-width: 1.8rem; font-weight: 600; }
     .player-pfp { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: var(--surface-2); flex-shrink: 0; }
     .player-meta { min-width: 0; flex: 1; }
     .player-meta a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .player-meta a:hover { color: var(--zabal); }
     .player-score { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
     .crm-board { font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--zabal); color: var(--zabal); }
+    .crm-card h3 { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
+    .crm-level { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.04em; color: var(--gold); border: 1px solid var(--gold); border-radius: 6px; padding: 0.05rem 0.4rem; white-space: nowrap; flex-shrink: 0; }
+    .crm-tierline { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0.1rem 0 0.1rem; }
+    .crm-tier { font-family: 'Syne', sans-serif; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .crm-breadth { font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
+    .tier-Headliner { color: var(--gold); } .crm-chip.tier-Headliner.active { border-color: var(--gold); color: var(--gold); }
+    .tier-Builder { color: var(--zabal); } .crm-chip.tier-Builder.active { border-color: var(--zabal); color: var(--zabal); }
+    .tier-Mentor { color: var(--cyan); } .crm-chip.tier-Mentor.active { border-color: var(--cyan); color: var(--cyan); }
+    .tier-Challenger { color: var(--pink); } .crm-chip.tier-Challenger.active { border-color: var(--pink); color: var(--pink); }
+    .player-tier-head { grid-column: 1 / -1; font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin: 0.6rem 0 0.1rem; padding-bottom: 0.25rem; border-bottom: 1px solid var(--border); }
+    .player-tier-head:first-child { margin-top: 0; }
+    .player-tier-head.s-high { color: var(--gold); } .player-tier-head.s-pro { color: var(--cyan); } .player-tier-head.s-chal { color: var(--zabal); }
+    .player-card.s-high .player-rank { color: var(--gold); } .player-card.s-pro .player-rank { color: var(--cyan); } .player-card.s-chal .player-rank { color: var(--zabal); }
     .tick { display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; }
     .tick span { white-space: nowrap; }
     .tick b { color: var(--text-muted); font-weight: 600; }
@@ -112,10 +124,12 @@
       <input id="crm-search" class="crm-search" type="search" placeholder="Search people, projects, handles..." aria-label="Search people">
       <select id="crm-sort" class="crm-search" style="flex: 0 0 auto; min-width: 0; cursor: pointer;" aria-label="Sort people">
         <option value="name">A to Z</option>
+        <option value="level">By level</option>
         <option value="involved">Most involved</option>
       </select>
       <span class="crm-count" id="crm-count"></span>
     </div>
+    <div class="crm-filters" id="crm-tiers" aria-label="Filter by level"></div>
     <div class="crm-filters" id="crm-roles" aria-label="Filter by role"></div>
     <div class="crm-filters" id="crm-tracks" aria-label="Filter by track"></div>
     <div class="crm-grid" id="crm-grid">
@@ -172,6 +186,7 @@
   var grid = document.getElementById('crm-grid');
   var rolesEl = document.getElementById('crm-roles');
   var tracksEl = document.getElementById('crm-tracks');
+  var tiersEl = document.getElementById('crm-tiers');
   var searchEl = document.getElementById('crm-search');
   var sortEl = document.getElementById('crm-sort');
   var countEl = document.getElementById('crm-count');
@@ -182,8 +197,29 @@
   if (!grid) return;
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   var TRACKCOLOR = { artist: 'pink', builder: 'zabal', creator: 'cyan' };
-  var ALL = [], activeRole = 'All', activeTrack = 'All', q = '', sortBy = 'name';
+  var ALL = [], activeRole = 'All', activeTrack = 'All', activeTier = 'All', q = '', sortBy = 'name';
   var playersCount = null, activeToday = null, PLAYERMAP = {}; // farcaster handle -> { rank, score }
+
+  // --- tiers ---
+  // Player Level (contribution tier): the headline role someone earned, highest first.
+  var TIER_ORDER = ['Headliner', 'Builder', 'Mentor', 'Challenger'];
+  function contribTier(p) {
+    var r = p.roles || [];
+    if (r.indexOf('Organizer') >= 0 || r.indexOf('Workshop lead') >= 0) return 'Headliner';
+    if (r.indexOf('Core builder') >= 0 || r.indexOf('Batches builder') >= 0 || r.indexOf('Partner') >= 0) return 'Builder';
+    if (r.indexOf('Mentor') >= 0) return 'Mentor';
+    return 'Challenger'; // nominated (Dream lead), not yet on stage
+  }
+  // Involvement tier (breadth): how many ways someone showed up.
+  function involvementScore(p) { return (p.roles || []).length + (p.involvement || []).length; }
+  function breadthTier(p) { var n = involvementScore(p); return n >= 3 ? 'Triple threat' : n === 2 ? 'Double duty' : 'In the mix'; }
+  // Unified ZABAL Level: role weight + live points, on a gentle curve.
+  var ROLE_WEIGHT = { 'Organizer': 5, 'Workshop lead': 5, 'Core builder': 4, 'Batches builder': 3, 'Partner': 3, 'Mentor': 3, 'Dream lead': 1 };
+  function livePoints(p) { var k = p.farcaster && p.farcaster.toLowerCase(); return (k && PLAYERMAP[k]) ? PLAYERMAP[k].score : 0; }
+  function zabalLevel(p) {
+    var roleW = (p.roles || []).reduce(function (s, r) { return s + (ROLE_WEIGHT[r] || 1); }, 0);
+    return Math.floor((roleW * 10 + livePoints(p)) / 20) + 1;
+  }
 
   // --- view tabs ---
   document.querySelectorAll('.crm-tab').forEach(function (tab) {
@@ -217,8 +253,6 @@
   }
 
   // --- roster ---
-  function involvementScore(p) { return (p.roles || []).length + (p.involvement || []).length; }
-
   function card(p) {
     var profile = p.profile_url || (p.farcaster ? 'https://farcaster.xyz/' + p.farcaster : (p.x ? 'https://x.com/' + p.x : null));
     var nameHtml = profile ? '<a href="' + esc(profile) + '"' + (/^https?:/.test(profile) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(p.name) + '</a>' : esc(p.name);
@@ -234,8 +268,11 @@
     if (p.x) links.push('<a href="https://x.com/' + esc(p.x) + '" target="_blank" rel="noopener">X</a>');
     if (p.github) links.push('<a href="https://github.com/' + esc(p.github) + '" target="_blank" rel="noopener">GitHub</a>');
     var border = p.track ? 'var(--' + (TRACKCOLOR[p.track] || 'zabal') + ')' : (p.color ? 'var(--' + p.color + ')' : 'var(--border)');
+    var tier = contribTier(p);
     return '<div class="crm-card" style="border-left-color:' + border + ';">' +
-      '<h3>' + nameHtml + '</h3>' +
+      '<h3>' + nameHtml + '<span class="crm-level">LVL ' + zabalLevel(p) + '</span></h3>' +
+      '<div class="crm-tierline"><span class="crm-tier tier-' + tier + '">' + tier + '</span>' +
+        '<span class="crm-breadth">' + esc(breadthTier(p)) + '</span></div>' +
       '<div class="crm-roles">' + roles + track + board + '</div>' +
       (inv ? '<ul class="crm-inv">' + inv + '</ul>' : '') +
       (links.length ? '<div class="crm-links">' + links.join('') + '</div>' : '') +
@@ -246,11 +283,14 @@
     var list = ALL.filter(function (p) {
       if (activeRole !== 'All' && !(p.roles || []).includes(activeRole)) return false;
       if (activeTrack !== 'All' && p.track !== activeTrack) return false;
+      if (activeTier !== 'All' && contribTier(p) !== activeTier) return false;
       if (!q) return true;
       var hay = (p.name + ' ' + (p.roles || []).join(' ') + ' ' + (p.involvement || []).join(' ') + ' ' + p.farcaster + ' ' + p.x).toLowerCase();
       return hay.indexOf(q) !== -1;
     });
-    if (sortBy === 'involved') {
+    if (sortBy === 'level') {
+      list.sort(function (a, b) { return zabalLevel(b) - zabalLevel(a) || a.name.localeCompare(b.name); });
+    } else if (sortBy === 'involved') {
       list.sort(function (a, b) { return involvementScore(b) - involvementScore(a) || a.name.localeCompare(b.name); });
     } else {
       list.sort(function (a, b) { return a.name.localeCompare(b.name); });
@@ -269,17 +309,31 @@
           return;
         }
         rows.forEach(function (p, i) { if (p.username) PLAYERMAP[p.username.toLowerCase()] = { rank: i + 1, score: p.score != null ? p.score : 0 }; });
-        playersGrid.innerHTML = rows.map(function (p, i) {
+        // score tiers: High Score (top 3), Pro (4-10), Challenger (the rest)
+        var TIERS = [
+          { key: 'high', label: 'High Score', test: function (r) { return r <= 3; } },
+          { key: 'pro', label: 'Pro', test: function (r) { return r > 3 && r <= 10; } },
+          { key: 'chal', label: 'Challenger', test: function (r) { return r > 10; } },
+        ];
+        var html = '', lastTier = null;
+        rows.forEach(function (p, i) {
+          var rank = i + 1;
+          var tier = TIERS.filter(function (t) { return t.test(rank); })[0];
+          if (tier && tier.key !== lastTier) {
+            html += '<div class="player-tier-head s-' + tier.key + '">' + esc(tier.label) + '</div>';
+            lastTier = tier.key;
+          }
           var name = p.username ? '@' + p.username : ('fid ' + p.fid);
           var href = p.username ? 'https://farcaster.xyz/' + p.username : null;
           var nameHtml = href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener">' + esc(name) + '</a>' : '<span>' + esc(name) + '</span>';
           var pfp = p.pfpUrl ? '<img class="player-pfp" src="' + esc(p.pfpUrl) + '" alt="" loading="lazy">' : '<div class="player-pfp"></div>';
           var pts = (p.score != null ? p.score : 0) + ' pts';
-          return '<div class="player-card' + (i < 3 ? ' top' : '') + '">' +
-            '<span class="player-rank">#' + (i + 1) + '</span>' + pfp +
+          html += '<div class="player-card s-' + (tier ? tier.key : 'chal') + '">' +
+            '<span class="player-rank">#' + rank + '</span>' + pfp +
             '<div class="player-meta">' + nameHtml + '<span class="player-score">' + esc(pts) + '</span></div>' +
           '</div>';
-        }).join('');
+        });
+        playersGrid.innerHTML = html;
         playersCount = rows.length;
         renderStats();
         render(); // re-render the roster so On-the-board badges appear
@@ -329,6 +383,20 @@
     .then(function (d) {
       ALL = d.people || [];
       renderStats();
+      // tier chips (Player Levels), counted, highest tier first
+      var tierCounts = {};
+      ALL.forEach(function (p) { var t = contribTier(p); tierCounts[t] = (tierCounts[t] || 0) + 1; });
+      var tierList = ['All'].concat(TIER_ORDER.filter(function (t) { return tierCounts[t]; }));
+      tiersEl.innerHTML = '<span class="crm-filter-label">Level</span>' + tierList.map(function (t) {
+        var label = t === 'All' ? 'All' : t + ' (' + tierCounts[t] + ')';
+        return '<button class="crm-chip tier-' + esc(t) + (t === 'All' ? ' active' : '') + '" data-tier="' + esc(t) + '">' + esc(label) + '</button>';
+      }).join('');
+      tiersEl.addEventListener('click', function (ev) {
+        var b = ev.target.closest('.crm-chip'); if (!b) return;
+        activeTier = b.getAttribute('data-tier');
+        tiersEl.querySelectorAll('.crm-chip').forEach(function (c) { c.classList.toggle('active', c === b); });
+        render();
+      });
       // role chips, most common first
       var roles = {};
       ALL.forEach(function (p) { (p.roles || []).forEach(function (r) { roles[r] = (roles[r] || 0) + 1; }); });
