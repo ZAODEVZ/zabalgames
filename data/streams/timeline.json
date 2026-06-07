@@ -13,18 +13,35 @@
   "entries": [
     {
       "stream": "farcaster-batches",
+      "timestamp": "2026-06-05",
+      "kind": "episode",
+      "title": "Farcaster Batches Day 5 - builder showcase",
+      "summary": "The final day of the week-long Farcaster Batches showcase. Four builders present in a GM Farcaster Space: Node (DEKEY, a peer-to-peer encrypted file marketplace with zero-knowledge key proofs and on-chain royalties), Max / baseddesigner.eth (POWER, a link-in-bio page builder with a 30% recurring referral program), Toady Hawk (Betterment, a dopamine distribution machine for creators - drops live alpha on a karma-cash slot for 50M+ BTR holders and a new liquid-BTR referral program), and Darko (Runner, the first Clanker meme becoming a Strava-integrated running app built by Samuel Huber's team via a Base grant).",
+      "raw_ref": "data/streams/farcaster-batches/raw/transcripts/2026-06-05-farcaster-batches.md"
+    },
+    {
+      "stream": "farcaster-batches",
       "timestamp": "2026-06-03",
-      "kind": "upcoming",
-      "title": "ZABAL builders present at Farcaster Batches (Jun 3)",
-      "summary": "yerbearserker, Zaal and azflin present as part of Farcaster Batches, a Farcaster builder showcase event, with NFT raffles to holders of the Yerbearserker Mate collab mint. Source: ZABAL Gamez Workshop 1."
+      "kind": "episode",
+      "title": "Farcaster Batches Day 3 - builder showcase",
+      "summary": "Day 3 of Farcaster Batches. Zaal presents ZABAL Gamez / The ZAO (and plays the Season 1 trailer), yerbearserker walks through Empire Builder's dream-to-empire, integrity-first tooling, AZ Flynn shows Defense of the Agents, Cashless Man shows Booster, and Duckfax shows Celebration Hub. Empire Builder x Defense of the Agents run a Yerba Mate NFT collab with a holder leaderboard dropping BLNKER. Hosted by GM Farcaster (Adriene and Nounish Prof), co-hosted by Adrian (diviflyy), organized by JubJub.",
+      "raw_ref": "data/streams/farcaster-batches/raw/transcripts/2026-06-03-farcaster-batches.md"
     },
     {
       "stream": "farcaster-batches",
       "timestamp": "2026-06-02",
       "kind": "episode",
+      "title": "Farcaster Batches Day 2 - Founder Check workshop",
+      "summary": "A live workshop: Jonathan Colton walks Kenny (POIDH) through Founder Check on stream in the GM Farcaster studio. Founder Check is an agent-driven validation tool built on four pillars - Who (customer clarity), What (problem / Jobs To Be Done), Reach (channels) and Ease of sale - with the Claude API as its reasoning engine. The recurring lesson: everything is downstream of who you build for, and your circle masquerades as product-market fit. Also demos Meme Lord, a pitch-virality spinoff now shipped as a Vinny app.",
+      "raw_ref": "data/streams/farcaster-batches/raw/transcripts/2026-06-02-farcaster-batches.md"
+    },
+    {
+      "stream": "farcaster-batches",
+      "timestamp": "2026-06-01",
+      "kind": "episode",
       "title": "Farcaster Batches Day 1 - builder showcase",
       "summary": "Day 1 of the week-long Farcaster Batches builder showcase, organized by JubJub and hosted by the GM Farcaster team (Adriene and Nounish Prof) with Adrian (diviflyy) of Empire Builder co-hosting. Five builders present and field questions: Chris Dolinsky (Vinny App), Kenny (POIDH), Nikki Sapp (Juke), Jonathan Colton (Founder Check / Fotocaster), and Dr. Deeks (email remittance pro, Crafters, Ghostwriter). Throughline: build the thing you want to see in the world.",
-      "raw_ref": "data/streams/farcaster-batches/raw/transcripts/2026-06-02-farcaster-batches.md"
+      "raw_ref": "data/streams/farcaster-batches/raw/transcripts/2026-06-01-farcaster-batches.md"
     },
     {
       "stream": "zabal-games-workshops",

@@ -1,430 +1,256 @@
 ---
-title: Farcaster Batches Day 1 - builder showcase (GM Farcaster)
+title: Farcaster Batches Day 2 - Founder Check workshop (GM Farcaster)
 show: Farcaster Batches
-episode: 1
+episode: 2
 guests:
-  - Chris Dolinsky (Vinny App)
-  - Kenny (POIDH)
-  - Nikki Sapp (Juke)
   - Jonathan Colton (Founder Check / Fotocaster)
-  - Dr. Deeks (email remittance pro, Crafters, Ghostwriter)
+  - Kenny (POIDH)
 host: Adriene and Nounish Prof (GM Farcaster)
-co_host: Adrian (diviflyy) - co-founder, Empire Builder
 organizer: JubJub
 date: 2026-06-02T00:00:00.000Z
-format: audio-space-showcase
+format: workshop
 language: en
 track: builder
 topics:
   - farcaster-batches
-  - farcaster-ecosystem
-  - vibe-coding
-  - mini-apps
-  - on-chain-bounties
-  - audio-spaces
   - founder-validation
-  - artist-sovereignty
-  - tokenomics
-  - clanker
-  - empire-builder
+  - jobs-to-be-done
+  - go-to-market
+  - customer-discovery
+  - agents
 entities:
   orgs:
     - GM Farcaster
-    - The ZAO
     - Farcaster
   people:
     - Adriene (GM Farcaster)
     - Nounish Prof (GM Farcaster)
-    - Adrian (diviflyy)
     - JubJub
-    - Chris Dolinsky
-    - Kenny
-    - Nikki Sapp
     - Jonathan Colton
-    - Dr. Deeks
-    - Erik
+    - Kenny
     - Zaal
-    - yerbearserker
   projects:
-    - Vinny App
-    - POIDH
-    - Juke
     - Founder Check
+    - POIDH
     - Fotocaster
-    - Crafters
-    - Ghostwriter
-    - email remittance pro
-    - Empire Builder
-    - Clanker
+    - Meme Lord
+    - Vinny App
 links:
   - label: POIDH
     url: https://poidh.xyz
   - label: GM Farcaster
     url: https://www.gmfarcaster.com
+  - label: Episode (Batches 2)
+    url: https://www.gmfarcaster.com/episodes/Batches2
 source:
-  capture: live Farcaster Batches Day 1 Space recording (audio), auto-transcript cleaned (proper nouns corrected, filler trimmed, dropout hallucinations removed)
+  capture: live Farcaster Batches Day 2 workshop recording (GM Farcaster Streamyard studio), auto-transcript cleaned (proper nouns corrected, filler trimmed)
 summary: |
-  Day 1 of Farcaster Batches, a week-long builder showcase across the Farcaster ecosystem
-  organized by JubJub and hosted by the GM Farcaster team (Adriene and Nounish Prof), with
-  Adrian (diviflyy) of Empire Builder co-hosting. Five builders present and field questions:
-  Chris Dolinsky on Vinny App (natural-language app builder on a Web3 stack, running a
-  $1,000 Vinny-a-thon prize pool, extra $250 added by Justin/AHN.eth); Kenny on POIDH (a
-  fully on-chain social bounty platform now live on Ethereum mainnet, with a 20-bounty $25
-  boost promo for the week and the $30,000 Farcaster-crowdfunded kickflip world record as
-  its signature win); Nikki Sapp on Juke (an open-source, audio-native Farcaster client that
-  helped push Farcaster toward native Spaces, now shipping voice notes and an audio SDK that
-  Zaal helped test); Jonathan Colton on Founder Check (an agent-driven GTM/validation mini
-  app from the "Distribution Is Hard, Don't F It Up" book) and Fotocaster (a maximum
-  artist-sovereignty photo mint built with Erik, ~6,000 collects in 30 days); and Dr. Deeks
-  on a slate of mini apps - email remittance pro (send crypto by email, gift-card payout,
-  1.5% fee), Crafters (an AI word-combination game with Megamind NFTs), and Ghostwriter (a
-  Madlib-style community storytelling game). The throughline every speaker and Adrian return
-  to: build the thing you want to see in the world.
+  Day 2 of Farcaster Batches is a live workshop: Jonathan Colton walks Kenny (POIDH) through
+  Founder Check on stream in the GM Farcaster studio, hosted by Nounish Prof and Adriene.
+  Founder Check is an agent-driven validation mini app (born from the "Distribution Is Hard,
+  Don't F It Up" book) built around four pillars - Who (customer clarity), What (problem / pain,
+  via Jobs To Be Done), Reach (channels), and Ease of sale (friction / monetization). The
+  recurring lesson: "Who" is both the most important and the lowest-scoring pillar on Farcaster,
+  and everything else is downstream of who. The reasoning engine is the Claude API, chosen for
+  quality and trust; the tool exports an execution file you carry back to your own agent / corpus.
+  Founder Check behaves like "Duolingo for builders" - returners measurably improve (about 78%
+  do; Zaal had the top recorded jump, roughly 3.3 / 10, after a follow-up). Jonathan also demos
+  Meme Lord, a spinoff that makes a pitch memetic across 15 markers, now its own Vinny app. The
+  deeper warning: your circle of supporters masquerades as product-market fit; clarity only comes
+  from making contact with strangers and serving the full functional / emotional / social job stack.
 action_items:
-  - "ZABAL Gamez builders: Vinny-a-thon runs Jun 1-5, judging Jun 5 - build a Vinny app (optionally + Empire Builder) for up to $1,000 USDC"
-  - "POIDH: first 20 Farcaster-tied bounties this week get a $25 boost + promotion; create on Ethereum mainnet (min 0.001 ETH)"
-  - "Juke: open-source repo + audio SDK open to contributors; integrate native Farcaster Spaces into a site or app"
-  - "Founder Check: DM Jonathan to run an idea through a live workshop session (Tue)"
-  - "Watch the rest of Batches week: Tue Founder Check workshop in the GM Farcaster studio; Thu Cashless Man + Royal Aid on AI automation and self-hosted infrastructure (Farcaster Spaces)"
+  - "Builders: run an idea through Founder Check, then export the execution file into your own agent (Claude / ChatGPT) and return to improve your weakest pillar"
+  - "Founder Check: start with the Who pillar - everything is downstream of who you are building for"
+  - "Try Meme Lord (now a Vinny app) to pressure-test whether your pitch travels without you in the room"
+  - "Watch the rest of Batches week: Wed + Fri builder Spaces; Thu Cashless Man + Royal Aid workshops on Farcaster Spaces"
 status: cleaned
 ---
 
 ## Key points
 
-- **Farcaster Batches** is a week-long, ecosystem-wide builder showcase organized by JubJub
-  (asleep in Australia during Day 1), hosted by the **GM Farcaster** team. Day 1 features five
-  builders; two live workshops follow later in the week.
-- **Vinny App** (Chris Dolinsky): prompt a fully functional app into existence on a Web3 stack
-  in minutes, any language. Each app gets its own EVM wallet; optional Clanker token whose
-  trading fees fund that app's AI build costs and roll 10% up into the umbrella Vinny token.
-  Vinny-a-thon: $1,000 USDC prize pool (extra $250 from Justin / AHN.eth), build Jun 1-5,
-  judging Jun 5. Stack composes with Empire Builder (yerbearserker / Diviflyy).
-- **POIDH** (Kenny): a fully on-chain social bounty platform - crowdfund any outcome, verify it
-  trustlessly. Each bounty is an "ephemeral DAO" with low attack surface (one specific yes/no
-  outcome). Now live on Ethereum mainnet. Signature win: a $30,000 Farcaster-crowdfunded
-  kickflip world record. Week promo: first 20 Farcaster-tied bounties get a $25 boost.
-- **Juke** (Nikki Sapp): an open-source, mobile-native, audio-first Farcaster client. Built in a
-  week to push for native audio; Farcaster (Rish) later shipped native Spaces. Juke keeps going
-  for the open-source baseline client plus features Farcaster lacks - voice notes, recording,
-  and a new audio SDK (Zaal helped test it end to end). Deliberately no token.
-- **Founder Check** (Jonathan Colton): an agent-driven GTM validation mini app grown out of the
-  "Distribution Is Hard, Don't F It Up" book - "Duolingo for builders." A live session with Zaal
-  jumped his score 3.3 points out of 10.
-- **Fotocaster** (Jonathan Colton + Erik): a photo mint built for maximum artist sovereignty -
-  artists keep ~100% of proceeds, platform takes a penny per sale. ~6,000 collects in 30 days.
-- **Dr. Deeks**: email remittance pro (send crypto by email, recipient claims to a token or gift
-  card across Monad / Base / Celo, 1.5% flat fee, built for the Synthesis hackathon), Crafters
-  (an AI word-combination game with first-creator Megamind NFTs and agent-driven features), and
-  Ghostwriter (a Madlib-style community storytelling game with hidden-metadata NFTs).
-- The throughline every speaker and Adrian keep landing on: **build the thing you want to see in
-  the world.**
+- **Format:** a live workshop, not a Space - Jonathan Colton screen-shares Founder Check and runs
+  Kenny's POIDH through it in real time, with Nounish Prof and Adriene hosting from the GM Farcaster
+  Streamyard studio. Context-dumping (over-explaining, not cleanly answering) is the intended way to
+  feed the tool.
+- **Founder Check** is an agent-driven go-to-market / validation mini app that grew out of Jonathan's
+  book "Distribution Is Hard, Don't F It Up." Four pillars:
+  - **Who** - customer clarity (the single most important, and lowest-scoring, pillar on Farcaster).
+  - **What** - the problem / pain, framed through Jobs To Be Done (functional, emotional, social jobs).
+  - **Reach** - where the user already lives and how you make them care.
+  - **Ease of sale** - friction, monetization, adoption.
+- **Everything is downstream of who.** Founders freeze when asked who they build for; Founder Check
+  refuses to let you off easy until you name a specific person, then builds a stack you can communicate.
+- **Reasoning engine = Claude API**, chosen deliberately for quality and trustworthiness (it costs
+  Jonathan money per run). Output is an **execution file** you take back to your own agent / corpus so
+  your assistant "knows what you just did" and you can keep working on it.
+- **"Duolingo for builders":** your first run is your worst run. Returners measurably improve - about
+  78% of returners raised their score; Zaal had the top recorded jump (~3.3 / 10) after a follow-up.
+- **Your circle masquerades as PMF.** Friends and your Farcaster bubble give positive feedback that
+  isn't validation; the chasm is a *context* chasm - new strangers who do not know or care about you.
+  Founder Check (and running landing pages / pitches through it) exposes that gap.
+- **Meme Lord:** a spinoff that polishes a pitch to be memetic / viral across 15 markers ("a meme is
+  an idea that travels like a virus") - grown inside Founder Check, now also shipped as its own Vinny app.
+- Kenny's live first run scored well (customer clarity ~7); even unicorns' original pitches score low -
+  the work is the iteration, not the first number.
 
 ## Transcript
 
-> Cleaned from an auto-transcript with no speaker diarization; speaker labels are inferred from
-> context. The Space had two audio dropouts (an X / Spaces glitch mid-session and Dr. Deeks'
-> phone overheating near the end); the dead-air sections, where the transcriber looped, have
-> been removed. Some names are best-effort and listed in the glossary's "Confirm before use."
+> Cleaned from an auto-transcript of the live workshop (GM Farcaster Streamyard studio); speaker
+> labels are inferred from context. Hosts: Nounish Prof and Adriene. Walkthrough: Jonathan Colton
+> with Kenny.
 
-**Adriene:** GM, GM everyone. Give a recast, let people know we are here. We are recording in
-our studio as well as in the Space. Adrian, I'm making you a co-host so you can bring people up
-for questions. We're waiting on a couple more folks - Nikki, Jonathan, Dr. Deeks. Let me do a
-quick mic check with everyone on stage. Jonathan, Chris, Nikki, Kenny - good. And I'm bringing
-up the Farcaster intern too; they don't have to speak, but it helps visibility.
+alright gm farcaster batches so a little different today we are here and we are in our webinar studio and adrienne if you can let everybody know we are live in case anyone wants to join in they can jump into that link that i shared in the gm farcaster channel we are here with jonathan colton and kenny are gonna be here with us walking through founder checks so farcaster batches is a week long focus on builders in the farcaster ecosystem we had a amazing twitter space yesterday i was just saying like kenny was awesome on that twitter space like he is he is crushing it and jonathan colton also was with us on that twitter space amazing and i'm really excited to bring these two together today for this workshop we also have a twitter space on wednesday tomorrow and friday at 1pm and then we will have another workshop on thursday so with two different builders royal aid and cashless man that will be on farcaster spaces so really kind of spreading it around and checking out all the different things and then of course everything will be shared on all the gm farcaster channels adrienne before i bring up jonathan and kenny anything you want to share with the folks or any thoughts
 
-All right, folks. We are here for Farcaster Batches - I almost said Base Batches - Day 1. This
-is the brainchild of JubJub over on Farcaster. JubJub is in Australia, so he's actually asleep,
-but he did all of the organization for this. He wanted a week-long focus on the builders around
-the Farcaster ecosystem - pulled together all the builders and two workshops happening this
-week. Tomorrow there's one in our GM Farcaster StreamYard studio; Thursday we have two builders,
-Cashless Man and Royal Aid, doing workshops on setting up AI automation and building on your own
-infrastructure, both on Farcaster Spaces. A lot going on this week.
+no let's get the folks in here i'm still alright i'm still catching
 
-Today we have five amazing builders: Chris Dolinsky with Vinny App, Kenny with POIDH, Nikki Sapp
-with Juke, Jonathan Colton with Founder Check, and Dr. Deeks on several projects. Each builder
-gives us a breakdown - what your project is, what you've been building, how it connects with the
-Farcaster ecosystem - then we'll take questions. Chris Dolinsky from Vinny App, I'm going to
-start with you. Welcome.
+let's bring them up so here is jonathan colton and kenny from p o i d h and we're actually gonna go off screen and let them take over but we will be in the background managing things we'll hear everything they're doing so just yell if you need something jonathan and kenny and we're we're out there promoting and see if we can get some more folks in here alright adrienne i'm taking you off screen and i'm going as well jonathan to you
 
-**Chris Dolinsky:** Great to be here - always wonderful to see so many people on the internet
-jump into one Space. Vinny App is a platform that lets anyone in the world, developer or not,
-use natural language to build a fully functional application in a few minutes. It's set up on
-the Web3 stack, so it makes use of brand-new primitives that have never existed historically.
-You prompt your way into having an app.
+alright it's funny i don't see myself right now
 
-As part of Farcaster Batches we have a $1,000 prize pool - Justin, AHN.eth, contributed an extra
-$250. Anyone who builds during the next five days is eligible for up to $1,000 USDC for any app
-built using Vinny - either a pure Vinny stack, or with Empire Builder (yerbearserker or Diviflyy)
-or Justin's project added in. You can be anywhere in the world, walking on a treadmill or getting
-a coffee, and start prompting your build. There's a full leaderboard so everyone can see the apps
-being built. We track unique users per app, and each app in the Vinny-a-thon launches with a
-token, so the market can get involved and the market cap is trackable. Building runs the first
-through the fourth; on the fifth we judge live and award the prizes.
+i see you i see you but you're frozen at the moment well geez
 
-The real goal is to take the narrative that everyone should be building and actually open it up
-to the 99.5% of people who historically either can't code or, more often, just don't have time
-to string all the pieces together. It works in any language - Korean, Japanese, Mandarin,
-Portuguese - we have apps built from Turkey and India. Half the time I have to run the prompt
-through Google Translate to see what they built.
+yeah and the back you are frozen
 
-While you build, you have full support from our team - gamification, tokenomics, features, bugs.
-And 10% of the trading fees of every launched token roll into the main Vinny token, so there's a
-canonical umbrella token binding the platform together. It's a land-and-expand strategy: start
-with a little nugget - a card game, a health tracker, an expense tracker - and grow it exactly
-how you see fit, then share it as a mini app on Farcaster or out on the wider web. We have World
-support (around 20 million wallets), Celo MiniPay support (another 15 million), Telegram support
-coming, and direct web use. Really looking forward to seeing what people build.
+just wreck just wrecking my computer
 
-**Adriene:** That's awesome. I'm definitely going to try to build something. Adrian has built a
-couple things on mini apps - what tips would you have for people participating this week?
+it could be it could be we've had this issue before so if you need to go off screen for a second and come back that is fine we can let you reset if you need to
 
-**Adrian (diviflyy):** I've used Vinny twice since Chris demoed it and it's really awesome. Don't
-just use it - try it. If you get stuck, ask Chris or Nick for support, they'll help out. I found
-it super intuitive, really easy from idea to prototype. Chris, I have a question if you'll take
-one: part of the flow prompts people to launch a token before the app is built, and it's framed
-as fees from the token helping support the build. I like that model - have you gotten any pushback
-or confusion about what the token does?
+yeah i'm just looking at my cpu load right now let me navigate that mhmm because it's at 87% which it shouldn't be yeah will be great
 
-**Chris Dolinsky:** Totally. The tokenomics make use of these new primitives. There are a number
-of vibe-coding platforms, and people will say "oh, they did that on Claude Code or Codex." Good
-to know: with Vinny we sit on top of those - you take the bare bones of a Claude Code or a Codex
-and layer on a ton of skill sets and connections you'd otherwise have to provision yourself
-(API endpoints, wallets), and eventually you get to the idea of a token.
+we're working now platform currently chrome is using 273 247.3% of my compute right now
 
-A token isn't required to use Vinny as a standalone platform - it's only required for the
-Vinny-a-thon, because it helps with the leaderboard and tracking and lets the market participate
-in ranking the apps. What's nice: every app that gets created gets its own EVM wallet, which pays
-for the AI building the app, storage, image generation - basically everything. As the app's token
-trades on the open market, those fees accumulate into that wallet, so for some builds the trading
-fees actually helped pay for the development. But the real purpose is to let people explore how
-tokens can be used in novel ways. A chess app uses the token to buy animated boards; Nick's app
-Uchi uses the token as a tipping system. Because it's on Base it's light and cheap to transfer,
-and with Farcaster wallets and Clanker tokenomics it's exciting to see which direction builders
-take.
+yeah that sounds about right so yeah we probably should have warned him about that this is what we have to do we usually have to restart our computers before we start the stream just to make sure and also we can edit some of the sound so that's the problem for the recording anyway
 
-**Adrian (diviflyy):** Love that. Great answer.
+alright the load is down to 40% 23% i think it just needs to cloud a little bit
 
-**Adriene:** We're running a little long already - shocking, but that's okay. I'll point out that
-you and Nick came on GM Farcaster a couple weeks ago and built a Pac-Man game live on the show,
-so if anyone wants more instruction, check that out on GM Farcaster's YouTube. Any closing
-thought, Chris?
+okay do you need to reboot at all do you wanna go off screen for a second and reboot
 
-**Chris Dolinsky:** It's so easy to get started - don't carry the weight of the world. Just type
-your prompt: "I want a Pac-Man game," and start there. Don't worry about all the functionality up
-front. The front door should feel like walking into a spa - calm, no pressure, just look around.
-You get a little momentum and a couple weeks later you have a fully functional app, like the 2048
-Farcaster that Adrian made, where the whole feed was posting about it.
+yeah let me let me reboot this i i booted up before this but wait a sec we're at 43% but my video is not showing
 
-**Adrian (diviflyy):** For a few hours a day.
+yeah you're still you're still frozen right now
 
-**Chris Dolinsky:** Hey, Andy Warhol said 15 minutes - don't expect more.
+alright alright let's try let's try the did you restart okay we're gonna i'm gonna just try yes i'm gonna take him off screen and see if he can restart yeah okay
 
-**Adriene:** Thank you so much, Chris. If you have questions about Vinny App, reach out to Chris.
-We're going to move on to Kenny from POIDH - and Kenny, give me a better pronunciation.
+i can also just start rolling through and maybe that's the best way
 
-**Kenny:** Everybody's first question. Early on I said POIDH, but lately I just say POID. POID
-has been running a while - I've been building it in public on Farcaster for three years. POID is
-a social bounty platform: you can crowdfund any outcome, verify it happened, and do it all
-trustlessly, 100% on chain. There have been lots of task platforms in crypto, but our twist is
-that when you create a bounty you're creating an ephemeral DAO - as other people put money in,
-there's this aspect of people rallying to make something happen, and you actually see it on chain.
+maybe that is the best way so why don't adding me yeah so if you want to start just like chatting about p o i d h and then we can start rolling through the founder check we could do that yeah as well
 
-For this week - and first off, thank you for the CEF grant last week, we're stoked - the promo
-that coincides with Batches is an activity grant: the first 20 people who create a bounty tied in
-some way to Farcaster or your project get an extra $25 plus promotion, just so people get a feel
-for the app. Our minimum is 0.001 ETH, so you need about $2 to start. POID is a broad design
-space - you can incentivize almost anything: usage bounties to drive users, competitions, clipping
-bounties (we did one for GM Farcaster two weeks ago), bounties to summarize your project, even IRL
-guerrilla marketing - stickers and posters. We did one for QR coin putting up stickers around the
-world, and one of my favorites was someone putting an "Ethereum for financial infrastructure"
-poster up on Wall Street, crowdfunded through about 10 people for $200. That's the spirit of POID.
-And we're live on Ethereum mainnet now - contracts tested and looking good - so we'd love to see
-bounties created on mainnet this week.
+and well do you wanna share my screen and i can start typing my stuff into founder check
 
-**Adriene:** Love this. Where did the concept come from, and what have been the most interesting
-bounties?
+sure okay
 
-**Kenny:** Years of ideating. I'm a big governance and DAO nerd - when I first heard about crypto
-that's what caught my eye: how can you use this to create online communities? This came out of the
-pandemic era - I was thinking about ways to crowdfund for public goods and healthcare. The
-fundamental problem was permissionless crowdfunding where anyone can put in funds and anyone can
-claim - but if claims and voting are permissionless, people could vote to take the money
-themselves. So I narrowed it: a DAO for one specific thing has way less attack surface, and the
-people who put money in vote on whether that one specific thing happened. There are lots of
-governance failures when you vote on subjective things, but people on the internet are pretty good
-at agreeing on "did this one specific thing happen," especially when they have money on it.
+so we'll start we'll start getting going alright this is the founder check mini app that you're using
 
-The big one, made possible by Farcaster, was the kickflip world record - we crowdfunded $30,000
-basically within the Farcaster ecosystem, and Dave Bachinsky broke the world record for kickflips
-in one minute. That's the one that made it crystal clear we had something special. I just posted
-an article called "The Ephemeral DAO Machine" that runs through 10 of my favorite crowdfunded
-POID bounties - and one big failure, because no tooling is perfect.
+mhmm so so which idea is worth building answer three questions get a clear verdict okay describe my idea and who it's for so i'm gonna click check my idea describe the specific person who needs this right now not a category a person okay
 
-**Adriene:** Awesome - everyone go check out the bounties going up this week with the bonus.
-Adrian, any questions before we move on?
+so this is really this is very entrepreneurship teaching coded by the way also because we always talk about like coming up with your your person like your the person you're building this for and like creating who this is and really giving them a life because it really helps to identify who you're solving a problem for
 
-**Adrian (diviflyy):** Nope, that was great. We love POID.
+okay yeah i've been thinking about this more and it's tough because i've i i break all the the proper entrepreneurial rules with points i'm very broad with them like you can use it for this community or this community or this community and i know everybody's like you gotta have the wedge right but i have been thinking about it more in the context of social media so let's see who are you building i wonder how much context it has on me and poid in general so i'll give it a little bit of that so i'm building poid social bounty app anyone can oh go ahead
 
-**Adriene:** We love POID - and I'm bummed we know how to pronounce it now, it's more fun to
-guess. Kenny, kudos to you, you really are the epitome of building in public on Farcaster.
+and you've been really broad about like not focusing on just web three which even though it is a web three tool like it's i know that you've kinda gone way beyond that so i think that i can understand why you're you know there's a little bit of a hesitation here in this question
 
-**Kenny:** I'd say you all were the first ones, but I appreciate that.
+yeah and it's yeah i'm i'm very broad with it and i think you asked yesterday on that spaces right it's like what was the motivation behind poid a lot of it was like i've been in the industry for a long time actually going back to 2014 like i wrote in bitcoin magazine back then right so oh wow yeah watched the industry grow but i was just like an outsider i was just like somebody watching crypto twitter while doing you know my normal career i'm an seo professional doing stuff like that but being entertained by crypto twitter but a lot of the creation behind poid comes from i like the gambling side of the industry totally it's fine coins go up and down things like that but it was hard to have stuff to give to like my mom my dad my friends to get them interested and poid was something that clicked where i was like yeah i could put money out there and you could do something in real life and earn the money you're not gambling right right so that
 
-[Technical difficulties - the Space glitched on X and dropped several speakers; a few folks cut
-out and came back over the next minute.]
+and jonathan we started just diving in he started into your mini app and started going through the first question and we were just talking through that right now of who is this for so do you wanna you know talk about this particular question and sort of what the the thinking is behind it
 
-**Adriene:** Okay, we're back. Nikki, give us the overview on Juke.
+yeah so and that's and that's a good question professor because foundercheck really focuses on the who who you're building for right and before foundercheck existed i was doing a ton of research on reddit using agents who could listen to founder go to market pains on reddit in you know our saas our you know all of the the the mini app micro saas saas you know builder channels and i had agents listening to that and then finding patterns and creating a corpus based on those patterns and what i started to see is recurring you know themes and patterns and the one thing was you know i built for nine months did all this stuff features blah blah blah and then launched to crickets and i wish i had asked people if they even wanted this and like i have dozens and dozens and dozens of quotes like that so then i built found that based on that and the first versions were really rough but they did the job and you know each iteration has gotten better and stronger the who score on farcaster is the lowest score out of any of the four pillars right so you have who you're building for you have you know the what section but the what section's about pain problem right but if you look at jobs to be done the functional job is pain relief it's solving a problem for user right and then you have the emotional and social jobs that products do for people as well what so a caveat to that is what you notice is in our space web three whatever you wanna call it highly technical very intellectual specialized founders really only talk about feature feature feature all functional jobs they completely ignore a lot of the job stack so i wired in an intervention for low who scores to put them into the jtbd stack to help them with a little more surface area about the jobs they're doing so maybe they can reverse engineer a specific who from that then i turned that jtbd stack into the the what pillar so now that's really focused that's what happens in what there's a whole jtv stack in there i'm sorry it's so nerdy but i wanna give you a look under the under the hood and then the the third pillar is obviously gonna be like channels like where does your user hang out and live how do you make them care how do you reach them right how do you get them listening to this magic that you're creating and then the fourth pillar is like friction monetization adoption ease of sale kind of metrics that are built in so you have four pillars in the founder check stack but who is the most important question you have to answer because everything else is downstream of who when you're building and i know this is like builder kryptonite anytime you ask yeah a founder who they're building for they look like a deer caught in the headlights it's just a natural response because people have this beautiful brilliant idea and they're whipping it on the world and then finally somebody asked them a question that's kinda like gravity in the space i was just talking to chris delinski about this for an hour you know and everybody has to go through that gauntlet of answering who to other people vcs people in their community right and so what foundercheck does is it forces us to listen you know to to to find our who and it will not let you off easy of who that person is and and and that's that's why i stress that part a lot because that really is the unlock if you wanna speed run this process you gotta lock in on who first and that's what founder check that was really the initial idea behind founder check was helping people name their who right but i can't just have them do that they gotta come out with a stack right to be ready to communicate this thing to other people right
 
-**Nikki Sapp:** Appreciate you hosting - sorry for the technical difficulties, that's Elon's
-fault, never happens on Farcaster Spaces. So Juke came out of necessity and desire. I casted
-about wanting native audio Spaces - I missed Tavern from back in the day. When I first joined
-Farcaster, Tavern was huge; there was Farcaster Audio and Farhouse and all these attempts to
-bring audio to Farcaster, but they each had pitfalls, especially in the mini-app context - if you
-soft-closed the app or your screen went dark, you'd lose the audio. So I felt a native experience
-was necessary, there was demand for it, and I just built it in about a week and published it as an
-open-source, mobile-native, audio-focused Farcaster client.
+so kenny already went in and started typing in this first question kenny where are you at with that
 
-I did it partly as a poke to Rish and the Farcaster team to get real native audio Spaces. I won't
-take credit - several others were doing audio-focused things too, and it all converged. Rish
-reached out and asked, "would it kill you if we add it natively?" and I said no, it'd make me
-super happy. So Farcaster has Spaces natively now. Why keep working on Juke? First, it's important
-to have an open-source, mobile-native baseline Farcaster client - point your LLM at my repo and
-you can build your own client simply, with the audio features. Second, Juke has features Farcaster
-doesn't - voice notes you can post directly to the feed (they render natively on Juke, as a mini
-app elsewhere), Space recording, and a new SDK - which Zaal, who was in the audience recently,
-helped test end to end - so you can integrate native Farcaster audio Spaces directly into your own
-site or app. Cassie has unified audio across quorum and the main Farcaster app, so I'm working on
-syncing that for Juke too.
+so i think i have my answer here i gave it a little bit of background on point jonathan because that's one thing i wasn't sure did it have background on me so feedback there it would be nice to know as the founder it's like oh we have your forecast for context right like right ask neymar neymar knows that i've been building points for a while so i do wonder about that does that context
 
-My goal isn't to compete with Farcaster - this is a passion project. As Farcaster ships features
-I'll add them; as I come up with new stuff I'll add it. The app supports mini apps, snaps, and the
-usual protocol-native features like channels. The one thing it doesn't support right now is crypto
-- no wallet integration yet. That may change to support things like mini apps, but I'm not adding
-a wallet to launch a token. I have no plans for a Juke token - I have no desire to take on that
-level of smoke again unless it's very, very worth it. Honestly I use Juke a lot myself because it
-has a GIF keyboard and things I wanted in the main app - and so can you, just fork the repo.
+so i'm not sure about this particular version but an earlier version would scan your social profile and look at the things you're talking about because oftentimes builders are talking about their thing so it would prepopulate this with some easy to grab stuff that comes from your social profile right but i think people found it confusing so i pulled it out for you know you know it was too prominent so i pulled it back a bit but once you build this you know version inside founder check it's gonna lock that in and so you'll have reports and you can go back and and continue to work on that particular report and it starts to know your context another caveat is is that the reasoning engine that's gonna come back with you come back to you with replies and interact with you is a cloud api so it's it's you know this is you know this cost me money every time somebody uses foundercheck because i wanted claude specifically because claude is the highest quality most trustworthy you know currently you know for for something like this anyway continue kenny
 
-**Adriene:** That's incredible - the personification of "build what you want to see in the
-world." Are you looking for contributors?
+no no shade no shade chat gpc in google but yeah yeah
 
-**Nikki Sapp:** Absolutely. Zaal has been super helpful - he helped test the SDK end to end.
-There's an open-source repo, and I'm happy to let people into the nightly builds. Ideas, feedback,
-build your own client on top of it - I'm flexible and open, so reach out. I'll just say: there's
-still a massive opportunity to build on Farcaster. Sentiment shifted with the change in ownership,
-but the primitives and tooling are massive, even if you're just a vibe coder, especially as we see
-the closed-loop centralization of other platforms. Don't give up on Farcaster - it's very viable
-and keeps improving.
+okay you know and i do like that like there's an angle that too is like okay you've got to give a quick what's your elevator pitch what you're doing so i did give it that i gave it some context i'm building poiid anybody can create a bounty and then our twist rate is that anybody can also crowdfund these boundaries bounties these bounties are not static like a traditional task platform so with this in mind the person who i need to onboard to point is social media creators right i've been using this analogy a lot of you know social media what it allows you to do is boost you can publish ideas frictionlessly and then anybody can come along and boost those ideas frictionlessly they can comment they can like they can repost they can do these things and that's the beauty of it right it really democratized access to publishing ideas and other people being able to support those ideas and there's people who we know are very good at social media we call them social media creators and so i want them to discover poid as this new tool in their toolbox where it's like oh you can publish an idea and not only can somebody support you with a comment a like a repost they can support you monetarily and you know there's been other ways to do that there's kickstarter there's being a fan of thing you know a subscriber on x right but none of that is granular to the level of supporting one specific initiative from a creator right it's more like oh yeah give them give give them money to continue being a creator in general not do you support this initiative from them do you support this initiative from them so that is the way i explained it and the type of person that i'm trying to attract so i think i've explained it okay and just click continue
 
-**Adriene:** Love it - and you've been one of the big supporters while giving honest feedback all
-along, the team appreciates that. We're going to move on to Jonathan Colton. Dr. Deeks, I see you
-in the audience, I sent you an invite - we'll chat with you after this. Jonathan, welcome to
-Farcaster Batches.
+go for it let's see oh okay alright so no feedback until everything yeah no problem to solve
 
-**Jonathan Colton:** Founder Check was a labor of love. It started last year when I published V1
-of "Distribution Is Hard, Don't F It Up" as a Google doc and shared it with the founder channel on
-Farcaster - a slightly embarrassing version, which I think is good; if you're not a little
-embarrassed you're probably doing it wrong. I released a V2 after talking to builders at Farcon
-base camp for months. Then earlier this year, when we all figured out we could do cool things with
-agents, I started doing GTM pain research on Reddit and Product Hunt, building a corpus and
-knowledge base, with a hypothesis: what if lean validation could be done by agents - could they
-discover signal faster than the founders who need it?
+now that you guys are cooking we're gonna jump off the stage just to give you a little more room but we'll be behind the scenes helping manage this so continue on
 
-I built a first version on Replit, then rebuilt it with the Farcaster building agent - way faster
-and a better version, with a built-in wallet and my social graph attached. People know me, they
-know I wrote those distribution versions, so I had some trust and credibility on the topic. Once I
-launched, I really just paid attention to the analytics - how well people performed in each pillar
-of Founder Check - and that data helped me create interventions where people performed poorly,
-which became main features.
+okay so what problem does it solve the prob alright the problem that it solves is that there's no way to support creator ideas on a micro level there are many tools to support a creator on the macro level by paying subscriber fees tips subs yep subscriber fees as subscriptions tips direct payments etcetera but in general a creator isn't able to spin up in initiative and receive monetary support in the frictionless manner they in the same same frictionless manner that is available when they tweet an idea and someone can come along and repost
 
-**Adriene:** Tomorrow you're doing a workshop - what's the goal, who should tap in?
+can you also talk about what does it feel like to have the problem unsolved like what's the tension mhmm right
 
-**Jonathan Colton:** Tomorrow I'll go into the user pain and inspiration, then run a live
-workshop: we select one idea and run it through Founder Check live, you see the score reveal, and
-we might do a quick revision to see the score improve. There's a whole "Duolingo for builders"
-side - builders come in, use Founder Check, improve their score. I did a session with Zaal last
-Friday and his score jumped 3.3 points out of 10, one of the top jumps I've measured. The outcome
-is that founders and builders get better at communicating an idea clearly enough that people can
-understand and replicate it. If folks want to work through it live tomorrow, send me or the hosts
-a DM and we'll pick one to do live - that's always the most revealing version.
+yeah and the the i think everybody feels like a need to contribute in their own way right and this aligns that right mhmm when you see something that really makes you feel something right there is a and and again this goes back to jtbd right like there's a functional job right i can affect the change in the world about something i care about it's kind of a functional job but maybe there's some emotional stuff in there too i'm making the world a better place that's a good feeling right and then socially you know you could think of it in a way as you know i'm signaling that i care to people who notice right
 
-**Adriene:** Very cool. While we have you - talk about Fotocaster, it's been popping off since it
-launched about a month ago.
+right i'm just gonna scroll through some of the bounties because we're doing multiple multiple bounties here i mean this is a good one to to bring up because it's not just bounties we also do crowd funds right so somebody here epic dylan like he need he he wants to get this paper published and so he's able to say hey everybody chip in to this specific bounty i'm gonna chip in later it's just been a busy morning for me and promote so it gives them the way to do that but i guess that's not the best example because there are crowd
 
-**Jonathan Colton:** Fotocaster was a byproduct of Erik and me complaining, in private and a
-little in public, about minting your work and what sovereignty artists have. Everybody remembers
-Rodeo - we were giving up 50% of a sale and had no sovereignty over editions or one-of-ones. It
-was a one-shot model and it worked great; I minted 143 NFTs and had over a thousand collectors -
-but Erik and I always felt something was missing. With Rodeo gone, the human drives to create and
-to collect were absent on the timeline. Three weeks into building Founder Check I begged Erik:
-"it's time, we've got to build Fotocaster, and you have to use the building agent because it's
-amazing." Erik was the architect with direct access to the building agent, and we worked together
-every day for hours. There have been over 6,000 collects in the last 30 days. It's inexpensive - a
-joyful way to collect art you like, mostly photography - and the big idea was maximum artist
-sovereignty: artists keep 100% of their proceeds and the platform takes about a penny per sale,
-which we'll have to change to be self-sustaining, but we wanted to give artists maximum revenue.
+but kenny this is a great example because someone is trying to bring their work to life right and so they have a burning in the pants desire to see this thing come to life right yeah so it's kinda painful when you see a potential future that you don't you can't just you could almost grab it but you don't have the means to grab it right and so okay okay i've recently talked to dylan on podcast we got his paper accepted to be published but needs to pay a $500 publishing fee talks to
 
-**Adriene:** Love that - there's been so much fun photography and art on the timeline because of
-it. Adrian, any questions before we move to Dr. Deeks?
+i think we're in the wrong business kenny right oh yeah that's probably let's do paper
 
-**Adrian (diviflyy):** No specific questions - I just appreciate the theme running through all of
-these speakers: build the thing you want to see. It's the most powerful thing to do.
+talks it through setting up a crowdfunding specific bounty that would allow people to chip in and he would then claim once he has proof of the paper being ready to publish i wanna i wanna do another one though just because crowdfunding is it is something that where you're crowdfunding for you yourself are going to do something that's a bit more of a solved problem than crowdfunding for something that you just want to see happen in the world so this is a good one where dijan communist just made this for interview a politician and get the video posted on the politics network on farcaster and like he was stoked he was going back and forth on like what are ideas that we can do to get more diverse and interesting content in the politics network and yeah i i had this idea of like oh we could you know do a bounty for a video interview and he really liked that so and that fits my earlier point even better like talking about social media creators because he is a creator he's trying to bring this channel to life he's trying to get people visiting get good content on it
 
-**Adriene:** Jonathan, we'll hear more from you tomorrow during the workshop - DM Jonathan or tag
-us if you're interested. Last but certainly not least, Dr. Deeks made it to the stage and has a
-number of projects - ghostwriter, email remittance pro, Crafters, and Journey Through Time. Where
-do you want to start, and how did you get building on Farcaster?
+hey professor while you're listening i know we're at 01:29pm what's do we have any time constraint here that we can keep going alright
 
-**Dr. Deeks:** I'm not too big a fan of social media, honestly, but Farcaster wasn't just a social
-platform to me - it was a collective of individuals who want to grow and continuously evolve and
-help others grow with mini apps. Let's start with email remittance pro. It started for the
-Synthesis hackathon - a 10-day sprint that was supposed to be fully autonomous-agent-created, so I
-didn't write a single line of code. I had technical issues for the first seven days, so I only had
-three days, but I got a demo produced. The idea: no matter who it is across the globe, if you have
-their email you can send them crypto - the email is the identity layer. It's not required that you
-or the recipient verify identity, though that comes with its own risk, so there are two modes,
-business and personal. Personal: open the app, put your email in, connect your wallet, send funds
-to the escrow wallet, and the recipient clicks the claim link in their email. They choose how to
-receive it - the token sent, a different token on Monad, Base, or Celo, or a gift card - and any
-swap or bridging is done on the back end. For the recipient it's just click, select, instantaneous
-payout.
+you can keep going no i mean i mean you know we can't go all day but i i actually figured we'd need an hour i know you had said thirty but i figured we might we might need more time
 
-The concept came from how businesses like Wells Fargo skim money off people sending funds to
-families abroad. Our model is a 1.5% flat fee taken when money is sent in; everything else is on
-the user. It's already proven on chain - I have transaction proofs and video showing it works. I'm
-currently redeploying it on Render and Cloudflare for the front end and back end.
+i think you know going through this with kenny in a real time situation is you know kenny is sort of context dumping which is what you're supposed to do in the tool even if it's not directly completely answering a question because you want it to load up on what you're you wanted to know what you're doing right you wanted to have as much information as possible so that makes sense
 
-**Adriene:** That's super interesting - especially trading it in for a gift card for someone who
-may not have a wallet or want to deal with that. It also lets the sender skip buying a gift card
-or using traditional methods if they're crypto-native. Feels very early. Where do you want to go
-next? We've got three more.
+of this stuff is very hard to describe in a meaningful way on a on a one shot like i did i know we're putting a lot of pressure on kenny keep going you're doing great we're doing it live kenny we're doing live i have a lot of context dumping yeah practice over the past two years of like just telling llms alright here's what's going down here's our yep
 
-**Dr. Deeks:** We don't have to do all of them - my phone was overheating, it's been a chaotic
-Monday. Let's do Crafters. It's a word-combination game: everyone starts with a base set of words
-- water, earth, air, fire - and you have a draggable playground where you combine two words and AI
-combines them into a new word, documented in the database. The first time a word is ever created,
-you have the option to mint a Megamind NFT that says you're the creator of that word; after that,
-nobody else gets that NFT for it. I'm expanding it with agent-driven features - a Megamind can be
-poached in a "Megamind heist," there's rival coaching, you can rent out agents for brain power so
-they keep trying to make words on your behalf, daily challenges, on-chain check-ins, leaderboards,
-and a dynamic celestial weather system where the scenery changes based on crafts made or agent
-actions.
+give me so we're that's what we do now we contact stump and we cut and paste but what's interesting is and while you're working on this kenny i'm gonna talk about zal zal did a session then he and i did a session on his idea and he jumped i think over three points in that follow-up session now he has the highest point jump out of any user and so there's probably 23 returners in this cohort who have returned and worked on their score seventy eight percent have improved their score measurably which is a is another thing that layering on this talk is that people who return multiple times vastly improve their score and their clarity on the four pillars right so there is a thought that this is kinda like duolingo for builders and that when you come in here your first run is your worst run right you're gonna score poorly compared to what you're gonna score when future kenny comes back in here with future jonathan and we actually do this one on one and and and and do a couple more passes but i don't wanna i don't wanna get ahead of the game so okay
 
-**Adriene:** Is this a mini app, and how do you play it?
+and just as a side note i could see this being really valuable to my entrepreneurship students who are you know this is perfect and we do a lot of this through different processes but this would be a really helpful tool as well
 
-**Dr. Deeks:** It's a mini app or web app - I have a beta as a mini app already, but I have a lot
-of projects I'm working on.
+how does your user describe the this problem in their own words i wish i had a direct quote or an exact words if you have them paraphrase yeah just paraphrase you know like package together a couple different ones if you have to to and to like myself
 
-**Adriene:** That's really cool. There are a lot of word games on Farcaster - shout out Word a Day
-- and they do pretty well because a lot of people dive in and play. Adding the agentic layer will
-definitely drive interest. I'm a little short on time, but one more opportunity - any other project
-you want to highlight before we wrap?
+by the way kenny you did a you did a poid for sunsets with photo cast yeah with photo caster and so as a as a sort of user in the you know in the experience because you did it right to help us you know promote photo caster and sunsets so it's kind of a dual mission it felt really great to see people as a note i really missed i missed that bounty i should have gone in because i do have the ultimate you're in florida man you have all the photos sunset photos like i have a just rolls and rolls of sunset photos and i regret not putting one of those in so anyway you know i'm still waiting for some from some photography from you and adrienne about that i need to i need to put some up i have some that i like i even use it as like my lock screen that's so good with palm trees and all that so i need to do that anyway carry on carry on
 
-**Dr. Deeks:** I'll touch on Ghostwriter real quick. It's a community-driven storytelling game,
-Madlib-style: you contribute a word into any active story to get a creator credit, which lets you
-create your own story from a prompt and a category, with three lengths of stories to choose from.
-When you submit a word you get an NFT with hidden metadata - you can't see anything - and at the
-end, once the story completes, it automatically reveals, and you'll see what you and everyone else
-who contributed made the story into.
+let me see if it's going so can he go ahead when you use or describe this problem or what's interesting exact words rico i think there is a bit of feedback to like i wonder if anybody would support this idea if i put it out into the world right there is this question that everybody has before they put push post on any social media thing and i i remember that even from the early days of the internet like posting forums and it was like even if there's just one comment you're like oh wow somebody cared about something somebody saw you yeah somebody knows me and so i think there's something to that too of
 
-[Recording degrades into audio dropout after the Ghostwriter description - Dr. Deeks' phone audio
-cut out - and the captured audio ends here.]
+just by the way being seen is an emotional job of social networks right and status you know from association in those networks is a social job right
+
+yeah okay how can okay there's also the distribution which boyd isn't great at this you know i'll be frank about that because we don't we get like maybe 200 daily active users coming through it's a it's a pretty small platform but at scale there is this question we wanna solve to people for like how can i get distribution for this idea that i want to see happen and we need to do a good job
+
+so so kenny the answer to that question partially is poit makes it legible and trustable right because poit is a thing it's a it's an app it's a it's a community right and so it makes that thing legible to others right and discoverable right because it's you know in your app or on the website right and then it you know brings an element of trust because it's not some rando in the stream saying give me money boss remember those days dj days give me money boss so the so like there's there's you know there's that right legible trustworthy it it does give it distribution in a sense because it it it has those elements right mhmm
+
+and one other note that i'm gonna give it drop it some context for this i think people would fund this thing but this thing but i don't have the social capital to fundraise directly so the point of point like why is point different it's trustless fundraising right that people create bounties all the time now i have users that create bounties from all around the world and they are nuns i have no nothing about them and they will create a $2 bounty just to try out the platform just to see what stuff comes in and i will add like $10 to that bounty okay now again i barely know this person and the most likely result in any other platform if you're doing crowdfunding i would put the $10 in and then they would run off they'd be like sweet i didn't really care about using this like peace you don't know who i am but the point of poid is that because of the mechanism design they can't run off with the money they have to propose a claim for vote there's a forty eight hour voting period i can deny the claim being paid out right so it allows people who may not have that trust level built up yet where they can't do gofundme they can't do kickstarter they can't do the normal crowdfunding things where you literally just have to give them the money where they can still raise and say hey bet on me i'm going to make this happen but you're still gonna have the right to confirm that it actually happened at the end so that's a good one social fund break social capital fundraise directly employees on chain system contributors get a say in whether or not funds are paid out they're not strictly trusting the bounty creator but as the crowd funder which is usually the case on other social finance platforms okay alright
+
+i think i got it just dump that stuff don't keep going man keep going you're doing great
+
+where does this person already go when they're trying to solve this problem and why would they trust you that's a good point where where they're already looking gofundme if it's a simple crowd gofundme if it's a simple crowd fund for personal gain kickstarter if it's a business or a crowd fund sharing a personal wallet address if they are looking for funds to come directly
+
+that's there's also i mean there is a crowdfunding app buzz the fc crowdfunding app funding app on farcaster which doesn't have as much of the governance tools built in but it is more straightforward hey this is how you crowdfund so kenny why would they trust you oh yeah why would i why would they trust me they trust me because i have a history of building in public over the past three years seventy five thousand how long has poise existed let's do lindy effects yeah so it it's it's been three years almost three years we we launched in august 2023 that was a very early version of it it was just strictly peer to peer so they trust me because i have this history of building poi'd in public so i guess yeah that's that's important it's poi'd in public it's not just i have i'm not a builder who's just been building like i've launched this and then i launched this and i launched this it was very right seriously i've been working on
+
+so you have a tremendous amount of social capital that you've been building on the network for for years that's a that's a great answer so let's click through and go unless you're kenny's going kenny's going long game on this one it's a 100% open source yeah i think that's good yeah just had to get it down have they already paid for something that didn't work built a workaround and just learn to so it wants to know about workarounds paid and fail that's monetization that's friction so don't answer it as if you were answering a question to like founder check like founder check has it monetized it have people tried to pay for founder check yes have they done workarounds to try to figure out who they're building for and what you know problems they're solving for the user yes they've used tools they've used workarounds and you that's how i would describe it so for you this is about you know you know a version of that that fits poid like for instance have each of us sent someone money directly you know using usdc sure i've done it right yeah have i you know bought something or done a you know you know a crowd fund or gofundme sure right people have done all those things crowd and fees to use them built a workaround
+
+so there was one example i i'm gonna dump it here as fast as i can and i learned this somebody brought it up because we were thinking about doing a world record like breaking a video game world record and so this thing in the smash bros community is that they they crowdfunded bounties to break world records in super smash bros '64 but it all it was very there's a ton of friction to it because there'd be one guy in a forum and he would say hey everybody paypal me you just had to trust it you had to trust that the paypal yeah yeah yeah yeah yeah and like if you yeah yeah so yeah that's it so there there a lot of great workarounds right people are always trying to find workarounds to avoid platform fees and i think and yeah trust me bro and i think that's the you know the game is workarounds aren't legible they're not trustworthy right and and they don't have a a platform behind them that's a typical workaround right right video can communicate history but there's a ton of friction because the model collapses to one guy on a forum saying send me the money to sure to send it to the winner trustlessness is necessary but people don't realize it's possible
+
+well i think also kenny we understand trustlessness in this community yeah but the the average person you know wants trust and legibility they don't even know what legibility is so yeah yeah you know we're we're we're living in the future
+
+what happens to your answer if this problem never gets solved they can't bring their thing into the world they can't bring their ideas into the world they remain so my analogy would be like all these creators right these social media creators these are people and there's a history of them we don't know people in like the seventies the eighties the nineties they were brilliant people but they had no outlet to get published they couldn't just go to open a website and type in you had to hustle you had to get connections in a newspaper you have to write a letter to the editor yeah yeah yeah so there there's these brilliant people and there's just walls in their way so the like the days free social media when mod when the type of people who excel as modern social media creators had wall and barriers in their way to get published they knew they had great ideas but some never achieved the visibility to you they deserve because the tech wasn't there for distribution oh come on there we go period no i'm just kidding alright kenny just to check we're at 90% let's bring this home
+
+okay what's your timeline what's at stake if this doesn't work floyd has a year of runway at our current burn rate roughly $300 per month but every yeah i so i do this part time my full time job is being an seo consultant and the reality is the more i spend trying to work on this the less i'm committing to being a great seo and my skills slip a bit and my outreach slips and that business doesn't do as well once i spend on this without raising proper funding to help it's good to know that like cef just gave you like three months of runway that's cool thanks awesome so yeah basically doubled it but every month i spend on this without really proper funding to full time means i become a worse seo it's become worse at my day job costs you money and time yeah it just costs money and time and gamble of trying to build a real business slash social platform okay let's go 100%
+
+good job man i love the i love the swag by the way is that sounders yes yeah big big sounders fan and i mean the color kinda matches poiz so i've been using it on a lot of the live streams it's pretty cool looks comfortable oh it's super comfortable it's like how's the weather today blue skies or no 80 degrees blue skies it's incredible right now in seattle it's a bit disconcerting so i am seattle pacific northwest born and raised june isn't supposed to be like this and may shouldn't have been like this yeah el nino is getting yeah first of all let's look at your score because this is a very very respectable score first run and if you look at your customer clarity you're already hitting seven okay that's good okay like these are this is a very
+
+jonathan can you explain what these scores are and like how what's the you know range etcetera just to let people know so i'll give you an example customer clarity which typically is very low like 3.6 to four as an average so and that's the hardest part because customer clarity is who right but it's still your most valuable piece on the chessboard and like for me i would work on that the most like you know like if if when you you and i do like a follow-up session we're just the two of us we'll work on you know more clarity because the the the true idea is you know i'm in a room and i say something to people in the room and everybody feels seen mhmm right and i know this because i've done this in customer discovery and product demos in the enterprise where people would say you are in our you're in my head right now like how do you know what i'm facing so well and i think that becomes your superpower especially you know when you're starting to pitch this you you know you wanna know that incredibly well now problem severity goes back to like the jobs right mhmm you know you know the problem you're solving jobs to be done reach strategies that third pillar right how do you find them where do they live you know how do you make them care and of course ease of sale is the is the monetization friction pillar the test results show i'm sorry the the the response results show slightly different language than you know how i look at it internally and there's always you know a chance to to to reframe that you know those four pillar name the the nomenclature for for that so we can pause here mhmm mhmm and bring in questions from adrienne proff or you you know and then think about how we're gonna how we're gonna close this out
+
+so what is so you go through this process get this score what's the next step for so for so for that's a perfect question professor so for most people they already have an agent right like claude mhmm and chances are there's an entire corpus of work by the way when we say most people we mean most people on farcaster yeah most people like us most people who currently live in the states most people in the world yeah yeah yeah living their lives do not have their they don't they don't have any idea what they're doing it's really funny that we can say that like most people have their agent and they're like no they don't but okay so so what so what kenny is doing right now is he is copying an execution file that's for claude and he's gonna take that back to claude where his entire corpus lives and he's gonna share it with claude and claude's gonna know some shit right about what kenny just did so he can continue to work on it with his claude or his chat g p t or whatever and it's connected to all his other stuff and so that becomes a part of his body of work and then kenny can you do me a a flavor can you go back to founder check for one sec mhmm
+
+so i had i did just yeah okay show show the results yeah oh i know it was it was going for a while yeah yeah chat g p t has the best context for me because claude doesn't doesn't have memory out of the box well i i i pay for the the i don't even pay i use the free plan right so i just bounce back and forth but chatgpt in general has done a better job i use it for like it remembers everything but then i have specialized chats and claude and channels where it's like oh i wanna talk about poid in terms of governance and it has my context there like i wanna talk about poid in terms of crowdfunding or a bounty idea one but yeah this is this is nice
+
+so is this now get it's really it's kinda hard to read on the screen so is this giving you next steps is it giving you ideas like what what when you copy this code in what does it like give you on the other side so initially the the code that exported was directive and users didn't like that they pushed back against it like work on this thing that you need to work on and focus on that first so i just said you know let's just send them something they can take back to their to their corpus to their agent that will help you know context load the agent about what you just did what this means and where you know they can you know further work on it but there is a tremendous amount of data inside the app that i collapse so it doesn't overwhelm the user okay and that was a suggestion you know from i'm trying to remember who who i'm trying to give credit to somebody but i can't remember who gave it to me but they were like there's just too much stuff here i can't follow it all and so like i was like i'm not it can be overwhelming you know yeah anytime you see this wall of text you're like okay this is overwhelming right now yeah it's super overwhelming so i just hit it and i let the user discover i'm like the most important off ramp is taking this back to where you do all your work okay because it has to fit in with the tools you already use and the tools you're using are you know agents of some sort if you're you know living in the twenty first century and you wanna get work done
+
+so your and your agent then now has additional contacts to help you yes yes yeah move forward and expand and do all the things okay correct and and also the the most exciting part is when somebody comes back as a returner and they see the return screen and they can see their current score they can see you know all this stuff and then they can choose to continue to work on that idea because then you go one on one with claude in that chat space kenny go to discuss the discuss tab alright so it it it's giving you an open conversation to challenge your score so you can you can negotiate a better score you can contact them you can you can tell them it doesn't know what it's talking about and it will push back on you and interesting yeah so you can like literally have a free for all you can also use your voice you know and it'll you know pick up the text if that if that feature works currently so it it it gives you kinda like a space to work on these things specifically with a super intelligent agent that's completely specialized in this methodology it doesn't care about other stuff it doesn't care you know about anything but this particular thing and it will not lie to you it will not friend you and i'll explain this is that the pattern i've seen over and over again is founders build for themselves right and the first question is is does it work right and then you find out oh wow this works and then you're like will people use it all of a sudden your friends and your circle of friends are there with you and then the third question is is will people come back and people are coming back and they're using it but this is the love of and trust of the people who want you to win masquerading as pmf and what happens is if you have to go outside your circle kenny like you're doing now right you're in this process of taking this beyond forecaster you know into new you know the the world right convince new people that this thing is something that they should pay attention to right and that's where almost every project fails because your circle mhmm masquerades is pmf and and i've run so many founder check corpus runs where i can run a website url i can scrape a website on a landing page i can take someone's pitch and dump all that into the engine and it will score it and i will read it and it will make completely logical sense that where the you know where things are working where they're not and we just have no idea to gauge that because when our ideas are not making contact with enough strangers notice that so many people are not going to get what you're talking about because everyone around you is reinforcing how great it is in its you know in that circle of trust and this is a pattern i noticed over and over again doing this research
+
+adrienne just brought up and adrienne if you wanna jump on real quick that there you know we've seen founders who get upset by positive feedback that doesn't actually lead to like finding that pmf right because they feel like it's almost like you're you're lying to me yes like why are you lying to me if i you know because because they can't find the greater audience so and adrienne i don't know if i know you have to go in in like a minute do you have any questions for jonathan i don't know if you wanted to dive into like any of the you know agent part of it or etcetera so i just wanted to bring you up and make sure before before you have to run no this is great because i yeah and i apologize i have a bit of a hard stop so i gotta jump but nothing nothing just that was this was a great it was a great point though yeah this is what she was talking about was brian because we talked about building on farcaster we talked about building on farcaster so good because you get your first whatever 137,000 whatever users and people are generally willing to give you feedback and use products that aren't perfect yet like because we wanna be early adopters but then yeah i i think the making the leap from farcaster to a broader audience is then sometimes can be challenging
+
+yeah i mean there is a certain chasm in there right and it's and it may not be a chasm from innovator to early adopter early adopter to mass market it might just be a context chasm right because there's a whole new audience who don't know you or don't care about you right right but everybody in farcaster knows kenny they know poid they know better right right but if you ran better through you know founder check it would score low just to right yeah yeah and and there's one other thing and i'll i'll leave it you know on this is that i ran the original runs of certain pitches of unicorns and even their original pitches scored low oh that's really interesting yeah they they worked on it and they made it home to life and there's a difference and so everybody starts at this place where they're hitting a score it's not oh and then move on like this is the work
+
+that reminds me of you know that's the famous henry ford quote you know if i if i gave people what they wanted they just wanted faster horses right so sometimes there's that as well like where you have this disconnect between what people think they want and and what you're creating and sometimes it's if it's really novel it just takes a little bit a little bit more to get people to see the vision so yeah and and and exploring the full stack of functional social and emotional jobs and you could really drill deeply into that space gives you far more surface area for success literally like when someone feels something emotionally like mhmm i'll put it this way buying and i've and i've been selling for my entire career when i was 18 i sold cars i didn't wanna go to college then i went back to school did all these things and then finished graduate school you know what i did after graduate school i sold health care services right i was on the front line selling every day then we had a new launch of a of a sister company and i led the gtm there and i had to create customers from scratch for a service that costed you know quarter million to half $1,000,000 mhmm it was oncology related it was different like i've done this so many times and seen all these patterns you have to create believers and you have to hit the functional social emotional jobs in ways you've never experienced before but unless you have someone or something pulling that out of you into the world it's hard to know it yeah for sure yeah
+
+and i do think that's where i do think that farcaster is super helpful in that regard in getting that first hundred first thousand whatever number of users and getting that feedback but yeah you're right then from there you really have to push to to find that wider audience well and i do think it's a great place to start because it it like at least gives you that you know initial initial push so yeah and going going deep enough to to be able to connect with that broader audience yeah right yeah it's like when you have that depth and that feeling because because buying is emotional people buy with their emotions so so if you're not focusing on emotional reasons to buy to like consume to take part in something you're missing like right you could be missing 30 to 40% of that right
+
+and i think you know when i think about poi too and i think about your biggest bounty i think it was your biggest bounty was the the guinness book of world records kickflip thing that was emotional like that i i get what you're saying because you wanted to be a part of that you wanted to like i wanted to see that succeed just because this is freaking cool you know and i wanna be a part of it and experience it and be in that moment and i think there's a lot of moments like that where people just wanna be a part of and that's very that's touching on emotion for sure yeah so from here where does kenny go in using foundercheck like what's the next steps for him
+
+so i think you know what found a check does you know if you think about kenny can you scroll up yeah yeah and i did just want to highlight like i love this oh sure i really love this point of feedback the the like the the gap you gotta find the pain you gotta find the creators actively seeking this solution right now it's so good so burning pants excuse me to be burning pants to to real yeah and ties back to noun like find the emotion find the people who want to bring this cool thing to life so yeah this has been very helpful but yeah scrolling back so so kenny scroll down just a slight bit so you know kenny could do two things right kenny can continue to try and improve his score and gain further clarity right typically founder check directs kenny to work on his weakest pillar score okay that's kinda like the the immediate next step okay and yeah that's such a bad share screen i gotta change that you know farcaster intern now you've got now you've got something now you've got something to no farcaster intern already made a couple of mock ups for me which was awesome she's awesome you know our caster intern is the you know is is one of the best humans i think on farcaster right now so good and also has a great dog if you don't know but i would yeah great great person to get feedback from as well
+
+so the other thing and i'll just throw this out there professor yesterday i launched something with vini app which is another version of meme lord that kenny scrolled past because meme lord grew up inside founder check oh because i could use the engine so kenny can go to meme lord and challenge the meme lord here or he can challenge the meme lord on a separate app that i made with vinnie app i'm kinda you know playing with testing it out working on it but he can go to meme lord and put his pitch into meme lord and meme lord has 15 different markers so that oh cool his so the idea is a pitch has to travel without you saying it right right because a meme is an idea that travels like a virus right it infects people and it travels so if i say show don't tell that is a meme that's lasted forever no one knows who wrote it and everybody learns that you can learn that in law school you can learn it writing right you can learn it in so many different places and so mean lord helps you take your pitch and make it as memetic or viral as possible because why say something unless it's gonna travel ran this as an experiment and then my place to play with it was inside forecast inside pattern check but now it's a vini app or just in the mini app in the in the app store it's it's open it's live people can use it and what it does is it takes all the work you didn't found and check and it polishes it so that it will travel so kenny's gonna go see vcs or he's gonna do a pitch contest right all of a sudden he's doing highly mimetic highly viral language that checks off 15 different markers that are pretty amazing and this is even harder than founder check unfortunately and i and i've been begging vini app to keep making it easier and easier and easier to use like a game fun like a game each iteration so that's why i'm gonna be working for the rest of the week cool very good
+
+can i just take my notion thing because i got a normal pitch deck but i have a notion doc too so i gotta just copy and paste this over and then see how it rots idea yeah let it roast you very cool drop it all in love it by the way farcaster intern was listening and they oh farcaster intern is the greatest i don't i don't remember oh and also so is vindra so there you go oh oh oh so kenny all the all the love all the love being heard kenny ditch the meme lord in founder check and go to meme lord the app in vimeo very cool and we need to start wrapping a little bit but i wanna let you do this part and just check that out because that's really cool here we go yep and let's actually let me flip the screen so you can see it better i gotta confirm is that you kenny yeah it is me hopefully this notification works on my phone it should and also by the way i did drop a something on fotocaster so there you go while we were here oh and i and i would have won i'm just gonna say i would have won the point i don't know why i didn't do it i regret main major regret there k enter arena oh look at this okay so do i just paste it here so what it's doing is it's giving you an example right and this is where you know it's hard to make this like a game right now it's it's coaching you through it wants to hear you use a certain format because there is a villain in every story so it's gonna wanna know about the villain it's gonna wanna know about the loss it's gonna wanna know about all these things in this you know and so this is gonna help you put together a pitch so this is like a next step kind of thing right right very cool yeah very very cool alright i think we need to wrap up here got a little bit of a yeah and i want to you know thank you both for being here today to do this this is amazing this is this recording is going to be on all our gm forecaster channels later today and i do want to just share very quickly this see i would have won i definitely would have won i'm just saying i would have won is this like your go to like sunset spot locally or is this more like the keys this is the keys and this is one of this is my favorite place in the world so bummer but oh well this is why you need to get your points in when they when they happen but you can get that on fotocaster now but i should have done it way back when and i knew i had like and that's just one of like i don't know a thousand sunset insane sunset photos that i have but anyway we could write it back jonathan i know i need to jump back i need to like really dive into poid more often because i feel like i you know there's things i should i should be throwing my hat in the ring for some of these things and so thank you so much jonathan for taking on this challenge and you know doing this workshop today hopefully a lot of founders will find it helpful we'll get it out there i'll drop it into the founders channel as well on farcaster and make sure folks see it kenny i'd love to see some updates when you're working through this process and let us know how it goes anything else you want to mention jonathan before we before we wrap i want to thank kenny for jumping in he jumped in at the last minute to do this live like yeah this is it's a lot it's a lot of pressure it's a lot of pressure tremendous pressure and i know because i've done founder sessions with like atown and his collaborator i've done them with a bunch of founders who you know and this is hard work and you know even the most experienced builders have to struggle through this so thank you kenny for doing this live like this is huge and i think it really brings the process to life because we have context on your project and everybody loves it but also at the same time seeing how hard it is to do this so thank you for doing that thank you it is to scale things in general yeah like so i think this really any tools that help a founder make it to the next step get past that you know zero to one a lot of people say is the hardest i don't i disagree at least on farcaster you know at least on farcaster that zero to one is actually pretty easy and then after that it gets really hard so i think this helps in that in that next step so alright awesome thanks so much for the opportunity and jonathan walking me through and yeah this is it is scary but it's like it means it's so valuable and yeah it means so much so professor adrienne jonathan thank you all for walking me through giving me a place to present this it's been super fun thanks so much and thanks arlene go ahead i gotta say thank you to jubjub you and and adrienne for doing this jubjub especially jubjub put all of this together so we're we're shouting him out every time we do a forecaster batches session this week because he's on the other side of the world so we're doing this while he's sleeping he's he's the puppet master you know she's right but he put everything together this was his brainchild his idea his organization job job yeah so thank you job job we appreciate you very much for this so it's also job job's fault yeah yeah he's been great and we have another session tomorrow and wednesday on twitter spaces and then thursday there's a workshop on farcaster spaces so we will see you all then and i'm gonna we're gonna we're gonna head out thanks everybody and we're gonna give this an end a little outro and we'll see you on the other side
+
+thanks for joining us for this episode of gm farcaster and thank you to all our partners and hyper sub supporters bringing this episode to you follow the gm farcaster channel for all the latest updates and add our mini app on farcaster and the base app until next time bye bye

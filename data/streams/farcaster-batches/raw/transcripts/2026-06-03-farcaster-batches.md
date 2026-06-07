@@ -1,7 +1,7 @@
 ---
 title: Farcaster Batches Day 3 - builder showcase (GM Farcaster)
 show: Farcaster Batches
-episode: 2
+episode: 3
 guests:
   - Zaal (The ZAO / ZABAL Gamez)
   - yerbearserker / Jordan Oram (Empire Builder)
