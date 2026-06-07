@@ -57,7 +57,8 @@ entities:
     - Vinny App
     - Joysender
 source: GM Farcaster (Restream / X Space), captured by ZABAL Gamez
-note: Raw auto-transcript, lightly processed. Crosstalk and filler preserved for fidelity so an LLM can query the full record.
+video: https://www.gmfarcaster.com/episodes/Batches3
+note: Raw auto-transcript, lightly processed. Crosstalk and filler preserved for fidelity so an LLM can query the full record. GM Farcaster hosts the video publicly at the episode page above; this file is the summary + transcript ZABAL Gamez adds on top.
 ---
 
 # Farcaster Batches Day 3 - builder showcase (GM Farcaster)
