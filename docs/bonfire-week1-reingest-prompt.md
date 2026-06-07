@@ -35,7 +35,7 @@ Do NOT repeat these earlier errors - none of these are real and none appear in o
 - "Empire Builder V3 led by Adrian" - it was led by yerbearserker.
 - "Doc 778" for judging - the judging doc is 784.
 - "The public site only shows 14 of 46 projects" - false; the projects page renders all of them.
-- The project is "betrmint" (betrmint.fun), not "betrmint" (an unrelated finance company).
+- The project is "betrmint" (betrmint.fun), not "Betterment" (an unrelated finance company).
 
 Now produce:
 1. A chronological Week 1 recap: each session with title, presenter(s) + handles, date, one or two real takeaways, and the link, each line citing its source.
