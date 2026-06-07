@@ -24,10 +24,11 @@ Week 1 actual lineup: **Jun 1** the season opener (three ZABAL sessions) + Farca
 - [x] Fireside (Jun 6) - page + transcript: https://zabalgamez.com/recordings/fireside/1
 - [x] **New recordings home** - every session, one tap to watch or read the transcript, plus a plain-text feed for agents: https://zabalgamez.com/recordings and https://zabalgamez.com/recordings.txt
 
-### NEEDED before sending (gaps)
-- [ ] **Video links** - the Batches episodes (2/3/5) and the fireside replay have transcripts but no player yet. NEED the YouTube / X Space URLs, or we ship transcript-only (totally fine).
-- [ ] **Ohnahji on the live site** - it moved but is still listed on /recaps + /recordings (Luma link). DECISION: pull it so the links stay accurate, or leave it?
-- [ ] **X posts to embed** - send the post URLs (see list at the bottom).
+### Status of the last gaps
+- [x] **Videos** - GM Farcaster ran Batches and hosts every episode publicly. We link the videos (Batches 1/2/3/5) and add our summary + transcript on top. No separate uploads needed.
+- [x] **X embeds** - the 3 GM Farcaster announcement posts are placed in the recap below.
+- [ ] **Fireside replay** - no replay link yet; ships transcript-only unless you have one.
+- [ ] **Ohnahji** - there is NO Ohnahji transcript in the repo, and none was shared this session. The /recaps entry has only a Luma recording (https://luma.com/xa3bsp21). If you have the transcript, paste it and I'll add it like the others; otherwise it stays a Luma-only recap (nothing to pull).
 - [ ] **Subject line + send** - confirm the Paragraph subject + publish to paragraph.com/@thezao.
 
 ---
@@ -41,11 +42,15 @@ Week one is in the books, and what a start. We said ZABAL Gamez would be three m
 
 Day 1 we went big. yerbearserker opened the whole season on Empire Builder - leaderboards, Empires, boosters, and the line that set the tone: do not launch a token until you are ready, build the foundation first. Then he backed it with a live build, standing up a tokenless ZABAL Gamez Empire right there on the call. Same day, Joshua and Plat0x took us into Bonfire and the ZABAL Bonfire bot - a shared memory for the whole ecosystem, a knowledge graph that grows just by using your agents. A real opening.
 
-[X EMBED: the Day 1 / launch post goes here]
+(Optional: drop your own Day 1 launch cast here.)
 
-All week we were also part of GM Farcaster's Farcaster Batches - a builder showcase organized by JubJub, hosted by Adriene and Nounish Prof, with Adrian (diviflyy) co-hosting. Five days of builders showing their work: Vinny App, POIDH, Juke, Founder Check, Defense of the Agents, Booster, Celebration Hub, DEKEY, POWER, Betterment, Runner, and more. On Day 3 I got to bring ZABAL Gamez to the room. We captured every single day, builder by builder, so nobody who missed it live misses it. Read the whole week: https://zabalgamez.com/farcaster-batches
+All week we were also part of GM Farcaster's Farcaster Batches - a builder showcase organized by JubJub, hosted by Adriene and Nounish Prof, with Adrian (diviflyy) co-hosting. Five days of builders showing their work: Vinny App, POIDH, Juke, Founder Check, Defense of the Agents, Booster, Celebration Hub, DEKEY, POWER, Betterment, Runner, and more. On Day 3 I got to bring ZABAL Gamez to the room. GM Farcaster ran the whole week and hosts every episode publicly - go watch the videos on their site. We added a summary and full transcript for each day so it stays searchable. Read the whole week: https://zabalgamez.com/farcaster-batches
 
-[X EMBED: a Batches spotlight / quote post goes here]
+https://x.com/gmfarcaster/status/2060477182959354002
+
+https://x.com/gmfarcaster/status/2060480656807719149
+
+https://x.com/gmfarcaster/status/2060482574984872220
 
 To close the week we ran our first fireside. I sat down with Carlos (Plat0x), the developer behind Bonfires, and it turned into half working session, half vibe-coding masterclass. Plan, then goal. Diagram Bob and Alice before you write a line of code. Types first. Documentation that reproduces the code one to one. If you are on the builder track, this one is gold.
 
@@ -67,23 +72,23 @@ BetterCallZaal from the ZAO Team
 | Empire Builder V3 - yerbearserker | Jun 1 | https://zabalgamez.com/recordings/1 | ready (video + transcript) |
 | Empire Builder Part 2 - yerbearserker | Jun 1 | https://zabalgamez.com/recordings/2 | ready (video + transcript) |
 | Bonfire + the ZABAL Bonfire bot - Joshua.eth + Plat0x | Jun 1 | https://zabalgamez.com/recordings/3 | ready (video + transcript) |
-| Farcaster Batches Day 1 - builder chat | Jun 1 | https://zabalgamez.com/farcaster-batches | transcript live, video TBD |
-| Farcaster Batches Day 2 - Founder Check workshop | Jun 2 | https://zabalgamez.com/farcaster-batches | transcript live, video TBD |
-| Farcaster Batches Day 3 - builder chat (ZABAL Gamez presents) | Jun 3 | https://zabalgamez.com/farcaster-batches | transcript live, video TBD |
-| Farcaster Batches Day 5 - builder chat | Jun 5 | https://zabalgamez.com/farcaster-batches | transcript live, video TBD |
+| Farcaster Batches Day 1 - builder chat | Jun 1 | video: https://www.gmfarcaster.com/episodes/Batches1 - transcript: /farcaster-batches | video on GM Farcaster + transcript |
+| Farcaster Batches Day 2 - Founder Check workshop | Jun 2 | video: https://www.gmfarcaster.com/episodes/Batches2 - transcript: /farcaster-batches | video on GM Farcaster + transcript |
+| Farcaster Batches Day 3 - builder chat (ZABAL Gamez presents) | Jun 3 | video: https://www.gmfarcaster.com/episodes/Batches3 - transcript: /farcaster-batches | video on GM Farcaster + transcript |
+| Farcaster Batches Day 5 - builder chat | Jun 5 | video: https://www.gmfarcaster.com/episodes/Batches5 - transcript: /farcaster-batches | video on GM Farcaster + transcript |
 | Fireside: Bonfires + vibe-coding - Carlos (Plat0x) | Jun 6 | https://zabalgamez.com/recordings/fireside/1 | transcript live, replay TBD |
 
 For agents: the whole library as plain text - https://zabalgamez.com/recordings.txt - or structured JSON - https://zabalgamez.com/recordings/index.json
 
 ---
 
-## X POSTS TO EMBED - send me the URLs
+## X POSTS EMBEDDED (placed in the recap above)
 
-Paragraph auto-embeds an X post when you paste its URL on its own line. Send the full
-https://x.com/.../status/... links and I'll slot them:
+The 3 GM Farcaster announcement posts are dropped into the Batches section, each on its own
+line so Paragraph auto-embeds them:
 
-1. Launch / Day 1 post (top of the recap).
-2. A Farcaster Batches spotlight or quote post (midweek).
-3. Optional: a fireside clip, or a guest's own post.
+1. https://x.com/gmfarcaster/status/2060477182959354002
+2. https://x.com/gmfarcaster/status/2060480656807719149
+3. https://x.com/gmfarcaster/status/2060482574984872220
 
-Known accounts to pull from: @bettercallzaal, @bonfiresai, @at0x_eth, @zaofestivals, @WaveWarZ.
+Optional add: your own Day 1 launch cast at the top slot, or a guest's own post.
