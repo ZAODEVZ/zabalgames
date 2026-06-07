@@ -201,11 +201,12 @@
       "confirmed_date": "2026-06-08",
       "color": "zabal",
       "date": "2026-06-11",
-      "luma_url": "https://luma.com/e4g2kbxp"
+      "luma_url": "https://luma.com/e4g2kbxp",
+      "track": "builder"
     },
     {
       "id": "016",
-      "name": "Zaal x Sopha",
+      "name": "Fireside chat with Sopha",
       "org": "Sopha",
       "handle": "@zaal",
       "topic": "A special event introducing Sopha to the community - the philosophy and the building behind it, with an informal hang after.",
@@ -215,7 +216,8 @@
       "confirmed_date": "2026-06-08",
       "color": "zabal",
       "date": "2026-06-08",
-      "luma_url": "https://luma.com/42rdpyyb"
+      "luma_url": "https://luma.com/42rdpyyb",
+      "track": "artist"
     }
   ],
   "_schema": {
