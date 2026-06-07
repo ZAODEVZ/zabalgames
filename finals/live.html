@@ -125,6 +125,7 @@
     <h2>Battles</h2>
     <p>Each finalist build is one battle entry. Volume + win rate at T+72h decides placement. Respect-holders get baseline positions; the open market trades on top.</p>
 
+    <div id="finalist-rows">
     <div class="placeholder-row">
       <div class="placeholder-rank">--</div>
       <div>
@@ -169,6 +170,7 @@
       </div>
       <button class="placeholder-trade-btn" disabled>Trade</button>
     </div>
+    </div><!-- /finalist-rows -->
 
     <p style="margin-top: 1.2rem; font-size: 0.85rem; color: var(--text-muted);">
       <strong>For builders:</strong> this page is project <a href="/projects.html">#09</a> - "Wire WaveWarZ-Base into the Finals settlement surface". Adopt it in your July submission. Spec in <a href="/docs/research/720-wavewarz-finals-mechanic.md">Doc 720</a>. The full data plug-in points are marked with TODO comments in the page source.
@@ -270,6 +272,36 @@
     <span>zabalgamez.com - built with The ZAO</span>
   </div>
 </footer>
+
+  <script>
+  // Render the finalist roster from data/finals.json once finalists are locked. Until
+  // then the placeholder rows stand. Trade stays disabled until WaveWarZ-Base is wired.
+  (function () {
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    var BARS = '<div class="placeholder-bars"><div class="placeholder-bar" style="height:50%;"></div><div class="placeholder-bar" style="height:70%;"></div><div class="placeholder-bar" style="height:40%;"></div><div class="placeholder-bar" style="height:60%;"></div></div>';
+    fetch('/data/finals.json', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var fs = (d && d.finalists) || [];
+        var el = document.getElementById('finalist-rows');
+        if (!el || !fs.length) return; // keep the placeholders until finalists are locked
+        var ranked = fs.slice().sort(function (a, b) { return (a.rank || 99) - (b.rank || 99); });
+        el.innerHTML = ranked.map(function (f) {
+          var label = esc(f.name || f.handle || 'Finalist');
+          var href = f.demo || (f.repo ? 'https://github.com/' + f.repo : '');
+          var nameHtml = href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener" style="color: var(--cyan);">' + label + '</a>' : label;
+          return '<div class="placeholder-row">' +
+            '<div class="placeholder-rank">' + (f.rank ? esc(String(f.rank)) : '--') + '</div>' +
+            '<div><div class="placeholder-name-label">' + esc(f.handle || f.track || 'Finalist') + '</div>' +
+            '<div class="placeholder-name">' + nameHtml + '</div></div>' +
+            BARS +
+            '<button class="placeholder-trade-btn" disabled title="Trading opens when WaveWarZ-Base is live">Trade</button>' +
+          '</div>';
+        }).join('');
+      })
+      .catch(function () { /* keep the placeholders */ });
+  })();
+  </script>
 
   <script defer src="/_vercel/insights/script.js"></script>
 </body>

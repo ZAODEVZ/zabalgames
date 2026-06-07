@@ -52,8 +52,9 @@ change Claude can make. `[x]` done, `[ ]` open.
 
 ### Recording + library
 - [ ] [OWNER] Confirm where recorded talks live (Magnetiq portal is the library; interim YouTube?).
-- [ ] [BUILD] If a public talk library is wanted on-site, build a /library surface that lists
-  recorded sessions (depends on where recordings land - ask first).
+- [x] [BUILD] Public talk library - shipped as `/recordings` (typed hub: workshops,
+  firesides, BCZ workshops) + per-session pages + a machine-readable `/recordings/index.json`.
+  No separate `/library` surface needed.
 
 ### Promo flywheel
 - [ ] [OWNER] Per-session nudge casts (pattern in day0-session-nudges); Claude drafts each on request.
@@ -84,8 +85,9 @@ change Claude can make. `[x]` done, `[ ]` open.
 ### Submission surface
 - [ ] [BUILD] Confirm the July submission flow on /info (Supabase gallery is client-side,
   placeholder keys, NOT live per CLAUDE.md) - decide DB and wire when the team has a slot.
-- [ ] [BUILD] A live "July builds" board that reads accepted submissions (depends on the
-  register server + DB decision).
+- [x] [BUILD] A live "July builds" board - `/enter` now shows a "Building in public" board
+  reading the register store via `GET /api/builds` (no DB decision needed). A richer
+  DB-backed gallery (with the submission profile fields) is still a separate decision.
 
 ### Empire Builder surface (project, Rail C)
 - [ ] [OWNER] Build the tokenless-empire-deployer button on the small-games site (Adrian's rail).
@@ -99,10 +101,12 @@ change Claude can make. `[x]` done, `[ ]` open.
   contracts) before Finals.
 - [ ] [BUILD] finals.html - currently a real page; flesh out the bracket/entry view once the
   finalist set + WaveWarZ-Base contract addresses exist.
-- [ ] [BUILD] finals/live.html - the live Finals surface is the biggest stub on the site (48
-  TBD markers). Build the live battle view + settlement readout when the contracts are wired.
-- [ ] [BUILD] winners.html - currently a stub (5 TBD markers). Build the Hall of Fame / winners
-  surface once there are winners.
+- [~] [BUILD] finals/live.html - now data-driven: the finalist roster renders from
+  `data/finals.json` (placeholders stand until finalists are locked). Still TODO: the live
+  WaveWarZ-Base market/trade view + settlement readout, blocked on the contract addresses.
+- [x] [BUILD] winners.html - now data-driven off `data/finals.json` (champions, finishers
+  4-8, ranks 9-16). The "Awaiting Finals" placeholders are the no-JS fallback; the finalist
+  set is a data drop (`status:settled` + ranks) once the Finals settle.
 
 ### Distribution
 - [ ] [OWNER] Line up the streamer stream-a-thon for the Finals (Month 3 distribution play).
