@@ -1,11 +1,13 @@
 // Build the machine-readable recordings index + the hub's schema.org JSON-LD.
 //
-// Source of truth: data/recaps.json. This script derives two artifacts so agents and
+// Source of truth: data/recaps.json. This script derives three artifacts so agents and
 // crawlers can read the whole ZABAL Gamez recording library:
 //   1. recordings/index.json - a flat, machine-readable list of every recording with
 //      full metadata (type, title, presenter, track, summary, topics, takeaways,
 //      transcript, media, url).
-//   2. The <script type="application/ld+json"> block in recordings.html (an
+//   2. recordings.txt - a plain-text version of the same library (no markup), the
+//      easiest single file for an LLM/agent to fetch and read.
+//   3. The <script type="application/ld+json"> block in recordings.html (an
 //      schema.org ItemList of VideoObject/CreativeWork), injected between the
 //      <!-- JSONLD:START --> / <!-- JSONLD:END --> markers.
 //
@@ -17,6 +19,15 @@ import { dirname, join } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = 'https://zabalgamez.com';
+
+// A GitHub blob URL for a transcript that lives in THIS repo can also be served
+// same-origin as raw text (better for agents: no GitHub chrome, same domain). Convert
+// https://github.com/ZAODEVZ/zabalgames/blob/<ref>/<path> -> https://zabalgamez.com/<path>
+function rawTranscript(url) {
+  if (!url) return null;
+  const m = url.match(/github\.com\/ZAODEVZ\/zabalgames\/blob\/[^/]+\/(.+)$/i);
+  return m ? BASE + '/' + m[1] : url;
+}
 
 const recaps = JSON.parse(readFileSync(join(ROOT, 'data/recaps.json'), 'utf8'));
 const items = (recaps.recaps || []).map((r) => {
@@ -36,6 +47,7 @@ const items = (recaps.recaps || []).map((r) => {
     youtube: r.youtube || null,
     recording: r.recording || null,
     transcript: r.transcript || null,
+    transcript_raw: rawTranscript(r.transcript),
     link: r.link || null,
     summary: r.summary || null,
     topics: r.topics || [],
@@ -53,7 +65,37 @@ const index = {
 };
 writeFileSync(join(ROOT, 'recordings/index.json'), JSON.stringify(index, null, 2) + '\n');
 
-// 2. The schema.org JSON-LD ItemList for the hub.
+// 2. The plain-text library (recordings.txt) - one file an agent can fetch and read.
+const txtLines = [];
+txtLines.push('ZABAL GAMEZ - RECORDINGS (plain text for agents)');
+txtLines.push('');
+txtLines.push(`Generated ${index.generated} from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season ${index.season}. ${items.length} recordings, newest first.`);
+txtLines.push('Structured JSON:  https://zabalgamez.com/recordings/index.json');
+txtLines.push('Full ZAO dump:    https://zabalgamez.com/llms.txt');
+txtLines.push('Human page:       https://zabalgamez.com/recordings');
+txtLines.push('Chronological feed of every recording: https://zabalgamez.com/streams');
+txtLines.push('');
+items.forEach((it, i) => {
+  txtLines.push('='.repeat(70));
+  txtLines.push(`[${i + 1}] ${it.title}`);
+  const meta = [it.type, it.track && `track: ${it.track}`, it.date].filter(Boolean).join('  |  ');
+  if (meta) txtLines.push(meta);
+  if (it.presenter) txtLines.push(`Presenter: ${it.presenter}${it.handle ? ` (${it.handle})` : ''}${it.org ? `, ${it.org}` : ''}`);
+  if (it.url) txtLines.push(`Watch: ${it.url}`);
+  if (it.youtube) txtLines.push(`Video: ${it.youtube}`);
+  if (it.recording && it.recording !== it.url) txtLines.push(`Recording: ${it.recording}`);
+  if (it.transcript_raw) txtLines.push(`Transcript: ${it.transcript_raw}`);
+  if (it.summary) txtLines.push(`Summary: ${it.summary}`);
+  if (it.takeaways && it.takeaways.length) {
+    txtLines.push('Takeaways:');
+    it.takeaways.forEach((t) => txtLines.push(`  - ${t}`));
+  }
+  if (it.topics && it.topics.length) txtLines.push(`Topics: ${it.topics.join(', ')}`);
+  txtLines.push('');
+});
+writeFileSync(join(ROOT, 'recordings.txt'), txtLines.join('\n'));
+
+// 3. The schema.org JSON-LD ItemList for the hub.
 const elements = items.map((it, i) => {
   const hasVideo = it.youtube || it.recording;
   const node = {
@@ -89,4 +131,4 @@ let hub = readFileSync(hubPath, 'utf8');
 hub = hub.replace(/<!-- JSONLD:START[\s\S]*?<!-- JSONLD:END -->/, block);
 writeFileSync(hubPath, hub);
 
-console.log(`recordings index: ${items.length} recordings -> recordings/index.json + recordings.html JSON-LD`);
+console.log(`recordings index: ${items.length} recordings -> recordings/index.json + recordings.txt + recordings.html JSON-LD`);
