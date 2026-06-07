@@ -1,6 +1,6 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-06-06",
+  "generated": "2026-06-07",
   "season": 1,
   "count": 5,
   "recordings": [
@@ -18,6 +18,7 @@
       "youtube": null,
       "recording": null,
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-06-bonfire-fireside-carlos.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-06-bonfire-fireside-carlos.md",
       "link": "https://bonfires.ai",
       "summary": "A live ZABAL Gamez fireside between Zaal and Carlos (Plat0x, the Bonfires developer). Half working-session - the Bonfires rewrite (deadline June 14), ZAO's second Bonfire agent, auto-pushing context to the Bonfire on every git commit, and the positioning of Bonfires as a 'sense-making tool' where the agent is the librarian of a library - and half vibe-coding masterclass for the builder track: plan-then-goal with a measurable threshold, Bob-and-Alice diagramming before code, types-first prompting with a protocol/adapter contract, documentation-as-code, the Linus Torvalds compiler analogy, and Carlos's three skills (plan-making, sub-agents, adversarial agents).",
       "topics": [
@@ -52,6 +53,7 @@
       "youtube": null,
       "recording": "https://luma.com/xa3bsp21",
       "transcript": null,
+      "transcript_raw": null,
       "link": null,
       "summary": "Day 2 and the first creator-track session of the season. Ohnahji shared his journey in live streaming - how he started, how he found his people, and how you grow an audience while you are still building everything else.",
       "topics": [
@@ -80,6 +82,7 @@
       "youtube": "https://youtu.be/3jKfYdOYxSw",
       "recording": "https://luma.com/y189qk8p",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-bonfire-josh-plat0x.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-bonfire-josh-plat0x.md",
       "link": "https://bonfires.ai",
       "summary": "The second ZABAL Gamez workshop. Joshua.eth and Plat0x (Carlos) introduce Bonfire - a shared AI workspace where a group shares agents and, in the process of using them, grows a shared memory: a knowledge graph that becomes a collective, ownable asset. They get into the data-loss problem, why curation is the last scarce asset, a vision for hackathons where every project is interoperable by design, and a live look at querying the ZABAL Bonfire bot.",
       "topics": [
@@ -112,6 +115,7 @@
       "youtube": "https://youtu.be/RXYTCHRh_rY",
       "recording": "https://luma.com/7nfside5",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder-part-2.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder-part-2.md",
       "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
       "summary": "Part 2 of the first ZABAL Gamez workshop - the live build that follows the Part 1 framework talk. yerbearserker (Jordan Oram) of Empire Builder gives a hands-on tour of the Empire tool stack from inside Farcaster, walks the top empires and how leaderboards score holders times boosters, runs a live Warplet raffle airdrop to DotA NFT holders, adds a $Zabal token booster, and stands up a fresh tokenless ZABAL Gamez empire on the spot, then wires two leaderboards (channel activity in /zabal and cast reactions).",
       "topics": [
@@ -145,6 +149,7 @@
       "youtube": "https://youtu.be/Ej7Wm-v6WXo",
       "recording": "https://luma.com/7nfside5",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md",
       "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
       "summary": "Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up a tokenless ZABAL Gamez Empire live during the session. His message: build the foundation before you launch anything.",
       "topics": [

@@ -1,0 +1,82 @@
+ZABAL GAMEZ - RECORDINGS (plain text for agents)
+
+Generated 2026-06-07 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 5 recordings, newest first.
+Structured JSON:  https://zabalgamez.com/recordings/index.json
+Full ZAO dump:    https://zabalgamez.com/llms.txt
+Human page:       https://zabalgamez.com/recordings
+Chronological feed of every recording: https://zabalgamez.com/streams
+
+======================================================================
+[1] Bonfires + a vibe-coding masterclass
+fireside  |  track: builder  |  2026-06-06
+Presenter: Carlos (Plat0x) (@at0x_eth), Bonfires
+Watch: https://zabalgamez.com/recordings/fireside/1
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-06-bonfire-fireside-carlos.md
+Summary: A live ZABAL Gamez fireside between Zaal and Carlos (Plat0x, the Bonfires developer). Half working-session - the Bonfires rewrite (deadline June 14), ZAO's second Bonfire agent, auto-pushing context to the Bonfire on every git commit, and the positioning of Bonfires as a 'sense-making tool' where the agent is the librarian of a library - and half vibe-coding masterclass for the builder track: plan-then-goal with a measurable threshold, Bob-and-Alice diagramming before code, types-first prompting with a protocol/adapter contract, documentation-as-code, the Linus Torvalds compiler analogy, and Carlos's three skills (plan-making, sub-agents, adversarial agents).
+Takeaways:
+  - Plan-then-goal: give Claude a plan plus one goal with a measurable threshold (e.g. under 5s query latency) so it runs until it hits the number.
+  - Diagram Bob and Alice before any code - define the exchange and the sequence first, language last.
+  - Prompt types-first ('define types in Python for an app that does X') and use a protocol/adapter contract so you can swap the database later without a rewrite.
+  - Documentation-as-code: remove all the code and the docs alone should reproduce it 1:1.
+  - Carlos's three skills: plan-making (built from papers), sub-agents (the senior-dev orchestrator), and adversarial agents (one for, one against).
+Topics: Bonfires, vibe coding, planning, sub-agents, documentation-as-code, types-first, knowledge graph, agents
+
+======================================================================
+[2] Starting and growing your own livestream
+workshop  |  track: creator  |  2026-06-02
+Presenter: Ohnahji
+Watch: https://luma.com/xa3bsp21
+Summary: Day 2 and the first creator-track session of the season. Ohnahji shared his journey in live streaming - how he started, how he found his people, and how you grow an audience while you are still building everything else.
+Takeaways:
+  - How to start streaming and grow an audience while you build everything else.
+  - Consistency beats production value early - the audience comes from showing up.
+  - The first creator-track session of ZABAL Gamez Season 1.
+Topics: livestreaming, audience growth, creator track, showing up consistently
+
+======================================================================
+[3] Bonfire and the ZABAL Bonfire bot
+workshop  |  track: builder  |  2026-06-01
+Presenter: Joshua.eth and Plat0x (@joshua.eth), Bonfire
+Watch: https://zabalgamez.com/recordings/3
+Video: https://youtu.be/3jKfYdOYxSw
+Recording: https://luma.com/y189qk8p
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-bonfire-josh-plat0x.md
+Summary: The second ZABAL Gamez workshop. Joshua.eth and Plat0x (Carlos) introduce Bonfire - a shared AI workspace where a group shares agents and, in the process of using them, grows a shared memory: a knowledge graph that becomes a collective, ownable asset. They get into the data-loss problem, why curation is the last scarce asset, a vision for hackathons where every project is interoperable by design, and a live look at querying the ZABAL Bonfire bot.
+Takeaways:
+  - Bonfire is the ecosystem's shared memory - the layer bots and builds sit on top of.
+  - A group grows a knowledge graph just by using its agents, and the curators own it.
+  - Curation is the last scarce asset: structured taste and knowledge stay unique and ownable.
+  - The ZABAL Bonfire bot is live and queryable, so anyone joining mid-season can get caught up.
+Topics: Bonfire, shared memory, knowledge graph, agents, curation, hackathons, ZABAL Bonfire bot
+
+======================================================================
+[4] Empire Builder Part 2: Building a Tokenless Empire Live
+workshop  |  track: builder  |  2026-06-01
+Presenter: yerbearserker (@yerbearserker), Empire Builder
+Watch: https://zabalgamez.com/recordings/2
+Video: https://youtu.be/RXYTCHRh_rY
+Recording: https://luma.com/7nfside5
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder-part-2.md
+Summary: Part 2 of the first ZABAL Gamez workshop - the live build that follows the Part 1 framework talk. yerbearserker (Jordan Oram) of Empire Builder gives a hands-on tour of the Empire tool stack from inside Farcaster, walks the top empires and how leaderboards score holders times boosters, runs a live Warplet raffle airdrop to DotA NFT holders, adds a $Zabal token booster, and stands up a fresh tokenless ZABAL Gamez empire on the spot, then wires two leaderboards (channel activity in /zabal and cast reactions).
+Takeaways:
+  - See a tokenless empire stood up live, start to finish.
+  - Leaderboards score a base component multiplied by boosters - NFT holdings, token thresholds, or staking.
+  - Distribution in practice: a live Warplet raffle airdrop to the most active DotA NFT holders.
+  - A $Zabal token booster added live (10M minimum, 3x), funded from the treasury.
+Topics: Empire Builder, tokenless Empire, leaderboards, boosters, airdrops, raffles, treasury, distribution
+
+======================================================================
+[5] Empire Builder V3
+workshop  |  track: builder  |  2026-06-01
+Presenter: yerbearserker (@yerbearserker), Empire Builder
+Watch: https://zabalgamez.com/recordings/1
+Video: https://youtu.be/Ej7Wm-v6WXo
+Recording: https://luma.com/7nfside5
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md
+Summary: Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up a tokenless ZABAL Gamez Empire live during the session. His message: build the foundation before you launch anything.
+Takeaways:
+  - Do not launch a token until you are ready - build the foundation first.
+  - The Triple-A framework: Assemble, Affirm, Ascend.
+  - Leaderboards, boosters, staking, and tactical generosity power a tokenless Empire.
+  - yerbearserker stood up a tokenless ZABAL Gamez Empire live during the session.
+Topics: Empire Builder, tokenless Empire, leaderboards, boosters, staking, Triple-A framework, distribution
