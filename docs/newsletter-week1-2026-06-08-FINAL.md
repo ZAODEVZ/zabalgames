@@ -16,15 +16,24 @@
 ```
 GM ZM, and happy Sunday in the Year of the ZABAL.
 
-Week one is in the books, and what a start. We said ZABAL Gamez would be three months of building in public with The ZAO, and week one we hit Start. Here is the whole week - every session, every builder, every link - because nothing here disappears. It is all recorded, transcribed, and kept.
+Week one is in the books, and what a start. We said ZABAL Gamez would be three months of building in public with The ZAO, and week one we hit Start. Here is the whole week - every session, every builder, every link - because nothing here disappears. It was all recorded, transcribed, and kept.
 
 https://x.com/bettercallzaal/status/2061236082377990180
+
+ZABAL Gamez is The ZAO's three-month build event:
+
+- June is workshop month, July is the open build, August is the Finals.
+- Free, open to anyone, and you can bring any harness.
+- Three tracks, pick your lane: artist (musical or visual), builder (developer or aspiring), creator (media and distribution).
+- What you walk away with: a shipped product that gets used, income that keeps flowing, proof you can show, and a crew, not a leaderboard.
+
+The build is the application. Start here: https://zabalgamez.com/info
 
 ## Day 1 - we hit Start
 
 Three sessions in one day. A real opening.
 
-yerbearserker opened the whole season on Empire Builder, and set the tone with one line: do not launch a token until you are ready, build the foundation first. He walked the Triple-A framework - Assemble, Affirm, Ascend - and how leaderboards, boosters, staking, and a little tactical generosity power an Empire that does not need a token at all. Then he proved it, standing up a tokenless ZABAL Gamez Empire live on the call. Watch Empire Builder V3: https://zabalgamez.com/recordings/1
+yerbearserker opened the whole season on Empire Builder, and set the tone with one line: "Do not launch a token until you are ready. Build the foundation first." He walked the Triple-A framework - Assemble, Affirm, Ascend - and how leaderboards, boosters, staking, and a little tactical generosity powered an Empire that does not need a token at all. Then he proved it, standing up a tokenless ZABAL Gamez Empire live on the call. Watch Empire Builder V3: https://zabalgamez.com/recordings/1
 
 In Part 2 he went hands-on. Leaderboards score a base component multiplied by boosters - NFT holdings, token thresholds, or staking - and he showed distribution in practice with a live raffle airdrop to the most active DotA NFT holders, then added a $Zabal booster on the spot (10M minimum, 3x), funded from the treasury. If you want to see one built end to end, this is the one. Watch the live build: https://zabalgamez.com/recordings/2
 
@@ -36,9 +45,9 @@ Ohnahji opened the creator track with how to start and grow your own livestream 
 
 ## All week - Farcaster Batches, with GM Farcaster
 
-We also spent the whole week on GM Farcaster's Farcaster Batches - a week-long builder showcase organized by JubJub and hosted by GM Farcaster (Adriene and Nounish Prof). GM Farcaster ran it and hosts every episode publicly; we added a summary and a full transcript for each day so it stays searchable. The throughline every builder kept landing on: build the thing you want to see in the world. The whole week, builder by builder: https://zabalgamez.com/farcaster-batches
+We also spent the whole week on GM Farcaster's Farcaster Batches - a week-long builder showcase organized by JubJub and hosted by GM Farcaster (Adriene and Nounish Prof). GM Farcaster ran the whole week and hosted every episode publicly, and we added a summary and a full transcript for each day. The throughline every builder kept landing on: build the thing you want to see in the world. The whole week, builder by builder: https://zabalgamez.com/farcaster-batches
 
-- Day 1 (Jun 1): Chris Dolinsky on Vini App (prompt a working app into existence in minutes), Kenny on POIDH (crowdfund any outcome and verify it actually happened - the $30,000 kickflip world record came through it), Nikki Sapp on Juke (an open-source, audio-native Farcaster client), Jonathan Colton on Founder Check and Fotocaster (where artists keep almost all of every sale), and Dr. Deeks on a slate of mini apps. Watch: https://www.gmfarcaster.com/episodes/Batches1
+- Day 1 (Jun 1): Chris Dolinsky on Vini App (prompt a working app into existence in minutes), Kenny on [POIDH](https://poidh.xyz) (crowdfund any outcome and verify it actually happened - the $30,000 kickflip world record came through it), Nikki Sapp on Juke (an open-source, audio-native Farcaster client), Jonathan Colton on Founder Check and Fotocaster (where artists keep almost all of every sale), and Dr. Deeks on a slate of mini apps. Watch: https://www.gmfarcaster.com/episodes/Batches1
 - Day 2 (Jun 2): a live Founder Check workshop. Jonathan walked Kenny through validating an idea on four pillars - who you build for, the problem, how you reach them, and ease of sale - on the lesson that everything is downstream of who, and that your circle of friends can masquerade as real demand. Watch: https://www.gmfarcaster.com/episodes/Batches2
 - Day 3 (Jun 3): I got to bring ZABAL Gamez to the room, alongside Empire Builder, AZ Flynn's Defense of the Agents, Cashless Man's Booster, and Duckfax's Celebration Hub. Watch: https://www.gmfarcaster.com/episodes/Batches3
 - Day 5 (Jun 5): Node on DEKEY (a private, encrypted file marketplace with zero-knowledge proofs), Max on POWER (a link-in-bio page builder), Toady Hawk on betrmint (rewards and distribution for creators), and Darko on Runner (a meme that became a real Strava-connected running app). Watch: https://www.gmfarcaster.com/episodes/Batches5
