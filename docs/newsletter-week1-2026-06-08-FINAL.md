@@ -20,8 +20,6 @@ Week one is in the books, and what a start. We said ZABAL Gamez would be three m
 
 https://x.com/bettercallzaal/status/2061236082377990180
 
-New here? ZABAL Gamez is The ZAO's three-month build event. June is workshop month, July is the open build, August is the Finals. It is free, open to anyone, and you can bring any harness. Three tracks, pick your lane: artist (musical or visual), builder (developer or aspiring), creator (media and distribution). What you walk away with: a shipped product that gets used, income that keeps flowing, proof you can show, and a crew, not a leaderboard. The build is the application. Start here: https://zabalgamez.com/info
-
 ## Day 1 - we hit Start
 
 Three sessions in one day. A real opening.
@@ -38,7 +36,7 @@ Ohnahji opened the creator track with how to start and grow your own livestream 
 
 ## All week - Farcaster Batches, with GM Farcaster
 
-We also spent the whole week on GM Farcaster's Farcaster Batches - a week-long builder showcase organized by JubJub, hosted by Adriene and Nounish Prof, with Adrian (diviflyy) co-hosting. GM Farcaster ran it and hosts every episode publicly; we added a summary and a full transcript for each day so it stays searchable. The throughline every builder kept landing on: build the thing you want to see in the world. The whole week, builder by builder: https://zabalgamez.com/farcaster-batches
+We also spent the whole week on GM Farcaster's Farcaster Batches - a week-long builder showcase organized by JubJub and hosted by GM Farcaster (Adriene and Nounish Prof). GM Farcaster ran it and hosts every episode publicly; we added a summary and a full transcript for each day so it stays searchable. The throughline every builder kept landing on: build the thing you want to see in the world. The whole week, builder by builder: https://zabalgamez.com/farcaster-batches
 
 - Day 1 (Jun 1): Chris Dolinsky on Vini App (prompt a working app into existence in minutes), Kenny on POIDH (crowdfund any outcome and verify it actually happened - the $30,000 kickflip world record came through it), Nikki Sapp on Juke (an open-source, audio-native Farcaster client), Jonathan Colton on Founder Check and Fotocaster (where artists keep almost all of every sale), and Dr. Deeks on a slate of mini apps. Watch: https://www.gmfarcaster.com/episodes/Batches1
 - Day 2 (Jun 2): a live Founder Check workshop. Jonathan walked Kenny through validating an idea on four pillars - who you build for, the problem, how you reach them, and ease of sale - on the lesson that everything is downstream of who, and that your circle of friends can masquerade as real demand. Watch: https://www.gmfarcaster.com/episodes/Batches2
