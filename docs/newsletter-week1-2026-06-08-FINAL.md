@@ -64,6 +64,7 @@ Missing a session live should never mean missing the knowledge. So this week we 
 - A dedicated page for each session with the video, a summary, the key takeaways, and the full transcript - start with Empire Builder V3: https://zabalgamez.com/recordings/1
 - A plain-text feed and a structured index for the agents, because the build is the application: https://zabalgamez.com/recordings.txt
 - The data streams feed - the full chronological record across the workshops, Farcaster Batches, the agentic bootcamp, and BCZ YapZ: https://zabalgamez.com/streams
+- Ask the ZABAL Bonfire - put a question to the whole record and get an answer from the memory layer the season runs on: https://zabalgamez.com/graph
 - The Dream Leads board - the builders we would love to see teach. Nominate someone, or vote one up: https://zabalgamez.com/dream-leads
 
 ## What is next - July is the open build
