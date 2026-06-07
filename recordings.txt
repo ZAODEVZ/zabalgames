@@ -25,7 +25,9 @@ Topics: Bonfires, vibe coding, planning, sub-agents, documentation-as-code, type
 [2] Starting and growing your own livestream
 workshop  |  track: creator  |  2026-06-02
 Presenter: Ohnahji
-Watch: https://luma.com/xa3bsp21
+Watch: https://zabalgamez.com/recordings/4
+Recording: https://luma.com/xa3bsp21
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md
 Summary: Day 2 and the first creator-track session of the season. Ohnahji shared his journey in live streaming - how he started, how he found his people, and how you grow an audience while you are still building everything else.
 Takeaways:
   - How to start streaming and grow an audience while you build everything else.
