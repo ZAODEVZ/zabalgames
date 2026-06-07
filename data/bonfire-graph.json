@@ -9412,8 +9412,8 @@
         "Builder"
       ],
       "attributes": {
-        "project": "Vinny App",
-        "description": "Presented Vinny App on Batches Day 1."
+        "project": "Vini App",
+        "description": "Presented Vini App on Batches Day 1."
       }
     },
     {
@@ -9590,12 +9590,12 @@
     },
     {
       "id": "vinny-app",
-      "name": "Vinny App",
+      "name": "Vini App",
       "labels": [
         "Project"
       ],
       "attributes": {
-        "description": "Natural-language app builder; prompt a working app into existence in minutes. Ran the Vinny-a-thon."
+        "description": "Natural-language app builder; prompt a working app into existence in minutes. Ran the Vini-a-thon."
       }
     },
     {
@@ -9678,7 +9678,7 @@
       ],
       "attributes": {
         "url": "https://betrmint.fun",
-        "description": "A rewards-and-distribution app for creators (token BTR). NOT \"Betterment\" - that is an unrelated finance company."
+        "description": "A rewards-and-distribution app for creators (token BTR). NOT \"betrmint\" - that is an unrelated finance company."
       }
     },
     {
@@ -9757,7 +9757,7 @@
       "attributes": {
         "date": "2026-06-01",
         "url": "https://www.gmfarcaster.com/episodes/Batches1",
-        "description": "Builder showcase: Vinny App, POIDH, Juke, Founder Check, Fotocaster, Dr. Deeks."
+        "description": "Builder showcase: Vini App, POIDH, Juke, Founder Check, Fotocaster, Dr. Deeks."
       }
     },
     {
@@ -16782,7 +16782,7 @@
       "to": "batches-day1",
       "type": "presented_at",
       "properties": {
-        "fact": "Chris Dolinsky presented Vinny App"
+        "fact": "Chris Dolinsky presented Vini App"
       }
     },
     {
@@ -16822,7 +16822,7 @@
       "to": "vinny-app",
       "type": "builds",
       "properties": {
-        "fact": "Chris Dolinsky builds Vinny App"
+        "fact": "Chris Dolinsky builds Vini App"
       }
     },
     {

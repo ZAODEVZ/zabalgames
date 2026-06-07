@@ -3,13 +3,12 @@ title: Farcaster Batches Day 1 - builder showcase (GM Farcaster)
 show: Farcaster Batches
 episode: 1
 guests:
-  - Chris Dolinsky (Vinny App)
+  - Chris Dolinsky (Vini App)
   - Kenny (POIDH)
   - Nikki Sapp (Juke)
   - Jonathan Colton (Founder Check / Fotocaster)
   - Dr. Deeks (email remittance pro, Crafters, Ghostwriter)
 host: Adriene and Nounish Prof (GM Farcaster)
-co_host: Adrian (diviflyy) - co-founder, Empire Builder
 organizer: JubJub
 date: 2026-06-01T00:00:00.000Z
 format: audio-space-showcase
@@ -46,7 +45,7 @@ entities:
     - Zaal
     - yerbearserker
   projects:
-    - Vinny App
+    - Vini App
     - POIDH
     - Juke
     - Founder Check
@@ -69,10 +68,9 @@ source:
   capture: live Farcaster Batches Day 1 Space recording (audio), auto-transcript cleaned (proper nouns corrected, filler trimmed, dropout hallucinations removed)
 summary: |
   Day 1 of Farcaster Batches, a week-long builder showcase across the Farcaster ecosystem
-  organized by JubJub and hosted by the GM Farcaster team (Adriene and Nounish Prof), with
-  Adrian (diviflyy) of Empire Builder co-hosting. Five builders present and field questions:
-  Chris Dolinsky on Vinny App (natural-language app builder on a Web3 stack, running a
-  $1,000 Vinny-a-thon prize pool, extra $250 added by Justin/AHN.eth); Kenny on POIDH (a
+  organized by JubJub and hosted by the GM Farcaster team (Adriene and Nounish Prof). Five builders present and field questions:
+  Chris Dolinsky on Vini App (natural-language app builder on a Web3 stack, running a
+  $1,000 Vini-a-thon prize pool, extra $250 added by Justin/AHN.eth); Kenny on POIDH (a
   fully on-chain social bounty platform now live on Ethereum mainnet, with a 20-bounty $25
   boost promo for the week and the $30,000 Farcaster-crowdfunded kickflip world record as
   its signature win); Nikki Sapp on Juke (an open-source, audio-native Farcaster client that
@@ -85,7 +83,7 @@ summary: |
   Madlib-style community storytelling game). The throughline every speaker and Adrian return
   to: build the thing you want to see in the world.
 action_items:
-  - "ZABAL Gamez builders: Vinny-a-thon runs Jun 1-5, judging Jun 5 - build a Vinny app (optionally + Empire Builder) for up to $1,000 USDC"
+  - "ZABAL Gamez builders: Vini-a-thon runs Jun 1-5, judging Jun 5 - build a Vini app (optionally + Empire Builder) for up to $1,000 USDC"
   - "POIDH: first 20 Farcaster-tied bounties this week get a $25 boost + promotion; create on Ethereum mainnet (min 0.001 ETH)"
   - "Juke: open-source repo + audio SDK open to contributors; integrate native Farcaster Spaces into a site or app"
   - "Founder Check: DM Jonathan to run an idea through a live workshop session (Tue)"
@@ -98,10 +96,10 @@ status: cleaned
 - **Farcaster Batches** is a week-long, ecosystem-wide builder showcase organized by JubJub
   (asleep in Australia during Day 1), hosted by the **GM Farcaster** team. Day 1 features five
   builders; two live workshops follow later in the week.
-- **Vinny App** (Chris Dolinsky): prompt a fully functional app into existence on a Web3 stack
+- **Vini App** (Chris Dolinsky): prompt a fully functional app into existence on a Web3 stack
   in minutes, any language. Each app gets its own EVM wallet; optional Clanker token whose
-  trading fees fund that app's AI build costs and roll 10% up into the umbrella Vinny token.
-  Vinny-a-thon: $1,000 USDC prize pool (extra $250 from Justin / AHN.eth), build Jun 1-5,
+  trading fees fund that app's AI build costs and roll 10% up into the umbrella Vini token.
+  Vini-a-thon: $1,000 USDC prize pool (extra $250 from Justin / AHN.eth), build Jun 1-5,
   judging Jun 5. Stack composes with Empire Builder (yerbearserker / Diviflyy).
 - **POIDH** (Kenny): a fully on-chain social bounty platform - crowdfund any outcome, verify it
   trustlessly. Each bounty is an "ephemeral DAO" with low attack surface (one specific yes/no
@@ -144,24 +142,24 @@ week. Tomorrow there's one in our GM Farcaster StreamYard studio; Thursday we ha
 Cashless Man and Royal Aid, doing workshops on setting up AI automation and building on your own
 infrastructure, both on Farcaster Spaces. A lot going on this week.
 
-Today we have five amazing builders: Chris Dolinsky with Vinny App, Kenny with POIDH, Nikki Sapp
+Today we have five amazing builders: Chris Dolinsky with Vini App, Kenny with POIDH, Nikki Sapp
 with Juke, Jonathan Colton with Founder Check, and Dr. Deeks on several projects. Each builder
 gives us a breakdown - what your project is, what you've been building, how it connects with the
-Farcaster ecosystem - then we'll take questions. Chris Dolinsky from Vinny App, I'm going to
+Farcaster ecosystem - then we'll take questions. Chris Dolinsky from Vini App, I'm going to
 start with you. Welcome.
 
 **Chris Dolinsky:** Great to be here - always wonderful to see so many people on the internet
-jump into one Space. Vinny App is a platform that lets anyone in the world, developer or not,
+jump into one Space. Vini App is a platform that lets anyone in the world, developer or not,
 use natural language to build a fully functional application in a few minutes. It's set up on
 the Web3 stack, so it makes use of brand-new primitives that have never existed historically.
 You prompt your way into having an app.
 
 As part of Farcaster Batches we have a $1,000 prize pool - Justin, AHN.eth, contributed an extra
 $250. Anyone who builds during the next five days is eligible for up to $1,000 USDC for any app
-built using Vinny - either a pure Vinny stack, or with Empire Builder (yerbearserker or Diviflyy)
+built using Vini - either a pure Vini stack, or with Empire Builder (yerbearserker or Diviflyy)
 or Justin's project added in. You can be anywhere in the world, walking on a treadmill or getting
 a coffee, and start prompting your build. There's a full leaderboard so everyone can see the apps
-being built. We track unique users per app, and each app in the Vinny-a-thon launches with a
+being built. We track unique users per app, and each app in the Vini-a-thon launches with a
 token, so the market can get involved and the market cap is trackable. Building runs the first
 through the fourth; on the fifth we judge live and award the prizes.
 
@@ -172,7 +170,7 @@ Portuguese - we have apps built from Turkey and India. Half the time I have to r
 through Google Translate to see what they built.
 
 While you build, you have full support from our team - gamification, tokenomics, features, bugs.
-And 10% of the trading fees of every launched token roll into the main Vinny token, so there's a
+And 10% of the trading fees of every launched token roll into the main Vini token, so there's a
 canonical umbrella token binding the platform together. It's a land-and-expand strategy: start
 with a little nugget - a card game, a health tracker, an expense tracker - and grow it exactly
 how you see fit, then share it as a mini app on Farcaster or out on the wider web. We have World
@@ -182,7 +180,7 @@ coming, and direct web use. Really looking forward to seeing what people build.
 **Adriene:** That's awesome. I'm definitely going to try to build something. Adrian has built a
 couple things on mini apps - what tips would you have for people participating this week?
 
-**Adrian (diviflyy):** I've used Vinny twice since Chris demoed it and it's really awesome. Don't
+**Adrian (diviflyy):** I've used Vini twice since Chris demoed it and it's really awesome. Don't
 just use it - try it. If you get stuck, ask Chris or Nick for support, they'll help out. I found
 it super intuitive, really easy from idea to prototype. Chris, I have a question if you'll take
 one: part of the flow prompts people to launch a token before the app is built, and it's framed
@@ -191,12 +189,12 @@ or confusion about what the token does?
 
 **Chris Dolinsky:** Totally. The tokenomics make use of these new primitives. There are a number
 of vibe-coding platforms, and people will say "oh, they did that on Claude Code or Codex." Good
-to know: with Vinny we sit on top of those - you take the bare bones of a Claude Code or a Codex
+to know: with Vini we sit on top of those - you take the bare bones of a Claude Code or a Codex
 and layer on a ton of skill sets and connections you'd otherwise have to provision yourself
 (API endpoints, wallets), and eventually you get to the idea of a token.
 
-A token isn't required to use Vinny as a standalone platform - it's only required for the
-Vinny-a-thon, because it helps with the leaderboard and tracking and lets the market participate
+A token isn't required to use Vini as a standalone platform - it's only required for the
+Vini-a-thon, because it helps with the leaderboard and tracking and lets the market participate
 in ranking the apps. What's nice: every app that gets created gets its own EVM wallet, which pays
 for the AI building the app, storage, image generation - basically everything. As the app's token
 trades on the open market, those fees accumulate into that wallet, so for some builds the trading
@@ -223,7 +221,7 @@ Farcaster that Adrian made, where the whole feed was posting about it.
 
 **Chris Dolinsky:** Hey, Andy Warhol said 15 minutes - don't expect more.
 
-**Adriene:** Thank you so much, Chris. If you have questions about Vinny App, reach out to Chris.
+**Adriene:** Thank you so much, Chris. If you have questions about Vini App, reach out to Chris.
 We're going to move on to Kenny from POIDH - and Kenny, give me a better pronunciation.
 
 **Kenny:** Everybody's first question. Early on I said POIDH, but lately I just say POID. POID

@@ -32,7 +32,7 @@ There is no Batches4 (Jun 4 was Spaces-only workshops with Royal Aid + Cashless 
 
 ### Builder lineups
 
-- **Batches1 / Jun 1:** Vinny App (Chris Dolinsky), POIDH (Kenny), Juke (Nikki Sapp),
+- **Batches1 / Jun 1:** Vini App (Chris Dolinsky), POIDH (Kenny), Juke (Nikki Sapp),
   Founder Check + Fotocaster (Jonathan Colton), Dr. Deeks (email remittance pro, Crafters, Ghostwriter).
 - **Batches2 / Jun 2:** Founder Check workshop - Jonathan Colton walks Kenny (POIDH) through it live.
 - **Batches3 / Jun 3:** ZABAL Gamez / The ZAO (Zaal), Empire Builder (yerbearserker + diviflyy),

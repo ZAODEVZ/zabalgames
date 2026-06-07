@@ -34,7 +34,7 @@ entities:
     - POIDH
     - Fotocaster
     - Meme Lord
-    - Vinny App
+    - Vini App
 links:
   - label: POIDH
     url: https://poidh.xyz
@@ -55,13 +55,13 @@ summary: |
   quality and trust; the tool exports an execution file you carry back to your own agent / corpus.
   Founder Check behaves like "Duolingo for builders" - returners measurably improve (about 78%
   do; Zaal had the top recorded jump, roughly 3.3 / 10, after a follow-up). Jonathan also demos
-  Meme Lord, a spinoff that makes a pitch memetic across 15 markers, now its own Vinny app. The
+  Meme Lord, a spinoff that makes a pitch memetic across 15 markers, now its own Vini app. The
   deeper warning: your circle of supporters masquerades as product-market fit; clarity only comes
   from making contact with strangers and serving the full functional / emotional / social job stack.
 action_items:
   - "Builders: run an idea through Founder Check, then export the execution file into your own agent (Claude / ChatGPT) and return to improve your weakest pillar"
   - "Founder Check: start with the Who pillar - everything is downstream of who you are building for"
-  - "Try Meme Lord (now a Vinny app) to pressure-test whether your pitch travels without you in the room"
+  - "Try Meme Lord (now a Vini app) to pressure-test whether your pitch travels without you in the room"
   - "Watch the rest of Batches week: Wed + Fri builder Spaces; Thu Cashless Man + Royal Aid workshops on Farcaster Spaces"
 status: cleaned
 ---
@@ -89,7 +89,7 @@ status: cleaned
   isn't validation; the chasm is a *context* chasm - new strangers who do not know or care about you.
   Founder Check (and running landing pages / pitches through it) exposes that gap.
 - **Meme Lord:** a spinoff that polishes a pitch to be memetic / viral across 15 markers ("a meme is
-  an idea that travels like a virus") - grown inside Founder Check, now also shipped as its own Vinny app.
+  an idea that travels like a virus") - grown inside Founder Check, now also shipped as its own Vini app.
 - Kenny's live first run scored well (customer clarity ~7); even unicorns' original pitches score low -
   the work is the iteration, not the first number.
 
