@@ -9,7 +9,6 @@ guests:
   - Cashless Man (Booster)
   - Duckfax (Celebration Hub)
 host: Adriene and Nounish Prof (GM Farcaster)
-co_host: Adrian (diviflyy) - co-founder, Empire Builder
 organizer: JubJub
 date: 2026-06-03T00:00:00.000Z
 format: audio-space-showcase
@@ -66,7 +65,7 @@ note: Raw auto-transcript, lightly processed. Crosstalk and filler preserved for
 Part of GM Farcaster's week-long Farcaster Batches. Day 1 was a builder-showcase Space,
 Day 2 was a workshop with Jonathan Colton, and Day 3 (this session) brought six builders to
 talk about what they are building in and around Farcaster. Hosted by Adriene and Nounish Prof,
-co-hosted by Adrian (diviflyy), organized by JubJub.
+organized by JubJub.
 
 ## Builders in this session
 

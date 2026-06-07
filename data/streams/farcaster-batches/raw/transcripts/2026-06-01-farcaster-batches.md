@@ -9,7 +9,6 @@ guests:
   - Jonathan Colton (Founder Check / Fotocaster)
   - Dr. Deeks (email remittance pro, Crafters, Ghostwriter)
 host: Adriene and Nounish Prof (GM Farcaster)
-co_host: Adrian (diviflyy) - co-founder, Empire Builder
 organizer: JubJub
 date: 2026-06-01T00:00:00.000Z
 format: audio-space-showcase
@@ -69,8 +68,7 @@ source:
   capture: live Farcaster Batches Day 1 Space recording (audio), auto-transcript cleaned (proper nouns corrected, filler trimmed, dropout hallucinations removed)
 summary: |
   Day 1 of Farcaster Batches, a week-long builder showcase across the Farcaster ecosystem
-  organized by JubJub and hosted by the GM Farcaster team (Adriene and Nounish Prof), with
-  Adrian (diviflyy) of Empire Builder co-hosting. Five builders present and field questions:
+  organized by JubJub and hosted by the GM Farcaster team (Adriene and Nounish Prof). Five builders present and field questions:
   Chris Dolinsky on Vini App (natural-language app builder on a Web3 stack, running a
   $1,000 Vini-a-thon prize pool, extra $250 added by Justin/AHN.eth); Kenny on POIDH (a
   fully on-chain social bounty platform now live on Ethereum mainnet, with a 20-bounty $25
