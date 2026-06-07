@@ -167,13 +167,15 @@
       "id": "013",
       "name": "Will T",
       "org": "",
-      "topic": "To be announced",
+      "topic": "Building KFMedia - what he is building, how he is doing it, and the lessons so far.",
       "format": "30 min, livestreamed and recorded",
       "when": "Wed Jun 10 2026, 7:30pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-06-07",
-      "color": "gold",
-      "date": "2026-06-10"
+      "color": "cyan",
+      "date": "2026-06-10",
+      "track": "creator",
+      "luma_url": "https://luma.com/za2b259z"
     },
     {
       "id": "014",
@@ -186,6 +188,36 @@
       "confirmed_date": "2026-06-07",
       "color": "pink",
       "date": "2026-06-12"
+    },
+    {
+      "id": "015",
+      "name": "Zaal",
+      "org": "WIP Meetup",
+      "handle": "@zaal",
+      "topic": "ZABAL Gamez and the projects you can build on - an overview plus a tour of the ecosystem, including ZAO Fractals.",
+      "format": "Live at the WIP meetup, recorded",
+      "when": "Thu Jun 11 2026, 3pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-08",
+      "color": "zabal",
+      "date": "2026-06-11",
+      "luma_url": "https://luma.com/e4g2kbxp",
+      "track": "builder"
+    },
+    {
+      "id": "016",
+      "name": "Fireside chat with Sopha",
+      "org": "Sopha",
+      "handle": "@zaal",
+      "topic": "A special event introducing Sopha to the community - the philosophy and the building behind it, with an informal hang after.",
+      "format": "Live on Sopha + Google Meet, ~1 hour",
+      "when": "Mon Jun 8 2026, 12:30pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-08",
+      "color": "zabal",
+      "date": "2026-06-08",
+      "luma_url": "https://luma.com/42rdpyyb",
+      "track": "artist"
     }
   ],
   "_schema": {
