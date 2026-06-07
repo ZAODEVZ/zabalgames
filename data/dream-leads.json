@@ -1,7 +1,124 @@
 {
-  "_note": "Curated 'dream workshop leads' board for ZABAL Gamez, rendered at /dream-leads. Team-maintained: community nominations arrive via the Formspree form on the page (form_source=zabal-games-dream-lead-nomination) and get reviewed before being added here. Each lead needs a stable unique `id` (lowercase a-z0-9-_) - it is the upvote key in /api/dream-vote, so do not change an id once it has votes. Handles are bare (no @, no URL): farcaster, github, x. Empty handle fields are omitted in the UI. Voting is verified via the Farcaster Mini App (one +1 per FID per lead).",
+  "_note": "Curated 'dream workshop leads' board for ZABAL Gamez, rendered at /dream-leads. Team-maintained: community nominations arrive via the Formspree form on the page (form_source=zabal-games-dream-lead-nomination) and get reviewed before being added here. Each lead needs a stable unique `id` (lowercase a-z0-9-_) - it is the upvote key in /api/dream-vote, so do not change an id once it has votes. Handles are bare (no @, no URL): farcaster, github, x. Empty handle fields are omitted in the UI. Voting is verified via the Farcaster Mini App (one +1 per FID per lead). Handles left blank where unconfirmed - fill them in before tagging to avoid mis-tagging.",
   "_schema": { "id": "string (stable, unique)", "name": "string", "track": "artist|builder|creator", "farcaster": "handle or ''", "github": "handle or ''", "x": "handle or ''", "why": "one line: what we'd love them to teach" },
   "leads": [
+    {
+      "id": "chris-dolinsky-vinny",
+      "name": "Chris Dolinsky (Vinny App)",
+      "track": "builder",
+      "farcaster": "",
+      "github": "",
+      "x": "",
+      "why": "Prompt a working app into existence in minutes - the perfect first session for the vibe-coding cohort."
+    },
+    {
+      "id": "node-dekey",
+      "name": "Node (DEKEY)",
+      "track": "builder",
+      "farcaster": "noad",
+      "github": "",
+      "x": "",
+      "why": "Zero-knowledge proofs and peer-to-peer marketplaces, explained by someone shipping one."
+    },
+    {
+      "id": "nikki-sapp-juke",
+      "name": "Nikki Sapp (Juke)",
+      "track": "builder",
+      "farcaster": "",
+      "github": "",
+      "x": "nicky_sap",
+      "why": "Fork an open-source Farcaster client and build your own - audio, voice notes, and the Spaces SDK."
+    },
+    {
+      "id": "cashless-man-booster",
+      "name": "Cashless Man (Booster)",
+      "track": "builder",
+      "farcaster": "",
+      "github": "",
+      "x": "",
+      "why": "Self-host your whole stack on a VPS - back end, front end, bots - and own your infrastructure."
+    },
+    {
+      "id": "azflin-dota",
+      "name": "AZ Flynn (Defense of the Agents)",
+      "track": "builder",
+      "farcaster": "",
+      "github": "",
+      "x": "",
+      "why": "Build a mini-app game people open every day, and the NFT-utility collabs that grow it."
+    },
+    {
+      "id": "arthur-neynar",
+      "name": "Arthur (Neynar)",
+      "track": "builder",
+      "farcaster": "",
+      "github": "",
+      "x": "",
+      "why": "Base / EVM patterns and smart contracts from inside the Farcaster infra team."
+    },
+    {
+      "id": "kenny-poidh",
+      "name": "Kenny (POIDH)",
+      "track": "builder",
+      "farcaster": "",
+      "github": "",
+      "x": "",
+      "why": "Building in public for three years and crowdfunding real-world outcomes on-chain."
+    },
+    {
+      "id": "max-power",
+      "name": "Max (POWER)",
+      "track": "creator",
+      "farcaster": "baseddesigner.eth",
+      "github": "",
+      "x": "",
+      "why": "Design that converts - a link-in-bio page, embeddable widgets, and agent-friendly pages."
+    },
+    {
+      "id": "toady-hawk-betterment",
+      "name": "Toady Hawk (Betterment)",
+      "track": "creator",
+      "farcaster": "betrmint",
+      "github": "",
+      "x": "betrmint",
+      "why": "Distribution and tokenized rewards that actually pay creators and founders for showing up."
+    },
+    {
+      "id": "darko-runner",
+      "name": "Darko (Runner)",
+      "track": "creator",
+      "farcaster": "",
+      "github": "",
+      "x": "",
+      "why": "Turn a meme into a real consumer app - Strava integration, seasons, and referral loops."
+    },
+    {
+      "id": "dcoop-records",
+      "name": "DCoopOfficial (Coop Records)",
+      "track": "artist",
+      "farcaster": "",
+      "github": "",
+      "x": "DCoopOfficial",
+      "why": "Releasing music on-chain and the label angle - how an artist actually keeps the upside."
+    },
+    {
+      "id": "riley-beans",
+      "name": "Riley Beans",
+      "track": "artist",
+      "farcaster": "",
+      "github": "",
+      "x": "",
+      "why": "A creator-track session on making and sharing visual work in the ecosystem (specialty to confirm)."
+    },
+    {
+      "id": "ven-open-machine",
+      "name": "Ven (The Open Machine)",
+      "track": "builder",
+      "farcaster": "",
+      "github": "",
+      "x": "",
+      "why": "The Open Machine - open, composable building patterns the ecosystem keeps asking about."
+    },
     {
       "id": "realproject7",
       "name": "realproject7",
