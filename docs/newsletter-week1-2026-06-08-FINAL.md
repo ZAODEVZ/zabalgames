@@ -111,6 +111,8 @@ We spent this week getting the build path ready so you can start the moment July
 - Come hang in the /zabal channel: https://farcaster.xyz/~/channel/zabal
 - Insert Coin and grab the season collectible: https://collect.zabalgamez.com
 
+And if you make things: we have an open POIDH bounty for the best ZABAL Gamez ad. Make one, claim the bounty, and we will run it. https://poidh.xyz/base/bounty/1180
+
 The week at a glance: five sessions recorded and transcribed, the whole Farcaster Batches week captured, more than 40 projects waiting to be adopted, a $500 pool plus collectibles on the line, three tracks, one open door.
 
 To everyone who showed up, taught, asked a question, or just listened in - thank you. That is the whole thing. One week down. Insert Coin.
