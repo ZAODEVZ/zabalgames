@@ -64,6 +64,10 @@
     .player-meta a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .player-meta a:hover { color: var(--zabal); }
     .player-score { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
+    .crm-board { font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--zabal); color: var(--zabal); }
+    .tick { display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; }
+    .tick span { white-space: nowrap; }
+    .tick b { color: var(--text-muted); font-weight: 600; }
     [hidden] { display: none !important; }
   </style>
 </head>
@@ -91,6 +95,9 @@
     <p class="hero-sub">
       Two angles on the season's people. The Roster is everyone who led a workshop, presented, built, mentored, or was nominated, and what they were in for. The Players board is live: everyone earning points by joining, sharing, and showing up. Search, filter, and find their profiles and handles.
     </p>
+    <div style="margin-top: 0.4rem;">
+      <button id="crm-share" class="btn btn-ghost" type="button">Share the directory</button>
+    </div>
   </header>
 
   <div class="crm-stats" id="crm-stats" aria-label="Season at a glance"></div>
@@ -103,6 +110,10 @@
   <section id="view-roster">
     <div class="crm-controls">
       <input id="crm-search" class="crm-search" type="search" placeholder="Search people, projects, handles..." aria-label="Search people">
+      <select id="crm-sort" class="crm-search" style="flex: 0 0 auto; min-width: 0; cursor: pointer;" aria-label="Sort people">
+        <option value="name">A to Z</option>
+        <option value="involved">Most involved</option>
+      </select>
       <span class="crm-count" id="crm-count"></span>
     </div>
     <div class="crm-filters" id="crm-roles" aria-label="Filter by role"></div>
@@ -116,6 +127,7 @@
     <p class="crm-note">
       The live players board. Everyone earning points this season by joining a workshop, sharing, or casting through the Mini App. It is the same activity that feeds the <a href="/leaderboard">leaderboard</a>. Get on it: <a href="/#schedule">join a session</a> or <a href="/share.html">share the season</a>.
     </p>
+    <div id="crm-ticker" class="crm-note" style="margin-bottom: 1.2rem;" hidden></div>
     <div class="player-grid" id="players-grid">
       <p style="color: var(--text-muted); font-size: 0.9rem;">Loading the players board.</p>
     </div>
@@ -161,16 +173,19 @@
   var rolesEl = document.getElementById('crm-roles');
   var tracksEl = document.getElementById('crm-tracks');
   var searchEl = document.getElementById('crm-search');
+  var sortEl = document.getElementById('crm-sort');
   var countEl = document.getElementById('crm-count');
   var statsEl = document.getElementById('crm-stats');
   var playersGrid = document.getElementById('players-grid');
+  var tickerEl = document.getElementById('crm-ticker');
+  var shareBtn = document.getElementById('crm-share');
   if (!grid) return;
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   var TRACKCOLOR = { artist: 'pink', builder: 'zabal', creator: 'cyan' };
-  var ALL = [], activeRole = 'All', activeTrack = 'All', q = '';
+  var ALL = [], activeRole = 'All', activeTrack = 'All', q = '', sortBy = 'name';
+  var playersCount = null, activeToday = null, PLAYERMAP = {}; // farcaster handle -> { rank, score }
 
   // --- view tabs ---
-  var playersLoaded = false;
   document.querySelectorAll('.crm-tab').forEach(function (tab) {
     tab.addEventListener('click', function () {
       var view = tab.getAttribute('data-view');
@@ -181,12 +196,11 @@
       });
       document.getElementById('view-roster').hidden = view !== 'roster';
       document.getElementById('view-players').hidden = view !== 'players';
-      if (view === 'players' && !playersLoaded) loadPlayers();
     });
   });
 
   // --- stats ---
-  function renderStats(players) {
+  function renderStats() {
     var by = {};
     ALL.forEach(function (p) { (p.roles || []).forEach(function (r) { by[r] = (by[r] || 0) + 1; }); });
     var cells = [
@@ -195,18 +209,24 @@
       ['Batches builders', by['Batches builder'] || 0, false],
       ['Dream leads', by['Dream lead'] || 0, false],
     ];
-    if (players != null) cells.push(['On the board', players, true]);
+    if (playersCount != null) cells.push(['On the board', playersCount, true]);
+    if (activeToday != null) cells.push(['Active today', activeToday, true]);
     statsEl.innerHTML = cells.map(function (c) {
       return '<div class="crm-stat' + (c[2] ? ' live' : '') + '"><b>' + c[1] + '</b><span>' + esc(c[0]) + '</span></div>';
     }).join('');
   }
 
   // --- roster ---
+  function involvementScore(p) { return (p.roles || []).length + (p.involvement || []).length; }
+
   function card(p) {
     var profile = p.profile_url || (p.farcaster ? 'https://farcaster.xyz/' + p.farcaster : (p.x ? 'https://x.com/' + p.x : null));
     var nameHtml = profile ? '<a href="' + esc(profile) + '"' + (/^https?:/.test(profile) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(p.name) + '</a>' : esc(p.name);
     var roles = (p.roles || []).map(function (r) { return '<span class="crm-role">' + esc(r) + '</span>'; }).join('');
     var track = p.track ? '<span class="crm-track" style="border:1px solid var(--' + (TRACKCOLOR[p.track] || 'zabal') + ');color:var(--' + (TRACKCOLOR[p.track] || 'zabal') + ');">' + esc(p.track) + '</span>' : '';
+    // cross-link: is this roster person also live on the players board?
+    var onBoard = p.farcaster && PLAYERMAP[p.farcaster.toLowerCase()];
+    var board = onBoard ? '<span class="crm-board" title="' + onBoard.score + ' pts">On the board #' + onBoard.rank + '</span>' : '';
     var inv = (p.involvement || []).map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('');
     var links = [];
     if (p.profile_url) links.push('<a href="' + esc(p.profile_url) + '">Profile</a>');
@@ -216,7 +236,7 @@
     var border = p.track ? 'var(--' + (TRACKCOLOR[p.track] || 'zabal') + ')' : (p.color ? 'var(--' + p.color + ')' : 'var(--border)');
     return '<div class="crm-card" style="border-left-color:' + border + ';">' +
       '<h3>' + nameHtml + '</h3>' +
-      '<div class="crm-roles">' + roles + track + '</div>' +
+      '<div class="crm-roles">' + roles + track + board + '</div>' +
       (inv ? '<ul class="crm-inv">' + inv + '</ul>' : '') +
       (links.length ? '<div class="crm-links">' + links.join('') + '</div>' : '') +
     '</div>';
@@ -230,13 +250,17 @@
       var hay = (p.name + ' ' + (p.roles || []).join(' ') + ' ' + (p.involvement || []).join(' ') + ' ' + p.farcaster + ' ' + p.x).toLowerCase();
       return hay.indexOf(q) !== -1;
     });
+    if (sortBy === 'involved') {
+      list.sort(function (a, b) { return involvementScore(b) - involvementScore(a) || a.name.localeCompare(b.name); });
+    } else {
+      list.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    }
     countEl.textContent = list.length + ' of ' + ALL.length;
     grid.innerHTML = list.length ? list.map(card).join('') : '<p style="color:var(--text-muted);font-size:0.9rem;">No one matches that.</p>';
   }
 
   // --- players (live leaderboard) ---
   function loadPlayers() {
-    playersLoaded = true;
     fetch('/api/leaderboard?format=full', { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (rows) {
@@ -244,6 +268,7 @@
           playersGrid.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No one is on the board yet. <a href="/#schedule">Join a session</a> or <a href="/share.html">share the season</a> to be first.</p>';
           return;
         }
+        rows.forEach(function (p, i) { if (p.username) PLAYERMAP[p.username.toLowerCase()] = { rank: i + 1, score: p.score != null ? p.score : 0 }; });
         playersGrid.innerHTML = rows.map(function (p, i) {
           var name = p.username ? '@' + p.username : ('fid ' + p.fid);
           var href = p.username ? 'https://farcaster.xyz/' + p.username : null;
@@ -255,18 +280,55 @@
             '<div class="player-meta">' + nameHtml + '<span class="player-score">' + esc(pts) + '</span></div>' +
           '</div>';
         }).join('');
-        renderStats(rows.length);
+        playersCount = rows.length;
+        renderStats();
+        render(); // re-render the roster so On-the-board badges appear
       })
       .catch(function () {
         playersGrid.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">The board is unavailable right now. See the full <a href="/leaderboard">leaderboard</a>.</p>';
       });
   }
 
+  // --- recent activity (active-today count + ticker) ---
+  var ACTION_VERB = { cast: 'cast', share: 'shared', signup: 'joined', join: 'joined' };
+  function loadActivity() {
+    fetch('/api/activity', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !d.configured) return;
+        activeToday = d.count || 0;
+        renderStats();
+        var recent = (d.recent || []).filter(function (a) { return a.username; }).slice(0, 10);
+        if (recent.length) {
+          tickerEl.hidden = false;
+          tickerEl.innerHTML = '<span class="crm-filter-label">Latest</span><div class="tick">' + recent.map(function (a) {
+            var verb = ACTION_VERB[a.action] || a.action;
+            return '<span><b>@' + esc(a.username) + '</b> ' + esc(verb) + '</span>';
+          }).join('') + '</div>';
+        }
+      })
+      .catch(function () { /* best-effort */ });
+  }
+
+  // --- share ---
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function () {
+      var n = ALL.length || 0;
+      var text = 'ZM. ' + n + ' people in the ZABAL Gamez orbit so far - the workshop leads, the builders, the dream leads, and everyone showing up this season. The whole directory:';
+      var url = 'https://zabalgamez.com/crm';
+      if (window.ZABAL && window.ZABAL.share) {
+        window.ZABAL.share({ platform: 'farcaster', text: text, url: url, target: 'crm' });
+      } else {
+        window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text + ' ' + url) + '&channelKey=zabal', '_blank', 'noopener');
+      }
+    });
+  }
+
   fetch('/data/crm.json', { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (d) {
       ALL = d.people || [];
-      renderStats(null);
+      renderStats();
       // role chips, most common first
       var roles = {};
       ALL.forEach(function (p) { (p.roles || []).forEach(function (r) { roles[r] = (roles[r] || 0) + 1; }); });
@@ -288,9 +350,11 @@
         render();
       });
       searchEl.addEventListener('input', function () { q = searchEl.value.toLowerCase().trim(); render(); });
+      sortEl.addEventListener('change', function () { sortBy = sortEl.value; render(); });
       render();
-      // warm the players count in the stats strip without switching tabs
+      // warm the live data: players (count + cross-link badges) and activity (active today + ticker)
       loadPlayers();
+      loadActivity();
     })
     .catch(function () { /* keep fallback */ });
 })();
