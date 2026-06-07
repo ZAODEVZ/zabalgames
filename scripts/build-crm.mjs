@@ -21,7 +21,18 @@ const norm = (n) => String(n || '')
   .replace(/[^a-z0-9 ]/g, ' ')
   .replace(/\s+/g, ' ')
   .trim();
-const cleanHandle = (h) => String(h || '').replace(/^@+/, '').trim();
+// Same person, different handle across sources (Zaal leads workshops as @zaal but his
+// people.json profile is @bettercallzaal). Map aliases to the canonical handle so the
+// merge-by-handle pass below folds the fragments into one card.
+const HANDLE_ALIAS = { zaal: 'bettercallzaal' };
+const cleanHandle = (h) => {
+  const c = String(h || '').replace(/^@+/, '').trim();
+  return HANDLE_ALIAS[c.toLowerCase()] || c;
+};
+
+// Some workshop-leads entries are events, not people - the schedule renders `name` as the
+// card title (e.g. "Fireside chat with Sopha"). Keep those out of a people directory.
+const isEventTitle = (name) => /^(fireside|workshop|wip meetup)\b|chat with/i.test(name || '');
 
 const map = new Map(); // normName -> record
 function upsert(name, { farcaster, x, github, track, role, involvement, color, profile_url } = {}) {
@@ -62,6 +73,7 @@ for (const p of (read('data/people.json').people || [])) {
 
 // 2. workshop-leads.json
 for (const l of (read('data/workshop-leads.json').leads || [])) {
+  if (isEventTitle(l.name)) continue;
   const when = (l.when || '').split(',')[0];
   const topic = (l.topic && l.topic !== 'To be announced' && l.topic !== 'Topic to be announced')
     ? l.topic.split(' - ')[0] : '';
@@ -108,8 +120,31 @@ for (const [name, project, day, track, fc, x] of batches) {
   });
 }
 
+// --- merge same-person records that share a farcaster handle ---
+// Name-keying alone leaves duplicates when the same person appears under different display
+// names (e.g. "Zaal" the workshop lead vs "Zaal Panthaki" the profile). Fold them by handle.
+const byHandle = new Map();
+const merged = [];
+for (const r of map.values()) {
+  const h = (r.farcaster || '').toLowerCase();
+  if (h && byHandle.has(h)) {
+    const t = byHandle.get(h);
+    if (r.name.length > t.name.length && !/\(/.test(r.name)) t.name = r.name;
+    t.x = t.x || r.x;
+    t.github = t.github || r.github;
+    t.track = t.track || r.track;
+    t.color = t.color || r.color;
+    t.profile_url = t.profile_url || r.profile_url;
+    for (const role of r.roles) if (!t.roles.includes(role)) t.roles.push(role);
+    for (const inv of r.involvement) if (!t.involvement.includes(inv)) t.involvement.push(inv);
+  } else {
+    if (h) byHandle.set(h, r);
+    merged.push(r);
+  }
+}
+
 // --- emit ---
-const people = [...map.values()].sort((a, b) => a.name.localeCompare(b.name));
+const people = merged.sort((a, b) => a.name.localeCompare(b.name));
 const out = {
   _note: 'Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.',
   generated: new Date().toISOString().slice(0, 10),

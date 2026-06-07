@@ -1,7 +1,7 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
   "generated": "2026-06-07",
-  "count": 36,
+  "count": 34,
   "people": [
     {
       "name": "Adam Miller",
@@ -188,21 +188,6 @@
       ],
       "involvement": [
         "Workshop: Musician on Farcaster, and the road to Farcon. (first week of June - date TBD)"
-      ],
-      "profile_url": null
-    },
-    {
-      "name": "Fireside chat with Sopha",
-      "farcaster": "zaal",
-      "x": "",
-      "github": "",
-      "track": "artist",
-      "color": "zabal",
-      "roles": [
-        "Workshop lead"
-      ],
-      "involvement": [
-        "Workshop: A special event introducing Sopha to the community (Mon Jun 8 2026)"
       ],
       "profile_url": null
     },
@@ -538,35 +523,20 @@
       "profile_url": null
     },
     {
-      "name": "Zaal",
-      "farcaster": "zaal",
-      "x": "",
-      "github": "",
-      "track": "builder",
-      "color": "zabal",
-      "roles": [
-        "Workshop lead",
-        "Mentor"
-      ],
-      "involvement": [
-        "Workshop: ZABAL Gamez and the projects you can build on (Thu Jun 11 2026)",
-        "Organizer + BetterCallZaal + The ZAO operations"
-      ],
-      "profile_url": null
-    },
-    {
       "name": "Zaal Panthaki",
       "farcaster": "bettercallzaal",
       "x": "",
       "github": "",
-      "track": "",
+      "track": "builder",
       "color": "orange",
       "roles": [
         "Organizer",
-        "Mentor"
+        "Mentor",
+        "Workshop lead"
       ],
       "involvement": [
-        "Organizer + BetterCallZaal + The ZAO operations"
+        "Organizer + BetterCallZaal + The ZAO operations",
+        "Workshop: ZABAL Gamez and the projects you can build on (Thu Jun 11 2026)"
       ],
       "profile_url": "/p?handle=bettercallzaal"
     }
