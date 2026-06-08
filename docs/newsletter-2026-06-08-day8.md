@@ -6,9 +6,8 @@
 > 365). Brand: no emojis, no em dashes, hyphens only. KFMEDIA℠ is always written with the ℠.
 > Copy the block as-is (Paragraph renders the markdown links).
 >
-> BEFORE SENDING: the Mindful moment below is a suggestion (the agreement Always Do Your Best,
-> a fit for a Monday) - swap in the actual card you pulled this morning. Handles confirmed:
-> Will T of Web3 is @willtofweb3. Confirm Sopha's and Jose's before tagging.
+> Mindful card: Relinquish Self Importance (agreement: Don't Take Anything Personally).
+> Handles confirmed: Will T of Web3 is @willtofweb3. Confirm Sopha's and Jose's before tagging.
 
 ```
 Good morning, and happy Monday in the Year of the ZABAL.
@@ -32,13 +31,13 @@ Miss one? Nothing disappears here. Every session is recorded, transcribed, and k
 
 Mindful moment
 
-Today's card: Simply do your best.
+Today's card: Relinquish Self Importance.
 
-The agreement: Always Do Your Best, from The Four Agreements by Don Miguel Ruiz.
+The agreement: Don't Take Anything Personally, from The Four Agreements by Don Miguel Ruiz.
 
-"Your best is going to change from moment to moment; it will be different when you are healthy as opposed to sick. Under any circumstance, simply do your best, and you will avoid self-judgment, self-abuse, and regret."
+"Personal importance, or taking things personally, is the maximum expression of selfishness, because we make the assumption that everything is about me."
 
-On a Monday, this is the one. Your best today is not your best last week, and that is fine. Do not wait for perfect conditions or the perfect build. Show up, do the best you can with what today gives you, and let the rest go. Then do it again tomorrow. The build is the application.
+For builders, this one cuts deep. The quiet launch, the post that did not land, the user who did not come back - none of it is a verdict on you. Take it as information, not insult. When you stop making everything about you, the feedback gets lighter and the work gets clearer, and you are free to keep building. The build is the application.
 
 See you at 12:30. Insert Coin.
 
