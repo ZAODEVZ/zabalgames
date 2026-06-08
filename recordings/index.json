@@ -1,6 +1,6 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-06-07",
+  "generated": "2026-06-08",
   "season": 1,
   "count": 5,
   "recordings": [
@@ -50,22 +50,29 @@
       "date": "2026-06-02",
       "url": "https://zabalgamez.com/recordings/4",
       "page": "https://zabalgamez.com/recordings/4",
-      "youtube": null,
+      "youtube": "https://youtu.be/VsSLEF8O9yI",
       "recording": "https://luma.com/xa3bsp21",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md",
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md",
       "link": null,
-      "summary": "Day 2 and the first creator-track session of the season. Ohnahji shared his journey in live streaming - how he started, how he found his people, and how you grow an audience while you are still building everything else.",
+      "summary": "Day 2 of ZABAL Gamez and the first creator-track session. Ohnahji (Brian), co-founder of the Ohnahji community - a 2022 project that grew into \"blockchain's first HBCU,\" a safe space for Black, brown, and allied folks learning emerging tech - joins Zaal on Twitch to talk about starting and growing a livestream. Ohnahji is about 288 days into a 365 daily-stream journey. The throughline: consistency is king. Every tool glitches, the early days are frustrating for everyone, and you only get better by showing up. They cover Twitch's Streamed Together and shared chat for collaborating live, raids as a discovery and gamification tool, building your own chat bots, the builder basics of API keys and environment variables, and streaming opsec - be careful what you screen-share, and when in doubt, slow down.",
       "topics": [
         "livestreaming",
-        "audience growth",
-        "creator track",
-        "showing up consistently"
+        "consistency",
+        "Twitch",
+        "OBS / Restream / StreamYard",
+        "raids",
+        "shared chat",
+        "building your own bots",
+        "API keys + env vars",
+        "opsec"
       ],
       "takeaways": [
-        "How to start streaming and grow an audience while you build everything else.",
-        "Consistency beats production value early - the audience comes from showing up.",
-        "The first creator-track session of ZABAL Gamez Season 1."
+        "Consistency is king. Every tool glitches and the first weeks are frustrating for everyone - you only improve by streaming daily and not quitting.",
+        "Embrace the tech that already works. Web2 distribution (Twitch) still reaches people; bring things on-chain only when on-chain is genuinely better.",
+        "Twitch Streamed Together / Knock plus shared chat lets you collaborate live and merge chats; raids are a powerful community-discovery and gamification tool.",
+        "Build your own bots and tooling - API keys are account-scoped secrets; keep them in .env files, never published and never on screen.",
+        "Operational security: double-check what you screen-share, and when in doubt slow down - nine times out of ten rushing is the mistake."
       ]
     },
     {
