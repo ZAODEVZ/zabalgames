@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
   <style>
+    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); margin-top: 1rem; }
+    .rec-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
     .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
     .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
@@ -67,8 +69,18 @@
     </p>
   </header>
 
+  <div class="rec-embed">
+    <iframe id="rec-player"
+      src="https://www.youtube.com/embed/VsSLEF8O9yI?rel=0"
+      title="ZABAL Gamez: Starting and growing your own livestream, with Ohnahji and Zaal"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
+  </div>
+
   <div class="rec-links">
-    <a class="rec-link primary" href="https://luma.com/xa3bsp21" target="_blank" rel="noopener">Watch the recording on Luma</a>
+    <a class="rec-link primary" href="https://youtu.be/VsSLEF8O9yI" target="_blank" rel="noopener">Watch on YouTube</a>
+    <a class="rec-link" href="https://luma.com/xa3bsp21" target="_blank" rel="noopener">Watch on Luma</a>
     <a class="rec-link" href="https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md" target="_blank" rel="noopener">Read the transcript</a>
     <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
     <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
