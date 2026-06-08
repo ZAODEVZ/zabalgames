@@ -73,13 +73,14 @@ const ROLE_LABEL = { organizer: 'Organizer', workshop_lead: 'Workshop lead', par
 // 1. people.json - the rich base profiles (these get a /p link)
 for (const p of (read('data/people.json').people || [])) {
   const h = cleanHandle(p.handle);
+  // handle is an internal slug (may differ from the Farcaster username) - derive the
+  // real Farcaster + X handles from the profile URLs, and use the slug only for /p.
+  const fc = p.farcaster_url ? p.farcaster_url.replace(/\/+$/, '').split('/').pop() : '';
+  const xh = p.x_url ? p.x_url.replace(/\/+$/, '').split('/').pop() : '';
   upsert(p.name, {
-    farcaster: p.farcaster_url ? '' : '', x: '', color: p.color,
+    farcaster: fc, x: xh, color: p.color,
     profile_url: h ? `/p?handle=${encodeURIComponent(h)}` : null,
   });
-  // handle is the canonical Farcaster handle in people.json
-  const r = map.get(norm(p.name));
-  if (r && h && !r.farcaster) r.farcaster = h;
   for (const role of (p.roles || [])) upsert(p.name, { role: ROLE_LABEL[role] || role });
   if (p.headline) upsert(p.name, { involvement: p.headline });
 }
