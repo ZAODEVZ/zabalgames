@@ -6,7 +6,7 @@
 
 ## The week
 - Mon Jun 8, 12:30pm EST - Fireside with Sopha, artist track: the philosophy and the building behind it, informal hang after. RSVP: https://luma.com/42rdpyyb
-- Tue Jun 9, 5pm EST - Jose Cabrera, artist track: owning your music as an independent artist. RSVP: https://luma.com/nxfm7edg
+- Tue Jun 9, 5pm EST - Joseph Goats, artist track: owning your music as an independent artist. RSVP: https://luma.com/nxfm7edg
 - Wed Jun 10, 7:30pm EST - Will T of Web3 (KFMEDIA℠), creator track: building KFMEDIA℠. RSVP: https://luma.com/za2b259z
 - Thu Jun 11, 3pm EST - Zaal presenting ZABAL Gamez at the WIP meetup. RSVP: https://luma.com/e4g2kbxp
 - Fri Jun 12, 6pm EST - Adam Miller. [topic TBA, Luma TBA]
@@ -18,7 +18,7 @@
 ZM. Week 2 of ZABAL Gamez, and it is a full one - five sessions, all free and recorded:
 
 - Mon 12:30pm EST: Fireside with Sopha - the philosophy and the building behind it. RSVP: https://luma.com/42rdpyyb
-- Tue 5pm EST: Jose Cabrera opens the artist track - owning your music as an independent artist. RSVP: https://luma.com/nxfm7edg
+- Tue 5pm EST: Joseph Goats opens the artist track - owning your music as an independent artist. RSVP: https://luma.com/nxfm7edg
 - Wed 7:30pm EST: Will T of Web3 on building KFMEDIA℠. RSVP: https://luma.com/za2b259z
 - Thu 3pm EST: I am presenting ZABAL Gamez at the WIP meetup. RSVP: https://luma.com/e4g2kbxp
 - Fri 6pm EST: Adam Miller
@@ -31,7 +31,7 @@ Pull up to what speaks to you, catch the rest on the site. https://zabalgamez.co
 ZM. Week 2 of ZABAL Gamez - five sessions, free and recorded:
 
 Mon 12:30pm - Fireside with Sopha
-Tue 5pm - Jose Cabrera, owning your music
+Tue 5pm - Joseph Goats, owning your music
 Wed 7:30pm - Will T of Web3 on KFMEDIA℠
 Thu 3pm - ZABAL Gamez at the WIP meetup
 Fri 6pm - Adam Miller
@@ -44,14 +44,14 @@ RSVP + schedule: https://zabalgamez.com/#schedule
 ZM. Today we open week two with a special one. Fireside with Sopha at 12:30pm EST - the philosophy and the building behind it, with an informal hang after. Artist track, free and recorded. RSVP: https://luma.com/42rdpyyb
 ```
 
-### Jose Cabrera - RSVP (Farcaster /zabal, post Mon)
+### Joseph Goats - RSVP (Farcaster /zabal, post Mon)
 ```
-ZM. Tuesday we go deeper on the artist track. Jose Cabrera on owning your music as an independent artist - releasing your work, keeping your masters and your audience, and turning listeners into a community that pays you directly. 5pm EST, free, livestreamed, recorded. RSVP: https://luma.com/nxfm7edg
+ZM. Tuesday we go deeper on the artist track. Joseph Goats on owning your music as an independent artist - releasing your work, keeping your masters and your audience, and turning listeners into a community that pays you directly. 5pm EST, free, livestreamed, recorded. RSVP: https://luma.com/nxfm7edg
 ```
 
-### Jose Cabrera - day-of nudge (Tue morning)
+### Joseph Goats - day-of nudge (Tue morning)
 ```
-ZM. Today, 5pm EST: Jose Cabrera on owning your music as an independent artist. Live and recorded, pull up. https://luma.com/nxfm7edg
+ZM. Today, 5pm EST: Joseph Goats on owning your music as an independent artist. Live and recorded, pull up. https://luma.com/nxfm7edg
 ```
 
 ### Will T of Web3 - RSVP (Farcaster /zabal, post Tue/Wed)
@@ -106,6 +106,6 @@ Yo Adam! Locked you in for ZABAL Gamez Fri Jun 12, 6pm EST - 30 to 60 min, lives
 
 ## What I need to finish the week's prep
 - [ ] Adam Miller (Fri): topic + Luma URL + handle -> fills the last schedule card and the RSVP cast above.
-- [ ] Handles for tagging: Sopha, Jose Cabrera (confirm before adding - brand rule). Will T of Web3 is @willtofweb3 (personal); KFMEDIA℠ community is @kingfishersmedia / @kmllcw3 on X.
+- [ ] Handles for tagging: Sopha, Joseph Goats (confirm before adding - brand rule). Will T of Web3 is @willtofweb3 (personal); KFMEDIA℠ community is @kingfishersmedia / @kmllcw3 on X.
 
 Everything else for the week is locked: Mon through Thu all have topics, times, and Luma links, and the RSVP casts are ready to fire.
