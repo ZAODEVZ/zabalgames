@@ -31,9 +31,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Empire Builder co-founder and lead engineer",
         "Workshop: Empire Builder API workshop (June - date TBD)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=diviflyy",
       "tier": "Headliner",
       "xp": 50
     },
@@ -56,7 +57,7 @@
     },
     {
       "name": "AZ Flynn (Defense of the Agents)",
-      "farcaster": "",
+      "farcaster": "azflin",
       "x": "",
       "github": "",
       "track": "builder",
@@ -103,9 +104,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Quilibrium builder",
         "Workshop: The Farcaster protocol, ins and outs (postponed - new date TBD)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=cassie",
       "tier": "Headliner",
       "xp": 50
     },
@@ -201,7 +203,7 @@
     {
       "name": "Duo Do",
       "farcaster": "duodomusica",
-      "x": "",
+      "x": "duodomusica",
       "github": "",
       "track": "artist",
       "color": "pink",
@@ -209,9 +211,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Musician duo on Farcaster",
         "Workshop: Musician on Farcaster, and the road to Farcon. (first week of June - date TBD)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=duodomusica",
       "tier": "Headliner",
       "xp": 50
     },
@@ -245,10 +248,11 @@
         "Batches builder"
       ],
       "involvement": [
+        "FounderCheck builder, Fotocaster co-creator",
         "Workshop: Two talks (June - dates TBD)",
         "Farcaster Batches: Founder Check / Fotocaster (Day 1)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=jonathancolton",
       "tier": "Headliner",
       "xp": 80
     },
@@ -281,9 +285,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Bonfire founder",
         "Workshop: Bonfire and the ZABAL Bonfire bot (Mon Jun 1 2026)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=joshuaeth",
       "tier": "Headliner",
       "xp": 50
     },
@@ -334,9 +339,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Farcaster Snaps builder",
         "Workshop: Farcaster Snaps (June - date TBD)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=kmaceth",
       "tier": "Headliner",
       "xp": 50
     },
@@ -408,16 +414,17 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Live streamer, founder of the Ohnahji community",
         "Workshop: His journey in live streaming (Tue Jun 2 2026)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=ohnahji",
       "tier": "Headliner",
       "xp": 50
     },
     {
       "name": "Plat0x",
-      "farcaster": "plat0x",
-      "x": "",
+      "farcaster": "",
+      "x": "at0x_eth",
       "github": "",
       "track": "builder",
       "color": "gold",
@@ -425,9 +432,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Bonfire technical architect",
         "Workshop: His own Bonfire builder session (later this week - date TBD)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=plat0x",
       "tier": "Headliner",
       "xp": 50
     },
@@ -584,9 +592,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Empire Builder co-founder",
         "Workshop: Empire Builder V3 (Mon Jun 1 2026)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=yerbearserker",
       "tier": "Headliner",
       "xp": 50
     },
