@@ -7,7 +7,7 @@
 > Copy the block as-is (Paragraph renders the markdown links).
 >
 > Mindful card: Relinquish Self Importance (agreement: Don't Take Anything Personally).
-> Handles confirmed: Will T of Web3 is @willtofweb3. Confirm Sopha's and Jose's before tagging.
+> Standing line on every newsletter: the full speaker calendar at https://lu.ma/zao.
 
 ```
 Good morning, and happy Monday in the Year of the ZABAL.
@@ -16,16 +16,9 @@ Week one is in the books, and what a start. Day 1 we hit start - yerbearserker o
 
 Fresh up: Ohnahji's creator-track session is now posted in full, video and transcript. Starting and growing your own livestream - consistency is king, the tools that all glitch, Twitch raids and Streamed Together, building your own bots, and staying safe on stream. [Watch it here](https://zabalgamez.com/recordings/4).
 
-Today we open week two with something special. A fireside with Sopha - the philosophy and the building behind it, with an informal hang after. 12:30pm EST, and the Luma carries the join link. [RSVP here](https://luma.com/42rdpyyb).
+Today we had our co-created talk with Chris - thank you to everyone who pulled up for it.
 
-And the week keeps rolling, five sessions in all:
-
-- Tuesday, 5pm EST - Jose Cabrera opens deeper into the artist track. A web3 native musician with a concept he calls Digital Street Music, on owning your music as an independent artist: keeping your masters and your audience, and turning listeners into a community that supports you directly. [RSVP](https://luma.com/nxfm7edg).
-- Wednesday, 7:30pm EST - Will T of Web3 on building KFMEDIA℠: what he is building, how he is doing it, and the lessons so far. [RSVP](https://luma.com/za2b259z).
-- Thursday, 3pm EST - I am presenting ZABAL Gamez live at the WIP meetup, a tour of the ecosystem you can build on. [RSVP](https://luma.com/e4g2kbxp).
-- Friday, 6pm EST - Adam Miller. Free, livestreamed, recorded.
-
-The full, live schedule is always here: https://zabalgamez.com/#schedule
+Tomorrow: Joseph Goats. For the rest of this week's speakers, and to RSVP to any of them, the full calendar lives here: https://lu.ma/zao
 
 Miss one? Nothing disappears here. Every session is recorded, transcribed, and kept. [Watch them all on the recaps page](https://zabalgamez.com/recaps).
 
@@ -39,7 +32,7 @@ The agreement: Don't Take Anything Personally, from The Four Agreements by Don M
 
 For builders, this one cuts deep. The quiet launch, the post that did not land, the user who did not come back - none of it is a verdict on you. Take it as information, not insult. When you stop making everything about you, the feedback gets lighter and the work gets clearer, and you are free to keep building. The build is the application.
 
-See you at 12:30. Insert Coin.
+See you tomorrow. Insert Coin.
 
 BetterCallZaal from the ZAO Team
 ```
