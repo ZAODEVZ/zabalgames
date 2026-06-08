@@ -22,8 +22,6 @@ Tomorrow: Joseph Goats. For the rest of this week's speakers, and to RSVP to any
 
 Miss one? Nothing disappears here. Every session is recorded, transcribed, and kept. [Watch them all on the recaps page](https://zabalgamez.com/recaps).
 
-Mindful moment
-
 Today's card: Relinquish Self Importance.
 
 The agreement: Don't Take Anything Personally, from The Four Agreements by Don Miguel Ruiz.
