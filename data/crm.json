@@ -1,7 +1,7 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
   "generated": "2026-06-07",
-  "count": 36,
+  "count": 34,
   "people": [
     {
       "name": "Adam Miller",
@@ -16,7 +16,9 @@
       "involvement": [
         "Workshop (Fri Jun 12 2026)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Adrian",
@@ -31,7 +33,9 @@
       "involvement": [
         "Workshop: Empire Builder API workshop (June - date TBD)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Arthur (Neynar)",
@@ -46,7 +50,9 @@
       "involvement": [
         "On the Dream Leads board"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Challenger",
+      "xp": 10
     },
     {
       "name": "AZ Flynn (Defense of the Agents)",
@@ -63,7 +69,9 @@
         "On the Dream Leads board",
         "Farcaster Batches: Defense of the Agents (Day 3)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 40
     },
     {
       "name": "Cashless Man (Booster)",
@@ -80,7 +88,9 @@
         "On the Dream Leads board",
         "Farcaster Batches: Booster (Day 3)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 40
     },
     {
       "name": "Cassie",
@@ -95,7 +105,9 @@
       "involvement": [
         "Workshop: The Farcaster protocol, ins and outs (Wed Jun 3 2026)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Chris Dolinsky (Vini App)",
@@ -112,7 +124,9 @@
         "On the Dream Leads board",
         "Farcaster Batches: Vini App (Day 1)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 40
     },
     {
       "name": "Darko (Runner)",
@@ -129,7 +143,9 @@
         "On the Dream Leads board",
         "Farcaster Batches: Runner (Day 5)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 40
     },
     {
       "name": "DCoopOfficial (Coop Records)",
@@ -144,7 +160,9 @@
       "involvement": [
         "On the Dream Leads board"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Challenger",
+      "xp": 10
     },
     {
       "name": "Dr. Deeks",
@@ -159,7 +177,9 @@
       "involvement": [
         "Farcaster Batches: email remittance pro, Crafters, Ghostwriter (Day 1)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 30
     },
     {
       "name": "Duckfax",
@@ -174,7 +194,9 @@
       "involvement": [
         "Farcaster Batches: Celebration Hub (Day 3)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 30
     },
     {
       "name": "Duo Do",
@@ -189,22 +211,9 @@
       "involvement": [
         "Workshop: Musician on Farcaster, and the road to Farcon. (first week of June - date TBD)"
       ],
-      "profile_url": null
-    },
-    {
-      "name": "Fireside chat with Sopha",
-      "farcaster": "zaal",
-      "x": "",
-      "github": "",
-      "track": "artist",
-      "color": "zabal",
-      "roles": [
-        "Workshop lead"
-      ],
-      "involvement": [
-        "Workshop: A special event introducing Sopha to the community (Mon Jun 8 2026)"
-      ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Hurric4n3Ike",
@@ -220,7 +229,9 @@
       "involvement": [
         "WaveWarZ founder - Solana music battle markets"
       ],
-      "profile_url": "/p?handle=hurric4n3ike"
+      "profile_url": "/p?handle=hurric4n3ike",
+      "tier": "Builder",
+      "xp": 70
     },
     {
       "name": "Jonathan Colton",
@@ -237,7 +248,9 @@
         "Workshop: Two talks (June - dates TBD)",
         "Farcaster Batches: Founder Check / Fotocaster (Day 1)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 80
     },
     {
       "name": "Jose Cabrera",
@@ -252,7 +265,9 @@
       "involvement": [
         "Workshop: Owning your music as an independent artist on Farcaster (Tue Jun 9 2026)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Joshua.eth",
@@ -267,7 +282,9 @@
       "involvement": [
         "Workshop: Bonfire and the ZABAL Bonfire bot (Mon Jun 1 2026)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "JubJub",
@@ -282,7 +299,9 @@
       "involvement": [
         "Organized Farcaster Batches"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Kenny (POIDH)",
@@ -299,7 +318,9 @@
         "On the Dream Leads board",
         "Farcaster Batches: POIDH (Day 1)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 40
     },
     {
       "name": "kmac.eth",
@@ -314,7 +335,9 @@
       "involvement": [
         "Workshop: Farcaster Snaps (June - date TBD)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Max (POWER)",
@@ -331,7 +354,9 @@
         "On the Dream Leads board",
         "Farcaster Batches: POWER (Day 5)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 40
     },
     {
       "name": "Nikki Sapp (Juke)",
@@ -348,7 +373,9 @@
         "On the Dream Leads board",
         "Farcaster Batches: Juke (Day 1)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 40
     },
     {
       "name": "Node (DEKEY)",
@@ -365,7 +392,9 @@
         "On the Dream Leads board",
         "Farcaster Batches: DEKEY (Day 5)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 40
     },
     {
       "name": "Ohnahji",
@@ -380,7 +409,9 @@
       "involvement": [
         "Workshop: His journey in live streaming (Tue Jun 2 2026)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Plat0x",
@@ -395,7 +426,9 @@
       "involvement": [
         "Workshop: His own Bonfire builder session (later this week - date TBD)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "realproject7",
@@ -410,7 +443,9 @@
       "involvement": [
         "On the Dream Leads board"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Challenger",
+      "xp": 10
     },
     {
       "name": "Riley Beans",
@@ -425,7 +460,9 @@
       "involvement": [
         "On the Dream Leads board"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Challenger",
+      "xp": 10
     },
     {
       "name": "Sam",
@@ -440,7 +477,9 @@
       "involvement": [
         "WaveWarZ-Base co-builder"
       ],
-      "profile_url": "/p?handle=sam-wwbase"
+      "profile_url": "/p?handle=sam-wwbase",
+      "tier": "Builder",
+      "xp": 40
     },
     {
       "name": "Thy Revolution",
@@ -456,7 +495,9 @@
         "Indie music + creator-tools workshop lead",
         "Workshop: Two workshop sessions (June - dates TBD)"
       ],
-      "profile_url": "/p?handle=thyrevolution"
+      "profile_url": "/p?handle=thyrevolution",
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Toady Hawk (betrmint)",
@@ -473,7 +514,9 @@
         "On the Dream Leads board",
         "Farcaster Batches: betrmint (Day 5)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Builder",
+      "xp": 40
     },
     {
       "name": "Tyler Stambaugh",
@@ -490,7 +533,9 @@
         "Founder, Magnetiq - workshop library platform",
         "Workshop: Magnetiq (any day in June)"
       ],
-      "profile_url": "/p?handle=tylerstambaugh"
+      "profile_url": "/p?handle=tylerstambaugh",
+      "tier": "Headliner",
+      "xp": 80
     },
     {
       "name": "Ven (The Open Machine)",
@@ -505,7 +550,9 @@
       "involvement": [
         "On the Dream Leads board"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Challenger",
+      "xp": 10
     },
     {
       "name": "Will T",
@@ -520,7 +567,9 @@
       "involvement": [
         "Workshop: Building KFMedia (Wed Jun 10 2026)"
       ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "yerbearserker",
@@ -535,40 +584,29 @@
       "involvement": [
         "Workshop: Empire Builder V3 (Mon Jun 1 2026)"
       ],
-      "profile_url": null
-    },
-    {
-      "name": "Zaal",
-      "farcaster": "zaal",
-      "x": "",
-      "github": "",
-      "track": "builder",
-      "color": "zabal",
-      "roles": [
-        "Workshop lead",
-        "Mentor"
-      ],
-      "involvement": [
-        "Workshop: ZABAL Gamez and the projects you can build on (Thu Jun 11 2026)",
-        "Organizer + BetterCallZaal + The ZAO operations"
-      ],
-      "profile_url": null
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Zaal Panthaki",
       "farcaster": "bettercallzaal",
       "x": "",
       "github": "",
-      "track": "",
+      "track": "builder",
       "color": "orange",
       "roles": [
         "Organizer",
-        "Mentor"
+        "Mentor",
+        "Workshop lead"
       ],
       "involvement": [
-        "Organizer + BetterCallZaal + The ZAO operations"
+        "Organizer + BetterCallZaal + The ZAO operations",
+        "Workshop: ZABAL Gamez and the projects you can build on (Thu Jun 11 2026)"
       ],
-      "profile_url": "/p?handle=bettercallzaal"
+      "profile_url": "/p?handle=bettercallzaal",
+      "tier": "Headliner",
+      "xp": 130
     }
   ]
 }
