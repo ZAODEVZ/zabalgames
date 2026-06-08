@@ -130,13 +130,11 @@
       "handle": "@cassie",
       "topic": "The Farcaster protocol, ins and outs - a live build-along.",
       "format": "30-min live demo / build-along, recorded",
-      "when": "Wed Jun 3 2026, 4pm EST",
-      "status": "confirmed",
+      "when": "postponed - new date TBD",
+      "status": "tentative",
       "confirmed_date": "2026-05-30",
       "color": "orange",
-      "track": "builder",
-      "date": "2026-06-03",
-      "luma_url": "https://luma.com/fdrdxpuj"
+      "track": "builder"
     },
     {
       "id": "011",
