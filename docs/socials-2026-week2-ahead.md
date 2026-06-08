@@ -1,85 +1,87 @@
-# ZABAL Gamez - Week 2 prep (socials + checklist), week of Jun 9
+# ZABAL Gamez - Week 2 prep (socials + checklist), week of Jun 8
 
 > Promo + RSVP casts for this week's sessions, in the Year-of-the-ZABAL voice (every post opens
 > ZM; no emojis, hashtags, em dashes, hype, or crypto jargon; confirm @-handles before tagging).
-> Toolkit: docs/socials-prompt-year-of-the-zabal.md.
+> Toolkit: docs/socials-prompt-year-of-the-zabal.md. Data source: data/workshop-leads.json.
 
 ## The week
+- Mon Jun 8, 12:30pm EST - Fireside with Sopha, artist track: the philosophy and the building behind it, informal hang after. RSVP: https://luma.com/42rdpyyb
 - Tue Jun 9, 5pm EST - Jose Cabrera, artist track: owning your music as an independent artist. RSVP: https://luma.com/nxfm7edg
-- Wed Jun 10, 7:30pm EST - Will T. [topic TBA, Luma TBA]
-- Thu Jun 11, 3pm EST - Zaal presenting ZABAL Gamez at the WIP meetup
+- Wed Jun 10, 7:30pm EST - Will T, creator track: building KFMedia. RSVP: https://luma.com/za2b259z
+- Thu Jun 11, 3pm EST - Zaal presenting ZABAL Gamez at the WIP meetup. RSVP: https://luma.com/e4g2kbxp
 - Fri Jun 12, 6pm EST - Adam Miller. [topic TBA, Luma TBA]
 
 ## READY TO POST
 
-### The week ahead (Farcaster /zabal, post Sun/Mon)
+### The week ahead (Farcaster /zabal, post Mon morning)
 ```
-ZM. Week 2 of ZABAL Gamez, the lineup:
+ZM. Week 2 of ZABAL Gamez, and it is a full one - five sessions, all free and recorded:
 
+- Mon 12:30pm EST: Fireside with Sopha - the philosophy and the building behind it. RSVP: https://luma.com/42rdpyyb
 - Tue 5pm EST: Jose Cabrera opens the artist track - owning your music as an independent artist. RSVP: https://luma.com/nxfm7edg
-- Wed 7:30pm EST: Will T
+- Wed 7:30pm EST: Will T on building KFMedia. RSVP: https://luma.com/za2b259z
+- Thu 3pm EST: I am presenting ZABAL Gamez at the WIP meetup. RSVP: https://luma.com/e4g2kbxp
 - Fri 6pm EST: Adam Miller
 
-I am also presenting ZABAL Gamez at the WIP meetup Thursday, 3pm EST. Free, livestreamed, recorded. Pull up. https://zabalgamez.com/#schedule
+Pull up to what speaks to you, catch the rest on the site. https://zabalgamez.com/#schedule
 ```
 
-### The week ahead (X, ~250 chars)
+### The week ahead (X, ~280 chars)
 ```
-ZM. Week 2 of ZABAL Gamez:
+ZM. Week 2 of ZABAL Gamez - five sessions, free and recorded:
 
-Tue 5pm EST - Jose Cabrera opens the artist track, owning your music as an independent artist
-Wed 7:30pm - Will T
+Mon 12:30pm - Fireside with Sopha
+Tue 5pm - Jose Cabrera, owning your music
+Wed 7:30pm - Will T on KFMedia
+Thu 3pm - ZABAL Gamez at the WIP meetup
 Fri 6pm - Adam Miller
 
-Free, livestreamed, recorded. RSVP + schedule: https://zabalgamez.com/#schedule
+RSVP + schedule: https://zabalgamez.com/#schedule
+```
+
+### Sopha fireside - day-of (Farcaster /zabal, post Mon morning)
+```
+ZM. Today we open week two with a special one. Fireside with Sopha at 12:30pm EST - the philosophy and the building behind it, with an informal hang after. Artist track, free and recorded. RSVP: https://luma.com/42rdpyyb
 ```
 
 ### Jose Cabrera - RSVP (Farcaster /zabal, post Mon)
 ```
-ZM. Tuesday we open the artist track. Jose Cabrera on owning your music as an independent artist - releasing your work, keeping your masters and your audience, and turning listeners into a community that pays you directly. 5pm EST, free, livestreamed, recorded. RSVP: https://luma.com/nxfm7edg
+ZM. Tuesday we go deeper on the artist track. Jose Cabrera on owning your music as an independent artist - releasing your work, keeping your masters and your audience, and turning listeners into a community that pays you directly. 5pm EST, free, livestreamed, recorded. RSVP: https://luma.com/nxfm7edg
 ```
 
 ### Jose Cabrera - day-of nudge (Tue morning)
 ```
-ZM. Today, 5pm EST: Jose Cabrera opens the ZABAL Gamez artist track - owning your music as an independent artist. Live and recorded, pull up. https://luma.com/nxfm7edg
+ZM. Today, 5pm EST: Jose Cabrera on owning your music as an independent artist. Live and recorded, pull up. https://luma.com/nxfm7edg
 ```
 
-### WIP meetup (post Wed/Thu)
+### Will T - RSVP (Farcaster /zabal, post Tue/Wed)
 ```
-ZM. Presenting ZABAL Gamez at the WIP meetup Thursday, 3pm EST. The ZAO's three-month build event - June workshops, July open build, August Finals. Come see week one and how to get in: https://zabalgamez.com
+ZM. Wednesday, 7:30pm EST: Will T on building KFMedia - what he is building, how he is doing it, and the lessons so far. Creator track, free, livestreamed, recorded. RSVP: https://luma.com/za2b259z
 ```
 
-## TEMPLATES (fill once Will T + Adam confirm topic + Luma)
+### Will T - day-of nudge (Wed afternoon)
+```
+ZM. Tonight, 7:30pm EST: Will T on building KFMedia - the build and the lessons so far. Live and recorded, pull up. https://luma.com/za2b259z
+```
 
-### Will T - RSVP
+### WIP meetup (Farcaster /zabal, post Wed/Thu)
 ```
-ZM. Wednesday, 7:30pm EST: Will T on [topic]. Free, livestreamed, recorded. RSVP: [Luma]
+ZM. Thursday, 3pm EST: I am presenting ZABAL Gamez live at the WIP meetup - an overview plus a tour of the ecosystem you can build on, including ZAO Fractals. Free and recorded. RSVP: https://luma.com/e4g2kbxp
 ```
+
+## TEMPLATE (fill once Adam confirms topic + Luma)
+
 ### Adam Miller - RSVP
 ```
 ZM. Friday, 6pm EST: Adam Miller on [topic]. Free, livestreamed, recorded. RSVP: [Luma]
 ```
-(Day-of nudge: same line, swap "Wednesday/Friday" for "Today.")
+(Day-of nudge: same line, swap "Friday" for "Today.")
 
-## Lumas to create (Will T + Adam Miller)
+## Luma to create (Adam Miller)
 
 Paste into Luma (Create Event -> set fields -> timezone EST / America/New_York -> add to the
 ZABAL Gamez calendar -> Publish -> send me the invite URL). Cover image: assets/embed-card-gamez.png.
-Fill the one [topic] line once they confirm (DMs below).
-
-### Will T - Wed Jun 10, 2026, 7:30pm EST
-- Title: ZABAL Gamez Workshop: Will T - [topic]
-- Duration: 30-60 min - Location: Online (X + YouTube + Twitch, recorded)
-- Description:
-```
-ZABAL Gamez is The ZAO's three-month build event. June is workshop month.
-
-This session: Will T on [topic] - what it is, how to use it, and why it matters for your build.
-
-Free, livestreamed, and recorded. RSVP to get notified, and catch the replay at zabalgamez.com/recordings if you miss it live.
-
-The build is the application. zabalgamez.com
-```
+Fill the one [topic] line once he confirms (DM below).
 
 ### Adam Miller - Fri Jun 12, 2026, 6:00pm EST
 - Title: ZABAL Gamez Workshop: Adam Miller - [topic]
@@ -95,12 +97,7 @@ Free, livestreamed, and recorded. RSVP to get notified, and catch the replay at 
 The build is the application. zabalgamez.com
 ```
 
-## Confirm DMs (send to lock topic + a second slot)
-
-### Will T
-```
-Yo Will! Locked you in for ZABAL Gamez Wed Jun 10, 7:30pm EST - 30 to 60 min, livestreamed on X / YouTube / Twitch and recorded so it lives on the site after. What do you want to teach? One line and I will spin up the title, the blurb, and the Luma invite. And if you have a second topic in you, say the word - happy to give you more than one slot. Appreciate you.
-```
+## Confirm DM (send to lock topic)
 
 ### Adam Miller
 ```
@@ -108,9 +105,7 @@ Yo Adam! Locked you in for ZABAL Gamez Fri Jun 12, 6pm EST - 30 to 60 min, lives
 ```
 
 ## What I need to finish the week's prep
-- [ ] Will T: topic + Luma URL + Farcaster/X handle -> I fill the schedule card + the casts above.
-- [ ] Adam Miller: topic + Luma URL + handle -> same.
-- [ ] Jose: Farcaster/X handle (to tag him in the casts).
-- [ ] Confirm the Wed/Fri stream destinations (X / YouTube / Twitch) for the Lumas.
+- [ ] Adam Miller (Fri): topic + Luma URL + handle -> fills the last schedule card and the RSVP cast above.
+- [ ] Handles for tagging: Sopha, Jose Cabrera, Will T (confirm before adding - brand rule).
 
-Once you send those, every card on the schedule is complete and the RSVP casts are ready to fire.
+Everything else for the week is locked: Mon through Thu all have topics, times, and Luma links, and the RSVP casts are ready to fire.
