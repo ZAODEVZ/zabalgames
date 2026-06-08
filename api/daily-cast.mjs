@@ -44,12 +44,24 @@ async function kvPipeline(cmds) {
   return r.json();
 }
 
-function buildText(lead, day) {
-  const org = lead.org ? ` (${lead.org})` : '';
-  const topic = String(lead.topic || '').trim().replace(/\.$/, '');
-  const when = lead.when || lead.date;
-  const rsvp = lead.luma_url ? `\nRSVP: ${lead.luma_url}` : '';
-  return `Day ${day} - ${lead.name}${org} on ${topic}. ${when}. Live and recorded.\n\nWatch: ${SITE}/live${rsvp}`;
+function buildText(leads, day) {
+  // One session: the full single-line pitch with an RSVP link.
+  if (leads.length === 1) {
+    const lead = leads[0];
+    const org = lead.org ? ` (${lead.org})` : '';
+    const topic = String(lead.topic || '').trim().replace(/\.$/, '');
+    const when = lead.when || lead.date;
+    const rsvp = lead.luma_url ? `\nRSVP: ${lead.luma_url}` : '';
+    return `Day ${day} - ${lead.name}${org} on ${topic}. ${when}. Live and recorded.\n\nWatch: ${SITE}/live${rsvp}`;
+  }
+  // Two or more the same day: list them all so none is dropped from the channel.
+  const lines = leads.map((l) => {
+    const org = l.org ? ` (${l.org})` : '';
+    const topic = String(l.topic || '').trim().replace(/\.$/, '');
+    const when = l.when || l.date || '';
+    return `- ${l.name}${org}: ${topic}${when ? ` (${when})` : ''}`;
+  });
+  return `Day ${day} - ${leads.length} ZABAL Gamez sessions today:\n${lines.join('\n')}\n\nWatch: ${SITE}/live`;
 }
 
 async function publishCast(text) {
@@ -81,17 +93,17 @@ export default async function handler(req) {
 
   const today = new Date().toISOString().slice(0, 10);
 
-  // Find a lead dated today.
-  let lead;
+  // Find every lead dated today (a day can have more than one session).
+  let leads;
   try {
     const r = await fetch(`${SITE}/data/workshop-leads.json`, { cache: 'no-store', signal: AbortSignal.timeout(8000) });
     if (!r.ok) throw new Error('leads ' + r.status);
     const d = await r.json();
-    lead = (d.leads || []).find((l) => l.date === today);
+    leads = (d.leads || []).filter((l) => l.date === today);
   } catch (e) {
     return json({ ok: false, reason: 'leads fetch failed', detail: e.message }, 502);
   }
-  if (!lead) return json({ ok: true, skipped: 'no-session-today' });
+  if (!leads.length) return json({ ok: true, skipped: 'no-session-today' });
 
   // Idempotency: claim the day before posting. NX returns null if already claimed.
   const sentinel = `zabal:cron:daily-cast:${today}`;
@@ -104,7 +116,8 @@ export default async function handler(req) {
   }
 
   const day = Math.floor((Date.parse(today + 'T00:00:00Z') - SEASON_START) / 86400000) + 1;
-  const text = buildText(lead, day);
+  const text = buildText(leads, day);
+  const presenters = leads.map((l) => l.name);
 
   let posted = false;
   try { posted = await publishCast(text); } catch { posted = false; }
@@ -112,8 +125,8 @@ export default async function handler(req) {
   if (!posted) {
     // Release the claim so the next run retries rather than silently dropping the day.
     try { await kvPipeline([['DEL', sentinel]]); } catch { /* best-effort */ }
-    return json({ ok: false, reason: 'cast failed', presenter: lead.name }, 502);
+    return json({ ok: false, reason: 'cast failed', presenters }, 502);
   }
 
-  return json({ ok: true, cast: true, day, presenter: lead.name });
+  return json({ ok: true, cast: true, day, sessions: leads.length, presenters });
 }
