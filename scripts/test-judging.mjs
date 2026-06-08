@@ -48,9 +48,13 @@ const { default: buildVote } = await import('../api/build-vote.mjs');
 const { default: finalsPicks } = await import('../api/finals-picks.mjs');
 const jres = async (r) => r.json();
 
+// --- 0. empty board reads clean before anything is registered ---
+let d = await jres(await builds(req('/api/builds')));
+ok(d.configured === true && d.count === 0 && d.builds.length === 0, 'builds board is empty (count 0) before any register');
+
 // --- 1. register stores a repo + track (wallet path, no token) ---
 let r = await register(req('/api/register', 'POST', { wallet: '0x' + 'a'.repeat(40), github_repo: 'octo/widget', track: 'builder' }));
-let d = await jres(r);
+d = await jres(r);
 ok(d.ok === true, 'register accepts a valid wallet + repo');
 ok(H('zabal:builds:track').get('octo/widget') === 'builder', 'register stored the track for the repo');
 
@@ -59,13 +63,22 @@ await register(req('/api/register', 'POST', { wallet: '0x' + 'b'.repeat(40), git
 // reject bad wallet
 ok((await jres(await register(req('/api/register', 'POST', { wallet: 'nope', github_repo: 'a/b' })))).ok === false, 'register rejects a bad wallet');
 
+// register edge cases: same repo de-dupes, an invalid track is ignored, a full URL normalizes
+d = await jres(await register(req('/api/register', 'POST', { wallet: '0x' + 'a'.repeat(40), github_repo: 'octo/widget' })));
+ok(d.ok === true && d.repos.length === 1, 'register de-dupes the same repo for a wallet (still 1 repo)');
+await register(req('/api/register', 'POST', { wallet: '0x' + 'c'.repeat(40), github_repo: 'https://github.com/zed/app.git', track: 'bogus' }));
+ok(H('zabal:builds').has('0x' + 'c'.repeat(40)) && JSON.parse(H('zabal:builds').get('0x' + 'c'.repeat(40)))[0] === 'zed/app', 'register normalizes a full github URL (+.git) to owner/repo');
+ok(!H('zabal:builds:track').has('zed/app'), 'register ignores an invalid track (not stored)');
+
 // --- 2. builds board returns track + votes and is vote-sorted ---
 H('zabal:buildvotes:v1').set('acme/tool', '5');   // seed votes (as build-vote would)
 H('zabal:buildvotes:v1').set('octo/widget', '2');
+H('zabal:buildvotes:v1').set('zed/app', '2');     // equal to octo/widget -> name tiebreak
 d = await jres(await builds(req('/api/builds')));
-ok(d.configured && d.count === 2, 'builds board lists both repos');
+ok(d.configured && d.count === 3, 'builds board lists all three repos');
 ok(d.builds[0].repo === 'acme/tool' && d.builds[0].votes === 5, 'builds sorted by votes desc (acme/tool first)');
-ok(d.builds[1].repo === 'octo/widget' && d.builds[1].track === 'builder', 'second build carries its track');
+ok(d.builds.find((b) => b.repo === 'octo/widget').track === 'builder', 'a build carries its track');
+ok(d.builds[1].repo === 'octo/widget' && d.builds[2].repo === 'zed/app', 'equal votes break ties by repo name (octo before zed)');
 
 // --- 3. build-vote GET returns counts ---
 d = await jres(await buildVote(req('/api/build-vote')));
@@ -90,6 +103,10 @@ ok((await finalsPicks(req('/api/finals-picks', 'POST', { repo: 'a/b' }))).status
 H('zabal:finals:picks').set('acme/tool', JSON.stringify({ track: 'builder', by: 99, ts: 1 }));
 d = await jres(await finalsPicks(req('/api/finals-picks')));
 ok(d.picks.length === 1 && d.picks[0].repo === 'acme/tool' && d.picks[0].track === 'builder', 'finals-picks GET reflects a seeded pick');
+// a malformed stored value must not break the read - it degrades to an empty-track pick
+H('zabal:finals:picks').set('busted/repo', '{not json');
+d = await jres(await finalsPicks(req('/api/finals-picks')));
+ok(d.picks.length === 2 && (d.picks.find((p) => p.repo === 'busted/repo') || {}).track === '', 'finals-picks tolerates a malformed stored value');
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
