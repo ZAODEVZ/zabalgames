@@ -706,3 +706,14 @@ body > * { position: relative; z-index: 1; }
 .rec-nav a:hover, .rec-nav button:hover { filter: brightness(1.15); }
 .rec-nav .rn-jump a { color: var(--text-muted); }
 .rec-nav .rn-jump a.active { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+
+/* Site-wide directory menu - rendered by assets/site-nav.js */
+.site-menu-btn { font: inherit; font-size: inherit; cursor: pointer; background: var(--surface-2); color: var(--text); border: 1px solid var(--border-hover); border-radius: 6px; padding: 0.26rem 0.7rem; line-height: 1.2; }
+.site-menu-btn:hover { color: #fff; border-color: var(--zabal); }
+.site-menu-panel { position: fixed; top: 56px; left: 12px; right: 12px; margin: 0 auto; max-width: 880px; max-height: 74vh; overflow-y: auto; background: var(--surface); border: 1px solid var(--border-hover); border-radius: 12px; padding: 1.1rem 1.2rem; z-index: 1200; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55); }
+.site-menu-panel[hidden] { display: none; }
+.site-menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem 1.3rem; }
+.site-menu-grid .smg h4 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 0 0 0.45rem; }
+.site-menu-grid .smg a { display: block; font-size: 0.88rem; color: var(--text-muted); text-decoration: none; padding: 0.22rem 0; }
+.site-menu-grid .smg a:hover { color: var(--cyan); }
+.site-menu-grid .smg a.active { color: var(--zabal); font-weight: 600; }
