@@ -708,8 +708,21 @@ body > * { position: relative; z-index: 1; }
 .rec-nav .rn-jump a.active { background: var(--zabal); color: #fff; border-color: var(--zabal); }
 
 /* Site-wide directory menu - rendered by assets/site-nav.js */
-.site-menu-btn { font: inherit; font-size: inherit; cursor: pointer; background: var(--surface-2); color: var(--text); border: 1px solid var(--border-hover); border-radius: 6px; padding: 0.26rem 0.7rem; line-height: 1.2; }
-.site-menu-btn:hover { color: #fff; border-color: var(--zabal); }
+/* Menu trigger - matches the .arcade-nav-menu links (pixel font, underline on hover/open) */
+.site-menu-btn {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-muted); background: none; border: 0; cursor: pointer;
+  position: relative; padding: 0.4rem 0.1rem; white-space: nowrap;
+  transition: color 0.18s var(--ease);
+}
+.site-menu-btn:hover { color: var(--text); }
+.site-menu-btn::after {
+  content: ''; position: absolute; left: 0; right: 100%; bottom: -1px; height: 2px;
+  background: var(--gradient-main); border-radius: 2px; transition: right 0.22s var(--ease);
+}
+.site-menu-btn:hover::after,
+.site-menu-btn[aria-expanded="true"]::after { right: 0; }
 .site-menu-panel { position: fixed; top: 56px; left: 12px; right: 12px; margin: 0 auto; max-width: 880px; max-height: 74vh; overflow-y: auto; background: var(--surface); border: 1px solid var(--border-hover); border-radius: 12px; padding: 1.1rem 1.2rem; z-index: 1200; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55); }
 .site-menu-panel[hidden] { display: none; }
 .site-menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem 1.3rem; }
