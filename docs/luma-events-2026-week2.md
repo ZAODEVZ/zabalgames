@@ -10,16 +10,16 @@ Farcaster/X handle + track (artist/builder/creator) so I can complete the schedu
 
 ---
 
-## 1. Jose Cabrera - Tue Jun 9, 2026, 5:00pm EST  [FINAL - artist track]
+## 1. Joseph Goats - Tue Jun 9, 2026, 5:00pm EST  [FINAL - artist track]
 
-**Title:** ZABAL Gamez Workshop: Jose Cabrera - Owning Your Music as an Independent Artist
+**Title:** ZABAL Gamez Workshop: Joseph Goats - Owning Your Music as an Independent Artist
 **When:** Tuesday June 9, 2026, 5:00pm EST (30-60 min)
 **Where:** Livestreamed on X, YouTube, and Twitch (recorded)
 **Description:**
 ```
 ZABAL Gamez is The ZAO's three-month build event. June is workshop month, and this session opens the artist track.
 
-Jose Cabrera on owning your music as an independent artist on Farcaster - releasing your work, keeping your masters and your audience, and turning listeners into a community that pays you directly. For any musician who wants to own more of what they make.
+Joseph Goats on owning your music as an independent artist on Farcaster - releasing your work, keeping your masters and your audience, and turning listeners into a community that pays you directly. For any musician who wants to own more of what they make.
 
 Free, livestreamed, and recorded. RSVP to get notified, and catch the replay at zabalgamez.com/recordings if you miss it live.
 

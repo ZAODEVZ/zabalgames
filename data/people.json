@@ -96,6 +96,38 @@
       "x_url": null,
       "site_url": null,
       "audited_date": "2026-05-27"
+    },
+    {
+      "handle": "willtofweb3",
+      "name": "Will T of Web3",
+      "roles": ["workshop_lead"],
+      "headline": "Building KFMEDIA℠",
+      "bio": "Workshop lead for ZABAL Gamez Season 1, building KFMEDIA℠. Refer to him as Will T of Web3. KFMEDIA℠ community: @kingfishersmedia on Farcaster, @kmllcw3 on X.",
+      "expertise_label": "MEDIA",
+      "color": "cyan",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/willtofweb3",
+      "x_url": "https://x.com/willtsbudao",
+      "site_url": null,
+      "session_count": 1,
+      "session_topics": ["Building KFMEDIA℠ - what he is building, how he is doing it, and the lessons so far."],
+      "audited_date": "2026-06-08"
+    },
+    {
+      "handle": "josephgoats",
+      "name": "Joseph Goats",
+      "roles": ["workshop_lead"],
+      "headline": "Independent musician - Digital Street Music",
+      "bio": "Independent musician exploring Digital Street Music: live performance on the streets of the metaverse, in service of social impact and coordination. He learned English working in DAOs and built an independent, blockchain-agnostic practice, connecting roots to the decentralized social layer of the new internet and inviting other musicians and artists to do the same.",
+      "expertise_label": "MUSIC",
+      "color": "pink",
+      "avatar_url": null,
+      "farcaster_url": null,
+      "x_url": null,
+      "site_url": null,
+      "session_count": 1,
+      "session_topics": ["Owning your music as an independent artist - releasing, owning your masters and your audience, and turning listeners into a community that pays you directly."],
+      "audited_date": "2026-06-08"
     }
   ]
 }

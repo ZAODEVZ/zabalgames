@@ -25,10 +25,10 @@ ZABAL Gamez is The ZAO's three-month build event: June is workshop month, July i
 Monday Jun 8, 12:30pm EST - Fireside with Sopha
 A special one to open the week. We sit down with Sopha - the philosophy and the building behind it - with an informal hang after. Artist track. RSVP: https://luma.com/42rdpyyb
 
-Tuesday Jun 9, 5pm EST - Jose Cabrera opens the artist track
+Tuesday Jun 9, 5pm EST - Joseph Goats opens the artist track
 Owning your music as an independent artist: releasing your work, keeping your masters and your audience, and turning listeners into a community that pays you directly. RSVP: https://luma.com/nxfm7edg
 
-Wednesday Jun 10, 7:30pm EST - Will T on building KFMedia
+Wednesday Jun 10, 7:30pm EST - Will T of Web3 on building KFMEDIA℠
 What he is building, how he is doing it, and the lessons so far. Creator track. RSVP: https://luma.com/za2b259z
 
 Thursday Jun 11, 3pm EST - ZABAL Gamez at the WIP meetup
@@ -82,5 +82,5 @@ BetterCallZaal from the ZAO Team
 ## Before you send - confirm
 
 - [ ] Adam Miller (Fri) topic + Luma - drop it into the schedule card and the body line above turns into a real RSVP.
-- [ ] Handles, if you want to tag: Sopha, Jose Cabrera, Will T, Adam Miller. Confirm before adding (brand rule).
+- [ ] Handles, if you want to tag: Sopha, Joseph Goats, Adam Miller. Confirm before adding (brand rule). Will T of Web3 is @willtofweb3.
 - [ ] Sopha fireside is "Live on Sopha + Google Meet" rather than the usual X/YouTube/Twitch - the Luma carries the join link, so the RSVP is the call to action.
