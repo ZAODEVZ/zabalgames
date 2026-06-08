@@ -41,6 +41,29 @@ Demand signal for the `/dream-leads` board (the board itself is curated in
   vote - same read-then-write model as `/api/join`), so demand cannot be spoofed or
   spammed. Returns `{ ok, id, count, firstVote }`.
 
+### `GET/POST /api/build-vote`
+Community-vote half of the hybrid July judging. Holds the per-build demand signal for
+the public builds board (`/enter`); the builds themselves are the repos from
+`/api/register`.
+
+- `GET`: open read, returns `{ configured, counts: { <repo>: n } }`.
+- `POST { repo }`: `Authorization: Bearer <quick-auth-jwt>` (`window.ZABAL.buildVote`).
+  One `+1` per verified FID per repo (same SADD-then-increment model as `/api/dream-vote`).
+  Returns `{ ok, repo, count, firstVote }`. Keys: `zabal:buildvotes:v1` (counts),
+  `zabal:buildvote:voters:v1:<repo>` (voter sets).
+
+### `GET/POST /api/finals-picks`
+Mentor half of the hybrid July judging: mentors pick the Finals shortlist from the
+voted builds. Picks live in KV (`zabal:finals:picks` { repo -> JSON `{track, by, ts}` });
+`data/finals.json` stays the locked, human-committed source once the Finals settle.
+`/finals` reads these picks to show the shortlist as it forms.
+
+- `GET`: open read, returns `{ configured, picks: [{ repo, track, by }] }`.
+- `POST { repo, track?, action? }`: `Authorization: Bearer <quick-auth-jwt>`. Gated to
+  judge FIDs via the `ZABAL_JUDGE_FIDS` env var (comma-separated). Closed by default
+  (no judges configured -> 403). `action`: `pick` (default) | `unpick`. Returns
+  `{ ok, repo, picks }`.
+
 ### `GET /api/activity`
 Public read for the presence widget (`assets/presence.js`).
 
@@ -109,20 +132,22 @@ call after pushing work to GitHub.
   `Authorization: Bearer <quick-auth-jwt>` links the wallet to a verified FID (the
   anchor when present); an absent/invalid token never blocks. Inputs are
   shape-validated and length-capped.
-- Body: `{ wallet: "0x...", github_repo: "owner/repo" | full URL }`
+- Body: `{ wallet: "0x...", github_repo: "owner/repo" | full URL, track?: 'artist'|'builder'|'creator' }`
 - Keeps `zabal:builds` { wallet -> JSON array of repos } (many repos per builder,
   de-duped; legacy single-string values still read) and `zabal:builds:fid`
-  { wallet -> fid } for the optional link. Returns
+  { wallet -> fid } for the optional link. An optional `track` is stored per repo in
+  `zabal:builds:track` { repo -> track } for per-track judging. Returns
   `{ ok: true, wallet, github_repo, repos, fid, count }`. Never touches Bonfire.
 
 ### `GET /api/builds`
 Public read side of the registry - the "building in public" board (`/enter`). Reads
-`zabal:builds` (+ the optional `zabal:builds:fid` link) and flattens it to a list.
+`zabal:builds` (+ the optional `zabal:builds:fid` link, `zabal:builds:track`, and the
+`zabal:buildvotes:v1` counts) and flattens it to a list, ranked by community votes.
 Never writes, never touches Bonfire; the repos are public GitHub anyway.
 
-- Returns `{ configured, builders, count, builds: [{ repo, owner, wallet, fid }] }`
-  (`builders` = distinct wallets, `count` = total repos; `wallet` shortened). No-ops
-  to `{ configured:false, builds:[] }` when KV is absent.
+- Returns `{ configured, builders, count, builds: [{ repo, owner, wallet, fid, track, votes }] }`
+  (`builders` = distinct wallets, `count` = total repos; `wallet` shortened; sorted by
+  `votes` desc). No-ops to `{ configured:false, builds:[] }` when KV is absent.
 
 ### `GET /api/commit-watcher` (cron)
 The scheduled push side of doc 784. Reads `zabal:builds`, checks each public repo

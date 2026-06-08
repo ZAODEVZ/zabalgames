@@ -45,8 +45,15 @@
     .builds-count { font-weight: 400; color: var(--text-dim); font-size: 0.9rem; margin-left: 0.5rem; }
     .builds-list { display: grid; gap: 8px; margin-top: 0.8rem; }
     .build-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.6rem; border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 8px; background: var(--surface-2); padding: 0.6rem 0.85rem; }
-    .build-row a { color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+    .build-row a.build-repo { color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
     .build-row .by { color: var(--text-dim); font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; }
+    .build-rank { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); min-width: 1.8rem; }
+    .build-track { font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.05rem 0.45rem; border-radius: 999px; border: 1px solid var(--border); }
+    .vote-btn { margin-left: auto; display: inline-flex; align-items: center; gap: 0.3rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text); background: var(--surface); border: 1px solid var(--border-hover); border-radius: 999px; padding: 0.2rem 0.6rem; cursor: pointer; }
+    .vote-btn:hover { border-color: var(--zabal); }
+    .vote-btn.voted { border-color: var(--zabal); color: var(--zabal); }
+    .vote-btn .vote-up { color: var(--zabal); font-weight: 600; }
+    .vote-btn[disabled] { opacity: 0.6; cursor: default; }
     .builds-empty { color: var(--text-muted); font-size: 0.9rem; }
   </style>
 </head>
@@ -109,6 +116,16 @@
         <input id="repo" name="repo" type="text" autocomplete="off" spellcheck="false" placeholder="owner/repo" aria-describedby="repo-hint">
         <div class="enter-hint" id="repo-hint">Either owner/repo or a full github.com URL. Must be public.</div>
       </div>
+      <div class="enter-field">
+        <label for="track">Track <span style="color: var(--text-dim); font-weight: 400;">(optional)</span></label>
+        <select id="track" name="track" aria-describedby="track-hint">
+          <option value="">Pick a lane</option>
+          <option value="artist">Artist - musical or visual</option>
+          <option value="builder">Builder - developer or aspiring</option>
+          <option value="creator">Creator - media and distribution</option>
+        </select>
+        <div class="enter-hint" id="track-hint">Helps mentors judge per track. You can leave it blank.</div>
+      </div>
       <button class="btn btn-primary enter-btn" id="enter-submit" type="submit">Register my build</button>
       <div class="enter-msg" id="enter-msg" role="status" aria-live="polite"></div>
     </form>
@@ -126,19 +143,33 @@
 
   <section class="section">
     <h2>Building in public <span class="builds-count" id="builds-count"></span></h2>
-    <p>Every registered build shows up here - the repos people are shipping for the ecosystem this season. Register above and yours joins the board.</p>
+    <p>Every registered build shows up here, ranked by community votes - the demand signal that shortlists builds for the mentors. One vote per person. <a href="/finals.html">See how the Finals settle</a>.</p>
     <div class="builds-list" id="builds-list">
       <p class="builds-empty">Loading...</p>
     </div>
   </section>
 
   <script>
-  // Public "building in public" board - reads the registry via /api/builds.
+  // Public "building in public" board - reads the registry via /api/builds, ranked by
+  // community votes (the shortlist signal). Vote via the Mini App (one +1 per FID per repo).
   (function() {
     function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
     var listEl = document.getElementById('builds-list');
     var countEl = document.getElementById('builds-count');
     if (!listEl) return;
+    var TRACKCOLOR = { artist: 'pink', builder: 'zabal', creator: 'cyan' };
+
+    function row(b, i) {
+      var track = b.track ? '<span class="build-track" style="border-color:var(--' + (TRACKCOLOR[b.track] || 'zabal') + ');color:var(--' + (TRACKCOLOR[b.track] || 'zabal') + ');">' + esc(b.track) + '</span>' : '';
+      return '<div class="build-row" data-repo="' + esc(b.repo) + '">' +
+        '<span class="build-rank">#' + (i + 1) + '</span>' +
+        '<a class="build-repo" href="https://github.com/' + esc(b.repo) + '" target="_blank" rel="noopener">' + esc(b.repo) + '</a>' +
+        track +
+        '<span class="by">by ' + esc(b.wallet) + '</span>' +
+        '<button class="vote-btn" type="button" data-repo="' + esc(b.repo) + '" aria-label="Vote for ' + esc(b.repo) + '"><span class="vote-up">+1</span> <span class="vote-n">' + (b.votes || 0) + '</span></button>' +
+      '</div>';
+    }
+
     fetch('/api/builds', { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (d) {
@@ -148,14 +179,29 @@
           return;
         }
         if (countEl) countEl.textContent = d.count + ' build' + (d.count === 1 ? '' : 's') + ' from ' + d.builders + ' builder' + (d.builders === 1 ? '' : 's');
-        listEl.innerHTML = builds.map(function (b) {
-          return '<div class="build-row"><a href="https://github.com/' + esc(b.repo) + '" target="_blank" rel="noopener">' + esc(b.repo) + '</a>' +
-            '<span class="by">by ' + esc(b.wallet) + '</span></div>';
-        }).join('');
+        listEl.innerHTML = builds.map(row).join('');
       })
       .catch(function () {
         listEl.innerHTML = '<p class="builds-empty">Builds board unavailable right now.</p>';
       });
+
+    // One +1 per person, via the Mini App. Outside it, point people to open in Farcaster.
+    listEl.addEventListener('click', function (ev) {
+      var btn = ev.target.closest('.vote-btn'); if (!btn) return;
+      var repo = btn.getAttribute('data-repo');
+      if (!(window.ZABAL && window.ZABAL.buildVote)) { window.open('https://farcaster.xyz/miniapps/zabal-gamez', '_blank', 'noopener'); return; }
+      btn.disabled = true;
+      window.ZABAL.buildVote(repo).then(function (res) {
+        if (res && res.ok) {
+          var n = btn.querySelector('.vote-n'); if (n && res.count != null) n.textContent = res.count;
+          btn.classList.add('voted');
+          if (window.ZABAL.toast) window.ZABAL.toast(res.firstVote ? 'Voted' : 'Already voted');
+        } else {
+          btn.disabled = false;
+          if (res && res.reason === 'not-in-miniapp') window.open('https://farcaster.xyz/miniapps/zabal-gamez', '_blank', 'noopener');
+        }
+      });
+    });
   })();
   </script>
 
@@ -193,13 +239,15 @@
       if (!wallet) { setMsg('That wallet does not look right - it should start with 0x and have 40 hex characters.', 'err'); walletEl.focus(); return; }
       var repo = normalizeRepo(repoEl.value);
       if (!repo) { setMsg('That repo does not look right - use owner/repo or a full github.com URL.', 'err'); repoEl.focus(); return; }
+      var trackEl = document.getElementById('track');
+      var track = trackEl ? trackEl.value : '';
 
       btn.disabled = true;
       setMsg('Registering...', '');
       fetch('/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ wallet: wallet, github_repo: repo })
+        body: JSON.stringify({ wallet: wallet, github_repo: repo, track: track })
       })
         .then(function(r) { return r.json().catch(function() { return {}; }); })
         .then(function(data) {
