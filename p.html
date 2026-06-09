@@ -380,6 +380,63 @@
     });
   }
 
+  // Pull a verified X account from HAATZ (real Farcaster verified accounts) so a
+  // profile shows the person's X without us hardcoding it. Same keyless source and
+  // cache pattern as the avatar lookup. No-op if HAATZ is unreachable or none is set.
+  function fetchHaatzVerifiedX(person) {
+    var fid = person.fid;
+    var fcHandle = extractFcHandle(person);
+    if (!fid && !fcHandle) return Promise.resolve(null);
+
+    var cacheKey = 'haatz_vx_v1_' + (fid || fcHandle);
+    var nowMs = Date.now();
+    try {
+      var cachedRaw = localStorage.getItem(cacheKey);
+      if (cachedRaw) {
+        var cached = JSON.parse(cachedRaw);
+        if (cached && cached.expires > nowMs) return Promise.resolve(cached.x || null);
+      }
+    } catch (e) { /* private mode or corrupt cache */ }
+
+    var url = fid
+      ? 'https://haatz.quilibrium.com/v2/farcaster/user/bulk?fids=' + fid
+      : 'https://haatz.quilibrium.com/v2/farcaster/user/by_username?username=' + encodeURIComponent(fcHandle);
+
+    return haatzFetch(url)
+      .then(function(data) {
+        var u = data && (data.user || (data.users && data.users[0]));
+        var x = null;
+        if (u) {
+          var accts = u.verified_accounts || u.verifiedAccounts || [];
+          for (var i = 0; i < accts.length; i++) {
+            var a = accts[i] || {};
+            if (a.username && /^(x|twitter)$/i.test(a.platform || '')) { x = a.username; break; }
+          }
+        }
+        try { localStorage.setItem(cacheKey, JSON.stringify({ x: x, expires: nowMs + (x ? 86400000 : 3600000) })); } catch (e) {}
+        return x;
+      })
+      .catch(function() { return null; });
+  }
+
+  // Inject a live X link into a rendered profile when we did not have one hardcoded.
+  function hydrateVerifiedX(person) {
+    if (person.x_url) return; // already shown from people.json
+    fetchHaatzVerifiedX(person).then(function(xu) {
+      if (!xu) return;
+      var card = document.querySelector('.profile-card');
+      if (!card) return;
+      var box = card.querySelector('.profile-links');
+      if (!box) { box = document.createElement('div'); box.className = 'profile-links'; card.appendChild(box); }
+      if (box.querySelector('[data-x-source="haatz"]')) return;
+      var a = document.createElement('a');
+      a.className = 'profile-link'; a.target = '_blank'; a.rel = 'noopener';
+      a.href = 'https://x.com/' + encodeURIComponent(xu); a.textContent = 'X';
+      a.dataset.xSource = 'haatz';
+      box.appendChild(a);
+    });
+  }
+
   function renderRoster(people) {
     eyebrowEl.textContent = 'The Roster';
     titleEl.innerHTML = 'ZABAL Gamez <span class="accent">Roster</span>';
@@ -468,6 +525,8 @@
     // After render, attempt to hydrate the avatar from HAATZ
     var avatarImg = document.getElementById('profile-avatar-img');
     hydrateAvatarImg(avatarImg, p);
+    // ...and surface a verified X from real Farcaster data when we have none on file
+    hydrateVerifiedX(p);
   }
 
   fetch('/data/people.json', { cache: 'no-cache' })
