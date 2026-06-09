@@ -130,10 +130,11 @@
       "handle": "@cassie",
       "topic": "The Farcaster protocol, ins and outs - a live build-along.",
       "format": "30-min live demo / build-along, recorded",
-      "when": "postponed - new date TBD",
-      "status": "tentative",
+      "when": "Fri Jun 12 2026, 7:30pm EST",
+      "status": "confirmed",
       "confirmed_date": "2026-05-30",
       "color": "orange",
+      "date": "2026-06-12",
       "track": "builder"
     },
     {
@@ -243,6 +244,20 @@
       "color": "gold",
       "date": "2026-06-30",
       "track": "builder"
+    },
+    {
+      "id": "019",
+      "name": "Dr. Jake",
+      "org": "",
+      "handle": "@jkthedc",
+      "topic": "Growth through foundations.",
+      "format": "Live talk plus Q and A, recorded",
+      "when": "Tue Jun 16 2026, 6pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-09",
+      "color": "pink",
+      "date": "2026-06-16",
+      "track": "creator"
     }
   ],
   "_schema": {

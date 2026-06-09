@@ -1,7 +1,7 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
   "generated": "2026-06-09",
-  "count": 34,
+  "count": 37,
   "people": [
     {
       "name": "Adam Miller",
@@ -35,6 +35,23 @@
         "Workshop: Empire Builder API workshop (June - date TBD)"
       ],
       "profile_url": "/p?handle=diviflyy",
+      "tier": "Headliner",
+      "xp": 50
+    },
+    {
+      "name": "Adrienne",
+      "farcaster": "adrienne",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "gold",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Building Warpee.eth, an AI agent for a media company on Farcaster. (Tue Jun 30 2026)"
+      ],
+      "profile_url": null,
       "tier": "Headliner",
       "xp": 50
     },
@@ -105,7 +122,7 @@
       ],
       "involvement": [
         "Quilibrium builder",
-        "Workshop: The Farcaster protocol, ins and outs (postponed - new date TBD)"
+        "Workshop: The Farcaster protocol, ins and outs (Fri Jun 12 2026)"
       ],
       "profile_url": "/p?handle=cassie",
       "tier": "Headliner",
@@ -182,6 +199,23 @@
       "profile_url": null,
       "tier": "Builder",
       "xp": 30
+    },
+    {
+      "name": "Dr. Jake",
+      "farcaster": "jkthedc",
+      "x": "",
+      "github": "",
+      "track": "creator",
+      "color": "pink",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Growth through foundations. (Tue Jun 16 2026)"
+      ],
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Duckfax",
@@ -289,6 +323,23 @@
         "Workshop: Bonfire and the ZABAL Bonfire bot (Mon Jun 1 2026)"
       ],
       "profile_url": "/p?handle=joshuaeth",
+      "tier": "Headliner",
+      "xp": 50
+    },
+    {
+      "name": "Jub Jub",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "orange",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster. (Sat Jun 20 2026)"
+      ],
+      "profile_url": null,
       "tier": "Headliner",
       "xp": 50
     },

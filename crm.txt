@@ -1,6 +1,6 @@
 ZABAL GAMEZ - PEOPLE (plain text for agents)
 
-Generated 2026-06-09 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 34 people.
+Generated 2026-06-09 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 37 people.
 Structured JSON:  https://zabalgamez.com/data/crm.json
 Human page:       https://zabalgamez.com/crm
 Live players board (joins / shares / casts): https://zabalgamez.com/leaderboard
@@ -20,6 +20,11 @@ Workshop lead  |  track: builder
 Farcaster: @diviflyy
 Profile: https://zabalgamez.com/p?handle=diviflyy
 ======================================================================
+Adrienne  [Headliner]
+Workshop lead  |  track: builder
+  - Workshop: Building Warpee.eth, an AI agent for a media company on Farcaster. (Tue Jun 30 2026)
+Farcaster: @adrienne
+======================================================================
 Arthur (Neynar)  [Challenger]
 Dream lead  |  track: builder
   - On the Dream Leads board
@@ -38,7 +43,7 @@ Dream lead, Batches builder  |  track: builder
 Cassie  [Headliner]
 Workshop lead  |  track: builder
   - Quilibrium builder
-  - Workshop: The Farcaster protocol, ins and outs (postponed - new date TBD)
+  - Workshop: The Farcaster protocol, ins and outs (Fri Jun 12 2026)
 Farcaster: @cassie
 Profile: https://zabalgamez.com/p?handle=cassie
 ======================================================================
@@ -60,6 +65,11 @@ X: @DCoopOfficial
 Dr. Deeks  [Builder]
 Batches builder  |  track: builder
   - Farcaster Batches: email remittance pro, Crafters, Ghostwriter (Day 1)
+======================================================================
+Dr. Jake  [Headliner]
+Workshop lead  |  track: creator
+  - Workshop: Growth through foundations. (Tue Jun 16 2026)
+Farcaster: @jkthedc
 ======================================================================
 Duckfax  [Builder]
 Batches builder  |  track: creator
@@ -99,6 +109,10 @@ Workshop lead  |  track: builder
   - Workshop: Bonfire and the ZABAL Bonfire bot (Mon Jun 1 2026)
 Farcaster: @joshua.eth
 Profile: https://zabalgamez.com/p?handle=joshuaeth
+======================================================================
+Jub Jub  [Headliner]
+Workshop lead  |  track: builder
+  - Workshop: Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster. (Sat Jun 20 2026)
 ======================================================================
 JubJub  [Headliner]
 Organizer
