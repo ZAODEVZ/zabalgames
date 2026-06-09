@@ -11,6 +11,8 @@
     { "from": "PlatoX", "to": "Plat0x" },
     { "from": "POID", "to": "POIDH" },
     { "from": "Wave Wars", "to": "WaveWarz" },
+    { "from": "WaveWars", "to": "WaveWarz", "note": "no-space variant of the brand" },
+    { "from": "wavewars.com", "to": "wavewarz.com", "note": "domain is always a Z; 'wavewars.com with a C' is a mis-transcription" },
     { "from": "Doda", "to": "DotA" },
     { "from": "Dota", "to": "DotA" },
     { "from": "Zal", "to": "Zaal", "note": "the bare misheard 'Zal'; the longer 'Zaal' is left intact by the word boundary" },

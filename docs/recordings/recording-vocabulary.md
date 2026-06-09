@@ -17,9 +17,10 @@ EXACTLY as written:
 
 ZABAL Gamez, $Zabal, Zabal, ZAO, Zaal, BetterCallZaal, yerbearserker, zabalgamez.com,
 Farcaster, Neynar, Base, Arbitrum, ERC-20, x402, Privy, Rabby, Warplet, Clanker,
-Empire Builder, empirebuilder.world, Bonfire, Plat0x, WaveWarz, POIDH, Magnetiq,
+Empire Builder, empirebuilder.world, Bonfire, Plat0x, WaveWarz, wavewarz.com, POIDH, Magnetiq,
 Hats Protocol, EAS, DotA, Defense of the Agents, Yerba Bearserker Mate, Bizarre Beasts,
-SCUM, FARCON, Farcaster Batches, AZ Flynn.
+SCUM, FARCON, Farcaster Batches, AZ Flynn, Hurricane Mike, Solana, SOL, Quick Battle,
+Community Battle.
 
 Common mishearings to avoid:
 - "games" -> "Gamez" when it refers to the brand ZABAL Gamez (keep generic "video games")
@@ -29,7 +30,10 @@ Common mishearings to avoid:
 - Saval / Zebal -> Zabal
 - Bone First -> Bonfire
 - PlatoX -> Plat0x
-- Wave Wars -> WaveWarz
+- Wave Wars / WaveWars -> WaveWarz
+- wavewars.com / "wavewars.com with a C" -> wavewarz.com (always a Z)
+- zabalgames.com / "ZABAL games.com" -> zabalgamez.com
+- base (the blockchain) -> Base
 - Berserker -> Bearserker
 - Doda / Dota -> DotA
 - POID -> POIDH
@@ -46,11 +50,15 @@ Zaal (host, aka BetterCallZaal), yerbearserker / yerb (guest presenter), zabalga
 Rabby, Warplet, Clanker, mini app.
 
 **ZAO ecosystem tools/brands:** Empire Builder (empirebuilder.world), Bonfire, Plat0x,
-WaveWarz, POIDH, Magnetiq, Hats Protocol, EAS.
+WaveWarz (wavewarz.com), POIDH, Magnetiq, Hats Protocol, EAS.
 
 **Workshop-specific proper nouns (yerb / Empire Builder talk):** DotA (Defense of the
 Agents), AZ Flynn, Yerba Bearserker Mate, Bizarre Beasts, SCUM, FARCON / FARCON Rome,
 Farcaster Batches, Waifu NFTs.
+
+**Workshop-specific proper nouns (Hurricane / WaveWarz talk):** Hurricane Mike (presenter),
+WaveWarz (wavewarz.com), Solana, SOL, Quick Battle, Community Battle. Artists to confirm
+before locking: Steelo / Steelo World, It's Wonderful, Godcloud, Geekmyth, Juan, Tuck Nuisance.
 
 ---
 
