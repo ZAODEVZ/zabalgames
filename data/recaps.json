@@ -3,6 +3,49 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[]. After editing, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-06-08",
+      "type": "fireside",
+      "title": "Sopha - a Farcaster client built for depth",
+      "presenter": "Chris (chriscocreated)",
+      "handle": "@chriscocreated",
+      "org": "Sopha",
+      "track": "builder",
+      "format": "Live fireside, recorded",
+      "page": "/recordings/fireside/2",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-fireside-chris.md",
+      "link": "https://sopha.social",
+      "link_label": "Sopha",
+      "share_topics": [
+        "Sopha: a Farcaster client built for depth",
+        "the feed is ephemeral - Sopha is the third place for the deep stuff",
+        "you can build your own Farcaster client in a few hours",
+        "you are not beholden to the algorithm, build your own lens",
+        "curation as the core: community curators and The Pulse",
+        "rewarding curators without extraction",
+        "client, mini app, or Snap: the nested stack on Farcaster"
+      ],
+      "summary": "A live ZABAL Gamez fireside between Zaal and Chris (chriscocreated), founder of Sopha - a Farcaster client built for depth and high signal. Sopha is an intentional third place, a coffee shop or library for the deeper writing, art, and thinking that scrolls past on the main feed, with a curated feed kept by the community's curators plus BradQ's The Pulse. Chris traces why he built it (when Farcaster felt like it was tipping into meme coins, he set out to protect the culture of interesting thinkers, and good vibe coding made him the one to do it), how easy it now is to build your own client on Farcaster's open data with Neynar and Hypersnap, and the nested stack of client, mini apps, and Snaps. He closes on where Sopha is headed: a second round of Purple funding, experiments in rewarding curators, infra, and live cultural-center experiences, with a thoughtfully designed, non-extractive token only when the time is right.",
+      "topics": [
+        "Sopha",
+        "Farcaster clients",
+        "curation",
+        "high signal",
+        "third place",
+        "build your own client",
+        "Neynar",
+        "mini apps and Snaps"
+      ],
+      "takeaways": [
+        "Sopha is a Farcaster client for depth - an intentional third place for high-signal writing and art, not a replacement for the daily feed.",
+        "Building your own client is now a few hours of work: Farcaster's open data plus Neynar (and Hypersnap) let anyone shape their own view.",
+        "You are not beholden to the algorithm - you build your own lens. That is the unlock for artists, writers, and creators.",
+        "The nested stack: a client is just a website showing Farcaster data; below it sit mini apps, and Snaps you can spin up in seconds.",
+        "Curation is the core - community curators earn the role by showing taste, and BradQ runs a dedicated Pulse feed.",
+        "Sopha's next year (second Purple round): reward curators, cover infra, run live cultural-center experiences, and design any token carefully and non-extractively.",
+        "Find it: @chriscocreated and @sopha on Farcaster, sopha.social."
+      ]
+    },
+    {
       "date": "2026-06-06",
       "type": "fireside",
       "title": "Bonfires + a vibe-coding masterclass",

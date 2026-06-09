@@ -1,13 +1,30 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-08 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 5 recordings, newest first.
+Generated 2026-06-09 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 6 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
 Chronological feed of every recording: https://zabalgamez.com/streams
 
 ======================================================================
-[1] Bonfires + a vibe-coding masterclass
+[1] Sopha - a Farcaster client built for depth
+fireside  |  track: builder  |  2026-06-08
+Presenter: Chris (chriscocreated) (@chriscocreated), Sopha
+Watch: https://zabalgamez.com/recordings/fireside/2
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-fireside-chris.md
+Summary: A live ZABAL Gamez fireside between Zaal and Chris (chriscocreated), founder of Sopha - a Farcaster client built for depth and high signal. Sopha is an intentional third place, a coffee shop or library for the deeper writing, art, and thinking that scrolls past on the main feed, with a curated feed kept by the community's curators plus BradQ's The Pulse. Chris traces why he built it (when Farcaster felt like it was tipping into meme coins, he set out to protect the culture of interesting thinkers, and good vibe coding made him the one to do it), how easy it now is to build your own client on Farcaster's open data with Neynar and Hypersnap, and the nested stack of client, mini apps, and Snaps. He closes on where Sopha is headed: a second round of Purple funding, experiments in rewarding curators, infra, and live cultural-center experiences, with a thoughtfully designed, non-extractive token only when the time is right.
+Takeaways:
+  - Sopha is a Farcaster client for depth - an intentional third place for high-signal writing and art, not a replacement for the daily feed.
+  - Building your own client is now a few hours of work: Farcaster's open data plus Neynar (and Hypersnap) let anyone shape their own view.
+  - You are not beholden to the algorithm - you build your own lens. That is the unlock for artists, writers, and creators.
+  - The nested stack: a client is just a website showing Farcaster data; below it sit mini apps, and Snaps you can spin up in seconds.
+  - Curation is the core - community curators earn the role by showing taste, and BradQ runs a dedicated Pulse feed.
+  - Sopha's next year (second Purple round): reward curators, cover infra, run live cultural-center experiences, and design any token carefully and non-extractively.
+  - Find it: @chriscocreated and @sopha on Farcaster, sopha.social.
+Topics: Sopha, Farcaster clients, curation, high signal, third place, build your own client, Neynar, mini apps and Snaps
+
+======================================================================
+[2] Bonfires + a vibe-coding masterclass
 fireside  |  track: builder  |  2026-06-06
 Presenter: Carlos (Plat0x) (@at0x_eth), Bonfires
 Watch: https://zabalgamez.com/recordings/fireside/1
@@ -22,7 +39,7 @@ Takeaways:
 Topics: Bonfires, vibe coding, planning, sub-agents, documentation-as-code, types-first, knowledge graph, agents
 
 ======================================================================
-[2] Starting and growing your own livestream
+[3] Starting and growing your own livestream
 workshop  |  track: creator  |  2026-06-02
 Presenter: Ohnahji
 Watch: https://zabalgamez.com/recordings/4
@@ -39,7 +56,7 @@ Takeaways:
 Topics: livestreaming, consistency, Twitch, OBS / Restream / StreamYard, raids, shared chat, building your own bots, API keys + env vars, opsec
 
 ======================================================================
-[3] Bonfire and the ZABAL Bonfire bot
+[4] Bonfire and the ZABAL Bonfire bot
 workshop  |  track: builder  |  2026-06-01
 Presenter: Joshua.eth and Plat0x (@joshua.eth), Bonfire
 Watch: https://zabalgamez.com/recordings/3
@@ -55,7 +72,7 @@ Takeaways:
 Topics: Bonfire, shared memory, knowledge graph, agents, curation, hackathons, ZABAL Bonfire bot
 
 ======================================================================
-[4] Empire Builder Part 2: Building a Tokenless Empire Live
+[5] Empire Builder Part 2: Building a Tokenless Empire Live
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/2
@@ -71,7 +88,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, airdrops, raffles, treasury, distribution
 
 ======================================================================
-[5] Empire Builder V3
+[6] Empire Builder V3
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/1
