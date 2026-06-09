@@ -1,7 +1,7 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
   "generated": "2026-06-09",
-  "count": 34,
+  "count": 35,
   "people": [
     {
       "name": "Adam Miller",
@@ -108,6 +108,23 @@
         "Workshop: The Farcaster protocol, ins and outs (postponed - new date TBD)"
       ],
       "profile_url": "/p?handle=cassie",
+      "tier": "Headliner",
+      "xp": 50
+    },
+    {
+      "name": "Chris (chriscocreated)",
+      "farcaster": "chriscocreated",
+      "x": "",
+      "github": "",
+      "track": "",
+      "color": "cyan",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Founder of Sopha"
+      ],
+      "profile_url": "/p?handle=chriscocreated",
       "tier": "Headliner",
       "xp": 50
     },
