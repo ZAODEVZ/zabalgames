@@ -1,6 +1,6 @@
 ZABAL GAMEZ - PEOPLE (plain text for agents)
 
-Generated 2026-06-08 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 34 people.
+Generated 2026-06-09 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 34 people.
 Structured JSON:  https://zabalgamez.com/data/crm.json
 Human page:       https://zabalgamez.com/crm
 Live players board (joins / shares / casts): https://zabalgamez.com/leaderboard
@@ -15,8 +15,10 @@ Workshop lead
 ======================================================================
 Adrian  [Headliner]
 Workshop lead  |  track: builder
+  - Empire Builder co-founder and lead engineer
   - Workshop: Empire Builder API workshop (June - date TBD)
 Farcaster: @diviflyy
+Profile: https://zabalgamez.com/p?handle=diviflyy
 ======================================================================
 Arthur (Neynar)  [Challenger]
 Dream lead  |  track: builder
@@ -26,6 +28,7 @@ AZ Flynn (Defense of the Agents)  [Builder]
 Dream lead, Batches builder  |  track: builder
   - On the Dream Leads board
   - Farcaster Batches: Defense of the Agents (Day 3)
+Farcaster: @azflin
 ======================================================================
 Cashless Man (Booster)  [Builder]
 Dream lead, Batches builder  |  track: builder
@@ -34,8 +37,10 @@ Dream lead, Batches builder  |  track: builder
 ======================================================================
 Cassie  [Headliner]
 Workshop lead  |  track: builder
+  - Quilibrium builder
   - Workshop: The Farcaster protocol, ins and outs (postponed - new date TBD)
 Farcaster: @cassie
+Profile: https://zabalgamez.com/p?handle=cassie
 ======================================================================
 Chris Dolinsky (Vini App)  [Builder]
 Dream lead, Batches builder  |  track: builder
@@ -62,8 +67,10 @@ Batches builder  |  track: creator
 ======================================================================
 Duo Do  [Headliner]
 Workshop lead  |  track: artist
+  - Musician duo on Farcaster
   - Workshop: Musician on Farcaster, and the road to Farcon. (first week of June - date TBD)
-Farcaster: @duodomusica
+Farcaster: @duodomusica  |  X: @duodomusica
+Profile: https://zabalgamez.com/p?handle=duodomusica
 ======================================================================
 Hurric4n3Ike  [Builder]
 Core builder, Partner
@@ -73,20 +80,25 @@ Profile: https://zabalgamez.com/p?handle=hurric4n3ike
 ======================================================================
 Jonathan Colton  [Headliner]
 Workshop lead, Batches builder  |  track: creator
+  - FounderCheck builder, Fotocaster co-creator
   - Workshop: Two talks (June - dates TBD)
   - Farcaster Batches: Founder Check / Fotocaster (Day 1)
 Farcaster: @jonathancolton
+Profile: https://zabalgamez.com/p?handle=jonathancolton
 ======================================================================
 Joseph Goats  [Headliner]
 Workshop lead  |  track: artist
   - Independent musician - Digital Street Music
   - Workshop: Owning your music as an independent artist on Farcaster (Tue Jun 9 2026)
+Farcaster: @joseacabrerav
 Profile: https://zabalgamez.com/p?handle=josephgoats
 ======================================================================
 Joshua.eth  [Headliner]
 Workshop lead  |  track: builder
+  - Bonfire founder
   - Workshop: Bonfire and the ZABAL Bonfire bot (Mon Jun 1 2026)
 Farcaster: @joshua.eth
+Profile: https://zabalgamez.com/p?handle=joshuaeth
 ======================================================================
 JubJub  [Headliner]
 Organizer
@@ -99,8 +111,10 @@ Dream lead, Batches builder  |  track: builder
 ======================================================================
 kmac.eth  [Headliner]
 Workshop lead  |  track: builder
+  - Farcaster Snaps builder
   - Workshop: Farcaster Snaps (June - date TBD)
 Farcaster: @kmac.eth
+Profile: https://zabalgamez.com/p?handle=kmaceth
 ======================================================================
 Max (POWER)  [Builder]
 Dream lead, Batches builder  |  track: creator
@@ -122,12 +136,16 @@ Farcaster: @noad
 ======================================================================
 Ohnahji  [Headliner]
 Workshop lead  |  track: creator
+  - Live streamer, founder of the Ohnahji community
   - Workshop: His journey in live streaming (Tue Jun 2 2026)
+Profile: https://zabalgamez.com/p?handle=ohnahji
 ======================================================================
 Plat0x  [Headliner]
 Workshop lead  |  track: builder
+  - Bonfire technical architect
   - Workshop: His own Bonfire builder session (later this week - date TBD)
-Farcaster: @plat0x
+X: @at0x_eth
+Profile: https://zabalgamez.com/p?handle=plat0x
 ======================================================================
 realproject7  [Challenger]
 Dream lead  |  track: builder
@@ -147,6 +165,7 @@ Thy Revolution  [Headliner]
 Workshop lead
   - Indie music + creator-tools workshop lead
   - Workshop: Two workshop sessions (June - dates TBD)
+Farcaster: @thyrevolution
 Profile: https://zabalgamez.com/p?handle=thyrevolution
 ======================================================================
 Toady Hawk (betrmint)  [Builder]
@@ -174,8 +193,10 @@ Profile: https://zabalgamez.com/p?handle=willtofweb3
 ======================================================================
 yerbearserker  [Headliner]
 Workshop lead  |  track: builder
+  - Empire Builder co-founder
   - Workshop: Empire Builder V3 (Mon Jun 1 2026)
 Farcaster: @yerbearserker
+Profile: https://zabalgamez.com/p?handle=yerbearserker
 ======================================================================
 Zaal Panthaki  [Headliner]
 Organizer, Mentor, Workshop lead  |  track: builder

@@ -117,7 +117,7 @@ const batches = [
   ['Nikki Sapp', 'Juke', 1, 'builder', '', 'nicky_sap'],
   ['Jonathan Colton', 'Founder Check / Fotocaster', 1, 'creator', 'jonathancolton', ''],
   ['Dr. Deeks', 'email remittance pro, Crafters, Ghostwriter', 1, 'builder', '', ''],
-  ['AZ Flynn', 'Defense of the Agents', 3, 'builder', '', ''],
+  ['AZ Flynn', 'Defense of the Agents', 3, 'builder', 'azflin', ''],
   ['Cashless Man', 'Booster', 3, 'builder', '', ''],
   ['Duckfax', 'Celebration Hub', 3, 'creator', '', ''],
   ['Node', 'DEKEY', 5, 'builder', 'noad', ''],
