@@ -217,6 +217,18 @@
       "date": "2026-06-08",
       "luma_url": "https://luma.com/42rdpyyb",
       "track": "artist"
+    },
+    {
+      "id": "017",
+      "name": "Jub Jub",
+      "topic": "Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster.",
+      "format": "Farcaster Space, recorded",
+      "when": "Sat Jun 20 2026, 9am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-09",
+      "color": "orange",
+      "date": "2026-06-20",
+      "track": "builder"
     }
   ],
   "_schema": {
