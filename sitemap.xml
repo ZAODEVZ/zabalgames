@@ -11,6 +11,8 @@
   <url><loc>https://zabalgamez.com/recordings/1</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/recordings/2</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/recordings/3</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/recordings/4</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/recordings/fireside/1</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/streams.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://zabalgamez.com/graph.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/leaderboard.html</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
@@ -25,6 +27,9 @@
   <url><loc>https://zabalgamez.com/mentor.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/spaces.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/today.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://zabalgamez.com/live.html</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/crm.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/share.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://zabalgamez.com/recaps.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zabalgamez.com/playbook.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zabalgamez.com/mindful.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
