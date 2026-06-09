@@ -229,6 +229,20 @@
       "color": "orange",
       "date": "2026-06-20",
       "track": "builder"
+    },
+    {
+      "id": "018",
+      "name": "Adrienne",
+      "org": "GM Farcaster",
+      "handle": "@adrienne",
+      "topic": "Building Warpee.eth, an AI agent for a media company on Farcaster.",
+      "format": "Live talk plus Q and A, recorded",
+      "when": "Tue Jun 30 2026, 11:30am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-09",
+      "color": "gold",
+      "date": "2026-06-30",
+      "track": "builder"
     }
   ],
   "_schema": {
