@@ -1,6 +1,6 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
-  "generated": "2026-06-08",
+  "generated": "2026-06-09",
   "count": 34,
   "people": [
     {
@@ -258,7 +258,7 @@
     },
     {
       "name": "Joseph Goats",
-      "farcaster": "",
+      "farcaster": "joseacabrerav",
       "x": "",
       "github": "",
       "track": "artist",
@@ -492,7 +492,7 @@
     },
     {
       "name": "Thy Revolution",
-      "farcaster": "",
+      "farcaster": "thyrevolution",
       "x": "",
       "github": "",
       "track": "",
