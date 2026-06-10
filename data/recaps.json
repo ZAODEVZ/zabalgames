@@ -3,6 +3,58 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[]. After editing, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-06-09",
+      "type": "workshop",
+      "title": "Owning your music as an independent artist",
+      "presenter": "Joseph Goats",
+      "handle": "",
+      "org": "",
+      "track": "artist",
+      "format": "30 min, livestreamed and recorded",
+      "recording": "https://luma.com/nxfm7edg",
+      "page": "/recordings/5",
+      "summary": "An artist-track session with Joseph Goats on owning your music as an independent artist on Farcaster - releasing your work, owning your masters and your audience, and turning listeners into a community that pays you directly. Full recap, takeaways, and the word-for-word transcript will be added here once the recording is processed.",
+      "topics": [
+        "independent artists",
+        "owning your masters",
+        "Farcaster",
+        "direct-to-fan",
+        "music distribution",
+        "community"
+      ],
+      "share_topics": [
+        "owning your masters as an independent artist",
+        "turning listeners into a community that pays you directly",
+        "releasing and owning your audience on Farcaster",
+        "going direct-to-fan as a musician"
+      ]
+    },
+    {
+      "date": "2026-06-08",
+      "type": "fireside",
+      "title": "A fireside introducing Sopha",
+      "presenter": "Sopha",
+      "handle": "@zaal",
+      "org": "Sopha",
+      "track": "artist",
+      "format": "Live fireside, ~1 hour, recorded",
+      "recording": "https://luma.com/42rdpyyb",
+      "page": "/recordings/fireside/2",
+      "summary": "A special ZABAL Gamez fireside introducing Sopha to the community - the philosophy and the building behind it, with an informal hang after. Full recap, takeaways, and the word-for-word transcript will be added here once the recording is processed.",
+      "topics": [
+        "Sopha",
+        "philosophy",
+        "building in public",
+        "artist track",
+        "community"
+      ],
+      "share_topics": [
+        "the philosophy behind Sopha",
+        "meeting Sopha for the first time",
+        "what Sopha is and why it's being built"
+      ]
+    },
+    {
       "date": "2026-06-06",
       "type": "fireside",
       "title": "Bonfires + a vibe-coding masterclass",
