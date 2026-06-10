@@ -130,12 +130,13 @@
       "handle": "@cassie",
       "topic": "The Farcaster protocol, ins and outs - a live build-along.",
       "format": "30-min live demo / build-along, recorded",
-      "when": "Fri Jun 12 2026, 4pm EST",
-      "status": "tentative",
+      "when": "Fri Jun 12 2026, 7:30pm EST",
+      "status": "confirmed",
       "confirmed_date": "2026-05-30",
       "color": "orange",
       "track": "builder",
-      "date": "2026-06-12"
+      "date": "2026-06-12",
+      "luma_url": "https://luma.com/fdrdxpuj"
     },
     {
       "id": "011",
@@ -219,6 +220,46 @@
       "date": "2026-06-08",
       "luma_url": "https://luma.com/42rdpyyb",
       "track": "artist"
+    },
+    {
+      "id": "017",
+      "name": "Jub Jub",
+      "topic": "Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster.",
+      "format": "Farcaster Space, recorded",
+      "when": "Sat Jun 20 2026, 9am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-09",
+      "color": "orange",
+      "date": "2026-06-20",
+      "track": "builder"
+    },
+    {
+      "id": "018",
+      "name": "Adrienne",
+      "org": "GM Farcaster",
+      "handle": "@adrienne",
+      "topic": "Building Warpee.eth, an AI agent for a media company on Farcaster.",
+      "format": "Live talk plus Q and A, recorded",
+      "when": "Tue Jun 30 2026, 11:30am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-09",
+      "color": "gold",
+      "date": "2026-06-30",
+      "track": "builder"
+    },
+    {
+      "id": "019",
+      "name": "Dr. Jake",
+      "org": "",
+      "handle": "@jkthedc",
+      "topic": "Growth through foundations.",
+      "format": "Live talk plus Q and A, recorded",
+      "when": "Tue Jun 16 2026, 6pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-09",
+      "color": "pink",
+      "date": "2026-06-16",
+      "track": "creator"
     }
   ],
   "_schema": {
