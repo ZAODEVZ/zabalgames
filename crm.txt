@@ -1,6 +1,6 @@
 ZABAL GAMEZ - PEOPLE (plain text for agents)
 
-Generated 2026-06-09 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 37 people.
+Generated 2026-06-10 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 38 people.
 Structured JSON:  https://zabalgamez.com/data/crm.json
 Human page:       https://zabalgamez.com/crm
 Live players board (joins / shares / casts): https://zabalgamez.com/leaderboard
@@ -10,8 +10,8 @@ Player Levels: Headliner (led or organized), Builder (shipped a project), Mentor
 
 ======================================================================
 Adam Miller  [Headliner]
-Workshop lead
-  - Workshop (Fri Jun 12 2026)
+Workshop lead  |  track: builder
+  - Workshop: Talking miDAO with Adam Miller (Fri Jun 12 2026)
 ======================================================================
 Adrian  [Headliner]
 Workshop lead  |  track: builder
@@ -46,6 +46,12 @@ Workshop lead  |  track: builder
   - Workshop: The Farcaster protocol, ins and outs (Fri Jun 12 2026)
 Farcaster: @cassie
 Profile: https://zabalgamez.com/p?handle=cassie
+======================================================================
+Chris (chriscocreated)  [Headliner]
+Workshop lead
+  - Founder of Sopha
+Farcaster: @chriscocreated
+Profile: https://zabalgamez.com/p?handle=chriscocreated
 ======================================================================
 Chris Dolinsky (Vini App)  [Builder]
 Dream lead, Batches builder  |  track: builder

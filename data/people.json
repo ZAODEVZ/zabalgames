@@ -272,6 +272,22 @@
       "session_count": 1,
       "session_topics": ["Starting and growing your own livestream"],
       "audited_date": "2026-06-08"
+    },
+    {
+      "handle": "chriscocreated",
+      "name": "Chris (chriscocreated)",
+      "roles": ["workshop_lead"],
+      "headline": "Founder of Sopha",
+      "bio": "Founder of Sopha, a Farcaster client built for depth and high signal - an intentional third place for the deeper writing and art that scrolls past the main feed, with a community-curated feed. Led a ZABAL Gamez workshop on building Sopha and why curation is needed.",
+      "expertise_label": "CURATION",
+      "color": "cyan",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/chriscocreated",
+      "x_url": null,
+      "site_url": "https://sopha.social",
+      "session_count": 1,
+      "session_topics": ["Building Sopha, and why curation is needed"],
+      "audited_date": "2026-06-09"
     }
   ]
 }

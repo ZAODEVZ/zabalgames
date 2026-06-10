@@ -24,14 +24,23 @@
 
       var items = recs.map(function (item) {
         var path = pathOf(item.page || item.url);
-        var fire = item.type === 'fireside';
-        var m = path.match(/(\d+)$/);
-        var num = m ? m[1] : '';
-        var fireLabel = 'Fireside' + (num && num !== '1' ? ' ' + num : '');
+        // A path is /recordings/<n> (flat workshop) or /recordings/<ns>/<n> (e.g. fireside, zao).
+        var parts = path.split('/').filter(Boolean); // ['recordings','zao','1'] or ['recordings','4']
+        var num = parts[parts.length - 1] || '';
+        var ns = parts.length >= 3 ? parts[parts.length - 2] : '';
+        var label, jump;
+        if (ns) {
+          var pretty = ns === 'fireside' ? 'Fireside' : ns.toUpperCase();
+          label = pretty + ' ' + num;
+          jump = label;
+        } else {
+          label = 'Workshop ' + num;
+          jump = num;
+        }
         return {
           path: path,
-          jump: fire ? fireLabel : num,                 // compact label for the jump row
-          label: fire ? fireLabel : 'Workshop ' + num,  // full label for prev/next
+          jump: jump,    // compact label for the jump row
+          label: label,  // full label for prev/next
           tip: (item.title || '') + (item.presenter ? ' - ' + item.presenter : '')
         };
       });

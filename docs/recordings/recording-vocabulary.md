@@ -17,7 +17,7 @@ EXACTLY as written:
 
 ZABAL Gamez, $Zabal, Zabal, ZAO, Zaal, BetterCallZaal, yerbearserker, zabalgamez.com,
 Farcaster, Neynar, Base, Arbitrum, ERC-20, x402, Privy, Rabby, Warplet, Clanker,
-Empire Builder, empirebuilder.world, Bonfire, Plat0x, WaveWarz, POIDH, Magnetiq,
+Empire Builder, empirebuilder.world, Bonfire, Plat0x, WaveWarZ, POIDH, Magnetiq,
 Hats Protocol, EAS, DotA, Defense of the Agents, Yerba Bearserker Mate, Bizarre Beasts,
 SCUM, FARCON, Farcaster Batches, AZ Flynn.
 
@@ -29,7 +29,7 @@ Common mishearings to avoid:
 - Saval / Zebal -> Zabal
 - Bone First -> Bonfire
 - PlatoX -> Plat0x
-- Wave Wars -> WaveWarz
+- Wave Wars -> WaveWarZ
 - Berserker -> Bearserker
 - Doda / Dota -> DotA
 - POID -> POIDH
@@ -46,7 +46,7 @@ Zaal (host, aka BetterCallZaal), yerbearserker / yerb (guest presenter), zabalga
 Rabby, Warplet, Clanker, mini app.
 
 **ZAO ecosystem tools/brands:** Empire Builder (empirebuilder.world), Bonfire, Plat0x,
-WaveWarz, POIDH, Magnetiq, Hats Protocol, EAS.
+WaveWarZ, POIDH, Magnetiq, Hats Protocol, EAS.
 
 **Workshop-specific proper nouns (yerb / Empire Builder talk):** DotA (Defense of the
 Agents), AZ Flynn, Yerba Bearserker Mate, Bizarre Beasts, SCUM, FARCON / FARCON Rome,

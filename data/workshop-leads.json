@@ -134,8 +134,9 @@
       "status": "confirmed",
       "confirmed_date": "2026-05-30",
       "color": "orange",
+      "track": "builder",
       "date": "2026-06-12",
-      "track": "builder"
+      "luma_url": "https://luma.com/fdrdxpuj"
     },
     {
       "id": "011",
@@ -180,13 +181,14 @@
     {
       "id": "014",
       "name": "Adam Miller",
-      "org": "",
-      "topic": "To be announced",
+      "org": "MiDAO",
+      "topic": "Talking miDAO with Adam Miller - what he is building, and how digital creators and DAOs can use it.",
       "format": "30 min, livestreamed and recorded",
-      "when": "Fri Jun 12 2026, 6pm EST",
+      "when": "Fri Jun 12 2026, 5:45-6:15pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-06-07",
       "color": "pink",
+      "track": "builder",
       "date": "2026-06-12"
     },
     {
@@ -282,8 +284,8 @@
   "cta_override": {
     "_comment": "manual override for the top CTA. active:true uses headline/event_url/event_label; active:false = auto (next dated workshop).",
     "active": false,
-    "headline": "Next workshop: Cassie on the Farcaster protocol, ins and outs - Wed Jun 3, 4pm EST.",
+    "headline": "Next workshop: Cassie on the Farcaster protocol, ins and outs - Fri Jun 12, 4pm EST.",
     "event_url": "https://luma.com/fdrdxpuj",
-    "event_label": "RSVP: Cassie, Jun 3"
+    "event_label": "RSVP: Cassie, Jun 12"
   }
 }
