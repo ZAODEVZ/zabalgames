@@ -38,7 +38,7 @@ contribute, and the templates use the same formats described here.
 ## 1. Caption corrections
 
 The auto-captions reliably mishear the ZAO vocabulary. **You do not need to list the
-common brand fixes** (Gamez, $Zabal, Bonfire, Plat0x, Farcaster, Neynar, WaveWarz,
+common brand fixes** (Gamez, $Zabal, Bonfire, Plat0x, Farcaster, Neynar, WaveWarZ,
 DotA...) - those are auto-applied from a shared glossary
 ([data/transcript-corrections.json](../../data/transcript-corrections.json)). List only
 the ones that glossary would miss: names, one-off mishearings, and anything ambiguous.

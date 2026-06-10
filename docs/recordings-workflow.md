@@ -34,7 +34,7 @@ That is the single coordination doc for the recording.
 ## Stage 1 - Captions (auto-fix, then review)
 
 The auto-captions mis-hear the same brand words every single time (Gamez, $Zabal,
-Bonfire, Plat0x, Farcaster, Neynar, WaveWarz...). That list lives once in
+Bonfire, Plat0x, Farcaster, Neynar, WaveWarZ...). That list lives once in
 `data/transcript-corrections.json` and is applied by a script - the intern no longer
 needs to list those, only genuine one-offs.
 

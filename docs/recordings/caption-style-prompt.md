@@ -45,7 +45,7 @@ ones:
 ```
 Zibal / Xibal -> $Zabal      Saval / Zebal -> Zabal      Games -> Gamez (brand only)
 Forecaster -> Farcaster      Naynar -> Neynar            Bone First -> Bonfire
-PlatoX -> Plat0x             Wave Wars -> WaveWarz        Doda / Dota -> DotA
+PlatoX -> Plat0x             Wave Wars -> WaveWarZ        Doda / Dota -> DotA
 POID -> POIDH                Zao -> ZAO                   Berserker -> Bearserker
 ```
 

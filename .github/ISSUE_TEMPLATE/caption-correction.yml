@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Thanks for helping. You do NOT need to list the common ZAO brand fixes
-        (Gamez, $Zabal, Bonfire, Plat0x, Farcaster, Neynar, WaveWarz, DotA...) - those
+        (Gamez, $Zabal, Bonfire, Plat0x, Farcaster, Neynar, WaveWarZ, DotA...) - those
         are auto-applied. List only what that glossary would miss: names, one-off
         mishearings, and anything ambiguous.
   - type: input
