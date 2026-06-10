@@ -2,7 +2,7 @@
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
   "generated": "2026-06-10",
   "season": 1,
-  "count": 7,
+  "count": 8,
   "recordings": [
     {
       "type": "workshop",
@@ -13,8 +13,8 @@
       "track": "artist",
       "format": "30 min, livestreamed and recorded",
       "date": "2026-06-09",
-      "url": "https://zabalgamez.com/recordings/5",
-      "page": "https://zabalgamez.com/recordings/5",
+      "url": "https://zabalgamez.com/recordings/6",
+      "page": "https://zabalgamez.com/recordings/6",
       "youtube": null,
       "recording": "https://luma.com/nxfm7edg",
       "transcript": null,
@@ -32,30 +32,41 @@
       "takeaways": []
     },
     {
-      "type": "fireside",
-      "title": "A fireside introducing Sopha",
-      "presenter": "Sopha",
-      "handle": "@zaal",
+      "type": "workshop",
+      "title": "Building Sopha, and why curation is needed",
+      "presenter": "Chris (chriscocreated)",
+      "handle": "@chriscocreated",
       "org": "Sopha",
-      "track": "artist",
-      "format": "Live fireside, ~1 hour, recorded",
+      "track": "builder",
+      "format": "Live workshop, recorded",
       "date": "2026-06-08",
-      "url": "https://zabalgamez.com/recordings/fireside/2",
-      "page": "https://zabalgamez.com/recordings/fireside/2",
+      "url": "https://zabalgamez.com/recordings/5",
+      "page": "https://zabalgamez.com/recordings/5",
       "youtube": null,
-      "recording": "https://luma.com/42rdpyyb",
-      "transcript": null,
-      "transcript_raw": null,
-      "link": null,
-      "summary": "A special ZABAL Gamez fireside introducing Sopha to the community - the philosophy and the building behind it, with an informal hang after. Full recap, takeaways, and the word-for-word transcript will be added here once the recording is processed.",
+      "recording": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md",
+      "link": "https://sopha.social",
+      "summary": "A ZABAL Gamez workshop with Chris (chriscocreated), founder of Sopha - a Farcaster client built for depth and high signal - on what he built and why curation is needed. Sopha is an intentional third place, a coffee shop or library for the deeper writing, art, and thinking that scrolls past on the main feed, with a curated feed kept by the community's curators plus BradQ's The Pulse. Chris traces why he built it (when Farcaster felt like it was tipping into meme coins, he set out to protect the culture of interesting thinkers, and good vibe coding made him the one to do it), how easy it now is to build your own client on Farcaster's open data with Neynar and Hypersnap, and the nested stack of client, mini apps, and Snaps. He closes on where Sopha is headed: a second round of Purple funding, experiments in rewarding curators, infra, and live cultural-center experiences, with a thoughtfully designed, non-extractive token only when the time is right.",
       "topics": [
         "Sopha",
-        "philosophy",
-        "building in public",
-        "artist track",
-        "community"
+        "curation",
+        "Farcaster clients",
+        "high signal",
+        "third place",
+        "build your own client",
+        "Neynar",
+        "mini apps and Snaps"
       ],
-      "takeaways": []
+      "takeaways": [
+        "Curation is the point - Sopha is a Farcaster client for depth, an intentional third place for high-signal writing and art, not a replacement for the daily feed.",
+        "Building your own client is now a few hours of work: Farcaster's open data plus Neynar (and Hypersnap) let anyone shape their own view.",
+        "You are not beholden to the algorithm - you build your own lens. That is the unlock for artists, writers, and creators.",
+        "The nested stack: a client is just a website showing Farcaster data; below it sit mini apps, and Snaps you can spin up in seconds.",
+        "The feed is curated by community curators (earn the role by showing taste), and BradQ runs a dedicated Pulse feed.",
+        "Sopha's next year (a second Purple round): reward curators, cover infra, run live cultural-center experiences, and design any token carefully and non-extractively.",
+        "Find it: @chriscocreated and @sopha on Farcaster, sopha.social."
+      ]
     },
     {
       "type": "fireside",
@@ -226,6 +237,40 @@
         "The Triple-A framework: Assemble, Affirm, Ascend.",
         "Leaderboards, boosters, staking, and tactical generosity power a tokenless Empire.",
         "yerbearserker stood up a tokenless ZABAL Gamez Empire live during the session."
+      ]
+    },
+    {
+      "type": "workshop",
+      "title": "ZAO Fractal Weekly Introduction Presentation",
+      "presenter": "Zaal",
+      "handle": "@zaal",
+      "org": "The ZAO",
+      "track": "builder",
+      "format": "The first ZAO project, recorded",
+      "date": "2026-06-01",
+      "url": "https://zabalgamez.com/recordings/zao/1",
+      "page": "https://zabalgamez.com/recordings/zao/1",
+      "youtube": null,
+      "recording": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md",
+      "link": "https://discord.theZAO.com",
+      "summary": "Zaal's weekly introduction to the ZAO Fractal, framed as the first ZAO project you can build on. He covers what the ZAO is - a decentralized impact network for the creator economy, the Z Talent Artist Organization - and how it runs on soulbound, illiquid ZAO Respect earned weekly through peer consensus. He walks the four objectives (empowerment, transparency, sustainability, equitable distribution) and the Respect game itself: breakout groups of up to six, four-minute updates, then on-chain consensus. The ZAO Fractal meets weekly at 6pm Eastern at discord.theZAO.com.",
+      "topics": [
+        "ZAO Fractal",
+        "ZAO Respect",
+        "soulbound tokens",
+        "peer consensus",
+        "governance",
+        "onboarding",
+        "creator economy"
+      ],
+      "takeaways": [
+        "The ZAO is a decentralized impact network for the creator economy, governed by soulbound, illiquid ZAO Respect earned weekly through peer consensus - not bought.",
+        "Four objectives anchor it: empowerment, transparency, sustainability, equitable distribution.",
+        "The Respect game: groups of up to six share four-minute updates, then rank by consensus (level six down to one), submitted on chain.",
+        "Five ways to contribute: contributions, collaborations, innovations, onboarding, and supporting community members.",
+        "Meets weekly, 6pm Eastern at discord.theZAO.com - turning your camera on earns an extra ten ZAO Respect."
       ]
     }
   ]
