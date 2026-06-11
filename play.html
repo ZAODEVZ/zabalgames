@@ -121,6 +121,12 @@
       <p class="note">Top 10 at the end of the day win $Zabal. Resets daily (UTC).</p>
       <ol id="board-list"><li class="muted">Loading the board...</li></ol>
       <p class="hint" style="margin-top: 0.8rem;"><a href="/leaderboard">Season leaderboard</a> - <a href="/#schedule">Upcoming sessions</a></p>
+
+      <div style="margin-top: 1.1rem; border-top: 1px solid var(--border); padding-top: 0.9rem;">
+        <h3 style="font-size: 0.95rem; margin: 0 0 0.2rem;">Event collectible</h3>
+        <p class="note">A bonding-curve drop on mint.club - starts cheap and ticks up with every collect. Collecting boosts your spot.</p>
+        <a class="btn primary" id="mint-cta" href="MINT_CLUB_WIDGET_LINK" target="_blank" rel="noopener">Collect on mint.club</a>
+      </div>
     </aside>
   </div>
 
@@ -307,10 +313,25 @@
   }
 
   var submitting = false;
+  var authed = false;
   function doSubmit(silent) {
+    if (submitting) return;
+    // Mini App: verified submit via Quick Auth (FID -> handle + address server-side).
+    if (window.ZABAL && window.ZABAL.submitScore) {
+      submitting = true;
+      window.ZABAL.submitScore('zao2048', score).then(function (d) {
+        submitting = false;
+        if (d && d.ok) { setStatus('Submitted as @' + (d.handle || 'you') + '. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); return; }
+        if (d && d.reason === 'not-in-miniapp') { webSubmit(silent); return; }
+        setStatus('Could not submit (' + (d && d.reason || 'error') + ').');
+      }).catch(function () { submitting = false; webSubmit(silent); });
+      return;
+    }
+    webSubmit(silent);
+  }
+  function webSubmit(silent) {
     var handle = handleEl.value.trim();
     if (!handle) { if (!silent) setStatus('Enter a Farcaster handle to get on the board.'); return; }
-    if (submitting) return;
     submitting = true;
     fetch('/api/game', {
       method: 'POST',
@@ -326,7 +347,7 @@
       }
     }).catch(function () { submitting = false; setStatus('Network error submitting.'); });
   }
-  function autoSubmit() { if (handleEl.value.trim()) doSubmit(true); }
+  function autoSubmit() { doSubmit(true); }
 
   function loadBoard() {
     fetch('/api/game?game=zao2048', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
@@ -374,7 +395,12 @@
     try {
       if (window.ZABAL && window.ZABAL.getUser) {
         window.ZABAL.getUser().then(function (u) {
-          if (u && u.username && !handleEl.value) handleEl.value = u.username;
+          if (u && u.username) {
+            authed = true;
+            handleEl.value = u.username;
+            handleEl.setAttribute('readonly', 'readonly');
+            setStatus('Playing as @' + u.username + ' - your score auto-submits, no typing.');
+          }
         }).catch(function () {});
       }
     } catch (e) {}

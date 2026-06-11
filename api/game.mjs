@@ -15,10 +15,14 @@
 //
 // Graceful no-op (configured:false / empty) when KV env is absent.
 
+import { verifyQuickAuth } from '../lib/auth.mjs';
+
 export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
+const HAATZ = 'https://haatz.quilibrium.com';
+const DOMAIN = 'zabalgamez.com';
 
 // Allowlisted games (key -> max plausible score, to reject garbage submissions).
 const GAMES = { zao2048: 1000000 };
@@ -31,7 +35,7 @@ function json(body, maxAge = 0) {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers': 'Authorization, Content-Type',
       'Cache-Control': maxAge ? `public, max-age=${maxAge}, s-maxage=${maxAge}` : 'no-store',
     },
   });
@@ -61,6 +65,20 @@ function cleanAddress(a) {
   return /^0x[0-9a-f]{40}$/.test(s) ? s : null;
 }
 
+// Resolve a verified Farcaster profile (username + first verified eth address) for the
+// apiLeaderboard format, so Empire Builder can award points to a real wallet.
+async function resolveProfile(fid) {
+  try {
+    const r = await fetch(`${HAATZ}/v2/farcaster/user/bulk?fids=${fid}`, { signal: AbortSignal.timeout(2500) });
+    if (!r.ok) return {};
+    const u = ((await r.json()).users || [])[0] || {};
+    const eth = (u.verified_addresses && (u.verified_addresses.eth_addresses || u.verified_addresses.ethAddresses)) || [];
+    return { username: u.username || null, address: cleanAddress(eth[0]) };
+  } catch {
+    return {};
+  }
+}
+
 export default async function handler(req) {
   if (req.method === 'OPTIONS') return json({ ok: true });
 
@@ -82,8 +100,25 @@ export default async function handler(req) {
   if (req.method === 'POST') {
     let body = {};
     try { body = await req.json(); } catch { /* ignore */ }
-    const handle = cleanHandle(body.handle);
-    const address = cleanAddress(body.address);
+
+    // Mini App path: a Quick Auth JWT identifies the player; we trust the FID and
+    // resolve their handle + verified address. Web path: fall back to a typed handle.
+    let handle, address = null, verified = false;
+    const auth = req.headers.get('authorization') || '';
+    const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
+    if (token) {
+      let fid;
+      try { fid = await verifyQuickAuth(token, DOMAIN); }
+      catch { return json({ ok: false, error: 'invalid token' }); }
+      const profile = await resolveProfile(fid);
+      handle = cleanHandle(profile.username) || ('fid' + fid);
+      address = profile.address || null;
+      verified = true;
+    } else {
+      handle = cleanHandle(body.handle);
+      address = cleanAddress(body.address);
+    }
+
     let score = Math.floor(Number(body.score));
     if (!handle) return json({ ok: false, error: 'handle required' });
     if (!Number.isFinite(score) || score < 0 || score > GAMES[game]) return json({ ok: false, error: 'bad score' });
@@ -100,7 +135,7 @@ export default async function handler(req) {
     const best = Number(res[2] && res[2].result) || score;
     const rank0 = res[3] && res[3].result;
     const rank = rank0 === null || rank0 === undefined ? null : Number(rank0) + 1;
-    return json({ ok: true, best, rank });
+    return json({ ok: true, best, rank, handle, verified });
   }
 
   // ---- GET: read the board ----
