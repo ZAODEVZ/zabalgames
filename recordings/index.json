@@ -1,9 +1,35 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-06-10",
+  "generated": "2026-06-11",
   "season": 1,
-  "count": 8,
+  "count": 9,
   "recordings": [
+    {
+      "type": "workshop",
+      "title": "Building KFMEDIA",
+      "presenter": "Will T of Web3",
+      "handle": "@willtofweb3",
+      "org": "Kingfishers Media",
+      "track": "creator",
+      "format": "30 min, livestreamed and recorded",
+      "date": "2026-06-10",
+      "url": "https://zabalgamez.com/recordings/7",
+      "page": "https://zabalgamez.com/recordings/7",
+      "youtube": null,
+      "recording": "https://luma.com/za2b259z",
+      "transcript": null,
+      "transcript_raw": null,
+      "link": "https://www.kingfishersmedia.io",
+      "summary": "A creator-track session with Will T of Web3 on building KFMEDIA (Kingfishers Media) - what he is building, how he is doing it, and the lessons so far. Full recap, takeaways, and the word-for-word transcript will be added here once the recording is processed.",
+      "topics": [
+        "Kingfishers Media",
+        "media on Farcaster",
+        "building in public",
+        "creator track",
+        "lessons learned"
+      ],
+      "takeaways": []
+    },
     {
       "type": "workshop",
       "title": "Owning your music as an independent artist",
