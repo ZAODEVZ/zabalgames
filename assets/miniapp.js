@@ -314,7 +314,7 @@ window.ZABAL.buildVote = async function buildVote(repo) {
 window.ZABAL.submitScore = async function submitScore(game, score) {
   try {
     const ctx = await getContext();
-    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    if (!ctx || !sdk || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
     const res = await sdk.quickAuth.fetch('/api/game', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

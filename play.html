@@ -365,16 +365,28 @@
       window.ZABAL.submitScore('zao2048', score).then(function (d) {
         submitting = false;
         if (d && d.ok) { setStatus('Submitted as @' + (d.handle || 'you') + '. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); tryAddApp(); return; }
-        if (d && d.reason === 'not-in-miniapp') { webSubmit(silent); return; }
+        if (d && d.reason === 'not-in-miniapp') { identitySubmit(silent); return; }
         setStatus('Could not submit (' + (d && d.reason || 'error') + ').');
-      }).catch(function () { submitting = false; webSubmit(silent); });
+      }).catch(function () { submitting = false; identitySubmit(silent); });
       return;
     }
-    webSubmit(silent);
+    identitySubmit(silent);
   }
-  function webSubmit(silent) {
-    var handle = handleEl.value.trim();
-    if (!handle) { if (!silent) setStatus('Enter a Farcaster handle to get on the board.'); return; }
+  // No verified path available - submit with the known Mini App handle if we have one,
+  // and only ask the user to type a handle as a true last resort (plain web visitor).
+  function identitySubmit(silent) {
+    var h = handleEl.value.trim();
+    if (h) { webSubmit(h); return; }
+    if (window.ZABAL && window.ZABAL.getUser) {
+      window.ZABAL.getUser().then(function (u) {
+        if (u && u.username) { handleEl.value = u.username; webSubmit(u.username); }
+        else if (!silent) setStatus('Enter a Farcaster handle to get on the board.');
+      }).catch(function () { if (!silent) setStatus('Enter a Farcaster handle to get on the board.'); });
+      return;
+    }
+    if (!silent) setStatus('Enter a Farcaster handle to get on the board.');
+  }
+  function webSubmit(handle) {
     submitting = true;
     fetch('/api/game', {
       method: 'POST',
@@ -383,7 +395,7 @@
     }).then(function (r) { return r.json(); }).then(function (d) {
       submitting = false;
       if (d && d.ok) {
-        setStatus('Submitted. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : ''));
+        setStatus('Submitted as @' + handle + '. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : ''));
         loadBoard();
         tryAddApp();
       } else {
