@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Production status - ZABAL Gamez (internal)</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Internal production status board for ZABAL Gamez sessions - scheduling and recording pipeline, generated live from the season data.">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .st-note { color: var(--text-muted); font-size: 0.88rem; line-height: 1.55; margin: 0 0 1.1rem; }
+    .st-note code { background: var(--surface-2); padding: 0.05rem 0.35rem; border-radius: 5px; font-size: 0.85em; }
+    .st-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.6rem; margin: 0.4rem 0 1.4rem; }
+    .st-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.7rem 0.8rem; }
+    .st-stat b { display: block; font-family: 'Syne', sans-serif; font-size: 1.45rem; line-height: 1; color: var(--text); }
+    .st-stat span { display: block; font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim); margin-top: 0.3rem; }
+    .st-section { margin: 1.8rem 0 0.6rem; }
+    .st-section h2 { font-family: 'Syne', sans-serif; font-size: 1.25rem; margin: 0 0 0.2rem; }
+    .st-section p { color: var(--text-dim); font-size: 0.82rem; margin: 0 0 0.7rem; }
+    .st-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; }
+    table.st { border-collapse: collapse; width: 100%; font-size: 0.85rem; min-width: 640px; }
+    table.st th, table.st td { padding: 0.55rem 0.7rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    table.st th { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); position: sticky; top: 0; background: var(--surface); }
+    table.st th.c, table.st td.c { text-align: center; }
+    table.st tr:last-child td { border-bottom: none; }
+    table.st td.sess { white-space: normal; min-width: 200px; }
+    table.st td.sess b { font-family: 'Syne', sans-serif; font-weight: 700; }
+    table.st td.sess small { color: var(--text-dim); display: block; font-size: 0.74rem; }
+    .dot { display: inline-block; width: 13px; height: 13px; border-radius: 50%; border: 1px solid var(--border-hover); }
+    .dot.on { background: var(--zabal); border-color: var(--zabal); }
+    .dot.na { background: transparent; border-style: dashed; opacity: 0.45; }
+    .pill { font-size: 0.62rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--border-hover); color: var(--text-dim); }
+    .pill.done { border-color: var(--zabal); color: var(--zabal); }
+    .pill.warn { border-color: var(--gold); color: var(--gold); }
+    .miss { color: var(--gold); font-size: 0.78rem; white-space: normal; }
+    .t-artist { color: var(--pink); } .t-builder { color: var(--zabal); } .t-creator { color: var(--cyan); }
+    .st-legend { font-size: 0.78rem; color: var(--text-muted); margin: 0.4rem 0 0; }
+    .st-legend .dot { vertical-align: middle; }
+    .st-updated { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-dim); margin-top: 1.6rem; }
+    a.lk { color: var(--cyan); text-decoration: none; } a.lk:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/crm">People</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.4rem;">
+    <div class="hero-eyebrow">Internal - production status</div>
+    <h1>Session <span class="accent">pipeline</span>.</h1>
+    <p class="hero-sub">
+      Live status of every ZABAL Gamez session, generated from <code>workshop-leads.json</code> and
+      <code>recaps.json</code>. Unlisted and noindex - for the team. What is scheduled, what is
+      recorded, and what each delivered session still needs.
+    </p>
+  </header>
+
+  <div class="st-stats" id="st-stats" aria-label="At a glance"></div>
+
+  <div class="st-section">
+    <h2>Recordings pipeline</h2>
+    <p>Delivered sessions and their production state. Source: recaps.json.</p>
+  </div>
+  <div class="st-wrap">
+    <table class="st" id="t-rec">
+      <thead><tr>
+        <th>Date</th><th>Session</th>
+        <th class="c">Thumb</th><th class="c">Recorded</th><th class="c">Transcript</th>
+        <th class="c">YouTube</th><th class="c">Page</th><th class="c">OK'd</th><th>Missing</th>
+      </tr></thead>
+      <tbody><tr><td colspan="9" style="color:var(--text-muted);">Loading...</td></tr></tbody>
+    </table>
+  </div>
+  <p class="st-legend"><span class="dot on"></span> done &nbsp; <span class="dot"></span> missing &nbsp; <span class="dot na"></span> n/a</p>
+
+  <div class="st-section">
+    <h2>Scheduled - upcoming</h2>
+    <p>Dated sessions not yet delivered. Source: workshop-leads.json.</p>
+  </div>
+  <div class="st-wrap">
+    <table class="st" id="t-up">
+      <thead><tr>
+        <th>Date</th><th>Session</th><th>Track</th>
+        <th class="c">Scheduled</th><th class="c">Booked</th><th class="c">Luma</th><th>Next</th>
+      </tr></thead>
+      <tbody><tr><td colspan="7" style="color:var(--text-muted);">Loading...</td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="st-section">
+    <h2>Confirmed - no date yet</h2>
+    <p>Said yes, awaiting a locked date. Source: workshop-leads.json.</p>
+  </div>
+  <div class="st-wrap">
+    <table class="st" id="t-conf">
+      <thead><tr><th>Session</th><th>Track</th><th>Topic</th></tr></thead>
+      <tbody><tr><td colspan="3" style="color:var(--text-muted);">Loading...</td></tr></tbody>
+    </table>
+  </div>
+
+  <p class="st-note" style="margin-top:1.4rem;">
+    Raw data: <a class="lk" href="/data/workshop-leads.json">workshop-leads.json</a> &middot;
+    <a class="lk" href="/recordings/index.json">recordings/index.json</a> &middot;
+    full notes in <code>docs/workshop-media-tracker.md</code>.
+  </p>
+  <p class="st-updated" id="st-updated"></p>
+
+</div>
+</main>
+
+<script>
+(function () {
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function dot(on, na){ return '<span class="dot' + (na ? ' na' : (on ? ' on' : '')) + '"></span>'; }
+  var TODAY = new Date().toISOString().slice(0, 10);
+
+  function fmtDate(d){
+    if (!d) return '-';
+    var p = d.split('-'); if (p.length !== 3) return d;
+    var mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(p[1],10)-1];
+    return mo + ' ' + parseInt(p[2],10);
+  }
+
+  Promise.all([
+    fetch('/data/workshop-leads.json', { cache: 'no-store' }).then(function(r){ return r.json(); }),
+    fetch('/recordings/index.json', { cache: 'no-store' }).then(function(r){ return r.json(); })
+  ]).then(function (res) {
+    var leads = (res[0].leads || []);
+    var recs = (res[1].recordings || []);
+
+    // --- Recordings pipeline ---
+    var recRows = recs.map(function (r) {
+      var isFireside = r.type === 'fireside';
+      var miss = [];
+      if (!r.thumbnail) miss.push('thumbnail');
+      if (!r.transcript) miss.push('transcript');
+      if (!r.youtube) miss.push('YouTube');
+      if (!r.okd) miss.push('OK’d');
+      var sess = '<b>' + esc(r.title) + '</b>' + (r.presenter ? '<small>' + esc(r.presenter) + (r.org ? ', ' + esc(r.org) : '') + '</small>' : '');
+      return {
+        date: r.date || '',
+        html: '<tr>' +
+          '<td>' + esc(fmtDate(r.date)) + '</td>' +
+          '<td class="sess">' + sess + '</td>' +
+          '<td class="c">' + dot(!!r.thumbnail) + '</td>' +
+          '<td class="c">' + dot(true) + '</td>' +
+          '<td class="c">' + dot(!!r.transcript) + '</td>' +
+          '<td class="c">' + dot(!!r.youtube) + '</td>' +
+          '<td class="c">' + (r.page ? '<a class="lk" href="' + esc(r.page) + '">page</a>' : dot(false)) + '</td>' +
+          '<td class="c">' + dot(!!r.okd) + '</td>' +
+          '<td class="miss">' + (miss.length ? esc(miss.join(', ')) : '<span class="pill done">complete</span>') + '</td>' +
+        '</tr>'
+      };
+    }).sort(function(a,b){ return a.date < b.date ? 1 : -1; });
+    document.querySelector('#t-rec tbody').innerHTML = recRows.length ? recRows.map(function(x){return x.html;}).join('') : '<tr><td colspan="9">None.</td></tr>';
+
+    // --- Schedule: split dated (upcoming) vs no-date (confirmed) ---
+    var dated = [], undated = [];
+    leads.forEach(function (l) { if (l.date) dated.push(l); else if (l.status === 'confirmed') undated.push(l); });
+
+    // upcoming = dated and not before today
+    var upcoming = dated.filter(function(l){ return l.date >= TODAY; }).sort(function(a,b){ return a.date < b.date ? -1 : 1; });
+    var upRows = upcoming.map(function (l) {
+      var booked = l.status === 'confirmed';
+      var hasLuma = !!l.luma_url;
+      var next = hasLuma ? '<span class="pill done">ready</span>' : '<span class="miss">publish a Luma</span>';
+      return '<tr>' +
+        '<td>' + esc(fmtDate(l.date)) + '</td>' +
+        '<td class="sess"><b>' + esc(l.name) + '</b>' + (l.org ? '<small>' + esc(l.org) + '</small>' : '') + '</td>' +
+        '<td>' + (l.track ? '<span class="t-' + esc(l.track) + '">' + esc(l.track) + '</span>' : '-') + '</td>' +
+        '<td class="c">' + dot(true) + '</td>' +
+        '<td class="c">' + dot(booked) + '</td>' +
+        '<td class="c">' + (hasLuma ? '<a class="lk" href="' + esc(l.luma_url) + '" target="_blank" rel="noopener">' + dot(true) + '</a>' : dot(false)) + '</td>' +
+        '<td>' + next + '</td>' +
+      '</tr>';
+    });
+    document.querySelector('#t-up tbody').innerHTML = upRows.length ? upRows.join('') : '<tr><td colspan="7">None.</td></tr>';
+
+    // --- Confirmed, no date ---
+    var confRows = undated.map(function (l) {
+      return '<tr>' +
+        '<td class="sess"><b>' + esc(l.name) + '</b>' + (l.org ? '<small>' + esc(l.org) + '</small>' : '') + '</td>' +
+        '<td>' + (l.track ? '<span class="t-' + esc(l.track) + '">' + esc(l.track) + '</span>' : '-') + '</td>' +
+        '<td class="sess">' + esc(l.topic || '') + '</td>' +
+      '</tr>';
+    });
+    document.querySelector('#t-conf tbody').innerHTML = confRows.length ? confRows.join('') : '<tr><td colspan="3">None.</td></tr>';
+
+    // --- stats ---
+    var delivered = recs.length;
+    var withYt = recs.filter(function(r){ return r.youtube; }).length;
+    var withTx = recs.filter(function(r){ return r.transcript; }).length;
+    var okd = recs.filter(function(r){ return r.okd; }).length;
+    var lumaCount = dated.filter(function(l){ return l.luma_url; }).length;
+    var cells = [
+      ['Delivered', delivered],
+      ['With YouTube', withYt + '/' + delivered],
+      ['With transcript', withTx + '/' + delivered],
+      ['Guest OK’d', okd + '/' + delivered],
+      ['Upcoming', upcoming.length],
+      ['Dated w/ Luma', lumaCount + '/' + dated.length],
+      ['Awaiting date', undated.length]
+    ];
+    document.getElementById('st-stats').innerHTML = cells.map(function (c) {
+      return '<div class="st-stat"><b>' + esc(String(c[1])) + '</b><span>' + esc(c[0]) + '</span></div>';
+    }).join('');
+
+    document.getElementById('st-updated').textContent = 'Generated client-side from live data on load. ' + TODAY;
+  }).catch(function (e) {
+    document.querySelector('#t-rec tbody').innerHTML = '<tr><td colspan="9" style="color:var(--gold);">Could not load data.</td></tr>';
+  });
+})();
+</script>
+
+</body>
+</html>
