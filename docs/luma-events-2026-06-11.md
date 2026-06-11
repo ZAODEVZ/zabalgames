@@ -19,14 +19,10 @@ Standard footer to append to every description:
 - **Track:** builder
 - **Luma:** https://luma.com/l1c6sgzc (live - wired into workshop-leads.json)
 
-## 2. Kenny (POIDH) - Talking POIDH + the ZABAL ad bounty
+## 2. Kenny (POIDH) - ZABAL WORKSHOP w/ Kenny from poidh - PUBLISHED
 - **When:** Mon Jun 15 2026, 4pm EST
 - **Track:** builder
-- **Title:** ZABAL WORKSHOP w/ Kenny from poidh
-- **Description:**
-  > Kenny walks through POIDH, the bounty platform he built - how it works and how to use
-  > it to get things made. We will also wrap the Best ZABAL Gamez Ad bounty and announce a
-  > fresh POIDH bounty running for the next two weeks. Livestreamed and recorded.
+- **Luma:** https://luma.com/9ylnwvyx (live - wired into workshop-leads.json)
 
 ## 3. Adrian / diviflyy (Empire Builder) - Empire Builder V3
 - **When:** Tue Jun 16 2026, 12pm EST
@@ -79,7 +75,7 @@ Paste each event URL here next to its number, and they get added to
 | # | Guest | Date | Luma URL |
 |---|---|---|---|
 | 1 | Adam Miller | Jun 12 | https://luma.com/l1c6sgzc |
-| 2 | Kenny | Jun 15 | |
+| 2 | Kenny | Jun 15 | https://luma.com/9ylnwvyx |
 | 3 | diviflyy | Jun 16 | |
 | 4 | Dr. Jake | Jun 16 | |
 | 5 | Jub Jub | Jun 20 (8am) | |

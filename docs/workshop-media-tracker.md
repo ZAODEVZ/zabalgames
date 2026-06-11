@@ -39,7 +39,7 @@ One row per session, every stage. Detail + open work is in the sections below.
 | Zaal - WIP Meetup | Jun 11 | scheduled | x | x | x |  |  |  |  |  | recording (today) |
 | Cassie - Farcaster protocol | Jun 12 | scheduled | x | x | x |  |  |  |  |  | recording |
 | Adam Miller - miDAO | Jun 12 5:45pm | scheduled | x | x | x |  |  |  |  |  | recording |
-| Kenny - POIDH | Jun 15 4pm | scheduled | x | x |  |  |  |  |  |  | **Luma #2**, recording |
+| Kenny - POIDH + ZABAL ad bounty | Jun 15 4pm | scheduled | x | x | x |  |  |  |  |  | recording |
 | diviflyy - Empire Builder V3 convo | Jun 16 12pm | scheduled | x | x |  |  |  |  |  |  | **Luma #3**, recording |
 | Dr. Jake - Growth through foundations | Jun 16 6pm | scheduled | x | x |  |  |  |  |  |  | **Luma #4**, recording |
 | Jub Jub - Farcaster Batches fireside | Jun 20 8am | scheduled | x | x |  |  |  |  |  |  | **Luma #5**, recording |
@@ -97,7 +97,7 @@ On the live schedule; nothing to record yet. After each runs, move it to section
 | Zaal - WIP Meetup (ecosystem tour, ZAO Fractals) | Jun 11 | x | x | x |  | runs today - capture the recording |
 | Cassie (Quilibrium) - Farcaster protocol build-along | Jun 12 | x | x | x |  | confirm + capture |
 | Adam Miller (MiDAO) - talking miDAO | Jun 12, 5:45pm | x | x | x |  | Luma live (l1c6sgzc); capture recording |
-| Kenny (POIDH) - POIDH + ZABAL ad bounty | Jun 15, 4pm | x | x |  |  | **Luma copy ready** (#2) |
+| Kenny (POIDH) - POIDH + ZABAL ad bounty | Jun 15, 4pm | x | x | x |  | Luma live (9ylnwvyx); capture recording |
 | Adrian / diviflyy (Empire Builder) - Empire Builder V3 convo | Jun 16, 12pm | x | x |  |  | **Luma copy ready** (#3) |
 | Dr. Jake - Growth through foundations | Jun 16, 6pm | x | x |  |  | **Luma copy ready** (#4) |
 | Jub Jub - Farcaster Batches fireside (Space) | Jun 20, 8am | x | x |  |  | **Luma copy ready** (#5) |
