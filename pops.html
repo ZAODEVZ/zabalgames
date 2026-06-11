@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claim your pop - ZABAL Gamez</title>
+  <meta name="description" content="Claim your ZABAL Gamez pop - a quick collectible that marks you were here. Optionally submit a clip (a video link) and your Farcaster handle so we can see who built and shared.">
+  <link rel="canonical" href="https://zabalgamez.com/pops">
+  <meta property="og:title" content="Claim your pop - ZABAL Gamez">
+  <meta property="og:description" content="Mark that you were here, and drop a clip. The ZAO's build event.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/pops">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Claim your pop - ZABAL Gamez">
+  <meta name="twitter:description" content="Mark that you were here, and drop a clip. The ZAO's build event.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Claim your pop","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/pops","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <meta name="fc:disable-native-gestures" content="1">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .pop-card { border: 1px solid var(--border); background: var(--surface-2); border-radius: 14px; padding: 1.2rem 1.2rem; max-width: 560px; }
+    .pop-card label { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-dim); margin: 0.8rem 0 0.25rem; }
+    .pop-card input, .pop-card textarea { width: 100%; box-sizing: border-box; font-family: inherit; font-size: 0.92rem; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+    .pop-card textarea { min-height: 64px; resize: vertical; }
+    .btn { font-family: inherit; font-size: 0.9rem; padding: 0.55rem 1.1rem; border-radius: 8px; border: 1px solid var(--zabal); background: var(--zabal); color: #fff; cursor: pointer; margin-top: 1rem; }
+    .btn:hover { filter: brightness(1.12); }
+    .status { min-height: 1.3rem; font-size: 0.88rem; color: var(--text-muted); margin-top: 0.7rem; }
+    .count { font-family: 'JetBrains Mono', monospace; color: var(--cyan); }
+    .feed { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: 6px; max-width: 560px; }
+    .feed li { border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem 0.75rem; font-size: 0.86rem; background: var(--surface-2); }
+    .feed .hd { color: var(--text); font-weight: 600; }
+    .feed a { color: var(--cyan); }
+    .feed .nt { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/play">Play</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.4rem;">
+    <div class="hero-eyebrow" id="event-eyebrow">The arcade / pops</div>
+    <h1>Claim your <span class="accent">pop</span>.</h1>
+    <p class="lead" style="margin-top: 0.3rem;">A quick collectible that marks you were here. Drop a clip if you made one - a video link and your handle - so The ZAO can see who built and shared. <span class="count" id="count-line"></span></p>
+  </header>
+
+  <div class="pop-card">
+    <label for="handle">Your Farcaster handle</label>
+    <input id="handle" type="text" placeholder="yourhandle" autocomplete="off" spellcheck="false" maxlength="32">
+    <label for="video">Clip link (optional)</label>
+    <input id="video" type="url" placeholder="https://... (a video or cast link)" autocomplete="off" spellcheck="false">
+    <label for="note">Note (optional)</label>
+    <textarea id="note" placeholder="What did you build or interact with?" maxlength="280"></textarea>
+    <button class="btn" id="claim" type="button">Claim my pop</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <h2 style="font-size: 1rem; margin: 1.6rem 0 0;">Recent</h2>
+  <ul class="feed" id="feed"><li class="nt">Loading...</li></ul>
+
+  <p style="margin-top: 1.4rem; font-size: 0.85rem;"><a href="/play">Play the arcade</a> - <a href="/#schedule">Upcoming sessions</a></p>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/play">Arcade</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/live.html">Live - What's On Now</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var EVENT = (params.get('event') || 'wip-2026-06-11').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40) || 'wip-2026-06-11';
+  var handleEl = document.getElementById('handle');
+  var videoEl = document.getElementById('video');
+  var noteEl = document.getElementById('note');
+  var statusEl = document.getElementById('status');
+
+  document.getElementById('event-eyebrow').textContent = 'Event: ' + EVENT;
+
+  function setStatus(t) { statusEl.textContent = t; }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (m) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+    });
+  }
+
+  function done(d) {
+    setStatus('Claimed as @' + (d.handle || 'you') + '. Thank you.' + (d.hasUgc ? ' Clip received.' : ''));
+    loadFeed();
+  }
+
+  var sending = false;
+  function claim() {
+    if (sending) return;
+    var payload = { event: EVENT, videoUrl: videoEl.value.trim(), note: noteEl.value.trim() };
+    if (window.ZABAL && window.ZABAL.claimPop) {
+      sending = true;
+      window.ZABAL.claimPop(payload).then(function (d) {
+        sending = false;
+        if (d && d.ok) { done(d); return; }
+        if (d && d.reason === 'not-in-miniapp') { webClaim(); return; }
+        setStatus('Could not claim (' + (d && d.reason || 'error') + ').');
+      }).catch(function () { sending = false; webClaim(); });
+      return;
+    }
+    webClaim();
+  }
+  function webClaim() {
+    var handle = handleEl.value.trim();
+    if (!handle) { setStatus('Enter your Farcaster handle to claim.'); return; }
+    sending = true;
+    fetch('/api/pops', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ event: EVENT, handle: handle, videoUrl: videoEl.value.trim(), note: noteEl.value.trim() })
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      sending = false;
+      if (d && d.ok) done(d);
+      else setStatus(d && d.configured === false ? 'Claims are offline right now.' : 'Could not claim.');
+    }).catch(function () { sending = false; setStatus('Network error.'); });
+  }
+
+  function loadFeed() {
+    fetch('/api/pops?event=' + encodeURIComponent(EVENT), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      document.getElementById('count-line').textContent = d && d.count ? d.count + ' claimed so far.' : '';
+      var feed = document.getElementById('feed');
+      if (!d || !d.items || !d.items.length) { feed.innerHTML = '<li class="nt">No claims yet. Be first.</li>'; return; }
+      feed.innerHTML = d.items.slice(0, 30).map(function (it) {
+        var v = it.videoUrl ? ' <a href="' + escapeHtml(it.videoUrl) + '" target="_blank" rel="noopener">clip</a>' : '';
+        var n = it.note ? ' <span class="nt">' + escapeHtml(it.note) + '</span>' : '';
+        return '<li><span class="hd">@' + escapeHtml(it.handle) + '</span>' + v + n + '</li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  setTimeout(function () {
+    try {
+      if (window.ZABAL && window.ZABAL.getUser) {
+        window.ZABAL.getUser().then(function (u) {
+          if (u && u.username && !handleEl.value) { handleEl.value = u.username; handleEl.setAttribute('readonly', 'readonly'); }
+        }).catch(function () {});
+      }
+    } catch (e) {}
+  }, 800);
+
+  document.getElementById('claim').addEventListener('click', claim);
+  loadFeed();
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

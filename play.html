@@ -127,6 +127,18 @@
         <p class="note">A bonding-curve drop on mint.club - starts cheap and ticks up with every collect. Collecting boosts your spot.</p>
         <a class="btn primary" id="mint-cta" href="MINT_CLUB_WIDGET_LINK" target="_blank" rel="noopener">Collect on mint.club</a>
       </div>
+
+      <div style="margin-top: 1.1rem; border-top: 1px solid var(--border); padding-top: 0.9rem;">
+        <h3 style="font-size: 0.95rem; margin: 0 0 0.2rem;">Live raffle</h3>
+        <p class="note">Collected the drop? Enter the raffle. <span id="raffle-count" style="font-family:'JetBrains Mono',monospace;color:var(--cyan);"></span></p>
+        <button class="btn primary" id="raffle-enter" type="button">Enter the raffle</button>
+        <div id="raffle-status" class="hint" style="margin-top: 0.4rem;"></div>
+        <div id="draw-wrap" hidden style="margin-top: 0.6rem;">
+          <button class="btn" id="raffle-draw" type="button">Draw a winner (host)</button>
+          <div id="winner" style="margin-top: 0.4rem; font-weight: 700; color: var(--gold);"></div>
+        </div>
+        <p class="hint" style="margin-top: 0.7rem;"><a href="/pops">Claim your pop + drop a clip</a></p>
+      </div>
     </aside>
   </div>
 
@@ -405,6 +417,50 @@
       }
     } catch (e) {}
   }, 800);
+
+  // ---- live raffle (collect the drop -> enter -> host draws) ----
+  var RAFFLE_EVENT = 'wip-2026-06-11';
+  function raffleStatus(t) { var e = document.getElementById('raffle-status'); if (e) e.textContent = t; }
+  function loadRaffle() {
+    fetch('/api/raffle?event=' + RAFFLE_EVENT, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      var c = document.getElementById('raffle-count'); if (c) c.textContent = d && d.count ? '(' + d.count + ' in)' : '';
+    }).catch(function () {});
+  }
+  function enterRaffle() {
+    if (window.ZABAL && window.ZABAL.enterRaffle) {
+      window.ZABAL.enterRaffle(RAFFLE_EVENT).then(function (d) {
+        if (d && d.ok) { raffleStatus('You are in (@' + (d.handle || 'you') + '). ' + d.count + ' entered.'); loadRaffle(); return; }
+        if (d && d.reason === 'not-in-miniapp') { webEnter(); return; }
+        raffleStatus('Could not enter (' + (d && d.reason || 'error') + ').');
+      }).catch(function () { webEnter(); });
+      return;
+    }
+    webEnter();
+  }
+  function webEnter() {
+    var handle = handleEl.value.trim();
+    if (!handle) { raffleStatus('Enter a handle above to join the raffle.'); return; }
+    fetch('/api/raffle', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ event: RAFFLE_EVENT, handle: handle })
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      if (d && d.ok) { raffleStatus('You are in. ' + d.count + ' entered.'); loadRaffle(); }
+      else raffleStatus(d && d.configured === false ? 'Raffle is offline right now.' : 'Could not enter.');
+    }).catch(function () { raffleStatus('Network error.'); });
+  }
+  function drawWinner() {
+    fetch('/api/raffle?event=' + RAFFLE_EVENT, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ event: RAFFLE_EVENT, action: 'draw' })
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      var w = document.getElementById('winner');
+      if (w) w.textContent = d && d.winner ? 'Winner: @' + d.winner + ' (of ' + d.count + ')' : 'No entries yet.';
+    }).catch(function () {});
+  }
+  var reBtn = document.getElementById('raffle-enter'); if (reBtn) reBtn.addEventListener('click', enterRaffle);
+  var rdBtn = document.getElementById('raffle-draw'); if (rdBtn) rdBtn.addEventListener('click', drawWinner);
+  if (new URLSearchParams(location.search).get('host')) { var dw = document.getElementById('draw-wrap'); if (dw) dw.hidden = false; }
+  loadRaffle();
 
   build();
   newGame();

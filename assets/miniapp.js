@@ -329,6 +329,46 @@ window.ZABAL.submitScore = async function submitScore(game, score) {
   }
 };
 
+// Enter the live raffle (verified). Inside a Mini App, POSTs to /api/raffle with a Quick
+// Auth JWT - one distinct entry per FID. Returns { ok, count } or { ok:false, reason }.
+window.ZABAL.enterRaffle = async function enterRaffle(event) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/raffle', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ event: event, action: 'enter' }),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    if (data && data.ok) window.ZABAL.haptic('medium');
+    return data && data.ok ? { ok: true, count: data.count, handle: data.handle } : { ok: false, reason: data.error || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
+// Claim a "pop" collectible + optional UGC (verified). Inside a Mini App, POSTs to
+// /api/pops with a Quick Auth JWT. payload: { event?, videoUrl?, note? }.
+window.ZABAL.claimPop = async function claimPop(payload) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/pops', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload || {}),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    if (data && data.ok) window.ZABAL.haptic('medium');
+    return data && data.ok ? { ok: true, count: data.count, handle: data.handle } : { ok: false, reason: data.error || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 // Submit a contribution to the ZABAL Bonfire pending queue (verified). Inside a Mini
 // App, POSTs to /api/bonfire-ask with a Quick Auth JWT; ZOE reviews + promotes it into
 // the canonical graph. Returns { ok, reason } so the form can react or ask the user to
