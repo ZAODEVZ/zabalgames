@@ -27,14 +27,10 @@ Standard footer to append to every description:
 - **Track:** builder
 - **Luma:** https://luma.com/9ylnwvyx (live - wired into workshop-leads.json)
 
-## 3. Adrian / diviflyy (Empire Builder) - Empire Builder V3
+## 3. Adrian / diviflyy (Empire Builder) - Empire Builder V3 - PUBLISHED
 - **When:** Tue Jun 16 2026, 12pm EST
 - **Track:** builder
-- **Title:** ZABAL WORKSHOP w/ diviflyy from Empire Builder
-- **Description:**
-  > A conversation with Adrian (diviflyy) of Empire Builder on Empire Builder V3 - the V3
-  > endpoints for an existing empire plus the leaderboard, and optionally deploying a new
-  > empire. Livestreamed and recorded.
+- **Luma:** https://luma.com/kaz6hnm4 (live - wired into workshop-leads.json)
 
 ## 4. Dr. Jake - Growth through foundations
 - **When:** Tue Jun 16 2026, 6pm EST
@@ -79,7 +75,7 @@ Paste each event URL here next to its number, and they get added to
 |---|---|---|---|
 | 1 | Adam Miller | Jun 12 | https://luma.com/l1c6sgzc |
 | 2 | Kenny | Jun 15 | https://luma.com/9ylnwvyx |
-| 3 | diviflyy | Jun 16 | |
+| 3 | diviflyy | Jun 16 | https://luma.com/kaz6hnm4 |
 | 4 | Dr. Jake | Jun 16 | |
 | 5 | Jub Jub | Jun 20 (8am) | |
 | 6 | Dan Singjoy | Jun 20 | |
