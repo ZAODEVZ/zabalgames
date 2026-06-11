@@ -43,22 +43,15 @@ Standard footer to append to every description:
 - **Track:** builder
 - **Luma:** https://luma.com/c621slze (live - wired into workshop-leads.json)
 
-## 6. Dan Singjoy (Eden Fractal) - Eden Fractal and the fractal ecosystem
+## 6. Dan Singjoy (Eden Fractal) - Eden Fractal and the fractal ecosystem - PUBLISHED
 - **When:** Sat Jun 20 2026, 12pm EST
 - **Track:** builder
-- **Title:** ZABAL WORKSHOP w/ Dan Singjoy from Eden Fractal
-- **Description:**
-  > Dan Singjoy on Eden Fractal and the wider fractal ecosystem - what fractals are, the
-  > history of fractal communities, and how it connects to ZAO Fractal. Live, recorded,
-  > with a chat after.
+- **Luma:** https://luma.com/tmcmw3o9 (live - wired into workshop-leads.json)
 
-## 7. Adrienne (GM Farcaster) - Building Warpee.eth
+## 7. Adrienne (GM Farcaster) - Building Warpee.eth - PUBLISHED
 - **When:** Tue Jun 30 2026, 11:30am EST
 - **Track:** builder
-- **Title:** ZABAL WORKSHOP w/ Adrienne from GM Farcaster
-- **Description:**
-  > Adrienne of GM Farcaster on building Warpee.eth, an AI agent for a media company on
-  > Farcaster. A live talk plus Q and A, recorded.
+- **Luma:** https://luma.com/jlv50mcu (live - wired into workshop-leads.json)
 
 ---
 
@@ -73,6 +66,6 @@ Paste each event URL here next to its number, and they get added to
 | 3 | diviflyy | Jun 16 | https://luma.com/kaz6hnm4 |
 | 4 | Dr. Jake | Jun 16 | https://luma.com/6svi31dy |
 | 5 | Jub Jub | Jun 20 (8am) | https://luma.com/c621slze |
-| 6 | Dan Singjoy | Jun 20 | |
-| 7 | Adrienne | Jun 30 | |
+| 6 | Dan Singjoy | Jun 20 | https://luma.com/tmcmw3o9 |
+| 7 | Adrienne | Jun 30 | https://luma.com/jlv50mcu |
 </content>

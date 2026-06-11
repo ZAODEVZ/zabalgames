@@ -249,7 +249,8 @@
       "confirmed_date": "2026-06-09",
       "color": "gold",
       "date": "2026-06-30",
-      "track": "builder"
+      "track": "builder",
+      "luma_url": "https://luma.com/jlv50mcu"
     },
     {
       "id": "019",
@@ -291,7 +292,8 @@
       "confirmed_date": "2026-06-11",
       "color": "zabal",
       "date": "2026-06-20",
-      "track": "builder"
+      "track": "builder",
+      "luma_url": "https://luma.com/tmcmw3o9"
     }
   ],
   "_schema": {
