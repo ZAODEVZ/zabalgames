@@ -14,6 +14,14 @@
     { "from": "Doda", "to": "DotA" },
     { "from": "Dota", "to": "DotA" },
     { "from": "Zal", "to": "Zaal", "note": "the bare misheard 'Zal'; the longer 'Zaal' is left intact by the word boundary" },
+    { "from": "ZALD", "to": "Zaal", "note": "mishearing of the host Zaal (Jose Cabrera session)" },
+    { "from": "Saul", "to": "Zaal", "note": "host mishearing (confirmed); Saul is also a real name - reviewer drops it if a guest is actually named Saul" },
+    { "from": "ZOC", "to": "COC Concertz", "note": "the ZAO music brand COC Concertz, heard as 'ZOC concerts'" },
+    { "from": "Zabo", "to": "ZABAL", "note": "ecosystem mishearing ('Zabo ecosystem'), confirmed ZABAL" },
+    { "from": "Joseph Goat", "to": "Joseph Goats", "note": "artist stage name (Jose Cabrera), confirmed plural" },
+    { "from": "George Bateson", "to": "Gregory Bateson", "note": "author of Steps to an Ecology of Mind" },
+    { "from": "The Ecology of the Mind", "to": "Steps to an Ecology of Mind", "note": "correct book title (Gregory Bateson)" },
+    { "from": "ASAS Finance", "to": "Azos Finance", "note": "the DeFi project Jose worked with" },
     { "from": "X402", "to": "x402" },
     { "from": "Berserker", "to": "Bearserker", "note": "yerbeARSERKER; standalone 'Berserker' is the mishearing" },
     { "from": "Zabalgames.com", "to": "Zabalgamez.com" },
@@ -25,6 +33,9 @@
     { "from": "Visible", "to": "The Zabal", "note": "pure mishearing of a phrase; only where context fits." },
     { "from": "ETH Bogota", "to": "ETH Boulder", "note": "event name - confirm which event was actually said." },
     { "from": "first to vibe", "to": "first-of-vibe", "note": "specific phrasing; confirm in context." },
-    { "from": "Saas", "to": "SAS", "note": "confirm - 'SaaS' is also a real term." }
+    { "from": "Saas", "to": "SAS", "note": "confirm - 'SaaS' is also a real term." },
+    { "from": "Sal", "to": "Zaal", "note": "host mishearing; very short with high false-positive risk - confirm each." },
+    { "from": "Izzy", "to": "EZ", "note": "ZAO member who runs Impact Concerts with Jose; also heard as 'Isi'. Session-specific - confirm." },
+    { "from": "Isi", "to": "EZ", "note": "same person as 'Izzy' - confirm." }
   ]
 }
