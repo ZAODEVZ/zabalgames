@@ -21,6 +21,46 @@ Legend: `x` done - `~` in progress / partial - blank = not yet - `n/a` not appli
 
 ---
 
+## Master chart - every guest
+
+One row per session, every stage. Detail + open work is in the sections below.
+
+| Guest / session | Date | Status | 1 Sched | 2 Book | 3 Luma | 4 OK'd | 5 Thumb | 6 Rec | 7 Tx | 8 YT | Missing |
+|---|---|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|---|
+| yerbearserker - Empire Builder V3 (Pt 1) | Jun 1 | delivered | x | x | x |  | x | x | x | x | OK'd log |
+| yerbearserker - Empire Builder Pt 2 | Jun 1 | delivered | x | x | x |  | x | x | x | x | OK'd log |
+| Joshua.eth + Plat0x - Bonfire | Jun 1 | delivered | x | x | x |  | x | x | x | x | OK'd log |
+| Ohnahji - Livestreaming | Jun 2 | delivered | x | x | x |  |  | x | x | x | thumbnail, OK'd |
+| Chris (Sopha) - Building Sopha | Jun 8 | delivered | x | x | x |  |  | x | x |  | thumbnail, YouTube, OK'd |
+| Carlos (Plat0x) - Bonfire fireside | Jun 6 | delivered | x | x | n/a |  |  | x | x |  | thumbnail, YouTube, OK'd |
+| Zaal - ZAO Fractal intro | Jun 1 | delivered | x | x | n/a |  |  | x | x |  | thumbnail, YouTube |
+| Joseph Goats - Owning your music | Jun 9 | delivered | x | x | x |  |  | x |  |  | transcript, thumbnail, YouTube, OK'd |
+| Will T of Web3 - KFMEDIA | Jun 10 | delivered | x | x | x |  |  | x |  |  | transcript, thumbnail, YouTube, OK'd |
+| Zaal - WIP Meetup | Jun 11 | scheduled | x | x | x |  |  |  |  |  | recording (today) |
+| Cassie - Farcaster protocol | Jun 12 | scheduled | x | x | x |  |  |  |  |  | recording |
+| Adam Miller - miDAO | Jun 12 5:45pm | scheduled | x | x |  |  |  |  |  |  | **Luma #1**, recording |
+| Kenny - POIDH | Jun 15 4pm | scheduled | x | x |  |  |  |  |  |  | **Luma #2**, recording |
+| diviflyy - Empire Builder V3 convo | Jun 16 12pm | scheduled | x | x |  |  |  |  |  |  | **Luma #3**, recording |
+| Dr. Jake - Growth through foundations | Jun 16 6pm | scheduled | x | x |  |  |  |  |  |  | **Luma #4**, recording |
+| Jub Jub - Farcaster Batches fireside | Jun 20 8am | scheduled | x | x |  |  |  |  |  |  | **Luma #5**, recording |
+| Dan Singjoy - Eden Fractal + ecosystem | Jun 20 12pm | scheduled | x | x |  |  |  |  |  |  | **Luma #6**, recording (prep doc ready) |
+| Adrienne - Warpee.eth | Jun 30 11:30am | scheduled | x | x |  |  |  |  |  |  | **Luma #7**, recording |
+| Tyler Stambaugh - Magnetiq | TBD | confirmed |  |  |  |  |  |  |  |  | date, then all downstream |
+| Thy Revolution - 2 sessions | TBD | confirmed |  |  |  |  |  |  |  |  | topics, dates, track |
+| Duo Do - Musician on Farcaster | TBD | confirmed |  |  |  |  |  |  |  |  | date |
+| Jonathan Colton - FounderCheck (2 talks) | TBD | confirmed |  |  |  |  |  |  |  |  | dates |
+| kmac.eth - Farcaster Snaps | TBD | confirmed |  |  |  |  |  |  |  |  | date |
+| Plat0x - Bonfire builder session | TBD | confirmed |  |  |  |  |  |  |  |  | date, Luma |
+| candytoybox | TBD | lined up |  |  |  |  |  |  |  |  | confirm topic/track/date |
+| hurric4n3ike (Ikechi) | TBD | lined up |  |  |  |  |  |  |  |  | confirm topic/track/date |
+| The Dude | TBD | lined up |  |  |  |  |  |  |  |  | confirm handle/topic/track |
+| saltoriuous | TBD | lined up |  |  |  |  |  |  |  |  | confirm handle/topic/track |
+| nickysap | TBD | lined up |  |  |  |  |  |  |  |  | confirm handle/topic/track |
+
+**Luma copy for the 7 marked above:** `docs/luma-events-2026-06-11.md` (copy-paste ready).
+
+---
+
 ## A. Delivered - in the media pipeline
 
 These ran; the work now is finishing edits, transcripts, thumbnails, and YouTube.
