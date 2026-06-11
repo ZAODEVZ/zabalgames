@@ -1,13 +1,22 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-10 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 8 recordings, newest first.
+Generated 2026-06-11 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 9 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
 Chronological feed of every recording: https://zabalgamez.com/streams
 
 ======================================================================
-[1] Owning your music as an independent artist
+[1] Building KFMEDIA
+workshop  |  track: creator  |  2026-06-10
+Presenter: Will T of Web3 (@willtofweb3), Kingfishers Media
+Watch: https://zabalgamez.com/recordings/7
+Recording: https://luma.com/za2b259z
+Summary: A creator-track session with Will T of Web3 on building KFMEDIA (Kingfishers Media) - what he is building, how he is doing it, and the lessons so far. Full recap, takeaways, and the word-for-word transcript will be added here once the recording is processed.
+Topics: Kingfishers Media, media on Farcaster, building in public, creator track, lessons learned
+
+======================================================================
+[2] Owning your music as an independent artist
 workshop  |  track: artist  |  2026-06-09
 Presenter: Joseph Goats
 Watch: https://zabalgamez.com/recordings/6
@@ -16,7 +25,7 @@ Summary: An artist-track session with Joseph Goats on owning your music as an in
 Topics: independent artists, owning your masters, Farcaster, direct-to-fan, music distribution, community
 
 ======================================================================
-[2] Building Sopha, and why curation is needed
+[3] Building Sopha, and why curation is needed
 workshop  |  track: builder  |  2026-06-08
 Presenter: Chris (chriscocreated) (@chriscocreated), Sopha
 Watch: https://zabalgamez.com/recordings/5
@@ -33,7 +42,7 @@ Takeaways:
 Topics: Sopha, curation, Farcaster clients, high signal, third place, build your own client, Neynar, mini apps and Snaps
 
 ======================================================================
-[3] Bonfires + a vibe-coding masterclass
+[4] Bonfires + a vibe-coding masterclass
 fireside  |  track: builder  |  2026-06-06
 Presenter: Carlos (Plat0x) (@at0x_eth), Bonfires
 Watch: https://zabalgamez.com/recordings/fireside/1
@@ -48,7 +57,7 @@ Takeaways:
 Topics: Bonfires, vibe coding, planning, sub-agents, documentation-as-code, types-first, knowledge graph, agents
 
 ======================================================================
-[4] Starting and growing your own livestream
+[5] Starting and growing your own livestream
 workshop  |  track: creator  |  2026-06-02
 Presenter: Ohnahji
 Watch: https://zabalgamez.com/recordings/4
@@ -65,7 +74,7 @@ Takeaways:
 Topics: livestreaming, consistency, Twitch, OBS / Restream / StreamYard, raids, shared chat, building your own bots, API keys + env vars, opsec
 
 ======================================================================
-[5] Bonfire and the ZABAL Bonfire bot
+[6] Bonfire and the ZABAL Bonfire bot
 workshop  |  track: builder  |  2026-06-01
 Presenter: Joshua.eth and Plat0x (@joshua.eth), Bonfire
 Watch: https://zabalgamez.com/recordings/3
@@ -81,7 +90,7 @@ Takeaways:
 Topics: Bonfire, shared memory, knowledge graph, agents, curation, hackathons, ZABAL Bonfire bot
 
 ======================================================================
-[6] Empire Builder Part 2: Building a Tokenless Empire Live
+[7] Empire Builder Part 2: Building a Tokenless Empire Live
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/2
@@ -97,7 +106,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, airdrops, raffles, treasury, distribution
 
 ======================================================================
-[7] Empire Builder V3
+[8] Empire Builder V3
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/1
@@ -113,7 +122,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, staking, Triple-A framework, distribution
 
 ======================================================================
-[8] ZAO Fractal Weekly Introduction Presentation
+[9] ZAO Fractal Weekly Introduction Presentation
 workshop  |  track: builder  |  2026-06-01
 Presenter: Zaal (@zaal), The ZAO
 Watch: https://zabalgamez.com/recordings/zao/1
