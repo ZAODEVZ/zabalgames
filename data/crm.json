@@ -1,7 +1,7 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
-  "generated": "2026-06-10",
-  "count": 38,
+  "generated": "2026-06-11",
+  "count": 39,
   "people": [
     {
       "name": "Adam Miller",
@@ -32,7 +32,7 @@
       ],
       "involvement": [
         "Empire Builder co-founder and lead engineer",
-        "Workshop: Empire Builder API workshop (June - date TBD)"
+        "Workshop: Empire Builder V3 (Tue Jun 16 2026)"
       ],
       "profile_url": "/p?handle=diviflyy",
       "tier": "Headliner",
@@ -163,6 +163,23 @@
       "profile_url": null,
       "tier": "Builder",
       "xp": 40
+    },
+    {
+      "name": "Dan Singjoy",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "zabal",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Eden Fractal and the fractal ecosystem (Sat Jun 20 2026)"
+      ],
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Darko (Runner)",
@@ -378,23 +395,25 @@
       "xp": 50
     },
     {
-      "name": "Kenny (POIDH)",
+      "name": "Kenny",
       "farcaster": "",
       "x": "",
       "github": "",
       "track": "builder",
-      "color": "",
+      "color": "gold",
       "roles": [
+        "Workshop lead",
         "Dream lead",
         "Batches builder"
       ],
       "involvement": [
+        "Workshop: Talking POIDH (Mon Jun 15 2026)",
         "On the Dream Leads board",
         "Farcaster Batches: POIDH (Day 1)"
       ],
       "profile_url": null,
-      "tier": "Builder",
-      "xp": 40
+      "tier": "Headliner",
+      "xp": 90
     },
     {
       "name": "kmac.eth",

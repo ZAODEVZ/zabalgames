@@ -12,6 +12,40 @@
   "_note": "Merged chronological feed across all streams. Curated seed entries below; scripts/pull-data-streams.mjs appends pulled entries (e.g. BCZ YapZ episodes) and dedupes by stream + timestamp + title. Sorted newest first.",
   "entries": [
     {
+      "stream": "zabal-games-workshops",
+      "timestamp": "2026-06-10",
+      "kind": "session",
+      "title": "Workshop - Will T of Web3 on building KFMEDIA",
+      "summary": "Creator-track session with Will T of Web3 on building KFMEDIA (Kingfishers Media) - what he is building, how he is doing it, and the lessons so far.",
+      "link": "/recordings/7"
+    },
+    {
+      "stream": "zabal-games-workshops",
+      "timestamp": "2026-06-09",
+      "kind": "session",
+      "title": "Workshop - Joseph Goats on owning your music",
+      "summary": "Artist-track session with Joseph Goats on owning your music as an independent artist on Farcaster - releasing your work, owning your masters and your audience, and turning listeners into a community that pays you directly.",
+      "link": "/recordings/6"
+    },
+    {
+      "stream": "zabal-games-workshops",
+      "timestamp": "2026-06-08",
+      "kind": "session",
+      "title": "Workshop - Chris on building Sopha and why curation is needed",
+      "summary": "Chris (chriscocreated), founder of Sopha, on the Farcaster client he built for depth and high signal, why curation is needed, and how anyone can build their own client on Farcaster's open data.",
+      "link": "/recordings/5",
+      "raw_ref": "data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md"
+    },
+    {
+      "stream": "zabal-games-workshops",
+      "timestamp": "2026-06-06",
+      "kind": "session",
+      "title": "Fireside - Bonfires and a vibe-coding masterclass with Carlos (Plat0x)",
+      "summary": "A live ZABAL Gamez fireside between Zaal and Carlos (Plat0x, the Bonfires developer): the Bonfires rewrite and ZAO's second Bonfire agent, plus a vibe-coding masterclass for the builder track (plan-then-goal, types-first prompting, documentation-as-code, sub-agents and adversarial agents).",
+      "link": "/recordings/fireside/1",
+      "raw_ref": "data/streams/zabal-games-workshops/raw/transcripts/2026-06-06-bonfire-fireside-carlos.md"
+    },
+    {
       "stream": "farcaster-batches",
       "timestamp": "2026-06-05",
       "kind": "episode",
@@ -36,6 +70,15 @@
       "raw_ref": "data/streams/farcaster-batches/raw/transcripts/2026-06-02-farcaster-batches.md"
     },
     {
+      "stream": "zabal-games-workshops",
+      "timestamp": "2026-06-02",
+      "kind": "session",
+      "title": "Workshop - Ohnahji on starting and growing your livestream",
+      "summary": "Day 2, first creator-track session. Ohnahji (Brian), co-founder of the Ohnahji community, on starting and growing a livestream - consistency is king, the tools, Twitch shared chat and raids, building your own bots, and streaming opsec.",
+      "link": "/recordings/4",
+      "raw_ref": "data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md"
+    },
+    {
       "stream": "farcaster-batches",
       "timestamp": "2026-06-01",
       "kind": "episode",
@@ -51,6 +94,24 @@
       "summary": "The first official ZABAL Gamez workshop. yerbearserker (Jordan Oram), co-founder of Empire Builder, walks builders through Empire Builder V3 and the message: do not launch a token until you are ready. Covers the Triple-A framework (Assemble, Affirm, Ascend), the tokenless Empire, leaderboards, boosters, staking and tactical generosity, then stands up a tokenless ZABAL Gamez Empire live.",
       "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
       "raw_ref": "data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md"
+    },
+    {
+      "stream": "zabal-games-workshops",
+      "timestamp": "2026-06-01",
+      "kind": "session",
+      "title": "Workshop 2 - Bonfire and the ZABAL Bonfire bot",
+      "summary": "Joshua.eth and Plat0x (Carlos) introduce Bonfire - a shared AI workspace where a group grows a shared memory as a knowledge graph - plus a live look at querying the ZABAL Bonfire bot.",
+      "link": "/recordings/3",
+      "raw_ref": "data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-bonfire-josh-plat0x.md"
+    },
+    {
+      "stream": "zabal-games-workshops",
+      "timestamp": "2026-06-01",
+      "kind": "session",
+      "title": "Workshop - Zaal on the ZAO Fractal",
+      "summary": "Zaal's weekly introduction to the ZAO Fractal, the first ZAO project you can build on - soulbound ZAO Respect earned weekly through peer consensus, the four objectives, and the Respect game.",
+      "link": "/recordings/zao/1",
+      "raw_ref": "data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md"
     },
     {
       "stream": "zabal-games-workshops",
