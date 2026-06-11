@@ -42,7 +42,7 @@ One row per session, every stage. Detail + open work is in the sections below.
 | Kenny - POIDH + ZABAL ad bounty | Jun 15 4pm | scheduled | x | x | x |  |  |  |  |  | recording |
 | diviflyy - Empire Builder V3 convo | Jun 16 12pm | scheduled | x | x | x |  |  |  |  |  | recording |
 | Dr. Jake - Growth through foundations | Jun 16 6pm | scheduled | x | x | x |  |  |  |  |  | recording |
-| Jub Jub - Farcaster Batches fireside | Jun 20 8am | scheduled | x | x |  |  |  |  |  |  | **Luma #5**, recording |
+| Jub Jub - Farcaster Batches fireside | Jun 20 8am | scheduled | x | x | x |  |  |  |  |  | recording |
 | Dan Singjoy - Eden Fractal + ecosystem | Jun 20 12pm | scheduled | x | x |  |  |  |  |  |  | **Luma #6**, recording (prep doc ready) |
 | Adrienne - Warpee.eth | Jun 30 11:30am | scheduled | x | x |  |  |  |  |  |  | **Luma #7**, recording |
 | Tyler Stambaugh - Magnetiq | TBD | confirmed |  |  |  |  |  |  |  |  | date, then all downstream |
@@ -100,7 +100,7 @@ On the live schedule; nothing to record yet. After each runs, move it to section
 | Kenny (POIDH) - POIDH + ZABAL ad bounty | Jun 15, 4pm | x | x | x |  | Luma live (9ylnwvyx); capture recording |
 | Adrian / diviflyy (Empire Builder) - Empire Builder V3 convo | Jun 16, 12pm | x | x | x |  | Luma live (kaz6hnm4); capture recording |
 | Dr. Jake - Growth through foundations | Jun 16, 6pm | x | x | x |  | Luma live (6svi31dy); capture recording |
-| Jub Jub - Farcaster Batches fireside (Space) | Jun 20, 8am | x | x |  |  | **Luma copy ready** (#5) |
+| Jub Jub - Farcaster Batches fireside (Space) | Jun 20, 8am | x | x | x |  | Luma live (c621slze); capture recording |
 | Dan Singjoy (Eden Fractal) - fractal ecosystem + history | Jun 20, 12pm | x | x |  |  | **Luma copy ready** (#6); prep: dan-singjoy-fractal-prep |
 | Adrienne (GM Farcaster) - Warpee.eth AI agent | Jun 30, 11:30am | x | x |  |  | **Luma copy ready** (#7) |
 

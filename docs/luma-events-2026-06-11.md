@@ -38,13 +38,10 @@ Standard footer to append to every description:
 - **Track:** creator
 - **Luma:** https://luma.com/6svi31dy (live - wired into workshop-leads.json)
 
-## 5. Jub Jub - Farcaster Batches and the people of Farcaster
+## 5. Jub Jub - Farcaster Batches fireside - PUBLISHED
 - **When:** Sat Jun 20 2026, 8am EST
 - **Track:** builder
-- **Title:** ZABAL GameZ FIRESIDE w/ Jub Jub
-- **Description:**
-  > A Farcaster Space fireside with Jub Jub on Farcaster Batches, and a conversation about
-  > the builders and the mentality of the people of Farcaster. Recorded.
+- **Luma:** https://luma.com/c621slze (live - wired into workshop-leads.json)
 
 ## 6. Dan Singjoy (Eden Fractal) - Eden Fractal and the fractal ecosystem
 - **When:** Sat Jun 20 2026, 12pm EST
@@ -75,7 +72,7 @@ Paste each event URL here next to its number, and they get added to
 | 2 | Kenny | Jun 15 | https://luma.com/9ylnwvyx |
 | 3 | diviflyy | Jun 16 | https://luma.com/kaz6hnm4 |
 | 4 | Dr. Jake | Jun 16 | https://luma.com/6svi31dy |
-| 5 | Jub Jub | Jun 20 (8am) | |
+| 5 | Jub Jub | Jun 20 (8am) | https://luma.com/c621slze |
 | 6 | Dan Singjoy | Jun 20 | |
 | 7 | Adrienne | Jun 30 | |
 </content>
