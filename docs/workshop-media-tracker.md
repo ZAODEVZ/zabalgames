@@ -157,8 +157,9 @@ Days 1, 2, 3, 5 transcripts are captured. GM Farcaster owns the videos.
 ## Cross-cutting gaps / next actions
 
 1. **Stage 4 (OK'd) is not tracked anywhere** - we have no record of guests signing off on
-   their cut/page. Start logging it (a date + "guest confirmed" note) when you share the
-   unlisted YouTube link, per the recordings workflow.
+   their cut/page. It is now a standard step in the speaker flow (step 5 in
+   `docs/workshop-host-onboarding.md`): share the unlisted YouTube cut, get the OK, then
+   publish. Log the date + "guest confirmed" here when it happens.
 2. **Two recaps are placeholders** - Joseph Goats (06) and Will T (07): process the
    recordings (transcript -> thumbnail -> YouTube), then fill the real recap.
 3. **Thumbnails missing** for Ohnahji (04), Sopha (05), fireside (F1), ZAO Fractal (Z1) -
