@@ -6,8 +6,8 @@ event URLs back and they get wired into `data/workshop-leads.json` (`luma_url`) 
 homepage schedule + top CTA RSVP button light up.
 
 **Title convention (keep consistent):** `ZABAL WORKSHOP w/ <name> from <org>` for
-workshops, `ZABAL FIRESIDE w/ <name> from <org>` for firesides/Spaces (drop "from <org>"
-when there is no org). Do not reword titles.
+workshops, `ZABAL GameZ FIRESIDE w/ <name> from <org>` for firesides/Spaces (drop "from
+<org>" when there is no org). Do not reword titles.
 
 Brand-clean: no emojis, no em dashes (hyphens only), no jargon. Each event is part of the
 ZABAL Gamez Season 1 calendar (`luma.com/zao`). Host: ZABAL Gamez. Times are EST.
@@ -41,7 +41,7 @@ Standard footer to append to every description:
 ## 5. Jub Jub - Farcaster Batches and the people of Farcaster
 - **When:** Sat Jun 20 2026, 8am EST
 - **Track:** builder
-- **Title:** ZABAL FIRESIDE w/ Jub Jub
+- **Title:** ZABAL GameZ FIRESIDE w/ Jub Jub
 - **Description:**
   > A Farcaster Space fireside with Jub Jub on Farcaster Batches, and a conversation about
   > the builders and the mentality of the people of Farcaster. Recorded.
