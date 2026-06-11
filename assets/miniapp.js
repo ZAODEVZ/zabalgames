@@ -314,7 +314,7 @@ window.ZABAL.buildVote = async function buildVote(repo) {
 window.ZABAL.submitScore = async function submitScore(game, score) {
   try {
     const ctx = await getContext();
-    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    if (!ctx || !sdk || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
     const res = await sdk.quickAuth.fetch('/api/game', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -364,6 +364,26 @@ window.ZABAL.claimPop = async function claimPop(payload) {
     const data = await res.json().catch(() => ({}));
     if (data && data.ok) window.ZABAL.haptic('medium');
     return data && data.ok ? { ok: true, count: data.count, handle: data.handle } : { ok: false, reason: data.error || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
+// Credit a referrer (verified). Called on landing when a share link carries ?ref=<handle>;
+// the server credits the referrer once per FID, no self-referral. Returns { ok, credited }.
+window.ZABAL.refer = async function refer(ref) {
+  try {
+    if (!ref) return { ok: false, reason: 'no-ref' };
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/ref', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ref: ref }),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    return data && data.ok ? { ok: true, credited: !!data.credited } : { ok: false, reason: data.error || 'server' };
   } catch (e) {
     return { ok: false, reason: 'error' };
   }

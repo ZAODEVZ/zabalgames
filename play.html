@@ -365,16 +365,28 @@
       window.ZABAL.submitScore('zao2048', score).then(function (d) {
         submitting = false;
         if (d && d.ok) { setStatus('Submitted as @' + (d.handle || 'you') + '. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); tryAddApp(); return; }
-        if (d && d.reason === 'not-in-miniapp') { webSubmit(silent); return; }
+        if (d && d.reason === 'not-in-miniapp') { identitySubmit(silent); return; }
         setStatus('Could not submit (' + (d && d.reason || 'error') + ').');
-      }).catch(function () { submitting = false; webSubmit(silent); });
+      }).catch(function () { submitting = false; identitySubmit(silent); });
       return;
     }
-    webSubmit(silent);
+    identitySubmit(silent);
   }
-  function webSubmit(silent) {
-    var handle = handleEl.value.trim();
-    if (!handle) { if (!silent) setStatus('Enter a Farcaster handle to get on the board.'); return; }
+  // No verified path available - submit with the known Mini App handle if we have one,
+  // and only ask the user to type a handle as a true last resort (plain web visitor).
+  function identitySubmit(silent) {
+    var h = handleEl.value.trim();
+    if (h) { webSubmit(h); return; }
+    if (window.ZABAL && window.ZABAL.getUser) {
+      window.ZABAL.getUser().then(function (u) {
+        if (u && u.username) { handleEl.value = u.username; webSubmit(u.username); }
+        else if (!silent) setStatus('Enter a Farcaster handle to get on the board.');
+      }).catch(function () { if (!silent) setStatus('Enter a Farcaster handle to get on the board.'); });
+      return;
+    }
+    if (!silent) setStatus('Enter a Farcaster handle to get on the board.');
+  }
+  function webSubmit(handle) {
     submitting = true;
     fetch('/api/game', {
       method: 'POST',
@@ -383,7 +395,7 @@
     }).then(function (r) { return r.json(); }).then(function (d) {
       submitting = false;
       if (d && d.ok) {
-        setStatus('Submitted. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : ''));
+        setStatus('Submitted as @' + handle + '. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : ''));
         loadBoard();
         tryAddApp();
       } else {
@@ -439,16 +451,19 @@
     if (promptedAdd) return; promptedAdd = true;
     try { if (window.ZABAL && window.ZABAL.addApp) window.ZABAL.addApp(); } catch (e) {}
   }
-  // Brag your score into /zabal (Farcaster) or X, with the play link embedded.
+  // Brag your score into /zabal (Farcaster) or X, with a referral-tagged play link.
+  var shareRef = '';
+  function playUrl() { return 'https://zabalgamez.com/play' + (shareRef ? '?ref=' + encodeURIComponent(shareRef) : ''); }
   function shareScore(platform) {
     var tile = bestTileEl.textContent || 'ZAO';
     var text = "I climbed to " + tile + " on ZAO 2048 - " + score + " points. How far through the ZABAL Gamez workshop season can you get?";
+    var url = playUrl();
     if (window.ZABAL && window.ZABAL.share) {
-      window.ZABAL.share({ platform: platform, text: text, url: 'https://zabalgamez.com/play', target: 'play-score-' + platform });
+      window.ZABAL.share({ platform: platform, text: text, url: url, target: 'play-score-' + platform });
     } else {
       var u = platform === 'x'
-        ? 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text + ' https://zabalgamez.com/play')
-        : 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent('https://zabalgamez.com/play');
+        ? 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text + ' ' + url)
+        : 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url);
       window.open(u, '_blank', 'noopener');
     }
   }
@@ -457,19 +472,22 @@
   document.getElementById('share-fc').addEventListener('click', function () { shareScore('farcaster'); });
   document.getElementById('share-x').addEventListener('click', function () { shareScore('x'); });
 
-  // prefill handle from the Mini App user if available
+  // prefill handle from the Mini App user, and credit a referrer if this is a ?ref= link
   setTimeout(function () {
     try {
       if (window.ZABAL && window.ZABAL.getUser) {
         window.ZABAL.getUser().then(function (u) {
           if (u && u.username) {
             authed = true;
+            shareRef = u.username;
             handleEl.value = u.username;
             handleEl.setAttribute('readonly', 'readonly');
             setStatus('Playing as @' + u.username + ' - your score auto-submits, no typing.');
           }
         }).catch(function () {});
       }
+      var ref = new URLSearchParams(location.search).get('ref');
+      if (ref && window.ZABAL && window.ZABAL.refer) window.ZABAL.refer(ref);
     } catch (e) {}
   }, 800);
 
