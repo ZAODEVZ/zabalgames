@@ -56,10 +56,13 @@ On the live schedule; nothing to record yet. After each runs, move it to section
 |---|---|:--:|:--:|:--:|:--:|---|
 | Zaal - WIP Meetup (ecosystem tour, ZAO Fractals) | Jun 11 | x | x | x |  | runs today - capture the recording |
 | Cassie (Quilibrium) - Farcaster protocol build-along | Jun 12 | x | x | x |  | confirm + capture |
-| Adam Miller (MiDAO) - talking miDAO | Jun 12 | x | x |  |  | **publish a Luma event** |
-| Dr. Jake - Growth through foundations | Jun 16 | x | x |  |  | **publish a Luma event** |
-| Jub Jub - Farcaster Batches + the people of Farcaster | Jun 20 | x | x |  |  | **publish a Luma event** |
-| Adrienne (GM Farcaster) - Warpee.eth AI agent | Jun 30 | x | x |  |  | **publish a Luma event** |
+| Adam Miller (MiDAO) - talking miDAO | Jun 12, 5:45pm | x | x |  |  | **Luma copy ready** (luma-events-2026-06-11 #1) |
+| Kenny (POIDH) - talking POIDH | Jun 15, 4pm | x | x |  |  | **Luma copy ready** (#2) |
+| Adrian / diviflyy (Empire Builder) - Empire Builder V3 convo | Jun 16, 12pm | x | x |  |  | **Luma copy ready** (#3) |
+| Dr. Jake - Growth through foundations | Jun 16, 6pm | x | x |  |  | **Luma copy ready** (#4) |
+| Jub Jub - Farcaster Batches fireside (Space) | Jun 20, 8am | x | x |  |  | **Luma copy ready** (#5) |
+| Dan Singjoy (Eden Fractal) - fractal ecosystem + history | Jun 20, 12pm | x | x |  |  | **Luma copy ready** (#6); prep: dan-singjoy-fractal-prep |
+| Adrienne (GM Farcaster) - Warpee.eth AI agent | Jun 30, 11:30am | x | x |  |  | **Luma copy ready** (#7) |
 
 ---
 
@@ -72,7 +75,6 @@ publish a Luma and they move to section B. DM copy: `docs/warm-dm-kit-2026-06-02
 |---|---|---|---|
 | Tyler Stambaugh (Magnetiq) | builder | Magnetiq, the workshop library platform | "any day in June" - send Cal link to lock |
 | Thy Revolution (The ZAO) | TBD | 2 sessions, topics TBD | needs topics + dates + track |
-| Adrian (@diviflyy, Empire Builder) | builder | Empire Builder API workshop, V3 endpoints | lock a date |
 | Duo Do (@duodomusica) | artist | Musician on Farcaster, road to Farcon | lock a date (was first week of June) |
 | Jonathan Colton (FounderCheck) | creator | FounderCheck + propagating work on Farcaster (2 talks) | lock dates |
 | kmac.eth | builder | Farcaster Snaps, building + shipping | lock a date |
@@ -86,7 +88,7 @@ Not yet in `workshop-leads.json`. Confirm topic, track, and date before they mov
 DM copy: `docs/warm-dm-kit-2026-06-02.md` (B).
 
 **Lined up (mentioned, details TBD):** candytoybox - hurric4n3ike (Ikechi, WaveWarZ/distribution) -
-The Dude - saltoriuous (Sagittarius?) - Kenny - nickysap
+The Dude - saltoriuous (Sagittarius?) - nickysap _(Kenny now dated, see section B)_
 
 **Prospects (want to invite):** Arthur (Neynar, Base/EVM) - Sam (WaveWarZ-Base, agentic) -
 DCoopOfficial (Coop Records, music/label) - Riley Beans

@@ -77,13 +77,14 @@
       "name": "Adrian",
       "org": "Empire Builder",
       "handle": "@diviflyy",
-      "topic": "Empire Builder API workshop - V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.",
-      "format": "recorded API workshop",
-      "when": "June - date TBD",
+      "topic": "Empire Builder V3 - a conversation on the V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.",
+      "format": "Conversation, livestreamed and recorded",
+      "when": "Tue Jun 16 2026, 12pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-05-26",
       "color": "cyan",
-      "track": "builder"
+      "track": "builder",
+      "date": "2026-06-16"
     },
     {
       "id": "007",
@@ -225,8 +226,8 @@
       "id": "017",
       "name": "Jub Jub",
       "topic": "Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster.",
-      "format": "Farcaster Space, recorded",
-      "when": "Sat Jun 20 2026, 9am EST",
+      "format": "Farcaster Space fireside, recorded",
+      "when": "Sat Jun 20 2026, 8am EST",
       "status": "confirmed",
       "confirmed_date": "2026-06-09",
       "color": "orange",
@@ -260,6 +261,32 @@
       "color": "pink",
       "date": "2026-06-16",
       "track": "creator"
+    },
+    {
+      "id": "020",
+      "name": "Kenny",
+      "org": "POIDH",
+      "topic": "Talking POIDH - the bounty platform Kenny built, how it works and how to use it.",
+      "format": "Livestreamed and recorded",
+      "when": "Mon Jun 15 2026, 4pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-11",
+      "color": "gold",
+      "date": "2026-06-15",
+      "track": "builder"
+    },
+    {
+      "id": "021",
+      "name": "Dan Singjoy",
+      "org": "Eden Fractal",
+      "topic": "Eden Fractal and the fractal ecosystem - what fractals are, the history of fractal communities, and how it connects to ZAO Fractal.",
+      "format": "Live, recorded",
+      "when": "Sat Jun 20 2026, 12pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-11",
+      "color": "zabal",
+      "date": "2026-06-20",
+      "track": "builder"
     }
   ],
   "_schema": {
