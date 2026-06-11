@@ -66,6 +66,11 @@
     <p class="lead" style="margin-top: 0.3rem;">A quick collectible that marks you were here. Drop a clip if you made one - a video link and your handle - so The ZAO can see who built and shared. <span class="count" id="count-line"></span></p>
   </header>
 
+  <div class="zg-share-row">
+    <button class="zg-share primary" type="button" data-platform="farcaster" data-text="I claimed my ZABAL Gamez pop. The ZAO's build event - come grab yours." data-url="https://zabalgamez.com/pops">Share on Farcaster</button>
+    <button class="zg-share" type="button" data-platform="x" data-text="I claimed my ZABAL Gamez pop. The ZAO's build event - come grab yours." data-url="https://zabalgamez.com/pops">Share on X</button>
+  </div>
+
   <div class="pop-card">
     <label for="handle">Your Farcaster handle</label>
     <input id="handle" type="text" placeholder="yourhandle" autocomplete="off" spellcheck="false" maxlength="32">
@@ -194,6 +199,7 @@
 })();
 </script>
 
+<script defer src="/assets/share.js"></script>
 <script defer src="/assets/site-nav.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
