@@ -22,7 +22,7 @@ Standard footer to append to every description:
 ## 2. Kenny (POIDH) - Talking POIDH + the ZABAL ad bounty
 - **When:** Mon Jun 15 2026, 4pm EST
 - **Track:** builder
-- **Title:** Talking POIDH with Kenny, and finalizing the ZABAL ad bounty
+- **Title:** ZABAL WORKSHOP w/ Kenny from poidh
 - **Description:**
   > Kenny walks through POIDH, the bounty platform he built - how it works and how to use
   > it to get things made. We will also wrap the Best ZABAL Gamez Ad bounty and announce a
