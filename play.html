@@ -98,7 +98,7 @@
   <div class="play-wrap">
     <section>
       <h2 style="margin: 0.2rem 0 0.2rem; font-size: 1.1rem;">ZAO 2048</h2>
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0 0 0.4rem;">Merge matching tiles to build up the ZAO ecosystem - from ZAO all the way to THE ZAO. Arrow keys, WASD, or swipe.</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0 0 0.4rem;">Merge matching tiles to climb the ZABAL Gamez workshops in order - from ZAO all the way to THE ZAO. How far through the season can you get? Arrow keys, WASD, or swipe.</p>
 
       <div class="hud">
         <div class="box"><div class="lbl">Score</div><div class="val" id="score">0</div></div>
@@ -111,6 +111,8 @@
       <div class="handle-row">
         <input id="handle" type="text" placeholder="your Farcaster handle" autocomplete="off" spellcheck="false" maxlength="32" aria-label="Farcaster handle">
         <button class="btn primary" id="submit" type="button">Submit score</button>
+        <button class="btn" id="share-fc" type="button">Share score</button>
+        <button class="btn" id="share-x" type="button">Share on X</button>
       </div>
       <div class="status" id="status"></div>
       <p class="hint">Tip: keep your highest tile in a corner. Submit any time - your best score today is what counts.</p>
@@ -192,16 +194,16 @@
   var statusEl = document.getElementById('status');
   var handleEl = document.getElementById('handle');
 
-  // value -> tile: ZAO brands, then ZAO friends (PFP resolved live), up to THE ZAO (logo).
+  // value -> tile: the ZABAL Gamez workshops in the order they happened, climbing to THE ZAO.
   var TILES = {
     2:    { label: 'ZAO',           color: '#1b2733' },
     4:    { label: '$Zabal',        color: '#243447' },
     8:    { label: 'yerbearserker', color: '#2b4a6f', handle: 'yerbearserker' },
-    16:   { label: 'Plat0x',        color: '#1f6f8b', handle: 'plat0x' },
-    32:   { label: 'Joshua',        color: '#2a9d8f', handle: 'joshuaeth' },
+    16:   { label: 'Joshua',        color: '#1f6f8b', handle: 'joshuaeth' },
+    32:   { label: 'Plat0x',        color: '#2a9d8f', handle: 'plat0x' },
     64:   { label: 'Ohnahji',       color: '#3a86ff', handle: 'ohnahji' },
     128:  { label: 'Chris',         color: '#8338ec', handle: 'chriscocreated' },
-    256:  { label: 'Cassie',        color: '#b5179e', handle: 'cassie' },
+    256:  { label: 'Joseph Goats',  color: '#b5179e', handle: 'josephgoats' },
     512:  { label: 'Will T',        color: '#f72585', handle: 'willtofweb3' },
     1024: { label: 'ZABAL GAMEZ',   color: '#ff8500' },
     2048: { label: 'THE ZAO',       color: '#ffd60a', img: '/assets/logo-gamez.png' }
@@ -322,6 +324,7 @@
     }
     if (moved) {
       score += gained;
+      if (gained && window.ZABAL && window.ZABAL.haptic) window.ZABAL.haptic('light');
       addRandom();
       render();
       if (isOver()) {
@@ -361,7 +364,7 @@
       submitting = true;
       window.ZABAL.submitScore('zao2048', score).then(function (d) {
         submitting = false;
-        if (d && d.ok) { setStatus('Submitted as @' + (d.handle || 'you') + '. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); return; }
+        if (d && d.ok) { setStatus('Submitted as @' + (d.handle || 'you') + '. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); tryAddApp(); return; }
         if (d && d.reason === 'not-in-miniapp') { webSubmit(silent); return; }
         setStatus('Could not submit (' + (d && d.reason || 'error') + ').');
       }).catch(function () { submitting = false; webSubmit(silent); });
@@ -382,6 +385,7 @@
       if (d && d.ok) {
         setStatus('Submitted. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : ''));
         loadBoard();
+        tryAddApp();
       } else {
         setStatus(d && d.configured === false ? 'Board is offline right now.' : 'Could not submit that score.');
       }
@@ -397,13 +401,15 @@
         return;
       }
       list.innerHTML = d.entries.slice(0, 10).map(function (e) {
-        return '<li><span class="rk">' + e.rank + '</span><span class="hd">' + escapeHtml(e.handle) + '</span><span class="sc">' + e.score + '</span></li>';
+        return '<li><span class="rk">' + e.rank + '</span><a class="hd" style="color:inherit;text-decoration:none;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + escapeHtml(e.handle) + '</a><span class="sc">' + e.score + '</span></li>';
       }).join('');
     }).catch(function () {});
   }
 
   // input: keyboard
   window.addEventListener('keydown', function (ev) {
+    var tgt = ev.target;
+    if (tgt && (tgt.tagName === 'INPUT' || tgt.tagName === 'TEXTAREA' || tgt.isContentEditable)) return;
     var k = ev.key;
     var dir = null;
     if (k === 'ArrowLeft' || k === 'a' || k === 'A') dir = 'left';
@@ -427,8 +433,29 @@
     else move(dy > 0 ? 'down' : 'up');
   }, { passive: true });
 
+  // Prompt to add the Mini App after the first submit (Mini App only; no-ops elsewhere).
+  var promptedAdd = false;
+  function tryAddApp() {
+    if (promptedAdd) return; promptedAdd = true;
+    try { if (window.ZABAL && window.ZABAL.addApp) window.ZABAL.addApp(); } catch (e) {}
+  }
+  // Brag your score into /zabal (Farcaster) or X, with the play link embedded.
+  function shareScore(platform) {
+    var tile = bestTileEl.textContent || 'ZAO';
+    var text = "I climbed to " + tile + " on ZAO 2048 - " + score + " points. How far through the ZABAL Gamez workshop season can you get?";
+    if (window.ZABAL && window.ZABAL.share) {
+      window.ZABAL.share({ platform: platform, text: text, url: 'https://zabalgamez.com/play', target: 'play-score-' + platform });
+    } else {
+      var u = platform === 'x'
+        ? 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text + ' https://zabalgamez.com/play')
+        : 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent('https://zabalgamez.com/play');
+      window.open(u, '_blank', 'noopener');
+    }
+  }
   document.getElementById('new-game').addEventListener('click', newGame);
   document.getElementById('submit').addEventListener('click', function () { doSubmit(false); });
+  document.getElementById('share-fc').addEventListener('click', function () { shareScore('farcaster'); });
+  document.getElementById('share-x').addEventListener('click', function () { shareScore('x'); });
 
   // prefill handle from the Mini App user if available
   setTimeout(function () {
