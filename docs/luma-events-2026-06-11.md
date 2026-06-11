@@ -14,21 +14,19 @@ Standard footer to append to every description:
 
 ---
 
-## 1. Adam Miller (MiDAO) - Talking miDAO
+## 1. Adam Miller (MiDAO) - Talking miDAO - PUBLISHED
 - **When:** Fri Jun 12 2026, 5:45-6:15pm EST
 - **Track:** builder
-- **Title:** Talking miDAO with Adam Miller
-- **Description:**
-  > Adam Miller on miDAO - what he is building, and how digital creators and communities
-  > can use it. A 30-minute session, livestreamed and recorded.
+- **Luma:** https://luma.com/l1c6sgzc (live - wired into workshop-leads.json)
 
-## 2. Kenny (POIDH) - Talking POIDH
+## 2. Kenny (POIDH) - Talking POIDH + the ZABAL ad bounty
 - **When:** Mon Jun 15 2026, 4pm EST
 - **Track:** builder
-- **Title:** Talking POIDH with Kenny
+- **Title:** Talking POIDH with Kenny, and finalizing the ZABAL ad bounty
 - **Description:**
   > Kenny walks through POIDH, the bounty platform he built - how it works and how to use
-  > it to get things made. Livestreamed and recorded.
+  > it to get things made. We will also wrap the Best ZABAL Gamez Ad bounty and announce a
+  > fresh POIDH bounty running for the next two weeks. Livestreamed and recorded.
 
 ## 3. Adrian / diviflyy (Empire Builder) - Empire Builder V3
 - **When:** Tue Jun 16 2026, 12pm EST
@@ -80,7 +78,7 @@ Paste each event URL here next to its number, and they get added to
 
 | # | Guest | Date | Luma URL |
 |---|---|---|---|
-| 1 | Adam Miller | Jun 12 | |
+| 1 | Adam Miller | Jun 12 | https://luma.com/l1c6sgzc |
 | 2 | Kenny | Jun 15 | |
 | 3 | diviflyy | Jun 16 | |
 | 4 | Dr. Jake | Jun 16 | |

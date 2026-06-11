@@ -190,7 +190,8 @@
       "confirmed_date": "2026-06-07",
       "color": "pink",
       "track": "builder",
-      "date": "2026-06-12"
+      "date": "2026-06-12",
+      "luma_url": "https://luma.com/l1c6sgzc"
     },
     {
       "id": "015",
@@ -266,7 +267,7 @@
       "id": "020",
       "name": "Kenny",
       "org": "POIDH",
-      "topic": "Talking POIDH - the bounty platform Kenny built, how it works and how to use it.",
+      "topic": "Talking POIDH - the bounty platform Kenny built and how to use it, plus finalizing the Best ZABAL Gamez Ad bounty and kicking off a new two-week bounty.",
       "format": "Livestreamed and recorded",
       "when": "Mon Jun 15 2026, 4pm EST",
       "status": "confirmed",
