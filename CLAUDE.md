@@ -115,14 +115,16 @@ owner-action subset.
    arrive with context.
 3. Announcements (yerbearserker first-workshop post + Day 0) - ON HOLD per the owner.
    Reference asset: BCZ YapZ Episode 7 features yerbearserker / Empire Builder.
-4. Workshop roster - fill `docs/workshop-roster.md` and lock ~4-5 more June sessions
-   (target ~8). Topic ideas per track in `docs/workshop-topics-by-track.md`. Confirmed +
-   scheduled leads get mirrored into `data/workshop-leads.json` (drives the schedule).
+4. Workshop roster - DONE for June: 8 delivered + 9 scheduled (all dated, all with a Luma),
+   well past the ~8 target. Funnel is `docs/workshop-roster.md`; live production status is
+   `docs/workshop-media-tracker.md` + the internal `/status` page. Remaining near-term work is
+   production (transcripts/thumbnails/YouTube/guest-OK'd), not recruiting. Six confirmed leads
+   still need a date (Tyler, Thy Revolution, Duo Do, Jonathan Colton, kmac.eth, Plat0x).
 5. Vercel Web Analytics - the `/_vercel/insights/script.js` tag is on every page; enable
    Web Analytics in the Vercel dashboard (Analytics tab) to start collecting.
-6. POIDH bounty - "Best ad for ZABAL Gamez", $25, ends Jun 14. Paste-ready copy +
-   promo cast in `docs/poidh-bounty-best-ad.md`. Post on POIDH; optionally add a homepage
-   callout once the bounty link exists.
+6. POIDH bounty - "Best ad for ZABAL Gamez", $25, ends Jun 14. Being wrapped + a new
+   two-week bounty launched live in Kenny's POIDH session (Mon Jun 15, 4pm EST). Paste-ready
+   copy + promo cast in `docs/poidh-bounty-best-ad.md`.
 
 ## Live links (do not break)
 - Luma calendar: https://luma.com/zao | yerbearserker Jun 1 RSVP: https://luma.com/7nfside5

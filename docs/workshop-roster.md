@@ -18,18 +18,37 @@ silence, once more after ~4, then let it rest.
 
 ---
 
+> Live production status (the dot grid) is `docs/workshop-media-tracker.md` and the internal
+> `/status` page. This roster is the outreach funnel. As of 2026-06-11.
+
 ## Delivered (sessions that ran)
 
+All have a recap page + transcript. Production state (thumbnail/YouTube/OK'd) is on `/status`.
+
+| Lead | Track | When | Topic | Page |
+|---|---|---|---|---|
+| yerbearserker (Empire Builder) | builder | Mon Jun 1 | Empire Builder V3 + live build (Pt 1 & 2) | /recordings/1, /2 |
+| Joshua.eth + Plat0x (Bonfire) | builder | Mon Jun 1 | Bonfire + the ZABAL Bonfire bot | /recordings/3 |
+| Zaal (The ZAO) | builder | Mon Jun 1 | ZAO Fractal weekly intro | /recordings/zao/1 |
+| Ohnahji | creator | Tue Jun 2 | Starting + growing your own livestream | /recordings/4 |
+| Carlos / Plat0x (Bonfires) | builder | Fri Jun 6 | Bonfires + a vibe-coding masterclass (fireside) | /recordings/fireside/1 |
+| Chris (Sopha) | builder | Mon Jun 8 | Building Sopha, and why curation is needed | /recordings/5 |
+| Joseph Goats | artist | Tue Jun 9 | Owning your music as an independent artist | /recordings/6 |
+| Will T of Web3 | creator | Wed Jun 10 | Building KFMEDIA | /recordings/7 |
+
+## Scheduled (date locked - on the live schedule, all have a Luma)
+
 | Lead | Track | When | Topic |
 |---|---|---|---|
-| yerbearserker (Jordan Oram, Empire Builder) | builder | Mon Jun 1, 6-7am EST | Empire Builder V3 - leaderboards, Empires, token mechanics (transcript in repo) |
-| Joshua.eth + Plat0x (Bonfire) | builder | Mon Jun 1, 5-6pm EST | Bonfire + the ZABAL Bonfire bot (transcript in repo) |
-
-## Scheduled (date locked - on the live schedule)
-
-| Lead | Track | When | Topic |
-|---|---|---|---|
-| Ohnahji | creator | Tue Jun 2, 5-6pm EST | His journey in live streaming - how to start and grow your own stream |
+| Zaal | builder | Thu Jun 11, 3pm EST | WIP Meetup - ecosystem tour, ZAO Fractals |
+| Cassie (Quilibrium) | builder | Fri Jun 12, 7:30pm EST | The Farcaster protocol, ins and outs - build-along |
+| Adam Miller (MiDAO) | builder | Fri Jun 12, 5:45pm EST | Talking miDAO |
+| Kenny (POIDH) | builder | Mon Jun 15, 4pm EST | POIDH + finalizing the ZABAL ad bounty |
+| Adrian / diviflyy (Empire Builder) | builder | Tue Jun 16, 12pm EST | Empire Builder V3 convo |
+| Dr. Jake | creator | Tue Jun 16, 6pm EST | Growth through foundations |
+| Jub Jub | builder | Sat Jun 20, 8am EST | Farcaster Batches fireside (Space) |
+| Dan Singjoy (Eden Fractal) | builder | Sat Jun 20, 12pm EST | Eden Fractal + the fractal ecosystem |
+| Adrienne (GM Farcaster) | builder | Tue Jun 30, 11:30am EST | Building Warpee.eth |
 
 ## Confirmed - needs a date (in workshop-leads.json)
 
@@ -39,12 +58,10 @@ DM copy for this batch: `docs/warm-dm-kit-2026-06-02.md` section A.
 |---|---|---|---|---|---|---|
 | Tyler Stambaugh (Magnetiq) | builder | Magnetiq - the workshop library platform | "any day in June" - send the Cal link to lock |  |  |  |
 | Thy Revolution (The ZAO) | TBD | 2 sessions, topics TBD | Needs topics + dates + track |  |  |  |
-| Adrian (@diviflyy, Empire Builder) | builder | Empire Builder API workshop - V3 endpoints | Lock a date |  |  |  |
-| Duo Do (@duodomusica) | artist | Musician on Farcaster, road to Farcon | First week of June - lock date |  |  |  |
+| Duo Do (@duodomusica) | artist | Musician on Farcaster, road to Farcon | Lock a date (was first week of June) |  |  |  |
 | Jonathan Colton (@jonathancolton, FounderCheck) | creator | FounderCheck (founder validation) + propagating work on Farcaster | 2 talks - lock dates |  |  |  |
 | kmac.eth | builder | Farcaster Snaps - building + shipping interactive Snaps | Lock a date |  |  |  |
-| Cassie (@cassie) | TBD | Topic TBD (recruited by kmac) | Confirm topic + date |  |  |  |
-| Plat0x (@plat0x) | builder | His own Bonfire builder session - building on the graph | "later this week" - lock date + Luma |  |  |  |
+| Plat0x (@at0x_eth) | builder | His own Bonfire builder session - building on the graph | Lock date + Luma |  |  |  |
 
 ## Lined up - confirm details (mentioned, not yet in workshop-leads.json)
 
@@ -56,7 +73,6 @@ DM copy for this batch: `docs/warm-dm-kit-2026-06-02.md` section B.
 | hurric4n3ike (Ikechi) | creator? | WaveWarZ / distribution - confirm topic + track |  |  |  |
 | The Dude | TBD | Confirm handle, topic, track |  |  |  |
 | saltoriuous | TBD | Confirm handle (Sagittarius?), topic, track |  |  |  |
-| Kenny | TBD | Confirm handle, topic, track |  |  |  |
 | nickysap | TBD | Confirm handle, topic, track |  |  |  |
 
 ## Invited - awaiting yes
@@ -95,6 +111,7 @@ _(Zaal: add the rest, with a track + a one-line topic.)_
 
 ## Progress vs target
 
-8 sessions is the comfortable June slate. Currently: **2 delivered + 1 scheduled** (Day 1-2),
-**8 confirmed** needing dates, **6 lined up**, plus prospects. Supply comfortably clears the
-target - the bottleneck is locking dates, not finding guests.
+8 sessions was the comfortable June slate; we have blown past it. Currently: **8 delivered**
+(9 recap pages incl. yerbearserker Pt 1 & 2), **9 scheduled** and dated (all with a Luma),
+**6 confirmed** needing dates, **5 lined up**, plus prospects. The slate is full - the
+remaining work is production (transcripts/thumbnails/YouTube on `/status`), not recruiting.
