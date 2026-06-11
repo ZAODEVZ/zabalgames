@@ -19,7 +19,8 @@ ZABAL Gamez, $Zabal, Zabal, ZAO, Zaal, BetterCallZaal, yerbearserker, zabalgamez
 Farcaster, Neynar, Base, Arbitrum, ERC-20, x402, Privy, Rabby, Warplet, Clanker,
 Empire Builder, empirebuilder.world, Bonfire, Plat0x, WaveWarZ, POIDH, Magnetiq,
 Hats Protocol, EAS, DotA, Defense of the Agents, Yerba Bearserker Mate, Bizarre Beasts,
-SCUM, FARCON, Farcaster Batches, AZ Flynn.
+SCUM, FARCON, Farcaster Batches, AZ Flynn, COC Concertz, Sopha, Hypersnap, miDAO,
+Kingfishers Media.
 
 Common mishearings to avoid:
 - "games" -> "Gamez" when it refers to the brand ZABAL Gamez (keep generic "video games")
@@ -27,6 +28,9 @@ Common mishearings to avoid:
 - Naynar -> Neynar
 - Zibal / Xibal -> $Zabal
 - Saval / Zebal -> Zabal
+- Saul / Sal / ZALD -> Zaal (the host)
+- ZOC concerts -> COC Concertz
+- Zabo -> ZABAL (or ZAO, by context)
 - Bone First -> Bonfire
 - PlatoX -> Plat0x
 - Wave Wars -> WaveWarZ
@@ -46,11 +50,19 @@ Zaal (host, aka BetterCallZaal), yerbearserker / yerb (guest presenter), zabalga
 Rabby, Warplet, Clanker, mini app.
 
 **ZAO ecosystem tools/brands:** Empire Builder (empirebuilder.world), Bonfire, Plat0x,
-WaveWarZ, POIDH, Magnetiq, Hats Protocol, EAS.
+WaveWarZ, POIDH, Magnetiq, Hats Protocol, EAS, COC Concertz (ZAO music brand), Sopha,
+Hypersnap, miDAO.
 
 **Workshop-specific proper nouns (yerb / Empire Builder talk):** DotA (Defense of the
 Agents), AZ Flynn, Yerba Bearserker Mate, Bizarre Beasts, SCUM, FARCON / FARCON Rome,
 Farcaster Batches, Waifu NFTs.
+
+**Workshop-specific proper nouns (Joseph Goats / artist talk):** Joseph Goats (stage name),
+Jose Cabrera (real name), joseacabrerav (handle), digital street music, COC Concertz,
+Impact Concerts, Isi, ASAS Finance, Steemit, Hive, Humberto Maturana, autopoiesis,
+Gregory Bateson, Steps to an Ecology of Mind, Portunol, Venezuela. Note: "George Bateson"
+is a mishearing of Gregory Bateson; "The Ecology of the Mind" is the book Steps to an
+Ecology of Mind.
 
 ---
 

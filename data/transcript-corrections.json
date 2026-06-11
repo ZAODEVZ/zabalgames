@@ -14,6 +14,7 @@
     { "from": "Doda", "to": "DotA" },
     { "from": "Dota", "to": "DotA" },
     { "from": "Zal", "to": "Zaal", "note": "the bare misheard 'Zal'; the longer 'Zaal' is left intact by the word boundary" },
+    { "from": "ZALD", "to": "Zaal", "note": "mishearing of the host Zaal (Jose Cabrera session)" },
     { "from": "X402", "to": "x402" },
     { "from": "Berserker", "to": "Bearserker", "note": "yerbeARSERKER; standalone 'Berserker' is the mishearing" },
     { "from": "Zabalgames.com", "to": "Zabalgamez.com" },
@@ -25,6 +26,11 @@
     { "from": "Visible", "to": "The Zabal", "note": "pure mishearing of a phrase; only where context fits." },
     { "from": "ETH Bogota", "to": "ETH Boulder", "note": "event name - confirm which event was actually said." },
     { "from": "first to vibe", "to": "first-of-vibe", "note": "specific phrasing; confirm in context." },
-    { "from": "Saas", "to": "SAS", "note": "confirm - 'SaaS' is also a real term." }
+    { "from": "Saas", "to": "SAS", "note": "confirm - 'SaaS' is also a real term." },
+    { "from": "Saul", "to": "Zaal", "note": "host mishearing (Jose Cabrera session); Saul is also a real name - confirm it is the host." },
+    { "from": "Sal", "to": "Zaal", "note": "host mishearing; very short with high false-positive risk - confirm each." },
+    { "from": "ZOC", "to": "COC Concertz", "note": "the ZAO music brand COC Concertz, heard as 'ZOC concerts'." },
+    { "from": "Zabo", "to": "ZABAL", "note": "ecosystem mishearing ('Zabo ecosystem'); could be ZAO - confirm by context." },
+    { "from": "Joseph Goat", "to": "Joseph Goats", "note": "the artist's stage name (Jose Cabrera) - confirm; he sometimes says it singular." }
   ]
 }
