@@ -730,3 +730,9 @@ body > * { position: relative; z-index: 1; }
 .site-menu-grid .smg a { display: block; font-size: 0.88rem; color: var(--text-muted); text-decoration: none; padding: 0.22rem 0; }
 .site-menu-grid .smg a:hover { color: var(--cyan); }
 .site-menu-grid .smg a.active { color: var(--zabal); font-weight: 600; }
+
+/* Universal share / add-app buttons (assets/share.js) */
+.zg-share-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.8rem 0 0.2rem; }
+.zg-share, .zg-add { font-family: inherit; font-size: 0.8rem; padding: 0.36rem 0.8rem; border-radius: 7px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; display: inline-block; }
+.zg-share.primary, .zg-add.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+.zg-share:hover, .zg-add:hover { filter: brightness(1.14); }
