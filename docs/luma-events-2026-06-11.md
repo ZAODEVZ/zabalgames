@@ -5,6 +5,9 @@ Luma has no API, so each is created by hand at luma.com/zao. Create them, then p
 event URLs back and they get wired into `data/workshop-leads.json` (`luma_url`) so the
 homepage schedule + top CTA RSVP button light up.
 
+**Title convention (keep consistent):** `ZABAL WORKSHOP w/ <name> from <org>` (drop
+"from <org>" when there is no org). Do not reword titles.
+
 Brand-clean: no emojis, no em dashes (hyphens only), no jargon. Each event is part of the
 ZABAL Gamez Season 1 calendar (`luma.com/zao`). Host: ZABAL Gamez. Times are EST.
 
@@ -27,7 +30,7 @@ Standard footer to append to every description:
 ## 3. Adrian / diviflyy (Empire Builder) - Empire Builder V3
 - **When:** Tue Jun 16 2026, 12pm EST
 - **Track:** builder
-- **Title:** Empire Builder V3, a conversation with diviflyy
+- **Title:** ZABAL WORKSHOP w/ diviflyy from Empire Builder
 - **Description:**
   > A conversation with Adrian (diviflyy) of Empire Builder on Empire Builder V3 - the V3
   > endpoints for an existing empire plus the leaderboard, and optionally deploying a new
@@ -36,7 +39,7 @@ Standard footer to append to every description:
 ## 4. Dr. Jake - Growth through foundations
 - **When:** Tue Jun 16 2026, 6pm EST
 - **Track:** creator
-- **Title:** Growth through foundations, with Dr. Jake
+- **Title:** ZABAL WORKSHOP w/ Dr. Jake
 - **Description:**
   > Dr. Jake on growth through foundations - building the base that real growth stands on.
   > A live talk plus Q and A, recorded.
@@ -44,7 +47,7 @@ Standard footer to append to every description:
 ## 5. Jub Jub - Farcaster Batches and the people of Farcaster
 - **When:** Sat Jun 20 2026, 8am EST
 - **Track:** builder
-- **Title:** Farcaster Batches, a fireside with Jub Jub
+- **Title:** ZABAL WORKSHOP w/ Jub Jub
 - **Description:**
   > A Farcaster Space fireside with Jub Jub on Farcaster Batches, and a conversation about
   > the builders and the mentality of the people of Farcaster. Recorded.
@@ -52,7 +55,7 @@ Standard footer to append to every description:
 ## 6. Dan Singjoy (Eden Fractal) - Eden Fractal and the fractal ecosystem
 - **When:** Sat Jun 20 2026, 12pm EST
 - **Track:** builder
-- **Title:** Eden Fractal and the fractal ecosystem, with Dan Singjoy
+- **Title:** ZABAL WORKSHOP w/ Dan Singjoy from Eden Fractal
 - **Description:**
   > Dan Singjoy on Eden Fractal and the wider fractal ecosystem - what fractals are, the
   > history of fractal communities, and how it connects to ZAO Fractal. Live, recorded,
@@ -61,7 +64,7 @@ Standard footer to append to every description:
 ## 7. Adrienne (GM Farcaster) - Building Warpee.eth
 - **When:** Tue Jun 30 2026, 11:30am EST
 - **Track:** builder
-- **Title:** Building Warpee.eth, with Adrienne
+- **Title:** ZABAL WORKSHOP w/ Adrienne from GM Farcaster
 - **Description:**
   > Adrienne of GM Farcaster on building Warpee.eth, an AI agent for a media company on
   > Farcaster. A live talk plus Q and A, recorded.
