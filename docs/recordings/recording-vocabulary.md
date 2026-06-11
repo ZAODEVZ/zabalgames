@@ -59,7 +59,7 @@ Farcaster Batches, Waifu NFTs.
 
 **Workshop-specific proper nouns (Joseph Goats / artist talk):** Joseph Goats (stage name),
 Jose Cabrera (real name), joseacabrerav (handle), digital street music, COC Concertz,
-Impact Concerts, Isi, ASAS Finance, Steemit, Hive, Humberto Maturana, autopoiesis,
+Impact Concerts, EZ, Azos Finance, Steemit, Hive, Humberto Maturana, autopoiesis,
 Gregory Bateson, Steps to an Ecology of Mind, Portunol, Venezuela. Note: "George Bateson"
 is a mishearing of Gregory Bateson; "The Ecology of the Mind" is the book Steps to an
 Ecology of Mind.
