@@ -192,21 +192,21 @@
   var statusEl = document.getElementById('status');
   var handleEl = document.getElementById('handle');
 
-  // value -> ZAO ecosystem label (builds up to THE ZAO)
-  var LABELS = {
-    2: 'ZAO', 4: '$Zabal', 8: 'Bonfire', 16: 'Empire', 32: 'WaveWarZ',
-    64: 'COC Concertz', 128: 'Magnetiq', 256: 'Sopha', 512: 'Fractal',
-    1024: 'ZABAL GAMEZ', 2048: 'THE ZAO'
+  // value -> tile: ZAO brands, then ZAO friends (PFP resolved live), up to THE ZAO (logo).
+  var TILES = {
+    2:    { label: 'ZAO',           color: '#1b2733' },
+    4:    { label: '$Zabal',        color: '#243447' },
+    8:    { label: 'yerbearserker', color: '#2b4a6f', handle: 'yerbearserker' },
+    16:   { label: 'Plat0x',        color: '#1f6f8b', handle: 'plat0x' },
+    32:   { label: 'Joshua',        color: '#2a9d8f', handle: 'joshuaeth' },
+    64:   { label: 'Ohnahji',       color: '#3a86ff', handle: 'ohnahji' },
+    128:  { label: 'Chris',         color: '#8338ec', handle: 'chriscocreated' },
+    256:  { label: 'Cassie',        color: '#b5179e', handle: 'cassie' },
+    512:  { label: 'Will T',        color: '#f72585', handle: 'willtofweb3' },
+    1024: { label: 'ZABAL GAMEZ',   color: '#ff8500' },
+    2048: { label: 'THE ZAO',       color: '#ffd60a', img: '/assets/logo-gamez.png' }
   };
-  var COLORS = {
-    2: '#1b2733', 4: '#243447', 8: '#2b4a6f', 16: '#1f6f8b', 32: '#2a9d8f',
-    64: '#3a86ff', 128: '#8338ec', 256: '#b5179e', 512: '#f72585',
-    1024: '#ff8500', 2048: '#ffd60a'
-  };
-
-  function label(v) { return LABELS[v] || String(v); }
-  function color(v) { return COLORS[v] || '#ffd60a'; }
-  function textColor(v) { return v >= 2048 ? '#070709' : '#ffffff'; }
+  function tileOf(v) { return TILES[v] || { label: String(v), color: '#ffd60a' }; }
 
   function build() {
     boardEl.innerHTML = '';
@@ -248,18 +248,46 @@
     for (var i = 0; i < grid.length; i++) {
       var v = grid[i];
       var c = cells[i];
+      c.innerHTML = '';
       if (v) {
-        c.innerHTML = label(v) + '<span class="v">' + v + '</span>';
-        c.style.background = color(v);
-        c.style.color = textColor(v);
+        var t = tileOf(v);
+        var imgsrc = t.img || t.pfp;
+        if (imgsrc) {
+          var im = document.createElement('img');
+          im.src = imgsrc;
+          im.alt = t.label;
+          im.style.cssText = 'width:66%;height:66%;object-fit:cover;border-radius:8px;';
+          im.onerror = (function (cell, lbl) { return function () { cell.textContent = lbl; }; })(c, t.label);
+          c.appendChild(im);
+        } else {
+          c.textContent = t.label;
+        }
+        c.style.background = t.color;
+        c.style.color = v >= 2048 ? '#070709' : '#ffffff';
         if (v > maxv) maxv = v;
       } else {
-        c.innerHTML = '';
         c.style.background = 'rgba(255,255,255,0.04)';
       }
     }
     scoreEl.textContent = String(score);
-    bestTileEl.textContent = label(maxv);
+    bestTileEl.textContent = tileOf(maxv).label;
+  }
+
+  // Resolve ZAO friends' Farcaster PFPs for the face tiles (graceful: text label stays on failure).
+  function loadPfps() {
+    var handles = [];
+    for (var k in TILES) { if (TILES[k].handle) handles.push(TILES[k].handle); }
+    if (!handles.length) return;
+    fetch('/api/pfps?handles=' + encodeURIComponent(handles.join(',')), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !d.users) return;
+        for (var val in TILES) {
+          var h = TILES[val].handle;
+          if (h && d.users[h] && d.users[h].pfpUrl) TILES[val].pfp = d.users[h].pfpUrl;
+        }
+        render();
+      }).catch(function () {});
   }
 
   function slide(line) {
@@ -464,6 +492,7 @@
 
   build();
   newGame();
+  loadPfps();
   loadBoard();
   setInterval(loadBoard, 8000);
 })();
