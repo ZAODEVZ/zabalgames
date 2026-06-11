@@ -36,6 +36,8 @@
       ['Data streams', '/streams.html'],
       ['Farcaster Batches', '/farcaster-batches.html'],
       ['Live now', '/live.html'],
+      ['Play the arcade', '/play'],
+      ['Claim a pop', '/pops'],
       ['Daily update', '/today.html'],
       ['Mindful moments', '/mindful.html']
     ]],
