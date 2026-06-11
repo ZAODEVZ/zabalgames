@@ -5,8 +5,9 @@ Luma has no API, so each is created by hand at luma.com/zao. Create them, then p
 event URLs back and they get wired into `data/workshop-leads.json` (`luma_url`) so the
 homepage schedule + top CTA RSVP button light up.
 
-**Title convention (keep consistent):** `ZABAL WORKSHOP w/ <name> from <org>` (drop
-"from <org>" when there is no org). Do not reword titles.
+**Title convention (keep consistent):** `ZABAL WORKSHOP w/ <name> from <org>` for
+workshops, `ZABAL FIRESIDE w/ <name> from <org>` for firesides/Spaces (drop "from <org>"
+when there is no org). Do not reword titles.
 
 Brand-clean: no emojis, no em dashes (hyphens only), no jargon. Each event is part of the
 ZABAL Gamez Season 1 calendar (`luma.com/zao`). Host: ZABAL Gamez. Times are EST.
@@ -32,18 +33,15 @@ Standard footer to append to every description:
 - **Track:** builder
 - **Luma:** https://luma.com/kaz6hnm4 (live - wired into workshop-leads.json)
 
-## 4. Dr. Jake - Growth through foundations
+## 4. Dr. Jake - Growth through foundations - PUBLISHED
 - **When:** Tue Jun 16 2026, 6pm EST
 - **Track:** creator
-- **Title:** ZABAL WORKSHOP w/ Dr. Jake
-- **Description:**
-  > Dr. Jake on growth through foundations - building the base that real growth stands on.
-  > A live talk plus Q and A, recorded.
+- **Luma:** https://luma.com/6svi31dy (live - wired into workshop-leads.json)
 
 ## 5. Jub Jub - Farcaster Batches and the people of Farcaster
 - **When:** Sat Jun 20 2026, 8am EST
 - **Track:** builder
-- **Title:** ZABAL WORKSHOP w/ Jub Jub
+- **Title:** ZABAL FIRESIDE w/ Jub Jub
 - **Description:**
   > A Farcaster Space fireside with Jub Jub on Farcaster Batches, and a conversation about
   > the builders and the mentality of the people of Farcaster. Recorded.
@@ -76,7 +74,7 @@ Paste each event URL here next to its number, and they get added to
 | 1 | Adam Miller | Jun 12 | https://luma.com/l1c6sgzc |
 | 2 | Kenny | Jun 15 | https://luma.com/9ylnwvyx |
 | 3 | diviflyy | Jun 16 | https://luma.com/kaz6hnm4 |
-| 4 | Dr. Jake | Jun 16 | |
+| 4 | Dr. Jake | Jun 16 | https://luma.com/6svi31dy |
 | 5 | Jub Jub | Jun 20 (8am) | |
 | 6 | Dan Singjoy | Jun 20 | |
 | 7 | Adrienne | Jun 30 | |
