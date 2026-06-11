@@ -67,6 +67,7 @@
         <button type="button" class="share-action" id="act-view" disabled>View the cast</button>
         <button type="button" class="share-action" id="act-sharer" disabled>See who shared it</button>
         <button type="button" class="share-action" id="act-cast">Cast your own into /zabal</button>
+        <button type="button" class="share-action" id="act-bonfire">Add this to the ZABAL Bonfire</button>
       </div>
     </div>
   </section>
@@ -115,6 +116,27 @@
       var url = 'https://zabalgamez.com';
       if (window.ZABAL && window.ZABAL.share) window.ZABAL.share({ platform: 'farcaster', text: text, url: url });
       else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text + ' @zaal') + '&embeds%5B%5D=' + encodeURIComponent(url) + '&channelKey=zabal', '_blank', 'noopener');
+    });
+
+    // Turn the share sheet into Bonfire ingestion: push the shared cast into the
+    // ZABAL Bonfire pending queue so ZOE can curate it into the graph.
+    var bonfireBtn = document.getElementById('act-bonfire');
+    bonfireBtn.addEventListener('click', function() {
+      if (!(window.ZABAL && window.ZABAL.submitBonfire)) {
+        bonfireBtn.textContent = 'Open in Farcaster to add it';
+        return;
+      }
+      bonfireBtn.disabled = true;
+      bonfireBtn.textContent = 'Adding to the Bonfire...';
+      window.ZABAL.submitBonfire({
+        text: 'Cast shared into ZABAL Gamez via the share sheet.',
+        url: castHash ? 'https://farcaster.xyz/~/conversations/' + castHash : 'https://zabalgamez.com',
+        castHash: castHash,
+        castFid: castFid
+      }).then(function(r) {
+        bonfireBtn.textContent = (r && r.ok) ? 'Added to the Bonfire. Thank you.' : 'Could not add it - try again.';
+        if (!(r && r.ok)) bonfireBtn.disabled = false;
+      }).catch(function() { bonfireBtn.textContent = 'Could not add it - try again.'; bonfireBtn.disabled = false; });
     });
   })();
   </script>

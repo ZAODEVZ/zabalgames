@@ -369,6 +369,26 @@ window.ZABAL.claimPop = async function claimPop(payload) {
   }
 };
 
+// Credit a referrer (verified). Called on landing when a share link carries ?ref=<handle>;
+// the server credits the referrer once per FID, no self-referral. Returns { ok, credited }.
+window.ZABAL.refer = async function refer(ref) {
+  try {
+    if (!ref) return { ok: false, reason: 'no-ref' };
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/ref', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ref: ref }),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    return data && data.ok ? { ok: true, credited: !!data.credited } : { ok: false, reason: data.error || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 // Submit a contribution to the ZABAL Bonfire pending queue (verified). Inside a Mini
 // App, POSTs to /api/bonfire-ask with a Quick Auth JWT; ZOE reviews + promotes it into
 // the canonical graph. Returns { ok, reason } so the form can react or ask the user to
