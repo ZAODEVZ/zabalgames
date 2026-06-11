@@ -98,7 +98,7 @@
   <div class="play-wrap">
     <section>
       <h2 style="margin: 0.2rem 0 0.2rem; font-size: 1.1rem;">ZAO 2048</h2>
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0 0 0.4rem;">Merge matching tiles to build up the ZAO ecosystem - from ZAO all the way to THE ZAO. Arrow keys, WASD, or swipe.</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0 0 0.4rem;">Merge matching tiles to climb the ZABAL Gamez workshops in order - from ZAO all the way to THE ZAO. How far through the season can you get? Arrow keys, WASD, or swipe.</p>
 
       <div class="hud">
         <div class="box"><div class="lbl">Score</div><div class="val" id="score">0</div></div>
@@ -192,16 +192,16 @@
   var statusEl = document.getElementById('status');
   var handleEl = document.getElementById('handle');
 
-  // value -> tile: ZAO brands, then ZAO friends (PFP resolved live), up to THE ZAO (logo).
+  // value -> tile: the ZABAL Gamez workshops in the order they happened, climbing to THE ZAO.
   var TILES = {
     2:    { label: 'ZAO',           color: '#1b2733' },
     4:    { label: '$Zabal',        color: '#243447' },
     8:    { label: 'yerbearserker', color: '#2b4a6f', handle: 'yerbearserker' },
-    16:   { label: 'Plat0x',        color: '#1f6f8b', handle: 'plat0x' },
-    32:   { label: 'Joshua',        color: '#2a9d8f', handle: 'joshuaeth' },
+    16:   { label: 'Joshua',        color: '#1f6f8b', handle: 'joshuaeth' },
+    32:   { label: 'Plat0x',        color: '#2a9d8f', handle: 'plat0x' },
     64:   { label: 'Ohnahji',       color: '#3a86ff', handle: 'ohnahji' },
     128:  { label: 'Chris',         color: '#8338ec', handle: 'chriscocreated' },
-    256:  { label: 'Cassie',        color: '#b5179e', handle: 'cassie' },
+    256:  { label: 'Joseph Goats',  color: '#b5179e', handle: 'josephgoats' },
     512:  { label: 'Will T',        color: '#f72585', handle: 'willtofweb3' },
     1024: { label: 'ZABAL GAMEZ',   color: '#ff8500' },
     2048: { label: 'THE ZAO',       color: '#ffd60a', img: '/assets/logo-gamez.png' }
