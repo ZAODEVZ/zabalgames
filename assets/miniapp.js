@@ -311,14 +311,33 @@ window.ZABAL.buildVote = async function buildVote(repo) {
 // Quick Auth JWT so the score is tied to the player's FID (handle + verified address
 // resolved server-side - no wallet popup, no typing). Returns { ok, best, rank } or
 // { ok:false, reason } so /play can fall back to a typed handle outside a Mini App.
+// Resolve the player's connected wallet from the Farcaster/Base app wallet, without
+// prompting (eth_accounts only). Returns a 0x address or null. Used to attribute game
+// scores to a payable wallet so Empire Builder can reward everyone who plays.
+window.ZABAL.getAddress = async function getAddress() {
+  try {
+    if (!sdk || !sdk.wallet) return null;
+    let provider = null;
+    if (typeof sdk.wallet.getEthereumProvider === 'function') provider = await withTimeout(sdk.wallet.getEthereumProvider(), 2000);
+    else if (sdk.wallet.ethProvider) provider = sdk.wallet.ethProvider;
+    if (!provider || typeof provider.request !== 'function') return null;
+    const accts = await provider.request({ method: 'eth_accounts' });
+    const a = accts && accts[0];
+    return (a && /^0x[0-9a-fA-F]{40}$/.test(a)) ? a.toLowerCase() : null;
+  } catch (e) {
+    return null;
+  }
+};
+
 window.ZABAL.submitScore = async function submitScore(game, score) {
   try {
     const ctx = await getContext();
     if (!ctx || !sdk || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const address = await window.ZABAL.getAddress();
     const res = await sdk.quickAuth.fetch('/api/game', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ game: game, score: score }),
+      body: JSON.stringify({ game: game, score: score, address: address || undefined }),
     });
     if (!res.ok) return { ok: false, reason: 'server' };
     const data = await res.json().catch(() => ({}));

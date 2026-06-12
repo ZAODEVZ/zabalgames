@@ -18,7 +18,7 @@ const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_RES
 const GAME = 'zao2048';
 const ALL_KEY = `zabal:game:all:${GAME}`;
 const ADDR_KEY = 'zabal:game:addr';
-const TOP_N = 50;
+const TOP_N = 200;
 
 function json(body, maxAge = 15) {
   return new Response(JSON.stringify(body), {
