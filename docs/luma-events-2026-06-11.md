@@ -53,6 +53,14 @@ Standard footer to append to every description:
 - **Track:** builder
 - **Luma:** https://luma.com/jlv50mcu (live - wired into workshop-leads.json)
 
+## 8. Chris Dolinsky (Vini App) - Vini App workshop
+- **When:** Mon Jun 15 2026, 4:45-5:15pm EST
+- **Track:** builder
+- **Title:** ZABAL WORKSHOP w/ Chris Dolinsky from Vini App
+- **Description:**
+  > Chris Dolinsky on Vini App - a 30-minute look at what he is building, for the ZABAL
+  > Gamez community to try. Livestreamed and recorded.
+
 ---
 
 ## After they exist
@@ -68,4 +76,5 @@ Paste each event URL here next to its number, and they get added to
 | 5 | Jub Jub | Jun 20 (8am) | https://luma.com/c621slze |
 | 6 | Dan Singjoy | Jun 20 | https://luma.com/tmcmw3o9 |
 | 7 | Adrienne | Jun 30 | https://luma.com/jlv50mcu |
+| 8 | Chris Dolinsky (Vini App) | Jun 15 (4:45pm) | |
 </content>

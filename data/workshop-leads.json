@@ -300,12 +300,24 @@
       "name": "Chris Dolinsky",
       "org": "Vini App",
       "topic": "Vini App - a 30-minute look at what he is building, for the ZABAL Gamez community to try.",
-      "format": "30 min workshop, recorded",
+      "format": "30 min, livestreamed and recorded",
       "when": "Mon Jun 15 2026, 4:45-5:15pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-06-11",
       "color": "orange",
       "date": "2026-06-15",
+      "track": "builder"
+    },
+    {
+      "id": "023",
+      "name": "Ali Tiknazoglu",
+      "handle": "@alitiknazoglu",
+      "topic": "Vibecoding - what he is learning building with AI tooling, to help people who are learning to code now get more out of AI.",
+      "format": "30 min, livestreamed and recorded",
+      "when": "June - date TBD",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-11",
+      "color": "cyan",
       "track": "builder"
     }
   ],

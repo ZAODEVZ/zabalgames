@@ -1,7 +1,7 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
   "generated": "2026-06-12",
-  "count": 39,
+  "count": 40,
   "people": [
     {
       "name": "Adam Miller",
@@ -50,6 +50,23 @@
       ],
       "involvement": [
         "Workshop: Building Warpee.eth, an AI agent for a media company on Farcaster. (Tue Jun 30 2026)"
+      ],
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
+    },
+    {
+      "name": "Ali Tiknazoglu",
+      "farcaster": "alitiknazoglu",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "cyan",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Vibecoding (June - date TBD)"
       ],
       "profile_url": null,
       "tier": "Headliner",
