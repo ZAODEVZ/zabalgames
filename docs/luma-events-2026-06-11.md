@@ -33,8 +33,8 @@ Standard footer to append to every description:
 - **Track:** builder
 - **Luma:** https://luma.com/kaz6hnm4 (live - wired into workshop-leads.json)
 
-## 4. Dr. Jake - Growth through foundations - PUBLISHED
-- **When:** Tue Jun 16 2026, 6pm EST
+## 4. Dr. Jake - Growth through foundations - PUBLISHED (moved to Jun 23)
+- **When:** Tue Jun 23 2026, 6pm EST
 - **Track:** creator
 - **Luma:** https://luma.com/6svi31dy (live - wired into workshop-leads.json)
 

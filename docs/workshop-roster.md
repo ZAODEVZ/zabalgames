@@ -46,7 +46,7 @@ All have a recap page + transcript. Production state (thumbnail/YouTube/OK'd) is
 | Kenny (POIDH) | builder | Mon Jun 15, 4pm EST | POIDH + finalizing the ZABAL ad bounty |
 | Chris Dolinsky (Vini App) | builder | Mon Jun 15, 4:45pm EST | Vini App - what he is building, for the community to try |
 | Adrian / diviflyy (Empire Builder) | builder | Tue Jun 16, 12pm EST | Empire Builder V3 convo |
-| Dr. Jake | creator | Tue Jun 16, 6pm EST | Growth through foundations |
+| Dr. Jake | creator | Tue Jun 23, 6pm EST | Growth through foundations |
 | Jub Jub | builder | Sat Jun 20, 8am EST | Farcaster Batches fireside (Space) |
 | Ali Tiknazoglu (@alitiknazoglu) | builder | Sat Jun 20, 11am EST | Previbecoding - learning to code with AI tooling |
 | Dan Singjoy (Eden Fractal) | builder | Sat Jun 20, 12pm EST | Eden Fractal + the fractal ecosystem |
