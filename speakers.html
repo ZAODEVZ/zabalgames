@@ -46,6 +46,14 @@
     .sp-assets a { font-size: 0.78rem; color: var(--cyan); text-decoration: none; white-space: nowrap; }
     .sp-assets a:hover { text-decoration: underline; }
     .sp-assets .none { color: var(--text-dim); font-size: 0.78rem; }
+    .sp-line { padding: 0.15rem 0; line-height: 1.4; }
+    .sp-line + .sp-line { border-top: 1px dashed var(--border); margin-top: 0.3rem; padding-top: 0.4rem; }
+    .sp-line a.sp-title { color: var(--text); text-decoration: none; font-weight: 600; }
+    .sp-line a.sp-title:hover { color: var(--zabal); text-decoration: underline; }
+    .sp-dt { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); margin: 0 0.4rem; }
+    .sp-lk a { font-size: 0.78rem; color: var(--cyan); text-decoration: none; }
+    .sp-lk a:hover { text-decoration: underline; }
+    .sp-lk .none { font-size: 0.76rem; color: var(--text-dim); }
     .track { font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--border-hover); }
     .track.artist { color: var(--pink); border-color: var(--pink); }
     .track.builder { color: var(--zabal); border-color: var(--zabal); }
@@ -93,8 +101,8 @@
   </div>
   <div class="sp-wrap">
     <table class="sp" id="sp-delivered">
-      <thead><tr><th>Speaker</th><th>Track</th><th>Session</th><th>Date</th><th>Watch + read</th></tr></thead>
-      <tbody><tr><td colspan="5" style="color:var(--text-muted);">Loading...</td></tr></tbody>
+      <thead><tr><th>Speaker</th><th>Track</th><th>Sessions and what they delivered</th></tr></thead>
+      <tbody><tr><td colspan="3" style="color:var(--text-muted);">Loading...</td></tr></tbody>
     </table>
   </div>
 
@@ -107,6 +115,15 @@
       <thead><tr><th>Speaker</th><th>Track</th><th>Session</th><th>Date</th><th>RSVP</th></tr></thead>
       <tbody><tr><td colspan="5" style="color:var(--text-muted);">Loading...</td></tr></tbody>
     </table>
+  </div>
+
+  <div style="background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.8rem 0 1.2rem;">
+    <h2 style="font-family: 'Syne', sans-serif; font-size: 1.2rem; margin: 0 0 0.3rem;">Learned something? July is the open build.</h2>
+    <p style="color: var(--text-muted); font-size: 0.92rem; margin: 0 0 0.7rem; line-height: 1.5;">
+      These sessions are the prep. In July you ship a build for the ZAO ecosystem and register
+      it so it counts. The build is the application.
+    </p>
+    <a href="/enter" class="btn">Enter the build</a>
   </div>
 
   <p class="sp-note" style="margin-top:1.4rem; font-size:0.8rem;">
@@ -196,23 +213,36 @@
     }
     function trackCell(t) { return t ? '<span class="track ' + esc(t) + '">' + esc(t) + '</span>' : ''; }
 
-    // --- Delivered: one row per session, newest first ---
-    var dRows = recs.slice().sort(function(a,b){ return (a.date||'') < (b.date||'') ? 1 : -1; }).map(function (r) {
-      var assets = [];
-      if (r.page) assets.push('<a href="' + esc(r.page) + '">Recording</a>');
-      if (r.youtube) assets.push('<a href="' + esc(r.youtube) + '" target="_blank" rel="noopener">YouTube</a>');
-      if (r.transcript) assets.push('<a href="' + esc(r.transcript_raw || r.transcript) + '" target="_blank" rel="noopener">Transcript</a>');
-      var sess = r.page ? '<a href="' + esc(r.page) + '">' + esc(r.title) + '</a>' : esc(r.title);
-      if (r.org) sess += '<small>' + esc(r.org) + '</small>';
+    // --- Delivered: grouped by speaker, each row lists all their sessions ---
+    function dateNum(d){ return parseInt(String(d || '').replace(/-/g, ''), 10) || 0; }
+    var groups = {}, gorder = [];
+    recs.forEach(function (r) {
+      var key = norm(r.presenter || r.title);
+      if (!groups[key]) { groups[key] = { name: r.presenter || r.title, handle: r.handle, track: r.track, org: r.org, sessions: [] }; gorder.push(key); }
+      groups[key].sessions.push(r);
+    });
+    gorder.sort(function (a, b) {
+      var ma = Math.max.apply(null, groups[a].sessions.map(function (s) { return dateNum(s.date); }));
+      var mb = Math.max.apply(null, groups[b].sessions.map(function (s) { return dateNum(s.date); }));
+      return mb - ma;
+    });
+    var dRows = gorder.map(function (key) {
+      var g = groups[key];
+      var lines = g.sessions.slice().sort(function (a, b) { return dateNum(b.date) - dateNum(a.date); }).map(function (r) {
+        var title = r.page ? '<a class="sp-title" href="' + esc(r.page) + '">' + esc(r.title) + '</a>' : '<span class="sp-title">' + esc(r.title) + '</span>';
+        var links = [];
+        if (r.youtube) links.push('<a href="' + esc(r.youtube) + '" target="_blank" rel="noopener">video</a>');
+        if (r.transcript) links.push('<a href="' + esc(r.transcript_raw || r.transcript) + '" target="_blank" rel="noopener">transcript</a>');
+        if (!r.youtube && !r.transcript) links.push('<span class="none">processing</span>');
+        return '<div class="sp-line">' + title + '<span class="sp-dt">' + esc(fmtDate(r.date)) + '</span><span class="sp-lk">' + links.join(' &middot; ') + '</span></div>';
+      }).join('');
       return '<tr>' +
-        '<td class="who">' + nameCell(r.presenter || r.title, r.handle) + '</td>' +
-        '<td>' + trackCell(r.track) + '</td>' +
-        '<td class="sp-sess">' + sess + '</td>' +
-        '<td>' + esc(fmtDate(r.date)) + '</td>' +
-        '<td><div class="sp-assets">' + (assets.length ? assets.join('') : '<span class="none">processing</span>') + '</div></td>' +
+        '<td class="who">' + nameCell(g.name, g.handle) + (g.org ? '<small style="display:block;color:var(--text-dim);font-size:0.72rem;font-weight:400;">' + esc(g.org) + '</small>' : '') + '</td>' +
+        '<td>' + trackCell(g.track) + '</td>' +
+        '<td>' + lines + '</td>' +
       '</tr>';
     });
-    document.querySelector('#sp-delivered tbody').innerHTML = dRows.length ? dRows.join('') : '<tr><td colspan="5">None yet.</td></tr>';
+    document.querySelector('#sp-delivered tbody').innerHTML = dRows.length ? dRows.join('') : '<tr><td colspan="3">None yet.</td></tr>';
 
     // --- Coming up: dated leads not before today, soonest first ---
     var upcoming = leads.filter(function(l){ return l.date && l.date >= TODAY; }).sort(function(a,b){ return a.date < b.date ? -1 : 1; });
@@ -246,7 +276,7 @@
     }).join('');
     document.getElementById('sp-updated').textContent = 'Live from the season data. ' + TODAY;
   }).catch(function () {
-    document.querySelector('#sp-delivered tbody').innerHTML = '<tr><td colspan="5" style="color:var(--gold);">Could not load. Read it directly: <a href="/recordings/index.json" style="color:var(--cyan);">/recordings/index.json</a>.</td></tr>';
+    document.querySelector('#sp-delivered tbody').innerHTML = '<tr><td colspan="3" style="color:var(--gold);">Could not load. Read it directly: <a href="/recordings/index.json" style="color:var(--cyan);">/recordings/index.json</a>.</td></tr>';
   });
 
   var shareBtn = document.getElementById('sp-share');
