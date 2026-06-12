@@ -355,6 +355,8 @@
   </header>
 
   <div class="live-actions">
+    <a class="live-action" href="https://twitch.tv/bettercallzaal" target="_blank" rel="noopener">Watch on Twitch</a>
+    <a class="live-action" href="https://youtube.com/@bettercallzaal" target="_blank" rel="noopener">Watch on YouTube</a>
     <a class="live-action" id="live-cal" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>
     <a class="live-action" href="https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ" target="_blank" rel="noopener">/zabal group chat</a>
     <a class="live-action" href="/#schedule">Full schedule</a>
@@ -803,7 +805,7 @@
       .then(function (d) {
         var recs = (d && d.recordings) || [];
         var withVideo = recs.filter(function (x) { return x.youtube && x.page; });
-        var pick = (withVideo.length >= 3 ? withVideo : recs.filter(function (x) { return x.page; })).slice(0, 4);
+        var pick = (withVideo.length >= 3 ? withVideo : recs.filter(function (x) { return x.page; })).slice(0, 6);
         grid.innerHTML = pick.map(function (x) {
           var cta = x.youtube ? 'Watch on YouTube' : 'Watch the recording';
           return '<a class="wr-card" href="' + esc(x.page) + '">' +
