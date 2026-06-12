@@ -313,13 +313,14 @@
       "id": "023",
       "name": "Ali Tiknazoglu",
       "handle": "@alitiknazoglu",
-      "topic": "Vibecoding - what he is learning building with AI tooling, to help people who are learning to code now get more out of AI.",
-      "format": "30 min, livestreamed and recorded",
-      "when": "June - date TBD",
+      "topic": "Pre-Vibecoding - what he is learning building with AI tooling, for people who are learning to code now.",
+      "format": "Live talk plus Q and A, recorded",
+      "when": "Sat Jun 20 2026, 11am EST",
       "status": "confirmed",
       "confirmed_date": "2026-06-11",
       "color": "cyan",
-      "track": "builder"
+      "track": "builder",
+      "date": "2026-06-20"
     }
   ],
   "_schema": {

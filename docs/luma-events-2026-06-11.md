@@ -58,6 +58,15 @@ Standard footer to append to every description:
 - **Track:** builder
 - **Luma:** https://luma.com/tip89eq3 (live - wired into workshop-leads.json)
 
+## 9. Ali Tiknazoglu - Pre-Vibecoding
+- **When:** Sat Jun 20 2026, 11am EST
+- **Track:** builder
+- **Title:** ZABAL WORKSHOP w/ Ali Tiknazoglu
+- **Description:**
+  > Ali Tiknazoglu on Pre-Vibecoding - what he is learning building with AI tooling, for
+  > people who are learning to code now. How to set up context so AI stops hallucinating,
+  > why experience still matters, and what to do on day one. A live talk plus Q and A, recorded.
+
 ---
 
 ## After they exist
@@ -74,4 +83,5 @@ Paste each event URL here next to its number, and they get added to
 | 6 | Dan Singjoy | Jun 20 | https://luma.com/tmcmw3o9 |
 | 7 | Adrienne | Jun 30 | https://luma.com/jlv50mcu |
 | 8 | Chris Dolinsky (Vini App) | Jun 15 (4:45pm) | https://luma.com/tip89eq3 |
+| 9 | Ali Tiknazoglu | Jun 20 (11am) | |
 </content>
