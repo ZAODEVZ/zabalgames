@@ -123,18 +123,34 @@ export default async function handler(req) {
     if (!handle) return json({ ok: false, error: 'handle required' });
     if (!Number.isFinite(score) || score < 0 || score > GAMES[game]) return json({ ok: false, error: 'bad score' });
 
-    const cmds = [
-      ['ZADD', key, 'GT', 'CH', String(score), handle],
-      ['EXPIRE', key, String(DAY_TTL)],
-      ['ZSCORE', key, handle],
-      ['ZREVRANK', key, handle],
-    ];
-    if (address) cmds.push(['HSET', addrKey, handle, address]);
-    let res;
-    try { res = await kvPipeline(cmds); } catch { return json({ ok: false, error: 'kv' }); }
-    const best = Number(res[2] && res[2].result) || score;
-    const rank0 = res[3] && res[3].result;
-    const rank = rank0 === null || rank0 === undefined ? null : Number(rank0) + 1;
+    // Read the current best, then write only if this score beats it. We do NOT rely on
+    // ZADD GT: some KV REST setups reject the GT flag and return a per-command error inside
+    // a 200 response, which silently dropped the write while still reporting success.
+    let cur = null;
+    try {
+      const pre = await kvPipeline([['ZSCORE', key, handle]]);
+      if (pre[0] && pre[0].error) throw new Error(pre[0].error);
+      cur = (pre[0] && pre[0].result != null) ? Number(pre[0].result) : null;
+    } catch { return json({ ok: false, error: 'kv' }); }
+
+    const best = (cur == null) ? score : Math.max(cur, score);
+    if (cur == null || score > cur) {
+      const cmds = [['ZADD', key, String(score), handle], ['EXPIRE', key, String(DAY_TTL)]];
+      if (address) cmds.push(['HSET', addrKey, handle, address]);
+      try {
+        const w = await kvPipeline(cmds);
+        if (w[0] && w[0].error) throw new Error(w[0].error);
+      } catch { return json({ ok: false, error: 'kv-write' }); }
+    } else if (address) {
+      try { await kvPipeline([['HSET', addrKey, handle, address]]); } catch { /* best effort */ }
+    }
+
+    let rank = null;
+    try {
+      const rk = await kvPipeline([['ZREVRANK', key, handle]]);
+      const r0 = rk[0] && rk[0].result;
+      rank = (r0 == null) ? null : Number(r0) + 1;
+    } catch { /* rank is best-effort */ }
     return json({ ok: true, best, rank, handle, verified });
   }
 
@@ -170,5 +186,5 @@ export default async function handler(req) {
     game,
     date,
     entries: rows.map((r, i) => ({ rank: i + 1, handle: r.handle, score: r.score })),
-  }, 5);
+  });
 }
