@@ -1,6 +1,6 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
-  "generated": "2026-06-11",
+  "generated": "2026-06-12",
   "count": 39,
   "people": [
     {
@@ -146,23 +146,25 @@
       "xp": 50
     },
     {
-      "name": "Chris Dolinsky (Vini App)",
+      "name": "Chris Dolinsky",
       "farcaster": "",
       "x": "",
       "github": "",
       "track": "builder",
-      "color": "",
+      "color": "orange",
       "roles": [
+        "Workshop lead",
         "Dream lead",
         "Batches builder"
       ],
       "involvement": [
+        "Workshop: Vini App (Mon Jun 15 2026)",
         "On the Dream Leads board",
         "Farcaster Batches: Vini App (Day 1)"
       ],
       "profile_url": null,
-      "tier": "Builder",
-      "xp": 40
+      "tier": "Headliner",
+      "xp": 90
     },
     {
       "name": "Dan Singjoy",

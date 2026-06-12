@@ -1,6 +1,6 @@
 ZABAL GAMEZ - PEOPLE (plain text for agents)
 
-Generated 2026-06-11 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 39 people.
+Generated 2026-06-12 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 39 people.
 Structured JSON:  https://zabalgamez.com/data/crm.json
 Human page:       https://zabalgamez.com/crm
 Live players board (joins / shares / casts): https://zabalgamez.com/leaderboard
@@ -53,8 +53,9 @@ Workshop lead
 Farcaster: @chriscocreated
 Profile: https://zabalgamez.com/p?handle=chriscocreated
 ======================================================================
-Chris Dolinsky (Vini App)  [Builder]
-Dream lead, Batches builder  |  track: builder
+Chris Dolinsky  [Headliner]
+Workshop lead, Dream lead, Batches builder  |  track: builder
+  - Workshop: Vini App (Mon Jun 15 2026)
   - On the Dream Leads board
   - Farcaster Batches: Vini App (Day 1)
 ======================================================================

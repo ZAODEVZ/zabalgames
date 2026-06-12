@@ -294,6 +294,19 @@
       "date": "2026-06-20",
       "track": "builder",
       "luma_url": "https://luma.com/tmcmw3o9"
+    },
+    {
+      "id": "022",
+      "name": "Chris Dolinsky",
+      "org": "Vini App",
+      "topic": "Vini App - a 30-minute look at what he is building, for the ZABAL Gamez community to try.",
+      "format": "30 min workshop, recorded",
+      "when": "Mon Jun 15 2026, 4:45-5:15pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-11",
+      "color": "orange",
+      "date": "2026-06-15",
+      "track": "builder"
     }
   ],
   "_schema": {
