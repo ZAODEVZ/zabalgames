@@ -94,6 +94,7 @@ export default async function handler(req) {
 
   const date = utcDate();
   const key = `zabal:game:${game}:${date}`;
+  const allKey = `zabal:game:all:${game}`;
   const addrKey = `zabal:game:addr`;
 
   // ---- POST: submit a score ----
@@ -123,26 +124,28 @@ export default async function handler(req) {
     if (!handle) return json({ ok: false, error: 'handle required' });
     if (!Number.isFinite(score) || score < 0 || score > GAMES[game]) return json({ ok: false, error: 'bad score' });
 
-    // Read the current best, then write only if this score beats it. We do NOT rely on
-    // ZADD GT: some KV REST setups reject the GT flag and return a per-command error inside
-    // a 200 response, which silently dropped the write while still reporting success.
-    let cur = null;
+    // Read the player's current best on BOTH the daily board and the cumulative all-time
+    // board, then write a plain ZADD only where this score wins. We do NOT use ZADD GT
+    // (some KV REST setups reject the flag and silently drop the write inside a 200).
+    let curDaily = null, curAll = null;
     try {
-      const pre = await kvPipeline([['ZSCORE', key, handle]]);
+      const pre = await kvPipeline([['ZSCORE', key, handle], ['ZSCORE', allKey, handle]]);
       if (pre[0] && pre[0].error) throw new Error(pre[0].error);
-      cur = (pre[0] && pre[0].result != null) ? Number(pre[0].result) : null;
+      if (pre[1] && pre[1].error) throw new Error(pre[1].error);
+      curDaily = (pre[0] && pre[0].result != null) ? Number(pre[0].result) : null;
+      curAll = (pre[1] && pre[1].result != null) ? Number(pre[1].result) : null;
     } catch { return json({ ok: false, error: 'kv' }); }
 
-    const best = (cur == null) ? score : Math.max(cur, score);
-    if (cur == null || score > cur) {
-      const cmds = [['ZADD', key, String(score), handle], ['EXPIRE', key, String(DAY_TTL)]];
-      if (address) cmds.push(['HSET', addrKey, handle, address]);
+    const best = (curDaily == null) ? score : Math.max(curDaily, score);
+    const cmds = [];
+    if (curDaily == null || score > curDaily) { cmds.push(['ZADD', key, String(score), handle], ['EXPIRE', key, String(DAY_TTL)]); }
+    if (curAll == null || score > curAll) { cmds.push(['ZADD', allKey, String(score), handle]); }
+    if (address) cmds.push(['HSET', addrKey, handle, address]);
+    if (cmds.length) {
       try {
         const w = await kvPipeline(cmds);
-        if (w[0] && w[0].error) throw new Error(w[0].error);
+        for (const c of w) { if (c && c.error) throw new Error(c.error); }
       } catch { return json({ ok: false, error: 'kv-write' }); }
-    } else if (address) {
-      try { await kvPipeline([['HSET', addrKey, handle, address]]); } catch { /* best effort */ }
     }
 
     let rank = null;
@@ -155,17 +158,22 @@ export default async function handler(req) {
   }
 
   // ---- GET: read the board ----
+  // The page shows the DAILY board; Empire's apiLeaderboard polls the cumulative ALL-TIME
+  // board so empire points do not reset every UTC day. Override with ?period=daily|alltime.
+  const apiFormat = url.searchParams.get('format') === 'apiLeaderboard';
+  const periodParam = url.searchParams.get('period');
+  const period = periodParam === 'alltime' ? 'alltime' : periodParam === 'daily' ? 'daily' : (apiFormat ? 'alltime' : 'daily');
+  const readKey = period === 'alltime' ? allKey : key;
   let res;
   try {
-    res = await kvPipeline([['ZREVRANGE', key, '0', String(TOP_N - 1), 'WITHSCORES']]);
+    res = await kvPipeline([['ZREVRANGE', readKey, '0', String(TOP_N - 1), 'WITHSCORES']]);
   } catch {
-    return json({ ok: true, configured: true, game, date, entries: [] });
+    return json({ ok: true, configured: true, game, date, period, entries: [] });
   }
   const flat = (res[0] && res[0].result) || [];
   const rows = [];
   for (let i = 0; i < flat.length; i += 2) rows.push({ handle: flat[i], score: Number(flat[i + 1]) });
 
-  const apiFormat = url.searchParams.get('format') === 'apiLeaderboard';
   if (apiFormat) {
     // Resolve addresses for the players who submitted one.
     let addrs = {};
@@ -185,6 +193,7 @@ export default async function handler(req) {
     configured: true,
     game,
     date,
+    period,
     entries: rows.map((r, i) => ({ rank: i + 1, handle: r.handle, score: r.score })),
   });
 }
