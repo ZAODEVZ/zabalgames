@@ -26,7 +26,7 @@ const DOMAIN = 'zabalgamez.com';
 
 // Allowlisted games (key -> max plausible score, to reject garbage submissions).
 const GAMES = { zao2048: 1000000 };
-const TOP_N = 50;
+const TOP_N = 200;
 const DAY_TTL = 172800; // boards self-clean after 2 days
 
 function json(body, maxAge = 0) {
@@ -113,7 +113,9 @@ export default async function handler(req) {
       catch { return json({ ok: false, error: 'invalid token' }); }
       const profile = await resolveProfile(fid);
       handle = cleanHandle(profile.username) || ('fid' + fid);
-      address = profile.address || null;
+      // Prefer the wallet the player is connected with in the Farcaster/Base app (sent from
+      // the client), falling back to their profile's verified address.
+      address = cleanAddress(body.address) || profile.address || null;
       verified = true;
     } else {
       handle = cleanHandle(body.handle);
