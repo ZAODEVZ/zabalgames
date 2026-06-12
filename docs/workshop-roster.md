@@ -48,7 +48,7 @@ All have a recap page + transcript. Production state (thumbnail/YouTube/OK'd) is
 | Adrian / diviflyy (Empire Builder) | builder | Tue Jun 16, 12pm EST | Empire Builder V3 convo |
 | Dr. Jake | creator | Tue Jun 16, 6pm EST | Growth through foundations |
 | Jub Jub | builder | Sat Jun 20, 8am EST | Farcaster Batches fireside (Space) |
-| Ali Tiknazoglu (@alitiknazoglu) | builder | Sat Jun 20, 11am EST | Pre-Vibecoding - learning to code with AI tooling |
+| Ali Tiknazoglu (@alitiknazoglu) | builder | Sat Jun 20, 11am EST | Previbecoding - learning to code with AI tooling |
 | Dan Singjoy (Eden Fractal) | builder | Sat Jun 20, 12pm EST | Eden Fractal + the fractal ecosystem |
 | Adrienne (GM Farcaster) | builder | Tue Jun 30, 11:30am EST | Building Warpee.eth |
 

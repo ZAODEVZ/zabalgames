@@ -58,12 +58,12 @@ Standard footer to append to every description:
 - **Track:** builder
 - **Luma:** https://luma.com/tip89eq3 (live - wired into workshop-leads.json)
 
-## 9. Ali Tiknazoglu - Pre-Vibecoding
+## 9. Ali Tiknazoglu - Previbecoding
 - **When:** Sat Jun 20 2026, 11am EST
 - **Track:** builder
 - **Title:** ZABAL WORKSHOP w/ Ali Tiknazoglu
 - **Description:**
-  > Ali Tiknazoglu on Pre-Vibecoding - what he is learning building with AI tooling, for
+  > Ali Tiknazoglu on Previbecoding - what he is learning building with AI tooling, for
   > people who are learning to code now. How to set up context so AI stops hallucinating,
   > why experience still matters, and what to do on day one. A live talk plus Q and A, recorded.
 
