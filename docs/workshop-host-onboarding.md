@@ -6,38 +6,66 @@ topic ideas in `docs/workshop-topics-by-track.md`.
 
 ---
 
-## 1. Host guide (send to a lead when they sign up)
+## 1. Standard speaker kit (the canonical version - use this every time)
 
-**The ask:** one ~30-minute session on something you know - the tool you built, the
-thing you do best. Livestreamed and recorded. That is the whole ask.
+This is the standardized message + expectations for every guest, built from the sessions
+we have already run. Send the invite as-is (swap the bracketed bits); keep the wording
+consistent so every speaker gets the same clear picture. Voice: no emojis, no em dashes,
+tight and warm.
 
-**Pick your slot:** book any open June day at `cal.com/zabal-gamez/workshop-session` -
-pick a time, drop your topic. Slots stay open and overlaps are blocked automatically.
+### 1a. The invite (copy-paste)
 
-**What to prepare:**
-- A topic (see the track idea bank if you want a prompt).
-- A screen share / demo if it helps - show the thing, do not just talk about it.
-- One sentence: what does someone watching walk away able to do?
-- Live or pre-recorded - your call. Pre-recording is great if live is stressful; you
-  still join for questions after.
+```
+Hey [name] - we would love to have you do a ZABAL Gamez workshop.
 
-**How it runs (we handle the production):** we set up the stream and recording, do a
-quick tech check with you beforehand, then clip and cross-promote the session across
-the ZAO accounts (Farcaster, X, Telegram). You focus on the content. (Stream tooling is
-being finalized - we will send your exact stream link + tech-check time once your date
-is locked.)
+The ask: one session on something you know best - [the tool you built / your topic].
+About 30 minutes is the sweet spot, but it is flexible: we can do 15, a full hour, or
+split an hour into two parts. Live or pre-recorded, your call.
 
-**What you get:**
-- Public cast credit on launch + on the day.
-- A standing spot on the ZAO mentor/lead team + the private channel.
-- Your polished recording + a transcript + auto-clips for your own channels.
-- A commemorative collectible on Magnetiq for leads.
+What you get: we handle all the production. You get a polished recording, a clean
+transcript and a dedicated page on zabalgamez.com, a YouTube upload (we share it with you
+before it goes public so you can OK it), short clips for your own channels, and a cast +
+cross-promotion across the ZAO accounts. Leads also get a spot on the mentor team and a
+commemorative collectible.
 
-**Timeline:** book a slot -> we confirm + send stream details -> 10-min tech check ->
-record/stream your 30 min -> we clip + promote.
+To lock it I just need: a day/time that works, your topic, and your Farcaster/X handle.
+Reply with a slot or grab one here: cal.com/zabal-gamez/workshop-session - I publish the
+Luma and send you the details.
+```
 
-**Quick brand notes for your talk:** keep it practical and warm. It is a build event,
-not a video-game contest. Any harness welcome. No need to oversell - show real work.
+### 1b. What we need from you (so we can list + promote it)
+
+- A **day and time** (or book at `cal.com/zabal-gamez/workshop-session`).
+- Your **topic**, and one line: **what does someone walk away able to do?**
+- **Format**: live or pre-recorded, and the length (15 / 30 / 60, or a split hour).
+- Your **Farcaster handle** (and X / others), plus your **org/project** and any links.
+
+### 1c. What you get (the real deliverables)
+
+- A **dedicated recording page** on zabalgamez.com (`/recordings/N`) - the video with
+  chapters, a recap with takeaways, and your transcript.
+- A **YouTube upload**, shared with you unlisted first so you can **OK it** before it goes
+  public.
+- **Short clips** cut for your own channels.
+- A **Luma event** for RSVPs + a **cast** on launch and on the day, cross-promoted across
+  the ZAO accounts (Farcaster, X, Telegram).
+- A spot on the **ZAO mentor/lead team** + the private channel, and a **Magnetiq
+  collectible** for leads.
+
+### 1d. How it runs (the standard flow)
+
+1. **Lock the date** - book via Cal or reply a slot; we publish the Luma.
+2. **Quick tech check** before the session (we send the stream link + time once the date
+   is locked).
+3. **Record / stream** your session (live or pre-recorded; you still join for Q and A
+   after a pre-record).
+4. **We produce it** - correct the captions, cut clips, build the `/recordings/N` page +
+   transcript + recap.
+5. **You OK it** - we share the YouTube cut with you to approve, then publish public.
+6. **We promote it** - cast + cross-promote, and the recording lives on the site for good.
+
+**Brand notes for your talk:** keep it practical and warm. It is a build event, not a
+video-game contest. Any harness welcome. Show real work - do not oversell.
 
 ---
 

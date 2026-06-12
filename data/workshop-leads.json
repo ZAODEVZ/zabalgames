@@ -77,13 +77,15 @@
       "name": "Adrian",
       "org": "Empire Builder",
       "handle": "@diviflyy",
-      "topic": "Empire Builder API workshop - V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.",
-      "format": "recorded API workshop",
-      "when": "June - date TBD",
+      "topic": "Empire Builder V3 - a conversation on the V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.",
+      "format": "Conversation, livestreamed and recorded",
+      "when": "Tue Jun 16 2026, 12pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-05-26",
       "color": "cyan",
-      "track": "builder"
+      "track": "builder",
+      "date": "2026-06-16",
+      "luma_url": "https://luma.com/kaz6hnm4"
     },
     {
       "id": "007",
@@ -189,7 +191,8 @@
       "confirmed_date": "2026-06-07",
       "color": "pink",
       "track": "builder",
-      "date": "2026-06-12"
+      "date": "2026-06-12",
+      "luma_url": "https://luma.com/l1c6sgzc"
     },
     {
       "id": "015",
@@ -225,13 +228,14 @@
       "id": "017",
       "name": "Jub Jub",
       "topic": "Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster.",
-      "format": "Farcaster Space, recorded",
-      "when": "Sat Jun 20 2026, 9am EST",
+      "format": "Farcaster Space fireside, recorded",
+      "when": "Sat Jun 20 2026, 8am EST",
       "status": "confirmed",
       "confirmed_date": "2026-06-09",
       "color": "orange",
       "date": "2026-06-20",
-      "track": "builder"
+      "track": "builder",
+      "luma_url": "https://luma.com/c621slze"
     },
     {
       "id": "018",
@@ -245,7 +249,8 @@
       "confirmed_date": "2026-06-09",
       "color": "gold",
       "date": "2026-06-30",
-      "track": "builder"
+      "track": "builder",
+      "luma_url": "https://luma.com/jlv50mcu"
     },
     {
       "id": "019",
@@ -259,7 +264,62 @@
       "confirmed_date": "2026-06-09",
       "color": "pink",
       "date": "2026-06-16",
-      "track": "creator"
+      "track": "creator",
+      "luma_url": "https://luma.com/6svi31dy"
+    },
+    {
+      "id": "020",
+      "name": "Kenny",
+      "org": "POIDH",
+      "topic": "Talking POIDH - the bounty platform Kenny built and how to use it, plus finalizing the Best ZABAL Gamez Ad bounty and kicking off a new two-week bounty.",
+      "format": "Livestreamed and recorded",
+      "when": "Mon Jun 15 2026, 4pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-11",
+      "color": "gold",
+      "date": "2026-06-15",
+      "track": "builder",
+      "luma_url": "https://luma.com/9ylnwvyx"
+    },
+    {
+      "id": "021",
+      "name": "Dan Singjoy",
+      "org": "Eden Fractal",
+      "topic": "Eden Fractal and the fractal ecosystem - what fractals are, the history of fractal communities, and how it connects to ZAO Fractal.",
+      "format": "Live, recorded",
+      "when": "Sat Jun 20 2026, 12pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-11",
+      "color": "zabal",
+      "date": "2026-06-20",
+      "track": "builder",
+      "luma_url": "https://luma.com/tmcmw3o9"
+    },
+    {
+      "id": "022",
+      "name": "Chris Dolinsky",
+      "org": "Vini App",
+      "topic": "Vini App - a 30-minute look at what he is building, for the ZABAL Gamez community to try.",
+      "format": "30 min, livestreamed and recorded",
+      "when": "Mon Jun 15 2026, 4:45-5:15pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-11",
+      "color": "orange",
+      "date": "2026-06-15",
+      "track": "builder",
+      "luma_url": "https://luma.com/tip89eq3"
+    },
+    {
+      "id": "023",
+      "name": "Ali Tiknazoglu",
+      "handle": "@alitiknazoglu",
+      "topic": "Vibecoding - what he is learning building with AI tooling, to help people who are learning to code now get more out of AI.",
+      "format": "30 min, livestreamed and recorded",
+      "when": "June - date TBD",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-11",
+      "color": "cyan",
+      "track": "builder"
     }
   ],
   "_schema": {
@@ -284,7 +344,7 @@
   "cta_override": {
     "_comment": "manual override for the top CTA. active:true uses headline/event_url/event_label; active:false = auto (next dated workshop).",
     "active": false,
-    "headline": "Next workshop: Cassie on the Farcaster protocol, ins and outs - Fri Jun 12, 4pm EST.",
+    "headline": "Next workshop: Cassie on the Farcaster protocol, ins and outs - Fri Jun 12, 7:30pm EST.",
     "event_url": "https://luma.com/fdrdxpuj",
     "event_label": "RSVP: Cassie, Jun 12"
   }

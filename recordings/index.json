@@ -20,6 +20,7 @@
       "transcript": null,
       "transcript_raw": null,
       "link": "https://www.kingfishersmedia.io",
+      "okd": null,
       "summary": "A creator-track session with Will T of Web3 on building KFMEDIA (Kingfishers Media) - what he is building, how he is doing it, and the lessons so far. Full recap, takeaways, and the word-for-word transcript will be added here once the recording is processed.",
       "topics": [
         "Kingfishers Media",
@@ -46,6 +47,7 @@
       "transcript": null,
       "transcript_raw": null,
       "link": null,
+      "okd": null,
       "summary": "An artist-track session with Joseph Goats on owning your music as an independent artist on Farcaster - releasing your work, owning your masters and your audience, and turning listeners into a community that pays you directly. Full recap, takeaways, and the word-for-word transcript will be added here once the recording is processed.",
       "topics": [
         "independent artists",
@@ -73,6 +75,7 @@
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md",
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md",
       "link": "https://sopha.social",
+      "okd": null,
       "summary": "A ZABAL Gamez workshop with Chris (chriscocreated), founder of Sopha - a Farcaster client built for depth and high signal - on what he built and why curation is needed. Sopha is an intentional third place, a coffee shop or library for the deeper writing, art, and thinking that scrolls past on the main feed, with a curated feed kept by the community's curators plus BradQ's The Pulse. Chris traces why he built it (when Farcaster felt like it was tipping into meme coins, he set out to protect the culture of interesting thinkers, and good vibe coding made him the one to do it), how easy it now is to build your own client on Farcaster's open data with Neynar and Hypersnap, and the nested stack of client, mini apps, and Snaps. He closes on where Sopha is headed: a second round of Purple funding, experiments in rewarding curators, infra, and live cultural-center experiences, with a thoughtfully designed, non-extractive token only when the time is right.",
       "topics": [
         "Sopha",
@@ -110,6 +113,7 @@
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-06-bonfire-fireside-carlos.md",
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-06-bonfire-fireside-carlos.md",
       "link": "https://bonfires.ai",
+      "okd": null,
       "summary": "A live ZABAL Gamez fireside between Zaal and Carlos (Plat0x, the Bonfires developer). Half working-session - the Bonfires rewrite (deadline June 14), ZAO's second Bonfire agent, auto-pushing context to the Bonfire on every git commit, and the positioning of Bonfires as a 'sense-making tool' where the agent is the librarian of a library - and half vibe-coding masterclass for the builder track: plan-then-goal with a measurable threshold, Bob-and-Alice diagramming before code, types-first prompting with a protocol/adapter contract, documentation-as-code, the Linus Torvalds compiler analogy, and Carlos's three skills (plan-making, sub-agents, adversarial agents).",
       "topics": [
         "Bonfires",
@@ -145,6 +149,7 @@
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md",
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md",
       "link": null,
+      "okd": null,
       "summary": "Day 2 of ZABAL Gamez and the first creator-track session. Ohnahji (Brian), co-founder of the Ohnahji community - a 2022 project that grew into \"blockchain's first HBCU,\" a safe space for Black, brown, and allied folks learning emerging tech - joins Zaal on Twitch to talk about starting and growing a livestream. Ohnahji is about 288 days into a 365 daily-stream journey. The throughline: consistency is king. Every tool glitches, the early days are frustrating for everyone, and you only get better by showing up. They cover Twitch's Streamed Together and shared chat for collaborating live, raids as a discovery and gamification tool, building your own chat bots, the builder basics of API keys and environment variables, and streaming opsec - be careful what you screen-share, and when in doubt, slow down.",
       "topics": [
         "livestreaming",
@@ -181,6 +186,7 @@
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-bonfire-josh-plat0x.md",
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-bonfire-josh-plat0x.md",
       "link": "https://bonfires.ai",
+      "okd": null,
       "summary": "The second ZABAL Gamez workshop. Joshua.eth and Plat0x (Carlos) introduce Bonfire - a shared AI workspace where a group shares agents and, in the process of using them, grows a shared memory: a knowledge graph that becomes a collective, ownable asset. They get into the data-loss problem, why curation is the last scarce asset, a vision for hackathons where every project is interoperable by design, and a live look at querying the ZABAL Bonfire bot.",
       "topics": [
         "Bonfire",
@@ -214,6 +220,7 @@
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder-part-2.md",
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder-part-2.md",
       "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
+      "okd": null,
       "summary": "Part 2 of the first ZABAL Gamez workshop - the live build that follows the Part 1 framework talk. yerbearserker (Jordan Oram) of Empire Builder gives a hands-on tour of the Empire tool stack from inside Farcaster, walks the top empires and how leaderboards score holders times boosters, runs a live Warplet raffle airdrop to DotA NFT holders, adds a $Zabal token booster, and stands up a fresh tokenless ZABAL Gamez empire on the spot, then wires two leaderboards (channel activity in /zabal and cast reactions).",
       "topics": [
         "Empire Builder",
@@ -248,6 +255,7 @@
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md",
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md",
       "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
+      "okd": null,
       "summary": "Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up a tokenless ZABAL Gamez Empire live during the session. His message: build the foundation before you launch anything.",
       "topics": [
         "Empire Builder",
@@ -281,6 +289,7 @@
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md",
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md",
       "link": "https://discord.theZAO.com",
+      "okd": null,
       "summary": "Zaal's weekly introduction to the ZAO Fractal, framed as the first ZAO project you can build on. He covers what the ZAO is - a decentralized impact network for the creator economy, the Z Talent Artist Organization - and how it runs on soulbound, illiquid ZAO Respect earned weekly through peer consensus. He walks the four objectives (empowerment, transparency, sustainability, equitable distribution) and the Respect game itself: breakout groups of up to six, four-minute updates, then on-chain consensus. The ZAO Fractal meets weekly at 6pm Eastern at discord.theZAO.com.",
       "topics": [
         "ZAO Fractal",
