@@ -67,7 +67,8 @@
     .cx-item { border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); overflow: hidden; }
     .cx-toggle { display: block; width: 100%; text-align: left; background: none; border: 0; cursor: pointer; color: var(--text); font-family: inherit; padding: 0.7rem 0.9rem; }
     .cx-toggle:hover { background: rgba(255,255,255,0.03); }
-    .cx-h { display: flex; align-items: baseline; gap: 8px; }
+    .cx-h { display: flex; align-items: center; gap: 8px; }
+    .cx-ava { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; }
     .cx-name { font-weight: 700; font-size: 0.95rem; }
     .cx-track { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); }
     .cx-title { color: var(--text-muted); font-size: 0.86rem; margin-top: 0.2rem; }
@@ -87,6 +88,7 @@
     }
     .flash-card { border: 1px solid var(--zabal); border-radius: 14px; background: var(--surface-2); box-shadow: 0 12px 40px rgba(0,0,0,0.5); padding: 0.9rem 1.1rem; text-align: center; }
     .flash-eyebrow { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); }
+    .flash-ava { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; margin: 0.4rem auto 0; display: block; border: 2px solid var(--zabal); }
     .flash-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; margin-top: 0.15rem; }
     .flash-title { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.15rem; }
     .flash-nugget { color: var(--cyan); font-size: 0.82rem; margin-top: 0.4rem; line-height: 1.4; }
@@ -269,6 +271,24 @@
       .catch(function () { SESSIONS = []; });
   }
 
+  // Resolve each session presenter's Farcaster PFP once (used in the Codex + flash card,
+  // where each person appears a single time - so no repetition like on the tiles).
+  function resolvePfps() {
+    var handles = [];
+    SESSIONS.forEach(function (s) { if (s.handle) handles.push(String(s.handle).replace(/^@/, '')); });
+    if (!handles.length) return Promise.resolve();
+    return fetch('/api/pfps?handles=' + encodeURIComponent(handles.join(',')), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !d.users) return;
+        SESSIONS.forEach(function (s) {
+          var h = s.handle ? String(s.handle).replace(/^@/, '') : '';
+          if (h && d.users[h] && d.users[h].pfpUrl) s.pfp = d.users[h].pfpUrl;
+        });
+        renderCodex();
+      }).catch(function () {});
+  }
+
   function build() {
     boardEl.innerHTML = '';
     for (var i = 0; i < SIZE * SIZE; i++) {
@@ -338,7 +358,7 @@
     if (maxv > maxTile) {
       maxTile = maxv;
       var nt = tileOf(maxv);
-      if (nt && nt.session) flashUnlock(nt.session);
+      if (nt && nt.session && maxv > 2) flashUnlock(nt.session);
       renderCodex();
     }
   }
@@ -350,6 +370,7 @@
     if (!el) return;
     var nugget = (s.takeaways && s.takeaways[0]) ? s.takeaways[0] : (s.topics || []).slice(0, 3).join(', ');
     el.innerHTML = '<div class="flash-card"><div class="flash-eyebrow">Unlocked</div>'
+      + (s.pfp ? '<img class="flash-ava" src="' + escapeHtml(s.pfp) + '" alt="">' : '')
       + '<div class="flash-name">' + escapeHtml(s.presenter) + '</div>'
       + (s.title ? '<div class="flash-title">' + escapeHtml(s.title) + '</div>' : '')
       + (nugget ? '<div class="flash-nugget">' + escapeHtml(nugget) + '</div>' : '')
@@ -395,7 +416,7 @@
       return;
     }
     el.innerHTML = list.map(function (s) {
-      var head = '<div class="cx-h"><span class="cx-name">' + escapeHtml(s.presenter) + '</span>' + (s.track ? ' <span class="cx-track">' + escapeHtml(s.track) + '</span>' : '') + '</div>';
+      var head = '<div class="cx-h">' + (s.pfp ? '<img class="cx-ava" src="' + escapeHtml(s.pfp) + '" alt="">' : '') + '<span class="cx-name">' + escapeHtml(s.presenter) + '</span>' + (s.track ? ' <span class="cx-track">' + escapeHtml(s.track) + '</span>' : '') + '</div>';
       var mid = (s.title ? '<div class="cx-title">' + escapeHtml(s.title) + '</div>' : '');
       var line = (s.takeaways && s.takeaways[0]) ? s.takeaways[0] : (s.topics || []).slice(0, 3).join(', ');
       if (line) mid += '<div class="cx-take">' + escapeHtml(line) + '</div>';
@@ -668,7 +689,7 @@
   loadBoard();
   setInterval(loadBoard, 8000);
   // Load the real sessions, then reseed so the tiles are random ZAO people each game.
-  loadSessions().then(function () { newGame(); });
+  loadSessions().then(function () { resolvePfps(); newGame(); });
 })();
 </script>
 
