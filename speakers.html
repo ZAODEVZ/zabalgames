@@ -29,32 +29,24 @@
     .sp-stat span { display: block; font-size: 0.67rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim); margin-top: 0.3rem; }
     .sp-section h2 { font-family: 'Syne', sans-serif; font-size: 1.3rem; margin: 1.6rem 0 0.2rem; }
     .sp-section p { color: var(--text-dim); font-size: 0.84rem; margin: 0 0 0.7rem; }
-    .sp-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; }
-    table.sp { border-collapse: collapse; width: 100%; font-size: 0.88rem; min-width: 640px; }
-    table.sp th, table.sp td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
-    table.sp th { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); background: var(--surface); white-space: nowrap; }
-    table.sp tr:last-child td { border-bottom: none; }
-    table.sp td.who { white-space: nowrap; }
-    table.sp td.who a { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text); text-decoration: none; }
-    table.sp td.who a:hover { color: var(--zabal); }
-    table.sp td.who span.noal { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text); }
-    .sp-sess { font-weight: 500; }
-    .sp-sess a { color: var(--text); text-decoration: none; }
-    .sp-sess a:hover { color: var(--zabal); text-decoration: underline; }
-    .sp-sess small { display: block; color: var(--text-dim); font-size: 0.76rem; margin-top: 0.1rem; }
-    .sp-assets { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .sp-assets a { font-size: 0.78rem; color: var(--cyan); text-decoration: none; white-space: nowrap; }
-    .sp-assets a:hover { text-decoration: underline; }
-    .sp-assets .none { color: var(--text-dim); font-size: 0.78rem; }
-    .sp-line { padding: 0.15rem 0; line-height: 1.4; }
-    .sp-line + .sp-line { border-top: 1px dashed var(--border); margin-top: 0.3rem; padding-top: 0.4rem; }
-    .sp-line a.sp-title { color: var(--text); text-decoration: none; font-weight: 600; }
-    .sp-line a.sp-title:hover { color: var(--zabal); text-decoration: underline; }
-    .sp-dt { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); margin: 0 0.4rem; }
-    .sp-lk a { font-size: 0.78rem; color: var(--cyan); text-decoration: none; }
-    .sp-lk a:hover { text-decoration: underline; }
-    .sp-lk .none { font-size: 0.76rem; color: var(--text-dim); }
-    .track { font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--border-hover); }
+    .sp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 0.85rem; }
+    .sp-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem; }
+    .sp-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+    .sp-card-head .nm { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; }
+    .sp-card-head .nm a { color: var(--text); text-decoration: none; }
+    .sp-card-head .nm a:hover { color: var(--zabal); }
+    .sp-card-head .nm .noal { color: var(--text); }
+    .sp-org { display: block; color: var(--text-dim); font-size: 0.74rem; margin: 0.05rem 0 0.5rem; }
+    .sp-item { padding: 0.45rem 0; }
+    .sp-item + .sp-item { border-top: 1px dashed var(--border); }
+    .sp-item .t { font-weight: 600; color: var(--text); text-decoration: none; }
+    .sp-item a.t:hover { color: var(--zabal); text-decoration: underline; }
+    .sp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 0.25rem; }
+    .sp-dt { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
+    .sp-meta a { font-size: 0.78rem; color: var(--cyan); text-decoration: none; }
+    .sp-meta a:hover { text-decoration: underline; }
+    .sp-meta .none { font-size: 0.76rem; color: var(--text-dim); }
+    .track { font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--border-hover); white-space: nowrap; }
     .track.artist { color: var(--pink); border-color: var(--pink); }
     .track.builder { color: var(--zabal); border-color: var(--zabal); }
     .track.creator { color: var(--cyan); border-color: var(--cyan); }
@@ -99,22 +91,16 @@
     <h2>Delivered</h2>
     <p>Sessions that ran, with what each speaker walked away with.</p>
   </div>
-  <div class="sp-wrap">
-    <table class="sp" id="sp-delivered">
-      <thead><tr><th>Speaker</th><th>Track</th><th>Sessions and what they delivered</th></tr></thead>
-      <tbody><tr><td colspan="3" style="color:var(--text-muted);">Loading...</td></tr></tbody>
-    </table>
+  <div class="sp-cards" id="sp-delivered">
+    <p style="color:var(--text-muted);font-size:0.9rem;">Loading...</p>
   </div>
 
   <div class="sp-section">
     <h2>Coming up</h2>
     <p>Scheduled speakers. RSVP and catch them live.</p>
   </div>
-  <div class="sp-wrap">
-    <table class="sp" id="sp-upcoming">
-      <thead><tr><th>Speaker</th><th>Track</th><th>Session</th><th>Date</th><th>RSVP</th></tr></thead>
-      <tbody><tr><td colspan="5" style="color:var(--text-muted);">Loading...</td></tr></tbody>
-    </table>
+  <div class="sp-cards" id="sp-upcoming">
+    <p style="color:var(--text-muted);font-size:0.9rem;">Loading...</p>
   </div>
 
   <div style="background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.8rem 0 1.2rem;">
@@ -212,8 +198,10 @@
         : '<span class="noal">' + esc(name) + '</span>';
     }
     function trackCell(t) { return t ? '<span class="track ' + esc(t) + '">' + esc(t) + '</span>' : ''; }
+    var TRACKCOLOR = { artist: 'pink', builder: 'zabal', creator: 'cyan' };
+    function cardBorder(t) { return t ? 'var(--' + (TRACKCOLOR[t] || 'zabal') + ')' : 'var(--border)'; }
 
-    // --- Delivered: grouped by speaker, each row lists all their sessions ---
+    // --- Delivered: one card per speaker, listing all their sessions ---
     function dateNum(d){ return parseInt(String(d || '').replace(/-/g, ''), 10) || 0; }
     var groups = {}, gorder = [];
     recs.forEach(function (r) {
@@ -226,38 +214,36 @@
       var mb = Math.max.apply(null, groups[b].sessions.map(function (s) { return dateNum(s.date); }));
       return mb - ma;
     });
-    var dRows = gorder.map(function (key) {
+    var dCards = gorder.map(function (key) {
       var g = groups[key];
-      var lines = g.sessions.slice().sort(function (a, b) { return dateNum(b.date) - dateNum(a.date); }).map(function (r) {
-        var title = r.page ? '<a class="sp-title" href="' + esc(r.page) + '">' + esc(r.title) + '</a>' : '<span class="sp-title">' + esc(r.title) + '</span>';
+      var items = g.sessions.slice().sort(function (a, b) { return dateNum(b.date) - dateNum(a.date); }).map(function (r) {
+        var title = r.page ? '<a class="t" href="' + esc(r.page) + '">' + esc(r.title) + '</a>' : '<span class="t">' + esc(r.title) + '</span>';
         var links = [];
         if (r.youtube) links.push('<a href="' + esc(r.youtube) + '" target="_blank" rel="noopener">video</a>');
         if (r.transcript) links.push('<a href="' + esc(r.transcript_raw || r.transcript) + '" target="_blank" rel="noopener">transcript</a>');
         if (!r.youtube && !r.transcript) links.push('<span class="none">processing</span>');
-        return '<div class="sp-line">' + title + '<span class="sp-dt">' + esc(fmtDate(r.date)) + '</span><span class="sp-lk">' + links.join(' &middot; ') + '</span></div>';
+        return '<div class="sp-item">' + title + '<div class="sp-meta"><span class="sp-dt">' + esc(fmtDate(r.date)) + '</span>' + links.join('') + '</div></div>';
       }).join('');
-      return '<tr>' +
-        '<td class="who">' + nameCell(g.name, g.handle) + (g.org ? '<small style="display:block;color:var(--text-dim);font-size:0.72rem;font-weight:400;">' + esc(g.org) + '</small>' : '') + '</td>' +
-        '<td>' + trackCell(g.track) + '</td>' +
-        '<td>' + lines + '</td>' +
-      '</tr>';
+      return '<div class="sp-card" style="border-left-color:' + cardBorder(g.track) + ';">' +
+        '<div class="sp-card-head"><span class="nm">' + nameCell(g.name, g.handle) + '</span>' + trackCell(g.track) + '</div>' +
+        (g.org ? '<span class="sp-org">' + esc(g.org) + '</span>' : '') +
+        items +
+      '</div>';
     });
-    document.querySelector('#sp-delivered tbody').innerHTML = dRows.length ? dRows.join('') : '<tr><td colspan="3">None yet.</td></tr>';
+    document.getElementById('sp-delivered').innerHTML = dCards.length ? dCards.join('') : '<p style="color:var(--text-muted);">None yet.</p>';
 
     // --- Coming up: dated leads not before today, soonest first ---
     var upcoming = leads.filter(function(l){ return l.date && l.date >= TODAY; }).sort(function(a,b){ return a.date < b.date ? -1 : 1; });
-    var uRows = upcoming.map(function (l) {
+    var uCards = upcoming.map(function (l) {
       var sess = esc(l.topic ? l.topic.split(' - ')[0] : l.name);
-      var rsvp = l.luma_url ? '<a class="rsvp" href="' + esc(l.luma_url) + '" target="_blank" rel="noopener">RSVP</a>' : '<span class="none" style="color:var(--text-dim);font-size:0.8rem;">soon</span>';
-      return '<tr>' +
-        '<td class="who">' + nameCell(l.name, l.handle) + (l.org ? '<small style="display:block;color:var(--text-dim);font-size:0.72rem;font-weight:400;">' + esc(l.org) + '</small>' : '') + '</td>' +
-        '<td>' + trackCell(l.track) + '</td>' +
-        '<td class="sp-sess">' + sess + '</td>' +
-        '<td>' + esc(fmtDate(l.date)) + '</td>' +
-        '<td>' + rsvp + '</td>' +
-      '</tr>';
+      var rsvp = l.luma_url ? '<a class="rsvp" href="' + esc(l.luma_url) + '" target="_blank" rel="noopener">RSVP</a>' : '<span class="none">soon</span>';
+      return '<div class="sp-card" style="border-left-color:' + cardBorder(l.track) + ';">' +
+        '<div class="sp-card-head"><span class="nm">' + nameCell(l.name, l.handle) + '</span>' + trackCell(l.track) + '</div>' +
+        (l.org ? '<span class="sp-org">' + esc(l.org) + '</span>' : '') +
+        '<div class="sp-item"><span class="t">' + sess + '</span><div class="sp-meta"><span class="sp-dt">' + esc(fmtDate(l.date)) + '</span>' + rsvp + '</div></div>' +
+      '</div>';
     });
-    document.querySelector('#sp-upcoming tbody').innerHTML = uRows.length ? uRows.join('') : '<tr><td colspan="5">Nothing scheduled.</td></tr>';
+    document.getElementById('sp-upcoming').innerHTML = uCards.length ? uCards.join('') : '<p style="color:var(--text-muted);">Nothing scheduled.</p>';
 
     // --- stats ---
     var speakerKeys = {};
@@ -276,7 +262,7 @@
     }).join('');
     document.getElementById('sp-updated').textContent = 'Live from the season data. ' + TODAY;
   }).catch(function () {
-    document.querySelector('#sp-delivered tbody').innerHTML = '<tr><td colspan="3" style="color:var(--gold);">Could not load. Read it directly: <a href="/recordings/index.json" style="color:var(--cyan);">/recordings/index.json</a>.</td></tr>';
+    document.getElementById('sp-delivered').innerHTML = '<p style="color:var(--gold);">Could not load. Read it directly: <a href="/recordings/index.json" style="color:var(--cyan);">/recordings/index.json</a>.</p>';
   });
 
   var shareBtn = document.getElementById('sp-share');
