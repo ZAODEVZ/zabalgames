@@ -7,6 +7,36 @@ dashes (hyphens only). Post in `/zabal` (channelKey `zabal`) unless noted. Keep 
 
 ---
 
+## 0. Day-of session casts (REUSABLE - fill the [brackets])
+
+The two-beat we run for every session. Post both in `/zabal`: a 15-minute warning, then
+"live now" when they go on. Replace `[name]`, `[org]`, `[topic]`, `[time]`, `[luma]`. If the
+guest has no org, drop "of [org]". `/live` auto-flips to their card at the start time.
+
+**15-minute warning**
+```
+zm
+
+15 minutes out. [name] of [org] is up next at the ZABAL Gamez - [topic]. [time] EST.
+
+RSVP: [luma]  watch live at http://zabalgames.com/live
+```
+
+**Live now**
+```
+zm
+
+Live now: @[handle] of [org] for a ZABAL Gamez Workshop - [topic].
+
+Watch live: http://zabalgames.com/live  RSVP: [luma]
+```
+
+**Worked example (Adam Miller, miDAO):** name = Adam Miller, org = MiDAO, topic = talking
+miDAO, what he is building and how creators and communities can use it, time = 5:45pm,
+luma = https://luma.com/l1c6sgzc.
+
+---
+
 ## 1. The /speakers page (announce it)
 
 **Farcaster (/zabal):**

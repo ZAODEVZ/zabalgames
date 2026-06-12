@@ -27,7 +27,7 @@ Farcaster: @adrienne
 ======================================================================
 Ali Tiknazoglu  [Headliner]
 Workshop lead  |  track: builder
-  - Workshop: Vibecoding (June - date TBD)
+  - Workshop: Previbecoding (Sat Jun 20 2026)
 Farcaster: @alitiknazoglu
 ======================================================================
 Arthur (Neynar)  [Challenger]
@@ -84,7 +84,7 @@ Batches builder  |  track: builder
 ======================================================================
 Dr. Jake  [Headliner]
 Workshop lead  |  track: creator
-  - Workshop: Growth through foundations. (Tue Jun 16 2026)
+  - Workshop: Growth through foundations. (Tue Jun 23 2026)
 Farcaster: @jkthedc
 ======================================================================
 Duckfax  [Builder]

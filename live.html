@@ -355,6 +355,8 @@
   </header>
 
   <div class="live-actions">
+    <a class="live-action" href="https://twitch.tv/bettercallzaal" target="_blank" rel="noopener">Watch on Twitch</a>
+    <a class="live-action" href="https://youtube.com/@bettercallzaal" target="_blank" rel="noopener">Watch on YouTube</a>
     <a class="live-action" id="live-cal" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>
     <a class="live-action" href="https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ" target="_blank" rel="noopener">/zabal group chat</a>
     <a class="live-action" href="/#schedule">Full schedule</a>
@@ -397,6 +399,25 @@
   <section class="today-sec" id="today-sec" style="display:none;">
     <h2>Also today</h2>
     <div class="today-grid" id="today-grid"></div>
+  </section>
+
+  <style>
+    .watch-recs { margin: 22px 0 6px; }
+    .watch-recs h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; margin: 0 0 0.6rem; }
+    .wr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.7rem; }
+    .wr-card { display: flex; flex-direction: column; gap: 0.25rem; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--pink); border-radius: 10px; padding: 0.8rem 0.9rem; text-decoration: none; }
+    .wr-card:hover { border-color: var(--pink); }
+    .wr-title { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text); font-size: 0.98rem; line-height: 1.25; }
+    .wr-by { color: var(--text-dim); font-size: 0.8rem; }
+    .wr-cta { color: var(--cyan); font-size: 0.8rem; margin-top: 0.25rem; }
+    .wr-card:hover .wr-cta { text-decoration: underline; }
+    .wr-all { display: inline-block; margin-top: 0.7rem; color: var(--cyan); text-decoration: none; font-size: 0.86rem; }
+    .wr-all:hover { text-decoration: underline; }
+  </style>
+  <section class="watch-recs" id="watch-recs" aria-label="Recordings to watch" style="display:none;">
+    <h2>While you wait, catch a session</h2>
+    <div class="wr-grid" id="watch-rec-grid"></div>
+    <a class="wr-all" href="/speakers">All speakers and recordings -&gt;</a>
   </section>
 
   <div class="live-foot-note">
@@ -766,6 +787,39 @@
   }
 
   // ------------------------------------------------------------------
+  // "While you wait" recordings - shown whenever a session is not live,
+  // so /live is never a dead end. Reads the same library as /speakers.
+  // ------------------------------------------------------------------
+  var recsVisible = false;
+  function applyRecsVisibility() {
+    var sec = document.getElementById('watch-recs');
+    if (!sec) return;
+    var has = document.getElementById('watch-rec-grid').children.length > 0;
+    sec.style.display = (recsVisible && has) ? '' : 'none';
+  }
+  function renderWatchRecs() {
+    var grid = document.getElementById('watch-rec-grid');
+    if (!grid) return;
+    fetch('/recordings/index.json', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var recs = (d && d.recordings) || [];
+        var withVideo = recs.filter(function (x) { return x.youtube && x.page; });
+        var pick = (withVideo.length >= 3 ? withVideo : recs.filter(function (x) { return x.page; })).slice(0, 6);
+        grid.innerHTML = pick.map(function (x) {
+          var cta = x.youtube ? 'Watch on YouTube' : 'Watch the recording';
+          return '<a class="wr-card" href="' + esc(x.page) + '">' +
+            '<span class="wr-title">' + esc(x.title) + '</span>' +
+            (x.presenter ? '<span class="wr-by">' + esc(x.presenter) + (x.org ? ' - ' + esc(x.org) : '') + '</span>' : '') +
+            '<span class="wr-cta">' + cta + ' -&gt;</span>' +
+          '</a>';
+        }).join('');
+        applyRecsVisibility();
+      })
+      .catch(function () { /* best-effort - section stays hidden */ });
+  }
+
+  // ------------------------------------------------------------------
   // Main load
   // ------------------------------------------------------------------
   function load() {
@@ -804,15 +858,21 @@
         else if (next) renderNext(next);
         else renderEmpty();
 
+        recsVisible = !live; // show the recordings strip whenever nothing is live
+        applyRecsVisibility();
+
         renderToday(todayList);
       })
       .catch(function () {
         // Network/parse failure - fall back to the evergreen empty state.
         renderEmpty();
         document.getElementById('today-sec').style.display = 'none';
+        recsVisible = true;
+        applyRecsVisibility();
       });
   }
 
+  renderWatchRecs();
   load();
 })();
 </script>

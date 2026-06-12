@@ -46,8 +46,9 @@ All have a recap page + transcript. Production state (thumbnail/YouTube/OK'd) is
 | Kenny (POIDH) | builder | Mon Jun 15, 4pm EST | POIDH + finalizing the ZABAL ad bounty |
 | Chris Dolinsky (Vini App) | builder | Mon Jun 15, 4:45pm EST | Vini App - what he is building, for the community to try |
 | Adrian / diviflyy (Empire Builder) | builder | Tue Jun 16, 12pm EST | Empire Builder V3 convo |
-| Dr. Jake | creator | Tue Jun 16, 6pm EST | Growth through foundations |
+| Dr. Jake | creator | Tue Jun 23, 6pm EST | Growth through foundations |
 | Jub Jub | builder | Sat Jun 20, 8am EST | Farcaster Batches fireside (Space) |
+| Ali Tiknazoglu (@alitiknazoglu) | builder | Sat Jun 20, 11am EST | Previbecoding - learning to code with AI tooling |
 | Dan Singjoy (Eden Fractal) | builder | Sat Jun 20, 12pm EST | Eden Fractal + the fractal ecosystem |
 | Adrienne (GM Farcaster) | builder | Tue Jun 30, 11:30am EST | Building Warpee.eth |
 
@@ -63,7 +64,6 @@ DM copy for this batch: `docs/warm-dm-kit-2026-06-02.md` section A.
 | Jonathan Colton (@jonathancolton, FounderCheck) | creator | FounderCheck (founder validation) + propagating work on Farcaster | 2 talks - lock dates |  |  |  |
 | kmac.eth | builder | Farcaster Snaps - building + shipping interactive Snaps | Lock a date |  |  |  |
 | Plat0x (@at0x_eth) | builder | His own Bonfire builder session - building on the graph | Lock date + Luma |  |  |  |
-| Ali Tiknazoglu (@alitiknazoglu) | builder | Vibecoding - learning to code with AI tooling | Said yes; DM details + lock a date | 2026-06-11 |  |  |
 
 ## Lined up - confirm details (mentioned, not yet in workshop-leads.json)
 

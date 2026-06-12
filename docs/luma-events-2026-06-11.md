@@ -33,8 +33,8 @@ Standard footer to append to every description:
 - **Track:** builder
 - **Luma:** https://luma.com/kaz6hnm4 (live - wired into workshop-leads.json)
 
-## 4. Dr. Jake - Growth through foundations - PUBLISHED
-- **When:** Tue Jun 16 2026, 6pm EST
+## 4. Dr. Jake - Growth through foundations - PUBLISHED (moved to Jun 23)
+- **When:** Tue Jun 23 2026, 6pm EST
 - **Track:** creator
 - **Luma:** https://luma.com/6svi31dy (live - wired into workshop-leads.json)
 
@@ -58,6 +58,11 @@ Standard footer to append to every description:
 - **Track:** builder
 - **Luma:** https://luma.com/tip89eq3 (live - wired into workshop-leads.json)
 
+## 9. Ali Tiknazoglu - Previbecoding - PUBLISHED
+- **When:** Sat Jun 20 2026, 11am EST
+- **Track:** builder
+- **Luma:** https://luma.com/nlgib8tl (live - wired into workshop-leads.json)
+
 ---
 
 ## After they exist
@@ -74,4 +79,5 @@ Paste each event URL here next to its number, and they get added to
 | 6 | Dan Singjoy | Jun 20 | https://luma.com/tmcmw3o9 |
 | 7 | Adrienne | Jun 30 | https://luma.com/jlv50mcu |
 | 8 | Chris Dolinsky (Vini App) | Jun 15 (4:45pm) | https://luma.com/tip89eq3 |
+| 9 | Ali Tiknazoglu | Jun 20 (11am) | https://luma.com/nlgib8tl |
 </content>
