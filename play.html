@@ -77,6 +77,20 @@
     .cx-full p { margin: 0.5rem 0 0; }
     .cx-topics { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
     .cx-rel a, .cx-full a { color: var(--cyan); }
+    #flash { position: fixed; left: 50%; top: 30%; transform: translate(-50%, 0); z-index: 50; width: min(86vw, 380px); pointer-events: none; opacity: 0; }
+    #flash.show { animation: flashIn 2.2s ease forwards; }
+    @keyframes flashIn {
+      0% { opacity: 0; transform: translate(-50%, 8px) scale(0.96); }
+      12% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      80% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -10px) scale(0.99); }
+    }
+    .flash-card { border: 1px solid var(--zabal); border-radius: 14px; background: var(--surface-2); box-shadow: 0 12px 40px rgba(0,0,0,0.5); padding: 0.9rem 1.1rem; text-align: center; }
+    .flash-eyebrow { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); }
+    .flash-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; margin-top: 0.15rem; }
+    .flash-title { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.15rem; }
+    .flash-nugget { color: var(--cyan); font-size: 0.82rem; margin-top: 0.4rem; line-height: 1.4; }
+    .flash-foot { font-size: 0.64rem; color: var(--text-dim); margin-top: 0.5rem; }
   </style>
 </head>
 <body>
@@ -121,6 +135,7 @@
       </div>
 
       <div class="board" id="board" aria-label="ZAO 2048 board"></div>
+      <div id="flash" aria-live="polite"></div>
 
       <div class="handle-row">
         <input id="handle" type="text" placeholder="your Farcaster handle" autocomplete="off" spellcheck="false" maxlength="32" aria-label="Farcaster handle">
@@ -275,7 +290,6 @@
     addRandom();
     render();
     renderCodex();
-    loadPfps();
     setStatus('');
   }
 
@@ -321,24 +335,31 @@
     }
     scoreEl.textContent = String(score);
     bestTileEl.textContent = tileOf(maxv).label;
-    if (maxv > maxTile) { maxTile = maxv; renderCodex(); }
+    if (maxv > maxTile) {
+      maxTile = maxv;
+      var nt = tileOf(maxv);
+      if (nt && nt.session) flashUnlock(nt.session);
+      renderCodex();
+    }
   }
 
-  // Resolve presenter PFPs for the seeded face tiles (graceful: text label stays on failure).
-  function loadPfps() {
-    var handles = [];
-    for (var k in tileMap) { if (tileMap[k].handle) handles.push(tileMap[k].handle); }
-    if (!handles.length) return;
-    fetch('/api/pfps?handles=' + encodeURIComponent(handles.join(',')), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (!d || !d.users) return;
-        for (var val in tileMap) {
-          var h = tileMap[val].handle;
-          if (h && d.users[h] && d.users[h].pfpUrl) tileMap[val].pfp = d.users[h].pfpUrl;
-        }
-        render();
-      }).catch(function () {});
+  // When you reach a new highest tile, flash that session's nugget, then it settles
+  // into the Codex at the bottom. This is the "learn as you climb" beat.
+  function flashUnlock(s) {
+    var el = document.getElementById('flash');
+    if (!el) return;
+    var nugget = (s.takeaways && s.takeaways[0]) ? s.takeaways[0] : (s.topics || []).slice(0, 3).join(', ');
+    el.innerHTML = '<div class="flash-card"><div class="flash-eyebrow">Unlocked</div>'
+      + '<div class="flash-name">' + escapeHtml(s.presenter) + '</div>'
+      + (s.title ? '<div class="flash-title">' + escapeHtml(s.title) + '</div>' : '')
+      + (nugget ? '<div class="flash-nugget">' + escapeHtml(nugget) + '</div>' : '')
+      + '<div class="flash-foot">Added to your codex below</div></div>';
+    el.classList.remove('show');
+    void el.offsetWidth; // restart the animation
+    el.classList.add('show');
+    if (window.ZABAL && window.ZABAL.haptic) window.ZABAL.haptic('medium');
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.classList.remove('show'); }, 2200);
   }
 
   // ---- The Codex: what you've learned this run ----
@@ -368,26 +389,23 @@
   function renderCodex() {
     var el = document.getElementById('codex');
     if (!el) return;
-    var depth = maxTile >= 512 ? 3 : maxTile >= 64 ? 2 : maxTile >= 8 ? 1 : 0;
     var list = codexList();
     if (!list.length) {
-      el.innerHTML = '<p class="hint">Start merging - each ZABAL Gamez session you reach reveals itself here. The farther you climb, the more you learn.</p>';
+      el.innerHTML = '<p class="hint">Start merging - each ZABAL Gamez session you reach flashes up top, then lands here. The farther you climb, the more of the season you learn.</p>';
       return;
     }
     el.innerHTML = list.map(function (s) {
       var head = '<div class="cx-h"><span class="cx-name">' + escapeHtml(s.presenter) + '</span>' + (s.track ? ' <span class="cx-track">' + escapeHtml(s.track) + '</span>' : '') + '</div>';
-      var mid = '';
-      if (depth >= 1 && s.title) mid += '<div class="cx-title">' + escapeHtml(s.title) + '</div>';
-      if (depth >= 2) {
-        var line = (s.takeaways && s.takeaways[0]) ? s.takeaways[0] : (s.topics || []).slice(0, 3).join(', ');
-        if (line) mid += '<div class="cx-take">' + escapeHtml(line) + '</div>';
-      }
+      var mid = (s.title ? '<div class="cx-title">' + escapeHtml(s.title) + '</div>' : '');
+      var line = (s.takeaways && s.takeaways[0]) ? s.takeaways[0] : (s.topics || []).slice(0, 3).join(', ');
+      if (line) mid += '<div class="cx-take">' + escapeHtml(line) + '</div>';
+      var h = s.handle ? String(s.handle).replace(/^@/, '') : '';
       var rel = relatedTo(s).map(function (o) { return '<a href="' + escapeHtml(o.page || '#') + '" target="_blank" rel="noopener">' + escapeHtml(firstName(o.presenter)) + '</a>'; }).join(', ');
       var full = '<div class="cx-full" hidden>'
         + (s.summary ? '<p>' + escapeHtml(s.summary) + '</p>' : '')
         + (s.topics && s.topics.length ? '<p class="cx-topics">' + s.topics.map(escapeHtml).join(' / ') + '</p>' : '')
         + (rel ? '<p class="cx-rel">Related: ' + rel + '</p>' : '')
-        + (s.page ? '<p><a href="' + escapeHtml(s.page) + '" target="_blank" rel="noopener">Open the recording</a></p>' : '')
+        + '<p>' + (s.page ? '<a href="' + escapeHtml(s.page) + '" target="_blank" rel="noopener">Open the recording</a>' : '') + (h ? (s.page ? ' &middot; ' : '') + '<a href="https://farcaster.xyz/' + encodeURIComponent(h) + '" target="_blank" rel="noopener">@' + escapeHtml(h) + '</a>' : '') + '</p>'
         + '</div>';
       return '<div class="cx-item"><button type="button" class="cx-toggle">' + head + mid + '<span class="cx-more">tap to expand and see how it connects</span></button>' + full + '</div>';
     }).join('');
