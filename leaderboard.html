@@ -61,7 +61,7 @@
     <div class="hero-eyebrow">Most active builders</div>
     <h1>Leaderboard.</h1>
     <p class="hero-sub">
-      Two views of who is showing up. The /zabal channel board is live engagement on Farcaster, scored by Empire Builder for the ZABAL Gamez empire. Mini App activity tracks points earned inside the app - casting on /zabal, sharing, signing up.
+      The ZAO 2048 leaderboard - all-time top scores from the arcade. Play at <a href="/play">/play</a>; top players are rewarded through Empire Builder. The /zabal channel board below tracks live Farcaster engagement.
     </p>
   </header>
 
@@ -71,15 +71,16 @@
   </div>
 
   <section class="section">
-    <h2 class="lb-h">/zabal channel</h2>
-    <p class="lb-cap">Live engagement on the /zabal Farcaster channel, scored by Empire Builder. Tap a name to open their profile.</p>
-    <ol class="lb" id="lb-empire"><p class="lb-load">Loading...</p></ol>
+    <h2 class="lb-h">ZAO 2048 - all-time</h2>
+    <p class="lb-cap">Best ZAO 2048 scores, all-time. Play at <a href="/play">/play</a>. Top players are rewarded via Empire Builder; this board is published at <a href="/api/leaderboard">/api/leaderboard</a>.</p>
+    <div id="lb-top"></div>
+    <ol class="lb" id="lb"><p class="lb-load">Loading...</p></ol>
   </section>
 
   <section class="section">
-    <h2 class="lb-h">Mini App activity</h2>
-    <p class="lb-cap">Points for showing up from inside the Mini App - cast 3, signup 5, share 2. Also published at <a href="/api/leaderboard">/api/leaderboard</a>.</p>
-    <ol class="lb" id="lb"><p class="lb-load">Loading...</p></ol>
+    <h2 class="lb-h">/zabal channel</h2>
+    <p class="lb-cap">Live engagement on the /zabal Farcaster channel, scored by Empire Builder. Tap a name to open their profile.</p>
+    <ol class="lb" id="lb-empire"><p class="lb-load">Loading...</p></ol>
   </section>
 
   <script>
@@ -123,25 +124,34 @@
         .catch(function(){ el.innerHTML = '<p class="lb-load">Leaderboard unavailable right now.</p>'; });
     })();
 
-    // Secondary: in-app activity board (our own API).
+    // Primary: the ZAO 2048 all-time leaderboard (our own API), with the top score featured.
     (function(){
       var el = document.getElementById('lb');
+      var topEl = document.getElementById('lb-top');
       fetch('/api/leaderboard?format=full', { cache: 'no-store' })
         .then(function(r){ return r.json(); })
         .then(function(rows){
-          if (!rows || !rows.length) { el.innerHTML = '<p class="lb-load">No activity yet. Cast on /zabal from inside the Mini App to get on the board.</p>'; return; }
+          if (!rows || !rows.length) { el.innerHTML = '<p class="lb-load">No scores yet. Play ZAO 2048 to get on the board.</p>'; if (topEl) topEl.innerHTML = ''; return; }
+          if (topEl) {
+            var t = rows[0];
+            topEl.innerHTML = '<div style="display:flex;align-items:center;gap:12px;border:1px solid var(--zabal);border-radius:12px;background:var(--surface-2);padding:0.7rem 1rem;margin:0 0 0.9rem;">' +
+              '<span style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);">Top score</span>' +
+              '<span style="font-weight:800;font-family:\'Syne\',sans-serif;flex:1;">@'+esc(t.username)+'</span>' +
+              '<span style="font-family:\'JetBrains Mono\',monospace;color:var(--cyan);font-size:1.1rem;">'+esc(t.score)+'</span></div>';
+          }
           el.innerHTML = rows.map(function(r, i){
-            var who = '@' + esc(r.username || r.fid);
-            var pfp = r.pfpUrl ? '<img src="'+esc(r.pfpUrl)+'" alt="">' : '';
-            return '<li class="clickable" data-fid="'+esc(r.fid)+'" tabindex="0" role="button" aria-label="View profile of '+esc(r.username || r.fid)+'">' +
-              '<span class="lb-rank'+(i<3?' top':'')+'">'+(i+1)+'</span>' +
-              pfp + '<span class="lb-name">'+who+'</span>' +
+            var who = '@' + esc(r.username);
+            return '<li class="clickable" data-handle="'+esc(r.handle)+'" tabindex="0" role="button" aria-label="View profile of '+esc(r.username)+'">' +
+              '<span class="lb-rank'+(i<3?' top':'')+'">'+(r.rank || i+1)+'</span>' +
+              '<span class="lb-name">'+who+'</span>' +
               '<span class="lb-score">'+esc(r.score)+'</span></li>';
           }).join('');
-          el.querySelectorAll('[data-fid]').forEach(function(li){
+          el.querySelectorAll('[data-handle]').forEach(function(li){
             bindKeys(li, function(){
-              var fid = Number(li.getAttribute('data-fid'));
-              if (fid && window.ZABAL && window.ZABAL.viewProfile) window.ZABAL.viewProfile(fid);
+              var u = li.getAttribute('data-handle'); if (!u) return;
+              var url = 'https://farcaster.xyz/' + u;
+              if (window.ZABAL && window.ZABAL.openNewTab) window.ZABAL.openNewTab(url);
+              else window.open(url, '_blank', 'noopener');
             });
           });
         })

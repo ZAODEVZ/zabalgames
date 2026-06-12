@@ -1,28 +1,26 @@
-// ZABAL Gamez - activity leaderboard (GET /api/leaderboard).
+// ZABAL Gamez - the ZAO 2048 leaderboard (GET /api/leaderboard).
 //
-// Ranks builders by the social-action points they earn (cast / share / signup),
-// stored in a KV sorted set by api/track.mjs. Two output shapes:
+// This is now the canonical ZAO 2048 leaderboard. It serves the cumulative ALL-TIME
+// high scores (best-per-player) from the game, so a single URL can be registered in
+// Empire Builder to reward the top players, and the same data drives the /leaderboard page.
 //
-//   GET /api/leaderboard              -> Empire Builder apiLeaderboard format:
-//                                        [{ "address": "0x..", "score": N }, ...]
-//                                        (FIDs resolved to Base verified addresses)
-//   GET /api/leaderboard?format=full  -> human format for the /leaderboard page:
-//                                        [{ fid, username, pfpUrl, score, address }]
+//   GET /api/leaderboard               -> Empire Builder apiLeaderboard: [{ address, score }]
+//                                         (players with a verified Base address only)
+//   GET /api/leaderboard?format=full   -> [{ rank, handle, username, score, address }] for the page
 //
-// Register the default URL once in Empire Builder so casts/ships earn empire
-// points - composing this app's activity into the $ZABAL leaderboard.
-//
+// Source: zabal:game:all:zao2048 (written by api/game.mjs), addresses from zabal:game:addr.
 // Empty array when KV is not configured.
 
 export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
-const HAATZ = 'https://haatz.quilibrium.com';
-const SCORES_KEY = 'zabal:scores:v1';
+const GAME = 'zao2048';
+const ALL_KEY = `zabal:game:all:${GAME}`;
+const ADDR_KEY = 'zabal:game:addr';
 const TOP_N = 50;
 
-function json(body, maxAge = 30) {
+function json(body, maxAge = 15) {
   return new Response(JSON.stringify(body), {
     headers: {
       'Content-Type': 'application/json',
@@ -43,56 +41,48 @@ async function kvPipeline(cmds) {
   return r.json();
 }
 
-// One HAATZ bulk call resolves many FIDs to username/pfp/verified address.
-async function resolveProfiles(fids) {
-  const map = {};
-  if (!fids.length) return map;
-  try {
-    const r = await fetch(`${HAATZ}/v2/farcaster/user/bulk?fids=${fids.join(',')}`, { signal: AbortSignal.timeout(3000) });
-    if (!r.ok) return map;
-    const users = (await r.json()).users || [];
-    for (const u of users) {
-      const eth = (u.verified_addresses && (u.verified_addresses.eth_addresses || u.verified_addresses.ethAddresses)) || [];
-      map[u.fid] = { username: u.username || null, pfpUrl: u.pfp_url || null, address: eth[0] || null };
-    }
-  } catch {
-    // best-effort
-  }
-  return map;
-}
-
 export default async function handler(req) {
   const url = new URL(req.url);
   const full = url.searchParams.get('format') === 'full';
   if (!KV_URL || !KV_TOKEN) return json([]);
 
-  let res;
+  let flat = [];
   try {
-    res = await kvPipeline([['ZRANGE', SCORES_KEY, '0', String(TOP_N - 1), 'REV', 'WITHSCORES']]);
+    const res = await kvPipeline([['ZREVRANGE', ALL_KEY, '0', String(TOP_N - 1), 'WITHSCORES']]);
+    flat = (res[0] && res[0].result) || [];
   } catch {
     return json([]);
   }
-
-  // Flat [member, score, member, score, ...] -> [{ fid, score }]
-  const flat = res?.[0]?.result || [];
+  // Until the all-time board fills (or if it is empty), fall back to today's daily board.
+  if (!flat.length) {
+    try {
+      const today = new Date().toISOString().slice(0, 10);
+      const r2 = await kvPipeline([['ZREVRANGE', `zabal:game:${GAME}:${today}`, '0', String(TOP_N - 1), 'WITHSCORES']]);
+      flat = (r2[0] && r2[0].result) || [];
+    } catch { /* best effort */ }
+  }
   const rows = [];
-  for (let i = 0; i < flat.length; i += 2) rows.push({ fid: Number(flat[i]), score: Number(flat[i + 1]) });
+  for (let i = 0; i < flat.length; i += 2) rows.push({ handle: flat[i], score: Number(flat[i + 1]) });
   if (!rows.length) return json([]);
 
-  const profiles = await resolveProfiles(rows.map(r => r.fid));
+  // Resolve addresses for players who submitted one (so Empire can pay a wallet).
+  let addrs = {};
+  try {
+    const ar = await kvPipeline([['HMGET', ADDR_KEY, ...rows.map((r) => r.handle)]]);
+    const vals = (ar[0] && ar[0].result) || [];
+    rows.forEach((r, i) => { if (vals[i]) addrs[r.handle] = vals[i]; });
+  } catch { /* best effort */ }
 
   if (full) {
-    return json(rows.map(r => ({
-      fid: r.fid,
-      username: profiles[r.fid]?.username || null,
-      pfpUrl: profiles[r.fid]?.pfpUrl || null,
-      address: profiles[r.fid]?.address || null,
+    return json(rows.map((r, i) => ({
+      rank: i + 1,
+      handle: r.handle,
+      username: r.handle,
       score: r.score,
+      address: addrs[r.handle] || null,
     })));
   }
 
-  // Empire Builder apiLeaderboard: address + score only, drop FIDs without a verified address.
-  return json(rows
-    .map(r => ({ address: profiles[r.fid]?.address, score: r.score }))
-    .filter(r => r.address));
+  // Empire Builder apiLeaderboard: address + score only.
+  return json(rows.filter((r) => addrs[r.handle]).map((r) => ({ address: addrs[r.handle], score: r.score })));
 }
