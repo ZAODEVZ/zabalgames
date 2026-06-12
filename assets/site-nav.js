@@ -31,6 +31,7 @@
       ['The Finals', '/finals.html']
     ]],
     ['Watch + read', [
+      ['Speakers', '/speakers.html'],
       ['Recordings', '/recordings'],
       ['Session recaps', '/recaps.html'],
       ['Data streams', '/streams.html'],
