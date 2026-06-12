@@ -4,10 +4,8 @@
 > the recording transcript. Brand-clean: no emojis, no em dashes (hyphens only). Chapters
 > are real timestamps from the transcript. Confirm the WaveWarz YouTube handle before publish.
 
-## Title (pick one)
-1. WaveWarz: Earn From Music Battles, Not Streams - with Hurricane Ike
-2. How Artists Get Paid on WaveWarz Music Battles - Hurricane Ike (ZABAL Gamez)
-3. WaveWarz Explained: Head-to-Head Music Battles on Solana - Hurricane Ike
+## Title
+ZABAL GAMEZ - ZAO Workshop - WAVEWARZ: Earn From Music Battles, Not Streams - w/ HURRIC4N3IKE
 
 ## Description
 ```
