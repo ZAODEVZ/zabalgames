@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Farcaster protocol, ins and outs - Cassie - ZABAL Gamez Season 1</title>
+  <meta name="description" content="ZABAL Gamez workshop. Cassie (Quilibrium) on the Farcaster protocol: Snapchain vs Hypersnap, why building a client is hard, the Snap token, gasless signers, and the road to a million daily actives. Full transcript live.">
+  <link rel="canonical" href="https://zabalgamez.com/recordings/9">
+  <meta property="og:title" content="The Farcaster protocol, ins and outs - Cassie - ZABAL Gamez">
+  <meta property="og:description" content="Cassie (Quilibrium) on the Farcaster protocol: Snapchain vs Hypersnap, building a client, the Snap token, gasless signers. A ZABAL Gamez workshop - transcript live, video in parts.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://zabalgamez.com/recordings/9">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Farcaster protocol, ins and outs - Cassie - ZABAL Gamez">
+  <meta name="twitter:description" content="Cassie on Snapchain vs Hypersnap, building a Farcaster client, and the Snap token. A ZABAL Gamez workshop.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Read: Farcaster protocol","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/9","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
+    .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
+    .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
+    .rec-pending { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 0.9rem 1.1rem; margin: 0.4rem 0 0.2rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+    .rec-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.9rem 0 0.2rem; }
+    .rec-link { font-size: 0.82rem; padding: 0.34rem 0.75rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); font-family: inherit; cursor: pointer; }
+    .rec-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .rec-link:hover { filter: brightness(1.12); }
+    .rec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 1.3rem 0 0.4rem; }
+    .rec-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+    .rec-chapters li { display: flex; gap: 0.7rem; align-items: baseline; padding: 0.3rem 0.5rem; font-size: 0.9rem; color: var(--text); }
+    .rec-chapters .t { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); min-width: 3.2rem; }
+    .rec-topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.3rem 0 0; }
+    .rec-topic { font-size: 0.7rem; letter-spacing: 0.02em; padding: 0.14rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-2); }
+    .rec-takeaways { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+    .rec-takeaways li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/speakers">Speakers</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <nav id="rec-nav" class="rec-nav" aria-label="Recording navigation"></nav>
+
+  <header class="hero" style="padding-bottom: 0.6rem;">
+    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / Farcaster protocol</div>
+    <h1>The Farcaster protocol, <span class="accent">ins and outs</span>.</h1>
+    <p class="rec-by">
+      Cassie (Cassandra Heart) <span class="dot">&middot;</span> @cassie <span class="dot">&middot;</span> Quilibrium
+      <span class="dot">&middot;</span> <span class="rec-format">Builder track - live workshop, recorded</span>
+    </p>
+  </header>
+
+  <div class="rec-pending">
+    The full transcript is live below. The video is being published in parts - the players land here as each goes up.
+  </div>
+
+  <div class="rec-links">
+    <a class="rec-link primary" href="https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-cassie-farcaster-protocol.md" target="_blank" rel="noopener">Read the transcript</a>
+    <a class="rec-link" href="https://github.com/farcasterorg" target="_blank" rel="noopener">Farcaster org (FIPs)</a>
+    <a class="rec-link" href="https://quilibrium.com" target="_blank" rel="noopener">Quilibrium</a>
+    <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
+    <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
+  </div>
+
+  <section class="section" style="margin-top: 1.4rem;">
+    <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
+      Cassie (Cassandra Heart, founder of Quilibrium and a contributor to Farcaster) gives a deep, candid tour of the Farcaster protocol: what "sufficiently decentralized" really meant, the hubs era and its scaling limits, and the rewrite into Snapchain. She lays out the two centralization problems - the validator set, controlled mostly by Neynar, and the fact that you cannot build a real client straight off Snapchain - then walks through her Hypersnap fork as an additive side chain: threshold ECDSA via MPC, the Snap token and gasless bridging, consensus, the external OP Mainnet contracts, gasless signers, spam and trust scoring, and the roadmap. She closes with the five North Stars for getting Farcaster to a million daily actives, chief among them making it possible to build a client in a weekend.
+    </p>
+
+    <div class="rec-label">Chapters</div>
+    <ul class="rec-chapters">
+      <li><span class="t">0:48</span><span>What ZABAL Gamez is, and intro</span></li>
+      <li><span class="t">1:11</span><span>Why this talk: Snapchain vs Hypersnap</span></li>
+      <li><span class="t">3:27</span><span>"Sufficiently decentralized" and the hubs era</span></li>
+      <li><span class="t">6:05</span><span>Enter Snapchain, and the two centralization problems</span></li>
+      <li><span class="t">9:11</span><span>Why the Hypersnap fork - build a client in a weekend</span></li>
+      <li><span class="t">11:10</span><span>Inside Snapchain: the three shards</span></li>
+      <li><span class="t">13:28</span><span>Inside Hypersnap: side chain, threshold ECDSA</span></li>
+      <li><span class="t">16:55</span><span>External anchors: the OP Mainnet contracts</span></li>
+      <li><span class="t">20:16</span><span>Gasless signers</span></li>
+      <li><span class="t">22:18</span><span>The Snap token and the bridge</span></li>
+      <li><span class="t">25:12</span><span>Consensus: Malachite, block times, the speed of light</span></li>
+      <li><span class="t">29:47</span><span>Hypersnap architecture: actors, DKG, the token state machine</span></li>
+      <li><span class="t">35:21</span><span>Block production and message types</span></li>
+      <li><span class="t">37:33</span><span>The bridge and defense in depth</span></li>
+      <li><span class="t">38:47</span><span>The roadmap</span></li>
+      <li><span class="t">41:39</span><span>Q and A: the five North Stars (easier clients)</span></li>
+      <li><span class="t">47:39</span><span>Q and A: Snap EVM Compute</span></li>
+      <li><span class="t">49:24</span><span>Q and A: FIP2 and channels</span></li>
+    </ul>
+
+    <div class="rec-label">Topics</div>
+    <div class="rec-topics">
+      <span class="rec-topic">Farcaster protocol</span>
+      <span class="rec-topic">Snapchain</span>
+      <span class="rec-topic">Hypersnap</span>
+      <span class="rec-topic">building a client</span>
+      <span class="rec-topic">Snap token</span>
+      <span class="rec-topic">gasless signers</span>
+      <span class="rec-topic">consensus</span>
+      <span class="rec-topic">decentralization</span>
+    </div>
+
+    <div class="rec-label">Key takeaways</div>
+    <ul class="rec-takeaways">
+      <li>Snapchain is a real shard-based BFT blockchain; its validator set is mostly Neynar today, which is the live centralization question.</li>
+      <li>You cannot build a meaningful client straight off Snapchain - you need your own indexer and backend. Making a weekend-buildable client is the top goal.</li>
+      <li>Hypersnap is an additive side chain: threshold ECDSA via MPC, the Snap token, and gasless bridging to any EVM chain, without breaking Snapchain.</li>
+      <li>External anchors matter: the OP Mainnet ID/storage/key/FNAME registries, and the new gasless signers born from a real signer-compromise incident.</li>
+      <li>The five North Stars: a real query layer (done), a template plus SDK for clients, channels and curation as first-class, mini app discovery at the protocol level, and native monetization.</li>
+    </ul>
+  </section>
+
+  <p style="margin-top: 1.4rem; font-size: 0.85rem;"><a href="/recordings">All recordings</a> &nbsp;-&nbsp; <a href="/recaps">Session recaps</a> &nbsp;-&nbsp; <a href="/#schedule">Upcoming schedule</a></p>
+
+  <section id="zg-comments"></section>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/speakers.html">Speakers</a>
+      <a href="/recordings.html">Recordings</a>
+      <a href="/recaps">Session Recaps</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/#schedule">Schedule</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var PAGE_URL = 'https://zabalgamez.com/recordings/9';
+  var TOPICS = [
+    "why you can't just build a Farcaster client off Snapchain",
+    "Snapchain vs Hypersnap, explained",
+    "building a Farcaster client in a weekend",
+    "the Snap token and gasless bridging",
+    "the five North Stars for Farcaster's next million users",
+    "gasless signers and why they exist"
+  ];
+  document.querySelectorAll('.rec-watch-share').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!(window.ZABAL && window.ZABAL.share)) return;
+      var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
+      var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+      var text = "I'm reading the ZABAL Gamez workshop with @cassie on the Farcaster protocol - " + topic;
+      window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-9-' + platform });
+    });
+  });
+})();
+</script>
+
+<script defer src="/assets/rec-nav.js"></script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/recording-comments.js"></script>
+</body>
+</html>

@@ -3,6 +3,46 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[], okd (YYYY-MM-DD the guest reviewed the cut/page and signed off, before public release - absent until they approve). After editing, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-06-12",
+      "type": "workshop",
+      "title": "The Farcaster protocol, ins and outs",
+      "presenter": "Cassie",
+      "handle": "@cassie",
+      "org": "Quilibrium",
+      "track": "builder",
+      "format": "Live workshop with slides, recorded",
+      "page": "/recordings/9",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-cassie-farcaster-protocol.md",
+      "link": "https://github.com/farcasterorg",
+      "link_label": "Farcaster org (FIPs)",
+      "summary": "Cassie (Cassandra Heart, founder of Quilibrium and a contributor to Farcaster) gives a deep, candid tour of the Farcaster protocol: what 'sufficiently decentralized' really meant, the hubs era and its scaling limits, and the rewrite into Snapchain. She lays out the two centralization problems (the validator set, controlled mostly by Neynar; and the fact that you can't build a real client straight off Snapchain), then walks through her Hypersnap fork as an additive side chain: threshold ECDSA via MPC, the Snap token and gasless bridging, consensus (Malachite/Tendermint, one-second blocks and the speed-of-light limit), the external OP Mainnet contracts (ID, storage, key, FNAME registries), gasless signers, spam/trust scoring, and the roadmap. Closes with the five North Stars for getting Farcaster to a million daily actives - chief among them, making it possible to build a client in a weekend.",
+      "topics": [
+        "Farcaster protocol",
+        "Snapchain",
+        "Hypersnap",
+        "building a client",
+        "Snap token",
+        "gasless signers",
+        "consensus",
+        "decentralization"
+      ],
+      "takeaways": [
+        "Farcaster's data layer, Snapchain, is a real shard-based BFT blockchain; its validator set is mostly Neynar today, which is the live centralization question.",
+        "You can't build a meaningful client straight off Snapchain - you need your own indexer and backend. Making a weekend-buildable client is the top goal.",
+        "Hypersnap is an additive side chain: threshold ECDSA via MPC, the Snap token, and gasless bridging to any EVM chain, without breaking Snapchain.",
+        "External anchors matter: the OP Mainnet ID/storage/key/FNAME registries, and the new gasless signers (cost-free revoke/add) born from a real signer-compromise incident.",
+        "The five North Stars: a real query layer (done), a template+SDK for clients, channels/curation as first-class, mini app discovery at the protocol level, and native monetization."
+      ],
+      "share_topics": [
+        "why you can't just build a Farcaster client off Snapchain",
+        "Snapchain vs Hypersnap, explained",
+        "building a Farcaster client in a weekend",
+        "the Snap token and gasless bridging",
+        "the five North Stars for Farcaster's next million users",
+        "gasless signers and why they exist"
+      ]
+    },
+    {
       "date": "2026-06-13",
       "type": "workshop",
       "title": "Earn from music battles, not streams: WaveWarz",
