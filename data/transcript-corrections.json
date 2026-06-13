@@ -28,7 +28,9 @@
     { "from": "X402", "to": "x402" },
     { "from": "Berserker", "to": "Bearserker", "note": "yerbeARSERKER; standalone 'Berserker' is the mishearing" },
     { "from": "Zabalgames.com", "to": "Zabalgamez.com" },
-    { "from": "Zao", "to": "ZAO", "note": "casing fix; word boundary keeps ZAODEVZ etc. intact" }
+    { "from": "Zao", "to": "ZAO", "note": "casing fix; word boundary keeps ZAODEVZ etc. intact" },
+    { "from": "CloudCode", "to": "Claude Code" },
+    { "from": "Cloud Code", "to": "Claude Code", "note": "Anthropic's Claude Code, misheard as 'Cloud Code'" }
   ],
   "review": [
     { "from": "Games", "to": "Gamez", "note": "almost always the brand 'ZABAL Gamez' - but SKIP generic uses like 'video games'. Most frequent correction; confirm each." },
