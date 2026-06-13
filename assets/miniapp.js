@@ -427,6 +427,49 @@ window.ZABAL.submitBonfire = async function submitBonfire(payload) {
   }
 };
 
+// Post a comment under a recording (verified). Inside a Mini App, POSTs to
+// /api/comments with a Quick Auth JWT; the caller's own profile (username + pfp) is
+// attached for display. id is the recording path (e.g. "recordings/1"). Returns
+// { ok, comment } or { ok:false, reason }.
+window.ZABAL.postComment = async function postComment(id, text) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const u = (ctx && ctx.user) || {};
+    const res = await sdk.quickAuth.fetch('/api/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'comment', id: id, text: text, username: u.username || '', pfp: u.pfpUrl || '' }),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    if (data && data.ok) window.ZABAL.haptic('medium');
+    return data && data.ok ? { ok: true, comment: data.comment } : { ok: false, reason: data.reason || data.error || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
+// Like a comment (verified) - one like per FID per comment. Returns
+// { ok, likes, firstLike } or { ok:false, reason }.
+window.ZABAL.likeComment = async function likeComment(id, cid) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'like', id: id, cid: cid }),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    if (data && data.ok && data.firstLike) window.ZABAL.haptic('light');
+    return data && data.ok ? { ok: true, likes: data.likes, firstLike: data.firstLike } : { ok: false, reason: data.reason || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 // Credit the team's X account on tweets, mirroring @zaal on casts. This is the
 // twitter:site / twitter:creator handle. Idempotent. Not used on casts, where an
 // X handle would not map to the same account.
