@@ -1,9 +1,45 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-06-11",
+  "generated": "2026-06-13",
   "season": 1,
-  "count": 9,
+  "count": 10,
   "recordings": [
+    {
+      "type": "workshop",
+      "title": "Earn from music battles, not streams: WaveWarz",
+      "presenter": "Hurricane Ike",
+      "handle": "@hurric4n3ike",
+      "org": "WaveWarz",
+      "track": "artist",
+      "format": "Recorded workshop",
+      "date": "2026-06-13",
+      "url": "https://zabalgamez.com/recordings/8",
+      "page": "https://zabalgamez.com/recordings/8",
+      "youtube": "https://youtu.be/2GLRrILYoo4",
+      "recording": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-13-wavewarz-hurricane.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-13-wavewarz-hurricane.md",
+      "link": "https://wavewarz.com",
+      "okd": null,
+      "summary": "Hurricane Ike, founder of WaveWarz, on a new way for musicians to get paid: head-to-head music battles where people buy and sell on the competing tracks like stocks, and the artist earns one percent of every trade on their side - engagement, not streams. One artist earned about 0.5 SOL in minutes of a single battle. He covers the live chart scoring that makes a battle as fun to watch as it is to hear, the nightly 8:30pm EST quick-battle queue, and community battles in any format (music, roast, cooking) with automated payouts straight to artist wallets. Artists keep their masters, IP, and audience. 500+ SOL in volume, 40+ artists, built on Solana.",
+      "topics": [
+        "WaveWarz",
+        "music battles",
+        "earn from engagement",
+        "Solana",
+        "community battles",
+        "keep your masters",
+        "distribution"
+      ],
+      "takeaways": [
+        "Artists earn from engagement - one percent of every trade on their side of a battle - not from streams.",
+        "The live charts make a battle a game: the score moves as people buy and sell.",
+        "You keep your masters, IP, and audience. WaveWarz never holds them.",
+        "Quick battles run nightly at 8:30pm EST; anyone can queue one for 0.05 SOL.",
+        "Community battles run any format - music, roast, cooking - with automated, split payouts.",
+        "500+ SOL in volume, 40+ artists, built on Solana for fast, low-fee trades."
+      ]
+    },
     {
       "type": "workshop",
       "title": "Building KFMEDIA",

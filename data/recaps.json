@@ -3,6 +3,47 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[], okd (YYYY-MM-DD the guest reviewed the cut/page and signed off, before public release - absent until they approve). After editing, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-06-13",
+      "type": "workshop",
+      "title": "Earn from music battles, not streams: WaveWarz",
+      "presenter": "Hurricane Ike",
+      "handle": "@hurric4n3ike",
+      "org": "WaveWarz",
+      "track": "artist",
+      "format": "Recorded workshop",
+      "youtube": "https://youtu.be/2GLRrILYoo4",
+      "page": "/recordings/8",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-13-wavewarz-hurricane.md",
+      "link": "https://wavewarz.com",
+      "link_label": "WaveWarz",
+      "summary": "Hurricane Ike, founder of WaveWarz, on a new way for musicians to get paid: head-to-head music battles where people buy and sell on the competing tracks like stocks, and the artist earns one percent of every trade on their side - engagement, not streams. One artist earned about 0.5 SOL in minutes of a single battle. He covers the live chart scoring that makes a battle as fun to watch as it is to hear, the nightly 8:30pm EST quick-battle queue, and community battles in any format (music, roast, cooking) with automated payouts straight to artist wallets. Artists keep their masters, IP, and audience. 500+ SOL in volume, 40+ artists, built on Solana.",
+      "topics": [
+        "WaveWarz",
+        "music battles",
+        "earn from engagement",
+        "Solana",
+        "community battles",
+        "keep your masters",
+        "distribution"
+      ],
+      "takeaways": [
+        "Artists earn from engagement - one percent of every trade on their side of a battle - not from streams.",
+        "The live charts make a battle a game: the score moves as people buy and sell.",
+        "You keep your masters, IP, and audience. WaveWarz never holds them.",
+        "Quick battles run nightly at 8:30pm EST; anyone can queue one for 0.05 SOL.",
+        "Community battles run any format - music, roast, cooking - with automated, split payouts.",
+        "500+ SOL in volume, 40+ artists, built on Solana for fast, low-fee trades."
+      ],
+      "share_topics": [
+        "earning from music battles, not streams",
+        "the 1% trade cut on every battle",
+        "the live charts that make a battle a game",
+        "keeping your masters, IP, and audience",
+        "community battles in any format",
+        "what you can build on top of WaveWarz"
+      ]
+    },
+    {
       "date": "2026-06-10",
       "type": "workshop",
       "title": "Building KFMEDIA",
