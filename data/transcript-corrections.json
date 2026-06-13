@@ -43,6 +43,7 @@
     { "from": "Izzy", "to": "EZ", "note": "ZAO member who runs Impact Concerts with Jose; also heard as 'Isi'. Session-specific - confirm." },
     { "from": "Isi", "to": "EZ", "note": "same person as 'Izzy' - confirm." },
     { "from": "Equilibrium", "to": "Quilibrium", "note": "Cassie's project/company is Quilibrium (she also says 'Q' / 'Q Inc.'). Leave as 'equilibrium' only where it means the concept, not the project." },
-    { "from": "Zabo ecosystem", "to": "ZAO ecosystem", "note": "in Cassie's talk 'Zabo ecosystem' means the ZAO ecosystem, NOT ZABAL - overrides the safe Zabo->ZABAL rule in this context." }
+    { "from": "Zabo ecosystem", "to": "ZAO ecosystem", "note": "in Cassie's talk 'Zabo ecosystem' means the ZAO ecosystem, NOT ZABAL - overrides the safe Zabo->ZABAL rule in this context." },
+    { "from": "Merkel", "to": "Merkle", "note": "Merkle Manufactory (built Farcaster) in Farcaster talks; 'Merkel' is also a surname, so confirm. 'Merkle tree' is correct and unrelated." }
   ]
 }
