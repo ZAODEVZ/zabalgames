@@ -67,6 +67,22 @@ Luma and send you the details.
 **Brand notes for your talk:** keep it practical and warm. It is a build event, not a
 video-game contest. Any harness welcome. Show real work - do not oversell.
 
+### 1e. Confirmation DM (REUSABLE - send once their slot is locked)
+
+The moment a guest has a date + a published Luma, send this so they have the details in
+hand. Fill the `[brackets]`; drop the demo line if it does not fit. Direct, no fluff.
+
+```
+Hey [name] - you're locked: [day, date, time] EST for [session/topic]. Event: [luma]
+
+[length], livestreamed and recorded. [one line - e.g. just demo X and walk through what
+you're building]. We run the stream and clip it after. Anything you need from us, let me know.
+```
+
+**Worked example (Chris Dolinsky, Vini App):** name = Chris, slot = Mon Jun 15, 4:45pm,
+session = your Vini App workshop, luma = https://luma.com/tip89eq3, length = 30 min,
+demo line = just demo Vini App and walk through what you're building.
+
 ---
 
 ## 2. Cal.com booking intake questions (add these to the event)
