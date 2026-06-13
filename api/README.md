@@ -52,6 +52,16 @@ the public builds board (`/enter`); the builds themselves are the repos from
   Returns `{ ok, repo, count, firstVote }`. Keys: `zabal:buildvotes:v1` (counts),
   `zabal:buildvote:voters:v1:<repo>` (voter sets).
 
+### `GET/POST /api/comments`
+Per-recording comments + likes, surfaced by the `/assets/recording-comments.js` widget on
+every `/recordings/*` page. `id` is the recording path (e.g. `recordings/1`).
+
+- `GET ?id=<recId>`: open read, returns `{ configured, count, comments: [{ cid, fid, username, pfp, text, ts, likes }] }` (newest first).
+- `POST`: `Authorization: Bearer <quick-auth-jwt>`.
+  - `{ action: 'comment', id, text, username?, pfp? }` (`window.ZABAL.postComment`) -> `{ ok, comment }`. Text is trimmed/capped at 500 chars; `username`/`pfp` are display-only (the verified FID is the identity anchor and the profile link uses it).
+  - `{ action: 'like', id, cid }` (`window.ZABAL.likeComment`) -> `{ ok, likes, firstLike }`. One like per FID per comment (same SADD-then-increment model as `/api/dream-vote`).
+  - Keys: `zabal:comments:v1:<recId>` (cid -> comment JSON), `zabal:commentlikes:v1:<recId>` (cid -> count), `zabal:commentlike:voters:v1:<cid>` (voter sets).
+
 ### `GET/POST /api/finals-picks`
 Mentor half of the hybrid July judging: mentors pick the Finals shortlist from the
 voted builds. Picks live in KV (`zabal:finals:picks` { repo -> JSON `{track, by, ts}` });
