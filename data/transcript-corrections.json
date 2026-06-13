@@ -6,6 +6,9 @@
     { "from": "Zebal", "to": "Zabal" },
     { "from": "Saval", "to": "Zabal" },
     { "from": "Naynar", "to": "Neynar" },
+    { "from": "Nainar", "to": "Neynar", "note": "Neynar misheard; covers 'NaiNar' too (matching is case-insensitive)" },
+    { "from": "Nanor", "to": "Neynar" },
+    { "from": "Mainar", "to": "Neynar", "note": "heard as 'closed-source Mainar team' = Neynar" },
     { "from": "Forecaster", "to": "Farcaster" },
     { "from": "Bone First", "to": "Bonfire" },
     { "from": "PlatoX", "to": "Plat0x" },
@@ -36,6 +39,8 @@
     { "from": "Saas", "to": "SAS", "note": "confirm - 'SaaS' is also a real term." },
     { "from": "Sal", "to": "Zaal", "note": "host mishearing; very short with high false-positive risk - confirm each." },
     { "from": "Izzy", "to": "EZ", "note": "ZAO member who runs Impact Concerts with Jose; also heard as 'Isi'. Session-specific - confirm." },
-    { "from": "Isi", "to": "EZ", "note": "same person as 'Izzy' - confirm." }
+    { "from": "Isi", "to": "EZ", "note": "same person as 'Izzy' - confirm." },
+    { "from": "Equilibrium", "to": "Quilibrium", "note": "Cassie's project/company is Quilibrium (she also says 'Q' / 'Q Inc.'). Leave as 'equilibrium' only where it means the concept, not the project." },
+    { "from": "Zabo ecosystem", "to": "ZAO ecosystem", "note": "in Cassie's talk 'Zabo ecosystem' means the ZAO ecosystem, NOT ZABAL - overrides the safe Zabo->ZABAL rule in this context." }
   ]
 }
