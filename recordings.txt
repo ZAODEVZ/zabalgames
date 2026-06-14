@@ -58,9 +58,15 @@ Topics: WaveWarz, music battles, earn from engagement, Solana, community battles
 workshop  |  track: creator  |  2026-06-10
 Presenter: Will T of Web3 (@willtofweb3), Kingfishers Media
 Watch: https://zabalgamez.com/recordings/7
-Recording: https://luma.com/za2b259z
-Summary: A creator-track session with Will T of Web3 on building KFMEDIA (Kingfishers Media) - what he is building, how he is doing it, and the lessons so far. Full recap, takeaways, and the word-for-word transcript will be added here once the recording is processed.
-Topics: Kingfishers Media, media on Farcaster, building in public, creator track, lessons learned
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-10-will-t-kfmedia.md
+Summary: A creator-track conversation with Will T of Web3 on building KFMEDIA (Kingfishers Media) - a media company that helps independent content creators distribute their work using on-chain tools, without learning to code. When Bonfire.xyz sunset and CharmVerse announced the same, Will (a self-described non-coder) learned to vibe code and forked CharmVerse to rebuild the Kingfishers Media learning center on its own terms. The practical core: the three tools KFMEDIA actually uses to distribute creator media - Unlock Protocol for subscriptions, memberships, and booking pages (fiat or ERC-20); Highlight.xyz, which stores NFT video permanently on Arweave; and Contra for Web2 reach - plus KFM Talks, a TEDx-style independent creator program that returns 80 to 85% of sales to the creator. Kingfishers Media is moving to a true public good, dropping token gating and converting to a nonprofit association in Q4.
+Takeaways:
+  - You do not have to be a coder to own your stack. Will, a self-described creative founder with no ambition to code, learned to vibe code and forked CharmVerse to rebuild the Kingfishers Media learning center when the tool they relied on was sunsetting.
+  - Relying on a third-party service is a risk: Bonfire.xyz sunset with no open-source fallback, and CharmVerse announced the same. Open-sourcing a tool as a public good (like Hats Protocol did) lets the people who depended on it keep going.
+  - Unlock Protocol does far more than event RSVPs - KFMEDIA uses it for creator subscriptions (monthly to annual), memberships, and even booking pages, accepting fiat via Stripe or ERC-20 tokens like USDC.
+  - For permanent media, KFMEDIA distributes NFT video through Highlight.xyz, which writes the files to Arweave so the content outlives the platform. Contra covers Web2 reach. Pick tools that match the media and the audience.
+  - KFM Talks is a TEDx-style program built entirely on Web3 tooling that returns 80 to 85% of sales to the creator (versus 30 to 40% in a traditional agency), and Kingfishers Media is converting to a public good and a nonprofit association in Q4.
+Topics: Kingfishers Media, KFMEDIA, creator distribution, Unlock Protocol, Highlight.xyz, Arweave, Contra, CharmVerse, KFM Talks, public goods, vibe coding
 
 ======================================================================
 [5] Owning your music as an independent artist
