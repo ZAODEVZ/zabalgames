@@ -62,6 +62,15 @@ every `/recordings/*` page. `id` is the recording path (e.g. `recordings/1`).
   - `{ action: 'like', id, cid }` (`window.ZABAL.likeComment`) -> `{ ok, likes, firstLike }`. One like per FID per comment (same SADD-then-increment model as `/api/dream-vote`).
   - Keys: `zabal:comments:v1:<recId>` (cid -> comment JSON), `zabal:commentlikes:v1:<recId>` (cid -> count), `zabal:commentlike:voters:v1:<cid>` (voter sets).
 
+### `GET /api/cast-comments`
+The native-Farcaster path for a recording's "Thoughts". Given a recording's root cast
+(its announce cast, stored as `cast_hash` in `data/recaps.json`), returns the real replies
+via Neynar - public, no login, no spam infra. The `/assets/recording-comments.js` widget
+uses this when a recording has a `cast_hash`, and people reply on the cast itself.
+
+- `GET ?hash=<castHashOrWarpcastUrl>` -> `{ configured, count, root: { hash, url }, comments: [{ hash, fid, username, pfp, display, text, ts, likes, recasts, url }] }`.
+- Needs `NEYNAR_API_KEY` (read-only). No-ops (`configured:false`) when absent. 30s edge cache.
+
 ### `GET/POST /api/finals-picks`
 Mentor half of the hybrid July judging: mentors pick the Finals shortlist from the
 voted builds. Picks live in KV (`zabal:finals:picks` { repo -> JSON `{track, by, ts}` });
@@ -198,7 +207,7 @@ Formspree team form as the stub backend. v1 reads FID + cast hash as untrusted
 | `KV_REST_API_URL` | Vercel KV / Upstash REST base URL | auto-set when you add a Vercel KV store, or copy from Upstash |
 | `KV_REST_API_TOKEN` | Vercel KV / Upstash REST token | same |
 | `NOTIFY_SECRET` | Bearer secret guarding `POST /api/notify` | set to any long random string; pass it as `Authorization: Bearer <value>` when sending |
-| `NEYNAR_API_KEY` | Neynar key for `POST /api/daily-cast` to publish the cast | Neynar dev dashboard (free tier) |
+| `NEYNAR_API_KEY` | Neynar key - publishes the cast in `POST /api/daily-cast` and reads recording reply threads in `GET /api/cast-comments` | Neynar dev dashboard (free tier) |
 | `NEYNAR_SIGNER_UUID` | Approved Neynar signer that posts the daily cast | Neynar managed signer (approve once) |
 | `CRON_SECRET` | Optional bearer enforced on cron endpoints when set | any long random string; Vercel injects it on cron calls |
 | `EMPIRE_ID` | Optional override for `GET /api/empire-leaderboard`. Defaults to `zabalgamez01e9af` (our tokenless empire), so no config is needed | Empire Builder |

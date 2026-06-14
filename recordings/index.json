@@ -1,6 +1,6 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-06-13",
+  "generated": "2026-06-14",
   "season": 1,
   "count": 11,
   "recordings": [
@@ -21,6 +21,7 @@
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-cassie-farcaster-protocol.md",
       "link": "https://github.com/farcasterorg",
       "okd": null,
+      "cast_hash": null,
       "summary": "Cassie (Cassandra Heart, founder of Quilibrium and a contributor to Farcaster) gives a deep, candid tour of the Farcaster protocol: what 'sufficiently decentralized' really meant, the hubs era and its scaling limits, and the rewrite into Snapchain. She lays out the two centralization problems (the validator set, controlled mostly by Neynar; and the fact that you can't build a real client straight off Snapchain), then walks through her Hypersnap fork as an additive side chain: threshold ECDSA via MPC, the Snap token and gasless bridging, consensus (Malachite/Tendermint, one-second blocks and the speed-of-light limit), the external OP Mainnet contracts (ID, storage, key, FNAME registries), gasless signers, spam/trust scoring, and the roadmap. Closes with the five North Stars for getting Farcaster to a million daily actives - chief among them, making it possible to build a client in a weekend.",
       "topics": [
         "Farcaster protocol",
@@ -57,6 +58,7 @@
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-13-wavewarz-hurricane.md",
       "link": "https://wavewarz.com",
       "okd": null,
+      "cast_hash": null,
       "summary": "Hurricane Ike, founder of WaveWarz, on a new way for musicians to get paid: head-to-head music battles where people buy and sell on the competing tracks like stocks, and the artist earns one percent of every trade on their side - engagement, not streams. One artist earned about 0.5 SOL in minutes of a single battle. He covers the live chart scoring that makes a battle as fun to watch as it is to hear, the nightly 8:30pm EST quick-battle queue, and community battles in any format (music, roast, cooking) with automated payouts straight to artist wallets. Artists keep their masters, IP, and audience. 500+ SOL in volume, 40+ artists, built on Solana.",
       "topics": [
         "WaveWarz",
@@ -93,6 +95,7 @@
       "transcript_raw": null,
       "link": "https://www.kingfishersmedia.io",
       "okd": null,
+      "cast_hash": null,
       "summary": "A creator-track session with Will T of Web3 on building KFMEDIA (Kingfishers Media) - what he is building, how he is doing it, and the lessons so far. Full recap, takeaways, and the word-for-word transcript will be added here once the recording is processed.",
       "topics": [
         "Kingfishers Media",
@@ -120,6 +123,7 @@
       "transcript_raw": null,
       "link": null,
       "okd": null,
+      "cast_hash": null,
       "summary": "An artist-track session with Joseph Goats on owning your music as an independent artist on Farcaster - releasing your work, owning your masters and your audience, and turning listeners into a community that pays you directly. Full recap, takeaways, and the word-for-word transcript will be added here once the recording is processed.",
       "topics": [
         "independent artists",
@@ -148,6 +152,7 @@
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md",
       "link": "https://sopha.social",
       "okd": null,
+      "cast_hash": null,
       "summary": "A ZABAL Gamez workshop with Chris (chriscocreated), founder of Sopha - a Farcaster client built for depth and high signal - on what he built and why curation is needed. Sopha is an intentional third place, a coffee shop or library for the deeper writing, art, and thinking that scrolls past on the main feed, with a curated feed kept by the community's curators plus BradQ's The Pulse. Chris traces why he built it (when Farcaster felt like it was tipping into meme coins, he set out to protect the culture of interesting thinkers, and good vibe coding made him the one to do it), how easy it now is to build your own client on Farcaster's open data with Neynar and Hypersnap, and the nested stack of client, mini apps, and Snaps. He closes on where Sopha is headed: a second round of Purple funding, experiments in rewarding curators, infra, and live cultural-center experiences, with a thoughtfully designed, non-extractive token only when the time is right.",
       "topics": [
         "Sopha",
@@ -186,6 +191,7 @@
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-06-bonfire-fireside-carlos.md",
       "link": "https://bonfires.ai",
       "okd": null,
+      "cast_hash": null,
       "summary": "A live ZABAL Gamez fireside between Zaal and Carlos (Plat0x, the Bonfires developer). Half working-session - the Bonfires rewrite (deadline June 14), ZAO's second Bonfire agent, auto-pushing context to the Bonfire on every git commit, and the positioning of Bonfires as a 'sense-making tool' where the agent is the librarian of a library - and half vibe-coding masterclass for the builder track: plan-then-goal with a measurable threshold, Bob-and-Alice diagramming before code, types-first prompting with a protocol/adapter contract, documentation-as-code, the Linus Torvalds compiler analogy, and Carlos's three skills (plan-making, sub-agents, adversarial agents).",
       "topics": [
         "Bonfires",
@@ -222,6 +228,7 @@
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md",
       "link": null,
       "okd": null,
+      "cast_hash": null,
       "summary": "Day 2 of ZABAL Gamez and the first creator-track session. Ohnahji (Brian), co-founder of the Ohnahji community - a 2022 project that grew into \"blockchain's first HBCU,\" a safe space for Black, brown, and allied folks learning emerging tech - joins Zaal on Twitch to talk about starting and growing a livestream. Ohnahji is about 288 days into a 365 daily-stream journey. The throughline: consistency is king. Every tool glitches, the early days are frustrating for everyone, and you only get better by showing up. They cover Twitch's Streamed Together and shared chat for collaborating live, raids as a discovery and gamification tool, building your own chat bots, the builder basics of API keys and environment variables, and streaming opsec - be careful what you screen-share, and when in doubt, slow down.",
       "topics": [
         "livestreaming",
@@ -259,6 +266,7 @@
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-bonfire-josh-plat0x.md",
       "link": "https://bonfires.ai",
       "okd": null,
+      "cast_hash": null,
       "summary": "The second ZABAL Gamez workshop. Joshua.eth and Plat0x (Carlos) introduce Bonfire - a shared AI workspace where a group shares agents and, in the process of using them, grows a shared memory: a knowledge graph that becomes a collective, ownable asset. They get into the data-loss problem, why curation is the last scarce asset, a vision for hackathons where every project is interoperable by design, and a live look at querying the ZABAL Bonfire bot.",
       "topics": [
         "Bonfire",
@@ -293,6 +301,7 @@
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder-part-2.md",
       "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
       "okd": null,
+      "cast_hash": null,
       "summary": "Part 2 of the first ZABAL Gamez workshop - the live build that follows the Part 1 framework talk. yerbearserker (Jordan Oram) of Empire Builder gives a hands-on tour of the Empire tool stack from inside Farcaster, walks the top empires and how leaderboards score holders times boosters, runs a live Warplet raffle airdrop to DotA NFT holders, adds a $Zabal token booster, and stands up a fresh tokenless ZABAL Gamez empire on the spot, then wires two leaderboards (channel activity in /zabal and cast reactions).",
       "topics": [
         "Empire Builder",
@@ -328,6 +337,7 @@
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md",
       "link": "https://empirebuilder.world/empire/zabalgamez01e9af",
       "okd": null,
+      "cast_hash": null,
       "summary": "Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up a tokenless ZABAL Gamez Empire live during the session. His message: build the foundation before you launch anything.",
       "topics": [
         "Empire Builder",
@@ -362,6 +372,7 @@
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md",
       "link": "https://discord.theZAO.com",
       "okd": null,
+      "cast_hash": null,
       "summary": "Zaal's weekly introduction to the ZAO Fractal, framed as the first ZAO project you can build on. He covers what the ZAO is - a decentralized impact network for the creator economy, the Z Talent Artist Organization - and how it runs on soulbound, illiquid ZAO Respect earned weekly through peer consensus. He walks the four objectives (empowerment, transparency, sustainability, equitable distribution) and the Respect game itself: breakout groups of up to six, four-minute updates, then on-chain consensus. The ZAO Fractal meets weekly at 6pm Eastern at discord.theZAO.com.",
       "topics": [
         "ZAO Fractal",
