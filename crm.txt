@@ -13,8 +13,8 @@ Adam Miller  [Headliner]
 Workshop lead  |  track: builder
   - MIDAO + Beta Briefing
   - Workshop: Talking miDAO with Adam Miller (Fri Jun 12 2026)
-X: @0xthriller
-Profile: https://zabalgamez.com/p?handle=adammiller
+Farcaster: @thethriller  |  X: @0xthriller
+Profile: https://zabalgamez.com/p?handle=thethriller
 ======================================================================
 Adrian  [Headliner]
 Workshop lead  |  track: builder
@@ -83,6 +83,7 @@ Dan Singjoy  [Headliner]
 Workshop lead  |  track: builder
   - Eden Fractal + the fractal ecosystem
   - Workshop: Eden Fractal and the fractal ecosystem (Sat Jun 20 2026)
+Farcaster: @dansingjoy
 Profile: https://zabalgamez.com/p?handle=dansingjoy
 ======================================================================
 Darko (Runner)  [Builder]
@@ -149,6 +150,7 @@ Jub Jub  [Headliner]
 Workshop lead  |  track: builder
   - Farcaster Batches, GM Farcaster
   - Workshop: Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster. (Sat Jun 20 2026)
+Farcaster: @jubjub
 Profile: https://zabalgamez.com/p?handle=jubjub
 ======================================================================
 JubJub  [Headliner]
@@ -161,7 +163,8 @@ Workshop lead, Dream lead, Batches builder  |  track: builder
   - Workshop: Talking POIDH (Mon Jun 15 2026)
   - On the Dream Leads board
   - Farcaster Batches: POIDH (Day 1)
-Profile: https://zabalgamez.com/p?handle=kenny-poidh
+Farcaster: @kenny  |  X: @kennyistyping
+Profile: https://zabalgamez.com/p?handle=kenny
 ======================================================================
 kmac.eth  [Headliner]
 Workshop lead  |  track: builder
