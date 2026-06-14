@@ -1,13 +1,28 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-14 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 11 recordings, newest first.
+Generated 2026-06-14 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 12 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
 Chronological feed of every recording: https://zabalgamez.com/streams
 
 ======================================================================
-[1] The Farcaster protocol, ins and outs
+[1] MIDAO + Beta Briefing: legal entities for DAOs and AI agents
+workshop  |  track: builder  |  2026-06-12
+Presenter: Adam Miller, MIDAO
+Watch: https://zabalgamez.com/recordings/10
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-adam-miller-midao.md
+Summary: A ZABAL Gamez conversation with Adam "The Thriller" Miller, founder and CEO of MIDAO. Two threads: MIDAO, the Marshall Islands legal framework that lets a DAO - or now a decentralized AI agent - become a real legal entity (a DAO LLC), so the people governing it are not personally liable for what it does; and Beta Briefing, his agentic daily-news tool that runs a multi-stage AI pipeline over your interests and delivers an editorialized briefing in text and audio. Plus a practical agentic-engineering segment: directing Claude Code with Codex as a second opinion and a dual-review sub-agent command.
+Takeaways:
+  - A DAO LLC (Marshall Islands) gives a DAO legal personhood and limited liability - the people governing it are not personally on the hook for the entity's actions.
+  - The same structure now works for a decentralized AI agent: governed by people, but the agent is the manager - it can sign contracts and open bank accounts, and can be elected in or out.
+  - If you do not elect a legal structure, the government applies a default one, usually not the one you want. Tokens and DAOs need documents.
+  - Beta Briefing runs an 11-plus stage agentic pipeline over your profile to deliver a daily, editorialized news briefing in text and audio (RSS too).
+  - Agentic-engineering tip: have Claude Code call Codex (and Google's CLI) for second opinions, build a dual-review sub-agent command, and keep upgrading your Claude.md and skills so it runs longer autonomously.
+Topics: MIDAO, DAO LLC, AI agent legal entity, Marshall Islands, Beta Briefing, agentic engineering, Claude Code
+
+======================================================================
+[2] The Farcaster protocol, ins and outs
 workshop  |  track: builder  |  2026-06-12
 Presenter: Cassie (@cassie), Quilibrium
 Watch: https://zabalgamez.com/recordings/9
@@ -22,7 +37,7 @@ Takeaways:
 Topics: Farcaster protocol, Snapchain, Hypersnap, building a client, Snap token, gasless signers, consensus, decentralization
 
 ======================================================================
-[2] Earn from music battles, not streams: WaveWarz
+[3] Earn from music battles, not streams: WaveWarz
 workshop  |  track: artist  |  2026-06-13
 Presenter: Hurricane Ike (@hurric4n3ike), WaveWarz
 Watch: https://zabalgamez.com/recordings/8
@@ -39,7 +54,7 @@ Takeaways:
 Topics: WaveWarz, music battles, earn from engagement, Solana, community battles, keep your masters, distribution
 
 ======================================================================
-[3] Building KFMEDIA
+[4] Building KFMEDIA
 workshop  |  track: creator  |  2026-06-10
 Presenter: Will T of Web3 (@willtofweb3), Kingfishers Media
 Watch: https://zabalgamez.com/recordings/7
@@ -48,7 +63,7 @@ Summary: A creator-track session with Will T of Web3 on building KFMEDIA (Kingfi
 Topics: Kingfishers Media, media on Farcaster, building in public, creator track, lessons learned
 
 ======================================================================
-[4] Owning your music as an independent artist
+[5] Owning your music as an independent artist
 workshop  |  track: artist  |  2026-06-09
 Presenter: Joseph Goats
 Watch: https://zabalgamez.com/recordings/6
@@ -57,7 +72,7 @@ Summary: An artist-track session with Joseph Goats on owning your music as an in
 Topics: independent artists, owning your masters, Farcaster, direct-to-fan, music distribution, community
 
 ======================================================================
-[5] Building Sopha, and why curation is needed
+[6] Building Sopha, and why curation is needed
 workshop  |  track: builder  |  2026-06-08
 Presenter: Chris (chriscocreated) (@chriscocreated), Sopha
 Watch: https://zabalgamez.com/recordings/5
@@ -74,7 +89,7 @@ Takeaways:
 Topics: Sopha, curation, Farcaster clients, high signal, third place, build your own client, Neynar, mini apps and Snaps
 
 ======================================================================
-[6] Bonfires + a vibe-coding masterclass
+[7] Bonfires + a vibe-coding masterclass
 fireside  |  track: builder  |  2026-06-06
 Presenter: Carlos (Plat0x) (@at0x_eth), Bonfires
 Watch: https://zabalgamez.com/recordings/fireside/1
@@ -89,7 +104,7 @@ Takeaways:
 Topics: Bonfires, vibe coding, planning, sub-agents, documentation-as-code, types-first, knowledge graph, agents
 
 ======================================================================
-[7] Starting and growing your own livestream
+[8] Starting and growing your own livestream
 workshop  |  track: creator  |  2026-06-02
 Presenter: Ohnahji
 Watch: https://zabalgamez.com/recordings/4
@@ -106,7 +121,7 @@ Takeaways:
 Topics: livestreaming, consistency, Twitch, OBS / Restream / StreamYard, raids, shared chat, building your own bots, API keys + env vars, opsec
 
 ======================================================================
-[8] Bonfire and the ZABAL Bonfire bot
+[9] Bonfire and the ZABAL Bonfire bot
 workshop  |  track: builder  |  2026-06-01
 Presenter: Joshua.eth and Plat0x (@joshua.eth), Bonfire
 Watch: https://zabalgamez.com/recordings/3
@@ -122,7 +137,7 @@ Takeaways:
 Topics: Bonfire, shared memory, knowledge graph, agents, curation, hackathons, ZABAL Bonfire bot
 
 ======================================================================
-[9] Empire Builder Part 2: Building a Tokenless Empire Live
+[10] Empire Builder Part 2: Building a Tokenless Empire Live
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/2
@@ -138,7 +153,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, airdrops, raffles, treasury, distribution
 
 ======================================================================
-[10] Empire Builder V3
+[11] Empire Builder V3
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/1
@@ -154,7 +169,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, staking, Triple-A framework, distribution
 
 ======================================================================
-[11] ZAO Fractal Weekly Introduction Presentation
+[12] ZAO Fractal Weekly Introduction Presentation
 workshop  |  track: builder  |  2026-06-01
 Presenter: Zaal (@zaal), The ZAO
 Watch: https://zabalgamez.com/recordings/zao/1

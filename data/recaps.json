@@ -5,6 +5,109 @@
     {
       "date": "2026-06-12",
       "type": "workshop",
+      "title": "MIDAO + Beta Briefing: legal entities for DAOs and AI agents",
+      "presenter": "Adam Miller",
+      "org": "MIDAO",
+      "track": "builder",
+      "format": "Conversation, recorded",
+      "summary": "A ZABAL Gamez conversation with Adam \"The Thriller\" Miller, founder and CEO of MIDAO. Two threads: MIDAO, the Marshall Islands legal framework that lets a DAO - or now a decentralized AI agent - become a real legal entity (a DAO LLC), so the people governing it are not personally liable for what it does; and Beta Briefing, his agentic daily-news tool that runs a multi-stage AI pipeline over your interests and delivers an editorialized briefing in text and audio. Plus a practical agentic-engineering segment: directing Claude Code with Codex as a second opinion and a dual-review sub-agent command.",
+      "topics": [
+        "MIDAO",
+        "DAO LLC",
+        "AI agent legal entity",
+        "Marshall Islands",
+        "Beta Briefing",
+        "agentic engineering",
+        "Claude Code"
+      ],
+      "page": "/recordings/10",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-adam-miller-midao.md",
+      "link": "https://midao.org",
+      "link_label": "MIDAO",
+      "takeaways": [
+        "A DAO LLC (Marshall Islands) gives a DAO legal personhood and limited liability - the people governing it are not personally on the hook for the entity's actions.",
+        "The same structure now works for a decentralized AI agent: governed by people, but the agent is the manager - it can sign contracts and open bank accounts, and can be elected in or out.",
+        "If you do not elect a legal structure, the government applies a default one, usually not the one you want. Tokens and DAOs need documents.",
+        "Beta Briefing runs an 11-plus stage agentic pipeline over your profile to deliver a daily, editorialized news briefing in text and audio (RSS too).",
+        "Agentic-engineering tip: have Claude Code call Codex (and Google's CLI) for second opinions, build a dual-review sub-agent command, and keep upgrading your Claude.md and skills so it runs longer autonomously."
+      ],
+      "share_topics": [
+        "making your DAO a real legal entity",
+        "giving a decentralized AI agent legal personhood",
+        "why you can't skip a legal structure",
+        "Beta Briefing, an agentic daily-news pipeline",
+        "Claude Code plus Codex dual-review"
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "What ZABAL Gamez is"
+        },
+        {
+          "t": 49,
+          "label": "Meet Adam \"The Thriller\" Miller"
+        },
+        {
+          "t": 89,
+          "label": "What Adam runs: MIDAO + Beta Briefing"
+        },
+        {
+          "t": 164,
+          "label": "The origin of MIDAO - the DAO LLC problem"
+        },
+        {
+          "t": 228,
+          "label": "First country with a DAO LLC law (after Wyoming)"
+        },
+        {
+          "t": 337,
+          "label": "Legal entities for decentralized AI agents"
+        },
+        {
+          "t": 406,
+          "label": "The agent as manager: liability + electing it in/out"
+        },
+        {
+          "t": 478,
+          "label": "Can you spin one up now? (the 90-95% off offer)"
+        },
+        {
+          "t": 658,
+          "label": "Beta Briefing: why he built it"
+        },
+        {
+          "t": 720,
+          "label": "The 11-plus stage agentic pipeline"
+        },
+        {
+          "t": 803,
+          "label": "A DAO/community use for Beta Briefing"
+        },
+        {
+          "t": 976,
+          "label": "Signing up + where it's headed"
+        },
+        {
+          "t": 1034,
+          "label": "The delivery problem (too many emails)"
+        },
+        {
+          "t": 1171,
+          "label": "Tips: the legal side - elect a structure"
+        },
+        {
+          "t": 1242,
+          "label": "Tips: agentic engineering - Claude Code + Codex dual-review"
+        },
+        {
+          "t": 1377,
+          "label": "Where to reach Adam"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "type": "workshop",
       "title": "The Farcaster protocol, ins and outs",
       "presenter": "Cassie",
       "handle": "@cassie",
