@@ -1,7 +1,7 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
-  "generated": "2026-06-12",
-  "count": 40,
+  "generated": "2026-06-14",
+  "count": 41,
   "people": [
     {
       "name": "Adam Miller",
@@ -470,6 +470,23 @@
       "profile_url": null,
       "tier": "Builder",
       "xp": 40
+    },
+    {
+      "name": "motomoto",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "gold",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Non-Dev to Shipped (Sun Jun 14 2026)"
+      ],
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
     },
     {
       "name": "Nikki Sapp (Juke)",
