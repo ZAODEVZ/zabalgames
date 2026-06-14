@@ -50,6 +50,7 @@ const items = (recaps.recaps || []).map((r) => {
     transcript_raw: rawTranscript(r.transcript),
     link: r.link || null,
     okd: r.okd || null,
+    cast_hash: r.cast_hash || null,
     summary: r.summary || null,
     topics: r.topics || [],
     takeaways: r.takeaways || [],

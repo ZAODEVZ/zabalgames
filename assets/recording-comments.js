@@ -197,5 +197,59 @@
     else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(REC_URL) + '&channelKey=zabal', '_blank', 'noopener');
   });
 
-  load();
+  // ---- Farcaster cast mode: if this recording has a root cast, the "Thoughts" are its
+  // real replies (public, native). People reply on the cast and it shows here. ----
+  function castItemHTML(c) {
+    var name = c.username ? '@' + esc(c.username) : 'fid ' + esc(c.fid);
+    var pfp = c.pfp ? '<img class="zgc-pfp" src="' + esc(c.pfp) + '" alt="" loading="lazy">' : '<div class="zgc-pfp"></div>';
+    var stats = 'Like ' + (c.likes || 0) + (c.recasts ? '  Recast ' + c.recasts : '');
+    return '<div class="zgc-item">' + pfp +
+      '<div class="zgc-body">' +
+        '<div class="zgc-by"><a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + name + '</a>' +
+          '<span class="zgc-time">' + esc(timeAgo(c.ts)) + '</span></div>' +
+        '<p class="zgc-text">' + esc(c.text) + '</p>' +
+        '<div class="zgc-acts"><a class="zgc-act" href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(stats) + '</a></div>' +
+      '</div></div>';
+  }
+  function enterCastMode(castHash) {
+    var isUrl = /^https?:/.test(castHash);
+    var rootUrl = isUrl ? castHash : 'https://farcaster.xyz/~/conversations/' + castHash;
+    var box = mount.querySelector('.zgc-box');
+    if (box) {
+      box.innerHTML =
+        '<p class="zgc-note" style="margin:0 0 0.6rem;">The conversation lives on Farcaster - reply on the cast and it shows up here.</p>' +
+        '<button type="button" class="zgc-post" id="zgc-reply">Reply on Farcaster</button>';
+      document.getElementById('zgc-reply').addEventListener('click', function () {
+        if (Z.viewCast && !isUrl) { Z.viewCast(castHash); }
+        else if (Z.openUrl) { Z.openUrl(rootUrl); }
+        else { window.open(rootUrl, '_blank', 'noopener'); }
+      });
+    }
+    fetch('/api/cast-comments?hash=' + encodeURIComponent(castHash), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var rows = (d && d.comments) || [];
+        countEl.textContent = rows.length ? '(' + rows.length + ')' : '';
+        listEl.innerHTML = rows.length
+          ? rows.map(castItemHTML).join('')
+          : '<p class="zgc-empty">No replies yet. Be the first on Farcaster.</p>';
+      })
+      .catch(function () { listEl.innerHTML = '<p class="zgc-empty">Conversation unavailable right now.</p>'; });
+  }
+
+  // Decide the mode: a recording with a root cast (cast_hash in the index) uses native
+  // Farcaster replies; otherwise it falls back to the verified in-app comment store.
+  fetch('/recordings/index.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var recs = (d && d.recordings) || [];
+      var path = location.pathname.replace(/\.html$/i, '').replace(/\/+$/, '');
+      var me = recs.filter(function (x) {
+        var u = (x.url || '').replace(/^https?:\/\/[^/]+/, '').replace(/\/+$/, '');
+        return u === path || (x.page && x.page.replace(/\/+$/, '') === path);
+      })[0];
+      if (me && me.cast_hash) { enterCastMode(me.cast_hash); }
+      else { load(); }
+    })
+    .catch(function () { load(); });
 })();

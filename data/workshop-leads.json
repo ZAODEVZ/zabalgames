@@ -325,7 +325,7 @@
     },
     {
       "id": "024",
-      "name": "motomoto",
+      "name": "Aziz (MotoMoto)",
       "org": "BAD DAO",
       "topic": "Non-Dev to Shipped - how he built Baraza Protocol with zero coding background by directing AI tools. A phone-first treasury for chamas and SACCOs, part of BAD DAO's four-product loop. He shows the exact method so anyone in /zabal can copy it this week.",
       "format": "Live, recorded",
@@ -334,7 +334,10 @@
       "confirmed_date": "2026-06-14",
       "color": "gold",
       "date": "2026-06-14",
-      "track": "builder"
+      "track": "builder",
+      "luma_url": "https://luma.com/sd3aho83",
+      "spec_url": "https://artizen.fund/index/p/baraza-tv?season=6",
+      "spec_label": "Baraza on Artizen"
     }
   ],
   "_schema": {

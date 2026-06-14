@@ -109,6 +109,23 @@
       "xp": 40
     },
     {
+      "name": "Aziz (MotoMoto)",
+      "farcaster": "",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "gold",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Non-Dev to Shipped (Sun Jun 14 2026)"
+      ],
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
+    },
+    {
       "name": "Cashless Man (Booster)",
       "farcaster": "",
       "x": "",
@@ -470,23 +487,6 @@
       "profile_url": null,
       "tier": "Builder",
       "xp": 40
-    },
-    {
-      "name": "motomoto",
-      "farcaster": "",
-      "x": "",
-      "github": "",
-      "track": "builder",
-      "color": "gold",
-      "roles": [
-        "Workshop lead"
-      ],
-      "involvement": [
-        "Workshop: Non-Dev to Shipped (Sun Jun 14 2026)"
-      ],
-      "profile_url": null,
-      "tier": "Headliner",
-      "xp": 50
     },
     {
       "name": "Nikki Sapp (Juke)",
