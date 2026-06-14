@@ -2,8 +2,44 @@
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
   "generated": "2026-06-14",
   "season": 1,
-  "count": 11,
+  "count": 12,
   "recordings": [
+    {
+      "type": "workshop",
+      "title": "MIDAO + Beta Briefing: legal entities for DAOs and AI agents",
+      "presenter": "Adam Miller",
+      "handle": null,
+      "org": "MIDAO",
+      "track": "builder",
+      "format": "Conversation, recorded",
+      "date": "2026-06-12",
+      "url": "https://zabalgamez.com/recordings/10",
+      "page": "https://zabalgamez.com/recordings/10",
+      "youtube": null,
+      "recording": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-adam-miller-midao.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-adam-miller-midao.md",
+      "link": "https://midao.org",
+      "okd": null,
+      "cast_hash": null,
+      "summary": "A ZABAL Gamez conversation with Adam \"The Thriller\" Miller, founder and CEO of MIDAO. Two threads: MIDAO, the Marshall Islands legal framework that lets a DAO - or now a decentralized AI agent - become a real legal entity (a DAO LLC), so the people governing it are not personally liable for what it does; and Beta Briefing, his agentic daily-news tool that runs a multi-stage AI pipeline over your interests and delivers an editorialized briefing in text and audio. Plus a practical agentic-engineering segment: directing Claude Code with Codex as a second opinion and a dual-review sub-agent command.",
+      "topics": [
+        "MIDAO",
+        "DAO LLC",
+        "AI agent legal entity",
+        "Marshall Islands",
+        "Beta Briefing",
+        "agentic engineering",
+        "Claude Code"
+      ],
+      "takeaways": [
+        "A DAO LLC (Marshall Islands) gives a DAO legal personhood and limited liability - the people governing it are not personally on the hook for the entity's actions.",
+        "The same structure now works for a decentralized AI agent: governed by people, but the agent is the manager - it can sign contracts and open bank accounts, and can be elected in or out.",
+        "If you do not elect a legal structure, the government applies a default one, usually not the one you want. Tokens and DAOs need documents.",
+        "Beta Briefing runs an 11-plus stage agentic pipeline over your profile to deliver a daily, editorialized news briefing in text and audio (RSS too).",
+        "Agentic-engineering tip: have Claude Code call Codex (and Google's CLI) for second opinions, build a dual-review sub-agent command, and keep upgrading your Claude.md and skills so it runs longer autonomously."
+      ]
+    },
     {
       "type": "workshop",
       "title": "The Farcaster protocol, ins and outs",
