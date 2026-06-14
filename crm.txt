@@ -1,6 +1,6 @@
 ZABAL GAMEZ - PEOPLE (plain text for agents)
 
-Generated 2026-06-12 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 40 people.
+Generated 2026-06-14 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 41 people.
 Structured JSON:  https://zabalgamez.com/data/crm.json
 Human page:       https://zabalgamez.com/crm
 Live players board (joins / shares / casts): https://zabalgamez.com/leaderboard
@@ -152,6 +152,10 @@ Dream lead, Batches builder  |  track: creator
   - On the Dream Leads board
   - Farcaster Batches: POWER (Day 5)
 Farcaster: @baseddesigner.eth
+======================================================================
+motomoto  [Headliner]
+Workshop lead  |  track: builder
+  - Workshop: Non-Dev to Shipped (Sun Jun 14 2026)
 ======================================================================
 Nikki Sapp (Juke)  [Builder]
 Dream lead, Batches builder  |  track: builder

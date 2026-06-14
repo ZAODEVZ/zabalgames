@@ -322,6 +322,19 @@
       "track": "builder",
       "date": "2026-06-20",
       "luma_url": "https://luma.com/nlgib8tl"
+    },
+    {
+      "id": "024",
+      "name": "motomoto",
+      "org": "BAD DAO",
+      "topic": "Non-Dev to Shipped - how he built Baraza Protocol with zero coding background by directing AI tools. A phone-first treasury for chamas and SACCOs, part of BAD DAO's four-product loop. He shows the exact method so anyone in /zabal can copy it this week.",
+      "format": "Live, recorded",
+      "when": "Sun Jun 14 2026, 11:15am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-14",
+      "color": "gold",
+      "date": "2026-06-14",
+      "track": "builder"
     }
   ],
   "_schema": {

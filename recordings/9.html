@@ -42,6 +42,17 @@
     .rec-topic { font-size: 0.7rem; letter-spacing: 0.02em; padding: 0.14rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-2); }
     .rec-takeaways { margin: 0.3rem 0 0; padding-left: 1.1rem; }
     .rec-takeaways li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; line-height: 1.5; }
+    .rec-parts { display: grid; gap: 0.7rem; }
+    .rec-part { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--cyan); border-radius: 12px; padding: 0.85rem 1rem; }
+    .rec-part h3 { font-family: 'Syne', sans-serif; font-size: 1.02rem; margin: 0 0 0.3rem; display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+    .rec-part h3 .range { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); font-weight: 400; }
+    .rec-part p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; margin: 0 0 0.5rem; }
+    .rec-part .rec-chapters li { padding: 0.2rem 0.5rem; }
+    .rec-quotes { margin: 0.3rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.5rem; }
+    .rec-quotes li { border-left: 2px solid var(--zabal); padding: 0.1rem 0 0.1rem 0.8rem; color: var(--text); font-size: 0.95rem; line-height: 1.5; font-style: italic; }
+    .rec-facts { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .rec-fact { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 0.45rem 0.75rem; font-size: 0.82rem; color: var(--text-muted); }
+    .rec-fact b { display: block; color: var(--text); font-family: 'Syne', sans-serif; font-size: 1.05rem; }
   </style>
 </head>
 <body>
@@ -90,27 +101,66 @@
       Cassie (Cassandra Heart, founder of Quilibrium and a contributor to Farcaster) gives a deep, candid tour of the Farcaster protocol: what "sufficiently decentralized" really meant, the hubs era and its scaling limits, and the rewrite into Snapchain. She lays out the two centralization problems - the validator set, controlled mostly by Neynar, and the fact that you cannot build a real client straight off Snapchain - then walks through her Hypersnap fork as an additive side chain: threshold ECDSA via MPC, the Snap token and gasless bridging, consensus, the external OP Mainnet contracts, gasless signers, spam and trust scoring, and the roadmap. She closes with the five North Stars for getting Farcaster to a million daily actives, chief among them making it possible to build a client in a weekend.
     </p>
 
-    <div class="rec-label">Chapters</div>
-    <ul class="rec-chapters">
-      <li><span class="t">0:48</span><span>What ZABAL Gamez is, and intro</span></li>
-      <li><span class="t">1:11</span><span>Why this talk: Snapchain vs Hypersnap</span></li>
-      <li><span class="t">3:27</span><span>"Sufficiently decentralized" and the hubs era</span></li>
-      <li><span class="t">6:05</span><span>Enter Snapchain, and the two centralization problems</span></li>
-      <li><span class="t">9:11</span><span>Why the Hypersnap fork - build a client in a weekend</span></li>
-      <li><span class="t">11:10</span><span>Inside Snapchain: the three shards</span></li>
-      <li><span class="t">13:28</span><span>Inside Hypersnap: side chain, threshold ECDSA</span></li>
-      <li><span class="t">16:55</span><span>External anchors: the OP Mainnet contracts</span></li>
-      <li><span class="t">20:16</span><span>Gasless signers</span></li>
-      <li><span class="t">22:18</span><span>The Snap token and the bridge</span></li>
-      <li><span class="t">25:12</span><span>Consensus: Malachite, block times, the speed of light</span></li>
-      <li><span class="t">29:47</span><span>Hypersnap architecture: actors, DKG, the token state machine</span></li>
-      <li><span class="t">35:21</span><span>Block production and message types</span></li>
-      <li><span class="t">37:33</span><span>The bridge and defense in depth</span></li>
-      <li><span class="t">38:47</span><span>The roadmap</span></li>
-      <li><span class="t">41:39</span><span>Q and A: the five North Stars (easier clients)</span></li>
-      <li><span class="t">47:39</span><span>Q and A: Snap EVM Compute</span></li>
-      <li><span class="t">49:24</span><span>Q and A: FIP2 and channels</span></li>
+    <div class="rec-label">The talk in four parts</div>
+    <div class="rec-parts">
+      <div class="rec-part">
+        <h3>1. Why Farcaster is the way it is <span class="range">0:48 - 9:11</span></h3>
+        <p>The backstory. Cassie unpacks "sufficiently decentralized" as a semi-permissioned label, traces the move from a centralized backend to peer-to-peer hubs (written in JavaScript, no incentive mechanism, plenty of chaos), and the scaling wall around 100,000 daily actives that forced the full rewrite into Snapchain.</p>
+        <ul class="rec-chapters">
+          <li><span class="t">0:48</span><span>What ZABAL Gamez is, and the intro</span></li>
+          <li><span class="t">3:27</span><span>"Sufficiently decentralized" and the hubs era</span></li>
+          <li><span class="t">6:05</span><span>Enter Snapchain, and the scaling wall</span></li>
+        </ul>
+      </div>
+      <div class="rec-part">
+        <h3>2. The fork, and inside Snapchain <span class="range">9:11 - 16:55</span></h3>
+        <p>Why she forked Snapchain into Hypersnap: the two centralization problems - the validator set is mostly Neynar, and you can't build a real client straight off Snapchain - and the goal that anyone should be able to build a client in a weekend. Then Snapchain itself: a real shard-based, Byzantine fault-tolerant blockchain with three shards.</p>
+        <ul class="rec-chapters">
+          <li><span class="t">9:11</span><span>The two centralization problems + why the fork</span></li>
+          <li><span class="t">11:10</span><span>Inside Snapchain: the three shards</span></li>
+          <li><span class="t">13:28</span><span>Hypersnap as an additive side chain (threshold ECDSA)</span></li>
+        </ul>
+      </div>
+      <div class="rec-part">
+        <h3>3. Inside Hypersnap <span class="range">16:55 - 41:39</span></h3>
+        <p>The deep half. The external OP Mainnet contracts (ID, storage, key, FNAME registries) and the new gasless signers; the Snap token and gasless bridging to any EVM chain via the validator quorum's signature; consensus trade-offs (Malachite/Tendermint, one-second blocks, and the speed-of-light limit on geography); the actor-driven architecture and spam/trust scoring; and the roadmap.</p>
+        <ul class="rec-chapters">
+          <li><span class="t">16:55</span><span>External anchors: the OP Mainnet contracts</span></li>
+          <li><span class="t">20:16</span><span>Gasless signers (born from a real compromise)</span></li>
+          <li><span class="t">22:18</span><span>The Snap token and gasless bridging</span></li>
+          <li><span class="t">25:12</span><span>Consensus: block times and the speed of light</span></li>
+          <li><span class="t">29:47</span><span>Architecture: actors, DKG, the token state machine</span></li>
+          <li><span class="t">38:47</span><span>The roadmap</span></li>
+        </ul>
+      </div>
+      <div class="rec-part">
+        <h3>4. Q and A <span class="range">41:39 - end</span></h3>
+        <p>Audience questions. The five North Stars to get Farcaster to a million daily actives (a real query layer - done; a template-plus-SDK for clients; channels and curation as first-class; mini app discovery at the protocol level; native monetization), then Snap EVM Compute and the FIP2 / channels question.</p>
+        <ul class="rec-chapters">
+          <li><span class="t">41:39</span><span>The five North Stars (easier clients)</span></li>
+          <li><span class="t">47:39</span><span>Snap EVM Compute</span></li>
+          <li><span class="t">49:24</span><span>FIP2 and channels</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rec-label">Key quotes</div>
+    <ul class="rec-quotes">
+      <li>"Control of the validator set is effectively control of the network."</li>
+      <li>"It should be very easy to build a client - you should be able to do it in a weekend."</li>
+      <li>"The speed of light does not care about your ambitions."</li>
+      <li>"Everybody thinks they have a plan till they get punched in the mouth." (quoting Mike Tyson, on migrating the data)</li>
     </ul>
+
+    <div class="rec-label">By the numbers</div>
+    <div class="rec-facts">
+      <span class="rec-fact"><b>6</b>validators (5 Neynar, 1 Uno)</span>
+      <span class="rec-fact"><b>~100k</b>DAU where hubs hit the wall</span>
+      <span class="rec-fact"><b>1s / 12s</b>Snapchain / Hypersnap blocks</span>
+      <span class="rec-fact"><b>250ms</b>min round trip, 3 global peers</span>
+      <span class="rec-fact"><b>1,000,000</b>daily-actives goal in a year</span>
+      <span class="rec-fact"><b>5</b>North Stars</span>
+    </div>
 
     <div class="rec-label">Topics</div>
     <div class="rec-topics">
