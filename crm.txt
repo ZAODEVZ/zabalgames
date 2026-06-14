@@ -40,6 +40,10 @@ Dream lead, Batches builder  |  track: builder
   - Farcaster Batches: Defense of the Agents (Day 3)
 Farcaster: @azflin
 ======================================================================
+Aziz (MotoMoto)  [Headliner]
+Workshop lead  |  track: builder
+  - Workshop: Non-Dev to Shipped (Sun Jun 14 2026)
+======================================================================
 Cashless Man (Booster)  [Builder]
 Dream lead, Batches builder  |  track: builder
   - On the Dream Leads board
@@ -152,10 +156,6 @@ Dream lead, Batches builder  |  track: creator
   - On the Dream Leads board
   - Farcaster Batches: POWER (Day 5)
 Farcaster: @baseddesigner.eth
-======================================================================
-motomoto  [Headliner]
-Workshop lead  |  track: builder
-  - Workshop: Non-Dev to Shipped (Sun Jun 14 2026)
 ======================================================================
 Nikki Sapp (Juke)  [Builder]
 Dream lead, Batches builder  |  track: builder
