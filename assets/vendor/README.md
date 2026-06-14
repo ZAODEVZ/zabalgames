@@ -15,29 +15,42 @@ that single point of failure; esm.sh remains the safety net.
 
 ## Status
 
-The vendored bundle `miniapp-sdk-0.1.10.js` is **not committed yet** - the build
-environment that wrote this could not reach esm.sh (outbound allowlist). Until the
-file is added, source 1 simply 404s and the loader transparently uses esm.sh, exactly
-as before. Adding the file flips the app to same-origin with zero other changes.
+**COMMITTED.** Two same-origin files now ship:
+- `miniapp-sdk-0.1.10.js` - the SDK, esm.sh `?bundle` output with every dependency
+  inlined. Its only external reference, esm.sh's `/node/buffer.mjs`, was vendored
+  alongside and the import paths rewritten to the relative `./buffer.mjs` so the module
+  resolves entirely same-origin.
+- `buffer.mjs` - the node `Buffer` polyfill the SDK needs, self-contained.
+
+Source 1 (`/assets/vendor/miniapp-sdk-0.1.10.js`) is now the live path; esm.sh stays as
+the safety net. This is the same-origin cure for the CDN-stranded splash.
 
 ## How to (re)generate the vendored bundle
 
-Run on a machine/CI with network access to esm.sh. `?bundle` inlines all dependencies
-into one self-contained ES module (stays within the repo's no-npm, zero-build rule -
-it is a single committed file, not a node_modules tree).
+Run on a machine/CI with network access to esm.sh. `?bundle` inlines the package's own
+dependencies into one ES module (stays within the repo's no-npm, zero-build rule - a
+single committed file, not a node_modules tree). The `?bundle` output still imports
+esm.sh's `/node/buffer.mjs` by absolute path, so vendor that too and rewrite the path:
 
 ```sh
-curl -fsSL "https://esm.sh/@farcaster/miniapp-sdk@0.1.10?bundle&target=es2022" \
+# 1. The SDK bundle (esm.sh returns a stub that re-exports the resolved .bundle.mjs).
+curl -fsSL "https://esm.sh/@farcaster/miniapp-sdk@0.1.10/es2022/miniapp-sdk.bundle.mjs" \
   -o assets/vendor/miniapp-sdk-0.1.10.js
+# 2. The buffer polyfill it depends on (self-contained).
+curl -fsSL "https://esm.sh/node/buffer.mjs" -o assets/vendor/buffer.mjs
+# 3. Rewrite the SDK's absolute buffer import to the same-origin relative copy.
+perl -i -pe 's{/node/buffer\.mjs}{./buffer.mjs}g' assets/vendor/miniapp-sdk-0.1.10.js
 ```
 
-Then verify it is genuinely self-contained (no remaining cross-origin imports) before
-committing:
+Then verify both are genuinely self-contained (no remaining absolute/cross-origin
+imports) before committing:
 
 ```sh
-grep -nE 'from\s*["'"'"']https?:|import\(["'"'"']https?:' assets/vendor/miniapp-sdk-0.1.10.js
-# expect: no matches. If any appear, the bundle still pulls from the CDN - re-fetch
-# the resolved .bundle.mjs that the stub points at, or bundle the deps in.
+for f in assets/vendor/miniapp-sdk-0.1.10.js assets/vendor/buffer.mjs; do
+  grep -nE '["'"'"'](https?:|/)[^"'"'"']' "$f" | grep -E 'import|from' || echo "$f: OK"
+done
+# expect: OK for both. Any /node/... or https://... left means a dep still escapes
+# same-origin - vendor it the same way (fetch + rewrite the import path).
 ```
 
 Sanity-check it exports the SDK and parses as a module:
