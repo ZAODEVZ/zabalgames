@@ -11,7 +11,10 @@ Player Levels: Headliner (led or organized), Builder (shipped a project), Mentor
 ======================================================================
 Adam Miller  [Headliner]
 Workshop lead  |  track: builder
+  - MIDAO + Beta Briefing
   - Workshop: Talking miDAO with Adam Miller (Fri Jun 12 2026)
+X: @0xthriller
+Profile: https://zabalgamez.com/p?handle=adammiller
 ======================================================================
 Adrian  [Headliner]
 Workshop lead  |  track: builder
@@ -22,13 +25,17 @@ Profile: https://zabalgamez.com/p?handle=diviflyy
 ======================================================================
 Adrienne  [Headliner]
 Workshop lead  |  track: builder
+  - GM Farcaster, building Warpee.eth
   - Workshop: Building Warpee.eth, an AI agent for a media company on Farcaster. (Tue Jun 30 2026)
 Farcaster: @adrienne
+Profile: https://zabalgamez.com/p?handle=adrienne
 ======================================================================
 Ali Tiknazoglu  [Headliner]
 Workshop lead  |  track: builder
+  - Vibecoding builder
   - Workshop: Previbecoding (Sat Jun 20 2026)
-Farcaster: @alitiknazoglu
+Farcaster: @alitiknazoglu  |  X: @alitiknazoglu
+Profile: https://zabalgamez.com/p?handle=alitiknazoglu
 ======================================================================
 Arthur (Neynar)  [Challenger]
 Dream lead  |  track: builder
@@ -42,7 +49,9 @@ Farcaster: @azflin
 ======================================================================
 Aziz (MotoMoto)  [Headliner]
 Workshop lead  |  track: builder
+  - Building Baraza Protocol (BAD DAO)
   - Workshop: Non-Dev to Shipped (Sun Jun 14 2026)
+Profile: https://zabalgamez.com/p?handle=aziz-motomoto
 ======================================================================
 Cashless Man (Booster)  [Builder]
 Dream lead, Batches builder  |  track: builder
@@ -64,13 +73,17 @@ Profile: https://zabalgamez.com/p?handle=chriscocreated
 ======================================================================
 Chris Dolinsky  [Headliner]
 Workshop lead, Dream lead, Batches builder  |  track: builder
+  - Building Vini App
   - Workshop: Vini App (Mon Jun 15 2026)
   - On the Dream Leads board
   - Farcaster Batches: Vini App (Day 1)
+Profile: https://zabalgamez.com/p?handle=chrisdolinsky
 ======================================================================
 Dan Singjoy  [Headliner]
 Workshop lead  |  track: builder
+  - Eden Fractal + the fractal ecosystem
   - Workshop: Eden Fractal and the fractal ecosystem (Sat Jun 20 2026)
+Profile: https://zabalgamez.com/p?handle=dansingjoy
 ======================================================================
 Darko (Runner)  [Builder]
 Dream lead, Batches builder  |  track: creator
@@ -88,8 +101,10 @@ Batches builder  |  track: builder
 ======================================================================
 Dr. Jake  [Headliner]
 Workshop lead  |  track: creator
+  - Growth through foundations
   - Workshop: Growth through foundations. (Tue Jun 23 2026)
 Farcaster: @jkthedc
+Profile: https://zabalgamez.com/p?handle=jkthedc
 ======================================================================
 Duckfax  [Builder]
 Batches builder  |  track: creator
@@ -132,7 +147,9 @@ Profile: https://zabalgamez.com/p?handle=joshuaeth
 ======================================================================
 Jub Jub  [Headliner]
 Workshop lead  |  track: builder
+  - Farcaster Batches, GM Farcaster
   - Workshop: Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster. (Sat Jun 20 2026)
+Profile: https://zabalgamez.com/p?handle=jubjub
 ======================================================================
 JubJub  [Headliner]
 Organizer
@@ -140,9 +157,11 @@ Organizer
 ======================================================================
 Kenny  [Headliner]
 Workshop lead, Dream lead, Batches builder  |  track: builder
+  - POIDH - bounties on Farcaster
   - Workshop: Talking POIDH (Mon Jun 15 2026)
   - On the Dream Leads board
   - Farcaster Batches: POIDH (Day 1)
+Profile: https://zabalgamez.com/p?handle=kenny-poidh
 ======================================================================
 kmac.eth  [Headliner]
 Workshop lead  |  track: builder

@@ -6,7 +6,7 @@
     {
       "name": "Adam Miller",
       "farcaster": "",
-      "x": "",
+      "x": "0xthriller",
       "github": "",
       "track": "builder",
       "color": "pink",
@@ -14,9 +14,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "MIDAO + Beta Briefing",
         "Workshop: Talking miDAO with Adam Miller (Fri Jun 12 2026)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=adammiller",
       "tier": "Headliner",
       "xp": 50
     },
@@ -49,16 +50,17 @@
         "Workshop lead"
       ],
       "involvement": [
+        "GM Farcaster, building Warpee.eth",
         "Workshop: Building Warpee.eth, an AI agent for a media company on Farcaster. (Tue Jun 30 2026)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=adrienne",
       "tier": "Headliner",
       "xp": 50
     },
     {
       "name": "Ali Tiknazoglu",
       "farcaster": "alitiknazoglu",
-      "x": "",
+      "x": "alitiknazoglu",
       "github": "",
       "track": "builder",
       "color": "cyan",
@@ -66,9 +68,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Vibecoding builder",
         "Workshop: Previbecoding (Sat Jun 20 2026)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=alitiknazoglu",
       "tier": "Headliner",
       "xp": 50
     },
@@ -119,9 +122,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Building Baraza Protocol (BAD DAO)",
         "Workshop: Non-Dev to Shipped (Sun Jun 14 2026)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=aziz-motomoto",
       "tier": "Headliner",
       "xp": 50
     },
@@ -192,11 +196,12 @@
         "Batches builder"
       ],
       "involvement": [
+        "Building Vini App",
         "Workshop: Vini App (Mon Jun 15 2026)",
         "On the Dream Leads board",
         "Farcaster Batches: Vini App (Day 1)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=chrisdolinsky",
       "tier": "Headliner",
       "xp": 90
     },
@@ -211,9 +216,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Eden Fractal + the fractal ecosystem",
         "Workshop: Eden Fractal and the fractal ecosystem (Sat Jun 20 2026)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=dansingjoy",
       "tier": "Headliner",
       "xp": 50
     },
@@ -281,9 +287,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Growth through foundations",
         "Workshop: Growth through foundations. (Tue Jun 23 2026)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=jkthedc",
       "tier": "Headliner",
       "xp": 50
     },
@@ -407,9 +414,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Farcaster Batches, GM Farcaster",
         "Workshop: Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster. (Sat Jun 20 2026)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=jubjub",
       "tier": "Headliner",
       "xp": 50
     },
@@ -443,11 +451,12 @@
         "Batches builder"
       ],
       "involvement": [
+        "POIDH - bounties on Farcaster",
         "Workshop: Talking POIDH (Mon Jun 15 2026)",
         "On the Dream Leads board",
         "Farcaster Batches: POIDH (Day 1)"
       ],
-      "profile_url": null,
+      "profile_url": "/p?handle=kenny-poidh",
       "tier": "Headliner",
       "xp": 90
     },
