@@ -129,12 +129,22 @@ This is what makes the library AI-queryable later.
 - Draft the casts per our templates.
 - Deliver the bundle: open a PR to `zaodevz/zabalgames` (preferred) or write files for local ingest.
 
-**zabalgames (this repo - to build next, can do here):**
-- `scripts/ingest-recording.mjs` - consumes a manifest: writes the transcript, upserts the recap
-  (with `chapters`), rebuilds the index. (First version shipped alongside this doc.)
-- `chapters` field added to the `recaps.json` schema + a generated recording page so the tool
-  never has to emit HTML (retires the hand-built `/recordings/N.html` step - the #1 pain point).
-- Keep `node scripts/validate.mjs` green as the PR gate.
+**zabalgames (this repo - SHIPPED):**
+- `scripts/ingest-recording.mjs` - consumes a manifest: writes the transcript (generating
+  frontmatter + applying the `data/transcript-corrections.json` safe fixes and em-dash ->
+  hyphen), upserts the recap (with `chapters`), generates `recordings/N.html`, and rebuilds
+  the index. `--write` to apply; default is a dry-run report. Re-run on the same `date+slug`
+  to UPDATE in place (e.g. when the video lands after a transcript-only first pass) - it
+  reuses the page number. CREATE picks the next free `/recordings/N`.
+- `chapters` field is in the `recaps.json` schema and the generated page renders the clickable
+  chapter jumps - the tool never has to emit HTML (retires the hand-built `/recordings/N.html`
+  step, the #1 pain point). No-video manifests generate the "processing" placeholder page.
+- `node scripts/validate.mjs` stays the PR gate.
+
+  Usage: `node scripts/ingest-recording.mjs <manifest.json> [--write]`. Optional page-only
+  fields the generator honors beyond the manifest spec above: `headline` + `accent` (the H1
+  and the word to color), `eyebrow` (the breadcrumb tail), `button_title` (the Mini App embed
+  button), `description` / `og_description` (meta overrides).
 
 ## Open questions to settle with the tool's author
 - PR-based delivery vs local ingest as the default (recommend PR).
