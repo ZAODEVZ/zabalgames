@@ -127,26 +127,36 @@
     noteEl.innerHTML = esc(msg) + ' <a href="' + APP_URL + '" target="_blank" rel="noopener">Open in Farcaster</a>';
     if (Z.toast) Z.toast('Open in the Farcaster app');
   }
+  // Open the Farcaster composer with a thought (works in-app and in a plain browser).
+  function castThought(text) {
+    if (Z.composeCast) { Z.composeCast({ text: text, embeds: [REC_URL], channelKey: 'zabal' }); }
+    else { window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(REC_URL) + '&channelKey=zabal', '_blank', 'noopener'); }
+  }
+  // Outside the Mini App we can't save a verified comment, so we cast the thought instead
+  // and tell the user where saved comments come from.
+  function browserFallback(text) {
+    castThought(text);
+    noteEl.innerHTML = 'Saved comments need the Farcaster app (verified) - we opened a cast with your thought for now. <a href="' + APP_URL + '" target="_blank" rel="noopener">Open in Farcaster</a> to comment here.';
+  }
 
   // Post a comment.
   postBtn.addEventListener('click', function () {
     var text = (textEl.value || '').trim();
     if (!text) { textEl.focus(); return; }
-    if (!Z.postComment) { promptOpenApp('Open in the Farcaster app to comment.'); return; }
-    postBtn.disabled = true; noteEl.textContent = '';
+    if (!Z.postComment) { browserFallback(text); return; }
+    postBtn.disabled = true; noteEl.textContent = 'Posting...';
     Z.postComment(REC_ID, text).then(function (res) {
       postBtn.disabled = false;
       if (res && res.ok && res.comment) {
         COMMENTS.unshift(res.comment);
         renderList();
         textEl.value = '';
-        if (alsoEl.checked && Z.composeCast) {
-          Z.composeCast({ text: text, embeds: [REC_URL], channelKey: 'zabal' });
-        }
+        noteEl.textContent = 'Posted.';
+        if (alsoEl.checked) castThought(text);
       } else if (res && res.reason === 'not-in-miniapp') {
-        promptOpenApp('Open in the Farcaster app to comment.');
+        browserFallback(text);
       } else {
-        noteEl.textContent = 'Could not post that. Try again.';
+        noteEl.textContent = 'Could not post that - try again.';
       }
     });
   });
