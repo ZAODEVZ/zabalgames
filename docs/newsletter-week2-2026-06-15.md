@@ -99,6 +99,27 @@ For agents: plain text https://zabalgamez.com/recordings.txt - structured JSON h
 
 ---
 
+## SEASON SO FAR, BY THE NUMBERS (optional block - lands well in a newsletter)
+
+- 11 sessions recorded and kept
+- 10 speakers
+- 9 full transcripts up
+- 5 on YouTube (more landing)
+- 9 more sessions on the calendar this month
+- 5 ads submitted to the POIDH bounty
+- 1 tokenless ZABAL Gamez Empire, stood up live
+
+(Confirm/adjust the ad count + add any platform numbers you have - signups, RSVPs, views.)
+
+## LINES WORTH QUOTING (pull any into the recap)
+
+- Cassie: "The speed of light does not care about your ambitions." And: "It should be very easy to build a client - you should be able to do it in a weekend."
+- Hurricane Ike: "The artists earn by engagement, not by streams." And: "The charts are just as entertaining as the music itself."
+- Adam Miller: "If you don't elect into a legal structure, the government will apply a default one onto you - usually not the one you want."
+- Chris (Sopha): the feed is ephemeral; Sopha is the third place for the deep stuff.
+
+---
+
 ## EVERY PLACE TO TAP IN (link bank - pull what you want)
 
 **Watch + read:** Recordings https://zabalgamez.com/recordings - Speakers https://zabalgamez.com/speakers - Recaps https://zabalgamez.com/recaps - Streams https://zabalgamez.com/streams - Farcaster Batches https://zabalgamez.com/farcaster-batches
