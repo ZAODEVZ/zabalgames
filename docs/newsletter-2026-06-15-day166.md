@@ -1,14 +1,15 @@
 # Year of the ZABAL - Day 166 (Mon Jun 15, 2026)
 
-> Day 15 of ZABAL Gamez, the Monday week-ahead edition. BetterCallZaal / Year of the ZABAL
-> voice: direct, warm, builder-energy, short parallel lines, the "build is the application"
-> refrain. Day number is the day-of-year (166 of 365). Brand: no emojis, no em dashes
-> (hyphens only), "100+" for member count.
+> Day 15 of ZABAL Gamez, the Monday week-ahead edition, this one built around the bounty.
+> BetterCallZaal / Year of the ZABAL voice: direct, warm, builder-energy, short parallel
+> lines, the "build is the application" refrain. Day number is the day-of-year (166 of 365).
+> Brand: no emojis, no em dashes (hyphens only), "100+" for member count.
 >
 > PREP NOTE - finalize Monday morning before sending:
-> - Swap the Mindful card below for the one you actually pull.
-> - Confirm both Monday times are still 4pm / 4:45pm EST.
-> - If Saturday's three times shift, update them (currently 8am / 11am / 12pm EST).
+> - The new open July-builder pot is still being shaped - the wording below is intentionally
+>   general (no fixed split rules, no donation promises). Tighten only what you have locked.
+> - Confirm Monday times are still 4pm / 4:45pm EST.
+> - Aziz (MotoMoto) recording link: add it once the cleaned transcript is published to the site.
 > - Publish to paragraph.com/@thezao.
 
 ```
@@ -16,11 +17,15 @@ Good morning, and happy Monday in the Year of the ZABAL.
 
 Week two is in the books, and the recap is out: six sessions, from music to media to protocol to legal structure to AI agents, all recorded and kept. Read the Week 2 recap: https://paragraph.com/@thezao/year-of-the-zabal-day-165
 
-This week we keep rolling, and it starts today with two sessions back to back.
+One more from the weekend: Aziz, also known as MotoMoto, of Build Africa DAO ran a bonus session - Non-Dev to Shipped. He came from media and production, no coding background, and built Baraza Protocol by directing AI tools, a mobile-first, no-jargon way for the savings groups and cooperatives across Africa to run on-chain. The recording lands on the site this week.
 
-At 4pm EST, Kenny of POIDH on how the bounty platform works - crowdfund any outcome and verify it actually happened. We are also finalizing the Best ZABAL Gamez Ad bounty and kicking off a new two-week one, so if you make things, this is your in. RSVP: https://luma.com/9ylnwvyx
+Now this week. It starts today, and today is a bounty day.
 
-At 4:45pm EST, Chris Dolinsky on Vini App - a look at what he is building, for the community to try. RSVP: https://luma.com/tip89eq3
+We are closing the Best ZABAL Gamez Ad bounty. Thank you to everyone who made one: https://poidh.xyz/base/bounty/1180
+
+And live in the session with Kenny of POIDH at 4pm EST, we start something new: an open pot for July's builders. The shape is simple - anyone can add to it over the next two months, and it gets split among the builds that ship in July and make it through. Come watch a bounty get made, and help us design it. RSVP: https://luma.com/9ylnwvyx
+
+Then at 4:45pm EST, Chris Dolinsky on Vini App - a look at what he is building, for the community to try. RSVP: https://luma.com/tip89eq3
 
 The rest of the week:
 
@@ -33,13 +38,11 @@ The full calendar, with one-tap RSVP for any of them, lives here: https://lu.ma/
 
 Miss one? Nothing disappears here. Every session is recorded, transcribed, and kept. Watch them all: https://zabalgamez.com/recordings
 
-Today's card: Always Do Your Best.
+Today's card: Make Service an Integral Part of Your Life.
 
-The agreement: Always Do Your Best, from The Four Agreements by Don Miguel Ruiz.
+From Don't Sweat the Small Stuff by Richard Carlson, number 73. The practice is one question to start the day: How can I be of service? The answers show up all day long. It is rarely a grand gesture - it is the small, quiet, often unnoticed acts. Taking the trash out when it is not your turn. Listening to someone having a hard time. Being supportive of a new endeavor. Giving a little extra when something you care about needs it. Service is not a one-time effort, it is a way of thinking, and the old line holds: giving is its own reward, and what you receive is proportional to what you give.
 
-"Your best is going to change from moment to moment. Under any circumstance, simply do your best, and you will avoid self-judgment, self-abuse, and regret."
-
-For builders, your best on a tired Monday is not your best on a fresh Saturday, and both count. Ship the best version you can today, then ship a better one tomorrow. That is the whole loop. The build is the application.
+For builders, service is reviewing a pull request, testing a friend's mini app, answering a question in the channel, boosting someone else's launch. The open pot we start today is that made concrete - anyone can add to it for the July builders. Everyone wins, especially you. The build is the application.
 
 See you at 4. Insert Coin.
 
