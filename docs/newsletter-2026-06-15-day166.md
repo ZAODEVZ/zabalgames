@@ -9,7 +9,7 @@
 > - The new open July-builder pot is still being shaped - the wording below is intentionally
 >   general (no fixed split rules, no donation promises). Tighten only what you have locked.
 > - Confirm Monday times are still 4pm / 4:45pm EST.
-> - Aziz (MotoMoto) recording link: add it once the cleaned transcript is published to the site.
+> - Aziz (MotoMoto) recording is live at /recordings/11 (transcript up, video pending) and linked below.
 > - Publish to paragraph.com/@thezao.
 
 ```
@@ -17,7 +17,7 @@ Good morning, and happy Monday in the Year of the ZABAL.
 
 Week two is in the books, and the recap is out: six sessions, from music to media to protocol to legal structure to AI agents, all recorded and kept. Read the Week 2 recap: https://paragraph.com/@thezao/year-of-the-zabal-day-165
 
-One more from the weekend: Aziz, also known as MotoMoto, of Build Africa DAO ran a bonus session - Non-Dev to Shipped. He came from media and production, no coding background, and built Baraza Protocol by directing AI tools, a mobile-first, no-jargon way for the savings groups and cooperatives across Africa to run on-chain. The recording lands on the site this week.
+One more from the weekend: we had another awesome talk. Aziz (MotoMoto) of Build Africa DAO on Non-Dev to Shipped - building Baraza Protocol with AI tools, no coding background. Check out the transcript, video coming soon: https://zabalgamez.com/recordings/11
 
 Now this week. It starts today, and today is a bounty day.
 
