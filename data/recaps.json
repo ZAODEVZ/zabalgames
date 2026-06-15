@@ -574,7 +574,17 @@
       "track": "builder",
       "format": "The first ZAO project, recorded",
       "page": "/recordings/zao/1",
+      "youtube": "https://youtu.be/N6tgsuBOXBU",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md",
+      "chapters": [
+        { "t": 0, "label": "Intro" },
+        { "t": 39, "label": "What the ZAO is, and ZAO Respect" },
+        { "t": 66, "label": "The Respect game: groups and four-minute updates" },
+        { "t": 83, "label": "What counts: the five ways to contribute" },
+        { "t": 126, "label": "The Discord tools: dash timer and meet-the-group" },
+        { "t": 159, "label": "Reaching consensus: ranking level six to one" },
+        { "t": 192, "label": "Camera on for ten extra ZAO Respect" }
+      ],
       "link": "https://discord.theZAO.com",
       "link_label": "Join the ZAO Fractal",
       "share_topics": [
