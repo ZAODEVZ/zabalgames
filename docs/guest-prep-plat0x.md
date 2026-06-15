@@ -11,11 +11,10 @@ the Day 1 Bonfire intro (with Joshua, `/recordings/3`) and the Day 6 fireside on
 vibe-coding (`/recordings/fireside/1`). This one is for builders who want to build on top of the
 graph. Facts sourced below; flag anything Plat0x wants to correct on the call.
 
-> Handle note: `data/people.json` lists @plat0x, but **`plat0x` is not a registered Farcaster
-> fname.** His likely real handle is **@at0x** (fid 196316, display "At0x.Eth", whose X matches the
-> `at0x_eth` already in people.json). Confirm with him before casting - and if confirmed, that is a
-> CRM fix (people.json handle @plat0x -> @at0x, then regen the CRM). Not changed here on the weaker
-> match.
+> Handle note: his name is **Carlos** (confirmed by Zaal). `data/people.json` lists @plat0x, but
+> `plat0x` is not a registered Farcaster fname, so the handle is unconfirmed. It is **NOT @at0x**
+> (Zaal ruled that out - @at0x / "At0x.Eth" is a different person, despite the X match). His real
+> Farcaster handle is still to confirm - get it directly from Carlos before casting; do not guess.
 
 ---
 
@@ -72,4 +71,4 @@ Where the Day 1 session explained Bonfire and the fireside taught how to build, 
 - `data/workshop-leads.json` (id 011 - topic, format, status) + `data/people.json` (Plat0x, Bonfire dev, x.com/at0x_eth, bonfires.ai) - [FULL]
 - `CLAUDE.md` + `api/commit-watcher.mjs` + `docs/snap-design.md` - the ZABAL Bonfire surfaces (`/graph`, `data/bonfire-graph.json`, the doc-784 episode push) - [FULL]
 - `docs/newsletter-week1-2026-06-08-FINAL.md` - the Day 1 Bonfire session + the fireside, "curation is the last scarce asset" - [FULL]
-- Farcaster fnames + hub: `plat0x` is not a registered fname; @at0x = fid 196316 ("At0x.Eth"), X = at0x_eth matches people.json - [FULL for the fname facts; PARTIAL - identity tie to the Bonfire Plat0x inferred from the matching X, confirm with him]
+- Farcaster fnames + hub: `plat0x` is not a registered fname. @at0x (fid 196316, "At0x.Eth") was ruled out by Zaal as a different person. His name is Carlos; the real Farcaster handle is still to confirm - [FULL for the fname facts; handle UNRESOLVED - confirm with Carlos, do not guess]
