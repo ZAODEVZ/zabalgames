@@ -47,7 +47,7 @@ Week two went deep. If week one was Insert Coin, week two was the run - more ses
 
 Miss week one? Catch up on the Week 1 recap:
 
-[EMBED: paste the Week 1 recap cast or Paragraph URL here, on its own line]
+https://paragraph.com/@thezao/year-of-the-zabal-day-158
 
 New here? ZABAL Gamez is The ZAO's three-month build event:
 
@@ -66,19 +66,13 @@ Only have a few minutes? Start here:
 
 Chris took us inside Sopha, a Farcaster client built for depth and high signal - an intentional third place, a coffee shop for the writing and art that scrolls past the main feed. His point: curation is the point, and you are not beholden to the algorithm - you build your own lens. He also showed how building your own client is now a few hours of work. Read it: https://zabalgamez.com/recordings/5
 
-[EMBED: paste the announce cast or clip URL for the Sopha session, on its own line]
-
 ## Day 9 - owning your music
 
 Joseph Goats made the case for what he calls digital street music: he plays for free, peer-to-peer, so anyone anywhere can support him directly - a model he built when his country had no music industry to plug into. The artist is the node that connects one community to the next. Read it: https://zabalgamez.com/recordings/6
 
-[EMBED: paste the announce cast or clip URL for the Joseph Goats session, on its own line]
-
 ## Day 10 - building a media company with no code
 
 Will T of Web3 walked us through building KFMEDIA, a media company that helps creators distribute their work with no code. The honest throughline: you do not have to be a coder to own your stack - when the tool he relied on was shutting down, he learned to build and rebuilt it himself. He laid out the exact three tools KFMEDIA uses to distribute creator media, and KFM Talks, a program that returns 80 to 85 percent of sales to the creator. Read it: https://zabalgamez.com/recordings/7
-
-[EMBED: paste the announce cast or clip URL for the Will T session, on its own line]
 
 ## Day 11 - ZABAL Gamez at the WIP Meetup
 
@@ -90,11 +84,7 @@ https://www.youtube.com/live/IANHGdSucN4
 
 Cassie of Quilibrium gave the deepest technical talk of the season so far - the Farcaster protocol, ins and outs. What "sufficiently decentralized" really meant, the two centralization problems she sees, her Hypersnap fork, and the five North Stars to a million daily actives. The top one: make it possible to build a real client in a weekend. Dense and worth every minute: https://zabalgamez.com/recordings/9
 
-[EMBED: paste the announce cast or clip URL for the Cassie session, on its own line]
-
 Adam Miller brought two worlds together. MIDAO is the Marshall Islands framework that lets a group - or now a software agent - become a real legal entity, so the people running it are not personally on the hook. And Beta Briefing is his daily-news tool that runs a multi-stage pipeline over your interests and hands back an editorialized briefing in text and audio. Legal structure meets agentic engineering: https://zabalgamez.com/recordings/10
-
-[EMBED: paste the announce cast or clip URL for the Adam Miller session, on its own line]
 
 ## Day 13 - earn from music battles, not streams
 
