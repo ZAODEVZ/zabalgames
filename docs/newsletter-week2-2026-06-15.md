@@ -45,7 +45,9 @@ GM ZM, and happy Sunday in the Year of the ZABAL.
 
 Week two went deep. If week one was Insert Coin, week two was the run - more sessions, more range, and every one recorded, transcribed, and kept. Miss something live and you have missed nothing. We went from music to media to protocol to legal structure to AI agents, all in one week.
 
-[EMBED: paste the Week 2 recap launch cast URL here, on its own line]
+Miss week one? Catch up on the Week 1 recap:
+
+[EMBED: paste the Week 1 recap cast or Paragraph URL here, on its own line]
 
 New here? ZABAL Gamez is The ZAO's three-month build event:
 
@@ -80,9 +82,9 @@ Will T of Web3 walked us through building KFMEDIA, a media company that helps cr
 
 ## Day 11 - ZABAL Gamez at the WIP Meetup
 
-I took ZABAL Gamez to the WIP Meetup on Thursday - an ecosystem tour, including the ZAO Fractals, and where this all plugs together for builders.
+I took ZABAL Gamez to the WIP Meetup on Thursday - an ecosystem tour, including the ZAO Fractals, and where this all plugs together for builders. Watch the recording:
 
-[EMBED: optional - paste a WIP Meetup clip URL on its own line if one exists]
+https://www.youtube.com/live/IANHGdSucN4
 
 ## Day 12 - a doubleheader: the protocol, and legal structure for agents
 
