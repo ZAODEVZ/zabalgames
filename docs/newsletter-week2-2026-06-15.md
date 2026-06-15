@@ -15,8 +15,8 @@
 
 ## Subject (pick one)
 
+- ZABAL Gamez Week 2: six sessions, recorded and kept  (recommended)
 - Year of the ZABAL - Week 2: the run
-- ZABAL Gamez Week 2: six sessions, recorded and kept
 - Two weeks down. The build is the application.
 
 ---
@@ -75,8 +75,6 @@ I also took ZABAL Gamez to the WIP Meetup on Thursday - an ecosystem tour, inclu
 Two new things on the site this week. One: a speakers page - every person who has taught this season and exactly what they delivered, recording, transcript, and video, with their profile one click away. https://zabalgamez.com/speakers . Two: you can now comment and like under any recording, straight from Farcaster - drop a thought, ask a question, and the speaker can answer. The conversation lives with the session now.
 
 This week is stacked. Tap in live:
-- POIDH with Kenny, plus we finalize the Best ZABAL Gamez Ad bounty and launch the next - Mon Jun 15, 4pm EST: https://luma.com/9ylnwvyx
-- Vini App with Chris Dolinsky - Mon Jun 15, 4:45pm EST: https://luma.com/tip89eq3
 - Empire Builder V3 with Adrian (diviflyy) - Tue Jun 16, 12pm EST: https://luma.com/kaz6hnm4
 - Farcaster Batches fireside with Jub Jub - Sat Jun 20, 8am EST: https://luma.com/c621slze
 - Previbecoding with Ali Tiknazoglu - Sat Jun 20, 11am EST: https://luma.com/nlgib8tl
@@ -90,7 +88,7 @@ And remember what June is for. July is the open build - anyone ships something f
 
 Watch or read everything in one place: https://zabalgamez.com/recordings . Grab the season collectible: https://collect.zabalgamez.com . Hang with us in the /zabal channel: https://farcaster.xyz/~/channel/zabal
 
-The week at a glance: six sessions from music to media to protocol to legal structure to AI agents, transcripts live on most and video on WaveWarz, a new speakers page, comments on every recording, and eight more sessions already on the calendar.
+The week at a glance: six sessions from music to media to protocol to legal structure to AI agents, transcripts live on most and video on WaveWarz, a new speakers page, comments on every recording, and more sessions already on the calendar.
 
 To everyone who taught, asked, watched, or shared this week - thank you. The build is the application. Two weeks down. See you on the next one.
 
@@ -136,6 +134,6 @@ For agents: plain text https://zabalgamez.com/recordings.txt - structured JSON h
 
 - 6 sessions recapped with a real per-session takeaway (Week 1 led mostly with descriptions).
 - 4 full transcripts live at send (Sopha, Will T, Cassie, Adam Miller) plus WaveWarz on video - more depth per session.
-- 8 one-tap upcoming RSVP links in the body (Week 1 had 3 next-week lines).
+- 6 one-tap upcoming RSVP links in the body (Week 1 had 3 next-week lines). The two Jun 15 sessions (Kenny, Chris Dolinsky) were dropped from the live list for a tonight send since they are same-day - re-add them from workshop-leads.json if you send before 4pm EST Jun 15.
 - A library table with the lead takeaway per session, plus the four earlier videos for new readers.
 - Two shipped site features called out (speakers directory, comments + likes).
