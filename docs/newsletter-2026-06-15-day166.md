@@ -21,7 +21,7 @@ One more from the weekend: we had another awesome talk. Aziz (MotoMoto) of Build
 
 Now this week. It starts today, and today is a bounty day.
 
-We are closing the Best ZABAL Gamez Ad bounty. Thank you to everyone who made one: https://poidh.xyz/base/bounty/1180
+We are closing the Best ZABAL Gamez Ad bounty. Thank you for every submission: https://poidh.xyz/base/bounty/1180
 
 And live in the session with Kenny of POIDH at 4pm EST, we start something new: an open pot for July's builders. The shape is simple - anyone can add to it over the next two months, and it gets split among the builds that ship in July and make it through. Come watch a bounty get made, and help us design it. RSVP: https://luma.com/9ylnwvyx
 

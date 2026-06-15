@@ -15,7 +15,7 @@
   <meta name="twitter:title" content="Building Sopha, and why curation is needed - ZABAL Gamez">
   <meta name="twitter:description" content="Chris (chriscocreated) x Zaal on building Sopha and why curation is needed. A ZABAL Gamez workshop.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Open the Sopha workshop","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/5","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: Building Sopha","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/5","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
   <link rel="apple-touch-icon" href="/assets/icon.png">
@@ -27,6 +27,13 @@
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
   <style>
+    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); }
+    .rec-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .rec-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+    .rec-chapters li { margin: 0; }
+    .rec-chapter { display: flex; gap: 0.7rem; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 0.34rem 0.5rem; color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer; }
+    .rec-chapter:hover { background: var(--surface-2); }
+    .rec-chapter .t { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); min-width: 3.2rem; }
     .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
     .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
     .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
@@ -75,17 +82,43 @@
     </p>
   </header>
 
-  <div class="rec-note">
-    A live ZABAL Gamez workshop on 2026-06-08. The replay link will be added here -
-    the full summary, outline, and word-for-word transcript are below.
+  <div class="rec-embed">
+    <iframe id="rec-player"
+      src="https://www.youtube.com/embed/Z9yAFxUVW-g?rel=0"
+      title="ZABAL Gamez Workshop: Building Sopha with Chris (chriscocreated)"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
   </div>
 
   <div class="rec-links">
-    <a class="rec-link primary" href="https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md" target="_blank" rel="noopener">Read the transcript</a>
+    <a class="rec-link primary" href="https://youtu.be/Z9yAFxUVW-g" target="_blank" rel="noopener">Watch on YouTube</a>
+    <a class="rec-link" href="https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md" target="_blank" rel="noopener">Read the transcript</a>
     <a class="rec-link" href="https://sopha.social" target="_blank" rel="noopener">Sopha</a>
     <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
     <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
   </div>
+
+  <div class="rec-label">Chapters</div>
+  <ul class="rec-chapters" id="rec-chapters">
+    <li><button class="rec-chapter" data-start="0"><span class="t">0:00</span><span>Intro</span></button></li>
+    <li><button class="rec-chapter" data-start="13"><span class="t">0:13</span><span>What ZABAL Gamez is, and welcoming Chris</span></button></li>
+    <li><button class="rec-chapter" data-start="67"><span class="t">1:07</span><span>What Sopha is: a Farcaster client for high signal</span></button></li>
+    <li><button class="rec-chapter" data-start="115"><span class="t">1:55</span><span>The third place - depth beyond the ephemeral feed</span></button></li>
+    <li><button class="rec-chapter" data-start="180"><span class="t">3:00</span><span>Why he built it: the meme-coin moment and saving the culture</span></button></li>
+    <li><button class="rec-chapter" data-start="300"><span class="t">5:00</span><span>The two core things: the weekly call and the curated feed</span></button></li>
+    <li><button class="rec-chapter" data-start="360"><span class="t">6:00</span><span>Curators, the curator role, and BradQ's The Pulse</span></button></li>
+    <li><button class="rec-chapter" data-start="467"><span class="t">7:47</span><span>Why your own client is powerful: open data, Neynar, Hypersnap</span></button></li>
+    <li><button class="rec-chapter" data-start="593"><span class="t">9:53</span><span>How easy it is now - a client running in a couple of hours</span></button></li>
+    <li><button class="rec-chapter" data-start="643"><span class="t">10:43</span><span>The nested stack: clients, mini apps, and Snaps</span></button></li>
+    <li><button class="rec-chapter" data-start="695"><span class="t">11:35</span><span>Build your own lens - not beholden to the algorithm</span></button></li>
+    <li><button class="rec-chapter" data-start="741"><span class="t">12:21</span><span>Where Farcaster and Sopha go from here</span></button></li>
+    <li><button class="rec-chapter" data-start="824"><span class="t">13:44</span><span>The second Purple round funds the next year</span></button></li>
+    <li><button class="rec-chapter" data-start="858"><span class="t">14:18</span><span>Rewarding curators - a value loop in curation</span></button></li>
+    <li><button class="rec-chapter" data-start="933"><span class="t">15:33</span><span>Infra, and live cultural-center experiences</span></button></li>
+    <li><button class="rec-chapter" data-start="1011"><span class="t">16:51</span><span>On a token: thoughtful, non-extractive, no rush</span></button></li>
+    <li><button class="rec-chapter" data-start="1088"><span class="t">18:08</span><span>Where to find Chris and Sopha</span></button></li>
+  </ul>
 
   <section class="section" style="margin-top: 1.4rem;">
     <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
@@ -189,7 +222,19 @@
 
 <script>
 (function () {
+  var YT_ID = 'Z9yAFxUVW-g';
   var PAGE_URL = 'https://zabalgamez.com/recordings/5';
+  var player = document.getElementById('rec-player');
+  var chapters = document.getElementById('rec-chapters');
+  if (player && chapters) {
+    chapters.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.rec-chapter');
+      if (!b) return;
+      var start = parseInt(b.getAttribute('data-start') || '0', 10) || 0;
+      player.src = 'https://www.youtube.com/embed/' + YT_ID + '?rel=0&autoplay=1&start=' + start;
+      player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
   var TOPICS = [
     "Building Sopha, and why curation is needed",
     "the feed is ephemeral - Sopha is the third place for the deep stuff",

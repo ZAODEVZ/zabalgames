@@ -103,6 +103,7 @@ Topics: independent artists, digital street music, peer-to-peer, decentralizatio
 workshop  |  track: builder  |  2026-06-08
 Presenter: Chris (chriscocreated) (@chriscocreated), Sopha
 Watch: https://zabalgamez.com/recordings/5
+Video: https://youtu.be/Z9yAFxUVW-g
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md
 Summary: A ZABAL Gamez workshop with Chris (chriscocreated), founder of Sopha - a Farcaster client built for depth and high signal - on what he built and why curation is needed. Sopha is an intentional third place, a coffee shop or library for the deeper writing, art, and thinking that scrolls past on the main feed, with a curated feed kept by the community's curators plus BradQ's The Pulse. Chris traces why he built it (when Farcaster felt like it was tipping into meme coins, he set out to protect the culture of interesting thinkers, and good vibe coding made him the one to do it), how easy it now is to build your own client on Farcaster's open data with Neynar and Hypersnap, and the nested stack of client, mini apps, and Snaps. He closes on where Sopha is headed: a second round of Purple funding, experiments in rewarding curators, infra, and live cultural-center experiences, with a thoughtfully designed, non-extractive token only when the time is right.
 Takeaways:
