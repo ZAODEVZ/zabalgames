@@ -700,12 +700,12 @@ body > * { position: relative; z-index: 1; }
 .rec-nav .rn-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .rec-nav .rn-spacer { flex: 1 1 auto; }
 .rec-nav .rn-prevnext { display: flex; gap: 6px; }
-.rec-nav .rn-jump { display: flex; align-items: center; gap: 6px; overflow-x: auto; margin-top: 0.55rem; padding: 0.55rem 0; border-top: 1px solid var(--border); }
-.rec-nav .rn-jump-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); white-space: nowrap; padding-right: 2px; }
+.rec-nav .rn-jump { display: flex; align-items: center; gap: 8px; margin-top: 0.55rem; padding: 0.55rem 0; border-top: 1px solid var(--border); }
+.rec-nav .rn-jump-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); white-space: nowrap; }
 .rec-nav a, .rec-nav button { font: inherit; font-size: 0.8rem; text-decoration: none; cursor: pointer; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); padding: 0.32rem 0.66rem; border-radius: 6px; white-space: nowrap; }
 .rec-nav a:hover, .rec-nav button:hover { filter: brightness(1.15); }
-.rec-nav .rn-jump a { color: var(--text-muted); }
-.rec-nav .rn-jump a.active { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+.rec-nav .rn-select { font: inherit; font-size: 0.8rem; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 0.32rem 0.66rem; max-width: min(100%, 460px); flex: 1 1 auto; cursor: pointer; }
+.rec-nav .rn-select:hover { filter: brightness(1.15); }
 
 /* Site-wide directory menu - rendered by assets/site-nav.js */
 /* Menu trigger - matches the .arcade-nav-menu links (pixel font, underline on hover/open) */
