@@ -322,7 +322,7 @@
       "audited_date": "2026-06-14"
     },
     {
-      "handle": "aziz-motomoto",
+      "handle": "azizke",
       "name": "Aziz (MotoMoto)",
       "roles": ["workshop_lead"],
       "headline": "Building Baraza Protocol (BAD DAO)",
@@ -330,12 +330,12 @@
       "expertise_label": "NON-DEV BUILD",
       "color": "gold",
       "avatar_url": null,
-      "farcaster_url": null,
+      "farcaster_url": "https://farcaster.xyz/azizke",
       "x_url": null,
       "site_url": "https://artizen.fund/index/p/baraza-tv?season=6",
       "session_count": 1,
       "session_topics": ["Non-Dev to Shipped - building Baraza Protocol by directing AI tools"],
-      "audited_date": "2026-06-14"
+      "audited_date": "2026-06-15"
     },
     {
       "handle": "dansingjoy",
