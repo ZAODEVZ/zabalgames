@@ -1,13 +1,28 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-15 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 12 recordings, newest first.
+Generated 2026-06-15 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 13 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
 Chronological feed of every recording: https://zabalgamez.com/streams
 
 ======================================================================
-[1] MIDAO + Beta Briefing: legal entities for DAOs and AI agents
+[1] Non-Dev to Shipped: building Baraza Protocol with AI tools
+workshop  |  track: builder  |  2026-06-14
+Presenter: Aziz (MotoMoto) (@azizke), Build Africa DAO
+Watch: https://zabalgamez.com/recordings/11
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-14-aziz-motomoto-baraza.md
+Summary: A ZABAL Gamez session with Aziz (MotoMoto) of Build Africa DAO. Coming from media and production with no coding background, he built Baraza Protocol by directing AI tools - a mobile-first, no-jargon platform for the savings groups and cooperatives across Africa (chamas, SACCOs, stokvels) to run on-chain, plus Baraza TV, a decentralized broadcast layer. He traces the path from a non-technical-founders hackathon (40 dollars, 72 hours, Claude and ChatGPT) to a working build, why he put mobile and accessibility first (M-PESA, USSD, zero blockchain jargon), and his advice for non-coders: know the problem you can identify with, write the PRD that answers the real questions, then just ship and build in public.
+Takeaways:
+  - You do not need to be a coder. Aziz came from media and production, spent about 40 dollars on Claude and ChatGPT, and shipped a working build in a 72-hour hackathon for non-technical founders.
+  - Build for the people who will actually use it. If his mother or someone without formal education cannot use it, it does not work - so Baraza Protocol is mobile-first, runs on M-PESA and USSD, and hides all the blockchain jargon.
+  - Meet existing communities where they are. Chamas, SACCOs, and stokvels already run on a black book; the goal is to do business with them, not change how they do business.
+  - Sell the experience, not the technology. Like mobile money and Coca-Cola, adoption comes from the experience and the value, not from the word crypto.
+  - For non-coders building with AI: know the problem you can identify with, write the PRD that answers the real questions first, then just ship and build in public. Time in planning saves five times the time in execution.
+Topics: Non-Dev to Shipped, vibe coding, Build Africa DAO, Baraza Protocol, chamas and SACCOs, mobile-first, M-PESA, Baraza TV, building in public, Africa, AI tooling
+
+======================================================================
+[2] MIDAO + Beta Briefing: legal entities for DAOs and AI agents
 workshop  |  track: builder  |  2026-06-12
 Presenter: Adam Miller, MIDAO
 Watch: https://zabalgamez.com/recordings/10
@@ -22,7 +37,7 @@ Takeaways:
 Topics: MIDAO, DAO LLC, AI agent legal entity, Marshall Islands, Beta Briefing, agentic engineering, Claude Code
 
 ======================================================================
-[2] The Farcaster protocol, ins and outs
+[3] The Farcaster protocol, ins and outs
 workshop  |  track: builder  |  2026-06-12
 Presenter: Cassie (@cassie), Quilibrium
 Watch: https://zabalgamez.com/recordings/9
@@ -37,7 +52,7 @@ Takeaways:
 Topics: Farcaster protocol, Snapchain, Hypersnap, building a client, Snap token, gasless signers, consensus, decentralization
 
 ======================================================================
-[3] Earn from music battles, not streams: WaveWarz
+[4] Earn from music battles, not streams: WaveWarz
 workshop  |  track: artist  |  2026-06-13
 Presenter: Hurricane Ike (@hurric4n3ike), WaveWarz
 Watch: https://zabalgamez.com/recordings/8
@@ -54,7 +69,7 @@ Takeaways:
 Topics: WaveWarz, music battles, earn from engagement, Solana, community battles, keep your masters, distribution
 
 ======================================================================
-[4] Building KFMEDIA
+[5] Building KFMEDIA
 workshop  |  track: creator  |  2026-06-10
 Presenter: Will T of Web3 (@willtofweb3), Kingfishers Media
 Watch: https://zabalgamez.com/recordings/7
@@ -69,7 +84,7 @@ Takeaways:
 Topics: Kingfishers Media, KFMEDIA, creator distribution, Unlock Protocol, Highlight.xyz, Arweave, Contra, CharmVerse, KFM Talks, public goods, vibe coding
 
 ======================================================================
-[5] Owning your music as an independent artist
+[6] Owning your music as an independent artist
 workshop  |  track: artist  |  2026-06-09
 Presenter: Joseph Goats
 Watch: https://zabalgamez.com/recordings/6
@@ -84,7 +99,7 @@ Takeaways:
 Topics: independent artists, digital street music, peer-to-peer, decentralization, fractals, Steemit and Hive, learning English, impact concerts, festivals for social impact, autopoiesis, Venezuela, music and nature
 
 ======================================================================
-[6] Building Sopha, and why curation is needed
+[7] Building Sopha, and why curation is needed
 workshop  |  track: builder  |  2026-06-08
 Presenter: Chris (chriscocreated) (@chriscocreated), Sopha
 Watch: https://zabalgamez.com/recordings/5
@@ -101,7 +116,7 @@ Takeaways:
 Topics: Sopha, curation, Farcaster clients, high signal, third place, build your own client, Neynar, mini apps and Snaps
 
 ======================================================================
-[7] Bonfires + a vibe-coding masterclass
+[8] Bonfires + a vibe-coding masterclass
 fireside  |  track: builder  |  2026-06-06
 Presenter: Carlos (Plat0x) (@at0x_eth), Bonfires
 Watch: https://zabalgamez.com/recordings/fireside/1
@@ -116,7 +131,7 @@ Takeaways:
 Topics: Bonfires, vibe coding, planning, sub-agents, documentation-as-code, types-first, knowledge graph, agents
 
 ======================================================================
-[8] Starting and growing your own livestream
+[9] Starting and growing your own livestream
 workshop  |  track: creator  |  2026-06-02
 Presenter: Ohnahji
 Watch: https://zabalgamez.com/recordings/4
@@ -133,7 +148,7 @@ Takeaways:
 Topics: livestreaming, consistency, Twitch, OBS / Restream / StreamYard, raids, shared chat, building your own bots, API keys + env vars, opsec
 
 ======================================================================
-[9] Bonfire and the ZABAL Bonfire bot
+[10] Bonfire and the ZABAL Bonfire bot
 workshop  |  track: builder  |  2026-06-01
 Presenter: Joshua.eth and Plat0x (@joshua.eth), Bonfire
 Watch: https://zabalgamez.com/recordings/3
@@ -149,7 +164,7 @@ Takeaways:
 Topics: Bonfire, shared memory, knowledge graph, agents, curation, hackathons, ZABAL Bonfire bot
 
 ======================================================================
-[10] Empire Builder Part 2: Building a Tokenless Empire Live
+[11] Empire Builder Part 2: Building a Tokenless Empire Live
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/2
@@ -165,7 +180,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, airdrops, raffles, treasury, distribution
 
 ======================================================================
-[11] Empire Builder V3
+[12] Empire Builder V3
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/1
@@ -181,7 +196,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, staking, Triple-A framework, distribution
 
 ======================================================================
-[12] ZAO Fractal Weekly Introduction Presentation
+[13] ZAO Fractal Weekly Introduction Presentation
 workshop  |  track: builder  |  2026-06-01
 Presenter: Zaal (@zaal), The ZAO
 Watch: https://zabalgamez.com/recordings/zao/1
