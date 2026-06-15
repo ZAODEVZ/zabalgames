@@ -41,7 +41,7 @@ The full calendar, with one-tap RSVP for any of them, lives here: https://luma.c
 
 Miss one? Nothing disappears here. Every session is recorded, transcribed, and kept. Watch them all: https://zabalgamez.com/recordings
 
-Today's card: Make Service an Integral Part of Your Life.
+Today's mindful moment: Make Service an Integral Part of Your Life.
 
 From Don't Sweat the Small Stuff by Richard Carlson, number 73. The practice is one question to start the day: how can I be of service? The answers show up all day long, and they are rarely grand. They are the small, quiet, often unnoticed acts - taking the trash out when it is not your turn, listening to someone having a hard time, being supportive of a new endeavor, giving a little extra when something you care about needs it. Service is not a one-time effort, it is a way of thinking. The old line holds: giving is its own reward, and what you receive is proportional to what you give.
 
