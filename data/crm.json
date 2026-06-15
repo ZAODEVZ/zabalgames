@@ -1,6 +1,6 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
-  "generated": "2026-06-14",
+  "generated": "2026-06-15",
   "count": 41,
   "people": [
     {
@@ -185,8 +185,8 @@
     },
     {
       "name": "Chris Dolinsky",
-      "farcaster": "",
-      "x": "",
+      "farcaster": "1dolinski",
+      "x": "1dolinski",
       "github": "",
       "track": "builder",
       "color": "orange",
@@ -201,7 +201,7 @@
         "On the Dream Leads board",
         "Farcaster Batches: Vini App (Day 1)"
       ],
-      "profile_url": "/p?handle=chrisdolinsky",
+      "profile_url": "/p?handle=1dolinski",
       "tier": "Headliner",
       "xp": 90
     },
