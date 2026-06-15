@@ -15,7 +15,7 @@
   <meta name="twitter:title" content="ZAO Fractal Weekly Introduction Presentation - ZABAL Gamez">
   <meta name="twitter:description" content="Zaal on the ZAO Fractal, the first ZAO project. A ZABAL Gamez workshop.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Open the ZAO Fractal intro","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/zao/1","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: ZAO Fractal intro","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/zao/1","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
   <link rel="apple-touch-icon" href="/assets/icon.png">
@@ -27,6 +27,13 @@
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
   <style>
+    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); }
+    .rec-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .rec-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+    .rec-chapters li { margin: 0; }
+    .rec-chapter { display: flex; gap: 0.7rem; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 0.34rem 0.5rem; color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer; }
+    .rec-chapter:hover { background: var(--surface-2); }
+    .rec-chapter .t { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); min-width: 3.2rem; }
     .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
     .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
     .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
@@ -75,18 +82,33 @@
     </p>
   </header>
 
-  <div class="rec-note">
-    Zaal's weekly introduction to the ZAO Fractal, given before the Fractal meeting (2026-06-01).
-    The replay link will be added here - the summary, outline, and transcript are below. The ZAO
-    Fractal meets weekly at 6pm Eastern at discord.theZAO.com.
+  <div class="rec-embed">
+    <iframe id="rec-player"
+      src="https://www.youtube.com/embed/N6tgsuBOXBU?rel=0"
+      title="ZABAL Gamez Workshop: ZAO Fractal Intro Presentation with Zaal"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
   </div>
 
   <div class="rec-links">
-    <a class="rec-link primary" href="https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md" target="_blank" rel="noopener">Read the transcript</a>
+    <a class="rec-link primary" href="https://youtu.be/N6tgsuBOXBU" target="_blank" rel="noopener">Watch on YouTube</a>
+    <a class="rec-link" href="https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md" target="_blank" rel="noopener">Read the transcript</a>
     <a class="rec-link" href="https://discord.theZAO.com" target="_blank" rel="noopener">Join the ZAO Fractal</a>
     <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
     <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
   </div>
+
+  <div class="rec-label">Chapters</div>
+  <ul class="rec-chapters" id="rec-chapters">
+    <li><button class="rec-chapter" data-start="0"><span class="t">0:00</span><span>Intro</span></button></li>
+    <li><button class="rec-chapter" data-start="39"><span class="t">0:39</span><span>What the ZAO is, and ZAO Respect</span></button></li>
+    <li><button class="rec-chapter" data-start="66"><span class="t">1:06</span><span>The Respect game: groups and four-minute updates</span></button></li>
+    <li><button class="rec-chapter" data-start="83"><span class="t">1:23</span><span>What counts: the five ways to contribute</span></button></li>
+    <li><button class="rec-chapter" data-start="126"><span class="t">2:06</span><span>The Discord tools: dash timer and meet-the-group</span></button></li>
+    <li><button class="rec-chapter" data-start="159"><span class="t">2:39</span><span>Reaching consensus: ranking level six to one</span></button></li>
+    <li><button class="rec-chapter" data-start="192"><span class="t">3:12</span><span>Camera on for ten extra ZAO Respect</span></button></li>
+  </ul>
 
   <section class="section" style="margin-top: 1.4rem;">
     <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
@@ -180,7 +202,19 @@
 
 <script>
 (function () {
+  var YT_ID = 'N6tgsuBOXBU';
   var PAGE_URL = 'https://zabalgamez.com/recordings/zao/1';
+  var player = document.getElementById('rec-player');
+  var chapters = document.getElementById('rec-chapters');
+  if (player && chapters) {
+    chapters.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.rec-chapter');
+      if (!b) return;
+      var start = parseInt(b.getAttribute('data-start') || '0', 10) || 0;
+      player.src = 'https://www.youtube.com/embed/' + YT_ID + '?rel=0&autoplay=1&start=' + start;
+      player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
   var TOPICS = [
     "the ZAO Fractal, the first ZAO project",
     "soulbound ZAO Respect earned weekly through peer consensus",
