@@ -30,6 +30,7 @@ directory and **comments + likes on every recording**.
 
 ### Ready now (live on the site)
 - [x] **Building Sopha - Chris** - transcript + recap: https://zabalgamez.com/recordings/5
+- [x] **Owning your music - Joseph Goats** - full transcript + recap now live: https://zabalgamez.com/recordings/6
 - [x] **Building KFMEDIA - Will T of Web3** - full transcript + recap now live: https://zabalgamez.com/recordings/7
 - [x] **The Farcaster protocol - Cassie (Quilibrium)** - full transcript + recap: https://zabalgamez.com/recordings/9
 - [x] **MIDAO + Beta Briefing - Adam Miller** - full transcript + recap now live: https://zabalgamez.com/recordings/10
@@ -38,7 +39,6 @@ directory and **comments + likes on every recording**.
 - [x] **Comments + likes** - leave a thought or ask a question under any recording (Farcaster-verified).
 
 ### Pending (will fill in as processed)
-- [ ] **Joseph Goats** (/recordings/6) - recap page live, transcript + video still to process.
 - [ ] **Cassie + Adam Miller video** - transcripts are live; video cuts to follow onto their pages.
 - [ ] **WaveWarz** is the only Week 2 session with video so far; the rest are transcript-first.
 - [ ] **Subject line + send** - confirm the Paragraph subject and publish.
@@ -59,7 +59,7 @@ Only have a few minutes? Start here:
 
 Chris took us inside Sopha, a Farcaster client built for depth and high signal - an intentional third place, a coffee shop for the writing and art that scrolls past the main feed. His point: curation is the point, and you are not beholden to the algorithm - you build your own lens. He also showed how building your own client is now a few hours of work. Read it: https://zabalgamez.com/recordings/5
 
-Joseph Goats talked owning your music as an independent artist - releasing your work, owning your masters and your audience, and turning listeners into a community that pays you directly. Recap and transcript land on the page once the recording is processed: https://zabalgamez.com/recordings/6
+Joseph Goats made the case for what he calls digital street music: he plays for free, peer-to-peer, so anyone anywhere can support him directly - a model he built when his country had no music industry to plug into. The artist is the node that connects one community to the next. Read it: https://zabalgamez.com/recordings/6
 
 Will T of Web3 walked us through building KFMEDIA, a media company that helps creators distribute their work with no code. The honest throughline: you do not have to be a coder to own your stack - when the tool he relied on was shutting down, he learned to build and rebuilt it himself. He laid out the exact three tools KFMEDIA uses to distribute creator media, and KFM Talks, a program that returns 80 to 85 percent of sales to the creator. Read it: https://zabalgamez.com/recordings/7
 
@@ -75,6 +75,8 @@ I also took ZABAL Gamez to the WIP Meetup on Thursday - an ecosystem tour, inclu
 Two new things on the site this week. One: a speakers page - every person who has taught this season and exactly what they delivered, recording, transcript, and video, with their profile one click away. https://zabalgamez.com/speakers . Two: you can now comment and like under any recording, straight from Farcaster - drop a thought, ask a question, and the speaker can answer. The conversation lives with the session now.
 
 This week is stacked. Tap in live:
+- POIDH with Kenny, plus we finalize the Best ZABAL Gamez Ad bounty and launch the next - Mon Jun 15, 4pm EST: https://luma.com/9ylnwvyx
+- Vini App with Chris Dolinsky - Mon Jun 15, 4:45pm EST: https://luma.com/tip89eq3
 - Empire Builder V3 with Adrian (diviflyy) - Tue Jun 16, 12pm EST: https://luma.com/kaz6hnm4
 - Farcaster Batches fireside with Jub Jub - Sat Jun 20, 8am EST: https://luma.com/c621slze
 - Previbecoding with Ali Tiknazoglu - Sat Jun 20, 11am EST: https://luma.com/nlgib8tl
@@ -88,7 +90,7 @@ And remember what June is for. July is the open build - anyone ships something f
 
 Watch or read everything in one place: https://zabalgamez.com/recordings . Grab the season collectible: https://collect.zabalgamez.com . Hang with us in the /zabal channel: https://farcaster.xyz/~/channel/zabal
 
-The week at a glance: six sessions from music to media to protocol to legal structure to AI agents, transcripts live on most and video on WaveWarz, a new speakers page, comments on every recording, and more sessions already on the calendar.
+The week at a glance: six sessions from music to media to protocol to legal structure to AI agents, transcripts live on most and video on WaveWarz, a new speakers page, comments on every recording, and eight more sessions already on the calendar.
 
 To everyone who taught, asked, watched, or shared this week - thank you. The build is the application. Two weeks down. See you on the next one.
 
@@ -104,7 +106,7 @@ Every Week 2 session, with the one takeaway to lead with:
 | Session | Day | Watch / read | One takeaway |
 |---|---|---|---|
 | Building Sopha - Chris | Jun 8 | https://zabalgamez.com/recordings/5 | Curation is the point; build your own lens, not the algorithm's. |
-| Owning your music - Joseph Goats | Jun 9 | https://zabalgamez.com/recordings/6 | Own your masters and your audience; turn listeners into a community that pays you directly. (transcript processing) |
+| Owning your music - Joseph Goats | Jun 9 | https://zabalgamez.com/recordings/6 | Digital street music: play for free, peer-to-peer, so anyone anywhere can support you directly - the artist is the node that connects communities. |
 | Building KFMEDIA - Will T of Web3 | Jun 10 | https://zabalgamez.com/recordings/7 | You do not need to code to own your stack; KFM Talks returns 80 to 85 percent of sales to the creator. |
 | The Farcaster protocol - Cassie | Jun 12 | https://zabalgamez.com/recordings/9 | The top goal: make a real Farcaster client buildable in a weekend. |
 | MIDAO + Beta Briefing - Adam Miller | Jun 12 | https://zabalgamez.com/recordings/10 | A group, or now a software agent, can become a real legal entity so the people running it are not personally liable. |
@@ -133,7 +135,7 @@ For agents: plain text https://zabalgamez.com/recordings.txt - structured JSON h
 ## How Week 2 beats Week 1 (for the record)
 
 - 6 sessions recapped with a real per-session takeaway (Week 1 led mostly with descriptions).
-- 4 full transcripts live at send (Sopha, Will T, Cassie, Adam Miller) plus WaveWarz on video - more depth per session.
-- 6 one-tap upcoming RSVP links in the body (Week 1 had 3 next-week lines). The two Jun 15 sessions (Kenny, Chris Dolinsky) were dropped from the live list for a tonight send since they are same-day - re-add them from workshop-leads.json if you send before 4pm EST Jun 15.
+- 5 full transcripts live at send (Sopha, Joseph Goats, Will T, Cassie, Adam Miller) plus WaveWarz on video - more depth per session.
+- 8 one-tap upcoming RSVP links in the body (Week 1 had 3 next-week lines).
 - A library table with the lead takeaway per session, plus the four earlier videos for new readers.
 - Two shipped site features called out (speakers directory, comments + likes).
