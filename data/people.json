@@ -354,7 +354,8 @@
       "audited_date": "2026-06-14"
     },
     {
-      "handle": "chrisdolinsky",
+      "handle": "1dolinski",
+      "fid": 10956,
       "name": "Chris Dolinsky",
       "roles": ["workshop_lead"],
       "headline": "Building Vini App",
@@ -362,12 +363,12 @@
       "expertise_label": "MINI APPS",
       "color": "orange",
       "avatar_url": null,
-      "farcaster_url": null,
-      "x_url": null,
-      "site_url": null,
+      "farcaster_url": "https://farcaster.xyz/1dolinski",
+      "x_url": "https://x.com/1dolinski",
+      "site_url": "https://www.viniapp.xyz",
       "session_count": 1,
       "session_topics": ["Vini App - what he is building, for the community to try"],
-      "audited_date": "2026-06-14"
+      "audited_date": "2026-06-15"
     },
     {
       "handle": "kenny",
