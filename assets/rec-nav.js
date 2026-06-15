@@ -41,6 +41,7 @@
           path: path,
           jump: jump,    // compact label for the jump row
           label: label,  // full label for prev/next
+          title: item.title || '',
           tip: (item.title || '') + (item.presenter ? ' - ' + item.presenter : '')
         };
       });
@@ -48,9 +49,11 @@
       var cur = -1;
       for (var i = 0; i < items.length; i++) { if (items[i].path === here) { cur = i; break; } }
 
-      var jump = items.map(function (it, i) {
-        return '<a href="' + it.path + '"' + (i === cur ? ' class="active" aria-current="page"' : '') +
-          ' title="' + esc(it.tip) + '">' + esc(it.jump) + '</a>';
+      // A single dropdown of every session (full title) - scales as the library grows,
+      // instead of a row of numbered chips that overflows.
+      var options = items.map(function (it, i) {
+        var text = it.label + (it.title ? ' - ' + it.title : '');
+        return '<option value="' + esc(it.path) + '"' + (i === cur ? ' selected' : '') + '>' + esc(text) + '</option>';
       }).join('');
 
       var prevnext = '';
@@ -70,13 +73,19 @@
           '<span class="rn-spacer"></span>' +
           (prevnext ? '<span class="rn-prevnext">' + prevnext + '</span>' : '') +
         '</div>' +
-        '<div class="rn-jump" aria-label="Jump to a recording">' +
-          '<span class="rn-jump-label">Jump to</span>' + jump +
+        '<div class="rn-jump">' +
+          '<label class="rn-jump-label" for="rn-jump-select">Jump to</label>' +
+          '<select id="rn-jump-select" class="rn-select" aria-label="Jump to a recording">' + options + '</select>' +
         '</div>';
 
       var back = mount.querySelector('.rn-back');
       if (back) back.addEventListener('click', function () {
         if (history.length > 1) history.back(); else location.href = '/recordings';
+      });
+
+      var sel = mount.querySelector('.rn-select');
+      if (sel) sel.addEventListener('change', function () {
+        if (this.value && this.value !== here) location.href = this.value;
       });
     })
     .catch(function () { /* nav is a progressive enhancement; ignore failures */ });
