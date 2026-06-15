@@ -13,6 +13,14 @@
 
 ---
 
+## Subject (pick one)
+
+- Year of the ZABAL - Week 2: the run
+- ZABAL Gamez Week 2: six sessions, recorded and kept
+- Two weeks down. The build is the application.
+
+---
+
 ## STATUS - ready vs pending before sending
 
 Week 2 lineup (Jun 8-13): **Chris / Sopha** (Jun 8), **Joseph Goats** (Jun 9), **Will T of
@@ -76,6 +84,8 @@ The whole calendar is on Lu.ma: https://luma.com/zao
 And remember what June is for. July is the open build - anyone ships something for the ZAO ecosystem, in public. Here is how to enter (https://zabalgamez.com/enter) and projects you can adopt and build on (https://zabalgamez.com/projects). Want to teach a session? Lead one (https://zabalgamez.com/lead). Want to back a builder for the Finals? Mentor (https://zabalgamez.com/mentor).
 
 Watch or read everything in one place: https://zabalgamez.com/recordings . Grab the season collectible: https://collect.zabalgamez.com . Hang with us in the /zabal channel: https://farcaster.xyz/~/channel/zabal
+
+The week at a glance: six sessions from music to media to protocol to legal structure to AI agents, transcripts live on most and video on WaveWarz, a new speakers page, comments on every recording, and eight more sessions already on the calendar.
 
 To everyone who taught, asked, watched, or shared this week - thank you. The build is the application. Two weeks down. See you on the next one.
 
