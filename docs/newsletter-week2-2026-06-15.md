@@ -52,6 +52,11 @@ Good morning, and happy Monday in the Year of the ZABAL.
 
 Week two went deep. If week one was Insert Coin, week two was the run - more sessions, more range, and every one recorded, transcribed, and kept. Miss something live and you have missed nothing. We went from music to media to protocol to legal structure to AI agents, all in one week.
 
+Only have a few minutes? Start here:
+- Watch: WaveWarz with Hurricane Ike - earn from engagement, not streams (the one with video this week): https://zabalgamez.com/recordings/8
+- Read, if you build: Cassie on the Farcaster protocol - the deepest technical talk of the season: https://zabalgamez.com/recordings/9
+- Read, if you create: Will T on building KFMEDIA with no code - the exact tools, and a program that returns most of every sale to the creator: https://zabalgamez.com/recordings/7
+
 Chris took us inside Sopha, a Farcaster client built for depth and high signal - an intentional third place, a coffee shop for the writing and art that scrolls past the main feed. His point: curation is the point, and you are not beholden to the algorithm - you build your own lens. He also showed how building your own client is now a few hours of work. Read it: https://zabalgamez.com/recordings/5
 
 Joseph Goats talked owning your music as an independent artist - releasing your work, owning your masters and your audience, and turning listeners into a community that pays you directly. Recap and transcript land on the page once the recording is processed: https://zabalgamez.com/recordings/6
