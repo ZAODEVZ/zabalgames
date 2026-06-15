@@ -70,6 +70,20 @@ Sopha - https://farcaster.xyz/sopha
 Sopha, Chris chriscocreated, Farcaster, Farcaster client, curation, high signal, third place, build your own client, Neynar, Hypersnap, mini apps, Snaps, ZABAL Gamez, The ZAO, build in public, BradQ The Pulse
 ```
 
-## To confirm before publishing
-- Chris's preferred links (used farcaster.xyz/chriscocreated and farcaster.xyz/sopha; sopha.social for the site).
-- After publish: add `youtube` to the /recordings/5 entry in data/recaps.json, embed it on the page, run build-recordings-index.mjs.
+## Status
+- Published Jun 15: video `Z9yAFxUVW-g` is live, wired into `data/recaps.json` (youtube + chapters),
+  embedded with clickable chapters on `/recordings/5`, and in the index/txt/JSON-LD feeds.
+
+## Send to Chris (Farcaster DM)
+```
+Chris - your ZABAL Gamez workshop is live. Thank you again for coming on and walking us through Sopha and why curation is the point.
+
+Your page: https://zabalgamez.com/recordings/5
+On YouTube: https://youtu.be/Z9yAFxUVW-g
+
+The page has the full video with clickable chapters, the summary, the outline, the key takeaways, and the word-for-word transcript. People can comment and like right on it from Farcaster, so any questions land with you.
+
+If you want to cross-post the video anywhere, I put together a ready-to-go title, description, chapters, and tags - happy to send that over. And if you'd tweak anything on the page or want different links, just say the word.
+
+Thanks again for helping keep the good stuff on Farcaster.
+```
