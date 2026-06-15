@@ -14,13 +14,15 @@
 > - Publish to paragraph.com/@thezao.
 
 ```
-Good morning, and happy Monday in the Year of the ZABAL.
+Good morning, and happy Fractal Day in the Year of the ZABAL.
+
+It is Fractal Day, so come join us in the ZAO Discord for our weekly community meeting - the ZAO Fractal, where we share what we are building and earn governance together through peer consensus. We meet at 6pm Eastern: https://discord.theZAO.com
 
 Week two is in the books, and the recap is out: six sessions, from music to media to protocol to legal structure to AI agents, all recorded and kept. Read the Week 2 recap: https://paragraph.com/@thezao/year-of-the-zabal-day-165
 
 One more from the weekend: another great talk. Aziz (MotoMoto) of Build Africa DAO on Non-Dev to Shipped - building Baraza Protocol with AI tools, no coding background. Read the transcript now, video coming soon: https://zabalgamez.com/recordings/11
 
-And the ZAO Fractal intro has been posted to the website too: Zaal's weekly introduction to the ZAO Fractal, the first ZAO project - what the ZAO is, how ZAO Respect is earned, and how the Respect game works. Watch it: https://zabalgamez.com/recordings/zao/1
+New to the Fractal? The intro is now posted to the website too: Zaal's weekly introduction to the ZAO Fractal, the first ZAO project - what the ZAO is, how ZAO Respect is earned, and how the Respect game works. Watch it before tonight: https://zabalgamez.com/recordings/zao/1
 
 Now this week. It starts today, and today is a bounty day.
 
