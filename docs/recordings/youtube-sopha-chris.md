@@ -4,13 +4,10 @@
 > Brand-clean: no emojis, no em dashes (hyphens only). Content drawn from
 > `data/recaps.json` (/recordings/5) and the session transcript
 > (`data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md`).
-> Chapters are DRAFT titles in running order - the transcript has no timestamps, so drop
-> the final times in as you scrub the cut. YouTube needs the first chapter at 0:00 and at
-> least three chapters, each at least 10 seconds apart, in ascending order.
+> Chapters are real timestamps from the finished cut (runtime ~18:41).
 >
-> Once uploaded: send the video ID + final chapter timestamps and we wire it into
-> `data/recaps.json` (the `youtube` field) + the `/recordings/5` page embed, then run
-> `node scripts/build-recordings-index.mjs`.
+> Once uploaded: send the video ID and we wire it into `data/recaps.json` (the `youtube`
+> field) + the `/recordings/5` page embed, then run `node scripts/build-recordings-index.mjs`.
 
 ---
 
@@ -35,21 +32,23 @@ What you walk away with:
 
 Chapters
 0:00 Intro
-[ :  ] What ZABAL Gamez is, and welcoming Chris
-[ :  ] What Sopha is: a Farcaster client for high signal
-[ :  ] The third place - depth over the ephemeral feed
-[ :  ] Why he built it: the meme-coin moment and saving the culture
-[ :  ] The two core things: the weekly call and the curated feed
-[ :  ] Curators, the curator role, and BradQ's The Pulse
-[ :  ] Why building your own client is powerful: open data, Neynar, Hypersnap
-[ :  ] How easy it is now - a client running in a couple of hours
-[ :  ] The nested stack: clients, mini apps, and Snaps
-[ :  ] Build your own lens - not beholden to the algorithm
-[ :  ] Where Sopha is headed: the second Purple round
-[ :  ] Experiments: rewarding curators, infra, live cultural experiences
-[ :  ] On a token: thoughtful, non-extractive, no rush
-[ :  ] Where to find Chris and Sopha
-[ :  ] Outro
+0:13 What ZABAL Gamez is, and welcoming Chris
+1:07 What Sopha is: a Farcaster client for high signal
+1:55 The third place - depth beyond the ephemeral feed
+3:00 Why he built it: the meme-coin moment and saving the culture
+5:00 The two core things: the weekly call and the curated feed
+6:00 Curators, the curator role, and BradQ's The Pulse
+7:47 Why your own client is powerful: open data, Neynar, Hypersnap
+9:53 How easy it is now - a client running in a couple of hours
+10:43 The nested stack: clients, mini apps, and Snaps
+11:35 Build your own lens - not beholden to the algorithm
+12:21 Where Farcaster and Sopha go from here
+13:44 The second Purple round funds the next year
+14:18 Rewarding curators - a value loop in curation
+15:33 Infra, and live cultural-center experiences
+16:51 On a token: thoughtful, non-extractive, no rush
+18:08 Where to find Chris and Sopha
+18:41 Outro
 
 ZABAL Gamez is The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone, any harness.
 
@@ -72,7 +71,5 @@ Sopha, Chris chriscocreated, Farcaster, Farcaster client, curation, high signal,
 ```
 
 ## To confirm before publishing
-- Final chapter timestamps from the cut (transcript has none - fill the [ : ] lines, keep 0:00 first).
 - Chris's preferred links (used farcaster.xyz/chriscocreated and farcaster.xyz/sopha; sopha.social for the site).
-- Whether intro/outro bumpers were added (shifts every timestamp after 0:00).
 - After publish: add `youtube` to the /recordings/5 entry in data/recaps.json, embed it on the page, run build-recordings-index.mjs.
