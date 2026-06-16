@@ -338,6 +338,33 @@
       "luma_url": "https://luma.com/sd3aho83",
       "spec_url": "https://artizen.fund/index/p/baraza-tv?season=6",
       "spec_label": "Baraza on Artizen"
+    },
+    {
+      "id": "025",
+      "name": "AZKAL",
+      "org": "FlowStage",
+      "topic": "Building FlowStage - why he built it and a short live demo. FlowStage helps artists scale their content without losing their taste: short-form videos and slideshows from your own footage and audio, organized by aesthetics, no generative AI. Plus how builders can connect into it through the FlowStage API.",
+      "format": "Presentation + live demo, recorded",
+      "when": "Thu Jun 18 2026, 8pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-15",
+      "color": "pink",
+      "date": "2026-06-18",
+      "track": "artist",
+      "luma_url": "https://luma.com/r1148jip"
+    },
+    {
+      "id": "026",
+      "name": "Meta Mu",
+      "topic": "How to add value as a community member - how to find the gaps, fill them, and become someone a community cannot do without. Simple, repeatable ways to contribute that turn into reputation, trust, and real opportunity.",
+      "format": "Workshop, livestreamed and recorded",
+      "when": "Sun Jun 21 2026, 6pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-15",
+      "color": "orange",
+      "date": "2026-06-21",
+      "track": "creator",
+      "luma_url": "https://luma.com/pwd2ta47"
     }
   ],
   "_schema": {
