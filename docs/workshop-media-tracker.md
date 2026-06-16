@@ -31,9 +31,9 @@ One row per session, every stage. Detail + open work is in the sections below.
 | yerbearserker - Empire Builder Pt 2 | Jun 1 | delivered | x | x | x |  | x | x | x | x | OK'd log |
 | Joshua.eth + Plat0x - Bonfire | Jun 1 | delivered | x | x | x |  | x | x | x | x | OK'd log |
 | Ohnahji - Livestreaming | Jun 2 | delivered | x | x | x |  |  | x | x | x | thumbnail, OK'd |
-| Chris (Sopha) - Building Sopha | Jun 8 | delivered | x | x | x |  |  | x | x |  | thumbnail, YouTube, OK'd |
+| Chris (Sopha) - Building Sopha | Jun 8 | delivered | x | x | x |  |  | x | x | x | thumbnail, OK'd |
 | Carlos (Plat0x) - Bonfire fireside | Jun 6 | delivered | x | x | n/a |  |  | x | x |  | thumbnail, YouTube, OK'd |
-| Zaal - ZAO Fractal intro | Jun 1 | delivered | x | x | n/a |  |  | x | x |  | thumbnail, YouTube |
+| Zaal - ZAO Fractal intro | Jun 1 | delivered | x | x | n/a |  |  | x | x | x | thumbnail |
 | Joseph Goats - Owning your music | Jun 9 | delivered | x | x | x |  |  | x |  |  | transcript, thumbnail, YouTube, OK'd |
 | Will T of Web3 - KFMEDIA | Jun 10 | delivered | x | x | x |  |  | x |  |  | transcript, thumbnail, YouTube, OK'd |
 | Zaal - WIP Meetup | Jun 11 | scheduled | x | x | x |  |  |  |  |  | recording (today) |
@@ -71,18 +71,18 @@ These ran; the work now is finishing edits, transcripts, thumbnails, and YouTube
 | 02 | yerbearserker - Empire Builder Pt 2 (live build) | /recordings/2 | x | x | x |  | x | x | x | x |
 | 03 | Joshua.eth + Plat0x - Bonfire | /recordings/3 | x | x | x |  | x | x | x | x |
 | 04 | Ohnahji - Starting/growing your livestream | /recordings/4 | x | x | x |  |  | x | x | x |
-| 05 | Chris (Sopha) - Building Sopha + curation | /recordings/5 | x | x | x |  |  | x | x |  |
+| 05 | Chris (Sopha) - Building Sopha + curation | /recordings/5 | x | x | x |  |  | x | x | x |
 | F1 | Carlos (Plat0x) - Bonfire fireside + vibe-coding | /recordings/fireside/1 | x | x |  |  |  | x | x |  |
-| Z1 | Zaal - ZAO Fractal weekly intro | /recordings/zao/1 | x | x | n/a |  |  | x | x |  |
+| Z1 | Zaal - ZAO Fractal weekly intro | /recordings/zao/1 | x | x | n/a |  |  | x | x | x |
 | 06 | Joseph Goats - Owning your music | /recordings/6 | x | x | x |  |  | x |  |  |
 | 07 | Will T of Web3 - Building KFMEDIA | /recordings/7 | x | x | x |  |  | x |  |  |
 
 **Where each one stands (the open work):**
 - **01 / 02 / 03** - fully shipped (thumbnail, transcript, page, YouTube all live). Only gap: log the guest **OK'd** sign-off (stage 4) so we have it on record.
 - **04 Ohnahji** - live with YouTube + transcript; **no Canva thumbnail** (page uses the default). Make one for parity.
-- **05 Chris / Sopha** - transcript + page live; **no YouTube cut yet** and no thumbnail. Cut the video, share unlisted with Chris, then publish.
+- **05 Chris / Sopha** - transcript + page + YouTube live (published Jun 15); **no thumbnail yet**, and log Chris's OK'd sign-off.
 - **F1 Carlos fireside** - transcript + page live; **no Luma, no thumbnail, no YouTube**. X Space recording; decide if it gets a YouTube cut.
-- **Z1 Zaal / ZAO Fractal** - transcript + page live; internal ZAO intro, no Luma. Thumbnail + YouTube optional.
+- **Z1 Zaal / ZAO Fractal** - transcript + page + YouTube live (published Jun 15); internal ZAO intro, no Luma. Thumbnail optional.
 - **06 Joseph Goats** - recap page is a **placeholder** ("added once the recording is processed"). Pull the recording -> transcript -> thumbnail -> YouTube.
 - **07 Will T** - same placeholder state as 06. Same pipeline to run.
 
@@ -165,7 +165,8 @@ Days 1, 2, 3, 5 transcripts are captured. GM Farcaster owns the videos.
 3. **Thumbnails missing** for Ohnahji (04), Sopha (05), fireside (F1), ZAO Fractal (Z1) -
    make Canva thumbnails for the ones that warrant one (04, 05 first).
 4. **Four upcoming sessions need a Luma event** - Adam Miller, Dr. Jake, Jub Jub, Adrienne.
-5. **YouTube cuts owed** - Sopha (05), and decide on the fireside (F1) and ZAO Fractal (Z1).
+5. **YouTube cuts owed** - Aziz (11), Adam (10), Cassie (09), Will T (07), Joseph Goats (06),
+   and decide on the fireside (F1). Sopha (05) and ZAO Fractal (Z1) published Jun 15.
 6. **Lock dates** for the seven confirmed-but-undated guests in section C so the June slate
    keeps filling past the current 8-plus delivered.
 </content>
