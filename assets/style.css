@@ -700,12 +700,32 @@ body > * { position: relative; z-index: 1; }
 .rec-nav .rn-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .rec-nav .rn-spacer { flex: 1 1 auto; }
 .rec-nav .rn-prevnext { display: flex; gap: 6px; }
-.rec-nav .rn-jump { display: flex; align-items: center; gap: 8px; margin-top: 0.55rem; padding: 0.55rem 0; border-top: 1px solid var(--border); }
+.rec-nav .rn-jump { position: relative; display: flex; align-items: center; gap: 8px; margin-top: 0.55rem; padding: 0.55rem 0; border-top: 1px solid var(--border); }
 .rec-nav .rn-jump-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); white-space: nowrap; }
 .rec-nav a, .rec-nav button { font: inherit; font-size: 0.8rem; text-decoration: none; cursor: pointer; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); padding: 0.32rem 0.66rem; border-radius: 6px; white-space: nowrap; }
 .rec-nav a:hover, .rec-nav button:hover { filter: brightness(1.15); }
-.rec-nav .rn-select { font: inherit; font-size: 0.8rem; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 0.32rem 0.66rem; max-width: min(100%, 460px); flex: 1 1 auto; cursor: pointer; }
-.rec-nav .rn-select:hover { filter: brightness(1.15); }
+
+/* Jump-to picker - searchable, scannable popover (replaces a native <select>) */
+.rec-nav .rn-jump-trigger { flex: 1 1 auto; max-width: min(100%, 520px); display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--text); text-align: left; }
+.rec-nav .rn-jump-cur { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rec-nav .rn-jump-caret { flex: none; color: var(--text-dim); font-size: 0.7rem; }
+.rec-nav .rn-jump-panel { position: absolute; top: calc(100% + 4px); left: 0; z-index: 1200; width: min(94vw, 580px); max-height: 62vh; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border-hover); border-radius: 10px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55); overflow: hidden; }
+.rec-nav .rn-jump-panel[hidden] { display: none; }
+.rec-nav .rn-jump-search { font: inherit; font-size: 0.85rem; color: var(--text); background: var(--surface-2); border: 0; border-bottom: 1px solid var(--border); border-radius: 0; padding: 0.6rem 0.8rem; margin: 0; }
+.rec-nav .rn-jump-search:focus { outline: none; box-shadow: inset 0 -2px 0 var(--cyan); }
+.rec-nav .rn-jump-list { list-style: none; margin: 0; padding: 4px; overflow-y: auto; }
+.rec-nav .rn-opt { display: flex; align-items: center; gap: 10px; padding: 0.5rem 0.6rem; border-radius: 7px; border: 1px solid transparent; cursor: pointer; }
+.rec-nav .rn-opt.is-active { background: var(--surface-2); border-color: var(--border-hover); }
+.rec-nav .rn-opt.is-current { background: rgba(167, 139, 250, 0.10); }
+.rec-nav .rn-opt-num { flex: none; width: 92px; font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rec-nav .rn-opt-body { flex: 1 1 auto; min-width: 0; }
+.rec-nav .rn-opt-title { display: block; font-size: 0.85rem; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rec-nav .rn-opt-sub { display: block; font-size: 0.73rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rec-nav .rn-opt-track { flex: none; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.16rem 0.46rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-dim); white-space: nowrap; }
+.rec-nav .rn-opt-track.t-builder { color: var(--zabal); border-color: var(--zabal); }
+.rec-nav .rn-opt-track.t-artist { color: var(--pink); border-color: var(--pink); }
+.rec-nav .rn-opt-track.t-creator { color: var(--cyan); border-color: var(--cyan); }
+.rec-nav .rn-jump-empty { margin: 0; padding: 0.85rem; font-size: 0.82rem; color: var(--text-muted); }
 
 /* Site-wide directory menu - rendered by assets/site-nav.js */
 /* Menu trigger - matches the .arcade-nav-menu links (pixel font, underline on hover/open) */
