@@ -280,6 +280,18 @@
     .rec-btn.agent { border-color: var(--cyan); color: var(--cyan); }
     .rec-btn.agent:hover { background: rgba(0,212,255,0.08); }
     .agent-btns { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.6rem; }
+    /* Search + track filter for the All sessions list */
+    .rec-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem 0.85rem; margin: 0.2rem 0 0.7rem; }
+    .rec-search { flex: 1 1 220px; min-width: 0; max-width: 360px; font: inherit; font-size: 0.9rem; color: var(--text); background: var(--surface-2); border: 1px solid var(--border-hover); border-radius: 8px; padding: 0.5rem 0.7rem; }
+    .rec-search:focus { outline: none; border-color: var(--cyan); }
+    .rec-tracks { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .rec-trk { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.32rem 0.72rem; border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); cursor: pointer; }
+    .rec-trk:hover { border-color: var(--border-hover); color: var(--text); }
+    .rec-trk.sel { border-color: var(--gold); color: var(--gold); }
+    .rec-trk[data-track="builder"].sel { border-color: var(--zabal); color: var(--zabal); }
+    .rec-trk[data-track="artist"].sel { border-color: var(--pink); color: var(--pink); }
+    .rec-trk[data-track="creator"].sel { border-color: var(--cyan); color: var(--cyan); }
+    .rec-count { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); margin: 0 0 0.6rem; }
   </style>
 </head>
 <body>
@@ -314,6 +326,16 @@
   <section class="section">
     <h2>All sessions</h2>
     <p class="rec-builder">Every recording with a dedicated page, newest first - one tap to watch or read the transcript.</p>
+    <div class="rec-filter">
+      <input type="search" id="rec-search" class="rec-search" placeholder="Search title, speaker, topic" aria-label="Search recordings" autocomplete="off">
+      <div class="rec-tracks" role="group" aria-label="Filter by track">
+        <button type="button" class="rec-trk sel" data-track="all">All</button>
+        <button type="button" class="rec-trk" data-track="builder">Builder</button>
+        <button type="button" class="rec-trk" data-track="artist">Artist</button>
+        <button type="button" class="rec-trk" data-track="creator">Creator</button>
+      </div>
+    </div>
+    <p class="rec-count" id="rec-count" aria-live="polite"></p>
     <div class="rec-list" id="rec-list">
       <p style="color: var(--text-muted); font-size: 0.9rem;">Loading the library. Or browse it directly: <a href="/recordings/index.json">/recordings/index.json</a>, <a href="/recordings.txt">/recordings.txt</a>, or the <a href="/recaps">recaps page</a>.</p>
     </div>
@@ -489,28 +511,72 @@
     var t = ext(url) ? ' target="_blank" rel="noopener"' : '';
     return '<a class="rec-btn ' + (cls||'') + '" href="' + esc(url) + '"' + t + '>' + esc(label) + '</a>';
   }
+  function rowHtml(r) {
+    var meta = [r.type, r.track && ('track: ' + r.track), r.date].filter(Boolean).map(esc).join('  -  ');
+    var who = r.presenter ? '<span class="rec-row-meta">' + esc(r.presenter) + (r.org ? ', ' + esc(r.org) : '') + '</span>' : '';
+    var transcript = r.transcript_raw || r.transcript;
+    var btns = [
+      btn('Watch', r.url, 'primary'),
+      (r.youtube && r.youtube !== r.url) ? btn('Video', r.youtube, '') : '',
+      btn('Transcript', transcript, ''),
+      (r.page ? btn('Recap', '/recaps', '') : '')
+    ].join('');
+    return '<div class="rec-row">' +
+      '<div class="rec-row-top"><h3 class="rec-row-title">' + esc(r.title) + '</h3>' + who + '</div>' +
+      '<div class="rec-row-meta">' + meta + '</div>' +
+      (r.summary ? '<p class="rec-row-sum">' + esc(r.summary) + '</p>' : '') +
+      '<div class="rec-btns">' + btns + '</div>' +
+    '</div>';
+  }
+
+  var searchEl = document.getElementById('rec-search');
+  var countEl = document.getElementById('rec-count');
+  var trackBtns = [].slice.call(document.querySelectorAll('.rec-trk'));
+  var all = [];
+  var track = 'all';
+
+  function searchStr(r) {
+    return [r.title, r.presenter, r.org, r.track, r.type, (r.topics || []).join(' ')]
+      .filter(Boolean).join(' ').toLowerCase();
+  }
+
+  function apply() {
+    var q = (searchEl && searchEl.value || '').trim().toLowerCase();
+    var list = all.filter(function (r) {
+      if (track !== 'all' && (r.track || '').toLowerCase() !== track) return false;
+      if (q && searchStr(r).indexOf(q) === -1) return false;
+      return true;
+    });
+    box.innerHTML = list.length
+      ? list.map(rowHtml).join('')
+      : '<p style="color: var(--text-muted); font-size: 0.9rem;">No sessions match. <button type="button" class="rec-btn" id="rec-clear">Clear filters</button></p>';
+    if (countEl) countEl.textContent = (list.length === all.length)
+      ? (all.length + ' sessions')
+      : ('Showing ' + list.length + ' of ' + all.length);
+    var clr = document.getElementById('rec-clear');
+    if (clr) clr.addEventListener('click', function () {
+      if (searchEl) searchEl.value = '';
+      track = 'all';
+      trackBtns.forEach(function (b) { b.classList.toggle('sel', b.getAttribute('data-track') === 'all'); });
+      apply();
+    });
+  }
+
+  if (searchEl) searchEl.addEventListener('input', apply);
+  trackBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      track = b.getAttribute('data-track') || 'all';
+      trackBtns.forEach(function (x) { x.classList.toggle('sel', x === b); });
+      apply();
+    });
+  });
+
   fetch('/recordings/index.json', { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (d) {
-      var recs = (d && d.recordings) || [];
-      if (!recs.length) return;
-      box.innerHTML = recs.map(function (r) {
-        var meta = [r.type, r.track && ('track: ' + r.track), r.date].filter(Boolean).map(esc).join('  -  ');
-        var who = r.presenter ? '<span class="rec-row-meta">' + esc(r.presenter) + (r.org ? ', ' + esc(r.org) : '') + '</span>' : '';
-        var transcript = r.transcript_raw || r.transcript;
-        var btns = [
-          btn('Watch', r.url, 'primary'),
-          (r.youtube && r.youtube !== r.url) ? btn('Video', r.youtube, '') : '',
-          btn('Transcript', transcript, ''),
-          (r.page ? btn('Recap', '/recaps', '') : '')
-        ].join('');
-        return '<div class="rec-row">' +
-          '<div class="rec-row-top"><h3 class="rec-row-title">' + esc(r.title) + '</h3>' + who + '</div>' +
-          '<div class="rec-row-meta">' + meta + '</div>' +
-          (r.summary ? '<p class="rec-row-sum">' + esc(r.summary) + '</p>' : '') +
-          '<div class="rec-btns">' + btns + '</div>' +
-        '</div>';
-      }).join('');
+      all = (d && d.recordings) || [];
+      if (!all.length) return;
+      apply();
     })
     .catch(function () { /* keep the fallback */ });
 })();
