@@ -262,11 +262,24 @@
   function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function firstName(p) { return String(p || '').split(/\s|\(/)[0] || String(p || ''); }
 
+  // Eligible tile people: only presenters with a resolved PFP, deduped by handle/name so a
+  // presenter with two recordings (e.g. yerbearserker) appears once.
+  function eligibleSessions() {
+    var seen = {}, out = [];
+    for (var i = 0; i < SESSIONS.length; i++) {
+      var s = SESSIONS[i];
+      if (!s.pfp) continue;
+      var key = String(s.handle || s.presenter || '').toLowerCase().replace(/^@/, '');
+      if (!key || seen[key]) continue;
+      seen[key] = 1; out.push(s);
+    }
+    return out;
+  }
   function seedTiles() {
     tileMap = {};
     tileMap[1024] = ANCHOR[1024];
     tileMap[2048] = ANCHOR[2048];
-    var pool = shuffle(SESSIONS);
+    var pool = shuffle(eligibleSessions());
     for (var i = 0; i < SESSION_VALUES.length; i++) {
       var v = SESSION_VALUES[i];
       var s = pool[i];
@@ -761,7 +774,7 @@
   loadBoard();
   setInterval(loadBoard, 8000);
   // Load the real sessions, then reseed so the tiles are random ZAO people each game.
-  loadSessions().then(function () { resolvePfps(); newGame(); });
+  loadSessions().then(function () { return resolvePfps(); }).then(function () { newGame(); });
 })();
 </script>
 
