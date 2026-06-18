@@ -368,9 +368,9 @@
     },
     {
       "id": "027",
-      "name": "@farcaster",
+      "name": "The Farcaster Intern",
       "org": "Farcaster",
-      "topic": "ZABAL GAMEZ AMA: Farcaster, live - how the protocol works, building on it, and where it is going. Reddit-style, questions ahead of time, opening with the most-liked.",
+      "topic": "ZABAL GAMEZ AMA w/ The Farcaster Intern - an open-mic audio-space AMA. BetterCallZaal hosts @farcaster; come up and ask anything about Farcaster, or send your question ahead and we open with the most-liked.",
       "format": "Audio space fireside / AMA, recorded",
       "when": "Mon Jun 22 2026, 5pm EST",
       "status": "confirmed",
@@ -378,7 +378,8 @@
       "color": "zabal",
       "date": "2026-06-22",
       "track": "builder",
-      "luma_url": "https://luma.com/zao"
+      "luma_url": "https://luma.com/zao",
+      "handle": "@farcaster"
     }
   ],
   "_schema": {

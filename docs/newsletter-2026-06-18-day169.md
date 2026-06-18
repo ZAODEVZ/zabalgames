@@ -10,7 +10,7 @@
 >
 > PREP NOTE - finalize Thursday morning before sending:
 > - Confirm AZKAL / FlowStage is still tonight, 8pm EST (RSVP https://luma.com/r1148jip).
-> - ZABAL GAMEZ AMA block (Mon Jun 22, 5pm EST, with @farcaster) is locked. Two links to
+> - ZABAL GAMEZ AMA block (Mon Jun 22, 5pm EST, The Farcaster Intern / @farcaster) is locked. Two links to
 >   swap once they exist: the Lu.ma event URL (interim points at the ZAO calendar) and the
 >   exact /zabal questions-cast URL (interim points at the channel). See
 >   docs/luma-zabal-gamez-farcaster-ama-2026-06-22.md.
@@ -24,7 +24,7 @@
 ```
 Good morning, and happy Thursday in the Year of the ZABAL.
 
-Two things today. Tonight is an artist-track session - AZKAL on FlowStage. And we just locked something new: the ZABAL GAMEZ AMA, a Farcaster AMA next week, and the questions open now.
+Two things today. Tonight is an artist-track session - AZKAL on FlowStage. And we just locked something new: the ZABAL GAMEZ AMA w/ The Farcaster Intern next week, and the mic is open.
 
 Earlier this week: Adrian (diviflyy) took us under the hood of Empire Builder V3 - the V3 endpoints and how the leaderboard works. If you build on Empire Builder, it is the map: https://zabalgamez.com/recordings
 
@@ -32,7 +32,7 @@ Quote of the day: "The artists earn by engagement, not by streams." - Hurricane 
 
 Tonight, Thursday Jun 18, 8pm EST - AZKAL on building FlowStage. How to scale your content without losing your taste: short-form videos and slideshows built from your own footage and audio, organized by aesthetic, no generative AI - plus how builders can plug into the FlowStage API. Free, livestreamed, recorded. RSVP: https://luma.com/r1148jip
 
-New this week - the ZABAL GAMEZ AMA. Monday Jun 22, 5pm EST, a live audio-space fireside on Farcaster with @farcaster: how it works, building on it, and where it is going. We are running it Reddit-style - drop your questions ahead of time and we open with the most-liked. Get your question in over in the /zabal channel: https://farcaster.xyz/~/channel/zabal and RSVP here: https://luma.com/zao
+New this week - the ZABAL GAMEZ AMA w/ The Farcaster Intern. Monday Jun 22, 5pm EST, a live audio-space AMA: I host The Farcaster Intern (@farcaster) and the mic is open - come up and ask anything about Farcaster, how it works, building on it, where it is going. Cannot make it live, or want a head start? Drop your question in the /zabal channel and we open with the most-liked: https://farcaster.xyz/~/channel/zabal  RSVP here: https://luma.com/zao
 
 The rest of the week:
 
