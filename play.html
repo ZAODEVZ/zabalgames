@@ -300,6 +300,7 @@
           var h = s.handle ? String(s.handle).replace(/^@/, '') : '';
           if (h && d.users[h] && d.users[h].pfpUrl) s.pfp = d.users[h].pfpUrl;
         });
+        render();
         renderCodex();
       }).catch(function () {});
   }
@@ -352,7 +353,7 @@
       c.innerHTML = '';
       if (v) {
         var t = tileOf(v);
-        var imgsrc = t.img || t.pfp;
+        var imgsrc = t.img || t.pfp || (t.session && t.session.pfp);
         if (imgsrc) {
           var im = document.createElement('img');
           im.src = imgsrc;
