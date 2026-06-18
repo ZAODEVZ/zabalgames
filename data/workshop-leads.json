@@ -365,6 +365,20 @@
       "date": "2026-06-21",
       "track": "creator",
       "luma_url": "https://luma.com/pwd2ta47"
+    },
+    {
+      "id": "027",
+      "name": "@farcaster",
+      "org": "Farcaster",
+      "topic": "ZABAL GAMEZ AMA: Farcaster, live - how the protocol works, building on it, and where it is going. Reddit-style, questions ahead of time, opening with the most-liked.",
+      "format": "Audio space fireside / AMA, recorded",
+      "when": "Mon Jun 22 2026, 5pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-18",
+      "color": "zabal",
+      "date": "2026-06-22",
+      "track": "builder",
+      "luma_url": "https://luma.com/zao"
     }
   ],
   "_schema": {
