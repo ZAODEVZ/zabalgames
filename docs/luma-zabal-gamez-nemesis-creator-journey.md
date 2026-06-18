@@ -4,19 +4,23 @@
 > story of career, the turns along the way, and how it led here. Brand: no emojis, no em
 > dashes (hyphens only), "100+" for member count.
 >
-> NEED FROM YOU (to finalize + add to the schedule):
-> - Date + time (EST).
-> - Nemesis's @handle / org (for the host line, the tag, and the schedule row).
+> STATUS:
+> - Slot: Friday Jun 19, 2026, 11:30am EST. (You said "Friday tmmr the 18th" - the 18th is a
+>   Thursday, so I read this as Friday the 19th. Tell me if you meant Thursday the 18th.)
+> - Track: creator. Already on the homepage schedule (data/workshop-leads.json), RSVP pointed
+>   at the ZAO Lu.ma calendar in the interim.
+> - STILL NEED: Nemesis's @handle / org (for the host line, the tag, and the schedule row).
+> - I cannot create the Lu.ma from here (no Lu.ma integration) - copy below is paste-and-publish.
+>   Send me the event URL after and I will swap it into the schedule row and the promo cast.
 >
 > BRAND NOTE on the title: your phrasing was "how I ended up in web3 after leaving." The brand
-> rule is no crypto/web3 jargon in public copy, so the title + copy below say "here" / "this
-> space" instead. If you want the literal "web3" in Nemesis's own title, say so and I will put
-> it back - it is your call since it is the presenter's personal story.
+> rule is no crypto/web3 jargon in public copy, so the title + copy below say "here" instead.
+> If you want the literal "web3" in Nemesis's own title, say so and I will put it back.
 
 ## How to set it up
 1. luma.com/zao -> New Event
 2. Title + description below
-3. Date + time: [TBD - send me the slot]
+3. Date + time: Friday Jun 19, 2026, 11:30am EST
 4. Duration: 45 min (talk + Q&A)
 5. Location: Link Meeting -> paste the Restream / audio-space link
 6. Tag: `zabal-games`
@@ -48,34 +52,37 @@ What you will take away:
 
 Format: live session, recorded and kept - missing it live never means missing it.
 
-When: [DATE, TIME EST]
+When: Friday Jun 19, 2026, 11:30am EST
 Hosted by: BetterCallZaal (The ZAO) with Nemesis
 Part of: ZABAL Gamez Season 1
 More: zabalgamez.com
 ```
 
-## Schedule row (add to data/workshop-leads.json once the date + Lu.ma URL exist)
-Creator track uses color `cyan`.
+## Schedule row (added to data/workshop-leads.json)
+Live on the homepage schedule now (creator track, color cyan), RSVP pointed at the ZAO
+calendar in the interim. Send me the Lu.ma event URL and I will swap `luma_url`.
 ```json
 {
-  "id": "0XX",
   "name": "Nemesis",
-  "org": "",
-  "topic": "My Career, My Journey, and How I Ended Up Here - a creator-track personal story: the career, the turns, the decision to leave it all behind, and how that path led to building and creating in this space.",
+  "topic": "My Career, My Journey, and How I Ended Up Here - a creator-track personal story: the career, the turns, the decision to leave the old path, and how that leap led to building and creating in this space.",
   "format": "Talk + Q&A, recorded",
-  "when": "[Day Mon DD 2026, TIME EST]",
+  "when": "Fri Jun 19 2026, 11:30am EST",
   "status": "confirmed",
-  "confirmed_date": "2026-06-18",
   "color": "cyan",
-  "date": "[YYYY-MM-DD]",
+  "date": "2026-06-19",
   "track": "creator",
-  "luma_url": "[paste after creating the Lu.ma]"
+  "luma_url": "https://luma.com/zao"
 }
 ```
 
 ## Promo cast (post once the Lu.ma is live)
 ```
-New ZABAL Gamez creator-track session: Nemesis on a career, a journey, and the leap that led here - the path, the turns, and what changed everything. [tag @handle]
+New ZABAL Gamez creator-track session: Nemesis on a career, a journey, and the leap that led here - the path, the turns, and what changed everything. Friday 11:30am EST. [tag @handle]
 
 Free, live, recorded. RSVP: [Lu.ma event URL]
+```
+
+## Firefly post (cross-platform, under 280 chars)
+```
+Friday 11:30am EST in ZABAL Gamez: Nemesis on a career, a journey, and the leap that led here - the path, the turns, and what changed. A creator-track story. Free, live, recorded. RSVP: https://luma.com/zao
 ```
