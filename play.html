@@ -262,11 +262,24 @@
   function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function firstName(p) { return String(p || '').split(/\s|\(/)[0] || String(p || ''); }
 
+  // Eligible tile people: only presenters with a resolved PFP, deduped by handle/name so a
+  // presenter with two recordings (e.g. yerbearserker) appears once.
+  function eligibleSessions() {
+    var seen = {}, out = [];
+    for (var i = 0; i < SESSIONS.length; i++) {
+      var s = SESSIONS[i];
+      if (!s.pfp) continue;
+      var key = String(s.handle || s.presenter || '').toLowerCase().replace(/^@/, '');
+      if (!key || seen[key]) continue;
+      seen[key] = 1; out.push(s);
+    }
+    return out;
+  }
   function seedTiles() {
     tileMap = {};
     tileMap[1024] = ANCHOR[1024];
     tileMap[2048] = ANCHOR[2048];
-    var pool = shuffle(SESSIONS);
+    var pool = shuffle(eligibleSessions());
     for (var i = 0; i < SESSION_VALUES.length; i++) {
       var v = SESSION_VALUES[i];
       var s = pool[i];
@@ -286,23 +299,50 @@
       .catch(function () { SESSIONS = []; });
   }
 
-  // Resolve each session presenter's Farcaster PFP once (used in the Codex + flash card,
-  // where each person appears a single time - so no repetition like on the tiles).
+  function applyPfp(handle, pfpUrl) {
+    if (!handle || !pfpUrl) return;
+    var h = String(handle).replace(/^@/, '').toLowerCase();
+    SESSIONS.forEach(function (s) {
+      if (!s.pfp && s.handle && String(s.handle).replace(/^@/, '').toLowerCase() === h) s.pfp = pfpUrl;
+    });
+  }
+
+  // Resolve each session presenter's Farcaster PFP. Static cache (data/pfps.json) first - it
+  // is committed, CDN-served, and survives any live-lookup outage - then /api/pfps fills any
+  // handle the cache is missing. Each person appears once in the Codex + flash card.
   function resolvePfps() {
     var handles = [];
     SESSIONS.forEach(function (s) { if (s.handle) handles.push(String(s.handle).replace(/^@/, '')); });
     if (!handles.length) return Promise.resolve();
-    return fetch('/api/pfps?handles=' + encodeURIComponent(handles.join(',')), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (!d || !d.users) return;
+    // 1. static cache
+    return fetch('/data/pfps.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function () { return {}; })
+      .then(function (cache) {
+        var byHandle = (cache && cache.users) || cache || {};
+        Object.keys(byHandle).forEach(function (k) {
+          var v = byHandle[k];
+          applyPfp(k, v && (v.pfpUrl || v.pfp_url || v));
+        });
+        // 2. only ask the live resolver for handles the cache did not cover
+        var missing = [];
         SESSIONS.forEach(function (s) {
           var h = s.handle ? String(s.handle).replace(/^@/, '') : '';
-          if (h && d.users[h] && d.users[h].pfpUrl) s.pfp = d.users[h].pfpUrl;
+          if (h && !s.pfp && missing.indexOf(h) === -1) missing.push(h);
         });
-        render();
-        renderCodex();
-      }).catch(function () {});
+        if (!missing.length) { render(); renderCodex(); return; }
+        return fetch('/api/pfps?handles=' + encodeURIComponent(missing.join(',')), { cache: 'no-store' })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (d && d.users) {
+              Object.keys(d.users).forEach(function (h) {
+                if (d.users[h] && d.users[h].pfpUrl) applyPfp(h, d.users[h].pfpUrl);
+              });
+            }
+          })
+          .catch(function () {})
+          .then(function () { render(); renderCodex(); });
+      });
   }
 
   function build() {
@@ -761,7 +801,7 @@
   loadBoard();
   setInterval(loadBoard, 8000);
   // Load the real sessions, then reseed so the tiles are random ZAO people each game.
-  loadSessions().then(function () { resolvePfps(); newGame(); });
+  loadSessions().then(function () { return resolvePfps(); }).then(function () { newGame(); });
 })();
 </script>
 
