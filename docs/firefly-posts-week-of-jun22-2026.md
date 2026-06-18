@@ -27,9 +27,14 @@ Saturday 11am EST in ZABAL Gamez: Ali Tiknazoglu on Previbecoding - what he is l
 Saturday 12pm EST in ZABAL Gamez: Dan Singjoy on Eden Fractal - what fractals are, the history of fractal communities, and how it connects to the ZAO Fractal. Free, live, recorded. RSVP: https://luma.com/tmcmw3o9
 ```
 
-## Monday - ZABAL GAMEZ AMA w/ The Farcaster Intern (5pm EST)  [259 chars]
+## Monday - ZABAL GAMEZ AMA w/ The Farcaster Intern (5pm EST)  [264 chars]
 ```
-Monday 5pm EST: ZABAL GAMEZ AMA w/ The Farcaster Intern. BetterCallZaal hosts @farcaster live in an audio space - mic open, come ask anything about Farcaster. Want a head start? Reply with your question, we open with the most-liked. RSVP: https://luma.com/zao
+Monday 5pm EST: ZABAL GAMEZ AMA w/ The Farcaster Intern. BetterCallZaal hosts @farcaster live in an audio space - mic open, come ask anything about Farcaster. Want a head start? Reply with your question, we open with the most-liked. RSVP: https://luma.com/swwffz0h
+```
+
+## Sunday - Meta Mu (6pm EST)  [212 chars]
+```
+Sunday 6pm EST in ZABAL Gamez: Meta Mu on how to add value as a community member - find the gaps, fill them, and become someone a community cannot do without. Free, live, recorded. RSVP: https://luma.com/pwd2ta47
 ```
 
 ---

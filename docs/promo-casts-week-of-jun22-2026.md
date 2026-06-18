@@ -22,9 +22,9 @@ I'm hosting @farcaster live in an audio space, and the mic is open: come up and 
 
 Want a head start, or can't make it live? Reply with your question below. The most-liked ones are the ones we open with.
 
-RSVP: https://luma.com/zao
+RSVP: https://luma.com/swwffz0h
 ```
-> Swap the RSVP link to the specific Lu.ma event URL once it is published.
+> RSVP link is the live Lu.ma event.
 
 ---
 

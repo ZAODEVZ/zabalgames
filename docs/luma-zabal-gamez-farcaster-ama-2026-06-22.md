@@ -8,11 +8,9 @@
 > - Name: ZABAL GAMEZ AMA w/ The Farcaster Intern (locked).
 > - Host: BetterCallZaal. Guest: The Farcaster Intern (@farcaster). Open mic for the community.
 > - Slot: Monday Jun 22, 2026, 5pm EST (confirmed).
-> - The session is already on the homepage schedule (data/workshop-leads.json), with RSVP
->   pointed at the ZAO Lu.ma calendar in the interim.
-> - I cannot create the Lu.ma event from here (no Lu.ma integration in this environment) -
->   the copy below is paste-and-publish. Once it is live, send me the event URL and I will
->   swap it into the schedule row, the newsletter, and the questions cast.
+> - Lu.ma event is LIVE: https://luma.com/swwffz0h - swapped into the schedule row, the
+>   newsletter, and the promo/Firefly posts.
+> - The copy below was the source for the published event (kept for reference / re-use).
 
 ## How to set it up
 1. luma.com/zao -> New Event

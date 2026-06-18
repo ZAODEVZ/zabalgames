@@ -32,7 +32,7 @@ Quote of the day: "The artists earn by engagement, not by streams." - Hurricane 
 
 Tonight, Thursday Jun 18, 8pm EST - AZKAL on building FlowStage. How to scale your content without losing your taste: short-form videos and slideshows built from your own footage and audio, organized by aesthetic, no generative AI - plus how builders can plug into the FlowStage API. Free, livestreamed, recorded. RSVP: https://luma.com/r1148jip
 
-New this week - the ZABAL GAMEZ AMA w/ The Farcaster Intern. Monday Jun 22, 5pm EST, a live audio-space AMA: I host The Farcaster Intern (@farcaster) and the mic is open - come up and ask anything about Farcaster, how it works, building on it, where it is going. Cannot make it live, or want a head start? Drop your question in the /zabal channel and we open with the most-liked: https://farcaster.xyz/~/channel/zabal  RSVP here: https://luma.com/zao
+New this week - the ZABAL GAMEZ AMA w/ The Farcaster Intern. Monday Jun 22, 5pm EST, a live audio-space AMA: I host The Farcaster Intern (@farcaster) and the mic is open - come up and ask anything about Farcaster, how it works, building on it, where it is going. Cannot make it live, or want a head start? Drop your question in the /zabal channel and we open with the most-liked: https://farcaster.xyz/~/channel/zabal  RSVP here: https://luma.com/swwffz0h
 
 The rest of the week:
 
