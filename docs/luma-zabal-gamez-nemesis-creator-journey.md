@@ -1,21 +1,18 @@
-# Lu.ma prep - Nemesis (creator track): My Career, My Journey
+# Lu.ma prep - Nemesis.love (creator track): Come Into the Mind of a Menace
 
-> Paste-ready Lu.ma copy for a creator-track ZABAL Gamez workshop with Nemesis - a personal
-> story of career, the turns along the way, and how it led here. Brand: no emojis, no em
-> dashes (hyphens only), "100+" for member count.
+> Paste-ready Lu.ma copy for a creator-track ZABAL Gamez workshop with Nemesis.love - a
+> personal career/journey story, titled by the artist. Brand: no emojis, no em dashes
+> (hyphens only), "100+" for member count.
 >
 > STATUS:
+> - Title: Come Into the Mind of a Menace (the artist's title).
+> - Artist: Nemesis.love (handle @nemesis.love).
 > - Slot: Friday Jun 19, 2026, 11:30am EST. (You said "Friday tmmr the 18th" - the 18th is a
 >   Thursday, so I read this as Friday the 19th. Tell me if you meant Thursday the 18th.)
 > - Track: creator. Already on the homepage schedule (data/workshop-leads.json), RSVP pointed
 >   at the ZAO Lu.ma calendar in the interim.
-> - STILL NEED: Nemesis's @handle / org (for the host line, the tag, and the schedule row).
 > - I cannot create the Lu.ma from here (no Lu.ma integration) - copy below is paste-and-publish.
->   Send me the event URL after and I will swap it into the schedule row and the promo cast.
->
-> BRAND NOTE on the title: your phrasing was "how I ended up in web3 after leaving." The brand
-> rule is no crypto/web3 jargon in public copy, so the title + copy below say "here" instead.
-> If you want the literal "web3" in Nemesis's own title, say so and I will put it back.
+>   Send me the event URL after and I will swap it into the schedule row and the posts.
 
 ## How to set it up
 1. luma.com/zao -> New Event
@@ -25,25 +22,24 @@
 5. Location: Link Meeting -> paste the Restream / audio-space link
 6. Tag: `zabal-games`
 7. Cover: `https://zabalgamez.com/assets/og-card.png` (or icon.png)
-8. Host: BetterCallZaal (The ZAO), co-invite Nemesis
+8. Host: BetterCallZaal (The ZAO), co-invite @nemesis.love
 9. Publish, then send me the event URL
 
 ## Title
 ```
-My Career, My Journey, and How I Ended Up Here
+Come Into the Mind of a Menace
 ```
-Alt (literal, if you want it): `My Career, My Journey, and How I Ended Up in Web3 After Leaving`
 
 ## Subtitle / short description
 ```
-A creator-track session with Nemesis - the career, the turns, the decision to leave it all behind, and how that path led here.
+A creator-track session with Nemesis.love - the career, the journey, the decision to leave it all behind, and how that path led here.
 ```
 
 ## Full description
 ```
 ZABAL Gamez Season 1 - Creator track
 
-A creator-track session with Nemesis - an honest, personal story. The career, the journey, the decision to leave the old path, and how that leap led here, into building and creating in this space.
+Come Into the Mind of a Menace - a creator-track session with Nemesis.love. An honest, personal story: the career, the journey, the decision to leave the old path, and how that leap led here, into building and creating in this space.
 
 What you will take away:
 - A real look at a non-linear career and the choice to change direction
@@ -53,7 +49,7 @@ What you will take away:
 Format: live session, recorded and kept - missing it live never means missing it.
 
 When: Friday Jun 19, 2026, 11:30am EST
-Hosted by: BetterCallZaal (The ZAO) with Nemesis
+Hosted by: BetterCallZaal (The ZAO) with Nemesis.love
 Part of: ZABAL Gamez Season 1
 More: zabalgamez.com
 ```
@@ -63,8 +59,9 @@ Live on the homepage schedule now (creator track, color cyan), RSVP pointed at t
 calendar in the interim. Send me the Lu.ma event URL and I will swap `luma_url`.
 ```json
 {
-  "name": "Nemesis",
-  "topic": "My Career, My Journey, and How I Ended Up Here - a creator-track personal story: the career, the turns, the decision to leave the old path, and how that leap led to building and creating in this space.",
+  "name": "Nemesis.love",
+  "handle": "@nemesis.love",
+  "topic": "Come Into the Mind of a Menace - a creator-track personal story: the career, the journey, the decision to leave the old path, and how that leap led to building and creating in this space.",
   "format": "Talk + Q&A, recorded",
   "when": "Fri Jun 19 2026, 11:30am EST",
   "status": "confirmed",
@@ -75,14 +72,9 @@ calendar in the interim. Send me the Lu.ma event URL and I will swap `luma_url`.
 }
 ```
 
-## Promo cast (post once the Lu.ma is live)
+## Post (your "for a ZABAL Gamez Workshop" format)
 ```
-New ZABAL Gamez creator-track session: Nemesis on a career, a journey, and the leap that led here - the path, the turns, and what changed everything. Friday 11:30am EST. [tag @handle]
+Friday 11:30am EST for a ZABAL Gamez Workshop: Come Into the Mind of a Menace with @nemesis.love - a creator-track personal story of a career, a journey, and the leap that led here.
 
-Free, live, recorded. RSVP: [Lu.ma event URL]
-```
-
-## Firefly post (cross-platform, under 280 chars)
-```
-Friday 11:30am EST in ZABAL Gamez: Nemesis on a career, a journey, and the leap that led here - the path, the turns, and what changed. A creator-track story. Free, live, recorded. RSVP: https://luma.com/zao
+Free, live, recorded. RSVP: https://luma.com/zao
 ```

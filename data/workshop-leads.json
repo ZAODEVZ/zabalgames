@@ -383,9 +383,9 @@
     },
     {
       "id": "028",
-      "name": "Nemesis",
+      "name": "Nemesis.love",
       "org": "",
-      "topic": "My Career, My Journey, and How I Ended Up Here - a creator-track personal story: the career, the turns, the decision to leave the old path, and how that leap led to building and creating in this space.",
+      "topic": "Come Into the Mind of a Menace - a creator-track personal story: the career, the journey, the decision to leave the old path, and how that leap led to building and creating in this space.",
       "format": "Talk + Q&A, recorded",
       "when": "Fri Jun 19 2026, 11:30am EST",
       "status": "confirmed",
@@ -393,7 +393,8 @@
       "color": "cyan",
       "date": "2026-06-19",
       "track": "creator",
-      "luma_url": "https://luma.com/zao"
+      "luma_url": "https://luma.com/zao",
+      "handle": "@nemesis.love"
     }
   ],
   "_schema": {
