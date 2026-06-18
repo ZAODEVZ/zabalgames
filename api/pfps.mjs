@@ -10,6 +10,7 @@
 export const config = { runtime: 'edge' };
 
 const HAATZ = 'https://haatz.quilibrium.com';
+const NEYNAR_API_KEY = process.env.NEYNAR_API_KEY || '';
 
 function json(body, maxAge = 600) {
   return new Response(JSON.stringify(body), {
@@ -42,7 +43,19 @@ async function resolveOne(handle) {
       if (got) return got;
     }
   } catch { /* try the next strategy */ }
-  // 2. search fallback (some Hypersnap nodes expose search but not by_username)
+  // 2. real Neynar by_username (proven path - same as empire-leaderboard.mjs). Needs a key.
+  if (NEYNAR_API_KEY) {
+    try {
+      const r = await fetch(`https://api.neynar.com/v2/farcaster/user/by_username?username=${encodeURIComponent(handle)}`,
+        { headers: { 'x-api-key': NEYNAR_API_KEY, Accept: 'application/json' }, signal: AbortSignal.timeout(3000) });
+      if (r.ok) {
+        const d = await r.json();
+        const got = pickUser(d.user || (d.result && d.result.user) || (d.users && d.users[0]));
+        if (got) return got;
+      }
+    } catch { /* try the next strategy */ }
+  }
+  // 3. search fallback (some Hypersnap nodes expose search but not by_username)
   try {
     const r = await fetch(`${HAATZ}/v2/farcaster/user/search?q=${encodeURIComponent(handle)}&limit=1`, { signal: AbortSignal.timeout(2500) });
     if (r.ok) {
