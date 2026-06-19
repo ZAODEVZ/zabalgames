@@ -395,6 +395,20 @@
       "track": "creator",
       "luma_url": "https://luma.com/zao",
       "handle": "@nemesis.love"
+    },
+    {
+      "id": "029",
+      "name": "Theresa",
+      "org": "",
+      "topic": "How she uses generative AI in Ableton with Magenta to make music, plus a short live demo.",
+      "format": "Talk + live demo, recorded",
+      "when": "Thu Jun 25 2026, 5:45pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-19",
+      "color": "pink",
+      "date": "2026-06-25",
+      "track": "artist",
+      "luma_url": "https://luma.com/r1148jip"
     }
   ],
   "_schema": {
