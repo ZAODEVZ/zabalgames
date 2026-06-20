@@ -57,12 +57,11 @@ More: zabalgamez.com
 ```
 
 ## Schedule row (already on data/workshop-leads.json)
-Live on the homepage schedule (artist track), RSVP at the ZAO calendar in the interim. Send me
-the Lu.ma event URL and I will swap `luma_url`.
+Live on the homepage schedule (artist track), RSVP -> https://luma.com/hwz9men2.
 
 ## Post (your "for a ZABAL Gamez Workshop" format)
 ```
 Thursday 5:45pm EST for a ZABAL Gamez Workshop: Teresa Marrin Nakra - MIT Media Lab pioneer, inventor of the Conductor's Jacket - on making music with generative AI in Ableton, plus a live demo.
 
-Free, live, recorded. RSVP: https://luma.com/zao
+Free, live, recorded. RSVP: https://luma.com/hwz9men2
 ```
