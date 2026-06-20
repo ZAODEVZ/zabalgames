@@ -597,7 +597,7 @@
       submitting = true;
       window.ZABAL.submitScore('zao2048', score).then(function (d) {
         submitting = false;
-        if (d && d.ok && d.counted) { setStatus('Submitted as @' + (d.handle || 'you') + '. Best this month: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); tryAddApp(); return; }
+        if (d && d.ok && d.counted) { myRank = d.rank || null; myBest = d.best || myBest; setStatus('Submitted as @' + (d.handle || 'you') + '. Best this month: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); tryAddApp(); return; }
         if (d && (d.reason === 'not-in-miniapp' || d.counted === false)) { identitySubmit(silent); return; }
         setStatus('Could not submit (' + (d && d.reason || 'error') + ').');
       }).catch(function () { submitting = false; identitySubmit(silent); });
@@ -631,6 +631,7 @@
     }).then(function (r) { return r.json(); }).then(function (d) {
       submitting = false;
       if (d && d.ok && d.counted) {
+        myRank = d.rank || null; myBest = d.best || myBest;
         setStatus('Submitted as @' + handle + '. Best this month: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : ''));
         loadBoard();
         tryAddApp();
@@ -701,10 +702,20 @@
   }
   // Brag your score into /zabal (Farcaster) or X, with a referral-tagged play link.
   var shareRef = '';
+  var myRank = null;   // set from the server after a counted submit
+  var myBest = 0;      // best score this month (server truth when verified)
   function playUrl() { return 'https://zabalgamez.com/play' + (shareRef ? '?ref=' + encodeURIComponent(shareRef) : ''); }
   function shareScore(platform) {
     var tile = bestTileEl.textContent || 'ZAO';
-    var text = "I climbed to " + tile + " on ZAO 2048 - " + score + " points. How far through the ZABAL Gamez workshop season can you get?";
+    var shown = Math.max(score, myBest, bestScore);
+    // Lead with the standing if we know it (top 3 gets a crown-y line), else the score + tile.
+    var standing = '';
+    if (myRank === 1) standing = 'I am #1 on the ZABAL Gamez monthly board';
+    else if (myRank && myRank <= 10) standing = 'I cracked the top 10 (#' + myRank + ') on the ZABAL Gamez monthly board';
+    else if (myRank) standing = 'I am #' + myRank + ' this month on ZABAL Gamez';
+    var text = standing
+      ? standing + ' - ' + shown + ' on ZAO 2048, reaching ' + tile + '. Can you beat me?'
+      : 'I climbed to ' + tile + ' on ZAO 2048 - ' + shown + ' points. How far through the ZABAL Gamez workshop season can you get?';
     var url = playUrl();
     if (window.ZABAL && window.ZABAL.share) {
       window.ZABAL.share({ platform: platform, text: text, url: url, target: 'play-score-' + platform });
