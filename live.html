@@ -222,6 +222,25 @@
     .season-cell.august .sc-month { color: var(--gold); }
     .season-cell h3 { font-size: 0.98rem; margin: 0 0 0.3rem; }
     .season-cell p { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.45; }
+    /* The month we are currently in gets a lit ring so the triptych reads as a progress marker. */
+    .season-cell.is-active { background: rgba(255,255,255,0.05); }
+    .season-cell.june.is-active { border-color: var(--cyan); box-shadow: var(--glow-cyan, 0 0 0 1px var(--cyan)); }
+    .season-cell.july.is-active { border-color: var(--orange); box-shadow: 0 0 0 1px var(--orange); }
+    .season-cell.august.is-active { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+
+    /* Live activity - "who's here" avatar row, shown only while a stream is on. */
+    .live-activity { display: none; align-items: center; gap: 10px; margin: 14px 0 0; }
+    .live-activity.show { display: flex; }
+    .live-activity .la-label {
+      font-family: var(--font-pixel); font-size: 0.5rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--cyan);
+    }
+    .la-faces { display: inline-flex; }
+    .la-faces a { display: inline-block; width: 28px; height: 28px; margin-left: -8px; border-radius: 50%;
+      border: 2px solid var(--bg); overflow: hidden; background: var(--surface-2); }
+    .la-faces a:first-child { margin-left: 0; }
+    .la-faces img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .live-activity .la-more { font-size: 0.8rem; color: var(--text-dim); }
 
     /* TODAY list */
     .today-sec { margin: 26px 0 8px; }
@@ -388,6 +407,11 @@
       </div>
     </div>
     <p class="watch-note" id="watch-note"></p>
+    <div class="live-activity" id="live-activity" aria-live="polite">
+      <span class="la-label">Who's here</span>
+      <span class="la-faces" id="la-faces"></span>
+      <span class="la-more" id="la-more"></span>
+    </div>
   </section>
 
   <section class="live-stage" id="live-stage" aria-live="polite">
@@ -510,6 +534,39 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
     });
   }
+
+  // ------------------------------------------------------------------
+  // Season phase - keeps /live correct as the season moves
+  // June (workshops) -> July (open build) -> August (Finals), so the page is
+  // not hard-coded to the June run. Evaluated in US Eastern.
+  // ------------------------------------------------------------------
+  function seasonPhase() {
+    var mo = +new Intl.DateTimeFormat('en-US', { timeZone: TZ, month: 'numeric' }).format(new Date());
+    if (mo <= 6) return 'june';
+    if (mo === 7) return 'july';
+    return 'august';
+  }
+  var PHASES = {
+    june: {
+      sub: "What's on now in the June workshop run. Live sessions, what's next, and how to tune in. Free, livestreamed, recorded.",
+      emptyHead: 'No session live right now',
+      emptyMeta: 'More June workshops are landing soon. Sessions are free, livestreamed, and recorded - RSVP on Lu.ma and we will let you know when the next one goes live.',
+      foot: 'Workshops run all June. July is the open build month, August is the Finals.'
+    },
+    july: {
+      sub: "What's on now in the July open build. Build streams, office hours, and what's next. Free, livestreamed, recorded.",
+      emptyHead: 'No stream live right now',
+      emptyMeta: 'July is the open build month - ship a project for the ecosystem, in public. Build streams and office hours land here. RSVP on Lu.ma, and register your build so it counts.',
+      foot: 'July is the open build month. August is the Finals.'
+    },
+    august: {
+      sub: "What's on now as the August Finals come together. Finalist streams, the live reveal, and what's next.",
+      emptyHead: 'No stream live right now',
+      emptyMeta: 'August is the Finals. Finalists pair with ZAO mentors for the live reveal stream. RSVP on Lu.ma so you catch it live.',
+      foot: 'August is the Finals. Finalists pair with ZAO mentors for the live reveal.'
+    }
+  };
+  var PHASE = seasonPhase();
 
   // ------------------------------------------------------------------
   // Time handling
@@ -661,22 +718,33 @@
     if (btn) btn.addEventListener('click', function () { tellFarcaster(shareText(state, name)); });
   }
 
-  var EMPTY_HTML =
-    '<div class="stage-card empty">' +
+  // The empty/standby card is phase-aware: copy and the highlighted month follow the season,
+  // and July leads with "register your build" instead of the calendar.
+  function emptyHtml() {
+    var p = PHASES[PHASE] || PHASES.june;
+    function cell(month, key, h, body) {
+      return '<div class="season-cell ' + key + (PHASE === key ? ' is-active' : '') + '">' +
+        '<div class="sc-month">' + month + '</div><h3>' + h + '</h3><p>' + body + '</p></div>';
+    }
+    var primary = (PHASE === 'july')
+      ? '<a class="stage-btn primary" href="/enter" rel="noopener">Register your build</a>'
+      : '<a class="stage-btn primary" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>';
+    return '<div class="stage-card empty">' +
       '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Standby</div>' +
-      '<h2>No session live right now</h2>' +
-      '<p class="stage-meta">More June workshops are landing soon. Sessions are free, livestreamed, and recorded - RSVP on Lu.ma and we will let you know when the next one goes live.</p>' +
+      '<h2>' + esc(p.emptyHead) + '</h2>' +
+      '<p class="stage-meta">' + esc(p.emptyMeta) + '</p>' +
       '<div class="season-strip">' +
-        '<div class="season-cell june"><div class="sc-month">June</div><h3>Workshops</h3><p>Recorded sessions on the tools and the ecosystem. Watch live or anytime.</p></div>' +
-        '<div class="season-cell july"><div class="sc-month">July</div><h3>Open build</h3><p>Build a project for the ecosystem with any tool. Ship in public.</p></div>' +
-        '<div class="season-cell august"><div class="sc-month">August</div><h3>Finals</h3><p>Finalists pair with ZAO mentors. Live reveal stream, prize pool, collectibles.</p></div>' +
+        cell('June', 'june', 'Workshops', 'Recorded sessions on the tools and the ecosystem. Watch live or anytime.') +
+        cell('July', 'july', 'Open build', 'Build a project for the ecosystem with any tool. Ship in public.') +
+        cell('August', 'august', 'Finals', 'Finalists pair with ZAO mentors. Live reveal stream, prize pool, collectibles.') +
       '</div>' +
       '<div class="stage-actions">' +
-        '<a class="stage-btn primary" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>' +
+        primary +
         '<a class="stage-btn ghost" href="' + GROUP_URL + '" target="_blank" rel="noopener">Join /zabal group</a>' +
         '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
       '</div>' +
     '</div>';
+  }
 
   function renderNow(L) {
     setPill('now');
@@ -726,7 +794,7 @@
 
   function renderEmpty() {
     setPill('empty');
-    document.getElementById('live-stage').innerHTML = EMPTY_HTML;
+    document.getElementById('live-stage').innerHTML = emptyHtml();
     bindShare('empty', '');
   }
 
@@ -896,14 +964,18 @@
   function renderLiveGeneric(s) {
     var stage = document.getElementById('live-stage');
     if (!stage) return;
+    var onYouTube = s.platform === 'youtube';
+    var openHref = onYouTube ? 'https://youtube.com/@bettercallzaal/live' : ('https://twitch.tv/' + LIVE_TWITCH);
+    var openLabel = onYouTube ? 'Open on YouTube' : 'Open on Twitch';
+    var where = onYouTube ? 'YouTube' : 'Twitch';
     stage.innerHTML =
       '<div class="stage-card now">' +
         '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Live now</div>' +
         '<h2>' + esc(s.title || 'A ZABAL Gamez session is streaming now') + '</h2>' +
-        '<p class="stage-meta">We are live on Twitch. Watch in the player below, or open the stream.</p>' +
+        '<p class="stage-meta">We are live on ' + where + '. Watch in the player below, or open the stream.</p>' +
         '<div class="stage-actions">' +
           '<a class="stage-btn primary" href="#watch">Watch the stream</a>' +
-          '<a class="stage-btn ghost" href="https://twitch.tv/' + LIVE_TWITCH + '" target="_blank" rel="noopener">Open on Twitch</a>' +
+          '<a class="stage-btn ghost" href="' + openHref + '" target="_blank" rel="noopener">' + openLabel + '</a>' +
           '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
         '</div>' +
       '</div>';
@@ -913,21 +985,75 @@
     fetch('/api/live-status', { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (s) {
-        if (!s || !s.configured) return;
+        if (!s || !s.configured) { if (window.ZGWatch) window.ZGWatch.setLive({ live: false }); return; }
+        // Hand the real state to the watch player: it minimizes when off, expands + auto-selects
+        // the live platform (and scrolls into view) when on.
+        if (window.ZGWatch) window.ZGWatch.setLive(s);
         if (s.live) {
           setLivePill(s.viewers);
           recsVisible = false; applyRecsVisibility(); // a stream is on - lead with the player
           if (scheduleState !== 'now') renderLiveGeneric(s);
-        } else if (scheduleState === 'now') {
-          // The schedule thinks a session is on but the stream is off - do not claim "Live now".
-          var pill = document.getElementById('live-pill');
-          var txt = document.getElementById('live-pill-text');
-          if (pill && txt) { pill.className = 'live-pill is-next'; txt.textContent = 'Starting soon'; }
-          recsVisible = true; applyRecsVisibility();
+          showActivity(true);
+        } else {
+          showActivity(false);
+          if (scheduleState === 'now') {
+            // The schedule thinks a session is on but the stream is off - do not claim "Live now".
+            var pill = document.getElementById('live-pill');
+            var txt = document.getElementById('live-pill-text');
+            if (pill && txt) { pill.className = 'live-pill is-next'; txt.textContent = 'Starting soon'; }
+            recsVisible = true; applyRecsVisibility();
+          }
         }
       })
       .catch(function () { /* leave the schedule-driven view in place */ });
   }
+
+  // ------------------------------------------------------------------
+  // Live activity - "who's here" avatar row from /api/activity, shown only while a stream
+  // is on so the live session feels populated. Best-effort; hides itself if KV is off.
+  // ------------------------------------------------------------------
+  function showActivity(on) {
+    var el = document.getElementById('live-activity');
+    if (!el) return;
+    if (!on) { el.classList.remove('show'); return; }
+    // refresh each time we are live (cheap, keeps "who's here" current); renderActivity
+    // applies visibility once it knows whether there are faces to show.
+    renderActivity();
+  }
+  function renderActivity() {
+    fetch('/api/activity', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var el = document.getElementById('live-activity');
+        var faces = document.getElementById('la-faces');
+        var more = document.getElementById('la-more');
+        if (!el || !faces || !d || !d.configured) { if (el) el.classList.remove('show'); return; }
+        var seen = {}, people = [];
+        (d.recent || []).forEach(function (a) {
+          if (!a || a.fid == null || seen[a.fid]) return;
+          seen[a.fid] = 1; people.push(a);
+        });
+        var top = people.slice(0, 8);
+        faces.innerHTML = top.map(function (a) {
+          var href = 'https://farcaster.xyz/' + (a.username ? esc(a.username) : ('~/profiles/' + esc(String(a.fid))));
+          var img = a.pfpUrl ? '<img src="' + esc(a.pfpUrl) + '" alt="" loading="lazy">' : '';
+          return '<a href="' + href + '" target="_blank" rel="noopener" title="' + esc(a.username || ('fid ' + a.fid)) + '">' + img + '</a>';
+        }).join('');
+        var count = (d.count != null) ? d.count : people.length;
+        more.textContent = count > top.length ? ('+' + (count - top.length) + ' more') : '';
+        el.classList.toggle('show', top.length > 0);
+      })
+      .catch(function () { var el = document.getElementById('live-activity'); if (el) el.classList.remove('show'); });
+  }
+
+  // Phase-aware framing: set the header subtitle + footer note for the current season month.
+  (function () {
+    var p = PHASES[PHASE] || PHASES.june;
+    var sub = document.querySelector('.live-head p');
+    if (sub) sub.textContent = p.sub;
+    var foot = document.querySelector('.live-foot-note p');
+    if (foot && p.foot) foot.innerHTML = esc(p.foot) + ' <a href="/info.html">Read all the details -&gt;</a>';
+  })();
 
   renderWatchRecs();
   load();
@@ -967,7 +1093,6 @@
   }
 
   var LS_PLATFORM = 'zg_live_platform';
-  var LS_PLAYER = 'zg_live_player_hidden';
   var LS_CHAT = 'zg_live_chat_hidden';
 
   var watch = document.getElementById('watch');
@@ -983,13 +1108,23 @@
   function setLs(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
 
   var platform = ls(LS_PLATFORM) === 'youtube' ? 'youtube' : 'twitch';
-  var playerHidden = ls(LS_PLAYER) === '1';
   var chatHidden = ls(LS_CHAT) === '1';
 
+  // Player visibility follows the real live state (minimized when off, expanded when on),
+  // with a per-session manual override so a viewer can still pop it open or shut it.
+  var liveNow = false;            // set by ZGWatch.setLive() from /api/live-status
+  var ytVideoId = null;           // live YouTube video id when YT is the live platform
+  var userPickedPlatform = false; // a manual tab click pins the platform (no auto-switch)
+  var manualPlayer = null;        // null = follow live state; true/false = override this session
+  function isPlayerHidden() { return manualPlayer != null ? manualPlayer : !liveNow; }
+
   function videoSrc(p) {
-    return p === 'youtube'
-      ? 'https://www.youtube.com/embed/live_stream?channel=' + YT_CHANNEL
-      : 'https://player.twitch.tv/?channel=' + TWITCH + '&' + twitchParents() + '&muted=false';
+    if (p === 'youtube') {
+      return ytVideoId
+        ? 'https://www.youtube.com/embed/' + ytVideoId + '?autoplay=1'
+        : 'https://www.youtube.com/embed/live_stream?channel=' + YT_CHANNEL;
+    }
+    return 'https://player.twitch.tv/?channel=' + TWITCH + '&' + twitchParents() + '&muted=false';
   }
   function iframe(src, title) {
     return '<iframe src="' + src + '" title="' + title + '" allowfullscreen ' +
@@ -998,22 +1133,25 @@
 
   function renderVideo() {
     // Blank the iframe entirely when the player is collapsed so audio stops.
-    if (playerHidden) { videoEl.innerHTML = ''; return; }
+    if (isPlayerHidden()) { videoEl.innerHTML = ''; return; }
     videoEl.innerHTML = '<div class="ar">' +
       iframe(videoSrc(platform), platform === 'youtube' ? 'BetterCallZaal on YouTube' : 'BetterCallZaal on Twitch') +
       '</div>';
   }
 
   function renderChat() {
-    if (playerHidden || chatHidden) { chatFrame.innerHTML = ''; return; }
+    if (isPlayerHidden() || chatHidden) { chatFrame.innerHTML = ''; return; }
     if (platform === 'twitch') {
       chatFrame.innerHTML = iframe(
         'https://www.twitch.tv/embed/' + TWITCH + '/chat?' + twitchParents() + '&darkpopout',
         'Twitch chat');
+    } else if (ytVideoId) {
+      // With the detected live video id we can embed YouTube's real live chat in place.
+      chatFrame.innerHTML = iframe(
+        'https://www.youtube.com/live_chat?v=' + ytVideoId + '&embed_domain=' + encodeURIComponent(HOST),
+        'YouTube live chat');
     } else {
-      // YouTube live chat needs the current live video id, which changes per
-      // stream and is not in our static data - so we link out to the live page
-      // where the player and chat live together.
+      // No live video id (not live, or detection missed it) - link out to the stream.
       chatFrame.innerHTML = '<div class="chat-fallback">YouTube live chat opens on the stream itself. ' +
         '<a href="https://www.youtube.com/@' + YT_HANDLE + '/live" target="_blank" rel="noopener">' +
         'Open the live stream and chat on YouTube -&gt;</a></div>';
@@ -1027,15 +1165,16 @@
   }
 
   function apply() {
-    watch.classList.toggle('player-collapsed', playerHidden);
+    var ph = isPlayerHidden();
+    watch.classList.toggle('player-collapsed', ph);
     watch.classList.toggle('chat-collapsed', chatHidden);
     bodyEl.classList.toggle('has-chat', !chatHidden);
 
     document.querySelectorAll('.watch-tab').forEach(function (t) {
       t.classList.toggle('sel', t.getAttribute('data-platform') === platform);
     });
-    playerBtn.textContent = playerHidden ? 'Show player' : 'Hide player';
-    playerBtn.setAttribute('aria-expanded', String(!playerHidden));
+    playerBtn.textContent = ph ? 'Show player' : 'Hide player';
+    playerBtn.setAttribute('aria-expanded', String(!ph));
     chatBtn.textContent = chatHidden ? 'Show chat' : 'Hide chat';
     chatBtn.setAttribute('aria-expanded', String(!chatHidden));
 
@@ -1047,13 +1186,13 @@
   document.querySelectorAll('.watch-tab').forEach(function (t) {
     t.addEventListener('click', function () {
       platform = t.getAttribute('data-platform');
+      userPickedPlatform = true; // viewer pinned a platform - stop auto-switching
       setLs(LS_PLATFORM, platform);
       apply();
     });
   });
   playerBtn.addEventListener('click', function () {
-    playerHidden = !playerHidden;
-    setLs(LS_PLAYER, playerHidden ? '1' : '0');
+    manualPlayer = !isPlayerHidden(); // pin the opposite of the current state for this session
     apply();
   });
   chatBtn.addEventListener('click', function () {
@@ -1061,6 +1200,25 @@
     setLs(LS_CHAT, chatHidden ? '1' : '0');
     apply();
   });
+
+  // Driven by the reconcile loop in the first script. Minimizes the player when the stream is
+  // off, expands + auto-selects the live platform + scrolls into view when it comes on.
+  function focusPlayer() {
+    try { watch.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { /* old browser */ }
+  }
+  window.ZGWatch = {
+    setLive: function (s) {
+      var wasLive = liveNow;
+      liveNow = !!(s && s.live);
+      ytVideoId = (s && s.youtube && s.youtube.live) ? (s.youtube.videoId || null) : null;
+      // Auto-select whichever platform is actually live, unless the viewer pinned one.
+      if (liveNow && s && s.platform && !userPickedPlatform) platform = s.platform;
+      // A fresh on/off transition hands control back to the live state.
+      if (liveNow !== wasLive) manualPlayer = null;
+      apply();
+      if (liveNow && !wasLive && !isPlayerHidden()) focusPlayer();
+    }
+  };
 
   apply();
 })();
