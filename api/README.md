@@ -125,6 +125,14 @@ ADD/REMOVE folded); this binding fails OPEN on hub errors and is skipped entirel
 when the env var is unset. Set it to a hub exposing `/v1/*` and verify on a
 Preview before relying on it.
 
+### `GET /api/monthly-winner` (cron)
+On the 1st of each month, reads LAST month's ZAO 2048 board
+(`zabal:game:zao2048:<YYYY-MM>`, written by `/api/game`) and casts the champion +
+runners-up into `/zabal` with a `/play` embed - then the board is fresh for the new
+month. KV-sentinel idempotency (`zabal:cron:monthly-winner:<month>`); releases on a
+failed cast so the next run retries. Same Neynar env + graceful no-op contract as
+`/api/daily-cast`. Cron: `0 14 1 * *`.
+
 ### `POST /api/notify`
 Admin-only sender. `Authorization: Bearer <NOTIFY_SECRET>`. Body
 `{ title (<=32), body (<=128), targetUrl? }`. Groups stored tokens by their
