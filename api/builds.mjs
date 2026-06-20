@@ -95,7 +95,10 @@ export default async function handler(req) {
     for (const repo of parseRepos(buildsHash[wallet])) {
       builds.push({
         repo, owner: repo.split('/')[0], wallet: shortWallet(wallet), fid,
-        track: trackHash[repo] || '', votes: Number(votesHash[repo]) || 0,
+        // Votes are keyed by the lowercased repo (build-vote.mjs cleanRepo lowercases),
+        // while register.mjs stores the repo case-preserved - look up votes lowercased so
+        // the count binds regardless of how the owner cased "Owner/Repo".
+        track: trackHash[repo] || '', votes: Number(votesHash[repo.toLowerCase()]) || 0,
       });
     }
   }
