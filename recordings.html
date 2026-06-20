@@ -515,7 +515,7 @@
   function rowHtml(r) {
     var meta = [r.type, r.track && ('track: ' + r.track), r.date].filter(Boolean).map(esc).join('  -  ');
     var who = r.presenter ? '<span class="rec-row-meta">' + esc(r.presenter) + (r.org ? ', ' + esc(r.org) : '') + '</span>' : '';
-    var transcript = r.transcript_raw || r.transcript;
+    var transcript = (r.page || r.url) + '#rec-transcript';
     var btns = [
       btn('Watch', r.url, 'primary'),
       (r.youtube && r.youtube !== r.url) ? btn('Video', r.youtube, '') : '',
