@@ -894,9 +894,22 @@
   var TWITCH = 'bettercallzaal';
   var YT_CHANNEL = 'UCCxaboWZfS8igtPLGxBlggQ'; // youtube.com/@bettercallzaal
   var YT_HANDLE = 'bettercallzaal';
-  // Twitch player + chat embeds require parent = the serving hostname, so
-  // read it at runtime (works on prod, preview deploys, and localhost).
+  // Twitch player + chat embeds require parent = EVERY ancestor host the iframe is nested
+  // under. In a plain browser that is just our own hostname; inside the Farcaster Mini App
+  // the page runs nested under the Farcaster client, so Twitch also needs that ancestor or
+  // it refuses to load (blank/broken frame). Read the real ancestors at runtime and add the
+  // known Farcaster client hosts as a safety net (ancestorOrigins is missing in some webviews).
   var HOST = window.location.hostname || 'zabalgamez.com';
+  function twitchParents() {
+    var hosts = {};
+    hosts[HOST] = 1;
+    try {
+      var ao = window.location.ancestorOrigins;
+      if (ao) { for (var i = 0; i < ao.length; i++) { try { hosts[new URL(ao[i]).hostname] = 1; } catch (e) { /* skip */ } } }
+    } catch (e) { /* not supported here */ }
+    ['farcaster.xyz', 'www.farcaster.xyz', 'warpcast.com', 'www.warpcast.com', 'client.warpcast.com'].forEach(function (h) { hosts[h] = 1; });
+    return Object.keys(hosts).map(function (h) { return 'parent=' + encodeURIComponent(h); }).join('&');
+  }
 
   var LS_PLATFORM = 'zg_live_platform';
   var LS_PLAYER = 'zg_live_player_hidden';
@@ -921,7 +934,7 @@
   function videoSrc(p) {
     return p === 'youtube'
       ? 'https://www.youtube.com/embed/live_stream?channel=' + YT_CHANNEL
-      : 'https://player.twitch.tv/?channel=' + TWITCH + '&parent=' + encodeURIComponent(HOST) + '&muted=false';
+      : 'https://player.twitch.tv/?channel=' + TWITCH + '&' + twitchParents() + '&muted=false';
   }
   function iframe(src, title) {
     return '<iframe src="' + src + '" title="' + title + '" allowfullscreen ' +
@@ -940,7 +953,7 @@
     if (playerHidden || chatHidden) { chatFrame.innerHTML = ''; return; }
     if (platform === 'twitch') {
       chatFrame.innerHTML = iframe(
-        'https://www.twitch.tv/embed/' + TWITCH + '/chat?parent=' + encodeURIComponent(HOST) + '&darkpopout',
+        'https://www.twitch.tv/embed/' + TWITCH + '/chat?' + twitchParents() + '&darkpopout',
         'Twitch chat');
     } else {
       // YouTube live chat needs the current live video id, which changes per
