@@ -5,7 +5,7 @@
 > are real timestamps from the transcript. Confirm the WaveWarz YouTube handle before publish.
 
 ## Title
-ZABAL GAMEZ - ZAO Workshop - WAVEWARZ: Earn From Music Battles, Not Streams - w/ HURRIC4N3IKE
+ZABAL GAMEZ Workshop - WAVEWARZ: Earn From Music Battles, Not Streams - w/ HURRIC4N3IKE
 
 ## Description
 ```

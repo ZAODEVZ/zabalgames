@@ -305,7 +305,9 @@
         "decentralization as a fractal where everyone has something to say",
         "musicians as the bards connecting communities",
         "aligning music with nature and biology"
-      ]
+      ],
+      "youtube": "https://youtu.be/xZyrEeKQEz0",
+      "handle": "@joseacabrerav"
     },
     {
       "date": "2026-06-08",
@@ -320,23 +322,74 @@
       "youtube": "https://youtu.be/Z9yAFxUVW-g",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-08-sopha-chris-building-curation.md",
       "chapters": [
-        { "t": 0, "label": "Intro" },
-        { "t": 13, "label": "What ZABAL Gamez is, and welcoming Chris" },
-        { "t": 67, "label": "What Sopha is: a Farcaster client for high signal" },
-        { "t": 115, "label": "The third place - depth beyond the ephemeral feed" },
-        { "t": 180, "label": "Why he built it: the meme-coin moment and saving the culture" },
-        { "t": 300, "label": "The two core things: the weekly call and the curated feed" },
-        { "t": 360, "label": "Curators, the curator role, and BradQ's The Pulse" },
-        { "t": 467, "label": "Why your own client is powerful: open data, Neynar, Hypersnap" },
-        { "t": 593, "label": "How easy it is now - a client running in a couple of hours" },
-        { "t": 643, "label": "The nested stack: clients, mini apps, and Snaps" },
-        { "t": 695, "label": "Build your own lens - not beholden to the algorithm" },
-        { "t": 741, "label": "Where Farcaster and Sopha go from here" },
-        { "t": 824, "label": "The second Purple round funds the next year" },
-        { "t": 858, "label": "Rewarding curators - a value loop in curation" },
-        { "t": 933, "label": "Infra, and live cultural-center experiences" },
-        { "t": 1011, "label": "On a token: thoughtful, non-extractive, no rush" },
-        { "t": 1088, "label": "Where to find Chris and Sopha" }
+        {
+          "t": 0,
+          "label": "Intro"
+        },
+        {
+          "t": 13,
+          "label": "What ZABAL Gamez is, and welcoming Chris"
+        },
+        {
+          "t": 67,
+          "label": "What Sopha is: a Farcaster client for high signal"
+        },
+        {
+          "t": 115,
+          "label": "The third place - depth beyond the ephemeral feed"
+        },
+        {
+          "t": 180,
+          "label": "Why he built it: the meme-coin moment and saving the culture"
+        },
+        {
+          "t": 300,
+          "label": "The two core things: the weekly call and the curated feed"
+        },
+        {
+          "t": 360,
+          "label": "Curators, the curator role, and BradQ's The Pulse"
+        },
+        {
+          "t": 467,
+          "label": "Why your own client is powerful: open data, Neynar, Hypersnap"
+        },
+        {
+          "t": 593,
+          "label": "How easy it is now - a client running in a couple of hours"
+        },
+        {
+          "t": 643,
+          "label": "The nested stack: clients, mini apps, and Snaps"
+        },
+        {
+          "t": 695,
+          "label": "Build your own lens - not beholden to the algorithm"
+        },
+        {
+          "t": 741,
+          "label": "Where Farcaster and Sopha go from here"
+        },
+        {
+          "t": 824,
+          "label": "The second Purple round funds the next year"
+        },
+        {
+          "t": 858,
+          "label": "Rewarding curators - a value loop in curation"
+        },
+        {
+          "t": 933,
+          "label": "Infra, and live cultural-center experiences"
+        },
+        {
+          "t": 1011,
+          "label": "On a token: thoughtful, non-extractive, no rush"
+        },
+        {
+          "t": 1088,
+          "label": "Where to find Chris and Sopha"
+        }
       ],
       "link": "https://sopha.social",
       "link_label": "Sopha",
@@ -597,13 +650,34 @@
       "youtube": "https://youtu.be/N6tgsuBOXBU",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md",
       "chapters": [
-        { "t": 0, "label": "Intro" },
-        { "t": 39, "label": "What the ZAO is, and ZAO Respect" },
-        { "t": 66, "label": "The Respect game: groups and four-minute updates" },
-        { "t": 83, "label": "What counts: the five ways to contribute" },
-        { "t": 126, "label": "The Discord tools: dash timer and meet-the-group" },
-        { "t": 159, "label": "Reaching consensus: ranking level six to one" },
-        { "t": 192, "label": "Camera on for ten extra ZAO Respect" }
+        {
+          "t": 0,
+          "label": "Intro"
+        },
+        {
+          "t": 39,
+          "label": "What the ZAO is, and ZAO Respect"
+        },
+        {
+          "t": 66,
+          "label": "The Respect game: groups and four-minute updates"
+        },
+        {
+          "t": 83,
+          "label": "What counts: the five ways to contribute"
+        },
+        {
+          "t": 126,
+          "label": "The Discord tools: dash timer and meet-the-group"
+        },
+        {
+          "t": 159,
+          "label": "Reaching consensus: ranking level six to one"
+        },
+        {
+          "t": 192,
+          "label": "Camera on for ten extra ZAO Respect"
+        }
       ],
       "link": "https://discord.theZAO.com",
       "link_label": "Join the ZAO Fractal",

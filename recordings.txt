@@ -1,6 +1,6 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-15 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 13 recordings, newest first.
+Generated 2026-06-20 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 13 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
@@ -86,8 +86,9 @@ Topics: Kingfishers Media, KFMEDIA, creator distribution, Unlock Protocol, Highl
 ======================================================================
 [6] Owning your music as an independent artist
 workshop  |  track: artist  |  2026-06-09
-Presenter: Joseph Goats
+Presenter: Joseph Goats (@joseacabrerav)
 Watch: https://zabalgamez.com/recordings/6
+Video: https://youtu.be/xZyrEeKQEz0
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-09-joseph-goats-digital-street-music.md
 Summary: An artist-track conversation with Joseph Goats (Jose Cabrera), a Venezuelan musician who has built a music life out of internet tools when there was no local industry to plug into - and, in 2017, not even a bank card. His model is what he calls digital street music: he plays for free, peer-to-peer, so anyone anywhere can support him directly. He traces the journey from discovering blockchain contests on Steemit (later Hive), to learning English along the way, to running impact concerts with Izzy and reimagining festivals for social impact and education. A wide-ranging talk on decentralization as a fractal - everyone has a fingerprint and something to say - on musicians as the bards who connect one community to the next, and on aligning music with nature and biology (Humberto Maturana and autopoiesis). He closes by playing a song.
 Takeaways:
