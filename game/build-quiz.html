@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What should you build? - ZABAL Gamez</title>
+  <meta name="description" content="Three questions, and ZABAL Gamez tells you what to build this season - artist, builder, or creator - with concrete ideas and a one-tap way to register your build.">
+  <link rel="canonical" href="https://zabalgamez.com/game/build-quiz">
+  <meta property="og:title" content="What should you build? - ZABAL Gamez">
+  <meta property="og:description" content="Three questions. Find your lane and a few things you could ship for ZABAL Gamez. Then register your build.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/build-quiz">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What should you build? - ZABAL Gamez">
+  <meta name="twitter:description" content="Three questions. Find your lane and a few things you could ship for ZABAL Gamez.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"What should you build?","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/build-quiz","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .quiz-wrap { max-width: 640px; margin: 0 auto; }
+    .progress { display: flex; gap: 6px; margin: 0.4rem 0 1rem; }
+    .progress span { flex: 1; height: 4px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
+    .progress span.done { background: var(--zabal); border-color: var(--zabal); }
+    .q-step { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; }
+    .q-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; margin: 0.3rem 0 1rem; line-height: 1.2; }
+    .opts { display: grid; gap: 10px; }
+    .opt { display: block; width: 100%; text-align: left; cursor: pointer; font-family: inherit; font-size: 0.98rem; color: var(--text);
+      border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.95rem 1.1rem; transition: border-color 0.1s ease, transform 0.08s ease; }
+    .opt:hover { border-color: var(--zabal); transform: translateY(-1px); }
+    .opt:active { transform: translateY(0); }
+    .btn { font-family: inherit; font-size: 0.85rem; padding: 0.55rem 1.1rem; border-radius: 9px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .btn:hover { filter: brightness(1.12); }
+    .result { display: none; }
+    .result.show { display: block; }
+    .quiz.hide { display: none; }
+    .res-eyebrow { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); }
+    .res-track { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.9rem; margin: 0.2rem 0 0.4rem; }
+    .res-track .accent { color: var(--zabal); }
+    .res-why { color: var(--text-muted); font-size: 0.98rem; line-height: 1.55; margin: 0 0 1rem; }
+    .res-ideas { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.9rem 1.1rem; margin: 0 0 1.1rem; }
+    .res-ideas h3 { margin: 0 0 0.5rem; font-size: 0.95rem; }
+    .res-ideas ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.4rem; }
+    .res-ideas li { font-size: 0.92rem; color: var(--text-muted); line-height: 1.45; }
+    .res-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0.8rem; }
+    .res-status { min-height: 1.2rem; font-size: 0.85rem; color: var(--text-muted); }
+    .res-foot { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.6rem; }
+    .res-foot a { color: var(--cyan); }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/info.html">Details</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/enter">Register</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow">The arcade</div>
+    <h1>What should you <span class="accent">build?</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">Three questions, no wrong answers. We will point you at a lane and a few concrete things you could ship for ZABAL Gamez.</p>
+  </header>
+
+  <div class="quiz-wrap">
+    <div class="progress" id="progress" aria-hidden="true"><span></span><span></span><span></span></div>
+
+    <section class="quiz" id="quiz" aria-live="polite">
+      <div class="q-step" id="q-step">Question 1 of 3</div>
+      <h2 class="q-title" id="q-title"></h2>
+      <div class="opts" id="opts"></div>
+    </section>
+
+    <section class="result" id="result" aria-live="polite">
+      <div class="res-eyebrow">Your lane</div>
+      <div class="res-track" id="res-track"></div>
+      <p class="res-why" id="res-why"></p>
+      <div class="res-ideas">
+        <h3>A few things you could build</h3>
+        <ul id="res-ideas"></ul>
+      </div>
+      <div class="res-actions">
+        <a class="btn primary" id="res-register" href="/enter">Register a build in this lane</a>
+        <button class="btn" id="res-lock" type="button">Lock in this track</button>
+        <button class="btn" id="res-share" type="button">Share my result</button>
+        <button class="btn" id="res-retake" type="button">Retake</button>
+      </div>
+      <div class="res-status" id="res-status" role="status"></div>
+      <p class="res-foot">Not sure yet? <a href="/projects.html">Adopt a started ZAO project</a>, read the <a href="/playbook.html">Builder Playbook</a>, or play <a href="/game/2048">ZAO 2048</a>.</p>
+    </section>
+  </div>
+
+</div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  // 3 questions, 4 options. Each option weights a track; the "a bit of everything"
+  // option nudges all three equally so the deliberate picks decide the lane.
+  var QUESTIONS = [
+    {
+      title: 'When you make something, what are you chasing?',
+      opts: [
+        { label: 'Something people feel - a sound, a look, a moment.', w: { artist: 2 } },
+        { label: 'Something that works - a tool people actually use.', w: { builder: 2 } },
+        { label: 'Something that spreads - a story, a series, an audience.', w: { creator: 2 } },
+        { label: 'Honestly, a bit of all three.', w: { artist: 1, builder: 1, creator: 1 } }
+      ]
+    },
+    {
+      title: 'Pick the seat you would grab at a ZAO session.',
+      opts: [
+        { label: 'The one making the visuals or the music.', w: { artist: 2 } },
+        { label: 'The one shipping the code or the system.', w: { builder: 2 } },
+        { label: 'The one filming, writing, and getting it out.', w: { creator: 2 } },
+        { label: 'Wherever the energy is - I move around.', w: { artist: 1, builder: 1, creator: 1 } }
+      ]
+    },
+    {
+      title: 'Three months from now, the win that would feel best:',
+      opts: [
+        { label: 'A track, a drop, or a collectible people love.', w: { artist: 2 } },
+        { label: 'An app or tool the community keeps using.', w: { builder: 2 } },
+        { label: 'A series and an audience that grew around it.', w: { creator: 2 } },
+        { label: 'A team and momentum that outlast the season.', w: { artist: 1, builder: 1, creator: 1 } }
+      ]
+    }
+  ];
+
+  var RESULTS = {
+    artist: {
+      label: 'Artist',
+      why: 'You make things people feel. The ecosystem needs sound and visuals as much as it needs software - and an artist track build can carry the whole season.',
+      ideas: [
+        'A ZABAL Gamez season anthem, a remix, or a short music piece.',
+        'Cover art, an animated collectible, or a visual identity for a workshop series.',
+        'A motion or video piece for one of the ZAO brands.'
+      ]
+    },
+    builder: {
+      label: 'Builder',
+      why: 'You like things that work. There is a long list of small tools the ZAO community would use tomorrow, and a Farcaster Mini App is a clean way to ship one.',
+      ideas: [
+        'A Farcaster Mini App for the ecosystem - a tracker, a board, or a helper.',
+        'A small tool that scratches a real ZAO itch - a bot or a dashboard.',
+        'Adopt a started ZAO project and push it to its next milestone.'
+      ]
+    },
+    creator: {
+      label: 'Creator',
+      why: 'You make things travel. Builds need someone to document them and bring the audience - a creator track build is how the season gets seen.',
+      ideas: [
+        'A recap show or series covering the season and its builds.',
+        'A thread or short-video series spotlighting ZAO people and projects.',
+        'A distribution playbook that gets ZAO work in front of new people.'
+      ]
+    }
+  };
+
+  var order = ['artist', 'builder', 'creator'];
+  var score = { artist: 0, builder: 0, creator: 0 };
+  var firstPick = null; // tiebreak: the lane chosen first wins a tie
+  var idx = 0;
+  var quizEl = document.getElementById('quiz');
+  var resultEl = document.getElementById('result');
+  var optsEl = document.getElementById('opts');
+  var titleEl = document.getElementById('q-title');
+  var stepEl = document.getElementById('q-step');
+  var progEl = document.getElementById('progress').children;
+  var chosenTrack = null;
+
+  function renderQuestion() {
+    var q = QUESTIONS[idx];
+    stepEl.textContent = 'Question ' + (idx + 1) + ' of ' + QUESTIONS.length;
+    titleEl.textContent = q.title;
+    for (var i = 0; i < progEl.length; i++) progEl[i].className = i < idx ? 'done' : '';
+    optsEl.innerHTML = '';
+    q.opts.forEach(function (o) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'opt';
+      b.textContent = o.label;
+      b.addEventListener('click', function () { pick(o.w); });
+      optsEl.appendChild(b);
+    });
+  }
+
+  function pick(w) {
+    for (var k in w) { if (Object.prototype.hasOwnProperty.call(w, k)) score[k] += w[k]; }
+    // record the first deliberate (single-track) pick for tiebreaks
+    if (!firstPick) {
+      var keys = Object.keys(w);
+      if (keys.length === 1) firstPick = keys[0];
+    }
+    idx++;
+    if (idx < QUESTIONS.length) { renderQuestion(); }
+    else { showResult(); }
+  }
+
+  function winner() {
+    var best = order[0], top = -1;
+    order.forEach(function (t) { if (score[t] > top) { top = score[t]; best = t; } });
+    // tie at the top -> prefer the lane the player leaned into first
+    var tied = order.filter(function (t) { return score[t] === top; });
+    if (tied.length > 1 && firstPick && tied.indexOf(firstPick) >= 0) best = firstPick;
+    return best;
+  }
+
+  function showResult() {
+    chosenTrack = winner();
+    var r = RESULTS[chosenTrack];
+    for (var i = 0; i < progEl.length; i++) progEl[i].className = 'done';
+    document.getElementById('res-track').innerHTML = 'Build for the <span class="accent">' + r.label + '</span> track';
+    document.getElementById('res-why').textContent = r.why;
+    var ul = document.getElementById('res-ideas');
+    ul.innerHTML = '';
+    r.ideas.forEach(function (t) { var li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+    document.getElementById('res-register').href = '/enter?track=' + chosenTrack;
+    quizEl.classList.add('hide');
+    resultEl.classList.add('show');
+    if (resultEl.scrollIntoView) resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function setStatus(t) { document.getElementById('res-status').textContent = t || ''; }
+
+  // Lock in: drops a one-tap join against the verified FID (exercises the live /api/join
+  // pipeline) so the player is counted in this lane. No-ops gracefully outside the Mini App.
+  document.getElementById('res-lock').addEventListener('click', function () {
+    if (!chosenTrack) return;
+    setStatus('Locking you in...');
+    if (window.ZABAL && window.ZABAL.join) {
+      window.ZABAL.join({ track: chosenTrack, source: 'build-quiz' }).then(function (d) {
+        if (d && d.ok) setStatus('You are in the ' + RESULTS[chosenTrack].label + ' lane. Now register your build above.');
+        else setStatus('Open ZABAL Gamez in Farcaster to lock in - or just register your build above.');
+      }).catch(function () {
+        setStatus('Open ZABAL Gamez in Farcaster to lock in - or just register your build above.');
+      });
+    } else {
+      setStatus('Open ZABAL Gamez in Farcaster to lock in - or just register your build above.');
+    }
+  });
+
+  document.getElementById('res-share').addEventListener('click', function () {
+    if (!chosenTrack) return;
+    var text = 'The ZABAL Gamez quiz says I should build for the ' + RESULTS[chosenTrack].label + ' track. What should you build?';
+    var url = 'https://zabalgamez.com/game/build-quiz';
+    if (window.ZABAL && window.ZABAL.share) {
+      window.ZABAL.share({ platform: 'farcaster', text: text, url: url, target: 'build-quiz-' + chosenTrack });
+    } else {
+      window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+    }
+  });
+
+  document.getElementById('res-retake').addEventListener('click', function () {
+    score = { artist: 0, builder: 0, creator: 0 };
+    firstPick = null; idx = 0; chosenTrack = null;
+    resultEl.classList.remove('show');
+    quizEl.classList.remove('hide');
+    setStatus('');
+    renderQuestion();
+    if (quizEl.scrollIntoView) quizEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  renderQuestion();
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
