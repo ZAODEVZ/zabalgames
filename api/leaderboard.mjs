@@ -53,11 +53,11 @@ export default async function handler(req) {
   } catch {
     return json([]);
   }
-  // Until the all-time board fills (or if it is empty), fall back to today's daily board.
+  // Until the all-time board fills (or if it is empty), fall back to this month's board.
   if (!flat.length) {
     try {
-      const today = new Date().toISOString().slice(0, 10);
-      const r2 = await kvPipeline([['ZREVRANGE', `zabal:game:${GAME}:${today}`, '0', String(TOP_N - 1), 'WITHSCORES']]);
+      const month = new Date().toISOString().slice(0, 7);
+      const r2 = await kvPipeline([['ZREVRANGE', `zabal:game:${GAME}:${month}`, '0', String(TOP_N - 1), 'WITHSCORES']]);
       flat = (r2[0] && r2[0].result) || [];
     } catch { /* best effort */ }
   }
