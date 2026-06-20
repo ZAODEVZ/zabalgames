@@ -7,6 +7,8 @@
     { "path": "/api/workshop-reminders", "schedule": "0 12 * * *" }
   ],
   "redirects": [
+    { "source": "/game/2048", "destination": "/play",                                "permanent": false },
+    { "source": "/quiz",      "destination": "/game/build-quiz",                      "permanent": false },
     { "source": "/spec",    "destination": "/docs/research/701-canonical-state.md", "permanent": false },
     { "source": "/todo",    "destination": "/TODO.md",                               "permanent": false },
     { "source": "/snap",    "destination": "/docs/snap-design.md",                   "permanent": false },

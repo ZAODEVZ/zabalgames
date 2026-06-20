@@ -220,6 +220,13 @@
     var repoEl = document.getElementById('repo');
     var btn = document.getElementById('enter-submit');
     var msg = document.getElementById('enter-msg');
+    var trackEl = document.getElementById('track');
+
+    // Preselect the lane when arriving from the build quiz (/enter?track=builder).
+    try {
+      var qTrack = new URLSearchParams(window.location.search).get('track');
+      if (trackEl && qTrack && ['artist', 'builder', 'creator'].indexOf(qTrack) >= 0) trackEl.value = qTrack;
+    } catch (e) { /* no-op */ }
 
     function setMsg(text, kind) {
       msg.textContent = text || '';
@@ -246,7 +253,6 @@
       if (!wallet) { setMsg('That wallet does not look right - it should start with 0x and have 40 hex characters.', 'err'); walletEl.focus(); return; }
       var repo = normalizeRepo(repoEl.value);
       if (!repo) { setMsg('That repo does not look right - use owner/repo or a full github.com URL.', 'err'); repoEl.focus(); return; }
-      var trackEl = document.getElementById('track');
       var track = trackEl ? trackEl.value : '';
 
       btn.disabled = true;
