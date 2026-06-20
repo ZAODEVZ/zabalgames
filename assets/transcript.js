@@ -38,6 +38,12 @@
       '#rec-transcript .tx-time{font-family:"JetBrains Mono",monospace;font-size:0.8rem;color:var(--cyan);background:none;border:0;padding:0 0.15rem;cursor:pointer;border-radius:4px}' +
       '#rec-transcript .tx-time:hover{background:var(--bg);text-decoration:underline}' +
       '#rec-transcript[data-yt=""] .tx-time{cursor:default;text-decoration:none}' +
+      '.tx-toolbar{display:flex;align-items:center;gap:0.6rem;margin:0 0 0.7rem;flex-wrap:wrap}' +
+      '.tx-search{flex:1 1 240px;max-width:360px;font:inherit;font-size:0.9rem;color:var(--text);background:var(--surface-2);border:1px solid var(--border-hover);border-radius:8px;padding:0.45rem 0.7rem}' +
+      '.tx-search:focus{outline:none;border-color:var(--cyan)}' +
+      '.tx-count{font-family:"JetBrains Mono",monospace;font-size:0.78rem;color:var(--text-dim);white-space:nowrap}' +
+      '#rec-transcript .tx-p.tx-hidden,#rec-transcript h3.tx-hidden{display:none}' +
+      '#rec-transcript .tx-p mark{background:rgba(245,200,66,0.28);color:var(--text);border-radius:3px;padding:0 1px}' +
       '.tx-loading{color:var(--text-dim);font-size:0.9rem}';
     var el = document.createElement('style');
     el.id = 'rec-transcript-styles';
@@ -128,7 +134,79 @@
     mount.innerHTML = '';
     mount.appendChild(frag);
     wire();
+    buildToolbar();
     if (location.hash) focusHash();
+  }
+
+  // A search box above the transcript: filter to matching lines, count them, highlight hits.
+  // Pure progressive enhancement - if anything is off, the full transcript still renders.
+  function buildToolbar() {
+    if (document.getElementById('tx-search')) return;
+    var paras = [].slice.call(mount.querySelectorAll('.tx-p'));
+    var heads = [].slice.call(mount.querySelectorAll('h3'));
+    if (paras.length < 4) return; // not worth a search box on a tiny transcript
+
+    var bar = document.createElement('div');
+    bar.className = 'tx-toolbar';
+    var input = document.createElement('input');
+    input.type = 'search';
+    input.id = 'tx-search';
+    input.className = 'tx-search';
+    input.placeholder = 'Search this transcript';
+    input.setAttribute('aria-label', 'Search this transcript');
+    input.setAttribute('autocomplete', 'off');
+    var count = document.createElement('span');
+    count.className = 'tx-count';
+    bar.appendChild(input);
+    bar.appendChild(count);
+    mount.parentNode.insertBefore(bar, mount);
+
+    // cache each paragraph's plain text once (without the # anchor glyph)
+    paras.forEach(function (p) { p.setAttribute('data-tx', (p.textContent || '').replace(/#$/, '').toLowerCase()); });
+
+    function clearMarks(p) {
+      var marks = p.querySelectorAll('mark');
+      for (var i = 0; i < marks.length; i++) {
+        var mk = marks[i];
+        mk.replaceWith(document.createTextNode(mk.textContent));
+      }
+      p.normalize();
+    }
+    function mark(p, q) {
+      // highlight matches inside plain text nodes only (leaves buttons/anchors intact)
+      var walk = [].slice.call(p.childNodes);
+      walk.forEach(function (node) {
+        if (node.nodeType !== 3) return;
+        var txt = node.nodeValue, low = txt.toLowerCase(), idx = low.indexOf(q);
+        if (idx === -1) return;
+        var frag = document.createDocumentFragment(), pos = 0;
+        while (idx !== -1) {
+          if (idx > pos) frag.appendChild(document.createTextNode(txt.slice(pos, idx)));
+          var mk = document.createElement('mark');
+          mk.textContent = txt.slice(idx, idx + q.length);
+          frag.appendChild(mk);
+          pos = idx + q.length;
+          idx = low.indexOf(q, pos);
+        }
+        if (pos < txt.length) frag.appendChild(document.createTextNode(txt.slice(pos)));
+        node.replaceWith(frag);
+      });
+    }
+
+    function apply() {
+      var q = (input.value || '').trim().toLowerCase();
+      var shown = 0;
+      paras.forEach(function (p) {
+        clearMarks(p);
+        var hit = !q || p.getAttribute('data-tx').indexOf(q) !== -1;
+        p.classList.toggle('tx-hidden', !hit);
+        if (hit) { shown++; if (q) mark(p, q); }
+      });
+      heads.forEach(function (h) { h.classList.toggle('tx-hidden', !!q); });
+      count.textContent = q ? (shown + ' of ' + paras.length + ' lines') : (paras.length + ' lines');
+    }
+    input.addEventListener('input', apply);
+    apply();
   }
 
   function copyLink(anchorId, btn) {
