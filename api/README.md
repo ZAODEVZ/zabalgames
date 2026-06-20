@@ -89,6 +89,17 @@ Public read for the presence widget (`assets/presence.js`).
 - Returns `{ configured, count, recent: [{ fid, username, pfpUrl, action, target, ts }] }`.
 - `configured: false` when KV env vars are absent - the widget hides itself.
 
+### `GET /api/live-status`
+Real Twitch live state for `/live`, so the page never claims "Live now" when the
+stream is off (and catches surprise streams the schedule did not know about).
+
+- Keyless: reads decapi.me (a free public Twitch status proxy) - no Twitch app or
+  secret. Workshops multicast Twitch + YouTube via Restream, so Twitch stands in
+  for "we are streaming". Override the channel with `?channel=`.
+- Returns `{ ok, configured, live, platform, channel, title, viewers, uptime }`.
+- Best-effort: any upstream failure returns `live: false` so the page falls back
+  to its schedule-driven view.
+
 ### `GET /api/leaderboard`
 Ranks builders by social-action points (cast 3 / signup 5 / share 2), stored in a
 KV sorted set by `track`.
