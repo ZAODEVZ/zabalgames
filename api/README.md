@@ -90,13 +90,18 @@ Public read for the presence widget (`assets/presence.js`).
 - `configured: false` when KV env vars are absent - the widget hides itself.
 
 ### `GET /api/live-status`
-Real Twitch live state for `/live`, so the page never claims "Live now" when the
-stream is off (and catches surprise streams the schedule did not know about).
+Real Twitch + YouTube live state for `/live`, so the page never claims "Live now"
+when the stream is off, catches surprise streams, and auto-selects whichever platform
+is actually on.
 
-- Keyless: reads decapi.me (a free public Twitch status proxy) - no Twitch app or
-  secret. Workshops multicast Twitch + YouTube via Restream, so Twitch stands in
-  for "we are streaming". Override the channel with `?channel=`.
-- Returns `{ ok, configured, live, platform, channel, title, viewers, uptime }`.
+- Keyless on both: Twitch via decapi.me (a free public status proxy); YouTube by
+  fetching the channel `/live` page and checking for the live HLS manifest (only
+  present during a real broadcast - not premieres/uploads). When YouTube is live the
+  live video id is returned so the page can embed the actual stream + its chat.
+- Override channels with `?channel=` (Twitch) and `?youtube=` (handle).
+- Returns `{ ok, configured, live, platform, channel, title, viewers, uptime,
+  twitch:{ live, channel, title, viewers, uptime }, youtube:{ live, handle, videoId, title } }`.
+  Top-level `live` = either platform; `platform` prefers Twitch when both are on.
 - Best-effort: any upstream failure returns `live: false` so the page falls back
   to its schedule-driven view.
 
