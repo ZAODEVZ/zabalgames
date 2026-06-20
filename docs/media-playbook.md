@@ -103,16 +103,39 @@ RSVP: [luma_url]
 [Day] is a triple-header in ZABAL Gamez, all EST: [time] [Name] on [topic], ... Free, live, recorded. RSVP: https://luma.com/zao
 ```
 
-## 5. Format pointers (already documented)
-- Newsletter: `docs/newsletter-template.md`
+## 5. The media output catalog
+Everything we produce, what triggers it, the format that governs it, and where it goes.
+
+| Output | Trigger | Format / governed by | Goes to |
+|----|----|----|----|
+| Lu.ma event | session confirmed | section 3 (Lu.ma format) | luma.com/zao |
+| Schedule row | session confirmed | `data/workshop-leads.json` | homepage schedule |
+| Promo post | event live on Lu.ma | section 4 (posts) | Firefly + channels (media-distribution) |
+| Live-now post | session starts | section 4 + media-distribution runbook | Firefly + GCs |
+| AMA thread | AMA / fireside events | section 4 (AMA post) | /zabal |
+| Recording page + on-site transcript | after it airs | `scripts/ingest-recording.mjs` | site /recordings/N |
+| YouTube video + metadata | after it airs | `docs/recordings/youtube-package-template.md` | YouTube |
+| Shorts (2-3) | after it airs | `docs/youtube-playbook.md` | YouTube + feeds |
+| Daily newsletter | each build day | `docs/newsletter-template.md` | paragraph.com/@thezao |
+| Weekly recap | weekly | `docs/weekly-recap-template.md` | newsletter + feeds |
+
+## 6. Format pointers (canonical docs)
+- Go-live runbook + channel registry: `docs/media-distribution.md`
+- Newsletter: `docs/newsletter-template.md`  -  Weekly recap: `docs/weekly-recap-template.md`
 - YouTube package: `docs/recordings/youtube-package-template.md`
 - YouTube strategy + production: `docs/youtube-playbook.md`, `docs/youtube-production-workflow.md`
 
-## 6. Stale / superseded - do not use
-- `docs/luma-events-templates-2026-05-26.md` and the dated `luma-events-*` / `socials-*` /
-  `distribution-casts-*` files are point-in-time records. Use the formats in THIS doc instead.
+## 7. Stale / superseded - do not use (use the canonical formats above)
+These are point-in-time records, kept only for history. Do NOT copy from them:
+- Lu.ma: `luma-events-templates-2026-05-26.md`, `luma-events-2026-06-11.md`,
+  `luma-events-2026-week2.md`, `luma-adam-miller-2026-06-12.md`, `cal-luma-workflow.md`
+- Posts/socials: `distribution-casts-2026-06-11.md`, all `socials-*.md`, `announce-*.md`,
+  `social-share-images.md`, `media-kit-2026-05-26.md`, `launch-kit.md`,
+  `validation-launch-kit-2026-05-29.md`, `warm-dm-kit-2026-06-02.md`
+- Newsletters: the dated `newsletter-*.md` editions are published records, not templates -
+  only `newsletter-template.md` is the format.
 
-## 7. What still needs improving (open)
+## 8. What still needs improving (open)
 - **Generate posts from `workshop-leads.json`** with a small script, so the promo/Firefly copy is
   produced from the source of truth and never hand-retyped (kills format drift entirely).
 - **One media kit per session** (`docs/sessions/<slug>.md`) bundling Lu.ma + posts + YouTube,
