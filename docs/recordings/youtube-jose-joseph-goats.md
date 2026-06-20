@@ -1,9 +1,10 @@
 # YouTube package - Owning Your Music with Joseph Goats
 
 > Paste-ready YouTube metadata for the Joseph Goats (Jose Cabrera) workshop video. Built from
-> the recording summary + takeaways. Brand-clean: no emojis, no em dashes (hyphens only).
-> The auto-transcript has no timestamps, so chapters are left for upload (YouTube can also
-> auto-generate them). Confirm Jose's socials before publish.
+> the recording transcript. Brand-clean: no emojis, no em dashes (hyphens only). Chapters are
+> real timestamps from the transcript.
+>
+> Video: https://youtu.be/xZyrEeKQEz0
 
 ## Title
 ZABAL GAMEZ - ZAO Workshop - Owning Your Music as an Independent Artist - w/ JOSEPH GOATS
@@ -26,8 +27,30 @@ What you'll take away:
 
 In his own words, it is not about any buzzword - it is about how internet tools today can benefit you.
 
+Chapters
+00:00 Intro
+00:13 Welcome Joseph Goats
+00:41 Who is Jose: music, peer-to-peer, learning English
+01:45 Not a buzzword: internet tools today
+03:08 Writing as the entry point
+04:29 Discovering decentralized online contests
+05:26 Decentralization as a fractal
+07:30 No music industry at home: paying to play
+08:22 Steemit, Hive, and the community fork
+10:39 2017, no bank cards: support from anywhere
+12:00 Digital street music, the model
+14:07 A city of music: musicians as the bards between communities
+15:22 Reimagining festivals for social impact and education
+17:21 COC Concerts, Impact Concerts, and fragmentation
+20:02 From an AI scholarship to food-science research
+21:12 Humberto Maturana and autopoiesis
+23:58 Music aligned to nature and biology
+24:39 Where to find Jose
+26:20 Jose plays a song
+
 Links
-Joseph Goats: [add Jose's site / socials]
+Joseph Goats on Farcaster: https://farcaster.xyz/joseacabrerav
+Joseph Goats - joseacabrerav on all platforms (Discord, socials)
 ZABAL Gamez: https://zabalgamez.com
 
 ZABAL Gamez is The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone, any harness.
@@ -41,6 +64,5 @@ Joseph Goats, Jose Cabrera, independent artists, digital street music, music mon
 ```
 
 ## To confirm before publishing
-- Joseph Goats's website + social handles (none on file yet - the Links line is a placeholder).
-- Chapters: the auto-transcript has no timestamps. Add chapters on upload, or let YouTube auto-generate them.
-- Once live, set the youtube URL on the /recordings/6 entry (data/recaps.json) so the Video button appears.
+- Joseph Goats's handle is joseacabrerav across platforms - confirm the exact Farcaster URL.
+- youtube URL (https://youtu.be/xZyrEeKQEz0) is now set on the /recordings/6 entry so the Video button appears.
