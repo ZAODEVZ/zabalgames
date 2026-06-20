@@ -25,7 +25,7 @@
 
 ## Title
 ```
-Making Music with Generative AI in Ableton
+ZABAL GAMEZ Workshop - Making Music with Generative AI in Ableton - w/ THERESA
 ```
 
 ## Subtitle / short description
