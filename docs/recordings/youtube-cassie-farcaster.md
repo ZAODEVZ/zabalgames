@@ -5,7 +5,7 @@
 > real timestamps from the transcript. Confirm links before publish.
 
 ## Title
-ZABAL GAMEZ - ZAO Workshop - The Farcaster Protocol, Ins and Outs - w/ CASSIE (Cassandra Heart)
+ZABAL GAMEZ Workshop - The Farcaster Protocol, Ins and Outs - w/ CASSIE (Cassandra Heart)
 
 ## Description
 ```

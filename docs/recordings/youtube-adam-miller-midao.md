@@ -5,7 +5,7 @@
 > real timestamps from the transcript. Confirm links before publish.
 
 ## Title
-ZABAL GAMEZ - ZAO Workshop - MIDAO + Beta Briefing: Legal Entities for DAOs and AI Agents - w/ ADAM MILLER
+ZABAL GAMEZ Workshop - MIDAO + Beta Briefing: Legal Entities for DAOs and AI Agents - w/ ADAM MILLER
 
 ## Description
 ```

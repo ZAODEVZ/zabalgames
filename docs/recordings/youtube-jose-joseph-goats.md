@@ -7,7 +7,7 @@
 > Video: https://youtu.be/xZyrEeKQEz0
 
 ## Title
-ZABAL GAMEZ - ZAO Workshop - Owning Your Music as an Independent Artist - w/ JOSEPH GOATS
+ZABAL GAMEZ Workshop - Owning Your Music as an Independent Artist - w/ JOSEPH GOATS
 
 ## Description
 ```
