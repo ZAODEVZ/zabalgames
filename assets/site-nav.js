@@ -37,7 +37,9 @@
       ['Data streams', '/streams.html'],
       ['Farcaster Batches', '/farcaster-batches.html'],
       ['Live now', '/live.html'],
-      ['Play the arcade', '/play'],
+      ['The arcade', '/game'],
+      ['ZAO 2048', '/play'],
+      ['What should you build?', '/game/build-quiz'],
       ['Claim a pop', '/pops'],
       ['Daily update', '/today.html'],
       ['Mindful moments', '/mindful.html']

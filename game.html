@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Arcade - ZABAL Gamez</title>
+  <meta name="description" content="The ZABAL Gamez arcade. Pick a game - climb ZAO 2048's monthly board, or take the quiz that tells you what to build for the season.">
+  <link rel="canonical" href="https://zabalgamez.com/game">
+  <meta property="og:title" content="The Arcade - ZABAL Gamez">
+  <meta property="og:description" content="Pick a game. Climb ZAO 2048, or find out what you should build this season. Insert Coin.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Arcade - ZABAL Gamez">
+  <meta name="twitter:description" content="Pick a game. Climb ZAO 2048, or find out what you should build this season.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Enter the arcade","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .arcade-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; margin: 1rem 0 0.4rem; }
+    @media (min-width: 720px) { .arcade-grid { grid-template-columns: 1fr 1fr; } }
+    .gcard { display: flex; flex-direction: column; border: 1px solid var(--border); background: var(--surface-2);
+      border-radius: 16px; padding: 1.2rem 1.2rem 1.1rem; text-decoration: none; color: inherit; transition: border-color 0.12s ease, transform 0.12s ease; }
+    a.gcard:hover { border-color: var(--zabal); transform: translateY(-2px); }
+    .gcard.soon { opacity: 0.6; cursor: default; }
+    .gcard .tag { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); }
+    .gcard .tag.live { color: var(--cyan); }
+    .gcard h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.35rem; margin: 0.35rem 0 0.3rem; }
+    .gcard p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0 0 0.9rem; }
+    .gcard .go { margin-top: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--cyan); }
+    .gcard.soon .go { color: var(--text-dim); }
+    .arcade-note { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.8rem; }
+    .arcade-note a { color: var(--cyan); }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/about.html">About</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.4rem;">
+    <div class="hero-eyebrow">The arcade</div>
+    <h1>Insert Coin. <span class="accent">Pick a game.</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">Two ways in. Climb the monthly board, or take the quiz that points you at what to build this season. Both are doors into The ZAO's live build - come make the rest.</p>
+  </header>
+
+  <div class="arcade-grid">
+    <a class="gcard" href="/game/2048">
+      <span class="tag live">Live - monthly board</span>
+      <h2>ZAO 2048</h2>
+      <p>Merge the ZAO ecosystem brands in order, all the way up to THE ZAO. Top 10 on the monthly board win $Zabal. Arrow keys, WASD, or swipe.</p>
+      <span class="go">Play now -&gt;</span>
+    </a>
+
+    <a class="gcard" href="/game/build-quiz">
+      <span class="tag live">Live - 30 seconds</span>
+      <h2>What should you build?</h2>
+      <p>Three questions. Find your lane - artist, builder, or creator - and a few concrete things you could ship for ZABAL Gamez. Ends with a one-tap way to register your build.</p>
+      <span class="go">Take the quiz -&gt;</span>
+    </a>
+
+    <div class="gcard soon">
+      <span class="tag">Soon</span>
+      <h2>Insert Coin sprint</h2>
+      <p>A timed build-or-bust sprint. Drops during the July open build.</p>
+      <span class="go">Coming soon</span>
+    </div>
+
+    <div class="gcard soon">
+      <span class="tag">Soon</span>
+      <h2>More games</h2>
+      <p>The arcade grows through the season. Want to build one? Every game here is open source in the repo.</p>
+      <span class="go">Coming soon</span>
+    </div>
+  </div>
+
+  <p class="arcade-note">New to ZABAL Gamez? Start with <a href="/info.html">All the Details</a>, browse <a href="/recordings">workshop recordings</a>, or jump straight to <a href="/enter">registering a build</a>.</p>
+
+</div>
+</main>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

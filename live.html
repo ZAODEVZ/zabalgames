@@ -858,26 +858,80 @@
           return L.date === today && L !== live && L !== next;
         }).sort(function (a, b) { return a._start - b._start; });
 
-        if (live) renderNow(live);
-        else if (next) renderNext(next);
-        else renderEmpty();
+        if (live) { renderNow(live); scheduleState = 'now'; }
+        else if (next) { renderNext(next); scheduleState = 'next'; }
+        else { renderEmpty(); scheduleState = 'empty'; }
 
         recsVisible = !live; // show the recordings strip whenever nothing is live
         applyRecsVisibility();
 
         renderToday(todayList);
+        reconcileLive(); // override the schedule guess with the REAL stream state
       })
       .catch(function () {
         // Network/parse failure - fall back to the evergreen empty state.
         renderEmpty();
+        scheduleState = 'empty';
         document.getElementById('today-sec').style.display = 'none';
         recsVisible = true;
         applyRecsVisibility();
+        reconcileLive(); // a stream may still be live even if the schedule failed to load
       });
+  }
+
+  // ------------------------------------------------------------------
+  // Real live state - /api/live-status returns the actual Twitch state (keyless), so the
+  // page never claims "Live now" when the stream is off, and catches surprise streams the
+  // schedule did not know about. Reconciles against what the schedule just rendered.
+  // ------------------------------------------------------------------
+  var scheduleState = 'empty';
+  var LIVE_TWITCH = 'bettercallzaal'; // channel for the "open on Twitch" link (this scope)
+  function setLivePill(viewers) {
+    var pill = document.getElementById('live-pill');
+    var txt = document.getElementById('live-pill-text');
+    if (!pill || !txt) return;
+    pill.className = 'live-pill is-live';
+    txt.textContent = (viewers != null && viewers > 0) ? ('Live now - ' + viewers + ' watching') : 'Live now';
+  }
+  function renderLiveGeneric(s) {
+    var stage = document.getElementById('live-stage');
+    if (!stage) return;
+    stage.innerHTML =
+      '<div class="stage-card now">' +
+        '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Live now</div>' +
+        '<h2>' + esc(s.title || 'A ZABAL Gamez session is streaming now') + '</h2>' +
+        '<p class="stage-meta">We are live on Twitch. Watch in the player below, or open the stream.</p>' +
+        '<div class="stage-actions">' +
+          '<a class="stage-btn primary" href="#watch">Watch the stream</a>' +
+          '<a class="stage-btn ghost" href="https://twitch.tv/' + LIVE_TWITCH + '" target="_blank" rel="noopener">Open on Twitch</a>' +
+          '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
+        '</div>' +
+      '</div>';
+    bindShare('now', '');
+  }
+  function reconcileLive() {
+    fetch('/api/live-status', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (s) {
+        if (!s || !s.configured) return;
+        if (s.live) {
+          setLivePill(s.viewers);
+          recsVisible = false; applyRecsVisibility(); // a stream is on - lead with the player
+          if (scheduleState !== 'now') renderLiveGeneric(s);
+        } else if (scheduleState === 'now') {
+          // The schedule thinks a session is on but the stream is off - do not claim "Live now".
+          var pill = document.getElementById('live-pill');
+          var txt = document.getElementById('live-pill-text');
+          if (pill && txt) { pill.className = 'live-pill is-next'; txt.textContent = 'Starting soon'; }
+          recsVisible = true; applyRecsVisibility();
+        }
+      })
+      .catch(function () { /* leave the schedule-driven view in place */ });
   }
 
   renderWatchRecs();
   load();
+  setInterval(reconcileLive, 60000); // keep the live state honest while the page is open
 })();
 </script>
 

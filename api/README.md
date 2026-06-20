@@ -89,6 +89,17 @@ Public read for the presence widget (`assets/presence.js`).
 - Returns `{ configured, count, recent: [{ fid, username, pfpUrl, action, target, ts }] }`.
 - `configured: false` when KV env vars are absent - the widget hides itself.
 
+### `GET /api/live-status`
+Real Twitch live state for `/live`, so the page never claims "Live now" when the
+stream is off (and catches surprise streams the schedule did not know about).
+
+- Keyless: reads decapi.me (a free public Twitch status proxy) - no Twitch app or
+  secret. Workshops multicast Twitch + YouTube via Restream, so Twitch stands in
+  for "we are streaming". Override the channel with `?channel=`.
+- Returns `{ ok, configured, live, platform, channel, title, viewers, uptime }`.
+- Best-effort: any upstream failure returns `live: false` so the page falls back
+  to its schedule-driven view.
+
 ### `GET /api/leaderboard`
 Ranks builders by social-action points (cast 3 / signup 5 / share 2), stored in a
 KV sorted set by `track`.
@@ -137,6 +148,14 @@ actually send, so there is no cron and no plan limit.
 - Sends to the same token store as the crons (`zabal:notif:tokens`, filled by `/api/webhook`).
 - No-ops (`skipped`) when KV is absent, throttled, or already notified. Returns
   `{ ok, live, sent?, recipients? }`.
+
+### `GET /api/monthly-winner` (cron)
+On the 1st of each month, reads LAST month's ZAO 2048 board
+(`zabal:game:zao2048:<YYYY-MM>`, written by `/api/game`) and casts the champion +
+runners-up into `/zabal` with a `/play` embed - then the board is fresh for the new
+month. KV-sentinel idempotency (`zabal:cron:monthly-winner:<month>`); releases on a
+failed cast so the next run retries. Same Neynar env + graceful no-op contract as
+`/api/daily-cast`. Cron: `0 14 1 * *`.
 
 ### `POST /api/notify`
 Admin-only sender. `Authorization: Bearer <NOTIFY_SECRET>`. Body
