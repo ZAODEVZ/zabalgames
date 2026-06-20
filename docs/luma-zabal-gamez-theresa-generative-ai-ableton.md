@@ -38,9 +38,9 @@ An artist-track session with Teresa Marrin Nakra - MIT Media Lab researcher and 
 ```
 ZABAL Gamez Season 1 - Artist track
 
-A hands-on artist-track session with Teresa Marrin Nakra, one of the foremost experts in technologies for learning and performing music. At the MIT Media Lab she invented the Conductor's Jacket - now in the permanent collection of the MIT Museum - and performed with her Digital Baton in over 100 performances of Tod Machover's Brain Opera across four continents. She has presented her work in concert with Keith Lockhart and the Boston Pops, ran a large-scale experiment with the Boston Symphony Orchestra, and founded Immersion Music, a nonprofit music-technology company. Her work has been profiled in The New Yorker, The New York Times, and the BBC.
+A hands-on artist-track session with Teresa Marrin Nakra, a music-technology pioneer from the MIT Media Lab (inventor of the Conductor's Jacket) and founder of Immersion Music.
 
-In this session she gets practical: how she uses generative AI in Ableton - generating and shaping musical ideas with Magenta - and closes with a short live demo.
+How she uses generative AI in Ableton - generating and shaping musical ideas with Magenta - plus a short live demo to close.
 
 What you will take away:
 - How a music-technology pioneer puts generative AI to work in a real Ableton workflow
