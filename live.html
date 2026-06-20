@@ -356,6 +356,7 @@
   </header>
 
   <div class="live-actions">
+    <button type="button" class="live-action" id="live-notify-btn">Notify me when live</button>
     <a class="live-action" href="https://twitch.tv/bettercallzaal" target="_blank" rel="noopener">Watch on Twitch</a>
     <a class="live-action" href="https://youtube.com/@bettercallzaal" target="_blank" rel="noopener">Watch on YouTube</a>
     <a class="live-action" id="live-cal" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>
@@ -1044,6 +1045,30 @@
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) { if (iv) { clearInterval(iv); iv = null; } }
     else if (!iv) { beat(); iv = setInterval(beat, 30000); }
+  });
+})();
+</script>
+<script>
+(function () {
+  // Fire-and-forget: a viewer landed on /live. If a stream is actually live, the server pushes
+  // a one-time "we are live" notification to added-app users (it verifies + dedups, so this is
+  // safe to call on every load).
+  try { fetch('/api/live-notify', { method: 'POST', keepalive: true }).catch(function () {}); } catch (e) { /* ignore */ }
+
+  // "Notify me when live" = add the Mini App, which stores the notification token the push uses.
+  var btn = document.getElementById('live-notify-btn');
+  if (btn) btn.addEventListener('click', function () {
+    var Z = window.ZABAL || {};
+    if (Z.addApp) {
+      btn.disabled = true; btn.textContent = 'Enabling...';
+      Promise.resolve(Z.addApp()).then(function (ok) {
+        btn.textContent = ok ? 'You will be notified' : 'Add the app to get notified';
+        if (!ok) btn.disabled = false;
+      }).catch(function () { btn.textContent = 'Add the app to get notified'; btn.disabled = false; });
+    } else {
+      btn.textContent = 'Open in Farcaster to enable';
+      window.open('https://farcaster.xyz/miniapps/zabal-gamez', '_blank', 'noopener');
+    }
   });
 })();
 </script>

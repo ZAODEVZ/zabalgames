@@ -125,6 +125,19 @@ ADD/REMOVE folded); this binding fails OPEN on hub errors and is skipped entirel
 when the env var is unset. Set it to a hub exposing `/v1/*` and verify on a
 Preview before relying on it.
 
+### `POST /api/live-notify`
+"We are live" push. Any `/live` visitor pings this on load; the server decides whether to
+actually send, so there is no cron and no plan limit.
+
+- Verifies the stream is really live (decapi.me, keyless) server-side before sending, so a
+  client cannot trigger a false alert.
+- A 60s poll lock (`zabal:live:poll-lock`) caps the decapi check to once a minute regardless
+  of traffic; a per-session sentinel (`zabal:live:notified`, re-armed when the stream goes
+  offline) makes the push fire ONCE per live session.
+- Sends to the same token store as the crons (`zabal:notif:tokens`, filled by `/api/webhook`).
+- No-ops (`skipped`) when KV is absent, throttled, or already notified. Returns
+  `{ ok, live, sent?, recipients? }`.
+
 ### `POST /api/notify`
 Admin-only sender. `Authorization: Bearer <NOTIFY_SECRET>`. Body
 `{ title (<=32), body (<=128), targetUrl? }`. Groups stored tokens by their
