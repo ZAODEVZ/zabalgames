@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Play - ZABAL Gamez</title>
-  <meta name="description" content="Play the ZABAL Gamez arcade. ZAO 2048 - merge the ZAO ecosystem brands up to THE ZAO. Top 10 on the daily board win $Zabal.">
+  <meta name="description" content="Play the ZABAL Gamez arcade. ZAO 2048 - merge the ZAO ecosystem brands up to THE ZAO. Top 10 on the monthly board win $Zabal.">
   <link rel="canonical" href="https://zabalgamez.com/play">
   <meta property="og:title" content="Play - ZABAL Gamez">
-  <meta property="og:description" content="ZAO 2048 - merge the ZAO ecosystem up to THE ZAO. Top 10 daily win $Zabal. Insert Coin.">
+  <meta property="og:description" content="ZAO 2048 - merge the ZAO ecosystem up to THE ZAO. Top 10 this month win $Zabal. Insert Coin.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zabalgamez.com/play">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Play - ZABAL Gamez">
-  <meta name="twitter:description" content="ZAO 2048 - merge the ZAO ecosystem up to THE ZAO. Top 10 daily win $Zabal.">
+  <meta name="twitter:description" content="ZAO 2048 - merge the ZAO ecosystem up to THE ZAO. Top 10 this month win $Zabal.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO 2048","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/play","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
@@ -125,7 +125,7 @@
   <header class="hero" style="padding-bottom: 0.4rem;">
     <div class="hero-eyebrow">The arcade</div>
     <h1>Insert Coin. <span class="accent">Play.</span></h1>
-    <p class="lead" style="margin-top: 0.3rem;">Pick a game and climb the daily board. The top 10 each day win $Zabal. Built on The ZAO's live rails - this is the front door, come build the rest.</p>
+    <p class="lead" style="margin-top: 0.3rem;">Pick a game and climb the monthly board. The top 10 this month win $Zabal. Built on The ZAO's live rails - this is the front door, come build the rest.</p>
   </header>
 
   <div class="game-picker" role="tablist" aria-label="Choose a game">
@@ -157,12 +157,12 @@
         <button class="btn" id="share-x" type="button">Share on X</button>
       </div>
       <div class="status" id="status"></div>
-      <p class="hint">Tip: keep your highest tile in a corner. Submit any time - your best score today is what counts.</p>
+      <p class="hint">Tip: keep your highest tile in a corner. Submit any time - your best score this month is what counts.</p>
     </section>
 
     <aside class="lb-panel">
-      <h3>Today's board</h3>
-      <p class="note">Top 10 at the end of the day win $Zabal. Resets daily (UTC).</p>
+      <h3>This month's board</h3>
+      <p class="note">Top 10 at the end of the month win $Zabal. Resets monthly (UTC).</p>
       <ol id="board-list"><li class="muted">Loading the board...</li></ol>
       <p class="hint" id="to-top10" style="margin-top: 0.5rem;"></p>
       <p class="hint" style="margin-top: 0.4rem;"><a href="/leaderboard">Season leaderboard</a> - <a href="/#schedule">Upcoming sessions</a></p>
@@ -562,7 +562,7 @@
   function showGameOver() {
     showModal('<div class="modal-eyebrow">Game over</div>'
       + '<div class="modal-title">' + score + '</div>'
-      + '<p class="modal-sub">Your best: ' + bestScore + '. Top 10 today win $Zabal - submit to claim your spot.</p>'
+      + '<p class="modal-sub">Your best: ' + bestScore + '. Top 10 this month win $Zabal - submit to claim your spot.</p>'
       + '<div class="modal-actions"><button class="btn primary" data-action="submit" type="button">Submit score</button>'
       + '<button class="btn" data-action="share" type="button">Share</button>'
       + '<button class="btn" data-action="play" type="button">Play again</button></div>');
@@ -597,8 +597,8 @@
       submitting = true;
       window.ZABAL.submitScore('zao2048', score).then(function (d) {
         submitting = false;
-        if (d && d.ok) { setStatus('Submitted as @' + (d.handle || 'you') + '. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); tryAddApp(); return; }
-        if (d && d.reason === 'not-in-miniapp') { identitySubmit(silent); return; }
+        if (d && d.ok && d.counted) { myRank = d.rank || null; myBest = d.best || myBest; setStatus('Submitted as @' + (d.handle || 'you') + '. Best this month: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); tryAddApp(); return; }
+        if (d && (d.reason === 'not-in-miniapp' || d.counted === false)) { identitySubmit(silent); return; }
         setStatus('Could not submit (' + (d && d.reason || 'error') + ').');
       }).catch(function () { submitting = false; identitySubmit(silent); });
       return;
@@ -619,6 +619,9 @@
     }
     if (!silent) setStatus('Enter a Farcaster handle to get on the board.');
   }
+  // Web (no Quick Auth) submit. The board only counts verified players now (anti-cheat), so
+  // an unverified POST comes back counted:false - we keep the local best but tell the player
+  // the board lives in the Farcaster app.
   function webSubmit(handle) {
     submitting = true;
     fetch('/api/game', {
@@ -627,10 +630,13 @@
       body: JSON.stringify({ game: 'zao2048', handle: handle, score: score })
     }).then(function (r) { return r.json(); }).then(function (d) {
       submitting = false;
-      if (d && d.ok) {
-        setStatus('Submitted as @' + handle + '. Best today: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : ''));
+      if (d && d.ok && d.counted) {
+        myRank = d.rank || null; myBest = d.best || myBest;
+        setStatus('Submitted as @' + handle + '. Best this month: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : ''));
         loadBoard();
         tryAddApp();
+      } else if (d && d.ok && d.counted === false) {
+        setStatus('Open ZABAL Gamez in Farcaster to get this score on the board.');
       } else {
         setStatus(d && d.configured === false ? 'Board is offline right now.' : 'Could not submit that score.');
       }
@@ -643,8 +649,8 @@
       var list = document.getElementById('board-list');
       var t10 = document.getElementById('to-top10');
       if (!d || !d.entries || !d.entries.length) {
-        list.innerHTML = '<li class="muted">No scores yet today. Be first.</li>';
-        if (t10) t10.textContent = 'The board is empty today - first score takes the top.';
+        list.innerHTML = '<li class="muted">No scores yet this month. Be first.</li>';
+        if (t10) t10.textContent = 'The board is empty this month - first score takes the top.';
         return;
       }
       list.innerHTML = d.entries.slice(0, 10).map(function (e) {
@@ -655,7 +661,7 @@
         if (d.entries.length < 10) { t10.textContent = "Top 10 is wide open - you'd be on it."; }
         else {
           var tenth = d.entries[9].score;
-          t10.textContent = mine > tenth ? "Your best would make today's top 10." : (tenth - mine) + ' points to crack today’s top 10.';
+          t10.textContent = mine > tenth ? "Your best would make this month's top 10." : (tenth - mine) + ' points to crack this month’s top 10.';
         }
       }
     }).catch(function () {});
@@ -696,10 +702,20 @@
   }
   // Brag your score into /zabal (Farcaster) or X, with a referral-tagged play link.
   var shareRef = '';
+  var myRank = null;   // set from the server after a counted submit
+  var myBest = 0;      // best score this month (server truth when verified)
   function playUrl() { return 'https://zabalgamez.com/play' + (shareRef ? '?ref=' + encodeURIComponent(shareRef) : ''); }
   function shareScore(platform) {
     var tile = bestTileEl.textContent || 'ZAO';
-    var text = "I climbed to " + tile + " on ZAO 2048 - " + score + " points. How far through the ZABAL Gamez workshop season can you get?";
+    var shown = Math.max(score, myBest, bestScore);
+    // Lead with the standing if we know it (top 3 gets a crown-y line), else the score + tile.
+    var standing = '';
+    if (myRank === 1) standing = 'I am #1 on the ZABAL Gamez monthly board';
+    else if (myRank && myRank <= 10) standing = 'I cracked the top 10 (#' + myRank + ') on the ZABAL Gamez monthly board';
+    else if (myRank) standing = 'I am #' + myRank + ' this month on ZABAL Gamez';
+    var text = standing
+      ? standing + ' - ' + shown + ' on ZAO 2048, reaching ' + tile + '. Can you beat me?'
+      : 'I climbed to ' + tile + ' on ZAO 2048 - ' + shown + ' points. How far through the ZABAL Gamez workshop season can you get?';
     var url = playUrl();
     if (window.ZABAL && window.ZABAL.share) {
       window.ZABAL.share({ platform: platform, text: text, url: url, target: 'play-score-' + platform });
