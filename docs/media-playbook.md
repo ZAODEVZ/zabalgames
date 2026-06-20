@@ -41,7 +41,9 @@ This is exactly what went wrong when AZKAL's `r1148jip` landed on Theresa.
 
 ## 3. Format: Lu.ma event
 ```
-Title:        [Clear topic title - what they will learn / the hook]
+Title:        ZABAL GAMEZ Workshop - [Topic] - w/ [PRESENTER]
+              (same shape as the YouTube title. Special formats keep their own name,
+              e.g. "ZABAL GAMEZ AMA w/ [Guest]" for an AMA/fireside.)
 Subtitle:     A [track]-track session with [Name] - [one line].
 Date / time:  [Day Mon DD, 2026, h:mm am/pm EST]
 Duration:     45 min talk + Q&A (90 min if it is a demo/AMA)
