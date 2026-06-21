@@ -1,6 +1,6 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-06-20",
+  "generated": "2026-06-21",
   "season": 1,
   "count": 13,
   "recordings": [
@@ -165,7 +165,7 @@
       "date": "2026-06-10",
       "url": "https://zabalgamez.com/recordings/7",
       "page": "https://zabalgamez.com/recordings/7",
-      "youtube": null,
+      "youtube": "https://youtu.be/pvH7ONG1yFU",
       "recording": null,
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-10-will-t-kfmedia.md",
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-10-will-t-kfmedia.md",
