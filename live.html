@@ -274,6 +274,105 @@
     }
     .live-foot-note a { color: var(--cyan); font-weight: 600; }
 
+    /* ---- One-stop dashboard: live standings + a full directory of every surface ---- */
+    .board-h {
+      font-family: var(--font-pixel); font-size: 0.64rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); margin: 0 0 0.9rem;
+    }
+    .live-board { margin: 28px 0 8px; }
+    .board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .bcard {
+      border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface);
+      padding: 1rem 1.05rem; display: flex; flex-direction: column;
+    }
+    .bcard-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 0.6rem; }
+    .bcard-top h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin: 0; }
+    .bcard-tag { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); }
+    .bcard-list { list-style: none; margin: 0 0 0.8rem; padding: 0; display: grid; gap: 0.35rem; }
+    .bcard-list li { display: flex; align-items: center; gap: 8px; font-size: 0.86rem; line-height: 1.3; }
+    .bcard-list .bk { font-family: 'JetBrains Mono', monospace; color: var(--gold); width: 1.4rem; flex: 0 0 auto; }
+    .bcard-list .bn { flex: 1; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bcard-list a.bn { text-decoration: none; }
+    .bcard-list a.bn:hover { color: var(--cyan); }
+    .bcard-list .bs { font-family: 'JetBrains Mono', monospace; color: var(--cyan); flex: 0 0 auto; }
+    .bcard-list .bmuted { color: var(--text-dim); }
+    .bcard-cta { margin-top: auto; display: flex; flex-wrap: wrap; gap: 12px; }
+    .bcard-cta a { font-size: 0.82rem; color: var(--cyan); text-decoration: none; }
+    .bcard-cta a:hover { text-decoration: underline; }
+
+    .live-dir { margin: 28px 0 8px; }
+    .dir-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px 18px; }
+    .dir-col h4 {
+      font-family: var(--font-pixel); font-size: 0.5rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-dim); margin: 0 0 0.55rem;
+    }
+    .dir-col a { display: block; font-size: 0.88rem; color: var(--text-muted); text-decoration: none; padding: 0.22rem 0; }
+    .dir-col a:hover { color: var(--cyan); }
+
+    /* ---- Add-to-calendar disclosure on the next-session card ---- */
+    .cal-add { margin-top: 0.8rem; font-size: 0.84rem; }
+    .cal-add summary {
+      cursor: pointer; color: var(--cyan); list-style: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .cal-add summary::-webkit-details-marker { display: none; }
+    .cal-add summary::before { content: '+'; font-family: 'JetBrains Mono', monospace; }
+    .cal-add[open] summary::before { content: '-'; }
+    .cal-add .cal-opts { display: flex; flex-direction: column; gap: 0.3rem; margin: 0.5rem 0 0; padding-left: 0.9rem; }
+    .cal-add .cal-opts a { color: var(--text-muted); text-decoration: none; }
+    .cal-add .cal-opts a:hover { color: var(--cyan); }
+
+    /* ---- Coming up: the next sessions beyond now/next ---- */
+    .live-upcoming { margin: 26px 0 8px; }
+    .up-list { display: grid; gap: 8px; }
+    .up-row {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface); padding: 0.7rem 0.9rem;
+    }
+    .up-date {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--gold);
+      flex: 0 0 auto; min-width: 5.5rem;
+    }
+    .up-main { flex: 1 1 12rem; min-width: 0; }
+    .up-main h3 { font-size: 0.95rem; margin: 0 0 0.1rem; font-weight: 600; }
+    .up-main p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+    .up-row .up-rsvp { font-size: 0.82rem; color: var(--cyan); text-decoration: none; flex: 0 0 auto; }
+    .up-row .up-rsvp:hover { text-decoration: underline; }
+
+    /* ---- From /zabal: recent channel casts ---- */
+    .zfeed { margin: 26px 0 8px; }
+    .zf-list { display: grid; gap: 10px; }
+    .zf-card {
+      display: block; border: 1px solid var(--border); border-radius: var(--r-md);
+      background: var(--surface); padding: 0.8rem 0.9rem; text-decoration: none; color: inherit;
+    }
+    .zf-card:hover { border-color: var(--border-hover); }
+    .zf-head { display: flex; align-items: center; gap: 8px; margin-bottom: 0.4rem; }
+    .zf-pfp { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; background: var(--surface-2); flex: 0 0 auto; }
+    .zf-name { font-size: 0.84rem; font-weight: 600; color: var(--text); }
+    .zf-handle { font-size: 0.78rem; color: var(--text-dim); }
+    .zf-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; margin: 0; white-space: pre-wrap; word-break: break-word; }
+    .zf-meta { margin-top: 0.45rem; font-size: 0.76rem; color: var(--text-dim); display: flex; gap: 12px; }
+
+    /* ---- Go-live toast: fires when a stream starts while the page is open ---- */
+    .live-toast {
+      position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%) translateY(140%);
+      z-index: 60; max-width: min(92vw, 26rem);
+      display: flex; align-items: center; gap: 12px;
+      background: var(--surface); border: 1px solid var(--cyan); border-radius: var(--r-md);
+      padding: 0.7rem 0.9rem; box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+      transition: transform 0.35s ease; opacity: 0;
+    }
+    .live-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .live-toast .lt-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--cyan); flex: 0 0 auto; animation: ltpulse 1.4s infinite; }
+    @keyframes ltpulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .live-toast .lt-msg { flex: 1; font-size: 0.88rem; color: var(--text); }
+    .live-toast .lt-go {
+      font-family: var(--font-pixel); font-size: 0.5rem; letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--cyan); color: #001014; border: 0; border-radius: 6px; padding: 0.45rem 0.7rem;
+      cursor: pointer; text-decoration: none; flex: 0 0 auto;
+    }
+    .live-toast .lt-x { background: none; border: 0; color: var(--text-dim); cursor: pointer; font-size: 1.1rem; line-height: 1; flex: 0 0 auto; }
+
     /* ---- Watch stage: player + chat, Twitch/YouTube toggle, collapsible ---- */
     .watch { margin: 22px 0 8px; }
     .watch-head {
@@ -427,6 +526,12 @@
     <div class="today-grid" id="today-grid"></div>
   </section>
 
+  <section class="live-upcoming" id="upcoming-sec" aria-label="Coming up" style="display:none;">
+    <h2 class="board-h">Coming up</h2>
+    <div class="up-list" id="upcoming-list"></div>
+    <a class="wr-all" href="/#schedule">Full schedule -&gt;</a>
+  </section>
+
   <style>
     .watch-recs { margin: 22px 0 6px; }
     .watch-recs h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; margin: 0 0 0.6rem; }
@@ -446,6 +551,79 @@
     <a class="wr-all" href="/speakers">All speakers and recordings -&gt;</a>
   </section>
 
+  <section class="live-board" id="live-board" aria-label="ZABAL Gamez standings right now">
+    <h2 class="board-h">The board right now</h2>
+    <div class="board-grid">
+      <div class="bcard">
+        <div class="bcard-top"><h3>ZAO 2048</h3><span class="bcard-tag">This month</span></div>
+        <ol class="bcard-list" id="db-arcade"><li class="bmuted">Loading...</li></ol>
+        <div class="bcard-cta"><a href="/play">Play</a><a href="/game/build-quiz">What to build</a></div>
+      </div>
+      <div class="bcard">
+        <div class="bcard-top"><h3>Builds in public</h3><span class="bcard-tag" id="db-builds-tag"></span></div>
+        <ol class="bcard-list" id="db-builds"><li class="bmuted">Loading...</li></ol>
+        <div class="bcard-cta"><a href="/enter">Register a build</a><a href="/enter#builds">See all</a></div>
+      </div>
+      <div class="bcard">
+        <div class="bcard-top"><h3>Season leaderboard</h3><span class="bcard-tag">All-time</span></div>
+        <ol class="bcard-list" id="db-season"><li class="bmuted">Loading...</li></ol>
+        <div class="bcard-cta"><a href="/leaderboard">Full leaderboard</a><a href="/winners">Winners</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="zfeed" id="zfeed-sec" aria-label="Recent casts from the /zabal channel" style="display:none;">
+    <h2 class="board-h">From /zabal</h2>
+    <div class="zf-list" id="zfeed-list"></div>
+    <a class="wr-all" href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">Open the /zabal channel -&gt;</a>
+  </section>
+
+  <section class="live-dir" aria-label="Everything in ZABAL Gamez">
+    <h2 class="board-h">Everything in one place</h2>
+    <div class="dir-grid">
+      <nav class="dir-col" aria-label="Play">
+        <h4>Play</h4>
+        <a href="/game">The arcade</a>
+        <a href="/play">ZAO 2048</a>
+        <a href="/game/build-quiz">What should you build?</a>
+      </nav>
+      <nav class="dir-col" aria-label="Build">
+        <h4>Build</h4>
+        <a href="/enter">Enter the build</a>
+        <a href="/projects">Adoptable projects</a>
+        <a href="/playbook">Builder playbook</a>
+        <a href="/lead">Lead a workshop</a>
+        <a href="/mentor">Mentor</a>
+        <a href="/finals">The Finals</a>
+      </nav>
+      <nav class="dir-col" aria-label="Watch and read">
+        <h4>Watch + read</h4>
+        <a href="/recordings">Recordings</a>
+        <a href="/speakers">Speakers</a>
+        <a href="/recaps">Session recaps</a>
+        <a href="/streams">Data streams</a>
+        <a href="/today">Daily update</a>
+      </nav>
+      <nav class="dir-col" aria-label="Explore">
+        <h4>Explore</h4>
+        <a href="/leaderboard">Leaderboard</a>
+        <a href="/winners">Winners</a>
+        <a href="/graph">ZAO graph</a>
+        <a href="/dream-leads">Dream leads</a>
+        <a href="/research">Research</a>
+        <a href="/crm">People</a>
+      </nav>
+      <nav class="dir-col" aria-label="Connect">
+        <h4>Connect</h4>
+        <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+        <a href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>
+        <a href="/links">All links</a>
+        <a href="/share">Share</a>
+        <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener">Insert Coin</a>
+      </nav>
+    </div>
+  </section>
+
   <div class="live-foot-note">
     <p>Workshops run all June. July is the open build month, August is the Finals. <a href="/info.html">Read all the details -&gt;</a></p>
   </div>
@@ -454,6 +632,13 @@
 
 </div>
 </main>
+
+<div class="live-toast" id="live-toast" role="alert" aria-hidden="true">
+  <span class="lt-dot" aria-hidden="true"></span>
+  <span class="lt-msg" id="live-toast-msg">We just went live.</span>
+  <a class="lt-go" id="live-toast-go" href="#watch">Watch</a>
+  <button type="button" class="lt-x" id="live-toast-x" aria-label="Dismiss">&times;</button>
+</div>
 
 <footer class="arcade-foot" aria-label="Site directory">
   <div class="arcade-foot-inner">
@@ -664,6 +849,53 @@
   }
 
   // ------------------------------------------------------------------
+  // Add to calendar - Google link + a downloadable .ics, both built from the session's
+  // real start/end timestamps so people can lock in the next one and miss fewer.
+  // ------------------------------------------------------------------
+  function icsStamp(ts) { return new Date(ts).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z'); }
+  function icsEsc(s) { return String(s == null ? '' : s).replace(/([\\;,])/g, '\\$1').replace(/\n/g, '\\n'); }
+  function hashStr(s) { var h = 0; s = String(s); for (var i = 0; i < s.length; i++) { h = (h << 5) - h + s.charCodeAt(i) | 0; } return Math.abs(h); }
+  function calTitle(L) { return 'ZABAL Gamez: ' + (L.topic || 'Workshop session'); }
+  function calDetails(L) {
+    var bits = [];
+    if (L.name) bits.push('With ' + L.name + (L.org ? ' (' + L.org + ')' : ''));
+    if (L.format) bits.push(L.format);
+    bits.push('Watch live: ' + LIVE_URL);
+    if (L.luma_url) bits.push('RSVP: ' + L.luma_url);
+    return bits.join('\n');
+  }
+  function googleCalUrl(L) {
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&text=' + encodeURIComponent(calTitle(L)) +
+      '&dates=' + icsStamp(L._start) + '/' + icsStamp(L._end) +
+      '&details=' + encodeURIComponent(calDetails(L)) +
+      '&location=' + encodeURIComponent(LIVE_URL);
+  }
+  function icsHref(L) {
+    var lines = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//ZABAL Gamez//live//EN', 'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT',
+      'UID:' + icsStamp(L._start) + '-' + hashStr(L.topic || 'zg') + '@zabalgamez.com',
+      'DTSTAMP:' + icsStamp(Date.now()),
+      'DTSTART:' + icsStamp(L._start),
+      'DTEND:' + icsStamp(L._end),
+      'SUMMARY:' + icsEsc(calTitle(L)),
+      'DESCRIPTION:' + icsEsc(calDetails(L)),
+      'URL:' + LIVE_URL, 'LOCATION:' + LIVE_URL,
+      'END:VEVENT', 'END:VCALENDAR'
+    ];
+    return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(lines.join('\r\n'));
+  }
+  function calAddHtml(L) {
+    if (!L._timed) return '';
+    return '<details class="cal-add"><summary>Add to calendar</summary>' +
+      '<div class="cal-opts">' +
+        '<a href="' + googleCalUrl(L) + '" target="_blank" rel="noopener">Google Calendar</a>' +
+        '<a href="' + icsHref(L) + '" download="zabal-gamez.ics">Apple / Outlook (.ics)</a>' +
+      '</div></details>';
+  }
+
+  // ------------------------------------------------------------------
   // Sharing
   // ------------------------------------------------------------------
   function shareText(state, name) {
@@ -787,6 +1019,7 @@
           rsvpBtn(L, 'primary', 'RSVP on Lu.ma') +
           '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
         '</div>' +
+        calAddHtml(L) +
       '</div>';
     bindShare('next', L.name);
     if (L._timed) startCountdown(L._start);
@@ -842,6 +1075,57 @@
         '</div>';
     }).join('');
     sec.style.display = '';
+  }
+
+  // ------------------------------------------------------------------
+  // Coming up - the next sessions beyond now/next/today, so /live is the schedule too.
+  // ------------------------------------------------------------------
+  function renderUpcoming(list) {
+    var sec = document.getElementById('upcoming-sec');
+    var wrap = document.getElementById('upcoming-list');
+    if (!sec || !wrap) return;
+    if (!list || !list.length) { sec.style.display = 'none'; return; }
+    wrap.innerHTML = list.map(function (L) {
+      var d = new Intl.DateTimeFormat('en-US', { timeZone: TZ, weekday: 'short', month: 'short', day: 'numeric' }).format(new Date(L._start));
+      var time = L._timed ? (timePartOf(L.when) || '') : '';
+      var rsvp = L.luma_url ? '<a class="up-rsvp" href="' + esc(L.luma_url) + '" target="_blank" rel="noopener">RSVP -&gt;</a>' : '';
+      return '<div class="up-row">' +
+        '<div class="up-date">' + esc(d) + '</div>' +
+        '<div class="up-main"><h3>' + esc(L.topic || 'Workshop session') + '</h3>' +
+          '<p>' + byLine(L) + (time ? ' - ' + esc(time) : '') + '</p></div>' +
+        rsvp +
+      '</div>';
+    }).join('');
+    sec.style.display = '';
+  }
+
+  // ------------------------------------------------------------------
+  // From /zabal - recent casts in the channel (via Neynar), so /live shows the community
+  // pulse. Best-effort; the section hides itself when the feed is off or empty.
+  // ------------------------------------------------------------------
+  function renderZabalFeed() {
+    var sec = document.getElementById('zfeed-sec');
+    var list = document.getElementById('zfeed-list');
+    if (!sec || !list) return;
+    fetch('/api/channel-feed?limit=6', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var casts = (d && d.casts) || [];
+        if (!d || !d.configured || !casts.length) { sec.style.display = 'none'; return; }
+        list.innerHTML = casts.map(function (c) {
+          var text = c.text.length > 240 ? c.text.slice(0, 237) + '...' : c.text;
+          var pfp = c.pfp ? '<img class="zf-pfp" src="' + esc(c.pfp) + '" alt="" loading="lazy">' : '<span class="zf-pfp"></span>';
+          var name = esc(c.display || c.username || ('fid ' + c.fid));
+          var handle = c.username ? '<span class="zf-handle">@' + esc(c.username) + '</span>' : '';
+          var meta = '<div class="zf-meta"><span>' + (c.likes || 0) + ' likes</span><span>' + (c.replies || 0) + ' replies</span></div>';
+          return '<a class="zf-card" href="' + esc(c.url) + '" target="_blank" rel="noopener">' +
+            '<div class="zf-head">' + pfp + '<span class="zf-name">' + name + '</span>' + handle + '</div>' +
+            '<p class="zf-text">' + esc(text) + '</p>' + meta +
+          '</a>';
+        }).join('');
+        sec.style.display = '';
+      })
+      .catch(function () { sec.style.display = 'none'; });
   }
 
   // ------------------------------------------------------------------
@@ -926,6 +1210,13 @@
           return L.date === today && L !== live && L !== next;
         }).sort(function (a, b) { return a._start - b._start; });
 
+        // COMING UP: future sessions beyond NOW/NEXT and not already in the "Also today" list.
+        var upcoming = dated.filter(function (L) {
+          if (L === live || L === next) return false;
+          if (L.date === today) return false;
+          return L._timed ? L._start > now : L.date > today;
+        }).sort(function (a, b) { return a._start - b._start; }).slice(0, 6);
+
         if (live) { renderNow(live); scheduleState = 'now'; }
         else if (next) { renderNext(next); scheduleState = 'next'; }
         else { renderEmpty(); scheduleState = 'empty'; }
@@ -934,6 +1225,7 @@
         applyRecsVisibility();
 
         renderToday(todayList);
+        renderUpcoming(upcoming);
         reconcileLive(); // override the schedule guess with the REAL stream state
       })
       .catch(function () {
@@ -941,6 +1233,7 @@
         renderEmpty();
         scheduleState = 'empty';
         document.getElementById('today-sec').style.display = 'none';
+        renderUpcoming([]);
         recsVisible = true;
         applyRecsVisibility();
         reconcileLive(); // a stream may still be live even if the schedule failed to load
@@ -954,6 +1247,50 @@
   // ------------------------------------------------------------------
   var scheduleState = 'empty';
   var LIVE_TWITCH = 'bettercallzaal'; // channel for the "open on Twitch" link (this scope)
+
+  // Go-live alert - when a stream starts while someone has /live open, flash the tab title
+  // (only useful when the tab is backgrounded) and pop a toast that jumps to the player.
+  var prevLive = null; // null until the first poll, so we never "alert" on initial load
+  var origTitle = document.title;
+  var titleTimer = null;
+  function startTitleFlash() {
+    if (titleTimer) return;
+    var on = false;
+    titleTimer = setInterval(function () {
+      document.title = on ? origTitle : 'LIVE now - ZABAL Gamez';
+      on = !on;
+    }, 1100);
+  }
+  function stopTitleFlash() {
+    if (titleTimer) { clearInterval(titleTimer); titleTimer = null; }
+    document.title = origTitle;
+  }
+  function showToast(s) {
+    var el = document.getElementById('live-toast');
+    if (!el) return;
+    var msg = document.getElementById('live-toast-msg');
+    if (msg) {
+      var where = (s && s.platform === 'youtube') ? 'on YouTube' : 'on Twitch';
+      msg.textContent = (s && s.title) ? ('Live now: ' + s.title) : ('We just went live ' + where + '.');
+    }
+    el.classList.add('show');
+    el.setAttribute('aria-hidden', 'false');
+  }
+  function hideToast() {
+    var el = document.getElementById('live-toast');
+    if (el) { el.classList.remove('show'); el.setAttribute('aria-hidden', 'true'); }
+  }
+  function goLiveAlert(s) {
+    showToast(s);
+    if (document.hidden) startTitleFlash(); // only flash when the tab is in the background
+  }
+  (function () {
+    var go = document.getElementById('live-toast-go');
+    var x = document.getElementById('live-toast-x');
+    if (go) go.addEventListener('click', function () { hideToast(); stopTitleFlash(); });
+    if (x) x.addEventListener('click', function () { hideToast(); });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) stopTitleFlash(); });
+  })();
   function setLivePill(viewers) {
     var pill = document.getElementById('live-pill');
     var txt = document.getElementById('live-pill-text');
@@ -990,11 +1327,13 @@
         // the live platform (and scrolls into view) when on.
         if (window.ZGWatch) window.ZGWatch.setLive(s);
         if (s.live) {
+          if (prevLive === false) goLiveAlert(s); // a stream just started while the page was open
           setLivePill(s.viewers);
           recsVisible = false; applyRecsVisibility(); // a stream is on - lead with the player
           if (scheduleState !== 'now') renderLiveGeneric(s);
           showActivity(true);
         } else {
+          hideToast(); stopTitleFlash();
           showActivity(false);
           if (scheduleState === 'now') {
             // The schedule thinks a session is on but the stream is off - do not claim "Live now".
@@ -1004,6 +1343,7 @@
             recsVisible = true; applyRecsVisibility();
           }
         }
+        prevLive = !!s.live;
       })
       .catch(function () { /* leave the schedule-driven view in place */ });
   }
@@ -1056,6 +1396,7 @@
   })();
 
   renderWatchRecs();
+  renderZabalFeed();
   load();
   setInterval(reconcileLive, 60000); // keep the live state honest while the page is open
 })();
@@ -1284,6 +1625,71 @@
   });
 })();
 </script>
+
+<script>
+// One-stop dashboard - pulls the live standings of each ZABAL Gamez surface (the monthly
+// ZAO 2048 board, the community-voted builds, the season leaderboard) so /live is the single
+// place to see what's happening. Each card is best-effort and shows a friendly empty line if
+// its data is offline, so the page never breaks on a failed fetch.
+(function () {
+  'use strict';
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function rows(elId, items, empty) {
+    var el = document.getElementById(elId);
+    if (!el) return;
+    if (!items || !items.length) { el.innerHTML = '<li class="bmuted">' + esc(empty) + '</li>'; return; }
+    el.innerHTML = items.join('');
+  }
+  function fmt(n) { return (typeof n === 'number') ? n.toLocaleString() : esc(n); }
+
+  // ZAO 2048 - this month's top scores
+  fetch('/api/game?game=zao2048', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var e = (d && d.entries) || [];
+      rows('db-arcade', e.slice(0, 5).map(function (x) {
+        return '<li><span class="bk">' + x.rank + '</span>' +
+          '<span class="bn">' + esc(x.handle) + '</span>' +
+          '<span class="bs">' + fmt(x.score) + '</span></li>';
+      }), 'No scores yet this month - be the first.');
+    })
+    .catch(function () { rows('db-arcade', null, 'Board offline right now.'); });
+
+  // Builds in public - top by community votes
+  fetch('/api/builds', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var b = (d && d.builds) || [];
+      var tag = document.getElementById('db-builds-tag');
+      if (tag && d && d.count) tag.textContent = d.count + ' build' + (d.count === 1 ? '' : 's');
+      rows('db-builds', b.slice(0, 5).map(function (x, i) {
+        var votes = x.votes ? ('<span class="bs">' + fmt(x.votes) + '</span>') : '<span class="bs" style="color:var(--text-dim)">0</span>';
+        return '<li><span class="bk">' + (i + 1) + '</span>' +
+          '<a class="bn" href="https://github.com/' + esc(x.repo) + '" target="_blank" rel="noopener">' + esc(x.repo) + '</a>' +
+          votes + '</li>';
+      }), 'No builds registered yet - be the first.');
+    })
+    .catch(function () { rows('db-builds', null, 'Builds board offline right now.'); });
+
+  // Season leaderboard - all-time game board (array of { rank, handle, score })
+  fetch('/api/leaderboard?format=full', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (a) {
+      var list = Array.isArray(a) ? a : [];
+      rows('db-season', list.slice(0, 5).map(function (x, i) {
+        return '<li><span class="bk">' + (x.rank || i + 1) + '</span>' +
+          '<span class="bn">' + esc(x.username || x.handle) + '</span>' +
+          '<span class="bs">' + fmt(x.score) + '</span></li>';
+      }), 'No season standings yet.');
+    })
+    .catch(function () { rows('db-season', null, 'Leaderboard offline right now.'); });
+})();
+</script>
+
 <script defer src="/assets/recording-comments.js"></script>
 <script defer src="/assets/site-nav.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>

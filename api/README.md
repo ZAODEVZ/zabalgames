@@ -71,6 +71,13 @@ uses this when a recording has a `cast_hash`, and people reply on the cast itsel
 - `GET ?hash=<castHashOrWarpcastUrl>` -> `{ configured, count, root: { hash, url }, comments: [{ hash, fid, username, pfp, display, text, ts, likes, recasts, url }] }`.
 - Needs `NEYNAR_API_KEY` (read-only). No-ops (`configured:false`) when absent. 30s edge cache.
 
+### `GET /api/channel-feed`
+Recent casts from a Farcaster channel (default `/zabal`), powering the "From /zabal"
+pulse on `/live` so the live hub shows real community chatter.
+
+- `GET ?channel=zabal&limit=8` -> `{ configured, count, channel, casts: [{ hash, fid, username, pfp, display, text, ts, likes, recasts, replies, url }] }` (newest first).
+- Needs `NEYNAR_API_KEY` (read-only). No-ops (`configured:false`) when absent. 60s edge cache.
+
 ### `GET/POST /api/finals-picks`
 Mentor half of the hybrid July judging: mentors pick the Finals shortlist from the
 voted builds. Picks live in KV (`zabal:finals:picks` { repo -> JSON `{track, by, ts}` });
