@@ -84,10 +84,14 @@ Free, live, recorded. RSVP: [luma_url]
 
 **Live-now (fire it when the session starts):**
 ```
+zm
+
 We're live now in ZABAL Gamez: [Name] on [topic].
 
-Hop in: [luma_url]
+Watch live: https://zabalgamez.com/live
 ```
+Opens with `zm` and points at the always-on watch page (`zabalgamez.com/live`), not the
+event's Lu.ma - when we are already live, the live page is the one-tap destination.
 
 **AMA question post (people reply with questions, likes rank them):**
 ```

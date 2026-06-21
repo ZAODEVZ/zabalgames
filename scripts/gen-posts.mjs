@@ -46,7 +46,7 @@ for (const r of rows) {
   const ama = /\bAMA\b/i.test(r.topic || '') || /\bAMA\b/i.test(r.name || '');
 
   const promo = `${when} for a ZABAL Gamez Workshop: ${who(r)} on ${topic}.\n\nFree, live, recorded. RSVP: ${r.luma_url}`;
-  const live = `We're live now in ZABAL Gamez: ${who(r)} on ${topic}.\n\nHop in: ${r.luma_url}`;
+  const live = `zm\n\nWe're live now in ZABAL Gamez: ${who(r)} on ${topic}.\n\nWatch live: https://zabalgamez.com/live`;
 
   console.log('================ ' + r.date + ' | ' + r.name + ' (' + (r.track || '?') + ') ================');
   if (ama) console.log('NOTE: this looks like an AMA/special - use bespoke copy from its luma doc, not the workshop promo below.');
