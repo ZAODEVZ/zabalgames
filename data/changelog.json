@@ -10,6 +10,48 @@
   },
   "entries": [
     {
+      "date": "2026-06-21",
+      "title": "Homepage countdown is phase-aware (no more dead dates)",
+      "type": "fix",
+      "description": "The hero clock was hardcoded to Jun 1 doors-open and had gone stale. It now always counts down to the next real milestone (July open build, then the August Finals) and updates its own label, so the homepage stays honest for the rest of the season.",
+      "links": [{ "label": "Home", "url": "/" }]
+    },
+    {
+      "date": "2026-06-13",
+      "title": "Farcaster-verified comment threads on recordings and pages",
+      "type": "feat",
+      "description": "A drop-in thread widget (assets/recording-comments.js) that self-configures from the URL path, backed by /api/comments (open read, Quick Auth to post, one like per FID). /api/cast-comments mirrors a recording's Farcaster reply thread.",
+      "links": [{ "label": "Recordings", "url": "/recordings" }]
+    },
+    {
+      "date": "2026-06-11",
+      "title": "Arcade + engagement layer: ZAO 2048, pops, raffle, PFP tiles",
+      "type": "feat",
+      "description": "/play and /game ship ZAO 2048 with a monthly $Zabal top-10 (/api/game + monthly-winner cron). /api/pops adds POAP-like participation claims with optional UGC capture, /api/raffle a collect-then-draw for live events, and /api/pfps a free Farcaster PFP resolver for the arcade tiles.",
+      "links": [{ "label": "Play", "url": "/play" }, { "label": "Game", "url": "/game" }]
+    },
+    {
+      "date": "2026-06-04",
+      "title": "July build entry: register a repo, build in public",
+      "type": "feat",
+      "description": "/enter ships the GitHub-as-submission flow (research doc 784): /api/register links a wallet + GitHub repo (optional Quick Auth FID anchor), /api/builds is the public building-in-public board ranked by community votes (/api/build-vote), and the commit-watcher cron pushes verified repos to the Bonfire graph.",
+      "links": [{ "label": "Enter", "url": "/enter" }]
+    },
+    {
+      "date": "2026-06-03",
+      "title": "Recordings system: archive, recaps, speakers, transcripts",
+      "type": "feat",
+      "description": "/recordings is the full session archive, with /recaps, /speakers, /spaces and /farcaster-batches as the content surfaces. Per-session transcripts and a shared nav tie them together.",
+      "links": [{ "label": "Recordings", "url": "/recordings" }]
+    },
+    {
+      "date": "2026-06-01",
+      "title": "Live surfaces and the Finals stack",
+      "type": "feat",
+      "description": "/live and /today show what is on now (live-status + a present heartbeat + live-notify). The August Finals stack lands: /finals (WaveWarZ prediction-market spec), /leaderboard, /projects (adoptable projects), and /winners.",
+      "links": [{ "label": "Live", "url": "/live" }, { "label": "Finals", "url": "/finals" }]
+    },
+    {
       "date": "2026-05-29",
       "title": "Validation-driven homepage: framing, one-tap join, social proof, shareable facts",
       "type": "feat",
