@@ -20,15 +20,33 @@ No emojis. No em dashes (hyphens only). No crypto/web3/onchain jargon in public 
 specific number. Tight, factual, warm.
 
 ## Current status (live)
+Mid-season (June workshops running, July open build + August Finals ahead). The site
+has grown well past the homepage into a multi-surface Mini App - 30+ pages, 28 edge
+endpoints. Snapshot:
 - Rebrand to ZABAL Gamez + zabalgamez.com is complete and deployed.
 - Mini App manifest (`.well-known/farcaster.json`) is **self-hosted and signed** for
   zabalgamez.com (accountAssociation type:auth, FID 19640). Do NOT hand-edit the
   accountAssociation block - re-sign via Farcaster dev tools if the domain ever changes.
 - Homepage: validated positioning, "What you walk away with", FAQ, 3-tracks block,
-  live June workshop schedule (reads `data/workshop-leads.json`) with per-track filter,
-  one-tap join (track-aware), top "tell Farcaster" share CTA.
+  June workshop schedule (reads `data/workshop-leads.json`) with per-track filter,
+  one-tap join (track-aware), top "tell Farcaster" share CTA, phase-aware season clock
+  (counts to July build, then Aug Finals - no hardcoded date).
 - In-feed share/embed image is the arcade card `assets/embed-card-gamez.png` (3:2).
 - Activity backend is LIVE (`/api/activity` returns `configured:true`).
+- **Recordings/content system is live:** `/recordings` archive, `/recaps`, `/speakers`,
+  `/spaces`, `/farcaster-batches`, plus per-recording Farcaster-verified comment threads
+  (`assets/recording-comments.js` + `/api/comments`, `/api/cast-comments`) and transcripts.
+- **Finals stack is built (settles in Aug):** `/enter` (register + building-in-public
+  board), `/projects` (adoptable projects), `/finals` (WaveWarZ prediction-market spec),
+  `/leaderboard`, `/winners`; backed by `register`, `builds`, `build-vote`, `finals-picks`,
+  `monthly-winner`.
+- **Engagement/games layer:** `/play` + `/game` (ZAO 2048, monthly $Zabal prize via
+  `/api/game` + `monthly-winner`), `/pops` collectibles, live `raffle`, `/dream-leads`
+  demand board, `/mindful`, `/graph` (Bonfire/ecosystem knowledge graph), `ref` referrals,
+  `pfps` resolver. `/live` + `/today` are the "what's on now" surfaces (`live-status`,
+  `present` heartbeat, `live-notify`).
+- **Internal/ops pages:** `/status` (production board), `/crm` (roster), `/context` +
+  `/install` (AI-harness context loaders), `/playbook`, `/research`, `/changelog`.
 
 ## Storage (IMPORTANT - read before any backend work)
 The activity backend runs on **Upstash Redis** over the REST API (`/pipeline`,
@@ -43,26 +61,56 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
   is currently out of free Supabase project slots - revisit then.
 
 ## Architecture / key files
-- `index.html` - homepage (inline `<style>` + inline scripts: join button + track
-  chips, join counter, workshop schedule render + filter, top-CTA cast).
-- `lead.html` - workshop-lead page: Cal.com embed (`CAL_LINK` var) + Formspree form
-  fallback (with a track select).
-- `info.html` - all-the-details; mentor Formspree form; Cal iframe; the July submission
+Static HTML + inline `<style>`/scripts per page, shared helpers in `assets/*.js`, edge
+functions in `api/`. 30+ pages; not all listed here - this is the load-bearing set.
+
+**Core public pages**
+- `index.html` - homepage (join button + track chips, join counter, workshop schedule
+  render + filter, top-CTA cast, phase-aware countdown).
+- `lead.html` - workshop-lead page: Cal.com embed (`CAL_LINK` var) + Formspree fallback.
+- `info.html` - all-the-details; mentor Formspree form; Cal iframe; July submission
   gallery (client-side Supabase, placeholder keys, NOT live).
+- `enter.html` - July build entry: register a wallet + GitHub repo, building-in-public board.
+- `play.html` / `game.html` - ZAO 2048 + arcade hub (monthly $Zabal top-10).
+- `finals.html` / `winners.html` / `leaderboard.html` / `projects.html` - Finals stack.
+- `recordings.html` / `recaps.html` / `speakers.html` / `spaces.html` /
+  `farcaster-batches.html` - the content/recordings system.
 - `streams.html` - data streams + chronological timeline; per-entry Cast buttons.
+- `live.html` / `today.html` - "what's on now" surfaces. `dream-leads.html`, `pops.html`,
+  `mindful.html`, `graph.html`, `about.html`, `links.html`, `share.html`, `install.html`,
+  `playbook.html`, `research.html` round out the public set. `mentor.html` + `p.html` are
+  data-driven profile templates (load by handle).
+- Internal/ops: `status.html` (production board), `crm.html` (roster), `context.html`
+  (AI-harness context), `changelog.html`.
+
+**Shared assets**
 - `assets/miniapp.js` - Mini App SDK bootstrap + `window.ZABAL` helpers (composeCast,
-  share, track, join, getUser, addApp, viewProfile). ES module from esm.sh.
-- `api/*.mjs` - Vercel EDGE functions: track, activity, join, leaderboard,
-  empire-leaderboard (reads our tokenless empire's board FROM Empire Builder - the
-  inverse of leaderboard), notify, webhook, present, daily-cast (cron),
-  workshop-reminders (cron, day-of push to added-app users), register + commit-watcher
-  (cron, the doc-784 GitHub-as-submission / Bonfire-as-backend pair), bonfire-ask,
-  dream-vote (the /dream-leads board's +1 demand counter), snap/signup. Upstash
-  Redis over REST. Quick Auth JWT verified server-side (`DOMAIN = 'zabalgamez.com'`,
-  JWKS from auth.farcaster.xyz). All no-op gracefully if Redis env vars are absent.
-  See `api/README.md` for the per-endpoint contracts.
+  share, track, join, getUser, addApp, viewProfile, dreamVote, buildVote, likeComment,
+  etc.). ES module from esm.sh.
+- `assets/recording-comments.js` - drop-in Farcaster-verified comment thread (mount
+  `#zg-comments`, self-configures from the URL path). `presence.js`, `share.js`,
+  `site-nav.js`, `rec-nav.js`, `transcript.js` - the rest of the shared client helpers.
+
+**Edge functions** (`api/*.mjs`, Vercel EDGE, Upstash Redis over REST; Quick Auth JWT
+verified server-side, `DOMAIN = 'zabalgamez.com'`, JWKS from auth.farcaster.xyz; all
+no-op gracefully without Redis env vars). 28 endpoints across:
+- *Activity/identity:* `track`, `activity`, `join`, `leaderboard`, `empire-leaderboard`
+  (inverse - reads our tokenless empire FROM Empire Builder), `present`, `pfps`, `ref`.
+- *Notifications:* `webhook`, `notify` (admin), `daily-cast` (cron, public), workshop-
+  `reminders` (cron, private push), `live-notify`, `live-status`.
+- *Builds/Finals:* `register` + `commit-watcher` (cron, the doc-784 GitHub-as-submission /
+  Bonfire-as-backend pair), `builds`, `build-vote`, `finals-picks`, `monthly-winner`.
+- *Engagement:* `game`, `pops`, `raffle`, `dream-vote`, `comments`, `cast-comments`,
+  `bonfire-ask`, `snap/signup`.
+
+  **See `api/README.md` for the authoritative per-endpoint contracts** (kept current).
+
+**Data + config**
 - `data/workshop-leads.json` - schedule source of truth (curated file, not a DB).
-- `data/data-streams.json`, `data/streams/timeline.json`, `data/changelog.json` - content.
+- `data/` also holds content/registry JSON: `data-streams.json`, `streams/timeline.json`,
+  `changelog.json`, `recaps.json`, `people.json`, `mentors.json`, `crm.json`,
+  `dream-leads.json`, `finals.json`, `adoptable-projects.json`, `bonfire-graph.json`,
+  `pfps.json`, `mindful.json`, `daily-updates.json`, `transcript-corrections.json`.
 - `.well-known/farcaster.json` - Mini App manifest (signed).
 - `vercel.json` - redirects + headers (cleanUrls; no rewrite touches `/.well-known/`).
 

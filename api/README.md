@@ -179,6 +179,16 @@ On a day with a workshop dated today in `data/workshop-leads.json`, casts
 releases the claim for the next run. No-ops cleanly if KV/Neynar are unset or
 there is no session today. Runs daily via `vercel.json` crons.
 
+### `GET /api/workshop-reminders` (cron)
+The private-push counterpart to `/api/daily-cast`. On a day with a workshop dated
+today in `data/workshop-leads.json`, sends a Farcaster notification to everyone who
+added the app (the `zabal:notif:tokens` store `/api/webhook` fills) - the day-of
+"tune in" nudge, the documented #1 retention lever. Day-of by design (leads carry a
+date + free-text `when`, not a machine start time). KV-sentinel idempotency; graceful
+no-op contract (`kv-unconfigured` / `no-session-today` / `already-sent` /
+`recipients:0`). No `NOTIFY_SECRET` (server-side cron, not the admin sender). Cron in
+`vercel.json`.
+
 ### `POST /api/register`
 The thin builder-registration layer from the GitHub-as-submission /
 Bonfire-as-backend architecture (research doc 784). A builder's harness makes one
@@ -237,6 +247,42 @@ returns HTML with `fc:miniapp` meta as the fallback. Submissions forward to the
 Formspree team form as the stub backend. v1 reads FID + cast hash as untrusted
 (JFS signature verification skipped until a Node runtime adds `@farcaster/snap`).
 
+### `GET /api/pfps`
+Farcaster PFP resolver for the arcade tiles (and any page wanting ZAO faces).
+`?handles=a,b,c` -> `{ ok, users: { handle: { pfpUrl, fid, displayName } } }`. 100%
+free, no key: the official fname registry (username -> FID) then the Haatz bulk
+endpoint; Haatz by_username / search are fallbacks and Neynar an optional last resort
+only if `NEYNAR_API_KEY` is set. Best-effort - an unresolved handle is simply omitted
+so the caller falls back to a text label.
+
+### `GET/POST /api/pops`
+POAP-like, Web2 participation claim plus optional UGC capture, tagged by `event` so a
+single endpoint serves the season pop and event-specific ones.
+- `POST { event?, videoUrl?, note?, handle? }` -> `{ ok, count, claimed:true }`
+- `GET ?event=<id>` -> `{ ok, configured, event, count, items[] }`
+
+Verified in-app (Quick Auth -> FID -> handle); a typed handle is accepted on web.
+Distinct claimers in a SET, submissions in a capped list. Graceful no-op without KV.
+
+### `GET/POST /api/raffle`
+"Collect to enter, then draw a winner" raffle for live events, tagged by `event`.
+- `POST { event?, handle? }` -> `{ ok, count, entered:true }` (idempotent SET of handles)
+- `POST { event?, action:'draw' }` -> `{ ok, winner, count }`
+- `GET ?event=<id>` -> `{ ok, configured, event, count, entries[] }`
+
+Verified in-app / typed handle on web. The draw is host-gated by `?key=` when
+`ADMIN_KEY` is set, otherwise open (fine for a single live event). No-op without KV.
+
+### `GET/POST /api/ref`
+Referral attribution for the share-to-grow loop. Share links carry `?ref=<handle>`;
+when a referred player authenticates in the Mini App the referrer is credited once
+(idempotent, no self-referral).
+- `POST { ref }` with `Authorization: Bearer <quick-auth-jwt>` -> `{ ok, credited }`
+- `GET ?ref=<handle>` -> `{ ok, ref, count }`
+
+Storage: `ref:by` (first referrer wins per FID) + `ref:made:<ref>` (the referrer's
+distinct credited set). Graceful no-op without KV.
+
 ## Required env vars (Vercel project settings)
 
 | Var | What | Where |
@@ -247,6 +293,7 @@ Formspree team form as the stub backend. v1 reads FID + cast hash as untrusted
 | `NEYNAR_API_KEY` | Neynar key - publishes the cast in `POST /api/daily-cast` and reads recording reply threads in `GET /api/cast-comments` | Neynar dev dashboard (free tier) |
 | `NEYNAR_SIGNER_UUID` | Approved Neynar signer that posts the daily cast | Neynar managed signer (approve once) |
 | `CRON_SECRET` | Optional bearer enforced on cron endpoints when set | any long random string; Vercel injects it on cron calls |
+| `ADMIN_KEY` | Optional; when set, gates the `POST /api/raffle` draw via `?key=` | any long random string; pass it only from the host's draw call |
 | `EMPIRE_ID` | Optional override for `GET /api/empire-leaderboard`. Defaults to `zabalgamez01e9af` (our tokenless empire), so no config is needed | Empire Builder |
 | `EMPIRE_API_KEY` | Optional; sent as `x-api-key` to Empire Builder. Reads work without it | Empire Builder |
 
