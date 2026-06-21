@@ -35,8 +35,7 @@ recordings, and a **phase-aware season countdown** on the homepage.
   ingested by the recordings session. As each goes live, swap the `https://zabalgamez.com/recordings`
   hub link under that day for its exact `/recordings/N` page (and add the YouTube line + "Best
   moments" once a cut exists). Until then the hub link is correct and safe.
-- [ ] **Week 2 catch-up link:** confirm the published Week 2 recap URL on Paragraph and paste it
-  into the "Miss week two?" line near the top (placeholder below is the expected slug).
+- [x] **Week 2 catch-up link:** wired - https://paragraph.com/@thezao/year-of-the-zabal-day-165
 - [ ] **Embeds:** fill each `[EMBED: ...]` line with a cast/clip URL on its own line, or delete the line.
 - [ ] **Subject line + send** - pick the subject and publish.
 
@@ -49,7 +48,7 @@ Week three was the long week - ten sessions, the most we have run yet. We went f
 
 Miss week two? Catch up on the Week 2 recap first:
 
-https://paragraph.com/@thezao/year-of-the-zabal-week-2
+https://paragraph.com/@thezao/year-of-the-zabal-day-165
 
 [EMBED: paste the Week 3 recap launch cast URL here, on its own line]
 
