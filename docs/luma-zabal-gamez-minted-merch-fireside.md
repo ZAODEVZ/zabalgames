@@ -3,9 +3,9 @@
 > Paste-ready Lu.ma copy. Brand: no emojis, no em dashes (hyphens only), "100+" for member count.
 >
 > STATUS:
-> - Slot: Sunday Jun 21, 2026, 7pm EST ("tomorrow Sunday around 7pm" - confirm).
-> - Track: creator. On the homepage schedule, RSVP at the ZAO calendar in the interim (no event yet).
-> - STILL NEED: the Minted Merch @handle / guest name, and a one-line on the focus.
+> - Slot: Sunday Jun 21, 2026, 7pm EST (confirmed).
+> - Track: creator. Account: @mintedmerch. Founders: @svvvg3.eth and @katkartel.eth. On the schedule; RSVP at the ZAO calendar until the event exists.
+> - Lu.ma event is LIVE: https://luma.com/lgrpu4dt
 > - I cannot create the Lu.ma from here - copy below is paste-and-publish. Send the event URL after.
 
 ## How to set it up
@@ -14,7 +14,7 @@
 3. Date + time: Sunday Jun 21, 2026, 7pm EST  -  Duration: 60 min
 4. Location: Link Meeting -> the stream / space link
 5. Tag: `zabal-games`  -  Cover: `https://zabalgamez.com/assets/og-card.png`
-6. Host: BetterCallZaal (The ZAO), co-invite Minted Merch
+6. Host: BetterCallZaal (The ZAO), co-invite @mintedmerch, @svvvg3.eth, and @katkartel.eth
 7. Publish, then send me the event URL
 
 ## Title
@@ -48,7 +48,7 @@ More: zabalgamez.com
 
 ## Post (your "for a ZABAL Gamez Workshop" format)
 ```
-Sunday 7pm EST for a ZABAL Gamez fireside: Minted Merch on selling merch onchain - and what it opens up for creators.
+Sunday 7pm EST for a ZABAL Gamez fireside: @mintedmerch on selling merch onchain - and what it opens up for creators.
 
-Free, live, recorded. RSVP: https://luma.com/zao
+Free, live, recorded. RSVP: https://luma.com/lgrpu4dt
 ```
