@@ -824,7 +824,7 @@
     </div>
 
     <div class="countdown-block">
-      <span class="label">Doors open in</span>
+      <span class="label" id="countdown-label">Doors open in</span>
       <span id="countdown-value">--</span>
     </div>
 
@@ -1228,20 +1228,35 @@
 
 <script>
 (function() {
-  // Countdown to Jun 1 2026 00:00 UTC (doors open)
-  var LAUNCH = new Date('2026-06-01T00:00:00Z').getTime();
+  // Phase-aware season clock. Always counts down to the next real milestone, so the
+  // hero never shows a dead "LIVE NOW" after a date passes. UTC boundaries:
+  //   - before Jul 1: count to the July open build, label "July build opens in"
+  //   - Jul: count to Aug 1 (build window closing), label "Build month - time left"
+  //   - Aug: Finals month, no countdown - label "Finals" / value "this month"
+  var JULY = new Date('2026-07-01T00:00:00Z').getTime();
+  var AUGUST = new Date('2026-08-01T00:00:00Z').getTime();
   // True when body has ui-polish-v1 class - controls whether countdown uses HTML with blink spans
   function polishOn() { return document.body.classList.contains('ui-polish-v1'); }
 
+  function phase(now) {
+    if (now < JULY) return { label: 'July build opens in', target: JULY };
+    if (now < AUGUST) return { label: 'Build month - time left', target: AUGUST };
+    return { label: 'Finals', target: null };
+  }
+
   function tick() {
-    var now = Date.now();
-    var diff = LAUNCH - now;
     var el = document.getElementById('countdown-value');
     if (!el) return;
-    if (diff <= 0) {
-      el.textContent = 'LIVE NOW';
+    var now = Date.now();
+    var p = phase(now);
+    var labelEl = document.getElementById('countdown-label');
+    if (labelEl) labelEl.textContent = p.label;
+    if (p.target === null) {
+      el.textContent = 'this month';
       return;
     }
+    var diff = p.target - now;
+    if (diff <= 0) { el.textContent = 'this month'; return; }
     var d = Math.floor(diff / 86400000);
     var h = Math.floor((diff % 86400000) / 3600000);
     var m = Math.floor((diff % 3600000) / 60000);
