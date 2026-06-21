@@ -293,7 +293,8 @@
       "color": "zabal",
       "date": "2026-06-20",
       "track": "builder",
-      "luma_url": "https://luma.com/tmcmw3o9"
+      "luma_url": "https://luma.com/tmcmw3o9",
+      "handle": "@dansingjoy"
     },
     {
       "id": "022",
@@ -364,7 +365,8 @@
       "color": "orange",
       "date": "2026-06-21",
       "track": "creator",
-      "luma_url": "https://luma.com/pwd2ta47"
+      "luma_url": "https://luma.com/pwd2ta47",
+      "handle": "@metamu"
     },
     {
       "id": "027",
@@ -414,7 +416,7 @@
       "id": "030",
       "name": "Minted Merch",
       "org": "",
-      "handle": "",
+      "handle": "@mintedmerch",
       "topic": "Selling merch onchain - and what it opens up for creators.",
       "format": "Fireside, recorded",
       "when": "Sun Jun 21 2026, 7pm EST",
@@ -429,7 +431,7 @@
       "id": "031",
       "name": "Saltorious",
       "org": "",
-      "handle": "",
+      "handle": "@saltorious.eth",
       "topic": "Building with AI harnesses and Bankr.",
       "format": "Talk + Q&A, recorded",
       "when": "Tue Jun 23 2026, 8pm EST",

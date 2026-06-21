@@ -3,9 +3,9 @@
 > Paste-ready Lu.ma copy. Brand: no emojis, no em dashes (hyphens only), "100+" for member count.
 >
 > STATUS:
-> - Slot: Tuesday Jun 23, 2026, 8pm EST (read as the nearest Tuesday - confirm).
-> - Track: builder. On the homepage schedule, RSVP at the ZAO calendar in the interim (no event yet).
-> - STILL NEED: Saltorious's @handle, and a one-line on what they will cover.
+> - Slot: Tuesday Jun 23, 2026, 8pm EST (confirmed).
+> - Track: builder. Handle: @saltorious.eth. On the schedule; RSVP at the ZAO calendar until the event exists.
+> - STILL NEED: just the Lu.ma event URL once you create it.
 > - I cannot create the Lu.ma from here - copy below is paste-and-publish. Send the event URL after.
 
 ## How to set it up
@@ -14,7 +14,7 @@
 3. Date + time: Tuesday Jun 23, 2026, 8pm EST  -  Duration: 45 min + Q&A
 4. Location: Link Meeting -> the stream link
 5. Tag: `zabal-games`  -  Cover: `https://zabalgamez.com/assets/og-card.png`
-6. Host: BetterCallZaal (The ZAO), co-invite Saltorious
+6. Host: BetterCallZaal (The ZAO), co-invite @saltorious.eth
 7. Publish, then send me the event URL
 
 ## Title
@@ -48,7 +48,7 @@ More: zabalgamez.com
 
 ## Post (your "for a ZABAL Gamez Workshop" format)
 ```
-Tuesday 8pm EST for a ZABAL Gamez Workshop: Saltorious on building with AI harnesses and Bankr.
+Tuesday 8pm EST for a ZABAL Gamez Workshop: @saltorious.eth on building with AI harnesses and Bankr.
 
 Free, live, recorded. RSVP: https://luma.com/zao
 ```
