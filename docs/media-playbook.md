@@ -126,12 +126,16 @@ Everything we produce, what triggers it, the format that governs it, and where i
 - YouTube strategy + production: `docs/youtube-playbook.md`, `docs/youtube-production-workflow.md`
 
 ## 7. Stale / superseded - do not use (use the canonical formats above)
-These are point-in-time records, kept only for history. Do NOT copy from them:
-- Lu.ma: `luma-events-templates-2026-05-26.md`, `luma-events-2026-06-11.md`,
-  `luma-events-2026-week2.md`, `luma-adam-miller-2026-06-12.md`, `cal-luma-workflow.md`
-- Posts/socials: `distribution-casts-2026-06-11.md`, all `socials-*.md`, `announce-*.md`,
-  `social-share-images.md`, `media-kit-2026-05-26.md`, `launch-kit.md`,
-  `validation-launch-kit-2026-05-29.md`, `warm-dm-kit-2026-06-02.md`
+These are point-in-time records, kept only for history. Do NOT copy from them. Most now
+live under `docs/archive/`; a few are kept in place because timeline records
+(`data/changelog.json`, `vercel.json`, `spaces.html`) still link to their path.
+- Archived (`docs/archive/`): `luma-events-2026-06-11.md`, `luma-events-2026-week2.md`,
+  `luma-adam-miller-2026-06-12.md`, `cal-luma-workflow.md`, `distribution-casts-2026-06-11.md`,
+  all `socials-*.md`, `announce-posts-2026-05-26.md`, `announce-thread-final.md`,
+  `social-share-images.md`, `media-kit-2026-05-26.md`, `warm-dm-kit-2026-06-02.md`
+- Kept in `docs/` (still link-referenced, but stale - do not copy): `launch-kit.md`,
+  `luma-events-templates-2026-05-26.md`, `validation-launch-kit-2026-05-29.md`,
+  `announce-day-kit-2026-05-27.md`
 - Newsletters: the dated `newsletter-*.md` editions are published records, not templates -
   only `newsletter-template.md` is the format.
 
