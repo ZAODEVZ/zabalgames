@@ -6,7 +6,7 @@
 > - Slot: Tuesday Jun 23, 2026, 8pm EST (confirmed).
 > - Track: builder. Handle: @saltorious.eth. On the schedule; RSVP at the ZAO calendar until the event exists.
 > - Subject: Harness is the tool he built; Bankr is the team he just joined - he will share about both.
-> - STILL NEED: just the Lu.ma event URL once you create it.
+> - Lu.ma event is LIVE: https://luma.com/vo204kbu
 
 ## How to set it up
 1. luma.com/zao -> New Event
@@ -50,5 +50,5 @@ More: zabalgamez.com
 ```
 Tuesday 8pm EST for a ZABAL Gamez Workshop: @saltorious.eth on Harness, the tool he built, and Bankr, the team he just joined.
 
-Free, live, recorded. RSVP: https://luma.com/zao
+Free, live, recorded. RSVP: https://luma.com/vo204kbu
 ```
