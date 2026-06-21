@@ -1,6 +1,6 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-20 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 13 recordings, newest first.
+Generated 2026-06-21 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 13 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
@@ -73,6 +73,7 @@ Topics: WaveWarz, music battles, earn from engagement, Solana, community battles
 workshop  |  track: creator  |  2026-06-10
 Presenter: Will T of Web3 (@willtofweb3), Kingfishers Media
 Watch: https://zabalgamez.com/recordings/7
+Video: https://youtu.be/pvH7ONG1yFU
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-10-will-t-kfmedia.md
 Summary: A creator-track conversation with Will T of Web3 on building KFMEDIA (Kingfishers Media) - a media company that helps independent content creators distribute their work using on-chain tools, without learning to code. When Bonfire.xyz sunset and CharmVerse announced the same, Will (a self-described non-coder) learned to vibe code and forked CharmVerse to rebuild the Kingfishers Media learning center on its own terms. The practical core: the three tools KFMEDIA actually uses to distribute creator media - Unlock Protocol for subscriptions, memberships, and booking pages (fiat or ERC-20); Highlight.xyz, which stores NFT video permanently on Arweave; and Contra for Web2 reach - plus KFM Talks, a TEDx-style independent creator program that returns 80 to 85% of sales to the creator. Kingfishers Media is moving to a true public good, dropping token gating and converting to a nonprofit association in Q4.
 Takeaways:
