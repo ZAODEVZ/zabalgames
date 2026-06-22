@@ -460,6 +460,20 @@
       "date": "2026-06-23",
       "track": "creator",
       "luma_url": "https://luma.com/hh3sjqkn"
+    },
+    {
+      "id": "033",
+      "name": "Vlad",
+      "org": "Singularity",
+      "handle": "@singularity.diy",
+      "topic": "Singularity - what he is building and how to build with it.",
+      "format": "Talk + Q&A, recorded",
+      "when": "Thu Jun 25 2026, 11:30am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-22",
+      "color": "zabal",
+      "date": "2026-06-25",
+      "track": "builder"
     }
   ],
   "_schema": {
