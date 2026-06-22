@@ -13,18 +13,18 @@
 
 ## Subject (pick one)
 
-- ZABAL Gamez Week 3: ten sessions, the biggest week yet  (recommended)
+- ZABAL Gamez Week 3: eight sessions, the biggest week yet  (recommended)
 - Year of the ZABAL - Week 3: the long week
 - Three weeks down. The build is the application.
 
 ## STATUS - ready vs pending before sending
 
-Week 3 lineup (Jun 15-21), ten sessions: **Kenny / POIDH** + **Chris Dolinsky / Vini App**
-(Jun 15), **Adrian / Empire Builder V3** (Jun 16), **AZKAL / FlowStage** (Jun 18),
-**Nemesis.love** (Jun 19), **Jub Jub / Farcaster Batches** + **Ali Tiknazoglu / Previbecoding**
-+ **Dan Singjoy / Eden Fractal** (Jun 20), and **Meta Mu** + **Minted Merch** (Jun 21). Plus
-three site upgrades: a **press / media kit page**, **in-transcript search + jump-to-time** on
-recordings, and a **phase-aware season countdown** on the homepage.
+Week 3 lineup (Jun 15-21), eight sessions: **Kenny / POIDH** + **Chris Dolinsky / Vini App**
+(Jun 15), **Adrian / Empire Builder V3** (Jun 16), **Jub Jub / Farcaster Batches** +
+**Ali Tiknazoglu / Previbecoding** + **Dan Singjoy / Eden Fractal** (Jun 20), and **Meta Mu**
++ **Minted Merch** (Jun 21). (AZKAL / FlowStage moved to Thu Jun 25; Nemesis.love postponed,
+new date TBD.) Plus three site upgrades: a **press / media kit page**, **in-transcript search
++ jump-to-time** on recordings, and a **phase-aware season countdown** on the homepage.
 
 ### Ready now (live on the site)
 - [x] Three site upgrades live: **/press** (media kit), in-transcript **search + jump-to-time**,
@@ -44,7 +44,7 @@ recordings, and a **phase-aware season countdown** on the homepage.
 ```
 GM ZM, and happy Sunday in the Year of the ZABAL.
 
-Week three was the long week - ten sessions, the most we have run yet. We went from bounties to a brand-new app, under the hood of Empire Builder, into a content tool with no generative AI, through a creator's origin story, across Farcaster culture and fractals, and out to merch and community. Every one recorded, transcribed, and kept - miss something live and you have missed nothing.
+Week three was the long week - eight sessions, the most we have run yet. We went from bounties to a brand-new app, under the hood of Empire Builder, across Farcaster culture, into learning to build with AI, through fractals, and out to community and onchain merch. Every one recorded, transcribed, and kept - miss something live and you have missed nothing.
 
 Miss week two? Catch up on the Week 2 recap first:
 
@@ -62,7 +62,7 @@ The build is the application. Start here: https://zabalgamez.com/info
 
 Only have a few minutes? Start here:
 - If you build: Adrian (diviflyy) on Empire Builder V3 - the endpoints and the leaderboard, the technical map for anyone building on Empire Builder: https://zabalgamez.com/recordings
-- If you create: AZKAL on FlowStage - scale your content without losing your taste, no generative AI: https://zabalgamez.com/recordings
+- If you create: Minted Merch on selling merch onchain - how it works in plain terms, and what it opens up for a creator selling to their own audience: https://zabalgamez.com/recordings
 - If you are finding your lane: Meta Mu on how to add value as a community member - find the gaps, fill them, become someone a community cannot do without: https://zabalgamez.com/recordings
 
 ## Day 15 - a doubleheader: bounties, and a brand-new app
@@ -80,18 +80,6 @@ Then Chris Dolinsky gave us a first look at the Vini App - a thirty-minute walk 
 Adrian (diviflyy), co-founder of Empire Builder, took us into V3 - the endpoints for an existing empire, how the leaderboard works, and how to deploy a new one. If yerbearserker's opening-week talk was the vision, this was the map: the exact moving parts you wire up when you build on Empire Builder. Watch it: https://zabalgamez.com/recordings
 
 [EMBED: paste the announce cast or clip URL for Adrian / Empire Builder V3, on its own line]
-
-## Day 18 - scale your content without losing your taste
-
-AZKAL walked us through FlowStage and why he built it: short-form videos and slideshows assembled from your own footage and audio, organized by aesthetic, with no generative AI in the loop. The throughline for artists - grow your output without handing your taste to a machine - plus how builders can plug into the FlowStage API. Watch it: https://zabalgamez.com/recordings
-
-[EMBED: paste the announce cast or clip URL for AZKAL / FlowStage, on its own line]
-
-## Day 19 - into the mind of a menace
-
-Nemesis.love brought a creator-track story: the career, the journey, and the decision to leave the old path - and how that leap turned into building and creating in this space. The honest version of the origin story most people only show the highlight reel of. Watch it: https://zabalgamez.com/recordings
-
-[EMBED: paste the announce cast or clip URL for Nemesis.love, on its own line]
 
 ## Day 20 - a triple-header: Farcaster culture, learning to build, and fractals
 
@@ -129,6 +117,7 @@ The week ahead, free and recorded:
 - Growth through foundations with Dr. Jake - Tue Jun 23, 6pm EST: https://luma.com/6svi31dy
 - Harness and Bankr with Saltorious - Tue Jun 23, 8pm EST: https://luma.com/vo204kbu
 - Making Music with Generative AI in Ableton with Teresa Marrin Nakra - Thu Jun 25, 5:45pm EST: https://luma.com/hwz9men2
+- AZKAL on FlowStage, scale your content without losing your taste - Thu Jun 25, 8pm EST: https://luma.com/r1148jip
 - Building Warpee.eth with Adrienne of GM Farcaster - Tue Jun 30, 11:30am EST: https://luma.com/jlv50mcu
 
 The whole calendar is on Lu.ma: https://luma.com/zao
@@ -158,7 +147,7 @@ Get ready now:
 - Come hang in the /zabal channel: https://farcaster.xyz/~/channel/zabal
 - Insert Coin and grab the season collectible: https://collect.zabalgamez.com
 
-The week at a glance: ten sessions, the biggest week of the season, from bounties to a new app to Empire Builder endpoints to a content tool to a creator origin story to Farcaster culture, fractals, community, and onchain merch - transcripts landing across all of them, three new site upgrades, five more sessions plus the Monday AMA on the calendar, and a $500 pool plus collectibles on the line for July.
+The week at a glance: eight sessions, the biggest week of the season, from bounties to a new app to Empire Builder endpoints to Farcaster culture to learning to build with AI to fractals, community, and onchain merch - transcripts landing across all of them, three new site upgrades, more sessions plus the Monday AMA on the calendar, and a $500 pool plus collectibles on the line for July.
 
 To everyone who taught, asked, watched, or shared this week - thank you. The build is the application. Three weeks down, and the busiest one yet. See you at the AMA.
 
@@ -181,9 +170,9 @@ For agents and crawlers: plain text https://zabalgamez.com/recordings.txt - stru
 
 ## How Week 3 builds on Week 2
 
-- Ten sessions recapped (Week 2 had six), every one with its own day header and a real, plain-language takeaway - not the title restated.
+- Eight sessions recapped (Week 2 had six), every one with its own day header and a real, plain-language takeaway - not the title restated. (AZKAL moved to Jun 25, Nemesis.love postponed - both pulled from this recap.)
 - Same-day groupings done right: two doubleheaders (Jun 15, Jun 21) and one triple-header (Jun 20) under single day headers.
 - Per-session embed lines kept so the recap carries media, not just links.
-- Five one-tap upcoming RSVP links plus the Monday AMA, all verified from workshop-leads.json.
+- Upcoming one-tap RSVP links plus the Monday AMA, all verified from workshop-leads.json.
 - The Week 2 catch-up link sits up top per the "if you missed it" ask.
 - Honest on recordings: per-session pages link the hub until each `/recordings/N` ingests, flagged in STATUS - no fabricated page numbers.
