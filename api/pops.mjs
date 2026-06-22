@@ -95,7 +95,9 @@ export default async function handler(req) {
     if (!handle) return json({ ok: false, error: 'handle required' });
 
     const videoUrl = cleanUrl(body.videoUrl);
-    const note = String(body.note || '').slice(0, 280);
+    // Strip control characters (keep normal text, newlines, tabs) before storing - this is
+    // returned to other clients, so it must never carry markup/control bytes (mirrors comments.mjs).
+    const note = String(body.note || '').replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '').trim().slice(0, 280);
     const record = JSON.stringify({ handle, fid, videoUrl, note, ts: Date.now() });
 
     let res;

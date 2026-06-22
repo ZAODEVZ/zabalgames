@@ -86,7 +86,7 @@
 
   <script>
   (function() {
-    function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
     function bindKeys(li, activate){
       li.addEventListener('click', activate);
       li.addEventListener('keydown', function(e){

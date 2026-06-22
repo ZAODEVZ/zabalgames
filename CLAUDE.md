@@ -78,8 +78,8 @@ functions in `api/`. 30+ pages; not all listed here - this is the load-bearing s
 - `streams.html` - data streams + chronological timeline; per-entry Cast buttons.
 - `live.html` / `today.html` - "what's on now" surfaces. `dream-leads.html`, `pops.html`,
   `mindful.html`, `graph.html`, `about.html`, `links.html`, `share.html`, `install.html`,
-  `playbook.html`, `research.html` round out the public set. `mentor.html` + `p.html` are
-  data-driven profile templates (load by handle).
+  `playbook.html`, `research.html`, `press.html` round out the public set. `mentor.html` +
+  `p.html` are data-driven profile templates (load by handle).
 - Internal/ops: `status.html` (production board), `crm.html` (roster), `context.html`
   (AI-harness context), `changelog.html`.
 
@@ -120,6 +120,9 @@ no-op gracefully without Redis env vars). 28 endpoints across:
 - **Scheduling:** Cal.com `cal.com/zabal-gamez/workshop-session`, embedded on /lead + /info.
 - **Magnetiq:** the ZABAL Gamez collectible/magnet is the season registration +
   brand-mementos + UGC-upload surface, at `app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez`.
+  The site-wide "Insert Coin" nav button points to `collect.zabalgamez.com` - a branded
+  shortlink (DNS-level, not in `vercel.json`) to that magnet. Keep the two in sync.
+- **Press:** `press.html` (`/press`) is the media kit; linked from every page footer.
 
 ## Git / PR conventions
 - Work happens from web AND terminal sessions. ALWAYS `git fetch origin --prune` +

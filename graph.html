@@ -114,7 +114,7 @@
     var resultsEl = document.getElementById('results');
     var ENTITIES = [], EDGES = [], BY_ID = {}, activeLabel = '';
 
-    function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
 
     function edgesFor(id) {
       var out = [];

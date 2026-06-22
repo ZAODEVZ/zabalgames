@@ -65,7 +65,17 @@ export default async function handler(req) {
   if (!raw) return json({ error: 'no hash' }, 400, origin);
   if (!NEYNAR_KEY) return json({ configured: false, count: 0, comments: [] }, 200, origin);
 
-  const isUrl = /^https?:\/\//i.test(raw);
+  // A URL identifier is only honored for Farcaster hosts - otherwise we would let any caller
+  // make Neynar fetch an arbitrary URL with our quota (SSRF-by-proxy). Non-Farcaster URLs
+  // fall back to bare-hash handling (which sanitizes to hex), so junk simply returns empty.
+  let isUrl = /^https?:\/\//i.test(raw);
+  if (isUrl) {
+    let host = '';
+    try { host = new URL(raw).hostname.toLowerCase(); } catch { host = ''; }
+    var farcasterHost = host === 'farcaster.xyz' || host === 'warpcast.com' ||
+      host.endsWith('.farcaster.xyz') || host.endsWith('.warpcast.com');
+    if (!farcasterHost) isUrl = false;
+  }
   const id = isUrl ? raw : (raw.replace(/[^a-zA-Z0-9x]/g, '').slice(0, 80));
   const api = 'https://api.neynar.com/v2/farcaster/cast/conversation?type=' + (isUrl ? 'url' : 'hash') +
     '&identifier=' + encodeURIComponent(id) + '&reply_depth=2&limit=50&include_chronological_parent_casts=false';
