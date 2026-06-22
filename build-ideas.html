@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Ideas - what should the ZAO build? - ZABAL Gamez</title>
+  <meta name="description" content="The community's wishlist of things to build for the ZAO. Post an idea, upvote the ones you want to see built in July, and tag builders to pick them up.">
+  <link rel="canonical" href="https://zabalgamez.com/build-ideas">
+  <meta property="og:title" content="Build Ideas - ZABAL Gamez">
+  <meta property="og:description" content="What should the ZAO build? Post an idea, upvote the ones you want, and tag a builder to pick it up.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/build-ideas">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Build Ideas - ZABAL Gamez">
+  <meta name="twitter:description" content="What should the ZAO build? Post an idea, upvote it, tag a builder to pick it up.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Pitch a build idea","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/build-ideas","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .idea-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.4rem 0 1.2rem; }
+    .idea-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .idea-card { border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 10px; background: var(--surface-2); padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.55rem; }
+    .idea-card[data-track="artist"]  { border-left-color: var(--pink); }
+    .idea-card[data-track="builder"] { border-left-color: var(--zabal); }
+    .idea-card[data-track="creator"] { border-left-color: var(--cyan); }
+    .idea-top { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+    .idea-top h3 { margin: 0; font-size: 1.05rem; }
+    .idea-track { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.12rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); }
+    .idea-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0; white-space: pre-wrap; }
+    .idea-by { display: flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; color: var(--text-muted); }
+    .idea-by img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; }
+    .idea-by a { color: var(--cyan); cursor: pointer; }
+    .idea-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.25rem; }
+    .idea-btn { font-size: 0.82rem; padding: 0.38rem 0.8rem; border-radius: 6px; font-family: inherit; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+    .idea-btn:hover { filter: brightness(1.12); }
+    .idea-vote { color: var(--gold); border-color: var(--gold); background: transparent; }
+    .idea-vote.voted { background: var(--gold); color: var(--bg); }
+    .idea-vote .vc { font-family: 'JetBrains Mono', monospace; opacity: 0.85; }
+    .idea-tag { color: var(--bg); background: var(--zabal); border-color: var(--zabal); }
+    .idea-empty { color: var(--text-muted); font-size: 0.92rem; }
+    .idea-note { font-size: 0.85rem; color: var(--text-muted); margin: 0.4rem 0 0; }
+    #idea-status { font-size: 0.88rem; margin: 0.6rem 0 0; min-height: 1.2em; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/about.html">About</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.6rem;">
+    <h1>What should we <span class="accent">build</span>?</h1>
+    <p class="lede">This is the community's wishlist of things to build for the ZAO. Post an idea, upvote the ones you want to see built in July, and tag a builder to pick one up. The top ideas are the ones the ecosystem is actually asking for.</p>
+  </header>
+
+  <section class="section">
+    <div class="idea-filter" id="idea-filter">
+      <button type="button" class="ws-filter-btn sel" data-filter="all">All</button>
+      <button type="button" class="track-chip" data-filter="artist">Artist</button>
+      <button type="button" class="track-chip" data-filter="builder">Builder</button>
+      <button type="button" class="track-chip" data-filter="creator">Creator</button>
+    </div>
+    <div class="idea-grid" id="idea-board">
+      <p class="idea-empty">Loading ideas...</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Pitch an idea</h2>
+    <p>Got something you wish existed in the ecosystem? Post it. The community upvotes the strongest ideas, and July builders pull them off the board to build for real.</p>
+    <form id="idea-form" style="margin-top: 1.2rem; max-width: 560px;">
+      <div class="field">
+        <label for="i-title">The idea (one line)</label>
+        <input type="text" id="i-title" name="title" maxlength="80" placeholder="e.g. A tip jar that splits to a whole band" required>
+      </div>
+      <div class="field">
+        <label for="i-track">Track</label>
+        <select id="i-track" name="track">
+          <option value="builder">Builder - developer / aspiring</option>
+          <option value="artist">Artist - musical / visual</option>
+          <option value="creator">Creator - media / distribution</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="i-text">More detail (optional)</label>
+        <textarea id="i-text" name="text" maxlength="500" placeholder="What does it do? Who is it for? Why does the ZAO need it?"></textarea>
+      </div>
+      <button type="submit" class="btn-primary" id="idea-submit">Post idea</button>
+      <p id="idea-status" role="status" aria-live="polite"></p>
+      <p class="idea-note">Posting and voting are verified through Farcaster - open this page in the ZABAL Gamez Mini App to take part. One vote per person per idea.</p>
+    </form>
+  </section>
+
+  <p style="margin-top: 1rem; font-size: 0.85rem;"><a href="/enter.html">Building one of these in July?</a> &nbsp;-&nbsp; <a href="/projects.html">Adoptable projects</a> &nbsp;-&nbsp; <a href="/dream-leads.html">Dream workshop leads</a></p>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/build-ideas.html">Build Ideas</a>
+      <a href="/dream-leads.html">Dream Leads</a>
+      <a href="/enter.html">Enter the Build</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/recordings.html">Recordings</a>
+      <a href="/recaps.html">Session Recaps</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/press.html">Press + Media Kit</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var board = document.getElementById('idea-board');
+  if (!board) return;
+  var IDEAS = [];
+  var VOTED = {};
+  var filter = 'all';
+
+  function byLine(I) {
+    if (!I.username && !I.fid) return '';
+    var who = I.username ? '@' + esc(I.username) : 'fid:' + esc(I.fid);
+    var pfp = I.pfp ? '<img src="' + esc(I.pfp) + '" alt="" loading="lazy">' : '';
+    return '<div class="idea-by">' + pfp + '<a data-fid="' + esc(I.fid || '') + '">' + who + '</a></div>';
+  }
+
+  function render() {
+    var rows = IDEAS.slice().filter(function (I) { return filter === 'all' || I.track === filter; });
+    rows.sort(function (a, b) {
+      var d = (b.votes || 0) - (a.votes || 0);
+      return d !== 0 ? d : (b.ts || 0) - (a.ts || 0);
+    });
+    if (!rows.length) {
+      board.innerHTML = '<p class="idea-empty">No ideas yet. Be the first - pitch one below.</p>';
+      return;
+    }
+    board.innerHTML = rows.map(function (I) {
+      var n = I.votes || 0;
+      var voted = VOTED[I.id] ? ' voted' : '';
+      return '<div class="idea-card" data-track="' + esc(I.track || 'builder') + '" data-id="' + esc(I.id) + '">' +
+        '<div class="idea-top"><h3>' + esc(I.title || '') + '</h3><span class="idea-track">' + esc(I.track || '') + '</span></div>' +
+        (I.text ? '<p class="idea-text">' + esc(I.text) + '</p>' : '') +
+        byLine(I) +
+        '<div class="idea-actions">' +
+          '<button type="button" class="idea-btn idea-vote' + voted + '" data-id="' + esc(I.id) + '">+1 build it <span class="vc">(' + n + ')</span></button>' +
+          '<button type="button" class="idea-btn idea-tag" data-title="' + esc(I.title || '') + '" data-track="' + esc(I.track || '') + '">Share / tag a builder</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function load() {
+    fetch('/api/build-ideas', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { ideas: [] }; })
+      .then(function (res) {
+        IDEAS = (res && res.ideas) || [];
+        render();
+      });
+  }
+  load();
+
+  // Filter chips.
+  document.getElementById('idea-filter').addEventListener('click', function (ev) {
+    var b = ev.target.closest('[data-filter]');
+    if (!b) return;
+    filter = b.getAttribute('data-filter');
+    this.querySelectorAll('[data-filter]').forEach(function (x) { x.classList.toggle('sel', x === b); });
+    render();
+  });
+
+  // +1, share, and profile actions (delegated).
+  board.addEventListener('click', function (ev) {
+    var vote = ev.target.closest('.idea-vote');
+    if (vote) {
+      var id = vote.getAttribute('data-id');
+      if (vote.classList.contains('voted')) return;
+      if (!(window.ZABAL && window.ZABAL.buildIdeaVote)) return;
+      vote.disabled = true;
+      window.ZABAL.buildIdeaVote(id).then(function (r) {
+        vote.disabled = false;
+        if (r && r.ok) {
+          VOTED[id] = true;
+          var idea = IDEAS.filter(function (x) { return x.id === id; })[0];
+          if (idea) idea.votes = r.count;
+          vote.classList.add('voted');
+          var vc = vote.querySelector('.vc'); if (vc) vc.textContent = '(' + r.count + ')';
+        } else if (r && r.reason === 'not-in-miniapp') {
+          if (window.ZABAL.toast) window.ZABAL.toast('Open in Farcaster to vote');
+        }
+      });
+      return;
+    }
+    var tag = ev.target.closest('.idea-tag');
+    if (tag) {
+      var title = tag.getAttribute('data-title');
+      var track = tag.getAttribute('data-track');
+      var trackBit = track ? ' (' + track + ' track)' : '';
+      var text = 'Someone should build this for the ZAO' + trackBit + ': ' + title + '. Pull it up: zabalgamez.com/build-ideas';
+      if (window.ZABAL && window.ZABAL.composeCast) {
+        window.ZABAL.composeCast({ text: text, channelKey: 'zabal' });
+      }
+      return;
+    }
+    var prof = ev.target.closest('[data-fid]');
+    if (prof) {
+      var fid = prof.getAttribute('data-fid');
+      if (fid && window.ZABAL && window.ZABAL.viewProfile) window.ZABAL.viewProfile(Number(fid));
+    }
+  });
+
+  // Submit a new idea (verified, in Mini App).
+  var form = document.getElementById('idea-form');
+  var statusEl = document.getElementById('idea-status');
+  var submitBtn = document.getElementById('idea-submit');
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var title = (document.getElementById('i-title').value || '').trim();
+    var track = document.getElementById('i-track').value;
+    var text = (document.getElementById('i-text').value || '').trim();
+    if (!title) { statusEl.textContent = 'Add a one-line idea first.'; return; }
+    if (!(window.ZABAL && window.ZABAL.submitBuildIdea)) {
+      statusEl.textContent = 'Open this page in the ZABAL Gamez Mini App on Farcaster to post.';
+      return;
+    }
+    submitBtn.disabled = true;
+    statusEl.textContent = 'Posting...';
+    window.ZABAL.submitBuildIdea({ title: title, track: track, text: text }).then(function (r) {
+      submitBtn.disabled = false;
+      if (r && r.ok && r.idea) {
+        IDEAS.unshift(r.idea);
+        VOTED[r.idea.id] = true;
+        render();
+        form.reset();
+        statusEl.textContent = 'Posted. Your idea is on the board.';
+      } else if (r && r.reason === 'not-in-miniapp') {
+        statusEl.textContent = 'Open this page in the ZABAL Gamez Mini App on Farcaster to post.';
+      } else if (r && r.reason === 'limit') {
+        statusEl.textContent = 'You have hit the idea limit - upvote others instead.';
+      } else if (r && r.reason === 'full') {
+        statusEl.textContent = 'The board is full right now. Upvote an existing idea instead.';
+      } else {
+        statusEl.textContent = 'Could not post that. Try again in a moment.';
+      }
+    });
+  });
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

@@ -52,6 +52,18 @@ the public builds board (`/enter`); the builds themselves are the repos from
   Returns `{ ok, repo, count, firstVote }`. Keys: `zabal:buildvotes:v1` (counts),
   `zabal:buildvote:voters:v1:<repo>` (voter sets).
 
+### `GET/POST /api/build-ideas`
+Community "what should the ZAO build" board, surfaced at `/build-ideas`. Fully
+user-submitted (unlike `/dream-leads`, which is curated): a verified FID posts an idea and
+the community upvotes it. The author's own `+1` is seeded on submit, so an idea starts at
+one vote and the author cannot double-vote it.
+
+- `GET`: open read, returns `{ configured, count, ideas: [{ id, fid, username, pfp, title, text, track, ts, votes }] }` (ranked by votes, newest first as tiebreak).
+- `POST`: `Authorization: Bearer <quick-auth-jwt>`.
+  - `{ action: 'idea', title, text?, track?, username?, pfp? }` (`window.ZABAL.submitBuildIdea`) -> `{ ok, idea }`. `title` is required (capped 80 chars), `text` capped 500; `track` is `artist|builder|creator` or omitted; `username`/`pfp` are display-only (the verified FID is the identity anchor). Guarded: max 8 ideas per FID (`reason:'limit'`) and 1000 total (`reason:'full'`).
+  - `{ action: 'vote', id }` (`window.ZABAL.buildIdeaVote`) -> `{ ok, id, count, firstVote }`. One `+1` per FID per idea (same SADD-then-increment model as `/api/dream-vote`).
+  - Keys: `zabal:buildideas:v1` (iid -> idea JSON), `zabal:buildideavotes:v1` (iid -> count), `zabal:buildideavote:voters:v1:<iid>` (voter sets), `zabal:buildideas:byfid:v1` (fid -> count).
+
 ### `GET/POST /api/comments`
 Per-recording comments + likes, surfaced by the `/assets/recording-comments.js` widget on
 every `/recordings/*` page. `id` is the recording path (e.g. `recordings/1`).

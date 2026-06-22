@@ -307,6 +307,57 @@ window.ZABAL.buildVote = async function buildVote(repo) {
   }
 };
 
+// Submit a "what should get built" idea (verified). Inside a Mini App, POSTs the idea to
+// /api/build-ideas with a Quick Auth JWT so it is tied to the author's verified FID; the
+// caller's own display name + pfp ride along (display-only). Returns the server payload
+// ({ ok, idea }) or { ok:false, reason } so the board can prepend it or, outside a Mini
+// App, prompt to open in Farcaster.
+window.ZABAL.submitBuildIdea = async function submitBuildIdea(payload) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const user = await window.ZABAL.getUser().catch(() => null);
+    const res = await sdk.quickAuth.fetch('/api/build-ideas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'idea',
+        title: payload && payload.title,
+        text: payload && payload.text,
+        track: payload && payload.track,
+        username: user && (user.username || user.displayName) || '',
+        pfp: user && user.pfpUrl || '',
+      }),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    if (data && data.ok) window.ZABAL.haptic('medium');
+    return data || { ok: false, reason: 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
+// Build-idea +1 (verified). One +1 per FID per idea. Returns { ok, count, reason } so the
+// board can update the count or, outside a Mini App, prompt to open in Farcaster.
+window.ZABAL.buildIdeaVote = async function buildIdeaVote(id) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/build-ideas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'vote', id }),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    if (data && data.ok) window.ZABAL.haptic('medium');
+    return data && data.ok ? { ok: true, count: data.count, firstVote: data.firstVote } : { ok: false, reason: data.reason || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 // Register a July build (verified). Inside a Mini App, POSTs to /api/register with a Quick
 // Auth JWT so the wallet -> repo mapping is anchored to the builder's verified FID (the
 // server treats the token as an optional FID link - present here, absent on the web). Returns
