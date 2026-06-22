@@ -475,6 +475,20 @@
       "date": "2026-06-25",
       "track": "builder",
       "luma_url": "https://luma.com/k7hpy5vs"
+    },
+    {
+      "id": "034",
+      "name": "topocount",
+      "org": "Neynar",
+      "handle": "@topocount.eth",
+      "topic": "Snapchain under the hood - how Snapchain signers work, OG signers and Snapchain-native signers, Snapchain storage, and potential future work on Snapchain. Built for devs who want the behind-the-hood view.",
+      "format": "Dev talk, recorded",
+      "when": "Tue Jun 23 2026, 5pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-22",
+      "color": "cyan",
+      "date": "2026-06-23",
+      "track": "builder"
     }
   ],
   "_schema": {
