@@ -156,6 +156,7 @@
   fetch('/data/mentors.json', { cache: 'no-cache' })
     .then(function(r) { return r.ok ? r.json() : { mentors: [] }; })
     .then(function(data) {
+      function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
       var mentor = (data.mentors || []).find(function(m) {
         return (m.handle || '').toLowerCase().replace(/^@/, '') === handle;
       });
@@ -168,30 +169,30 @@
       }
 
       eyebrow.textContent = 'ZABAL Gamez Season 1 Mentor' + (mentor.locked ? ' - Locked' : ' - Tentative');
-      nameEl.innerHTML = mentor.name + ' <span class="accent">@' + mentor.handle + '</span>';
+      nameEl.innerHTML = esc(mentor.name) + ' <span class="accent">@' + esc(mentor.handle) + '</span>';
       taglineEl.textContent = mentor.tagline || '';
 
       var ctas = [];
-      if (mentor.farcaster_url) ctas.push('<a href="' + mentor.farcaster_url + '" target="_blank" rel="noopener" class="btn btn-primary">DM on Farcaster</a>');
-      if (mentor.x_url) ctas.push('<a href="' + mentor.x_url + '" target="_blank" rel="noopener" class="btn btn-secondary">On X</a>');
-      if (mentor.site_url) ctas.push('<a href="' + mentor.site_url + '" target="_blank" rel="noopener" class="btn btn-secondary">Site</a>');
+      if (mentor.farcaster_url) ctas.push('<a href="' + esc(mentor.farcaster_url) + '" target="_blank" rel="noopener" class="btn btn-primary">DM on Farcaster</a>');
+      if (mentor.x_url) ctas.push('<a href="' + esc(mentor.x_url) + '" target="_blank" rel="noopener" class="btn btn-secondary">On X</a>');
+      if (mentor.site_url) ctas.push('<a href="' + esc(mentor.site_url) + '" target="_blank" rel="noopener" class="btn btn-secondary">Site</a>');
       ctaEl.innerHTML = ctas.join(' ');
 
-      var bodyHtml = '<div class="card-label" style="color: var(--' + (mentor.color || 'orange') + ');">' +
-        (mentor.expertise_label || 'EXPERTISE') + '</div>' +
-        '<h3>' + mentor.headline + '</h3>' +
-        '<p>' + (mentor.bio || '') + '</p>';
+      var bodyHtml = '<div class="card-label" style="color: var(--' + esc(mentor.color || 'orange') + ');">' +
+        esc(mentor.expertise_label || 'EXPERTISE') + '</div>' +
+        '<h3>' + esc(mentor.headline) + '</h3>' +
+        '<p>' + esc(mentor.bio || '') + '</p>';
       if (mentor.what_they_offer) {
         bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">What this mentor offers</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--text-muted);">' + mentor.what_they_offer + '</p>';
+          '<p style="font-size: 0.9rem; color: var(--text-muted);">' + esc(mentor.what_they_offer) + '</p>';
       }
       if (mentor.best_fit_for) {
         bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Best fit for builders working on</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--text-muted);">' + mentor.best_fit_for + '</p>';
+          '<p style="font-size: 0.9rem; color: var(--text-muted);">' + esc(mentor.best_fit_for) + '</p>';
       }
       if (mentor.champion_handle) {
         bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Champion locked</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--cyan);">@' + mentor.champion_handle + ' - ' + (mentor.champion_build || '') + '</p>';
+          '<p style="font-size: 0.9rem; color: var(--cyan);">@' + esc(mentor.champion_handle) + ' - ' + esc(mentor.champion_build || '') + '</p>';
       } else {
         bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Champion slot</h4>' +
           '<p style="font-size: 0.9rem; color: var(--gold);">Open. This mentor will claim a champion as Phase 1 submissions arrive in July.</p>';

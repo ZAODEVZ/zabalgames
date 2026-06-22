@@ -365,12 +365,19 @@
     over = false;
     won = false;
     maxTile = 0;
+    gameNonce = null; gameSig = null;
     hideModal();
     addRandom();
     addRandom();
     render();
     renderCodex();
     setStatus('');
+    // Pre-fetch a game-session nonce so we have it ready when the player finishes.
+    // If GAME_SECRET is not configured the server returns nonceRequired:false and we skip.
+    fetch('/api/game?action=nonce&game=zao2048')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { if (d && d.nonce && d.sig) { gameNonce = d.nonce; gameSig = d.sig; } })
+      .catch(function () { /* nonce is best-effort; absence means server is not enforcing it */ });
   }
 
   function emptyCells() {
@@ -590,12 +597,17 @@
 
   var submitting = false;
   var authed = false;
+  // Signed game-session nonce (fetched at game start when GAME_SECRET is configured).
+  // Included in score submissions so the server can verify the score came from a real
+  // game session and consume the nonce to prevent replay.
+  var gameNonce = null, gameSig = null;
   function doSubmit(silent) {
     if (submitting) return;
     // Mini App: verified submit via Quick Auth (FID -> handle + address server-side).
     if (window.ZABAL && window.ZABAL.submitScore) {
       submitting = true;
-      window.ZABAL.submitScore('zao2048', score).then(function (d) {
+      var nd = (gameNonce && gameSig) ? { nonce: gameNonce, sig: gameSig } : null;
+      window.ZABAL.submitScore('zao2048', score, nd).then(function (d) {
         submitting = false;
         if (d && d.ok && d.counted) { myRank = d.rank || null; myBest = d.best || myBest; setStatus('Submitted as @' + (d.handle || 'you') + '. Best this month: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); tryAddApp(); return; }
         if (d && (d.reason === 'not-in-miniapp' || d.counted === false)) { identitySubmit(silent); return; }
@@ -624,10 +636,12 @@
   // the board lives in the Farcaster app.
   function webSubmit(handle) {
     submitting = true;
+    var body = { game: 'zao2048', handle: handle, score: score };
+    if (gameNonce) { body.nonce = gameNonce; body.sig = gameSig; }
     fetch('/api/game', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ game: 'zao2048', handle: handle, score: score })
+      body: JSON.stringify(body)
     }).then(function (r) { return r.json(); }).then(function (d) {
       submitting = false;
       if (d && d.ok && d.counted) {

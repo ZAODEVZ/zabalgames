@@ -491,7 +491,7 @@
       })();
       </script>
 
-      <!-- Live signal ticker - claimed/open ratio + countdown to June 1 -->
+      <!-- Live signal ticker - claimed/open ratio + phase-aware season countdown -->
       <div class="live-ticker" style="margin-top: 1rem; padding: 0.8rem 1rem; background: rgba(245,166,35,0.06); border: 1px solid rgba(245,166,35,0.2); border-radius: 8px; font-size: 0.78rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px;">
         <span><span class="live-dot" style="display: inline-block; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; margin-right: 6px; animation: pulse 2s infinite;"></span>LIVE</span>
         <span id="live-leads-stat">-- workshop leads</span>
@@ -511,7 +511,10 @@
         // For now, hardcoded to 0 locked / 8 open per /about. Swap to data/mentors.json once that lands.
         var MENTORS_LOCKED = 0;
         var MENTORS_TOTAL = 8;
-        var LAUNCH_DATE = new Date('2026-06-01T00:00:00Z');
+        // Phase-aware season clock (mirrors index.html) - always points at the next real
+        // milestone so this never sticks on a passed date.
+        var JULY = new Date('2026-07-01T00:00:00Z').getTime();
+        var AUGUST = new Date('2026-08-01T00:00:00Z').getTime();
 
         Promise.all([
           fetch('/data/workshop-leads.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { leads: [] }; }),
@@ -528,17 +531,19 @@
           if (mentorsEl) mentorsEl.textContent = (MENTORS_TOTAL - MENTORS_LOCKED) + ' mentor slots open';
         });
 
-        // Live countdown ticker
+        // Live countdown ticker - phase-aware (July open build -> August Finals)
         function updateCountdown() {
-          var now = new Date();
-          var diff = LAUNCH_DATE - now;
+          var now = Date.now();
           var el = document.getElementById('live-countdown');
           if (!el) return;
-          if (diff <= 0) { el.textContent = 'LIVE - June workshops open'; el.style.color = '#22c55e'; return; }
+          if (now >= AUGUST) { el.textContent = 'August Finals - on now'; el.style.color = '#22c55e'; return; }
+          var target = now < JULY ? JULY : AUGUST;
+          var label = now < JULY ? 'July build in ' : 'Finals in ';
+          var diff = target - now;
           var days = Math.floor(diff / (1000 * 60 * 60 * 24));
           var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          el.textContent = 'launch in ' + days + 'd ' + hours + 'h ' + mins + 'm';
+          el.textContent = label + days + 'd ' + hours + 'h ' + mins + 'm';
         }
         updateCountdown();
         setInterval(updateCountdown, 60000); // refresh once per minute

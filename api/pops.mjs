@@ -83,11 +83,11 @@ export default async function handler(req) {
     const ck = `zabal:pops:${ev}:claimers`;
     const fk = `zabal:pops:${ev}:feed`;
 
-    let handle, fid = null;
+    let handle, fid = null, verified = false;
     const auth = req.headers.get('authorization') || '';
     const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
     if (token) {
-      try { const r = await handleFromToken(token); handle = r.handle; fid = r.fid; }
+      try { const r = await handleFromToken(token); handle = r.handle; fid = r.fid; verified = true; }
       catch { return json({ ok: false, error: 'invalid token' }); }
     } else {
       handle = cleanHandle(body.handle);
@@ -95,8 +95,10 @@ export default async function handler(req) {
     if (!handle) return json({ ok: false, error: 'handle required' });
 
     const videoUrl = cleanUrl(body.videoUrl);
-    const note = String(body.note || '').slice(0, 280);
-    const record = JSON.stringify({ handle, fid, videoUrl, note, ts: Date.now() });
+    // Strip control characters before storing - this is served back to other clients.
+    const note = String(body.note || '').replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '').trim().slice(0, 280);
+    // Tag the record so callers can distinguish verified (Mini App) from web claims.
+    const record = JSON.stringify({ handle, fid, verified, videoUrl, note, ts: Date.now() });
 
     let res;
     try {
@@ -107,7 +109,7 @@ export default async function handler(req) {
         ['SCARD', ck],
       ]);
     } catch { return json({ ok: false, error: 'kv' }); }
-    return json({ ok: true, claimed: true, handle, hasUgc: !!(videoUrl || note), count: Number(res[3] && res[3].result) || 0 });
+    return json({ ok: true, claimed: true, handle, verified, hasUgc: !!(videoUrl || note), count: Number(res[3] && res[3].result) || 0 });
   }
 
   // ---- GET: count + recent submissions ----

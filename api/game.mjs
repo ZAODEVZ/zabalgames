@@ -27,13 +27,19 @@ export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
+// When set, server issues HMAC-signed one-time nonces that score submissions must include.
+// Scores without a valid unused nonce are rejected. Set in Vercel env before any payout.
+const GAME_SECRET = process.env.GAME_SECRET || '';
 const HAATZ = 'https://haatz.quilibrium.com';
 const DOMAIN = 'zabalgamez.com';
 
-// Allowlisted games (key -> max plausible score, to reject garbage submissions).
-const GAMES = { zao2048: 1000000 };
+// Allowlisted games (key -> max plausible score).
+// ZAO 2048 practical ceiling: the 2048 merge sequence sums to well under 100k for a
+// realistic game; 131072 covers the theoretical per-tile max with room to spare.
+const GAMES = { zao2048: 131072 };
 const TOP_N = 200;
-const MONTH_TTL = 6048000; // monthly boards self-clean after ~70 days (last month stays readable for the winner cast)
+const MONTH_TTL = 6048000; // ~70 days - last month stays readable for the winner cast
+const NONCE_TTL = 7200; // nonces expire after 2 hours
 
 function json(body, maxAge = 0) {
   return new Response(JSON.stringify(body), {
@@ -45,6 +51,25 @@ function json(body, maxAge = 0) {
       'Cache-Control': maxAge ? `public, max-age=${maxAge}, s-maxage=${maxAge}` : 'no-store',
     },
   });
+}
+
+// --- Nonce / HMAC helpers (only active when GAME_SECRET is set) ---
+
+// Sign a nonce string with HMAC-SHA256 using the GAME_SECRET, return hex.
+async function hmacSign(nonce) {
+  const key = await crypto.subtle.importKey(
+    'raw', new TextEncoder().encode(GAME_SECRET), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
+  );
+  const buf = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(nonce));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Constant-time string comparison (avoid timing oracle on sig check).
+function safeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return diff === 0;
 }
 
 async function kvPipeline(cmds) {
@@ -92,6 +117,23 @@ export default async function handler(req) {
   const game = String(url.searchParams.get('game') || 'zao2048');
   if (!(game in GAMES)) return json({ ok: false, error: 'unknown game' });
 
+  // ---- GET ?action=nonce: issue a one-time signed game-start token ----
+  // The client calls this before each game. The nonce is stored in Redis with NONCE_TTL and
+  // consumed (deleted) on the matching score submit, so it cannot be replayed.
+  if (req.method === 'GET' && url.searchParams.get('action') === 'nonce') {
+    if (!GAME_SECRET) return json({ ok: true, nonceRequired: false });
+    if (!KV_URL || !KV_TOKEN) return json({ ok: false, error: 'kv-unconfigured' });
+    const nonce = crypto.randomUUID();
+    const exp = Math.floor(Date.now() / 1000) + NONCE_TTL;
+    const payload = `${nonce}:${game}:${exp}`;
+    const sig = await hmacSign(payload);
+    // Store nonce so score POST can validate + consume it.
+    try {
+      await kvPipeline([['SET', `zabal:gamenonce:${nonce}`, payload, 'EX', String(NONCE_TTL)]]);
+    } catch { return json({ ok: false, error: 'kv' }); }
+    return json({ ok: true, nonce, sig, exp, game });
+  }
+
   if (!KV_URL || !KV_TOKEN) {
     return req.method === 'POST'
       ? json({ ok: false, configured: false })
@@ -111,10 +153,7 @@ export default async function handler(req) {
     let score = Math.floor(Number(body.score));
     if (!Number.isFinite(score) || score < 0 || score > GAMES[game]) return json({ ok: false, error: 'bad score' });
 
-    // ANTI-CHEAT: a score only counts when it arrives with a valid Quick Auth JWT. We trust
-    // the FID from the token and resolve the handle + verified address server-side, so the
-    // client cannot spoof who they are or whose wallet gets the reward. An unverified web POST
-    // is accepted (so the page does not error) but never written to the rewarded boards.
+    // ANTI-CHEAT layer 1: Quick Auth JWT required - proves who submitted.
     let handle, address = null;
     const auth = req.headers.get('authorization') || '';
     const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
@@ -122,6 +161,30 @@ export default async function handler(req) {
     let fid;
     try { fid = await verifyQuickAuth(token, DOMAIN); }
     catch { return json({ ok: false, error: 'invalid token' }); }
+
+    // ANTI-CHEAT layer 2: signed one-time nonce - proves the score came from a real game
+    // session started via GET ?action=nonce, not a direct curl with an arbitrary number.
+    if (GAME_SECRET) {
+      const clientNonce = String(body.nonce || '');
+      const clientSig = String(body.sig || '');
+      if (!clientNonce || !clientSig) return json({ ok: false, error: 'nonce required' });
+      // Consume the nonce atomically (GETDEL = get + delete in one round-trip).
+      let storedPayload;
+      try {
+        const res = await fetch(`${KV_URL}/getdel/zabal:gamenonce:${encodeURIComponent(clientNonce)}`, {
+          headers: { Authorization: `Bearer ${KV_TOKEN}` }, signal: AbortSignal.timeout(3000),
+        });
+        const j = await res.json();
+        storedPayload = j.result;
+      } catch { return json({ ok: false, error: 'kv' }); }
+      if (!storedPayload) return json({ ok: false, error: 'nonce invalid or already used' });
+      // Validate the HMAC so a client can't forge a nonce, and confirm it is for this game.
+      const expectedSig = await hmacSign(storedPayload);
+      if (!safeEqual(clientSig, expectedSig)) return json({ ok: false, error: 'sig mismatch' });
+      const [, nonceGame, expStr] = storedPayload.split(':');
+      if (nonceGame !== game) return json({ ok: false, error: 'nonce game mismatch' });
+      if (Math.floor(Date.now() / 1000) > Number(expStr)) return json({ ok: false, error: 'nonce expired' });
+    }
     const profile = await resolveProfile(fid);
     handle = cleanHandle(profile.username) || ('fid' + fid);
     // Prefer the wallet the player is connected with in the Farcaster/Base app (sent from the

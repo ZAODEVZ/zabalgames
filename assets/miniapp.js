@@ -351,15 +351,19 @@ window.ZABAL.getAddress = async function getAddress() {
   }
 };
 
-window.ZABAL.submitScore = async function submitScore(game, score) {
+window.ZABAL.submitScore = async function submitScore(game, score, nonceData) {
   try {
     const ctx = await getContext();
     if (!ctx || !sdk || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
     const address = await window.ZABAL.getAddress();
+    // nonceData = { nonce, sig } pre-fetched at game start. When absent, omitted gracefully
+    // (server accepts if GAME_SECRET is not configured; rejects if it is).
+    const payload = { game: game, score: score, address: address || undefined };
+    if (nonceData && nonceData.nonce) { payload.nonce = nonceData.nonce; payload.sig = nonceData.sig; }
     const res = await sdk.quickAuth.fetch('/api/game', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ game: game, score: score, address: address || undefined }),
+      body: JSON.stringify(payload),
     });
     if (!res.ok) return { ok: false, reason: 'server' };
     const data = await res.json().catch(() => ({}));

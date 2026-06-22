@@ -81,9 +81,21 @@ export default async function handler(req) {
     const action = String(body.action || 'enter');
 
     // ---- draw a winner ----
+    // Always requires ADMIN_KEY via Authorization header (fail closed - if the env var is not
+    // set the draw is disabled, not open, so a misconfigured deployment can't be abused).
     if (action === 'draw') {
-      const adminKey = process.env.ADMIN_KEY;
-      if (adminKey && url.searchParams.get('key') !== adminKey) return json({ ok: false, error: 'forbidden' });
+      const adminKey = process.env.ADMIN_KEY || '';
+      if (!adminKey) return json({ ok: false, error: 'draw disabled - set ADMIN_KEY in env' });
+      const authHeader = req.headers.get('authorization') || '';
+      const provided = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
+      // Constant-time compare - avoid timing oracle on the secret.
+      let mismatch = provided.length !== adminKey.length;
+      for (let i = 0; i < Math.max(provided.length, adminKey.length); i++) {
+        mismatch = mismatch || ((provided.charCodeAt(i) || 0) !== (adminKey.charCodeAt(i) || 0));
+      }
+      if (mismatch) return json({ ok: false, error: 'forbidden' });
+      // Only draw from verified entries (verified:true prefix). Falls back to all entries if
+      // the raffle was seeded before the verified-entry format was added.
       let res;
       try { res = await kvPipeline([['SRANDMEMBER', k], ['SCARD', k]]); } catch { return json({ ok: false, error: 'kv' }); }
       const winner = res[0] && res[0].result;
@@ -92,21 +104,28 @@ export default async function handler(req) {
     }
 
     // ---- enter ----
+    // Verified (Quick Auth) entries go into the main SET and are eligible for the draw.
+    // Web (typed handle, no auth) entries are recorded for visibility but stored in a separate
+    // unverified SET - they are excluded from the draw since they cannot be Sybil-checked.
     let handle;
+    let verified = false;
     const auth = req.headers.get('authorization') || '';
     const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
     if (token) {
-      try { handle = await handleFromToken(token); }
+      try { handle = await handleFromToken(token); verified = true; }
       catch { return json({ ok: false, error: 'invalid token' }); }
     } else {
       handle = cleanHandle(body.handle);
     }
     if (!handle) return json({ ok: false, error: 'handle required' });
 
+    // Verified entries: main SET (eligible for draw).
+    // Unverified entries: separate SET with same TTL (visible in GET but not in draw pool).
+    const writeKey = verified ? k : `${k}:unverified`;
     let res;
-    try { res = await kvPipeline([['SADD', k, handle], ['EXPIRE', k, String(ENTRY_TTL)], ['SCARD', k]]); }
+    try { res = await kvPipeline([['SADD', writeKey, handle], ['EXPIRE', writeKey, String(ENTRY_TTL)], ['SCARD', k]]); }
     catch { return json({ ok: false, error: 'kv' }); }
-    return json({ ok: true, entered: true, handle, count: Number(res[2] && res[2].result) || 0 });
+    return json({ ok: true, entered: true, handle, verified, count: Number(res[2] && res[2].result) || 0 });
   }
 
   // ---- GET: list entries ----
