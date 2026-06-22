@@ -102,7 +102,14 @@ On the live schedule; nothing to record yet. After each runs, move it to section
 | Dr. Jake - Growth through foundations | Jun 16, 6pm | x | x | x |  | Luma live (6svi31dy); capture recording |
 | Jub Jub - Farcaster Batches fireside (Space) | Jun 20, 8am | x | x | x |  | Luma live (c621slze); capture recording |
 | Dan Singjoy (Eden Fractal) - fractal ecosystem + history | Jun 20, 12pm | x | x | x |  | Luma live (tmcmw3o9); prep: dan-singjoy-fractal-prep |
+| AZKAL (FlowStage) - building FlowStage + live demo | Jun 25, 8pm | x | x | x |  | MOVED from Jun 18; Luma live (r1148jip) - update the Luma event date; capture recording |
 | Adrienne (GM Farcaster) - Warpee.eth AI agent | Jun 30, 11:30am | x | x | x |  | Luma live (jlv50mcu) |
+| Nemesis.love - Into the Mind of a Menace | POSTPONED | x | x |  |  | postponed, new date TBD; date cleared in workshop-leads.json |
+
+> **Tracker is stale below the Jun 20 line.** It does not yet have rows for Ali Tiknazoglu,
+> Meta Mu, Minted Merch (all delivered Jun 20-21), or Aziz (delivered Jun 14, recapped in
+> Week 3). Dr. Jake also moved to Jun 23. Needs a full refresh against `data/workshop-leads.json`
+> + `data/recaps.json` - not done in this pass.
 
 ---
 
@@ -156,6 +163,11 @@ Days 1, 2, 3, 5 transcripts are captured. GM Farcaster owns the videos.
 
 ## Cross-cutting gaps / next actions
 
+0. **Week 3 newsletter (recapped Jun 21):** eight sessions covered (Kenny, Chris Dolinsky,
+   Adrian, Jub Jub, Ali Tiknazoglu, Dan Singjoy, Meta Mu, Minted Merch). Aziz (Jun 14,
+   /recordings/11) aired after the Week 2 recap went out and was caught up here. AZKAL moved
+   to Jun 25 and Nemesis.love postponed - both pulled from the recap. Per-session
+   `/recordings/N` pages for the eight still need ingesting from Descript transcripts.
 1. **Stage 4 (OK'd) is not tracked anywhere** - we have no record of guests signing off on
    their cut/page. It is now a standard step in the speaker flow (step 5 in
    `docs/workshop-host-onboarding.md`): share the unlisted YouTube cut, get the OK, then
