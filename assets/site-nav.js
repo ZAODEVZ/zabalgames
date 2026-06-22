@@ -24,6 +24,7 @@
     ['Build', [
       ['Enter the July build', '/enter.html'],
       ['Adoptable projects', '/projects.html'],
+      ['Build ideas', '/build-ideas.html'],
       ['Builder playbook', '/playbook.html'],
       ['Lead a workshop', '/lead.html'],
       ['Mentor', '/mentor.html'],
