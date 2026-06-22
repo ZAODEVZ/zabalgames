@@ -55,6 +55,15 @@
     .vote-btn .vote-up { color: var(--zabal); font-weight: 600; }
     .vote-btn[disabled] { opacity: 0.6; cursor: default; }
     .builds-empty { color: var(--text-muted); font-size: 0.9rem; }
+    /* Phase-aware banner - orients visitors before/during/after July. */
+    .enter-phase { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem;
+      padding: 0.5rem 0.9rem; border: 1px solid var(--border-hover); border-radius: var(--r-pill);
+      background: rgba(255,255,255,0.03); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-muted); }
+    .enter-phase .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex: none; }
+    .enter-phase.live .dot { background: var(--cyan); animation: enter-pulse 2s infinite; }
+    .enter-phase strong { color: var(--text); font-weight: 600; }
+    @keyframes enter-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+    .enter-prefill { font-size: 0.78rem; color: var(--cyan); margin-top: 0.4rem; min-height: 1rem; }
   </style>
 </head>
 <body>
@@ -83,6 +92,10 @@
     <p class="hero-sub">
       No paragraph pitch, no waitlist. In July you ship something that helps the ZAO ecosystem, in public, then register it here so it counts. The strongest July builds get curated into the August Finals - each finalist paired with a ZAO mentor, every finisher paid and given the commemorative collectible.
     </p>
+    <div class="enter-phase" id="enter-phase" hidden>
+      <span class="dot" aria-hidden="true"></span>
+      <span id="enter-phase-text">--</span>
+    </div>
   </header>
 
   <section class="section">
@@ -111,6 +124,7 @@
         <label for="wallet">Wallet address</label>
         <input id="wallet" name="wallet" type="text" inputmode="latin" autocomplete="off" spellcheck="false" placeholder="0x..." aria-describedby="wallet-hint">
         <div class="enter-hint" id="wallet-hint">An address starting with 0x, 40 hex characters. Used for payouts and per-build tracking.</div>
+        <div class="enter-prefill" id="wallet-prefill" role="status" aria-live="polite"></div>
       </div>
       <div class="enter-field">
         <label for="repo">GitHub repo</label>
@@ -228,6 +242,49 @@
       if (trackEl && qTrack && ['artist', 'builder', 'creator'].indexOf(qTrack) >= 0) trackEl.value = qTrack;
     } catch (e) { /* no-op */ }
 
+    // Phase-aware banner: counts down to the July open build, flips to "live" in July, then
+    // points at the August Finals. Mirrors the homepage clock so /enter is never stale.
+    (function () {
+      var JULY = new Date('2026-07-01T00:00:00Z').getTime();
+      var AUGUST = new Date('2026-08-01T00:00:00Z').getTime();
+      var wrap = document.getElementById('enter-phase');
+      var textEl = document.getElementById('enter-phase-text');
+      if (!wrap || !textEl) return;
+      function tick() {
+        var now = Date.now();
+        if (now >= AUGUST) {
+          wrap.classList.remove('live');
+          textEl.innerHTML = 'August Finals underway - <strong>July builds are being judged</strong>';
+        } else if (now >= JULY) {
+          wrap.classList.add('live');
+          textEl.innerHTML = '<strong>The July build is live</strong> - register now, the board is open';
+        } else {
+          wrap.classList.remove('live');
+          var diff = JULY - now;
+          var d = Math.floor(diff / 86400000);
+          var h = Math.floor((diff % 86400000) / 3600000);
+          var m = Math.floor((diff % 3600000) / 60000);
+          textEl.innerHTML = 'July build opens in <strong>' + d + 'd ' + h + 'h ' + m + 'm</strong> - register early, you are on the board day one';
+        }
+        wrap.hidden = false;
+      }
+      tick();
+      setInterval(tick, 60000);
+    })();
+
+    // Wallet autofill: inside a Mini App, prefill the connected wallet so builders do not have
+    // to copy-paste an address. Best-effort and non-blocking (eth_accounts only, no popup).
+    (function () {
+      if (!(window.ZABAL && window.ZABAL.getAddress)) return;
+      var prefillEl = document.getElementById('wallet-prefill');
+      window.ZABAL.getAddress().then(function (addr) {
+        if (addr && walletEl && !walletEl.value) {
+          walletEl.value = addr;
+          if (prefillEl) prefillEl.textContent = 'Filled from your connected wallet - edit if you want payouts elsewhere.';
+        }
+      }).catch(function () { /* no-op */ });
+    })();
+
     function setMsg(text, kind) {
       msg.textContent = text || '';
       msg.className = 'enter-msg' + (kind ? ' ' + kind : '');
@@ -257,17 +314,35 @@
 
       btn.disabled = true;
       setMsg('Registering...', '');
-      fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ wallet: wallet, github_repo: repo, track: track })
-      })
-        .then(function(r) { return r.json().catch(function() { return {}; }); })
+      var payload = { wallet: wallet, github_repo: repo, track: track };
+
+      // Inside a Mini App, register with Quick Auth so the build is anchored to the verified
+      // FID (the server links wallet -> FID when the token is present). On the web, fall back
+      // to the plain unauthenticated call - the wallet alone still registers the build.
+      var call;
+      if (window.ZABAL && window.ZABAL.register) {
+        call = window.ZABAL.register(payload).then(function (data) {
+          if (data && data.reason === 'not-in-miniapp') {
+            return fetch('/api/register', {
+              method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+            }).then(function (r) { return r.json().catch(function () { return {}; }); });
+          }
+          return data;
+        });
+      } else {
+        call = fetch('/api/register', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+        }).then(function (r) { return r.json().catch(function () { return {}; }); });
+      }
+
+      call
         .then(function(data) {
           if (data && data.ok) {
             var tail = data.count ? ' ' + data.count + ' build' + (data.count === 1 ? '' : 's') + ' entered so far.' : '';
-            setMsg('You are in. ' + data.github_repo + ' is registered to ' + shortWallet(data.wallet) + '.' + tail, 'ok');
+            var verified = data.fid ? ' Verified to your Farcaster account.' : '';
+            setMsg('You are in. ' + data.github_repo + ' is registered to ' + shortWallet(data.wallet) + '.' + verified + tail, 'ok');
             form.reset();
+            var pf = document.getElementById('wallet-prefill'); if (pf) pf.textContent = '';
           } else if (data && data.reason === 'unconfigured') {
             setMsg('Registration is not open yet - it goes live with the July backend. Try again closer to July 1.', 'err');
             btn.disabled = false;
