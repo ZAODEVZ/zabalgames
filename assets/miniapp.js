@@ -307,6 +307,28 @@ window.ZABAL.buildVote = async function buildVote(repo) {
   }
 };
 
+// Register a July build (verified). Inside a Mini App, POSTs to /api/register with a Quick
+// Auth JWT so the wallet -> repo mapping is anchored to the builder's verified FID (the
+// server treats the token as an optional FID link - present here, absent on the web). Returns
+// the server payload ({ ok, github_repo, wallet, count, fid }) or { ok:false, reason }.
+window.ZABAL.register = async function register(payload) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    if (data && data.ok) window.ZABAL.haptic('medium');
+    return data || { ok: false, reason: 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 // Submit an arcade game score (verified). Inside a Mini App, POSTs to /api/game with a
 // Quick Auth JWT so the score is tied to the player's FID (handle + verified address
 // resolved server-side - no wallet popup, no typing). Returns { ok, best, rank } or
