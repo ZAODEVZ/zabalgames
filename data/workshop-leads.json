@@ -445,6 +445,20 @@
       "date": "2026-06-23",
       "track": "builder",
       "luma_url": "https://luma.com/vo204kbu"
+    },
+    {
+      "id": "032",
+      "name": "Dylan Yarter",
+      "org": "BizarreBeasts",
+      "handle": "@bizarrebeast",
+      "topic": "Building the Bizarre Pixel Studio - a browser-based pixel art and animation tool where your artwork is also editable code, launching as a webpage and mini app for the BizarreBeasts and Farcaster community. Plus the BizarreBeasts miniapp, games, and artwork.",
+      "format": "Live talk plus Q and A, recorded",
+      "when": "Tue Jun 23 2026, 11:30am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-22",
+      "color": "pink",
+      "date": "2026-06-23",
+      "track": "creator"
     }
   ],
   "_schema": {
