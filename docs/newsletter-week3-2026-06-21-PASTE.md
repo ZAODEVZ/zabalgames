@@ -15,19 +15,19 @@ New here? ZABAL Gamez is The ZAO's three-month build event:
 The build is the application. Start here: https://zabalgamez.com/info
 
 Only have a few minutes? Start here:
-- If you build: Adrian (diviflyy) on Empire Builder V3 - the endpoints and the leaderboard, the technical map for anyone building on Empire Builder: https://zabalgamez.com/recordings
+- If you build: Adrian (@diviflyy) on Empire Builder V3 - the endpoints and the leaderboard, the technical map for anyone building on Empire Builder: https://zabalgamez.com/recordings
 - If you create: AZKAL on FlowStage - scale your content without losing your taste, no generative AI: https://zabalgamez.com/recordings
-- If you are finding your lane: Meta Mu on how to add value as a community member - find the gaps, fill them, become someone a community cannot do without: https://zabalgamez.com/recordings
+- If you are finding your lane: Meta Mu (@metamu) on how to add value as a community member - find the gaps, fill them, become someone a community cannot do without: https://zabalgamez.com/recordings
 
 ## Day 15 - a doubleheader: bounties, and a brand-new app
 
-Kenny took us through POIDH - the "pics or it didn't happen" bounty platform he built: post a bounty, someone completes it with proof, and they get paid. Live in the session we finalized the Best ZABAL Gamez Ad bounty and kicked off a new two-week one - the open invitation to make something for the season. Watch it: https://zabalgamez.com/recordings
+Kenny (@kenny) took us through POIDH - the "pics or it didn't happen" bounty platform he built: post a bounty, someone completes it with proof, and they get paid. Live in the session we finalized the Best ZABAL Gamez Ad bounty and kicked off a new two-week one - the open invitation to make something for the season. Watch it: https://zabalgamez.com/recordings
 
-Then Chris Dolinsky gave us a first look at the Vini App - a thirty-minute walk through what he is building, made for the ZABAL Gamez community to actually try. The kind of session that turns into your next favorite tool. Watch it: https://zabalgamez.com/recordings
+Then Chris Dolinsky (@1dolinski) gave us a first look at the Vini App - a thirty-minute walk through what he is building, made for the ZABAL Gamez community to actually try. The kind of session that turns into your next favorite tool. Watch it: https://zabalgamez.com/recordings
 
 ## Day 16 - under the hood of Empire Builder
 
-Adrian (diviflyy), co-founder of Empire Builder, took us into V3 - the endpoints for an existing empire, how the leaderboard works, and how to deploy a new one. If yerbearserker's opening-week talk was the vision, this was the map: the exact moving parts you wire up when you build on Empire Builder. Watch it: https://zabalgamez.com/recordings
+Adrian (@diviflyy), co-founder of Empire Builder, took us into V3 - the endpoints for an existing empire, how the leaderboard works, and how to deploy a new one. If yerbearserker's opening-week talk was the vision, this was the map: the exact moving parts you wire up when you build on Empire Builder. Watch it: https://zabalgamez.com/recordings
 
 ## Day 18 - scale your content without losing your taste
 
@@ -35,21 +35,21 @@ AZKAL walked us through FlowStage and why he built it: short-form videos and sli
 
 ## Day 19 - into the mind of a menace
 
-Nemesis.love brought a creator-track story: the career, the journey, and the decision to leave the old path - and how that leap turned into building and creating in this space. The honest version of the origin story most people only show the highlight reel of. Watch it: https://zabalgamez.com/recordings
+Nemesis.love (@nemesis.love) brought a creator-track story: the career, the journey, and the decision to leave the old path - and how that leap turned into building and creating in this space. The honest version of the origin story most people only show the highlight reel of. Watch it: https://zabalgamez.com/recordings
 
 ## Day 20 - a triple-header: Farcaster culture, learning to build, and fractals
 
-Jub Jub opened the morning with a fireside on Farcaster Batches - and a wider conversation about the builders and the mentality of the people of Farcaster. What the culture actually rewards, from someone deep in it. Watch it: https://zabalgamez.com/recordings
+Jub Jub (@jubjub) opened the morning with a fireside on Farcaster Batches - and a wider conversation about the builders and the mentality of the people of Farcaster. What the culture actually rewards, from someone deep in it. Watch it: https://zabalgamez.com/recordings
 
-Ali Tiknazoglu followed with Previbecoding - what he is learning building with AI tooling right now, aimed squarely at people who are learning to code today. The realtime field notes of someone a few steps ahead, not a polished after-the-fact lecture. Watch it: https://zabalgamez.com/recordings
+Ali Tiknazoglu (@alitiknazoglu) followed with Previbecoding - what he is learning building with AI tooling right now, aimed squarely at people who are learning to code today. The realtime field notes of someone a few steps ahead, not a polished after-the-fact lecture. Watch it: https://zabalgamez.com/recordings
 
-And Dan Singjoy closed it out with Eden Fractal and the fractal ecosystem - what fractals are, the history of fractal communities, and how it all connects back to the ZAO Fractal. Watch it: https://zabalgamez.com/recordings
+And Dan Singjoy (@dansingjoy) closed it out with Eden Fractal and the fractal ecosystem - what fractals are, the history of fractal communities, and how it all connects back to the ZAO Fractal. Watch it: https://zabalgamez.com/recordings
 
 ## Day 21 - a doubleheader: community, and onchain merch
 
-Meta Mu (RoseCityWeb3) made the case that the most valuable thing you can be in any community is the person who fills the gaps - find what is missing, do it, and become someone the community cannot do without. Simple, repeatable ways to contribute that turn into reputation, trust, and real opportunity. Watch it: https://zabalgamez.com/recordings
+Meta Mu (@metamu, RoseCityWeb3) made the case that the most valuable thing you can be in any community is the person who fills the gaps - find what is missing, do it, and become someone the community cannot do without. Simple, repeatable ways to contribute that turn into reputation, trust, and real opportunity. Watch it: https://zabalgamez.com/recordings
 
-And Minted Merch closed the week with a creator-track fireside on selling merch onchain - how it works in plain terms, and what it opens up for a creator selling to their own audience. Watch it: https://zabalgamez.com/recordings
+And Minted Merch (@mintedmerch) closed the week with a creator-track fireside on selling merch onchain - how it works in plain terms, and what it opens up for a creator selling to their own audience. Watch it: https://zabalgamez.com/recordings
 
 ## New on the site this week
 
