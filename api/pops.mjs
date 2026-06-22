@@ -22,11 +22,16 @@ const DOMAIN = 'zabalgamez.com';
 const DEFAULT_EVENT = 'wip-2026-06-11';
 const FEED_MAX = 500;
 
-function json(body) {
+// CORS: reflect a known ZABAL origin, never a blanket wildcard. Same-origin app calls are
+// unaffected; this stops arbitrary third-party sites reading or inflating pops.
+const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
+
+function mkJson(body, origin) {
   return new Response(JSON.stringify(body), {
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': origin,
+      'Vary': 'Origin',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Authorization, Content-Type',
       'Cache-Control': 'no-store',
@@ -66,6 +71,10 @@ async function handleFromToken(token) {
 }
 
 export default async function handler(req) {
+  const reqOrigin = req.headers.get('origin') || '';
+  const origin = ALLOWED_ORIGINS.has(reqOrigin) ? reqOrigin : 'https://zabalgamez.com';
+  const json = (body) => mkJson(body, origin);
+
   if (req.method === 'OPTIONS') return json({ ok: true });
   const url = new URL(req.url);
   const event = cleanEvent(url.searchParams.get('event'));

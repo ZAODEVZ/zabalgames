@@ -82,10 +82,16 @@ async function publishCast(text) {
 export default async function handler(req) {
   if (req.method !== 'GET' && req.method !== 'POST') return json({ ok: false, reason: 'method not allowed' }, 405);
 
-  // Cron auth: enforced only if CRON_SECRET is configured.
-  if (CRON_SECRET) {
+  // Cron auth: fail closed. CRON_SECRET must be set (Vercel injects the matching
+  // Authorization header on scheduled runs); without it the endpoint is disabled rather
+  // than left open to public triggering. Constant-time compare avoids a timing oracle.
+  if (!CRON_SECRET) return json({ ok: false, reason: 'cron-secret-unset' }, 503);
+  {
     const auth = req.headers.get('authorization') || '';
-    if (auth !== `Bearer ${CRON_SECRET}`) return json({ ok: false, reason: 'unauthorized' }, 401);
+    const expected = `Bearer ${CRON_SECRET}`;
+    let diff = auth.length ^ expected.length;
+    for (let i = 0; i < expected.length; i++) diff |= (auth.charCodeAt(i) || 0) ^ expected.charCodeAt(i);
+    if (diff !== 0) return json({ ok: false, reason: 'unauthorized' }, 401);
   }
 
   if (!KV_URL || !KV_TOKEN) return json({ ok: true, skipped: 'kv-unconfigured' });

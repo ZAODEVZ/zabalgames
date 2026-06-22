@@ -41,11 +41,17 @@ const TOP_N = 200;
 const MONTH_TTL = 6048000; // ~70 days - last month stays readable for the winner cast
 const NONCE_TTL = 7200; // nonces expire after 2 hours
 
-function json(body, maxAge = 0) {
+// CORS: reflect a known ZABAL origin, never a blanket wildcard. Same-origin app calls
+// (the site + the Mini App webview, both served from zabalgamez.com) are unaffected; this
+// just stops arbitrary third-party sites from reading the endpoint cross-origin.
+const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
+
+function mkJson(body, maxAge, origin) {
   return new Response(JSON.stringify(body), {
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': origin,
+      'Vary': 'Origin',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Authorization, Content-Type',
       'Cache-Control': maxAge ? `public, max-age=${maxAge}, s-maxage=${maxAge}` : 'no-store',
@@ -111,6 +117,10 @@ async function resolveProfile(fid) {
 }
 
 export default async function handler(req) {
+  const reqOrigin = req.headers.get('origin') || '';
+  const origin = ALLOWED_ORIGINS.has(reqOrigin) ? reqOrigin : 'https://zabalgamez.com';
+  const json = (body, maxAge = 0) => mkJson(body, maxAge, origin);
+
   if (req.method === 'OPTIONS') return json({ ok: true });
 
   const url = new URL(req.url);

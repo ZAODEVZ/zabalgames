@@ -24,6 +24,7 @@ export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
+const CRON_SECRET = process.env.CRON_SECRET || '';
 const TOKENS_KEY = 'zabal:notif:tokens';
 const SITE = 'https://zabalgamez.com';
 const BATCH = 100;
@@ -72,7 +73,19 @@ function buildNotification(leads) {
   };
 }
 
-export default async function handler() {
+export default async function handler(req) {
+  // Cron auth: fail closed (see daily-cast.mjs). This sends push notifications to all
+  // added-app users, so CRON_SECRET must be set or the endpoint is disabled rather than
+  // open to public triggering. Constant-time compare.
+  if (!CRON_SECRET) return json({ ok: false, reason: 'cron-secret-unset' }, 503);
+  {
+    const auth = (req && req.headers && req.headers.get('authorization')) || '';
+    const expected = `Bearer ${CRON_SECRET}`;
+    let diff = auth.length ^ expected.length;
+    for (let i = 0; i < expected.length; i++) diff |= (auth.charCodeAt(i) || 0) ^ expected.charCodeAt(i);
+    if (diff !== 0) return json({ ok: false, reason: 'unauthorized' }, 401);
+  }
+
   if (!KV_URL || !KV_TOKEN) return json({ ok: true, skipped: 'kv-unconfigured' });
 
   const today = new Date().toISOString().slice(0, 10);

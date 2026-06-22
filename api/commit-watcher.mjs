@@ -160,10 +160,15 @@ async function pushEpisode(name, body) {
 export default async function handler(req) {
   if (req.method !== 'GET' && req.method !== 'POST') return json({ ok: false, reason: 'method not allowed' }, 405);
 
-  // Cron auth: enforced only if CRON_SECRET is configured.
-  if (CRON_SECRET) {
+  // Cron auth: fail closed (see daily-cast.mjs). CRON_SECRET must be set or the endpoint is
+  // disabled rather than open to public triggering of GitHub/Bonfire traffic. Constant-time.
+  if (!CRON_SECRET) return json({ ok: false, reason: 'cron-secret-unset' }, 503);
+  {
     const auth = req.headers.get('authorization') || '';
-    if (auth !== `Bearer ${CRON_SECRET}`) return json({ ok: false, reason: 'unauthorized' }, 401);
+    const expected = `Bearer ${CRON_SECRET}`;
+    let diff = auth.length ^ expected.length;
+    for (let i = 0; i < expected.length; i++) diff |= (auth.charCodeAt(i) || 0) ^ expected.charCodeAt(i);
+    if (diff !== 0) return json({ ok: false, reason: 'unauthorized' }, 401);
   }
 
   if (!KV_URL || !KV_TOKEN) return json({ ok: true, skipped: 'kv-unconfigured' });

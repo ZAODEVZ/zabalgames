@@ -266,12 +266,15 @@ Distinct claimers in a SET, submissions in a capped list. Graceful no-op without
 
 ### `GET/POST /api/raffle`
 "Collect to enter, then draw a winner" raffle for live events, tagged by `event`.
-- `POST { event?, handle? }` -> `{ ok, count, entered:true }` (idempotent SET of handles)
-- `POST { event?, action:'draw' }` -> `{ ok, winner, count }`
+- `POST { event?, handle? }` -> `{ ok, count, entered:true, verified }` (idempotent SET)
+- `POST { event?, action:'draw' }` + `Authorization: Bearer <ADMIN_KEY>` -> `{ ok, winner, count }`
 - `GET ?event=<id>` -> `{ ok, configured, event, count, entries[] }`
 
-Verified in-app / typed handle on web. The draw is host-gated by `?key=` when
-`ADMIN_KEY` is set, otherwise open (fine for a single live event). No-op without KV.
+Verified (Quick Auth) entries go in the draw pool; web (typed-handle) entries are recorded
+in a separate `:unverified` SET and excluded from the draw. The draw requires `ADMIN_KEY`
+via the Authorization header (constant-time compare) and **fails closed** - if `ADMIN_KEY`
+is unset the draw is disabled, not open. CORS is restricted to the ZABAL origin allowlist.
+No-op without KV.
 
 ### `GET/POST /api/ref`
 Referral attribution for the share-to-grow loop. Share links carry `?ref=<handle>`;
@@ -292,8 +295,9 @@ distinct credited set). Graceful no-op without KV.
 | `NOTIFY_SECRET` | Bearer secret guarding `POST /api/notify` | set to any long random string; pass it as `Authorization: Bearer <value>` when sending |
 | `NEYNAR_API_KEY` | Neynar key - publishes the cast in `POST /api/daily-cast` and reads recording reply threads in `GET /api/cast-comments` | Neynar dev dashboard (free tier) |
 | `NEYNAR_SIGNER_UUID` | Approved Neynar signer that posts the daily cast | Neynar managed signer (approve once) |
-| `CRON_SECRET` | Optional bearer enforced on cron endpoints when set | any long random string; Vercel injects it on cron calls |
-| `ADMIN_KEY` | Optional; when set, gates the `POST /api/raffle` draw via `?key=` | any long random string; pass it only from the host's draw call |
+| `CRON_SECRET` | **Required** for the cron endpoints (`daily-cast`, `monthly-winner`, `commit-watcher`, `workshop-reminders`) - they fail closed (503) without it. Vercel injects the matching `Authorization: Bearer` header on scheduled runs | any long random string; set in Vercel and it auto-injects on cron calls |
+| `ADMIN_KEY` | Gates the `POST /api/raffle` draw via `Authorization: Bearer <key>` (constant-time, fail closed - draw is disabled until set) | any long random string; send only from the host's draw call |
+| `GAME_SECRET` | Enables score-nonce enforcement on `POST /api/game` (HMAC-signed one-time nonces). Without it the nonce layer is bypassed gracefully; set it before any payout | any long random string |
 | `EMPIRE_ID` | Optional override for `GET /api/empire-leaderboard`. Defaults to `zabalgamez01e9af` (our tokenless empire), so no config is needed | Empire Builder |
 | `EMPIRE_API_KEY` | Optional; sent as `x-api-key` to Empire Builder. Reads work without it | Empire Builder |
 
