@@ -505,7 +505,8 @@
       "confirmed_date": "2026-06-23",
       "color": "gold",
       "date": "2026-06-25",
-      "track": "builder"
+      "track": "builder",
+      "handle": "@rizzle"
     }
   ],
   "_schema": {
