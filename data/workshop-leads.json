@@ -70,7 +70,8 @@
       "color": "pink",
       "track": "creator",
       "date": "2026-06-02",
-      "luma_url": "https://luma.com/xa3bsp21"
+      "luma_url": "https://luma.com/xa3bsp21",
+      "handle": "@ohnahji"
     },
     {
       "id": "006",
@@ -399,8 +400,7 @@
       "color": "cyan",
       "date": "2026-06-24",
       "track": "creator",
-      "luma_url": "https://luma.com/zao",
-      "handle": "@nemesis.love"
+      "luma_url": "https://luma.com/zao"
     },
     {
       "id": "029",
@@ -465,7 +465,6 @@
       "id": "033",
       "name": "Vlad",
       "org": "Singularity",
-      "handle": "@singularity.diy",
       "topic": "Singularity - launch a fundraising mission on Solana with zero equity given up: a token auto-deploys on a bonding curve, graduates to an open market, then a Treasury Council governs the funds. Bring a project idea and leave knowing how to launch your own fundraise.",
       "format": "Talk + Q&A, recorded",
       "when": "Thu Jun 25 2026, 11:30am EST",
