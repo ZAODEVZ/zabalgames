@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media tracker - ZABAL Gamez</title>
+  <meta name="description" content="Every ZABAL Gamez workshop and its media: speaker, handles, Luma, recording, transcript, and where each sits in the production pipeline.">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .md-note { color: var(--text-muted); font-size: 0.88rem; line-height: 1.55; margin: 0 0 1.1rem; }
+    .md-note code { background: var(--surface-2); padding: 0.05rem 0.35rem; border-radius: 5px; font-size: 0.85em; }
+    .md-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.6rem; margin: 0.4rem 0 1.4rem; }
+    .md-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.7rem 0.8rem; }
+    .md-stat b { display: block; font-family: 'Syne', sans-serif; font-size: 1.45rem; line-height: 1; color: var(--text); }
+    .md-stat span { display: block; font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim); margin-top: 0.3rem; }
+    .md-filters { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; }
+    .md-filters button { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.03em; text-transform: uppercase; padding: 0.35rem 0.7rem; border-radius: 999px; border: 1px solid var(--border-hover); background: var(--surface); color: var(--text-dim); cursor: pointer; }
+    .md-filters button.on { border-color: var(--zabal); color: var(--zabal); }
+    .md-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; }
+    table.md { border-collapse: collapse; width: 100%; font-size: 0.85rem; min-width: 900px; }
+    table.md th, table.md td { padding: 0.55rem 0.7rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    table.md th { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); position: sticky; top: 0; background: var(--surface); }
+    table.md th.c, table.md td.c { text-align: center; }
+    table.md tr:last-child td { border-bottom: none; }
+    table.md td.sp { white-space: normal; min-width: 160px; }
+    table.md td.sp b { font-family: 'Syne', sans-serif; font-weight: 700; }
+    table.md td.sp small { color: var(--text-dim); display: block; font-size: 0.74rem; }
+    .dot { display: inline-block; width: 13px; height: 13px; border-radius: 50%; border: 1px solid var(--border-hover); }
+    .dot.on { background: var(--zabal); border-color: var(--zabal); }
+    .pill { font-size: 0.62rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--border-hover); color: var(--text-dim); }
+    .pill.t-artist { border-color: var(--pink); color: var(--pink); }
+    .pill.t-builder { border-color: var(--zabal); color: var(--zabal); }
+    .pill.t-creator { border-color: var(--cyan); color: var(--cyan); }
+    a.lk { color: var(--cyan); text-decoration: none; } a.lk:hover { text-decoration: underline; }
+    .md-han { color: var(--text-dim); font-size: 0.8rem; }
+    .md-updated { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-dim); margin-top: 1.6rem; }
+    .md-legend { font-size: 0.78rem; color: var(--text-muted); margin: 0.5rem 0 0; }
+    .md-legend .dot { vertical-align: middle; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/speakers">Speakers</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.4rem;">
+    <div class="hero-eyebrow">Media tracker</div>
+    <h1>Every session, <span class="accent">every link</span>.</h1>
+    <p class="hero-sub">
+      The full ZABAL Gamez workshop roster and its media - who spoke, their handles, the Luma,
+      the recording, the transcript, and where each sits in the production pipeline. All times EST.
+      Generated live from the season data.
+    </p>
+  </header>
+
+  <div class="md-stats" id="md-stats" aria-label="At a glance"></div>
+
+  <div class="md-filters" id="md-filters" aria-label="Filter by track">
+    <button data-track="all" class="on">All</button>
+    <button data-track="artist">Artist</button>
+    <button data-track="builder">Builder</button>
+    <button data-track="creator">Creator</button>
+  </div>
+
+  <div class="md-wrap">
+    <table class="md" id="t-media">
+      <thead><tr>
+        <th>Date</th><th>Speaker</th><th>Track</th><th>Time</th>
+        <th class="c">Luma</th><th class="c">Recording</th><th class="c">Transcript</th>
+        <th class="c">YouTube</th><th class="c">Descript</th>
+      </tr></thead>
+      <tbody><tr><td colspan="9" style="color:var(--text-muted);">Loading...</td></tr></tbody>
+    </table>
+  </div>
+  <p class="md-legend">
+    <span class="dot on"></span> done &nbsp; <span class="dot"></span> not yet &nbsp;|&nbsp;
+    <b>Descript</b> = raw video uploaded for editing. <b>Recording</b> links the page; <b>YouTube</b> the final cut.
+  </p>
+
+  <p class="md-updated" id="md-updated"></p>
+
+</div>
+</main>
+
+<script>
+  var TODAY = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]; }); }
+  function dot(on){ return '<span class="dot' + (on ? ' on' : '') + '"></span>'; }
+  function fmtDate(d){
+    if(!d) return '';
+    var p = d.split('-'); if (p.length !== 3) return d;
+    var mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(p[1],10)-1];
+    return mo + ' ' + parseInt(p[2],10);
+  }
+  function timeOf(when){
+    var m = (when||'').match(/(\d{1,2}(:\d{2})?(\s*-\s*\d{1,2}(:\d{2})?)?\s*(am|pm))/i);
+    return m ? m[1].replace(/\s+/g,'') : '';
+  }
+
+  var rows = [];
+
+  Promise.all([
+    fetch('/data/workshop-leads.json', { cache: 'no-store' }).then(function(r){ return r.json(); }),
+    fetch('/recordings/index.json', { cache: 'no-store' }).then(function(r){ return r.json(); }),
+    fetch('/data/media-status.json', { cache: 'no-store' }).then(function(r){ return r.json(); })
+  ]).then(function (res) {
+    var leads = (res[0].leads || []).filter(function(l){ return l.date; });
+    var recs = (res[1].recordings || []);
+    var status = (res[2].speakers || {});
+
+    function recFor(name){
+      var n = (name||'').toLowerCase();
+      for (var i=0;i<recs.length;i++){
+        var p = (recs[i].presenter||'').toLowerCase();
+        if (p && (p.indexOf(n)>-1 || n.indexOf(p.split(' ')[0])>-1)) return recs[i];
+      }
+      return null;
+    }
+
+    rows = leads.map(function (l) {
+      var r = recFor(l.name) || {};
+      var st = status[l.name] || {};
+      var fc = l.handle ? '<span class="md-han">' + esc(l.handle) + '</span>' : '';
+      var x = st.x ? '<span class="md-han"> &middot; X ' + esc(st.x) + '</span>' : '';
+      var org = l.org ? '<small>' + esc(l.org) + (fc||x ? ' &middot; ' : '') + (fc||'') + (x||'') + '</small>'
+                      : ((fc||x) ? '<small>' + (fc||'') + (x||'') + '</small>' : '');
+      var sp = '<b>' + esc(l.name) + '</b>' + org;
+      return {
+        date: l.date,
+        track: l.track || '',
+        hasVid: !!r.youtube,
+        hasTx: !!r.transcript,
+        inDesc: !!st.descript,
+        html: '<tr data-track="' + esc(l.track||'') + '">' +
+          '<td>' + esc(fmtDate(l.date)) + '</td>' +
+          '<td class="sp">' + sp + '</td>' +
+          '<td>' + (l.track ? '<span class="pill t-' + esc(l.track) + '">' + esc(l.track) + '</span>' : '') + '</td>' +
+          '<td>' + esc(timeOf(l.when)) + '</td>' +
+          '<td class="c">' + (l.luma_url ? '<a class="lk" href="' + esc(l.luma_url) + '">RSVP</a>' : dot(false)) + '</td>' +
+          '<td class="c">' + (r.page ? '<a class="lk" href="' + esc(r.page) + '">page</a>' : dot(false)) + '</td>' +
+          '<td class="c">' + dot(!!r.transcript) + '</td>' +
+          '<td class="c">' + (r.youtube ? '<a class="lk" href="' + esc(r.youtube) + '">watch</a>' : dot(false)) + '</td>' +
+          '<td class="c">' + dot(!!st.descript) + '</td>' +
+        '</tr>'
+      };
+    }).sort(function(a,b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+
+    render('all');
+
+    // stats
+    var stats = [
+      [rows.length, 'sessions'],
+      [rows.filter(function(x){ return x.inDesc; }).length, 'in Descript'],
+      [rows.filter(function(x){ return x.hasVid; }).length, 'on YouTube']
+    ];
+    document.getElementById('md-stats').innerHTML = stats.map(function(s){
+      return '<div class="md-stat"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>';
+    }).join('');
+
+    document.getElementById('md-updated').textContent = 'Generated client-side from live data on load. ' + TODAY;
+  }).catch(function(e){
+    document.querySelector('#t-media tbody').innerHTML = '<tr><td colspan="9" style="color:var(--gold);">Could not load data.</td></tr>';
+  });
+
+  function render(track){
+    var list = track === 'all' ? rows : rows.filter(function(x){ return x.track === track; });
+    document.querySelector('#t-media tbody').innerHTML = list.length
+      ? list.map(function(x){ return x.html; }).join('')
+      : '<tr><td colspan="9" style="color:var(--text-muted);">None.</td></tr>';
+  }
+
+  document.getElementById('md-filters').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    [].forEach.call(this.querySelectorAll('button'), function(x){ x.classList.remove('on'); });
+    b.classList.add('on');
+    render(b.getAttribute('data-track'));
+  });
+</script>
+
+</body>
+</html>

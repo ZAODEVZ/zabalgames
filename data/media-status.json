@@ -1,0 +1,33 @@
+{
+  "_note": "Manual media-pipeline overrides for the /media tracker page, merged with data/workshop-leads.json (schedule, Farcaster handle, Luma) and recaps.json (YouTube, recording page, transcript). Keyed by the lead 'name' in workshop-leads.json. descript: is the raw video uploaded to Descript yet (from Iman's working sheet - 'In Luma Only' means NO). x: their X/Twitter handle. post: URL of the announce cast/post about the session, if one exists.",
+  "speakers": {
+    "yerbearserker": { "descript": true },
+    "Joshua.eth": { "descript": true },
+    "Ohnahji": { "descript": true },
+    "Fireside chat with Sopha": { "descript": true },
+    "Joseph Goats": { "descript": true },
+    "Will T of Web3": { "descript": true },
+    "Zaal": { "descript": true },
+    "Cassie": { "descript": true },
+    "Adam Miller": { "descript": true },
+    "Aziz (MotoMoto)": { "descript": true },
+    "Kenny": { "descript": true, "x": "@kennyistyping" },
+    "Chris Dolinsky": { "descript": true, "x": "@wonderlinski" },
+    "Adrian": { "descript": true },
+    "Dan Singjoy": { "descript": true },
+    "Meta Mu": { "descript": true },
+    "Jub Jub": { "descript": false },
+    "Ali Tiknazoglu": { "descript": false },
+    "Minted Merch": { "descript": false },
+    "The Farcaster Intern": { "descript": false },
+    "Dr. Jake": { "descript": false },
+    "Saltorious": { "descript": false },
+    "Dylan Yarter": { "descript": false, "x": "@bizarrebeasts_" },
+    "topocount": { "descript": false },
+    "Nemesis.love": { "descript": false },
+    "AZKAL": { "descript": false },
+    "Teresa Marrin Nakra": { "descript": false },
+    "Vlad": { "descript": false },
+    "Adrienne": { "descript": false }
+  }
+}
