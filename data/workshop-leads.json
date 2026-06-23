@@ -70,7 +70,8 @@
       "color": "pink",
       "track": "creator",
       "date": "2026-06-02",
-      "luma_url": "https://luma.com/xa3bsp21"
+      "luma_url": "https://luma.com/xa3bsp21",
+      "handle": "@ohnahji"
     },
     {
       "id": "006",
@@ -349,11 +350,11 @@
       "org": "FlowStage",
       "topic": "Building FlowStage - why he built it and a short live demo. FlowStage helps artists scale their content without losing their taste: short-form videos and slideshows from your own footage and audio, organized by aesthetics, no generative AI. Plus how builders can connect into it through the FlowStage API.",
       "format": "Presentation + live demo, recorded",
-      "when": "Thu Jun 18 2026, 8pm EST",
+      "when": "Thu Jun 25 2026, 8pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-06-15",
       "color": "pink",
-      "date": "2026-06-18",
+      "date": "2026-06-25",
       "track": "artist",
       "luma_url": "https://luma.com/r1148jip",
       "instagram": "azkalsounds"
@@ -391,16 +392,15 @@
       "id": "028",
       "name": "Nemesis.love",
       "org": "",
-      "topic": "Come Into the Mind of a Menace - a creator-track personal story: the career, the journey, the decision to leave the old path, and how that leap led to building and creating in this space.",
-      "format": "Talk + Q&A, recorded",
-      "when": "Fri Jun 19 2026, 11:30am EST",
+      "topic": "Come Into the Mind of a Menace - a creator-track personal story: the autobiography, the gravitation toward web3 and how it kept popping up across the career until it stuck, the decision to leave the old path, and how that leap led to building and creating in this space.",
+      "format": "Pre-recorded talk",
+      "when": "Wed Jun 24 2026, 11:30am EST",
       "status": "confirmed",
-      "confirmed_date": "2026-06-18",
+      "confirmed_date": "2026-06-22",
       "color": "cyan",
-      "date": "2026-06-19",
+      "date": "2026-06-24",
       "track": "creator",
-      "luma_url": "https://luma.com/zao",
-      "handle": "@nemesis.love"
+      "luma_url": "https://luma.com/zao"
     },
     {
       "id": "029",
@@ -445,6 +445,50 @@
       "date": "2026-06-23",
       "track": "builder",
       "luma_url": "https://luma.com/vo204kbu"
+    },
+    {
+      "id": "032",
+      "name": "Dylan Yarter",
+      "org": "BizarreBeasts",
+      "handle": "@bizarrebeast",
+      "topic": "Building the Bizarre Pixel Studio - a browser-based pixel art and animation tool where your artwork is also editable code, launching as a webpage and mini app for the BizarreBeasts and Farcaster community. Plus the BizarreBeasts miniapp, games, and artwork.",
+      "format": "Live talk plus Q and A, recorded",
+      "when": "Tue Jun 23 2026, 11:30am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-22",
+      "color": "pink",
+      "date": "2026-06-23",
+      "track": "creator",
+      "luma_url": "https://luma.com/hh3sjqkn"
+    },
+    {
+      "id": "033",
+      "name": "Vlad",
+      "org": "Singularity",
+      "topic": "Singularity - launch a fundraising mission on Solana with zero equity given up: a token auto-deploys on a bonding curve, graduates to an open market, then a Treasury Council governs the funds. Bring a project idea and leave knowing how to launch your own fundraise.",
+      "format": "Talk + Q&A, recorded",
+      "when": "Thu Jun 25 2026, 11:30am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-22",
+      "color": "zabal",
+      "date": "2026-06-25",
+      "track": "builder",
+      "luma_url": "https://luma.com/k7hpy5vs"
+    },
+    {
+      "id": "034",
+      "name": "topocount",
+      "org": "Neynar",
+      "handle": "@topocount.eth",
+      "topic": "Snapchain under the hood - how Snapchain signers work, OG signers and Snapchain-native signers, Snapchain storage, and potential future work on Snapchain. Built for devs who want the behind-the-hood view.",
+      "format": "Dev talk, recorded",
+      "when": "Tue Jun 23 2026, 5pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-22",
+      "color": "cyan",
+      "date": "2026-06-23",
+      "track": "builder",
+      "luma_url": "https://luma.com/1iv0klu3"
     }
   ],
   "_schema": {

@@ -76,6 +76,18 @@ These ran; the work now is finishing edits, transcripts, thumbnails, and YouTube
 | Z1 | Zaal - ZAO Fractal weekly intro | /recordings/zao/1 | x | x | n/a |  |  | x | x | x |
 | 06 | Joseph Goats - Owning your music | /recordings/6 | x | x | x |  |  | x |  |  |
 | 07 | Will T of Web3 - Building KFMEDIA | /recordings/7 | x | x | x |  |  | x |  |  |
+| 08 | WaveWarZ / Hurricane Ike | /recordings/8 | x | x | n/a |  |  | x | x | x |
+| 09 | Cassie (Quilibrium) - Farcaster protocol | /recordings/9 | x | x | x |  |  | x | ~ |  |
+| 10 | Adam Miller (MiDAO) - miDAO + Beta Briefing | /recordings/10 | x | x | x |  |  | x | ~ |  |
+| 11 | Aziz (MotoMoto) - Non-dev to shipped, Baraza | /recordings/11 | x | x | n/a |  |  | x | ~ |  |
+| 12 | Kenny (POIDH) - POIDH + ZABAL ad bounty | /recordings/12 | x | x | x |  |  | x |  |  |
+| 13 | Chris Dolinsky (Vini App) - Vini App demo | /recordings/13 | x | x | x |  |  | x |  |  |
+| 14 | Adrian (diviflyy) - Empire Builder V3 endpoints | /recordings/14 | x | x | x |  |  | x |  |  |
+| 15 | Jub Jub - Farcaster Batches fireside | /recordings/15 | x | x | x |  |  | x |  |  |
+| 16 | Ali Tiknazoglu - Previbecoding (AI coding) | /recordings/16 | x | x | x |  |  | x |  |  |
+| 17 | Dan Singjoy - Eden Fractal + ecosystem | /recordings/17 | x | x | x |  |  | x |  |  |
+| 18 | Meta Mu - Adding value as community member | /recordings/18 | x | x | x |  |  | x |  |  |
+| 19 | Minted Merch - Selling merch onchain | /recordings/19 | x | x | x |  |  | x |  |  |
 
 **Where each one stands (the open work):**
 - **01 / 02 / 03** - fully shipped (thumbnail, transcript, page, YouTube all live). Only gap: log the guest **OK'd** sign-off (stage 4) so we have it on record.
@@ -85,6 +97,9 @@ These ran; the work now is finishing edits, transcripts, thumbnails, and YouTube
 - **Z1 Zaal / ZAO Fractal** - transcript + page + YouTube live (published Jun 15); internal ZAO intro, no Luma. Thumbnail optional.
 - **06 Joseph Goats** - recap page is a **placeholder** ("added once the recording is processed"). Pull the recording -> transcript -> thumbnail -> YouTube.
 - **07 Will T** - same placeholder state as 06. Same pipeline to run.
+- **08 Hurricane Ike** - transcript + page + YouTube live. Done.
+- **09-11 (Cassie, Adam, Aziz)** - all have transcripts + pages; **YouTube cuts owed** for all three.
+- **12-19 (Week 3 sessions)** - **all recorded Jun 15-21**; transcripts pending extraction from Descript; pages + videos owed. Ingest manifests as transcripts + YouTube IDs arrive. **No OK'd logs yet** for any session.
 
 ---
 
@@ -94,15 +109,15 @@ On the live schedule; nothing to record yet. After each runs, move it to section
 
 | Guest / session | Date | 1 Sched | 2 Book | 3 Luma | 6 Rec | Next |
 |---|---|:--:|:--:|:--:|:--:|---|
-| Zaal - WIP Meetup (ecosystem tour, ZAO Fractals) | Jun 11 | x | x | x |  | runs today - capture the recording |
-| Cassie (Quilibrium) - Farcaster protocol build-along | Jun 12 | x | x | x |  | confirm + capture |
-| Adam Miller (MiDAO) - talking miDAO | Jun 12, 5:45pm | x | x | x |  | Luma live (l1c6sgzc); capture recording |
-| Kenny (POIDH) - POIDH + ZABAL ad bounty | Jun 15, 4pm | x | x | x |  | Luma live (9ylnwvyx); capture recording |
-| Adrian / diviflyy (Empire Builder) - Empire Builder V3 convo | Jun 16, 12pm | x | x | x |  | Luma live (kaz6hnm4); capture recording |
-| Dr. Jake - Growth through foundations | Jun 16, 6pm | x | x | x |  | Luma live (6svi31dy); capture recording |
-| Jub Jub - Farcaster Batches fireside (Space) | Jun 20, 8am | x | x | x |  | Luma live (c621slze); capture recording |
-| Dan Singjoy (Eden Fractal) - fractal ecosystem + history | Jun 20, 12pm | x | x | x |  | Luma live (tmcmw3o9); prep: dan-singjoy-fractal-prep |
-| Adrienne (GM Farcaster) - Warpee.eth AI agent | Jun 30, 11:30am | x | x | x |  | Luma live (jlv50mcu) |
+| The Farcaster Intern - AMA, open mic | Jun 22, 5pm | x | x | x |  | TODAY (Jun 22); capture recording |
+| Dr. Jake - Growth through foundations | Jun 23, 6pm | x | x | x |  | Luma live (6svi31dy); capture recording |
+| Saltorious - Harness + Bankr | Jun 23, 8pm | x | x | x |  | Luma live (vo204kbu); capture recording |
+| Teresa Marrin Nakra - Generative AI in Ableton | Jun 25, 5:45pm | x | x | x |  | Luma live (hwz9men2); capture recording |
+| AZKAL (FlowStage) - building FlowStage + live demo | Jun 25, 8pm | x | x | x |  | MOVED from Jun 18; Luma live (r1148jip); capture recording |
+| Adrienne (GM Farcaster) - Warpee.eth AI agent | Jun 30, 11:30am | x | x | x |  | Luma live (jlv50mcu); capture recording |
+| Nemesis.love - Into the Mind of a Menace | POSTPONED | x | x |  |  | postponed, new date TBD; date cleared in workshop-leads.json |
+
+**Status:** Week 3 (Jun 15-21) fully delivered and moved to Section A (#12-19). Remaining 6 sessions are Jun 22-30.
 
 ---
 
@@ -156,6 +171,11 @@ Days 1, 2, 3, 5 transcripts are captured. GM Farcaster owns the videos.
 
 ## Cross-cutting gaps / next actions
 
+0. **Week 3 newsletter (recapped Jun 21):** eight sessions covered (Kenny, Chris Dolinsky,
+   Adrian, Jub Jub, Ali Tiknazoglu, Dan Singjoy, Meta Mu, Minted Merch). Aziz (Jun 14,
+   /recordings/11) aired after the Week 2 recap went out and was caught up here. AZKAL moved
+   to Jun 25 and Nemesis.love postponed - both pulled from the recap. Per-session
+   `/recordings/N` pages for the eight still need ingesting from Descript transcripts.
 1. **Stage 4 (OK'd) is not tracked anywhere** - we have no record of guests signing off on
    their cut/page. It is now a standard step in the speaker flow (step 5 in
    `docs/workshop-host-onboarding.md`): share the unlisted YouTube cut, get the OK, then
