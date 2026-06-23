@@ -147,7 +147,8 @@
       var r = recFor(l.name) || {};
       var st = status[l.name] || {};
       var fc = l.handle ? '<span class="md-han">' + ext(fcUrl(l.handle), l.handle) + '</span>' : '';
-      var x = st.x ? '<span class="md-han"> &middot; ' + ext(xUrl(st.x), 'X ' + st.x) + '</span>' : '';
+      var x = st.x === 'n/a' ? '<span class="md-han"> &middot; X n/a</span>'
+            : st.x ? '<span class="md-han"> &middot; ' + ext(xUrl(st.x), 'X ' + st.x) + '</span>' : '';
       var bits = [];
       if (l.org) bits.push(esc(l.org));
       if (fc) bits.push(fc);

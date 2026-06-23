@@ -24,10 +24,10 @@
     "Saltorious": { "descript": false },
     "Dylan Yarter": { "descript": false, "x": "@bizarrebeasts_" },
     "topocount": { "descript": false },
-    "Nemesis.love": { "descript": false },
-    "AZKAL": { "descript": false },
-    "Teresa Marrin Nakra": { "descript": false },
-    "Vlad": { "descript": false },
+    "Nemesis.love": { "descript": false, "x": "n/a" },
+    "AZKAL": { "descript": false, "x": "n/a" },
+    "Teresa Marrin Nakra": { "descript": false, "x": "n/a" },
+    "Vlad": { "descript": false, "x": "n/a" },
     "Adrienne": { "descript": false }
   }
 }
