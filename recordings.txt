@@ -11,6 +11,7 @@ Chronological feed of every recording: https://zabalgamez.com/streams
 workshop  |  track: builder  |  2026-06-14
 Presenter: Aziz (MotoMoto) (@azizke), Build Africa DAO
 Watch: https://zabalgamez.com/recordings/11
+Video: https://youtu.be/MAzecp9zVWA
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-14-aziz-motomoto-baraza.md
 Summary: A ZABAL Gamez session with Aziz (MotoMoto) of Build Africa DAO. Coming from media and production with no coding background, he built Baraza Protocol by directing AI tools - a mobile-first, no-jargon platform for the savings groups and cooperatives across Africa (chamas, SACCOs, stokvels) to run on-chain, plus Baraza TV, a decentralized broadcast layer. He traces the path from a non-technical-founders hackathon (40 dollars, 72 hours, Claude and ChatGPT) to a working build, why he put mobile and accessibility first (M-PESA, USSD, zero blockchain jargon), and his advice for non-coders: know the problem you can identify with, write the PRD that answers the real questions, then just ship and build in public.
 Takeaways:
