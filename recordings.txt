@@ -26,6 +26,7 @@ Topics: Non-Dev to Shipped, vibe coding, Build Africa DAO, Baraza Protocol, cham
 workshop  |  track: builder  |  2026-06-12
 Presenter: Adam Miller (@thethriller), MIDAO
 Watch: https://zabalgamez.com/recordings/10
+Video: https://youtu.be/-Fzy0b3RCDQ
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-adam-miller-midao.md
 Summary: A ZABAL Gamez conversation with Adam "The Thriller" Miller, founder and CEO of MIDAO. Two threads: MIDAO, the Marshall Islands legal framework that lets a DAO - or now a decentralized AI agent - become a real legal entity (a DAO LLC), so the people governing it are not personally liable for what it does; and Beta Briefing, his agentic daily-news tool that runs a multi-stage AI pipeline over your interests and delivers an editorialized briefing in text and audio. Plus a practical agentic-engineering segment: directing Claude Code with Codex as a second opinion and a dual-review sub-agent command.
 Takeaways:
