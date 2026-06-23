@@ -1,6 +1,6 @@
 ZABAL GAMEZ - PEOPLE (plain text for agents)
 
-Generated 2026-06-15 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 41 people.
+Generated 2026-06-23 from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. 51 people.
 Structured JSON:  https://zabalgamez.com/data/crm.json
 Human page:       https://zabalgamez.com/crm
 Live players board (joins / shares / casts): https://zabalgamez.com/leaderboard
@@ -53,6 +53,10 @@ Workshop lead  |  track: builder
   - Workshop: Non-Dev to Shipped (Sun Jun 14 2026)
 Farcaster: @azizke
 Profile: https://zabalgamez.com/p?handle=azizke
+======================================================================
+AZKAL  [Headliner]
+Workshop lead  |  track: artist
+  - Workshop: Building FlowStage (Thu Jun 25 2026)
 ======================================================================
 Cashless Man (Booster)  [Builder]
 Dream lead, Batches builder  |  track: builder
@@ -120,6 +124,11 @@ Workshop lead  |  track: artist
 Farcaster: @duodomusica  |  X: @duodomusica
 Profile: https://zabalgamez.com/p?handle=duodomusica
 ======================================================================
+Dylan Yarter  [Headliner]
+Workshop lead  |  track: creator
+  - Workshop: Building the Bizarre Pixel Studio (Tue Jun 23 2026)
+Farcaster: @bizarrebeast
+======================================================================
 Hurric4n3Ike  [Builder]
 Core builder, Partner
   - WaveWarZ founder - Solana music battle markets
@@ -181,6 +190,20 @@ Dream lead, Batches builder  |  track: creator
   - Farcaster Batches: POWER (Day 5)
 Farcaster: @baseddesigner.eth
 ======================================================================
+Meta Mu  [Headliner]
+Workshop lead  |  track: creator
+  - Workshop: How to add value as a community member (Sun Jun 21 2026)
+Farcaster: @metamu
+======================================================================
+Minted Merch  [Headliner]
+Workshop lead  |  track: creator
+  - Workshop: Selling merch onchain (Sun Jun 21 2026)
+Farcaster: @mintedmerch
+======================================================================
+Nemesis.love  [Headliner]
+Workshop lead  |  track: creator
+  - Workshop: Come Into the Mind of a Menace (Wed Jun 24 2026)
+======================================================================
 Nikki Sapp (Juke)  [Builder]
 Dream lead, Batches builder  |  track: builder
   - On the Dream Leads board
@@ -197,6 +220,7 @@ Ohnahji  [Headliner]
 Workshop lead  |  track: creator
   - Live streamer, founder of the Ohnahji community
   - Workshop: His journey in live streaming (Tue Jun 2 2026)
+Farcaster: @ohnahji
 Profile: https://zabalgamez.com/p?handle=ohnahji
 ======================================================================
 Plat0x  [Headliner]
@@ -215,10 +239,24 @@ Riley Beans  [Challenger]
 Dream lead  |  track: artist
   - On the Dream Leads board
 ======================================================================
+Saltorious  [Headliner]
+Workshop lead  |  track: builder
+  - Workshop: Harness, the tool he built, and Bankr, the team he just joined (Tue Jun 23 2026)
+Farcaster: @saltorious.eth
+======================================================================
 Sam  [Builder]
 Core builder
   - WaveWarZ-Base co-builder
 Profile: https://zabalgamez.com/p?handle=sam-wwbase
+======================================================================
+Teresa Marrin Nakra  [Headliner]
+Workshop lead  |  track: artist
+  - Workshop: Making Music with Generative AI in Ableton (Thu Jun 25 2026)
+======================================================================
+The Farcaster Intern  [Headliner]
+Workshop lead  |  track: builder
+  - Workshop: ZABAL GAMEZ AMA w/ The Farcaster Intern (Mon Jun 22 2026)
+Farcaster: @farcaster
 ======================================================================
 Thy Revolution  [Headliner]
 Workshop lead
@@ -233,6 +271,11 @@ Dream lead, Batches builder  |  track: creator
   - Farcaster Batches: betrmint (Day 5)
 Farcaster: @betrmint  |  X: @betrmint
 ======================================================================
+topocount  [Headliner]
+Workshop lead  |  track: builder
+  - Workshop: Snapchain under the hood (Tue Jun 23 2026)
+Farcaster: @topocount.eth
+======================================================================
 Tyler Stambaugh  [Headliner]
 Workshop lead, Partner  |  track: builder
   - Founder, Magnetiq - workshop library platform
@@ -242,6 +285,10 @@ Profile: https://zabalgamez.com/p?handle=tylerstambaugh
 Ven (The Open Machine)  [Challenger]
 Dream lead  |  track: builder
   - On the Dream Leads board
+======================================================================
+Vlad  [Headliner]
+Workshop lead  |  track: builder
+  - Workshop: Singularity (Thu Jun 25 2026)
 ======================================================================
 Will T of Web3  [Headliner]
 Workshop lead  |  track: creator
