@@ -27,9 +27,13 @@
     table.md th { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); position: sticky; top: 0; background: var(--surface); }
     table.md th.c, table.md td.c { text-align: center; }
     table.md tr:last-child td { border-bottom: none; }
-    table.md td.sp { white-space: normal; min-width: 160px; }
+    table.md td.sp { white-space: normal; min-width: 180px; }
     table.md td.sp b { font-family: 'Syne', sans-serif; font-weight: 700; }
     table.md td.sp small { color: var(--text-dim); display: block; font-size: 0.74rem; }
+    /* keep the speaker column visible while scrolling sideways on mobile */
+    table.md th.sp-h, table.md td.sp { position: sticky; left: 0; z-index: 2; background: var(--bg); }
+    table.md th.sp-h { z-index: 3; background: var(--surface); }
+    @media (max-width: 600px) { table.md td.sp, table.md th.sp-h { box-shadow: 1px 0 0 var(--border); } }
     .dot { display: inline-block; width: 13px; height: 13px; border-radius: 50%; border: 1px solid var(--border-hover); }
     .dot.on { background: var(--zabal); border-color: var(--zabal); }
     .pill { font-size: 0.62rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--border-hover); color: var(--text-dim); }
@@ -66,7 +70,8 @@
     <p class="hero-sub">
       The full ZABAL Gamez workshop roster and its media - who spoke, their handles, the Luma,
       the recording, the transcript, and where each sits in the production pipeline. All times EST.
-      Generated live from the season data.
+      Generated live from the season data. For speaker bios and every session per person, see
+      <a class="lk" href="/speakers">the speakers page</a>.
     </p>
   </header>
 
@@ -82,7 +87,7 @@
   <div class="md-wrap">
     <table class="md" id="t-media">
       <thead><tr>
-        <th>Date</th><th>Speaker</th><th>Track</th><th>Time</th>
+        <th class="sp-h">Speaker</th><th>Date</th><th>Track</th><th>Time</th>
         <th class="c">Luma</th><th class="c">Recording</th><th class="c">Transcript</th>
         <th class="c">YouTube</th><th class="c">Descript</th>
       </tr></thead>
@@ -134,14 +139,23 @@
       return null;
     }
 
+    function fcUrl(h){ return 'https://farcaster.xyz/' + String(h).replace(/^@+/, ''); }
+    function xUrl(h){ return 'https://x.com/' + String(h).replace(/^@+/, ''); }
+    function ext(url, label){ return '<a class="lk" href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(label) + '</a>'; }
+
     rows = leads.map(function (l) {
       var r = recFor(l.name) || {};
       var st = status[l.name] || {};
-      var fc = l.handle ? '<span class="md-han">' + esc(l.handle) + '</span>' : '';
-      var x = st.x ? '<span class="md-han"> &middot; X ' + esc(st.x) + '</span>' : '';
-      var org = l.org ? '<small>' + esc(l.org) + (fc||x ? ' &middot; ' : '') + (fc||'') + (x||'') + '</small>'
-                      : ((fc||x) ? '<small>' + (fc||'') + (x||'') + '</small>' : '');
-      var sp = '<b>' + esc(l.name) + '</b>' + org;
+      var fc = l.handle ? '<span class="md-han">' + ext(fcUrl(l.handle), l.handle) + '</span>' : '';
+      var x = st.x ? '<span class="md-han"> &middot; ' + ext(xUrl(st.x), 'X ' + st.x) + '</span>' : '';
+      var bits = [];
+      if (l.org) bits.push(esc(l.org));
+      if (fc) bits.push(fc);
+      if (x) bits.push(x.replace(/^ &middot; /, ''));
+      var org = bits.length ? '<small>' + bits.join(' &middot; ') + '</small>' : '';
+      // name links to their profile page (Farcaster) when we have a handle
+      var nameHtml = l.handle ? ext(fcUrl(l.handle), l.name) : esc(l.name);
+      var sp = '<b>' + nameHtml + '</b>' + org;
       return {
         date: l.date,
         track: l.track || '',
@@ -149,8 +163,8 @@
         hasTx: !!r.transcript,
         inDesc: !!st.descript,
         html: '<tr data-track="' + esc(l.track||'') + '">' +
-          '<td>' + esc(fmtDate(l.date)) + '</td>' +
           '<td class="sp">' + sp + '</td>' +
+          '<td>' + esc(fmtDate(l.date)) + '</td>' +
           '<td>' + (l.track ? '<span class="pill t-' + esc(l.track) + '">' + esc(l.track) + '</span>' : '') + '</td>' +
           '<td>' + esc(timeOf(l.when)) + '</td>' +
           '<td class="c">' + (l.luma_url ? '<a class="lk" href="' + esc(l.luma_url) + '">RSVP</a>' : dot(false)) + '</td>' +
