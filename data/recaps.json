@@ -156,6 +156,7 @@
       "track": "builder",
       "format": "Live workshop with slides, recorded",
       "page": "/recordings/9",
+      "youtube": "https://youtu.be/FZxzc2ieT4w",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-cassie-farcaster-protocol.md",
       "link": "https://github.com/farcasterorg",
       "link_label": "Farcaster org (FIPs)",
