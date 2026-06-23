@@ -164,7 +164,8 @@
       "color": "pink",
       "date": "2026-06-09",
       "track": "artist",
-      "luma_url": "https://luma.com/nxfm7edg"
+      "luma_url": "https://luma.com/nxfm7edg",
+      "handle": "@joseacabrerav"
     },
     {
       "id": "013",
@@ -193,7 +194,8 @@
       "color": "pink",
       "track": "builder",
       "date": "2026-06-12",
-      "luma_url": "https://luma.com/l1c6sgzc"
+      "luma_url": "https://luma.com/l1c6sgzc",
+      "handle": "@thethriller"
     },
     {
       "id": "015",
@@ -342,7 +344,8 @@
       "track": "builder",
       "luma_url": "https://luma.com/sd3aho83",
       "spec_url": "https://artizen.fund/index/p/baraza-tv?season=6",
-      "spec_label": "Baraza on Artizen"
+      "spec_label": "Baraza on Artizen",
+      "handle": "@azizke"
     },
     {
       "id": "025",
