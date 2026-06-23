@@ -493,6 +493,19 @@
       "date": "2026-06-23",
       "track": "builder",
       "luma_url": "https://luma.com/1iv0klu3"
+    },
+    {
+      "id": "035",
+      "name": "Rizzle + the WIP",
+      "org": "WIP Meetup",
+      "topic": "ZABAL Gamez Fireside with Rizzle and the WIP - a conversation at the WIP meetup.",
+      "format": "Fireside, livestreamed and recorded",
+      "when": "Thu Jun 25 2026",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-23",
+      "color": "gold",
+      "date": "2026-06-25",
+      "track": "builder"
     }
   ],
   "_schema": {
