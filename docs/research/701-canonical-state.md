@@ -337,7 +337,7 @@ June = workshop month: builders across the ecosystem record one ~30-min session 
 
 ### Why
 
-- WaveWarZ-Base is the agentic-on-Base build Sam (candytoybox) is shipping and Arthur (Neynar) is reviewing - per [Doc 711](714-tyler-call.md... actually [Doc 711](711-arthur-wavewarz-base-call-may19.md) hosted in ZAO research; mirrored intent here).
+- WaveWarZ-Base is the agentic-on-Base build Sam (candytoybox) is shipping and Arthur (Neynar) is reviewing - per Doc 711 (Arthur's WaveWarZ-Base call, hosted in ZAO research; linked at the bottom of this doc; mirrored intent here).
 - The Finals become the V1 launch event for WaveWarZ-Base. Real cohort + real stakes + real prize = best possible first test.
 - Real economic signal beats a 1p1v poll for "would I actually use this build."
 - 1% trade cut per WaveWarZ economics flows to the builder forever post-Finals.
