@@ -20,7 +20,8 @@
     { "source": "/log",     "destination": "/changelog",                             "permanent": false },
     { "source": "/team",    "destination": "/about",                                 "permanent": false },
     { "source": "/roster",  "destination": "/p",                                     "permanent": false },
-    { "source": "/people",  "destination": "/p",                                     "permanent": false }
+    { "source": "/people",  "destination": "/p",                                     "permanent": false },
+    { "source": "/speakers", "destination": "/media",                                "permanent": false }
   ],
   "headers": [
     {
