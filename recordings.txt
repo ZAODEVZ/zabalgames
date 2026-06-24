@@ -1,13 +1,29 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-23 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 13 recordings, newest first.
+Generated 2026-06-24 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 14 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
 Chronological feed of every recording: https://zabalgamez.com/streams
 
 ======================================================================
-[1] Non-Dev to Shipped: building Baraza Protocol with AI tools
+[1] POIDH: the open bounty protocol
+workshop  |  track: builder  |  2026-06-15
+Presenter: Kenny (@kenny), POIDH
+Watch: https://zabalgamez.com/recordings/12
+Video: https://youtu.be/EdfMN-lRI4E
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-15-kenny-poidh.md
+Summary: Kenny, founder of POIDH, breaks down the open bounty protocol he built - put a bounty on-chain, transparently, and anyone can fund it, add to it, or claim it. The throughline: POIDH is a protocol, not just an app. poidh.xyz is the most popular front end, but anyone can build their own - NARS DAO launched an alternate front end the morning of the session. Zaal walks through running real bounties: the Best ZABAL Gamez Ad bounty with 8 submissions, a submitters board that queries the contract directly with an AI-judged rubric, and rewarding every submitter through an Empire Builder leaderboard. Kenny shows composability in action - Femi shipped an NFT marketplace MVP in 90 minutes off the open-source repo - then creates a new bounty live: the ZABAL Gamez Open Pot, open through July.
+Takeaways:
+  - POIDH is a protocol, not an app - anyone can build a front end on the same contracts, like NARS DAO did.
+  - Open bounties let anyone add funds on top; deadlines plus single-winner curation surface real value over money-grabbers.
+  - Composability compounds: Femi built an NFT marketplace MVP in 90 minutes from the open repo, and Vini App added POIDH the same week.
+  - Good bounties carry maximum context - a pre-cleared brand kit, a clear rubric, a markdown description.
+  - You can reward every participant programmatically through an Empire Builder leaderboard, not just the winner.
+Topics: POIDH, bounty protocol, on-chain bounties, composability, Empire Builder, Farcaster, Base
+
+======================================================================
+[2] Non-Dev to Shipped: building Baraza Protocol with AI tools
 workshop  |  track: builder  |  2026-06-14
 Presenter: Aziz (MotoMoto) (@azizke), Build Africa DAO
 Watch: https://zabalgamez.com/recordings/11
@@ -23,7 +39,7 @@ Takeaways:
 Topics: Non-Dev to Shipped, vibe coding, Build Africa DAO, Baraza Protocol, chamas and SACCOs, mobile-first, M-PESA, Baraza TV, building in public, Africa, AI tooling
 
 ======================================================================
-[2] MIDAO + Beta Briefing: legal entities for DAOs and AI agents
+[3] MIDAO + Beta Briefing: legal entities for DAOs and AI agents
 workshop  |  track: builder  |  2026-06-12
 Presenter: Adam Miller (@thethriller), MIDAO
 Watch: https://zabalgamez.com/recordings/10
@@ -39,7 +55,7 @@ Takeaways:
 Topics: MIDAO, DAO LLC, AI agent legal entity, Marshall Islands, Beta Briefing, agentic engineering, Claude Code
 
 ======================================================================
-[3] The Farcaster protocol, ins and outs
+[4] The Farcaster protocol, ins and outs
 workshop  |  track: builder  |  2026-06-12
 Presenter: Cassie (@cassie), Quilibrium
 Watch: https://zabalgamez.com/recordings/9
@@ -55,7 +71,7 @@ Takeaways:
 Topics: Farcaster protocol, Snapchain, Hypersnap, building a client, Snap token, gasless signers, consensus, decentralization
 
 ======================================================================
-[4] Earn from music battles, not streams: WaveWarz
+[5] Earn from music battles, not streams: WaveWarz
 workshop  |  track: artist  |  2026-06-13
 Presenter: Hurricane Ike (@hurric4n3ike), WaveWarz
 Watch: https://zabalgamez.com/recordings/8
@@ -72,7 +88,7 @@ Takeaways:
 Topics: WaveWarz, music battles, earn from engagement, Solana, community battles, keep your masters, distribution
 
 ======================================================================
-[5] Building KFMEDIA
+[6] Building KFMEDIA
 workshop  |  track: creator  |  2026-06-10
 Presenter: Will T of Web3 (@willtofweb3), Kingfishers Media
 Watch: https://zabalgamez.com/recordings/7
@@ -88,7 +104,7 @@ Takeaways:
 Topics: Kingfishers Media, KFMEDIA, creator distribution, Unlock Protocol, Highlight.xyz, Arweave, Contra, CharmVerse, KFM Talks, public goods, vibe coding
 
 ======================================================================
-[6] Owning your music as an independent artist
+[7] Owning your music as an independent artist
 workshop  |  track: artist  |  2026-06-09
 Presenter: Joseph Goats (@joseacabrerav)
 Watch: https://zabalgamez.com/recordings/6
@@ -104,7 +120,7 @@ Takeaways:
 Topics: independent artists, digital street music, peer-to-peer, decentralization, fractals, Steemit and Hive, learning English, impact concerts, festivals for social impact, autopoiesis, Venezuela, music and nature
 
 ======================================================================
-[7] Building Sopha, and why curation is needed
+[8] Building Sopha, and why curation is needed
 workshop  |  track: builder  |  2026-06-08
 Presenter: Chris (chriscocreated) (@chriscocreated), Sopha
 Watch: https://zabalgamez.com/recordings/5
@@ -122,7 +138,7 @@ Takeaways:
 Topics: Sopha, curation, Farcaster clients, high signal, third place, build your own client, Neynar, mini apps and Snaps
 
 ======================================================================
-[8] Bonfires + a vibe-coding masterclass
+[9] Bonfires + a vibe-coding masterclass
 fireside  |  track: builder  |  2026-06-06
 Presenter: Carlos (Plat0x) (@at0x_eth), Bonfires
 Watch: https://zabalgamez.com/recordings/fireside/1
@@ -137,7 +153,7 @@ Takeaways:
 Topics: Bonfires, vibe coding, planning, sub-agents, documentation-as-code, types-first, knowledge graph, agents
 
 ======================================================================
-[9] Starting and growing your own livestream
+[10] Starting and growing your own livestream
 workshop  |  track: creator  |  2026-06-02
 Presenter: Ohnahji
 Watch: https://zabalgamez.com/recordings/4
@@ -154,7 +170,7 @@ Takeaways:
 Topics: livestreaming, consistency, Twitch, OBS / Restream / StreamYard, raids, shared chat, building your own bots, API keys + env vars, opsec
 
 ======================================================================
-[10] Bonfire and the ZABAL Bonfire bot
+[11] Bonfire and the ZABAL Bonfire bot
 workshop  |  track: builder  |  2026-06-01
 Presenter: Joshua.eth and Plat0x (@joshua.eth), Bonfire
 Watch: https://zabalgamez.com/recordings/3
@@ -170,7 +186,7 @@ Takeaways:
 Topics: Bonfire, shared memory, knowledge graph, agents, curation, hackathons, ZABAL Bonfire bot
 
 ======================================================================
-[11] Empire Builder Part 2: Building a Tokenless Empire Live
+[12] Empire Builder Part 2: Building a Tokenless Empire Live
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/2
@@ -186,7 +202,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, airdrops, raffles, treasury, distribution
 
 ======================================================================
-[12] Empire Builder V3
+[13] Empire Builder V3
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/1
@@ -202,7 +218,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, staking, Triple-A framework, distribution
 
 ======================================================================
-[13] ZAO Fractal Weekly Introduction Presentation
+[14] ZAO Fractal Weekly Introduction Presentation
 workshop  |  track: builder  |  2026-06-01
 Presenter: Zaal (@zaal), The ZAO
 Watch: https://zabalgamez.com/recordings/zao/1
