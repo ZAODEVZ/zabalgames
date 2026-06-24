@@ -3,6 +3,105 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[], chapters[] (array of {t, label} where t is seconds and the first entry is 0 - drives the clickable chapter jumps on a generated video page), okd (YYYY-MM-DD the guest reviewed the cut/page and signed off, before public release - absent until they approve), cast_hash (the root Farcaster cast for this recording - the announce cast; its replies render as the live 'Thoughts' conversation via /api/cast-comments. A 0x hash or a Warpcast URL). To publish a new recording from a ZAOVideoEditor manifest (writes transcript + recap + recordings/N.html + rebuilds the index in one step) use: node scripts/ingest-recording.mjs <manifest.json> --write. After hand-editing this file, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-06-15",
+      "type": "workshop",
+      "title": "POIDH: the open bounty protocol",
+      "presenter": "Kenny",
+      "handle": "@kenny",
+      "org": "POIDH",
+      "track": "builder",
+      "format": "Livestreamed and recorded",
+      "summary": "Kenny, founder of POIDH, breaks down the open bounty protocol he built - put a bounty on-chain, transparently, and anyone can fund it, add to it, or claim it. The throughline: POIDH is a protocol, not just an app. poidh.xyz is the most popular front end, but anyone can build their own - NARS DAO launched an alternate front end the morning of the session. Zaal walks through running real bounties: the Best ZABAL Gamez Ad bounty with 8 submissions, a submitters board that queries the contract directly with an AI-judged rubric, and rewarding every submitter through an Empire Builder leaderboard. Kenny shows composability in action - Femi shipped an NFT marketplace MVP in 90 minutes off the open-source repo - then creates a new bounty live: the ZABAL Gamez Open Pot, open through July.",
+      "topics": [
+        "POIDH",
+        "bounty protocol",
+        "on-chain bounties",
+        "composability",
+        "Empire Builder",
+        "Farcaster",
+        "Base"
+      ],
+      "youtube": "https://youtu.be/EdfMN-lRI4E",
+      "page": "/recordings/12",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-15-kenny-poidh.md",
+      "link": "https://poidh.xyz",
+      "link_label": "POIDH",
+      "takeaways": [
+        "POIDH is a protocol, not an app - anyone can build a front end on the same contracts, like NARS DAO did.",
+        "Open bounties let anyone add funds on top; deadlines plus single-winner curation surface real value over money-grabbers.",
+        "Composability compounds: Femi built an NFT marketplace MVP in 90 minutes from the open repo, and Vini App added POIDH the same week.",
+        "Good bounties carry maximum context - a pre-cleared brand kit, a clear rubric, a markdown description.",
+        "You can reward every participant programmatically through an Empire Builder leaderboard, not just the winner."
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "What is POIDH"
+        },
+        {
+          "t": 60,
+          "label": "An open bounty protocol for any community"
+        },
+        {
+          "t": 120,
+          "label": "NARS DAO launches an alternate front end - protocol over app"
+        },
+        {
+          "t": 180,
+          "label": "The vision - a coordination protocol, like Uniswap for trades"
+        },
+        {
+          "t": 234,
+          "label": "Permissionless, composable building"
+        },
+        {
+          "t": 352,
+          "label": "The Zabal POIDH clips site and an AI-judged submitters board"
+        },
+        {
+          "t": 471,
+          "label": "Surfacing real value over money-grabbers"
+        },
+        {
+          "t": 542,
+          "label": "The identity stack - Farcaster, GitHub, ZK Passport, AI review"
+        },
+        {
+          "t": 698,
+          "label": "Femi builds an NFT marketplace MVP in 90 minutes"
+        },
+        {
+          "t": 910,
+          "label": "Lets get a space and build together"
+        },
+        {
+          "t": 1006,
+          "label": "Farcaster builder energy vs crypto Twitter"
+        },
+        {
+          "t": 1214,
+          "label": "The Best ZABAL Gamez Ad bounty - 8 submissions"
+        },
+        {
+          "t": 1380,
+          "label": "Markdown support, runner-up and submitter rewards"
+        },
+        {
+          "t": 1428,
+          "label": "Rewarding every submitter through Empire Builder"
+        },
+        {
+          "t": 1500,
+          "label": "Live demo - creating the ZABAL Gamez Open Pot bounty"
+        },
+        {
+          "t": 1683,
+          "label": "Where to find Kenny"
+        }
+      ],
+      "okd": true
+    },
+    {
       "date": "2026-06-14",
       "type": "workshop",
       "title": "Non-Dev to Shipped: building Baraza Protocol with AI tools",

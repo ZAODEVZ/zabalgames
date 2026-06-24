@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POIDH: the open bounty protocol - Kenny - ZABAL Gamez Season 1</title>
+  <meta name="description" content="Kenny, founder of POIDH, breaks down the open bounty protocol he built - put a bounty on-chain, transparently, and anyone can fund it, add to it, or claim it. The throughline: POIDH is a protocol, not">
+  <link rel="canonical" href="https://zabalgamez.com/recordings/12">
+  <meta property="og:title" content="POIDH: the open bounty protocol - Kenny - ZABAL Gamez">
+  <meta property="og:description" content="Kenny, founder of POIDH, breaks down the open bounty protocol he built - put a bounty on-chain, transparently, and anyone can fund it, add to it, or claim it. The throughline: POIDH is a protocol, not">
+  <meta property="og:type" content="video.other">
+  <meta property="og:url" content="https://zabalgamez.com/recordings/12">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="POIDH: the open bounty protocol - Kenny">
+  <meta name="twitter:description" content="Kenny, founder of POIDH, breaks down the open bounty protocol he built - put a bounty on-chain, transparently, and anyone can fund it, add to it, or claim it. The throughline: POIDH is a protocol, not">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: POIDH","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/12","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <meta name="fc:disable-native-gestures" content="1">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); margin-top: 1rem; }
+    .rec-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
+    .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
+    .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
+    .rec-note { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 10px; background: var(--surface-2); padding: 0.85rem 1rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; }
+    .rec-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.9rem 0 0.2rem; }
+    .rec-link { font-size: 0.82rem; padding: 0.34rem 0.75rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); font-family: inherit; cursor: pointer; }
+    .rec-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .rec-link:hover { filter: brightness(1.12); }
+    .rec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 1.3rem 0 0.4rem; }
+    .rec-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+    .rec-chapters li { margin: 0; }
+    .rec-chapter { display: flex; gap: 0.7rem; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 0.34rem 0.5rem; color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer; }
+    .rec-chapter:hover { background: var(--surface-2); }
+    .rec-chapter .t { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); min-width: 3.2rem; }
+    .rec-topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.3rem 0 0; }
+    .rec-topic { font-size: 0.7rem; letter-spacing: 0.02em; padding: 0.14rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-2); }
+    .rec-takeaways { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+    .rec-takeaways li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/speakers">Speakers</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <nav id="rec-nav" class="rec-nav" aria-label="Recording navigation"></nav>
+
+  <header class="hero" style="padding-bottom: 0.6rem;">
+    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / POIDH</div>
+    <h1>POIDH: the open bounty protocol</h1>
+    <p class="rec-by">
+      Kenny <span class="dot">&middot;</span> @kenny <span class="dot">&middot;</span> POIDH
+      <span class="dot">&middot;</span> <span class="rec-format">Builder track - Livestreamed and recorded</span>
+    </p>
+  </header>
+
+  <div class="rec-embed">
+    <iframe id="rec-player"
+      src="https://www.youtube.com/embed/EdfMN-lRI4E?rel=0"
+      title="ZABAL Gamez Workshop: POIDH: the open bounty protocol"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
+  </div>
+
+  <div class="rec-links">
+    <a class="rec-link primary" href="https://youtu.be/EdfMN-lRI4E" target="_blank" rel="noopener">Watch on YouTube</a>
+    <a class="rec-link" href="#rec-transcript">Read the transcript</a>
+    <a class="rec-link" href="https://poidh.xyz" target="_blank" rel="noopener">POIDH</a>
+    <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
+    <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
+  </div>
+
+  <section class="section" style="margin-top: 1.4rem;">
+    <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
+      Kenny, founder of POIDH, breaks down the open bounty protocol he built - put a bounty on-chain, transparently, and anyone can fund it, add to it, or claim it. The throughline: POIDH is a protocol, not just an app. poidh.xyz is the most popular front end, but anyone can build their own - NARS DAO launched an alternate front end the morning of the session. Zaal walks through running real bounties: the Best ZABAL Gamez Ad bounty with 8 submissions, a submitters board that queries the contract directly with an AI-judged rubric, and rewarding every submitter through an Empire Builder leaderboard. Kenny shows composability in action - Femi shipped an NFT marketplace MVP in 90 minutes off the open-source repo - then creates a new bounty live: the ZABAL Gamez Open Pot, open through July.
+    </p>
+
+    <div class="rec-label">Best moments</div>
+    <ul class="rec-chapters" id="rec-chapters">
+      <li><button class="rec-chapter" data-start="0"><span class="t">0:00</span><span>What is POIDH</span></button></li>
+      <li><button class="rec-chapter" data-start="60"><span class="t">1:00</span><span>An open bounty protocol for any community</span></button></li>
+      <li><button class="rec-chapter" data-start="120"><span class="t">2:00</span><span>NARS DAO launches an alternate front end - protocol over app</span></button></li>
+      <li><button class="rec-chapter" data-start="180"><span class="t">3:00</span><span>The vision - a coordination protocol, like Uniswap for trades</span></button></li>
+      <li><button class="rec-chapter" data-start="234"><span class="t">3:54</span><span>Permissionless, composable building</span></button></li>
+      <li><button class="rec-chapter" data-start="352"><span class="t">5:52</span><span>The Zabal POIDH clips site and an AI-judged submitters board</span></button></li>
+      <li><button class="rec-chapter" data-start="471"><span class="t">7:51</span><span>Surfacing real value over money-grabbers</span></button></li>
+      <li><button class="rec-chapter" data-start="542"><span class="t">9:02</span><span>The identity stack - Farcaster, GitHub, ZK Passport, AI review</span></button></li>
+      <li><button class="rec-chapter" data-start="698"><span class="t">11:38</span><span>Femi builds an NFT marketplace MVP in 90 minutes</span></button></li>
+      <li><button class="rec-chapter" data-start="910"><span class="t">15:10</span><span>Lets get a space and build together</span></button></li>
+      <li><button class="rec-chapter" data-start="1006"><span class="t">16:46</span><span>Farcaster builder energy vs crypto Twitter</span></button></li>
+      <li><button class="rec-chapter" data-start="1214"><span class="t">20:14</span><span>The Best ZABAL Gamez Ad bounty - 8 submissions</span></button></li>
+      <li><button class="rec-chapter" data-start="1380"><span class="t">23:00</span><span>Markdown support, runner-up and submitter rewards</span></button></li>
+      <li><button class="rec-chapter" data-start="1428"><span class="t">23:48</span><span>Rewarding every submitter through Empire Builder</span></button></li>
+      <li><button class="rec-chapter" data-start="1500"><span class="t">25:00</span><span>Live demo - creating the ZABAL Gamez Open Pot bounty</span></button></li>
+      <li><button class="rec-chapter" data-start="1683"><span class="t">28:03</span><span>Where to find Kenny</span></button></li>
+    </ul>
+
+    <div class="rec-label">Topics</div>
+    <div class="rec-topics">
+      <span class="rec-topic">POIDH</span>
+      <span class="rec-topic">bounty protocol</span>
+      <span class="rec-topic">on-chain bounties</span>
+      <span class="rec-topic">composability</span>
+      <span class="rec-topic">Empire Builder</span>
+      <span class="rec-topic">Farcaster</span>
+      <span class="rec-topic">Base</span>
+    </div>
+
+    <div class="rec-label">Key takeaways</div>
+    <ul class="rec-takeaways">
+      <li>POIDH is a protocol, not an app - anyone can build a front end on the same contracts, like NARS DAO did.</li>
+      <li>Open bounties let anyone add funds on top; deadlines plus single-winner curation surface real value over money-grabbers.</li>
+      <li>Composability compounds: Femi built an NFT marketplace MVP in 90 minutes from the open repo, and Vini App added POIDH the same week.</li>
+      <li>Good bounties carry maximum context - a pre-cleared brand kit, a clear rubric, a markdown description.</li>
+      <li>You can reward every participant programmatically through an Empire Builder leaderboard, not just the winner.</li>
+    </ul>
+  </section>
+
+  <p style="margin-top: 1.4rem; font-size: 0.85rem;"><a href="/recordings">All recordings</a> &nbsp;-&nbsp; <a href="/recaps">Session recaps</a> &nbsp;-&nbsp; <a href="/#schedule">Upcoming schedule</a></p>
+
+  <section class="section rec-transcript-section">
+    <div class="rec-label">Transcript</div>
+    <p style="color:var(--text-dim);font-size:0.82rem;margin:0 0 0.5rem;">Hover any line and click # to copy a link straight to it.</p>
+    <div id="rec-transcript" data-src="/data/streams/zabal-games-workshops/raw/transcripts/2026-06-15-kenny-poidh.md" data-yt="EdfMN-lRI4E"></div>
+  </section>
+
+  <section id="zg-clip-bounty"></section>
+
+  <section id="zg-clip-claim"></section>
+
+  <section id="zg-comments"></section>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/speakers.html">Speakers</a>
+      <a href="/recordings.html">Recordings</a>
+      <a href="/recaps">Session Recaps</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/#schedule">Schedule</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var YT_ID = "EdfMN-lRI4E";
+  var PAGE_URL = "https://zabalgamez.com/recordings/12";
+  var TOPICS = [
+    "POIDH",
+    "bounty protocol",
+    "on-chain bounties",
+    "composability",
+    "Empire Builder",
+    "Farcaster",
+    "Base"
+  ];
+
+  var player = document.getElementById('rec-player');
+  var chapters = document.getElementById('rec-chapters');
+  if (player && chapters) {
+    chapters.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.rec-chapter');
+      if (!b) return;
+      var start = parseInt(b.getAttribute('data-start') || '0', 10) || 0;
+      player.src = 'https://www.youtube.com/embed/' + YT_ID + '?rel=0&autoplay=1&start=' + start;
+      player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  document.querySelectorAll('.rec-watch-share').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!(window.ZABAL && window.ZABAL.share)) return;
+      var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
+      var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+      var text = "I'm watching ZABAL Gamez with Kenny - " + topic;
+      window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-12-' + platform });
+    });
+  });
+})();
+</script>
+
+<script defer src="/assets/rec-nav.js"></script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/clip-bounty.js"></script>
+<script defer src="/assets/clip-claim.js"></script>
+<script defer src="/assets/recording-comments.js"></script>
+<script defer src="/assets/transcript.js"></script>
+</body>
+</html>
