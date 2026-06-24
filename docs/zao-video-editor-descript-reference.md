@@ -7,7 +7,7 @@ actually do, the exact controls it exposes, and what that implies for our own to
 rules apply here too: no emojis, hyphens not em dashes.
 
 Related, already in the repo:
-- [recordings-workflow.md](../recordings-workflow.md) - the end-to-end recording pipeline.
+- [recordings-workflow.md](recordings-workflow.md) - the end-to-end recording pipeline.
 - [recordings/caption-style-prompt.md](recordings/caption-style-prompt.md) - our exact caption look.
 - [recordings/recording-vocabulary.md](recordings/recording-vocabulary.md) - the preemptive brand vocabulary.
 
