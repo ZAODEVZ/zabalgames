@@ -26,3 +26,7 @@ node_modules/
 dist/
 out/
 .next/
+
+# Local tooling state (not part of the site)
+.serena/
+.claude/scheduled_tasks.lock
