@@ -26,6 +26,7 @@
         "AI tooling"
       ],
       "page": "/recordings/11",
+      "youtube": "https://youtu.be/MAzecp9zVWA",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-14-aziz-motomoto-baraza.md",
       "takeaways": [
         "You do not need to be a coder. Aziz came from media and production, spent about 40 dollars on Claude and ChatGPT, and shipped a working build in a 72-hour hackathon for non-technical founders.",
@@ -62,6 +63,7 @@
         "Claude Code"
       ],
       "page": "/recordings/10",
+      "youtube": "https://youtu.be/-Fzy0b3RCDQ",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-adam-miller-midao.md",
       "link": "https://midao.org",
       "link_label": "MIDAO",
@@ -156,6 +158,7 @@
       "track": "builder",
       "format": "Live workshop with slides, recorded",
       "page": "/recordings/9",
+      "youtube": "https://youtu.be/FZxzc2ieT4w",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-12-cassie-farcaster-protocol.md",
       "link": "https://github.com/farcasterorg",
       "link_label": "Farcaster org (FIPs)",
