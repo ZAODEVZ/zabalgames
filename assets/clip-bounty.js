@@ -22,7 +22,12 @@
   var APP_URL = 'https://farcaster.xyz/miniapps/zabal-gamez';
   var POIDH = '0x5555fa783936c260f77385b4e153b9725fef1719'; // POIDH main contract, Base
   var BASE_HEX = '0x2105'; // 8453
+  var MIN_ETH = 0.001;     // POIDH ETH_MIN_AMOUNT - the contract rejects less
   var DEFAULT_ETH = '0.001';
+  var VIEM = 'https://esm.sh/viem@2.53.1'; // exact pin (no range = no resolve-redirect)
+  // keccak256("BountyCreated(uint256,address,string,string,uint256,uint256,bool,uint256)")
+  // The bounty id is the first indexed arg, so it lands in topics[1] of this log.
+  var BOUNTY_CREATED_TOPIC = '0xd265c5d6a9224c4853317e9e3262b0605b45f0e87c8bfd17d020e54a87c439af';
 
   // Minimal ABI - just the function we call.
   var ABI = [{
@@ -85,13 +90,14 @@
     n.innerHTML = html;
   }
 
-  function isPositiveAmount(v) {
+  function validAmount(v) {
     var n = Number(v);
-    return isFinite(n) && n > 0;
+    return isFinite(n) && n >= MIN_ETH;
   }
 
   // ---- on-chain create ----
-  // Returns the tx hash, or throws a short string code the caller maps to a message.
+  // Resolves { txHash, from, provider }, or throws a short string code the caller
+  // maps to a message.
   function createBounty(amountEth, brief) {
     var provider;
     return Z.getProvider().then(function (p) {
@@ -120,7 +126,7 @@
           .then(function () { return from; });
       });
     }).then(function (from) {
-      return import('https://esm.sh/viem@2').then(function (viem) {
+      return import(VIEM).then(function (viem) {
         var desc = (brief ? brief.trim() + '\n\n' : '') +
           'Open clip bounty for the ZABAL Gamez recording: ' + REC_TITLE + '. ' + REC_URL +
           '\n\nSubmit your best clip on POIDH. Anyone can add funds to this pot.';
@@ -129,25 +135,74 @@
         return provider.request({
           method: 'eth_sendTransaction',
           params: [{ from: from, to: POIDH, data: data, value: value }]
+        }).then(function (txHash) {
+          return { txHash: txHash, from: from, provider: provider };
         });
       });
     });
   }
 
-  // ---- success / share ----
-  function renderSuccess(txHash, amountEth) {
+  // Poll the receipt until the BountyCreated log appears, then read the id out of
+  // topics[1]. Resolves the numeric bounty id as a string, or null if it does not
+  // confirm within the window (the bounty still exists - we just fall back to links).
+  function waitForBountyId(provider, txHash) {
+    var tries = 0;
+    function attempt() {
+      return provider.request({ method: 'eth_getTransactionReceipt', params: [txHash] }).then(function (r) {
+        if (r && r.logs) {
+          for (var i = 0; i < r.logs.length; i++) {
+            var log = r.logs[i];
+            if (log && log.address && log.address.toLowerCase() === POIDH &&
+                log.topics && log.topics[0] && log.topics[0].toLowerCase() === BOUNTY_CREATED_TOPIC &&
+                log.topics[1]) {
+              try { return BigInt(log.topics[1]).toString(); } catch (e) { return null; }
+            }
+          }
+          if (r.status) return null; // mined but no matching log
+        }
+        if (++tries >= 15) return null; // ~30s
+        return new Promise(function (res) { setTimeout(res, 2000); }).then(attempt);
+      }).catch(function () {
+        if (++tries >= 15) return null;
+        return new Promise(function (res) { setTimeout(res, 2000); }).then(attempt);
+      });
+    }
+    return attempt();
+  }
+
+  function shareText() {
+    return 'I put up a clip bounty on POIDH for a ZABAL Gamez recording: ' + REC_TITLE +
+      '. Best clip wins - and anyone can add to the pot. Submit on poidh.xyz.';
+  }
+
+  // ---- pending + success ----
+  function renderPending(res, amountEth) {
+    var scan = 'https://basescan.org/tx/' + res.txHash;
+    mount.querySelector('.zgb-box').innerHTML =
+      '<p class="zgb-name"><strong>Bounty sent.</strong> ' + esc(amountEth) +
+      ' ETH is on its way into an open bounty on Base.</p>' +
+      '<p class="zgb-note" id="zgb-pending">Confirming on Base... <a href="' + esc(scan) + '" target="_blank" rel="noopener">view tx</a></p>';
+    waitForBountyId(res.provider, res.txHash).then(function (id) {
+      renderSuccess(id, res.txHash, amountEth, res.from);
+    });
+  }
+
+  function renderSuccess(bountyId, txHash, amountEth, from) {
     var scan = 'https://basescan.org/tx/' + txHash;
+    var bountyUrl = bountyId ? ('https://poidh.xyz/base/bounty/' + bountyId) : null;
+    var acctUrl = from ? ('https://poidh.xyz/account/' + from) : 'https://poidh.xyz/base';
+    var where = bountyUrl
+      ? 'Live on POIDH: <a href="' + esc(bountyUrl) + '" target="_blank" rel="noopener">bounty #' + esc(bountyId) + '</a>.'
+      : 'Find it on <a href="' + esc(acctUrl) + '" target="_blank" rel="noopener">your POIDH account</a> once Base finishes confirming.';
     mount.querySelector('.zgb-box').innerHTML =
       '<p class="zgb-name"><strong>Bounty created.</strong> ' + esc(amountEth) +
       ' ETH is locked on Base for the best clip of this recording.</p>' +
-      '<p class="zgb-note zgb-ok">Transaction: <a href="' + esc(scan) + '" target="_blank" rel="noopener">view on Basescan</a>. ' +
-      'It shows up on <a href="https://poidh.xyz/base" target="_blank" rel="noopener">poidh.xyz</a> once Base confirms it (a minute or two).</p>' +
+      '<p class="zgb-note zgb-ok">' + where + ' <a href="' + esc(scan) + '" target="_blank" rel="noopener">tx</a></p>' +
       '<div class="zgb-acts" style="margin-top:0.8rem;"><button class="zgb-go" id="zgb-share">Share the bounty</button></div>';
     var share = document.getElementById('zgb-share');
     if (share) share.addEventListener('click', function () {
-      var text = 'I put up a clip bounty on POIDH for a ZABAL Gamez recording: ' + REC_TITLE +
-        '. Best clip wins - and anyone can add to the pot. Submit on poidh.xyz.';
-      if (Z.composeCast) Z.composeCast({ text: text, embeds: [REC_URL], channelKey: 'zabal' });
+      var embeds = bountyUrl ? [bountyUrl, REC_URL] : [REC_URL];
+      if (Z.composeCast) Z.composeCast({ text: shareText(), embeds: embeds, channelKey: 'zabal' });
       else if (Z.openUrl) Z.openUrl(APP_URL);
     });
   }
@@ -163,7 +218,7 @@
         '<p class="zgb-name">Bounty: <strong>' + esc(BOUNTY_NAME) + '</strong></p>' +
         '<div class="zgb-row">' +
           '<div><label class="zgb-label" for="zgb-amt">Reward</label>' +
-          '<div class="zgb-amt"><input id="zgb-amt" type="number" min="0" step="0.0005" value="' + DEFAULT_ETH + '" inputmode="decimal"><span>ETH</span></div></div>' +
+          '<div class="zgb-amt"><input id="zgb-amt" type="number" min="' + MIN_ETH + '" step="0.0005" value="' + DEFAULT_ETH + '" inputmode="decimal"><span>ETH</span></div></div>' +
           '<button class="zgb-go" id="zgb-start">Create bounty</button>' +
         '</div>' +
         '<textarea class="zgb-brief" id="zgb-brief" placeholder="Optional: what makes a winning clip? (length, vibe, where to post it)"></textarea>' +
@@ -176,7 +231,7 @@
   function startConfirm() {
     var amt = (document.getElementById('zgb-amt') || {}).value;
     var brief = (document.getElementById('zgb-brief') || {}).value || '';
-    if (!isPositiveAmount(amt)) { setNote('Enter a reward greater than 0.', 'zgb-err'); return; }
+    if (!validAmount(amt)) { setNote('Reward must be at least ' + MIN_ETH + ' ETH (POIDH minimum).', 'zgb-err'); return; }
 
     var box = mount.querySelector('.zgb-box');
     var conf = document.createElement('div');
@@ -197,8 +252,8 @@
       var signBtn = document.getElementById('zgb-sign');
       signBtn.disabled = true; signBtn.textContent = 'Check your wallet...';
       setNote('');
-      createBounty(amt, brief).then(function (txHash) {
-        renderSuccess(txHash, amt);
+      createBounty(amt, brief).then(function (res) {
+        renderPending(res, amt);
       }).catch(function (err) {
         var code = (typeof err === 'string') ? err : (err && err.message) || '';
         var msg;
