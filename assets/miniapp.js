@@ -402,6 +402,22 @@ window.ZABAL.getAddress = async function getAddress() {
   }
 };
 
+// Return the connected wallet's EIP-1193 provider for write transactions (e.g.
+// creating an on-chain POIDH bounty), or null outside a Mini App / wallet context.
+// Unlike getAddress this does NOT call eth_accounts - the caller drives the flow
+// (eth_requestAccounts, chain switch, eth_sendTransaction) so the wallet popup only
+// appears when the user actually commits to a transaction.
+window.ZABAL.getProvider = async function getProvider() {
+  try {
+    if (!sdk || !sdk.wallet) return null;
+    if (typeof sdk.wallet.getEthereumProvider === 'function') return await withTimeout(sdk.wallet.getEthereumProvider(), 3000);
+    if (sdk.wallet.ethProvider) return sdk.wallet.ethProvider;
+    return null;
+  } catch (e) {
+    return null;
+  }
+};
+
 window.ZABAL.submitScore = async function submitScore(game, score, nonceData) {
   try {
     const ctx = await getContext();

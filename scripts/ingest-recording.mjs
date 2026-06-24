@@ -374,7 +374,11 @@ ${summary ? `    <p class="recap-summary" style="font-size: 0.95rem; line-height
 
   <p style="margin-top: 1.4rem; font-size: 0.85rem;"><a href="/recordings">All recordings</a> &nbsp;-&nbsp; <a href="/recaps">Session recaps</a> &nbsp;-&nbsp; <a href="/#schedule">Upcoming schedule</a></p>
 
-${transcriptBlock}  <section id="zg-comments"></section>
+${transcriptBlock}  <section id="zg-clip-bounty"></section>
+
+  <section id="zg-clip-claim"></section>
+
+  <section id="zg-comments"></section>
 
 </div>
 </main>
@@ -413,6 +417,8 @@ ${shareScript}
 <script defer src="/assets/rec-nav.js"></script>
 <script defer src="/assets/site-nav.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/clip-bounty.js"></script>
+<script defer src="/assets/clip-claim.js"></script>
 <script defer src="/assets/recording-comments.js"></script>
 <script defer src="/assets/transcript.js"></script>
 </body>
