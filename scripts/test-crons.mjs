@@ -42,10 +42,14 @@ process.env.KV_REST_API_URL = 'http://kv.test';
 process.env.KV_REST_API_TOKEN = 'test';
 process.env.NEYNAR_API_KEY = 'test';
 process.env.NEYNAR_SIGNER_UUID = 'test';
-delete process.env.CRON_SECRET;
+// daily-cast fails closed: CRON_SECRET must be set and the request must carry the
+// matching Authorization header (Vercel injects it on scheduled runs). Set it before
+// importing the handler (it reads the env into a const at module load).
+process.env.CRON_SECRET = 'test-cron-secret';
 
 const { default: dailyCast } = await import('../api/daily-cast.mjs');
-const run = async () => dailyCast(new Request('https://zabalgamez.com/api/daily-cast', { method: 'GET' }));
+const AUTH = { Authorization: 'Bearer test-cron-secret' };
+const run = async (headers = AUTH) => dailyCast(new Request('https://zabalgamez.com/api/daily-cast', { method: 'GET', headers }));
 const reset = () => { kv = new Map(); lastCast = null; };
 
 // --- 1. single session: full pitch with RSVP, casts about the one presenter ---
@@ -80,6 +84,12 @@ reset();
 LEADS = [{ name: 'Later', topic: 'x', date: '2099-01-01' }];
 d = await (await run()).json();
 ok(d.skipped === 'no-session-today' && lastCast === null, 'no session today -> skip, no cast');
+
+// --- 5. cron auth guard: a request without the Authorization header is rejected ---
+reset();
+LEADS = [{ name: 'Cassie', topic: 'x', date: TODAY }];
+d = await (await run({})).json();
+ok(d.reason === 'unauthorized' && lastCast === null, 'missing/incorrect auth -> 401 unauthorized, never posts');
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
