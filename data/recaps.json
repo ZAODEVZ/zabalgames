@@ -143,16 +143,88 @@
     {
       "date": "2026-06-15",
       "type": "workshop",
-      "title": "Vini App",
+      "title": "ZABAL GAMEZ Workshop w/Chris Dolinsky from Vini App",
       "presenter": "Chris Dolinsky",
       "handle": "@1dolinski",
       "org": "Vini App",
       "track": "builder",
-      "format": "30 min, livestreamed and recorded",
-      "summary": "Vini App - a 30-minute look at what he is building, for the ZABAL Gamez community to try.",
+      "format": "Presentation + live demo, recorded",
+      "summary": "Chris Dolinsky (1dolinski), a 15-year software builder and founder of Vini App, shows how anyone - including the people who have never written a line of code - can build a real app from a plain-language prompt. Every Vini app ships with a wallet, hosting, a domain, a brand kit, and a token, and that token can help fund the app as it grows. Chris demos the flow live: sign in with your Farcaster wallet or just an email, describe your app, and the AI handles the questions, the design, and the build. He walks Vini by the numbers, the umbrella Vini token, and standout builds like DGEN Fishing and Farcenoid - a game now live across Farcaster, World App, and Celo. Plus where Vini is headed, and a July collab to get non-coders building in the ZABAL Gamez hackathon.",
+      "topics": [
+        "Vini App",
+        "building without code",
+        "mini apps",
+        "Farcaster",
+        "Base",
+        "World App"
+      ],
+      "youtube": "https://youtu.be/MHIiIvltLh4",
       "page": "/recordings/13",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-15-chris-dolinsky-vini-app.md",
       "link": "https://www.viniapp.xyz",
-      "link_label": "Vini App"
+      "link_label": "Vini App",
+      "takeaways": [
+        "Anyone can build a real app from a plain-language prompt - Vini handles wallet, hosting, domain, brand kit, and a token.",
+        "Land and expand: start small, ship, and learn fast instead of carrying the whole idea up front.",
+        "An app token can help fund the app itself as it grows.",
+        "Sign in is seamless - your Farcaster wallet, or just an email that creates a wallet behind the scenes.",
+        "Quality ships: Farcenoid, built on Vini, went live across Farcaster, World App, and Celo MiniPay."
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Intro - Chris Dolinsky and Vini App"
+        },
+        {
+          "t": 66,
+          "label": "What Vini App is - an app from a prompt, for everyone"
+        },
+        {
+          "t": 155,
+          "label": "Land and expand - just start building"
+        },
+        {
+          "t": 379,
+          "label": "App tokens and funding your build"
+        },
+        {
+          "t": 599,
+          "label": "Vibe-coding walls, and Vini's baked-in best practices"
+        },
+        {
+          "t": 710,
+          "label": "Walkthrough - signing in with a wallet or email"
+        },
+        {
+          "t": 780,
+          "label": "Creating an app - the AI asks the right questions"
+        },
+        {
+          "t": 846,
+          "label": "Vini by the numbers - 1,189 apps, 28k users"
+        },
+        {
+          "t": 1044,
+          "label": "The umbrella Vini token"
+        },
+        {
+          "t": 1121,
+          "label": "DGEN Fishing and quality examples"
+        },
+        {
+          "t": 1352,
+          "label": "Farcenoid across Farcaster, World App, Celo"
+        },
+        {
+          "t": 1590,
+          "label": "A July hackathon for non-coders, and reaching Chris"
+        },
+        {
+          "t": 1627,
+          "label": "Vini's month of integrations"
+        }
+      ],
+      "okd": true
     },
     {
       "date": "2026-06-15",
