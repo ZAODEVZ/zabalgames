@@ -55,6 +55,13 @@
       font-size: 0.78rem; color: var(--text-muted);
       margin-top: 0.3rem;
     }
+    .past-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .past-card { display: block; border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 10px; background: var(--surface-2); padding: 0.85rem 1rem; text-decoration: none; color: inherit; transition: border-color 0.15s; }
+    .past-card[data-track="artist"] { border-left-color: var(--pink); }
+    .past-card[data-track="creator"] { border-left-color: var(--cyan); }
+    @media (hover: hover) { .past-card:hover { border-color: var(--cyan); } }
+    .past-card h3 { margin: 0; font-size: 1rem; }
+    .past-card .by { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
   </style>
   <script type="module" src="/assets/miniapp.js"></script>
 </head>
@@ -137,12 +144,14 @@
 
   <section class="section">
     <h2>Past spaces</h2>
-    <p>This section fills as sessions happen. Live updates as the launch cast goes out + workshops land.</p>
+    <p>Every recorded session, newest first. Each one is kept - missing it live never means missing it.</p>
 
-    <div class="card" style="opacity: 0.6; border-style: dashed;">
-      <span class="past-badge">Coming soon</span>
-      <h3 style="margin-top: 0.6rem;">No archived sessions yet</h3>
-      <p>The first space goes live this weekend with the launch announcement. After that, every workshop adds an archived recording.</p>
+    <div id="past-spaces" class="past-grid">
+      <div class="card" style="opacity: 0.6; border-style: dashed;">
+        <span class="past-badge">Loading</span>
+        <h3 style="margin-top: 0.6rem;">Loading sessions...</h3>
+        <p>Pulling the archive. <a href="/recordings">Browse all recordings</a> if this does not load.</p>
+      </div>
     </div>
   </section>
 
@@ -214,6 +223,36 @@
     <span>zabalgamez.com - built with The ZAO</span>
   </div>
 </footer>
+
+  <script>
+  // Past spaces: render every recorded session from the live recordings index.
+  (function () {
+    var mount = document.getElementById('past-spaces');
+    if (!mount) return;
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+    function fmtDate(d) { try { return new Date(d + 'T00:00:00').toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); } catch (e) { return d || ''; } }
+    function path(u) { if (!u) return '/recordings'; try { return new URL(u).pathname; } catch (e) { return u.charAt(0) === '/' ? u : '/' + u; } }
+    fetch('/recordings/index.json', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var recs = Array.isArray(d) ? d : (d.recordings || []);
+        if (!recs.length) { mount.innerHTML = '<p>No sessions yet. <a href="/recordings">Browse recordings</a>.</p>'; return; }
+        mount.innerHTML = recs.map(function (r) {
+          var typeLabel = r.type === 'fireside' ? 'Fireside' : (r.type === 'bczworkshop' ? 'BCZ YapZ' : 'Workshop');
+          var who = [r.presenter, r.org].filter(Boolean).join(' - ');
+          return '<a class="past-card" data-track="' + esc(r.track || '') + '" href="' + esc(path(r.page || r.url)) + '">' +
+            '<span class="past-badge">' + esc(typeLabel) + '</span>' +
+            '<h3 style="margin-top:0.6rem;">' + esc(r.title || 'Untitled session') + '</h3>' +
+            (who ? '<p class="by">' + esc(who) + '</p>' : '') +
+            '<p class="session-meta">' + esc(fmtDate(r.date)) + (r.youtube ? ' &middot; video' : '') + '</p>' +
+            '</a>';
+        }).join('');
+      })
+      .catch(function () {
+        mount.innerHTML = '<p>Could not load the archive. <a href="/recordings">Browse all recordings</a>.</p>';
+      });
+  })();
+  </script>
 
   <script defer src="/assets/site-nav.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
