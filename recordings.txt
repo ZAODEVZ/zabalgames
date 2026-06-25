@@ -1,6 +1,6 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-24 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 27 recordings, newest first.
+Generated 2026-06-25 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 27 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
@@ -91,11 +91,20 @@ Watch: https://zabalgamez.com/recordings/14
 Summary: Empire Builder V3 - a conversation on the V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.
 
 ======================================================================
-[13] Vini App
+[13] ZABAL GAMEZ Workshop w/Chris Dolinsky from Vini App
 workshop  |  track: builder  |  2026-06-15
 Presenter: Chris Dolinsky (@1dolinski), Vini App
 Watch: https://zabalgamez.com/recordings/13
-Summary: Vini App - a 30-minute look at what he is building, for the ZABAL Gamez community to try.
+Video: https://youtu.be/MHIiIvltLh4
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-15-chris-dolinsky-vini-app.md
+Summary: Chris Dolinsky (1dolinski), a 15-year software builder and founder of Vini App, shows how anyone - including the people who have never written a line of code - can build a real app from a plain-language prompt. Every Vini app ships with a wallet, hosting, a domain, a brand kit, and a token, and that token can help fund the app as it grows. Chris demos the flow live: sign in with your Farcaster wallet or just an email, describe your app, and the AI handles the questions, the design, and the build. He walks Vini by the numbers, the umbrella Vini token, and standout builds like DGEN Fishing and Farcenoid - a game now live across Farcaster, World App, and Celo. Plus where Vini is headed, and a July collab to get non-coders building in the ZABAL Gamez hackathon.
+Takeaways:
+  - Anyone can build a real app from a plain-language prompt - Vini handles wallet, hosting, domain, brand kit, and a token.
+  - Land and expand: start small, ship, and learn fast instead of carrying the whole idea up front.
+  - An app token can help fund the app itself as it grows.
+  - Sign in is seamless - your Farcaster wallet, or just an email that creates a wallet behind the scenes.
+  - Quality ships: Farcenoid, built on Vini, went live across Farcaster, World App, and Celo MiniPay.
+Topics: Vini App, building without code, mini apps, Farcaster, Base, World App
 
 ======================================================================
 [14] POIDH: the open bounty protocol
