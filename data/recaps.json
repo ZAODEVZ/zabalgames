@@ -3,16 +3,6 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[], chapters[] (array of {t, label} where t is seconds and the first entry is 0 - drives the clickable chapter jumps on a generated video page), okd (YYYY-MM-DD the guest reviewed the cut/page and signed off, before public release - absent until they approve), cast_hash (the root Farcaster cast for this recording - the announce cast; its replies render as the live 'Thoughts' conversation via /api/cast-comments. A 0x hash or a Warpcast URL). To publish a new recording from a ZAOVideoEditor manifest (writes transcript + recap + recordings/N.html + rebuilds the index in one step) use: node scripts/ingest-recording.mjs <manifest.json> --write. After hand-editing this file, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
-      "date": "2026-06-24",
-      "type": "workshop",
-      "title": "Come Into the Mind of a Menace",
-      "presenter": "Nemesis.love",
-      "track": "creator",
-      "format": "Pre-recorded talk",
-      "summary": "Come Into the Mind of a Menace - a creator-track personal story: the autobiography, the gravitation toward web3 and how it kept popping up across the career until it stuck, the decision to leave the old path, and how that leap led to building and creating in this space.",
-      "page": "/recordings/25"
-    },
-    {
       "date": "2026-06-23",
       "type": "workshop",
       "title": "Snapchain under the hood",
