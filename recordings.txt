@@ -72,11 +72,20 @@ Watch: https://zabalgamez.com/recordings/17
 Summary: Previbecoding - what he is learning building with AI tooling, for people who are learning to code now.
 
 ======================================================================
-[9] Eden Fractal and the fractal ecosystem
+[9] ZABAL GAMEZ Workshop w/Dan Singjoy from Eden Fractal
 workshop  |  track: builder  |  2026-06-20
 Presenter: Dan Singjoy (@dansingjoy), Eden Fractal
 Watch: https://zabalgamez.com/recordings/16
-Summary: Eden Fractal and the fractal ecosystem - what fractals are, the history of fractal communities, and how it connects to ZAO Fractal.
+Video: https://youtu.be/drT2zp_V-tc
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-20-dan-singjoy-eden-fractal.md
+Summary: Dan Singjoy, founder of Eden Fractal, breaks down the fractal ecosystem - a way for communities to make decisions together that are fair, fast, and fun, using Respect earned through weekly contributions and peer consensus. Dan shares his path from musician to building onchain, founding Eden Fractal and the Eden Creators media studio, and the Optimism Fractal origins where he and Zaal first met. He walks through how a weekly fractal runs, the tripartite governance model, claiming Respect onchain, and how ZAO Fractal now runs itself with as few as four people. It closes on a token-gated Fractal browser idea for community spaces.
+Takeaways:
+  - A fractal makes group decisions fair, fast, and fun - Respect earned through weekly contributions and peer consensus.
+  - Respect is soulbound and illiquid - tied to governance, not tradable.
+  - ZAO Fractal now runs itself with as few as four people, no host needed.
+  - Respect unlocks governance, funding, and role allocation - not just a score.
+  - A token-gated Fractal browser could give a community its own gated workspace.
+Topics: Eden Fractal, fractals, Respect, governance, Optimism, ZAO Fractal
 
 ======================================================================
 [10] Farcaster Batches, and the builders behind it
