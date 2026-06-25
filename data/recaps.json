@@ -168,14 +168,96 @@
     {
       "date": "2026-06-20",
       "type": "workshop",
-      "title": "Eden Fractal and the fractal ecosystem",
+      "title": "ZABAL GAMEZ Workshop w/Dan Singjoy from Eden Fractal",
       "presenter": "Dan Singjoy",
       "handle": "@dansingjoy",
       "org": "Eden Fractal",
       "track": "builder",
-      "format": "Live, recorded",
-      "summary": "Eden Fractal and the fractal ecosystem - what fractals are, the history of fractal communities, and how it connects to ZAO Fractal.",
-      "page": "/recordings/16"
+      "format": "Conversation, recorded",
+      "summary": "Dan Singjoy, founder of Eden Fractal, breaks down the fractal ecosystem - a way for communities to make decisions together that are fair, fast, and fun, using Respect earned through weekly contributions and peer consensus. Dan shares his path from musician to building onchain, founding Eden Fractal and the Eden Creators media studio, and the Optimism Fractal origins where he and Zaal first met. He walks through how a weekly fractal runs, the tripartite governance model, claiming Respect onchain, and how ZAO Fractal now runs itself with as few as four people. It closes on a token-gated Fractal browser idea for community spaces.",
+      "topics": [
+        "Eden Fractal",
+        "fractals",
+        "Respect",
+        "governance",
+        "Optimism",
+        "ZAO Fractal"
+      ],
+      "youtube": "https://youtu.be/drT2zp_V-tc",
+      "page": "/recordings/16",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-20-dan-singjoy-eden-fractal.md",
+      "link": "https://edenfractal.com",
+      "link_label": "Eden Fractal",
+      "takeaways": [
+        "A fractal makes group decisions fair, fast, and fun - Respect earned through weekly contributions and peer consensus.",
+        "Respect is soulbound and illiquid - tied to governance, not tradable.",
+        "ZAO Fractal now runs itself with as few as four people, no host needed.",
+        "Respect unlocks governance, funding, and role allocation - not just a score.",
+        "A token-gated Fractal browser could give a community its own gated workspace."
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Intro - Dan Singjoy and the fractal ecosystem"
+        },
+        {
+          "t": 67,
+          "label": "Dans journey - from musician to building onchain"
+        },
+        {
+          "t": 186,
+          "label": "Founding Eden Fractal and Eden Creators"
+        },
+        {
+          "t": 237,
+          "label": "Optimism Fractal, and meeting at the start"
+        },
+        {
+          "t": 325,
+          "label": "What a fractal is - Respect, weekly contributions, peer consensus"
+        },
+        {
+          "t": 374,
+          "label": "ZAO Fractal and the 100th event"
+        },
+        {
+          "t": 518,
+          "label": "The vision - decisions that are fair, fast, and fun"
+        },
+        {
+          "t": 796,
+          "label": "Tripartite governance - judicial, legislative, executive"
+        },
+        {
+          "t": 1093,
+          "label": "The weekly fractal - Mondays 6pm, an open community"
+        },
+        {
+          "t": 1398,
+          "label": "Claiming your Respect onchain"
+        },
+        {
+          "t": 1726,
+          "label": "ZAO Fractal runs itself - four people, no host needed"
+        },
+        {
+          "t": 1980,
+          "label": "What Respect unlocks - governance, funding, roles"
+        },
+        {
+          "t": 2280,
+          "label": "Voting on topics with Respect"
+        },
+        {
+          "t": 2676,
+          "label": "Zen Browser and a token-gated Fractal browser idea"
+        },
+        {
+          "t": 2829,
+          "label": "Where to find Dan and Eden Fractal"
+        }
+      ],
+      "okd": true
     },
     {
       "date": "2026-06-20",

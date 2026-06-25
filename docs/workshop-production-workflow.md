@@ -46,6 +46,12 @@ sign-off (`okd`), then publish. Ingest into the site:
 `node scripts/ingest-recording.mjs <manifest.json> --write` (writes transcript +
 `/recordings/N` page + recap + rebuilds the index).
 
+**Tag the guest as a collaborator (every workshop).** On the YouTube video, add the
+guest as a collaborator/co-host so the video also surfaces on their channel and they
+get co-credit - this roughly doubles the reach. Then DM them the links (site page +
+YouTube) so they can reshare. The `handle` on the recaps entry is the credit; keep it
+accurate. This is a standing step, not a one-off.
+
 ## Status tracking - the three buckets
 
 Iman's working sheet groups recordings by where the video sits:
