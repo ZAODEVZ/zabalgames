@@ -129,16 +129,92 @@
     {
       "date": "2026-06-16",
       "type": "workshop",
-      "title": "Empire Builder V3: the API workshop",
-      "presenter": "Adrian",
+      "title": "ZABAL GAMEZ Workshop w/diviflyy from Empire Builder",
+      "presenter": "Adrian (diviflyy)",
       "handle": "@diviflyy",
       "org": "Empire Builder",
       "track": "builder",
-      "format": "Conversation, livestreamed and recorded",
-      "summary": "Empire Builder V3 - a conversation on the V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.",
+      "format": "Conversation + live demo, recorded",
+      "summary": "Adrian (diviflyy), co-founder and lead engineer of Empire Builder, goes under the hood of Empire Builder V3 - the docs at empirebuilder.world, the public free-to-use endpoints, and how to pull leaderboards, rankings, boosters, and reward data into your own apps. Empire Builder is the community-layer framework for any project, token-based or tokenless. Live, Adrian builds a Zabal Empire mini app in about an hour using the Empire Builder skill plus a free Farcaster data source - surfacing rewards, rankings, and boosters under your own brand. He covers getting your empire ID, the endpoint set, and where it is heading: multiple treasuries, more chains, and agent bots that run an empire. Plus build ideas for the ZABAL Gamez hackathon.",
+      "topics": [
+        "Empire Builder",
+        "leaderboards",
+        "boosters",
+        "mini apps",
+        "Farcaster",
+        "API"
+      ],
+      "youtube": "https://youtu.be/P4ypb4jvpog",
       "page": "/recordings/14",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-16-diviflyy-empire-builder-v3-api.md",
       "link": "https://empirebuilder.world",
-      "link_label": "Empire Builder"
+      "link_label": "Empire Builder",
+      "takeaways": [
+        "Empire Builder is a community-layer framework for any project, token-based or tokenless.",
+        "The public, free-to-use endpoints surface top empires, boosters, distributions, and leaderboards - no key needed.",
+        "Your empire ID is your token address, or an address-based identifier for tokenless empires.",
+        "You can build a branded rewards mini app in about an hour with the Empire Builder skill and an AI assistant.",
+        "Big build ideas: a tag-to-query empire bot, an Empire Draft game, and one-shot tokenless empire deploys."
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Intro - Adrian (diviflyy) from Empire Builder"
+        },
+        {
+          "t": 98,
+          "label": "Accessing the docs at empirebuilder.world"
+        },
+        {
+          "t": 142,
+          "label": "A community-layer framework, now tokenless too"
+        },
+        {
+          "t": 197,
+          "label": "Integration patterns - build under your own brand"
+        },
+        {
+          "t": 322,
+          "label": "Public, free-to-use endpoints"
+        },
+        {
+          "t": 422,
+          "label": "The endpoints: empires, boosters, distributions, leaderboards"
+        },
+        {
+          "t": 481,
+          "label": "Empire IDs - token address vs tokenless"
+        },
+        {
+          "t": 646,
+          "label": "Building a Zabal Empire mini app in an hour"
+        },
+        {
+          "t": 771,
+          "label": "Multiple treasuries and multi-chain, coming soon"
+        },
+        {
+          "t": 978,
+          "label": "What to build - the Empire Builder skill and prompt"
+        },
+        {
+          "t": 1127,
+          "label": "Use cases: Empire Draft and tag-to-query bots"
+        },
+        {
+          "t": 1320,
+          "label": "Authenticated endpoints and one-shot deploys"
+        },
+        {
+          "t": 1412,
+          "label": "An agent as an empire moderator"
+        },
+        {
+          "t": 1562,
+          "label": "Where to find Adrian"
+        }
+      ],
+      "okd": true
     },
     {
       "date": "2026-06-15",

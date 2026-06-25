@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Empire Builder V3: the API workshop - Adrian - ZABAL Gamez Season 1</title>
-  <meta name="description" content="Empire Builder V3 - a conversation on the V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.">
+  <title>ZABAL GAMEZ Workshop w/diviflyy from Empire Builder - Adrian (diviflyy) - ZABAL Gamez Season 1</title>
+  <meta name="description" content="Adrian (diviflyy), co-founder and lead engineer of Empire Builder, goes under the hood of Empire Builder V3 - the docs at empirebuilder.world, the public free-to-use endpoints, and how to pull leaderb">
   <link rel="canonical" href="https://zabalgamez.com/recordings/14">
-  <meta property="og:title" content="Empire Builder V3: the API workshop - Adrian - ZABAL Gamez">
-  <meta property="og:description" content="Empire Builder V3 - a conversation on the V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.">
-  <meta property="og:type" content="article">
+  <meta property="og:title" content="ZABAL GAMEZ Workshop w/diviflyy from Empire Builder - Adrian (diviflyy) - ZABAL Gamez">
+  <meta property="og:description" content="Adrian (diviflyy), co-founder and lead engineer of Empire Builder, goes under the hood of Empire Builder V3 - the docs at empirebuilder.world, the public free-to-use endpoints, and how to pull leaderb">
+  <meta property="og:type" content="video.other">
   <meta property="og:url" content="https://zabalgamez.com/recordings/14">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Empire Builder V3: the API workshop - Adrian">
-  <meta name="twitter:description" content="Empire Builder V3 - a conversation on the V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.">
+  <meta name="twitter:title" content="ZABAL GAMEZ Workshop w/diviflyy from Empire Builder - Adrian (diviflyy)">
+  <meta name="twitter:description" content="Adrian (diviflyy), co-founder and lead engineer of Empire Builder, goes under the hood of Empire Builder V3 - the docs at empirebuilder.world, the public free-to-use endpoints, and how to pull leaderb">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: Empire Builder","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/14","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
@@ -71,31 +71,80 @@
 
   <header class="hero" style="padding-bottom: 0.6rem;">
     <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / Empire Builder</div>
-    <h1>Empire Builder V3: the API workshop</h1>
+    <h1>ZABAL GAMEZ Workshop w/diviflyy from Empire Builder</h1>
     <p class="rec-by">
-      Adrian <span class="dot">&middot;</span> @diviflyy <span class="dot">&middot;</span> Empire Builder
-      <span class="dot">&middot;</span> <span class="rec-format">Builder track - Conversation, livestreamed and recorded</span>
+      Adrian (diviflyy) <span class="dot">&middot;</span> @diviflyy <span class="dot">&middot;</span> Empire Builder
+      <span class="dot">&middot;</span> <span class="rec-format">Builder track - Conversation + live demo, recorded</span>
     </p>
   </header>
 
-  <div class="rec-note">
-    Recorded live on 2026-06-16. The replay and the word-for-word transcript will be added here -
-    the summary and topics are below, with the full recap to follow once the recording is processed.
+  <div class="rec-embed">
+    <iframe id="rec-player"
+      src="https://www.youtube.com/embed/P4ypb4jvpog?rel=0"
+      title="ZABAL Gamez Workshop: ZABAL GAMEZ Workshop w/diviflyy from Empire Builder"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
   </div>
 
   <div class="rec-links">
-    <a class="rec-link primary" href="https://empirebuilder.world" target="_blank" rel="noopener">Empire Builder</a>
+    <a class="rec-link primary" href="https://youtu.be/P4ypb4jvpog" target="_blank" rel="noopener">Watch on YouTube</a>
+    <a class="rec-link" href="#rec-transcript">Read the transcript</a>
+    <a class="rec-link" href="https://empirebuilder.world" target="_blank" rel="noopener">Empire Builder</a>
     <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
     <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
   </div>
 
   <section class="section" style="margin-top: 1.4rem;">
     <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
-      Empire Builder V3 - a conversation on the V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.
+      Adrian (diviflyy), co-founder and lead engineer of Empire Builder, goes under the hood of Empire Builder V3 - the docs at empirebuilder.world, the public free-to-use endpoints, and how to pull leaderboards, rankings, boosters, and reward data into your own apps. Empire Builder is the community-layer framework for any project, token-based or tokenless. Live, Adrian builds a Zabal Empire mini app in about an hour using the Empire Builder skill plus a free Farcaster data source - surfacing rewards, rankings, and boosters under your own brand. He covers getting your empire ID, the endpoint set, and where it is heading: multiple treasuries, more chains, and agent bots that run an empire. Plus build ideas for the ZABAL Gamez hackathon.
     </p>
+
+    <div class="rec-label">Best moments</div>
+    <ul class="rec-chapters" id="rec-chapters">
+      <li><button class="rec-chapter" data-start="0"><span class="t">0:00</span><span>Intro - Adrian (diviflyy) from Empire Builder</span></button></li>
+      <li><button class="rec-chapter" data-start="98"><span class="t">1:38</span><span>Accessing the docs at empirebuilder.world</span></button></li>
+      <li><button class="rec-chapter" data-start="142"><span class="t">2:22</span><span>A community-layer framework, now tokenless too</span></button></li>
+      <li><button class="rec-chapter" data-start="197"><span class="t">3:17</span><span>Integration patterns - build under your own brand</span></button></li>
+      <li><button class="rec-chapter" data-start="322"><span class="t">5:22</span><span>Public, free-to-use endpoints</span></button></li>
+      <li><button class="rec-chapter" data-start="422"><span class="t">7:02</span><span>The endpoints: empires, boosters, distributions, leaderboards</span></button></li>
+      <li><button class="rec-chapter" data-start="481"><span class="t">8:01</span><span>Empire IDs - token address vs tokenless</span></button></li>
+      <li><button class="rec-chapter" data-start="646"><span class="t">10:46</span><span>Building a Zabal Empire mini app in an hour</span></button></li>
+      <li><button class="rec-chapter" data-start="771"><span class="t">12:51</span><span>Multiple treasuries and multi-chain, coming soon</span></button></li>
+      <li><button class="rec-chapter" data-start="978"><span class="t">16:18</span><span>What to build - the Empire Builder skill and prompt</span></button></li>
+      <li><button class="rec-chapter" data-start="1127"><span class="t">18:47</span><span>Use cases: Empire Draft and tag-to-query bots</span></button></li>
+      <li><button class="rec-chapter" data-start="1320"><span class="t">22:00</span><span>Authenticated endpoints and one-shot deploys</span></button></li>
+      <li><button class="rec-chapter" data-start="1412"><span class="t">23:32</span><span>An agent as an empire moderator</span></button></li>
+      <li><button class="rec-chapter" data-start="1562"><span class="t">26:02</span><span>Where to find Adrian</span></button></li>
+    </ul>
+
+    <div class="rec-label">Topics</div>
+    <div class="rec-topics">
+      <span class="rec-topic">Empire Builder</span>
+      <span class="rec-topic">leaderboards</span>
+      <span class="rec-topic">boosters</span>
+      <span class="rec-topic">mini apps</span>
+      <span class="rec-topic">Farcaster</span>
+      <span class="rec-topic">API</span>
+    </div>
+
+    <div class="rec-label">Key takeaways</div>
+    <ul class="rec-takeaways">
+      <li>Empire Builder is a community-layer framework for any project, token-based or tokenless.</li>
+      <li>The public, free-to-use endpoints surface top empires, boosters, distributions, and leaderboards - no key needed.</li>
+      <li>Your empire ID is your token address, or an address-based identifier for tokenless empires.</li>
+      <li>You can build a branded rewards mini app in about an hour with the Empire Builder skill and an AI assistant.</li>
+      <li>Big build ideas: a tag-to-query empire bot, an Empire Draft game, and one-shot tokenless empire deploys.</li>
+    </ul>
   </section>
 
   <p style="margin-top: 1.4rem; font-size: 0.85rem;"><a href="/recordings">All recordings</a> &nbsp;-&nbsp; <a href="/recaps">Session recaps</a> &nbsp;-&nbsp; <a href="/#schedule">Upcoming schedule</a></p>
+
+  <section class="section rec-transcript-section">
+    <div class="rec-label">Transcript</div>
+    <p style="color:var(--text-dim);font-size:0.82rem;margin:0 0 0.5rem;">Hover any line and click # to copy a link straight to it.</p>
+    <div id="rec-transcript" data-src="/data/streams/zabal-games-workshops/raw/transcripts/2026-06-16-diviflyy-empire-builder-v3-api.md" data-yt="P4ypb4jvpog"></div>
+  </section>
 
   <section id="zg-clip-bounty"></section>
 
@@ -137,17 +186,35 @@
 
 <script>
 (function () {
+  var YT_ID = "P4ypb4jvpog";
   var PAGE_URL = "https://zabalgamez.com/recordings/14";
   var TOPICS = [
-    "Empire Builder V3: the API workshop"
+    "Empire Builder",
+    "leaderboards",
+    "boosters",
+    "mini apps",
+    "Farcaster",
+    "API"
   ];
+
+  var player = document.getElementById('rec-player');
+  var chapters = document.getElementById('rec-chapters');
+  if (player && chapters) {
+    chapters.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.rec-chapter');
+      if (!b) return;
+      var start = parseInt(b.getAttribute('data-start') || '0', 10) || 0;
+      player.src = 'https://www.youtube.com/embed/' + YT_ID + '?rel=0&autoplay=1&start=' + start;
+      player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
 
   document.querySelectorAll('.rec-watch-share').forEach(function (b) {
     b.addEventListener('click', function () {
       if (!(window.ZABAL && window.ZABAL.share)) return;
       var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
       var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
-      var text = "I'm watching ZABAL Gamez with Adrian - " + topic;
+      var text = "I'm watching ZABAL Gamez with Adrian (diviflyy) - " + topic;
       window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-14-' + platform });
     });
   });

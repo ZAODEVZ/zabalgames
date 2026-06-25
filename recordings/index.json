@@ -248,25 +248,38 @@
     },
     {
       "type": "workshop",
-      "title": "Empire Builder V3: the API workshop",
-      "presenter": "Adrian",
+      "title": "ZABAL GAMEZ Workshop w/diviflyy from Empire Builder",
+      "presenter": "Adrian (diviflyy)",
       "handle": "@diviflyy",
       "org": "Empire Builder",
       "track": "builder",
-      "format": "Conversation, livestreamed and recorded",
+      "format": "Conversation + live demo, recorded",
       "date": "2026-06-16",
       "url": "https://zabalgamez.com/recordings/14",
       "page": "https://zabalgamez.com/recordings/14",
-      "youtube": null,
+      "youtube": "https://youtu.be/P4ypb4jvpog",
       "recording": null,
-      "transcript": null,
-      "transcript_raw": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-16-diviflyy-empire-builder-v3-api.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-16-diviflyy-empire-builder-v3-api.md",
       "link": "https://empirebuilder.world",
-      "okd": null,
+      "okd": true,
       "cast_hash": null,
-      "summary": "Empire Builder V3 - a conversation on the V3 endpoints for an existing empire plus the leaderboard, and optionally deploying a new empire.",
-      "topics": [],
-      "takeaways": []
+      "summary": "Adrian (diviflyy), co-founder and lead engineer of Empire Builder, goes under the hood of Empire Builder V3 - the docs at empirebuilder.world, the public free-to-use endpoints, and how to pull leaderboards, rankings, boosters, and reward data into your own apps. Empire Builder is the community-layer framework for any project, token-based or tokenless. Live, Adrian builds a Zabal Empire mini app in about an hour using the Empire Builder skill plus a free Farcaster data source - surfacing rewards, rankings, and boosters under your own brand. He covers getting your empire ID, the endpoint set, and where it is heading: multiple treasuries, more chains, and agent bots that run an empire. Plus build ideas for the ZABAL Gamez hackathon.",
+      "topics": [
+        "Empire Builder",
+        "leaderboards",
+        "boosters",
+        "mini apps",
+        "Farcaster",
+        "API"
+      ],
+      "takeaways": [
+        "Empire Builder is a community-layer framework for any project, token-based or tokenless.",
+        "The public, free-to-use endpoints surface top empires, boosters, distributions, and leaderboards - no key needed.",
+        "Your empire ID is your token address, or an address-based identifier for tokenless empires.",
+        "You can build a branded rewards mini app in about an hour with the Empire Builder skill and an AI assistant.",
+        "Big build ideas: a tag-to-query empire bot, an Empire Draft game, and one-shot tokenless empire deploys."
+      ]
     },
     {
       "type": "workshop",
