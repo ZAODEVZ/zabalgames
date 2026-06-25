@@ -21,7 +21,7 @@
 //
 // Graceful no-op (configured:false / empty) when KV env is absent.
 
-import { verifyQuickAuth } from '../lib/auth.mjs';
+import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
 
 export const config = { runtime: 'edge' };
 
@@ -31,7 +31,6 @@ const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_RES
 // Scores without a valid unused nonce are rejected. Set in Vercel env before any payout.
 const GAME_SECRET = process.env.GAME_SECRET || '';
 const HAATZ = 'https://haatz.quilibrium.com';
-const DOMAIN = 'zabalgamez.com';
 
 // Allowlisted games (key -> max plausible score).
 // ZAO 2048 practical ceiling: the 2048 merge sequence sums to well under 100k for a
