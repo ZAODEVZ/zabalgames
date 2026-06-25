@@ -1187,6 +1187,11 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
         <!-- July submission gallery: writes to Supabase (config block in <head>, placeholder keys - NOT live yet). The public gallery below reads from the same table. -->
         <!-- TODO (July): wire Supabase project + keys; team is currently out of free Supabase slots. -->
         <!-- HTML reads cleaner if you note: this whole zg-apply form is the July decision, not part of the June launch funnel. -->
+        <!-- Until the Supabase gallery is wired, /enter is the LIVE registration path (Upstash-backed). Banner + the not-configured submit branch both route there so this is never a dead end. -->
+        <a href="/enter" class="enter-cta" style="display:block;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.45);color:var(--cyan);padding:0.95rem 1.1rem;border-radius:10px;margin-bottom:1.4rem;text-decoration:none;font-size:0.92rem;line-height:1.5;">
+          <strong>Ready to register your build now?</strong><br>
+          Registration is live at <strong>/enter</strong> - claim your spot, link your GitHub, and join the building-in-public board. This detailed form is the richer July submission gallery (coming online for the open build).
+        </a>
         <div id="form-error" role="alert" style="display:none;background:rgba(255,61,110,0.12);border:1px solid rgba(255,61,110,0.5);color:#ff8aa6;padding:0.85rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;"></div>
         <div id="form-success" role="status" style="display:none;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.45);color:var(--cyan);padding:0.85rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;"></div>
         <form id="zg-apply" class="form-grid" novalidate>
@@ -1561,9 +1566,12 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
           }
 
           if (!CONFIGURED) {
-            errBox.innerHTML = '<strong>Submissions not live yet.</strong><br>The form is built but Supabase config is still placeholder. Check back shortly, or DM @bettercallzaal on Farcaster.';
+            // This richer gallery form is not wired yet - send builders to the live
+            // registration at /enter instead of dead-ending them here.
+            errBox.innerHTML = '<strong>Register at /enter.</strong><br>This detailed gallery opens for the July build - registration is live now at <a href="/enter" style="color:var(--cyan);">/enter</a>. Taking you there...';
             errBox.style.display = 'block';
             errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(function () { window.location.href = '/enter'; }, 1800);
             return;
           }
 
