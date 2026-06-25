@@ -23,9 +23,8 @@
 
 export const config = { runtime: 'edge' };
 
-import { verifyQuickAuth } from '../lib/auth.mjs';
+import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
 
-const DOMAIN = 'zabalgamez.com';
 const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);

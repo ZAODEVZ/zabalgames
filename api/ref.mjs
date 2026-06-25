@@ -10,14 +10,13 @@
 // SADD ref:made:<ref> <viewerFid> is the referrer's distinct credited set. Graceful no-op
 // without KV.
 
-import { verifyQuickAuth } from '../lib/auth.mjs';
+import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
 
 export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const HAATZ = 'https://haatz.quilibrium.com';
-const DOMAIN = 'zabalgamez.com';
 
 function json(body) {
   return new Response(JSON.stringify(body), {

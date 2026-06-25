@@ -11,14 +11,13 @@
 // Draw is intended for the host. If ADMIN_KEY is set in env, draw requires ?key=...; if it
 // is not set, draw is open (fine for a single live event). Graceful no-op without KV.
 
-import { verifyQuickAuth } from '../lib/auth.mjs';
+import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
 
 export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const HAATZ = 'https://haatz.quilibrium.com';
-const DOMAIN = 'zabalgamez.com';
 const DEFAULT_EVENT = 'wip-2026-06-11';
 const ENTRY_TTL = 259200; // 3 days
 

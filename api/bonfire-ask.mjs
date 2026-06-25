@@ -24,9 +24,8 @@
 
 export const config = { runtime: 'edge' };
 
-import { verifyQuickAuth } from '../lib/auth.mjs';
+import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
 
-const DOMAIN = 'zabalgamez.com';
 const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 const HAATZ = 'https://haatz.quilibrium.com';
 
