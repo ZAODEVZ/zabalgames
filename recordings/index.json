@@ -2,7 +2,7 @@
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
   "generated": "2026-06-25",
   "season": 1,
-  "count": 27,
+  "count": 26,
   "recordings": [
     {
       "type": "workshop",
@@ -89,28 +89,6 @@
       "okd": null,
       "cast_hash": null,
       "summary": "Harness, the tool he built, and Bankr, the team he just joined - what they are and how they fit into building today.",
-      "topics": [],
-      "takeaways": []
-    },
-    {
-      "type": "workshop",
-      "title": "Growth through foundations",
-      "presenter": "Dr. Jake",
-      "handle": "@jkthedc",
-      "org": null,
-      "track": "creator",
-      "format": "Live talk plus Q and A, recorded",
-      "date": "2026-06-23",
-      "url": "https://zabalgamez.com/recordings/21",
-      "page": "https://zabalgamez.com/recordings/21",
-      "youtube": null,
-      "recording": null,
-      "transcript": null,
-      "transcript_raw": null,
-      "link": null,
-      "okd": null,
-      "cast_hash": null,
-      "summary": "Growth through foundations.",
       "topics": [],
       "takeaways": []
     },
