@@ -160,25 +160,38 @@
     },
     {
       "type": "workshop",
-      "title": "How to add value as a community member",
+      "title": "ZABAL GAMEZ Workshop w/Meta Mu from Rose City Web3",
       "presenter": "Meta Mu",
       "handle": "@metamu",
-      "org": null,
+      "org": "Rose City Web3",
       "track": "creator",
-      "format": "Workshop, livestreamed and recorded",
+      "format": "Conversation, recorded",
       "date": "2026-06-21",
       "url": "https://zabalgamez.com/recordings/18",
       "page": "https://zabalgamez.com/recordings/18",
-      "youtube": null,
+      "youtube": "https://youtu.be/0uLWSIME47U",
       "recording": null,
-      "transcript": null,
-      "transcript_raw": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-21-meta-mu-add-value.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-21-meta-mu-add-value.md",
       "link": null,
-      "okd": null,
+      "okd": true,
       "cast_hash": null,
-      "summary": "How to add value as a community member - how to find the gaps, fill them, and become someone a community cannot do without. Simple, repeatable ways to contribute that turn into reputation, trust, and real opportunity.",
-      "topics": [],
-      "takeaways": []
+      "summary": "Meta Mu, founder of Rose City Web3 and an artist-first builder in Portland, joins ZABAL Gamez on how to be a community member who actually adds value - not just another lurker in the chat. He breaks down how to find communities worth your time and how to spot a dead one fast, the difference between a pull-the-ladder-up culture and a help-people-up culture, how to get tapped in through Meetup, Eventbrite, and IRL movements, and exactly how to show up at an event, introduce yourself, and make a real first connection. Drawn from his own path through NFT and DAO communities, PDX DAO, and the regen movement.",
+      "topics": [
+        "community building",
+        "adding value",
+        "communities",
+        "regen",
+        "getting involved",
+        "onboarding"
+      ],
+      "takeaways": [
+        "Find communities worth your time - a dead chat with the last message a week ago is a red flag.",
+        "Look for help-people-up cultures over pull-the-ladder-up ones.",
+        "Get tapped in through Meetup, Eventbrite, and IRL movements - showing up in person matters.",
+        "Do not blindly hooray projects; add real value instead.",
+        "At an event, introduce yourself and give people something to try - that is the first connection."
+      ]
     },
     {
       "type": "workshop",
