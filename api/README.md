@@ -315,6 +315,15 @@ Storage: `clips:v1:<recId>` (cid -> clip JSON), `clips:recent` (global ZSET),
 `cliplikes:v1:<recId>` + `cliplike:voters:v1:<cid>` (like-once), `clips:clippers`
 (leaderboard ZSET), `clips:addr` (handle -> wallet for Empire). Graceful no-op without KV.
 
+### `POST /api/profile-track`
+The "skip the questions" path on `/game/build-quiz`. Reads the signed-in player's
+Farcaster bio + display name (server-side, by verified FID) and keyword-scores the three
+lanes (artist / builder / creator), returning the best fit.
+- `POST {}` with `Authorization: Bearer <quick-auth-jwt>` -> `{ ok, track, label, why, matched, confident, handle }`
+
+Quick Auth required, so it only ever analyzes the caller's own verified profile. Falls
+back to a friendly default lane (`confident:false`) when the bio gives no signal. No KV.
+
 ## Required env vars (Vercel project settings)
 
 | Var | What | Where |
