@@ -141,7 +141,20 @@
       var ups = (d && d.updates) || [];
       if (!ups.length) { el.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No updates yet.</p>'; return; }
       ups.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
-      el.innerHTML = ups.map(function (u, i) {
+      // Freshness guard: the daily log can lag behind the live season. If the newest
+      // entry is more than 3 days old, say so plainly and point at the live surfaces,
+      // so this page never presents stale notes as "today".
+      var staleNote = '';
+      var latest = ups[0] && ups[0].date;
+      if (latest) {
+        var ageDays = Math.floor((Date.now() - new Date(latest + 'T00:00:00').getTime()) / 86400000);
+        if (ageDays > 3) {
+          staleNote = '<div style="background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">' +
+            'The daily log paused after ' + esc(latest) + '. For the current pulse: the latest <a href="/recordings" style="color: var(--cyan);">recordings</a>, what is on now at <a href="/live" style="color: var(--cyan);">/live</a>, and the <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener" style="color: var(--cyan);">newsletter</a>.' +
+            '</div>';
+        }
+      }
+      el.innerHTML = staleNote + ups.map(function (u, i) {
         var links = (u.links || []).map(function (L) {
           var ext = L.url.indexOf('http') === 0;
           return '<a class="day-link" href="' + esc(L.url) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + esc(L.label) + '</a>';
