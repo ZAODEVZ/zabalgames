@@ -51,6 +51,17 @@
     .res-ideas h3 { margin: 0 0 0.5rem; font-size: 0.95rem; }
     .res-ideas ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.4rem; }
     .res-ideas li { font-size: 0.92rem; color: var(--text-muted); line-height: 1.45; }
+    .res-projects { margin: 0 0 1.1rem; }
+    .res-projects h3 { margin: 0 0 0.6rem; font-size: 0.95rem; }
+    .rp-card { border: 1px solid var(--border); border-left: 3px solid var(--zabal); background: var(--surface-2); border-radius: 10px; padding: 0.75rem 0.9rem; margin-bottom: 0.6rem; }
+    .rp-top { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+    .rp-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
+    .rp-tag { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); border: 1px solid var(--border-hover); border-radius: 999px; padding: 0.05rem 0.45rem; }
+    .rp-brand { font-size: 0.74rem; color: var(--text-dim); }
+    .rp-next { font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; margin: 0.35rem 0 0.4rem; }
+    .rp-next b { color: var(--text); }
+    .rp-links a { font-size: 0.8rem; color: var(--cyan); text-decoration: none; margin-right: 0.8rem; }
+    .rp-links a:hover { text-decoration: underline; }
     .res-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0.8rem; }
     .res-status { min-height: 1.2rem; font-size: 0.85rem; color: var(--text-muted); }
     .res-foot { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.6rem; }
@@ -98,6 +109,10 @@
       <div class="res-ideas">
         <h3>A few things you could build</h3>
         <ul id="res-ideas"></ul>
+      </div>
+      <div class="res-projects" id="res-projects-box" style="display:none;">
+        <h3>Real ZAO projects in this lane <span style="font-weight:400;color:var(--text-dim);font-size:0.8rem;">- adopt one, ship the next step</span></h3>
+        <div id="res-projects"></div>
       </div>
       <div class="res-actions">
         <a class="btn primary" id="res-register" href="/enter">Register a build in this lane</a>
@@ -238,9 +253,63 @@
     ul.innerHTML = '';
     r.ideas.forEach(function (t) { var li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
     document.getElementById('res-register').href = '/enter?track=' + chosenTrack;
+    renderProjects(chosenTrack);
     quizEl.classList.add('hide');
     resultEl.classList.add('show');
     if (resultEl.scrollIntoView) resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Real project recommendations, drawn from data/adoptable-projects.json and matched
+  // to the track by keyword. Surfaces specific ZAO projects (name + what to ship next +
+  // repo) instead of generic ideas, so the quiz points you at real work.
+  var PROJECT_KW = {
+    artist: ['music', 'song', 'sound', 'audio', 'art', 'visual', 'wave', 'sopha', 'anthem', 'creative', 'fishbowl', 'remix', 'cover', 'animation', 'pixel'],
+    builder: ['api', 'bot', 'protocol', 'contract', 'leaderboard', 'empire', 'poidh', 'snap', 'infra', 'dev', 'sdk', 'agent', 'graph', 'endpoint', 'monorepo', 'client', 'tooling', 'wallet'],
+    creator: ['media', 'content', 'recording', 'stream', 'newsletter', 'clip', 'video', 'distribution', 'social', 'cast', 'showcase', 'podcast', 'community', 'docs', 'site', 'page']
+  };
+  var _projects = null;
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function scoreProject(p, track) {
+    var hay = ((p.name || '') + ' ' + (p.brand || '') + ' ' + (p.description || '') + ' ' + (p.ship_next || '')).toLowerCase();
+    var kw = PROJECT_KW[track] || [];
+    var s = 0;
+    for (var i = 0; i < kw.length; i++) if (hay.indexOf(kw[i]) >= 0) s++;
+    return s;
+  }
+  function paintProjects(list, track) {
+    var box = document.getElementById('res-projects-box');
+    var el = document.getElementById('res-projects');
+    if (!list.length) { box.style.display = 'none'; return; }
+    el.innerHTML = list.map(function (p) {
+      var link = p.live || p.repo || p.spec_url;
+      var links = [];
+      if (p.repo) links.push('<a href="' + esc(p.repo) + '" target="_blank" rel="noopener">Repo</a>');
+      if (p.live) links.push('<a href="' + esc(p.live) + '" target="_blank" rel="noopener">Live</a>');
+      if (p.spec_url) links.push('<a href="' + esc(p.spec_url) + '" target="_blank" rel="noopener">' + esc(p.spec_label || 'Spec') + '</a>');
+      links.push('<a href="/projects">All projects</a>');
+      return '<div class="rp-card">' +
+        '<div class="rp-top"><span class="rp-name">' + esc(p.name) + '</span>' +
+        (p.adopt_type ? '<span class="rp-tag">' + esc(p.adopt_type) + '</span>' : '') +
+        (p.brand ? '<span class="rp-brand">' + esc(p.brand) + '</span>' : '') + '</div>' +
+        (p.ship_next ? '<p class="rp-next"><b>Ship next:</b> ' + esc(p.ship_next) + '</p>' : (p.description ? '<p class="rp-next">' + esc(p.description) + '</p>' : '')) +
+        '<div class="rp-links">' + links.join('') + '</div>' +
+        '</div>';
+    }).join('');
+    box.style.display = '';
+  }
+  function pickAndPaint(track) {
+    var open = (_projects || []).filter(function (p) { return (p.status || 'open') === 'open'; });
+    var scored = open.map(function (p) { return { p: p, s: scoreProject(p, track) }; });
+    var matched = scored.filter(function (x) { return x.s > 0; }).sort(function (a, b) { return b.s - a.s; });
+    var chosen = (matched.length ? matched : scored).slice(0, 3).map(function (x) { return x.p; });
+    paintProjects(chosen, track);
+  }
+  function renderProjects(track) {
+    if (_projects) { pickAndPaint(track); return; }
+    fetch('/data/adoptable-projects.json', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { _projects = (d && d.projects) || []; pickAndPaint(track); })
+      .catch(function () { document.getElementById('res-projects-box').style.display = 'none'; });
   }
 
   function setStatus(t) { document.getElementById('res-status').textContent = t || ''; }
@@ -278,6 +347,7 @@
     firstPick = null; idx = 0; chosenTrack = null;
     resultEl.classList.remove('show');
     quizEl.classList.remove('hide');
+    var pb=document.getElementById('res-projects-box'); if(pb) pb.style.display='none';
     setStatus('');
     renderQuestion();
     if (quizEl.scrollIntoView) quizEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
