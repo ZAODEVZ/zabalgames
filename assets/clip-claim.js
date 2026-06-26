@@ -51,6 +51,9 @@
   }
   function meta(p) { var m = document.querySelector('meta[property="' + p + '"]'); return m ? m.getAttribute('content') : ''; }
 
+  // Same recording id the comment + gallery widgets key on (path slug, slashes kept).
+  var REC_ID = location.pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/i, '').toLowerCase().replace(/[^a-z0-9/_-]/g, '');
+
   var rawTitle = meta('og:title') || document.title || 'this session';
   var REC_TITLE = rawTitle.replace(/\s*-\s*ZABAL Gamez.*$/i, '').trim() || rawTitle;
   var DEFAULT_CLAIM_TITLE = ('Clip: ' + REC_TITLE).slice(0, 120);
@@ -199,6 +202,11 @@
     setNote('Submitting your claim on Base (just a gas fee)...');
 
     submitClaim(bountyId, title, clip).then(function (txHash) {
+      // Record the clip on-site (gallery + /clips feed + clipper leaderboard).
+      // Best-effort: a registry hiccup must never undo a confirmed on-chain claim.
+      if (Z.recordClip) {
+        try { Z.recordClip({ recId: REC_ID, clipUrl: clip, title: title, bountyId: bountyId, txHash: txHash }); } catch (e) { /* ignore */ }
+      }
       renderSuccess(txHash, bountyId);
     }).catch(function (err) {
       var code = (typeof err === 'string') ? err : (err && err.message) || '';
