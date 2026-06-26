@@ -99,26 +99,30 @@ export default async function handler(req) {
   });
   const presentKey = `zabal:present:${new Date().toISOString().slice(0, 10)}`;
 
-  // First-join detection: HEXISTS before HSET tells us whether this FID has joined
-  // before, so the score + feed only fire once. (Upstash runs a pipeline as one
-  // round-trip but without conditionals, so we read first, then write.)
+  // First-join detection: HSETNX is atomic, so two concurrent taps from the same FID
+  // cannot both see "first" (the old HEXISTS-then-HSET had a race window that could
+  // double-award the signup points + double-push the feed entry). HSETNX returns 1 only
+  // for the FID that actually created the record.
   let firstJoin = true;
   try {
-    const pre = await kvPipeline([['HEXISTS', JOINS_KEY, String(fid)]]);
-    firstJoin = Number(pre?.[0]?.result || 0) === 0;
+    const set = await kvPipeline([['HSETNX', JOINS_KEY, String(fid), joinRecord]]);
+    firstJoin = Number(set?.[0]?.result || 0) === 1;
   } catch (e) {
     return json({ ok: false, detail: e.message }, 502, origin);
   }
 
-  // Always: persist/refresh the record + re-assert daily presence. Once per FID:
-  // push the 'signup' activity and award the signup points.
-  const cmds = [['HSET', JOINS_KEY, String(fid), joinRecord]];
+  // Once per FID: push the 'signup' activity + award the signup points. On a re-tap
+  // (not first), refresh the stored record (HSETNX above did not overwrite it). Always:
+  // re-assert daily presence.
+  const cmds = [];
   if (firstJoin) {
     cmds.push(
       ['LPUSH', RECENT_KEY, activity],
       ['LTRIM', RECENT_KEY, '0', String(RECENT_MAX - 1)],
       ['ZINCRBY', SCORES_KEY, String(SIGNUP_POINTS), String(fid)],
     );
+  } else {
+    cmds.push(['HSET', JOINS_KEY, String(fid), joinRecord]);
   }
   cmds.push(
     ['SADD', presentKey, String(fid)],
