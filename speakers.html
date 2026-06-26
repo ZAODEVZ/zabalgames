@@ -10,6 +10,9 @@
   <meta property="og:description" content="Every ZABAL Gamez speaker and what they delivered - recordings, transcripts, and videos. Click a name for their profile.">
   <meta property="og:url" content="https://zabalgamez.com/speakers">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"ZABAL Gamez speakers","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/speakers","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
@@ -53,6 +56,11 @@
     .rsvp { font-size: 0.8rem; color: var(--gold); text-decoration: none; font-weight: 600; }
     .rsvp:hover { text-decoration: underline; }
     .sp-updated { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-dim); margin-top: 1.6rem; }
+    .post-btn { margin-top: 0.6rem; background: none; border: 1px solid var(--border-hover, #2a2a33); color: var(--cyan); border-radius: 999px; padding: 0.3rem 0.75rem; font: inherit; font-size: 0.76rem; cursor: pointer; }
+    .post-btn:hover { border-color: var(--cyan); }
+    .post-btn.copied { border-color: var(--gold); color: var(--gold); }
+    .sp-toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120px); background: var(--gold, #f5c842); color: #000; padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem; transition: transform 0.25s ease; z-index: 100; }
+    .sp-toast.show { transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
@@ -90,7 +98,7 @@
 
   <div class="sp-section">
     <h2>Delivered</h2>
-    <p>Sessions that ran, with what each speaker walked away with.</p>
+    <p>Sessions that ran, with what each speaker walked away with. Each card has a ready post-event recap cast to copy.</p>
   </div>
   <div class="sp-cards" id="sp-delivered">
     <p style="color:var(--text-muted);font-size:0.9rem;">Loading...</p>
@@ -98,7 +106,7 @@
 
   <div class="sp-section">
     <h2>Coming up</h2>
-    <p>Scheduled speakers. RSVP and catch them live.</p>
+    <p>Scheduled speakers. RSVP and catch them live. Each card has a ready pre-event promo cast to copy.</p>
   </div>
   <div class="sp-cards" id="sp-upcoming">
     <p style="color:var(--text-muted);font-size:0.9rem;">Loading...</p>
@@ -154,6 +162,8 @@
   </div>
 </footer>
 
+<div id="sp-toast" class="sp-toast">Post copied</div>
+
 <script>
 (function () {
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
@@ -166,6 +176,48 @@
     var mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(p[1],10)-1];
     return mo + ' ' + parseInt(p[2],10);
   }
+
+  // --- Pre/post-event post generators (brand voice: ZM opener, no jargon, hyphens) ---
+  function tagOf(handle) { var h = String(handle || '').replace(/^@+/, ''); return h ? '@' + h : ''; }
+  // Pre-event promo cast for an upcoming session.
+  function preEventPost(l) {
+    var who = [l.name, tagOf(l.handle) && 'from ' + (l.org || ''), ''].filter(Boolean);
+    var topic = l.topic ? l.topic.split(' - ')[0] : (l.name + "'s session");
+    var when = l.when || (fmtDate(l.date) + (l.date ? ' EST' : ''));
+    var lines = ['ZM', ''];
+    lines.push('This ' + (l.when ? '' : '') + 'ZABAL Gamez workshop: ' + l.name + (l.org ? ' from ' + l.org : '') + (tagOf(l.handle) ? ' (' + tagOf(l.handle) + ')' : '') + '.');
+    lines.push('');
+    lines.push(topic + '.');
+    lines.push('');
+    lines.push('Got a question for ' + (l.name.split(' ')[0] || 'them') + '? Drop it below - the most-liked ones are the ones we open with.');
+    lines.push('');
+    lines.push('Free, live, recorded. ' + when + '.');
+    if (l.luma_url) lines.push('RSVP: ' + l.luma_url);
+    lines.push('Watch live: zabalgamez.com/live');
+    return lines.join('\n');
+  }
+  // Post-event recap cast for a delivered recording.
+  function postEventPost(name, org, handle, session) {
+    // index.json `page` is already an absolute URL; recaps.json `page` is a /path. Handle both.
+    var raw = session.page || '';
+    var page = raw ? (/^https?:/.test(raw) ? raw : 'https://zabalgamez.com' + raw) : (session.youtube || 'https://zabalgamez.com/recordings');
+    var topic = session.title && !/^ZABAL GAMEZ Workshop/i.test(session.title) ? session.title : (org ? org : (name + "'s session"));
+    var lines = ['ZM', ''];
+    lines.push('New ZABAL Gamez recording is up: ' + name + (org ? ' on ' + org : '') + '.');
+    lines.push('');
+    lines.push(topic + '. Recorded and kept - missing it live never means missing it.');
+    lines.push('');
+    lines.push('Watch: ' + page);
+    return lines.join('\n');
+  }
+  function copyText(text, btn) {
+    function done() { if (!btn) return; var o = btn.textContent; btn.textContent = 'Copied'; btn.classList.add('copied'); showToast(); setTimeout(function () { btn.textContent = o; btn.classList.remove('copied'); }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
+    else { var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(ta); done(); }
+  }
+  function showToast() { var t = document.getElementById('sp-toast'); if (!t) return; t.classList.add('show'); setTimeout(function () { t.classList.remove('show'); }, 1800); }
+  // Stash generated posts keyed by id so the delegated click handler can read them.
+  var POSTS = {};
 
   Promise.all([
     fetch('/recordings/index.json', { cache: 'no-store' }).then(function(r){ return r.json(); }),
@@ -226,26 +278,42 @@
         if (!r.youtube && !r.transcript) links.push('<span class="none">processing</span>');
         return '<div class="sp-item">' + title + '<div class="sp-meta"><span class="sp-dt">' + esc(fmtDate(r.date)) + '</span>' + links.join('') + '</div></div>';
       }).join('');
+      // Post-event recap post from the most recent session.
+      var latest = g.sessions.slice().sort(function (a, b) { return dateNum(b.date) - dateNum(a.date); })[0];
+      var pid = 'post-' + key.replace(/[^a-z0-9]/g, '');
+      POSTS[pid] = postEventPost(g.name, g.org, g.handle, latest);
       return '<div class="sp-card" style="border-left-color:' + cardBorder(g.track) + ';">' +
         '<div class="sp-card-head"><span class="nm">' + nameCell(g.name, g.handle) + '</span>' + trackCell(g.track) + '</div>' +
         (g.org ? '<span class="sp-org">' + esc(g.org) + '</span>' : '') +
         items +
+        '<button class="post-btn" data-post="' + pid + '" type="button">Copy post-event post</button>' +
       '</div>';
     });
     document.getElementById('sp-delivered').innerHTML = dCards.length ? dCards.join('') : '<p style="color:var(--text-muted);">None yet.</p>';
 
     // --- Coming up: dated leads not before today, soonest first ---
     var upcoming = leads.filter(function(l){ return l.date && l.date >= TODAY; }).sort(function(a,b){ return a.date < b.date ? -1 : 1; });
-    var uCards = upcoming.map(function (l) {
+    var uCards = upcoming.map(function (l, i) {
       var sess = esc(l.topic ? l.topic.split(' - ')[0] : l.name);
       var rsvp = l.luma_url ? '<a class="rsvp" href="' + esc(l.luma_url) + '" target="_blank" rel="noopener">RSVP</a>' : '<span class="none">soon</span>';
+      var pid = 'pre-' + (norm(l.name).replace(/[^a-z0-9]/g, '') || i) + '-' + (l.date || '').replace(/-/g, '');
+      POSTS[pid] = preEventPost(l);
       return '<div class="sp-card" style="border-left-color:' + cardBorder(l.track) + ';">' +
         '<div class="sp-card-head"><span class="nm">' + nameCell(l.name, l.handle) + '</span>' + trackCell(l.track) + '</div>' +
         (l.org ? '<span class="sp-org">' + esc(l.org) + '</span>' : '') +
         '<div class="sp-item"><span class="t">' + sess + '</span><div class="sp-meta"><span class="sp-dt">' + esc(fmtDate(l.date)) + '</span>' + rsvp + '</div></div>' +
+        '<button class="post-btn" data-post="' + pid + '" type="button">Copy pre-event post</button>' +
       '</div>';
     });
     document.getElementById('sp-upcoming').innerHTML = uCards.length ? uCards.join('') : '<p style="color:var(--text-muted);">Nothing scheduled.</p>';
+
+    // Delegated copy handler for all post buttons.
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('.post-btn');
+      if (!btn) return;
+      var t = POSTS[btn.getAttribute('data-post')];
+      if (t) copyText(t, btn);
+    });
 
     // --- stats ---
     var speakerKeys = {};
