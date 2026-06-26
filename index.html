@@ -779,6 +779,7 @@
       <a href="/info.html">Details</a>
       <a href="/#schedule">Schedule</a>
       <a href="/recordings">Recordings</a>
+      <a href="/game">Arcade</a>
       <a href="/about.html">About</a>
       <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
     </div>
@@ -1023,6 +1024,54 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <style>
+    .home-arcade { text-align: center; }
+    .home-arcade .one-liner { margin-bottom: 1.2rem; }
+    .ha-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; max-width: 900px; margin: 1rem auto 0.6rem; text-align: left; }
+    @media (min-width: 720px) { .ha-grid { grid-template-columns: 1fr 1fr; } }
+    .ha-card { display: flex; flex-direction: column; border: 1px solid var(--border); background: var(--surface-2); border-radius: 16px; padding: 1.2rem 1.2rem 1.1rem; text-decoration: none; color: inherit; transition: border-color 0.12s ease, transform 0.12s ease; }
+    .ha-card:hover { border-color: var(--zabal); transform: translateY(-2px); }
+    .ha-tag { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
+    .ha-card h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; margin: 0.35rem 0 0.3rem; }
+    .ha-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0 0 0.9rem; }
+    .ha-go { margin-top: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--cyan); }
+    .ha-foot { margin-top: 0.6rem; font-size: 0.9rem; }
+    .ha-foot a { color: var(--cyan); }
+  </style>
+  <section class="section home-arcade">
+    <h2>While you decide - play the arcade</h2>
+    <p class="one-liner">Low-commitment <span class="accent">doors into the season.</span> No signup to play.</p>
+    <p style="max-width: 600px; margin: 0 auto;">Climb a monthly board, test what you know about the ZAO for the weekly pot, or find out what you should build - each one is a way in.</p>
+
+    <div class="ha-grid">
+      <a class="ha-card" href="/game/2048">
+        <span class="ha-tag">Live - monthly board</span>
+        <h3>ZAO 2048</h3>
+        <p>Merge the ZAO ecosystem brands all the way up to THE ZAO. Top 10 on the monthly board win $Zabal.</p>
+        <span class="ha-go">Play now -&gt;</span>
+      </a>
+      <a class="ha-card" href="/game/zao-trivia">
+        <span class="ha-tag">Live - Wednesdays 11:30am EST</span>
+        <h3>ZAO Trivia</h3>
+        <p>Questions about the ZAO and its projects. Get to the end and split the weekly $Zabal pot. Practice anytime.</p>
+        <span class="ha-go">Play now -&gt;</span>
+      </a>
+      <a class="ha-card" href="/game/build-quiz">
+        <span class="ha-tag">Live - 30 seconds</span>
+        <h3>What should you build?</h3>
+        <p>A few quick questions and we point you at your lane - artist, builder, or creator - plus a real ZAO project and a workshop to watch.</p>
+        <span class="ha-go">Take the quiz -&gt;</span>
+      </a>
+      <a class="ha-card" href="/game">
+        <span class="ha-tag">The arcade</span>
+        <h3>Enter the arcade</h3>
+        <p>All the games in one place - and it grows through the season. Every game here is open source in the repo.</p>
+        <span class="ha-go">See them all -&gt;</span>
+      </a>
+    </div>
+    <p class="ha-foot"><a href="/game">Enter the arcade -&gt;</a></p>
   </section>
 
   <section class="section" id="schedule">
