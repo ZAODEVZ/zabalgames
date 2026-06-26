@@ -1,0 +1,58 @@
+{
+  "_note": "ZABAL Gamez July Build Days - the daily build-and-stream series (see ZAOOS research doc 901). One entry per day. Each day spotlights a project and the room builds ON TOP OF it, live. Fields: date (YYYY-MM-DD), time (freeform EST string), project (the thing we build on top of), project_url (its site/repo/spec), guest (who spotlights it), handle (their Farcaster @), build_on (one line: the public surface to build on), luma_url (RSVP, optional), recording (a /recordings/N path, added after the session). status auto-derives on the page: a past date reads as 'done', today as 'live', future as 'upcoming'. The format: 0-10min the guest shows the project + the room votes what to build, 10-55min build live, 55-60min demo + handoff. Stream is always zabalgamez.com/live. Seed entries below are examples drawn from the June roster - adjust dates/guests as the July calendar locks. Add a day by appending to days[].",
+  "season": 1,
+  "slot": "Daily, time varies by guest (EST). Watch live at zabalgamez.com/live.",
+  "watch_url": "https://zabalgamez.com/live",
+  "days": [
+    {
+      "date": "2026-07-01",
+      "time": "4pm EST",
+      "project": "Empire Builder",
+      "project_url": "https://empirebuilder.world",
+      "guest": "diviflyy",
+      "handle": "@diviflyy",
+      "build_on": "Build a branded mini app on the free public endpoints - leaderboards, boosters, rewards.",
+      "recording": "/recordings/14"
+    },
+    {
+      "date": "2026-07-02",
+      "time": "4pm EST",
+      "project": "POIDH",
+      "project_url": "https://poidh.xyz",
+      "guest": "Kenny",
+      "handle": "@kenny",
+      "build_on": "Build on the open bounty contract - a new front end, a submitters board, or a clip-bounty flow.",
+      "recording": "/recordings/12"
+    },
+    {
+      "date": "2026-07-03",
+      "time": "4pm EST",
+      "project": "Vini App",
+      "project_url": "https://www.viniapp.xyz",
+      "guest": "Chris Dolinsky",
+      "handle": "@1dolinski",
+      "build_on": "Build a real mini app from a plain prompt - no code, ships with a wallet and a token.",
+      "recording": "/recordings/13"
+    },
+    {
+      "date": "2026-07-04",
+      "time": "4pm EST",
+      "project": "Bonfire",
+      "project_url": "https://bonfire.xyz",
+      "guest": "Plat0x and Joshua",
+      "handle": "@at0x_eth",
+      "build_on": "Build on the shared-memory knowledge graph - query the ZABAL Bonfire bot, add to the graph.",
+      "recording": "/recordings/3"
+    },
+    {
+      "date": "2026-07-05",
+      "time": "4pm EST",
+      "project": "Eden Fractal / Respect",
+      "project_url": "https://edenfractal.com",
+      "guest": "Dan Singjoy",
+      "handle": "@dansingjoy",
+      "build_on": "Build on Respect - a tool that reads weekly contributions and peer-consensus scores.",
+      "recording": "/recordings/16"
+    }
+  ]
+}

@@ -24,7 +24,10 @@
       "handle": "bettercallzaal",
       "fid": 19640,
       "name": "Zaal Panthaki",
-      "roles": ["organizer", "mentor"],
+      "roles": [
+        "organizer",
+        "mentor"
+      ],
       "headline": "Organizer + BetterCallZaal + The ZAO operations",
       "bio": "Engineer, builder, and connector in the web3/Farcaster/music ecosystem. Runs BetterCallZaal Strategies LLC, hosts COC Concertz, organizes ZABAL Gamez. BS Electrical Engineering, RIT 2022. Maine-based.",
       "expertise_label": "ECOSYSTEM",
@@ -40,7 +43,10 @@
     {
       "handle": "tylerstambaugh",
       "name": "Tyler Stambaugh",
-      "roles": ["workshop_lead", "partner"],
+      "roles": [
+        "workshop_lead",
+        "partner"
+      ],
       "headline": "Founder, Magnetiq - workshop library platform",
       "bio": "Founder of Magnetiq, the workshop library + entry/onboarding platform hosting every ZABAL Gamez Season 1 session. Magnetiq is the host platform for the workshop month - native video, opt-in email capture, per-vendor watch analytics.",
       "expertise_label": "RETENTION + PORTAL",
@@ -50,13 +56,17 @@
       "x_url": null,
       "site_url": "https://app.magnetiq.xyz",
       "session_count": 1,
-      "session_topics": ["Magnetiq - The Workshop Library Behind ZABAL Gamez"],
+      "session_topics": [
+        "Magnetiq - The Workshop Library Behind ZABAL Gamez"
+      ],
       "audited_date": "2026-05-22"
     },
     {
       "handle": "thyrevolution",
       "name": "Thy Revolution",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Indie music + creator-tools workshop lead",
       "bio": "Workshop lead #002 - confirmed 2 sessions for June 2026 (topics TBD). Also known as Mickey or Rev (three names, same person). Years building independently outside the major-label system.",
       "expertise_label": "INDIE MUSIC",
@@ -66,13 +76,19 @@
       "x_url": null,
       "site_url": null,
       "session_count": 2,
-      "session_topics": ["TBD - session 1 of 2", "TBD - session 2 of 2"],
+      "session_topics": [
+        "TBD - session 1 of 2",
+        "TBD - session 2 of 2"
+      ],
       "audited_date": "2026-05-26"
     },
     {
       "handle": "hurric4n3ike",
       "name": "Hurric4n3Ike",
-      "roles": ["core_builder", "partner"],
+      "roles": [
+        "core_builder",
+        "partner"
+      ],
       "headline": "WaveWarZ founder - Solana music battle markets",
       "bio": "Built WaveWarZ on Solana - the artist prediction-market platform. Growing battle history + cumulative SOL volume (live numbers at wavewarz-intelligence.vercel.app). WaveWarZ is the underlying tech the August Finals will run on.",
       "expertise_label": "PREDICTION MARKETS",
@@ -86,7 +102,9 @@
     {
       "handle": "sam-wwbase",
       "name": "Sam",
-      "roles": ["core_builder"],
+      "roles": [
+        "core_builder"
+      ],
       "headline": "WaveWarZ-Base co-builder",
       "bio": "Shipping the Base agentic version of WaveWarZ alongside Hurric4n3Ike. Two smart contracts on testnet, mainnet-bound for July. Full handle + surname pending confirmation.",
       "expertise_label": "WAVEWARZ-BASE",
@@ -100,7 +118,9 @@
     {
       "handle": "willtofweb3",
       "name": "Will T of Web3",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Building KFMEDIA℠",
       "bio": "Workshop lead for ZABAL Gamez Season 1, building KFMEDIA℠. Refer to him as Will T of Web3. KFMEDIA℠ community: @kingfishersmedia on Farcaster, @kmllcw3 on X.",
       "expertise_label": "MEDIA",
@@ -110,13 +130,17 @@
       "x_url": "https://x.com/willtsbudao",
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Building KFMEDIA℠ - what he is building, how he is doing it, and the lessons so far."],
+      "session_topics": [
+        "Building KFMEDIA℠ - what he is building, how he is doing it, and the lessons so far."
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "josephgoats",
       "name": "Joseph Goats",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Independent musician - Digital Street Music",
       "bio": "Independent musician exploring Digital Street Music: live performance on the streets of the metaverse, in service of social impact and coordination. He learned English working in DAOs and built an independent, blockchain-agnostic practice, connecting roots to the decentralized social layer of the new internet and inviting other musicians and artists to do the same.",
       "expertise_label": "MUSIC",
@@ -126,13 +150,17 @@
       "x_url": null,
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Owning your music as an independent artist - releasing, owning your masters and your audience, and turning listeners into a community that pays you directly."],
+      "session_topics": [
+        "Owning your music as an independent artist - releasing, owning your masters and your audience, and turning listeners into a community that pays you directly."
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "yerbearserker",
       "name": "yerbearserker",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Empire Builder co-founder",
       "bio": "Jordan Oram, co-founder of Empire Builder, the leaderboard and Empire platform $ZABAL is built on. Led the Day 1 ZABAL Gamez workshop on Empire Builder V3 and stood up a tokenless ZABAL Gamez Empire live during the session.",
       "expertise_label": "EMPIRE BUILDER",
@@ -142,13 +170,17 @@
       "x_url": null,
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Empire Builder V3 - leaderboards, Empires, and token mechanics"],
+      "session_topics": [
+        "Empire Builder V3 - leaderboards, Empires, and token mechanics"
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "joshuaeth",
       "name": "Joshua.eth",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Bonfire founder",
       "bio": "Founder of Bonfire, the shared knowledge graph used as the ZABAL Gamez shared memory. Co-led the Day 1 workshop on Bonfire and the ZABAL Bonfire bot.",
       "expertise_label": "BONFIRE",
@@ -158,13 +190,17 @@
       "x_url": null,
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Bonfire and the ZABAL Bonfire bot"],
+      "session_topics": [
+        "Bonfire and the ZABAL Bonfire bot"
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "plat0x",
       "name": "Plat0x",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Bonfire technical architect",
       "bio": "Developer at Bonfire, based in Ecuador. Co-led the Day 1 Bonfire workshop and the Day 6 fireside on planning, types-first builds, and documentation as code.",
       "expertise_label": "BONFIRE",
@@ -174,13 +210,17 @@
       "x_url": "https://x.com/at0x_eth",
       "site_url": "https://bonfires.ai",
       "session_count": 1,
-      "session_topics": ["Going deeper on the ZABAL Bonfire and building on the graph"],
+      "session_topics": [
+        "Going deeper on the ZABAL Bonfire and building on the graph"
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "diviflyy",
       "name": "Adrian",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Empire Builder co-founder and lead engineer",
       "bio": "Co-creator and lead engineer of Empire Builder. A self-taught developer and technical writer who built early Farcaster traction through Frames.",
       "expertise_label": "EMPIRE BUILDER",
@@ -190,13 +230,17 @@
       "x_url": null,
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Empire Builder API workshop - V3 endpoints plus the leaderboard"],
+      "session_topics": [
+        "Empire Builder API workshop - V3 endpoints plus the leaderboard"
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "jonathancolton",
       "name": "Jonathan Colton",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "FounderCheck builder, Fotocaster co-creator",
       "bio": "Builder behind FounderCheck, a tool for pressure-testing an idea before you build it, and co-creator of Fotocaster, a photo platform built so artists keep almost all of every sale. Former strategy consultant.",
       "expertise_label": "VALIDATION",
@@ -206,13 +250,18 @@
       "x_url": null,
       "site_url": null,
       "session_count": 2,
-      "session_topics": ["FounderCheck - founder validation", "Propagating your work on Farcaster as a developer"],
+      "session_topics": [
+        "FounderCheck - founder validation",
+        "Propagating your work on Farcaster as a developer"
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "kmaceth",
       "name": "kmac.eth",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Farcaster Snaps builder",
       "bio": "A Farcaster Snaps specialist and co-creator of Zlank, with deep Farcaster signer expertise. Leading a ZABAL Gamez session on building and shipping interactive Snaps.",
       "expertise_label": "SNAPS",
@@ -222,13 +271,17 @@
       "x_url": null,
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Farcaster Snaps - building and shipping interactive Snaps"],
+      "session_topics": [
+        "Farcaster Snaps - building and shipping interactive Snaps"
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "cassie",
       "name": "Cassie",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Quilibrium builder",
       "bio": "A builder at Quilibrium who re-engineered audio Spaces for the Quorum Farcaster client. Her ZABAL Gamez session is a live build-along on the Farcaster protocol (currently being rescheduled).",
       "expertise_label": "PROTOCOL",
@@ -238,13 +291,17 @@
       "x_url": null,
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["The Farcaster protocol, ins and outs - a live build-along"],
+      "session_topics": [
+        "The Farcaster protocol, ins and outs - a live build-along"
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "duodomusica",
       "name": "Duo Do",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Musician duo on Farcaster",
       "bio": "A musician duo, Clementine and Santiago, active on Farcaster and on the road to Farcon. They perform as Duo Do and have played ZAO shows including COC Concertz.",
       "expertise_label": "MUSIC",
@@ -254,13 +311,17 @@
       "x_url": "https://x.com/duodomusica",
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Musician on Farcaster, and the road to Farcon"],
+      "session_topics": [
+        "Musician on Farcaster, and the road to Farcon"
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "ohnahji",
       "name": "Ohnahji",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Live streamer, founder of the Ohnahji community",
       "bio": "Founder of the Ohnahji community, a safe space for Black, brown, and allied folks learning emerging tech. Co-hosts the Web3 Podcast and is deep into a 365-day daily live-stream run. Opened the ZABAL Gamez creator track.",
       "expertise_label": "STREAMING",
@@ -270,13 +331,17 @@
       "x_url": null,
       "site_url": "https://linktr.ee/ohnahji",
       "session_count": 1,
-      "session_topics": ["Starting and growing your own livestream"],
+      "session_topics": [
+        "Starting and growing your own livestream"
+      ],
       "audited_date": "2026-06-08"
     },
     {
       "handle": "chriscocreated",
       "name": "Chris (chriscocreated)",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Founder of Sopha",
       "bio": "Founder of Sopha, a Farcaster client built for depth and high signal - an intentional third place for the deeper writing and art that scrolls past the main feed, with a community-curated feed. Led a ZABAL Gamez workshop on building Sopha and why curation is needed.",
       "expertise_label": "CURATION",
@@ -286,13 +351,17 @@
       "x_url": null,
       "site_url": "https://sopha.social",
       "session_count": 1,
-      "session_topics": ["Building Sopha, and why curation is needed"],
+      "session_topics": [
+        "Building Sopha, and why curation is needed"
+      ],
       "audited_date": "2026-06-09"
     },
     {
       "handle": "thethriller",
       "name": "Adam Miller",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "MIDAO + Beta Briefing",
       "bio": "Founder and CEO of MIDAO, which created the Marshall Islands legal framework that lets a DAO - or now a decentralized AI agent - become a real legal entity (a DAO LLC). Also builds Beta Briefing, an agentic daily news tool. Find him on Farcaster as The Thriller and on X as 0xThriller.",
       "expertise_label": "LEGAL / DAOS",
@@ -302,13 +371,17 @@
       "x_url": "https://x.com/0xthriller",
       "site_url": "https://midao.org",
       "session_count": 1,
-      "session_topics": ["Talking miDAO - legal structures for DAOs and AI agents - plus Beta Briefing"],
+      "session_topics": [
+        "Talking miDAO - legal structures for DAOs and AI agents - plus Beta Briefing"
+      ],
       "audited_date": "2026-06-14"
     },
     {
       "handle": "alitiknazoglu",
       "name": "Ali Tiknazoglu",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Vibecoding builder",
       "bio": "Builds with AI tooling and shares what he learns. His ZABAL Gamez session, Previbecoding, is about getting more out of AI tools when you are learning to code - setting up context, where AI still falls down, and what to do on day one.",
       "expertise_label": "VIBECODING",
@@ -318,13 +391,17 @@
       "x_url": "https://x.com/alitiknazoglu",
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Previbecoding - learning to code with AI tooling"],
+      "session_topics": [
+        "Previbecoding - learning to code with AI tooling"
+      ],
       "audited_date": "2026-06-14"
     },
     {
       "handle": "azizke",
       "name": "Aziz (MotoMoto)",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Building Baraza Protocol (BAD DAO)",
       "bio": "Builder at BAD DAO. Built Baraza Protocol - a phone-first treasury for chamas and SACCOs - with zero coding background, by directing AI tools. Part of BAD DAO's four-product loop. His ZABAL Gamez session, Non-Dev to Shipped, shows the exact method.",
       "expertise_label": "NON-DEV BUILD",
@@ -334,13 +411,17 @@
       "x_url": null,
       "site_url": "https://artizen.fund/index/p/baraza-tv?season=6",
       "session_count": 1,
-      "session_topics": ["Non-Dev to Shipped - building Baraza Protocol by directing AI tools"],
+      "session_topics": [
+        "Non-Dev to Shipped - building Baraza Protocol by directing AI tools"
+      ],
       "audited_date": "2026-06-15"
     },
     {
       "handle": "dansingjoy",
       "name": "Dan Singjoy",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Eden Fractal + the fractal ecosystem",
       "bio": "Part of the Eden Fractal and Optimystics orbit. His ZABAL Gamez session covers Eden Fractal, the wider fractal ecosystem, the history of fractal communities, and how it connects to ZAO Fractal.",
       "expertise_label": "FRACTALS",
@@ -350,14 +431,18 @@
       "x_url": null,
       "site_url": "https://dansingjoy.com",
       "session_count": 1,
-      "session_topics": ["Eden Fractal and the fractal ecosystem"],
+      "session_topics": [
+        "Eden Fractal and the fractal ecosystem"
+      ],
       "audited_date": "2026-06-14"
     },
     {
       "handle": "1dolinski",
       "fid": 10956,
       "name": "Chris Dolinsky",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Building Vini App",
       "bio": "Builder of Vini App, a Farcaster mini app (presented at Farcaster Batches Day 1). His ZABAL Gamez session is a look at what he is building and how the community can try it.",
       "expertise_label": "MINI APPS",
@@ -367,13 +452,17 @@
       "x_url": "https://x.com/1dolinski",
       "site_url": "https://www.viniapp.xyz",
       "session_count": 1,
-      "session_topics": ["Vini App - what he is building, for the community to try"],
+      "session_topics": [
+        "Vini App - what he is building, for the community to try"
+      ],
       "audited_date": "2026-06-15"
     },
     {
       "handle": "kenny",
       "name": "Kenny",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "POIDH - bounties on Farcaster",
       "bio": "Built POIDH (pics or it didn't happen), a bounty platform on Farcaster. His ZABAL Gamez session covers POIDH and how to use it, plus wrapping the Best ZABAL Gamez Ad bounty and launching the next one.",
       "expertise_label": "BOUNTIES",
@@ -383,13 +472,17 @@
       "x_url": "https://x.com/kennyistyping",
       "site_url": "https://poidh.xyz",
       "session_count": 1,
-      "session_topics": ["Talking POIDH - bounties on Farcaster, plus the ZABAL ad bounty"],
+      "session_topics": [
+        "Talking POIDH - bounties on Farcaster, plus the ZABAL ad bounty"
+      ],
       "audited_date": "2026-06-14"
     },
     {
       "handle": "jkthedc",
       "name": "Dr. Jake",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Growth through foundations",
       "bio": "ZABAL Gamez creator-track lead. His session is on growth through foundations - building the base that real growth stands on.",
       "expertise_label": "GROWTH",
@@ -399,13 +492,17 @@
       "x_url": null,
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Growth through foundations"],
+      "session_topics": [
+        "Growth through foundations"
+      ],
       "audited_date": "2026-06-14"
     },
     {
       "handle": "adrienne",
       "name": "Adrienne",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "GM Farcaster, building Warpee.eth",
       "bio": "Of GM Farcaster. Her ZABAL Gamez session is on building Warpee.eth, an AI agent for a media company on Farcaster.",
       "expertise_label": "AI AGENTS",
@@ -415,13 +512,17 @@
       "x_url": null,
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Building Warpee.eth, an AI agent for a media company on Farcaster"],
+      "session_topics": [
+        "Building Warpee.eth, an AI agent for a media company on Farcaster"
+      ],
       "audited_date": "2026-06-14"
     },
     {
       "handle": "jubjub",
       "name": "Jub Jub",
-      "roles": ["workshop_lead"],
+      "roles": [
+        "workshop_lead"
+      ],
       "headline": "Farcaster Batches, GM Farcaster",
       "bio": "Organizer of Farcaster Batches, the week-long GM Farcaster builder showcase. His ZABAL Gamez fireside is a conversation about Farcaster Batches and the people of Farcaster.",
       "expertise_label": "COMMUNITY",
@@ -431,8 +532,130 @@
       "x_url": null,
       "site_url": null,
       "session_count": 1,
-      "session_topics": ["Farcaster Batches and the people of Farcaster"],
+      "session_topics": [
+        "Farcaster Batches and the people of Farcaster"
+      ],
       "audited_date": "2026-06-14"
+    },
+    {
+      "handle": "metamu",
+      "name": "Meta Mu",
+      "roles": [
+        "workshop_lead"
+      ],
+      "headline": "Founder of Rose City Web3",
+      "bio": "Founder of Rose City Web3 and an artist-first builder in Portland. His ZABAL Gamez session is on how to be a community member who adds real value - finding the live rooms, showing up, and making the first connection.",
+      "expertise_label": "COMMUNITY",
+      "color": "orange",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/metamu",
+      "x_url": null,
+      "site_url": null,
+      "session_count": 1,
+      "session_topics": [
+        "Adding value as a community member"
+      ],
+      "audited_date": "2026-06-25"
+    },
+    {
+      "handle": "mintedmerch",
+      "name": "Minted Merch",
+      "roles": [
+        "workshop_lead"
+      ],
+      "headline": "Selling merch onchain",
+      "bio": "Builder of Minted Merch. His ZABAL Gamez session covers selling merch onchain and what it opens up for creators.",
+      "expertise_label": "CREATOR TOOLS",
+      "color": "cyan",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/mintedmerch",
+      "x_url": null,
+      "site_url": null,
+      "session_count": 1,
+      "session_topics": [
+        "Selling merch onchain"
+      ],
+      "audited_date": "2026-06-25"
+    },
+    {
+      "handle": "farcaster",
+      "name": "The Farcaster Intern",
+      "roles": [
+        "workshop_lead"
+      ],
+      "headline": "The Farcaster Intern",
+      "bio": "The Farcaster Intern joined ZABAL Gamez for an open-mic audio-space AMA hosted by BetterCallZaal - an open conversation on Farcaster, how it works, building on it, and where it is headed.",
+      "expertise_label": "FARCASTER",
+      "color": "zabal",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/farcaster",
+      "x_url": null,
+      "site_url": null,
+      "session_count": 1,
+      "session_topics": [
+        "AMA on the future of Farcaster"
+      ],
+      "audited_date": "2026-06-25"
+    },
+    {
+      "handle": "saltorious.eth",
+      "name": "Saltorious",
+      "roles": [
+        "workshop_lead"
+      ],
+      "headline": "Builder of Harness, now at Bankr",
+      "bio": "Builder of Harness, the tool he made, and now part of the Bankr team. His ZABAL Gamez session covers what they are and how they fit into building today.",
+      "expertise_label": "BUILDER TOOLS",
+      "color": "zabal",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/saltorious.eth",
+      "x_url": null,
+      "site_url": null,
+      "session_count": 1,
+      "session_topics": [
+        "Harness and Bankr"
+      ],
+      "audited_date": "2026-06-25"
+    },
+    {
+      "handle": "bizarrebeast",
+      "name": "Dylan Yarter",
+      "roles": [
+        "workshop_lead"
+      ],
+      "headline": "BizarreBeasts - Bizarre Pixel Studio",
+      "bio": "Creator of BizarreBeasts and the Bizarre Pixel Studio - a browser-based pixel art and animation tool where your artwork is also editable code. His ZABAL Gamez session walks through the studio, the miniapp, the games, and the artwork.",
+      "expertise_label": "PIXEL ART",
+      "color": "pink",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/bizarrebeast",
+      "x_url": "https://x.com/bizarrebeasts_",
+      "site_url": null,
+      "session_count": 1,
+      "session_topics": [
+        "Building the Bizarre Pixel Studio"
+      ],
+      "audited_date": "2026-06-25"
+    },
+    {
+      "handle": "topocount.eth",
+      "name": "topocount",
+      "roles": [
+        "workshop_lead"
+      ],
+      "headline": "Snapchain - Neynar",
+      "bio": "Builder at Neynar working on Snapchain. His ZABAL Gamez session goes under the hood - how Snapchain signers work, OG vs Snapchain-native signers, storage, and future work.",
+      "expertise_label": "INFRASTRUCTURE",
+      "color": "cyan",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/topocount.eth",
+      "x_url": null,
+      "site_url": null,
+      "session_count": 1,
+      "session_topics": [
+        "Snapchain under the hood"
+      ],
+      "audited_date": "2026-06-25"
     }
   ]
 }
