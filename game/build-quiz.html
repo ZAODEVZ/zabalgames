@@ -62,6 +62,16 @@
     .rp-next b { color: var(--text); }
     .rp-links a { font-size: 0.8rem; color: var(--cyan); text-decoration: none; margin-right: 0.8rem; }
     .rp-links a:hover { text-decoration: underline; }
+    .res-watch { margin: 0 0 1.1rem; }
+    .res-watch h3 { margin: 0 0 0.6rem; font-size: 0.95rem; }
+    .wc-card { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; border: 1px solid var(--border); border-left: 3px solid var(--cyan); background: var(--surface-2); border-radius: 10px; padding: 0.65rem 0.9rem; margin-bottom: 0.55rem; }
+    .wc-main { flex: 1 1 60%; min-width: 0; }
+    .wc-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--text); text-decoration: none; }
+    .wc-title:hover { color: var(--cyan); }
+    .wc-by { display: block; font-size: 0.76rem; color: var(--text-dim); margin-top: 0.15rem; }
+    .wc-links { flex: 0 0 auto; }
+    .wc-links a { font-size: 0.8rem; color: var(--cyan); text-decoration: none; margin-left: 0.7rem; }
+    .wc-links a:hover { text-decoration: underline; }
     .res-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0.8rem; }
     .res-status { min-height: 1.2rem; font-size: 0.85rem; color: var(--text-muted); }
     .res-foot { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.6rem; }
@@ -114,6 +124,10 @@
         <h3>Real ZAO projects in this lane <span style="font-weight:400;color:var(--text-dim);font-size:0.8rem;">- adopt one, ship the next step</span></h3>
         <div id="res-projects"></div>
       </div>
+      <div class="res-watch" id="res-watch-box" style="display:none;">
+        <h3>Watch these first <span style="font-weight:400;color:var(--text-dim);font-size:0.8rem;">- workshop recordings for your lane</span></h3>
+        <div id="res-watch"></div>
+      </div>
       <div class="res-actions">
         <a class="btn primary" id="res-register" href="/enter">Register a build in this lane</a>
         <button class="btn" id="res-lock" type="button">Lock in this track</button>
@@ -132,9 +146,11 @@
 (function () {
   'use strict';
 
-  // 3 questions, 4 options. Each option weights a track; the "a bit of everything"
-  // option nudges all three equally so the deliberate picks decide the lane.
-  var QUESTIONS = [
+  // Question POOL. Each run draws QUIZ_LEN at random and shuffles option order, so
+  // taking the quiz twice gives a different set of questions. Each option weights a
+  // track; the "a bit of everything" option nudges all three so deliberate picks decide.
+  var QUIZ_LEN = 3;
+  var QUESTION_POOL = [
     {
       title: 'When you make something, what are you chasing?',
       opts: [
@@ -161,8 +177,61 @@
         { label: 'A series and an audience that grew around it.', w: { creator: 2 } },
         { label: 'A team and momentum that outlast the season.', w: { artist: 1, builder: 1, creator: 1 } }
       ]
+    },
+    {
+      title: 'What pulls you in first on a new project?',
+      opts: [
+        { label: 'The feel and the aesthetic of it.', w: { artist: 2 } },
+        { label: 'How it works under the hood.', w: { builder: 2 } },
+        { label: 'How the story around it gets told.', w: { creator: 2 } },
+        { label: 'All of it, depending on the day.', w: { artist: 1, builder: 1, creator: 1 } }
+      ]
+    },
+    {
+      title: 'Your favorite part of shipping something is:',
+      opts: [
+        { label: 'Making it beautiful.', w: { artist: 2 } },
+        { label: 'Making it actually function.', w: { builder: 2 } },
+        { label: 'Making it spread.', w: { creator: 2 } },
+        { label: 'Pulling people together to do it.', w: { artist: 1, builder: 1, creator: 1 } }
+      ]
+    },
+    {
+      title: 'Which ZABAL Gamez workshop would you hit first?',
+      opts: [
+        { label: 'WaveWarZ - earning from music battles.', w: { artist: 2 } },
+        { label: 'POIDH - the open bounty protocol.', w: { builder: 2 } },
+        { label: 'Starting and growing your own livestream.', w: { creator: 2 } },
+        { label: 'Whichever one has the best energy.', w: { artist: 1, builder: 1, creator: 1 } }
+      ]
+    },
+    {
+      title: 'People come to you for:',
+      opts: [
+        { label: 'Taste - you know what looks and sounds right.', w: { artist: 2 } },
+        { label: 'Solutions - you make the thing work.', w: { builder: 2 } },
+        { label: 'Reach - you know how to get eyes on it.', w: { creator: 2 } },
+        { label: 'Glue - you keep the whole crew moving.', w: { artist: 1, builder: 1, creator: 1 } }
+      ]
     }
   ];
+
+  // Fisher-Yates, returns a shuffled copy.
+  function shuffled(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  // Draw a fresh set: QUIZ_LEN random questions, each with shuffled options.
+  function drawQuiz() {
+    return shuffled(QUESTION_POOL).slice(0, QUIZ_LEN).map(function (q) {
+      return { title: q.title, opts: shuffled(q.opts) };
+    });
+  }
+  var QUESTIONS = drawQuiz();
 
   var RESULTS = {
     artist: {
@@ -254,6 +323,7 @@
     r.ideas.forEach(function (t) { var li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
     document.getElementById('res-register').href = '/enter?track=' + chosenTrack;
     renderProjects(chosenTrack);
+    renderWatch(chosenTrack);
     quizEl.classList.add('hide');
     resultEl.classList.add('show');
     if (resultEl.scrollIntoView) resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -312,6 +382,39 @@
       .catch(function () { document.getElementById('res-projects-box').style.display = 'none'; });
   }
 
+  // Watch-these: pull real workshop recordings for the chosen track from the
+  // recordings index, prefer the ones with a published video, and link straight to
+  // the recording page (video + transcript). Concrete parts of the season to watch.
+  var _recs = null;
+  function pickRecs(track) {
+    var all = (_recs || []).filter(function (r) { return r && r.track === track && r.url; });
+    // a published video first, then most recent (index is newest-first already)
+    all.sort(function (a, b) { return (b.youtube ? 1 : 0) - (a.youtube ? 1 : 0); });
+    return all.slice(0, 3);
+  }
+  function paintRecs(list) {
+    var box = document.getElementById('res-watch-box');
+    var el = document.getElementById('res-watch');
+    if (!list.length) { box.style.display = 'none'; return; }
+    el.innerHTML = list.map(function (r) {
+      var by = [r.presenter, r.org].filter(Boolean).join(' - ');
+      var links = '<a href="' + esc(r.url) + '">Open</a>';
+      if (r.youtube) links += '<a href="' + esc(r.youtube) + '" target="_blank" rel="noopener">YouTube</a>';
+      return '<div class="wc-card"><div class="wc-main">' +
+        '<a class="wc-title" href="' + esc(r.url) + '">' + esc(r.title) + '</a>' +
+        (by ? '<span class="wc-by">' + esc(by) + '</span>' : '') +
+        '</div><div class="wc-links">' + links + '</div></div>';
+    }).join('');
+    box.style.display = '';
+  }
+  function renderWatch(track) {
+    if (_recs) { paintRecs(pickRecs(track)); return; }
+    fetch('/recordings/index.json', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { _recs = (d && d.recordings) || []; paintRecs(pickRecs(track)); })
+      .catch(function () { document.getElementById('res-watch-box').style.display = 'none'; });
+  }
+
   function setStatus(t) { document.getElementById('res-status').textContent = t || ''; }
 
   // Lock in: drops a one-tap join against the verified FID (exercises the live /api/join
@@ -345,9 +448,11 @@
   document.getElementById('res-retake').addEventListener('click', function () {
     score = { artist: 0, builder: 0, creator: 0 };
     firstPick = null; idx = 0; chosenTrack = null;
+    QUESTIONS = drawQuiz(); // fresh set of questions on every retake
     resultEl.classList.remove('show');
     quizEl.classList.remove('hide');
     var pb=document.getElementById('res-projects-box'); if(pb) pb.style.display='none';
+    var wb=document.getElementById('res-watch-box'); if(wb) wb.style.display='none';
     setStatus('');
     renderQuestion();
     if (quizEl.scrollIntoView) quizEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
