@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bounties - ZABAL Gamez Season 1</title>
+  <meta name="description" content="Open bounties for ZABAL Gamez - clip a workshop, ship a build, win the pot. Real bounties on Base via POIDH. Claim one, or add to it.">
+  <link rel="canonical" href="https://zabalgamez.com/bounties">
+  <meta property="og:title" content="Bounties - ZABAL Gamez">
+  <meta property="og:description" content="Open bounties - clip a workshop, ship a build, win the pot. Claim one.">
+  <meta property="og:url" content="https://zabalgamez.com/bounties">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the bounties","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/bounties","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the bounties","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/bounties","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .bo-badge { display: inline-block; padding: 0.25rem 0.7rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .bo-badge.open { background: rgba(0,229,255,0.12); border: 1px solid rgba(0,229,255,0.4); color: var(--cyan); }
+    .bo-badge.closed { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim); }
+    .bo-type { font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--border-hover); color: var(--text-muted); }
+    .bo-list { display: grid; gap: 12px; margin-top: 1rem; }
+    .bo-card { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 10px; background: var(--surface-2); padding: 1rem 1.1rem; }
+    .bo-card.is-closed { opacity: 0.72; border-left-color: var(--border); }
+    .bo-top { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.45rem; }
+    .bo-card h3 { margin: 0; font-size: 1.12rem; }
+    .bo-reward { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: 0.9rem; margin: 0.25rem 0 0.4rem; }
+    .bo-brief { font-size: 0.93rem; color: var(--text); margin: 0 0 0.7rem; line-height: 1.5; }
+    .bo-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-dim); margin-bottom: 0.6rem; }
+    .bo-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .bo-link { font-size: 0.82rem; padding: 0.34rem 0.8rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface); color: var(--cyan); }
+    .bo-link.primary { background: var(--gold); color: #000; border-color: var(--gold); font-weight: 600; }
+    .bo-link:hover { filter: brightness(1.1); }
+  </style>
+  <script type="module" src="/assets/miniapp.js"></script>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/bounties.html" class="active" aria-current="page">Bounties</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" id="main">
+
+  <header class="hero">
+    <div class="hero-eyebrow">Open work, real rewards</div>
+    <h1>Bounties.</h1>
+    <p class="hero-sub">
+      Open bounties for ZABAL Gamez - clip a workshop, ship a build, make something. Real rewards on Base via POIDH. Claim one, or add to the pot. The build is the application.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2>Open now</h2>
+    <div id="bo-open" class="bo-list">
+      <p style="color: var(--text-dim);">Loading bounties... <a href="https://poidh.xyz/base" target="_blank" rel="noopener" style="color: var(--cyan);">Browse POIDH</a> if this doesn't load.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>How it works</h2>
+    <ul style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-left: 1.1rem;">
+      <li>Pick a bounty, do the work, submit it on POIDH (on Base).</li>
+      <li>Clip bounties live on each <a href="/recordings" style="color: var(--cyan);">recording</a> - cut a 45-60s clip and submit it right there.</li>
+      <li>Anyone can add funds to a bounty's pot - back the work you want made.</li>
+      <li>New to building? Start at <a href="/enter" style="color: var(--cyan);">/enter</a> and ship in public.</li>
+    </ul>
+  </section>
+
+  <section class="section" id="bo-past-section" style="display:none;">
+    <h2>Past bounties</h2>
+    <div id="bo-past" class="bo-list"></div>
+  </section>
+
+</div>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/bounties.html">Bounties</a>
+      <a href="/build-days.html">Build Days</a>
+      <a href="/live.html">Live - What's On Now</a>
+      <a href="/recaps.html">Session Recaps</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Season">
+      <h4>Season</h4>
+      <a href="/enter.html">Enter the Build</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/winners.html">Winners</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/spaces.html">Spaces</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/streams.html">Streams</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/research.html">Research</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/today.html">Daily Update</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+// Bounty board - rendered from data/bounties.json. Status derives from the deadline.
+(function () {
+  var openEl = document.getElementById('bo-open');
+  if (!openEl) return;
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function today() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function isOpen(b) { return !b.deadline || b.deadline >= today(); }
+  function card(b, forceClosed) {
+    var open = !forceClosed && isOpen(b);
+    var links = [];
+    var claim = b.claim_url || b.poidh_url;
+    if (open && claim) links.push('<a class="bo-link primary" href="' + esc(claim) + '"' + (/^https?:/.test(claim) ? ' target="_blank" rel="noopener"' : '') + '>Claim it</a>');
+    if (b.poidh_url && b.poidh_url !== claim) links.push('<a class="bo-link" href="' + esc(b.poidh_url) + '" target="_blank" rel="noopener">On POIDH</a>');
+    else if (b.poidh_url && open) links.push('<a class="bo-link" href="' + esc(b.poidh_url) + '" target="_blank" rel="noopener">View on POIDH</a>');
+    return '<div class="bo-card' + (open ? '' : ' is-closed') + '">' +
+      '<div class="bo-top"><span class="bo-badge ' + (open ? 'open' : 'closed') + '">' + (open ? 'Open' : 'Closed') + '</span>' +
+      (b.type ? '<span class="bo-type">' + esc(b.type) + '</span>' : '') + '</div>' +
+      '<h3>' + esc(b.title) + '</h3>' +
+      (b.reward ? '<p class="bo-reward">' + esc(b.reward) + '</p>' : '') +
+      (b.brief ? '<p class="bo-brief">' + esc(b.brief) + '</p>' : '') +
+      (b.deadline ? '<p class="bo-meta">' + (open ? 'Closes ' : 'Closed ') + esc(b.deadline) + '</p>' : '<p class="bo-meta">Rolling - no deadline</p>') +
+      (links.length ? '<div class="bo-links">' + links.join('') + '</div>' : '') +
+      '</div>';
+  }
+  fetch('/data/bounties.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var open = (d.bounties || []).filter(isOpen);
+      var closed = (d.bounties || []).filter(function (b) { return !isOpen(b); }).concat(d.past || []);
+      openEl.innerHTML = open.length ? open.map(function (b) { return card(b); }).join('')
+        : '<p style="color:var(--text-dim);">No open bounties right now. <a href="https://poidh.xyz/base" target="_blank" rel="noopener" style="color:var(--cyan);">Browse POIDH</a> or <a href="/recordings" style="color:var(--cyan);">clip a recording</a>.</p>';
+      if (closed.length) {
+        document.getElementById('bo-past-section').style.display = '';
+        document.getElementById('bo-past').innerHTML = closed.map(function (b) { return card(b, true); }).join('');
+      }
+    })
+    .catch(function () {
+      openEl.innerHTML = '<p style="color:var(--text-dim);">Could not load bounties. <a href="https://poidh.xyz/base" target="_blank" rel="noopener" style="color:var(--cyan);">Browse POIDH</a>.</p>';
+    });
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
