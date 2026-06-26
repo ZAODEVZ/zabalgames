@@ -31,6 +31,12 @@
     .progress span { flex: 1; height: 4px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
     .progress span.done { background: var(--zabal); border-color: var(--zabal); }
     .q-step { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; }
+    .skip-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 0 0 1rem; }
+    .skip-btn { font-family: inherit; font-size: 0.86rem; color: var(--cyan); background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 0.5rem 1rem; cursor: pointer; min-height: 40px; }
+    .skip-btn:hover { border-color: var(--cyan); }
+    .skip-btn:disabled { opacity: 0.6; cursor: default; }
+    .skip-status { font-size: 0.82rem; color: var(--text-dim); }
+    .skip-status a { color: var(--cyan); }
     .q-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; margin: 0.3rem 0 1rem; line-height: 1.2; }
     .opts { display: grid; gap: 10px; }
     .opt { display: block; width: 100%; text-align: left; cursor: pointer; font-family: inherit; font-size: 0.98rem; color: var(--text);
@@ -100,10 +106,14 @@
   <header class="hero" style="padding-bottom: 0.2rem;">
     <div class="hero-eyebrow">The arcade</div>
     <h1>What should you <span class="accent">build?</span></h1>
-    <p class="lead" style="margin-top: 0.3rem;">Three questions, no wrong answers. We will point you at a lane and a few concrete things you could ship for ZABAL Gamez.</p>
+    <p class="lead" style="margin-top: 0.3rem;">Three questions, no wrong answers - or skip them and let us read your Farcaster profile. Either way we point you at a lane and concrete things you could ship for ZABAL Gamez.</p>
   </header>
 
   <div class="quiz-wrap">
+    <div class="skip-row">
+      <button class="skip-btn" id="skip-quiz" type="button">Skip - analyze my Farcaster profile</button>
+      <span class="skip-status" id="skip-status" role="status"></span>
+    </div>
     <div class="progress" id="progress" aria-hidden="true"><span></span><span></span><span></span></div>
 
     <section class="quiz" id="quiz" aria-live="polite">
@@ -312,12 +322,16 @@
     return best;
   }
 
-  function showResult() {
-    chosenTrack = winner();
+  function showResult() { paintResult(winner(), null); }
+
+  // Render the result for a track. whyOverride lets the "skip" path explain the result
+  // came from the player's profile instead of the 3 answers.
+  function paintResult(track, whyOverride) {
+    chosenTrack = track;
     var r = RESULTS[chosenTrack];
     for (var i = 0; i < progEl.length; i++) progEl[i].className = 'done';
     document.getElementById('res-track').innerHTML = 'Build for the <span class="accent">' + r.label + '</span> track';
-    document.getElementById('res-why').textContent = r.why;
+    document.getElementById('res-why').textContent = whyOverride || r.why;
     var ul = document.getElementById('res-ideas');
     ul.innerHTML = '';
     r.ideas.forEach(function (t) { var li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
@@ -453,10 +467,41 @@
     quizEl.classList.remove('hide');
     var pb=document.getElementById('res-projects-box'); if(pb) pb.style.display='none';
     var wb=document.getElementById('res-watch-box'); if(wb) wb.style.display='none';
+    document.querySelector('.skip-row').style.display = ''; // re-show the skip option on retake
     setStatus('');
     renderQuestion();
     if (quizEl.scrollIntoView) quizEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+
+  // Skip the questions: read the player's Farcaster profile and jump straight to a lane.
+  // Works in the Farcaster app (needs the verified profile); outside it, nudge to open there.
+  (function () {
+    var btn = document.getElementById('skip-quiz');
+    var status = document.getElementById('skip-status');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      if (!(window.ZABAL && window.ZABAL.analyzeProfile)) {
+        status.innerHTML = 'Open ZABAL Gamez in <a href="https://farcaster.xyz/miniapps/zabal-gamez" target="_blank" rel="noopener">Farcaster</a> to analyze your profile - or just answer the 3 questions.';
+        return;
+      }
+      btn.disabled = true; status.textContent = 'Reading your profile...';
+      window.ZABAL.analyzeProfile().then(function (d) {
+        if (d && d.ok && d.track && RESULTS[d.track]) {
+          document.querySelector('.skip-row').style.display = 'none';
+          paintResult(d.track, d.why || null);
+        } else if (d && d.reason === 'not-in-miniapp') {
+          btn.disabled = false;
+          status.innerHTML = 'Open ZABAL Gamez in <a href="https://farcaster.xyz/miniapps/zabal-gamez" target="_blank" rel="noopener">Farcaster</a> to analyze your profile - or just answer the 3 questions.';
+        } else {
+          btn.disabled = false;
+          status.textContent = 'Could not read your profile - answer the 3 quick questions instead.';
+        }
+      }).catch(function () {
+        btn.disabled = false;
+        status.textContent = 'Could not read your profile - answer the 3 quick questions instead.';
+      });
+    });
+  })();
 
   renderQuestion();
 })();
