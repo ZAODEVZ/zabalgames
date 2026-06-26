@@ -1,0 +1,33 @@
+{
+  "_note": "ZABAL Gamez bounty board - open bounties anyone can claim. Each bounty is real (POIDH on Base) or a community task. Fields: title, type (clip|ad|build|task), reward (display string), brief (one line on what wins), poidh_url (the on-chain bounty, optional), claim_url (where to submit), deadline (YYYY-MM-DD or null for rolling), status auto-derives: a past deadline reads 'closed', else 'open'. Add a bounty by appending to bounties[]. The clip bounties are created per-recording via the on-chain widget (see /recordings) - this board is the front door + the curated big ones.",
+  "season": 1,
+  "bounties": [
+    {
+      "title": "The ZABAL Gamez Open Pot",
+      "type": "build",
+      "reward": "Growing ETH pot on Base",
+      "brief": "Submit a build for the ZAO ecosystem during July - anyone who submits shares the open pot. Add to it, or claim from it.",
+      "poidh_url": "https://poidh.xyz/base/bounty/1249",
+      "claim_url": "https://poidh.xyz/base/bounty/1249",
+      "deadline": "2026-07-31"
+    },
+    {
+      "title": "Clip a workshop recording",
+      "type": "clip",
+      "reward": "Per-recording pot (open)",
+      "brief": "Cut a 45-60s clip of any ZABAL Gamez recording and submit it for the bounty on that recording. Best clip wins the pot - and anyone can add to it.",
+      "claim_url": "https://zabalgamez.com/recordings",
+      "deadline": null
+    }
+  ],
+  "past": [
+    {
+      "title": "Best ad for ZABAL Gamez",
+      "type": "ad",
+      "reward": "0.0125 ETH",
+      "brief": "Make the best ad for ZABAL Gamez - any format. The winning clip became the pinned promo.",
+      "poidh_url": "https://poidh.xyz/base/bounty/1180",
+      "deadline": "2026-06-14"
+    }
+  ]
+}
