@@ -186,6 +186,26 @@ window.ZABAL.viewProfile = async function viewProfile(fid) {
   window.open('https://farcaster.xyz/~/profiles/' + fid, '_blank', 'noopener');
 };
 
+// Analyze the signed-in player's Farcaster profile (server-side, by verified FID) and
+// return a best-fit ZABAL Gamez track. Powers the "skip the questions" path on the build
+// quiz. Returns { ok, track, label, why, matched, confident, handle } or { ok:false, reason }.
+window.ZABAL.analyzeProfile = async function analyzeProfile() {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/profile-track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    return data && data.ok ? data : { ok: false, reason: (data && (data.reason || data.error)) || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 // Prompt the user to add ZABAL Gamez (enables notifications via /api/webhook).
 // Returns true if the prompt ran, false outside a Mini App. Safe to call anywhere.
 window.ZABAL.addApp = async function addApp() {
