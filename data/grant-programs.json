@@ -1,0 +1,57 @@
+{
+  "_note": "Funding paths for ZABAL Gamez builders - real, verified grant programs (Base/Optimism ecosystem, where July builds live). Retroactive-first: ship, then get funded. Verified 2026-06-26 from official sources. Ranges are what the programs publish; they change, so each links to the canonical page - we do not promise amounts. Add a program by appending to programs[]. type: retroactive | rewards | accelerator | investment. chain: where your build should live to qualify.",
+  "verified": "2026-06-26",
+  "intro": "The ZAO ethos: ship in public, get funded for what you built. These are real funding paths for a ZABAL Gamez build - most are retroactive, so the work is the application. Build on Base, keep your repo public, document your impact.",
+  "programs": [
+    {
+      "name": "Base Builder Grants",
+      "type": "retroactive",
+      "range": "1-5 ETH",
+      "chain": "Base",
+      "what": "Fast retroactive grants for shipped projects that bring real value to the Base ecosystem. Run by the Base team; rewards deployed, working code over pitches. Eligible work spans apps, tooling, infra, creative, content, and community.",
+      "how": "You are discovered, or nominated via a public form. Selected builders are contacted directly.",
+      "url": "https://docs.base.org/get-started/get-funded",
+      "apply_url": "https://docs.base.org/get-started/get-funded"
+    },
+    {
+      "name": "Base Builder Rewards",
+      "type": "rewards",
+      "range": "~2 ETH / week, distributed across active builders",
+      "chain": "Base",
+      "what": "Ongoing weekly ETH rewards for active builders - good for experimentation and learning while you ship.",
+      "how": "Be an active onchain builder on Base; rewards are distributed by the program.",
+      "url": "https://docs.base.org/get-started/get-funded",
+      "apply_url": "https://docs.base.org/get-started/get-funded"
+    },
+    {
+      "name": "Optimism Retro Funding (RetroPGF)",
+      "type": "retroactive",
+      "range": "OP tokens (varies by round)",
+      "chain": "Base or any OP Superchain",
+      "what": "Retroactive public-goods funding from the Optimism Collective. Base builders qualify as part of the Superchain. Rewards demonstrated impact (open-source tools, infra, education) - apply after the work is live, evaluated by badgeholders.",
+      "how": "Apply with a Farcaster account via the Optimism Atlas platform; verify your onchain contracts + public repo.",
+      "url": "https://app.optimism.io/retropgf",
+      "apply_url": "https://atlas.optimism.io"
+    },
+    {
+      "name": "Base Batches",
+      "type": "accelerator",
+      "range": "Mentorship + funding (founder track)",
+      "chain": "Base",
+      "what": "A founder accelerator: structured development, mentorship, and a Pitch Day to investors including Coinbase Ventures. For builders ready to go full-time.",
+      "how": "Apply when a cohort opens (recurring).",
+      "url": "https://docs.base.org/get-started/get-funded",
+      "apply_url": "https://docs.base.org/get-started/get-funded"
+    },
+    {
+      "name": "Base Ecosystem Fund",
+      "type": "investment",
+      "range": "Pre-seed / seed investment",
+      "chain": "Base",
+      "what": "Early investment led by Coinbase Ventures for teams building serious products on Base.",
+      "how": "For teams pursuing venture funding - typically via warm intro / the Base ecosystem.",
+      "url": "https://docs.base.org/get-started/get-funded",
+      "apply_url": "https://docs.base.org/get-started/get-funded"
+    }
+  ]
+}

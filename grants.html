@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Funded - ZABAL Gamez Season 1</title>
+  <meta name="description" content="Funding paths for your ZABAL Gamez build - real grant programs in the Base and Optimism ecosystem. Ship in public, get funded for what you built.">
+  <link rel="canonical" href="https://zabalgamez.com/grants">
+  <meta property="og:title" content="Get Funded - ZABAL Gamez">
+  <meta property="og:description" content="Real funding paths for your build - Base Builder Grants, Optimism Retro Funding, and more. The build is the application.">
+  <meta property="og:url" content="https://zabalgamez.com/grants">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Get funded","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/grants","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Get funded","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/grants","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .gr-type { font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--border-hover); color: var(--text-muted); }
+    .gr-list { display: grid; gap: 12px; margin-top: 1rem; }
+    .gr-card { border: 1px solid var(--border); border-left: 3px solid var(--cyan); border-radius: 10px; background: var(--surface-2); padding: 1rem 1.1rem; }
+    .gr-top { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.3rem; }
+    .gr-card h3 { margin: 0; font-size: 1.1rem; }
+    .gr-range { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: 0.88rem; margin: 0.2rem 0 0.5rem; }
+    .gr-what { font-size: 0.92rem; color: var(--text); margin: 0 0 0.5rem; line-height: 1.5; }
+    .gr-how { font-size: 0.85rem; color: var(--text-muted); margin: 0 0 0.7rem; line-height: 1.45; }
+    .gr-how b { color: var(--text); }
+    .gr-link { display: inline-block; font-size: 0.82rem; padding: 0.34rem 0.85rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--cyan); background: var(--surface); color: var(--cyan); }
+    .gr-link:hover { background: var(--cyan); color: #000; }
+    .gr-chain { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
+  </style>
+  <script type="module" src="/assets/miniapp.js"></script>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/grants.html" class="active" aria-current="page">Get Funded</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" id="main">
+
+  <header class="hero">
+    <div class="hero-eyebrow">Funding for your build</div>
+    <h1>Get <span class="accent">funded</span>.</h1>
+    <p class="hero-sub" id="gr-intro">
+      Ship in public, get funded for what you built. These are real funding paths in the Base and Optimism ecosystem - most retroactive, so the work is the application.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2>Funding paths</h2>
+    <div id="gr-list" class="gr-list">
+      <p style="color: var(--text-dim);">Loading funding paths...</p>
+    </div>
+    <p style="color: var(--text-dim); font-size: 0.78rem; margin-top: 1rem;">Programs and amounts change - each links to its official page. Not financial or legal advice. Verified <span id="gr-verified">2026-06-26</span>.</p>
+  </section>
+
+  <section class="section">
+    <h2>How to qualify</h2>
+    <ul style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-left: 1.1rem;">
+      <li><b>Ship on Base.</b> Deploy your contracts / app on Base so it counts across these programs.</li>
+      <li><b>Keep your repo public.</b> Retroactive funders verify a public GitHub repo you own.</li>
+      <li><b>Document impact.</b> Real users, transactions, and a clear "what it does" beat a pitch.</li>
+      <li><b>Build in public.</b> Register your build at <a href="/enter" style="color: var(--cyan);">/enter</a> and ship where people can see it - that is the ZABAL Gamez application too.</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/bounties.html">Bounties</a>
+      <a href="/grants.html">Get Funded</a>
+      <a href="/enter.html">Enter the Build</a>
+      <a href="/recaps.html">Session Recaps</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Season">
+      <h4>Season</h4>
+      <a href="/projects.html">Projects</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/winners.html">Winners</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/spaces.html">Spaces</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/streams.html">Streams</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/research.html">Research</a>
+      <a href="/changelog.html">Changelog</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+// Funding paths - rendered from data/grant-programs.json (verified real programs).
+(function () {
+  var el = document.getElementById('gr-list');
+  if (!el) return;
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  fetch('/data/grant-programs.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (d.intro) { var i = document.getElementById('gr-intro'); if (i) i.textContent = d.intro; }
+      if (d.verified) { var v = document.getElementById('gr-verified'); if (v) v.textContent = d.verified; }
+      var progs = d.programs || [];
+      el.innerHTML = progs.length ? progs.map(function (p) {
+        return '<div class="gr-card">' +
+          '<div class="gr-top"><h3>' + esc(p.name) + '</h3>' + (p.type ? '<span class="gr-type">' + esc(p.type) + '</span>' : '') + '</div>' +
+          (p.range ? '<p class="gr-range">' + esc(p.range) + (p.chain ? '  <span class="gr-chain">- ' + esc(p.chain) + '</span>' : '') + '</p>' : '') +
+          (p.what ? '<p class="gr-what">' + esc(p.what) + '</p>' : '') +
+          (p.how ? '<p class="gr-how"><b>How:</b> ' + esc(p.how) + '</p>' : '') +
+          (p.apply_url || p.url ? '<a class="gr-link" href="' + esc(p.apply_url || p.url) + '" target="_blank" rel="noopener">Learn more + apply</a>' : '') +
+          '</div>';
+      }).join('') : '<p style="color:var(--text-dim);">Funding paths load here.</p>';
+    })
+    .catch(function () {
+      el.innerHTML = '<p style="color:var(--text-dim);">Could not load. See <a href="https://docs.base.org/get-started/get-funded" target="_blank" rel="noopener" style="color:var(--cyan);">Base: Get Funded</a>.</p>';
+    });
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
