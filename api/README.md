@@ -294,9 +294,13 @@ when a referred player authenticates in the Mini App the referrer is credited on
 (idempotent, no self-referral).
 - `POST { ref }` with `Authorization: Bearer <quick-auth-jwt>` -> `{ ok, credited }`
 - `GET ?ref=<handle>` -> `{ ok, ref, count }`
+- `GET ?board=top&limit=50` -> `{ ok, entries: [{ rank, handle, count }] }` (top-referrers
+  board, surfaced at `/referrers`).
 
-Storage: `ref:by` (first referrer wins per FID) + `ref:made:<ref>` (the referrer's
-distinct credited set). Graceful no-op without KV.
+Capture: `assets/miniapp.js` reads `?ref=<handle>` on landing and calls `ZABAL.refer()`
+once per visit - that is what makes the loop fire. Storage: `ref:by` (first referrer wins
+per FID) + `ref:made:<ref>` (distinct credited set) + `ref:board` (ZSET for the
+leaderboard, counts forward). Graceful no-op without KV.
 
 ### `GET/POST /api/clips`
 On-site clip registry + engagement for the clip flywheel. When a viewer submits a
