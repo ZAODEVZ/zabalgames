@@ -614,7 +614,7 @@
         "spec_url": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/adoptable-projects.json",
         "funding_mechanism": "POIDH bounty adoption + Empire Builder distribution",
         "projects_include": [
-          "Songjam leaderboard migration",
+          "SongJam leaderboard migration",
           "POIDH bounty leaderboard",
           "zlank Empire Snap template",
           "Twitch to Empire feed",
@@ -1702,7 +1702,7 @@
         "market_cap": "~12800 USD",
         "price_usd": "0.0000155",
         "primary_pair": "SANG/VIRTUAL on Uniswap V2",
-        "source_protocol": "Songjam by Virtuals (voice verification network)",
+        "source_protocol": "SongJam by Virtuals (voice verification network)",
         "liquidity": "Extremely thin",
         "distribution": "SongJam staking rewards, voice node infrastructure",
         "origin": "SongJam (music DAO)",
@@ -5514,7 +5514,7 @@
         "Service"
       ],
       "attributes": {
-        "vendor": "magnetic.ai / Tyler Stambaugh",
+        "vendor": "Magnetiq (magnetiq.io) / Tyler Stambaugh",
         "role": "The workshop library + retention hub for ZABAL Gamez",
         "native_video_hosting": "500GB capacity, natively hosted, no YouTube required",
         "analytics": "Per-vendor watch-time drop-off tracking, opt-in email collection",
