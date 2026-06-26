@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Days - ZABAL Gamez Season 1</title>
+  <meta name="description" content="The July daily build series. Each day spotlights a project and the room builds on top of it, live. Vote on what to build, build it on stream, demo it. Watch live at zabalgamez.com/live.">
+  <link rel="canonical" href="https://zabalgamez.com/build-days">
+  <meta property="og:title" content="Build Days - ZABAL Gamez">
+  <meta property="og:description" content="July's daily build series. A different project each day, built on top of, live.">
+  <meta property="og:url" content="https://zabalgamez.com/build-days">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the Build Days","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/build-days","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the Build Days","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/build-days","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .bd-badge { display: inline-block; padding: 0.25rem 0.7rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .bd-badge.live { background: rgba(255,61,110,0.18); border: 1px solid var(--pink); color: var(--pink); animation: bdpulse 1.5s ease-in-out infinite; }
+    .bd-badge.upcoming { background: rgba(0,229,255,0.12); border: 1px solid rgba(0,229,255,0.4); color: var(--cyan); }
+    .bd-badge.done { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim); }
+    @keyframes bdpulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+    .bd-list { display: grid; gap: 12px; margin-top: 1rem; }
+    .bd-card { border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 10px; background: var(--surface-2); padding: 1rem 1.1rem; }
+    .bd-card.is-live { border-left-color: var(--pink); box-shadow: 0 0 18px rgba(255,61,110,0.15); }
+    .bd-card.is-done { opacity: 0.78; }
+    .bd-top { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.4rem; }
+    .bd-when { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); }
+    .bd-card h3 { margin: 0.2rem 0 0.1rem; font-size: 1.1rem; }
+    .bd-card h3 .on { color: var(--text-dim); font-weight: 400; }
+    .bd-by { font-size: 0.88rem; color: var(--text-muted); margin: 0 0 0.5rem; }
+    .bd-buildon { font-size: 0.92rem; color: var(--text); margin: 0 0 0.7rem; line-height: 1.5; }
+    .bd-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .bd-link { font-size: 0.82rem; padding: 0.34rem 0.75rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface); color: var(--cyan); }
+    .bd-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .bd-link:hover { filter: brightness(1.12); }
+    .bd-how { display: grid; gap: 8px; margin-top: 0.6rem; }
+    .bd-how li { color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; }
+    .bd-num { color: var(--cyan); font-weight: 700; }
+  </style>
+  <script type="module" src="/assets/miniapp.js"></script>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/build-days.html" class="active" aria-current="page">Build Days</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" id="main">
+
+  <header class="hero">
+    <div class="hero-eyebrow">July - Open Build</div>
+    <h1>Build <span class="accent">Days</span>.</h1>
+    <p class="hero-sub">
+      Every day in July, one project takes the stage and we build on top of it - live. The room votes on what to make, we build it on stream, then demo it and hand off to tomorrow. Free, recorded, kept. Come build.
+    </p>
+    <p style="margin-top: 0.8rem;"><a class="bd-link primary" href="https://zabalgamez.com/live">Watch live - zabalgamez.com/live</a></p>
+  </header>
+
+  <section class="section">
+    <h2>How a Build Day runs</h2>
+    <ul class="bd-how" style="list-style: none; padding: 0;">
+      <li><span class="bd-num">0-10 min.</span> The guest shows their project, then the room votes on what to build on top of it.</li>
+      <li><span class="bd-num">10-55 min.</span> We build it live on stream. Suggest, heckle, help when it gets stuck. It doesn't have to finish.</li>
+      <li><span class="bd-num">55-60 min.</span> Demo what changed, post the recording, tee up tomorrow's project.</li>
+    </ul>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.7rem;">The one rule: everything built that day is on top of that day's project. <a href="/enter" style="color: var(--cyan);">Register your build</a> any time.</p>
+  </section>
+
+  <section class="section">
+    <h2>The schedule</h2>
+    <div id="bd-list" class="bd-list">
+      <p style="color: var(--text-dim);">Loading the schedule... <a href="https://zabalgamez.com/live" style="color: var(--cyan);">Watch live</a> if this doesn't load.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/live.html">Live - What's On Now</a>
+      <a href="/build-days.html">Build Days</a>
+      <a href="/lead.html">Lead a Workshop</a>
+      <a href="/recaps.html">Session Recaps</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Season">
+      <h4>Season</h4>
+      <a href="/enter.html">Enter the Build</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/finals.html">Finals</a>
+      <a href="/winners.html">Winners</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/spaces.html">Spaces</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/streams.html">Streams</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/farcaster-batches.html">Farcaster Batches</a>
+      <a href="/research.html">Research</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/today.html">Daily Update</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+// Build Days schedule - rendered from data/build-days.json. Status derives from the date.
+(function () {
+  var mount = document.getElementById('bd-list');
+  if (!mount) return;
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function todayStr() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function fmt(date) { try { return new Date(date + 'T00:00:00').toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }); } catch (e) { return date; } }
+  function statusOf(date) { var t = todayStr(); if (date < t) return 'done'; if (date === t) return 'live'; return 'upcoming'; }
+  fetch('/data/build-days.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var days = (d && d.days) || [];
+      if (!days.length) { mount.innerHTML = '<p style="color:var(--text-dim);">Schedule lands soon. <a href="https://zabalgamez.com/live" style="color:var(--cyan);">Watch live</a>.</p>'; return; }
+      days.sort(function (a, b) { return (a.date || '').localeCompare(b.date || ''); });
+      mount.innerHTML = days.map(function (day) {
+        var st = statusOf(day.date);
+        var badge = st === 'live' ? 'Live today' : (st === 'done' ? 'Done' : 'Upcoming');
+        var links = [];
+        if (day.project_url) links.push('<a class="bd-link" href="' + esc(day.project_url) + '" target="_blank" rel="noopener">The project</a>');
+        if (st === 'live') links.push('<a class="bd-link primary" href="https://zabalgamez.com/live">Watch live</a>');
+        else if (st === 'upcoming' && day.luma_url) links.push('<a class="bd-link primary" href="' + esc(day.luma_url) + '" target="_blank" rel="noopener">RSVP</a>');
+        if (day.recording) links.push('<a class="bd-link" href="' + esc(day.recording) + '">Recording</a>');
+        var who = [day.guest, day.handle].filter(Boolean).join(' ');
+        return '<div class="bd-card is-' + st + '">' +
+          '<div class="bd-top"><span class="bd-badge ' + st + '">' + esc(badge) + '</span>' +
+          '<span class="bd-when">' + esc(fmt(day.date)) + (day.time ? ' &middot; ' + esc(day.time) : '') + '</span></div>' +
+          '<h3><span class="on">Build on</span> ' + esc(day.project || 'TBA') + '</h3>' +
+          (who ? '<p class="bd-by">with ' + esc(who) + '</p>' : '') +
+          (day.build_on ? '<p class="bd-buildon">' + esc(day.build_on) + '</p>' : '') +
+          (links.length ? '<div class="bd-links">' + links.join('') + '</div>' : '') +
+          '</div>';
+      }).join('');
+    })
+    .catch(function () {
+      mount.innerHTML = '<p style="color:var(--text-dim);">Could not load the schedule. <a href="https://zabalgamez.com/live" style="color:var(--cyan);">Watch live</a>.</p>';
+    });
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
