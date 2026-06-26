@@ -35,7 +35,7 @@ const HAATZ = 'https://haatz.quilibrium.com';
 // Allowlisted games (key -> max plausible score).
 // ZAO 2048 practical ceiling: the 2048 merge sequence sums to well under 100k for a
 // realistic game; 131072 covers the theoretical per-tile max with room to spare.
-const GAMES = { zao2048: 131072 };
+const GAMES = { zao2048: 131072, zaotrivia: 10 };
 const TOP_N = 200;
 const MONTH_TTL = 6048000; // ~70 days - last month stays readable for the winner cast
 const NONCE_TTL = 7200; // nonces expire after 2 hours

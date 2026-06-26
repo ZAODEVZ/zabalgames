@@ -1,0 +1,22 @@
+{
+  "_note": "ZAO Trivia question bank. The /game/zao-trivia game picks 10 at random per round. Each question: q, options (4), answer (0-based index of the correct option), explain (one line shown after answering). Keep facts accurate to the ZAO ecosystem - this is the weekly Wednesday 11:30am EST live quiz where finishers split the pot. Add questions by appending to questions[]. No emojis, no em dashes.",
+  "pick": 10,
+  "live": "Wednesdays 11:30am EST",
+  "questions": [
+    { "q": "What is ZABAL Gamez?", "options": ["A video-game tournament", "The ZAO's 3-month Build-A-Thon", "A music festival", "A trading competition"], "answer": 1, "explain": "ZABAL Gamez is The ZAO's free 3-month build event - June workshops, July open build, August Finals." },
+    { "q": "What are the three ZABAL Gamez tracks?", "options": ["Bronze, silver, gold", "Artist, builder, creator", "Junior, mid, senior", "Music, art, code"], "answer": 1, "explain": "Three tracks: artist (musical/visual), builder (developer/aspiring), creator (media/distribution)." },
+    { "q": "What is Empire Builder?", "options": ["A city-building game", "A community-layer framework for projects", "A real-estate fund", "A Discord bot"], "answer": 1, "explain": "Empire Builder is the community-layer framework - leaderboards, boosters, and rewards, token-based or tokenless." },
+    { "q": "What does POIDH stand for?", "options": ["Proof Of Identity, Decentralized Hub", "Pics Or It Didn't Happen", "Pay OnInbound, Deliver Here", "Public Onchain ID Holder"], "answer": 1, "explain": "POIDH - Pics Or It Didn't Happen - is an open bounty protocol on Base." },
+    { "q": "What is Respect in the ZAO?", "options": ["A tradable token", "Soulbound governance earned by contribution", "A staking reward", "An NFT collection"], "answer": 1, "explain": "Respect is soulbound and non-transferable - governance weight earned through weekly contribution and peer consensus." },
+    { "q": "What does WaveWarZ let artists do?", "options": ["Mint album NFTs", "Earn from music battles, not streams", "Sell concert tickets", "Stream to radio"], "answer": 1, "explain": "WaveWarZ flips the model - artists earn from music battles instead of streams." },
+    { "q": "What is Bonfire in the ZAO ecosystem?", "options": ["A live-event series", "A shared AI memory / knowledge graph", "A token launchpad", "A streaming app"], "answer": 1, "explain": "Bonfire is a shared AI workspace where a group grows a collective, ownable memory - a knowledge graph." },
+    { "q": "How long has the ZAO run weekly Respect sessions?", "options": ["A few weeks", "100+ weeks straight", "Since last month", "Twice a year"], "answer": 1, "explain": "The ZAO has run weekly for 100+ weeks straight - that consistency is the foundation." },
+    { "q": "What does Vini App let you do?", "options": ["Trade tokens", "Build a real app from a plain-language prompt", "Edit videos", "Host a podcast"], "answer": 1, "explain": "Vini App lets anyone - even non-coders - build a real app from a plain prompt; it ships with a wallet and a token." },
+    { "q": "When is the ZABAL Gamez open build month?", "options": ["June", "July", "August", "September"], "answer": 1, "explain": "June is workshops, July is the open build, August is the Finals." },
+    { "q": "What chain do ZABAL Gamez bounties and builds live on?", "options": ["Solana", "Base", "Ethereum mainnet", "Polygon"], "answer": 1, "explain": "ZABAL Gamez runs on Base - POIDH bounties, Empire, and the Finals all settle there." },
+    { "q": "What is a 'fractal' in the ZAO sense?", "options": ["A math pattern only", "A way to make group decisions fair, fast, and fun", "A type of NFT", "A music genre"], "answer": 1, "explain": "Fractals make community decisions fair, fast, and fun, using Respect from weekly contributions and peer consensus." },
+    { "q": "What is the ZABAL Gamez August event called?", "options": ["The Drop", "The Finals", "The Showcase", "The Reveal"], "answer": 1, "explain": "August is the Finals - a cohort curated from July, settled via the WaveWarZ-Base prediction market." },
+    { "q": "What is the monthly prize on the ZAO 2048 game?", "options": ["A trophy", "Top 10 win $Zabal", "A free NFT", "Nothing"], "answer": 1, "explain": "On /play, the top 10 each month win $Zabal." },
+    { "q": "What is the ZAO's arcade call-to-action button?", "options": ["Press Start", "Insert Coin", "Continue", "Play Now"], "answer": 1, "explain": "Insert Coin is the ZABAL Gamez arcade mark and its sitewide CTA." }
+  ]
+}
