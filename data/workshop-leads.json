@@ -474,6 +474,51 @@
       "date": "2026-06-23",
       "track": "builder",
       "luma_url": "https://luma.com/1iv0klu3"
+    },
+    {
+      "id": "035",
+      "name": "James",
+      "org": "Mental Wealth Academy",
+      "handle": "@jamesdesign.eth",
+      "topic": "Mental Wealth Academy - building a gamified, private micro-university for mental wellness: a 12-week self-paced cohort of journaling, games, and quests, with on-chain governance and an AI co-pilot. How a designer-researcher ships the product and the agents.",
+      "format": "Talk + Q&A, recorded",
+      "when": "Sat Jun 27 2026, 2:30pm EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-25",
+      "color": "cyan",
+      "date": "2026-06-27",
+      "track": "creator",
+      "luma_url": "https://luma.com/tqzv39kq"
+    },
+    {
+      "id": "036",
+      "name": "Matt Lee",
+      "org": "Tortoise",
+      "handle": "@mattlee",
+      "topic": "Tortoise, and how musicians and creators can best use Farcaster - a light, hands-on session on building on Farcaster, who your ideal user is, and insights for anyone building next. Plus his snap bot.",
+      "format": "Workshop + Q&A, recorded",
+      "when": "Sun Jun 28 2026, 11am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-25",
+      "color": "zabal",
+      "date": "2026-06-28",
+      "track": "builder",
+      "luma_url": "https://luma.com/gt7lr0oe"
+    },
+    {
+      "id": "037",
+      "name": "Pauline and Tako",
+      "org": "Los Fomos",
+      "handle": "@pauline-unik",
+      "topic": "Community, two ways: how to tap into a community like Los Fomos - what makes it click, how you welcome people and keep them - and the tips and tricks they have learned building their own. Live, with open Q&A.",
+      "format": "Live conversation + Q&A, recorded",
+      "when": "Mon Jun 29 2026, 6am EST",
+      "status": "confirmed",
+      "confirmed_date": "2026-06-25",
+      "color": "pink",
+      "date": "2026-06-29",
+      "track": "creator",
+      "luma_url": "https://luma.com/xz1eqrw9"
     }
   ],
   "_schema": {
