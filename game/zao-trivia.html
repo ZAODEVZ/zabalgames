@@ -68,6 +68,19 @@
     .res-status { min-height: 1.2rem; font-size: 0.85rem; color: var(--text-muted); }
     .res-foot { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.6rem; }
     .res-foot a { color: var(--cyan); }
+    .tv-board { margin: 1.3rem 0 0.4rem; }
+    .tv-board h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; margin: 0 0 0.5rem; }
+    .tv-board .sub { color: var(--text-dim); font-size: 0.8rem; margin: -0.3rem 0 0.6rem; }
+    .tv-lb { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.3rem 0.2rem; }
+    .tv-lb-row { display: flex; align-items: center; gap: 0.7rem; padding: 0.45rem 0.8rem; border-bottom: 1px solid var(--border); }
+    .tv-lb-row:last-child { border-bottom: 0; }
+    .tv-lb-row.you { background: rgba(124,92,255,0.1); border-radius: 8px; }
+    .tv-lb-rank { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); width: 1.6rem; flex: 0 0 auto; }
+    .tv-lb-rank.top { color: var(--gold); }
+    .tv-lb-handle { flex: 1 1 auto; font-size: 0.9rem; color: var(--text); text-decoration: none; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tv-lb-handle:hover { color: var(--cyan); }
+    .tv-lb-n { font-family: 'JetBrains Mono', monospace; font-size: 0.84rem; color: var(--cyan); flex: 0 0 auto; }
+    .tv-board .empty { color: var(--text-dim); font-size: 0.84rem; padding: 0.2rem 0.2rem; }
   </style>
 </head>
 <body>
@@ -121,6 +134,11 @@
         <button class="btn" id="res-retake" type="button">Play again</button>
       </div>
       <div class="res-status" id="res-status" role="status"></div>
+      <div class="tv-board" id="tv-board" style="display:none;">
+        <h3>Top this month</h3>
+        <p class="sub">Best score per player. Top of the board feeds the weekly pot.</p>
+        <div id="tv-board-list"></div>
+      </div>
       <p class="res-foot">How the pot works: each Wednesday 11:30am EST, everyone who finishes the 10 questions splits the weekly $Zabal pot. Also play <a href="/game/2048">ZAO 2048</a> or browse the <a href="/recordings">recordings</a> to learn the answers.</p>
     </section>
   </div>
@@ -165,15 +183,27 @@
   var optsEl = document.getElementById('opts'), explainEl = document.getElementById('explain');
   var nextBtn = document.getElementById('tv-next'), progEl = document.getElementById('progress');
   var scoreEl = document.getElementById('tv-score');
-  var QS = [], idx = 0, score = 0, answered = false, PICK = 10;
+  var BANK = [], QS = [], idx = 0, score = 0, answered = false, PICK = 10;
 
-  // Deterministic-ish shuffle without Math.random pitfalls: Fisher-Yates seeded by time.
+  // Fisher-Yates; reseed per call so question order AND option order vary each round.
   function shuffle(a) {
-    var arr = a.slice(), seed = (Date.now() % 100000) + 1;
+    var arr = a.slice(), seed = ((Date.now() + Math.floor(Math.random() * 100000)) % 100000) + 1;
     function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
     for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(rnd() * (i + 1)); var t = arr[i]; arr[i] = arr[j]; arr[j] = t; }
     return arr;
   }
+
+  // Shuffle a question's options and recompute the correct index, so the answer is never
+  // pinned to a fixed position (the bank used to store every answer at index 1).
+  function prep(q) {
+    var tagged = (q.options || []).map(function (o, i) { return { o: o, correct: i === q.answer }; });
+    tagged = shuffle(tagged);
+    var ans = 0;
+    tagged.forEach(function (x, i) { if (x.correct) ans = i; });
+    return { q: q.q, options: tagged.map(function (x) { return x.o; }), answer: ans, explain: q.explain };
+  }
+  // Draw a fresh round: PICK random questions, each with shuffled options.
+  function newRound() { return shuffle(BANK).slice(0, Math.min(PICK, BANK.length)).map(prep); }
 
   function buildProgress() {
     progEl.innerHTML = '';
@@ -224,9 +254,34 @@
     else showResult();
   });
 
+  // Pull the monthly trivia board and show the top finishers under the result.
+  function renderBoard() {
+    var box = document.getElementById('tv-board');
+    var list = document.getElementById('tv-board-list');
+    fetch('/api/game?game=zaotrivia&period=monthly', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || d.configured === false) { box.style.display = 'none'; return; }
+        var rows = (d && d.entries) || [];
+        if (!rows.length) {
+          list.innerHTML = '<div class="empty">No scores yet this month. Submit yours and take the top spot.</div>';
+        } else {
+          list.innerHTML = '<div class="tv-lb">' + rows.slice(0, 10).map(function (e) {
+            var top = e.rank <= 3 ? ' top' : '';
+            return '<div class="tv-lb-row"><span class="tv-lb-rank' + top + '">' + e.rank + '</span>' +
+              '<a class="tv-lb-handle" href="https://farcaster.xyz/' + esc(e.handle) + '" target="_blank" rel="noopener">@' + esc(e.handle) + '</a>' +
+              '<span class="tv-lb-n">' + e.score + '/10</span></div>';
+          }).join('') + '</div>';
+        }
+        box.style.display = '';
+      })
+      .catch(function () { box.style.display = 'none'; });
+  }
+
   function showResult() {
     quiz.classList.add('hide');
     result.classList.add('show');
+    renderBoard();
     var pct = Math.round((score / QS.length) * 100);
     document.getElementById('res-score').innerHTML = score + ' <span class="accent">/ ' + QS.length + '</span>';
     var msg = document.getElementById('res-msg');
@@ -244,7 +299,7 @@
   }
 
   document.getElementById('res-retake').addEventListener('click', function () {
-    QS = shuffle(QS.length ? QS : []); // reshuffle current set order
+    QS = newRound(); // fresh draw of questions + option order every time
     idx = 0; score = 0; scoreEl.textContent = 'Score: 0';
     result.classList.remove('show'); quiz.classList.remove('hide');
     buildProgress(); renderQuestion();
@@ -274,11 +329,11 @@
   fetch('/data/zao-trivia.json', { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (d) {
-      var bank = (d && d.questions) || [];
+      BANK = (d && d.questions) || [];
       PICK = (d && d.pick) || 10;
       if (d && d.live) document.getElementById('tv-live').textContent = 'Live: ' + d.live;
-      if (!bank.length) { stepEl.textContent = 'No questions yet.'; return; }
-      QS = shuffle(bank).slice(0, Math.min(PICK, bank.length));
+      if (!BANK.length) { stepEl.textContent = 'No questions yet.'; return; }
+      QS = newRound();
       buildProgress();
       renderQuestion();
     })
