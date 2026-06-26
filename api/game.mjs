@@ -92,6 +92,10 @@ function utcMonth() {
   return new Date().toISOString().slice(0, 7); // YYYY-MM (UTC)
 }
 
+function utcDay() {
+  return new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
+}
+
 function cleanHandle(h) {
   return String(h || '').trim().replace(/^@/, '').toLowerCase().replace(/[^a-z0-9_.-]/g, '').slice(0, 32);
 }
@@ -231,7 +235,28 @@ export default async function handler(req) {
       const r0 = rk[0] && rk[0].result;
       rank = (r0 == null) ? null : Number(r0) + 1;
     } catch { /* rank is best-effort */ }
-    return json({ ok: true, counted: true, best, rank, handle, verified: true });
+
+    // Daily play streak: consecutive UTC days this player submitted a score. Best-effort -
+    // a streak KV hiccup must never fail the score submit.
+    let streak = null;
+    try {
+      const skey = `zabal:game:streak:${game}:${handle}`;
+      const sres = await kvPipeline([['GET', skey]]);
+      let prev = null;
+      try { prev = JSON.parse((sres[0] && sres[0].result) || 'null'); } catch { prev = null; }
+      const today = utcDay();
+      const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+      let n;
+      if (prev && prev.last === today) n = prev.n || 1;          // already counted today
+      else if (prev && prev.last === yesterday) n = (prev.n || 0) + 1; // extends the streak
+      else n = 1;                                                // new or broken streak
+      if (!prev || prev.last !== today) {
+        await kvPipeline([['SET', skey, JSON.stringify({ n, last: today }), 'EX', String(MONTH_TTL)]]);
+      }
+      streak = n;
+    } catch { /* streak is best-effort */ }
+
+    return json({ ok: true, counted: true, best, rank, streak, handle, verified: true });
   }
 
   // ---- GET: read the board ----
