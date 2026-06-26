@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clips - ZABAL Gamez</title>
+  <meta name="description" content="Clips from the ZABAL Gamez workshops - cut a 45-60s moment from any recording, submit it for the bounty, and climb the clippers leaderboard.">
+  <link rel="canonical" href="https://zabalgamez.com/clips">
+  <meta property="og:title" content="Clips - ZABAL Gamez">
+  <meta property="og:description" content="The best moments from the workshops, clipped by the community. Cut one, claim a bounty, climb the board.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/clips">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Clips - ZABAL Gamez">
+  <meta name="twitter:description" content="The best moments from the workshops, clipped by the community.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the clips","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/clips","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .clips-grid { display: grid; gap: 1.4rem; grid-template-columns: 1fr; margin: 1rem 0; }
+    @media (min-width: 860px) { .clips-grid { grid-template-columns: 1.4fr 1fr; align-items: start; } }
+    .panel h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; margin: 0 0 0.2rem; }
+    .panel .sub { color: var(--text-dim); font-size: 0.84rem; margin: 0 0 0.8rem; }
+    .clip-card { display: flex; align-items: flex-start; gap: 0.75rem; border: 1px solid var(--border); border-left: 3px solid var(--cyan); background: var(--surface-2); border-radius: 12px; padding: 0.75rem 0.9rem; margin-bottom: 0.6rem; }
+    .clip-main { flex: 1 1 auto; min-width: 0; }
+    .clip-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.96rem; color: var(--text); text-decoration: none; line-height: 1.3; }
+    .clip-title:hover { color: var(--cyan); }
+    .clip-meta { display: block; color: var(--text-dim); font-size: 0.78rem; margin-top: 0.25rem; }
+    .clip-meta a { color: var(--text-muted); text-decoration: none; }
+    .clip-links { margin-top: 0.4rem; }
+    .clip-links a { color: var(--cyan); font-size: 0.8rem; text-decoration: none; margin-right: 0.8rem; }
+    .clip-links a:hover { text-decoration: underline; }
+    .clip-likes { flex: 0 0 auto; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--gold); border: 1px solid var(--border); border-radius: 999px; padding: 0.25rem 0.6rem; }
+    .lb { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.4rem 0.2rem; }
+    .lb-row { display: flex; align-items: center; gap: 0.7rem; padding: 0.5rem 0.8rem; border-bottom: 1px solid var(--border); }
+    .lb-row:last-child { border-bottom: 0; }
+    .lb-rank { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-dim); width: 1.6rem; flex: 0 0 auto; }
+    .lb-rank.top { color: var(--gold); }
+    .lb-handle { flex: 1 1 auto; font-size: 0.92rem; color: var(--text); text-decoration: none; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lb-handle:hover { color: var(--cyan); }
+    .lb-n { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--cyan); flex: 0 0 auto; }
+    .empty { color: var(--text-dim); font-size: 0.88rem; line-height: 1.55; border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.9rem 1rem; }
+    .clips-note { font-size: 0.84rem; color: var(--text-dim); margin-top: 0.4rem; }
+    .clips-note a { color: var(--cyan); }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/recordings">Recordings</a>
+      <a href="/bounties.html">Bounties</a>
+      <a href="/game">Arcade</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.3rem;">
+    <div class="hero-eyebrow">The clip flywheel</div>
+    <h1>Clips of the <span class="accent">workshops</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">Cut a 45-60 second moment from any workshop recording, submit it for that recording's bounty, and climb the clippers board. The best clips win the pot - and get the season seen.</p>
+    <p class="clips-note">New here? Open any <a href="/recordings">recording</a> and use "Submit a clip" on the page. Bounties live at <a href="/bounties.html">/bounties</a>.</p>
+  </header>
+
+  <div class="clips-grid">
+    <section class="panel">
+      <h2>Recent clips</h2>
+      <p class="sub">Newest submissions across every recording.</p>
+      <div id="feed"><div class="empty">Loading clips...</div></div>
+    </section>
+
+    <section class="panel">
+      <h2>Top clippers</h2>
+      <p class="sub">Most clips submitted. This board feeds Empire Builder rewards.</p>
+      <div id="board"><div class="empty">Loading...</div></div>
+    </section>
+  </div>
+
+</div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function host(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return 'link'; } }
+
+  function renderFeed(clips) {
+    var el = document.getElementById('feed');
+    if (!clips.length) {
+      el.innerHTML = '<div class="empty">No clips yet. Be the first - open a <a href="/recordings">recording</a> and submit a clip.</div>';
+      return;
+    }
+    el.innerHTML = clips.map(function (c) {
+      var who = c.handle ? '@' + esc(c.handle) : 'someone';
+      var rec = c.recId ? '<a href="/recordings/' + esc(c.recId) + '">recording ' + esc(c.recId) + '</a>' : 'a recording';
+      var links = '<a href="' + esc(c.clipUrl) + '" target="_blank" rel="noopener">Watch (' + esc(host(c.clipUrl)) + ')</a>';
+      if (c.bountyId) links += '<a href="https://poidh.xyz/base/bounty/' + esc(c.bountyId) + '" target="_blank" rel="noopener">Bounty #' + esc(c.bountyId) + '</a>';
+      return '<div class="clip-card"><div class="clip-main">' +
+        '<a class="clip-title" href="' + esc(c.clipUrl) + '" target="_blank" rel="noopener">' + esc(c.title || 'Clip') + '</a>' +
+        '<span class="clip-meta">' + who + ' - from ' + rec + '</span>' +
+        '<div class="clip-links">' + links + '</div></div>' +
+        '<span class="clip-likes">' + (c.likes || 0) + ' likes</span></div>';
+    }).join('');
+  }
+
+  function renderBoard(entries) {
+    var el = document.getElementById('board');
+    if (!entries.length) {
+      el.innerHTML = '<div class="empty">No clippers yet. The first clip puts you at the top.</div>';
+      return;
+    }
+    el.innerHTML = '<div class="lb">' + entries.map(function (e) {
+      var top = e.rank <= 3 ? ' top' : '';
+      return '<div class="lb-row"><span class="lb-rank' + top + '">' + e.rank + '</span>' +
+        '<a class="lb-handle" href="https://farcaster.xyz/' + esc(e.handle) + '" target="_blank" rel="noopener">@' + esc(e.handle) + '</a>' +
+        '<span class="lb-n">' + e.clips + '</span></div>';
+    }).join('') + '</div>';
+  }
+
+  fetch('/api/clips?feed=recent&limit=30', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) { renderFeed((d && d.clips) || []); })
+    .catch(function () { document.getElementById('feed').innerHTML = '<div class="empty">Clips are not available right now.</div>'; });
+
+  fetch('/api/clips?board=clippers', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) { renderBoard((d && d.entries) || []); })
+    .catch(function () { document.getElementById('board').innerHTML = '<div class="empty">Leaderboard is not available right now.</div>'; });
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

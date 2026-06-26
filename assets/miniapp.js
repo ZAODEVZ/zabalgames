@@ -563,6 +563,46 @@ window.ZABAL.likeComment = async function likeComment(id, cid) {
   }
 };
 
+// Record a submitted clip into the on-site clip registry (api/clips.mjs) so it shows
+// in the recording's clip gallery, the /clips feed, and the top-clippers leaderboard.
+// Called best-effort after the on-chain POIDH claim lands - never blocks that flow.
+// Returns { ok, clip } or { ok:false, reason }.
+window.ZABAL.recordClip = async function recordClip(payload) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/clips', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.assign({ action: 'submit' }, payload || {})),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    return data && data.ok ? { ok: true, clip: data.clip } : { ok: false, reason: data.reason || data.error || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
+// Like a clip (verified) - one like per FID per clip. Returns { ok, likes, firstLike }.
+window.ZABAL.likeClip = async function likeClip(recId, cid) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/clips', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'like', recId: recId, cid: cid }),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    if (data && data.ok && data.firstLike) window.ZABAL.haptic('light');
+    return data && data.ok ? { ok: true, likes: data.likes, firstLike: data.firstLike } : { ok: false, reason: data.reason || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 // Credit the team's X account on tweets, mirroring @zaal on casts. This is the
 // twitter:site / twitter:creator handle. Idempotent. Not used on casts, where an
 // X handle would not map to the same account.

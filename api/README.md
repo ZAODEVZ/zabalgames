@@ -298,6 +298,23 @@ when a referred player authenticates in the Mini App the referrer is credited on
 Storage: `ref:by` (first referrer wins per FID) + `ref:made:<ref>` (the referrer's
 distinct credited set). Graceful no-op without KV.
 
+### `GET/POST /api/clips`
+On-site clip registry + engagement for the clip flywheel. When a viewer submits a
+45-60s clip as a POIDH bounty claim (`assets/clip-claim.js`), it is also recorded here
+so the clip is discoverable: a per-recording gallery (`assets/clip-gallery.js`), the
+`/clips` feed, likes (one per FID), and a top-clippers leaderboard. Writing needs a
+Quick Auth JWT (clip tied to a verified FID; like is one per FID per clip).
+- `POST { action:'submit', recId, clipUrl, title, bountyId?, txHash?, address? }` + Bearer JWT -> `{ ok, clip }`
+- `POST { action:'like', recId, cid }` + Bearer JWT -> `{ ok, likes, firstLike }`
+- `GET ?rec=<recId>` -> `{ ok, configured, clips:[...] }` (gallery)
+- `GET ?feed=recent&limit=30` -> `{ ok, configured, clips:[...] }` (global feed)
+- `GET ?board=clippers` -> `{ ok, entries:[{rank,handle,clips,address?}] }`
+- `GET ?format=apiLeaderboard` -> `[{ address, score }]` (Empire Builder, clips submitted)
+
+Storage: `clips:v1:<recId>` (cid -> clip JSON), `clips:recent` (global ZSET),
+`cliplikes:v1:<recId>` + `cliplike:voters:v1:<cid>` (like-once), `clips:clippers`
+(leaderboard ZSET), `clips:addr` (handle -> wallet for Empire). Graceful no-op without KV.
+
 ## Required env vars (Vercel project settings)
 
 | Var | What | Where |
