@@ -111,7 +111,7 @@
   <section class="section">
     <h2>By the numbers</h2>
     <div class="pk-nums">
-      <div class="pk-num"><b>13+</b><span>sessions recorded + kept</span></div>
+      <div class="pk-num"><b id="pk-rec-count">25+</b><span>sessions recorded + kept</span></div>
       <div class="pk-num"><b>3</b><span>tracks</span></div>
       <div class="pk-num"><b>3</b><span>months, June to August</span></div>
       <div class="pk-num"><b>100+</b><span>ZAO members</span></div>
@@ -213,6 +213,18 @@
           navigator.clipboard.writeText(text).then(function () { flash(btn); }, function () { flash(btn); });
         } else { flash(btn); }
       });
+    }
+    // Live recording count - keeps the press stat from going stale (was a hardcoded
+    // "13+" while 26 sessions existed). Rounds down to the nearest 5 and adds a "+".
+    var rc = document.getElementById('pk-rec-count');
+    if (rc) {
+      fetch('/recordings/index.json', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          var n = (d && (d.count || (d.recordings && d.recordings.length))) || 0;
+          if (n >= 5) rc.textContent = (Math.floor(n / 5) * 5) + '+';
+        })
+        .catch(function () { /* keep the static fallback */ });
     }
   })();
   </script>
