@@ -5,10 +5,12 @@
 //
 //   POST /api/ref  { ref }   Authorization: Bearer <quick-auth-jwt>  -> { ok, credited }
 //   GET  /api/ref?ref=zaal                                           -> { ok, ref, count }
+//   GET  /api/ref?board=top&limit=50                                 -> { ok, entries:[{rank,handle,count}] }
 //
 // Storage: HSETNX ref:by <viewerFid> <ref> records who referred each player (first wins);
-// SADD ref:made:<ref> <viewerFid> is the referrer's distinct credited set. Graceful no-op
-// without KV.
+// SADD ref:made:<ref> <viewerFid> is the referrer's distinct credited set; ZINCRBY
+// ref:board 1 <ref> keeps the top-referrers leaderboard (counts forward from first deploy).
+// Graceful no-op without KV.
 
 import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
 
@@ -84,9 +86,22 @@ export default async function handler(req) {
     } catch { return json({ ok: false, error: 'kv' }); }
     const isNew = Number(res[0] && res[0].result) === 1;
     if (isNew) {
-      try { await kvPipeline([['SADD', `zabal:ref:made:${ref}`, String(fid)]]); } catch { /* best effort */ }
+      // distinct credited set + the top-referrers board (both best-effort)
+      try { await kvPipeline([['SADD', `zabal:ref:made:${ref}`, String(fid)], ['ZINCRBY', 'zabal:ref:board', '1', ref]]); } catch { /* best effort */ }
     }
     return json({ ok: true, credited: isNew });
+  }
+
+  // GET ?board=top: the top-referrers leaderboard.
+  if (url.searchParams.get('board') === 'top') {
+    const limit = Math.min(200, Math.max(1, Number(url.searchParams.get('limit')) || 50));
+    let rows = [];
+    try {
+      const r = await kvPipeline([['ZREVRANGE', 'zabal:ref:board', '0', String(limit - 1), 'WITHSCORES']]);
+      const flat = (r[0] && r[0].result) || [];
+      for (let i = 0; i < flat.length; i += 2) rows.push({ rank: rows.length + 1, handle: flat[i], count: Number(flat[i + 1]) });
+    } catch { /* empty board */ }
+    return json({ ok: true, configured: true, entries: rows });
   }
 
   // GET: how many a referrer has brought

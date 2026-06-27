@@ -728,3 +728,21 @@ async function injectProfileChip() {
 
 injectProfileChip();
 
+// Referral capture: if this page was opened from a share link carrying ?ref=<handle>,
+// credit that referrer once. ZABAL.refer() is no-op outside a Mini App, dedupes per FID
+// server-side, and rejects self-referral; the sessionStorage guard just avoids re-POSTing
+// on client-side navigation within the same visit. This is what makes the share-to-grow
+// loop actually fire - the link is generated on /referrers, captured here on landing.
+(function captureRef() {
+  try {
+    var ref = new URLSearchParams(location.search).get('ref');
+    if (!ref) return;
+    ref = ref.trim().replace(/^@/, '').toLowerCase().slice(0, 32);
+    if (!ref) return;
+    var key = 'zg_ref_' + ref;
+    if (sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key, '1');
+    if (window.ZABAL.refer) window.ZABAL.refer(ref);
+  } catch (e) { /* no URL/sessionStorage access - skip silently */ }
+})();
+

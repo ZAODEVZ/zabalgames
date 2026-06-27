@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top referrers - ZABAL Gamez</title>
+  <meta name="description" content="Bring people into ZABAL Gamez. Share your link, and every new builder you bring climbs the referrers board.">
+  <link rel="canonical" href="https://zabalgamez.com/referrers">
+  <meta property="og:title" content="Top referrers - ZABAL Gamez">
+  <meta property="og:description" content="Share your link. Every new builder you bring in climbs the board.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/referrers">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Top referrers - ZABAL Gamez">
+  <meta name="twitter:description" content="Share your link. Every new builder you bring in climbs the board.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Top referrers","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/referrers","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .rf-wrap { max-width: 640px; margin: 0 auto; }
+    .rf-you { border: 1px solid var(--zabal); background: rgba(124,92,255,0.07); border-radius: 14px; padding: 1rem 1.1rem; margin: 1rem 0 1.4rem; }
+    .rf-you h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; margin: 0 0 0.3rem; }
+    .rf-you p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0 0 0.7rem; }
+    .rf-link { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .rf-url { flex: 1 1 220px; min-width: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--cyan); background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 0.55rem 0.7rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .btn { font-family: inherit; font-size: 0.85rem; padding: 0.55rem 1.1rem; border-radius: 9px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; display: inline-block; min-height: 40px; }
+    .btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .btn:hover { filter: brightness(1.12); }
+    .rf-count { font-size: 0.85rem; color: var(--gold); margin: 0.6rem 0 0; }
+    .rf-status { font-size: 0.82rem; color: var(--text-dim); margin: 0.4rem 0 0; min-height: 1rem; }
+    .lb { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.4rem 0.2rem; }
+    .lb-row { display: flex; align-items: center; gap: 0.7rem; padding: 0.55rem 0.85rem; border-bottom: 1px solid var(--border); }
+    .lb-row:last-child { border-bottom: 0; }
+    .lb-rank { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-dim); width: 1.7rem; flex: 0 0 auto; }
+    .lb-rank.top { color: var(--gold); }
+    .lb-handle { flex: 1 1 auto; font-size: 0.95rem; color: var(--text); text-decoration: none; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lb-handle:hover { color: var(--cyan); }
+    .lb-n { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--cyan); flex: 0 0 auto; }
+    .empty { color: var(--text-dim); font-size: 0.88rem; line-height: 1.55; border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.9rem 1rem; }
+    .rf-foot { font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem; }
+    .rf-foot a { color: var(--cyan); }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.3rem;">
+    <div class="hero-eyebrow">Share to grow</div>
+    <h1>Top <span class="accent">referrers</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">Bring people into ZABAL Gamez. Share your link, and every new builder who joins through it counts toward your spot on the board.</p>
+  </header>
+
+  <div class="rf-wrap">
+    <div class="rf-you" id="rf-you" style="display:none;">
+      <h2>Your link</h2>
+      <p>Share this anywhere. When someone opens ZABAL Gamez through it, you get the credit.</p>
+      <div class="rf-link">
+        <span class="rf-url" id="rf-url">https://zabalgamez.com/</span>
+        <button class="btn primary" id="rf-share" type="button">Share my link</button>
+        <button class="btn" id="rf-copy" type="button">Copy</button>
+      </div>
+      <p class="rf-count" id="rf-count"></p>
+      <p class="rf-status" id="rf-status" role="status"></p>
+    </div>
+
+    <div class="rf-you" id="rf-anon" style="display:none;">
+      <h2>Get your link</h2>
+      <p>Open ZABAL Gamez in the Farcaster app and your personal referral link shows up here - then every builder you bring in climbs the board.</p>
+      <a class="btn primary" href="https://farcaster.xyz/miniapps/zabal-gamez" target="_blank" rel="noopener">Open in Farcaster</a>
+    </div>
+
+    <h2 style="font-family:'Syne',sans-serif;font-size:1.15rem;margin:1.2rem 0 0.6rem;">The board</h2>
+    <div id="rf-board"><div class="empty">Loading...</div></div>
+
+    <p class="rf-foot">How it works: each link carries your handle. The first time a new person opens ZABAL Gamez through your link, you are credited once - no self-referrals, no double-counts. Also climb <a href="/leaderboard.html">the activity board</a> or play the <a href="/game">arcade</a>.</p>
+  </div>
+
+</div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var SITE = 'https://zabalgamez.com/';
+
+  function renderBoard(entries) {
+    var el = document.getElementById('rf-board');
+    if (!entries.length) {
+      el.innerHTML = '<div class="empty">No referrers yet. Share your link and take the top spot.</div>';
+      return;
+    }
+    el.innerHTML = '<div class="lb">' + entries.map(function (e) {
+      var top = e.rank <= 3 ? ' top' : '';
+      return '<div class="lb-row"><span class="lb-rank' + top + '">' + e.rank + '</span>' +
+        '<a class="lb-handle" href="https://farcaster.xyz/' + esc(e.handle) + '" target="_blank" rel="noopener">@' + esc(e.handle) + '</a>' +
+        '<span class="lb-n">' + e.count + '</span></div>';
+    }).join('') + '</div>';
+  }
+
+  fetch('/api/ref?board=top&limit=50', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) { renderBoard((d && d.entries) || []); })
+    .catch(function () { document.getElementById('rf-board').innerHTML = '<div class="empty">The board is not available right now.</div>'; });
+
+  // Personal link + share, when signed in via the Mini App.
+  function initYou() {
+    if (!(window.ZABAL && window.ZABAL.getUser)) { document.getElementById('rf-anon').style.display = ''; return; }
+    window.ZABAL.getUser().then(function (u) {
+      var handle = u && (u.username || '');
+      if (!handle) { document.getElementById('rf-anon').style.display = ''; return; }
+      var link = SITE + '?ref=' + encodeURIComponent(handle);
+      document.getElementById('rf-you').style.display = '';
+      document.getElementById('rf-url').textContent = link;
+
+      document.getElementById('rf-share').addEventListener('click', function () {
+        var text = 'Come build with ZABAL Gamez - The ZAO\'s free Build-A-Thon. Workshops, an open July build, and an August Finals. Jump in:';
+        if (window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [link], channelKey: 'zabal' });
+        else if (window.ZABAL.openUrl) window.ZABAL.openUrl('https://farcaster.xyz/miniapps/zabal-gamez');
+      });
+      document.getElementById('rf-copy').addEventListener('click', function () {
+        var st = document.getElementById('rf-status');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(link).then(function () { st.textContent = 'Copied.'; }).catch(function () { st.textContent = link; });
+        } else { st.textContent = link; }
+      });
+
+      fetch('/api/ref?ref=' + encodeURIComponent(handle), { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) { var n = (d && d.count) || 0; document.getElementById('rf-count').textContent = n === 1 ? 'You have brought in 1 builder.' : 'You have brought in ' + n + ' builders.'; })
+        .catch(function () { /* count is best-effort */ });
+    }).catch(function () { document.getElementById('rf-anon').style.display = ''; });
+  }
+  initYou();
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
