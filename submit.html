@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Co-Lab - shape ZABAL Gamez</title>
+  <meta name="description" content="Answer a few quick prompts on the ZABAL Gamez magnet - your favorite session, what you want to build, where to reach you, your wallet for the collectible. When your answer is approved, your collectible comes to you.">
+  <link rel="canonical" href="https://zabalgamez.com/submit">
+  <meta property="og:title" content="Co-Lab - shape ZABAL Gamez">
+  <meta property="og:description" content="Answer a few prompts on the magnet, help shape the season, and get your collectible when approved.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/submit">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Co-Lab - shape ZABAL Gamez">
+  <meta name="twitter:description" content="Answer a few prompts on the magnet, help shape the season, get your collectible when approved.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Shape the season","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/submit","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .sb-wrap { max-width: 760px; margin: 0 auto; }
+    .sb-deal { border: 1px solid var(--zabal); background: rgba(124,92,255,0.07); border-radius: 14px; padding: 1rem 1.1rem; margin: 1rem 0 1.4rem; }
+    .sb-deal h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; margin: 0 0 0.3rem; }
+    .sb-deal p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; margin: 0 0 0.8rem; }
+    .sb-deal p:last-of-type { margin-bottom: 0; }
+    .sb-cta { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn { font-family: inherit; font-size: 0.9rem; padding: 0.6rem 1.2rem; border-radius: 9px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .btn:hover { filter: brightness(1.12); }
+    .sb-group { margin: 1.6rem 0 0; }
+    .sb-group-head { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; margin: 0 0 0.7rem; }
+    .sb-group-head h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; margin: 0; }
+    .sb-group-head .blurb { font-size: 0.84rem; color: var(--text-dim); }
+    .sb-list { display: grid; gap: 0.6rem; }
+    .sb-card { display: flex; align-items: flex-start; gap: 0.85rem; border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.85rem 1rem; }
+    .sb-card.wallet { border-left: 3px solid var(--gold); }
+    .sb-main { flex: 1 1 auto; min-width: 0; }
+    .sb-q { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); line-height: 1.3; }
+    .sb-why { font-size: 0.86rem; color: var(--text-muted); line-height: 1.45; margin: 0.25rem 0 0.5rem; }
+    .sb-tag { display: inline-block; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); border: 1px solid var(--border); border-radius: 999px; padding: 0.08rem 0.5rem; margin-bottom: 0.35rem; }
+    .sb-answer { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); text-decoration: none; white-space: nowrap; flex: 0 0 auto; align-self: center; }
+    .sb-answer:hover { text-decoration: underline; }
+    .sb-cc { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 1rem 1.1rem; margin: 1.8rem 0 0; }
+    .sb-cc h3 { font-family: 'Syne', sans-serif; font-size: 1rem; margin: 0 0 0.3rem; }
+    .sb-cc p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.5; margin: 0 0 0.6rem; }
+    .sb-foot { font-size: 0.82rem; color: var(--text-dim); margin-top: 1.4rem; }
+    .sb-foot a { color: var(--cyan); }
+    .empty { color: var(--text-dim); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/game">Arcade</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow">Co-Lab</div>
+    <h1>Help shape <span class="accent">ZABAL Gamez</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">A handful of quick prompts on the magnet - your favorite session, what you want to build, where to reach you. Answer the ones that fit. The more we hear, the more the season is yours.</p>
+  </header>
+
+  <div class="sb-wrap">
+    <div class="sb-deal">
+      <h2>How it works</h2>
+      <p>These prompts live on the ZABAL Gamez magnet. Pick the ones that fit and answer - it takes a minute. When your answer is approved, your <strong>collectible comes to you by email</strong>, no need to come back. The wallet prompt is how your on-chain collectible reaches you.</p>
+      <div class="sb-cta">
+        <a class="btn primary" id="sb-open" href="https://collect.zabalgamez.com" target="_blank" rel="noopener">Open the magnet</a>
+        <a class="btn" href="/recordings">Browse the sessions first</a>
+      </div>
+    </div>
+
+    <div id="sb-groups"><p class="empty">Loading the prompts...</p></div>
+
+    <div class="sb-cc" id="sb-cc" style="display:none;">
+      <h3>Command Center</h3>
+      <p>The full ZABAL Gamez Command Center - every link, schedule, and surface in one place.</p>
+      <a class="btn" id="sb-cc-link" href="#" target="_blank" rel="noopener">Open the Command Center</a>
+    </div>
+
+    <p class="sb-foot">Your answers help run the season. New here? Start with <a href="/info.html">the details</a>, <a href="/recordings">the recordings</a>, or <a href="/enter">registering a build</a>.</p>
+  </div>
+
+</div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  function render(data) {
+    var magnet = (data && data.magnet_url) || 'https://collect.zabalgamez.com';
+    document.getElementById('sb-open').href = magnet;
+
+    var groups = (data && data.groups) || [];
+    var host = document.getElementById('sb-groups');
+    if (!groups.length) { host.innerHTML = '<p class="empty">No prompts right now. <a href="' + esc(magnet) + '" target="_blank" rel="noopener" style="color:var(--cyan)">Open the magnet</a>.</p>'; return; }
+
+    host.innerHTML = groups.map(function (g) {
+      var cards = (g.prompts || []).map(function (p) {
+        var cls = 'sb-card' + (p.id === 'wallet' ? ' wallet' : '');
+        return '<div class="' + cls + '"><div class="sb-main">' +
+          (p.tag ? '<span class="sb-tag">' + esc(p.tag) + '</span>' : '') +
+          '<div class="sb-q">' + esc(p.q) + '</div>' +
+          (p.why ? '<div class="sb-why">' + esc(p.why) + '</div>' : '') +
+          '</div>' +
+          '<a class="sb-answer" href="' + esc(magnet) + '" target="_blank" rel="noopener">Answer -&gt;</a>' +
+          '</div>';
+      }).join('');
+      return '<section class="sb-group"><div class="sb-group-head"><h2>' + esc(g.title) + '</h2>' +
+        (g.blurb ? '<span class="blurb">' + esc(g.blurb) + '</span>' : '') + '</div>' +
+        '<div class="sb-list">' + cards + '</div></section>';
+    }).join('');
+
+    if (data && data.command_center_url) {
+      var cc = document.getElementById('sb-cc');
+      document.getElementById('sb-cc-link').href = data.command_center_url;
+      cc.style.display = '';
+    }
+  }
+
+  fetch('/data/colab-prompts.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(render)
+    .catch(function () {
+      document.getElementById('sb-groups').innerHTML = '<p class="empty">Could not load the prompts. <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener" style="color:var(--cyan)">Open the magnet directly</a>.</p>';
+    });
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

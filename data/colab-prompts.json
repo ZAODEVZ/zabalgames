@@ -1,0 +1,45 @@
+{
+  "_note": "Magnetiq Co-Lab UGC prompts for the /submit pipeline. Source: docs/magnetiq-next-2026-06-14.md (the 9 UGC questions from the Tyler <> Zaal session) + docs/magnetiq-zabal-gamez-collectible-page.md. All prompts live on the single ZABAL Gamez magnet; each card sends people there to answer. When an answer is approved on Magnetiq, the submitter gets their collectible/claim code by email (approval is the trigger - they do not have to return). The wallet prompt enables the on-chain (Base) collectible send. command_center_url is the Tyler-managed Notion that syncs to the site; embed it here live once a Notion connector exists. No emojis, no em dashes.",
+  "magnet_url": "https://collect.zabalgamez.com",
+  "magnet_alt": "https://app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez",
+  "command_center_url": "https://app.notion.com/p/ZABAL-Games-Command-Center-c8e72e3e31c8837c8b0d012bca1fd20a",
+  "groups": [
+    {
+      "key": "collectible",
+      "title": "Get your collectible",
+      "blurb": "The one that unlocks your on-chain memento.",
+      "prompts": [
+        { "id": "wallet", "q": "What wallet address do you want your transferable collectible sent to?", "why": "This is how your ZABAL Gamez collectible reaches you - sent on Base once you are approved.", "tag": "Wallet" }
+      ]
+    },
+    {
+      "key": "take",
+      "title": "Your take",
+      "blurb": "Shape the season. Real suggestions get acted on.",
+      "prompts": [
+        { "id": "favorite", "q": "What has been your favorite ZABAL Gamez session so far?", "why": "Tells us what landed - and helps the next person find the best talks.", "tag": "Feedback" },
+        { "id": "advice", "q": "Any advice or suggestions for ZABAL Gamez?", "why": "The season is still being built. Tell us what would make it better.", "tag": "Feedback" }
+      ]
+    },
+    {
+      "key": "you",
+      "title": "You",
+      "blurb": "So we point you at the right things and can credit your work.",
+      "prompts": [
+        { "id": "track", "q": "Which track are you - artist, builder, or creator?", "why": "We point you at the workshops and projects that fit your lane.", "tag": "Profile" },
+        { "id": "farcaster", "q": "Your Farcaster handle?", "why": "The main place we share updates and tag builders.", "tag": "Profile" },
+        { "id": "social", "q": "Your X or Instagram handle?", "why": "So we can credit and amplify what you make.", "tag": "Profile" },
+        { "id": "reach", "q": "Where is the best place to reach you for updates?", "why": "Farcaster DM, group chat, Telegram, Discord, X, or email - your call.", "tag": "Profile" }
+      ]
+    },
+    {
+      "key": "july",
+      "title": "July: the open build",
+      "blurb": "The build month is days away. Tell us your move.",
+      "prompts": [
+        { "id": "build", "q": "What do you want to build in July, or which adoptable project would you pick?", "why": "July is the open build. Share your idea, or grab a started ZAO project.", "tag": "Build" },
+        { "id": "workshop", "q": "Would you lead a workshop? If so, on what?", "why": "We are always looking for people to teach what they know.", "tag": "Build" }
+      ]
+    }
+  ]
+}
