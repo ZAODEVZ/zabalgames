@@ -10,6 +10,7 @@
       "handle": "@topocount.eth",
       "org": "Neynar",
       "track": "builder",
+      "technical": 9,
       "format": "Dev talk, recorded",
       "summary": "Snapchain under the hood - how Snapchain signers work, OG signers and Snapchain-native signers, Snapchain storage, and potential future work on Snapchain. Built for devs who want the behind-the-hood view.",
       "page": "/recordings/24"
@@ -22,6 +23,7 @@
       "handle": "@bizarrebeast",
       "org": "BizarreBeasts",
       "track": "creator",
+      "technical": 5,
       "format": "Live talk plus Q and A, recorded",
       "summary": "Building the Bizarre Pixel Studio - a browser-based pixel art and animation tool where your artwork is also editable code, launching as a webpage and mini app for the BizarreBeasts and Farcaster community. Plus the BizarreBeasts miniapp, games, and artwork.",
       "page": "/recordings/23"
@@ -33,6 +35,7 @@
       "presenter": "Saltorious",
       "handle": "@saltorious.eth",
       "track": "builder",
+      "technical": 7,
       "format": "Talk + Q&A, recorded",
       "summary": "Harness, the tool he built, and Bankr, the team he just joined - what they are and how they fit into building today.",
       "page": "/recordings/22"
@@ -45,6 +48,7 @@
       "handle": "@farcaster",
       "org": "Farcaster",
       "track": "builder",
+      "technical": 4,
       "format": "Audio space fireside / AMA, recorded",
       "summary": "ZABAL GAMEZ AMA w/ The Farcaster Intern - an open-mic audio-space AMA. BetterCallZaal hosts @farcaster; come up and ask anything about Farcaster, or send your question ahead and we open with the most-liked.",
       "page": "/recordings/20"
@@ -56,6 +60,7 @@
       "presenter": "Minted Merch",
       "handle": "@mintedmerch",
       "track": "creator",
+      "technical": 3,
       "format": "Fireside, recorded",
       "summary": "Selling merch onchain - and what it opens up for creators.",
       "page": "/recordings/19"
@@ -68,6 +73,7 @@
       "handle": "@metamu",
       "org": "Rose City Web3",
       "track": "creator",
+      "technical": 1,
       "format": "Conversation, recorded",
       "summary": "Meta Mu, founder of Rose City Web3 and an artist-first builder in Portland, joins ZABAL Gamez on how to be a community member who actually adds value - not just another lurker in the chat. He breaks down how to find communities worth your time and how to spot a dead one fast, the difference between a pull-the-ladder-up culture and a help-people-up culture, how to get tapped in through Meetup, Eventbrite, and IRL movements, and exactly how to show up at an event, introduce yourself, and make a real first connection. Drawn from his own path through NFT and DAO communities, PDX DAO, and the regen movement.",
       "topics": [
@@ -151,6 +157,7 @@
       "presenter": "Ali Tiknazoglu",
       "handle": "@alitiknazoglu",
       "track": "builder",
+      "technical": 5,
       "format": "Live talk plus Q and A, recorded",
       "summary": "Previbecoding - what he is learning building with AI tooling, for people who are learning to code now.",
       "page": "/recordings/17"
@@ -163,6 +170,7 @@
       "handle": "@dansingjoy",
       "org": "Eden Fractal",
       "track": "builder",
+      "technical": 4,
       "format": "Conversation, recorded",
       "summary": "Dan Singjoy, founder of Eden Fractal, breaks down the fractal ecosystem - a way for communities to make decisions together that are fair, fast, and fun, using Respect earned through weekly contributions and peer consensus. Dan shares his path from musician to building onchain, founding Eden Fractal and the Eden Creators media studio, and the Optimism Fractal origins where he and Zaal first met. He walks through how a weekly fractal runs, the tripartite governance model, claiming Respect onchain, and how ZAO Fractal now runs itself with as few as four people. It closes on a token-gated Fractal browser idea for community spaces.",
       "topics": [
@@ -256,6 +264,7 @@
       "presenter": "Jub Jub",
       "handle": "@jubjub",
       "track": "builder",
+      "technical": 6,
       "format": "Farcaster Space fireside, recorded",
       "summary": "Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster.",
       "page": "/recordings/15"
@@ -268,6 +277,7 @@
       "handle": "@diviflyy",
       "org": "Empire Builder",
       "track": "builder",
+      "technical": 6,
       "format": "Conversation + live demo, recorded",
       "summary": "Adrian (diviflyy), co-founder and lead engineer of Empire Builder, goes under the hood of Empire Builder V3 - the docs at empirebuilder.world, the public free-to-use endpoints, and how to pull leaderboards, rankings, boosters, and reward data into your own apps. Empire Builder is the community-layer framework for any project, token-based or tokenless. Live, Adrian builds a Zabal Empire mini app in about an hour using the Empire Builder skill plus a free Farcaster data source - surfacing rewards, rankings, and boosters under your own brand. He covers getting your empire ID, the endpoint set, and where it is heading: multiple treasuries, more chains, and agent bots that run an empire. Plus build ideas for the ZABAL Gamez hackathon.",
       "topics": [
@@ -358,6 +368,7 @@
       "handle": "@1dolinski",
       "org": "Vini App",
       "track": "builder",
+      "technical": 5,
       "format": "Presentation + live demo, recorded",
       "summary": "Chris Dolinsky (1dolinski), a 15-year software builder and founder of Vini App, shows how anyone - including the people who have never written a line of code - can build a real app from a plain-language prompt. Every Vini app ships with a wallet, hosting, a domain, a brand kit, and a token, and that token can help fund the app as it grows. Chris demos the flow live: sign in with your Farcaster wallet or just an email, describe your app, and the AI handles the questions, the design, and the build. He walks Vini by the numbers, the umbrella Vini token, and standout builds like DGEN Fishing and Farcenoid - a game now live across Farcaster, World App, and Celo. Plus where Vini is headed, and a July collab to get non-coders building in the ZABAL Gamez hackathon.",
       "topics": [
@@ -444,6 +455,7 @@
       "handle": "@kenny",
       "org": "POIDH",
       "track": "builder",
+      "technical": 6,
       "format": "Livestreamed and recorded",
       "summary": "Kenny, founder of POIDH, breaks down the open bounty protocol he built - put a bounty on-chain, transparently, and anyone can fund it, add to it, or claim it. The throughline: POIDH is a protocol, not just an app. poidh.xyz is the most popular front end, but anyone can build their own - NARS DAO launched an alternate front end the morning of the session. Zaal walks through running real bounties: the Best ZABAL Gamez Ad bounty with 8 submissions, a submitters board that queries the contract directly with an AI-judged rubric, and rewarding every submitter through an Empire Builder leaderboard. Kenny shows composability in action - Femi shipped an NFT marketplace MVP in 90 minutes off the open-source repo - then creates a new bounty live: the ZABAL Gamez Open Pot, open through July.",
       "topics": [
@@ -543,6 +555,7 @@
       "handle": "@azizke",
       "org": "Build Africa DAO",
       "track": "builder",
+      "technical": 5,
       "format": "30 min, livestreamed and recorded",
       "summary": "A ZABAL Gamez session with Aziz (MotoMoto) of Build Africa DAO. Coming from media and production with no coding background, he built Baraza Protocol by directing AI tools - a mobile-first, no-jargon platform for the savings groups and cooperatives across Africa (chamas, SACCOs, stokvels) to run on-chain, plus Baraza TV, a decentralized broadcast layer. He traces the path from a non-technical-founders hackathon (40 dollars, 72 hours, Claude and ChatGPT) to a working build, why he put mobile and accessibility first (M-PESA, USSD, zero blockchain jargon), and his advice for non-coders: know the problem you can identify with, write the PRD that answers the real questions, then just ship and build in public.",
       "topics": [
@@ -584,6 +597,7 @@
       "handle": "@thethriller",
       "org": "MIDAO",
       "track": "builder",
+      "technical": 4,
       "format": "Conversation, recorded",
       "summary": "A ZABAL Gamez conversation with Adam \"The Thriller\" Miller, founder and CEO of MIDAO. Two threads: MIDAO, the Marshall Islands legal framework that lets a DAO - or now a decentralized AI agent - become a real legal entity (a DAO LLC), so the people governing it are not personally liable for what it does; and Beta Briefing, his agentic daily-news tool that runs a multi-stage AI pipeline over your interests and delivers an editorialized briefing in text and audio. Plus a practical agentic-engineering segment: directing Claude Code with Codex as a second opinion and a dual-review sub-agent command.",
       "topics": [
@@ -689,6 +703,7 @@
       "handle": "@cassie",
       "org": "Quilibrium",
       "track": "builder",
+      "technical": 8,
       "format": "Live workshop with slides, recorded",
       "page": "/recordings/9",
       "youtube": "https://youtu.be/FZxzc2ieT4w",
@@ -730,6 +745,7 @@
       "handle": "@hurric4n3ike",
       "org": "WaveWarz",
       "track": "artist",
+      "technical": 3,
       "format": "Recorded workshop",
       "youtube": "https://youtu.be/2GLRrILYoo4",
       "page": "/recordings/8",
@@ -771,6 +787,7 @@
       "handle": "@willtofweb3",
       "org": "Kingfishers Media",
       "track": "creator",
+      "technical": 3,
       "format": "30 min, livestreamed and recorded",
       "summary": "A creator-track conversation with Will T of Web3 on building KFMEDIA (Kingfishers Media) - a media company that helps independent content creators distribute their work using on-chain tools, without learning to code. When Bonfire.xyz sunset and CharmVerse announced the same, Will (a self-described non-coder) learned to vibe code and forked CharmVerse to rebuild the Kingfishers Media learning center on its own terms. The practical core: the three tools KFMEDIA actually uses to distribute creator media - Unlock Protocol for subscriptions, memberships, and booking pages (fiat or ERC-20); Highlight.xyz, which stores NFT video permanently on Arweave; and Contra for Web2 reach - plus KFM Talks, a TEDx-style independent creator program that returns 80 to 85% of sales to the creator. Kingfishers Media is moving to a true public good, dropping token gating and converting to a nonprofit association in Q4.",
       "topics": [
@@ -812,6 +829,7 @@
       "title": "Owning your music as an independent artist",
       "presenter": "Joseph Goats",
       "track": "artist",
+      "technical": 2,
       "format": "30 min, livestreamed and recorded",
       "summary": "An artist-track conversation with Joseph Goats (Jose Cabrera), a Venezuelan musician who has built a music life out of internet tools when there was no local industry to plug into - and, in 2017, not even a bank card. His model is what he calls digital street music: he plays for free, peer-to-peer, so anyone anywhere can support him directly. He traces the journey from discovering blockchain contests on Steemit (later Hive), to learning English along the way, to running impact concerts with Izzy and reimagining festivals for social impact and education. A wide-ranging talk on decentralization as a fractal - everyone has a fingerprint and something to say - on musicians as the bards who connect one community to the next, and on aligning music with nature and biology (Humberto Maturana and autopoiesis). He closes by playing a song.",
       "topics": [
@@ -855,6 +873,7 @@
       "handle": "@chriscocreated",
       "org": "Sopha",
       "track": "builder",
+      "technical": 5,
       "format": "Live workshop, recorded",
       "page": "/recordings/5",
       "youtube": "https://youtu.be/Z9yAFxUVW-g",
@@ -968,6 +987,7 @@
       "handle": "@at0x_eth",
       "org": "Bonfires",
       "track": "builder",
+      "technical": 6,
       "format": "Live X Space fireside, recorded",
       "page": "/recordings/fireside/1",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-06-bonfire-fireside-carlos.md",
@@ -1008,6 +1028,7 @@
       "title": "Starting and growing your own livestream",
       "presenter": "Ohnahji",
       "track": "creator",
+      "technical": 2,
       "format": "Live session, recorded",
       "recording": "https://luma.com/xa3bsp21",
       "youtube": "https://youtu.be/VsSLEF8O9yI",
@@ -1052,6 +1073,7 @@
       "handle": "@joshua.eth",
       "org": "Bonfire",
       "track": "builder",
+      "technical": 6,
       "format": "Live workshop, recorded",
       "thumbnail": "/assets/workshops/2026-06-01-bonfire-josh-plat0x.png",
       "recording": "https://luma.com/y189qk8p",
@@ -1095,6 +1117,7 @@
       "handle": "@yerbearserker",
       "org": "Empire Builder",
       "track": "builder",
+      "technical": 6,
       "format": "Live workshop demo, recorded",
       "thumbnail": "/assets/workshops/2026-06-01-yerbearserker-empire-builder.png",
       "recording": "https://luma.com/7nfside5",
@@ -1139,6 +1162,7 @@
       "handle": "@yerbearserker",
       "org": "Empire Builder",
       "track": "builder",
+      "technical": 6,
       "format": "Live workshop, 30 min, recorded",
       "thumbnail": "/assets/workshops/2026-06-01-yerbearserker-empire-builder.png",
       "recording": "https://luma.com/7nfside5",
@@ -1183,6 +1207,7 @@
       "handle": "@zaal",
       "org": "The ZAO",
       "track": "builder",
+      "technical": 2,
       "format": "The first ZAO project, recorded",
       "page": "/recordings/zao/1",
       "youtube": "https://youtu.be/N6tgsuBOXBU",

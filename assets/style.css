@@ -756,3 +756,20 @@ body > * { position: relative; z-index: 1; }
 .zg-share, .zg-add { font-family: inherit; font-size: 0.8rem; padding: 0.36rem 0.8rem; border-radius: 7px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; display: inline-block; }
 .zg-share.primary, .zg-add.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
 .zg-share:hover, .zg-add:hover { filter: brightness(1.14); }
+
+/* Recording technical-level indicator (0-10) - shows how deep a talk is before you watch.
+   Rendered on each /recordings/* page (rec-tech) and as a compact badge on the hub list. */
+.rec-tech { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin: 0.1rem 0 0.9rem; font-size: 0.8rem; }
+.rec-tech .rt-label { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); font-size: 0.7rem; }
+.rec-tech .rt-bar { position: relative; width: 132px; height: 7px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; }
+.rec-tech .rt-fill { position: absolute; inset: 0 auto 0 0; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--cyan), var(--zabal)); }
+.rec-tech .rt-num { font-family: 'JetBrains Mono', monospace; color: var(--text); font-weight: 500; }
+.rec-tech .rt-tag { color: var(--text-muted); }
+.rec-tech .rt-tag.t-low { color: var(--cyan); }
+.rec-tech .rt-tag.t-mid { color: var(--gold); }
+.rec-tech .rt-tag.t-high { color: var(--zabal); }
+/* Compact badge for the recordings hub cards */
+.rec-tech-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--text-dim); border: 1px solid var(--border); border-radius: 999px; padding: 0.08rem 0.5rem; }
+.rec-tech-badge .b-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+.rec-tech-badge .b-dot.t-mid { background: var(--gold); }
+.rec-tech-badge .b-dot.t-high { background: var(--zabal); }

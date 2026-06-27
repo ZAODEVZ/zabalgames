@@ -723,8 +723,14 @@
     var t = ext(url) ? ' target="_blank" rel="noopener"' : '';
     return '<a class="rec-btn ' + (cls||'') + '" href="' + esc(url) + '"' + t + '>' + esc(label) + '</a>';
   }
+  function techBadge(n) {
+    if (typeof n !== 'number') return '';
+    var v = Math.max(0, Math.min(10, Math.round(n)));
+    var band = v <= 3 ? 'low' : (v <= 6 ? 'mid' : 'high');
+    return ' <span class="rec-tech-badge" title="How technical, 0 to 10"><span class="b-dot t-' + band + '"></span>Tech ' + v + '/10</span>';
+  }
   function rowHtml(r) {
-    var meta = [r.type, r.track && ('track: ' + r.track), r.date].filter(Boolean).map(esc).join('  -  ');
+    var meta = [r.type, r.track && ('track: ' + r.track), r.date].filter(Boolean).map(esc).join('  -  ') + techBadge(r.technical);
     var who = r.presenter ? '<span class="rec-row-meta">' + esc(r.presenter) + (r.org ? ', ' + esc(r.org) : '') + '</span>' : '';
     var transcript = (r.page || r.url) + '#rec-transcript';
     var btns = [

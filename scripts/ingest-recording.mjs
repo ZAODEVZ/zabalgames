@@ -85,6 +85,19 @@ function fmtTime(sec) {
 }
 function cap(s) { return s ? s[0].toUpperCase() + s.slice(1) : s; }
 
+// 0-10 technical-level indicator shown above the video, so a viewer knows how deep a
+// talk goes before pressing play. Bands: 0-3 approachable, 4-6 some depth, 7-10 deep.
+function techMeter(n) {
+  const v = Math.max(0, Math.min(10, Math.round(Number(n) || 0)));
+  const band = v <= 3 ? 'low' : (v <= 6 ? 'mid' : 'high');
+  const label = v <= 3 ? 'Approachable' : (v <= 6 ? 'Some technical depth' : 'Deep technical');
+  return `<div class="rec-tech" title="How technical this talk is, 0 to 10">` +
+    `<span class="rt-label">Technical</span>` +
+    `<span class="rt-bar"><span class="rt-fill" style="width:${v * 10}%"></span></span>` +
+    `<span class="rt-num">${v}/10</span>` +
+    `<span class="rt-tag t-${band}">${label}</span></div>`;
+}
+
 function ytId(url) {
   if (!url) return null;
   const m1 = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|watch\?v=|v\/))([A-Za-z0-9_-]{6,})/);
@@ -150,6 +163,7 @@ function buildRecap() {
   if (m.handle) r.handle = m.handle;
   if (m.org) r.org = m.org;
   if (track) r.track = track;
+  if (typeof m.technical === 'number') r.technical = Math.max(0, Math.min(10, Math.round(m.technical)));
   if (m.format) r.format = m.format;
   if (m.thumbnail) r.thumbnail = m.thumbnail;
   if (summary) r.summary = summary;
@@ -361,6 +375,7 @@ ${styles}
     <p class="rec-by">
       ${byParts}${formatLabel ? `\n      <span class="dot">&middot;</span> <span class="rec-format">${esc(formatLabel)}</span>` : ''}
     </p>
+    ${typeof m.technical === 'number' ? techMeter(m.technical) : ''}
   </header>
 
 ${media}

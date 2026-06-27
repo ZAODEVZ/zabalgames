@@ -40,6 +40,7 @@ const items = (recaps.recaps || []).map((r) => {
     handle: r.handle || null,
     org: r.org || null,
     track: r.track || null,
+    technical: (typeof r.technical === 'number') ? r.technical : null,
     format: r.format || null,
     date: r.date || null,
     url,

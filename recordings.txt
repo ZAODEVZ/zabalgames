@@ -1,6 +1,6 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-25 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 25 recordings, newest first.
+Generated 2026-06-26 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 25 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
