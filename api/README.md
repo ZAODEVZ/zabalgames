@@ -334,6 +334,11 @@ lanes (artist / builder / creator), returning the best fit.
 Quick Auth required, so it only ever analyzes the caller's own verified profile. Falls
 back to a friendly default lane (`confident:false`) when the bio gives no signal. No KV.
 
+### `GET /api/triage`
+Tier-1 deterministic submission pre-screen (July playbook Move 4). Checks a build repo before it hits the human /review queue.
+- `GET ?repo=<github url or owner/repo>&track=<artist|builder|creator>` -> `{ ok, repo, tier1:{ repoValid, reachable, public, meta, trackValid, ownershipHint }, recommendation: pass|review|reject, reasons:[...] }`.
+- Stateless, no KV; uses GITHUB_TOKEN for rate limit. The tier-2/3 scoring rubric lives in data/triage-rubric.md.
+
 ## Required env vars (Vercel project settings)
 
 | Var | What | Where |
