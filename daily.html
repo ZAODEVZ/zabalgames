@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily quests - ZABAL Gamez</title>
+  <meta name="description" content="Your ZABAL Gamez daily log. Check off a handful of quests each day - play a game, learn something, build something - and keep your streak alive.">
+  <link rel="canonical" href="https://zabalgamez.com/daily">
+  <meta property="og:title" content="Daily quests - ZABAL Gamez">
+  <meta property="og:description" content="A few quests a day - play, learn, build. Keep the streak alive.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/daily">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Daily quests - ZABAL Gamez">
+  <meta name="twitter:description" content="A few quests a day - play, learn, build. Keep the streak alive.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Today's quests","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/daily","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .dq-wrap { max-width: 640px; margin: 0 auto; }
+    .dq-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.6rem; margin: 0.2rem 0 0.4rem; }
+    .dq-date { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-dim); }
+    .dq-streak { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--zabal); }
+    .dq-bar { height: 8px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; margin: 0.3rem 0 0.2rem; }
+    .dq-fill { height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, var(--cyan), var(--zabal)); transition: width 0.2s ease; }
+    .dq-count { font-size: 0.82rem; color: var(--text-muted); margin: 0.2rem 0 1.1rem; }
+    .dq-list { display: grid; gap: 0.6rem; }
+    .dq-item { display: flex; align-items: flex-start; gap: 0.8rem; border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.8rem 0.95rem; transition: border-color 0.12s ease, opacity 0.12s ease; }
+    .dq-item.done { border-color: var(--cyan); opacity: 0.62; }
+    .dq-check { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 8px; border: 1.5px solid var(--border-hover, #3a3a44); background: transparent; cursor: pointer; display: grid; place-items: center; padding: 0; margin-top: 0.1rem; }
+    .dq-check[aria-pressed="true"] { background: var(--cyan); border-color: var(--cyan); }
+    .dq-check .ck { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #06121a; font-size: 0.95rem; opacity: 0; line-height: 1; }
+    .dq-check[aria-pressed="true"] .ck { opacity: 1; }
+    .dq-main { flex: 1 1 auto; min-width: 0; }
+    .dq-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
+    .dq-item.done .dq-name { text-decoration: line-through; text-decoration-color: var(--text-dim); }
+    .dq-desc { font-size: 0.86rem; color: var(--text-muted); line-height: 1.45; margin: 0.15rem 0 0.5rem; }
+    .dq-go { font-size: 0.82rem; color: var(--cyan); text-decoration: none; font-family: 'JetBrains Mono', monospace; }
+    .dq-go:hover { text-decoration: underline; }
+    .dq-note { width: 100%; box-sizing: border-box; margin-top: 1.2rem; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; color: var(--text); font: inherit; font-size: 0.92rem; padding: 0.8rem 0.95rem; resize: vertical; min-height: 70px; }
+    .dq-note-label { display: block; font-size: 0.82rem; color: var(--text-dim); margin: 1.2rem 0 0.3rem; }
+    .dq-done-banner { display: none; border: 1px solid var(--gold); background: rgba(245,200,66,0.08); border-radius: 12px; padding: 0.9rem 1.1rem; margin: 1rem 0 0; font-size: 0.92rem; color: var(--text); line-height: 1.5; }
+    .dq-done-banner.show { display: block; }
+    .dq-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.8rem; }
+    .btn { font-family: inherit; font-size: 0.85rem; padding: 0.5rem 1.1rem; border-radius: 9px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .btn:hover { filter: brightness(1.12); }
+    .dq-foot { font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem; }
+    .dq-foot a { color: var(--cyan); }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/enter">Register</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow">Daily log</div>
+    <h1>Today's <span class="accent">quests</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">A few small things each day - play, learn, build. Clear them all to keep your streak. Resets every day.</p>
+  </header>
+
+  <div class="dq-wrap">
+    <div class="dq-top">
+      <span class="dq-date" id="dq-date"></span>
+      <span class="dq-streak" id="dq-streak"></span>
+    </div>
+    <div class="dq-bar"><div class="dq-fill" id="dq-fill"></div></div>
+    <p class="dq-count" id="dq-count"></p>
+
+    <div class="dq-list" id="dq-list"></div>
+
+    <div class="dq-done-banner" id="dq-done">All quests cleared. Streak kept - come back tomorrow.</div>
+
+    <label class="dq-note-label" for="dq-note">Daily log (just for you, saved on this device)</label>
+    <textarea class="dq-note" id="dq-note" placeholder="What did you do, learn, or ship today?"></textarea>
+
+    <div class="dq-actions">
+      <button class="btn primary" id="dq-share" type="button">Share my streak</button>
+      <a class="btn" href="/game">Open the arcade</a>
+    </div>
+
+    <p class="dq-foot">Your progress and streak live on this device. New to ZABAL Gamez? Start with <a href="/info.html">the details</a> or <a href="/enter">register a build</a>.</p>
+  </div>
+
+</div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  // The daily quest set. Edit freely - ids are the localStorage keys, so keep them stable.
+  var QUESTS = [
+    { id: 'play2048', name: 'Play ZAO 2048', desc: 'One run on the monthly board. Merge the ZAO brands up to THE ZAO.', href: '/game/2048', cta: 'Play 2048' },
+    { id: 'trivia', name: "Take today's ZAO Trivia", desc: '10 questions about the ZAO and its projects. Finish to stay in the weekly pot.', href: '/game/zao-trivia', cta: 'Play trivia' },
+    { id: 'buildquiz', name: 'Find your lane', desc: 'The 30-second build quiz - a track and a real project to ship.', href: '/game/build-quiz', cta: 'Take the quiz' },
+    { id: 'watch', name: 'Watch or skim a workshop', desc: 'Open a recording - each shows how technical it is before you press play.', href: '/recordings', cta: 'Browse recordings' },
+    { id: 'read', name: 'Catch up on the latest', desc: 'Read a recap or the newsletter so you know what is happening this week.', href: '/recaps', cta: 'Read recaps' }
+  ];
+
+  var KEY = 'zg_daily_v1';
+  var SKEY = 'zg_daily_streak_v1';
+
+  function today() { return new Date().toISOString().slice(0, 10); }
+  function yesterday() { return new Date(Date.now() - 86400000).toISOString().slice(0, 10); }
+  function load(k, def) { try { return JSON.parse(localStorage.getItem(k)) || def; } catch (e) { return def; } }
+  function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* private mode */ } }
+
+  // State for today: { date, done:{id:true}, note }. Reset when the date rolls over.
+  var state = load(KEY, null);
+  if (!state || state.date !== today()) state = { date: today(), done: {}, note: '' };
+  var streak = load(SKEY, { n: 0, last: null });
+
+  var listEl = document.getElementById('dq-list');
+  var fillEl = document.getElementById('dq-fill');
+  var countEl = document.getElementById('dq-count');
+  var doneBanner = document.getElementById('dq-done');
+  var streakEl = document.getElementById('dq-streak');
+
+  document.getElementById('dq-date').textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' });
+
+  function allDone() { return QUESTS.every(function (q) { return state.done[q.id]; }); }
+
+  function renderStreak() {
+    streakEl.textContent = streak.n > 0 ? (streak.n + ' day streak') : '';
+  }
+
+  function creditStreakIfComplete() {
+    if (!allDone()) return;
+    if (streak.last === today()) return; // already credited today
+    streak.n = (streak.last === yesterday()) ? (streak.n + 1) : 1;
+    streak.last = today();
+    save(SKEY, streak);
+    renderStreak();
+  }
+
+  function refresh() {
+    var n = QUESTS.filter(function (q) { return state.done[q.id]; }).length;
+    fillEl.style.width = Math.round((n / QUESTS.length) * 100) + '%';
+    countEl.textContent = n + ' of ' + QUESTS.length + ' done today';
+    doneBanner.classList.toggle('show', n === QUESTS.length);
+  }
+
+  function toggle(q) {
+    state.done[q.id] = !state.done[q.id];
+    save(KEY, state);
+    creditStreakIfComplete();
+    paint();
+  }
+
+  function paint() {
+    listEl.innerHTML = '';
+    QUESTS.forEach(function (q) {
+      var done = !!state.done[q.id];
+      var item = document.createElement('div');
+      item.className = 'dq-item' + (done ? ' done' : '');
+
+      var check = document.createElement('button');
+      check.className = 'dq-check';
+      check.type = 'button';
+      check.setAttribute('aria-pressed', done ? 'true' : 'false');
+      check.setAttribute('aria-label', (done ? 'Uncheck: ' : 'Check off: ') + q.name);
+      check.innerHTML = '<span class="ck">x</span>';
+      check.addEventListener('click', function () { toggle(q); });
+
+      var main = document.createElement('div');
+      main.className = 'dq-main';
+      main.innerHTML = '<div class="dq-name"></div><div class="dq-desc"></div>';
+      main.querySelector('.dq-name').textContent = q.name;
+      main.querySelector('.dq-desc').textContent = q.desc;
+      var go = document.createElement('a');
+      go.className = 'dq-go';
+      go.href = q.href;
+      go.textContent = q.cta + ' ->';
+      main.appendChild(go);
+
+      item.appendChild(check);
+      item.appendChild(main);
+      listEl.appendChild(item);
+    });
+    refresh();
+  }
+
+  // Daily note
+  var noteEl = document.getElementById('dq-note');
+  noteEl.value = state.note || '';
+  noteEl.addEventListener('input', function () { state.note = noteEl.value.slice(0, 2000); save(KEY, state); });
+
+  // Share streak
+  document.getElementById('dq-share').addEventListener('click', function () {
+    var n = QUESTS.filter(function (q) { return state.done[q.id]; }).length;
+    var text = (streak.n > 1)
+      ? ('Day ' + streak.n + ' of my ZABAL Gamez streak - ' + n + '/' + QUESTS.length + ' quests done today. Play, learn, build. Keep yours going:')
+      : ('Running my ZABAL Gamez daily quests - ' + n + '/' + QUESTS.length + ' done today. Play, learn, build:');
+    var url = 'https://zabalgamez.com/daily';
+    if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+  });
+
+  renderStreak();
+  paint();
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
