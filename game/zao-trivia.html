@@ -34,6 +34,7 @@
     .tv-meta { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); margin: 0.2rem 0 1rem; }
     .tv-meta .live { color: var(--cyan); }
     .tv-meta .score { color: var(--gold); }
+    .tv-meta .streak { color: var(--zabal); }
     .progress { display: flex; gap: 5px; margin: 0.4rem 0 1rem; }
     .progress span { flex: 1; height: 4px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
     .progress span.done { background: var(--zabal); border-color: var(--zabal); }
@@ -109,6 +110,7 @@
     <div class="tv-meta">
       <span class="live" id="tv-live">Live: Wednesdays 11:30am EST</span>
       <span class="score" id="tv-score" style="display:none;">Score: 0</span>
+      <span class="streak" id="tv-streak" style="display:none;"></span>
     </div>
   </header>
 
@@ -317,7 +319,10 @@
     if (window.ZABAL && window.ZABAL.submitScore) {
       st.textContent = 'Submitting...';
       window.ZABAL.submitScore('zaotrivia', score, null).then(function (d) {
-        if (d && d.ok && d.counted) st.textContent = 'On the board - rank ' + (d.rank || '?') + '. Best this month: ' + (d.best != null ? d.best : score) + '/' + QS.length + '.';
+        if (d && d.ok && d.counted) {
+          if (d.streak != null && d.streak > 0) { var _ts = document.getElementById('tv-streak'); if (_ts) { _ts.style.display = ''; _ts.textContent = d.streak + ' day streak'; } }
+          st.textContent = 'On the board - rank ' + (d.rank || '?') + '. Best this month: ' + (d.best != null ? d.best : score) + '/' + QS.length + '.' + (d.streak > 1 ? ' ' + d.streak + ' days in a row.' : '');
+        }
         else if (d && d.reason === 'not-in-miniapp') st.innerHTML = 'Open in the Farcaster app to save your score. <a href="https://farcaster.xyz/miniapps/zabal-gamez" target="_blank" rel="noopener">Open</a>.';
         else st.textContent = 'Scored ' + score + '/' + QS.length + '. Saved if you are signed in.';
       }).catch(function () { st.textContent = 'Could not save right now - your score still counts when you play live.'; });
