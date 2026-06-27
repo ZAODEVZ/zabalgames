@@ -225,9 +225,15 @@
 
   render();
 
+  // Submitting a clip claim is an on-chain action that needs a wallet (Farcaster app only).
+  // On the open web, replace the form with a clean "open in Farcaster" panel so nothing fails.
+  function gateForWeb() {
+    var box = mount.querySelector('.zgk-box');
+    if (box) box.innerHTML = '<p class="zgk-note">Submitting a clip is an onchain claim on Base, so it needs the Farcaster app wallet. <a href="' + APP_URL + '" target="_blank" rel="noopener">Open in Farcaster</a> to submit your clip. You can still make the clip on YouTube anytime.</p>';
+  }
   if (Z.getProvider) {
-    Z.getProvider().then(function (p) {
-      if (!p) setNote('Open this recording in the Farcaster app to submit a clip with your wallet. <a href="' + APP_URL + '" target="_blank" rel="noopener">Open in Farcaster</a>.');
-    });
+    Z.getProvider().then(function (p) { if (!p) gateForWeb(); });
+  } else {
+    gateForWeb();
   }
 })();
