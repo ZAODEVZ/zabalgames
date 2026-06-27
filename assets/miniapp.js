@@ -189,6 +189,26 @@ window.ZABAL.viewProfile = async function viewProfile(fid) {
 // Analyze the signed-in player's Farcaster profile (server-side, by verified FID) and
 // return a best-fit ZABAL Gamez track. Powers the "skip the questions" path on the build
 // quiz. Returns { ok, track, label, why, matched, confident, handle } or { ok:false, reason }.
+// Generic authed POST: sends a Quick Auth JWT so the server can bind the action to a
+// verified FID. Returns the parsed JSON, or { ok:false, reason } outside a Mini App / on
+// error. Used by the profile editor and the on-site submission form.
+window.ZABAL.authedFetch = async function authedFetch(path, bodyObj) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch(path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bodyObj || {}),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok && !data) return { ok: false, reason: 'server' };
+    return data;
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 window.ZABAL.analyzeProfile = async function analyzeProfile() {
   try {
     const ctx = await getContext();

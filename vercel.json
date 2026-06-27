@@ -7,6 +7,9 @@
     { "path": "/api/workshop-reminders", "schedule": "0 12 * * *" },
     { "path": "/api/monthly-winner", "schedule": "0 14 1 * *" }
   ],
+  "rewrites": [
+    { "source": "/profiles/:handle", "destination": "/profile.html" }
+  ],
   "redirects": [
     { "source": "/game/2048", "destination": "/play",                                "permanent": false },
     { "source": "/quiz",      "destination": "/game/build-quiz",                      "permanent": false },

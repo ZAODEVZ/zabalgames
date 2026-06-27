@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - ZABAL Gamez</title>
+  <meta name="description" content="A ZABAL Gamez builder profile - who you are, what you build, your verified GitHub and Farcaster.">
+  <link rel="canonical" href="https://zabalgamez.com/profiles">
+  <meta property="og:title" content="ZABAL Gamez profile">
+  <meta property="og:description" content="A ZABAL Gamez builder profile.">
+  <meta property="og:type" content="profile">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"ZABAL Gamez profile","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/profiles","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .pf-wrap { max-width: 620px; margin: 0 auto; }
+    .pf-head { display: flex; align-items: center; gap: 0.9rem; margin: 0.4rem 0 0.6rem; }
+    .pf-pfp { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); background: var(--surface-2); flex: 0 0 auto; }
+    .pf-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; margin: 0; }
+    .pf-handle { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-dim); }
+    .pf-badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.5rem 0; }
+    .pf-badge { font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; border: 1px solid var(--border); border-radius: 999px; padding: 0.12rem 0.6rem; color: var(--text-dim); }
+    .pf-badge.on { color: var(--cyan); border-color: var(--cyan); }
+    .pf-badge.fc.on { color: var(--zabal); border-color: var(--zabal); }
+    .pf-bio { color: var(--text-muted); font-size: 0.96rem; line-height: 1.55; margin: 0.4rem 0 0.8rem; white-space: pre-wrap; }
+    .pf-links { display: grid; gap: 6px; margin: 0 0 1rem; }
+    .pf-links a { color: var(--cyan); font-size: 0.9rem; text-decoration: none; }
+    .pf-links a:hover { text-decoration: underline; }
+    .btn { font-family: inherit; font-size: 0.85rem; padding: 0.55rem 1.1rem; border-radius: 9px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .btn:hover { filter: brightness(1.12); }
+    .btn:disabled { opacity: 0.6; cursor: default; }
+    .pf-edit { border: 1px solid var(--border); background: var(--surface-2); border-radius: 14px; padding: 1rem 1.1rem; margin: 0.6rem 0; }
+    .pf-edit h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; margin: 0 0 0.7rem; }
+    .pf-field { margin: 0 0 0.7rem; }
+    .pf-field label { display: block; font-size: 0.78rem; color: var(--text-dim); margin: 0 0 0.25rem; }
+    .pf-in { width: 100%; box-sizing: border-box; background: var(--surface, #121217); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font: inherit; font-size: 0.92rem; padding: 0.55rem 0.7rem; }
+    textarea.pf-in { min-height: 70px; resize: vertical; }
+    .pf-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .pf-status { font-size: 0.82rem; color: var(--text-muted); min-height: 1.1rem; margin: 0.4rem 0 0; }
+    .pf-status a { color: var(--cyan); }
+    .pf-note { font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem; }
+    .pf-note a { color: var(--cyan); }
+    .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); word-break: break-all; }
+    .empty { color: var(--text-dim); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/submit">Submit</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/game">Arcade</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+  <div class="pf-wrap" id="pf-root"><p class="empty" style="padding-top:1rem;">Loading profile...</p></div>
+</div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function host(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return 'link'; } }
+
+  // handle from /profiles/<handle> (or ?handle= fallback)
+  var m = location.pathname.match(/\/profiles\/([^\/?#]+)/i);
+  var HANDLE = (m ? decodeURIComponent(m[1]) : (new URLSearchParams(location.search).get('handle') || '')).toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 32);
+  var TKEY = 'zg_ptok_' + HANDLE;
+  var root = document.getElementById('pf-root');
+  var profile = null, myFid = null, canEdit = false;
+
+  function tok() { try { return localStorage.getItem(TKEY) || ''; } catch (e) { return ''; } }
+  function setTok(t) { try { if (t) localStorage.setItem(TKEY, t); } catch (e) {} }
+
+  function plainPost(body) {
+    return fetch('/api/profile', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json(); });
+  }
+  // POST with Farcaster JWT when available; always carry the edit token as fallback.
+  function post(body) {
+    body = Object.assign({ handle: HANDLE, editToken: tok() || undefined }, body);
+    if (window.ZABAL && window.ZABAL.authedFetch) {
+      return window.ZABAL.authedFetch('/api/profile', body).then(function (d) {
+        if (d && d.reason === 'not-in-miniapp') return plainPost(body);
+        return d;
+      });
+    }
+    return plainPost(body);
+  }
+
+  function badges(p) {
+    var b = [];
+    b.push('<span class="pf-badge fc ' + (p.fid ? 'on' : '') + '">' + (p.fid ? 'Farcaster' : 'No Farcaster') + '</span>');
+    b.push('<span class="pf-badge ' + (p.github_verified ? 'on' : '') + '">' + (p.github_verified ? 'GitHub verified' : 'GitHub unverified') + '</span>');
+    if (p.wallet) b.push('<span class="pf-badge on">Wallet linked</span>');
+    return '<div class="pf-badges">' + b.join('') + '</div>';
+  }
+
+  function viewHtml(p) {
+    var links = (p.links || []).map(function (l) { return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label || host(l.url)) + ' -&gt;</a>'; }).join('');
+    var gh = (p.github ? '<a href="https://github.com/' + esc(p.github) + '" target="_blank" rel="noopener">github.com/' + esc(p.github) + (p.github_verified ? '' : ' (unverified)') + '</a>' : '');
+    return '<div class="pf-head">' +
+        (p.pfp ? '<img class="pf-pfp" src="' + esc(p.pfp) + '" alt="">' : '<div class="pf-pfp"></div>') +
+        '<div><h1 class="pf-name">' + esc(p.displayName || ('@' + p.handle)) + '</h1>' +
+        '<div class="pf-handle">zabalgamez.com/profiles/' + esc(p.handle) + '</div></div></div>' +
+      badges(p) +
+      (p.bio ? '<p class="pf-bio">' + esc(p.bio) + '</p>' : '') +
+      '<div class="pf-links">' + links + (gh ? '<div>' + gh + '</div>' : '') + '</div>' +
+      (canEdit ? '<button class="btn" id="pf-toggle-edit" type="button">Edit your profile</button>' : '') +
+      '<p class="pf-note">Profiles power ZABAL Gamez submissions. <a href="/submit">Make a submission</a> or browse <a href="/recordings">the recordings</a>.</p>';
+  }
+
+  function editHtml(p) {
+    p = p || { handle: HANDLE };
+    return '<div class="pf-edit"><h3>' + (profile ? 'Edit profile' : 'Claim /profiles/' + esc(HANDLE)) + '</h3>' +
+      '<div class="pf-field"><label for="e-name">Display name</label><input class="pf-in" id="e-name" maxlength="60" value="' + esc(p.displayName || '') + '"></div>' +
+      '<div class="pf-field"><label for="e-bio">Bio</label><textarea class="pf-in" id="e-bio" maxlength="280">' + esc(p.bio || '') + '</textarea></div>' +
+      '<div class="pf-field"><label for="e-gh">GitHub username (optional)</label><input class="pf-in" id="e-gh" maxlength="39" value="' + esc(p.github || '') + '" placeholder="your-github"></div>' +
+      '<div class="pf-field"><label for="e-link">A link (optional)</label><input class="pf-in" id="e-link" maxlength="300" value="' + esc((p.links && p.links[0] && p.links[0].url) || '') + '" placeholder="https://..."></div>' +
+      '<div class="pf-row"><button class="btn primary" id="e-save" type="button">Save</button>' +
+      (profile ? '<button class="btn" id="e-cancel" type="button">Cancel</button>' : '') + '</div>' +
+      '<p class="pf-status" id="e-status"></p>' +
+      (profile && profile.github ? gitHtml(p) : '') +
+      (profile ? walletHtml(p) : '') +
+      '</div>';
+  }
+  function gitHtml(p) {
+    return '<div style="border-top:1px solid var(--border);margin-top:0.9rem;padding-top:0.9rem;">' +
+      '<label style="font-size:0.78rem;color:var(--text-dim);">Prove your GitHub (' + esc(p.github) + ')</label>' +
+      '<div class="pf-row" style="margin-top:0.3rem;"><button class="btn" id="gh-challenge" type="button">' + (p.github_verified ? 'Verified' : 'Get my code') + '</button>' +
+      '<button class="btn" id="gh-verify" type="button" style="display:none;">I added it - verify</button></div>' +
+      '<p class="pf-status" id="gh-status"></p></div>';
+  }
+  function walletHtml(p) {
+    return '<div style="border-top:1px solid var(--border);margin-top:0.9rem;padding-top:0.9rem;">' +
+      '<label for="e-wallet" style="font-size:0.78rem;color:var(--text-dim);">Wallet for your collectible (Base)</label>' +
+      '<div class="pf-row" style="margin-top:0.3rem;"><input class="pf-in" id="e-wallet" style="flex:1 1 200px;" maxlength="42" value="' + esc(p.wallet || '') + '" placeholder="0x...">' +
+      '<button class="btn" id="w-save" type="button">Attach</button></div><p class="pf-status" id="w-status"></p></div>';
+  }
+
+  function renderView() { root.innerHTML = profile ? viewHtml(profile) : missingHtml(); wireView(); }
+  function renderEdit() { root.innerHTML = editHtml(profile); wireEdit(); }
+  function missingHtml() {
+    return '<header class="hero" style="padding-bottom:0.2rem;"><div class="hero-eyebrow">Profile</div><h1>/profiles/<span class="accent">' + esc(HANDLE) + '</span></h1>' +
+      '<p class="lead" style="margin-top:0.3rem;">No one has claimed this profile yet.</p></header>' + editHtml(null);
+  }
+
+  function wireView() {
+    var t = document.getElementById('pf-toggle-edit');
+    if (t) t.addEventListener('click', renderEdit);
+  }
+
+  function wireEdit() {
+    var status = document.getElementById('e-status');
+    var save = document.getElementById('e-save');
+    var cancel = document.getElementById('e-cancel');
+    if (cancel) cancel.addEventListener('click', renderView);
+    save.addEventListener('click', function () {
+      var body = {
+        action: 'upsert',
+        displayName: (document.getElementById('e-name').value || '').slice(0, 60),
+        bio: (document.getElementById('e-bio').value || '').slice(0, 280),
+        github: (document.getElementById('e-gh').value || '').trim()
+      };
+      var link = (document.getElementById('e-link').value || '').trim();
+      if (link) body.links = [{ url: link }];
+      save.disabled = true; status.textContent = 'Saving...';
+      post(body).then(function (d) {
+        save.disabled = false;
+        if (d && d.ok) {
+          if (d.editToken) setTok(d.editToken);
+          profile = d.profile; canEdit = true;
+          status.textContent = 'Saved.';
+          renderEdit();
+        } else if (d && (d.reason === 'not-in-miniapp')) {
+          status.innerHTML = 'Open in Farcaster to save as your account, or this device keeps your edit access.';
+        } else if (d && d.error === 'not your profile') {
+          status.textContent = 'This profile belongs to someone else.';
+        } else { status.textContent = 'Could not save: ' + ((d && (d.error || d.reason)) || 'try again'); }
+      }).catch(function () { save.disabled = false; status.textContent = 'Could not save right now.'; });
+    });
+
+    // GitHub verify flow
+    var ghC = document.getElementById('gh-challenge');
+    if (ghC) {
+      var ghV = document.getElementById('gh-verify');
+      var ghS = document.getElementById('gh-status');
+      if (profile && profile.github_verified) { ghC.disabled = true; }
+      ghC.addEventListener('click', function () {
+        ghC.disabled = true; ghS.textContent = 'Getting your code...';
+        post({ action: 'github-challenge' }).then(function (d) {
+          ghC.disabled = false;
+          if (d && d.ok) {
+            ghS.innerHTML = 'Add this to your GitHub bio, then verify: <span class="mono">' + esc(d.nonce) + '</span><br>' + esc(d.where || '');
+            ghV.style.display = '';
+          } else { ghS.textContent = (d && (d.error || d.reason)) || 'Could not start verification.'; }
+        }).catch(function () { ghC.disabled = false; ghS.textContent = 'Error.'; });
+      });
+      ghV.addEventListener('click', function () {
+        ghV.disabled = true; ghS.textContent = 'Checking your GitHub bio...';
+        post({ action: 'github-verify' }).then(function (d) {
+          ghV.disabled = false;
+          if (d && d.ok && d.github_verified) { ghS.textContent = 'GitHub verified.'; profile.github_verified = true; setTimeout(renderEdit, 700); }
+          else { ghS.textContent = (d && (d.reason || d.error)) || 'Not found yet - make sure the code is saved in your bio.'; }
+        }).catch(function () { ghV.disabled = false; ghS.textContent = 'Error.'; });
+      });
+    }
+
+    // wallet attach
+    var wSave = document.getElementById('w-save');
+    if (wSave) {
+      var wS = document.getElementById('w-status');
+      wSave.addEventListener('click', function () {
+        var w = (document.getElementById('e-wallet').value || '').trim();
+        if (!/^0x[0-9a-fA-F]{40}$/.test(w)) { wS.textContent = 'Enter a valid 0x address.'; return; }
+        wSave.disabled = true; wS.textContent = 'Attaching...';
+        post({ action: 'wallet', wallet: w }).then(function (d) {
+          wSave.disabled = false;
+          if (d && d.ok) { wS.textContent = 'Wallet attached - your collectible will airdrop here when approved.'; profile.wallet = w; }
+          else { wS.textContent = (d && (d.error || d.reason)) || 'Could not attach.'; }
+        }).catch(function () { wSave.disabled = false; wS.textContent = 'Error.'; });
+      });
+    }
+  }
+
+  function decideEdit() {
+    // editable if: no profile (claim), or I own the token, or my FID matches the bound FID
+    if (!profile) { canEdit = true; return; }
+    if (tok()) { canEdit = true; return; }
+    if (myFid && profile.fid && Number(myFid) === Number(profile.fid)) { canEdit = true; return; }
+    canEdit = false;
+  }
+
+  function boot() {
+    if (!HANDLE) { root.innerHTML = '<p class="empty" style="padding-top:1rem;">No profile handle. Open a profile at /profiles/&lt;handle&gt;.</p>'; return; }
+    var pUser = (window.ZABAL && window.ZABAL.getUser) ? window.ZABAL.getUser().catch(function () { return null; }) : Promise.resolve(null);
+    Promise.all([
+      fetch('/api/profile?handle=' + encodeURIComponent(HANDLE), { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return null; }),
+      pUser
+    ]).then(function (res) {
+      var d = res[0]; var u = res[1];
+      myFid = u && u.fid ? u.fid : null;
+      profile = (d && d.profile) || null;
+      if (d && d.configured === false) { root.innerHTML = '<p class="empty" style="padding-top:1rem;">Profiles are not live yet. Check back soon.</p>'; return; }
+      decideEdit();
+      renderView();
+    });
+  }
+  boot();
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
