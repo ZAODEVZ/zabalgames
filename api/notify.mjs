@@ -54,7 +54,14 @@ export default async function handler(req) {
   const text = String(body.body || '').slice(0, 128);
   const targetUrl = String(body.targetUrl || SITE);
   if (!title || !text) return json({ error: 'title and body required' }, 400);
-  if (!targetUrl.startsWith(SITE)) return json({ error: 'targetUrl must be within ' + SITE }, 400);
+  // Validate by hostname, not string prefix: startsWith(SITE) would let
+  // https://zabalgamez.com.evil.com through. Require the exact domain or a subdomain.
+  let targetOk = false;
+  try {
+    const h = new URL(targetUrl).hostname;
+    targetOk = (h === 'zabalgamez.com' || h.endsWith('.zabalgamez.com'));
+  } catch { targetOk = false; }
+  if (!targetOk) return json({ error: 'targetUrl must be within ' + SITE }, 400);
 
   let res;
   try { res = await kv([['HGETALL', TOKENS_KEY]]); } catch (e) { return json({ error: e.message }, 502); }

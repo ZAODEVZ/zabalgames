@@ -51,8 +51,11 @@ function buildText(leads, day) {
     const org = lead.org ? ` (${lead.org})` : '';
     const topic = String(lead.topic || '').trim().replace(/\.$/, '');
     const when = lead.when || lead.date;
-    const rsvp = lead.luma_url ? `\nRSVP: ${lead.luma_url}` : '';
-    return `Day ${day} - ${lead.name}${org} on ${topic}. ${when}. Live and recorded.\n\nWatch: ${SITE}/live${rsvp}`;
+    // Only embed luma_url if it is a clean single-line http(s) URL - a stray newline or
+    // junk value would otherwise break the cast body or inject text.
+    const luma = /^https?:\/\/[^\s]+$/.test(String(lead.luma_url || '')) ? lead.luma_url : '';
+    const rsvp = luma ? `\nRSVP: ${luma}` : '';
+    return `Day ${day} - ${lead.name}${org} on ${topic}. ${when}. Live and recorded.\n\nWatch: ${SITE}/live${rsvp}`.slice(0, 1000);
   }
   // Two or more the same day: list them all so none is dropped from the channel.
   const lines = leads.map((l) => {
@@ -61,7 +64,7 @@ function buildText(leads, day) {
     const when = l.when || l.date || '';
     return `- ${l.name}${org}: ${topic}${when ? ` (${when})` : ''}`;
   });
-  return `Day ${day} - ${leads.length} ZABAL Gamez sessions today:\n${lines.join('\n')}\n\nWatch: ${SITE}/live`;
+  return `Day ${day} - ${leads.length} ZABAL Gamez sessions today:\n${lines.join('\n')}\n\nWatch: ${SITE}/live`.slice(0, 1000);
 }
 
 async function publishCast(text) {

@@ -96,12 +96,13 @@ export default async function handler(req) {
       if (!adminKey) return json({ ok: false, error: 'draw disabled - set ADMIN_KEY in env' });
       const authHeader = req.headers.get('authorization') || '';
       const provided = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
-      // Constant-time compare - avoid timing oracle on the secret.
-      let mismatch = provided.length !== adminKey.length;
+      // Constant-time compare - avoid timing oracle on the secret. XOR-accumulate so it
+      // never short-circuits; the length XOR folds in the length check without leaking it.
+      let diff = provided.length ^ adminKey.length;
       for (let i = 0; i < Math.max(provided.length, adminKey.length); i++) {
-        mismatch = mismatch || ((provided.charCodeAt(i) || 0) !== (adminKey.charCodeAt(i) || 0));
+        diff |= (provided.charCodeAt(i) || 0) ^ (adminKey.charCodeAt(i) || 0);
       }
-      if (mismatch) return json({ ok: false, error: 'forbidden' });
+      if (diff !== 0) return json({ ok: false, error: 'forbidden' });
       // Only draw from verified entries (verified:true prefix). Falls back to all entries if
       // the raffle was seeded before the verified-entry format was added.
       let res;
