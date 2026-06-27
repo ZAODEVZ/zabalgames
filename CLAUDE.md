@@ -21,8 +21,8 @@ specific number. Tight, factual, warm.
 
 ## Current status (live)
 Mid-season (June workshops running, July open build + August Finals ahead). The site
-has grown well past the homepage into a multi-surface Mini App - 30+ pages, 28 edge
-endpoints. Snapshot:
+has grown well past the homepage into a multi-surface Mini App - 60+ pages (41 top-level
++ 23 recording pages + the game pages), 32 edge endpoints. Snapshot:
 - Rebrand to ZABAL Gamez + zabalgamez.com is complete and deployed.
 - Mini App manifest (`.well-known/farcaster.json`) is **self-hosted and signed** for
   zabalgamez.com (accountAssociation type:auth, FID 19640). Do NOT hand-edit the
@@ -62,7 +62,7 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
 
 ## Architecture / key files
 Static HTML + inline `<style>`/scripts per page, shared helpers in `assets/*.js`, edge
-functions in `api/`. 30+ pages; not all listed here - this is the load-bearing set.
+functions in `api/`. 60+ pages; not all listed here - this is the load-bearing set.
 
 **Core public pages**
 - `index.html` - homepage (join button + track chips, join counter, workshop schedule
@@ -71,8 +71,13 @@ functions in `api/`. 30+ pages; not all listed here - this is the load-bearing s
 - `info.html` - all-the-details; mentor Formspree form; Cal iframe; July submission
   gallery (client-side Supabase, placeholder keys, NOT live).
 - `enter.html` - July build entry: register a wallet + GitHub repo, building-in-public board.
-- `play.html` / `game.html` - ZAO 2048 + arcade hub (monthly $Zabal top-10).
+- `play.html` / `game.html` - ZAO 2048 + arcade hub (monthly $Zabal top-10). The arcade
+  also holds `game/build-quiz.html` (what-should-you-build) + `game/zao-trivia.html`
+  (weekly pot), and `clips.html` - the clip-to-earn flywheel (gallery + clipper board).
 - `finals.html` / `winners.html` / `leaderboard.html` / `projects.html` - Finals stack.
+- `bounties.html` (claimable bounty board) / `grants.html` (verified funding programs) /
+  `build-days.html` (July daily-build series) / `build-ideas.html` (community build board) /
+  `media.html` - the build-funnel + content surfaces.
 - `recordings.html` / `recaps.html` / `speakers.html` / `spaces.html` /
   `farcaster-batches.html` - the content/recordings system.
 - `streams.html` - data streams + chronological timeline; per-entry Cast buttons.
@@ -93,7 +98,7 @@ functions in `api/`. 30+ pages; not all listed here - this is the load-bearing s
 
 **Edge functions** (`api/*.mjs`, Vercel EDGE, Upstash Redis over REST; Quick Auth JWT
 verified server-side, `DOMAIN = 'zabalgamez.com'`, JWKS from auth.farcaster.xyz; all
-no-op gracefully without Redis env vars). 28 endpoints across:
+no-op gracefully without Redis env vars). 32 endpoints across:
 - *Activity/identity:* `track`, `activity`, `join`, `leaderboard`, `empire-leaderboard`
   (inverse - reads our tokenless empire FROM Empire Builder), `present`, `pfps`, `ref`.
 - *Notifications:* `webhook`, `notify` (admin), `daily-cast` (cron, public), workshop-

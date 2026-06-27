@@ -319,6 +319,12 @@ Storage: `clips:v1:<recId>` (cid -> clip JSON), `clips:recent` (global ZSET),
 `cliplikes:v1:<recId>` + `cliplike:voters:v1:<cid>` (like-once), `clips:clippers`
 (leaderboard ZSET), `clips:addr` (handle -> wallet for Empire). Graceful no-op without KV.
 
+### `GET /api/clip-meta`
+Stateless metadata for a POIDH clip claim, so a submitted clip renders on poidh.xyz
+without any IPFS/Pinata hosting (used by `assets/clip-claim.js` as the claim `uri`).
+- `GET ?v=<ytId>&c=<clipUrl>&t=<title>&d=<description>` -> `{ name, description, image, external_url, animation_url }`. `image` is the YouTube thumbnail (stable, hotlinkable).
+- No auth, no KV - pure function of the query string.
+
 ### `POST /api/profile-track`
 The "skip the questions" path on `/game/build-quiz`. Reads the signed-in player's
 Farcaster bio + display name (server-side, by verified FID) and keyword-scores the three
@@ -342,6 +348,10 @@ back to a friendly default lane (`confident:false`) when the bio gives no signal
 | `GAME_SECRET` | Enables score-nonce enforcement on `POST /api/game` (HMAC-signed one-time nonces). Without it the nonce layer is bypassed gracefully; set it before any payout | any long random string |
 | `EMPIRE_ID` | Optional override for `GET /api/empire-leaderboard`. Defaults to `zabalgamez01e9af` (our tokenless empire), so no config is needed | Empire Builder |
 | `EMPIRE_API_KEY` | Optional; sent as `x-api-key` to Empire Builder. Reads work without it | Empire Builder |
+| `ZABAL_JUDGE_FIDS` | Comma-separated FIDs allowed to pick the Finals shortlist via `POST /api/finals-picks`. Closed (403) until set | the mentor/judge FIDs |
+| `BONFIRE_ID` | Bonfire group id - target for `POST /api/bonfire-ask` submissions and `commit-watcher` build events | Bonfire |
+| `BONFIRE_API_URL` / `BONFIRE_API_KEY` | Bonfire REST base + key used by `bonfire-ask` and `commit-watcher` to push into the Bonfire backend | Bonfire |
+| `GITHUB_TOKEN` | Read-only GitHub token `commit-watcher` uses to poll registered build repos for commits | GitHub (fine-grained, public-repo read) |
 
 Without these the endpoints still respond (verify + no-op store / empty feed),
 so the site never breaks - the activity feed just stays empty until KV exists.
