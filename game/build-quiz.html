@@ -467,7 +467,7 @@
     quizEl.classList.remove('hide');
     var pb=document.getElementById('res-projects-box'); if(pb) pb.style.display='none';
     var wb=document.getElementById('res-watch-box'); if(wb) wb.style.display='none';
-    document.querySelector('.skip-row').style.display = ''; // re-show the skip option on retake
+    if (IN_APP) document.querySelector('.skip-row').style.display = ''; // re-show only in-app
     setStatus('');
     renderQuestion();
     if (quizEl.scrollIntoView) quizEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -502,6 +502,17 @@
       });
     });
   })();
+
+  // Web vs Mini App. The quiz, "Register a build", and Share all work on the open web;
+  // "Lock in this track" (needs /api/join + a verified FID) and "Skip - analyze my Farcaster
+  // profile" do not, so hide those two off-app rather than leave dead buttons.
+  var IN_APP = false;
+  Promise.resolve(window.ZABAL && window.ZABAL.getContext ? window.ZABAL.getContext() : null).then(function (ctx) {
+    IN_APP = !!(ctx && ctx.client);
+    if (IN_APP) return;
+    var skip = document.querySelector('.skip-row'); if (skip) skip.style.display = 'none';
+    var lock = document.getElementById('res-lock'); if (lock) lock.style.display = 'none';
+  }).catch(function () {});
 
   renderQuestion();
 })();
