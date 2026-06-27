@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review queue - ZABAL Gamez (internal)</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .rv-wrap { max-width: 720px; margin: 0 auto; }
+    .rv-key { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 0.6rem 0 1rem; }
+    .rv-in { flex: 1 1 240px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font: inherit; font-size: 0.9rem; padding: 0.55rem 0.7rem; }
+    .btn { font-family: inherit; font-size: 0.85rem; padding: 0.5rem 1.05rem; border-radius: 9px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; }
+    .btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .btn.ok { background: var(--cyan); color: #06121a; border-color: var(--cyan); }
+    .btn.no { color: var(--pink); border-color: var(--pink); }
+    .btn:hover { filter: brightness(1.12); }
+    .btn:disabled { opacity: 0.5; cursor: default; }
+    .rv-card { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.85rem 1rem; margin: 0 0 0.7rem; }
+    .rv-top { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+    .rv-id { font-family: 'JetBrains Mono', monospace; color: var(--text-dim); font-size: 0.8rem; }
+    .rv-prompt { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); font-family: 'JetBrains Mono', monospace; }
+    .rv-who { font-size: 0.8rem; color: var(--text-dim); }
+    .rv-answer { font-size: 0.95rem; color: var(--text); line-height: 1.5; margin: 0.4rem 0 0.3rem; white-space: pre-wrap; }
+    .rv-meta { font-size: 0.78rem; color: var(--text-muted); margin: 0.3rem 0; }
+    .rv-meta .tgt { color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
+    .rv-fields { font-size: 0.84rem; color: var(--text-muted); }
+    .rv-actions { display: flex; gap: 8px; margin-top: 0.5rem; }
+    .rv-status { font-size: 0.85rem; color: var(--text-muted); min-height: 1.1rem; margin: 0.5rem 0; }
+    .empty { color: var(--text-dim); font-size: 0.92rem; }
+    .rv-airdrop { font-size: 0.78rem; color: var(--text-dim); margin-top: 1.2rem; border-top: 1px solid var(--border); padding-top: 0.8rem; }
+    .rv-airdrop a { color: var(--cyan); }
+  </style>
+</head>
+<body>
+<main id="main">
+<div class="container">
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow">Internal - review queue</div>
+    <h1>Submissions to <span class="accent">review</span></h1>
+    <p class="lead" style="margin-top: 0.3rem; font-size: 0.95rem;">Pending submissions. Approve to trigger the collectible airdrop; reject to drop. Your ADMIN_KEY stays in this tab only.</p>
+  </header>
+
+  <div class="rv-wrap">
+    <div class="rv-key">
+      <input class="rv-in" id="rv-admin" type="password" placeholder="ADMIN_KEY" autocomplete="off">
+      <button class="btn primary" id="rv-load" type="button">Load queue</button>
+    </div>
+    <div class="rv-status" id="rv-status"></div>
+    <div id="rv-list"></div>
+
+    <p class="rv-airdrop">On approve: airdrop the Unlock key to the target shown (wallet or email). See <a href="/docs/unlock-airdrop-runbook.md">the airdrop runbook</a>. Approved/rejected submissions leave this queue.</p>
+  </div>
+</div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var listEl = document.getElementById('rv-list');
+  var statusEl = document.getElementById('rv-status');
+  var adminEl = document.getElementById('rv-admin');
+
+  function key() { return adminEl.value.trim(); }
+  function setStatus(t) { statusEl.textContent = t || ''; }
+
+  function api(method, body) {
+    var opts = { method: method, headers: { 'Authorization': 'Bearer ' + key() } };
+    if (body) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
+    return fetch('/api/submissions' + (method === 'GET' ? '?status=pending' : ''), opts).then(function (r) { return r.json(); });
+  }
+
+  function target(s) {
+    if (s.wallet) return '<span class="tgt">' + esc(s.wallet) + '</span> (wallet)';
+    if (s.email) return '<span class="tgt">' + esc(s.email) + '</span> (email)';
+    if (s.handle) return '@' + esc(s.handle) + ' (no wallet/email - ask for one)';
+    return 'anonymous (no airdrop target)';
+  }
+  function fieldsHtml(s) {
+    var f = s.fields || {}; var keys = Object.keys(f);
+    if (!keys.length) return '';
+    return '<div class="rv-fields">' + keys.map(function (k) { return '<b>' + esc(k) + ':</b> ' + esc(f[k]); }).join(' &nbsp; ') + '</div>';
+  }
+
+  function card(s) {
+    var el = document.createElement('div');
+    el.className = 'rv-card';
+    el.innerHTML =
+      '<div class="rv-top"><span class="rv-prompt">' + esc(s.promptId || '') + '</span>' +
+      '<span class="rv-id">#' + esc(s.id) + '</span>' +
+      '<span class="rv-who">' + (s.handle ? '@' + esc(s.handle) : 'anonymous') + (s.fid ? ' (fid ' + esc(s.fid) + ')' : '') + '</span></div>' +
+      (s.answer ? '<div class="rv-answer">' + esc(s.answer) + '</div>' : '') +
+      fieldsHtml(s) +
+      '<div class="rv-meta">Airdrop to: ' + target(s) + '</div>' +
+      '<div class="rv-actions"><button class="btn ok" type="button">Approve</button><button class="btn no" type="button">Reject</button></div>';
+    var btns = el.querySelectorAll('.rv-actions .btn');
+    btns[0].addEventListener('click', function () { decide(s.id, 'approve', el, btns); });
+    btns[1].addEventListener('click', function () { decide(s.id, 'reject', el, btns); });
+    return el;
+  }
+
+  function decide(id, action, el, btns) {
+    btns[0].disabled = btns[1].disabled = true;
+    api('POST', { action: action, id: id }).then(function (d) {
+      if (d && d.ok) {
+        el.style.opacity = '0.45';
+        el.querySelector('.rv-actions').innerHTML = '<span class="rv-who">' + (action === 'approve' ? 'APPROVED - airdrop now' : 'rejected') + '</span>';
+      } else {
+        btns[0].disabled = btns[1].disabled = false;
+        setStatus((d && d.error) === 'forbidden' ? 'Wrong ADMIN_KEY.' : 'Could not update.');
+      }
+    }).catch(function () { btns[0].disabled = btns[1].disabled = false; setStatus('Error.'); });
+  }
+
+  function load() {
+    if (!key()) { setStatus('Enter the ADMIN_KEY.'); return; }
+    setStatus('Loading queue...');
+    listEl.innerHTML = '';
+    api('GET').then(function (d) {
+      if (!d || d.ok === false) { setStatus((d && d.error) === 'forbidden' ? 'Wrong ADMIN_KEY.' : 'Could not load.'); return; }
+      var q = (d && d.queue) || [];
+      if (!q.length) { listEl.innerHTML = '<p class="empty">Nothing pending. Queue clear.</p>'; setStatus(''); return; }
+      setStatus(q.length + ' pending.');
+      q.forEach(function (s) { listEl.appendChild(card(s)); });
+    }).catch(function () { setStatus('Network error.'); });
+  }
+
+  document.getElementById('rv-load').addEventListener('click', load);
+  adminEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') load(); });
+})();
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

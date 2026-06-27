@@ -21,7 +21,7 @@ const ORIGIN = 'https://zabalgamez.com';
 const write = process.argv.includes('--write');
 
 // Internal / non-indexable pages to leave OUT of the sitemap.
-const EXCLUDE = new Set(['status']); // internal ops dashboard, not public content
+const EXCLUDE = new Set(['status', 'review']); // internal ops dashboard, not public content
 
 // Non-HTML routes worth keeping in the sitemap (e.g. the AI context file).
 const EXTRA = ['/llms.txt'];
