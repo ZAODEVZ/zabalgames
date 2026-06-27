@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restream guide - ZABAL Gamez</title>
+  <meta name="description" content="How to join a ZABAL Gamez workshop as a guest on Restream - connect your channels, watch the chat before you go on, and look great on camera. A full guide for guests and streamers.">
+  <link rel="canonical" href="https://zabalgamez.com/restream">
+  <meta property="og:title" content="Restream guide - ZABAL Gamez">
+  <meta property="og:description" content="Join as a guest, connect your channels, watch the chat before you go on. The full Restream guide.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/restream">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Restream guide","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/restream","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .rs-wrap { max-width: 760px; margin: 0 auto; }
+    .rs-quick { border: 1px solid var(--zabal); background: rgba(124,92,255,0.07); border-radius: 14px; padding: 1rem 1.1rem; margin: 1rem 0 1.2rem; }
+    .rs-quick h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; margin: 0 0 0.5rem; }
+    .rs-quick ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.3rem; }
+    .rs-quick li { font-size: 0.92rem; color: var(--text-muted); line-height: 1.5; }
+    .rs-quick b { color: var(--text); }
+    .rs-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.6rem 0 1rem; }
+    .rs-fbtn { font-family: inherit; font-size: 0.84rem; padding: 0.45rem 1rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-muted); cursor: pointer; }
+    .rs-fbtn.sel { border-color: var(--cyan); color: var(--cyan); }
+    .rs-toc { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.8rem 1rem; margin: 0 0 1.4rem; }
+    .rs-toc h3 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin: 0 0 0.5rem; font-family: 'JetBrains Mono', monospace; }
+    .rs-toc a { display: block; color: var(--cyan); font-size: 0.9rem; text-decoration: none; padding: 0.18rem 0; }
+    .rs-toc a:hover { text-decoration: underline; }
+    .rs-sec { margin: 0 0 1.8rem; scroll-margin-top: 80px; }
+    .rs-sec.hide { display: none; }
+    .rs-sec-head { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+    .rs-sec h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; margin: 0; line-height: 1.2; }
+    .rs-aud { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; border: 1px solid var(--border); border-radius: 999px; padding: 0.1rem 0.5rem; color: var(--text-dim); }
+    .rs-aud.guest { color: var(--cyan); border-color: var(--cyan); }
+    .rs-aud.streamer { color: var(--gold); border-color: var(--gold); }
+    .rs-summary { color: var(--text-muted); font-size: 0.98rem; line-height: 1.6; margin: 0.5rem 0 0.9rem; }
+    .rs-steps { display: grid; gap: 0.6rem; margin: 0.4rem 0 0.9rem; counter-reset: step; }
+    .rs-step { display: flex; gap: 0.7rem; border: 1px solid var(--border); background: var(--surface-2); border-radius: 10px; padding: 0.65rem 0.85rem; }
+    .rs-step-n { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 6px; background: var(--zabal); color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; display: grid; place-items: center; margin-top: 0.1rem; }
+    .rs-step-b { min-width: 0; }
+    .rs-step-l { font-weight: 600; color: var(--text); font-size: 0.95rem; }
+    .rs-step-d { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 0.15rem; }
+    .rs-cols { display: grid; gap: 0.8rem; }
+    @media (min-width: 640px) { .rs-cols.two { grid-template-columns: 1fr 1fr; } }
+    .rs-box { border: 1px solid var(--border); border-radius: 10px; padding: 0.7rem 0.9rem; }
+    .rs-box.tips { border-left: 3px solid var(--cyan); }
+    .rs-box.pits { border-left: 3px solid var(--pink); }
+    .rs-box h4 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 0.4rem; font-family: 'JetBrains Mono', monospace; }
+    .rs-box.tips h4 { color: var(--cyan); }
+    .rs-box.pits h4 { color: var(--pink); }
+    .rs-box ul { margin: 0; padding-left: 1.05rem; display: grid; gap: 0.35rem; }
+    .rs-box li { font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; }
+    .rs-faq .rs-step { display: block; }
+    .rs-faq .rs-step-l { color: var(--text); }
+    .rs-foot { font-size: 0.84rem; color: var(--text-dim); margin-top: 1.2rem; }
+    .rs-foot a { color: var(--cyan); }
+    .empty { color: var(--text-dim); }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/recordings">Recordings</a>
+      <a href="/lead.html">Lead a session</a>
+      <a href="/info.html">Details</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow">Restream guide</div>
+    <h1>Going live on <span class="accent">Restream</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">ZABAL Gamez workshops stream on Restream. This is everything a guest or streamer needs - join from your browser, connect your channels, watch the chat before you go on, and look great on camera.</p>
+  </header>
+
+  <div class="rs-wrap">
+    <div class="rs-quick">
+      <h2>Joining as a guest? The 60-second version</h2>
+      <ol>
+        <li><b>Open the invite link</b> the host sends you - in a browser, on a laptop. No account, no download.</li>
+        <li><b>Allow camera and mic</b>, type your name, and click Join.</li>
+        <li><b>You land backstage</b> - you can see and hear the stream and read the chat, but you are not on air yet.</li>
+        <li><b>The host brings you on</b> when it is your turn. Headphones on, good light, wired internet if you can.</li>
+      </ol>
+    </div>
+
+    <div class="rs-filter" role="group" aria-label="Filter by audience">
+      <button type="button" class="rs-fbtn sel" data-aud="all">Everything</button>
+      <button type="button" class="rs-fbtn" data-aud="guest">For guests</button>
+      <button type="button" class="rs-fbtn" data-aud="streamer">For streamers</button>
+    </div>
+
+    <nav class="rs-toc" id="rs-toc" aria-label="On this page"><h3>On this page</h3></nav>
+
+    <div id="rs-sections"><p class="empty">Loading the guide...</p></div>
+
+    <p class="rs-foot">Leading a ZABAL Gamez session? <a href="/lead.html">Book a slot</a>. Past sessions live at <a href="/recordings">/recordings</a>. Questions? Reach the team on the <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>.</p>
+  </div>
+
+</div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var host = document.getElementById('rs-sections');
+  var tocEl = document.getElementById('rs-toc');
+  var sections = [];
+  var filter = 'all';
+
+  function shown(sec) { return filter === 'all' || sec.audience === 'both' || sec.audience === filter; }
+
+  function listBox(cls, label, items) {
+    if (!items || !items.length) return '';
+    return '<div class="rs-box ' + cls + '"><h4>' + label + '</h4><ul>' +
+      items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>';
+  }
+
+  function stepsHtml(steps, isFaq) {
+    if (!steps || !steps.length) return '';
+    return '<div class="rs-steps' + (isFaq ? ' rs-faq' : '') + '">' + steps.map(function (s, i) {
+      return '<div class="rs-step">' + (isFaq ? '' : '<span class="rs-step-n">' + (i + 1) + '</span>') +
+        '<div class="rs-step-b"><div class="rs-step-l">' + esc(s.label) + '</div>' +
+        (s.detail ? '<div class="rs-step-d">' + esc(s.detail) + '</div>' : '') + '</div></div>';
+    }).join('') + '</div>';
+  }
+
+  function sectionHtml(sec) {
+    var isFaq = sec.id === 'faq';
+    var both = (sec.tips && sec.tips.length) && (sec.pitfalls && sec.pitfalls.length);
+    return '<section class="rs-sec" id="rs-' + esc(sec.id) + '" data-aud="' + esc(sec.audience) + '">' +
+      '<div class="rs-sec-head"><h2>' + esc(sec.title) + '</h2>' +
+      (sec.audience !== 'both' ? '<span class="rs-aud ' + esc(sec.audience) + '">' + esc(sec.audience) + '</span>' : '') + '</div>' +
+      (sec.summary ? '<p class="rs-summary">' + esc(sec.summary) + '</p>' : '') +
+      stepsHtml(sec.steps, isFaq) +
+      (isFaq ? '' : '<div class="rs-cols' + (both ? ' two' : '') + '">' +
+        listBox('tips', 'Tips', sec.tips) + listBox('pits', 'Watch out for', sec.pitfalls) + '</div>') +
+      '</section>';
+  }
+
+  function render() {
+    var vis = sections.filter(shown);
+    host.innerHTML = vis.map(sectionHtml).join('');
+    tocEl.innerHTML = '<h3>On this page</h3>' + vis.map(function (s) {
+      return '<a href="#rs-' + esc(s.id) + '">' + esc(s.title) + '</a>';
+    }).join('');
+  }
+
+  document.querySelectorAll('.rs-fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      filter = b.getAttribute('data-aud') || 'all';
+      document.querySelectorAll('.rs-fbtn').forEach(function (x) { x.classList.toggle('sel', x === b); });
+      render();
+    });
+  });
+
+  fetch('/data/restream-guide.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      sections = (d && d.sections) || [];
+      if (!sections.length) { host.innerHTML = '<p class="empty">Guide is being written. Check back soon.</p>'; tocEl.style.display = 'none'; return; }
+      render();
+    })
+    .catch(function () { host.innerHTML = '<p class="empty">Could not load the guide right now.</p>'; tocEl.style.display = 'none'; });
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

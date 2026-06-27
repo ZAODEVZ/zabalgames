@@ -1,0 +1,711 @@
+{
+  "_note": "Restream guest + streamer guide content for /restream. Researched 2026-06-27. Each section: id, title, audience (guest|streamer|both), summary, steps[{label,detail}], tips[], pitfalls[]. The faq section uses steps as question(label)/answer(detail). Edit freely; keep accurate to how Restream works. No emojis, no em dashes.",
+  "updated": "2026-06-27",
+  "sections": [
+    {
+      "id": "overview",
+      "title": "What Restream Is and How It Works",
+      "audience": "both",
+      "summary": "Restream is a browser-based platform that lets you stream workshops to multiple platforms (YouTube, Facebook, Twitch, LinkedIn, etc.) at the same time, all from your web browser - no software to download. For ZABAL Gamez workshops, guests can join via a simple invite link to appear on camera, and everyone (host, guests, and audience) can chat together in one unified interface across all platforms.",
+      "steps": [
+        {
+          "label": "Create a Restream account",
+          "detail": "Go to restream.io and sign up with your email. This is your central hub for setting up your workshop stream."
+        },
+        {
+          "label": "Connect your streaming channels",
+          "detail": "Click Channels and authorize the platforms where you want your workshop to appear live (YouTube, Facebook, Twitch, LinkedIn, etc.). You can connect as many as your plan allows - free plan supports 2 channels, paid plans support more."
+        },
+        {
+          "label": "Open Restream Studio",
+          "detail": "Click Go Live and select Restream Studio. The browser-based editor opens with a preview of your workspace, including any graphics, backgrounds, or overlays you have set up."
+        },
+        {
+          "label": "Invite your workshop guests",
+          "detail": "In Studio, click Sources on the right side, then Copy Invite Link. Share this link with your guests via email, Slack, Discord, or your preferred channel. Guests do not need a Restream account - they just click the link. The link never changes, so you can share it weeks in advance."
+        },
+        {
+          "label": "Start streaming when ready",
+          "detail": "Once guests have joined and appear in your Sources list, toggle them on to display them on camera. Click Go Live and your stream appears simultaneously on all connected platforms."
+        },
+        {
+          "label": "Monitor unified chat during the stream",
+          "detail": "All viewer comments from YouTube, Facebook, Twitch, and other platforms appear in the Restream Chat panel on the right side of your screen - one feed instead of switching between tabs. You can reply to comments here, and your response can go to all platforms or just one."
+        },
+        {
+          "label": "End the stream",
+          "detail": "Click Stop Streaming when the workshop concludes. Your stream archive appears on each platform automatically."
+        }
+      ],
+      "tips": [
+        "Test your internet connection before going live - a stable upload speed ensures smooth multistreaming to all platforms.",
+        "Use a quiet room and a decent microphone (even earbuds work well) so your audio is clear on all platforms simultaneously.",
+        "Share the invite link with guests 1-2 weeks in advance - the link is permanent per stream, so there is no rush for them to click it.",
+        "Have guests join 5-10 minutes early so they can test audio and camera and you can see them before going live.",
+        "Restream Studio works best in Chrome or Firefox - if you encounter issues, try a different browser.",
+        "Keep your browser window large and uncluttered so you can see all guests, chat, and overlay controls at once.",
+        "The unified chat makes it easy to shout out viewers by name across all platforms - this builds audience connection."
+      ],
+      "pitfalls": [
+        "Forgetting to authorize a platform before going live - if you want to stream to a new channel, authorize it before hitting Go Live, not during.",
+        "Letting guests click the link too early - if they join 30+ minutes before airtime, they may experience connection drops; have them join closer to showtime.",
+        "Not testing mic and camera audio with guests beforehand - audio issues are the most common problem; a quick test call saves your stream.",
+        "Closing the browser tab or leaving Restream Studio accidentally - this stops your stream across all platforms immediately.",
+        "Ignoring the unified chat because it looks different from each platform's native interface - give yourself 30 seconds to learn where to click to reply and relay messages.",
+        "Assuming all viewers can hear and see guests equally - latency varies by platform (YouTube can lag behind Twitch), so ask guests to speak clearly and repeat key points."
+      ]
+    },
+    {
+      "id": "guest-join",
+      "title": "How to Join a ZABAL Gamez Session as a Guest in Restream Studio",
+      "audience": "guest",
+      "summary": "You do not need a Restream account or any software. The host will send you an invite link. Open it in your browser, allow camera and microphone access, enter your name, and you will land in the backstage area. The host then brings you on air when it is time for you to present.",
+      "steps": [
+        {
+          "label": "Receive and open the invite link",
+          "detail": "The workshop host will send you an invite link via email, DM, or chat. Open that link in any web browser (Chrome, Firefox, Safari, or Edge all work). No account or app download needed."
+        },
+        {
+          "label": "Allow camera and microphone access",
+          "detail": "Your browser will ask for permission to access your camera and microphone. Click Allow or Grant (the exact wording depends on your browser). You can say no to one and yes to the other if you prefer audio-only."
+        },
+        {
+          "label": "Enter your name",
+          "detail": "You will see a form asking for the name you want to use during the stream. Enter your first and last name, handle, or however you want to be introduced to the audience."
+        },
+        {
+          "label": "Click Join Stream",
+          "detail": "Once your name is entered and permissions are confirmed, click the Join Stream button. You are now connected."
+        },
+        {
+          "label": "Wait in the backstage area",
+          "detail": "You will see a preview of the live stream and a status that you are in the waiting room or backstage. You can see what is happening on camera but you are not visible to the audience yet. The host can see you are here."
+        },
+        {
+          "label": "Wait for the host to bring you on air",
+          "detail": "When it is your turn, the host will toggle you on to appear on screen. You will see yourself in the preview and be visible to all viewers. You are live."
+        }
+      ],
+      "tips": [
+        "You need no Restream account, no download, and no signup. The invite link is all you need.",
+        "Use the latest version of your browser and disable any ad blockers before opening the link.",
+        "Plug in headphones before you join to avoid echo and feedback during the stream.",
+        "Close unnecessary apps and tabs on your computer beforehand so your internet bandwidth is not split.",
+        "Position your camera at eye level, face the light (not with the light behind you), and keep your background clean and professional.",
+        "Test your internet speed before the session. You need at least 10 Mbps upload speed, and 25+ Mbps is better for high definition.",
+        "Charge your device before the session starts to avoid drops during the broadcast.",
+        "You can use your camera and microphone, or microphone only, or even share your screen instead. Work with the host beforehand to confirm what works best for your session.",
+        "Once you are backstage, you can see incoming messages from the audience chat (if the host has enabled this). You can also chat privately with the host and other guests."
+      ],
+      "pitfalls": [
+        "Do not click any browser notifications or alerts during the session - these can distract you or cause audio issues. Turn off notifications before you join.",
+        "Do not join from a poor internet connection (coffee shop WiFi, cellular data). Join from a wired ethernet connection if possible, or strong home WiFi.",
+        "Do not have other tabs or apps running heavy uploads or downloads (video calls, file sharing, etc.) at the same time as the stream.",
+        "Do not sit with the sun or a window behind you. This creates heavy backlighting and your face will appear dark and shadowed on camera.",
+        "Do not move the camera or your device once you are live - sudden movement looks unprofessional and can cause motion sickness for viewers.",
+        "Do not join from a mobile phone unless the host specifically asks you to. Desktop or laptop provides much better video and audio quality.",
+        "If the host says the room is full, you cannot join yet. A guest may need to leave first. Wait a moment and try again or contact the host."
+      ]
+    },
+    {
+      "id": "guest-prep",
+      "title": "Prepare Before Joining Your Restream Studio Session",
+      "audience": "guest",
+      "summary": "Before your ZABAL Gamez workshop session, spend 10-15 minutes getting your camera, microphone, and internet connection ready. A quick setup now prevents technical hiccups when you go live and lets you focus on sharing your work with the community.",
+      "steps": [
+        {
+          "label": "Use a supported browser on a desktop or laptop",
+          "detail": "Open Google Chrome, Microsoft Edge, or Firefox on a computer (not mobile, if possible). Chrome is recommended. Make sure your browser is updated to the latest version. Close or disable any ad blockers and browser extensions that may interfere with camera or microphone access."
+        },
+        {
+          "label": "Check and grant permission for camera and microphone",
+          "detail": "When you click the invite link and see the permission pop-up, click Allow to grant Restream access to your camera and microphone. Your browser may ask again - this is normal. If you accidentally blocked permissions, go to your browser settings (usually the lock icon in the address bar) to enable camera and microphone for restream.io."
+        },
+        {
+          "label": "Test your internet upload speed before going live",
+          "detail": "Visit speedtest.net and run a single speed test. Check your upload speed - at least 10 Mbps is required, and 25 Mbps or higher is recommended for sharp video. If your speed is below 10 Mbps, move closer to your router or plug in an ethernet cable. Close video players, video games, and other apps that use internet bandwidth."
+        },
+        {
+          "label": "Set up your audio with headphones or earbuds",
+          "detail": "Put on wired headphones or earbuds during your session. This prevents echo and feedback in the stream. Test your microphone in the green room waiting area before the host brings you on air - listen for clear audio without buzzing or loud background noise."
+        },
+        {
+          "label": "Position your lighting and camera",
+          "detail": "Place a lamp, window, or light source in front of your face so you are well-lit. Avoid sitting with lights or windows directly behind you (backlighting makes you look dark). Clean your webcam lens with a soft cloth. Position your camera at eye level or slightly above for the most flattering angle."
+        },
+        {
+          "label": "Close unnecessary applications and silence notifications",
+          "detail": "Close Zoom, video players, games, and other apps running in the background - they slow down your computer and your internet. Mute your phone and disable desktop notifications so you won't be interrupted by alerts or chimes during your session. Keep your device plugged in so the battery doesn't die."
+        },
+        {
+          "label": "Enter your guest name and do a quick audio-video test in the green room",
+          "detail": "When you join via the invite link, enter your name and click Join Stream. You will land in a waiting room (green room) where you can preview the stream. Open the settings icon in the green room to test your camera, microphone, and audio levels. You won't be visible to the live audience yet, so take a moment to adjust anything that doesn't look or sound right."
+        }
+      ],
+      "tips": [
+        "Use a wired ethernet cable plugged directly into your computer instead of WiFi if possible. This gives you a faster, more stable connection.",
+        "Wear headphones or earbuds even if your background is quiet - they prevent audio echo and let you hear the host clearly.",
+        "Position yourself in a room with a plain or neat background. Avoid cluttered spaces or sitting directly in front of a blank white wall.",
+        "Join from a desktop or laptop instead of a phone or tablet. The experience is smoother and you'll have more control over settings.",
+        "Keep a water bottle nearby. You may want a sip during the session, and it helps if you need to speak for a long time."
+      ],
+      "pitfalls": [
+        "Do not accept the camera and microphone permission request after the page loads - click Allow as soon as the pop-up appears, or Restream won't be able to access your devices.",
+        "Do not stream over WiFi if you have poor connection. Plug in an ethernet cable if your upload speed is below 10 Mbps.",
+        "Do not run a video call, stream, or game in another tab or app. These use your internet bandwidth and can cause lag or dropout.",
+        "Do not sit with backlighting or bright windows behind you - you will appear very dark on camera. Position light in front of your face.",
+        "Do not ignore the green room test. Clicking straight into the stream without testing audio or video risks going live with a muted microphone or inverted camera.",
+        "Do not stay on mobile. The green room and settings are designed for desktop/laptop browsers and may not work smoothly on a phone."
+      ]
+    },
+    {
+      "id": "connect-channels",
+      "title": "Connect Your Channels on Restream",
+      "audience": "streamer",
+      "summary": "Before you can go live during a ZABAL Gamez workshop, you need to connect your streaming channels to Restream. This guide walks you through linking platforms like YouTube, Twitch, and others, then selecting which ones to stream to during your broadcast.",
+      "steps": [
+        {
+          "label": "Log in and navigate to Channels",
+          "detail": "Go to app.restream.io and log in with your Restream account. Click \"Channels\" in the left sidebar to access the channel management area."
+        },
+        {
+          "label": "Click Add New to start connecting a platform",
+          "detail": "If this is your first channel, select a platform directly from the list. If you already have channels, click \"+ Add New\" and pick your platform from the menu or search for it by name."
+        },
+        {
+          "label": "For YouTube: authorize via login",
+          "detail": "Click YouTube, then follow the browser prompts to log in with your Google/YouTube account. Grant Restream permission to manage your stream settings. Once authorized, your channel is saved."
+        },
+        {
+          "label": "For Twitch: authorize via login",
+          "detail": "Click Twitch, log in with your Twitch credentials, and authorize Restream to access your channel and stream settings. Your Twitch channel is now connected."
+        },
+        {
+          "label": "For X (Twitter): authorize via login",
+          "detail": "Click X (formerly Twitter), log in with your X account, and grant permission. Restream can now access your X account for live streaming."
+        },
+        {
+          "label": "For Kick, LinkedIn, Facebook, or other native integrations: follow platform login",
+          "detail": "Select the platform from the list. You will be prompted to log in and authorize Restream, just as with YouTube or Twitch. Each platform's login flow is similar: authorize, and you are done."
+        },
+        {
+          "label": "For custom RTMP (Farcaster streams or private services): enter credentials manually",
+          "detail": "Click \"+ Add New\", then select \"Custom RTMP\". Paste the RTMP URL and stream key provided by your platform (e.g., from Warpcast or another Farcaster streaming service). Optionally name the channel. Click \"Add Channel\" when done. Note: Custom RTMP requires a paid Restream plan."
+        },
+        {
+          "label": "Organize your channels for easy access",
+          "detail": "Once connected, all your channels appear in the Channels list. You can view them by date added, name, or last stream date. Click any channel to see which past streams used it and its platform requirements."
+        },
+        {
+          "label": "When you go live, select which channels to use",
+          "detail": "Start a new stream (Studio or Encoder). Click \"+ Channels\" at the top. Toggle on the platforms where you want this stream to appear (e.g., YouTube and Twitch, or just X). Your selections save automatically. Click \"Go Live\" and your stream goes to all selected channels at once."
+        },
+        {
+          "label": "Manage channel settings if needed",
+          "detail": "Click the three-dot menu on any channel to edit its name, adjust transcoding settings, or delete it. For custom RTMP, you can update the stream key if the platform changes it."
+        }
+      ],
+      "tips": [
+        "You only need to connect a channel once. After that, it is available for every stream you create, even across different events or days.",
+        "If you plan to stream to multiple platforms, connect them all upfront so you can toggle them on at go-live time. No need to pause mid-stream to add a new platform.",
+        "For platforms like YouTube or Twitch, use the same account you stream from normally. Restream becomes a middleman that sends your video there.",
+        "Custom RTMP is useful for niche or emerging platforms: if the platform gives you an RTMP URL and stream key (common for some Farcaster tools), you can stream to it. Just make sure the platform still supports RTMP before you try.",
+        "Save a display name for custom RTMP channels that describes where they go (e.g., \"Farcaster Stream\") so you remember which one is which at go-live time.",
+        "Your Restream account can add channels at any subscription level, but streaming to multiple platforms simultaneously may be limited by your plan (Free: 2 channels; higher tiers: more). Check your plan details if you hit a limit."
+      ],
+      "pitfalls": [
+        "Do not mix up RTMP URLs and stream keys. RTMP is the server address (looks like rtmp://example.com/live), and the stream key is your unique password. Both are needed for custom RTMP to work.",
+        "If a login screen does not appear when you click a platform, check that pop-ups are not blocked in your browser. Restream uses browser pop-ups for platform authorization.",
+        "Restream Chat and analytics features do not work with custom RTMP channels, only with native platform integrations. This is by design because custom platforms do not provide the same data APIs.",
+        "If you authorize a platform and then change your password on that platform, Restream may lose access. Re-authorize the channel (delete and re-add) if your stream fails to start.",
+        "Streaming to more channels than your subscription allows will cause some platforms to be silently dropped. Check that your plan supports the number of channels you are trying to use.",
+        "Do not share your stream key (for custom RTMP). It is equivalent to a password. If you paste it in chat or share it publicly, anyone can broadcast to your channel."
+      ]
+    },
+    {
+      "id": "view-chat",
+      "title": "See and Use the Chat in Restream",
+      "audience": "both",
+      "summary": "Restream unifies chat messages from all your connected platforms (YouTube, Twitch, Facebook, LinkedIn, etc.) into one panel so you can read viewer comments in real-time. Whether you are hosting or joining as a guest speaker, you can see what your audience is saying, respond directly, and keep the conversation flowing before and during your workshop.",
+      "steps": [
+        {
+          "label": "Open the Chat tab in Restream Studio",
+          "detail": "Once you are in Studio (whether as a host or guest), look for the Chat tab on the right side of your screen. Click it to open the unified chat panel. All incoming messages from your connected platforms will appear here in one place."
+        },
+        {
+          "label": "Read the unified chat from your audience",
+          "detail": "You now see viewer comments from every platform you have connected merged together. Each message shows the viewer's name and platform icon, so you know where they are watching from. Scroll up to see earlier messages."
+        },
+        {
+          "label": "Reply to viewers (host or guest)",
+          "detail": "Click in the message box at the bottom of the chat panel and type your response. You can reply to all platforms at once, or select a specific platform from the dropdown to send your message only to that channel. Press Enter to send."
+        },
+        {
+          "label": "Use private chat to coordinate with guests (guests only)",
+          "detail": "As a guest, look for the Private Chat tab at the bottom of your screen. This is a direct line to the host and other guests. Use it to ask questions, coordinate timing, or let the host know you need something before you go on air. This chat is completely hidden from viewers."
+        },
+        {
+          "label": "Watch chat before you go live as a guest",
+          "detail": "If you are a guest speaker, arrive early to the stream and open the chat panel. Spend 2-3 minutes reading the questions and energy in the room. This helps you get a feel for your audience and spot any questions you might want to answer."
+        },
+        {
+          "label": "Pin or highlight important messages",
+          "detail": "If a viewer asks a great question or says something funny, hover your mouse over their message and click the star icon. This pins the message to a separate list and marks it as important. You can pin up to 50 messages and review them later."
+        },
+        {
+          "label": "Show chat on stream (host only)",
+          "detail": "If you want your viewers to see chat messages displayed at the bottom of your stream, toggle the Show on Stream button. Customize the chat appearance by selecting a theme, adjusting text size, and positioning the chat widget on your canvas. Your viewers love seeing their messages on screen."
+        },
+        {
+          "label": "Filter or mute disruptive messages",
+          "detail": "If someone sends spam or inappropriate messages, hover over their message and block the word or mute that user. You can also set up a blocklist in the Filtering tab to automatically hide certain words or usernames across all platforms. Keep the chat respectful and on track."
+        }
+      ],
+      "tips": [
+        "Arrive 5-10 minutes early to your workshop and open the chat panel. This gives you a chance to read questions and feel the vibe of your audience before going on camera.",
+        "As a guest, use private chat liberally. Message the host if you need water, have a tech question, or want to coordinate timing with other guests.",
+        "Pin questions you love so you remember to answer them during your session.",
+        "Read chat out loud during your stream. Saying 'I see someone asking about X' makes viewers feel heard and keeps engagement high.",
+        "Use the browser version or the downloadable desktop app, both work equally well. The desktop app sends you notifications if someone mentions your name.",
+        "Chat messages stay for the last 100 messages in the room. If the stream ends, they disappear, so pin anything you want to keep.",
+        "The chat feeds from all your platforms automatically, so you do not have to switch tabs or use separate tools."
+      ],
+      "pitfalls": [
+        "Forgetting to check chat before going on air as a guest - do not miss the chance to warm up by reading the room.",
+        "Accidentally replying to only one platform when you meant to reply to everyone - double-check the platform selector before hitting send.",
+        "Not pinning important questions early. If you forget to star them, they scroll away and you may not see them later.",
+        "Ignoring private chat as a guest. The host or other guests may be trying to coordinate with you.",
+        "Not turning on Show on Stream if you want viewers to see their messages. They won't appear on camera unless you toggle that button.",
+        "Waiting too long to mute or filter disruptive users. Handle it quickly so the chat stays positive.",
+        "Assuming the chat is down because you do not see messages. Make sure the Chat tab is open and refresh if needed."
+      ]
+    },
+    {
+      "id": "during-live",
+      "title": "What a Guest Can Do DURING a Live Restream Studio Session",
+      "audience": "guest",
+      "summary": "Once you are live in a Restream Studio session as a guest, you have direct control over your camera and microphone, can share your screen, and can see and respond to the chat. The host controls the overall layout and your position on screen, but you drive what the audience sees and hears from you.",
+      "steps": [
+        {
+          "label": "Join the session link and start video",
+          "detail": "Click the unique Restream Studio link your host sends you. You will land on a clean, browser-based studio page. Click Allow when your browser asks for permission to use your camera and microphone - Restream needs these to go live. Your camera feed will show up in your guest panel; you will see yourself and the host's feed. You are NOT yet live to the audience - only the host can start the broadcast to push it to their channels."
+        },
+        {
+          "label": "Control your camera and microphone toggle buttons",
+          "detail": "Look at the bottom of your Restream Studio window for two main control buttons: a camera icon and a microphone icon. Click the camera button to turn your video on or off instantly. A slash through it means your camera is off. Click the microphone button to mute or unmute your audio. A slash through it means your mic is muted. Use these controls if you need to step out of frame, take a sip of water, or have a private moment - the host and audience will see black screen or silence until you toggle back on."
+        },
+        {
+          "label": "Share your screen if the host invites you to",
+          "detail": "If you and the host plan to show something on screen (slides, a project, a tool), look for a Share Screen button in your guest controls. Click Share Screen, select the window or tab you want to show, and click Share. Your shared screen will appear to the host and audience. To stop sharing, click Stop Sharing - this switches back to your camera feed immediately. Only share one screen at a time; if you switch windows, tell the host so they know what you are showing."
+        },
+        {
+          "label": "Watch and respond to the chat",
+          "detail": "A chat panel will appear on one side of your Restream Studio window. This shows live messages from the audience watching across all the platforms the host is streaming to. Read the incoming chat messages in real time - they give you a sense of what the audience is interested in or what questions they have. You can type and send messages into the chat to respond directly to the audience. Click the chat input box and type your reply. Keep an eye on chat even if you are not actively responding - it helps you stay engaged and gives you cues if something you said resonated or if people have follow-up questions."
+        },
+        {
+          "label": "Understand what the host controls: your layout and position",
+          "detail": "The host has control over the studio layout - they decide if you are side-by-side, picture-in-picture, full screen, or in a grid with other guests. The host can also resize or reposition your video feed on the output that goes to the audience. You won't see this change on your end, but the audience will. You cannot move yourself around the layout - that is entirely the host's job. Trust the host to frame you well. If you feel like you are out of frame or not positioned how you want, let the host know verbally during the stream, and they can adjust."
+        },
+        {
+          "label": "React to the moment if your host has enabled reactions",
+          "detail": "Some Restream Studio setups include reaction buttons (thumbs up, hearts, applause, etc.) that you can tap during the stream. If you see reaction icons at the bottom of your controls, click one when something exciting happens or to show support to the host or audience. Reactions appear as visual overlays on the live stream for a few seconds, then fade - they are a fun way to add energy without talking. Check with the host before the stream starts to see if they plan to use reactions."
+        },
+        {
+          "label": "Stay on camera and be ready to wrap",
+          "detail": "Keep your camera on and your face visible unless you have a specific reason to turn it off (the host will cue you if you need to step away). Listen for the host to signal when it is time to wrap up - they may give you a verbal cue like Alright, final thoughts? or a time warning. Do not close the Restream window or disconnect until the host explicitly tells you the broadcast is ending. Once the host ends the stream, the broadcast stops immediately on all platforms. You can then close the window."
+        }
+      ],
+      "tips": [
+        "Test your setup early. Join the Restream link 5-10 minutes before the scheduled start time. Check that your camera, mic, and lighting are all working and that you can see the host's feed clearly. This gives you time to troubleshoot without pressure.",
+        "Position your camera at eye level. Mount your device on a stand or stack of books so your camera is at or slightly above eye level. This looks more natural on camera than looking down at your laptop screen.",
+        "Keep the chat window visible. Even if you are focused on talking to the host, glancing at the chat every 30 seconds helps you stay aware of what the audience is asking or feeling. It makes for better interaction.",
+        "Mute yourself if you cough or need to step away. Rather than disappearing mid-sentence, quickly hit the mic mute button if you need to cough, sneeze, or take a quick break. This keeps the stream smooth for the audience.",
+        "Listen to the host's directions. If the host tells you to look left or hold that thought, I am going to show something, follow their lead. They are managing the production flow for the audience.",
+        "Use screen share for slides or demos. If you have a deck or tool to show, screen sharing is often clearer than trying to show it on camera. Let the host know in advance so they can time the layout switch.",
+        "Keep your background tidy and well-lit. You do not need a fancy setup - just make sure there is nothing distracting behind you and that the light is in front of you, not behind you (which causes you to appear as a silhouette).",
+        "Have water or tea nearby. A live broadcast uses your voice and energy. Keep a drink within arm's reach so you can stay hydrated and clear your throat if needed."
+      ],
+      "pitfalls": [
+        "Joining with your mic or camera blocked. If you click Deny when your browser asks for camera/mic permission, you cannot undo it in the middle of the stream. You have to close and rejoin. Always allow permissions upfront.",
+        "Forgetting you are live to thousands of people. It is easy to get comfortable talking to the host and lose awareness that your every word and gesture are being broadcast. Stay focused and professional even in conversational moments.",
+        "Talking over the host or other guests. Let the host moderate the conversation. If you interrupt or start talking at the same time as someone else, it creates audio chaos for the audience. Wait for natural pauses and let the host call on you.",
+        "Sharing your screen by mistake and showing private tabs. Before you screen share, close any sensitive browser tabs (email, banking, private messages) so you do not accidentally expose something personal. Take 10 seconds to prepare your screen.",
+        "Staring at yourself instead of the camera. You will see your own face in the guest panel, but the audience is watching your camera feed. Look at the camera lens (not the screen) when you want to look engaged and direct. Glancing down at the chat is fine, but avoid staring at your own video.",
+        "Ignoring the host's cues to wrap. If the host says We are almost out of time or counts down the last minute, respect that boundary and do not launch into a long new story. Be ready to end cleanly.",
+        "Assuming the host can hear you if your mic is muted. If you turn your mic off and then start talking, the host and audience hear nothing. You have to remember to unmute before you speak. Double-check the mic icon before you start a new thought.",
+        "Closing Restream before the host has ended the broadcast. If you close your Restream window, you drop out of the stream immediately and the audience sees you vanish. Wait for the host to end the stream officially before you disconnect."
+      ]
+    },
+    {
+      "id": "streamer-setup",
+      "title": "How to Set Up and Run a Stream in Restream Studio (for Hosts)",
+      "audience": "streamer",
+      "summary": "Restream Studio lets you broadcast to multiple platforms at once from your web browser. This guide walks you through the complete host workflow for a ZABAL Gamez workshop: creating your stream, connecting your broadcast channels, adding graphics and layouts, inviting guests, and going live.",
+      "steps": [
+        {
+          "label": "Start your stream or open a scheduled event",
+          "detail": "From your Restream home screen, click + New Stream and select Studio. If you already scheduled an event, click on the event card to open it. You'll see your setup with a camera preview. Grant microphone and camera access if prompted, enter your name, and click Enter Studio."
+        },
+        {
+          "label": "Connect your broadcast channels",
+          "detail": "Click the Channels button (or toggle icons for each platform). Select which platforms you want to stream to: YouTube, Facebook, LinkedIn, Instagram, or others. You can broadcast to all of them simultaneously. If you're using a pre-scheduled event, verify the correct event is selected on each platform."
+        },
+        {
+          "label": "Add your stream title and details",
+          "detail": "Click the pencil icon at the top to add your stream title, description, and thumbnail image. For ZABAL Gamez workshops, use a clear title like 'ZABAL GAMEZ Workshop w/[Guest Name] from [Organization]'. You can upload a custom thumbnail or let Restream generate one with AI optimization."
+        },
+        {
+          "label": "Customize your stream visuals",
+          "detail": "Click the Graphics or Design section to add logos, overlays, banners, and backgrounds. For ZABAL Gamez, upload your brand logo (512x512px recommended, top-left or top-right corner). Add any lower-third graphics or intro/outro overlays. Browse the free graphics library or upload your own. You can add up to 50 overlays total."
+        },
+        {
+          "label": "Set up your layout and scenes",
+          "detail": "Hover over your preview and click the Customize icon. Adjust camera size, position, corner radius, and alignment. If you're featuring multiple guests or screen-sharing, organize how they appear on screen. Use preset layouts or drag-and-drop sources to arrange them. You can create multiple scenes (e.g., one for intro, one for Q&A, one for guest segments) and switch between them during the stream."
+        },
+        {
+          "label": "Set your theme, colors, and fonts",
+          "detail": "Click the Theme tab to choose one of 4 display styles for lower thirds and nameplates. Customize your primary color using the color picker or a custom hex code. Choose from 21 fonts for overlay elements like participant names and captions. These settings apply to all your graphics."
+        },
+        {
+          "label": "Copy and send your guest invite link",
+          "detail": "Click Sources (right menu), then click Copy Invite Link. This link is permanent and won't change, so you can share it with guests weeks in advance or save it for reuse. Send this link to your guest speakers via email, Slack, or direct message. They can join with just the link - no Restream account needed."
+        },
+        {
+          "label": "Test your stream before going live",
+          "detail": "Click the arrow next to Go Live and select Record Only. Run through your setup: test your mic and camera audio levels, check that graphics display correctly, verify guest video/audio, and preview how everything looks. Click Stop Recording when done. Your test recording saves to Restream for review."
+        },
+        {
+          "label": "Invite guests during setup (optional)",
+          "detail": "Guests can join before or during your stream once you give them the invite link. They'll appear backstage under your Sources menu. You don't need to click Go Live first - guests can join, test their audio/video, and be ready when you start broadcasting."
+        },
+        {
+          "label": "Go live",
+          "detail": "Once your setup is complete and guests have joined (if applicable), click the Go Live button. Your stream will start broadcasting to all selected platforms simultaneously. A countdown timer may appear on some platforms. Verify that you're live by checking a platform like YouTube or Facebook in a separate browser tab."
+        },
+        {
+          "label": "Manage guests during the stream",
+          "detail": "Under Sources on the right, toggle each guest on to add them on-screen or off to hide them. Click the three dots next to a guest name to edit their name/title, hide their camera, or remove them. You can bring guests on and off screen throughout your broadcast without interrupting the stream."
+        },
+        {
+          "label": "End your stream",
+          "detail": "When you're done, click Stop Streaming or End Live (the button location varies). If you're streaming to multiple platforms, some may auto-stop when you end in Restream, but verify by checking YouTube or Facebook - you may need to manually click End Live on platform pages. Wait for all platforms to fully disconnect before closing the browser tab."
+        }
+      ],
+      "tips": [
+        "Use a stable, fast internet connection - run a speed test before streaming to ensure your bandwidth is sufficient",
+        "Test your microphone and camera in your browser settings before entering Studio to avoid audio/video surprises",
+        "Good lighting is your friend - stream from a well-lit spot facing a clean background that complements your content",
+        "Create a consistent schedule for your ZABAL Gamez workshops so your audience knows when to tune in",
+        "Wear headphones during the stream to hear guests and monitor your audio quality in real-time",
+        "Share your stream title and description with guests in advance so they know what to expect",
+        "Record your test session to check video quality and timing - Restream saves these recordings",
+        "Invite guests early and give them time to join and do their own audio/camera checks before you go live",
+        "Keep your guest invite link handy - it's permanent and works for all future uses of that stream card",
+        "Interact with your chat - read comments from viewers on all platforms at once in Restream Studio's unified chat",
+        "Use scenes for different segments (intro, guest interview, Q&A, outro) so you can switch layouts cleanly",
+        "If streaming to multiple platforms, double-check that each platform shows your stream is live before claiming you're on air"
+      ],
+      "pitfalls": [
+        "Forgetting to select your broadcast channels before going live - your stream will only go to Restream, not your audience",
+        "Not testing your mic/camera before the stream starts - audio feedback loops or silent streams can derail a ZABAL Gamez session",
+        "Starting a stream without checking that guests are ready and can hear you - always do a quick verbal sound check",
+        "Adding too many graphics or overlays at once - keep it clean so your guests and their screens remain visible",
+        "Closing your browser tab immediately after clicking Stop Streaming - platforms sometimes need a few seconds to fully disconnect",
+        "Using an unstable or low-bandwidth connection - if your internet drops mid-stream, all platforms will cut out at once",
+        "Forgetting that your guest invite link is static and permanent - don't worry if you misplace it, you can always copy it again from the same stream card",
+        "Not muting yourself when guests are speaking - background noise or accidental talking breaks the guest's moment",
+        "Neglecting to adjust layouts when adding guests - they might appear tiny or off-screen if you don't customize positioning",
+        "Streaming on portrait mode (phone/tablet vertical) - layout customization is disabled in portrait, so use landscape orientation",
+        "Assuming guests can self-manage their on-screen appearance - you control when they're visible, so check in with them mid-stream about what they want"
+      ]
+    },
+    {
+      "id": "av-quality",
+      "title": "Getting Good Audio and Video Quality in Restream Studio",
+      "audience": "both",
+      "summary": "Clear audio and sharp video transform how your audience connects with you during ZABAL Gamez workshops. A few hardware choices and straightforward settings adjustments make a real difference - and you don't need expensive gear to sound and look professional.",
+      "steps": [
+        {
+          "label": "Pick a microphone and test it before you go live",
+          "detail": "Restream Studio works with any microphone your browser can detect - built-in laptop mics, USB headsets, or external condenser mics. The easiest upgrade is a USB microphone (around 30-50 dollars); they plug in, work immediately, and deliver clear audio. If you're using an external mic, make sure any manufacturer software (like Canon's EOS Webcam Utility for cameras) is installed first. Test your microphone at https://restream.io/tools/mic-test before your workshop to confirm it's working and sounds the way you want."
+        },
+        {
+          "label": "Put on headphones to eliminate echo and stay aware",
+          "detail": "Headphones are not optional - they prevent your audio from feeding back into the room and creating echo that viewers will hear. They also let you hear yourself in real time, so you know if your volume is too loud or too quiet. If you're a guest or co-host, headphones become even more critical; they kill the hollow, echoing quality that makes streams sound unprofessional. Any headphones or earbuds work - you're not listening for music quality, just monitoring."
+        },
+        {
+          "label": "Set up your audio settings in the gear menu",
+          "detail": "In Restream Studio, click the gear icon under your preview window, go to Audio, and click Show Advanced Options. Turn on Noise Suppression to reduce background sounds like fans or traffic. Turn on Auto Gain Control to keep your volume steady even if you move closer to or farther from the mic. If echo is still creeping in, enable Echo Cancellation. Enable Stereo Audio Input if you have a nice setup and want richer sound. High-Resolution Audio at 256 kbps is only worth enabling if your internet is solid (25+ Mbps upload); otherwise, leave it off."
+        },
+        {
+          "label": "Light your face, not your background",
+          "detail": "Lighting makes the biggest visual difference and costs almost nothing. Position yourself so light hits your face directly - a window to one side, a desk lamp, or even a phone's flashlight on a stand works. Avoid sitting with a bright window or lamp behind you; backlighting makes you look like a silhouette. If you're in a dark room, even a single lamp pointed at your face transforms how you appear on camera. No ring lights or fancy setups required."
+        },
+        {
+          "label": "Position your camera at eye level and frame yourself well",
+          "detail": "Place your camera (laptop, external webcam, or phone) so it points at your face at eye level or slightly above. Avoid looking up at the camera or down at it - level is most flattering and keeps your posture natural. Sit an arm's length away so your head fills maybe 60 percent of the frame; you want viewers to see your face clearly without being uncomfortably close. If your camera looks blurry, make sure it's set to Auto in the Video settings - that way it adapts to your stream quality automatically."
+        },
+        {
+          "label": "Choose your stream resolution and framerate based on your internet",
+          "detail": "In the gear menu under Video, select either HD (720p at 30 or 60 fps) or Full HD (1080p at 30 fps). If you have at least 25 Mbps upload speed, Full HD looks sharper. If your internet is 10-25 Mbps, stick with HD at 30 fps - it's fast and reliable. You can test your upload speed in Studio under Help or use a free speed test online. Never change quality settings while you're actively streaming; pick one and stay with it."
+        },
+        {
+          "label": "Check your bandwidth and internet stability before airtime",
+          "detail": "Restream needs at least 10 Mbps upload speed to function; 25 Mbps or higher is ideal, especially for Full HD. Close heavy apps like browsers with 50+ tabs open, cloud sync tools, or downloads before your workshop. If you're on wifi, consider moving closer to your router or using an ethernet cable plugged into your computer - wired connections are much more stable for streaming. Do a quick speed test at your actual location and time of day, since speeds vary."
+        },
+        {
+          "label": "Disable echo cancellation if you're using headphones (sometimes it helps)",
+          "detail": "If you're wearing headphones and the audio still sounds muffled or hollow, try disabling Echo Cancellation in the Audio advanced settings. Sometimes the setting can interfere with good headphone audio. Noise Suppression should stay on to kill background noise, but Echo Cancellation is mainly for people not using headphones. Experiment quickly before going live."
+        }
+      ],
+      "tips": [
+        "Test everything 5-10 minutes before your workshop starts. Join the stream link early, check that your camera feed looks right, say a few words and listen back through headphones to make sure audio is clear.",
+        "If your CPU usage is above 80 percent (check Activity Monitor on Mac or Task Manager on Windows), close background apps and lower your stream resolution. High CPU causes both audio and video to stutter.",
+        "Ethernet beats wifi every time for streaming. If possible, run a cable from your router to your computer - it takes two minutes and makes your stream rock solid.",
+        "A quiet, simple background is better than a fancy one. Blank walls, bookshelves, or a plant behind you look professional. Avoid clutter or motion that distracts from your face.",
+        "If you hear yourself echo during a test, you're either not wearing headphones, or your microphone is picking up sound from a speaker in the room. Move the mic away from speakers or turn down speaker volume.",
+        "Restream automatically adjusts bitrate based on your resolution, so you don't have to tweak that manually. Just set your resolution and let it work.",
+        "Keep your laptop plugged in during the stream. Battery mode throttles performance and will degrade both audio and video quality."
+      ],
+      "pitfalls": [
+        "Using internal laptop speakers while streaming: your mic will pick up the sound looping back, creating echo and feedback. Headphones are mandatory.",
+        "Sitting too close to the camera or in a dark corner: your face will look huge and blurry, or dark and hard to see. Move back and add light.",
+        "Ignoring your internet speed: if you pick Full HD but only have 15 Mbps, Restream will struggle, and your stream will buffer or drop. Honest assessment saves embarrassment.",
+        "Changing quality settings mid-stream: you can't switch resolution or framerate once you're live. Choose before you start.",
+        "Leaving Echo Cancellation on if it sounds bad: if audio sounds processed or muffled with headphones on, turn Echo Cancellation off - it's not always needed.",
+        "Streaming from wifi next to a microwave or cordless phone: these devices interfere with 2.4 GHz wifi. Use 5 GHz wifi or ethernet if possible.",
+        "Expecting a built-in laptop microphone to sound great: it won't. Even a cheap USB mic is a game changer for audio quality."
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "title": "Common Restream Studio Problems and Quick Fixes",
+      "audience": "both",
+      "summary": "Restream Studio is reliable, but cameras, mics, and browser settings sometimes need a quick reset. Most issues solve in under two minutes with these targeted fixes - no tech support required. Here are the most common problems ZABAL Gamez guests and hosts encounter, and how to fix them before you go live.",
+      "steps": [
+        {
+          "label": "Camera or mic not showing in Restream Studio",
+          "detail": "First, check that Restream has permission to use your camera and microphone. (1) Click the gear icon (settings) in Restream Studio, then open the Audio or Camera tab to see what your browser detects. (2) If nothing appears, your browser is blocking access. On Chrome or Arc: copy chrome://settings/content/camera and paste it into a new tab, find Restream.io under 'Not allowed', and click Allow. On Firefox: open about:preferences#privacy, find Camera under Permissions, locate Restream, and set it to Allow. On Safari: open Settings then Websites, click Camera, find Restream, and set it to Allow. (3) Close Restream Studio completely and reload the page - you should now see your device listed."
+        },
+        {
+          "label": "Device not detected even after allowing browser permissions",
+          "detail": "(1) Clear your browser's cache: in Chrome or Arc, press Ctrl+Shift+Delete (Windows) or Cmd+Shift+Delete (Mac), select All time, and click Clear data. Close and reopen the browser. (2) Reload Restream Studio and check if your device now appears. (3) If it's an external camera or microphone, check that the cable is fully plugged into your computer. Try a different USB port. (4) Test your device on another website - use Restream's free microphone test tool (restream.io/tools/mic-test) or Google Meet to confirm your hardware works. If it does not work there either, contact your device manufacturer."
+        },
+        {
+          "label": "Echo, feedback, or distorted audio",
+          "detail": "(1) Click the gear icon in Restream Studio and go to the Audio tab. (2) Toggle off echo cancellation and noise suppression - these can conflict with some microphones. (3) Enable stereo mode if available. (4) If you hear your own voice echoing, make sure you are not wearing speakers near your microphone - use headphones instead (this prevents your mic from picking up the audio from your speakers). (5) Reload Studio to apply changes."
+        },
+        {
+          "label": "Choppy, laggy, or pixelated video",
+          "detail": "(1) Check your internet speed: run a quick speed test and aim for at least 10 Mbps upload speed to Restream - ideally 25 Mbps or higher. (2) If speeds are low, restart your modem and router, wait 30 seconds, then reconnect. (3) Plug your computer directly into your router with an ethernet cable if possible - this is much more stable than WiFi. (4) In your browser, disable any ad-blocking extensions and pop-up blockers. Test Restream Studio in a private/incognito window to confirm. (5) Make sure you are using the latest version of your browser - update if prompted. (6) Close other tabs and applications using your internet or camera. (7) If your computer is overheating or slow, restart it before going live."
+        },
+        {
+          "label": "Cannot hear the host or your guests",
+          "detail": "(1) If you are a guest: check that the host has activated you (you should not still be backstage). (2) On your end, click the gear icon in Studio, go to the Audio tab, and make sure you have selected the correct speakers as your audio output. (3) Right-click the Restream Studio tab in your browser and make sure 'Mute tab' is NOT checked. (4) Check that your computer's volume is turned up and not muted. (5) If you are a host and cannot hear a guest: check that the speaker icon next to the guest's name is white (not red/muted). Click the speaker icon to unmute if needed. (6) Ask your guest to check their microphone is on and not muted locally on their device. (7) Have your guest open their audio settings (gear icon, Audio tab) and confirm they selected the right microphone - they should see green bars if it is working."
+        },
+        {
+          "label": "Getting disconnected or stream drops during broadcast",
+          "detail": "(1) Check your internet connection - run a speed test to verify you have at least 10 Mbps upload speed. If speeds are unstable, restart your modem and router. (2) Switch to an ethernet cable (hardwired connection) instead of WiFi - WiFi is much more likely to disconnect. (3) Close background applications and browser tabs. (4) Watch your computer's CPU usage - if it exceeds 80%, close other programs or restart your computer before going live. (5) Make sure your computer is plugged into power, not running on battery. (6) If you are streaming to multiple platforms simultaneously, your upload speed needs to be higher - aim for 25+ Mbps. (7) Close and reopen Restream Studio if it feels sluggish or frozen."
+        },
+        {
+          "label": "Browser keeps asking for camera or mic permission each time",
+          "detail": "(1) In your browser, navigate to the camera and microphone permissions settings (Chrome: chrome://settings/content/camera and chrome://settings/content/microphone). (2) Make sure Restream is set to Allow for both. (3) If there are multiple entries for Restream or your site, delete the one set to Block. (4) Close all tabs and restart your browser completely. (5) Return to Restream and allow permissions when prompted - this time, the browser should remember. (6) If the browser still forgets: check if you are browsing in Incognito or Private mode - those modes do not save permissions. Switch to normal browsing mode and try again."
+        },
+        {
+          "label": "Audio settings are greyed out or not responding",
+          "detail": "(1) Close Restream Studio completely (close the tab and wait 5 seconds). (2) Open Restream Studio in a fresh tab and reload the page. (3) Wait 3-5 seconds for all devices to load - do not click settings immediately. (4) If settings are still greyed out, try a different browser (preferably Chrome, which is recommended for Studio). (5) Clear your browser cache and try again. (6) Restart your computer as a last resort if nothing else works."
+        }
+      ],
+      "tips": [
+        "Before your ZABAL Gamez workshop, test your setup 5 minutes early - open Restream Studio, check your camera and mic, and do a quick audio test. This catches most issues before going live.",
+        "Use headphones instead of speakers during your stream. This prevents echo and lets you hear guests clearly.",
+        "Ethernet cable beats WiFi every time. If you have one nearby, plug in before you start - your stream will be much more stable.",
+        "If troubleshooting takes more than 2 minutes, switch to your phone camera or backup mic rather than holding up the workshop. Restream supports phones too.",
+        "Restream Support is available 24/7 - if nothing here works, click the Need Help button in Studio or visit support.restream.io.",
+        "For ZABAL Gamez: if you are a host and your guest has audio issues, check that their speaker icon (next to their name) is white, not red/muted. Sometimes one accidental click silences them.",
+        "Mac users should also check System Settings > Privacy & Security > Microphone and Camera to ensure your browser is allowed access at the OS level."
+      ],
+      "pitfalls": [
+        "Do NOT use Incognito or Private browsing mode for Restream - browser permissions are not saved in private mode, so you will be asked every single time.",
+        "Do NOT wear speakers while streaming with a microphone in the room - your mic will pick up the audio and create echo or feedback. Always use headphones.",
+        "Do NOT assume your device is broken - test it on another website (Google Meet, Restream's mic test tool) before giving up. Browsers sometimes block access even if the hardware works.",
+        "Do NOT keep multiple applications using your camera or microphone at once. Close Zoom, Google Meet, and other video apps before opening Restream Studio.",
+        "Do NOT stream over WiFi if you are going live with guests in ZABAL Gamez - the risk of disconnection is too high. Use an ethernet cable whenever possible.",
+        "Do NOT ignore red warning signs in Studio settings - red means something is blocked, muted, or not selected. Always click on red icons to investigate.",
+        "Do NOT reload or refresh the page while actively streaming - this will cut your stream. If Studio freezes, close the tab carefully and start a new one."
+      ]
+    },
+    {
+      "id": "mobile",
+      "title": "Joining or streaming with Restream from a phone or tablet",
+      "audience": "both",
+      "summary": "Restream works on phones and tablets through your mobile browser, not a dedicated app. Guests can join with camera and audio; streamers can broadcast directly from their device. Choose the right browser for your phone, ensure a strong WiFi connection, and close unnecessary apps for the smoothest experience.",
+      "steps": [
+        {
+          "label": "Pick the right browser for your phone",
+          "detail": "Open Google Chrome if you have an Android phone. Use Safari if you have an iPhone or iPad. Other browsers may not work reliably with Restream Studio."
+        },
+        {
+          "label": "Log in to Restream on your mobile browser",
+          "detail": "Visit restream.io in your browser and log in with your account. Do not download anything; you will not need an app. Everything runs in the browser."
+        },
+        {
+          "label": "For guests: click the join link the host sends you",
+          "detail": "The host will share a unique link to join the session. Tap that link on your phone. It will open directly in your browser."
+        },
+        {
+          "label": "Grant permission to use your camera and microphone",
+          "detail": "Your browser will ask if Restream can access your camera and mic. Tap Allow. If you skip this, you will not be able to send audio or video."
+        },
+        {
+          "label": "Enter your name and join the studio",
+          "detail": "Type your name in the text box that appears and tap the button to enter the session. You are now live with your video and audio sent to the stream."
+        },
+        {
+          "label": "For streamers: select New Stream, then Studio",
+          "detail": "Tap New Stream from your Restream home screen and choose Studio. Pick which channels you want to stream to by toggling them on, then tap Start Streaming."
+        },
+        {
+          "label": "Check internet speed before you go live",
+          "detail": "Do a quick speed test on your phone before joining. Aim for at least 10 Mbps upload speed. 25 Mbps or higher is better for smooth HD quality."
+        },
+        {
+          "label": "Use headphones during the session",
+          "detail": "Plug in headphones or earbuds so the audience does not hear their own audio echoed back. This makes the stream sound professional."
+        }
+      ],
+      "tips": [
+        "Plug your phone into a charger before you stream or join a guest session. Mobile video eats battery fast.",
+        "Close any apps running in the background (email, social media, videos). This frees up your phone's processing power and keeps your video smooth.",
+        "Use WiFi instead of mobile data. A steady WiFi connection is far more reliable for streaming than cellular.",
+        "Sit or stand near a window or lamp so your face is well lit. Dark video looks unprofessional and the camera will struggle to keep up.",
+        "Test your setup 5 minutes before the session starts. Open the join link, check your audio and video, then close and rejoin when the session officially begins.",
+        "Keep your phone vertical (portrait mode), not tilted sideways. This matches how the audience will view you.",
+        "If your video freezes or lags, close your browser tab and rejoin. Reloading often fixes connection hiccups.",
+        "Tap the chat icon in Studio to read live audience messages from the stream while you are on camera."
+      ],
+      "pitfalls": [
+        "Do not use Firefox, Safari, or other browsers on Android, or Chrome on iPhone. Restream Studio may not load or function correctly.",
+        "Screen sharing does not work on mobile browser. You cannot share your screen from a phone or tablet - only from a desktop computer. Plan your content accordingly.",
+        "Camera zoom does not work reliably on mobile. Get physically closer to your camera instead of zooming in digitally.",
+        "Do not stream on mobile data alone. Cellular connections drop or slow down unexpectedly. Always use WiFi, or pair WiFi with mobile as backup.",
+        "Do not ignore the camera and microphone permission prompts. If you tap Deny, you will have no audio or video and will need to close the tab and rejoin.",
+        "Do not join while other apps are running heavy tasks. If you are downloading files or streaming music in the background, your video will lag and may disconnect.",
+        "Do not place your phone in bright light with your face in shadow. Backlighting confuses the camera and makes you appear as a silhouette.",
+        "Do not stream without headphones if multiple people are in the same room. The microphone will pick up lag and echo, making the stream unwatchable for the audience."
+      ]
+    },
+    {
+      "id": "zabal-flow",
+      "title": "Joining ZABAL Gamez Workshop as a Guest Presenter",
+      "audience": "guest",
+      "summary": "When you present at a ZABAL Gamez workshop, you'll join via Restream, a browser-based streaming platform that handles the live broadcast to multiple channels simultaneously. Your session will be recorded and archived at zabalgamez.com/recordings with a full transcript.",
+      "steps": [
+        {
+          "label": "Receive and open your invite link",
+          "detail": "You'll get a unique invite link from the ZABAL Gamez team before your workshop date. This is a browser-only link - click it to enter the Restream studio. No app download needed. Open it in Chrome, Firefox, Safari, or Edge on your desktop or laptop (mobile is not recommended for presenting)."
+        },
+        {
+          "label": "Check your browser permissions",
+          "detail": "Restream will ask for access to your camera and microphone. Click Allow when prompted. Test both before going live: speak into your mic and look for yourself in the preview. If you don't see or hear yourself, close and reopen the link and try Allow again. If issues persist, check your browser settings under Privacy & Security to ensure camera/mic are not blocked for restream.io."
+        },
+        {
+          "label": "Set your display name and camera position",
+          "detail": "When you enter the studio, you'll see a preview of yourself on screen. Enter your first name or handle as you want it to appear on the stream. Position yourself in frame - usually shoulders-up, centered on camera. If you want to share your screen later, make sure you have enough space or check if screen-sharing options are visible in the studio interface."
+        },
+        {
+          "label": "Review the live chat before going on air",
+          "detail": "Restream shows a chat panel during your session. Read the early messages to get a sense of the audience and any announcements from the stream director. The director may send you a message with timing details or a heads-up just before you start. This is your last chance to wave at the camera or take a breath before going live."
+        },
+        {
+          "label": "Wait for the director's signal",
+          "detail": "The ZABAL Gamez workshop director (or host) will handle the countdown and the actual broadcast start. You'll see them in the studio with you, or they'll send a chat message saying go live. You don't press any buttons - they do. Just be ready to start speaking when they give the cue. The stream goes out live to Farcaster, YouTube, Twitch, and other channels at the same time."
+        },
+        {
+          "label": "Engage with the chat and presenter notes",
+          "detail": "During your presentation, you can see questions and comments coming in from the chat on the right side. You can answer them live, or the director can read them out to you. If there's a shared screen or slides, they'll appear in the main viewer area. Keep your energy up - this is a live, recorded event that will be watched by the ZAO community afterward."
+        },
+        {
+          "label": "Know that recording happens automatically",
+          "detail": "The entire session - your camera feed, audio, chat, and any screen shares - is recorded by Restream as it happens. You don't need to do anything. After the workshop ends, the video processing takes a few hours, then it's uploaded to zabalgamez.com/recordings with your name, the date, and a full transcript generated from your audio."
+        },
+        {
+          "label": "Wrap up when the director signals the end",
+          "detail": "The workshop director will give you a heads-up (usually 2-5 minutes before) that time is running out. They'll thank you and end the broadcast. You can then close the browser tab. There's no formal 'leave' button - just closing the tab is fine. The recording will stay live and the team handles everything else."
+        }
+      ],
+      "tips": [
+        "Mute notifications on your computer before starting - Slack, email, or calendar alerts breaking the silence are jarring on a live stream.",
+        "Use a quiet room with soft ambient light (avoid harsh backlighting from windows) so your image and audio are clear. Headphones or earbuds are optional but help you hear the director or chat if needed.",
+        "If you're sharing your screen, close unnecessary tabs and browser windows beforehand. Show only what you want the audience to see.",
+        "The chat can move fast - don't feel obligated to answer every message live. The director can help prioritize or address comments you miss.",
+        "Test your internet connection before the start time. A wired Ethernet cable (if you have one) is more stable than Wi-Fi for a live broadcast.",
+        "Arrive in the Restream studio 5-10 minutes early. This gives you time to test your camera and mic, and lets the director make sure everything looks right before going live."
+      ],
+      "pitfalls": [
+        "Do not move or refresh the browser tab during the broadcast - you'll disconnect from the stream and need to rejoin, which interrupts your session.",
+        "Do not click Allow on multiple browser permission prompts in rapid succession. If Restream asks for camera/mic access and you see duplicate dialogs, wait for the first to complete before clicking again.",
+        "Do not assume the mic is on without testing first. Silent presentation mistakes are invisible to you but visible to the audience. Always do a sound check in the preview.",
+        "Do not expect to control the stream layout or cameras yourself - the director handles all of that. Your role is to present and interact. If something looks wrong visually, mention it in chat and they'll fix it.",
+        "Do not forget that you're being recorded and the video will be public and searchable at zabalgamez.com. Treat it as a permanent, shareable artifact of your work and expertise."
+      ]
+    },
+    {
+      "id": "faq",
+      "title": "ZABAL Gamez Restream FAQ for Guests and Streamers",
+      "audience": "both",
+      "summary": "Join a ZABAL Gamez workshop on Restream with no signup, no software download, and any modern browser. Guests join via a simple link, access the chat, and can share their camera, microphone, or screen. Streams are automatically recorded and can broadcast to 30+ platforms simultaneously.",
+      "steps": [
+        {
+          "label": "Do I need a Restream account to join?",
+          "detail": "No. Guests joining via the invite link do not need a Restream account at all. Just click the link, allow browser access to your camera and microphone, enter your name, and click Join Stream. Hosts running the session have a Restream account, but guests do not."
+        },
+        {
+          "label": "Do I need to download or install anything?",
+          "detail": "No. Restream Studio runs entirely in your web browser - no software to download, no plugins to install. Everything happens inside Chrome, Firefox, Safari, Edge, or Arc directly from your computer or phone."
+        },
+        {
+          "label": "Which browser should I use?",
+          "detail": "On Windows, macOS, or Linux: use Chrome (most reliable), Firefox, Arc, or Edge. Safari also works but is least preferred. On Android: use Chrome or Firefox. On iPhone/iPad: use Safari version 14 or later. Always keep your browser updated, and disable ad blockers before joining (they can interfere with camera/microphone access)."
+        },
+        {
+          "label": "Can I join from my phone?",
+          "detail": "Yes. Restream works on mobile phones and tablets with the right browser. On Android, use Chrome or Firefox. On iPhone or iPad, use Safari 14 or newer. However, Restream recommends joining from a computer for a smoother, more stable experience if possible - especially if you are a guest going on camera."
+        },
+        {
+          "label": "Will the session be recorded?",
+          "detail": "Yes. When a ZABAL Gamez workshop streams on Restream, it is automatically recorded and saved. You can assume your appearance and audio will be captured. Recordings are kept for at least 15-30 days depending on the host's plan, and the host can download them as MP4 video, MKV (split-track audio), or M4A (audio-only) files."
+        },
+        {
+          "label": "How many platforms can the stream go to?",
+          "detail": "Restream broadcasts simultaneously to 30+ platforms, including YouTube, Twitch, TikTok, Facebook, LinkedIn, Instagram, and others. ZABAL Gamez workshops can reach all of these audiences at once with no extra work from guests - it is all handled by the host's Restream setup."
+        },
+        {
+          "label": "Can I see the chat while I am on camera?",
+          "detail": "Yes. Guests in Restream Studio can see incoming chat messages from the audience on the right side of the screen under 'Incoming Chat', plus a private chat with the host and other guests. This lets you stay aware of audience questions and reactions in real time."
+        },
+        {
+          "label": "What if my camera or microphone does not work?",
+          "detail": "First, check your browser permissions. On Chrome, go to chrome://settings/content/camera (or microphone), find Restream in the restricted list, and click Allow. On Firefox, go to about:preferences#privacy, find Camera (or Microphone) under Permissions, click Settings, find Restream, and set to Allow. On Safari, open Settings > Websites > Camera (or Microphone) and permit Restream. If that does not fix it, clear your browser cache, restart your browser, and try again. Disable ad blockers and browser extensions (try incognito mode). If your camera still does not show up, test it on another site like Google Meet to see if it is a browser-specific issue or a hardware problem. Always plug in your device for better performance, and make sure no other application is using your camera at the same time."
+        }
+      ],
+      "tips": [
+        "Join 5 minutes early to test your camera, microphone, and internet connection before the workshop starts.",
+        "Use a wired ethernet connection (not wifi) if possible for the most stable stream quality.",
+        "Light your face with a window or lamp and avoid sitting with bright light behind you - it helps the camera see you clearly.",
+        "Use headphones to prevent audio echo when you are on camera and the stream is playing back on your device.",
+        "If you need to present slides or share content, Restream lets you share your entire screen, a single window, or a browser tab - set this up from the preview panel.",
+        "Close unnecessary browser tabs and apps before joining to reduce lag and free up your device's resources.",
+        "Turn off notifications on your computer or phone so alerts do not appear on camera or make noise during the recording."
+      ],
+      "pitfalls": [
+        "Do not assume your camera or microphone will work just because they work elsewhere - browser permissions are separate and must be granted for Restream specifically. Check chrome://settings/content/camera before you join.",
+        "Avoid using wifi on a busy network; if the stream lags or your audio breaks up, switch to a wired connection or move closer to your wifi router.",
+        "Do not enable ad blockers or unusual browser extensions - they can block Restream's access to your camera and microphone for no clear reason. If you get stuck, try incognito mode or a different browser.",
+        "Do not assume you are private once you join - the stream is being recorded and broadcast to tens of thousands of people. Assume you are on camera and your audio is live from the moment you click Join.",
+        "Do not multitask with your camera on - your background is visible to the audience, and distracting movement can pull focus. Minimize background clutter and ask housemates to stay out of frame.",
+        "Do not join from a phone if you are the featured guest - computer performance, screen real estate, and audio quality are noticeably better. Join from a phone only if it is your only option."
+      ]
+    }
+  ]
+}
