@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submissions - ZABAL Gamez</title>
+  <meta name="description" content="Approved ZABAL Gamez submissions - what the community is building, sharing, and shaping this season.">
+  <link rel="canonical" href="https://zabalgamez.com/submissions">
+  <meta property="og:title" content="Submissions - ZABAL Gamez">
+  <meta property="og:description" content="What the community is building and sharing for ZABAL Gamez.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/submissions">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See submissions","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/submissions","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .su-wrap { max-width: 640px; margin: 0 auto; }
+    .su-card { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.9rem 1.05rem; margin: 0 0 0.7rem; }
+    .su-top { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+    .su-prompt { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); font-family: 'JetBrains Mono', monospace; }
+    .su-by { font-size: 0.8rem; color: var(--text-dim); }
+    .su-by a { color: var(--cyan); text-decoration: none; }
+    .su-by a:hover { text-decoration: underline; }
+    .su-answer { font-size: 0.98rem; color: var(--text); line-height: 1.55; margin: 0.4rem 0 0.3rem; white-space: pre-wrap; }
+    .su-fields { display: grid; gap: 0.2rem; margin: 0.4rem 0 0; }
+    .su-fields div { font-size: 0.85rem; color: var(--text-muted); }
+    .su-fields b { color: var(--text); font-weight: 600; }
+    .su-foot { font-size: 0.76rem; color: var(--text-dim); margin-top: 0.5rem; }
+    .su-foot a { color: var(--cyan); text-decoration: none; }
+    .su-single .su-card { border-left: 3px solid var(--zabal); }
+    .btn { font-family: inherit; font-size: 0.85rem; padding: 0.5rem 1.1rem; border-radius: 9px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .btn:hover { filter: brightness(1.12); }
+    .su-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 0.8rem 0; }
+    .su-note { font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem; }
+    .su-note a { color: var(--cyan); }
+    .empty { color: var(--text-dim); font-size: 0.92rem; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/submit">Submit</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/game">Arcade</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" id="su-hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow">Submissions</div>
+    <h1>What the community <span class="accent">is shaping</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">Approved ZABAL Gamez submissions - takes, builds, and answers from the season. Add yours on the submission page.</p>
+  </header>
+
+  <div class="su-wrap" id="su-root"><p class="empty" style="padding-top:0.6rem;">Loading...</p></div>
+
+</div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function when(ts) { try { return new Date(ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); } catch (e) { return ''; } }
+
+  // id from /submissions/<id> path or ?id=
+  var m = location.pathname.match(/\/submissions\/([0-9]+)/);
+  var ID = m ? m[1] : (new URLSearchParams(location.search).get('id') || '');
+  ID = String(ID).replace(/[^0-9]/g, '');
+  var root = document.getElementById('su-root');
+  var hero = document.getElementById('su-hero');
+
+  function byline(s) {
+    if (s.handle) return '<span class="su-by">by <a href="/profiles/' + esc(s.handle) + '">@' + esc(s.handle) + '</a>' + (s.ts ? ' - ' + when(s.ts) : '') + '</span>';
+    return '<span class="su-by">' + (s.ts ? when(s.ts) : '') + '</span>';
+  }
+  function fields(s) {
+    var f = s.fields || {};
+    var keys = Object.keys(f);
+    if (!keys.length) return '';
+    return '<div class="su-fields">' + keys.map(function (k) { return '<div><b>' + esc(k) + ':</b> ' + esc(f[k]) + '</div>'; }).join('') + '</div>';
+  }
+  function cardHtml(s) {
+    return '<div class="su-card"><div class="su-top">' +
+      '<span class="su-prompt">' + esc(s.promptId || 'submission') + '</span>' + byline(s) + '</div>' +
+      (s.answer ? '<div class="su-answer">' + esc(s.answer) + '</div>' : '') +
+      fields(s) +
+      '<div class="su-foot"><a href="/submissions?id=' + esc(s.id) + '">permalink #' + esc(s.id) + '</a></div></div>';
+  }
+
+  function renderSingle(s) {
+    hero.querySelector('h1').innerHTML = 'Submission <span class="accent">#' + esc(s.id) + '</span>';
+    hero.querySelector('.lead').textContent = 'A ZABAL Gamez submission.';
+    root.className = 'su-wrap su-single';
+    var share = '';
+    root.innerHTML = cardHtml(s) +
+      '<div class="su-actions"><button class="btn primary" id="su-share" type="button">Share</button>' +
+      (s.handle ? '<a class="btn" href="/profiles/' + esc(s.handle) + '">@' + esc(s.handle) + '\'s profile</a>' : '') +
+      '<a class="btn" href="/submissions">All submissions</a></div>' +
+      '<p class="su-note">Want your work here? <a href="/submit">Make a submission</a>.</p>';
+    var sb = document.getElementById('su-share');
+    if (sb) sb.addEventListener('click', function () {
+      var text = 'A ZABAL Gamez submission' + (s.handle ? ' from @' + s.handle : '') + '. Shaping the season:';
+      var url = 'https://zabalgamez.com/submissions?id=' + s.id;
+      if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+      else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+    });
+  }
+
+  function renderFeed(list) {
+    if (!list.length) { root.innerHTML = '<div class="empty">No approved submissions yet. <a href="/submit" style="color:var(--cyan)">Be the first</a>.</div>'; return; }
+    root.innerHTML = list.map(cardHtml).join('') + '<p class="su-note"><a href="/submit">Make a submission -&gt;</a></p>';
+  }
+
+  if (ID) {
+    fetch('/api/submissions?id=' + encodeURIComponent(ID), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var s = d && d.submission;
+        if (!s) { root.innerHTML = '<div class="empty">Submission not found. <a href="/submissions" style="color:var(--cyan)">See all submissions</a>.</div>'; return; }
+        if (s.status !== 'approved') {
+          hero.querySelector('h1').innerHTML = 'Submission <span class="accent">#' + esc(s.id) + '</span>';
+          root.innerHTML = '<div class="empty">This submission is ' + esc(s.status) + ' - it shows here once approved. <a href="/submissions" style="color:var(--cyan)">See approved submissions</a>.</div>';
+          return;
+        }
+        renderSingle(s);
+      })
+      .catch(function () { root.innerHTML = '<div class="empty">Could not load this submission.</div>'; });
+  } else {
+    fetch('/api/submissions?feed=recent&limit=40', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.configured === false) { root.innerHTML = '<div class="empty">Submissions are not live yet. <a href="/submit" style="color:var(--cyan)">Submit on the magnet</a> in the meantime.</div>'; return; }
+        renderFeed((d && d.submissions) || []);
+      })
+      .catch(function () { root.innerHTML = '<div class="empty">Could not load submissions right now.</div>'; });
+  }
+})();
+</script>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
