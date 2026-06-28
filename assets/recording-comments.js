@@ -90,6 +90,18 @@
   var postBtn = document.getElementById('zgc-post');
   var noteEl = document.getElementById('zgc-note');
 
+  // Web vs Mini App. On the open web there is no verified Farcaster session, so a saved
+  // comment cannot be posted - make the box a clean "Share to Farcaster" (the compose
+  // intent works in a plain browser) instead of a "Post" that fails.
+  var inApp = false;
+  Promise.resolve(Z.getContext ? Z.getContext() : null).then(function (ctx) {
+    inApp = !!(ctx && ctx.client);
+    if (inApp) return;
+    postBtn.textContent = 'Share to Farcaster';
+    var lbl = alsoEl && alsoEl.parentNode; if (lbl) lbl.style.display = 'none';
+    textEl.placeholder = 'Share a thought on this session, then post it to Farcaster...';
+  }).catch(function () {});
+
   function profileHref(c) {
     return c.username ? 'https://farcaster.xyz/' + esc(c.username) : 'https://farcaster.xyz/~/profiles/' + esc(c.fid);
   }
@@ -143,7 +155,14 @@
   postBtn.addEventListener('click', function () {
     var text = (textEl.value || '').trim();
     if (!text) { textEl.focus(); return; }
-    if (!Z.postComment) { browserFallback(text); return; }
+    // On the open web (or any non-Mini-App), a saved comment is not possible - share the
+    // thought to Farcaster instead. Clean, never a dead Post.
+    if (!inApp || !Z.postComment) {
+      castThought(text);
+      textEl.value = '';
+      noteEl.className = 'zgc-note'; noteEl.textContent = 'Shared to Farcaster.';
+      return;
+    }
     postBtn.disabled = true; noteEl.textContent = 'Posting...';
     Z.postComment(REC_ID, text).then(function (res) {
       postBtn.disabled = false;
