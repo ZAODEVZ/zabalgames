@@ -93,13 +93,15 @@
       "name": "Duo Do",
       "org": "Clementine + Santiago",
       "handle": "@duodomusica",
-      "topic": "Musician on Farcaster, and the road to Farcon.",
-      "format": "pre-recorded talk plus live Q and A",
-      "when": "first week of June - date TBD",
+      "topic": "Building on Farcaster as an artist - how a music duo shows up, releases, and grows here, and the road to Farcon.",
+      "format": "Live talk plus Q and A, recorded",
+      "when": "Tue Jun 30 2026, 7pm EST",
       "status": "confirmed",
       "confirmed_date": "2026-05-23",
       "color": "pink",
-      "track": "artist"
+      "date": "2026-06-30",
+      "track": "artist",
+      "luma_url": "https://luma.com/5nqganpf"
     },
     {
       "id": "008",
