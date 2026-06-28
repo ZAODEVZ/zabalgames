@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Play - ZABAL Gamez</title>
-  <meta name="description" content="Play the ZABAL Gamez arcade. ZAO 2048 - merge the ZAO ecosystem brands up to THE ZAO. Top 10 on the monthly board win $Zabal.">
+  <meta name="description" content="Play the ZABAL Gamez arcade. ZAO 2048 - merge the ZAO ecosystem brands up to THE ZAO. Merge all the way to THE ZAO.">
   <link rel="canonical" href="https://zabalgamez.com/play">
   <meta property="og:title" content="Play - ZABAL Gamez">
-  <meta property="og:description" content="ZAO 2048 - merge the ZAO ecosystem up to THE ZAO. Top 10 this month win $Zabal. Insert Coin.">
+  <meta property="og:description" content="ZAO 2048 - merge the ZAO ecosystem up to THE ZAO. Insert Coin.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zabalgamez.com/play">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
@@ -16,7 +16,7 @@
   <meta property="og:image:alt" content="ZABAL Gamez">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Play - ZABAL Gamez">
-  <meta name="twitter:description" content="ZAO 2048 - merge the ZAO ecosystem up to THE ZAO. Top 10 this month win $Zabal.">
+  <meta name="twitter:description" content="ZAO 2048 - merge the ZAO ecosystem up to THE ZAO. Merge all the way to THE ZAO.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO 2048","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/play","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
@@ -128,7 +128,7 @@
   <header class="hero" style="padding-bottom: 0.4rem;">
     <div class="hero-eyebrow">The arcade</div>
     <h1>Insert Coin. <span class="accent">Play.</span></h1>
-    <p class="lead" style="margin-top: 0.3rem;">Pick a game and climb the monthly board. The top 10 this month win $Zabal. Built on The ZAO's live rails - this is the front door, come build the rest.</p>
+    <p class="lead" style="margin-top: 0.3rem;">Merge the ZAO ecosystem brands all the way up to THE ZAO. Play for fun - your best score is saved on your device. Built on The ZAO's live rails - come build the rest.</p>
   </header>
 
   <div class="game-picker" role="tablist" aria-label="Choose a game">
@@ -155,21 +155,15 @@
       <div id="modal" class="zmodal" hidden><div class="zmodal-card" id="modal-card"></div></div>
 
       <div class="handle-row">
-        <input id="handle" type="text" placeholder="your Farcaster handle" autocomplete="off" spellcheck="false" maxlength="32" aria-label="Farcaster handle">
-        <button class="btn primary" id="submit" type="button">Submit score</button>
-        <button class="btn" id="share-fc" type="button">Share score</button>
+        <button class="btn primary" id="share-fc" type="button">Share score</button>
         <button class="btn" id="share-x" type="button">Share on X</button>
       </div>
       <div class="status" id="status"></div>
-      <p class="hint">Tip: keep your highest tile in a corner. Submit any time - your best score this month is what counts.</p>
+      <p class="hint">Tip: keep your highest tile in a corner. Your best score is saved on this device.</p>
     </section>
 
     <aside class="lb-panel">
-      <h3>This month's board</h3>
-      <p class="note">Top 10 at the end of the month win $Zabal. Resets monthly (UTC).</p>
-      <ol id="board-list"><li class="muted">Loading the board...</li></ol>
-      <p class="hint" id="to-top10" style="margin-top: 0.5rem;"></p>
-      <p class="hint" style="margin-top: 0.4rem;"><a href="/leaderboard">Season leaderboard</a> - <a href="/#schedule">Upcoming sessions</a></p>
+      <p class="hint" style="margin-top: 0.4rem;"><a href="/#schedule">Upcoming sessions</a> - <a href="/recordings">Recordings</a></p>
 
       <div style="margin-top: 1.1rem; border-top: 1px solid var(--border); padding-top: 0.9rem;">
         <h3 style="font-size: 0.95rem; margin: 0 0 0.2rem;">Event collectible</h3>
@@ -547,8 +541,7 @@
       if (!won) { for (var w = 0; w < grid.length; w++) { if (grid[w] >= 2048) { won = true; showWin(); break; } } }
       if (isOver()) {
         over = true;
-        setStatus('Game over. Score ' + score + '. Submit it to claim your spot.');
-        autoSubmit();
+        setStatus('Game over. Score ' + score + '.');
         showGameOver();
       }
     }
@@ -573,10 +566,9 @@
   function showGameOver() {
     showModal('<div class="modal-eyebrow">Game over</div>'
       + '<div class="modal-title">' + score + '</div>'
-      + '<p class="modal-sub">Your best: ' + bestScore + '. Top 10 this month win $Zabal - submit to claim your spot.</p>'
-      + '<div class="modal-actions"><button class="btn primary" data-action="submit" type="button">Submit score</button>'
-      + '<button class="btn" data-action="share" type="button">Share</button>'
-      + '<button class="btn" data-action="play" type="button">Play again</button></div>');
+      + '<p class="modal-sub">Your best: ' + bestScore + '. Merge all the way to THE ZAO.</p>'
+      + '<div class="modal-actions"><button class="btn primary" data-action="play" type="button">Play again</button>'
+      + '<button class="btn" data-action="share" type="button">Share</button></div>');
   }
 
   function isOver() {
@@ -663,8 +655,9 @@
   function autoSubmit() { doSubmit(true); }
 
   function loadBoard() {
+    var list = document.getElementById('board-list');
+    if (!list) return; // leaderboard removed - play-for-fun, no board
     fetch('/api/game?game=zao2048', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
-      var list = document.getElementById('board-list');
       var t10 = document.getElementById('to-top10');
       if (!d || !d.entries || !d.entries.length) {
         list.innerHTML = '<li class="muted">No scores yet this month. Be first.</li>';
@@ -745,7 +738,6 @@
     }
   }
   document.getElementById('new-game').addEventListener('click', newGame);
-  document.getElementById('submit').addEventListener('click', function () { doSubmit(false); });
   // Win / game-over modal actions (delegated; click backdrop to dismiss).
   document.getElementById('modal').addEventListener('click', function (e) {
     if (e.target === this) { hideModal(); return; }
@@ -834,8 +826,6 @@
 
   build();
   newGame();
-  loadBoard();
-  setInterval(loadBoard, 8000);
   // Load the real sessions, then reseed so the tiles are random ZAO people each game.
   loadSessions().then(function () { return resolvePfps(); }).then(function () { newGame(); });
 })();

@@ -273,10 +273,16 @@
 
   render();
 
-  // If there is no wallet at all (not in a Mini App), soften the CTA up front.
+  // Funding a bounty is an on-chain action that needs a wallet, which only the Farcaster app
+  // provides. On the open web there is no wallet, so replace the whole create form with a
+  // clean "open in Farcaster" panel - never present a flow that would fail or crash.
+  function gateForWeb() {
+    var box = mount.querySelector('.zgb-box');
+    if (box) box.innerHTML = '<p class="zgb-note">Funding a clip bounty happens onchain on Base, so it needs the Farcaster app wallet. <a href="' + APP_URL + '" target="_blank" rel="noopener">Open in Farcaster</a> to put up a bounty for this recording.</p>';
+  }
   if (Z.getProvider) {
-    Z.getProvider().then(function (p) {
-      if (!p) setNote('Open this recording in the Farcaster app to fund a bounty with your wallet. <a href="' + APP_URL + '" target="_blank" rel="noopener">Open in Farcaster</a>.');
-    });
+    Z.getProvider().then(function (p) { if (!p) gateForWeb(); });
+  } else {
+    gateForWeb();
   }
 })();
