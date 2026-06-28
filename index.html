@@ -1043,19 +1043,19 @@
   <section class="section home-arcade">
     <h2>While you decide - play the arcade</h2>
     <p class="one-liner">Low-commitment <span class="accent">doors into the season.</span> No signup to play.</p>
-    <p style="max-width: 600px; margin: 0 auto;">Climb a monthly board, test what you know about the ZAO for the weekly pot, or find out what you should build - each one is a way in.</p>
+    <p style="max-width: 600px; margin: 0 auto;">Play ZAO 2048, test what you know about the ZAO, or find out what you should build - each one is a way in.</p>
 
     <div class="ha-grid">
       <a class="ha-card" href="/game/2048">
-        <span class="ha-tag">Live - monthly board</span>
+        <span class="ha-tag">No signup to play</span>
         <h3>ZAO 2048</h3>
-        <p>Merge the ZAO ecosystem brands all the way up to THE ZAO. Top 10 on the monthly board win $Zabal.</p>
+        <p>Merge the ZAO ecosystem brands all the way up to THE ZAO.</p>
         <span class="ha-go">Play now -&gt;</span>
       </a>
       <a class="ha-card" href="/game/zao-trivia">
         <span class="ha-tag">Live - Wednesdays 11:30am EST</span>
         <h3>ZAO Trivia</h3>
-        <p>Questions about the ZAO and its projects. Get to the end and split the weekly $Zabal pot. Practice anytime.</p>
+        <p>Questions about the ZAO and its projects. Play it live with the community Wednesdays. Practice anytime.</p>
         <span class="ha-go">Play now -&gt;</span>
       </a>
       <a class="ha-card" href="/game/build-quiz">
@@ -1107,43 +1107,6 @@
     </div>
   </section>
 
-  <section class="section" id="leaderboard-preview" style="display:none;">
-    <style>
-      #leaderboard-preview .lbp { list-style:none; margin:0 0 1rem; padding:0; display:flex; flex-direction:column; gap:0.4rem; max-width:560px; }
-      #leaderboard-preview .lbp li { display:flex; align-items:center; gap:0.7rem; padding:0.55rem 0.8rem; background:var(--surface); border:1px solid var(--border); border-radius:8px; }
-      #leaderboard-preview .lbp-rank { font-family:'JetBrains Mono',monospace; font-size:0.85rem; color:var(--text-dim); width:1.6rem; flex:none; }
-      #leaderboard-preview .lbp-rank.top { color:var(--gold); }
-      #leaderboard-preview .lbp img { width:26px; height:26px; border-radius:50%; object-fit:cover; flex:none; }
-      #leaderboard-preview .lbp-name { flex:1; font-size:0.9rem; }
-      #leaderboard-preview .lbp-score { font-family:'JetBrains Mono',monospace; color:var(--cyan); font-size:0.85rem; }
-    </style>
-    <h2>Top builders on /zabal</h2>
-    <p>Live engagement on the /zabal channel, scored by Empire Builder for the ZABAL Gamez empire.</p>
-    <ol class="lbp" id="lb-preview"></ol>
-    <div class="btn-row">
-      <a href="/leaderboard" class="btn btn-ghost">Full leaderboard</a>
-    </div>
-    <script>
-    (function(){
-      function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
-      var sec = document.getElementById('leaderboard-preview');
-      var el = document.getElementById('lb-preview');
-      fetch('/api/empire-leaderboard?limit=5', { cache: 'no-store' })
-        .then(function(r){ return r.json(); })
-        .then(function(d){
-          var rows = (d && d.entries) || [];
-          if (!rows.length) return; // stay hidden if there is nothing to show
-          el.innerHTML = rows.map(function(r, i){
-            var who = '@' + esc(r.username || r.displayName);
-            var pfp = r.pfpUrl ? '<img src="'+esc(r.pfpUrl)+'" alt="">' : '';
-            return '<li><span class="lbp-rank'+(i<3?' top':'')+'">'+esc(r.rank || i+1)+'</span>'+pfp+'<span class="lbp-name">'+who+'</span><span class="lbp-score">'+esc(r.score)+'</span></li>';
-          }).join('');
-          sec.style.display = '';
-        })
-        .catch(function(){ /* leave hidden on error */ });
-    })();
-    </script>
-  </section>
 
   <section class="section">
     <h2>Get the ZABAL Gamez collectible</h2>

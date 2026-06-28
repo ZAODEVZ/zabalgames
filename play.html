@@ -214,7 +214,6 @@
     <nav class="arcade-foot-col" aria-label="Data">
       <h4>Data</h4>
       <a href="/recordings.html">Recordings</a>
-      <a href="/leaderboard">Leaderboard</a>
       <a href="/streams.html">Streams</a>
       <a href="/changelog.html">Changelog</a>
     </nav>
@@ -719,14 +718,7 @@
   function shareScore(platform) {
     var tile = bestTileEl.textContent || 'ZAO';
     var shown = Math.max(score, myBest, bestScore);
-    // Lead with the standing if we know it (top 3 gets a crown-y line), else the score + tile.
-    var standing = '';
-    if (myRank === 1) standing = 'I am #1 on the ZABAL Gamez monthly board';
-    else if (myRank && myRank <= 10) standing = 'I cracked the top 10 (#' + myRank + ') on the ZABAL Gamez monthly board';
-    else if (myRank) standing = 'I am #' + myRank + ' this month on ZABAL Gamez';
-    var text = standing
-      ? standing + ' - ' + shown + ' on ZAO 2048, reaching ' + tile + '. Can you beat me?'
-      : 'I climbed to ' + tile + ' on ZAO 2048 - ' + shown + ' points. How far through the ZABAL Gamez workshop season can you get?';
+    var text = 'I climbed to ' + tile + ' on ZAO 2048 - ' + shown + ' points. How far through the ZABAL Gamez workshop season can you get?';
     var url = playUrl();
     if (window.ZABAL && window.ZABAL.share) {
       window.ZABAL.share({ platform: platform, text: text, url: url, target: 'play-score-' + platform });
