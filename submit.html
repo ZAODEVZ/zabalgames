@@ -57,6 +57,23 @@
     .sb-foot { font-size: 0.82rem; color: var(--text-dim); margin-top: 1.4rem; }
     .sb-foot a { color: var(--cyan); }
     .empty { color: var(--text-dim); font-size: 0.9rem; }
+    .sb-id { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.8rem 1rem; margin: 0 0 1.2rem; }
+    .sb-id .lbl { font-size: 0.78rem; color: var(--text-dim); display: block; margin: 0 0 0.4rem; }
+    .sb-id .you { font-size: 0.92rem; color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
+    .sb-id-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .sb-in { flex: 1 1 180px; box-sizing: border-box; background: var(--surface, #121217); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font: inherit; font-size: 0.9rem; padding: 0.5rem 0.7rem; }
+    .sb-actions2 { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 0.5rem; }
+    .sb-answer-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); background: none; border: 1px solid var(--border); border-radius: 8px; padding: 0.3rem 0.7rem; cursor: pointer; flex: 0 0 auto; align-self: center; }
+    .sb-answer-btn:hover { border-color: var(--cyan); }
+    .sb-form { margin-top: 0.6rem; display: none; }
+    .sb-form.open { display: block; }
+    .sb-ta { width: 100%; box-sizing: border-box; background: var(--surface, #121217); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font: inherit; font-size: 0.92rem; padding: 0.55rem 0.7rem; min-height: 56px; resize: vertical; }
+    .sb-go { background: var(--zabal); border: 0; color: #fff; border-radius: 8px; padding: 0.45rem 1rem; font: inherit; font-weight: 600; font-size: 0.86rem; cursor: pointer; }
+    .sb-go:disabled { opacity: 0.6; cursor: default; }
+    .sb-or { font-size: 0.8rem; color: var(--text-dim); }
+    .sb-or a { color: var(--cyan); }
+    .sb-stat { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.35rem; min-height: 1rem; }
+    .sb-stat.ok { color: var(--cyan); }
   </style>
 </head>
 <body>
@@ -86,10 +103,19 @@
   <div class="sb-wrap">
     <div class="sb-deal">
       <h2>How it works</h2>
-      <p>These prompts live on the ZABAL Gamez magnet. Pick the ones that fit and answer - it takes a minute. When your answer is approved, your <strong>collectible comes to you by email</strong>, no need to come back. The wallet prompt is how your on-chain collectible reaches you.</p>
+      <p>Pick the prompts that fit and answer them - right here, or on the magnet. When your answer is <strong>approved</strong>, your collectible is airdropped to you (wallet or email). The wallet prompt is how your on-chain collectible reaches you.</p>
       <div class="sb-cta">
-        <a class="btn primary" id="sb-open" href="https://collect.zabalgamez.com" target="_blank" rel="noopener">Open the magnet</a>
+        <a class="btn" id="sb-open" href="https://collect.zabalgamez.com" target="_blank" rel="noopener">Prefer the magnet? Open it</a>
         <a class="btn" href="/recordings">Browse the sessions first</a>
+      </div>
+    </div>
+
+    <div class="sb-id" id="sb-id">
+      <span class="lbl">Submitting as</span>
+      <div id="sb-who"><span class="you" id="sb-you">a guest</span></div>
+      <div class="sb-id-row" id="sb-anon" style="margin-top:0.5rem;">
+        <input class="sb-in" id="sb-handle" type="text" placeholder="your handle (optional)" maxlength="32" autocomplete="off">
+        <input class="sb-in" id="sb-email" type="email" placeholder="email - so we can send your collectible" maxlength="120" autocomplete="off">
       </div>
     </div>
 
@@ -111,30 +137,70 @@
 (function () {
   'use strict';
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var MAGNET = 'https://collect.zabalgamez.com';
+  var signedIn = false; // Farcaster (Quick Auth binds the submission to a verified profile)
 
   function render(data) {
-    var magnet = (data && data.magnet_url) || 'https://collect.zabalgamez.com';
-    document.getElementById('sb-open').href = magnet;
+    MAGNET = (data && data.magnet_url) || MAGNET;
+    document.getElementById('sb-open').href = MAGNET;
 
     var groups = (data && data.groups) || [];
     var host = document.getElementById('sb-groups');
-    if (!groups.length) { host.innerHTML = '<p class="empty">No prompts right now. <a href="' + esc(magnet) + '" target="_blank" rel="noopener" style="color:var(--cyan)">Open the magnet</a>.</p>'; return; }
+    if (!groups.length) { host.innerHTML = '<p class="empty">No prompts right now. <a href="' + esc(MAGNET) + '" target="_blank" rel="noopener" style="color:var(--cyan)">Open the magnet</a>.</p>'; return; }
 
     host.innerHTML = groups.map(function (g) {
       var cards = (g.prompts || []).map(function (p) {
         var cls = 'sb-card' + (p.id === 'wallet' ? ' wallet' : '');
-        return '<div class="' + cls + '"><div class="sb-main">' +
+        var ph = p.id === 'wallet' ? '0x... (your Base wallet)' : 'Your answer';
+        return '<div class="' + cls + '" data-prompt="' + esc(p.id) + '"><div class="sb-main" style="flex:1 1 100%;">' +
           (p.tag ? '<span class="sb-tag">' + esc(p.tag) + '</span>' : '') +
           '<div class="sb-q">' + esc(p.q) + '</div>' +
           (p.why ? '<div class="sb-why">' + esc(p.why) + '</div>' : '') +
-          '</div>' +
-          '<a class="sb-answer" href="' + esc(magnet) + '" target="_blank" rel="noopener">Answer -&gt;</a>' +
-          '</div>';
+          '<div class="sb-actions2"><button class="sb-answer-btn" type="button" data-toggle>Answer here</button>' +
+          '<span class="sb-or">or <a href="' + esc(MAGNET) + '" target="_blank" rel="noopener">on the magnet</a></span></div>' +
+          '<div class="sb-form"><textarea class="sb-ta" placeholder="' + esc(ph) + '" maxlength="2000"></textarea>' +
+          '<div class="sb-actions2"><button class="sb-go" type="button" data-submit>Submit</button></div>' +
+          '<div class="sb-stat"></div></div>' +
+          '</div></div>';
       }).join('');
       return '<section class="sb-group"><div class="sb-group-head"><h2>' + esc(g.title) + '</h2>' +
         (g.blurb ? '<span class="blurb">' + esc(g.blurb) + '</span>' : '') + '</div>' +
         '<div class="sb-list">' + cards + '</div></section>';
     }).join('');
+
+    // wire each card
+    host.querySelectorAll('.sb-card').forEach(function (card) {
+      var promptId = card.getAttribute('data-prompt');
+      var form = card.querySelector('.sb-form');
+      var ta = card.querySelector('.sb-ta');
+      var stat = card.querySelector('.sb-stat');
+      card.querySelector('[data-toggle]').addEventListener('click', function () {
+        form.classList.toggle('open'); if (form.classList.contains('open')) ta.focus();
+      });
+      card.querySelector('[data-submit]').addEventListener('click', function () {
+        var answer = (ta.value || '').trim();
+        if (!answer) { stat.className = 'sb-stat'; stat.textContent = 'Type an answer first.'; return; }
+        var btn = card.querySelector('[data-submit]');
+        btn.disabled = true; stat.className = 'sb-stat'; stat.textContent = 'Submitting...';
+        var body = { promptId: promptId, answer: answer };
+        if (promptId === 'wallet' && /^0x[0-9a-fA-F]{40}$/.test(answer)) body.wallet = answer;
+        var handle = (document.getElementById('sb-handle').value || '').trim();
+        var email = (document.getElementById('sb-email').value || '').trim();
+        if (handle) body.handle = handle;
+        if (email) body.email = email;
+        submit(body).then(function (d) {
+          if (d && d.ok) {
+            stat.className = 'sb-stat ok';
+            stat.textContent = 'In review - thank you. Approved answers get the collectible' + (signedIn ? '.' : ' (add an email above so we can reach you).');
+            ta.value = ''; ta.disabled = true; btn.style.display = 'none';
+          } else if (d && d.reason === 'limit') {
+            btn.disabled = false; stat.textContent = 'You have submitted a lot already - thank you. Try again later.';
+          } else {
+            btn.disabled = false; stat.textContent = 'Could not submit: ' + ((d && (d.error || d.reason)) || 'try again') + '. Or answer on the magnet.';
+          }
+        }).catch(function () { btn.disabled = false; stat.textContent = 'Could not submit right now. Try the magnet.'; });
+      });
+    });
 
     if (data && data.command_center_url) {
       var cc = document.getElementById('sb-cc');
@@ -143,12 +209,39 @@
     }
   }
 
+  // Post a submission: Farcaster JWT when available (binds the profile), else plain.
+  function submit(body) {
+    if (window.ZABAL && window.ZABAL.authedFetch) {
+      return window.ZABAL.authedFetch('/api/submissions', body).then(function (d) {
+        if (d && d.reason === 'not-in-miniapp') return plainSubmit(body);
+        return d;
+      });
+    }
+    return plainSubmit(body);
+  }
+  function plainSubmit(body) {
+    return fetch('/api/submissions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json(); });
+  }
+
+  // Show who you are submitting as (Farcaster handle hides the anonymous fields).
+  function initIdentity() {
+    if (!(window.ZABAL && window.ZABAL.getUser)) return;
+    window.ZABAL.getUser().then(function (u) {
+      if (u && u.username) {
+        signedIn = true;
+        document.getElementById('sb-you').textContent = '@' + u.username;
+        document.getElementById('sb-anon').style.display = 'none';
+      }
+    }).catch(function () {});
+  }
+
   fetch('/data/colab-prompts.json', { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(render)
     .catch(function () {
       document.getElementById('sb-groups').innerHTML = '<p class="empty">Could not load the prompts. <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener" style="color:var(--cyan)">Open the magnet directly</a>.</p>';
     });
+  initIdentity();
 })();
 </script>
 
