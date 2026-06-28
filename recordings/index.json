@@ -64,10 +64,10 @@
     },
     {
       "type": "workshop",
-      "title": "Harness, and joining Bankr",
+      "title": "ZABAL GAMEZ Workshop w/Saltorious from Bankr",
       "presenter": "Saltorious",
       "handle": "@saltorious.eth",
-      "org": null,
+      "org": "Bankr",
       "track": "builder",
       "technical": 7,
       "format": "Talk + Q&A, recorded",
@@ -76,14 +76,25 @@
       "page": "https://zabalgamez.com/recordings/22",
       "youtube": null,
       "recording": null,
-      "transcript": null,
-      "transcript_raw": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-harness-and-joining-bankr.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-harness-and-joining-bankr.md",
       "link": null,
       "okd": null,
       "cast_hash": null,
-      "summary": "Harness, the tool he built, and Bankr, the team he just joined - what they are and how they fit into building today.",
-      "topics": [],
-      "takeaways": []
+      "summary": "Saltorious on Harness, the tool he built, and Bankr, the team he just joined - what each is and how they fit into how people build today. A builder-track look at shipping your own tooling and what it means to go from solo builder to joining a team.",
+      "topics": [
+        "Harness",
+        "Bankr",
+        "Building tools",
+        "Onchain tools",
+        "Farcaster"
+      ],
+      "takeaways": [
+        "Harness - the tool Saltorious built, and why he built it.",
+        "Bankr - the team he just joined and what they do.",
+        "How both fit into the way people build onchain right now.",
+        "Going from a solo builder shipping a tool to joining a team."
+      ]
     },
     {
       "type": "workshop",
