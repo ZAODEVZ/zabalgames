@@ -131,17 +131,11 @@
       <p class="res-msg" id="res-msg"></p>
       <div class="res-pot" id="res-pot"></div>
       <div class="res-actions">
-        <button class="btn primary" id="res-submit" type="button">Submit to the board</button>
-        <button class="btn" id="res-share" type="button">Share my score</button>
+        <button class="btn primary" id="res-share" type="button">Share my score</button>
         <button class="btn" id="res-retake" type="button">Play again</button>
       </div>
       <div class="res-status" id="res-status" role="status"></div>
-      <div class="tv-board" id="tv-board" style="display:none;">
-        <h3>Top this month</h3>
-        <p class="sub">Best score per player. Top of the board feeds the weekly pot.</p>
-        <div id="tv-board-list"></div>
-      </div>
-      <p class="res-foot">How the pot works: each Wednesday 11:30am EST, everyone who finishes the 10 questions splits the weekly $Zabal pot. Also play <a href="/game/2048">ZAO 2048</a> or browse the <a href="/recordings">recordings</a> to learn the answers.</p>
+      <p class="res-foot">Play it live with the community every Wednesday 11:30am EST. Also play <a href="/game/2048">ZAO 2048</a> or browse the <a href="/recordings">recordings</a> to learn the answers.</p>
     </section>
   </div>
 
@@ -257,46 +251,21 @@
   });
 
   // Pull the monthly trivia board and show the top finishers under the result.
-  function renderBoard() {
-    var box = document.getElementById('tv-board');
-    var list = document.getElementById('tv-board-list');
-    fetch('/api/game?game=zaotrivia&period=monthly', { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (!d || d.configured === false) { box.style.display = 'none'; return; }
-        var rows = (d && d.entries) || [];
-        if (!rows.length) {
-          list.innerHTML = '<div class="empty">No scores yet this month. Submit yours and take the top spot.</div>';
-        } else {
-          list.innerHTML = '<div class="tv-lb">' + rows.slice(0, 10).map(function (e) {
-            var top = e.rank <= 3 ? ' top' : '';
-            return '<div class="tv-lb-row"><span class="tv-lb-rank' + top + '">' + e.rank + '</span>' +
-              '<a class="tv-lb-handle" href="https://farcaster.xyz/' + esc(e.handle) + '" target="_blank" rel="noopener">@' + esc(e.handle) + '</a>' +
-              '<span class="tv-lb-n">' + e.score + '/10</span></div>';
-          }).join('') + '</div>';
-        }
-        box.style.display = '';
-      })
-      .catch(function () { box.style.display = 'none'; });
-  }
-
   function showResult() {
     quiz.classList.add('hide');
     result.classList.add('show');
-    renderBoard();
-    var pct = Math.round((score / QS.length) * 100);
     document.getElementById('res-score').innerHTML = score + ' <span class="accent">/ ' + QS.length + '</span>';
     var msg = document.getElementById('res-msg');
     var pot = document.getElementById('res-pot');
     if (score === QS.length) {
       msg.textContent = 'Perfect run. You know the ZAO.';
-      pot.innerHTML = '<b>You finished - you are in the pot.</b> Everyone who completes all 10 in the live Wednesday round splits the weekly $Zabal pot.';
+      pot.innerHTML = 'Nailed all 10. Play it live with the community every Wednesday 11:30am EST.';
     } else if (score >= 7) {
       msg.textContent = 'Strong. A few to brush up on - the answers are in the recordings.';
-      pot.innerHTML = 'Finish all 10 in the live Wednesday round (11:30am EST) to split the pot. So close.';
+      pot.innerHTML = 'So close. Run it back, or join the live round Wednesday 11:30am EST.';
     } else {
       msg.textContent = 'Good start. Browse the recordings and the project pages, then run it back.';
-      pot.innerHTML = 'The pot goes to everyone who finishes the live Wednesday round. Practice here as much as you like.';
+      pot.innerHTML = 'Practice here as much as you like, then play the live round Wednesday 11:30am EST.';
     }
   }
 
@@ -309,26 +278,9 @@
   });
 
   document.getElementById('res-share').addEventListener('click', function () {
-    var text = 'I scored ' + score + '/' + QS.length + ' on ZAO Trivia. The weekly quiz is live Wednesdays 11:30am EST - finish to split the pot. Think you know the ZAO?';
+    var text = 'I scored ' + score + '/' + QS.length + ' on ZAO Trivia. The weekly quiz is live Wednesdays 11:30am EST. Think you know the ZAO?';
     if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: ['https://zabalgamez.com/game/zao-trivia'], channelKey: 'zabal' });
-    else if (window.ZABAL && window.ZABAL.openUrl) window.ZABAL.openUrl('https://farcaster.xyz/miniapps/zabal-gamez');
-  });
-
-  document.getElementById('res-submit').addEventListener('click', function () {
-    var st = document.getElementById('res-status');
-    if (window.ZABAL && window.ZABAL.submitScore) {
-      st.textContent = 'Submitting...';
-      window.ZABAL.submitScore('zaotrivia', score, null).then(function (d) {
-        if (d && d.ok && d.counted) {
-          if (d.streak != null && d.streak > 0) { var _ts = document.getElementById('tv-streak'); if (_ts) { _ts.style.display = ''; _ts.textContent = d.streak + ' day streak'; } }
-          st.textContent = 'On the board - rank ' + (d.rank || '?') + '. Best this month: ' + (d.best != null ? d.best : score) + '/' + QS.length + '.' + (d.streak > 1 ? ' ' + d.streak + ' days in a row.' : '');
-        }
-        else if (d && d.reason === 'not-in-miniapp') st.innerHTML = 'Open in the Farcaster app to save your score. <a href="https://farcaster.xyz/miniapps/zabal-gamez" target="_blank" rel="noopener">Open</a>.';
-        else st.textContent = 'Scored ' + score + '/' + QS.length + '. Saved if you are signed in.';
-      }).catch(function () { st.textContent = 'Could not save right now - your score still counts when you play live.'; });
-    } else {
-      st.textContent = 'Score: ' + score + '/' + QS.length + '. Open in Farcaster to save it to the board.';
-    }
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent('https://zabalgamez.com/game/zao-trivia'), '_blank', 'noopener');
   });
 
   fetch('/data/zao-trivia.json', { cache: 'no-store' })
