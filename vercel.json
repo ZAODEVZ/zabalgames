@@ -8,7 +8,8 @@
     { "path": "/api/monthly-winner", "schedule": "0 14 1 * *" }
   ],
   "rewrites": [
-    { "source": "/profiles/:handle", "destination": "/profile.html" }
+    { "source": "/profiles/:handle", "destination": "/profile.html" },
+    { "source": "/submissions/:id", "destination": "/submissions.html" }
   ],
   "redirects": [
     { "source": "/game/2048", "destination": "/play",                                "permanent": false },
