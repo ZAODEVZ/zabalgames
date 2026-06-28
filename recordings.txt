@@ -1,17 +1,24 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-26 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 25 recordings, newest first.
+Generated 2026-06-28 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 25 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
 Chronological feed of every recording: https://zabalgamez.com/streams
 
 ======================================================================
-[1] Snapchain under the hood
+[1] ZABAL GAMEZ Workshop w/topocount from Neynar
 workshop  |  track: builder  |  2026-06-23
 Presenter: topocount (@topocount.eth), Neynar
 Watch: https://zabalgamez.com/recordings/24
-Summary: Snapchain under the hood - how Snapchain signers work, OG signers and Snapchain-native signers, Snapchain storage, and potential future work on Snapchain. Built for devs who want the behind-the-hood view.
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-snapchain-under-the-hood.md
+Summary: topocount from Neynar goes under the hood of Snapchain, the storage and signing layer behind Farcaster - how Snapchain signers work, OG signers vs Snapchain-native signers, how storage is structured, the move to bring more of the Farcaster client (channels, blocks) onto the protocol, and where Snapchain is headed. Built for developers who want the behind-the-hood view of Farcaster infrastructure.
+Takeaways:
+  - Snapchain is the open social backend of Farcaster - it accepts every cast, like, and follow and distributes them to all clients, and anyone can inspect or build on it.
+  - How Snapchain signers work, and the difference between OG signers and Snapchain-native signers.
+  - The plan to move more of what lives in the Farcaster client - channels, blocks - onto the protocol, so other clients can build on it.
+  - topocount's path from smart-contract / EVM engineer to working on Snapchain itself in Rust at Neynar.
+Topics: Snapchain, Farcaster protocol, Neynar, Signers, Rust, Clients
 
 ======================================================================
 [2] Building the Bizarre Pixel Studio

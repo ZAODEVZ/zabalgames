@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Snapchain under the hood - topocount - ZABAL Gamez Season 1</title>
-  <meta name="description" content="Snapchain under the hood - how Snapchain signers work, OG signers and Snapchain-native signers, Snapchain storage, and potential future work on Snapchain. Built for devs who want the behind-the-hood v">
+  <title>ZABAL GAMEZ Workshop w/topocount from Neynar - topocount - ZABAL Gamez Season 1</title>
+  <meta name="description" content="topocount from Neynar goes under the hood of Snapchain, the storage and signing layer behind Farcaster - how Snapchain signers work, OG signers vs Snapchain-native signers, how storage is structured, ">
   <link rel="canonical" href="https://zabalgamez.com/recordings/24">
-  <meta property="og:title" content="Snapchain under the hood - topocount - ZABAL Gamez">
-  <meta property="og:description" content="Snapchain under the hood - how Snapchain signers work, OG signers and Snapchain-native signers, Snapchain storage, and potential future work on Snapchain. Built for devs who want the behind-the-hood v">
+  <meta property="og:title" content="ZABAL GAMEZ Workshop w/topocount from Neynar - topocount - ZABAL Gamez">
+  <meta property="og:description" content="topocount from Neynar goes under the hood of Snapchain, the storage and signing layer behind Farcaster - how Snapchain signers work, OG signers vs Snapchain-native signers, how storage is structured, ">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://zabalgamez.com/recordings/24">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Snapchain under the hood - topocount">
-  <meta name="twitter:description" content="Snapchain under the hood - how Snapchain signers work, OG signers and Snapchain-native signers, Snapchain storage, and potential future work on Snapchain. Built for devs who want the behind-the-hood v">
+  <meta name="twitter:title" content="ZABAL GAMEZ Workshop w/topocount from Neynar - topocount">
+  <meta name="twitter:description" content="topocount from Neynar goes under the hood of Snapchain, the storage and signing layer behind Farcaster - how Snapchain signers work, OG signers vs Snapchain-native signers, how storage is structured, ">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: Neynar","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/24","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
@@ -71,7 +71,7 @@
 
   <header class="hero" style="padding-bottom: 0.6rem;">
     <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / Neynar</div>
-    <h1>Snapchain under the hood</h1>
+    <h1>ZABAL GAMEZ Workshop w/topocount from Neynar</h1>
     <p class="rec-by">
       topocount <span class="dot">&middot;</span> @topocount.eth <span class="dot">&middot;</span> Neynar
       <span class="dot">&middot;</span> <span class="rec-format">Builder track - Dev talk, recorded</span>
@@ -85,17 +85,42 @@
   </div>
 
   <div class="rec-links">
+    <a class="rec-link" href="#rec-transcript">Read the transcript</a>
     <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
     <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
   </div>
 
   <section class="section" style="margin-top: 1.4rem;">
     <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
-      Snapchain under the hood - how Snapchain signers work, OG signers and Snapchain-native signers, Snapchain storage, and potential future work on Snapchain. Built for devs who want the behind-the-hood view.
+      topocount from Neynar goes under the hood of Snapchain, the storage and signing layer behind Farcaster - how Snapchain signers work, OG signers vs Snapchain-native signers, how storage is structured, the move to bring more of the Farcaster client (channels, blocks) onto the protocol, and where Snapchain is headed. Built for developers who want the behind-the-hood view of Farcaster infrastructure.
     </p>
+
+    <div class="rec-label">Topics</div>
+    <div class="rec-topics">
+      <span class="rec-topic">Snapchain</span>
+      <span class="rec-topic">Farcaster protocol</span>
+      <span class="rec-topic">Neynar</span>
+      <span class="rec-topic">Signers</span>
+      <span class="rec-topic">Rust</span>
+      <span class="rec-topic">Clients</span>
+    </div>
+
+    <div class="rec-label">Key takeaways</div>
+    <ul class="rec-takeaways">
+      <li>Snapchain is the open social backend of Farcaster - it accepts every cast, like, and follow and distributes them to all clients, and anyone can inspect or build on it.</li>
+      <li>How Snapchain signers work, and the difference between OG signers and Snapchain-native signers.</li>
+      <li>The plan to move more of what lives in the Farcaster client - channels, blocks - onto the protocol, so other clients can build on it.</li>
+      <li>topocount's path from smart-contract / EVM engineer to working on Snapchain itself in Rust at Neynar.</li>
+    </ul>
   </section>
 
   <p style="margin-top: 1.4rem; font-size: 0.85rem;"><a href="/recordings">All recordings</a> &nbsp;-&nbsp; <a href="/recaps">Session recaps</a> &nbsp;-&nbsp; <a href="/#schedule">Upcoming schedule</a></p>
+
+  <section class="section rec-transcript-section">
+    <div class="rec-label">Transcript</div>
+    <p style="color:var(--text-dim);font-size:0.82rem;margin:0 0 0.5rem;">Hover any line and click # to copy a link straight to it.</p>
+    <div id="rec-transcript" data-src="/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-snapchain-under-the-hood.md" data-yt=""></div>
+  </section>
 
   <section id="zg-clip-bounty"></section>
 
@@ -141,7 +166,12 @@
 (function () {
   var PAGE_URL = "https://zabalgamez.com/recordings/24";
   var TOPICS = [
-    "Snapchain under the hood"
+    "Snapchain",
+    "Farcaster protocol",
+    "Neynar",
+    "Signers",
+    "Rust",
+    "Clients"
   ];
 
   document.querySelectorAll('.rec-watch-share').forEach(function (b) {
