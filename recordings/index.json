@@ -41,7 +41,7 @@
     },
     {
       "type": "workshop",
-      "title": "Building the Bizarre Pixel Studio",
+      "title": "ZABAL GAMEZ Workshop w/Dylan Yarter from BizarreBeasts",
       "presenter": "Dylan Yarter",
       "handle": "@bizarrebeast",
       "org": "BizarreBeasts",
@@ -53,14 +53,25 @@
       "page": "https://zabalgamez.com/recordings/23",
       "youtube": null,
       "recording": null,
-      "transcript": null,
-      "transcript_raw": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-bizarre-pixel-studio.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-bizarre-pixel-studio.md",
       "link": null,
       "okd": null,
       "cast_hash": null,
-      "summary": "Building the Bizarre Pixel Studio - a browser-based pixel art and animation tool where your artwork is also editable code, launching as a webpage and mini app for the BizarreBeasts and Farcaster community. Plus the BizarreBeasts miniapp, games, and artwork.",
-      "topics": [],
-      "takeaways": []
+      "summary": "Dylan Yarter on building the Bizarre Pixel Studio - a browser-based pixel art and animation tool where your artwork is also editable code, shipped as a webpage and a Farcaster Mini App for the BizarreBeasts and Farcaster community. Plus the BizarreBeasts miniapp, games, and artwork.",
+      "topics": [
+        "Pixel art",
+        "Creative coding",
+        "Farcaster Mini App",
+        "BizarreBeasts",
+        "Animation"
+      ],
+      "takeaways": [
+        "Building a pixel art and animation studio that runs in the browser.",
+        "Artwork that doubles as editable code - the output is also the source.",
+        "Shipping the same tool as a webpage and a Farcaster Mini App.",
+        "The wider BizarreBeasts world - the miniapp, the games, and the artwork."
+      ]
     },
     {
       "type": "workshop",

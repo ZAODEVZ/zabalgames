@@ -22,11 +22,18 @@ Takeaways:
 Topics: Snapchain, Farcaster protocol, Neynar, Signers, Rust, Clients
 
 ======================================================================
-[2] Building the Bizarre Pixel Studio
+[2] ZABAL GAMEZ Workshop w/Dylan Yarter from BizarreBeasts
 workshop  |  track: creator  |  2026-06-23
 Presenter: Dylan Yarter (@bizarrebeast), BizarreBeasts
 Watch: https://zabalgamez.com/recordings/23
-Summary: Building the Bizarre Pixel Studio - a browser-based pixel art and animation tool where your artwork is also editable code, launching as a webpage and mini app for the BizarreBeasts and Farcaster community. Plus the BizarreBeasts miniapp, games, and artwork.
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-bizarre-pixel-studio.md
+Summary: Dylan Yarter on building the Bizarre Pixel Studio - a browser-based pixel art and animation tool where your artwork is also editable code, shipped as a webpage and a Farcaster Mini App for the BizarreBeasts and Farcaster community. Plus the BizarreBeasts miniapp, games, and artwork.
+Takeaways:
+  - Building a pixel art and animation studio that runs in the browser.
+  - Artwork that doubles as editable code - the output is also the source.
+  - Shipping the same tool as a webpage and a Farcaster Mini App.
+  - The wider BizarreBeasts world - the miniapp, the games, and the artwork.
+Topics: Pixel art, Creative coding, Farcaster Mini App, BizarreBeasts, Animation
 
 ======================================================================
 [3] Harness, and joining Bankr
