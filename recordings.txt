@@ -70,6 +70,7 @@ Topics: community building, adding value, communities, regen, getting involved, 
 workshop  |  track: builder  |  2026-06-20
 Presenter: Ali Tiknazoglu (@alitiknazoglu)
 Watch: https://zabalgamez.com/recordings/17
+Video: https://youtu.be/C-va-jfaO1U
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-20-previbecoding.md
 Summary: Ali Tiknazoglu on previbecoding - what he is learning building with AI tooling, aimed at people who are just learning to code now. A hands-on look at building software with AI when you are not a traditional engineer, what previbecoding means in practice, and the lessons that carry over for anyone starting out.
 Takeaways:

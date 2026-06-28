@@ -6,6 +6,7 @@ date: 2026-06-20T00:00:00.000Z
 format: Live talk plus Q and A, recorded
 language: en
 track: builder
+youtube: https://youtu.be/C-va-jfaO1U
 topics: [AI coding, Vibe coding, Learning to code, AI tooling, Building]
 ---
 
