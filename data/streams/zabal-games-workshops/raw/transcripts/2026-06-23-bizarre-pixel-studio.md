@@ -7,6 +7,7 @@ date: 2026-06-23T00:00:00.000Z
 format: Live talk plus Q and A, recorded
 language: en
 track: creator
+youtube: https://youtu.be/i_OX-nSnwkA
 topics: [Pixel art, Creative coding, Farcaster Mini App, BizarreBeasts, Animation]
 ---
 
