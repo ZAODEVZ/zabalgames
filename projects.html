@@ -40,6 +40,8 @@
     .proj-badge.m-concept { color: var(--zabal); border-color: rgba(167,139,250,0.4); background: rgba(167,139,250,0.07); }
     .proj-badge.adopt { color: var(--text-muted); background: transparent; }
     .proj-status { font-size: 0.68rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.04em; }
+    .proj-claim { margin-top: 0.7rem; font-family: inherit; font-size: 0.82rem; color: #fff; background: var(--zabal); border: 0; border-radius: 8px; padding: 0.42rem 0.95rem; cursor: pointer; }
+    .proj-claim:hover { filter: brightness(1.12); }
     .proj-ship { font-size: 0.86rem; color: var(--text-muted); margin: 0.5rem 0 0.6rem; line-height: 1.5; }
     .proj-ship b { font-family: var(--font-pixel); font-size: 0.5rem; letter-spacing: 0.06em; color: var(--gold); text-transform: uppercase; margin-right: 0.45rem; }
     .proj-links { font-size: 0.82rem; display: flex; gap: 0.9rem; flex-wrap: wrap; }
@@ -84,7 +86,7 @@
       - <strong>BUILD</strong> - a concept with no repo yet. Build it from scratch on the rail it names.
     </p>
     <p>
-      Pick one, DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a> with the project number to claim it (first-come-first-served, one builder per project). You keep the repo and the credit; it stays open-source MIT. Full set also in <a href="/llms.txt">llms.txt</a> for any AI harness to load.
+      Pick one and hit <strong>Claim this for July</strong> on its card - it drops a public "I am adopting this" cast that tags <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a>, so you start building in public from minute one (first-come, one builder per project). You keep the repo and the credit; it stays open-source MIT. Full set also in <a href="/llms.txt">llms.txt</a> for any AI harness to load.
     </p>
     <p>
       New to this? The <a href="/playbook.html">Builder Playbook</a> covers the tracks, the rails, and the July bar - then <a href="/enter.html">register your build</a> so it counts.
@@ -152,11 +154,25 @@
                 '<p>' + esc(P.description) + '</p>' +
                 (P.ship_next ? '<p class="proj-ship"><b>ship next</b>' + esc(P.ship_next) + '</p>' : '') +
                 (links.length ? '<div class="proj-links">' + links.join(' ') + '</div>' : '') +
+                ((P.status !== 'claimed' && P.status !== 'shipped')
+                  ? '<button class="proj-claim" type="button" data-name="' + esc(P.name) + '" data-link="' + esc(P.repo || P.live || P.spec_url || 'https://zabalgamez.com/projects') + '">Claim this for July</button>'
+                  : '') +
                 '</div>';
             });
           });
         });
         listEl.innerHTML = html;
+        // Claim = a one-tap public "I am adopting this" cast (build in public + tags the team),
+        // replacing the old "DM @bettercallzaal" dead end.
+        listEl.addEventListener('click', function (e) {
+          var b = e.target.closest && e.target.closest('.proj-claim');
+          if (!b) return;
+          var name = b.getAttribute('data-name') || 'a ZAO project';
+          var link = b.getAttribute('data-link') || 'https://zabalgamez.com/projects';
+          var text = 'I am adopting ' + name + ' for my ZABAL Gamez July build. Building it in public. cc @bettercallzaal';
+          if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [link], channelKey: 'zabal' });
+          else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(link), '_blank', 'noopener');
+        });
       })
       .catch(function() {
         listEl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">List unavailable right now - see <a href="/llms.txt">llms.txt</a> for the full set.</p>';
