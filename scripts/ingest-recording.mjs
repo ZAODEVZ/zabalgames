@@ -169,6 +169,9 @@ function buildRecap() {
   if (summary) r.summary = summary;
   if (m.topics && m.topics.length) r.topics = m.topics;
   if (m.youtube) r.youtube = m.youtube;
+  if (m.audio_url) r.audio_url = m.audio_url;
+  if (m.listen_url) r.listen_url = m.listen_url;
+  if (m.listen_label) r.listen_label = m.listen_label;
   r.page = page;
   if (m.transcript_markdown) r.transcript = transcriptUrl;
   if (m.link) r.link = m.link;
@@ -201,7 +204,9 @@ function buildPage() {
     : (m.topics && m.topics.length ? m.topics : [m.title]);
   const ogType = yt ? 'video.other' : 'article';
 
-  // media block: video embed OR a "processing" note
+  // media block: video embed > audio player > external listen link > processing note.
+  // Audio spaces (e.g. a Farcaster Space captured on Juke) publish from audio first; once a
+  // recap video is rendered + uploaded, set `youtube` and re-ingest to swap in the embed.
   const media = yt
     ? `  <div class="rec-embed">
     <iframe id="rec-player"
@@ -211,6 +216,15 @@ function buildPage() {
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen></iframe>
   </div>`
+    : m.audio_url
+    ? `  <div class="rec-audio">
+    <div class="rec-label">Listen to the recording</div>
+    <audio controls preload="none" src="${attr(m.audio_url)}" style="width: 100%;">Your browser does not support audio playback - <a href="${attr(m.audio_url)}">download the recording</a>.</audio>
+  </div>`
+    : m.listen_url
+    ? `  <div class="rec-note">
+    Recorded live on ${esc(m.date)} as an audio space. <a href="${attr(m.listen_url)}" target="_blank" rel="noopener">Listen to the recording</a> - the summary, topics, and transcript are below, with the recap video to follow.
+  </div>`
     : `  <div class="rec-note">
     Recorded live on ${esc(m.date)}. The replay and the word-for-word transcript will be added here -
     the summary and topics are below, with the full recap to follow once the recording is processed.
@@ -219,6 +233,8 @@ function buildPage() {
   // links row
   const links = [];
   if (yt) links.push(`    <a class="rec-link primary" href="${attr(m.youtube)}" target="_blank" rel="noopener">Watch on YouTube</a>`);
+  else if (m.audio_url) links.push(`    <a class="rec-link primary" href="${attr(m.audio_url)}" target="_blank" rel="noopener">${esc(m.listen_label || 'Listen to the recording')}</a>`);
+  else if (m.listen_url) links.push(`    <a class="rec-link primary" href="${attr(m.listen_url)}" target="_blank" rel="noopener">${esc(m.listen_label || 'Listen to the recording')}</a>`);
   else if (m.link) links.push(`    <a class="rec-link primary" href="${attr(m.link)}" target="_blank" rel="noopener">${esc(m.link_label || 'Event link')}</a>`);
   if (m.transcript_markdown) links.push(`    <a class="rec-link" href="#rec-transcript">Read the transcript</a>`);
   if (m.link && yt) links.push(`    <a class="rec-link" href="${attr(m.link)}" target="_blank" rel="noopener">${esc(m.link_label || 'Learn more')}</a>`);
