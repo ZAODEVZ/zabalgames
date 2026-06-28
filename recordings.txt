@@ -29,11 +29,18 @@ Watch: https://zabalgamez.com/recordings/23
 Summary: Building the Bizarre Pixel Studio - a browser-based pixel art and animation tool where your artwork is also editable code, launching as a webpage and mini app for the BizarreBeasts and Farcaster community. Plus the BizarreBeasts miniapp, games, and artwork.
 
 ======================================================================
-[3] Harness, and joining Bankr
+[3] ZABAL GAMEZ Workshop w/Saltorious from Bankr
 workshop  |  track: builder  |  2026-06-23
-Presenter: Saltorious (@saltorious.eth)
+Presenter: Saltorious (@saltorious.eth), Bankr
 Watch: https://zabalgamez.com/recordings/22
-Summary: Harness, the tool he built, and Bankr, the team he just joined - what they are and how they fit into building today.
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-harness-and-joining-bankr.md
+Summary: Saltorious on Harness, the tool he built, and Bankr, the team he just joined - what each is and how they fit into how people build today. A builder-track look at shipping your own tooling and what it means to go from solo builder to joining a team.
+Takeaways:
+  - Harness - the tool Saltorious built, and why he built it.
+  - Bankr - the team he just joined and what they do.
+  - How both fit into the way people build onchain right now.
+  - Going from a solo builder shipping a tool to joining a team.
+Topics: Harness, Bankr, Building tools, Onchain tools, Farcaster
 
 ======================================================================
 [4] ZABAL Gamez AMA with The Farcaster Intern
