@@ -169,7 +169,7 @@
     },
     {
       "type": "workshop",
-      "title": "Previbecoding: building with AI tooling",
+      "title": "ZABAL GAMEZ Workshop w/Ali Tiknazoglu",
       "presenter": "Ali Tiknazoglu",
       "handle": "@alitiknazoglu",
       "org": null,
@@ -181,14 +181,24 @@
       "page": "https://zabalgamez.com/recordings/17",
       "youtube": null,
       "recording": null,
-      "transcript": null,
-      "transcript_raw": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-20-previbecoding.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-20-previbecoding.md",
       "link": null,
       "okd": null,
       "cast_hash": null,
-      "summary": "Previbecoding - what he is learning building with AI tooling, for people who are learning to code now.",
-      "topics": [],
-      "takeaways": []
+      "summary": "Ali Tiknazoglu on previbecoding - what he is learning building with AI tooling, aimed at people who are just learning to code now. A hands-on look at building software with AI when you are not a traditional engineer, what previbecoding means in practice, and the lessons that carry over for anyone starting out.",
+      "topics": [
+        "AI coding",
+        "Vibe coding",
+        "Learning to code",
+        "AI tooling",
+        "Building"
+      ],
+      "takeaways": [
+        "What previbecoding means in practice - building with AI tooling before you are a fluent coder.",
+        "How someone without a software background can start creating systems and code with AI.",
+        "Lessons and habits that carry over for anyone learning to code right now."
+      ]
     },
     {
       "type": "workshop",
