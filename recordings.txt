@@ -1,6 +1,6 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-06-26 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 25 recordings, newest first.
+Generated 2026-06-28 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 25 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
@@ -58,11 +58,17 @@ Takeaways:
 Topics: community building, adding value, communities, regen, getting involved, onboarding
 
 ======================================================================
-[7] Previbecoding: building with AI tooling
+[7] ZABAL GAMEZ Workshop w/Ali Tiknazoglu
 workshop  |  track: builder  |  2026-06-20
 Presenter: Ali Tiknazoglu (@alitiknazoglu)
 Watch: https://zabalgamez.com/recordings/17
-Summary: Previbecoding - what he is learning building with AI tooling, for people who are learning to code now.
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-20-previbecoding.md
+Summary: Ali Tiknazoglu on previbecoding - what he is learning building with AI tooling, aimed at people who are just learning to code now. A hands-on look at building software with AI when you are not a traditional engineer, what previbecoding means in practice, and the lessons that carry over for anyone starting out.
+Takeaways:
+  - What previbecoding means in practice - building with AI tooling before you are a fluent coder.
+  - How someone without a software background can start creating systems and code with AI.
+  - Lessons and habits that carry over for anyone learning to code right now.
+Topics: AI coding, Vibe coding, Learning to code, AI tooling, Building
 
 ======================================================================
 [8] ZABAL GAMEZ Workshop w/Dan Singjoy from Eden Fractal
