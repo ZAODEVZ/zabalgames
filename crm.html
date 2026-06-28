@@ -788,7 +788,7 @@
 
   <section id="view-players" hidden>
     <p class="crm-note">
-      The live players board. Everyone earning points this season by joining a workshop, sharing, or casting through the Mini App. It is the same activity that feeds the <a href="/leaderboard">leaderboard</a>. Get on it: <a href="/#schedule">join a session</a> or <a href="/share.html">share the season</a>.
+      The live players board. Everyone earning points this season by joining a workshop, sharing, or casting through the Mini App. Get on it: <a href="/#schedule">join a session</a> or <a href="/share.html">share the season</a>.
     </p>
     <div id="crm-ticker" class="crm-note" style="margin-bottom: 1.2rem;" hidden></div>
     <div class="player-grid" id="players-grid">
@@ -1045,7 +1045,7 @@
         renderSpotlight(); // refresh the deep card with live badges/level
       })
       .catch(function () {
-        playersGrid.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">The board is unavailable right now. See the full <a href="/leaderboard">leaderboard</a>.</p>';
+        playersGrid.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">The board is unavailable right now.</p>';
       });
   }
 
