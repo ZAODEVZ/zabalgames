@@ -7,6 +7,7 @@ date: 2026-06-23T00:00:00.000Z
 format: Dev talk, recorded
 language: en
 track: builder
+youtube: https://youtu.be/lv70ErBQopY
 topics: [Snapchain, Farcaster protocol, Neynar, Signers, Rust, Clients]
 ---
 

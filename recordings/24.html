@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://zabalgamez.com/recordings/24">
   <meta property="og:title" content="ZABAL GAMEZ Workshop w/topocount from Neynar - topocount - ZABAL Gamez">
   <meta property="og:description" content="topocount from Neynar goes under the hood of Snapchain, the storage and signing layer behind Farcaster - how Snapchain signers work, OG signers vs Snapchain-native signers, how storage is structured, ">
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="video.other">
   <meta property="og:url" content="https://zabalgamez.com/recordings/24">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -79,12 +79,17 @@
     <div class="rec-tech" title="How technical this talk is, 0 to 10"><span class="rt-label">Technical</span><span class="rt-bar"><span class="rt-fill" style="width:90%"></span></span><span class="rt-num">9/10</span><span class="rt-tag t-high">Deep technical</span></div>
   </header>
 
-  <div class="rec-note">
-    Recorded live on 2026-06-23. The replay and the word-for-word transcript will be added here -
-    the summary and topics are below, with the full recap to follow once the recording is processed.
+  <div class="rec-embed">
+    <iframe id="rec-player"
+      src="https://www.youtube.com/embed/lv70ErBQopY?rel=0"
+      title="ZABAL Gamez Workshop: ZABAL GAMEZ Workshop w/topocount from Neynar"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
   </div>
 
   <div class="rec-links">
+    <a class="rec-link primary" href="https://youtu.be/lv70ErBQopY" target="_blank" rel="noopener">Watch on YouTube</a>
     <a class="rec-link" href="#rec-transcript">Read the transcript</a>
     <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
     <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
@@ -119,7 +124,7 @@
   <section class="section rec-transcript-section">
     <div class="rec-label">Transcript</div>
     <p style="color:var(--text-dim);font-size:0.82rem;margin:0 0 0.5rem;">Hover any line and click # to copy a link straight to it.</p>
-    <div id="rec-transcript" data-src="/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-snapchain-under-the-hood.md" data-yt=""></div>
+    <div id="rec-transcript" data-src="/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-snapchain-under-the-hood.md" data-yt="lv70ErBQopY"></div>
   </section>
 
   <section id="zg-clip-bounty"></section>
@@ -164,6 +169,7 @@
 
 <script>
 (function () {
+  var YT_ID = "lv70ErBQopY";
   var PAGE_URL = "https://zabalgamez.com/recordings/24";
   var TOPICS = [
     "Snapchain",
@@ -173,6 +179,18 @@
     "Rust",
     "Clients"
   ];
+
+  var player = document.getElementById('rec-player');
+  var chapters = document.getElementById('rec-chapters');
+  if (player && chapters) {
+    chapters.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.rec-chapter');
+      if (!b) return;
+      var start = parseInt(b.getAttribute('data-start') || '0', 10) || 0;
+      player.src = 'https://www.youtube.com/embed/' + YT_ID + '?rel=0&autoplay=1&start=' + start;
+      player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
 
   document.querySelectorAll('.rec-watch-share').forEach(function (b) {
     b.addEventListener('click', function () {

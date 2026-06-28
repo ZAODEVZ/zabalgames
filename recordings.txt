@@ -11,6 +11,7 @@ Chronological feed of every recording: https://zabalgamez.com/streams
 workshop  |  track: builder  |  2026-06-23
 Presenter: topocount (@topocount.eth), Neynar
 Watch: https://zabalgamez.com/recordings/24
+Video: https://youtu.be/lv70ErBQopY
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-snapchain-under-the-hood.md
 Summary: topocount from Neynar goes under the hood of Snapchain, the storage and signing layer behind Farcaster - how Snapchain signers work, OG signers vs Snapchain-native signers, how storage is structured, the move to bring more of the Farcaster client (channels, blocks) onto the protocol, and where Snapchain is headed. Built for developers who want the behind-the-hood view of Farcaster infrastructure.
 Takeaways:
