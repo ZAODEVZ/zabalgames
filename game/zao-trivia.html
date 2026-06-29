@@ -267,6 +267,13 @@
       msg.textContent = 'Good start. Browse the recordings and the project pages, then run it back.';
       pot.innerHTML = 'Practice here as much as you like, then play the live round Wednesday 11:30am EST.';
     }
+    // Personal best, saved on this device (parity with ZAO 2048).
+    var prevBest = 0;
+    try { prevBest = parseInt(localStorage.getItem('zg-zaotrivia-best') || '0', 10) || 0; } catch (e) {}
+    var isBest = score > prevBest;
+    if (isBest) { try { localStorage.setItem('zg-zaotrivia-best', String(score)); } catch (e) {} }
+    var best = Math.max(prevBest, score);
+    pot.innerHTML += '<br><span style="color: var(--gold); font-size: 0.85rem;">Your best: ' + best + ' / ' + QS.length + (isBest && prevBest > 0 ? ' - new best' : '') + '</span>';
   }
 
   document.getElementById('res-retake').addEventListener('click', function () {
