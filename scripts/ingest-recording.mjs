@@ -181,6 +181,7 @@ function buildRecap() {
   if (m.chapters && m.chapters.length) r.chapters = m.chapters.map((c) => ({ t: c.t, label: c.label }));
   if (m.pull_quotes && m.pull_quotes.length) r.pull_quotes = m.pull_quotes.map((q) => ({ quote: q.quote, who: q.who }));
   if (m.resources && m.resources.length) r.resources = m.resources.map((x) => ({ label: x.label, url: x.url }));
+  if (m.build_from) r.build_from = brandClean(m.build_from);
   if (m.okd) r.okd = m.okd;
   if (m.cast_hash) r.cast_hash = m.cast_hash;
   return r;
@@ -308,6 +309,12 @@ function buildPage() {
       `      <li style="margin-bottom: 0.4rem;"><a href="${attr(x.url)}" target="_blank" rel="noopener" style="color: var(--cyan); text-decoration: none;">${esc(x.label || x.url)}</a></li>`
     ).join('\n');
     resourcesBlock = `  <section class="section rec-resources">\n    <div class="rec-label">Mentioned in this session</div>\n    <ul style="list-style: none; padding: 0; margin: 0.4rem 0 0;">\n${items}\n    </ul>\n  </section>\n\n`;
+  }
+
+  // build-from-this: turn the session into a July build prompt with a register CTA.
+  let buildFromBlock = '';
+  if (m.build_from) {
+    buildFromBlock = `  <section class="section rec-buildfrom" style="border: 1px solid var(--zabal); background: rgba(124,92,255,0.07); border-radius: 12px; padding: 0.9rem 1.1rem; margin-top: 1rem;">\n    <div class="rec-label" style="color: var(--zabal);">Build from this in July</div>\n    <p style="margin: 0.3rem 0 0.6rem; font-size: 0.95rem; line-height: 1.5;">${esc(brandClean(m.build_from))}</p>\n    <a href="/enter" style="color: var(--cyan); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Register your build -&gt;</a>\n  </section>\n\n`;
   }
 
   // on-site transcript reader (assets/transcript.js renders /data/.../x.md with deep-linkable lines)
@@ -445,7 +452,7 @@ ${media}
   <div class="rec-links">
 ${links.join('\n')}
   </div>
-${quotesBlock}
+${quotesBlock}${buildFromBlock}
   <section class="section" style="margin-top: 1.4rem;">
 ${summary ? `    <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">\n      ${esc(summary)}\n    </p>\n` : ''}${chaptersBlock}${topicsBlock}${takeawaysBlock}  </section>
 
