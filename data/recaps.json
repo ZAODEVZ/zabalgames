@@ -5,6 +5,34 @@
     {
       "date": "2026-06-28",
       "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/Matt Lee from Tortoise",
+      "presenter": "Matt Lee",
+      "handle": "@mattlee",
+      "org": "Tortoise",
+      "track": "builder",
+      "technical": 5,
+      "format": "Live conversation plus Q and A, recorded",
+      "summary": "Matt Lee on Tortoise, and how musicians and creators can best use Farcaster. A musician and software engineer, he came up through the music industry and live sound before teaching himself to build, and got into crypto chasing one question - how to make a music industry where artists own and earn from their work. A hands-on look at building on Farcaster, finding your ideal user, and his snap bot.",
+      "topics": [
+        "Tortoise",
+        "Music on Farcaster",
+        "Building on Farcaster",
+        "Creator economy",
+        "Farcaster"
+      ],
+      "youtube": "https://youtu.be/kbUZIRBM2Gw",
+      "page": "/recordings/28",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-28-matt-lee-tortoise.md",
+      "takeaways": [
+        "Owning digital media as the key to a healthier music industry - where that idea came from and why it matters.",
+        "Tortoise: giving musicians a place to build and grow on Farcaster.",
+        "Building on Farcaster - who your ideal user is, and what carries over for anyone building next.",
+        "A look at his snap bot."
+      ]
+    },
+    {
+      "date": "2026-06-28",
+      "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/AZKAL from FlowStage",
       "presenter": "AZKAL",
       "org": "FlowStage",
@@ -19,10 +47,10 @@
         "Creator tools",
         "Farcaster"
       ],
+      "youtube": "https://youtu.be/U_Eubs-2_Yo",
       "page": "/recordings/27",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-28-building-flowstage.md",
       "link": "https://app.theflowstage.com/",
-      "link_label": "Try FlowStage",
       "takeaways": [
         "Building FlowStage - scaling your content without handing your taste to a generative model.",
         "Short-form videos and slideshows built from your own footage and audio, organized by aesthetic.",
