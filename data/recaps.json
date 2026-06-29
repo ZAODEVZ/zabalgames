@@ -316,7 +316,14 @@
       "track": "builder",
       "technical": 4,
       "format": "Audio space fireside / AMA, recorded",
-      "summary": "ZABAL GAMEZ AMA w/ The Farcaster Intern - an open-mic audio-space AMA. BetterCallZaal hosts @farcaster; come up and ask anything about Farcaster, or send your question ahead and we open with the most-liked.",
+      "summary": "ZABAL Gamez AMA with The Farcaster Intern - an open-mic audio-space AMA. BetterCallZaal hosts @farcaster; come up and ask anything about Farcaster, or send your question ahead and we open with the most-liked.",
+      "topics": [
+        "Farcaster",
+        "AMA",
+        "Farcaster protocol"
+      ],
+      "listen_url": "https://juke.audio/r/09e00975-2e5e-42da-bade-7fe8fc5432b3",
+      "listen_label": "Listen on Juke",
       "page": "/recordings/20"
     },
     {
