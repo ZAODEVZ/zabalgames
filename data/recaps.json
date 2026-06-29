@@ -112,6 +112,40 @@
         "How Snapchain signers work, and the difference between OG signers and Snapchain-native signers.",
         "The plan to move more of what lives in the Farcaster client - channels, blocks - onto the protocol, so other clients can build on it.",
         "topocount's path from smart-contract / EVM engineer to working on Snapchain itself in Rust at Neynar."
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Welcome - who is topocount (Neynar)"
+        },
+        {
+          "t": 151,
+          "label": "What Snapchain is: Farcaster's open social backend"
+        },
+        {
+          "t": 236,
+          "label": "Bringing the Farcaster client onto the protocol - channels and blocks"
+        },
+        {
+          "t": 845,
+          "label": "How signers work: gasless keys"
+        },
+        {
+          "t": 925,
+          "label": "On-chain signers vs Snapchain signers"
+        },
+        {
+          "t": 1298,
+          "label": "Backend upgrades: lighter nodes, tougher consensus"
+        },
+        {
+          "t": 1425,
+          "label": "Running a validator, and decentralizing the set"
+        },
+        {
+          "t": 1741,
+          "label": "Channels: what is next for the protocol"
+        }
       ]
     },
     {
