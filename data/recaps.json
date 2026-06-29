@@ -190,7 +190,8 @@
           "label": "Kagi Small Web",
           "url": "https://kagi.com/smallweb"
         }
-      ]
+      ],
+      "build_from": "A Frame or client that reads Snapchain directly, or a gasless-signer onboarding flow that makes keys painless for new users."
     },
     {
       "date": "2026-06-23",
@@ -328,7 +329,8 @@
           "label": "Bankr",
           "url": "https://bankr.bot"
         }
-      ]
+      ],
+      "build_from": "A local-first, screen-aware AI helper, or a tool that plugs into the Bankr skills for distribution and funding."
     },
     {
       "date": "2026-06-22",
