@@ -103,7 +103,7 @@
         "How a music-technology pioneer uses generative AI inside Ableton with Magenta.",
         "A live demo of making music with AI tools, not just talking about them.",
         "Perspective from decades at the intersection of music and technology (MIT Media Lab, the Conductor's Jacket).",
-        "Where AI fits into a real creative workflow for artists."
+        "Where AI fits into a real creative workflow for artists - as an assistant, not a replacement."
       ]
     },
     {
@@ -228,8 +228,12 @@
       "link": null,
       "okd": null,
       "cast_hash": null,
-      "summary": "ZABAL GAMEZ AMA w/ The Farcaster Intern - an open-mic audio-space AMA. BetterCallZaal hosts @farcaster; come up and ask anything about Farcaster, or send your question ahead and we open with the most-liked.",
-      "topics": [],
+      "summary": "ZABAL Gamez AMA with The Farcaster Intern - an open-mic audio-space AMA. BetterCallZaal hosts @farcaster; come up and ask anything about Farcaster, or send your question ahead and we open with the most-liked.",
+      "topics": [
+        "Farcaster",
+        "AMA",
+        "Farcaster protocol"
+      ],
       "takeaways": []
     },
     {

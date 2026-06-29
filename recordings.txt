@@ -46,7 +46,7 @@ Takeaways:
   - How a music-technology pioneer uses generative AI inside Ableton with Magenta.
   - A live demo of making music with AI tools, not just talking about them.
   - Perspective from decades at the intersection of music and technology (MIT Media Lab, the Conductor's Jacket).
-  - Where AI fits into a real creative workflow for artists.
+  - Where AI fits into a real creative workflow for artists - as an assistant, not a replacement.
 Topics: Generative AI, Ableton, Magenta, Music technology, AI music
 
 ======================================================================
@@ -99,7 +99,8 @@ Topics: Harness, Bankr, Building tools, Onchain tools, Farcaster
 workshop  |  track: builder  |  2026-06-22
 Presenter: The Farcaster Intern (@farcaster), Farcaster
 Watch: https://zabalgamez.com/recordings/20
-Summary: ZABAL GAMEZ AMA w/ The Farcaster Intern - an open-mic audio-space AMA. BetterCallZaal hosts @farcaster; come up and ask anything about Farcaster, or send your question ahead and we open with the most-liked.
+Summary: ZABAL Gamez AMA with The Farcaster Intern - an open-mic audio-space AMA. BetterCallZaal hosts @farcaster; come up and ask anything about Farcaster, or send your question ahead and we open with the most-liked.
+Topics: Farcaster, AMA, Farcaster protocol
 
 ======================================================================
 [8] Selling merch onchain

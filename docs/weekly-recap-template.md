@@ -61,6 +61,8 @@ GM ZM, and happy Sunday in the Year of the ZABAL.
 
 <2-3 sentence opener: the week's arc in one breath. Reuse the "every one recorded, transcribed, and kept - miss something live and you have missed nothing" promise.>
 
+<Theme this week (1-2 lines): the thread that connects the sessions, so the week reads as one story, not a list. e.g. "Three takes on owning your own tools." Delete if the week has no clean through-line.>
+
 [EMBED: paste the Week <N> recap launch cast URL here, on its own line]
 
 New here? ZABAL Gamez is The ZAO's three-month build event:
@@ -76,13 +78,17 @@ Only have a few minutes? Start here:
 - Read, if you build: <deepest builder session> - <one line>: https://zabalgamez.com/recordings/<N>
 - Read, if you create: <best creator/artist session> - <one line>: https://zabalgamez.com/recordings/<N>
 
+<Quote of the week (optional, 1 line): one standout sentence pulled from a session transcript, attributed to the speaker. The human hook that earns the open. e.g. "The output is also the source." - Dylan Yarter>
+
 ## Day <D> - <session, short framing>
 
-<Recap paragraph with the real takeaway from recaps.json.> Read it: https://zabalgamez.com/recordings/<N>
+<Recap paragraph with the real takeaway from recaps.json. Open the paragraph with a track tag in plain text so a reader scans to their lane: lead with "Artist track:" / "Builder track:" / "Creator track:".> Read it: https://zabalgamez.com/recordings/<N>
+
+<Build from this (1 line): what a reader could ship in July off the back of this session, tying the recap to the open build. e.g. "Build from this: a Frame that queries Snapchain directly." Keep it concrete.>
 
 [EMBED: paste the announce cast or clip URL for this session, on its own line]
 
-<repeat a "## Day <D>" block per session; group a same-day doubleheader under one header with both paragraphs + both embed lines; put any YouTube URL on its own line under its session>
+<repeat a "## Day <D>" block per session; group a same-day doubleheader under one header with both paragraphs + both embed lines; put any YouTube URL on its own line under its session. Link the speaker's project + handle inline in the recap paragraph, not only the recordings page.>
 
 ## <New site features this week, if any>
 
