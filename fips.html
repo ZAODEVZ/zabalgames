@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIPs - Farcaster Improvement Proposals - ZABAL Gamez</title>
+  <meta name="description" content="Where Farcaster Improvement Proposals live, how the process works, and how to propose one. The protocol roadmap for ZABAL Gamez builders.">
+  <link rel="canonical" href="https://zabalgamez.com/fips">
+  <meta property="og:title" content="FIPs - Farcaster Improvement Proposals - ZABAL Gamez">
+  <meta property="og:description" content="Where FIPs live, how the process works, and how to propose one. The protocol roadmap for builders.">
+  <meta property="og:url" content="https://zabalgamez.com/fips">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Read the FIPs guide","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/fips","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Read the FIPs guide","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/fips","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .fip-stages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 1rem 0; }
+    @media (max-width: 560px) { .fip-stages { grid-template-columns: 1fr 1fr; } }
+    .fip-stage { border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); padding: 0.7rem 0.8rem; }
+    .fip-stage .n { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.08em; }
+    .fip-stage h4 { margin: 0.2rem 0 0.15rem; font-size: 0.98rem; }
+    .fip-stage p { margin: 0; font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
+    .fip-list { display: grid; gap: 10px; margin-top: 0.8rem; }
+    .fip-card { border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 10px; background: var(--surface-2); padding: 0.8rem 1rem; }
+    .fip-card a { color: var(--cyan); text-decoration: none; font-weight: 600; }
+    .fip-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-dim); }
+    .fip-card p { margin: 0.3rem 0 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; }
+    .fip-where { display: grid; gap: 10px; margin-top: 0.8rem; }
+    .fip-where a { display: block; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); padding: 0.75rem 1rem; text-decoration: none; color: inherit; }
+    .fip-where a:hover { border-color: var(--cyan); }
+    .fip-where .lbl { color: var(--cyan); font-weight: 600; }
+    .fip-where .url { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-dim); word-break: break-all; }
+    .fip-types li { margin-bottom: 0.3rem; }
+    .fip-cta { margin-top: 1.4rem; display: flex; gap: 0.7rem; flex-wrap: wrap; }
+    .fip-btn { font: inherit; font-size: 0.85rem; font-weight: 600; padding: 0.55rem 1.1rem; border-radius: 999px; text-decoration: none; cursor: pointer; min-height: 40px; display: inline-flex; align-items: center; }
+    .fip-btn.primary { background: var(--zabal); color: #fff; border: 1px solid var(--zabal); }
+    .fip-btn.ghost { background: transparent; color: var(--cyan); border: 1px solid var(--cyan); }
+  </style>
+  <script type="module" src="/assets/miniapp.js"></script>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/playbook.html">Playbook</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" id="main">
+
+  <header class="hero">
+    <div class="hero-eyebrow">Build with the grain of the protocol</div>
+    <h1>FIPs.</h1>
+    <p class="lead">FIPs are Farcaster Improvement Proposals - the design documents that propose changes to Farcaster, inspired by Ethereum's EIPs. If you are building on Farcaster this season, this is the roadmap: what is being added, what is being debated, and how to put your own idea on the table.</p>
+    <button type="button" id="zg-share" class="fip-btn ghost" style="margin-top: 0.8rem;">Share on Farcaster</button>
+  </header>
+
+  <section class="section" style="margin-top: 1.4rem;">
+    <h2 style="font-family:'Syne',sans-serif; font-weight:800;">Where they live</h2>
+    <div class="fip-where">
+      <a href="https://github.com/farcasterxyz/protocol/discussions" target="_blank" rel="noopener">
+        <span class="lbl">FIP discussions (the source of truth)</span><br>
+        <span class="url">github.com/farcasterxyz/protocol/discussions</span>
+      </a>
+      <a href="https://docs.farcaster.xyz/learn/contributing/fips" target="_blank" rel="noopener">
+        <span class="lbl">The FIP guide in the Farcaster docs</span><br>
+        <span class="url">docs.farcaster.xyz/learn/contributing/fips</span>
+      </a>
+      <a href="https://github.com/farcasterxyz/protocol" target="_blank" rel="noopener">
+        <span class="lbl">The protocol spec repo</span><br>
+        <span class="url">github.com/farcasterxyz/protocol</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" style="margin-top: 1.4rem;">
+    <h2 style="font-family:'Syne',sans-serif; font-weight:800;">How a FIP moves</h2>
+    <p style="color:var(--text-muted); font-size:0.95rem;">Every proposal walks the same four stages. Anyone can start one.</p>
+    <div class="fip-stages">
+      <div class="fip-stage"><div class="n">Stage 1</div><h4>Idea</h4><p>Open a discussion titled "FIP: your idea" with the fip-idea label. The concept gets its first read.</p></div>
+      <div class="fip-stage"><div class="n">Stage 2</div><h4>Draft</h4><p>Formalized into a written proposal and developed with the community.</p></div>
+      <div class="fip-stage"><div class="n">Stage 3</div><h4>Review</h4><p>Evaluated and debated. The hard questions get asked here.</p></div>
+      <div class="fip-stage"><div class="n">Stage 4</div><h4>Finalized</h4><p>Accepted and shipped, or rejected with a reason. Either way it is on the record.</p></div>
+    </div>
+    <p style="color:var(--text-muted); font-size:0.92rem; margin-top:0.6rem;">Three kinds of FIP: <b>Process</b> (changes how the community works), <b>Standards</b> (a standard for developers), and <b>Implementation</b> (a change to the protocol itself).</p>
+  </section>
+
+  <section class="section" style="margin-top: 1.4rem;">
+    <h2 style="font-family:'Syne',sans-serif; font-weight:800;">A few worth reading</h2>
+    <div class="fip-list">
+      <div class="fip-card"><span class="tag">FIP-0</span> <a href="https://github.com/farcasterxyz/protocol/discussions/82" target="_blank" rel="noopener">A proposal for making proposals</a><p>The meta-FIP that defines the whole process. Start here.</p></div>
+      <div class="fip-card"><span class="tag">FIP-2</span> <a href="https://github.com/farcasterxyz/protocol/discussions/71" target="_blank" rel="noopener">Flexible targets for messages</a><p>How casts can target channels and other surfaces - the groundwork a lot of clients build on.</p></div>
+      <div class="fip-card"><span class="tag">FIP</span> <a href="https://github.com/farcasterxyz/protocol/discussions/204" target="_blank" rel="noopener">Farcaster Connect</a><p>Sign in with Farcaster - the auth pattern behind Mini Apps like this one.</p></div>
+      <div class="fip-card"><span class="tag">FIP</span> <a href="https://github.com/farcasterxyz/protocol/discussions/171" target="_blank" rel="noopener">External cast data</a><p>Carrying richer data with a cast - relevant to anyone building content tools.</p></div>
+      <div class="fip-card"><span class="tag">In discussion</span> <a href="https://github.com/farcasterxyz/protocol/discussions" target="_blank" rel="noopener">Active-speaker metadata for Spaces</a><p>A proposal we are following: surfacing who is speaking and when in an audio Space. If it lands, our workshop recap videos go from a 30-second manual step to fully automatic.</p></div>
+    </div>
+    <p style="color:var(--text-dim); font-size:0.82rem; margin-top:0.6rem;">FIP numbers and links change as proposals move stages - the discussions list above is always current.</p>
+  </section>
+
+  <section class="section" style="margin-top: 1.4rem;">
+    <h2 style="font-family:'Syne',sans-serif; font-weight:800;">Got a protocol-level idea?</h2>
+    <p style="color:var(--text-muted); font-size:0.95rem;">If you are building this season and you hit a wall the protocol could fix, that is a FIP. Write the idea up, open a discussion titled "FIP: ...", tag it fip-idea, and see where it goes. Building with the grain of the protocol - and helping shape it - is exactly the kind of work ZABAL Gamez is for.</p>
+    <div class="fip-cta">
+      <a href="https://github.com/farcasterxyz/protocol/discussions/new?category=fip-idea" target="_blank" rel="noopener" class="fip-btn primary">Open a FIP idea</a>
+      <a href="/enter" class="fip-btn ghost">Register your build</a>
+    </div>
+  </section>
+
+  <p style="margin: 1.6rem 0 0.6rem; font-size: 0.85rem;"><a href="/playbook.html">The Playbook</a> &nbsp;-&nbsp; <a href="/build-ideas.html">Build ideas</a> &nbsp;-&nbsp; <a href="/recordings">Workshop recordings</a></p>
+
+</div>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Build">
+      <h4>Build</h4>
+      <a href="/enter.html">Enter the Build</a>
+      <a href="/playbook.html">Playbook</a>
+      <a href="/build-ideas.html">Build Ideas</a>
+      <a href="/fips.html">FIPs</a>
+      <a href="/projects.html">Projects</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/bounties.html">Bounties</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/recaps.html">Session Recaps</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Season">
+      <h4>Season</h4>
+      <a href="/finals.html">Finals</a>
+      <a href="/grants.html">Grants</a>
+      <a href="/research.html">Research</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/today.html">Daily Update</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var b = document.getElementById('zg-share');
+  if (!b) return;
+  var text = 'FIPs are how Farcaster changes - the protocol roadmap, and how to propose your own. A builder guide, with the active-speaker proposal we are following for ZABAL Gamez.';
+  var url = 'https://zabalgamez.com/fips';
+  b.addEventListener('click', function () {
+    if (window.ZABAL && window.ZABAL.composeCast) { window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' }); }
+    else { window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener'); }
+  });
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
