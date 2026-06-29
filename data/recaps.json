@@ -3,6 +3,34 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[], chapters[] (array of {t, label} where t is seconds and the first entry is 0 - drives the clickable chapter jumps on a generated video page), okd (YYYY-MM-DD the guest reviewed the cut/page and signed off, before public release - absent until they approve), cast_hash (the root Farcaster cast for this recording - the announce cast; its replies render as the live 'Thoughts' conversation via /api/cast-comments. A 0x hash or a Warpcast URL). To publish a new recording from a ZAOVideoEditor manifest (writes transcript + recap + recordings/N.html + rebuilds the index in one step) use: node scripts/ingest-recording.mjs <manifest.json> --write. After hand-editing this file, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-06-28",
+      "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/AZKAL from FlowStage",
+      "presenter": "AZKAL",
+      "org": "FlowStage",
+      "track": "artist",
+      "technical": 4,
+      "format": "Talk + live demo, recorded",
+      "summary": "AZKAL on building FlowStage - how to scale your content without losing your taste. FlowStage turns your own footage and audio into short-form videos and slideshows, organized by aesthetic, with no generative AI. A session for artists and creators, with a live demo and a look at how builders can plug into the FlowStage API.",
+      "topics": [
+        "FlowStage",
+        "Short-form video",
+        "Content tools",
+        "Creator tools",
+        "Farcaster"
+      ],
+      "page": "/recordings/27",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-28-building-flowstage.md",
+      "link": "https://app.theflowstage.com/",
+      "link_label": "Try FlowStage",
+      "takeaways": [
+        "Building FlowStage - scaling your content without handing your taste to a generative model.",
+        "Short-form videos and slideshows built from your own footage and audio, organized by aesthetic.",
+        "No generative AI - the output stays yours.",
+        "How builders can plug into the FlowStage API, plus a live demo."
+      ]
+    },
+    {
       "date": "2026-06-22",
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/Nemesis",
