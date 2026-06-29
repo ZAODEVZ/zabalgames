@@ -179,6 +179,7 @@ function buildRecap() {
   if (takeaways.length) r.takeaways = takeaways;
   if (m.share_topics && m.share_topics.length) r.share_topics = m.share_topics;
   if (m.chapters && m.chapters.length) r.chapters = m.chapters.map((c) => ({ t: c.t, label: c.label }));
+  if (m.pull_quotes && m.pull_quotes.length) r.pull_quotes = m.pull_quotes.map((q) => ({ quote: q.quote, who: q.who }));
   if (m.okd) r.okd = m.okd;
   if (m.cast_hash) r.cast_hash = m.cast_hash;
   return r;
@@ -262,6 +263,15 @@ function buildPage() {
   if (takeaways.length) {
     const t = takeaways.map((x) => `      <li>${esc(x)}</li>`).join('\n');
     takeawaysBlock = `\n    <div class="rec-label">Key takeaways</div>\n    <ul class="rec-takeaways">\n${t}\n    </ul>\n`;
+  }
+
+  // pull-quotes: a standout line or two near the top - the human hook that earns the watch.
+  let quotesBlock = '';
+  if (m.pull_quotes && m.pull_quotes.length) {
+    const items = m.pull_quotes.map((q) =>
+      `    <blockquote class="rec-quote" style="border-left: 3px solid var(--cyan); margin: 0.5rem 0; padding: 0.15rem 0 0.15rem 0.9rem; font-size: 1.05rem; line-height: 1.5; color: var(--text);">${esc(brandClean(q.quote || ''))}${q.who ? `<cite style="display: block; margin-top: 0.3rem; font-size: 0.85rem; color: var(--text-dim); font-style: normal;">- ${esc(q.who)}</cite>` : ''}</blockquote>`
+    ).join('\n');
+    quotesBlock = `\n  <section class="section rec-quotes" style="margin-top: 1rem;">\n${items}\n  </section>\n`;
   }
 
   // related sessions: turn each recap into a gateway. Score every other recap by shared
@@ -424,7 +434,7 @@ ${media}
   <div class="rec-links">
 ${links.join('\n')}
   </div>
-
+${quotesBlock}
   <section class="section" style="margin-top: 1.4rem;">
 ${summary ? `    <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">\n      ${esc(summary)}\n    </p>\n` : ''}${chaptersBlock}${topicsBlock}${takeawaysBlock}  </section>
 
