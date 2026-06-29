@@ -11,6 +11,7 @@ Chronological feed of every recording: https://zabalgamez.com/streams
 workshop  |  track: artist  |  2026-06-25
 Presenter: Teresa Marrin Nakra, Stevens University
 Watch: https://zabalgamez.com/recordings/25
+Video: https://youtu.be/p8ctV40HsyM
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-25-music-generative-ai-ableton.md
 Summary: Teresa Marrin Nakra - professor at Stevens University and inventor of the Conductor's Jacket - on making music with generative AI in Ableton using Magenta, plus a live demo. An artist-track look at where AI tools meet real music-making from someone who has been building at that intersection for decades.
 Takeaways:

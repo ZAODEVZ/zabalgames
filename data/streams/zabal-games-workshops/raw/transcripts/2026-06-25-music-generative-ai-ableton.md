@@ -7,6 +7,7 @@ date: 2026-06-25T00:00:00.000Z
 format: Talk + live demo + Q and A, recorded
 language: en
 track: artist
+youtube: https://youtu.be/p8ctV40HsyM
 topics: [Generative AI, Ableton, Magenta, Music technology, AI music]
 ---
 
