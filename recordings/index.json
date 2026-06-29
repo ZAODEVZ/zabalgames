@@ -1,9 +1,43 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-06-28",
+  "generated": "2026-06-29",
   "season": 1,
-  "count": 25,
+  "count": 26,
   "recordings": [
+    {
+      "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/Teresa Marrin Nakra from Stevens University",
+      "presenter": "Teresa Marrin Nakra",
+      "handle": null,
+      "org": "Stevens University",
+      "track": "artist",
+      "technical": 4,
+      "format": "Talk + live demo + Q and A, recorded",
+      "date": "2026-06-25",
+      "url": "https://zabalgamez.com/recordings/25",
+      "page": "https://zabalgamez.com/recordings/25",
+      "youtube": "https://youtu.be/p8ctV40HsyM",
+      "recording": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-25-music-generative-ai-ableton.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-25-music-generative-ai-ableton.md",
+      "link": "https://www.stevens.edu/profile/tnakra",
+      "okd": null,
+      "cast_hash": null,
+      "summary": "Teresa Marrin Nakra - professor at Stevens University and inventor of the Conductor's Jacket - on making music with generative AI in Ableton using Magenta, plus a live demo. An artist-track look at where AI tools meet real music-making from someone who has been building at that intersection for decades.",
+      "topics": [
+        "Generative AI",
+        "Ableton",
+        "Magenta",
+        "Music technology",
+        "AI music"
+      ],
+      "takeaways": [
+        "How a music-technology pioneer uses generative AI inside Ableton with Magenta.",
+        "A live demo of making music with AI tools, not just talking about them.",
+        "Perspective from decades at the intersection of music and technology (MIT Media Lab, the Conductor's Jacket).",
+        "Where AI fits into a real creative workflow for artists."
+      ]
+    },
     {
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/topocount from Neynar",

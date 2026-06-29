@@ -3,6 +3,35 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[], chapters[] (array of {t, label} where t is seconds and the first entry is 0 - drives the clickable chapter jumps on a generated video page), okd (YYYY-MM-DD the guest reviewed the cut/page and signed off, before public release - absent until they approve), cast_hash (the root Farcaster cast for this recording - the announce cast; its replies render as the live 'Thoughts' conversation via /api/cast-comments. A 0x hash or a Warpcast URL). To publish a new recording from a ZAOVideoEditor manifest (writes transcript + recap + recordings/N.html + rebuilds the index in one step) use: node scripts/ingest-recording.mjs <manifest.json> --write. After hand-editing this file, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-06-25",
+      "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/Teresa Marrin Nakra from Stevens University",
+      "presenter": "Teresa Marrin Nakra",
+      "org": "Stevens University",
+      "track": "artist",
+      "technical": 4,
+      "format": "Talk + live demo + Q and A, recorded",
+      "summary": "Teresa Marrin Nakra - professor at Stevens University and inventor of the Conductor's Jacket - on making music with generative AI in Ableton using Magenta, plus a live demo. An artist-track look at where AI tools meet real music-making from someone who has been building at that intersection for decades.",
+      "topics": [
+        "Generative AI",
+        "Ableton",
+        "Magenta",
+        "Music technology",
+        "AI music"
+      ],
+      "youtube": "https://youtu.be/p8ctV40HsyM",
+      "page": "/recordings/25",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-25-music-generative-ai-ableton.md",
+      "link": "https://www.stevens.edu/profile/tnakra",
+      "link_label": "Teresa at Stevens University",
+      "takeaways": [
+        "How a music-technology pioneer uses generative AI inside Ableton with Magenta.",
+        "A live demo of making music with AI tools, not just talking about them.",
+        "Perspective from decades at the intersection of music and technology (MIT Media Lab, the Conductor's Jacket).",
+        "Where AI fits into a real creative workflow for artists."
+      ]
+    },
+    {
       "date": "2026-06-23",
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/topocount from Neynar",
