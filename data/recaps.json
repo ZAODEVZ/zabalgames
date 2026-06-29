@@ -145,7 +145,24 @@
           "t": 1297,
           "label": "The other tools: Drumify, Generate, Interpolate, Groove"
         }
-      ]
+      ],
+      "pull_quotes": [
+        {
+          "quote": "The idea of Magenta Studio is that more of the creative choices and decision-making is back in your control.",
+          "who": "Teresa Marrin Nakra"
+        }
+      ],
+      "resources": [
+        {
+          "label": "Magenta Studio",
+          "url": "https://magenta.tensorflow.org/studio"
+        },
+        {
+          "label": "Ableton Live",
+          "url": "https://www.ableton.com"
+        }
+      ],
+      "build_from": "An AI-assisted music tool, or a WaveWarZ entry built on generative variation."
     },
     {
       "date": "2026-06-23",
@@ -207,6 +224,12 @@
         {
           "t": 1741,
           "label": "Channels: what is next for the protocol"
+        }
+      ],
+      "pull_quotes": [
+        {
+          "quote": "There is this benefit of having a protocol that anyone can come in and build their own front end.",
+          "who": "topocount"
         }
       ],
       "resources": [
@@ -281,7 +304,20 @@
           "t": 1193,
           "label": "Why he built it, and building on what you have already built"
         }
-      ]
+      ],
+      "pull_quotes": [
+        {
+          "quote": "Even though we are all separate, we are all collectively building this together.",
+          "who": "Dylan Yarter"
+        }
+      ],
+      "resources": [
+        {
+          "label": "BizarreBeasts",
+          "url": "https://bizarrebeasts.io"
+        }
+      ],
+      "build_from": "A creator tool whose output doubles as code - a generator, a remixable asset, or a mini app."
     },
     {
       "date": "2026-06-23",
@@ -342,6 +378,12 @@
         {
           "t": 2269,
           "label": "What is next: sharing context with Claude Code via MCP"
+        }
+      ],
+      "pull_quotes": [
+        {
+          "quote": "We support builders in many different ways, but principally distribution and funding.",
+          "who": "Saltorious"
         }
       ],
       "resources": [
@@ -535,7 +577,24 @@
           "t": 1646,
           "label": "The builder mindset, and a live demo from a quick idea"
         }
-      ]
+      ],
+      "pull_quotes": [
+        {
+          "quote": "The bottleneck is never AI. It is us - not knowing what we want.",
+          "who": "Ali Tiknazoglu"
+        }
+      ],
+      "resources": [
+        {
+          "label": "Cursor",
+          "url": "https://cursor.com"
+        },
+        {
+          "label": "Lovable",
+          "url": "https://lovable.dev"
+        }
+      ],
+      "build_from": "Start from your own domain - a tool that solves a problem you actually have, then share it."
     },
     {
       "date": "2026-06-20",
