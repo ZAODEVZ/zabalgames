@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZABALDLE - ZABAL Gamez</title>
+  <meta name="description" content="ZABALDLE - the daily ZAO word game. Guess the five-letter ecosystem term in six tries. No signup.">
+  <link rel="canonical" href="https://zabalgamez.com/game/word">
+  <meta property="og:title" content="ZABALDLE - ZABAL Gamez">
+  <meta property="og:description" content="The daily ZAO word game. Guess the five-letter ecosystem term in six tries.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/word">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZABALDLE - ZABAL Gamez">
+  <meta name="twitter:description" content="The daily ZAO word game. Guess the five-letter ecosystem term in six tries.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZABALDLE","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/word","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .wd-board { display: grid; grid-template-rows: repeat(6, 1fr); gap: 0.4rem; width: 100%; max-width: 320px; margin: 0.8rem 0 1rem; }
+    .wd-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem; }
+    .wd-tile { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); border-radius: 8px; background: var(--surface-2);
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; text-transform: uppercase; color: var(--text); }
+    .wd-tile.filled { border-color: var(--text-dim); }
+    .wd-tile.correct { background: var(--cyan); border-color: var(--cyan); color: #04121a; }
+    .wd-tile.present { background: var(--gold); border-color: var(--gold); color: #1a1402; }
+    .wd-tile.absent { background: var(--surface-2); border-color: var(--border); color: var(--text-dim); }
+    .wd-msg { min-height: 1.2rem; font-size: 0.9rem; color: var(--gold); margin-bottom: 0.4rem; }
+    .wd-kb { display: grid; gap: 0.35rem; width: 100%; max-width: 460px; }
+    .wd-kb-row { display: flex; gap: 0.3rem; justify-content: center; }
+    .wd-key { flex: 1; min-width: 0; padding: 0.7rem 0.2rem; border: 1px solid var(--border); border-radius: 6px;
+      background: var(--surface-2); color: var(--text); font: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
+    .wd-key.wide { flex: 1.6; font-size: 0.68rem; }
+    .wd-key.correct { background: var(--cyan); border-color: var(--cyan); color: #04121a; }
+    .wd-key.present { background: var(--gold); border-color: var(--gold); color: #1a1402; }
+    .wd-key.absent { background: #15151b; border-color: #15151b; color: var(--text-dim); }
+    .wd-win { margin-top: 1.1rem; padding: 1rem 1.1rem; border: 1px solid var(--cyan); border-radius: 14px;
+      background: rgba(0,209,255,0.06); display: none; }
+    .wd-win.show { display: block; }
+    .wd-win h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.3rem; }
+    .wd-win p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 0.4rem; }
+    .wd-grid-txt { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; letter-spacing: 0.25em; white-space: pre; margin: 0.4rem 0 0.8rem; color: var(--text); }
+    .wd-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/info.html">Details</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow"><a href="/game" style="color: inherit;">The arcade</a> / ZABALDLE</div>
+    <h1>ZABAL<span class="accent">DLE</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">One ZAO word a day. Five letters, six tries. Cyan means right spot, gold means right letter wrong spot. No signup.</p>
+  </header>
+
+  <div class="wd-msg" id="wd-msg" role="status" aria-live="polite"></div>
+  <div class="wd-board" id="wd-board" aria-label="Guess board"></div>
+
+  <div class="wd-kb" id="wd-kb" aria-label="Keyboard"></div>
+
+  <div class="wd-win" id="wd-win" aria-live="polite">
+    <h2 id="wd-win-title">Solved.</h2>
+    <p id="wd-win-line"></p>
+    <div class="wd-grid-txt" id="wd-grid-txt"></div>
+    <div class="wd-actions" style="margin-top: 0;">
+      <button class="btn btn-primary" id="wd-share" type="button">Share result</button>
+      <a class="btn btn-secondary" href="/game">Back to arcade</a>
+    </div>
+  </div>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
+    Words come from the world you are building in. New here? Browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
+  </p>
+
+</div>
+</main>
+
+<script>
+(function () {
+  // Five-letter ZAO / Farcaster ecosystem terms. One per day, date-seeded.
+  var WORDS = ['ZABAL','FRAME','CASTS','BUILD','MERGE','VIBES','REMIX','STAGE','GAMES','ARENA',
+    'PROOF','NODES','QUEST','BADGE','TOKEN','MINTS','MUSIC','RELAY','REPLY','LIKES'];
+  var ROWS = 6, COLS = 5;
+  var board = document.getElementById('wd-board');
+  var kb = document.getElementById('wd-kb');
+  var msg = document.getElementById('wd-msg');
+  var winEl = document.getElementById('wd-win');
+
+  // date-seeded daily word (UTC day index) + a stable puzzle number.
+  var dayIndex = Math.floor(Date.now() / 86400000);
+  var PUZZLE = dayIndex - 20270; // small readable puzzle number
+  var ANSWER = WORDS[((dayIndex % WORDS.length) + WORDS.length) % WORDS.length];
+
+  var row = 0, col = 0, over = false;
+  var guesses = []; // array of {word, marks:[]}
+  var grid = [];
+
+  for (var r = 0; r < ROWS; r++) {
+    var tr = document.createElement('div'); tr.className = 'wd-row'; grid[r] = [];
+    for (var c = 0; c < COLS; c++) {
+      var t = document.createElement('div'); t.className = 'wd-tile'; tr.appendChild(t); grid[r][c] = t;
+    }
+    board.appendChild(tr);
+  }
+
+  var KEYS = ['QWERTYUIOP', 'ASDFGHJKL', '@ZXCVBNM<'];
+  var keyEls = {};
+  KEYS.forEach(function (line) {
+    var kr = document.createElement('div'); kr.className = 'wd-kb-row';
+    line.split('').forEach(function (k) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'wd-key';
+      if (k === '@') { b.textContent = 'Enter'; b.className += ' wide'; b.dataset.k = 'ENTER'; }
+      else if (k === '<') { b.textContent = 'Del'; b.className += ' wide'; b.dataset.k = 'DEL'; }
+      else { b.textContent = k; b.dataset.k = k; keyEls[k] = b; }
+      b.addEventListener('click', function () { handle(b.dataset.k); });
+      kr.appendChild(b);
+    });
+    kb.appendChild(kr);
+  });
+
+  function setMsg(s) { msg.textContent = s || ''; }
+
+  function handle(k) {
+    if (over) return;
+    if (k === 'ENTER') return submit();
+    if (k === 'DEL') {
+      if (col > 0) { col--; grid[row][col].textContent = ''; grid[row][col].classList.remove('filled'); }
+      setMsg(''); return;
+    }
+    if (/^[A-Z]$/.test(k) && col < COLS) {
+      grid[row][col].textContent = k; grid[row][col].classList.add('filled'); col++;
+    }
+  }
+
+  function score(guess) {
+    var marks = ['absent','absent','absent','absent','absent'];
+    var pool = ANSWER.split('');
+    for (var i = 0; i < COLS; i++) { if (guess[i] === ANSWER[i]) { marks[i] = 'correct'; pool[i] = null; } }
+    for (var j = 0; j < COLS; j++) {
+      if (marks[j] === 'correct') continue;
+      var p = pool.indexOf(guess[j]);
+      if (p !== -1) { marks[j] = 'present'; pool[p] = null; }
+    }
+    return marks;
+  }
+
+  function submit() {
+    if (col < COLS) { setMsg('Need five letters.'); return; }
+    var guess = grid[row].map(function (t) { return t.textContent; }).join('');
+    var marks = score(guess);
+    for (var i = 0; i < COLS; i++) {
+      grid[row][i].classList.add(marks[i]);
+      var ke = keyEls[guess[i]];
+      if (ke) {
+        if (marks[i] === 'correct') { ke.classList.remove('present', 'absent'); ke.classList.add('correct'); }
+        else if (marks[i] === 'present' && !ke.classList.contains('correct')) { ke.classList.remove('absent'); ke.classList.add('present'); }
+        else if (!ke.classList.contains('correct') && !ke.classList.contains('present')) { ke.classList.add('absent'); }
+      }
+    }
+    guesses.push({ word: guess, marks: marks });
+    if (guess === ANSWER) return finish(true);
+    row++; col = 0;
+    if (row >= ROWS) return finish(false);
+    setMsg('');
+  }
+
+  // Emoji-free share grid: # right spot, + right letter wrong spot, . not in word.
+  function gridText() {
+    return guesses.map(function (g) {
+      return g.marks.map(function (m) { return m === 'correct' ? '#' : (m === 'present' ? '+' : '.'); }).join(' ');
+    }).join('\n');
+  }
+
+  function finish(won) {
+    over = true;
+    document.getElementById('wd-win-title').textContent = won ? 'Solved.' : 'Out of tries.';
+    document.getElementById('wd-win-line').textContent = won
+      ? ('Got it in ' + guesses.length + '/' + ROWS + '. New word tomorrow.')
+      : ('The word was ' + ANSWER + '. New word tomorrow.');
+    document.getElementById('wd-grid-txt').textContent = gridText();
+    winEl.classList.add('show');
+    if (!won) setMsg('The word was ' + ANSWER + '.');
+  }
+
+  document.getElementById('wd-share').addEventListener('click', function () {
+    var head = 'ZABALDLE ' + PUZZLE + ' - ' + (guesses[guesses.length - 1].word === ANSWER ? guesses.length : 'X') + '/' + ROWS;
+    var text = head + '\n' + gridText() + '\n\nPlay the daily ZAO word game.';
+    var url = 'https://zabalgamez.com/game/word';
+    if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (over) return;
+    if (e.key === 'Enter') handle('ENTER');
+    else if (e.key === 'Backspace') handle('DEL');
+    else { var u = e.key.toUpperCase(); if (/^[A-Z]$/.test(u) && u.length === 1) handle(u); }
+  });
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
