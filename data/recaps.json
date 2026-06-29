@@ -180,6 +180,16 @@
           "t": 1741,
           "label": "Channels: what is next for the protocol"
         }
+      ],
+      "resources": [
+        {
+          "label": "Neynar",
+          "url": "https://neynar.com"
+        },
+        {
+          "label": "Kagi Small Web",
+          "url": "https://kagi.com/smallweb"
+        }
       ]
     },
     {
@@ -303,6 +313,20 @@
         {
           "t": 2269,
           "label": "What is next: sharing context with Claude Code via MCP"
+        }
+      ],
+      "resources": [
+        {
+          "label": "Harness (harness.ai)",
+          "url": "https://harness.ai"
+        },
+        {
+          "label": "Venice - private inference",
+          "url": "https://venice.ai"
+        },
+        {
+          "label": "Bankr",
+          "url": "https://bankr.bot"
         }
       ]
     },

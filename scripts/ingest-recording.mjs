@@ -180,6 +180,7 @@ function buildRecap() {
   if (m.share_topics && m.share_topics.length) r.share_topics = m.share_topics;
   if (m.chapters && m.chapters.length) r.chapters = m.chapters.map((c) => ({ t: c.t, label: c.label }));
   if (m.pull_quotes && m.pull_quotes.length) r.pull_quotes = m.pull_quotes.map((q) => ({ quote: q.quote, who: q.who }));
+  if (m.resources && m.resources.length) r.resources = m.resources.map((x) => ({ label: x.label, url: x.url }));
   if (m.okd) r.okd = m.okd;
   if (m.cast_hash) r.cast_hash = m.cast_hash;
   return r;
@@ -297,6 +298,16 @@ function buildPage() {
       }).join('\n');
       relatedBlock = `  <section class="section rec-related">\n    <div class="rec-label">Related sessions</div>\n    <ul style="list-style: none; padding: 0; margin: 0.4rem 0 0;">\n${items}\n    </ul>\n  </section>\n\n`;
     }
+  }
+
+  // resources mentioned: the tools, projects, and links named in the talk - so a builder can
+  // go straight to the thing. From a manifest `resources:[{label,url}]`.
+  let resourcesBlock = '';
+  if (m.resources && m.resources.length) {
+    const items = m.resources.map((x) =>
+      `      <li style="margin-bottom: 0.4rem;"><a href="${attr(x.url)}" target="_blank" rel="noopener" style="color: var(--cyan); text-decoration: none;">${esc(x.label || x.url)}</a></li>`
+    ).join('\n');
+    resourcesBlock = `  <section class="section rec-resources">\n    <div class="rec-label">Mentioned in this session</div>\n    <ul style="list-style: none; padding: 0; margin: 0.4rem 0 0;">\n${items}\n    </ul>\n  </section>\n\n`;
   }
 
   // on-site transcript reader (assets/transcript.js renders /data/.../x.md with deep-linkable lines)
@@ -446,7 +457,7 @@ ${transcriptBlock}  <section id="zg-clip-bounty"></section>
 
   <section id="zg-clip-claim"></section>
 
-${relatedBlock}  <section id="zg-comments"></section>
+${resourcesBlock}${relatedBlock}  <section id="zg-comments"></section>
 
 </div>
 </main>
