@@ -7,12 +7,11 @@ date: 2026-06-28T00:00:00.000Z
 format: Talk + live demo, recorded
 language: en
 track: artist
+youtube: https://youtu.be/U_Eubs-2_Yo
 topics: [FlowStage, Short-form video, Content tools, Creator tools, Farcaster]
 ---
 
-[00:00:00] 
-
-[00:00:13] What's up? What's up everybody? We are back for another Zabal Gamez workshop. Here I have Askal today here to share a little bit about what he's created, Flowstage. So how we doing today, Askal? Pretty good. Thanks for having me. Excited- Excited to get in. Yeah, it's amazing to have you on. We're chatting a little bit on the artist track, but also the creator track, because it's definitely a, a portion of media, um, that you've created here for musicians and other artists, and I'm super excited to get into it.
+[00:00:00] Visit zabal games.com. That's Z-A-B-A-L games.com and sign up Decentralized energy. Let's talk about ways What's up? What's up everybody? We are back for another Zabal Gamez workshop. Here I have Askal today here to share a little bit about what he's created, Flowstage. So how we doing today, Askal? Pretty good. Thanks for having me. Excited- Excited to get in. Yeah, it's amazing to have you on. We're chatting a little bit on the artist track, but also the creator track, because it's definitely a, a portion of media, um, that you've created here for musicians and other artists, and I'm super excited to get into it.
 
 [00:00:45] Uh, do you wanna share with everyone a little bit about yourself and how or why you created Flowstage? Yeah, absolutely. So hi everybody. My name is Ram. I'm the founder and CEO of Flowstage. I have been in the engineering/ uh, like business space for the past [00:01:00] seven years. I have a dual degree in computer science and business, but I also am an independent artist.
 
@@ -152,4 +151,4 @@ topics: [FlowStage, Short-form video, Content tools, Creator tools, Farcaster]
 
 [00:22:54] And, uh, when we have, uh, some feedback, we'll definitely make sure we reach out. Awesome. [00:23:00] Perfect. Thank you. Cheers for everyone watching, and, uh, have a great day
 
-[00:23:04]
+[00:23:04] ZAO keep it a Zali. From the ZAO Dow come proper. We eat rappers for lunch and if some left, we eat 'em for supper. I keep it a ZAO, homie, a Zali. Heard the streets calling E3. Iron Man to a Simonz. Now the whole world hear about me

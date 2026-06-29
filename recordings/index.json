@@ -2,8 +2,42 @@
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
   "generated": "2026-06-29",
   "season": 1,
-  "count": 28,
+  "count": 29,
   "recordings": [
+    {
+      "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/Matt Lee from Tortoise",
+      "presenter": "Matt Lee",
+      "handle": "@mattlee",
+      "org": "Tortoise",
+      "track": "builder",
+      "technical": 5,
+      "format": "Live conversation plus Q and A, recorded",
+      "date": "2026-06-28",
+      "url": "https://zabalgamez.com/recordings/28",
+      "page": "https://zabalgamez.com/recordings/28",
+      "youtube": "https://youtu.be/kbUZIRBM2Gw",
+      "recording": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-28-matt-lee-tortoise.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-28-matt-lee-tortoise.md",
+      "link": null,
+      "okd": null,
+      "cast_hash": null,
+      "summary": "Matt Lee on Tortoise, and how musicians and creators can best use Farcaster. A musician and software engineer, he came up through the music industry and live sound before teaching himself to build, and got into crypto chasing one question - how to make a music industry where artists own and earn from their work. A hands-on look at building on Farcaster, finding your ideal user, and his snap bot.",
+      "topics": [
+        "Tortoise",
+        "Music on Farcaster",
+        "Building on Farcaster",
+        "Creator economy",
+        "Farcaster"
+      ],
+      "takeaways": [
+        "Owning digital media as the key to a healthier music industry - where that idea came from and why it matters.",
+        "Tortoise: giving musicians a place to build and grow on Farcaster.",
+        "Building on Farcaster - who your ideal user is, and what carries over for anyone building next.",
+        "A look at his snap bot."
+      ]
+    },
     {
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/AZKAL from FlowStage",
@@ -16,7 +50,7 @@
       "date": "2026-06-28",
       "url": "https://zabalgamez.com/recordings/27",
       "page": "https://zabalgamez.com/recordings/27",
-      "youtube": null,
+      "youtube": "https://youtu.be/U_Eubs-2_Yo",
       "recording": null,
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-28-building-flowstage.md",
       "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-28-building-flowstage.md",
