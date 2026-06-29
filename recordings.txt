@@ -56,6 +56,7 @@ Topics: Pixel art, Creative coding, Farcaster Mini App, BizarreBeasts, Animation
 workshop  |  track: builder  |  2026-06-23
 Presenter: Saltorious (@saltorious.eth), Bankr
 Watch: https://zabalgamez.com/recordings/22
+Video: https://youtu.be/YmRfDeJyl0M
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-23-harness-and-joining-bankr.md
 Summary: Saltorious on Harness, the tool he built, and Bankr, the team he just joined - what each is and how they fit into how people build today. A builder-track look at shipping your own tooling and what it means to go from solo builder to joining a team.
 Takeaways:
