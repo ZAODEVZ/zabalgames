@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Match - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Match - flip and pair the ZAO ecosystem brands. No signup. Beat your best time, then share it.">
+  <link rel="canonical" href="https://zabalgamez.com/game/memory">
+  <meta property="og:title" content="ZAO Match - ZABAL Gamez">
+  <meta property="og:description" content="Flip and pair the ZAO ecosystem brands. No signup. Beat your best time.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/memory">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Match - ZABAL Gamez">
+  <meta name="twitter:description" content="Flip and pair the ZAO ecosystem brands. No signup. Beat your best time.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Match","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/memory","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .mm-stats { display: flex; gap: 1.2rem; align-items: baseline; margin: 0.6rem 0 1rem; font-family: 'JetBrains Mono', monospace; }
+    .mm-stat { font-size: 0.8rem; color: var(--text-dim); }
+    .mm-stat b { display: block; font-size: 1.3rem; color: var(--text); font-weight: 600; margin-top: 0.1rem; }
+    .mm-stat b.best { color: var(--gold); }
+    .mm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; max-width: 460px; }
+    @media (min-width: 540px) { .mm-grid { gap: 0.8rem; } }
+    .mm-card { position: relative; aspect-ratio: 3 / 4; border: 0; background: transparent; padding: 0; cursor: pointer; perspective: 700px; font: inherit; }
+    .mm-inner { position: absolute; inset: 0; transition: transform 0.32s ease; transform-style: preserve-3d; }
+    .mm-card.flip .mm-inner, .mm-card.done .mm-inner { transform: rotateY(180deg); }
+    .mm-face { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center;
+      border-radius: 12px; backface-visibility: hidden; padding: 0.3rem; }
+    .mm-front { background: var(--surface-2); border: 1px solid var(--border); }
+    .mm-front::after { content: "Z"; font-family: 'Press Start 2P', monospace; font-size: 1rem; color: var(--zabal); opacity: 0.7; }
+    .mm-back { background: linear-gradient(160deg, rgba(124,92,255,0.16), rgba(0,209,255,0.10));
+      border: 1px solid var(--zabal); transform: rotateY(180deg);
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.78rem; line-height: 1.1; color: var(--text); }
+    @media (min-width: 540px) { .mm-back { font-size: 0.92rem; } }
+    .mm-card.done .mm-back { border-color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan) inset; opacity: 0.92; }
+    .mm-card:disabled { cursor: default; }
+    .mm-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.2rem; }
+    .mm-win { margin-top: 1.2rem; padding: 1rem 1.1rem; border: 1px solid var(--cyan); border-radius: 14px;
+      background: rgba(0,209,255,0.06); display: none; }
+    .mm-win.show { display: block; }
+    .mm-win h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.3rem; }
+    .mm-win p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 0.8rem; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/info.html">Details</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow"><a href="/game" style="color: inherit;">The arcade</a> / ZAO Match</div>
+    <h1>ZAO <span class="accent">Match</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">Flip the tiles and pair every ZAO ecosystem brand. No signup. Fewest moves and fastest time win.</p>
+  </header>
+
+  <div class="mm-stats">
+    <div class="mm-stat">Moves<b id="mm-moves">0</b></div>
+    <div class="mm-stat">Time<b id="mm-time">0:00</b></div>
+    <div class="mm-stat">Best<b id="mm-best" class="best">-</b></div>
+  </div>
+
+  <div class="mm-grid" id="mm-grid" aria-label="Memory board"></div>
+
+  <div class="mm-actions">
+    <button class="btn btn-secondary" id="mm-new" type="button">New game</button>
+    <a class="btn btn-secondary" href="/game">Back to arcade</a>
+  </div>
+
+  <div class="mm-win" id="mm-win" role="status" aria-live="polite">
+    <h2>Cleared.</h2>
+    <p id="mm-win-line">Nice.</p>
+    <div class="mm-actions" style="margin-top: 0;">
+      <button class="btn btn-primary" id="mm-share" type="button">Share your time</button>
+      <button class="btn btn-secondary" id="mm-again" type="button">Play again</button>
+    </div>
+  </div>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
+    Learn the ecosystem you are matching - browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
+  </p>
+
+</div>
+</main>
+
+<script>
+(function () {
+  // ZAO ecosystem brands - exact glossary spellings, no emoji (brand rule).
+  var BRANDS = ['The ZAO', 'WaveWarZ', 'FISHBOWLZ', 'COC Concertz', 'ZOE', 'SANG'];
+  var grid = document.getElementById('mm-grid');
+  var movesEl = document.getElementById('mm-moves');
+  var timeEl = document.getElementById('mm-time');
+  var bestEl = document.getElementById('mm-best');
+  var winEl = document.getElementById('mm-win');
+  var winLine = document.getElementById('mm-win-line');
+  var moves = 0, matched = 0, first = null, lock = false, started = 0, timer = null, seconds = 0;
+  var BEST_KEY = 'zg-zaomatch-best';
+
+  function fmt(s) { var m = Math.floor(s / 60); var r = s % 60; return m + ':' + (r < 10 ? '0' : '') + r; }
+
+  function loadBest() {
+    var b = null;
+    try { b = JSON.parse(localStorage.getItem(BEST_KEY) || 'null'); } catch (e) {}
+    bestEl.textContent = b ? (b.moves + ' / ' + fmt(b.seconds)) : '-';
+    return b;
+  }
+
+  function startTimer() {
+    if (timer) return;
+    started = Date.now();
+    timer = setInterval(function () {
+      seconds = Math.floor((Date.now() - started) / 1000);
+      timeEl.textContent = fmt(seconds);
+    }, 250);
+  }
+  function stopTimer() { clearInterval(timer); timer = null; }
+
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function build() {
+    stopTimer();
+    moves = 0; matched = 0; first = null; lock = false; seconds = 0; timer = null;
+    movesEl.textContent = '0'; timeEl.textContent = '0:00';
+    winEl.classList.remove('show');
+    var deck = shuffle(BRANDS.concat(BRANDS).slice());
+    grid.innerHTML = '';
+    deck.forEach(function (name, idx) {
+      var btn = document.createElement('button');
+      btn.className = 'mm-card';
+      btn.type = 'button';
+      btn.setAttribute('aria-label', 'Hidden tile');
+      btn.dataset.name = name;
+      btn.innerHTML = '<span class="mm-inner"><span class="mm-face mm-front"></span>' +
+        '<span class="mm-face mm-back">' + name + '</span></span>';
+      btn.addEventListener('click', function () { flip(btn); });
+      grid.appendChild(btn);
+    });
+  }
+
+  function flip(btn) {
+    if (lock || btn.classList.contains('flip') || btn.classList.contains('done')) return;
+    startTimer();
+    btn.classList.add('flip');
+    btn.setAttribute('aria-label', btn.dataset.name);
+    if (!first) { first = btn; return; }
+    moves++; movesEl.textContent = String(moves);
+    if (first.dataset.name === btn.dataset.name) {
+      first.classList.add('done'); btn.classList.add('done');
+      first.disabled = true; btn.disabled = true;
+      first = null; matched++;
+      if (matched === BRANDS.length) win();
+    } else {
+      lock = true;
+      var a = first, b = btn; first = null;
+      setTimeout(function () {
+        a.classList.remove('flip'); b.classList.remove('flip');
+        a.setAttribute('aria-label', 'Hidden tile'); b.setAttribute('aria-label', 'Hidden tile');
+        lock = false;
+      }, 700);
+    }
+  }
+
+  function win() {
+    stopTimer();
+    var best = loadBest();
+    var isBest = !best || moves < best.moves || (moves === best.moves && seconds < best.seconds);
+    if (isBest) {
+      try { localStorage.setItem(BEST_KEY, JSON.stringify({ moves: moves, seconds: seconds })); } catch (e) {}
+    }
+    loadBest();
+    winLine.textContent = 'All six brands paired in ' + moves + ' moves and ' + fmt(seconds) + '.' +
+      (isBest ? ' New best.' : '');
+    winEl.classList.add('show');
+  }
+
+  document.getElementById('mm-new').addEventListener('click', build);
+  document.getElementById('mm-again').addEventListener('click', build);
+  document.getElementById('mm-share').addEventListener('click', function () {
+    var text = 'I cleared ZAO Match in ' + moves + ' moves and ' + fmt(seconds) + '. Pair the ZAO ecosystem at the ZABAL Gamez arcade.';
+    var url = 'https://zabalgamez.com/game/memory';
+    try {
+      if (window.ZABAL && window.ZABAL.composeCast) { window.ZABAL.composeCast(text, [url]); return; }
+    } catch (e) {}
+    window.open('https://warpcast.com/~/compose?text=' + encodeURIComponent(text + ' ' + url), '_blank');
+  });
+
+  loadBest();
+  build();
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
