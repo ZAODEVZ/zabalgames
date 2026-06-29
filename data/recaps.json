@@ -208,6 +208,40 @@
         "Artwork that doubles as editable code - the output is also the source.",
         "Shipping the same tool as a webpage and a Farcaster Mini App.",
         "The wider BizarreBeasts world - the miniapp, the games, and the artwork."
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Meet Dylan: BizarreBeasts, an art project since 2021"
+        },
+        {
+          "t": 89,
+          "label": "The A3 award and the DCP+ animated series"
+        },
+        {
+          "t": 241,
+          "label": "Farcaster as the key that unlocked the project"
+        },
+        {
+          "t": 420,
+          "label": "His Empire Builder journey: giving the token real utility"
+        },
+        {
+          "t": 630,
+          "label": "Empire tier-gating inside the BizarreBeasts mini app"
+        },
+        {
+          "t": 834,
+          "label": "The Bizarre Pixel Studio: born out of the animation work"
+        },
+        {
+          "t": 1010,
+          "label": "Art that is also editable code: change the hex, export anywhere"
+        },
+        {
+          "t": 1193,
+          "label": "Why he built it, and building on what you have already built"
+        }
       ]
     },
     {
