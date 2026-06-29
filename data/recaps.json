@@ -82,7 +82,41 @@
         "How a music-technology pioneer uses generative AI inside Ableton with Magenta.",
         "A live demo of making music with AI tools, not just talking about them.",
         "Perspective from decades at the intersection of music and technology (MIT Media Lab, the Conductor's Jacket).",
-        "Where AI fits into a real creative workflow for artists."
+        "Where AI fits into a real creative workflow for artists - as an assistant, not a replacement."
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Meet Mama T: professor at Stevens Institute of Technology"
+        },
+        {
+          "t": 171,
+          "label": "The Marvin Minsky story: improvisation as the key to creativity"
+        },
+        {
+          "t": 310,
+          "label": "Magenta Studio: putting creative control back in your hands"
+        },
+        {
+          "t": 459,
+          "label": "Setting up in Ableton, and the Fur Elise demo"
+        },
+        {
+          "t": 626,
+          "label": "The Continue tool, and why variation is the heart of composition"
+        },
+        {
+          "t": 758,
+          "label": "Generating variations: clips, bars, and temperature"
+        },
+        {
+          "t": 1079,
+          "label": "AI as a creative assistant, not a replacement"
+        },
+        {
+          "t": 1297,
+          "label": "The other tools: Drumify, Generate, Interpolate, Groove"
+        }
       ]
     },
     {
