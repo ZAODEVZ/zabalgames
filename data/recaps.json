@@ -5,13 +5,13 @@
     {
       "date": "2026-06-25",
       "type": "workshop",
-      "title": "ZABAL GAMEZ Workshop w/Teresa Marrin Nakra from MIT Media Lab",
+      "title": "ZABAL GAMEZ Workshop w/Teresa Marrin Nakra from Stevens University",
       "presenter": "Teresa Marrin Nakra",
-      "org": "MIT Media Lab",
+      "org": "Stevens University",
       "track": "artist",
       "technical": 4,
       "format": "Talk + live demo + Q and A, recorded",
-      "summary": "Teresa Marrin Nakra - music-technology pioneer from the MIT Media Lab and inventor of the Conductor's Jacket - on making music with generative AI in Ableton using Magenta, plus a live demo. An artist-track look at where AI tools meet real music-making from someone who has been building at that intersection for decades.",
+      "summary": "Teresa Marrin Nakra - professor at Stevens University and inventor of the Conductor's Jacket - on making music with generative AI in Ableton using Magenta, plus a live demo. An artist-track look at where AI tools meet real music-making from someone who has been building at that intersection for decades.",
       "topics": [
         "Generative AI",
         "Ableton",
@@ -21,6 +21,8 @@
       ],
       "page": "/recordings/25",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-25-music-generative-ai-ableton.md",
+      "link": "https://www.stevens.edu/profile/tnakra",
+      "link_label": "Teresa at Stevens University",
       "takeaways": [
         "How a music-technology pioneer uses generative AI inside Ableton with Magenta.",
         "A live demo of making music with AI tools, not just talking about them.",

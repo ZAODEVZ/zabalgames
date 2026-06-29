@@ -1,8 +1,8 @@
 ---
-title: ZABAL GAMEZ Workshop w/Teresa Marrin Nakra from MIT Media Lab
+title: ZABAL GAMEZ Workshop w/Teresa Marrin Nakra from Stevens University
 show: ZABAL Gamez Workshops
 presenter: Teresa Marrin Nakra
-org: MIT Media Lab
+org: Stevens University
 date: 2026-06-25T00:00:00.000Z
 format: Talk + live demo + Q and A, recorded
 language: en
