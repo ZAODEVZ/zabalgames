@@ -2,8 +2,42 @@
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
   "generated": "2026-06-29",
   "season": 1,
-  "count": 26,
+  "count": 27,
   "recordings": [
+    {
+      "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/AZKAL from FlowStage",
+      "presenter": "AZKAL",
+      "handle": null,
+      "org": "FlowStage",
+      "track": "artist",
+      "technical": 4,
+      "format": "Talk + live demo, recorded",
+      "date": "2026-06-28",
+      "url": "https://zabalgamez.com/recordings/26",
+      "page": "https://zabalgamez.com/recordings/26",
+      "youtube": null,
+      "recording": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-28-building-flowstage.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-28-building-flowstage.md",
+      "link": "https://app.theflowstage.com/",
+      "okd": null,
+      "cast_hash": null,
+      "summary": "AZKAL on building FlowStage - how to scale your content without losing your taste. FlowStage turns your own footage and audio into short-form videos and slideshows, organized by aesthetic, with no generative AI. A session for artists and creators, with a live demo and a look at how builders can plug into the FlowStage API.",
+      "topics": [
+        "FlowStage",
+        "Short-form video",
+        "Content tools",
+        "Creator tools",
+        "Farcaster"
+      ],
+      "takeaways": [
+        "Building FlowStage - scaling your content without handing your taste to a generative model.",
+        "Short-form videos and slideshows built from your own footage and audio, organized by aesthetic.",
+        "No generative AI - the output stays yours.",
+        "How builders can plug into the FlowStage API, plus a live demo."
+      ]
+    },
     {
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/Teresa Marrin Nakra from Stevens University",
