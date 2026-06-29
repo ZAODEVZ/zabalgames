@@ -440,6 +440,40 @@
         "What previbecoding means in practice - building with AI tooling before you are a fluent coder.",
         "How someone without a software background can start creating systems and code with AI.",
         "Lessons and habits that carry over for anyone learning to code right now."
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Meet Ali: from Influence to exploring vibe coding"
+        },
+        {
+          "t": 249,
+          "label": "The warning: this is about how to think, not how to code"
+        },
+        {
+          "t": 393,
+          "label": "The bottleneck is never AI - it is not knowing what you want"
+        },
+        {
+          "t": 529,
+          "label": "Domain expertise: why the fundamentals still matter"
+        },
+        {
+          "t": 585,
+          "label": "What a product really is: functional, emotional, social"
+        },
+        {
+          "t": 898,
+          "label": "The anatomy of a web app: domain, header, hero, footer"
+        },
+        {
+          "t": 1211,
+          "label": "Common mistakes: no ownership and the wrong domain"
+        },
+        {
+          "t": 1646,
+          "label": "The builder mindset, and a live demo from a quick idea"
+        }
       ]
     },
     {
