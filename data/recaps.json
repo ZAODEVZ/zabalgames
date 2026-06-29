@@ -202,6 +202,40 @@
         "Bankr - the team he just joined and what they do.",
         "How both fit into the way people build onchain right now.",
         "Going from a solo builder shipping a tool to joining a team."
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Welcome - Saltorious: builder, now dev rel at Bankr"
+        },
+        {
+          "t": 114,
+          "label": "Past builds: HypeMan, People's Donuts, Among Traitors"
+        },
+        {
+          "t": 255,
+          "label": "Harness: a private, browser-based, screen-aware AI assistant"
+        },
+        {
+          "t": 329,
+          "label": "Why he built it: the dev workflow and 50 open tabs"
+        },
+        {
+          "t": 634,
+          "label": "Privacy-first: local models plus Venice private inference"
+        },
+        {
+          "t": 1001,
+          "label": "Cheaper inference via Surplus Intelligence (Bankr)"
+        },
+        {
+          "t": 1440,
+          "label": "Live demo: screen-aware answers, recall, watch-my-screen"
+        },
+        {
+          "t": 2269,
+          "label": "What is next: sharing context with Claude Code via MCP"
+        }
       ]
     },
     {
