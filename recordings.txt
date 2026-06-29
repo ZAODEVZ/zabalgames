@@ -99,7 +99,8 @@ Topics: Harness, Bankr, Building tools, Onchain tools, Farcaster
 workshop  |  track: builder  |  2026-06-22
 Presenter: The Farcaster Intern (@farcaster), Farcaster
 Watch: https://zabalgamez.com/recordings/20
-Summary: ZABAL GAMEZ AMA w/ The Farcaster Intern - an open-mic audio-space AMA. BetterCallZaal hosts @farcaster; come up and ask anything about Farcaster, or send your question ahead and we open with the most-liked.
+Summary: ZABAL Gamez AMA with The Farcaster Intern - an open-mic audio-space AMA. BetterCallZaal hosts @farcaster; come up and ask anything about Farcaster, or send your question ahead and we open with the most-liked.
+Topics: Farcaster, AMA, Farcaster protocol
 
 ======================================================================
 [8] Selling merch onchain

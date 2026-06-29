@@ -264,6 +264,31 @@ function buildPage() {
     takeawaysBlock = `\n    <div class="rec-label">Key takeaways</div>\n    <ul class="rec-takeaways">\n${t}\n    </ul>\n`;
   }
 
+  // related sessions: turn each recap into a gateway. Score every other recap by shared
+  // topics, with a nudge for the same track, and surface the top 3. Computed at build time
+  // from data/recaps.json - no new data needed. Existing pages pick this up on re-ingest.
+  let relatedBlock = '';
+  {
+    const myTopics = new Set((m.topics || []).map((x) => String(x).toLowerCase()));
+    const myTrack = track || m.track;
+    const scored = recaps
+      .filter((r) => r.page && r.page !== page && r.title)
+      .map((r) => {
+        const shared = (r.topics || []).filter((x) => myTopics.has(String(x).toLowerCase())).length;
+        return { r, score: shared + (myTrack && r.track === myTrack ? 0.5 : 0) };
+      })
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3);
+    if (scored.length) {
+      const items = scored.map(({ r }) => {
+        const who = [r.presenter, r.org].filter(Boolean).join(' - ');
+        return `      <li style="margin-bottom: 0.5rem;"><a href="${attr(r.page)}" style="color: var(--cyan); text-decoration: none; font-weight: 600;">${esc(r.title)}</a>${who ? ` <span style="color: var(--text-dim); font-size: 0.85rem;">${esc(who)}</span>` : ''}</li>`;
+      }).join('\n');
+      relatedBlock = `  <section class="section rec-related">\n    <div class="rec-label">Related sessions</div>\n    <ul style="list-style: none; padding: 0; margin: 0.4rem 0 0;">\n${items}\n    </ul>\n  </section>\n\n`;
+    }
+  }
+
   // on-site transcript reader (assets/transcript.js renders /data/.../x.md with deep-linkable lines)
   const transcriptBlock = m.transcript_markdown
     ? `  <section class="section rec-transcript-section">
@@ -411,7 +436,7 @@ ${transcriptBlock}  <section id="zg-clip-bounty"></section>
 
   <section id="zg-clip-claim"></section>
 
-  <section id="zg-comments"></section>
+${relatedBlock}  <section id="zg-comments"></section>
 
 </div>
 </main>
