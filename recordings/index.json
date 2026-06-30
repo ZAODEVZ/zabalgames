@@ -1,9 +1,38 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-06-29",
+  "generated": "2026-06-30",
   "season": 1,
-  "count": 29,
+  "count": 30,
   "recordings": [
+    {
+      "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/James from Mental Wealth Academy",
+      "presenter": "James",
+      "handle": "jamesdesign.eth",
+      "org": "Mental Wealth Academy",
+      "track": null,
+      "technical": null,
+      "format": null,
+      "date": "2026-06-27",
+      "url": "https://zabalgamez.com/recordings/29",
+      "page": "https://zabalgamez.com/recordings/29",
+      "youtube": "https://youtu.be/eVNfCtngLeU",
+      "recording": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-27-james-mental-wealth-academy.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-27-james-mental-wealth-academy.md",
+      "link": null,
+      "okd": null,
+      "cast_hash": null,
+      "summary": "James from Mental Wealth Academy - an artist, psychologist, and scientist - walks through the learn-to-earn game world he is building, where people earn while they learn. He gets into the platform itself (blockchain accounts via Privy, diamond points, agentic NPC characters) and the bigger idea behind it: the democratization of education the same way SoundCloud democratized music. Instead of $30k tuition, invest a fraction into a community and a system and gain access to bright minds.",
+      "topics": [
+        "What Mental Wealth Academy is",
+        "Learn-to-earn game world",
+        "Privy accounts and diamond points",
+        "Democratization of education",
+        "Building your own brand into Web3"
+      ],
+      "takeaways": []
+    },
     {
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/Matt Lee from Tortoise",
