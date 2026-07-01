@@ -6,7 +6,11 @@ export const config = { runtime: 'edge' };
 // watcher, the Magnetiq UGC receiver, a Farcaster tag capture, or Zaal adding one by hand.
 // Builders never register here; the sources feed it.
 //
-//   POST (auth: Bearer ADMIN_KEY) { source, builder:{fid?,wallet?,handle?}, project, url, repo?, note? }
+//   POST (auth: Bearer ADMIN_KEY) { source, builder:{fid?,wallet?,handle?}, project, url, repo?, note?,
+//                                    track?('artist'|'builder'|'creator'), type?, forBrand?('zabalgamez'|'zabal'|'zao') }
+//     A submission is ANY piece of IP for ZABAL Gamez / ZABAL / The ZAO - video, image, app, music,
+//     art, repo, or a link - sorted into one of the three tracks (artist/builder/creator). type is
+//     inferred from the url when not given.
 //     -> upserts by builder+project (stable id), so re-sending the same project UPDATES it, no dupes.
 //   GET ?builder=<handle>            -> that builder's projects (for the profile page).
 //   GET ?feed=recent&limit=50        -> recent submissions across all builders (default).
@@ -41,6 +45,24 @@ async function kvPipeline(cmds) {
 }
 
 const slug = (s) => String(s || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48);
+
+// A submission is ANY piece of IP made for ZABAL Gamez / ZABAL / The ZAO, sorted into one of the
+// three tracks. Not just repos - video, image, app, music, art, or a link all count.
+const TRACKS = ['artist', 'builder', 'creator'];
+const cleanTrack = (s) => (TRACKS.includes(slug(s)) ? slug(s) : null);
+function inferType(url, repo) {
+  if (repo) return 'repo';
+  const u = String(url || '').toLowerCase();
+  if (!u) return 'other';
+  if (/github\.com/.test(u)) return 'repo';
+  if (/youtube\.com|youtu\.be|vimeo\.com|\.mp4(\?|$)|\.mov(\?|$)/.test(u)) return 'video';
+  if (/\.png(\?|$)|\.jpe?g(\?|$)|\.gif(\?|$)|\.webp(\?|$)|imagedelivery|seadn|pinata|ipfs/.test(u)) return 'image';
+  if (/soundcloud|spotify|\.mp3(\?|$)|\.wav(\?|$)|audius|sound\.xyz/.test(u)) return 'music';
+  if (/\.pages\.dev|\.vercel\.app|\.netlify|\.app(\/|$)|localhost/.test(u)) return 'app';
+  return 'link';
+}
+const TYPES = ['video', 'image', 'app', 'repo', 'music', 'audio', 'link', 'other'];
+const cleanType = (s) => (TYPES.includes(slug(s)) ? slug(s) : null);
 const cleanHandle = (s) => (String(s || '').toLowerCase().replace(/^@/, '').replace(/[^a-z0-9._-]/g, '').slice(0, 40) || null);
 const cleanWallet = (s) => { const v = String(s || '').trim().toLowerCase(); return /^0x[0-9a-f]{40}$/.test(v) ? v : null; };
 const cleanUrl = (s) => { try { const u = new URL(String(s)); return (u.protocol === 'https:' || u.protocol === 'http:') ? u.toString() : null; } catch { return null; } };
@@ -84,12 +106,17 @@ export default async function handler(req) {
     if (!builderKey) return json({ ok: false, error: 'need a builder handle, fid, or wallet' }, 400);
     const project = slug(body.project) || slug(body.url) || 'project';
     const id = builderKey + ':' + project; // stable id -> upsert (updatable, no dupes)
+    const url_ = cleanUrl(body.url);
+    const repo_ = (String(body.repo || '').replace(/[^a-zA-Z0-9._/:-]/g, '').slice(0, 140) || null);
     const rec = {
       id, source,
       builder: { handle, fid, wallet },
+      track: cleanTrack(body.track),                    // artist | builder | creator | null
+      type: cleanType(body.type) || inferType(url_, repo_), // video | image | app | repo | music | link | other
+      forBrand: (['zabalgamez', 'zabal', 'zao'].includes(slug(body.forBrand)) ? slug(body.forBrand) : 'zabalgamez'),
       project: String(body.project || project).slice(0, 80),
-      url: cleanUrl(body.url),
-      repo: (String(body.repo || '').replace(/[^a-zA-Z0-9._/:-]/g, '').slice(0, 140) || null),
+      url: url_,
+      repo: repo_,
       note: (String(body.note || '').slice(0, 500) || null),
       ts: Date.now(),
     };
