@@ -71,7 +71,7 @@
   <header class="hero" id="su-hero" style="padding-bottom: 0.2rem;">
     <div class="hero-eyebrow">Submissions</div>
     <h1>What the community <span class="accent">is shaping</span></h1>
-    <p class="lead" style="margin-top: 0.3rem;">Approved ZABAL Gamez submissions - takes, builds, and answers from the season. Add yours on the submission page.</p>
+    <p class="lead" style="margin-top: 0.3rem;">Submit any piece of IP wherever you already post it - a build, a video, an image, a track, art - and it lands here under your profile, sorted by track (artist, builder, creator). No form required.</p>
   </header>
 
   <section class="section" id="ip-feed" style="margin-top:1rem;">
@@ -146,7 +146,7 @@
   var hero = document.getElementById('su-hero');
 
   function byline(s) {
-    if (s.handle) return '<span class="su-by">by <a href="/profiles/' + esc(s.handle) + '">@' + esc(s.handle) + '</a>' + (s.ts ? ' - ' + when(s.ts) : '') + '</span>';
+    if (s.handle) return '<span class="su-by">by <a href="/builder?handle=' + esc(s.handle) + '">@' + esc(s.handle) + '</a>' + (s.ts ? ' - ' + when(s.ts) : '') + '</span>';
     return '<span class="su-by">' + (s.ts ? when(s.ts) : '') + '</span>';
   }
   function fields(s) {
@@ -170,7 +170,7 @@
     var share = '';
     root.innerHTML = cardHtml(s) +
       '<div class="su-actions"><button class="btn primary" id="su-share" type="button">Share</button>' +
-      (s.handle ? '<a class="btn" href="/profiles/' + esc(s.handle) + '">@' + esc(s.handle) + '\'s profile</a>' : '') +
+      (s.handle ? '<a class="btn" href="/builder?handle=' + esc(s.handle) + '">@' + esc(s.handle) + '\'s profile</a>' : '') +
       '<a class="btn" href="/submissions">All submissions</a></div>' +
       '<p class="su-note">Want your work here? <a href="/submit">Make a submission</a>.</p>';
     var sb = document.getElementById('su-share');
