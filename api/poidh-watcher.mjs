@@ -46,7 +46,7 @@ export default async function handler(req) {
   const key = new URL(req.url).searchParams.get('key') || auth;
   const authorized = (CRON_SECRET && auth === CRON_SECRET) || (INTAKE_KEY && key === INTAKE_KEY) || (!CRON_SECRET && !INTAKE_KEY);
   if (!authorized) return json({ ok: false, error: 'unauthorized' }, 401);
-  if (!KV_URL || !KV_TOKEN || !NEYNAR) return json({ ok: true, configured: false, added: 0 });
+  if (!KV_URL || !KV_TOKEN || !NEYNAR) return json({ ok: true, configured: false, added: 0, has: { kv: !!(KV_URL && KV_TOKEN), neynar: !!NEYNAR } });
 
   const casts = [];
   for (const q of QUERIES) {
