@@ -105,12 +105,28 @@
   function profileHref(c) {
     return c.username ? 'https://farcaster.xyz/' + esc(c.username) : 'https://farcaster.xyz/~/profiles/' + esc(c.fid);
   }
+
+  // Tap a comment/cast author -> their NATIVE Farcaster profile inside the Mini App
+  // (window.ZABAL.viewProfile), with the web profile link as the off-app fallback. Wired
+  // once at the document level so it covers every recording page's thread + cast feed.
+  if (!window.__zgcAuthorWired) {
+    window.__zgcAuthorWired = true;
+    document.addEventListener('click', function (ev) {
+      var a = ev.target.closest ? ev.target.closest('.zgc-author') : null;
+      if (!a) return;
+      var fid = a.getAttribute('data-fid');
+      if (fid && window.ZABAL && window.ZABAL.viewProfile) {
+        ev.preventDefault();
+        window.ZABAL.viewProfile(fid);
+      }
+    });
+  }
   function commentHTML(c) {
     var name = c.username ? '@' + esc(c.username) : 'fid ' + esc(c.fid);
     var pfp = c.pfp ? '<img class="zgc-pfp" src="' + esc(c.pfp) + '" alt="" loading="lazy">' : '<div class="zgc-pfp"></div>';
     return '<div class="zgc-item" data-cid="' + esc(c.cid) + '">' + pfp +
       '<div class="zgc-body">' +
-        '<div class="zgc-by"><a href="' + profileHref(c) + '" target="_blank" rel="noopener">' + name + '</a>' +
+        '<div class="zgc-by"><a class="zgc-author" data-fid="' + esc(c.fid) + '" href="' + profileHref(c) + '" target="_blank" rel="noopener">' + name + '</a>' +
           '<span class="zgc-time">' + esc(timeAgo(c.ts)) + '</span></div>' +
         '<p class="zgc-text">' + esc(c.text) + '</p>' +
         '<div class="zgc-acts">' +
@@ -224,7 +240,7 @@
     var stats = 'Like ' + (c.likes || 0) + (c.recasts ? '  Recast ' + c.recasts : '');
     return '<div class="zgc-item">' + pfp +
       '<div class="zgc-body">' +
-        '<div class="zgc-by"><a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + name + '</a>' +
+        '<div class="zgc-by"><a class="zgc-author" data-fid="' + esc(c.fid) + '" href="' + esc(c.url) + '" target="_blank" rel="noopener">' + name + '</a>' +
           '<span class="zgc-time">' + esc(timeAgo(c.ts)) + '</span></div>' +
         '<p class="zgc-text">' + esc(c.text) + '</p>' +
         '<div class="zgc-acts"><a class="zgc-act" href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(stats) + '</a></div>' +
