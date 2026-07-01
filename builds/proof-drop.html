@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proof Drop by ghostmintops - July Build - ZABAL Gamez Season 1</title>
+  <meta name="description" content="Proof Drop - a build-receipt kit for ZABAL Gamez. Make a portable receipt for shipped work, hash a proof photo locally, and export verification posts for the /zabal channel and the prize pot. Built by ghostmintops for the July open build.">
+  <link rel="canonical" href="https://zabalgamez.com/builds/proof-drop">
+  <meta property="og:title" content="Proof Drop by ghostmintops - a July ZABAL Gamez build">
+  <meta property="og:description" content="A build-receipt kit for ZABAL Gamez: make a portable receipt for shipped work, hash a proof photo locally, and export verification posts. The first July build.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/builds/proof-drop">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Proof Drop by ghostmintops - a July ZABAL Gamez build">
+  <meta name="twitter:description" content="A build-receipt kit for ZABAL Gamez: portable receipts, local proof hashing, and export-ready verification posts. The first July build.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See Proof Drop","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/builds/proof-drop","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .build-by { color: var(--text-muted); font-size: 0.92rem; margin: 0.3rem 0 0.2rem; }
+    .build-by a { color: var(--cyan); }
+    .build-note { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 10px; background: var(--surface-2); padding: 0.9rem 1.05rem; color: var(--text-muted); font-size: 0.94rem; line-height: 1.6; margin-top: 1rem; }
+    .build-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.1rem 0 0.2rem; }
+    .build-link { font-size: 0.84rem; padding: 0.4rem 0.85rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; }
+    .build-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .build-link:hover { filter: brightness(1.12); }
+    .build-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 1.5rem 0 0.5rem; }
+    .build-what { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+    .build-what li { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 0.35rem; line-height: 1.55; }
+    .build-ask { border: 1px solid var(--border-hover); border-radius: 10px; background: rgba(255,255,255,0.03); padding: 0.9rem 1.05rem; margin-top: 1.4rem; font-size: 0.92rem; color: var(--text); line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/enter">Enter</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-eyebrow">July - Open Build</div>
+    <h1>Proof Drop</h1>
+    <p class="build-by">By <a href="https://farcaster.xyz/ghostmintops" target="_blank" rel="noopener">ghostmintops</a> - the first July build.</p>
+  </header>
+
+  <section class="section">
+    <p class="build-note">A build-receipt kit for ZABAL Gamez. Make a portable receipt for shipped work, hash a proof photo locally so nothing private leaves your device, and export ready-to-post verification for the /zabal channel and the prize pot. It is a small tool that helps other builders prove what they shipped - which is exactly what July asks for.</p>
+
+    <div class="build-label">What it does</div>
+    <ul class="build-what">
+      <li>Creates a portable build receipt for a live app, repo, demo, or mint page.</li>
+      <li>Hashes your proof photo locally with SHA-256 - the file never gets uploaded.</li>
+      <li>Generates copy-ready posts for the /zabal channel and X.</li>
+      <li>Links straight to the prize-pot claim so your entry is one flow.</li>
+    </ul>
+
+    <div class="build-links">
+      <a class="build-link primary" href="https://proof-drop-zabal.pages.dev" target="_blank" rel="noopener">Open the live app</a>
+      <a class="build-link" href="https://github.com/BrandonDucar/proof-drop-zabal" target="_blank" rel="noopener">View the repo</a>
+      <a class="build-link" href="https://poidh.xyz/base/bounty/1249" target="_blank" rel="noopener">The prize pot</a>
+      <a class="build-link" href="https://farcaster.xyz/ghostmintops" target="_blank" rel="noopener">Builder on Farcaster</a>
+    </div>
+
+    <div class="build-ask">
+      Building something for July? Share it and get feedback below. Enter your own build at <a href="/enter">zabalgamez.com/enter</a> - ship it, register it, claim the pot.
+    </div>
+  </section>
+
+  <section id="zg-comments"></section>
+
+</div>
+</main>
+
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/recording-comments.js"></script>
+</body>
+</html>
