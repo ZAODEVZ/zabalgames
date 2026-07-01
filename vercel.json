@@ -2,44 +2,133 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "crons": [
-    { "path": "/api/commit-watcher", "schedule": "0 0 * * *" },
-    { "path": "/api/daily-cast", "schedule": "0 13 * * *" },
-    { "path": "/api/workshop-reminders", "schedule": "0 12 * * *" },
-    { "path": "/api/monthly-winner", "schedule": "0 14 1 * *" }
+    {
+      "path": "/api/commit-watcher",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/daily-cast",
+      "schedule": "0 13 * * *"
+    },
+    {
+      "path": "/api/workshop-reminders",
+      "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/monthly-winner",
+      "schedule": "0 14 1 * *"
+    },
+    {
+      "path": "/api/poidh-watcher",
+      "schedule": "0 * * * *"
+    }
   ],
   "rewrites": [
-    { "source": "/profiles/:handle", "destination": "/profile.html" },
-    { "source": "/submissions/:id", "destination": "/submissions.html" }
+    {
+      "source": "/profiles/:handle",
+      "destination": "/profile.html"
+    },
+    {
+      "source": "/submissions/:id",
+      "destination": "/submissions.html"
+    }
   ],
   "redirects": [
-    { "source": "/game/2048", "destination": "/play",                                "permanent": false },
-    { "source": "/quiz",      "destination": "/game/build-quiz",                      "permanent": false },
-    { "source": "/spec",    "destination": "/docs/research/701-canonical-state.md", "permanent": false },
-    { "source": "/todo",    "destination": "/TODO.md",                               "permanent": false },
-    { "source": "/snap",    "destination": "/docs/snap-design.md",                   "permanent": false },
-    { "source": "/kit",     "destination": "/docs/launch-kit.md",                    "permanent": false },
-    { "source": "/brand",   "destination": "/docs/brand-kit-2026-05-28.md",          "permanent": false },
-    { "source": "/llms",    "destination": "/llms.txt",                              "permanent": false },
-    { "source": "/raw",     "destination": "/llms.txt",                              "permanent": false },
-    { "source": "/log",     "destination": "/changelog",                             "permanent": false },
-    { "source": "/team",    "destination": "/about",                                 "permanent": false },
-    { "source": "/roster",  "destination": "/p",                                     "permanent": false },
-    { "source": "/people",  "destination": "/p",                                     "permanent": false }
+    {
+      "source": "/game/2048",
+      "destination": "/play",
+      "permanent": false
+    },
+    {
+      "source": "/quiz",
+      "destination": "/game/build-quiz",
+      "permanent": false
+    },
+    {
+      "source": "/spec",
+      "destination": "/docs/research/701-canonical-state.md",
+      "permanent": false
+    },
+    {
+      "source": "/todo",
+      "destination": "/TODO.md",
+      "permanent": false
+    },
+    {
+      "source": "/snap",
+      "destination": "/docs/snap-design.md",
+      "permanent": false
+    },
+    {
+      "source": "/kit",
+      "destination": "/docs/launch-kit.md",
+      "permanent": false
+    },
+    {
+      "source": "/brand",
+      "destination": "/docs/brand-kit-2026-05-28.md",
+      "permanent": false
+    },
+    {
+      "source": "/llms",
+      "destination": "/llms.txt",
+      "permanent": false
+    },
+    {
+      "source": "/raw",
+      "destination": "/llms.txt",
+      "permanent": false
+    },
+    {
+      "source": "/log",
+      "destination": "/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/team",
+      "destination": "/about",
+      "permanent": false
+    },
+    {
+      "source": "/roster",
+      "destination": "/p",
+      "permanent": false
+    },
+    {
+      "source": "/people",
+      "destination": "/p",
+      "permanent": false
+    }
   ],
   "headers": [
     {
       "source": "/llms.txt",
       "headers": [
-        { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
-        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=300" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, s-maxage=300"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
       ]
     },
     {
       "source": "/data/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, s-maxage=60"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
       ]
     }
   ]
