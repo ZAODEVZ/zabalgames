@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder - ZABAL Gamez Season 1</title>
+  <meta name="description" content="A ZABAL Gamez builder profile - every piece of IP they have submitted this season, grouped by track.">
+  <link rel="canonical" href="https://zabalgamez.com/builder">
+  <meta property="og:title" content="Builder profile - ZABAL Gamez">
+  <meta property="og:description" content="Every piece a builder has submitted this season, grouped by track: artist, builder, creator.">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .bp-head { margin-top: 0.5rem; }
+    .bp-handle { color: var(--cyan); }
+    .bp-track { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--gold); margin: 1.6rem 0 0.5rem; font-family: 'JetBrains Mono', monospace; }
+    .bp-item { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 0.7rem; border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 9px; background: var(--surface-2); padding: 0.65rem 0.9rem; margin-bottom: 0.5rem; }
+    .bp-item a { color: var(--cyan); font-weight: 600; }
+    .bp-badge { font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--border-hover); color: var(--text-dim); }
+    .bp-src { color: var(--text-dim); font-size: 0.74rem; font-family: 'JetBrains Mono', monospace; }
+    .bp-note { flex-basis: 100%; color: var(--text-muted); font-size: 0.85rem; margin-top: 0.2rem; }
+    .bp-empty { color: var(--text-muted); font-size: 0.92rem; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/enter">Enter</a>
+      <a href="/submissions">Submissions</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+  <header class="hero bp-head">
+    <div class="hero-eyebrow">Builder</div>
+    <h1 id="bp-title">Loading...</h1>
+    <p class="hero-sub" id="bp-sub"></p>
+  </header>
+
+  <section class="section"><div id="bp-body"><p class="bp-empty">Loading submissions...</p></div></section>
+
+  <section id="zg-comments" data-id="builder"></section>
+</div>
+</main>
+
+<script>
+(function () {
+  var handle = (new URLSearchParams(location.search).get('handle') || '').toLowerCase().replace(/^@/, '').replace(/[^a-z0-9._-]/g, '');
+  var cm = document.getElementById('zg-comments');
+  if (handle) cm.setAttribute('data-id', 'builder-' + handle); // per-builder comment thread
+  var title = document.getElementById('bp-title'), sub = document.getElementById('bp-sub'), body = document.getElementById('bp-body');
+  if (!handle) { title.textContent = 'Builder'; body.innerHTML = '<p class="bp-empty">No builder specified. Try /builder?handle=someone.</p>'; return; }
+  title.innerHTML = '<span class="bp-handle">@' + handle + '</span>';
+  document.title = '@' + handle + ' - ZABAL Gamez builder';
+
+  var TRACKS = [['artist', 'Artist'], ['builder', 'Builder'], ['creator', 'Creator'], ['', 'Other']];
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  fetch('/api/submission-intake?builder=' + encodeURIComponent(handle), { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var items = (d && d.items) || [];
+      if (!items.length) { sub.textContent = 'No submissions yet.'; body.innerHTML = '<p class="bp-empty">Nothing here yet. Submissions land automatically once this builder posts a build, a claim, or a drop.</p>'; return; }
+      sub.textContent = items.length + (items.length === 1 ? ' submission' : ' submissions') + ' this season.';
+      var html = '';
+      TRACKS.forEach(function (t) {
+        var group = items.filter(function (it) { return (it.track || '') === t[0]; });
+        if (!group.length) return;
+        html += '<div class="bp-track">' + t[1] + '</div>';
+        group.forEach(function (it) {
+          var link = it.url || it.repo || '#';
+          html += '<div class="bp-item">'
+            + '<a href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(it.project || 'Untitled') + '</a>'
+            + '<span class="bp-badge">' + esc(it.type || 'link') + '</span>'
+            + '<span class="bp-src">via ' + esc(it.source || 'site') + '</span>'
+            + (it.note ? '<div class="bp-note">' + esc(it.note) + '</div>' : '')
+            + '</div>';
+        });
+      });
+      body.innerHTML = html;
+    })
+    .catch(function () { body.innerHTML = '<p class="bp-empty">Could not load submissions right now.</p>'; });
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/recording-comments.js"></script>
+</body>
+</html>
