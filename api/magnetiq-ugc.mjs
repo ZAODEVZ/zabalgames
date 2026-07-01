@@ -20,8 +20,12 @@ const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_UR
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const SECRET = process.env.MAGNETIQ_SECRET || process.env.ADMIN_KEY || '';
 
-const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Authorization, Content-Type' };
+// Webhook endpoint (Magnetiq / Zapier / server POST): no legit browser cross-origin caller, so
+// the ACAO is locked to the canonical origin instead of '*'. A webhook sends no Origin header so
+// this does not affect it; it does block browser-based cross-origin POST.
+const CORS = { 'Access-Control-Allow-Origin': 'https://zabalgamez.com', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Authorization, Content-Type' };
 function json(obj, status = 200) { return new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json', ...CORS } }); }
+function timingEq(a, b) { if (!a || !b) return false; let d = a.length ^ b.length; for (let i = 0; i < a.length && i < b.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i); return d === 0; }
 async function kvPipeline(cmds) {
   const r = await fetch(`${KV_URL}/pipeline`, { method: 'POST', headers: { Authorization: `Bearer ${KV_TOKEN}`, 'Content-Type': 'application/json' }, body: JSON.stringify(cmds) });
   if (!r.ok) throw new Error('kv ' + r.status);
@@ -52,7 +56,8 @@ export default async function handler(req) {
   if (req.method !== 'POST') return json({ ok: false, error: 'method not allowed' }, 405);
   const auth = (req.headers.get('authorization') || '').replace(/^Bearer\s+/i, '');
   const key = new URL(req.url).searchParams.get('key') || auth;
-  if (!SECRET || key !== SECRET) return json({ ok: false, error: 'unauthorized' }, 401);
+  if (!SECRET) return json({ ok: false, error: 'unconfigured' }, 503);
+  if (!timingEq(key, SECRET)) return json({ ok: false, error: 'unauthorized' }, 401);
   if (!KV_URL || !KV_TOKEN) return json({ ok: true, configured: false });
 
   let b; try { b = await req.json(); } catch { return json({ ok: false, error: 'bad json' }, 400); }

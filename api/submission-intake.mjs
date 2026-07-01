@@ -25,8 +25,11 @@ const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_UR
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const INTAKE_KEY = process.env.INTAKE_KEY || process.env.ADMIN_KEY || '';
 
+// Locked to the canonical origin (was '*'). The site reads this same-origin (ACAO is not
+// consulted for same-origin), so this only blocks cross-origin browser callers; the POST is
+// also Bearer-auth'd (timingEq below) as defense-in-depth.
 const CORS = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://zabalgamez.com',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Authorization, Content-Type',
 };
