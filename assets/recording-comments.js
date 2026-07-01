@@ -21,8 +21,10 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-  // Recording id = the path, e.g. "/recordings/1" -> "recordings/1".
-  var REC_ID = location.pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/i, '').toLowerCase().replace(/[^a-z0-9/_-]/g, '') || 'recordings';
+  // Thread id = the mount's data-id when set (lets one page host per-item threads, e.g. a builder
+  // profile keyed by handle), else the URL path, e.g. "/recordings/1" -> "recordings/1".
+  var REC_ID = (mount.getAttribute('data-id') || location.pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/i, ''))
+    .toLowerCase().replace(/[^a-z0-9/_-]/g, '') || 'recordings';
   function meta(p) { var m = document.querySelector('meta[property="' + p + '"]'); return m ? m.getAttribute('content') : ''; }
   var REC_TITLE = meta('og:title') || document.title || 'this session';
   var canon = document.querySelector('link[rel="canonical"]');
