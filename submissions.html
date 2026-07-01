@@ -74,6 +74,57 @@
     <p class="lead" style="margin-top: 0.3rem;">Approved ZABAL Gamez submissions - takes, builds, and answers from the season. Add yours on the submission page.</p>
   </header>
 
+  <section class="section" id="ip-feed" style="margin-top:1rem;">
+    <h2 style="font-size:1.05rem;margin:0;">Season submissions <span id="ip-count" style="color:var(--text-dim);font-weight:400;font-size:0.9rem;"></span></h2>
+    <p class="lead" style="margin:0.2rem 0 0;font-size:0.9rem;">Every build, video, image, track, and app submitted this season - pulled in automatically from wherever it was posted.</p>
+    <div id="ip-filters" style="display:flex;flex-wrap:wrap;gap:6px;margin:0.7rem 0;"></div>
+    <div id="ip-list"></div>
+    <style>
+      .ip-chip { font:inherit; font-size:0.72rem; padding:0.2rem 0.65rem; border-radius:999px; border:1px solid var(--border-hover); background:var(--surface-2); color:var(--text-muted); cursor:pointer; text-transform:capitalize; }
+      .ip-chip.on { border-color:var(--zabal); color:var(--zabal); }
+      .ip-card { display:flex; flex-wrap:wrap; align-items:baseline; gap:0.35rem 0.6rem; border:1px solid var(--border); border-left:3px solid var(--zabal); border-radius:9px; background:var(--surface-2); padding:0.6rem 0.85rem; margin-bottom:0.5rem; }
+      .ip-card .ip-t { color:var(--cyan); font-weight:600; }
+      .ip-badge { font-size:0.6rem; letter-spacing:0.04em; text-transform:uppercase; padding:0.08rem 0.45rem; border-radius:999px; border:1px solid var(--border-hover); color:var(--text-dim); }
+      .ip-badge.track { color:var(--gold); border-color:var(--gold); }
+      .ip-by { color:var(--text-muted); font-size:0.8rem; }
+      .ip-src { color:var(--text-dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; margin-left:auto; }
+    </style>
+    <script>
+    (function () {
+      var list = document.getElementById('ip-list'), filt = document.getElementById('ip-filters'), cnt = document.getElementById('ip-count');
+      if (!list) return;
+      function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+      var ALL = [], track = '', type = '', TRACKS = ['artist', 'builder', 'creator'];
+      function chip(label, val, cur, kind) { return '<button class="ip-chip' + (val === cur ? ' on' : '') + '" data-kind="' + kind + '" data-val="' + esc(val) + '">' + esc(label) + '</button>'; }
+      function renderFilters() {
+        var types = Array.prototype.slice.call(new Set(ALL.map(function (i) { return i.type; }).filter(Boolean)));
+        filt.innerHTML = chip('All', '', track, 'track') + TRACKS.map(function (t) { return chip(t, t, track, 'track'); }).join('')
+          + '<span style="width:10px;display:inline-block"></span>' + types.map(function (t) { return chip(t, t, type, 'type'); }).join('');
+        Array.prototype.forEach.call(filt.querySelectorAll('.ip-chip'), function (b) {
+          b.onclick = function () { var k = b.getAttribute('data-kind'), v = b.getAttribute('data-val'); if (k === 'track') track = (track === v ? '' : v); else type = (type === v ? '' : v); renderFilters(); renderList(); };
+        });
+      }
+      function renderList() {
+        var items = ALL.filter(function (i) { return (!track || (i.track || '') === track) && (!type || i.type === type); });
+        cnt.textContent = items.length ? '(' + items.length + ')' : '';
+        if (!items.length) { list.innerHTML = '<p class="empty" style="color:var(--text-muted)">No submissions yet - they land here automatically as builders post.</p>'; return; }
+        list.innerHTML = items.map(function (i) {
+          var link = i.url || i.repo || '#', h = i.builder && i.builder.handle;
+          return '<div class="ip-card"><a class="ip-t" href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(i.project || 'Untitled') + '</a>'
+            + '<span class="ip-badge">' + esc(i.type || 'link') + '</span>'
+            + (i.track ? '<span class="ip-badge track">' + esc(i.track) + '</span>' : '')
+            + (h ? ' <a class="ip-by" href="/builder?handle=' + esc(h) + '">@' + esc(h) + '</a>' : '')
+            + '<span class="ip-src">via ' + esc(i.source || 'site') + '</span></div>';
+        }).join('');
+      }
+      fetch('/api/submission-intake?feed=recent&limit=60', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) { ALL = (d && d.items) || []; renderFilters(); renderList(); })
+        .catch(function () { list.innerHTML = '<p class="empty">Could not load the season feed.</p>'; });
+    })();
+    </script>
+  </section>
+
   <div class="su-wrap" id="su-root"><p class="empty" style="padding-top:0.6rem;">Loading...</p></div>
 
   <section id="zg-comments"></section>
