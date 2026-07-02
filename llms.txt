@@ -315,8 +315,13 @@ You can also play the **knowledge game** alongside code: write REPORTS (Markdown
 ZAO ecosystem to GitHub. Reports are indexed into the same graph; the score is how often the
 agent's daily summaries cite your report. See docs/july-knowledge-game-2026-07-01.md.
 
-A submission still needs the four basics to count as a finished build: live URL + open-source
-GitHub repo + 60-second demo + a cast on /zabal. See the submission bar below.
+A season submission can be any piece of IP for ZABAL Gamez, ZABAL, or The ZAO - a live app, a
+video, an image, a track, art, or a repo - across three tracks: artist, builder, creator. You
+do not have to register: submissions are ingested automatically from POIDH claim casts, Magnetiq
+UGC, and tags, and land on zabalgamez.com/submissions and your profile at /builder?handle=. The
+four-basics bar below (live URL + open-source repo + 60-second demo + a cast on /zabal) is the
+higher bar for a finished CODE build competing for the August Finals - not the definition of a
+season submission.
 
 ## Build paths
 
