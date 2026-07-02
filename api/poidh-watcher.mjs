@@ -106,5 +106,27 @@ export default async function handler(req) {
       added++;
     } catch { /* skip this one */ }
   }
-  return json({ ok: true, configured: true, claims: claims.length, mentions, skippedChatter: mentions, added });
+
+  // Self-heal: purge any poidh feed item that is not a real claim. This cleans up items ingested by
+  // the old catch-all watcher (pot announces / funding / promo) that predate the claim filter.
+  // Reclassifies each stored record from its own note + url; idempotent (nothing to do once clean).
+  let healed = 0;
+  try {
+    const hg = await kvPipeline([['HGETALL', 'zabal:intake:items']]);
+    const flat = (hg[0] && hg[0].result) || [];
+    for (let i = 0; i + 1 < flat.length; i += 2) {
+      const id = flat[i];
+      let rec; try { rec = JSON.parse(flat[i + 1]); } catch { continue; }
+      if (!rec || rec.source !== 'poidh') continue;
+      const pseudo = { text: rec.note || '', embeds: rec.url ? [{ url: rec.url }] : [] };
+      if (claimKind(pseudo) === 'claim') continue; // genuine claim - keep
+      const bk = (rec.builder && (rec.builder.handle || (rec.builder.fid && 'fid' + rec.builder.fid))) || null;
+      const cmds = [['HDEL', 'zabal:intake:items', id], ['ZREM', 'zabal:intake:feed', id]];
+      if (bk) cmds.push(['SREM', 'zabal:intake:builder:' + bk, id]);
+      await kvPipeline(cmds);
+      healed++;
+    }
+  } catch { /* heal is best-effort */ }
+
+  return json({ ok: true, configured: true, claims: claims.length, mentions, skippedChatter: mentions, added, healed });
 }
