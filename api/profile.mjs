@@ -18,6 +18,7 @@
 // no-op without KV.
 
 import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
+import { RateLimiter } from '../lib/rate-limit.mjs';
 
 export const config = { runtime: 'edge' };
 
@@ -29,6 +30,7 @@ const HAATZ = 'https://haatz.quilibrium.com';
 const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 const NONCE_TTL = 3600;
 const RESERVED = new Set(['api', 'assets', 'data', 'recordings', 'game', 'profiles', 'submissions', 'admin', 'new', 'edit', 'me']);
+const limiter = new RateLimiter(KV_URL, KV_TOKEN);
 
 function mkJson(body, origin, maxAge) {
   return new Response(JSON.stringify(body), {
@@ -128,6 +130,12 @@ export default async function handler(req) {
 
   if (req.method === 'POST') {
     if (!KV_URL || !KV_TOKEN) return json({ ok: false, configured: false });
+
+    // Rate-limit anonymous profile writes: 10 per minute, 50 per hour.
+    const ip = RateLimiter.getClientIp(req);
+    const allowed = await limiter.checkLimit(ip, 'profile', { perMinute: 10, perHour: 50 });
+    if (!allowed) return json({ ok: false, error: 'rate limited' });
+
     let body = {};
     try { body = await req.json(); } catch { /* ignore */ }
     const action = String(body.action || 'upsert');

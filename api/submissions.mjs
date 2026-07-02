@@ -17,6 +17,7 @@
 // (needed later for the one-per-identity collectible gate). Graceful no-op without KV.
 
 import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
+import { RateLimiter } from '../lib/rate-limit.mjs';
 
 export const config = { runtime: 'edge' };
 
@@ -28,6 +29,7 @@ const HAATZ = 'https://haatz.quilibrium.com';
 
 const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 const MAX_PER_FID = 30; // soft anti-spam cap on submissions per verified person
+const limiter = new RateLimiter(KV_URL, KV_TOKEN);
 
 function mkJson(body, origin, maxAge) {
   return new Response(JSON.stringify(body), {
@@ -199,6 +201,11 @@ export default async function handler(req) {
     }
 
     // ---- create a submission ----
+    // Rate-limit anonymous submissions: 5 per minute, 30 per hour.
+    const ip = RateLimiter.getClientIp(req);
+    const allowed = await limiter.checkLimit(ip, 'submit', { perMinute: 5, perHour: 30 });
+    if (!allowed) return json({ ok: false, error: 'rate limited' });
+
     const promptId = cleanSlug(body.promptId, 40);
     const answer = cleanText(body.answer, 2000);
     if (!promptId) return json({ ok: false, error: 'promptId required' });

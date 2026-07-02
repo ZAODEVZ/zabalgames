@@ -34,6 +34,7 @@
 export const config = { runtime: 'edge' };
 
 import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
+import { RateLimiter } from '../lib/rate-limit.mjs';
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
@@ -42,6 +43,7 @@ const FIDS_KEY = 'zabal:builds:fid';
 const TRACK_KEY = 'zabal:builds:track'; // repo -> 'artist'|'builder'|'creator', for per-track judging
 const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 const TRACKS = new Set(['artist', 'builder', 'creator']);
+const limiter = new RateLimiter(KV_URL, KV_TOKEN);
 
 function json(body, status = 200, origin = '*') {
   return new Response(JSON.stringify(body), {
@@ -107,6 +109,11 @@ export default async function handler(req) {
 
   let body = {};
   try { body = await req.json(); } catch {}
+
+  // Rate-limit builder registrations: 8 per minute, 40 per hour.
+  const ip = RateLimiter.getClientIp(req);
+  const allowed = await limiter.checkLimit(ip, 'register', { perMinute: 8, perHour: 40 });
+  if (!allowed) return json({ ok: false, reason: 'rate limited' }, 429, origin);
 
   const wallet = normalizeWallet(body.wallet);
   if (!wallet) return json({ ok: false, reason: 'invalid wallet (expected 0x + 40 hex)' }, 400, origin);
