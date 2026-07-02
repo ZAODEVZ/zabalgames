@@ -237,6 +237,43 @@ registering a repo they do not control; unverified repos are skipped, not pushed
 Graceful no-op when KV or the Bonfire env is absent; a single repo erroring does
 not stop the rest. Does no judging/ranking - that stays in Bonfire's existing pipeline.
 
+### `GET/POST /api/submission-intake`
+The unified July season-submission store - the single place every submission lands,
+whatever surface it came from (POIDH claims, Magnetiq UGC, manual adds, tags). Any
+piece of IP counts: app, video, image, track, art, or repo.
+
+- `POST` (Bearer `ADMIN_KEY` or `INTAKE_KEY`) upserts a normalized record:
+  `{ id, source, builder:{ fid, wallet, handle }, track, type, forBrand, project, url, repo, note, ts }`.
+  `track` is `artist|builder|creator`; `type` (`video|image|app|repo|music|link|other`) is
+  inferred from the url when omitted; `forBrand` is `zabalgamez` (default), `zabal`, or `zao`.
+  The record is keyed by builder + project, so re-posting the same project UPDATES it (no
+  dupes) - that is also how a builder updates their own entry.
+- `GET ?builder=<handle>` returns that builder's items (backs `/builder?handle=`);
+  `GET ?feed=recent&limit=N` returns the season feed newest-first (backs `/submissions`).
+- Keys: `zabal:intake:items` (HASH id -> record), `zabal:intake:feed` (ZSET by ts),
+  `zabal:intake:builder:<key>` (SET of ids per builder). Returns `{ ok, configured, count, items }`;
+  no-ops to `{ ok:true, configured:false }` without KV.
+
+### `GET /api/poidh-watcher` (cron + on-demand)
+Auto-ingest for the POIDH "ZABAL Gamez Open Pot" (#1249). POIDH has no API, but claims
+are Farcaster casts - this polls Neynar cast search for the pot's casts, dedupes on cast
+hash, and writes each to the submission-intake store (`source: 'poidh'`). Builders never
+register; they just claim on POIDH and it appears on the site.
+
+- Needs KV + `NEYNAR_API_KEY`; returns `{ ok:true, configured:false, added:0, has:{ kv, neynar } }`
+  when either is missing (the diagnostic that names the missing var).
+- Dedup set `zabal:intake:poidh:seen` (cast hashes). Runs on a daily Vercel cron and can be
+  triggered on-demand by hitting the URL. Auth: allowed unauthenticated when no `CRON_SECRET`/
+  `INTAKE_KEY` is set. Returns `{ ok, configured, scanned, added }`.
+
+### `POST /api/magnetiq-ugc`
+Receiver for Magnetiq UGC submissions - wire Magnetiq (webhook / Zapier / forward) to POST
+here and the UGC lands in the same store (`source: 'magnetiq'`).
+
+- `POST` (Bearer `MAGNETIQ_SECRET` or `ADMIN_KEY`). Flexible field mapping onto the
+  submission-intake record; falls back to an email-derived builder key when no
+  handle/fid/wallet is present. Returns the stored record; no-op without KV.
+
 ### `POST /api/bonfire-ask`
 Backs the Bonfire read spot on `graph.html`. Two actions:
 
@@ -346,10 +383,11 @@ Tier-1 deterministic submission pre-screen (July playbook Move 4). Checks a buil
 | `KV_REST_API_URL` | Vercel KV / Upstash REST base URL | auto-set when you add a Vercel KV store, or copy from Upstash |
 | `KV_REST_API_TOKEN` | Vercel KV / Upstash REST token | same |
 | `NOTIFY_SECRET` | Bearer secret guarding `POST /api/notify` | set to any long random string; pass it as `Authorization: Bearer <value>` when sending |
-| `NEYNAR_API_KEY` | Neynar key - publishes the cast in `POST /api/daily-cast` and reads recording reply threads in `GET /api/cast-comments` | Neynar dev dashboard (free tier) |
+| `NEYNAR_API_KEY` | Neynar key - publishes the cast in `POST /api/daily-cast`, reads recording reply threads in `GET /api/cast-comments`, and powers the POIDH claim search in `GET /api/poidh-watcher` (feed stays empty until this is set) | Neynar dev dashboard (free tier) |
 | `NEYNAR_SIGNER_UUID` | Approved Neynar signer that posts the daily cast | Neynar managed signer (approve once) |
 | `CRON_SECRET` | **Required** for the cron endpoints (`daily-cast`, `monthly-winner`, `commit-watcher`, `workshop-reminders`) - they fail closed (503) without it. Vercel injects the matching `Authorization: Bearer` header on scheduled runs | any long random string; set in Vercel and it auto-injects on cron calls |
-| `ADMIN_KEY` | Gates the `POST /api/raffle` draw via `Authorization: Bearer <key>` (constant-time, fail closed - draw is disabled until set) | any long random string; send only from the host's draw call |
+| `ADMIN_KEY` | Gates the `POST /api/raffle` draw and manual `POST /api/submission-intake` / `POST /api/magnetiq-ugc` writes via `Authorization: Bearer <key>` (constant-time, fail closed) | any long random string; send only from the host's calls |
+| `MAGNETIQ_SECRET` | Bearer secret for `POST /api/magnetiq-ugc` (accepts `ADMIN_KEY` too). Wire Magnetiq to send it so UGC lands in the submission store | any long random string; set in Vercel + in the Magnetiq webhook |
 | `GAME_SECRET` | Enables score-nonce enforcement on `POST /api/game` (HMAC-signed one-time nonces). Without it the nonce layer is bypassed gracefully; set it before any payout | any long random string |
 | `EMPIRE_ID` | Optional override for `GET /api/empire-leaderboard`. Defaults to `zabalgamez01e9af` (our tokenless empire), so no config is needed | Empire Builder |
 | `EMPIRE_API_KEY` | Optional; sent as `x-api-key` to Empire Builder. Reads work without it | Empire Builder |
