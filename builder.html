@@ -85,8 +85,9 @@
         html += '<div class="bp-track">' + t[1] + '</div>';
         group.forEach(function (it) {
           var link = it.url || it.repo || '#';
+          var proj = (it.source === 'poidh' && (!it.project || it.project === 'poidh')) ? 'ZABAL Gamez Open Pot' : (it.project || 'Untitled');
           html += '<div class="bp-item">'
-            + '<a href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(it.project || 'Untitled') + '</a>'
+            + '<a href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(proj) + '</a>'
             + '<span class="bp-badge">' + esc(it.type || 'link') + '</span>'
             + '<span class="bp-src">via ' + esc(it.source || 'site') + '</span>'
             + (it.note ? '<div class="bp-note">' + esc(it.note) + '</div>' : '')
