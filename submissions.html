@@ -110,11 +110,15 @@
         if (!items.length) { list.innerHTML = '<p class="empty" style="color:var(--text-muted)">No submissions yet - they land here automatically as builders post.</p>'; return; }
         list.innerHTML = items.map(function (i) {
           var link = i.url || i.repo || '#', h = i.builder && i.builder.handle;
-          return '<div class="ip-card"><a class="ip-t" href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(i.project || 'Untitled') + '</a>'
+          var proj = (i.source === 'poidh' && (!i.project || i.project === 'poidh')) ? 'ZABAL Gamez Open Pot' : (i.project || 'Untitled');
+          var note = i.note ? String(i.note).replace(/\s+/g, ' ').trim().slice(0, 120) : '';
+          return '<div class="ip-card"><a class="ip-t" href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(proj) + '</a>'
             + '<span class="ip-badge">' + esc(i.type || 'link') + '</span>'
             + (i.track ? '<span class="ip-badge track">' + esc(i.track) + '</span>' : '')
             + (h ? ' <a class="ip-by" href="/builder?handle=' + esc(h) + '">@' + esc(h) + '</a>' : '')
-            + '<span class="ip-src">via ' + esc(i.source || 'site') + '</span></div>';
+            + '<span class="ip-src">via ' + esc(i.source || 'site') + '</span>'
+            + (note ? '<p class="ip-note" style="color:var(--text-muted);font-size:0.86rem;margin:0.4rem 0 0;line-height:1.5">' + esc(note) + (i.note && i.note.length > 120 ? '...' : '') + '</p>' : '')
+            + '</div>';
         }).join('');
       }
       fetch('/api/submission-intake?feed=recent&limit=60', { cache: 'no-store' })
