@@ -23,6 +23,7 @@
     ]],
     ['Build', [
       ['Enter the July build', '/enter.html'],
+      ["This season's builds", '/submissions'],
       ['Adoptable projects', '/projects.html'],
       ['Build ideas', '/build-ideas.html'],
       ['Builder playbook', '/playbook.html'],
