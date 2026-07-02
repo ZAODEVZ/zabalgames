@@ -31,9 +31,22 @@ async function kvPipeline(cmds) {
   return r.json();
 }
 
-function isClaimCast(c) {
-  const hay = ((c.text || '') + ' ' + (c.embeds || []).map((e) => e.url || '').join(' ')).toLowerCase();
-  return hay.includes('poidh') && (hay.includes('1249') || hay.includes('zabal gamez open pot') || hay.includes('/bounty/1249'));
+// Classify a cast that references the ZABAL Gamez Open Pot:
+//   'claim'   - the author is submitting a build to the bounty (claim language or a poidh claim URL)
+//   'mention' - about the pot but NOT a claim (owner announce, funding "added ETH", promo "tap in")
+//   null      - not about this pot at all
+// Only 'claim' casts get ingested; this is what stops promo/funding chatter from looking like builds.
+function claimKind(c) {
+  const text = (c.text || '').toLowerCase();
+  const embeds = (c.embeds || []).map((e) => String(e.url || '')).join(' ').toLowerCase();
+  const hay = text + ' ' + embeds;
+  const refsPot = hay.includes('poidh') && (hay.includes('1249') || hay.includes('zabal gamez open pot') || hay.includes('/bounty/1249'));
+  if (!refsPot) return null;
+  // A real poidh claim links to a /claim/ path, or the cast says it is a claim/submission.
+  const claimUrl = /poidh\.xyz\/[^\s]*\/claims?\//i.test(embeds) || /\/claims?\/\d/i.test(embeds);
+  const claimText = /\b(submitt?(ed|ing)?\s+(a\s+)?claim|made\s+a\s+claim|a\s+claim\s+on|my\s+claim|i\s+claim(ed)?|claiming|just\s+claimed)\b/i.test(text);
+  if (claimUrl || claimText) return 'claim';
+  return 'mention';
 }
 function buildUrl(c) {
   const embeds = (c.embeds || []).map((e) => String(e.url || '')).filter(Boolean);
@@ -58,8 +71,17 @@ export default async function handler(req) {
     } catch { /* keep going */ }
   }
 
+  // Classify pot-referencing casts; only genuine claims are ingested. Mentions are counted for
+  // visibility but NOT written to the feed and NOT marked seen (so a later real claim still lands).
   const localSeen = new Set();
-  const claims = casts.filter((c) => { if (!c || !c.hash || localSeen.has(c.hash)) return false; localSeen.add(c.hash); return isClaimCast(c); });
+  let mentions = 0;
+  const claims = casts.filter((c) => {
+    if (!c || !c.hash || localSeen.has(c.hash)) return false;
+    localSeen.add(c.hash);
+    const kind = claimKind(c);
+    if (kind === 'mention') mentions++;
+    return kind === 'claim';
+  });
 
   let added = 0;
   for (const c of claims) {
@@ -74,7 +96,7 @@ export default async function handler(req) {
       let host = 'project'; try { host = new URL(bu).host.replace(/^www\./, ''); } catch { /* default */ }
       const project = (host.split('.')[0] || 'project').replace(/[^a-z0-9-]/gi, '').slice(0, 48) || 'project';
       const id = builderKey + ':' + project;
-      const rec = { id, source: 'poidh', builder: { handle, fid, wallet: null }, project, url: bu, repo: null, note: (c.text || '').slice(0, 300) || null, castHash: c.hash, ts: Date.now() };
+      const rec = { id, source: 'poidh', kind: 'claim', builder: { handle, fid, wallet: null }, project, url: bu, repo: null, note: (c.text || '').slice(0, 300) || null, castHash: c.hash, ts: Date.now() };
       await kvPipeline([
         ['HSET', 'zabal:intake:items', id, JSON.stringify(rec)],
         ['ZADD', 'zabal:intake:feed', String(rec.ts), id],
@@ -84,5 +106,5 @@ export default async function handler(req) {
       added++;
     } catch { /* skip this one */ }
   }
-  return json({ ok: true, configured: true, scanned: claims.length, added });
+  return json({ ok: true, configured: true, claims: claims.length, mentions, skippedChatter: mentions, added });
 }
