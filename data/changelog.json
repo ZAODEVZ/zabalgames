@@ -10,6 +10,13 @@
   },
   "entries": [
     {
+      "date": "2026-07-01",
+      "title": "July submissions land automatically - any IP, three tracks",
+      "type": "feat",
+      "description": "The season submission platform is live. A submission can be any piece of IP for ZABAL Gamez, ZABAL, or The ZAO - app, video, image, track, art, or repo - across three tracks: artist, builder, creator. You do not register: POIDH pot claims and Magnetiq UGC are ingested automatically into one store (/api/submission-intake), shown on the season feed at /submissions and on your profile at /builder?handle=, with a comment thread on each. Re-posting the same project updates it, and multiple projects group under one profile.",
+      "links": [{ "label": "Submissions", "url": "/submissions" }, { "label": "Enter", "url": "/enter" }]
+    },
+    {
       "date": "2026-06-21",
       "title": "Homepage countdown is phase-aware (no more dead dates)",
       "type": "fix",
