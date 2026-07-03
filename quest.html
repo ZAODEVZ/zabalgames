@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Season Run - Play ZABAL Gamez like a game</title>
-  <meta name="description" content="ZABAL Gamez Season Run - play the build-a-thon like a game. Clear quests through five stages (Learn, Build, Ship, Claim, Finals), earn XP and badges, and share your season card. The buildathon is the game.">
+  <meta name="description" content="ZABAL Gamez Season Run - play the build-a-thon like a game. Achievements unlock themselves as you explore and ship: five stages, XP, badges, and a season card to share. The buildathon is the game.">
   <link rel="canonical" href="https://zabalgamez.com/quest">
   <meta property="og:title" content="ZABAL Gamez Season Run - play the buildathon like a game">
-  <meta property="og:description" content="Five stages, real quests, XP and badges. Clear the season and share your card.">
+  <meta property="og:description" content="Achievements unlock as you actually do the season. Five stages, XP, badges. Start your run.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zabalgamez.com/quest">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
@@ -16,7 +16,7 @@
   <meta property="og:image:alt" content="ZABAL Gamez">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ZABAL Gamez Season Run">
-  <meta name="twitter:description" content="Play the buildathon like a game - five stages, XP, badges, a shareable season card.">
+  <meta name="twitter:description" content="Achievements unlock as you actually do the season. Five stages, XP, badges, a shareable season card.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play Season Run","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/quest","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
@@ -45,22 +45,32 @@
     .q-stage-num { font-family: var(--font-pixel, 'Press Start 2P'); font-size: 0.6rem; color: var(--text-dim); }
     .q-stage-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; }
     .q-stage-done { margin-left: auto; font-size: 0.7rem; color: var(--gold); font-family: 'JetBrains Mono', monospace; }
-    .q-quest { display: flex; align-items: flex-start; gap: 0.7rem; border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 10px; background: var(--surface-2); padding: 0.7rem 0.85rem; margin-top: 0.55rem; cursor: pointer; transition: border-color 0.15s; }
-    @media (hover: hover) { .q-quest:hover { border-color: var(--cyan); } }
-    .q-quest.done { border-left-color: var(--gold); opacity: 0.85; }
-    .q-check { flex: none; width: 22px; height: 22px; border-radius: 6px; border: 1px solid var(--border-hover); display: grid; place-items: center; font-size: 0.7rem; color: var(--gold); margin-top: 0.1rem; }
-    .q-quest.done .q-check { border-color: var(--gold); background: rgba(245,200,66,0.12); }
-    .q-quest.done .q-t { text-decoration: line-through; color: var(--text-muted); }
+    a.q-quest { display: flex; align-items: flex-start; gap: 0.7rem; border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 10px; background: var(--surface-2); padding: 0.7rem 0.85rem; margin-top: 0.55rem; text-decoration: none; color: inherit; transition: border-color 0.15s, transform 0.08s; }
+    @media (hover: hover) { a.q-quest:hover { border-color: var(--cyan); transform: translateX(2px); } }
+    a.q-quest.done { border-left-color: var(--gold); }
+    a.q-quest.locked { opacity: 0.55; border-left-color: var(--border); }
+    .q-check { flex: none; width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--border-hover); display: grid; place-items: center; font-family: var(--font-pixel, 'Press Start 2P'); font-size: 0.55rem; color: var(--gold); margin-top: 0.1rem; }
+    a.q-quest.done .q-check { border-color: var(--gold); background: rgba(245,200,66,0.14); }
+    a.q-quest.done .q-t { color: var(--gold); }
     .q-t { font-weight: 600; }
     .q-how { color: var(--text-muted); font-size: 0.85rem; margin: 0.15rem 0 0; line-height: 1.5; }
-    .q-how a { color: var(--cyan); }
+    .q-go { color: var(--cyan); font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; }
     .q-xpchip { margin-left: auto; flex: none; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--zabal); }
-    .q-auto { font-size: 0.62rem; color: var(--cyan); border: 1px solid var(--cyan); border-radius: 999px; padding: 0.05rem 0.4rem; margin-left: 0.4rem; }
+    a.q-quest.done .q-xpchip { color: var(--gold); }
     .q-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.6rem; }
     .q-btn { font: inherit; font-size: 0.85rem; padding: 0.55rem 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; }
     .q-btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
     .q-btn:hover { filter: brightness(1.12); }
     .q-note { color: var(--text-dim); font-size: 0.8rem; margin-top: 1rem; line-height: 1.6; }
+    /* Minecraft-style achievement toast */
+    #q-toasts { position: fixed; top: 14px; right: 14px; z-index: 50; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+    .q-toast { display: flex; align-items: center; gap: 0.7rem; background: #16161c; border: 2px solid var(--gold); border-radius: 10px; padding: 0.6rem 0.95rem; box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 0 18px rgba(245,200,66,0.25); transform: translateX(120%); animation: qslide 4s var(--ease, ease) forwards; max-width: 320px; }
+    .q-toast .qt-icon { font-family: var(--font-pixel, 'Press Start 2P'); font-size: 0.7rem; color: var(--gold); }
+    .q-toast .qt-label { font-family: var(--font-pixel, 'Press Start 2P'); font-size: 0.48rem; letter-spacing: 0.1em; color: var(--gold); }
+    .q-toast .qt-name { font-weight: 700; font-size: 0.9rem; margin-top: 0.15rem; }
+    .q-toast .qt-xp { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--cyan); }
+    @keyframes qslide { 0% { transform: translateX(120%); } 8% { transform: translateX(0); } 88% { transform: translateX(0); opacity: 1; } 100% { transform: translateX(0); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .q-toast { animation: none; transform: none; } }
   </style>
 </head>
 <body>
@@ -84,7 +94,7 @@
   <header class="hero q-hero">
     <div class="q-eyebrow">SEASON RUN</div>
     <h1>Play the <span class="accent">build-a-thon</span> like a game.</h1>
-    <p class="hero-sub">Five stages. Real quests. Clear them by actually doing the thing - learn, build, ship, claim, reach the Finals - and earn XP and badges as you go. Your progress saves on this device. Share your season card when you level up.</p>
+    <p class="hero-sub">Every quest is a door - tap it and it takes you there. Do the thing and the achievement unlocks itself, no checkboxes. Explore the season from this one board, earn XP and badges, and share your season card as you level up.</p>
   </header>
 
   <div class="q-hud" id="q-hud">
@@ -100,64 +110,90 @@
 
   <div class="q-actions">
     <button class="q-btn primary" id="q-share" type="button">Share my season card</button>
-    <a class="q-btn" href="/enter">Enter the build</a>
-    <a class="q-btn" href="/submissions">See the board</a>
-    <button class="q-btn" id="q-reset" type="button">Reset</button>
+    <button class="q-btn" id="q-reset" type="button">New run</button>
   </div>
-  <p class="q-note">Season Run is a way to play the season, not a gate - the real build is what counts. Some quests auto-check from what you have actually shipped; the rest you tick off yourself. <a href="/enter" style="color:var(--cyan);">How July works</a>.</p>
+  <p class="q-note">Achievements unlock from what you actually do - pages you explore on this device, links you follow, and real records like your submissions and registered builds. Season Run is a way to play the season, not a gate - the build is what counts.</p>
 
   <section id="zg-comments"></section>
 
 </div>
 </main>
 
+<div id="q-toasts" aria-live="polite"></div>
+
 <script>
 (function () {
+  // Detection types: 'visit' unlocks when the visit beacon has seen dest (or matchPrefix);
+  // 'out' unlocks the moment you follow the door (external links + one-shot actions);
+  // 'api' unlocks from real records (submission board, builds registry);
+  // 'locked' cannot be self-cleared - the season clears it for you.
   var STAGES = [
     { key: 'learn', name: 'Learn', quests: [
-      { id: 'join', t: 'Join the season', xp: 10, how: 'One-tap join on the <a href="/">homepage</a> and pick a track.' },
-      { id: 'workshop', t: 'Watch a workshop', xp: 15, how: 'Open any session in <a href="/recordings">the recordings</a> and take a lesson.' },
-      { id: 'context', t: 'Load the context file', xp: 10, how: 'Point your harness at <a href="/llms.txt">the context file</a> so it knows the ecosystem.' }
+      { id: 'join', t: 'Open the arcade', xp: 5, kind: 'visit', dest: '/game', match: '/game', how: 'Step inside the ZABAL Gamez arcade. Your first door.' },
+      { id: 'workshop', t: 'Enter the archive', xp: 10, kind: 'visit', dest: '/recordings', match: '/recordings', how: 'Every workshop, recorded and kept. Walk the stacks.' },
+      { id: 'context', t: 'Take the context file', xp: 10, kind: 'out', dest: '/llms.txt', how: 'Grab the file that teaches any AI harness the whole ecosystem.' }
     ]},
     { key: 'build', name: 'Build', quests: [
-      { id: 'adopt', t: 'Pick a project', xp: 15, how: '<a href="/projects">Adopt a started project</a> or start fresh - any harness.' },
-      { id: 'ship', t: 'Ship something', xp: 30, how: 'A live app, a video, an image, a track, art, or a repo. Anything for the ecosystem.' }
+      { id: 'adopt', t: 'Scout the projects', xp: 10, kind: 'visit', dest: '/projects', match: '/projects', how: 'Started projects waiting for a builder. Find one worth adopting.' },
+      { id: 'playbook', t: 'Study the playbook', xp: 10, kind: 'visit', dest: '/playbook', match: '/playbook', how: 'The tracks, the rails, and the July bar - read before you build.' },
+      { id: 'ship', t: 'Ship something', xp: 40, kind: 'api', dest: '/enter', how: 'A live app, a video, a track, art, or a repo. Register it on the enter page and this unlocks itself.' }
     ]},
     { key: 'ship', name: 'Ship', quests: [
-      { id: 'submit', t: 'Get on the board', xp: 25, how: 'Post it where you already post - it lands on <a href="/submissions">the season board</a> automatically.', auto: 'submit' },
-      { id: 'cast', t: 'Cast your build', xp: 15, how: 'Share it in the <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a> so the room sees it.' }
+      { id: 'board', t: 'Check the season board', xp: 5, kind: 'visit', dest: '/submissions', match: '/submissions', how: 'See what the season has shipped so far.' },
+      { id: 'submit', t: 'Get on the board', xp: 30, kind: 'api', dest: '/submissions', how: 'Post your build where you already post - it lands here on its own, and so does this achievement.' },
+      { id: 'cast', t: 'Cast your build', xp: 15, kind: 'out', dest: 'https://farcaster.xyz/~/channel/zabal', how: 'Tell the /zabal channel what you shipped.' }
     ]},
     { key: 'claim', name: 'Claim', quests: [
-      { id: 'pot', t: 'Claim the pot', xp: 20, how: 'Once your build is live, claim the <a href="https://poidh.xyz/base/bounty/1249" target="_blank" rel="noopener">ZABAL Gamez Open Pot</a>. It splits across July builders.' }
+      { id: 'pot', t: 'Claim the pot', xp: 20, kind: 'out', dest: 'https://poidh.xyz/base/bounty/1249', how: 'Your build is live? Claim the ZABAL Gamez Open Pot - it splits across everyone who ships in July.' }
     ]},
     { key: 'finals', name: 'Finals', quests: [
-      { id: 'curated', t: 'Reach the Finals', xp: 50, how: 'The strongest July builds get curated into the <a href="/finals">August Finals</a>, each paired with a ZAO mentor.' }
+      { id: 'finalsvisit', t: 'Walk the Finals arena', xp: 5, kind: 'visit', dest: '/finals', match: '/finals', how: 'Where August settles it. Know the arena before you get there.' },
+      { id: 'curated', t: 'Reach the Finals', xp: 50, kind: 'locked', dest: '/finals', how: 'The strongest July builds get curated in, each paired with a ZAO mentor. The season unlocks this one for you.' }
     ]}
   ];
   var LEVELS = [
     { at: 0, name: 'Spectator' },
     { at: 20, name: 'Learner' },
-    { at: 55, name: 'Builder' },
-    { at: 95, name: 'Shipper' },
-    { at: 135, name: 'Contender' },
-    { at: 190, name: 'Season Complete' }
+    { at: 50, name: 'Explorer' },
+    { at: 95, name: 'Builder' },
+    { at: 140, name: 'Shipper' },
+    { at: 210, name: 'Season Complete' }
   ];
   var KEY = 'zg-quest-v1';
-  var TOTAL = STAGES.reduce(function (s, st) { return s + st.quests.reduce(function (a, q) { return a + q.xp; }, 0); }, 0);
+  var ALLQ = []; STAGES.forEach(function (st) { st.quests.forEach(function (q) { ALLQ.push(q); }); });
+  var TOTAL = ALLQ.reduce(function (a, q) { return a + q.xp; }, 0);
 
   function load() { try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { return {}; } }
   function save(st) { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
+  function visited() { try { return JSON.parse(localStorage.getItem('zg-visited') || '[]') || []; } catch (e) { return []; } }
   var state = load();
 
-  function xp() {
-    var n = 0;
-    STAGES.forEach(function (st) { st.quests.forEach(function (q) { if (state[q.id]) n += q.xp; }); });
-    return n;
-  }
+  function xp() { var n = 0; ALLQ.forEach(function (q) { if (state[q.id]) n += q.xp; }); return n; }
   function levelFor(n) { var lv = LEVELS[0]; for (var i = 0; i < LEVELS.length; i++) { if (n >= LEVELS[i].at) lv = LEVELS[i]; } return lv; }
   function stageDone(st) { return st.quests.every(function (q) { return state[q.id]; }); }
-
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  // Minecraft-style toast queue.
+  var toastDelay = 0;
+  function toast(q) {
+    var wrap = document.getElementById('q-toasts');
+    if (!wrap) return;
+    setTimeout(function () {
+      var el = document.createElement('div');
+      el.className = 'q-toast';
+      el.innerHTML = '<span class="qt-icon">*</span><div><div class="qt-label">QUEST CLEARED</div><div class="qt-name">' + esc(q.t) + ' <span class="qt-xp">+' + q.xp + ' XP</span></div></div>';
+      wrap.appendChild(el);
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 4200);
+    }, toastDelay);
+    toastDelay += 700;
+  }
+  function unlock(id) {
+    if (state[id]) return false;
+    state[id] = true; save(state);
+    var q = null; ALLQ.forEach(function (x) { if (x.id === id) q = x; });
+    if (q) toast(q);
+    return true;
+  }
 
   function renderHud() {
     var n = xp(), lv = levelFor(n);
@@ -178,60 +214,67 @@
         + '<span class="q-stage-done">' + got + '/' + st.quests.length + '</span></div>';
       st.quests.forEach(function (q) {
         var done = !!state[q.id];
-        html += '<div class="q-quest' + (done ? ' done' : '') + '" data-id="' + q.id + '" role="button" tabindex="0" aria-pressed="' + done + '">'
-          + '<span class="q-check">' + (done ? 'X' : '') + '</span>'
+        var ext = /^https?:/.test(q.dest);
+        var cls = 'q-quest' + (done ? ' done' : '') + (q.kind === 'locked' && !done ? ' locked' : '');
+        var attrs = ext ? ' target="_blank" rel="noopener"' : '';
+        var go = done ? 'CLEARED' : (q.kind === 'locked' ? 'The season decides' : (ext ? 'Go do it ->' : 'Take me there ->'));
+        html += '<a class="' + cls + '" href="' + esc(q.dest) + '"' + attrs + ' data-id="' + q.id + '" data-kind="' + q.kind + '">'
+          + '<span class="q-check">' + (done ? '*' : '') + '</span>'
           + '<div style="flex:1;"><span class="q-t">' + esc(q.t) + '</span>'
-          + (q.auto ? '<span class="q-auto">auto</span>' : '')
-          + '<p class="q-how">' + q.how + '</p></div>'
-          + '<span class="q-xpchip">+' + q.xp + '</span></div>';
+          + '<p class="q-how">' + esc(q.how) + ' <span class="q-go">' + go + '</span></p></div>'
+          + '<span class="q-xpchip">+' + q.xp + '</span></a>';
       });
       html += '</div>';
     });
     document.getElementById('q-board').innerHTML = html;
-    Array.prototype.forEach.call(document.querySelectorAll('.q-quest'), function (el) {
-      var id = el.getAttribute('data-id');
-      function toggle() { state[id] = !state[id]; save(state); render(); }
-      el.addEventListener('click', toggle);
-      el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+    // 'out' quests unlock the moment you walk through the door.
+    Array.prototype.forEach.call(document.querySelectorAll('a.q-quest[data-kind="out"]'), function (el) {
+      el.addEventListener('click', function () { unlock(el.getAttribute('data-id')); renderHud(); });
     });
+    // 'locked' quests are informational - do not navigate away pointlessly? They do link to /finals, which is fine.
   }
   function render() { renderHud(); renderBoard(); }
-  render();
 
-  // Auto-detect real progress from what the player has actually done. Additive only -
-  // manual taps always work; these just check quests off when the record already proves them.
-  function autoDetect() {
+  // Visit-based auto-clears from the site-wide beacon.
+  function clearVisits() {
+    var v = visited(), changed = false;
+    ALLQ.forEach(function (q) {
+      if (q.kind !== 'visit' || state[q.id]) return;
+      var hit = v.some(function (p) { return p === q.match || (p && p.indexOf(q.match + '/') === 0); });
+      if (hit) { changed = unlock(q.id) || changed; }
+    });
+    return changed;
+  }
+
+  // API auto-clears from real records.
+  function clearRecords() {
     var handle = null, fid = null;
     try { if (window.ZABAL && window.ZABAL.getUser) { var u = window.ZABAL.getUser(); if (u) { handle = u.username || null; fid = u.fid || null; } } } catch (e) {}
-    // A submission on the season board proves "Get on the board".
     if (handle) {
-      fetch('/api/submission-intake?builder=' + encodeURIComponent(handle.toLowerCase()), { cache: 'no-store' })
+      fetch('/api/submission-intake?builder=' + encodeURIComponent(String(handle).toLowerCase()), { cache: 'no-store' })
         .then(function (r) { return r.json(); })
-        .then(function (d) {
-          var items = (d && d.items) || [];
-          if (items.length && !state.submit) { state.submit = true; save(state); render(); }
-        })
+        .then(function (d) { if (((d && d.items) || []).length) { if (unlock('submit')) renderHud(); renderBoard(); } })
         .catch(function () {});
     }
-    // A registered build in the public registry proves "Ship something".
     if (fid) {
       fetch('/api/builds', { cache: 'no-store' })
         .then(function (r) { return r.json(); })
         .then(function (d) {
-          var builds = (d && d.builds) || [];
-          var mine = builds.some(function (b) { return b && b.fid && String(b.fid) === String(fid); });
-          if (mine && !state.ship) { state.ship = true; save(state); render(); }
+          var mine = ((d && d.builds) || []).some(function (b) { return b && b.fid && String(b.fid) === String(fid); });
+          if (mine) { if (unlock('ship')) renderHud(); renderBoard(); }
         })
         .catch(function () {});
     }
   }
-  setTimeout(autoDetect, 900);
 
-  // Share the season card as a cast.
+  clearVisits();
+  render();
+  setTimeout(clearRecords, 900);
+
   document.getElementById('q-share').addEventListener('click', function () {
     var n = xp(), lv = levelFor(n);
     var text = "I'm playing ZABAL Gamez Season Run - Level: " + lv.name + " (" + n + "/" + TOTAL + " XP). "
-      + "Play the build-a-thon like a game: zabalgamez.com/quest";
+      + "The build-a-thon is the game. Start your run: zabalgamez.com/quest";
     var url = 'https://zabalgamez.com/quest';
     try {
       if (window.ZABAL && window.ZABAL.composeCast) { window.ZABAL.composeCast(text, [url]); return; }
@@ -241,8 +284,10 @@
   });
 
   document.getElementById('q-reset').addEventListener('click', function () {
-    if (!confirm('Reset your Season Run progress on this device?')) return;
-    state = {}; save(state); render();
+    if (!confirm('Start a fresh run? This clears your achievements and explored pages on this device.')) return;
+    state = {}; save(state);
+    try { localStorage.removeItem('zg-visited'); } catch (e) {}
+    render();
   });
 })();
 </script>
