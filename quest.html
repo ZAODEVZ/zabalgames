@@ -57,6 +57,8 @@
     .q-go { color: var(--cyan); font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; }
     .q-xpchip { margin-left: auto; flex: none; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--zabal); }
     a.q-quest.done .q-xpchip { color: var(--gold); }
+    .q-cast { flex: none; font: inherit; font-size: 0.68rem; padding: 0.25rem 0.6rem; margin-top: 0.05rem; border-radius: 999px; border: 1px solid var(--border-hover); background: var(--surface-2); color: var(--cyan); cursor: pointer; }
+    .q-cast:hover { border-color: var(--cyan); }
     .q-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.6rem; }
     .q-btn { font: inherit; font-size: 0.85rem; padding: 0.55rem 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; }
     .q-btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
@@ -267,7 +269,9 @@
           + '<span class="q-check">' + (done ? '*' : '') + '</span>'
           + '<div style="flex:1;"><span class="q-t">' + esc(q.t) + '</span>'
           + '<p class="q-how">' + esc(q.how) + ' <span class="q-go">' + go + '</span></p></div>'
-          + '<span class="q-xpchip">+' + q.xp + '</span></a>';
+          + '<span class="q-xpchip">+' + q.xp + '</span>'
+          + (done ? '<button class="q-cast" type="button" data-quest="' + q.id + '" title="Cast this achievement" aria-label="Cast this achievement">Cast</button>' : '')
+          + '</a>';
       });
       html += '</div>';
     });
@@ -296,6 +300,21 @@
     // 'out' quests unlock the moment you walk through the door.
     Array.prototype.forEach.call(document.querySelectorAll('a.q-quest[data-kind="out"]'), function (el) {
       el.addEventListener('click', function () { unlock(el.getAttribute('data-id')); renderHud(); });
+    });
+    // Per-achievement share - cast one cleared quest without triggering the card's link.
+    Array.prototype.forEach.call(document.querySelectorAll('.q-cast'), function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation();
+        var id = btn.getAttribute('data-quest'), q = null;
+        ALLQ.forEach(function (x) { if (x.id === id) q = x; });
+        if (!q) return;
+        var text = 'Just cleared "' + q.t + '" in ZABAL Gamez Season Run (+' + q.xp + ' XP). The build-a-thon is the game: zabalgamez.com/quest';
+        try {
+          if (window.ZABAL && window.ZABAL.composeCast) { window.ZABAL.composeCast(text, ['https://zabalgamez.com/quest']); return; }
+          if (window.ZABAL && window.ZABAL.share) { window.ZABAL.share(text, 'https://zabalgamez.com/quest'); return; }
+        } catch (err) {}
+        window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text), '_blank', 'noopener');
+      });
     });
     // 'locked' quests are informational - do not navigate away pointlessly? They do link to /finals, which is fine.
   }
