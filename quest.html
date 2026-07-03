@@ -104,6 +104,7 @@
   <div class="q-hud" id="q-hud">
     <div class="q-hud-top">
       <span class="q-level" id="q-level">Spectator</span>
+      <span class="q-xp" id="q-run" style="color:var(--gold);"></span>
       <span class="q-xp" id="q-xp">0 / 0 XP</span>
     </div>
     <div class="q-bar"><i id="q-bar-fill"></i></div>
@@ -178,6 +179,15 @@
   function visited() { try { return JSON.parse(localStorage.getItem('zg-visited') || '[]') || []; } catch (e) { return []; } }
   var state = load();
 
+  // Run-day tracker: the run starts the first time you open the board.
+  function runDay() {
+    try {
+      var t = parseInt(localStorage.getItem('zg-quest-start') || '0', 10);
+      if (!t) { t = Date.now(); localStorage.setItem('zg-quest-start', String(t)); }
+      return Math.max(1, Math.floor((Date.now() - t) / 86400000) + 1);
+    } catch (e) { return 1; }
+  }
+
   function xp() { var n = 0; ALLQ.forEach(function (q) { if (state[q.id]) n += q.xp; }); SECRETS.forEach(function (s) { if (state[s.id]) n += s.xp; }); return n; }
   function levelFor(n) { var lv = LEVELS[0]; for (var i = 0; i < LEVELS.length; i++) { if (n >= LEVELS[i].at) lv = LEVELS[i]; } return lv; }
   function stageDone(st) { return st.quests.every(function (q) { return state[q.id]; }); }
@@ -230,6 +240,7 @@
   function renderHud() {
     var n = xp(), lv = levelFor(n);
     document.getElementById('q-level').textContent = 'Level: ' + lv.name;
+    var rd = document.getElementById('q-run'); if (rd) rd.textContent = 'Day ' + runDay() + ' of your run';
     document.getElementById('q-xp').textContent = n + ' / ' + TOTAL + ' XP' + (n > TOTAL ? ' (secrets)' : '');
     document.getElementById('q-bar-fill').style.width = Math.min(100, Math.round(n / TOTAL * 100)) + '%';
     document.getElementById('q-badges').innerHTML = STAGES.map(function (st) {
@@ -342,7 +353,7 @@
 
   document.getElementById('q-share').addEventListener('click', function () {
     var n = xp(), lv = levelFor(n);
-    var text = "I'm playing ZABAL Gamez Season Run - Level: " + lv.name + " (" + n + "/" + TOTAL + " XP). "
+    var text = "Day " + runDay() + " of my ZABAL Gamez Season Run - Level: " + lv.name + " (" + n + "/" + TOTAL + " XP). "
       + "The build-a-thon is the game. Start your run: zabalgamez.com/quest";
     var url = 'https://zabalgamez.com/quest';
     try {
@@ -355,7 +366,7 @@
   document.getElementById('q-reset').addEventListener('click', function () {
     if (!confirm('Start a fresh run? This clears your achievements and explored pages on this device.')) return;
     state = {}; save(state);
-    try { localStorage.removeItem('zg-visited'); } catch (e) {}
+    try { localStorage.removeItem('zg-visited'); localStorage.removeItem('zg-quest-start'); } catch (e) {}
     render();
   });
 })();
