@@ -99,6 +99,7 @@
       <span class="dot" aria-hidden="true"></span>
       <span id="enter-phase-text">--</span>
     </div>
+    <p id="enter-momentum" hidden style="margin-top:0.6rem;font-size:0.92rem;"><a href="/submissions" style="color:var(--cyan);"><strong id="enter-momentum-n"></strong> already shipped this season</a> - add yours.</p>
   </header>
 
   <section class="section">
@@ -178,6 +179,16 @@
   </section>
 
   <script>
+  // Season momentum line: how many builds have shipped -> /submissions.
+  (function () {
+    fetch('/api/submission-intake?feed=recent&limit=60', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var n = d && d.count, wrap = document.getElementById('enter-momentum'), el = document.getElementById('enter-momentum-n');
+        if (wrap && el && n > 0) { el.textContent = n + (n === 1 ? ' build' : ' builds'); wrap.hidden = false; }
+      })
+      .catch(function () {});
+  })();
   // Public "building in public" board - reads the registry via /api/builds, ranked by
   // community votes (the shortlist signal). Vote via the Mini App (one +1 per FID per repo).
   (function() {
