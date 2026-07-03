@@ -159,6 +159,12 @@
     { at: 140, name: 'Shipper' },
     { at: 210, name: 'Season Complete' }
   ];
+  // Secret achievements - hidden until earned, Minecraft-style. Bonus XP on top of the base 210.
+  var SECRETS = [
+    { id: 'nightowl', t: 'Night Owl', xp: 10, how: 'Checked the board while the rest of the season was asleep.' },
+    { id: 'arcaderat', t: 'Arcade Rat', xp: 10, how: 'Slipped off the quest board to actually play a game.' },
+    { id: 'cartographer', t: 'Cartographer', xp: 15, how: 'Walked every door on the board. You know the whole map now.' }
+  ];
   var KEY = 'zg-quest-v1';
   var ALLQ = []; STAGES.forEach(function (st) { st.quests.forEach(function (q) { ALLQ.push(q); }); });
   var TOTAL = ALLQ.reduce(function (a, q) { return a + q.xp; }, 0);
@@ -168,20 +174,20 @@
   function visited() { try { return JSON.parse(localStorage.getItem('zg-visited') || '[]') || []; } catch (e) { return []; } }
   var state = load();
 
-  function xp() { var n = 0; ALLQ.forEach(function (q) { if (state[q.id]) n += q.xp; }); return n; }
+  function xp() { var n = 0; ALLQ.forEach(function (q) { if (state[q.id]) n += q.xp; }); SECRETS.forEach(function (s) { if (state[s.id]) n += s.xp; }); return n; }
   function levelFor(n) { var lv = LEVELS[0]; for (var i = 0; i < LEVELS.length; i++) { if (n >= LEVELS[i].at) lv = LEVELS[i]; } return lv; }
   function stageDone(st) { return st.quests.every(function (q) { return state[q.id]; }); }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   // Minecraft-style toast queue.
   var toastDelay = 0;
-  function toast(q) {
+  function toast(q, label) {
     var wrap = document.getElementById('q-toasts');
     if (!wrap) return;
     setTimeout(function () {
       var el = document.createElement('div');
       el.className = 'q-toast';
-      el.innerHTML = '<span class="qt-icon">*</span><div><div class="qt-label">QUEST CLEARED</div><div class="qt-name">' + esc(q.t) + ' <span class="qt-xp">+' + q.xp + ' XP</span></div></div>';
+      el.innerHTML = '<span class="qt-icon">*</span><div><div class="qt-label">' + esc(label || 'QUEST CLEARED') + '</div><div class="qt-name">' + esc(q.t) + ' <span class="qt-xp">+' + q.xp + ' XP</span></div></div>';
       wrap.appendChild(el);
       setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 4200);
     }, toastDelay);
@@ -191,17 +197,21 @@
     if (state[id]) return false;
     state[id] = true; save(state);
     var q = null; ALLQ.forEach(function (x) { if (x.id === id) q = x; });
-    if (q) toast(q);
+    if (q) { toast(q); return true; }
+    var s = null; SECRETS.forEach(function (x) { if (x.id === id) s = x; });
+    if (s) toast(s, 'SECRET FOUND');
     return true;
   }
 
   function renderHud() {
     var n = xp(), lv = levelFor(n);
     document.getElementById('q-level').textContent = 'Level: ' + lv.name;
-    document.getElementById('q-xp').textContent = n + ' / ' + TOTAL + ' XP';
-    document.getElementById('q-bar-fill').style.width = Math.round(n / TOTAL * 100) + '%';
+    document.getElementById('q-xp').textContent = n + ' / ' + TOTAL + ' XP' + (n > TOTAL ? ' (secrets)' : '');
+    document.getElementById('q-bar-fill').style.width = Math.min(100, Math.round(n / TOTAL * 100)) + '%';
     document.getElementById('q-badges').innerHTML = STAGES.map(function (st) {
       return '<span class="q-badge' + (stageDone(st) ? ' on' : '') + '">' + esc(st.name) + '</span>';
+    }).join('') + SECRETS.filter(function (s) { return state[s.id]; }).map(function (s) {
+      return '<span class="q-badge on">' + esc(s.t) + '</span>';
     }).join('');
   }
   function renderBoard() {
@@ -226,6 +236,27 @@
       });
       html += '</div>';
     });
+    // Secrets: found ones show in full; the rest stay a rumor.
+    var found = SECRETS.filter(function (s) { return state[s.id]; });
+    var hidden = SECRETS.length - found.length;
+    html += '<div class="q-stage"><div class="q-stage-head">'
+      + '<span class="q-stage-num">??</span>'
+      + '<span class="q-stage-name">Secrets</span>'
+      + '<span class="q-stage-done">' + found.length + '/' + SECRETS.length + '</span></div>';
+    found.forEach(function (s) {
+      html += '<a class="q-quest done" href="/quest">'
+        + '<span class="q-check">*</span>'
+        + '<div style="flex:1;"><span class="q-t">' + esc(s.t) + '</span>'
+        + '<p class="q-how">' + esc(s.how) + ' <span class="q-go">SECRET FOUND</span></p></div>'
+        + '<span class="q-xpchip">+' + s.xp + '</span></a>';
+    });
+    if (hidden > 0) {
+      html += '<a class="q-quest locked" href="/quest">'
+        + '<span class="q-check">?</span>'
+        + '<div style="flex:1;"><span class="q-t">' + hidden + ' secret' + (hidden === 1 ? '' : 's') + ' still hidden</span>'
+        + '<p class="q-how">They unlock themselves. Play differently.</p></div>'
+        + '</a>';
+    }
     document.getElementById('q-board').innerHTML = html;
     // 'out' quests unlock the moment you walk through the door.
     Array.prototype.forEach.call(document.querySelectorAll('a.q-quest[data-kind="out"]'), function (el) {
@@ -244,6 +275,19 @@
       if (hit) { changed = unlock(q.id) || changed; }
     });
     return changed;
+  }
+
+  // Secret detection - each one earned by playing differently, never listed up front.
+  function clearSecrets() {
+    var v = visited();
+    // Night Owl: on the board while the season sleeps (midnight to 5am local).
+    var h = new Date().getHours();
+    if (h >= 0 && h < 5) unlock('nightowl');
+    // Arcade Rat: actually played a game, not just the meta-game.
+    if (v.some(function (p) { return p === '/game/2048' || p === '/play' || (p && p.indexOf('/game/') === 0); })) unlock('arcaderat');
+    // Cartographer: every visit-door on the board walked.
+    var allDoors = ALLQ.filter(function (q) { return q.kind === 'visit'; }).every(function (q) { return state[q.id]; });
+    if (allDoors) unlock('cartographer');
   }
 
   // API auto-clears from real records.
@@ -268,6 +312,7 @@
   }
 
   clearVisits();
+  clearSecrets();
   render();
   setTimeout(clearRecords, 900);
 
