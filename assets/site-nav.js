@@ -70,6 +70,13 @@
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
   var here = norm(location.pathname);
 
+  // Season Run visit beacon: record which pages this device has explored, so the
+  // /quest achievement board can auto-clear "visit" quests Minecraft-style.
+  try {
+    var zgv = JSON.parse(localStorage.getItem('zg-visited') || '[]');
+    if (zgv.indexOf(here) === -1) { zgv.push(here); localStorage.setItem('zg-visited', JSON.stringify(zgv)); }
+  } catch (e) { /* private mode etc - the quest page degrades gracefully */ }
+
   var grid = GROUPS.map(function (g) {
     var links = g[1].map(function (it) {
       var label = it[0], href = it[1];
