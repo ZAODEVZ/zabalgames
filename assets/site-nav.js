@@ -40,6 +40,7 @@
       ['Farcaster Batches', '/farcaster-batches.html'],
       ['Live now', '/live.html'],
       ['The arcade', '/game'],
+      ['Season Run (play the buildathon)', '/quest'],
       ['ZAO 2048', '/play'],
       ['What should you build?', '/game/build-quiz'],
       ['Claim a pop', '/pops'],
