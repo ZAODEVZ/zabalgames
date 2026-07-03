@@ -51,6 +51,7 @@
       ['ZAO graph', '/graph.html'],
       ['Leaderboard', '/leaderboard.html'],
       ['Winners', '/winners.html'],
+      ['Big wins on-chain', '/wins.html'],
       ['Research library', '/research.html'],
       ['Context file', '/context.html'],
       ['Install context', '/install.html'],

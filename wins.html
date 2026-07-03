@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Big Wins On-Chain - ZABAL Gamez</title>
+  <meta name="description" content="The ZAO's Q2 big wins, recorded permanently on-chain as EAS attestations on Base. Verifiable, shareable, forever.">
+  <link rel="canonical" href="https://zabalgamez.com/wins">
+  <meta property="og:title" content="Big Wins On-Chain - ZABAL Gamez">
+  <meta property="og:description" content="The ZAO's Q2 big wins, recorded permanently on-chain. Verifiable, shareable, forever.">
+  <meta property="og:url" content="https://zabalgamez.com/wins">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Big wins on-chain","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/wins","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Big wins on-chain","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/wins","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/info.html">Details</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/about.html">About</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" id="main">
+
+  <header class="hero">
+    <div class="hero-eyebrow">Q2 2026 - permanent record</div>
+    <h1>Big wins, <span class="accent">on-chain</span>.</h1>
+    <p class="hero-sub">
+      The ZAO ships in public, and the biggest wins deserve a record nobody can edit later.
+      Each win below becomes an attestation on Base via the Ethereum Attestation Service:
+      title, one-liner, date, proof link, win number - written once, verifiable forever,
+      with a public link anyone can check.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2>The record</h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+      First entries from the Q2 list. A win shows ON-CHAIN once its attestation lands;
+      until then it sits in the queue. The full Q2 set joins as each one is verified -
+      no invented dates, no invented links.
+    </p>
+    <div id="wins-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+      <p id="wins-loading" style="color: var(--text-muted); font-size: 0.9rem;">Loading the record...</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>How a win gets on-chain</h2>
+    <div class="card" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;">
+      <p style="margin: 0 0 0.6rem;">1. The win happens in public - a hackathon result, a funding round, a partnership.</p>
+      <p style="margin: 0 0 0.6rem;">2. It gets attested on Base through the Ethereum Attestation Service: a small permanent record with the title, date, and proof link.</p>
+      <p style="margin: 0 0 0.6rem;">3. The attestation link lands here, on this page, next to the win. Anyone can open it and verify the record independently.</p>
+      <p style="margin: 0;">Building something this season? Every merged PR is a ZABAL Gamez submission - and the biggest ones end up on this wall. <a href="/enter" style="color: var(--gold);">Enter the build</a>.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function() {
+  var grid = document.getElementById('wins-grid');
+  var loading = document.getElementById('wins-loading');
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  fetch('/data/wins.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var wins = (data && data.wins) || [];
+      var scanBase = (data && data.easScanBase) || 'https://base.easscan.org/attestation/view/';
+      if (loading) loading.remove();
+      if (!wins.length) {
+        grid.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem;">The record is being assembled.</p>';
+        return;
+      }
+      wins.forEach(function(w) {
+        var card = document.createElement('div');
+        card.className = 'card';
+        var badge = w.attestationUid
+          ? '<a href="' + esc(scanBase + w.attestationUid) + '" target="_blank" rel="noopener" style="display: inline-block; font-family: JetBrains Mono, monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: #070709; background: var(--gold); padding: 0.2rem 0.55rem; border-radius: 4px; text-decoration: none;">ON-CHAIN</a>'
+          : '<span style="display: inline-block; font-family: JetBrains Mono, monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: var(--text-dim); border: 1px solid var(--text-dim); padding: 0.2rem 0.55rem; border-radius: 4px;">ATTESTATION PENDING</span>';
+        var meta = [];
+        if (w.date) meta.push(esc(w.date));
+        meta.push('Win #' + esc(w.winNumber));
+        var proof = w.proofUrl
+          ? '<p style="margin: 0.6rem 0 0; font-size: 0.8rem;"><a href="' + esc(w.proofUrl) + '" target="_blank" rel="noopener" style="color: var(--gold);">Proof</a></p>'
+          : '';
+        card.innerHTML =
+          '<div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem;">' +
+            '<div class="card-label" style="color: var(--text-dim); margin: 0;">' + meta.join(' - ') + '</div>' + badge +
+          '</div>' +
+          '<h3 style="font-family: Syne, sans-serif; font-weight: 700; font-size: 1.05rem; margin: 0 0 0.4rem; color: var(--text);">' + esc(w.title) + '</h3>' +
+          '<p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.6;">' + esc(w.oneLiner) + '</p>' +
+          proof;
+        grid.appendChild(card);
+      });
+    })
+    .catch(function() {
+      if (loading) loading.textContent = 'Could not load the record right now.';
+    });
+})();
+</script>
+
+</body>
+</html>

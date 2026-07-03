@@ -1,0 +1,31 @@
+{
+  "note": "Q2 2026 big wins - the on-chain record queue. Only verified entries; the full Q2 list (28 wins) lands when the source doc merges to the research library. attestationUid empty = not yet attested. Never invent dates, amounts, or proof URLs.",
+  "schema": "EAS on Base: string title, string oneLiner, string date, string proofUrl, uint256 winNumber",
+  "easScanBase": "https://base.easscan.org/attestation/view/",
+  "wins": [
+    {
+      "winNumber": 26,
+      "title": "FarHack win with zlank",
+      "oneLiner": "Won at FarHack, the Farcaster hackathon, building with zlank. The prize seeded the ZAOstock funding path - a worked example of the ZAO flywheel.",
+      "date": "",
+      "proofUrl": "",
+      "attestationUid": ""
+    },
+    {
+      "winNumber": 28,
+      "title": "ZAO Fund 2 on Artizen",
+      "oneLiner": "ZAO Fund 2 went live on Artizen with community projects from ZAO members, backing each other into the same funding round.",
+      "date": "",
+      "proofUrl": "",
+      "attestationUid": ""
+    },
+    {
+      "winNumber": 25,
+      "title": "WaveWarZ x Wide partnership",
+      "oneLiner": "WaveWarZ, the ZAO's music prediction market, landed a partnership with Wide.",
+      "date": "",
+      "proofUrl": "",
+      "attestationUid": ""
+    }
+  ]
+}
