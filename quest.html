@@ -198,18 +198,32 @@
   function render() { renderHud(); renderBoard(); }
   render();
 
-  // Auto-detect real progress: if the player has a submission on the board, mark "Get on the board".
+  // Auto-detect real progress from what the player has actually done. Additive only -
+  // manual taps always work; these just check quests off when the record already proves them.
   function autoDetect() {
-    var handle = null;
-    try { if (window.ZABAL && window.ZABAL.getUser) { var u = window.ZABAL.getUser(); if (u && u.username) handle = u.username; } } catch (e) {}
-    if (!handle) return;
-    fetch('/api/submission-intake?builder=' + encodeURIComponent(handle.toLowerCase()), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        var items = (d && d.items) || [];
-        if (items.length && !state.submit) { state.submit = true; save(state); render(); }
-      })
-      .catch(function () {});
+    var handle = null, fid = null;
+    try { if (window.ZABAL && window.ZABAL.getUser) { var u = window.ZABAL.getUser(); if (u) { handle = u.username || null; fid = u.fid || null; } } } catch (e) {}
+    // A submission on the season board proves "Get on the board".
+    if (handle) {
+      fetch('/api/submission-intake?builder=' + encodeURIComponent(handle.toLowerCase()), { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          var items = (d && d.items) || [];
+          if (items.length && !state.submit) { state.submit = true; save(state); render(); }
+        })
+        .catch(function () {});
+    }
+    // A registered build in the public registry proves "Ship something".
+    if (fid) {
+      fetch('/api/builds', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          var builds = (d && d.builds) || [];
+          var mine = builds.some(function (b) { return b && b.fid && String(b.fid) === String(fid); });
+          if (mine && !state.ship) { state.ship = true; save(state); render(); }
+        })
+        .catch(function () {});
+    }
   }
   setTimeout(autoDetect, 900);
 
