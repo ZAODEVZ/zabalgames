@@ -70,7 +70,11 @@
     .q-toast .qt-name { font-weight: 700; font-size: 0.9rem; margin-top: 0.15rem; }
     .q-toast .qt-xp { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--cyan); }
     @keyframes qslide { 0% { transform: translateX(120%); } 8% { transform: translateX(0); } 88% { transform: translateX(0); opacity: 1; } 100% { transform: translateX(0); opacity: 0; } }
-    @media (prefers-reduced-motion: reduce) { .q-toast { animation: none; transform: none; } }
+    .q-banner { text-align: center; background: #16161c; border: 2px solid var(--zabal); border-radius: 12px; padding: 0.9rem 1.4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 26px rgba(255,61,110,0.3); transform: scale(0.6); opacity: 0; animation: qpop 5s var(--ease, ease) forwards; max-width: 320px; }
+    .q-banner .qb-label { font-family: var(--font-pixel, 'Press Start 2P'); font-size: 0.55rem; letter-spacing: 0.16em; color: var(--zabal); }
+    .q-banner .qb-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--gold); margin-top: 0.25rem; }
+    @keyframes qpop { 0% { transform: scale(0.6); opacity: 0; } 10% { transform: scale(1.06); opacity: 1; } 16% { transform: scale(1); } 88% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .q-toast, .q-banner { animation: none; transform: none; opacity: 1; } }
   </style>
 </head>
 <body>
@@ -193,11 +197,31 @@
     }, toastDelay);
     toastDelay += 700;
   }
+  // Stage-complete banner - the big moment when a whole badge lights up.
+  function stageBanner(name) {
+    var wrap = document.getElementById('q-toasts');
+    if (!wrap) return;
+    setTimeout(function () {
+      var el = document.createElement('div');
+      el.className = 'q-banner';
+      el.innerHTML = '<div class="qb-label">STAGE COMPLETE</div><div class="qb-name">' + esc(name) + '</div>';
+      wrap.appendChild(el);
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 5200);
+    }, toastDelay);
+    toastDelay += 900;
+  }
   function unlock(id) {
     if (state[id]) return false;
+    // Which stage does this quest belong to, and was it incomplete before?
+    var stg = null; STAGES.forEach(function (st) { st.quests.forEach(function (x) { if (x.id === id) stg = st; }); });
+    var wasDone = stg ? stageDone(stg) : true;
     state[id] = true; save(state);
     var q = null; ALLQ.forEach(function (x) { if (x.id === id) q = x; });
-    if (q) { toast(q); return true; }
+    if (q) {
+      toast(q);
+      if (stg && !wasDone && stageDone(stg)) stageBanner(stg.name);
+      return true;
+    }
     var s = null; SECRETS.forEach(function (x) { if (x.id === id) s = x; });
     if (s) toast(s, 'SECRET FOUND');
     return true;
