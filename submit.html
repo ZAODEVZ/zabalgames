@@ -159,7 +159,8 @@
           '<div class="sb-actions2"><button class="sb-answer-btn" type="button" data-toggle>Answer here</button>' +
           '<span class="sb-or">or <a href="' + esc(MAGNET) + '" target="_blank" rel="noopener">on the magnet</a></span></div>' +
           '<div class="sb-form"><textarea class="sb-ta" placeholder="' + esc(ph) + '" maxlength="2000"></textarea>' +
-          '<div class="sb-actions2"><button class="sb-go" type="button" data-submit>Submit</button></div>' +
+          '<div class="sb-actions2"><button class="sb-go" type="button" data-submit>Submit</button>' +
+          '<button class="sb-go" type="button" data-draft style="background:transparent;border:1px solid var(--gold);color:var(--gold);">Save as WIP draft</button></div>' +
           '<div class="sb-stat"></div></div>' +
           '</div></div>';
       }).join('');
@@ -177,29 +178,41 @@
       card.querySelector('[data-toggle]').addEventListener('click', function () {
         form.classList.toggle('open'); if (form.classList.contains('open')) ta.focus();
       });
-      card.querySelector('[data-submit]').addEventListener('click', function () {
+      function send(asDraft) {
         var answer = (ta.value || '').trim();
         if (!answer) { stat.className = 'sb-stat'; stat.textContent = 'Type an answer first.'; return; }
-        var btn = card.querySelector('[data-submit]');
-        btn.disabled = true; stat.className = 'sb-stat'; stat.textContent = 'Submitting...';
+        var btn = card.querySelector(asDraft ? '[data-draft]' : '[data-submit]');
+        var other = card.querySelector(asDraft ? '[data-submit]' : '[data-draft]');
+        btn.disabled = true; if (other) other.disabled = true;
+        stat.className = 'sb-stat'; stat.textContent = asDraft ? 'Saving your WIP...' : 'Submitting...';
         var body = { promptId: promptId, answer: answer };
+        if (asDraft) body.draft = true;
         if (promptId === 'wallet' && /^0x[0-9a-fA-F]{40}$/.test(answer)) body.wallet = answer;
         var handle = (document.getElementById('sb-handle').value || '').trim();
         var email = (document.getElementById('sb-email').value || '').trim();
         if (handle) body.handle = handle;
         if (email) body.email = email;
         submit(body).then(function (d) {
-          if (d && d.ok) {
+          if (d && d.ok && d.status === 'draft') {
+            if (d.editToken) { try { localStorage.setItem('zg-sub-token-' + d.id, d.editToken); } catch (e) {} }
+            stat.className = 'sb-stat ok';
+            stat.innerHTML = 'WIP saved and public - <a href="/submissions?id=' + d.id + '" style="color:var(--cyan)">share it for comments</a>. Publish it for review from that page whenever it is ready.';
+            ta.value = ''; ta.disabled = true; btn.style.display = 'none'; if (other) other.style.display = 'none';
+          } else if (d && d.ok) {
             stat.className = 'sb-stat ok';
             stat.textContent = 'In review - thank you. Approved answers get the collectible' + (signedIn ? '.' : ' (add an email above so we can reach you).');
-            ta.value = ''; ta.disabled = true; btn.style.display = 'none';
+            ta.value = ''; ta.disabled = true; btn.style.display = 'none'; if (other) other.style.display = 'none';
           } else if (d && d.reason === 'limit') {
-            btn.disabled = false; stat.textContent = 'You have submitted a lot already - thank you. Try again later.';
+            btn.disabled = false; if (other) other.disabled = false;
+            stat.textContent = 'You have submitted a lot already - thank you. Try again later.';
           } else {
-            btn.disabled = false; stat.textContent = 'Could not submit: ' + ((d && (d.error || d.reason)) || 'try again') + '. Or answer on the magnet.';
+            btn.disabled = false; if (other) other.disabled = false;
+            stat.textContent = 'Could not submit: ' + ((d && (d.error || d.reason)) || 'try again') + '. Or answer on the magnet.';
           }
-        }).catch(function () { btn.disabled = false; stat.textContent = 'Could not submit right now. Try the magnet.'; });
-      });
+        }).catch(function () { btn.disabled = false; if (other) other.disabled = false; stat.textContent = 'Could not submit right now. Try the magnet.'; });
+      }
+      card.querySelector('[data-submit]').addEventListener('click', function () { send(false); });
+      card.querySelector('[data-draft]').addEventListener('click', function () { send(true); });
     });
 
     if (data && data.command_center_url) {
