@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invite a builder - ZABAL Gamez</title>
+  <meta name="description" content="Your personal invite link to ZABAL Gamez. Every builder you bring in gets credited to you on the referrers board.">
+  <link rel="canonical" href="https://zabalgamez.com/invite">
+  <meta property="og:title" content="Invite a builder - ZABAL Gamez">
+  <meta property="og:description" content="Your personal invite link. Every builder you bring in gets credited to you.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/invite">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Invite a builder - ZABAL Gamez">
+  <meta name="twitter:description" content="Your personal invite link. Every builder you bring in gets credited to you.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Invite a builder","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/invite","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Invite a builder","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/invite","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .iv-box { max-width: 560px; border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 1rem 1.1rem; margin-top: 1.2rem; }
+    .iv-link { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--cyan); word-break: break-all; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.8rem; margin: 0.6rem 0; }
+    .iv-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+    .iv-stat { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted); margin-top: 0.8rem; }
+    .iv-stat b { color: var(--gold); font-size: 1.1rem; }
+    .iv-handle { display: flex; gap: 0.6rem; margin: 0.6rem 0; }
+    .iv-handle input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; padding: 0.55rem 0.8rem; }
+    .iv-handle input:focus { outline: none; border-color: var(--zabal); }
+    .iv-board { max-width: 560px; margin-top: 0.6rem; }
+    .iv-board li { display: flex; gap: 0.6rem; padding: 0.3rem 0; font-size: 0.9rem; color: var(--text-muted); }
+    .iv-board .rk { color: var(--gold); min-width: 1.4rem; }
+    .iv-board a { color: inherit; text-decoration: none; flex: 1; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/start">Start</a>
+      <a href="/game">Arcade</a>
+      <a href="/submissions">Submissions</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<div class="container" id="main">
+
+  <header style="margin-top: 1rem;">
+    <div class="hero-eyebrow">The July goal needs 200 of us</div>
+    <h1>Invite a <span class="accent">builder</span>.</h1>
+    <p class="lead" style="margin-top: 0.3rem;">You know one person who should be building this season. Send them your link - when they show up and connect, the credit is yours on the referrers board. This is how 1 becomes 200.</p>
+  </header>
+
+  <div class="iv-box">
+    <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace;">Your invite link</div>
+    <div class="iv-handle" id="iv-handle-row" style="display: none;">
+      <input id="iv-handle" type="text" placeholder="your Farcaster handle" maxlength="32" autocomplete="off">
+    </div>
+    <div class="iv-link" id="iv-link">zabalgamez.com/start</div>
+    <div class="iv-actions">
+      <button class="btn btn-primary" id="iv-cast" type="button">Cast the invite</button>
+      <button class="btn btn-secondary" id="iv-copy" type="button">Copy link</button>
+    </div>
+    <div class="iv-stat" id="iv-stat"></div>
+  </div>
+
+  <section class="section" style="margin-top: 1.6rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">Top referrers</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Credited when the person you invited connects in the Farcaster app. First referrer wins, no self-referrals.</p>
+    <ol class="iv-board" id="iv-board" style="list-style: none; padding: 0; margin: 0;"><li>Loading the board...</li></ol>
+  </section>
+
+</div>
+</main>
+
+<script>
+(function () {
+  var linkEl = document.getElementById('iv-link');
+  var statEl = document.getElementById('iv-stat');
+  var handleRow = document.getElementById('iv-handle-row');
+  var handleIn = document.getElementById('iv-handle');
+  var HANDLE = '';
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function myLink() { return 'https://zabalgamez.com/start' + (HANDLE ? '?ref=' + encodeURIComponent(HANDLE) : ''); }
+
+  function refresh() {
+    linkEl.textContent = myLink().replace('https://', '');
+    if (!HANDLE) { statEl.textContent = ''; return; }
+    fetch('/api/ref?ref=' + encodeURIComponent(HANDLE), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var n = (d && d.count) || 0;
+        statEl.innerHTML = '<b>' + n + '</b> builder' + (n === 1 ? '' : 's') + ' credited to @' + esc(HANDLE) + (n ? '. Keep going.' : ' so far. First one changes that.');
+      }).catch(function () {});
+  }
+
+  function setHandle(h) {
+    HANDLE = String(h || '').trim().toLowerCase().replace(/^@/, '').replace(/[^a-z0-9_.-]/g, '').slice(0, 32);
+    try { if (HANDLE) localStorage.setItem('zg-handle', HANDLE); } catch (e) {}
+    refresh();
+  }
+
+  // Identity: Mini App user, else remembered handle, else ask.
+  function init() {
+    if (window.ZABAL && window.ZABAL.getUser) {
+      window.ZABAL.getUser().then(function (u) {
+        if (u && u.username) { setHandle(u.username); return; }
+        fallback();
+      }).catch(fallback);
+    } else { fallback(); }
+  }
+  function fallback() {
+    var saved = '';
+    try { saved = localStorage.getItem('zg-handle') || ''; } catch (e) {}
+    handleRow.style.display = '';
+    if (saved) { handleIn.value = saved; setHandle(saved); }
+    handleIn.addEventListener('input', function () { setHandle(handleIn.value); });
+  }
+
+  document.getElementById('iv-copy').addEventListener('click', function () {
+    var t = myLink();
+    try { navigator.clipboard.writeText(t); this.textContent = 'Copied'; var b = this; setTimeout(function () { b.textContent = 'Copy link'; }, 1500); } catch (e) {}
+  });
+
+  document.getElementById('iv-cast').addEventListener('click', function () {
+    var text = 'ZM\n\nyou should be building in ZABAL Gamez. free, 3 months, any harness - and the first five minutes are literally three taps. come in through my door:';
+    var url = myLink();
+    if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+  });
+
+  // Top referrers board.
+  fetch('/api/ref?board=top&limit=20', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var board = document.getElementById('iv-board');
+      var entries = (d && d.entries) || [];
+      if (!entries.length) { board.innerHTML = '<li>Nobody on the board yet. Your first invite starts it.</li>'; return; }
+      board.innerHTML = entries.map(function (e) {
+        return '<li><span class="rk">' + e.rank + '</span><a href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">@' + esc(e.handle) + '</a><span>' + e.count + ' builder' + (e.count === 1 ? '' : 's') + '</span></li>';
+      }).join('');
+    }).catch(function () {});
+
+  init();
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
