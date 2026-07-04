@@ -41,6 +41,7 @@
       ['Live now', '/live.html'],
       ['The arcade', '/game'],
       ['Season Run (play the buildathon)', '/quest'],
+      ['Invite a builder', '/invite.html'],
       ['Quick play (2 random games)', '/play'],
       ['ZAO 2048', '/game/2048'],
       ['What should you build?', '/game/build-quiz'],
