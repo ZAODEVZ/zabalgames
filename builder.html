@@ -51,9 +51,16 @@
     <div class="hero-eyebrow">Builder</div>
     <h1 id="bp-title">Loading...</h1>
     <p class="hero-sub" id="bp-sub"></p>
+    <div id="bp-stats" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:0.8rem;"></div>
+    <div style="margin-top:0.9rem;"><button class="btn btn-primary" id="bp-share" type="button">Share this season card</button></div>
   </header>
 
   <section class="section"><div id="bp-body"><p class="bp-empty">Loading submissions...</p></div></section>
+
+  <section class="section" id="bp-site" style="display:none;padding-top:0;">
+    <div class="bp-track" style="margin-top:0;">On the site - WIPs and wins</div>
+    <div></div>
+  </section>
 
   <section id="zg-comments" data-id="builder"></section>
 </div>
@@ -72,31 +79,102 @@
   var TRACKS = [['artist', 'Artist'], ['builder', 'Builder'], ['creator', 'Creator'], ['', 'Other']];
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
-  fetch('/api/submission-intake?builder=' + encodeURIComponent(handle), { cache: 'no-store' })
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      var items = (d && d.items) || [];
-      if (!items.length) { sub.textContent = 'No submissions yet.'; body.innerHTML = '<p class="bp-empty">Nothing here yet. Submissions land automatically once this builder posts a build, a claim, or a drop.</p>'; return; }
-      sub.textContent = items.length + (items.length === 1 ? ' submission' : ' submissions') + ' this season.';
-      var html = '';
-      TRACKS.forEach(function (t) {
-        var group = items.filter(function (it) { return (it.track || '') === t[0]; });
-        if (!group.length) return;
-        html += '<div class="bp-track">' + t[1] + '</div>';
-        group.forEach(function (it) {
-          var link = it.url || it.repo || '#';
-          var proj = (it.source === 'poidh' && (!it.project || it.project === 'poidh')) ? 'ZABAL Gamez Open Pot' : (it.project || 'Untitled');
-          html += '<div class="bp-item">'
-            + '<a href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(proj) + '</a>'
-            + '<span class="bp-badge">' + esc(it.type || 'link') + '</span>'
-            + '<span class="bp-src">via ' + esc(it.source || 'site') + '</span>'
-            + (it.note ? '<div class="bp-note">' + esc(it.note) + '</div>' : '')
-            + '</div>';
-        });
+  // The season card: everything this builder is this season, in one shareable view.
+  var CARD = { subs: 0, wips: 0, wins: 0, refs: 0, ranks: [] };
+  var pending = 0;
+  function done() {
+    pending--;
+    if (pending > 0) return;
+    var bits = [];
+    if (CARD.subs) bits.push(CARD.subs + ' submission' + (CARD.subs === 1 ? '' : 's'));
+    if (CARD.wips) bits.push(CARD.wips + ' WIP' + (CARD.wips === 1 ? '' : 's') + ' open');
+    if (CARD.wins) bits.push(CARD.wins + ' win' + (CARD.wins === 1 ? '' : 's') + ' on the wall');
+    if (CARD.refs) bits.push(CARD.refs + ' builder' + (CARD.refs === 1 ? '' : 's') + ' brought in');
+    CARD.ranks.slice(0, 2).forEach(function (r) { bits.push('rank ' + r.rank + ' on ' + r.game); });
+    sub.textContent = bits.length ? bits.join(' - ') : 'Season just getting started.';
+    var stats = document.getElementById('bp-stats');
+    if (stats) {
+      function pill(n, label) { return '<span style="display:inline-flex;align-items:baseline;gap:0.35rem;font-size:0.8rem;padding:0.3rem 0.7rem;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);"><b style="font-size:1rem;color:var(--zabal);font-family:JetBrains Mono,monospace;">' + n + '</b> <span style="color:var(--text-muted);">' + label + '</span></span>'; }
+      var h = '';
+      if (CARD.subs) h += pill(CARD.subs, CARD.subs === 1 ? 'submission' : 'submissions');
+      if (CARD.wips) h += pill(CARD.wips, 'WIP open');
+      if (CARD.wins) h += pill(CARD.wins, CARD.wins === 1 ? 'win' : 'wins');
+      if (CARD.refs) h += pill(CARD.refs, 'invited');
+      CARD.ranks.slice(0, 3).forEach(function (r) { h += pill('#' + r.rank, r.game); });
+      stats.innerHTML = h;
+    }
+  }
+  function grab(url, fn) {
+    pending++;
+    fetch(url, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) { try { fn(d); } catch (e) {} done(); }).catch(function () { done(); });
+  }
+
+  // Share the card.
+  var shareBtn = document.getElementById('bp-share');
+  if (shareBtn) shareBtn.addEventListener('click', function () {
+    var text = 'ZABAL Gamez season card for @' + handle + '. ' + (sub.textContent || 'Building this season.') + ' The season is open - come build:';
+    var url = 'https://zabalgamez.com/builder?handle=' + encodeURIComponent(handle);
+    if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+  });
+
+  // Intake submissions (the main body).
+  grab('/api/submission-intake?builder=' + encodeURIComponent(handle), function (d) {
+    var items = (d && d.items) || [];
+    CARD.subs += items.length;
+    if (!items.length) { body.innerHTML = '<p class="bp-empty">No intake submissions yet - they land automatically once this builder posts a build, a claim, or a drop. WIPs and wins below still count.</p>'; return; }
+    var html = '';
+    TRACKS.forEach(function (t) {
+      var group = items.filter(function (it) { return (it.track || '') === t[0]; });
+      if (!group.length) return;
+      html += '<div class="bp-track">' + t[1] + '</div>';
+      group.forEach(function (it) {
+        var link = it.url || it.repo || '#';
+        var proj = (it.source === 'poidh' && (!it.project || it.project === 'poidh')) ? 'ZABAL Gamez Open Pot' : (it.project || 'Untitled');
+        html += '<div class="bp-item">'
+          + '<a href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(proj) + '</a>'
+          + '<span class="bp-badge">' + esc(it.type || 'link') + '</span>'
+          + '<span class="bp-src">via ' + esc(it.source || 'site') + '</span>'
+          + (it.note ? '<div class="bp-note">' + esc(it.note) + '</div>' : '')
+          + '</div>';
       });
-      body.innerHTML = html;
-    })
-    .catch(function () { body.innerHTML = '<p class="bp-empty">Could not load submissions right now.</p>'; });
+    });
+    body.innerHTML = html;
+  });
+
+  // On-site submissions: WIP drafts + approved (wins included), rendered as a rail.
+  function siteRail(d, isDraft) {
+    var mine = ((d && d.submissions) || []).filter(function (x) { return x.handle && x.handle.toLowerCase() === handle; });
+    if (!mine.length) return;
+    mine.forEach(function (x) {
+      if (isDraft) CARD.wips++;
+      else CARD.subs++;
+      if (x.promptId === 'community-win') CARD.wins++;
+    });
+    var rail = document.getElementById('bp-site');
+    if (!rail) return;
+    rail.style.display = '';
+    var listEl = rail.querySelector('div');
+    listEl.innerHTML += mine.map(function (x) {
+      var text = (x.answer || '').replace(/\s+/g, ' ').trim().slice(0, 110);
+      return '<div class="bp-item"><a href="/submissions?id=' + esc(x.id) + '">' + (x.promptId === 'community-win' ? 'Win: ' : '') + esc(text || x.promptId) + '</a>'
+        + (isDraft ? '<span class="bp-badge" style="color:var(--gold);border-color:var(--gold);">WIP</span>' : '<span class="bp-badge">' + esc(x.promptId) + '</span>')
+        + '</div>';
+    }).join('');
+  }
+  grab('/api/submissions?feed=drafts&limit=60', function (d) { siteRail(d, true); });
+  grab('/api/submissions?feed=recent&limit=60', function (d) { siteRail(d, false); });
+
+  // Referrals credited.
+  grab('/api/ref?ref=' + encodeURIComponent(handle), function (d) { CARD.refs = (d && d.count) || 0; });
+
+  // Game ranks across the arcade (top-20 presence only - cheap reads).
+  ['zao2048', 'zaomatch', 'zabaldle', 'zaotrivia', 'zaosnake', 'zaoecho', 'zaodash', 'zaostack'].forEach(function (g) {
+    grab('/api/game?game=' + g, function (d) {
+      var e = ((d && d.entries) || []).find(function (x) { return x.handle && x.handle.toLowerCase() === handle; });
+      if (e) CARD.ranks.push({ game: g.replace('zao', 'ZAO ').replace('zabaldle', 'ZABALDLE'), rank: e.rank });
+    });
+  });
 })();
 </script>
 <script defer src="/assets/site-nav.js"></script>
