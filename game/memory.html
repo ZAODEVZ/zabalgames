@@ -102,6 +102,12 @@
     </div>
   </div>
 
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Fewest moves, fastest time. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="mm-board" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
   <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
     Learn the ecosystem you are matching - browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
   </p>
@@ -121,6 +127,29 @@
   var winLine = document.getElementById('mm-win-line');
   var moves = 0, matched = 0, first = null, lock = false, started = 0, timer = null, seconds = 0;
   var BEST_KEY = 'zg-zaomatch-best';
+  var myRank = null;
+
+  // Board score encoding: higher = better for the shared monthly sorted set.
+  // enc = 100000 - (moves*1000 + seconds), seconds capped at 999, moves at 99.
+  function encScore(m, sec) { return Math.max(1, 100000 - (Math.min(m, 99) * 1000 + Math.min(sec, 999))); }
+  function decScore(enc) { var t = 100000 - enc; return { moves: Math.floor(t / 1000), seconds: t % 1000 }; }
+
+  function loadBoard() {
+    var list = document.getElementById('mm-board');
+    if (!list) return;
+    fetch('/api/game?game=zaomatch', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified clears yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        var v = decScore(e.score);
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + v.moves + ' moves / ' + fmt(v.seconds) + '</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
 
   function fmt(s) { var m = Math.floor(s / 60); var r = s % 60; return m + ':' + (r < 10 ? '0' : '') + r; }
 
@@ -203,12 +232,26 @@
     winLine.textContent = 'All six brands paired in ' + moves + ' moves and ' + fmt(seconds) + '.' +
       (isBest ? ' New best.' : '');
     winEl.classList.add('show');
+    // Put the clear on the monthly board (verified inside the Farcaster app; no-op on web).
+    myRank = null;
+    try {
+      if (window.ZABAL && window.ZABAL.submitScore) {
+        window.ZABAL.submitScore('zaomatch', encScore(moves, seconds), null).then(function (d) {
+          if (d && d.ok) {
+            if (d.rank) { myRank = d.rank; winLine.textContent += ' Rank ' + d.rank + ' this month.'; }
+            loadBoard();
+          }
+        }).catch(function () {});
+      }
+    } catch (e) {}
   }
 
   document.getElementById('mm-new').addEventListener('click', build);
   document.getElementById('mm-again').addEventListener('click', build);
   document.getElementById('mm-share').addEventListener('click', function () {
-    var text = 'I cleared ZAO Match in ' + moves + ' moves and ' + fmt(seconds) + '. Pair the ZAO ecosystem at the ZABAL Gamez arcade.';
+    var text = myRank
+      ? 'ZAO Match in ' + moves + ' moves and ' + fmt(seconds) + ' - rank ' + myRank + ' on this month\'s board. Beat my spot.'
+      : 'I cleared ZAO Match in ' + moves + ' moves and ' + fmt(seconds) + '. Pair the ZAO ecosystem at the ZABAL Gamez arcade.';
     var url = 'https://zabalgamez.com/game/memory';
     try {
       if (window.ZABAL && window.ZABAL.composeCast) { window.ZABAL.composeCast(text, [url]); return; }
@@ -218,6 +261,7 @@
 
   loadBest();
   build();
+  loadBoard();
 })();
 </script>
 <script defer src="/assets/site-nav.js"></script>
