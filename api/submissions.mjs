@@ -5,10 +5,13 @@
 // ZOE/Zaal can triage; an admin approves; approval is what unlocks the Unlock collectible
 // airdrop. Permalinks render approved submissions at /submissions/<id>.
 //
-//   POST /api/submissions { promptId, answer, fields?, handle?, email?, wallet? }  (+ optional Quick Auth)
-//        -> { ok, id }                         (stored pending; notify hook fired)
-//   GET  /api/submissions?id=<id>              -> { ok, submission }  (approved = public; pending = minimal)
+//   POST /api/submissions { promptId, answer, fields?, handle?, email?, wallet?, draft? }  (+ optional Quick Auth)
+//        -> { ok, id, status, editToken? }     (pending, or a public WIP draft; notify hook fired)
+//   GET  /api/submissions?id=<id>              -> { ok, submission }  (approved/draft = public; pending = minimal)
 //   GET  /api/submissions?feed=recent&limit=30 -> { ok, submissions:[...] }  (approved only, public)
+//   GET  /api/submissions?feed=drafts&limit=30 -> { ok, submissions:[...] }  (public WIP drafts)
+//   POST /api/submissions { action:'publish', id, editToken? }  (+ Quick Auth) -> { ok, id, status }
+//        (draft -> pending; owner only: verified FID match or the editToken returned at creation)
 //   GET  /api/submissions?status=pending       + admin -> { ok, queue:[...] }  (review queue)
 //   POST /api/submissions { action:'approve'|'reject', id }  + admin -> { ok, id, status }
 //
@@ -102,11 +105,12 @@ async function notify(text) {
   } catch { /* best-effort alert, never blocks the submission */ }
 }
 
-// Public-safe view of a submission (no raw email; pending shows minimal).
+// Public-safe view of a submission (no raw email/wallet/editToken; pending shows minimal).
+// Drafts are PUBLIC by design - a WIP others can read and comment on before it is finished.
 function publicView(s) {
   if (!s) return null;
   const base = { id: s.id, promptId: s.promptId, handle: s.handle || null, status: s.status, ts: s.ts };
-  if (s.status !== 'approved') return base;
+  if (s.status !== 'approved' && s.status !== 'draft') return base;
   return { ...base, answer: s.answer || '', fields: s.fields || {}, profile: s.profile || null };
 }
 
@@ -148,6 +152,22 @@ export default async function handler(req) {
       catch { /* none */ }
       if (!s) return json({ ok: false, error: 'not found' });
       return json({ ok: true, submission: publicView(s) }, s.status === 'approved' ? 30 : 0);
+    }
+
+    // public WIP drafts feed - open builds people can comment on while in progress
+    if (url.searchParams.get('feed') === 'drafts') {
+      const limit = Math.min(60, Math.max(1, Number(url.searchParams.get('limit')) || 30));
+      let ids = [];
+      try { const r = await kvPipeline([['ZREVRANGE', 'zabal:subs:drafts', '0', String(limit - 1)]]); ids = (r[0] && r[0].result) || []; }
+      catch { return json({ ok: true, configured: true, submissions: [] }); }
+      const out = [];
+      if (ids.length) {
+        try {
+          const r = await kvPipeline(ids.map((id2) => ['GET', `zabal:sub:v1:${id2}`]));
+          r.forEach((row) => { if (row && row.result) { try { const d = JSON.parse(row.result); if (d.status === 'draft') out.push(publicView(d)); } catch { /* skip */ } } });
+        } catch { /* partial */ }
+      }
+      return json({ ok: true, configured: true, submissions: out.filter(Boolean) }, 10);
     }
 
     // public recent feed (approved only)
@@ -200,6 +220,38 @@ export default async function handler(req) {
       return json({ ok: true, id, status: s.status });
     }
 
+    // owner promotes a WIP draft into the review queue
+    if (body.action === 'publish') {
+      const id = cleanSlug(body.id, 24);
+      if (!id) return json({ ok: false, error: 'id required' });
+      let s = null;
+      try { const r = await kvPipeline([['GET', `zabal:sub:v1:${id}`]]); if (r[0] && r[0].result) s = JSON.parse(r[0].result); }
+      catch { return json({ ok: false, error: 'kv' }); }
+      if (!s) return json({ ok: false, error: 'not found' });
+      if (s.status !== 'draft') return json({ ok: false, error: 'not a draft' });
+      // Ownership: verified FID match, or the editToken handed back at creation.
+      let owner = false;
+      const auth2 = req.headers.get('authorization') || '';
+      const token2 = auth2.startsWith('Bearer ') ? auth2.slice(7) : '';
+      if (token2) {
+        try { const fid2 = await verifyQuickAuth(token2, DOMAIN); if (s.fid && fid2 === s.fid) owner = true; } catch { /* not owner */ }
+      }
+      if (!owner && s.editToken && body.editToken && String(body.editToken) === s.editToken) owner = true;
+      if (!owner) return json({ ok: false, error: 'forbidden' });
+      s.status = 'pending';
+      s.publishedTs = Date.now();
+      try {
+        await kvPipeline([
+          ['SET', `zabal:sub:v1:${id}`, JSON.stringify(s)],
+          ['SREM', 'zabal:subs:bystatus:draft', id],
+          ['SADD', 'zabal:subs:bystatus:pending', id],
+          ['ZREM', 'zabal:subs:drafts', id],
+        ]);
+      } catch { return json({ ok: false, error: 'kv-write' }); }
+      await notify(`Draft #${id} (${s.promptId}) published for review${s.handle ? ' by @' + s.handle : ''}.`);
+      return json({ ok: true, id, status: 'pending' });
+    }
+
     // ---- create a submission ----
     // Rate-limit anonymous submissions: 5 per minute, 30 per hour.
     const ip = RateLimiter.getClientIp(req);
@@ -236,25 +288,35 @@ export default async function handler(req) {
     try { const r = await kvPipeline([['INCR', 'zabal:subs:counter']]); id = String((r[0] && r[0].result) || Date.now()); }
     catch { return json({ ok: false, error: 'kv' }); }
 
+    // draft:true stores a public WIP others can read + comment on; the creator gets an
+    // editToken back so they can publish it into review later (verified FID also works).
+    const isDraft = body.draft === true;
+    const editToken = isDraft ? crypto.randomUUID() : null;
     const sub = {
       id, promptId, answer,
       fields: cleanFields(body.fields),
       handle, fid, pfp,
       email: cleanEmail(body.email),
       wallet: cleanWallet(body.wallet),
-      status: 'pending',
+      status: isDraft ? 'draft' : 'pending',
       ts: Date.now(),
     };
+    if (editToken) sub.editToken = editToken;
     const cmds = [
       ['SET', `zabal:sub:v1:${id}`, JSON.stringify(sub)],
       ['ZADD', 'zabal:subs:recent', String(sub.ts), id],
-      ['SADD', 'zabal:subs:bystatus:pending', id],
+      ['SADD', `zabal:subs:bystatus:${sub.status}`, id],
     ];
+    if (isDraft) cmds.push(['ZADD', 'zabal:subs:drafts', String(sub.ts), id]);
     if (fid) cmds.push(['INCR', `zabal:subs:byfid:${fid}`]);
     try { await kvPipeline(cmds); } catch { return json({ ok: false, error: 'kv-write' }); }
 
-    await notify(`New ZABAL Gamez submission #${id} on "${promptId}"${handle ? ' from @' + handle : ''} - review it.`);
-    return json({ ok: true, id, status: 'pending' });
+    await notify(isDraft
+      ? `New WIP draft #${id} on "${promptId}"${handle ? ' from @' + handle : ''} - public at /submissions?id=${id}.`
+      : `New ZABAL Gamez submission #${id} on "${promptId}"${handle ? ' from @' + handle : ''} - review it.`);
+    const resp = { ok: true, id, status: sub.status };
+    if (editToken) resp.editToken = editToken;
+    return json(resp);
   }
 
   return json({ ok: false, error: 'method' });
