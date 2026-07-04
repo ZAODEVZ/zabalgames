@@ -72,6 +72,17 @@
   </section>
 
   <section class="section">
+    <h2>Community wins</h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+      Wins the community called for themselves. Zaal's shares land here too - a Zaal share
+      is a community win. WIP means it is still taking shape; open it and leave a comment.
+    </p>
+    <div id="cwins-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+      <p id="cwins-loading" style="color: var(--text-muted); font-size: 0.9rem;">Loading community wins...</p>
+    </div>
+  </section>
+
+  <section class="section">
     <h2>How your win lands here</h2>
     <div class="card" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;">
       <p style="margin: 0 0 0.6rem;">1. You call it. A win is whatever counted for you in the first half of the year - big, small, personal, public. No committee decides what a win is.</p>
@@ -131,6 +142,51 @@
     .catch(function() {
       if (loading) loading.textContent = 'Could not load the record right now.';
     });
+})();
+
+// Community wins: submissions on the community-win prompt - approved entries
+// plus public WIP drafts, so a win shows the moment someone shares it.
+(function () {
+  var grid = document.getElementById('cwins-grid');
+  var loading = document.getElementById('cwins-loading');
+  if (!grid) return;
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  var all = [], loadsLeft = 2;
+  function card(w) {
+    var wip = w.status === 'draft';
+    var text = (w.answer || '').replace(/\s+/g, ' ').trim().slice(0, 180);
+    return '<a class="card" style="display:block;text-decoration:none;color:inherit;' + (wip ? 'border-left:3px solid var(--gold);' : '') + '" href="/submissions?id=' + esc(w.id) + '">' +
+      '<div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.5rem;">' +
+      (w.handle ? '<span style="color:var(--cyan);font-size:0.85rem;">@' + esc(w.handle) + '</span>' : '<span style="color:var(--text-dim);font-size:0.85rem;">someone in the community</span>') +
+      (wip ? '<span style="font-size:0.6rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.08rem 0.45rem;border-radius:999px;border:1px solid var(--gold);color:var(--gold);">WIP</span>' : '') +
+      '</div>' +
+      '<p style="font-size:0.9rem;color:var(--text-muted);margin:0;line-height:1.6;">' + esc(text) + (w.answer && w.answer.length > 180 ? '...' : '') + '</p>' +
+      '<p style="margin:0.6rem 0 0;font-size:0.78rem;color:var(--text-dim);">' + (wip ? 'Comment while it is taking shape -&gt;' : 'Open it -&gt;') + '</p></a>';
+  }
+  function render() {
+    if (loadsLeft > 0) return;
+    if (loading) loading.remove();
+    if (!all.length) {
+      grid.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No community wins on the wall yet. Yours starts it - use the buttons up top.</p>';
+      return;
+    }
+    all.sort(function (a, b) { return (b.ts || 0) - (a.ts || 0); });
+    grid.innerHTML = all.map(card).join('');
+  }
+  function take(list) {
+    (list || []).forEach(function (s) { if (s && s.promptId === 'community-win') all.push(s); });
+    loadsLeft--; render();
+  }
+  fetch('/api/submissions?feed=recent&limit=60', { cache: 'no-store' })
+    .then(function (r) { return r.json(); }).then(function (d) { take(d && d.submissions); })
+    .catch(function () { loadsLeft--; render(); });
+  fetch('/api/submissions?feed=drafts&limit=30', { cache: 'no-store' })
+    .then(function (r) { return r.json(); }).then(function (d) { take(d && d.submissions); })
+    .catch(function () { loadsLeft--; render(); });
 })();
 
 // Share-your-win cast: the invitation IS the distribution.
