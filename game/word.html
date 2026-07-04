@@ -95,6 +95,12 @@
     </div>
   </div>
 
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Points per solve: 6 for one guess down to 1 for six. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="wd-board-list" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
   <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
     Words come from the world you are building in. New here? Browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
   </p>
@@ -198,8 +204,50 @@
     }).join('\n');
   }
 
+  var myRank = null;
+  var PTS_KEY = 'zg-zabaldle-pts-' + new Date().toISOString().slice(0, 7);
+
+  function loadBoard() {
+    var list = document.getElementById('wd-board-list');
+    if (!list) return;
+    fetch('/api/game?game=zabaldle', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified solves yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' pts</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
   function finish(won) {
     over = true;
+    // Monthly points: 6 for a one-guess solve down to 1 for six; misses add 0.
+    var pts = won ? (ROWS - guesses.length + 1) : 0;
+    var total = 0;
+    try { total = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e) {}
+    total += pts;
+    try { localStorage.setItem(PTS_KEY, String(total)); } catch (e) {}
+    myRank = null;
+    if (total > 0) {
+      try {
+        if (window.ZABAL && window.ZABAL.submitScore) {
+          window.ZABAL.submitScore('zabaldle', total, null).then(function (d) {
+            if (d && d.ok) {
+              if (d.rank) {
+                myRank = d.rank;
+                var wl = document.getElementById('wd-win-line');
+                wl.textContent += ' ' + total + ' pts this month, rank ' + d.rank + '.';
+              }
+              loadBoard();
+            }
+          }).catch(function () {});
+        }
+      } catch (e) {}
+    }
     document.getElementById('wd-win-title').textContent = won ? 'Solved.' : 'Out of tries.';
     document.getElementById('wd-win-line').textContent = won
       ? ('Got it in ' + guesses.length + '/' + ROWS + '. New word tomorrow.')
@@ -211,11 +259,13 @@
 
   document.getElementById('wd-share').addEventListener('click', function () {
     var head = 'ZABALDLE ' + PUZZLE + ' - ' + (guesses[guesses.length - 1].word === ANSWER ? guesses.length : 'X') + '/' + ROWS;
-    var text = head + '\n' + gridText() + '\n\nPlay the daily ZAO word game.';
+    var text = head + '\n' + gridText() + '\n\n' + (myRank ? 'Rank ' + myRank + ' on this month\'s board. Beat my spot.' : 'Play the daily ZAO word game.');
     var url = 'https://zabalgamez.com/game/word';
     if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
     else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
   });
+
+  loadBoard();
 
   document.addEventListener('keydown', function (e) {
     if (over) return;
