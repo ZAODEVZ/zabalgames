@@ -256,7 +256,7 @@ export default async function handler(req) {
     // Rate-limit anonymous submissions: 5 per minute, 30 per hour.
     const ip = RateLimiter.getClientIp(req);
     const allowed = await limiter.checkLimit(ip, 'submit', { perMinute: 5, perHour: 30 });
-    if (!allowed) return json({ ok: false, error: 'rate limited' });
+    if (!allowed) return json({ ok: false, reason: 'limit' });
 
     const promptId = cleanSlug(body.promptId, 40);
     const answer = cleanText(body.answer, 2000);
