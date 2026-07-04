@@ -98,6 +98,11 @@
       var list = document.getElementById('ip-list'), filt = document.getElementById('ip-filters'), cnt = document.getElementById('ip-count');
       if (!list) return;
       function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+      // Keep third-party platform names off the card - "poidh" is our backend ingest
+      // source, not a name we surface. Map it to plain ZABAL Gamez language, and strip
+      // it out of free-text notes too (those are raw cast/UGC text, not site copy).
+      function sourceLabel(s) { var m = { poidh: 'Open Pot', magnetiq: 'Magnetiq', manual: 'site' }; return m[s] || esc(s || 'site'); }
+      function deJargon(s) { return String(s == null ? '' : s).replace(/\bpoidh\b/gi, '').replace(/\s{2,}/g, ' ').trim(); }
       var ALL = [], track = '', type = '', TRACKS = ['artist', 'builder', 'creator'];
       function renderStats() {
         var stats = document.getElementById('ip-stats'); if (!stats) return;
@@ -127,13 +132,14 @@
         list.innerHTML = items.map(function (i) {
           var link = i.url || i.repo || '#', h = i.builder && i.builder.handle;
           var proj = (i.source === 'poidh' && (!i.project || i.project === 'poidh')) ? 'ZABAL Gamez Open Pot' : (i.project || 'Untitled');
-          var note = i.note ? String(i.note).replace(/\s+/g, ' ').trim().slice(0, 120) : '';
+          var noteFull = i.note ? deJargon(String(i.note).replace(/\s+/g, ' ')) : '';
+          var note = noteFull.slice(0, 120);
           return '<div class="ip-card"><a class="ip-t" href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(proj) + '</a>'
             + '<span class="ip-badge">' + esc(i.type || 'link') + '</span>'
             + (i.track ? '<span class="ip-badge track">' + esc(i.track) + '</span>' : '')
             + (h ? ' <a class="ip-by" href="/builder?handle=' + esc(h) + '">@' + esc(h) + '</a>' : '')
-            + '<span class="ip-src">via ' + esc(i.source || 'site') + '</span>'
-            + (note ? '<p class="ip-note" style="color:var(--text-muted);font-size:0.86rem;margin:0.4rem 0 0;line-height:1.5">' + esc(note) + (i.note && i.note.length > 120 ? '...' : '') + '</p>' : '')
+            + '<span class="ip-src">via ' + sourceLabel(i.source) + '</span>'
+            + (note ? '<p class="ip-note" style="color:var(--text-muted);font-size:0.86rem;margin:0.4rem 0 0;line-height:1.5">' + esc(note) + (noteFull.length > 120 ? '...' : '') + '</p>' : '')
             + '</div>';
         }).join('');
       }

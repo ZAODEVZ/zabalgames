@@ -5,6 +5,7 @@
   <url><loc>https://zabalgamez.com/bounties</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/build-days</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/build-ideas</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/builder</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/changelog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/clips</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/context</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -15,13 +16,13 @@
   <url><loc>https://zabalgamez.com/farcaster-batches</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/finals</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zabalgamez.com/finals/live</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/fips</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/game</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/grants</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/graph</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/info</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://zabalgamez.com/install</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/lead</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://zabalgamez.com/leaderboard</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/links</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/live</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/media</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -32,17 +33,22 @@
   <url><loc>https://zabalgamez.com/playbook</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zabalgamez.com/pops</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/press</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zabalgamez.com/profile</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/projects</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://zabalgamez.com/quest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/recaps</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zabalgamez.com/recordings</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://zabalgamez.com/referrers</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/research</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://zabalgamez.com/restream</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/share</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://zabalgamez.com/spaces</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/speakers</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/streams</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://zabalgamez.com/submissions</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zabalgamez.com/submit</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/today</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/winners</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/wins</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/llms.txt</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/recordings/1</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/recordings/10</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -60,6 +66,11 @@
   <url><loc>https://zabalgamez.com/recordings/22</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/recordings/23</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/recordings/24</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/recordings/25</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/recordings/26</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/recordings/27</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/recordings/28</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/recordings/29</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/recordings/3</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/recordings/4</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/recordings/5</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
