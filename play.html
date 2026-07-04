@@ -68,6 +68,8 @@
     <p class="lead" style="margin-top: 0.3rem;">The machine deals you two games. Pick one and play - no browsing, no decisions, just a coin and a choice. Every game keeps a monthly leaderboard; play in the Farcaster app and your score counts.</p>
   </header>
 
+  <div id="qp-daily" style="max-width: 640px; margin-top: 1.2rem;"></div>
+
   <div class="qp-deal" id="qp-deal" aria-label="Your two games"></div>
 
   <div class="qp-actions">
@@ -122,6 +124,19 @@
 
   document.getElementById('qp-shuffle').addEventListener('click', dealTwo);
   dealTwo();
+
+  // Game of the day: date-seeded so the whole community lands on the SAME game
+  // each day - shared boards need shared attention.
+  (function () {
+    var host = document.getElementById('qp-daily');
+    if (!host) return;
+    var dayIndex = Math.floor(Date.now() / 86400000);
+    var g = GAMES[dayIndex % GAMES.length];
+    host.innerHTML = '<a class="qp-card" style="border-color: var(--gold);" href="' + g.url + '">' +
+      '<span class="tag" style="color: var(--gold);">Game of the day</span>' +
+      '<h2>' + g.name + '</h2><p>' + g.desc + ' Everyone plays the same game today - the board fight is live.</p>' +
+      '<span class="go">Play today\'s game -&gt;</span></a>';
+  })();
 })();
 </script>
 <script defer src="/assets/site-nav.js"></script>
