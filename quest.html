@@ -143,6 +143,7 @@
     { key: 'build', name: 'Build', quests: [
       { id: 'adopt', t: 'Scout the projects', xp: 10, kind: 'visit', dest: '/projects', match: '/projects', how: 'Started projects waiting for a builder. Find one worth adopting.' },
       { id: 'playbook', t: 'Study the playbook', xp: 10, kind: 'visit', dest: '/playbook', match: '/playbook', how: 'The tracks, the rails, and the July bar - read before you build.' },
+      { id: 'wip', t: 'Open a work in progress', xp: 20, kind: 'api', dest: '/submit', how: 'Post a half-built thing as a WIP draft and let the community shape it. Unfinished on purpose counts here.' },
       { id: 'ship', t: 'Ship something', xp: 40, kind: 'api', dest: '/enter', how: 'A live app, a video, a track, art, or a repo. Register it on the enter page and this unlocks itself.' }
     ]},
     { key: 'ship', name: 'Ship', quests: [
@@ -344,25 +345,42 @@
     if (allDoors) unlock('cartographer');
   }
 
-  // API auto-clears from real records.
+  // API auto-clears from real records. getUser() is a Promise - resolve it
+  // first (reading it synchronously left ship/submit permanently locked).
   function clearRecords() {
-    var handle = null, fid = null;
-    try { if (window.ZABAL && window.ZABAL.getUser) { var u = window.ZABAL.getUser(); if (u) { handle = u.username || null; fid = u.fid || null; } } } catch (e) {}
-    if (handle) {
-      fetch('/api/submission-intake?builder=' + encodeURIComponent(String(handle).toLowerCase()), { cache: 'no-store' })
-        .then(function (r) { return r.json(); })
-        .then(function (d) { if (((d && d.items) || []).length) { if (unlock('submit')) renderHud(); renderBoard(); } })
-        .catch(function () {});
-    }
-    if (fid) {
-      fetch('/api/builds', { cache: 'no-store' })
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          var mine = ((d && d.builds) || []).some(function (b) { return b && b.fid && String(b.fid) === String(fid); });
-          if (mine) { if (unlock('ship')) renderHud(); renderBoard(); }
-        })
-        .catch(function () {});
-    }
+    if (!(window.ZABAL && window.ZABAL.getUser)) return;
+    window.ZABAL.getUser().then(function (u) {
+      var handle = (u && u.username) || null;
+      var fid = (u && u.fid) || null;
+      if (handle) {
+        var h = String(handle).toLowerCase();
+        fetch('/api/submission-intake?builder=' + encodeURIComponent(h), { cache: 'no-store' })
+          .then(function (r) { return r.json(); })
+          .then(function (d) { if (((d && d.items) || []).length) { if (unlock('submit')) renderHud(); renderBoard(); } })
+          .catch(function () {});
+        // WIP quest: any draft or submission of theirs on the site pipeline.
+        var mineIn = function (d) {
+          return ((d && d.submissions) || []).some(function (x) { return x && x.handle && String(x.handle).toLowerCase() === h; });
+        };
+        fetch('/api/submissions?feed=drafts&limit=60', { cache: 'no-store' })
+          .then(function (r) { return r.json(); })
+          .then(function (d) { if (mineIn(d)) { if (unlock('wip')) renderHud(); renderBoard(); } })
+          .catch(function () {});
+        fetch('/api/submissions?feed=recent&limit=60', { cache: 'no-store' })
+          .then(function (r) { return r.json(); })
+          .then(function (d) { if (mineIn(d)) { if (unlock('wip')) renderHud(); renderBoard(); } })
+          .catch(function () {});
+      }
+      if (fid) {
+        fetch('/api/builds', { cache: 'no-store' })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            var mine = ((d && d.builds) || []).some(function (b) { return b && b.fid && String(b.fid) === String(fid); });
+            if (mine) { if (unlock('ship')) renderHud(); renderBoard(); }
+          })
+          .catch(function () {});
+      }
+    }).catch(function () {});
   }
 
   clearVisits();
