@@ -45,22 +45,26 @@
 <div class="container" id="main">
 
   <header class="hero">
-    <div class="hero-eyebrow">Q2 2026 - permanent record</div>
-    <h1>Big wins, <span class="accent">on-chain</span>.</h1>
+    <div class="hero-eyebrow">First half of 2026 - the wins wall</div>
+    <h1>The <span class="accent">wins</span> wall.</h1>
     <p class="hero-sub">
-      The ZAO ships in public, and the biggest wins deserve a record nobody can edit later.
-      Each win below becomes an attestation on Base via the Ethereum Attestation Service:
-      title, one-liner, date, proof link, win number - written once, verifiable forever,
-      with a public link anyone can check.
+      A win is anything YOU define as a win from the first half of the year. Shipped your
+      first thing. Taught a workshop. Landed funding. Got your first collector. Kept a
+      streak alive. If it moved you or the ZAO forward, it belongs here - with a proof
+      link, so the record stays honest.
     </p>
+    <div style="display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem;">
+      <button class="btn btn-primary" id="win-share" type="button">Share your win</button>
+      <a class="btn btn-secondary" href="/submit">Add it to the wall</a>
+    </div>
   </header>
 
   <section class="section">
     <h2>The record</h2>
     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-      First entries from the Q2 list. A win shows ON-CHAIN once its attestation lands;
-      until then it sits in the queue. The full Q2 set joins as each one is verified -
-      no invented dates, no invented links.
+      Every win carries a proof link - no invented dates, no invented receipts. The wall
+      grows as wins get verified; the biggest ones also get attested on Base so the
+      record can never be edited. ON-CHAIN means the attestation has landed.
     </p>
     <div id="wins-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
       <p id="wins-loading" style="color: var(--text-muted); font-size: 0.9rem;">Loading the record...</p>
@@ -68,14 +72,16 @@
   </section>
 
   <section class="section">
-    <h2>How a win gets on-chain</h2>
+    <h2>How your win lands here</h2>
     <div class="card" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;">
-      <p style="margin: 0 0 0.6rem;">1. The win happens in public - a hackathon result, a funding round, a partnership.</p>
-      <p style="margin: 0 0 0.6rem;">2. It gets attested on Base through the Ethereum Attestation Service: a small permanent record with the title, date, and proof link.</p>
-      <p style="margin: 0 0 0.6rem;">3. The attestation link lands here, on this page, next to the win. Anyone can open it and verify the record independently.</p>
-      <p style="margin: 0;">Building something this season? Every merged PR is a ZABAL Gamez submission - and the biggest ones end up on this wall. <a href="/enter" style="color: var(--gold);">Enter the build</a>.</p>
+      <p style="margin: 0 0 0.6rem;">1. You call it. A win is whatever counted for you in the first half of the year - big, small, personal, public. No committee decides what a win is.</p>
+      <p style="margin: 0 0 0.6rem;">2. Share it with a receipt - the cast, the link, the video, whatever proves it happened. <a href="/submit" style="color: var(--gold);">Submit it</a> (a WIP draft works too) or cast it with the button up top and it gets picked up.</p>
+      <p style="margin: 0 0 0.6rem;">3. It joins the wall with its proof link. The biggest ones also get attested on Base - a permanent record with a public link anyone can verify, forever.</p>
+      <p style="margin: 0;">And the second half is being written right now: every merged PR is a ZABAL Gamez submission. <a href="/enter" style="color: var(--gold);">Enter the build</a>.</p>
     </div>
   </section>
+
+  <section id="zg-comments"></section>
 
 </div>
 
@@ -126,7 +132,20 @@
       if (loading) loading.textContent = 'Could not load the record right now.';
     });
 })();
+
+// Share-your-win cast: the invitation IS the distribution.
+(function () {
+  var b = document.getElementById('win-share');
+  if (!b) return;
+  b.addEventListener('click', function () {
+    var text = 'My first-half win: \n\nZM. The ZAO is collecting everything that counted from the first half of the year - your call what a win is. Drop yours on the wall.';
+    var url = 'https://zabalgamez.com/wins';
+    if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+  });
+})();
 </script>
+<script defer src="/assets/recording-comments.js"></script>
 
 </body>
 </html>
