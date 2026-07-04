@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Echo - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Echo - the label's memory game. Four pads, four notes. Repeat the melody as it grows. Monthly leaderboard.">
+  <link rel="canonical" href="https://zabalgamez.com/game/echo">
+  <meta property="og:title" content="ZAO Echo - ZABAL Gamez">
+  <meta property="og:description" content="Four pads, four notes. Repeat the melody as it grows. Monthly leaderboard.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/echo">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Echo - ZABAL Gamez">
+  <meta name="twitter:description" content="Four pads, four notes. Repeat the melody as it grows.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Echo","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/echo","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Echo","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/echo","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .ec-stats { display: flex; gap: 1.2rem; align-items: baseline; margin: 0.6rem 0 1rem; font-family: 'JetBrains Mono', monospace; }
+    .ec-stat { font-size: 0.8rem; color: var(--text-dim); }
+    .ec-stat b { display: block; font-size: 1.3rem; color: var(--text); font-weight: 600; margin-top: 0.1rem; }
+    .ec-stat b.best { color: var(--gold); }
+    .ec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; max-width: 380px; }
+    .ec-pad { aspect-ratio: 1; border-radius: 16px; border: 1px solid var(--border); cursor: pointer; opacity: 0.55;
+      transition: opacity 0.12s ease, transform 0.12s ease; font: inherit; }
+    .ec-pad.lit { opacity: 1; transform: scale(0.97); }
+    .ec-pad:disabled { cursor: default; }
+    .ec-pad.p0 { background: #7c5cff; }
+    .ec-pad.p1 { background: #00e5ff; }
+    .ec-pad.p2 { background: #f5c518; }
+    .ec-pad.p3 { background: #38d39f; }
+    .ec-msg { min-height: 1.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted); margin: 0.8rem 0; }
+    .ec-over { display: none; margin-top: 1.2rem; padding: 1.2rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); }
+    .ec-over.show { display: block; }
+    .ec-over h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.4rem; }
+    .ec-actions { display: flex; gap: 0.7rem; margin-top: 0.6rem; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/enter">Enter</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<div class="container" id="main">
+
+  <header style="margin-top: 1rem;">
+    <div class="hero-eyebrow">The arcade</div>
+    <h1>ZAO <span class="accent">Echo</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">The label's memory game. Four pads, four notes. Listen to the melody, play it back, and it grows by one every round. No signup to play - sound on.</p>
+  </header>
+
+  <div class="ec-stats">
+    <div class="ec-stat">Round<b id="ec-round">0</b></div>
+    <div class="ec-stat">Best<b id="ec-best" class="best">-</b></div>
+  </div>
+
+  <div class="ec-grid" id="ec-grid" aria-label="Echo pads">
+    <button class="ec-pad p0" type="button" data-i="0" aria-label="Purple pad"></button>
+    <button class="ec-pad p1" type="button" data-i="1" aria-label="Cyan pad"></button>
+    <button class="ec-pad p2" type="button" data-i="2" aria-label="Gold pad"></button>
+    <button class="ec-pad p3" type="button" data-i="3" aria-label="Green pad"></button>
+  </div>
+
+  <p class="ec-msg" id="ec-msg">Press start, then repeat what you hear.</p>
+
+  <div class="ec-actions">
+    <button class="btn btn-primary" id="ec-start" type="button">Start</button>
+    <a class="btn btn-secondary" href="/game">Back to arcade</a>
+  </div>
+
+  <div class="ec-over" id="ec-over" role="status" aria-live="polite">
+    <h2>The echo broke.</h2>
+    <p id="ec-over-line"></p>
+    <div class="ec-actions">
+      <button class="btn btn-primary" id="ec-share" type="button">Share the run</button>
+      <button class="btn btn-secondary" id="ec-again" type="button">Run it back</button>
+    </div>
+  </div>
+
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Longest melody repeated. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="ec-board" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
+</div>
+</main>
+
+<script>
+(function () {
+  var pads = Array.prototype.slice.call(document.querySelectorAll('.ec-pad'));
+  var roundEl = document.getElementById('ec-round');
+  var bestEl = document.getElementById('ec-best');
+  var msgEl = document.getElementById('ec-msg');
+  var overEl = document.getElementById('ec-over');
+  var overLine = document.getElementById('ec-over-line');
+  var startBtn = document.getElementById('ec-start');
+  var BEST_KEY = 'zg-zaoecho-best';
+  var FREQ = [261.63, 329.63, 392.0, 523.25]; // C4 E4 G4 C5 - a clean major chord
+  var seq = [], pos = 0, playing = false, accepting = false, round = 0, myRank = null;
+  var ac = null;
+
+  function tone(i, ms) {
+    try {
+      if (!ac) ac = new (window.AudioContext || window.webkitAudioContext)();
+      var o = ac.createOscillator(), g = ac.createGain();
+      o.type = 'sine'; o.frequency.value = FREQ[i];
+      g.gain.setValueAtTime(0.0001, ac.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.22, ac.currentTime + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + ms / 1000);
+      o.connect(g); g.connect(ac.destination);
+      o.start(); o.stop(ac.currentTime + ms / 1000 + 0.05);
+    } catch (e) {}
+  }
+
+  function lightUp(i, ms) {
+    var p = pads[i];
+    p.classList.add('lit');
+    tone(i, ms);
+    setTimeout(function () { p.classList.remove('lit'); }, ms);
+  }
+
+  function loadBest() {
+    var b = 0;
+    try { b = parseInt(localStorage.getItem(BEST_KEY) || '0', 10) || 0; } catch (e) {}
+    bestEl.textContent = b > 0 ? String(b) : '-';
+    return b;
+  }
+
+  function playSeq() {
+    playing = true; accepting = false;
+    setPads(true);
+    msgEl.textContent = 'Listen...';
+    var i = 0;
+    var speed = Math.max(280, 550 - round * 15);
+    var iv = setInterval(function () {
+      lightUp(seq[i], speed * 0.7);
+      i++;
+      if (i >= seq.length) {
+        clearInterval(iv);
+        setTimeout(function () {
+          playing = false; accepting = true; pos = 0;
+          setPads(false);
+          msgEl.textContent = 'Your turn - ' + seq.length + ' note' + (seq.length > 1 ? 's' : '') + '.';
+        }, speed);
+      }
+    }, speed);
+  }
+
+  function setPads(disabled) {
+    pads.forEach(function (p) { p.disabled = disabled; });
+  }
+
+  function nextRound() {
+    round++;
+    roundEl.textContent = String(round);
+    seq.push(Math.floor(Math.random() * 4));
+    setTimeout(playSeq, 450);
+  }
+
+  function begin() {
+    seq = []; round = 0; myRank = null;
+    roundEl.textContent = '0';
+    overEl.classList.remove('show');
+    startBtn.style.display = 'none';
+    nextRound();
+  }
+
+  function fail() {
+    accepting = false;
+    setPads(true);
+    var completed = round - 1; // the last full melody repeated
+    var prev = loadBest();
+    var isBest = completed > prev;
+    if (isBest) { try { localStorage.setItem(BEST_KEY, String(completed)); } catch (e) {} }
+    loadBest();
+    msgEl.textContent = '';
+    overLine.textContent = completed > 0
+      ? ('You held the echo for ' + completed + ' round' + (completed > 1 ? 's' : '') + '.' + (isBest ? ' New personal best.' : ''))
+      : 'Broke on the first note. Happens to everyone once.';
+    overEl.classList.add('show');
+    startBtn.style.display = '';
+    // Put the run on the monthly board (verified inside the Farcaster app; no-op on web).
+    try {
+      if (completed > 0 && window.ZABAL && window.ZABAL.submitScore) {
+        window.ZABAL.submitScore('zaoecho', completed, null).then(function (d) {
+          if (d && d.ok) {
+            if (d.rank) { myRank = d.rank; overLine.textContent += ' Rank ' + d.rank + ' this month.'; }
+            loadBoard();
+          }
+        }).catch(function () {});
+      }
+    } catch (e) {}
+  }
+
+  function loadBoard() {
+    var list = document.getElementById('ec-board');
+    if (!list) return;
+    fetch('/api/game?game=zaoecho', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified runs yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' rounds</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  pads.forEach(function (p) {
+    p.addEventListener('click', function () {
+      if (!accepting || playing) return;
+      var i = parseInt(p.dataset.i, 10);
+      lightUp(i, 220);
+      if (i !== seq[pos]) return fail();
+      pos++;
+      if (pos >= seq.length) {
+        accepting = false;
+        msgEl.textContent = 'Clean.';
+        setTimeout(nextRound, 600);
+      }
+    });
+  });
+
+  startBtn.addEventListener('click', begin);
+  document.getElementById('ec-again').addEventListener('click', begin);
+  document.getElementById('ec-share').addEventListener('click', function () {
+    var completed = Math.max(0, round - 1);
+    var text = myRank
+      ? ('Held the echo for ' + completed + ' rounds on ZAO Echo - rank ' + myRank + ' on this month\'s board. Beat my spot.')
+      : ('Held the echo for ' + completed + ' rounds on ZAO Echo at the ZABAL Gamez arcade. Sound on, try it.');
+    var url = 'https://zabalgamez.com/game/echo';
+    if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+  });
+
+  setPads(true);
+  loadBest();
+  loadBoard();
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

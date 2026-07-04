@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Snake - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Snake - classic snake, arcade rules. Eat coins, grow, do not hit yourself. Monthly leaderboard.">
+  <link rel="canonical" href="https://zabalgamez.com/game/snake">
+  <meta property="og:title" content="ZAO Snake - ZABAL Gamez">
+  <meta property="og:description" content="Classic snake, arcade rules. Eat coins, grow, do not hit yourself. Monthly leaderboard.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/snake">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Snake - ZABAL Gamez">
+  <meta name="twitter:description" content="Classic snake, arcade rules. Eat coins, grow. Monthly leaderboard.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Snake","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/snake","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Snake","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/snake","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:disable-native-gestures" content="1">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .sn-stats { display: flex; gap: 1.2rem; align-items: baseline; margin: 0.6rem 0 1rem; font-family: 'JetBrains Mono', monospace; }
+    .sn-stat { font-size: 0.8rem; color: var(--text-dim); }
+    .sn-stat b { display: block; font-size: 1.3rem; color: var(--text); font-weight: 600; margin-top: 0.1rem; }
+    .sn-stat b.best { color: var(--gold); }
+    #sn-wrap { max-width: 460px; }
+    #sn-canvas { width: 100%; display: block; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); touch-action: none; }
+    .sn-actions { display: flex; gap: 0.7rem; margin-top: 1rem; flex-wrap: wrap; }
+    .sn-over { display: none; margin-top: 1.2rem; padding: 1.2rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); }
+    .sn-over.show { display: block; }
+    .sn-over h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.4rem; }
+    .sn-hint { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.6rem; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/enter">Enter</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<div class="container" id="main">
+
+  <header style="margin-top: 1rem;">
+    <div class="hero-eyebrow">The arcade</div>
+    <h1>ZAO <span class="accent">Snake</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">Classic snake, arcade rules. Eat the coin, grow, do not hit yourself or the wall. It gets faster. No signup to play.</p>
+  </header>
+
+  <div class="sn-stats">
+    <div class="sn-stat">Coins<b id="sn-score">0</b></div>
+    <div class="sn-stat">Best<b id="sn-best" class="best">-</b></div>
+  </div>
+
+  <div id="sn-wrap">
+    <canvas id="sn-canvas" width="510" height="510" aria-label="Snake board"></canvas>
+  </div>
+  <p class="sn-hint">Arrows or WASD on desktop. Swipe on mobile. Tap the board to start.</p>
+
+  <div class="sn-over" id="sn-over" role="status" aria-live="polite">
+    <h2>Run over.</h2>
+    <p id="sn-over-line"></p>
+    <div class="sn-actions" style="margin-top: 0.6rem;">
+      <button class="btn btn-primary" id="sn-share" type="button">Share the run</button>
+      <button class="btn btn-secondary" id="sn-again" type="button">Run it back</button>
+      <a class="btn btn-secondary" href="/game">Back to arcade</a>
+    </div>
+  </div>
+
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Most coins in one run. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="sn-board" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
+</div>
+</main>
+
+<script>
+(function () {
+  var cv = document.getElementById('sn-canvas');
+  var cx = cv.getContext('2d');
+  var N = 17, CELL = cv.width / N;
+  var scoreEl = document.getElementById('sn-score');
+  var bestEl = document.getElementById('sn-best');
+  var overEl = document.getElementById('sn-over');
+  var overLine = document.getElementById('sn-over-line');
+  var BEST_KEY = 'zg-zaosnake-best';
+  var snake, dir, nextDir, food, score, dead, started, tickMs, loopT = null, myRank = null;
+
+  function loadBest() {
+    var b = 0;
+    try { b = parseInt(localStorage.getItem(BEST_KEY) || '0', 10) || 0; } catch (e) {}
+    bestEl.textContent = b > 0 ? String(b) : '-';
+    return b;
+  }
+
+  function reset() {
+    snake = [{ x: 8, y: 8 }, { x: 7, y: 8 }, { x: 6, y: 8 }];
+    dir = { x: 1, y: 0 }; nextDir = dir;
+    score = 0; dead = false; started = false; tickMs = 150; myRank = null;
+    scoreEl.textContent = '0';
+    overEl.classList.remove('show');
+    placeFood();
+    draw();
+    if (loopT) { clearTimeout(loopT); loopT = null; }
+  }
+
+  function placeFood() {
+    while (true) {
+      var f = { x: Math.floor(Math.random() * N), y: Math.floor(Math.random() * N) };
+      var hit = snake.some(function (s) { return s.x === f.x && s.y === f.y; });
+      if (!hit) { food = f; return; }
+    }
+  }
+
+  function draw() {
+    cx.clearRect(0, 0, cv.width, cv.height);
+    // coin
+    cx.fillStyle = '#f5c518';
+    cx.beginPath();
+    cx.arc(food.x * CELL + CELL / 2, food.y * CELL + CELL / 2, CELL * 0.32, 0, Math.PI * 2);
+    cx.fill();
+    // snake
+    for (var i = snake.length - 1; i >= 0; i--) {
+      cx.fillStyle = i === 0 ? '#00e5ff' : '#7c5cff';
+      var s = snake[i];
+      cx.fillRect(s.x * CELL + 1.5, s.y * CELL + 1.5, CELL - 3, CELL - 3);
+    }
+    if (!started && !dead) {
+      cx.fillStyle = 'rgba(240,240,245,0.75)';
+      cx.font = '600 20px Outfit, sans-serif';
+      cx.textAlign = 'center';
+      cx.fillText('Tap or press an arrow to start', cv.width / 2, cv.height / 2 - 40);
+    }
+  }
+
+  function tick() {
+    dir = nextDir;
+    var h = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+    if (h.x < 0 || h.y < 0 || h.x >= N || h.y >= N || snake.some(function (s) { return s.x === h.x && s.y === h.y; })) {
+      return die();
+    }
+    snake.unshift(h);
+    if (h.x === food.x && h.y === food.y) {
+      score++; scoreEl.textContent = String(score);
+      if (tickMs > 70) tickMs -= 2;
+      placeFood();
+    } else {
+      snake.pop();
+    }
+    draw();
+    loopT = setTimeout(tick, tickMs);
+  }
+
+  function start() {
+    if (started || dead) return;
+    started = true;
+    loopT = setTimeout(tick, tickMs);
+  }
+
+  function die() {
+    dead = true;
+    if (loopT) { clearTimeout(loopT); loopT = null; }
+    var prev = loadBest();
+    var isBest = score > prev;
+    if (isBest) { try { localStorage.setItem(BEST_KEY, String(score)); } catch (e) {} }
+    loadBest();
+    overLine.textContent = score + ' coins this run.' + (isBest ? ' New personal best.' : '');
+    overEl.classList.add('show');
+    // Put the run on the monthly board (verified inside the Farcaster app; no-op on web).
+    try {
+      if (score > 0 && window.ZABAL && window.ZABAL.submitScore) {
+        window.ZABAL.submitScore('zaosnake', score, null).then(function (d) {
+          if (d && d.ok) {
+            if (d.rank) { myRank = d.rank; overLine.textContent += ' Rank ' + d.rank + ' this month.'; }
+            loadBoard();
+          }
+        }).catch(function () {});
+      }
+    } catch (e) {}
+  }
+
+  function loadBoard() {
+    var list = document.getElementById('sn-board');
+    if (!list) return;
+    fetch('/api/game?game=zaosnake', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified runs yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' coins</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  function turn(nx, ny) {
+    if (dead) return;
+    if (!started) start();
+    if (nx === -dir.x && ny === -dir.y) return; // no instant reverse
+    nextDir = { x: nx, y: ny };
+  }
+
+  window.addEventListener('keydown', function (e) {
+    var k = e.key;
+    var map = { ArrowLeft: [-1, 0], a: [-1, 0], A: [-1, 0], ArrowRight: [1, 0], d: [1, 0], D: [1, 0],
+      ArrowUp: [0, -1], w: [0, -1], W: [0, -1], ArrowDown: [0, 1], s: [0, 1], S: [0, 1] };
+    if (map[k]) { e.preventDefault(); turn(map[k][0], map[k][1]); }
+  });
+
+  var sx = 0, sy = 0, tracking = false;
+  cv.addEventListener('touchstart', function (ev) {
+    var t = ev.changedTouches[0]; sx = t.clientX; sy = t.clientY; tracking = true;
+    if (!started && !dead) start();
+  }, { passive: true });
+  cv.addEventListener('touchend', function (ev) {
+    if (!tracking) return; tracking = false;
+    var t = ev.changedTouches[0];
+    var dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Math.abs(dx) < 20 && Math.abs(dy) < 20) return;
+    if (Math.abs(dx) > Math.abs(dy)) turn(dx > 0 ? 1 : -1, 0);
+    else turn(0, dy > 0 ? 1 : -1);
+  }, { passive: true });
+  cv.addEventListener('click', function () { if (!started && !dead) start(); });
+
+  document.getElementById('sn-again').addEventListener('click', reset);
+  document.getElementById('sn-share').addEventListener('click', function () {
+    var text = myRank
+      ? (score + ' coins on ZAO Snake - rank ' + myRank + ' on this month\'s board. Beat my spot.')
+      : (score + ' coins on ZAO Snake at the ZABAL Gamez arcade. Think you can run longer?');
+    var url = 'https://zabalgamez.com/game/snake';
+    if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+  });
+
+  loadBest();
+  reset();
+  loadBoard();
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
