@@ -362,6 +362,27 @@ without any IPFS/Pinata hosting (used by `assets/clip-claim.js` as the claim `ur
 - `GET ?v=<ytId>&c=<clipUrl>&t=<title>&d=<description>` -> `{ name, description, image, external_url, animation_url }`. `image` is the YouTube thumbnail (stable, hotlinkable).
 - No auth, no KV - pure function of the query string.
 
+### `GET/POST /api/profile`
+Open builder profiles (docs/submission-system-spec.md). Handle is the anchor; Farcaster
+(Quick Auth), GitHub (nonce proof), and a wallet attach as optional proofs. Renders at
+`/profiles/<handle>`; a submission hangs off this identity.
+- `GET ?handle=<h>` -> `{ ok, profile }` (public)
+- `POST { action:'upsert', handle, displayName?, bio?, links?, github?, editToken? }`
+Used by profile.html, builder.html.
+
+### `GET/POST /api/submissions`
+On-site UGC + builder submissions - the site is the source of truth. Stored pending,
+notify hook fires for triage, admin approval unlocks the collectible airdrop. Approved
+submissions render at `/submissions/<id>`.
+- `POST { promptId, answer, fields?, handle?, email?, wallet? }` (+ optional Quick Auth)
+Used by submissions.html, review.html.
+
+### `GET/POST /api/game`
+Mini-game leaderboards powering `/play`. Monthly high-score board per game in a KV
+sorted set (top 10 this month win $ZABAL), best-score-per-player.
+- `POST { game, score, address? }` + Quick Auth -> `{ ok, counted, rank, best }`
+- `GET ?game=zao2048` -> `{ ok, configured, game, month, board }`
+
 ### `POST /api/profile-track`
 The "skip the questions" path on `/game/build-quiz`. Reads the signed-in player's
 Farcaster bio + display name (server-side, by verified FID) and keyword-scores the three
