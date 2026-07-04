@@ -31,7 +31,7 @@
   <style>
     .q-hero { text-align: center; }
     .q-eyebrow { font-family: var(--font-pixel, 'Press Start 2P'); font-size: 0.55rem; letter-spacing: 0.14em; color: var(--gold); }
-    .q-hud { position: sticky; top: 0; z-index: 5; background: rgba(7,7,9,0.92); backdrop-filter: blur(6px); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem 1rem; margin: 1.2rem 0; }
+    .q-hud { position: sticky; top: var(--nav-h, 60px); z-index: 5; background: rgba(7,7,9,0.92); backdrop-filter: blur(6px); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem 1rem; margin: 1.2rem 0; }
     .q-hud-top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
     .q-level { font-family: var(--font-pixel, 'Press Start 2P'); font-size: 0.7rem; color: var(--zabal); }
     .q-xp { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-muted); }
@@ -45,19 +45,22 @@
     .q-stage-num { font-family: var(--font-pixel, 'Press Start 2P'); font-size: 0.6rem; color: var(--text-dim); }
     .q-stage-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; }
     .q-stage-done { margin-left: auto; font-size: 0.7rem; color: var(--gold); font-family: 'JetBrains Mono', monospace; }
-    a.q-quest { display: flex; align-items: flex-start; gap: 0.7rem; border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 10px; background: var(--surface-2); padding: 0.7rem 0.85rem; margin-top: 0.55rem; text-decoration: none; color: inherit; transition: border-color 0.15s, transform 0.08s; }
-    @media (hover: hover) { a.q-quest:hover { border-color: var(--cyan); transform: translateX(2px); } }
-    a.q-quest.done { border-left-color: var(--gold); }
-    a.q-quest.locked { opacity: 0.55; border-left-color: var(--border); }
+    .q-quest-row { display: flex; align-items: flex-start; gap: 0.5rem; border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 10px; background: var(--surface-2); padding: 0.7rem 0.85rem; margin-top: 0.55rem; transition: border-color 0.15s, transform 0.08s; }
+    @media (hover: hover) { .q-quest-row:hover { border-color: var(--cyan); transform: translateX(2px); } }
+    .q-quest-row.done { border-left-color: var(--gold); }
+    .q-quest-row.locked { opacity: 0.55; border-left-color: var(--border); }
+    .q-quest-row.next { border-left-color: var(--cyan); box-shadow: 0 0 0 1px rgba(0,229,255,0.18), 0 0 16px rgba(0,229,255,0.12); }
+    a.q-quest-link { flex: 1; min-width: 0; display: flex; align-items: flex-start; gap: 0.7rem; text-decoration: none; color: inherit; }
     .q-check { flex: none; width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--border-hover); display: grid; place-items: center; font-family: var(--font-pixel, 'Press Start 2P'); font-size: 0.55rem; color: var(--gold); margin-top: 0.1rem; }
-    a.q-quest.done .q-check { border-color: var(--gold); background: rgba(245,200,66,0.14); }
-    a.q-quest.done .q-t { color: var(--gold); }
+    .q-quest-row.done .q-check { border-color: var(--gold); background: rgba(245,200,66,0.14); }
+    .q-quest-row.done .q-t { color: var(--gold); }
     .q-t { font-weight: 600; }
+    .q-next-tag { display: inline-block; font-family: var(--font-pixel, 'Press Start 2P'); font-size: 0.5rem; letter-spacing: 0.08em; color: var(--cyan); border: 1px solid var(--cyan); border-radius: 4px; padding: 0.15rem 0.35rem; margin-right: 0.5rem; vertical-align: middle; }
     .q-how { color: var(--text-muted); font-size: 0.85rem; margin: 0.15rem 0 0; line-height: 1.5; }
     .q-go { color: var(--cyan); font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; }
     .q-xpchip { margin-left: auto; flex: none; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--zabal); }
-    a.q-quest.done .q-xpchip { color: var(--gold); }
-    .q-cast { flex: none; font: inherit; font-size: 0.68rem; padding: 0.25rem 0.6rem; margin-top: 0.05rem; border-radius: 999px; border: 1px solid var(--border-hover); background: var(--surface-2); color: var(--cyan); cursor: pointer; }
+    .q-quest-row.done .q-xpchip { color: var(--gold); }
+    .q-cast { flex: none; align-self: center; font: inherit; font-size: 0.68rem; padding: 0.25rem 0.6rem; border-radius: 999px; border: 1px solid var(--border-hover); background: var(--surface-2); color: var(--cyan); cursor: pointer; }
     .q-cast:hover { border-color: var(--cyan); }
     .q-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.6rem; }
     .q-btn { font: inherit; font-size: 0.85rem; padding: 0.55rem 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; }
@@ -125,6 +128,41 @@
 
 </div>
 </main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/info.html">All the Details</a>
+      <a href="/enter.html">Enter the Build</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/game">Arcade</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/submissions.html">Submissions</a>
+      <a href="/winners.html">Winners</a>
+      <a href="/recordings.html">Recordings</a>
+      <a href="/changelog.html">Changelog</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
 
 <div id="q-toasts" aria-live="polite"></div>
 
@@ -251,8 +289,18 @@
       return '<span class="q-badge on">' + esc(s.t) + '</span>';
     }).join('');
   }
+  // The first not-yet-done, actually-clickable quest in stage order - the one nudge
+  // toward "what do I do first", without gating anything else on the board.
+  function nextQuestId() {
+    for (var i = 0; i < ALLQ.length; i++) {
+      var q = ALLQ[i];
+      if (!state[q.id] && q.kind !== 'locked') return q.id;
+    }
+    return null;
+  }
   function renderBoard() {
     var html = '';
+    var nextId = nextQuestId();
     STAGES.forEach(function (st, i) {
       var got = st.quests.filter(function (q) { return state[q.id]; }).length;
       html += '<div class="q-stage"><div class="q-stage-head">'
@@ -261,21 +309,25 @@
         + '<span class="q-stage-done">' + got + '/' + st.quests.length + '</span></div>';
       st.quests.forEach(function (q) {
         var done = !!state[q.id];
+        var isNext = q.id === nextId;
         var ext = /^https?:/.test(q.dest);
-        var cls = 'q-quest' + (done ? ' done' : '') + (q.kind === 'locked' && !done ? ' locked' : '');
+        var rowCls = 'q-quest-row' + (done ? ' done' : '') + (q.kind === 'locked' && !done ? ' locked' : '') + (isNext ? ' next' : '');
         var attrs = ext ? ' target="_blank" rel="noopener"' : '';
         var go = done ? 'CLEARED' : (q.kind === 'locked' ? 'The season decides' : (ext ? 'Go do it ->' : 'Take me there ->'));
-        html += '<a class="' + cls + '" href="' + esc(q.dest) + '"' + attrs + ' data-id="' + q.id + '" data-kind="' + q.kind + '">'
+        html += '<div class="' + rowCls + '">'
+          + '<a class="q-quest-link" href="' + esc(q.dest) + '"' + attrs + ' data-id="' + q.id + '" data-kind="' + q.kind + '">'
           + '<span class="q-check">' + (done ? '*' : '') + '</span>'
-          + '<div style="flex:1;"><span class="q-t">' + esc(q.t) + '</span>'
+          + '<div style="flex:1;min-width:0;">' + (isNext ? '<span class="q-next-tag">NEXT</span>' : '') + '<span class="q-t">' + esc(q.t) + '</span>'
           + '<p class="q-how">' + esc(q.how) + ' <span class="q-go">' + go + '</span></p></div>'
           + '<span class="q-xpchip">+' + q.xp + '</span>'
+          + '</a>'
           + (done ? '<button class="q-cast" type="button" data-quest="' + q.id + '" title="Cast this achievement" aria-label="Cast this achievement">Cast</button>' : '')
-          + '</a>';
+          + '</div>';
       });
       html += '</div>';
     });
-    // Secrets: found ones show in full; the rest stay a rumor.
+    // Secrets: found ones show in full; the rest stay a rumor. Neither has a real
+    // destination, so they render as plain rows, not links.
     var found = SECRETS.filter(function (s) { return state[s.id]; });
     var hidden = SECRETS.length - found.length;
     html += '<div class="q-stage"><div class="q-stage-head">'
@@ -283,22 +335,22 @@
       + '<span class="q-stage-name">Secrets</span>'
       + '<span class="q-stage-done">' + found.length + '/' + SECRETS.length + '</span></div>';
     found.forEach(function (s) {
-      html += '<a class="q-quest done" href="/quest">'
+      html += '<div class="q-quest-row done">'
         + '<span class="q-check">*</span>'
-        + '<div style="flex:1;"><span class="q-t">' + esc(s.t) + '</span>'
+        + '<div style="flex:1;min-width:0;"><span class="q-t">' + esc(s.t) + '</span>'
         + '<p class="q-how">' + esc(s.how) + ' <span class="q-go">SECRET FOUND</span></p></div>'
-        + '<span class="q-xpchip">+' + s.xp + '</span></a>';
+        + '<span class="q-xpchip">+' + s.xp + '</span></div>';
     });
     if (hidden > 0) {
-      html += '<a class="q-quest locked" href="/quest">'
+      html += '<div class="q-quest-row locked">'
         + '<span class="q-check">?</span>'
-        + '<div style="flex:1;"><span class="q-t">' + hidden + ' secret' + (hidden === 1 ? '' : 's') + ' still hidden</span>'
+        + '<div style="flex:1;min-width:0;"><span class="q-t">' + hidden + ' secret' + (hidden === 1 ? '' : 's') + ' still hidden</span>'
         + '<p class="q-how">They unlock themselves. Play differently.</p></div>'
-        + '</a>';
+        + '</div>';
     }
     document.getElementById('q-board').innerHTML = html;
     // 'out' quests unlock the moment you walk through the door.
-    Array.prototype.forEach.call(document.querySelectorAll('a.q-quest[data-kind="out"]'), function (el) {
+    Array.prototype.forEach.call(document.querySelectorAll('a.q-quest-link[data-kind="out"]'), function (el) {
       el.addEventListener('click', function () { unlock(el.getAttribute('data-id')); renderHud(); });
     });
     // Per-achievement share - cast one cleared quest without triggering the card's link.
