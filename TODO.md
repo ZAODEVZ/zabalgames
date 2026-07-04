@@ -2,12 +2,35 @@
 
 > The live state of the build. Updated as commits land. See `docs/research/701-canonical-state.md` for the canonical event-level decisions; this file tracks the actual build / launch tasks.
 
-**Last updated:** 2026-06-06 (June workshop month - live list in [CURRENT] below; the pre-launch ship log is preserved beneath it).
-**Goal (launch):** Site production-ready by Sun May 31 so June workshops open Mon Jun 1. (Met - doors opened Jun 1.)
+**Last updated:** 2026-07-03 (July open-build month - live board in [CURRENT] below; June + pre-launch ship logs preserved beneath it).
+**Goal (July):** Builders shipping in public all month; judging pipeline live; Finals stack integration-ready by Aug 1.
 
 ---
 
-## [CURRENT - 2026-06-06] - June workshop month
+## [CURRENT - 2026-07-03] - July open-build month
+
+Reprioritized from the 3-agent repo audit (surfaces + backend + roadmap), 2026-07-03.
+
+### P0 - blocks July judging (owner)
+- **Vercel env vars**: `CRON_SECRET`, `BONFIRE_API_KEY`, `BONFIRE_ID`, `ZABAL_JUDGE_FIDS`, `GITHUB_TOKEN` - commit-watcher / daily-cast / finals-picks fail closed without them (api/README.md env section).
+- **build-days.json July 6-31** (issue #496, due Jul 5) - also the reason the daily-cast + reminder crons go silent in July: they filter on today's date and June-only data means zero matches.
+
+### P1 - decisions due this week (owner)
+- **Knowledge-game scoring TBDs** (docs/july-knowledge-game-2026-07-01.md): citation weighting, report-file ingestion, reward destination. Builders cannot optimize for what is not defined.
+- **WaveWarZ-Base contracts**: get a confirmed ship date from Sam + Arthur (need addresses by ~Jul 25 to wire finals/live.html) + lock the Respect settlement weight with ORDAO. Longest-lead Finals risk.
+- **Bonfire fallback decision**: accept the single-dependency risk or greenlight a KV pending-ingest queue.
+
+### P2 - rolling (owner)
+- YouTube links for recordings punch-list (#495) - /19, /15, /26, /fireside/1, AMA /20.
+- Magnetiq `MAGNETIQ_SECRET` (#497), GSC registration (#498), Unlock locks (#476).
+- Future: X longform articles (#501, drafts parked in clipboard + doc 958).
+
+### Build lane (agent, as gaps surface)
+- DONE 2026-07-03: July-tense homepage sweep (PR #502), /wins on-chain record page (#491/#499/#500), api/README.md + this file refreshed.
+- Watch /api/submission-intake feed; ship the highlight when a new builder lands.
+- Wire owner data same-pass as it arrives (YouTube links, build-days, wins proofs).
+
+## [ARCHIVE - 2026-06-06] - June workshop month
 
 ### In progress
 - **Farcaster Mini App hardening** - research + first implementation pass done 2026-06-06. Splash fix shipped earlier (PR #127: exact SDK pin `0.1.10` + `esm.sh` preconnect on all 27 pages). Status of the four hardening items:
