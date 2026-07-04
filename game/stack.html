@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Stack - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Stack - build the tiny tower. Tap to drop the sliding block; the overhang trims off. How high can you go?">
+  <link rel="canonical" href="https://zabalgamez.com/game/stack">
+  <meta property="og:title" content="ZAO Stack - ZABAL Gamez">
+  <meta property="og:description" content="Build the tiny tower. Tap to drop the sliding block; the overhang trims off.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/stack">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Stack - ZABAL Gamez">
+  <meta name="twitter:description" content="Build the tiny tower. Tap to drop; the overhang trims off.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Stack","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/stack","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Stack","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/stack","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:disable-native-gestures" content="1">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .st-stats { display: flex; gap: 1.2rem; align-items: baseline; margin: 0.6rem 0 1rem; font-family: 'JetBrains Mono', monospace; }
+    .st-stat { font-size: 0.8rem; color: var(--text-dim); }
+    .st-stat b { display: block; font-size: 1.3rem; color: var(--text); font-weight: 600; margin-top: 0.1rem; }
+    .st-stat b.best { color: var(--gold); }
+    #st-wrap { max-width: 380px; }
+    #st-canvas { width: 100%; display: block; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); touch-action: none; cursor: pointer; }
+    .st-hint { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.6rem; }
+    .st-over { display: none; margin-top: 1.2rem; padding: 1.2rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); }
+    .st-over.show { display: block; }
+    .st-over h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.4rem; }
+    .st-actions { display: flex; gap: 0.7rem; margin-top: 0.6rem; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/enter">Enter</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<div class="container" id="main">
+
+  <header style="margin-top: 1rem;">
+    <div class="hero-eyebrow">The arcade</div>
+    <h1>ZAO <span class="accent">Stack</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">The tiny tower. A block slides back and forth - tap to drop it on the one below. Whatever hangs over the edge trims off, and the block gets thinner. Miss completely and the tower is done. No signup to play.</p>
+  </header>
+
+  <div class="st-stats">
+    <div class="st-stat">Floors<b id="st-score">0</b></div>
+    <div class="st-stat">Best<b id="st-best" class="best">-</b></div>
+  </div>
+
+  <div id="st-wrap">
+    <canvas id="st-canvas" width="380" height="520" aria-label="Stack tower"></canvas>
+  </div>
+  <p class="st-hint">Tap the tower or press space to drop the block.</p>
+
+  <div class="st-over" id="st-over" role="status" aria-live="polite">
+    <h2>Tower down.</h2>
+    <p id="st-over-line"></p>
+    <div class="st-actions">
+      <button class="btn btn-primary" id="st-share" type="button">Share the tower</button>
+      <button class="btn btn-secondary" id="st-again" type="button">Build again</button>
+      <a class="btn btn-secondary" href="/game">Back to arcade</a>
+    </div>
+  </div>
+
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Tallest tower. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="st-board" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
+</div>
+</main>
+
+<script>
+(function () {
+  var cv = document.getElementById('st-canvas');
+  var cx = cv.getContext('2d');
+  var W = cv.width, H = cv.height;
+  var scoreEl = document.getElementById('st-score');
+  var bestEl = document.getElementById('st-best');
+  var overEl = document.getElementById('st-over');
+  var overLine = document.getElementById('st-over-line');
+  var BEST_KEY = 'zg-zaostack-best';
+  var BLOCK_H = 26, BASE_W = 220;
+  var COLORS = ['#7c5cff', '#00e5ff', '#f5c518', '#38d39f'];
+  var stack, cur, dirX, speed, score, running, dead, raf = null, camY, myRank = null;
+
+  function loadBest() {
+    var b = 0;
+    try { b = parseInt(localStorage.getItem(BEST_KEY) || '0', 10) || 0; } catch (e) {}
+    bestEl.textContent = b > 0 ? String(b) : '-';
+    return b;
+  }
+
+  function reset() {
+    stack = [{ x: (W - BASE_W) / 2, w: BASE_W, y: H - BLOCK_H }];
+    score = 0; speed = 2.2; dead = false; running = false; camY = 0; myRank = null;
+    scoreEl.textContent = '0';
+    overEl.classList.remove('show');
+    newBlock();
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(frame);
+  }
+
+  function newBlock() {
+    var top = stack[stack.length - 1];
+    var fromLeft = stack.length % 2 === 0;
+    cur = { x: fromLeft ? -top.w : W, w: top.w, y: top.y - BLOCK_H };
+    dirX = fromLeft ? 1 : -1;
+  }
+
+  function drop() {
+    if (dead) return;
+    if (!running) { running = true; return; }
+    var top = stack[stack.length - 1];
+    var left = Math.max(cur.x, top.x);
+    var right = Math.min(cur.x + cur.w, top.x + top.w);
+    var overlap = right - left;
+    if (overlap <= 4) return die();
+    stack.push({ x: left, w: overlap, y: cur.y });
+    score++;
+    scoreEl.textContent = String(score);
+    speed = Math.min(6.5, speed + 0.12);
+    // Camera follows the tower up once it passes mid-screen.
+    var towerTop = cur.y;
+    if (towerTop - camY < H * 0.45) camY = towerTop - H * 0.45;
+    newBlock();
+  }
+
+  function die() {
+    dead = true; running = false;
+    var prev = loadBest();
+    var isBest = score > prev;
+    if (isBest) { try { localStorage.setItem(BEST_KEY, String(score)); } catch (e) {} }
+    loadBest();
+    overLine.textContent = score + ' floors before the miss.' + (isBest ? ' New personal best.' : '');
+    overEl.classList.add('show');
+    // Put the tower on the monthly board (verified inside the Farcaster app; no-op on web).
+    try {
+      if (score > 0 && window.ZABAL && window.ZABAL.submitScore) {
+        window.ZABAL.submitScore('zaostack', score, null).then(function (d) {
+          if (d && d.ok) {
+            if (d.rank) { myRank = d.rank; overLine.textContent += ' Rank ' + d.rank + ' this month.'; }
+            loadBoard();
+          }
+        }).catch(function () {});
+      }
+    } catch (e) {}
+  }
+
+  function frame() {
+    if (running && !dead) {
+      cur.x += dirX * speed;
+      if (cur.x <= -cur.w * 0.3) dirX = 1;
+      if (cur.x + cur.w * 0.7 >= W) dirX = -1;
+    }
+    draw();
+    raf = requestAnimationFrame(frame);
+  }
+
+  function draw() {
+    cx.clearRect(0, 0, W, H);
+    cx.save();
+    cx.translate(0, -camY);
+    for (var i = 0; i < stack.length; i++) {
+      var b = stack[i];
+      cx.fillStyle = COLORS[i % COLORS.length];
+      cx.fillRect(b.x, b.y, b.w, BLOCK_H - 2);
+    }
+    if (!dead) {
+      cx.fillStyle = COLORS[stack.length % COLORS.length];
+      cx.fillRect(cur.x, cur.y, cur.w, BLOCK_H - 2);
+    }
+    cx.restore();
+    if (!running && !dead) {
+      cx.fillStyle = 'rgba(240,240,245,0.75)';
+      cx.font = '600 18px Outfit, sans-serif';
+      cx.textAlign = 'center';
+      cx.fillText('Tap to start, tap to drop', W / 2, 60);
+    }
+  }
+
+  function loadBoard() {
+    var list = document.getElementById('st-board');
+    if (!list) return;
+    fetch('/api/game?game=zaostack', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified towers yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' floors</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  cv.addEventListener('pointerdown', function (e) { e.preventDefault(); drop(); });
+  window.addEventListener('keydown', function (e) {
+    if (e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); drop(); }
+  });
+
+  document.getElementById('st-again').addEventListener('click', reset);
+  document.getElementById('st-share').addEventListener('click', function () {
+    var text = myRank
+      ? (score + ' floors on ZAO Stack - rank ' + myRank + ' on this month\'s board. Beat my spot.')
+      : (score + ' floors on ZAO Stack at the ZABAL Gamez arcade. How high can you go?');
+    var url = 'https://zabalgamez.com/game/stack';
+    if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+  });
+
+  loadBest();
+  reset();
+  loadBoard();
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

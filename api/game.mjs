@@ -38,7 +38,8 @@ const HAATZ = 'https://haatz.quilibrium.com';
 // zaomatch: encoded 100000 - (moves*1000 + seconds), higher = better run.
 // zabaldle: cumulative monthly points, 6 per one-guess solve, hard month cap 6*31.
 // zaosnake: coins in one run. zaoecho: rounds of melody repeated.
-const GAMES = { zao2048: 131072, zaotrivia: 10, zaomatch: 100000, zabaldle: 186, zaosnake: 400, zaoecho: 60 };
+// zaodash: fans served in one shift. zaostack: floors stacked in one tower.
+const GAMES = { zao2048: 131072, zaotrivia: 10, zaomatch: 100000, zabaldle: 186, zaosnake: 400, zaoecho: 60, zaodash: 300, zaostack: 200 };
 const TOP_N = 200;
 const MONTH_TTL = 6048000; // ~70 days - last month stays readable for the winner cast
 const NONCE_TTL = 7200; // nonces expire after 2 hours
