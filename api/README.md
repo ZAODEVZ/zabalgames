@@ -362,6 +362,16 @@ without any IPFS/Pinata hosting (used by `assets/clip-claim.js` as the claim `ur
 - `GET ?v=<ytId>&c=<clipUrl>&t=<title>&d=<description>` -> `{ name, description, image, external_url, animation_url }`. `image` is the YouTube thumbnail (stable, hotlinkable).
 - No auth, no KV - pure function of the query string.
 
+### `POST /api/win-notify`
+Win webhook receiver (built by ZOL, PR #518). Set `SUBMIT_NOTIFY_URL=https://zabalgamez.com/api/win-notify`
+so submission notifies flow here. Texts containing `community-win` are queued to the
+`zabal:winqueue` Redis list for ZOL to cast; everything else is a logged no-op.
+- Optional auth: if `WIN_HOOK_SECRET` is set, requires `?token=` or Bearer. Unset = open (harden by setting it).
+
+### `GET /api/win-drain`
+Token-gated queue drain for ZOL's caster cron. Fails closed without `WIN_HOOK_SECRET`.
+- `GET ?token=<WIN_HOOK_SECRET>&n=1` -> `{ items: [{ text, ts }] }` (LPOP oldest-first, n max 10).
+
 ### `GET/POST /api/profile`
 Open builder profiles (docs/submission-system-spec.md). Handle is the anchor; Farcaster
 (Quick Auth), GitHub (nonce proof), and a wallet attach as optional proofs. Renders at
