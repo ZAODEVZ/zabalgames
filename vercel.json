@@ -35,11 +35,6 @@
   ],
   "redirects": [
     {
-      "source": "/game/2048",
-      "destination": "/play",
-      "permanent": false
-    },
-    {
       "source": "/quiz",
       "destination": "/game/build-quiz",
       "permanent": false
