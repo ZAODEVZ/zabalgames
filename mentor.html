@@ -148,10 +148,30 @@
   var emptyWrap = document.getElementById('mentor-empty');
 
   if (!handle) {
-    eyebrow.textContent = 'No handle';
-    nameEl.textContent = 'Pick a mentor';
-    taglineEl.textContent = 'Append ?handle= to the URL.';
+    // No handle -> render the full mentor directory so the roster is browsable.
+    eyebrow.textContent = 'The mentor roster';
+    nameEl.innerHTML = 'Meet the <span class="accent">mentors</span>';
+    taglineEl.textContent = 'ZAO builders pairing with July champions. Tap a mentor to see exactly how they can help your build.';
     emptyWrap.style.display = '';
+    fetch('/data/mentors.json', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : { mentors: [] }; })
+      .then(function (data) {
+        function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+        var list = (data.mentors || []);
+        if (!list.length) return;
+        emptyWrap.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;">' +
+          list.map(function (m) {
+            var h = esc((m.handle || '').replace(/^@/, ''));
+            return '<a class="card" style="display:block;text-decoration:none;color:inherit;" href="/mentor?handle=' + h + '">' +
+              (m.expertise_label ? '<div class="card-label" style="color:var(--gold);letter-spacing:0.08em;">' + esc(m.expertise_label) + '</div>' : '') +
+              '<h3 style="font-family:Syne,sans-serif;font-weight:700;margin:0.3rem 0 0.2rem;">' + esc(m.name || h) + '</h3>' +
+              (m.headline ? '<p style="font-size:0.85rem;color:var(--text);margin:0 0 0.4rem;">' + esc(m.headline) + '</p>' : '') +
+              (m.tagline ? '<p style="font-size:0.82rem;color:var(--text-muted);margin:0;line-height:1.5;">' + esc(m.tagline) + '</p>' : '') +
+              '<p style="margin:0.6rem 0 0;font-size:0.78rem;color:var(--cyan);">See how they help -&gt;</p></a>';
+          }).join('') + '</div>' +
+          '<p style="margin-top:1.2rem;font-size:0.85rem;color:var(--text-muted);">Want to mentor? DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color:var(--cyan);">@bettercallzaal</a>.</p>';
+      })
+      .catch(function () { /* static fallback card stays */ });
     return;
   }
 
