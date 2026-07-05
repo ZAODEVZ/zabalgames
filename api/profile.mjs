@@ -173,10 +173,16 @@ export default async function handler(req) {
     // ---- GitHub challenge ----
     if (action === 'github-challenge') {
       if (!existing.github) return json({ ok: false, error: 'set your github username first (upsert with github)' });
-      const nonce = 'zabal-verify-' + (await sha256hex(handle + ':' + crypto.randomUUID())).slice(0, 16);
-      try { await kvPipeline([['SET', `zabal:profile:nonce:${handle}`, nonce, 'EX', String(NONCE_TTL)]]); }
+      // The proof token stays a server-issued unguessable secret. We wrap it in the
+      // builder's real profile URL so the string you paste into your GitHub bio is
+      // DUAL-PURPOSE: it proves ownership AND leaves a live link to your ZABAL work
+      // in your bio (every GitHub visitor becomes a funnel). Verify still only checks
+      // that the token substring is present, so security is unchanged.
+      const token = (await sha256hex(handle + ':' + crypto.randomUUID())).slice(0, 16);
+      const proof = 'https://zabalgamez.com/builder?handle=' + encodeURIComponent(handle) + '&v=' + token;
+      try { await kvPipeline([['SET', `zabal:profile:nonce:${handle}`, token, 'EX', String(NONCE_TTL)]]); }
       catch { return json({ ok: false, error: 'kv' }); }
-      return json({ ok: true, nonce, where: 'Add this string anywhere in your GitHub profile bio (github.com/' + existing.github + ' -> Edit profile -> Bio), then come back and verify. You can remove it after.' });
+      return json({ ok: true, nonce: token, proof, where: 'Paste this link anywhere in your GitHub bio (github.com/' + existing.github + ' -> Edit profile -> Bio), then verify. Leave it there - it doubles as a link from your GitHub to your ZABAL work.' });
     }
 
     // ---- GitHub verify ----
