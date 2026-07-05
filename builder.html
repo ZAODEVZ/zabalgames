@@ -80,7 +80,7 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   // The season card: everything this builder is this season, in one shareable view.
-  var CARD = { subs: 0, wips: 0, wins: 0, refs: 0, ranks: [] };
+  var CARD = { subs: 0, wips: 0, wins: 0, ranks: [] };
   var pending = 0;
   function done() {
     pending--;
@@ -89,7 +89,6 @@
     if (CARD.subs) bits.push(CARD.subs + ' submission' + (CARD.subs === 1 ? '' : 's'));
     if (CARD.wips) bits.push(CARD.wips + ' WIP' + (CARD.wips === 1 ? '' : 's') + ' open');
     if (CARD.wins) bits.push(CARD.wins + ' win' + (CARD.wins === 1 ? '' : 's') + ' on the wall');
-    if (CARD.refs) bits.push(CARD.refs + ' builder' + (CARD.refs === 1 ? '' : 's') + ' brought in');
     CARD.ranks.slice(0, 2).forEach(function (r) { bits.push('rank ' + r.rank + ' on ' + r.game); });
     sub.textContent = bits.length ? bits.join(' - ') : 'Season just getting started.';
     var stats = document.getElementById('bp-stats');
@@ -99,7 +98,6 @@
       if (CARD.subs) h += pill(CARD.subs, CARD.subs === 1 ? 'submission' : 'submissions');
       if (CARD.wips) h += pill(CARD.wips, 'WIP open');
       if (CARD.wins) h += pill(CARD.wins, CARD.wins === 1 ? 'win' : 'wins');
-      if (CARD.refs) h += pill(CARD.refs, 'invited');
       CARD.ranks.slice(0, 3).forEach(function (r) { h += pill('#' + r.rank, r.game); });
       stats.innerHTML = h;
     }
@@ -166,7 +164,6 @@
   grab('/api/submissions?feed=recent&limit=60', function (d) { siteRail(d, false); });
 
   // Referrals credited.
-  grab('/api/ref?ref=' + encodeURIComponent(handle), function (d) { CARD.refs = (d && d.count) || 0; });
 
   // Game ranks across the arcade (top-20 presence only - cheap reads).
   ['zao2048', 'zaomatch', 'zabaldle', 'zaotrivia', 'zaosnake', 'zaoecho', 'zaodash', 'zaostack'].forEach(function (g) {
