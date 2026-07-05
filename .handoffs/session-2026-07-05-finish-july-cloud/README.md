@@ -34,6 +34,28 @@ You just received a handoff bundle. Do NOT start work yet. Do this:
 
 **Rule of thumb:** if you are unsure which repo, it is `ZAODEVZ/zabalgames`. Start there.
 
+## Capability boundary (cloud vs terminal - know your lane, escalate when blocked)
+
+Run this self-check at boot so you know what you can and cannot do:
+```bash
+echo "secrets:   $([ -f ~/.zao/zao.env ] && echo yes || echo NO)"      # local API keys (Neynar/Bonfire/Supabase/tracker)
+echo "brain:     $([ -d ~/.claude/skills ] && echo yes || echo NO)"    # Zaal's skills/memory/rules
+echo "gh-auth:   $(gh auth status >/dev/null 2>&1 && echo yes || echo NO)"  # can open/merge PRs
+echo "display:   ${DISPLAY:-none}"                                       # GUI/browser present?
+```
+
+**What a CLOUD session does well (your lane):** clone public repos, read/edit code, run `node scripts/validate.mjs`, open + merge PRs (if gh-auth yes), run autonomously and persist across time. Do all the repo/code/loop work here.
+
+**What NEEDS a local mac terminal (or Zaal himself) - STOP and ASK to move it there:**
+- **Local secrets / env** (secrets:NO) - anything hitting authed APIs with keys from `~/.zao/zao.env`: Bonfire push, `zao-tracker` rows, Neynar calls, the Supabase service key. Also setting/reading Vercel env vars (#504) is always Zaal's.
+- **Browser / GUI / the clipboard skill** (display:none) - Claude-in-Chrome, Playwright, and `/clipboard` (it opens a local browser page). You are headless - do not try; ask Zaal to run the clipboard/browser step on his mac.
+- **Locally-authenticated MCP** - supabase-cowork, claude.ai MCP, etc. may be absent headless. If an MCP tool is missing, that step is terminal-only.
+- **Zaal's real accounts** - posting as him on Farcaster/X, his live sessions. You draft; he posts. Never impersonate.
+- **Onchain writes** - deploy/grant/sign (the Unlock lock). Always Zaal.
+- **Files not in the clone** - his other repos, `~/Documents/ZAO OS V1`, local-only docs.
+
+**The escalation rule (do this, do not silently fail or fake it):** when a task needs any item above, STOP, tell Zaal exactly which capability is missing and which step needs a mac terminal (or his hand), and continue with everything else you CAN do. Draft the thing, leave it ready, and hand the last-mile local action back to him. Example: "I built the newsletter draft, but I'm headless so I can't open the clipboard page - run this on your mac terminal, or I'll paste the raw text here."
+
 ## A. Tasks to absorb (paste these into your TODO list)
 
 - [ ] **Run the continuous finish-July loop** (Section D has the verbatim directive). Each pass: watch the 3 submission feeds vs the ladder, draft the daily "Year of the ZABAL Day N" newsletter + 7-platform pack on the first pass of a new day, wire any owner data same-pass, ship one small user-visible improvement only if a GENUINE gap surfaces, self-retro daily.
