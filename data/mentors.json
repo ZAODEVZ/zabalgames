@@ -34,6 +34,23 @@
       "locked": true,
       "champion_handle": null,
       "champion_build": null
+    },
+    {
+      "handle": "1dolinski",
+      "name": "Chris Dolinski",
+      "headline": "Founder of Vini App - ship a real app from a plain-language prompt",
+      "tagline": "15 years building software, now getting non-coders to real, live apps. Best mentor in the room if you have an idea and no code.",
+      "bio": "Chris is a 15-year software builder and the founder of Vini App, a Farcaster mini app that turns a plain-language prompt into a real, shippable app. Every Vini app comes with a wallet, hosting, a domain, a brand kit, and its own token that can help fund the app as it grows. He demoed the whole flow live in his ZABAL Gamez session - sign in with a Farcaster wallet or an email, describe the app, and the AI handles the questions, the design, and the build. Standout Vini builds include DGEN Fishing and Farcenoid, a game now live across Farcaster, World App, and Celo.",
+      "what_they_offer": "The fastest path from idea to a live app, especially for people who have never written a line of code. Hands-on help with the Vini flow, mini-app distribution across Farcaster / World App / Celo, and the token-funds-the-app model. Ran a July collab specifically to get non-coders building in the hackathon.",
+      "best_fit_for": "Builders - especially non-coders and first-time shippers - who have an idea and want a real app live this season, not a prototype. Anyone building a Farcaster mini app or thinking about a token that funds the build.",
+      "expertise_label": "MINI APPS",
+      "color": "orange",
+      "farcaster_url": "https://farcaster.xyz/1dolinski",
+      "x_url": "https://x.com/1dolinski",
+      "site_url": "https://www.viniapp.xyz",
+      "locked": true,
+      "champion_handle": null,
+      "champion_build": null
     }
   ]
 }
