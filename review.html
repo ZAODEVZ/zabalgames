@@ -88,6 +88,35 @@
     return '<div class="rv-fields">' + keys.map(function (k) { return '<b>' + esc(k) + ':</b> ' + esc(f[k]); }).join(' &nbsp; ') + '</div>';
   }
 
+  // Pull a GitHub repo out of the submission so tier-1 triage can pre-screen it.
+  function extractRepo(s) {
+    var f = s.fields || {};
+    var cand = f.repo || f.url || f.github || '';
+    if (!cand && s.answer) { var m = s.answer.match(/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+/); if (m) cand = m[0]; }
+    return cand ? String(cand).trim() : '';
+  }
+  // Auto-screen: /api/triage checks the repo is real/reachable/public/on-track before
+  // the human decides. Advisory only - the human still clicks approve/reject.
+  function runTriage(s, el) {
+    var slot = el.querySelector('.rv-triage');
+    if (!slot) return;
+    var repo = extractRepo(s);
+    if (!repo) { slot.innerHTML = '<span style="color:var(--text-dim)">tier-1: no repo to auto-screen</span>'; return; }
+    var track = (s.fields && s.fields.track) || '';
+    slot.textContent = 'tier-1: screening ' + repo + '...';
+    fetch('/api/triage?repo=' + encodeURIComponent(repo) + (track ? '&track=' + encodeURIComponent(track) : ''), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !d.ok) { slot.innerHTML = '<span style="color:var(--text-dim)">tier-1: unavailable</span>'; return; }
+        var rec = d.recommendation || 'review';
+        var color = rec === 'pass' ? '#38d39f' : (rec === 'reject' ? '#ff6b6b' : 'var(--gold)');
+        var reasons = (d.reasons || []).join('; ');
+        slot.innerHTML = '<span style="color:' + color + ';font-weight:600;">tier-1: ' + esc(rec) + '</span>' +
+          (reasons ? ' <span style="color:var(--text-muted)">' + esc(reasons) + '</span>' : '');
+      })
+      .catch(function () { slot.innerHTML = '<span style="color:var(--text-dim)">tier-1: error</span>'; });
+  }
+
   function card(s) {
     var el = document.createElement('div');
     el.className = 'rv-card';
@@ -97,11 +126,13 @@
       '<span class="rv-who">' + (s.handle ? '@' + esc(s.handle) : 'anonymous') + (s.fid ? ' (fid ' + esc(s.fid) + ')' : '') + '</span></div>' +
       (s.answer ? '<div class="rv-answer">' + esc(s.answer) + '</div>' : '') +
       fieldsHtml(s) +
+      '<div class="rv-triage" style="margin:0.4rem 0;font-size:0.8rem;font-family:JetBrains Mono,monospace;"></div>' +
       '<div class="rv-meta">Airdrop to: ' + target(s) + '</div>' +
       '<div class="rv-actions"><button class="btn ok" type="button">Approve</button><button class="btn no" type="button">Reject</button></div>';
     var btns = el.querySelectorAll('.rv-actions .btn');
     btns[0].addEventListener('click', function () { decide(s.id, 'approve', el, btns); });
     btns[1].addEventListener('click', function () { decide(s.id, 'reject', el, btns); });
+    runTriage(s, el);
     return el;
   }
 
