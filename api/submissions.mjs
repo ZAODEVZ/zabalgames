@@ -215,9 +215,29 @@ export default async function handler(req) {
       if (s.status === 'approved') cmds.push(['ZADD', 'zabal:subs:approved', String(s.ts || Date.now()), id]);
       else cmds.push(['ZREM', 'zabal:subs:approved', id]);
       try { await kvPipeline(cmds); } catch { return json({ ok: false, error: 'kv-write' }); }
+      // First approval unlocks the agent gateway: mint a per-builder token (idempotent)
+      // so their agent/MCP can pull + push once a human has cleared their first real
+      // submission. The human approval IS the anti-bot gate. Token = 128-bit random.
+      let agentToken = null;
+      if (s.status === 'approved' && s.handle) {
+        try {
+          const bk = `zabal:agent:by:${s.handle}`;
+          const got = await kvPipeline([['GET', bk]]);
+          agentToken = (got[0] && got[0].result) || null;
+          if (!agentToken) {
+            agentToken = 'zg_' + Array.from(crypto.getRandomValues(new Uint8Array(16))).map((b) => b.toString(16).padStart(2, '0')).join('');
+            const mint = [
+              ['SET', `zabal:agent:tok:${agentToken}`, s.handle],
+              ['SET', bk, agentToken],
+            ];
+            if (s.fid) mint.push(['SET', `zabal:agent:byfid:${s.fid}`, agentToken]);
+            await kvPipeline(mint);
+          }
+        } catch { /* token mint is best-effort; approval still succeeds */ }
+      }
       // approval is the trigger for the Unlock airdrop - flag it for the airdrop runbook/automation
-      if (s.status === 'approved') await notify(`APPROVED submission #${id} (${s.promptId}) - airdrop the collectible to ${s.wallet || s.email || s.handle || 'them'}.`);
-      return json({ ok: true, id, status: s.status });
+      if (s.status === 'approved') await notify(`APPROVED submission #${id} (${s.promptId}) - airdrop the collectible to ${s.wallet || s.email || s.handle || 'them'}.${agentToken ? ' Agent token for @' + s.handle + ': ' + agentToken : ''}`);
+      return json({ ok: true, id, status: s.status, agentToken });
     }
 
     // owner promotes a WIP draft into the review queue
@@ -309,6 +329,7 @@ export default async function handler(req) {
     ];
     if (isDraft) cmds.push(['ZADD', 'zabal:subs:drafts', String(sub.ts), id]);
     if (fid) cmds.push(['INCR', `zabal:subs:byfid:${fid}`]);
+    if (handle) cmds.push(['SADD', `zabal:subs:byhandle:${handle}`, id]); // lets the agent gateway list a builder's own submissions
     try { await kvPipeline(cmds); } catch { return json({ ok: false, error: 'kv-write' }); }
 
     await notify(isDraft

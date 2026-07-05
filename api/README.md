@@ -380,6 +380,15 @@ Open builder profiles (docs/submission-system-spec.md). Handle is the anchor; Fa
 - `POST { action:'upsert', handle, displayName?, bio?, links?, github?, editToken? }`
 Used by profile.html, builder.html.
 
+### `GET/POST /api/agent` (agent gateway)
+Token-authed programmatic access for builders. A per-builder token is MINTED when
+a human approves their FIRST submission (see the submissions approve action) - that
+manual gate is the anti-bot wall. See `mcp/` for the MCP server + REST docs.
+- `GET` + `Authorization: Bearer zg_...` -> `{ ok, builder:{handle}, submissions:[...], counts }` (pull)
+- `POST { action:'submit', promptId?, answer, fields?, url? }` + Bearer -> `{ ok, id, status:'pending' }` (push, attributed to the token's builder)
+- `POST { action:'claim' }` + Quick Auth JWT -> `{ ok, token }` (a verified builder retrieves their own token)
+- A token only grants the holder's own data + creating submissions as themselves. Never admin, never others.
+
 ### `GET/POST /api/submissions`
 On-site UGC + builder submissions - the site is the source of truth. Stored pending,
 notify hook fires for triage, admin approval unlocks the collectible airdrop. Approved
