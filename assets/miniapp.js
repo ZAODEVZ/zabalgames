@@ -115,13 +115,38 @@ window.ZABAL.withZaal = function withZaal(text) {
   return /(^|\s)@zaal\b/.test(t) ? t : t + ' @zaal';
 };
 
+// Bake the sharer's handle into any ZABAL embed URL, so a NORMAL share (a game
+// rank, a WIP, a win, a season card) quietly IS a referral - no code to spread.
+// Invisible by design: skips URLs that already carry a ref, skips non-ZABAL
+// URLs, and does nothing when we do not know the handle (bare link, no fake ref).
+window.ZABAL.withRef = function withRef(embeds, handle) {
+  if (!handle || !Array.isArray(embeds)) return embeds;
+  const h = String(handle).toLowerCase().replace(/^@/, '');
+  if (!h) return embeds;
+  return embeds.map((e) => {
+    try {
+      const u = new URL(e, 'https://zabalgamez.com');
+      if (!/(^|\.)zabalgamez\.com$/.test(u.hostname)) return e;
+      if (u.searchParams.has('ref')) return e;
+      u.searchParams.set('ref', h);
+      return u.toString();
+    } catch (_) { return e; }
+  });
+};
+
 window.ZABAL.composeCast = async function composeCast(textOrOpts, maybeEmbeds) {
   // Accept either composeCast({ text, embeds, channelKey }) or composeCast(text, embeds).
   const opts = typeof textOrOpts === 'string'
     ? { text: textOrOpts, embeds: maybeEmbeds }
     : (textOrOpts || {});
   const text = window.ZABAL.withZaal(opts.text);
-  const { embeds, channelKey } = opts;
+  const channelKey = opts.channelKey;
+  let embeds = opts.embeds;
+  // The bake-in: attach who is sharing so the share doubles as a referral.
+  try {
+    const u = await window.ZABAL.getUser();
+    if (u && u.username) embeds = window.ZABAL.withRef(embeds, u.username);
+  } catch (_) { /* no handle - share stays a bare link */ }
   try {
     const ctx = await getContext();
     if (ctx && ctx.client && await window.ZABAL.hasCapability('actions.composeCast')) {

@@ -149,8 +149,7 @@
     { key: 'ship', name: 'Ship', quests: [
       { id: 'board', t: 'Check the season board', xp: 5, kind: 'visit', dest: '/submissions', match: '/submissions', how: 'See what the season has shipped so far.' },
       { id: 'submit', t: 'Get on the board', xp: 30, kind: 'api', dest: '/submissions', how: 'Post your build where you already post - it lands here on its own, and so does this achievement.' },
-      { id: 'cast', t: 'Cast your build', xp: 15, kind: 'out', dest: 'https://farcaster.xyz/~/channel/zabal', how: 'Tell the /zabal channel what you shipped.' },
-      { id: 'invite', t: 'Bring a builder', xp: 25, kind: 'api', dest: '/invite', how: 'Send your invite link. When the person you brought connects, this clears itself - and the season gets one builder closer to 200.' }
+      { id: 'cast', t: 'Cast your build', xp: 15, kind: 'out', dest: 'https://farcaster.xyz/~/channel/zabal', how: 'Tell the /zabal channel what you shipped.' }
     ]},
     { key: 'claim', name: 'Claim', quests: [
       { id: 'pot', t: 'Claim the pot', xp: 20, kind: 'out', dest: 'https://poidh.xyz/base/bounty/1249', how: 'Your build is live? Claim the ZABAL Gamez Open Pot - it splits across everyone who ships in July.' }
@@ -370,12 +369,6 @@
         fetch('/api/submissions?feed=recent&limit=60', { cache: 'no-store' })
           .then(function (r) { return r.json(); })
           .then(function (d) { if (mineIn(d)) { if (unlock('wip')) renderHud(); renderBoard(); } })
-          .catch(function () {});
-      }
-      if (handle) {
-        fetch('/api/ref?ref=' + encodeURIComponent(String(handle).toLowerCase()), { cache: 'no-store' })
-          .then(function (r) { return r.json(); })
-          .then(function (d) { if (d && d.count > 0) { if (unlock('invite')) renderHud(); renderBoard(); } })
           .catch(function () {});
       }
       if (fid) {
