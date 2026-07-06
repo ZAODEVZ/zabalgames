@@ -96,9 +96,9 @@
       "link": null,
       "okd": null,
       "cast_hash": null,
-      "summary": "Adrienne Shulman, co-founder and co-host of GM Farcaster, walks through how she built Warpy - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment agents exploded on Farcaster, through the first messy MVP, to what Warpy is today: an agentic loop that picks its own tools, adds new skills, and reviews and improves its own answers with Claude Code. It doubles as a beginner-friendly guide to building your first agent - pick the one thing your bot does better than anyone, ship the smallest version that works, and build in public. Along the way she explains, in plain language, how an agent on Farcaster actually works: the account, a public API, Neynar webhooks, turning video into searchable text, and embeddings in a vector database.",
+      "summary": "Adrienne Shulman, co-founder and co-host of GM Farcaster, walks through how she built Warpee - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment agents exploded on Farcaster, through the first messy MVP, to what Warpee is today: an agentic loop that picks its own tools, adds new skills, and reviews and improves its own answers with Claude Code. It doubles as a beginner-friendly guide to building your first agent - pick the one thing your bot does better than anyone, ship the smallest version that works, and build in public. Along the way she explains, in plain language, how an agent on Farcaster actually works: the account, a public API, Neynar webhooks, turning video into searchable text, and embeddings in a vector database.",
       "topics": [
-        "Building Warpy",
+        "Building Warpee",
         "AI agents on Farcaster",
         "Neynar webhooks and signers",
         "Embeddings and vector search",

@@ -45,14 +45,14 @@ Presenter: Adrienne Shulman (@adrienne), GM Farcaster
 Watch: https://zabalgamez.com/recordings/30
 Video: https://youtu.be/t0LntX592vQ
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-30-adrienne-gm-farcaster-warpy.md
-Summary: Adrienne Shulman, co-founder and co-host of GM Farcaster, walks through how she built Warpy - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment agents exploded on Farcaster, through the first messy MVP, to what Warpy is today: an agentic loop that picks its own tools, adds new skills, and reviews and improves its own answers with Claude Code. It doubles as a beginner-friendly guide to building your first agent - pick the one thing your bot does better than anyone, ship the smallest version that works, and build in public. Along the way she explains, in plain language, how an agent on Farcaster actually works: the account, a public API, Neynar webhooks, turning video into searchable text, and embeddings in a vector database.
+Summary: Adrienne Shulman, co-founder and co-host of GM Farcaster, walks through how she built Warpee - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment agents exploded on Farcaster, through the first messy MVP, to what Warpee is today: an agentic loop that picks its own tools, adds new skills, and reviews and improves its own answers with Claude Code. It doubles as a beginner-friendly guide to building your first agent - pick the one thing your bot does better than anyone, ship the smallest version that works, and build in public. Along the way she explains, in plain language, how an agent on Farcaster actually works: the account, a public API, Neynar webhooks, turning video into searchable text, and embeddings in a vector database.
 Takeaways:
   - Pick the one thing your bot can do that no other bot does, and start there.
   - Ship the smallest version that works, then let real use tell you what to build next.
   - Build in public - the timeline hands you the exact terminology and help you need.
   - An agent on Farcaster is just an account plus one public API that reads a mention and posts a reply.
   - Modern agents replace hard-coded routes with an agentic loop: give it tools and let it choose.
-Topics: Building Warpy, AI agents on Farcaster, Neynar webhooks and signers, Embeddings and vector search, Agentic loops and skills, Building in public
+Topics: Building Warpee, AI agents on Farcaster, Neynar webhooks and signers, Embeddings and vector search, Agentic loops and skills, Building in public
 
 ======================================================================
 [4] ZABAL GAMEZ Workshop w/James from Mental Wealth Academy
