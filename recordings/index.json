@@ -2,8 +2,45 @@
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
   "generated": "2026-07-06",
   "season": 1,
-  "count": 32,
+  "count": 33,
   "recordings": [
+    {
+      "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/Ceci from Unlock Protocol",
+      "presenter": "Ceci Sakura",
+      "handle": null,
+      "org": "Unlock Protocol",
+      "track": "builder",
+      "technical": 4,
+      "format": "Live talk plus Q and A, recorded",
+      "date": "2026-06-30",
+      "url": "https://zabalgamez.com/recordings/32",
+      "page": "https://zabalgamez.com/recordings/32",
+      "youtube": "https://youtu.be/91nwS2212nA",
+      "recording": null,
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-30-ceci-unlock-protocol.md",
+      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-30-ceci-unlock-protocol.md",
+      "link": null,
+      "okd": null,
+      "cast_hash": null,
+      "summary": "Ceci Sakura, marketing and communications steward at Unlock Protocol, walks through what Unlock is and demos it live. Unlock is an open-source protocol that lets creators and communities issue their own memberships, subscriptions, event tickets, and certifications as keys their audience actually owns, with no central platform in the middle. In the demo she deploys a certification on Base in real time, makes it non-transferable so it works as a soulbound proof, and airdrops it both to a wallet and to a plain email address, then shows the bulk CSV flow for a whole event. She and Zaal talk through using a certification as proof of a ZABAL Gamez submission, and she closes on how Unlock is run as a DAO and the open weekly calls anyone can join.",
+      "topics": [
+        "What Unlock Protocol is",
+        "Memberships vs subscriptions",
+        "Certifications and event tickets",
+        "Deploying a lock on Base",
+        "Soulbound proof-of-submission",
+        "Airdrops and bulk CSV",
+        "Unlock DAO and contributing"
+      ],
+      "takeaways": [
+        "Unlock lets you issue memberships, subscriptions, tickets, and certifications as keys your audience owns, with no central platform in the middle.",
+        "A certification lock can be made non-transferable, turning it into a soulbound proof someone completed or submitted something.",
+        "You can airdrop keys to a wallet or straight to an email address, so people new to this can still receive one.",
+        "Bulk-distribute with a CSV once you are an Unlock Prime member.",
+        "Unlock is run as a DAO with open weekly calls; contributing can start with content, bounties, or an idea."
+      ]
+    },
     {
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/Duo Do",
@@ -43,7 +80,7 @@
     {
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster",
-      "presenter": "Adrienne Schulman",
+      "presenter": "Adrienne Shulman",
       "handle": "@adrienne",
       "org": "GM Farcaster",
       "track": "builder",
@@ -59,7 +96,7 @@
       "link": null,
       "okd": null,
       "cast_hash": null,
-      "summary": "Adrienne Schulman, co-founder and co-host of GM Farcaster, walks through how she built Warpy - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment agents exploded on Farcaster, through the first messy MVP, to what Warpy is today: an agentic loop that picks its own tools, adds new skills, and reviews and improves its own answers with Claude Code. It doubles as a beginner-friendly guide to building your first agent - pick the one thing your bot does better than anyone, ship the smallest version that works, and build in public. Along the way she explains, in plain language, how an agent on Farcaster actually works: the account, a public API, Neynar webhooks, turning video into searchable text, and embeddings in a vector database.",
+      "summary": "Adrienne Shulman, co-founder and co-host of GM Farcaster, walks through how she built Warpy - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment agents exploded on Farcaster, through the first messy MVP, to what Warpy is today: an agentic loop that picks its own tools, adds new skills, and reviews and improves its own answers with Claude Code. It doubles as a beginner-friendly guide to building your first agent - pick the one thing your bot does better than anyone, ship the smallest version that works, and build in public. Along the way she explains, in plain language, how an agent on Farcaster actually works: the account, a public API, Neynar webhooks, turning video into searchable text, and embeddings in a vector database.",
       "topics": [
         "Building Warpy",
         "AI agents on Farcaster",

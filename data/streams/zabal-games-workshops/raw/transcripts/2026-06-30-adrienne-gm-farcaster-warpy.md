@@ -1,7 +1,7 @@
 ---
 title: ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster
 show: ZABAL Gamez Workshops
-presenter: Adrienne Schulman @adrienne
+presenter: Adrienne Shulman @adrienne
 org: GM Farcaster
 date: 2026-06-30T00:00:00.000Z
 format: Live talk plus Q and A, recorded
@@ -17,7 +17,7 @@ topics: [Building Warpy, AI agents on Farcaster, Neynar webhooks and signers, Em
 
 [00:00:53] Ready, ready, ready to munch. And he predates a Warblet. He was the OG Warblet. Yeah, [00:01:00] which is, i- which is its own, like, piece of lore in and of itself. When I have conversations outside of Farcaster with my ex friends, um, some of these conversations I can't just, like... Just like crypto and Web3, these pieces of jargon, we've created our own Farcaster jargon, um, with some of the lore.
 
-[00:01:17] But that's kind of the beauty of this, you know, safe space, this small space, which we're all trying to make a little bit bigger. So without, uh, further ado, I'd love for you to give a little bit of a bio, an intro, and then we can just get into building Warpy. Sure. Um, so yeah, I'm Adrienne Schulman. I am co-founder and co-host of GM Farcaster, which is a live stream news show covering everything that happens across the Farcaster ecosystem.
+[00:01:17] But that's kind of the beauty of this, you know, safe space, this small space, which we're all trying to make a little bit bigger. So without, uh, further ado, I'd love for you to give a little bit of a bio, an intro, and then we can just get into building Warpy. Sure. Um, so yeah, I'm Adrienne Shulman. I am co-founder and co-host of GM Farcaster, which is a live stream news show covering everything that happens across the Farcaster ecosystem.
 
 [00:01:43] Um, we have been doing it, my co-host and I now, Nish Propp, have been doing it since September 2023, um, which was shortly before Farcaster actually went permissionless and open to everyone. So we're, uh, we, we basically, it's like two to three times a week [00:02:00] we live stream. We talk about everything that's happening.
 
