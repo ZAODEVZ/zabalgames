@@ -3,6 +3,121 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[], chapters[] (array of {t, label} where t is seconds and the first entry is 0 - drives the clickable chapter jumps on a generated video page), okd (YYYY-MM-DD the guest reviewed the cut/page and signed off, before public release - absent until they approve), cast_hash (the root Farcaster cast for this recording - the announce cast; its replies render as the live 'Thoughts' conversation via /api/cast-comments. A 0x hash or a Warpcast URL). To publish a new recording from a ZAOVideoEditor manifest (writes transcript + recap + recordings/N.html + rebuilds the index in one step) use: node scripts/ingest-recording.mjs <manifest.json> --write. After hand-editing this file, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-06-30",
+      "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster",
+      "presenter": "Adrienne Schulman",
+      "handle": "@adrienne",
+      "org": "GM Farcaster",
+      "track": "builder",
+      "technical": 5,
+      "format": "Live talk plus Q and A, recorded",
+      "summary": "Adrienne Schulman, co-founder and co-host of GM Farcaster, walks through how she built Warpy - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment agents exploded on Farcaster, through the first messy MVP, to what Warpy is today: an agentic loop that picks its own tools, adds new skills, and reviews and improves its own answers with Claude Code. It doubles as a beginner-friendly guide to building your first agent - pick the one thing your bot does better than anyone, ship the smallest version that works, and build in public. Along the way she explains, in plain language, how an agent on Farcaster actually works: the account, a public API, Neynar webhooks, turning video into searchable text, and embeddings in a vector database.",
+      "topics": [
+        "Building Warpy",
+        "AI agents on Farcaster",
+        "Neynar webhooks and signers",
+        "Embeddings and vector search",
+        "Agentic loops and skills",
+        "Building in public"
+      ],
+      "youtube": "https://youtu.be/t0LntX592vQ",
+      "page": "/recordings/30",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-30-adrienne-gm-farcaster-warpy.md",
+      "takeaways": [
+        "Pick the one thing your bot can do that no other bot does, and start there.",
+        "Ship the smallest version that works, then let real use tell you what to build next.",
+        "Build in public - the timeline hands you the exact terminology and help you need.",
+        "An agent on Farcaster is just an account plus one public API that reads a mention and posts a reply.",
+        "Modern agents replace hard-coded routes with an agentic loop: give it tools and let it choose."
+      ],
+      "share_topics": [
+        "how Warpy was built",
+        "building your first AI agent on Farcaster",
+        "what an agentic loop actually is",
+        "why building in public works",
+        "turning video into searchable text with embeddings"
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Welcome and intro"
+        },
+        {
+          "t": 90,
+          "label": "Who is Adrienne and what is GM Farcaster"
+        },
+        {
+          "t": 239,
+          "label": "Why livestreaming is the last real scarcity"
+        },
+        {
+          "t": 349,
+          "label": "The problem Warpy solves: searchable Farcaster history"
+        },
+        {
+          "t": 488,
+          "label": "The late-2024 AI agent moment and the aha"
+        },
+        {
+          "t": 587,
+          "label": "Pick the one thing your bot does better than anyone"
+        },
+        {
+          "t": 625,
+          "label": "Build in public"
+        },
+        {
+          "t": 789,
+          "label": "What an AI agent on Farcaster actually is"
+        },
+        {
+          "t": 826,
+          "label": "Step one: create the Farcaster account"
+        },
+        {
+          "t": 854,
+          "label": "The public API and Neynar webhooks"
+        },
+        {
+          "t": 967,
+          "label": "Turning video into searchable text with Deepgram"
+        },
+        {
+          "t": 1005,
+          "label": "Embeddings and a vector database, explained simply"
+        },
+        {
+          "t": 1150,
+          "label": "Giving the agent a personality with an LLM prompt"
+        },
+        {
+          "t": 1294,
+          "label": "Shipping V1: the messy, proud MVP"
+        },
+        {
+          "t": 1444,
+          "label": "From a workflow router to an agentic loop"
+        },
+        {
+          "t": 1527,
+          "label": "Warpy's skills and self-improvement with Claude Code"
+        },
+        {
+          "t": 1643,
+          "label": "Casting as a bot with a Neynar signer"
+        },
+        {
+          "t": 1763,
+          "label": "Imposter syndrome and shipping imperfect work"
+        },
+        {
+          "t": 1806,
+          "label": "Where to find Adrienne and GM Farcaster"
+        }
+      ]
+    },
+    {
       "date": "2026-06-27",
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/James from Mental Wealth Academy",
