@@ -5,6 +5,133 @@
     {
       "date": "2026-06-30",
       "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/Duo Do",
+      "presenter": "Duo Do",
+      "handle": "@duodomusica",
+      "org": "Clementine and Santiago",
+      "track": "artist",
+      "technical": 2,
+      "format": "Live talk plus Q and A, recorded",
+      "summary": "Duo Do is Clementine and Santiago, an independent musical project from Buenos Aires that makes what they call genre-free and emotion music. In a warm, wide-ranging conversation, Clementine shares how Farcaster changed not just how they earn from music, but how they think about it - trading the streaming numbers chase for real one-to-one connection. She walks through the tools that made their career more sustainable: tips, collecting, and crowdfunding grants from Flows and Lil Nouns that funded a music video, a live show, and a pressed vinyl. It is a story about community over numbers, collaborations that turned into friendships (a residency at Kismet Casa in Rome, custom outfits from Generic Vibes), building their first mini app, and why the most valuable thing anyone can give you is their time.",
+      "topics": [
+        "Independent artists on Farcaster",
+        "Community over streaming numbers",
+        "Tips and collecting",
+        "Crowdfunding with Flows and Lil Nouns",
+        "Collaboration and IRL connection",
+        "Genre-free and emotion music"
+      ],
+      "youtube": "https://youtu.be/iI4gdfDOLno",
+      "page": "/recordings/31",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-30-duo-do.md",
+      "takeaways": [
+        "Trade the streaming numbers chase for real one-to-one connection; that is where a sustainable independent career forms.",
+        "Tips and collecting let a community support artists directly, even when a single sale is small.",
+        "Crowdfunding lets you invite people to create with you instead of paying for everything alone - Duo Do funded a video, a show, and a vinyl this way.",
+        "Do not be afraid to ask. On Farcaster someone will always share the tool or the answer you need.",
+        "Meet people in real life when you can. It forges the online connection into something deeper."
+      ],
+      "share_topics": [
+        "community over streaming numbers",
+        "how independent artists earn on Farcaster",
+        "crowdfunding a music video with your community",
+        "from Buenos Aires to a residency in Rome",
+        "why the one-to-one connection matters"
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Welcome and intro"
+        },
+        {
+          "t": 33,
+          "label": "Who is Duo Do: independent artists from Buenos Aires"
+        },
+        {
+          "t": 82,
+          "label": "Discovering a new way to earn from music in 2023"
+        },
+        {
+          "t": 142,
+          "label": "Meeting Farcaster: community over numbers"
+        },
+        {
+          "t": 194,
+          "label": "The streaming trap: chasing plays that never pay"
+        },
+        {
+          "t": 324,
+          "label": "A change in perspective, not just the money"
+        },
+        {
+          "t": 502,
+          "label": "Why it is hard to live from live shows in Argentina"
+        },
+        {
+          "t": 537,
+          "label": "Genre-free and emotion music: always transforming"
+        },
+        {
+          "t": 649,
+          "label": "What Japan showed them about the independent scene"
+        },
+        {
+          "t": 832,
+          "label": "First steps: tips and becoming a collector"
+        },
+        {
+          "t": 947,
+          "label": "Finding the artists on Farcaster"
+        },
+        {
+          "t": 1059,
+          "label": "Frames and mini apps: collecting art inside Farcaster"
+        },
+        {
+          "t": 1140,
+          "label": "A Flows from Nouns grant for weekly spaces"
+        },
+        {
+          "t": 1228,
+          "label": "Crowdfunding: raising money to create, together"
+        },
+        {
+          "t": 1453,
+          "label": "Lil Nouns and a grant to press a vinyl"
+        },
+        {
+          "t": 1607,
+          "label": "Collaborations that expand: Generic Vibes and Rome"
+        },
+        {
+          "t": 1794,
+          "label": "Advice for newcomers: just ask"
+        },
+        {
+          "t": 2094,
+          "label": "Vibe coding their first mini app"
+        },
+        {
+          "t": 2220,
+          "label": "Life is short: spend real time with people"
+        },
+        {
+          "t": 2485,
+          "label": "Tortoise: the music app for artists on Farcaster"
+        },
+        {
+          "t": 2606,
+          "label": "Pitching FarCon Buenos Aires 2027"
+        },
+        {
+          "t": 2916,
+          "label": "Where to find Duo Do"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-30",
+      "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster",
       "presenter": "Adrienne Schulman",
       "handle": "@adrienne",
@@ -132,7 +259,7 @@
         "Democratization of education",
         "Building your own brand into Web3"
       ],
-      "youtube": "https://youtu.be/eVNfCtngLeU",
+      "youtube": "https://youtu.be/PghbLCx38t8",
       "page": "/recordings/29",
       "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-27-james-mental-wealth-academy.md"
     },
