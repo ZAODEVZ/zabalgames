@@ -656,6 +656,57 @@
         "Snapchain under the hood"
       ],
       "audited_date": "2026-06-25"
+    },
+    {
+      "handle": "ghostmintops",
+      "fid": null,
+      "name": "Brandon (ghostmintops)",
+      "roles": [
+        "builder"
+      ],
+      "headline": "DreamNet founder - AI agentic swarms, orchestration + memory",
+      "bio": "Builder behind DreamNet (agent orchestration, memory, routing, identity) and Dream Star, an autonomous music/social agent. Expert in AI agent swarms and stack integrations. Shipping multiple ZABAL Gamez builds in July.",
+      "expertise_label": "AGENT SWARMS",
+      "color": "cyan",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/ghostmintops",
+      "x_url": null,
+      "site_url": "https://github.com/BrandonDucar",
+      "audited_date": "2026-07-08"
+    },
+    {
+      "handle": "branth",
+      "fid": null,
+      "name": "Branth (KORRO)",
+      "roles": [
+        "builder"
+      ],
+      "headline": "Dev/CEO of Korrocorp - Solana, bridges, AI music",
+      "bio": "France-based builder, founder of Korrocorp. Built the WaveWarZ Bridge Portal (Base->Solana via Mayan+Wormhole), a Solana MCP, an AI music generator, and Onklaud 5, an open-source AI fusion model pipeline. In discussion on a WaveWarZ contribution arrangement.",
+      "expertise_label": "SOLANA / BRIDGE",
+      "color": "gold",
+      "avatar_url": null,
+      "farcaster_url": null,
+      "x_url": "https://x.com/korrocorp",
+      "site_url": "https://korrocorp.com",
+      "audited_date": "2026-07-08"
+    },
+    {
+      "handle": "jdwalka",
+      "fid": null,
+      "name": "jdwalka (JohnDaWalka)",
+      "roles": [
+        "builder"
+      ],
+      "headline": "Predictive apps - Farcaster poker + crypto prediction orchestrator",
+      "bio": "Builder of Chroma Poker (Farcaster poker app with live HUD + multi-site tracker) and a 5/15 + hourly binary crypto prediction orchestrator pulling 22+ exchanges plus raw on-chain data. Hosts Farcaster Spaces on predictive apps and coding.",
+      "expertise_label": "PREDICTION",
+      "color": "pink",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/jdwalka",
+      "x_url": null,
+      "site_url": "https://github.com/JohnDaWalka",
+      "audited_date": "2026-07-08"
     }
   ]
 }
