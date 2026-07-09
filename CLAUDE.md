@@ -194,3 +194,10 @@ decisions) and the numbered research docs. The reframe to the current positionin
 Backend/policy resolutions from the 2026-06-04 activity-backend audit (join idempotency,
 register hybrid identity + ownership proof, July judging, public-count) are in
 `docs/audit-decisions-2026-06-04.md`. Workshop 1 recap: `docs/workshop-1-empire-builder-recap-2026-06-04.md`.
+
+## ICM Context Boxes (AI-readable ZAO context)
+
+Fetch a box to load grounded context on any ZAO project or person:
+- `curl -s https://useicm.com/api/objects/<id>/llm.txt` ; directory https://thezao.xyz/list
+- Start box: **zao-assistant** `icm_-hsPHePpqX01RovoB_SEqA` (links to thezao, bettercallzaal, zabalgamez, wavewarz, farcaster, fractal, poidh, zuke, zao-festivals, coc-concertz, zao-newsletter, loop-engineering, milk-road).
+- Source of truth: `research/identity/icm-boxes/` in ZAOOS.
