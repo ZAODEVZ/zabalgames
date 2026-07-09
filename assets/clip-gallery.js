@@ -40,7 +40,10 @@
     '.zgg-like:hover{border-color:var(--cyan,#39d4ff);}' +
     '.zgg-like.liked{border-color:var(--zabal,#7c5cff);color:var(--zabal,#7c5cff);}' +
     '.zgg-like:disabled{opacity:0.6;cursor:default;}' +
-    '.zgg-empty{color:var(--text-dim,#8a8a94);font-size:0.86rem;line-height:1.5;background:var(--surface,#121217);border:1px solid var(--border,#1f1e26);border-radius:12px;padding:0.8rem 0.95rem;}';
+    '.zgg-empty{color:var(--text-dim,#8a8a94);font-size:0.86rem;line-height:1.5;background:var(--surface,#121217);border:1px solid var(--border,#1f1e26);border-radius:12px;padding:0.8rem 0.95rem;}' +
+    '.zgg-bounty{color:var(--text-dim,#8a8a94);font-size:0.84rem;margin:0 0 0.7rem;line-height:1.5;}' +
+    '.zgg-bounty a{color:var(--cyan,#39d4ff);text-decoration:none;}' +
+    '.zgg-bounty a:hover{text-decoration:underline;}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   function likeBtn(clip) {
@@ -83,12 +86,20 @@
     return card;
   }
 
-  function render(clips) {
+  function bountyLine(bounty) {
+    if (!bounty) return '';
+    var amt = bounty.amountEth ? (bounty.amountEth + ' ETH pot open') : 'open bounty';
+    return '<p class="zgg-bounty">This recording has an ' + amt + ' - <a href="https://poidh.xyz/base/bounty/' +
+      esc(bounty.bountyId) + '" target="_blank" rel="noopener">bounty #' + esc(bounty.bountyId) + '</a></p>';
+  }
+
+  function render(clips, bounty) {
     mount.className = 'zgg';
     mount.innerHTML = '';
     if (!clips.length) {
       mount.innerHTML =
         '<div class="zgg-head"><h2>Clips</h2></div>' +
+        bountyLine(bounty) +
         '<div class="zgg-empty">No clips yet. Cut a 45-60s moment below and you could be the first - best clip wins the bounty.</div>';
       return;
     }
@@ -97,17 +108,25 @@
     head.innerHTML = '<h2>Clips <span class="zgg-count">' + clips.length + '</span></h2>' +
       '<a class="zgg-all" href="/clips">All clips -&gt;</a>';
     mount.appendChild(head);
+    if (bounty) {
+      var bl = document.createElement('div');
+      bl.innerHTML = bountyLine(bounty);
+      mount.appendChild(bl.firstChild);
+    }
     var list = document.createElement('div');
     list.className = 'zgg-list';
     clips.forEach(function (c) { list.appendChild(renderCard(c)); });
     mount.appendChild(list);
   }
 
-  fetch('/api/clips?rec=' + encodeURIComponent(REC_ID), { cache: 'no-store' })
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      if (!d || d.configured === false) { mount.style.display = 'none'; return; }
-      render((d && d.clips) || []);
-    })
-    .catch(function () { mount.style.display = 'none'; });
+  Promise.all([
+    fetch('/api/clips?rec=' + encodeURIComponent(REC_ID), { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return null; }),
+    fetch('/api/clip-bounties?rec=' + encodeURIComponent(REC_ID), { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return null; }),
+  ]).then(function (results) {
+    var d = results[0];
+    var bd = results[1];
+    if (!d || d.configured === false) { mount.style.display = 'none'; return; }
+    var bounty = (bd && bd.bounties && bd.bounties[0]) || null;
+    render((d && d.clips) || [], bounty);
+  }).catch(function () { mount.style.display = 'none'; });
 })();

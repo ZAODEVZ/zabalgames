@@ -649,6 +649,27 @@ window.ZABAL.recordClip = async function recordClip(payload) {
   }
 };
 
+// Record a newly created clip bounty into the per-recording registry (api/clip-bounties.mjs)
+// so the recording's bounty can be looked up later instead of pasted by hand - see
+// assets/clip-claim.js and assets/clip-gallery.js. Called best-effort after the on-chain
+// POIDH bounty confirms - never blocks that flow. Returns { ok, bounty } or { ok:false, reason }.
+window.ZABAL.recordClipBounty = async function recordClipBounty(payload) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/clip-bounties', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload || {}),
+    });
+    if (!res.ok) return { ok: false, reason: 'server' };
+    const data = await res.json().catch(() => ({}));
+    return data && data.ok ? { ok: true, bounty: data.bounty } : { ok: false, reason: data.reason || data.error || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 // Like a clip (verified) - one like per FID per clip. Returns { ok, likes, firstLike }.
 window.ZABAL.likeClip = async function likeClip(recId, cid) {
   try {
