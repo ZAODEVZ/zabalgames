@@ -13,11 +13,27 @@
 // folded into the create button. Two reasons: (1) it makes "are we actually connected"
 // visually obvious instead of implicit, and (2) it isolates failures - if connecting
 // itself breaks, you see that clearly instead of a generic error from a mixed-stage
-// promise chain. An earlier version merged connect+create into one click and produced
-// exactly that: an opaque "Cannot read properties of undefined (reading 'error')" with
-// no way to tell which stage failed. Every async stage below is wrapped so the raw
-// exception always lands in the browser console via console.error, even when the
-// on-page message stays simple.
+// promise chain. Every async stage below is wrapped so the raw exception always lands
+// in the browser console via console.error, even when the on-page message stays simple.
+//
+// The Farcaster provider is only ever requested when genuinely embedded in a Mini App
+// (`ctx && ctx.client`, same gate every Farcaster-only helper in assets/miniapp.js
+// uses) - not just "did the SDK return something". The Farcaster SDK returns a
+// provider-SHAPED object even on a normal standalone page load, but that stub only
+// works via postMessage to a parent frame that doesn't exist outside Farcaster, so
+// calling .request() on it throws an opaque SDK-internal error instead of failing
+// cleanly. Confirmed live: testing this page outside the Farcaster app threw
+// "RpcResponse.InternalErrorError: Cannot read properties of undefined (reading
+// 'error')" from inside miniapp-sdk-0.1.10.js. The context check avoids ever touching
+// that stub when we're not actually inside Farcaster.
+//
+// The injected-wallet fallback uses EIP-6963 provider discovery rather than reading
+// window.ethereum directly - with multiple wallet extensions installed (also visible
+// in the console: two extensions throwing "Cannot redefine property: ethereum" at
+// each other over that one global), whichever wins that race isn't guaranteed to be
+// a clean, fully-initialized provider. EIP-6963 lets every wallet announce itself
+// independently; window.ethereum is only the last-resort fallback for wallets that
+// don't support it yet.
 //
 // Recurring by design: click create once to cast "Unlock Protocol Clipping Bounty",
 // click it again next week (or whenever) and it casts "...v2", then "...v3", etc, with
@@ -103,19 +119,65 @@
     n.innerHTML = html;
   }
 
-  // ---- dual provider: Farcaster Mini App wallet first, any injected wallet as fallback ----
+  // ---- dual provider: Farcaster Mini App wallet first (only if genuinely embedded),
+  // any injected wallet as fallback ----
+  //
   // This is the actual fix for the gap that prompted this widget: assets/clip-bounty.js
   // only ever tries Z.getProvider() (Farcaster-only), so it shows nothing but an
   // "open in Farcaster" message on the open web. Trying window.ethereum too means this
   // one works everywhere.
-  function getInjectedOrMiniAppProvider() {
-    var fcTry = (Z.getProvider ? Z.getProvider() : Promise.resolve(null));
-    return fcTry.then(function (p) {
-      if (p) return p;
-      return window.ethereum || null;
+  //
+  // The first version of this fix checked "did Z.getProvider() return something
+  // non-null" to decide whether we're in Farcaster - but the Farcaster SDK returns a
+  // provider-SHAPED object even when the page is just loaded standalone in a normal
+  // browser tab, not actually embedded in a Farcaster client. That stub only works via
+  // postMessage to a parent frame that does not exist outside Farcaster, so calling
+  // .request() on it throws an opaque SDK-internal error (confirmed in the console:
+  // "RpcResponse.InternalErrorError: Cannot read properties of undefined (reading
+  // 'error')" from inside miniapp-sdk-0.1.10.js, alongside a DataCloneError from the
+  // SDK's own postMessage call - both are the SDK trying to talk to a parent that
+  // isn't there). Every other Farcaster-only helper in assets/miniapp.js gates on
+  // `ctx && ctx.client` (a real Mini App context) before touching anything
+  // Farcaster-specific - this now does the same, so it only ever asks the SDK for a
+  // provider when actually embedded in Farcaster.
+  function getFarcasterProvider() {
+    var ctxTry = (Z.getContext ? Z.getContext() : Promise.resolve(null));
+    return ctxTry.then(function (ctx) {
+      if (!ctx || !ctx.client || !Z.getProvider) return null;
+      return Z.getProvider();
     }).catch(function (e) {
-      console.error('[unlock-bounty] Farcaster provider check failed, falling back to window.ethereum', e);
-      return window.ethereum || null;
+      console.error('[unlock-bounty] Farcaster context/provider check failed', e);
+      return null;
+    });
+  }
+
+  // EIP-6963 multi-wallet discovery. Plain window.ethereum is a single, last-writer-wins
+  // slot - with multiple wallet extensions installed (seen in the console: MetaMask and
+  // another extension both trying to define window.ethereum, throwing "Cannot redefine
+  // property: ethereum" at each other), whichever one wins that race isn't guaranteed to
+  // be a stable or even fully-initialized provider. EIP-6963 lets every wallet announce
+  // itself independently instead of fighting over one global, so this asks for
+  // announcements first and only falls back to the raw window.ethereum global if no
+  // wallet answers (older wallets that don't implement EIP-6963 yet).
+  function getInjectedProvider() {
+    return new Promise(function (resolve) {
+      var found = null;
+      function onAnnounce(e) {
+        if (!found && e && e.detail && e.detail.provider) found = e.detail.provider;
+      }
+      window.addEventListener('eip6963:announceProvider', onAnnounce);
+      window.dispatchEvent(new Event('eip6963:requestProvider'));
+      setTimeout(function () {
+        window.removeEventListener('eip6963:announceProvider', onAnnounce);
+        resolve(found || window.ethereum || null);
+      }, 150);
+    });
+  }
+
+  function getInjectedOrMiniAppProvider() {
+    return getFarcasterProvider().then(function (p) {
+      if (p) return p;
+      return getInjectedProvider();
     });
   }
 
