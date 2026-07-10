@@ -34,6 +34,57 @@
       "locked": true,
       "champion_handle": null,
       "champion_build": null
+    },
+    {
+      "handle": "1dolinski",
+      "name": "Chris Dolinski",
+      "headline": "Founder of Vini App - ship a real app from a plain-language prompt",
+      "tagline": "15 years building software, now getting non-coders to real, live apps. Best mentor in the room if you have an idea and no code.",
+      "bio": "Chris is a 15-year software builder and the founder of Vini App, a Farcaster mini app that turns a plain-language prompt into a real, shippable app. Every Vini app comes with a wallet, hosting, a domain, a brand kit, and its own token that can help fund the app as it grows. He demoed the whole flow live in his ZABAL Gamez session - sign in with a Farcaster wallet or an email, describe the app, and the AI handles the questions, the design, and the build. Standout Vini builds include DGEN Fishing and Farcenoid, a game now live across Farcaster, World App, and Celo.",
+      "what_they_offer": "The fastest path from idea to a live app, especially for people who have never written a line of code. Hands-on help with the Vini flow, mini-app distribution across Farcaster / World App / Celo, and the token-funds-the-app model. Ran a July collab specifically to get non-coders building in the hackathon.",
+      "best_fit_for": "Builders - especially non-coders and first-time shippers - who have an idea and want a real app live this season, not a prototype. Anyone building a Farcaster mini app or thinking about a token that funds the build.",
+      "expertise_label": "MINI APPS",
+      "color": "orange",
+      "farcaster_url": "https://farcaster.xyz/1dolinski",
+      "x_url": "https://x.com/1dolinski",
+      "site_url": "https://www.viniapp.xyz",
+      "locked": true,
+      "champion_handle": null,
+      "champion_build": null
+    },
+    {
+      "handle": "ohnahji",
+      "name": "Ohnahji",
+      "headline": "Web3's first HBCU - educating builders on blockchain + AI",
+      "tagline": "Turns emerging tech into something the whole hometeam can actually use. The mentor for builds that need to teach, onboard, or reach people new to web3.",
+      "bio": "Ohnahji runs Web3's first HBCU, educating the hometeam and its allies on emerging technologies like blockchain and AI. Based in Los Angeles, the mission is a home base where people new to the space can learn the tools and build with confidence.",
+      "what_they_offer": "An education and onboarding lens on your build - how to make it legible to people new to web3, how to teach the thing you are building, and how to reach communities that usually get left out. Communication, curriculum, and community-building help.",
+      "best_fit_for": "Builds with an education, onboarding, or accessibility angle. Anyone whose project needs to bring in people new to crypto or AI, or who wants their build to teach as much as it ships.",
+      "expertise_label": "WEB3 EDUCATION",
+      "color": "cyan",
+      "farcaster_url": "https://farcaster.xyz/ohnahji",
+      "x_url": null,
+      "site_url": null,
+      "locked": true,
+      "champion_handle": null,
+      "champion_build": null
+    },
+    {
+      "handle": "luciano",
+      "name": "Luciano",
+      "headline": "Building Kismet - where artists and collectors converge",
+      "tagline": "Creator-economy operator with a real audience. The mentor for builds about artists, collectors, and the space where they meet.",
+      "bio": "Luciano is the creator of Kismet, a place where artists and collectors converge on Farcaster. Based in New York with one of the larger followings in the ecosystem, he works at the intersection of art, collecting, and community.",
+      "what_they_offer": "A creator-economy and distribution lens: how artists and collectors actually behave, how to design for both sides of that market, and how to get a build in front of a real audience. Product and go-to-market help for anything creator- or collector-facing.",
+      "best_fit_for": "Builds in the artist / collector / creator-economy space - marketplaces, collectible mechanics, artist tools, or anything that needs to reach and hold a creative audience.",
+      "expertise_label": "ART + COLLECTORS",
+      "color": "pink",
+      "farcaster_url": "https://farcaster.xyz/luciano",
+      "x_url": null,
+      "site_url": null,
+      "locked": true,
+      "champion_handle": null,
+      "champion_build": null
     }
   ]
 }

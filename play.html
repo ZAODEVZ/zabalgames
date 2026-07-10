@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Play - ZABAL Gamez</title>
-  <meta name="description" content="Play the ZABAL Gamez arcade. ZAO 2048 - merge the ZAO ecosystem brands up to THE ZAO. Merge all the way to THE ZAO.">
+  <meta name="description" content="Insert coin. The machine deals you two random arcade games - pick one and play. Every game has a monthly leaderboard.">
   <link rel="canonical" href="https://zabalgamez.com/play">
   <meta property="og:title" content="Play - ZABAL Gamez">
-  <meta property="og:description" content="ZAO 2048 - merge the ZAO ecosystem up to THE ZAO. Insert Coin.">
+  <meta property="og:description" content="Insert coin. Two random games, pick one and play. Every game has a monthly leaderboard.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zabalgamez.com/play">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
@@ -16,13 +16,13 @@
   <meta property="og:image:alt" content="ZABAL Gamez">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Play - ZABAL Gamez">
-  <meta name="twitter:description" content="ZAO 2048 - merge the ZAO ecosystem up to THE ZAO. Merge all the way to THE ZAO.">
+  <meta name="twitter:description" content="Insert coin. Two random games, pick one and play.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO 2048","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/play","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Insert Coin","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/play","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Insert Coin","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/play","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
   <link rel="apple-touch-icon" href="/assets/icon.png">
-  <meta name="fc:disable-native-gestures" content="1">
   <link rel="preconnect" href="https://esm.sh">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,80 +30,18 @@
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
   <style>
-    .play-wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
-    @media (min-width: 860px) { .play-wrap { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); align-items: start; } }
-    .game-picker { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.6rem 0 0.4rem; }
-    .game-chip { font-size: 0.8rem; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-muted); cursor: default; }
-    .game-chip.active { background: var(--zabal); color: #fff; border-color: var(--zabal); }
-    .game-chip.soon { opacity: 0.55; }
-    .hud { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0.4rem 0 0.8rem; }
-    .hud .box { border: 1px solid var(--border); background: var(--surface-2); border-radius: 10px; padding: 0.4rem 0.8rem; }
-    .hud .lbl { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); }
-    .hud .val { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; color: var(--text); }
-    .btn { font-family: inherit; font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; }
-    .btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
-    .btn:hover { filter: brightness(1.12); }
-    .board {
-      position: relative; width: 100%; max-width: 420px; aspect-ratio: 1 / 1; margin: 0 auto;
-      background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px; padding: 10px;
-      display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 10px; touch-action: none; user-select: none;
-    }
-    .cell { background: rgba(255,255,255,0.04); border-radius: 9px; display: flex; align-items: center; justify-content: center;
-      text-align: center; font-family: 'Syne', sans-serif; font-weight: 800; color: #fff; line-height: 1.05;
-      font-size: 0.62rem; padding: 4px; word-break: break-word; overflow: hidden; transition: transform 0.06s ease; }
-    .cell.pop { transform: scale(1.06); }
-    .cell .v { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 0.6rem; opacity: 0.7; display: block; margin-top: 2px; }
-    .status { min-height: 1.3rem; font-size: 0.85rem; color: var(--text-muted); margin-top: 0.6rem; }
-    .handle-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 0.4rem 0; }
-    .handle-row input { font-family: inherit; font-size: 0.9rem; padding: 0.45rem 0.7rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); min-width: 180px; }
-    .lb-panel { border: 1px solid var(--border); background: var(--surface-2); border-radius: 14px; padding: 1rem 1.1rem; }
-    .lb-panel h3 { margin: 0 0 0.2rem; font-size: 1rem; }
-    .lb-panel .note { font-size: 0.78rem; color: var(--text-dim); margin: 0 0 0.7rem; }
-    #board-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-    #board-list li { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; padding: 0.3rem 0; border-bottom: 1px solid var(--border); }
-    #board-list .rk { font-family: 'JetBrains Mono', monospace; color: var(--gold); width: 1.6rem; }
-    #board-list .hd { flex: 1; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    #board-list .sc { font-family: 'JetBrains Mono', monospace; color: var(--cyan); }
-    #board-list .muted { color: var(--text-dim); border: 0; }
-    .hint { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.6rem; }
-    #codex { display: grid; gap: 8px; }
-    .cx-item { border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); overflow: hidden; }
-    .cx-toggle { display: block; width: 100%; text-align: left; background: none; border: 0; cursor: pointer; color: var(--text); font-family: inherit; padding: 0.7rem 0.9rem; }
-    .cx-toggle:hover { background: rgba(255,255,255,0.03); }
-    .cx-h { display: flex; align-items: center; gap: 8px; }
-    .cx-ava { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; }
-    .cx-name { font-weight: 700; font-size: 0.95rem; }
-    .cx-track { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); }
-    .cx-title { color: var(--text-muted); font-size: 0.86rem; margin-top: 0.2rem; }
-    .cx-take { color: var(--cyan); font-size: 0.82rem; margin-top: 0.25rem; }
-    .cx-more { display: inline-block; font-size: 0.68rem; color: var(--text-dim); margin-top: 0.4rem; }
-    .cx-full { padding: 0 0.9rem 0.9rem; font-size: 0.86rem; color: var(--text-muted); line-height: 1.5; }
-    .cx-full p { margin: 0.5rem 0 0; }
-    .cx-topics { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
-    .cx-rel a, .cx-full a { color: var(--cyan); }
-    #flash { position: fixed; left: 50%; top: 30%; transform: translate(-50%, 0); z-index: 50; width: min(86vw, 380px); pointer-events: none; opacity: 0; }
-    #flash.show { animation: flashIn 2.2s ease forwards; }
-    @keyframes flashIn {
-      0% { opacity: 0; transform: translate(-50%, 8px) scale(0.96); }
-      12% { opacity: 1; transform: translate(-50%, 0) scale(1); }
-      80% { opacity: 1; transform: translate(-50%, 0) scale(1); }
-      100% { opacity: 0; transform: translate(-50%, -10px) scale(0.99); }
-    }
-    .flash-card { border: 1px solid var(--zabal); border-radius: 14px; background: var(--surface-2); box-shadow: 0 12px 40px rgba(0,0,0,0.5); padding: 0.9rem 1.1rem; text-align: center; }
-    .flash-eyebrow { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); }
-    .flash-ava { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; margin: 0.4rem auto 0; display: block; border: 2px solid var(--zabal); }
-    .flash-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; margin-top: 0.15rem; }
-    .flash-title { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.15rem; }
-    .flash-nugget { color: var(--cyan); font-size: 0.82rem; margin-top: 0.4rem; line-height: 1.4; }
-    .flash-foot { font-size: 0.64rem; color: var(--text-dim); margin-top: 0.5rem; }
-    .cell.pop { transform: scale(1.12); }
-    .zmodal { position: fixed; inset: 0; z-index: 60; background: rgba(7,7,9,0.72); display: flex; align-items: center; justify-content: center; padding: 1.2rem; }
-    .zmodal[hidden] { display: none; }
-    .zmodal-card { width: min(92vw, 420px); border: 1px solid var(--zabal); border-radius: 16px; background: var(--surface-2); box-shadow: 0 18px 60px rgba(0,0,0,0.6); padding: 1.4rem 1.3rem; text-align: center; }
-    .modal-eyebrow { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); }
-    .modal-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; margin: 0.2rem 0 0.3rem; }
-    .modal-sub { color: var(--text-muted); font-size: 0.9rem; margin: 0 0 1rem; line-height: 1.5; }
-    .modal-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .qp-deal { display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: 640px; margin-top: 1.4rem; }
+    @media (min-width: 560px) { .qp-deal { grid-template-columns: 1fr 1fr; } }
+    .qp-card { display: flex; flex-direction: column; border: 1px solid var(--border); background: var(--surface-2);
+      border-radius: 14px; padding: 1.3rem; text-decoration: none; color: inherit; transition: border-color 0.15s ease, transform 0.15s ease; }
+    .qp-card:hover { border-color: var(--zabal); transform: translateY(-2px); }
+    .qp-card .tag { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--cyan); }
+    .qp-card h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; margin: 0.35rem 0 0.3rem; }
+    .qp-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0 0 0.9rem; }
+    .qp-card .go { margin-top: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--gold); }
+    .qp-actions { display: flex; gap: 0.7rem; margin-top: 1.2rem; flex-wrap: wrap; }
+    .qp-or { text-align: center; font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: var(--text-dim); margin: 0.2rem 0; }
+    @media (min-width: 560px) { .qp-or { display: none; } }
   </style>
 </head>
 <body>
@@ -113,655 +51,94 @@
   <div class="arcade-nav-inner">
     <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
     <div class="arcade-nav-menu">
-      <a href="/info.html">Details</a>
-      <a href="/#schedule">Schedule</a>
+      <a href="/game">Arcade</a>
       <a href="/recordings">Recordings</a>
-      <a href="/about.html">About</a>
+      <a href="/enter">Enter</a>
       <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
     </div>
   </div>
 </nav>
 
-<main id="main">
-<div class="container">
+<main>
+<div class="container" id="main">
 
-  <header class="hero" style="padding-bottom: 0.4rem;">
+  <header style="margin-top: 1rem;">
     <div class="hero-eyebrow">The arcade</div>
     <h1>Insert Coin. <span class="accent">Play.</span></h1>
-    <p class="lead" style="margin-top: 0.3rem;">Merge the ZAO ecosystem brands all the way up to THE ZAO. Play for fun - your best score is saved on your device. Built on The ZAO's live rails - come build the rest.</p>
+    <p class="lead" style="margin-top: 0.3rem;">The machine deals you two games. Pick one and play - no browsing, no decisions, just a coin and a choice. Every game keeps a monthly leaderboard; play in the Farcaster app and your score counts.</p>
   </header>
 
-  <div class="game-picker" role="tablist" aria-label="Choose a game">
-    <span class="game-chip active">ZAO 2048</span>
-    <span class="game-chip soon">Insert Coin sprint (soon)</span>
-    <span class="game-chip soon">More (soon)</span>
+  <div id="qp-daily" style="max-width: 640px; margin-top: 1.2rem;"></div>
+
+  <div class="qp-deal" id="qp-deal" aria-label="Your two games"></div>
+
+  <div class="qp-actions">
+    <button class="btn btn-secondary" id="qp-shuffle" type="button">Deal two more</button>
+    <a class="btn btn-secondary" href="/game">See all games</a>
   </div>
-
-  <div class="play-wrap">
-    <section>
-      <h2 style="margin: 0.2rem 0 0.2rem; font-size: 1.1rem;">ZAO 2048</h2>
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0 0 0.4rem;">Merge matching tiles to climb the ZABAL Gamez workshops in order - from ZAO all the way to THE ZAO. How far through the season can you get? Arrow keys, WASD, or swipe.</p>
-
-      <div class="hud">
-        <div class="box"><div class="lbl">Score</div><div class="val" id="score">0</div></div>
-        <div class="box"><div class="lbl">Best tile</div><div class="val" id="best-tile">ZAO</div></div>
-        <div class="box"><div class="lbl">Your best</div><div class="val" id="best-score">0</div></div>
-        <div class="box"><div class="lbl">Day streak</div><div class="val" id="streak">0</div></div>
-        <button class="btn" id="new-game" type="button">New game</button>
-      </div>
-
-      <div class="board" id="board" aria-label="ZAO 2048 board"></div>
-      <div id="flash" aria-live="polite"></div>
-      <div id="modal" class="zmodal" hidden><div class="zmodal-card" id="modal-card"></div></div>
-
-      <div class="handle-row">
-        <button class="btn primary" id="share-fc" type="button">Share score</button>
-        <button class="btn" id="share-x" type="button">Share on X</button>
-      </div>
-      <div class="status" id="status"></div>
-      <p class="hint">Tip: keep your highest tile in a corner. Your best score is saved on this device.</p>
-    </section>
-
-    <aside class="lb-panel">
-      <p class="hint" style="margin-top: 0.4rem;"><a href="/#schedule">Upcoming sessions</a> - <a href="/recordings">Recordings</a></p>
-    </aside>
-  </div>
-
-  <section class="section" style="margin-top: 1.6rem;">
-    <h2 style="font-size: 1.1rem; margin: 0 0 0.2rem;">What you're learning</h2>
-    <p class="hint" style="margin: 0 0 0.7rem;">Every tile is a real ZABAL Gamez session, seeded at random each game. Reach a tile to discover it, climb farther to learn more, and tap any entry to expand it and see how it connects to the rest of the season.</p>
-    <div id="codex"></div>
-  </section>
-
-  <section id="zg-comments"></section>
 
 </div>
 </main>
 
-<footer class="arcade-foot" aria-label="Site directory">
-  <div class="arcade-foot-inner">
-    <div class="arcade-foot-brand">
-      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
-      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
-      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
-    </div>
-    <nav class="arcade-foot-col" aria-label="Play">
-      <h4>Play</h4>
-      <a href="/">Home</a>
-      <a href="/info.html">All the Details</a>
-      <a href="/#schedule">Schedule</a>
-      <a href="/live.html">Live - What's On Now</a>
-      <a href="/play">Arcade</a>
-    </nav>
-    <nav class="arcade-foot-col" aria-label="Data">
-      <h4>Data</h4>
-      <a href="/recordings.html">Recordings</a>
-      <a href="/streams.html">Streams</a>
-      <a href="/changelog.html">Changelog</a>
-    </nav>
-    <nav class="arcade-foot-col" aria-label="Connect">
-      <h4>Connect</h4>
-      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
-      <a href="/links.html">All Links</a>
-      <a href="/share.html">Share</a>
-    </nav>
-  </div>
-  <div class="arcade-foot-bottom">
-    <span class="pixel">INSERT COIN</span>
-    <span>zabalgamez.com - built with The ZAO</span>
-  </div>
-</footer>
-
 <script>
 (function () {
-  var SIZE = 4;
-  var grid = [];
-  var score = 0;
-  var over = false;
-  var boardEl = document.getElementById('board');
-  var scoreEl = document.getElementById('score');
-  var bestTileEl = document.getElementById('best-tile');
-  var bestScoreEl = document.getElementById('best-score');
-  var bestScore = Number((function () { try { return localStorage.getItem('zg2048_best'); } catch (e) { return 0; } })()) || 0;
-  var won = false;
-  var statusEl = document.getElementById('status');
-  var handleEl = document.getElementById('handle');
+  // The scored arcade. Descriptions stay one-breath short - the pick should take 3 seconds.
+  var GAMES = [
+    { url: '/game/2048', name: 'ZAO 2048', tag: 'The classic', desc: 'Merge the ecosystem tiles, chase the monthly high score.' },
+    { url: '/game/memory', name: 'ZAO Match', tag: 'Pairs', desc: 'Flip and pair every ZAO brand. Fewest moves, fastest time.' },
+    { url: '/game/word', name: 'ZABALDLE', tag: 'Daily word', desc: 'The five-letter ecosystem word in six tries. New word daily.' },
+    { url: '/game/zao-trivia', name: 'ZAO Trivia', tag: '10 questions', desc: 'How well do you know the ZAO? Best run takes the board.' },
+    { url: '/game/snake', name: 'ZAO Snake', tag: 'Classic', desc: 'Eat coins, grow, do not hit yourself. It gets faster.' },
+    { url: '/game/echo', name: 'ZAO Echo', tag: 'Sound on', desc: 'Four pads, four notes. Repeat the melody as it grows.' },
+    { url: '/game/dash', name: 'ZAO Stage Dash', tag: 'Show night', desc: 'Run the merch table. Serve fans before patience runs out.' },
+    { url: '/game/stack', name: 'ZAO Stack', tag: 'One tap', desc: 'Drop the sliding block. The overhang trims off. Go high.' }
+  ];
 
-  // The tiles are seeded RANDOMLY each game from the real ZABAL Gamez sessions
-  // (data from /recordings/index.json). Climb to discover them; go farther to learn more.
-  var SESSIONS = [];
-  var tileMap = {};
-  var maxTile = 0;
-  var SESSION_VALUES = [2, 4, 8, 16, 32, 64, 128, 256, 512];
-  var COLORS9 = ['#1b2733', '#243447', '#2b4a6f', '#1f6f8b', '#2a9d8f', '#3a86ff', '#8338ec', '#b5179e', '#f72585'];
-  var BRANDS9 = ['ZAO', '$Zabal', 'Bonfire', 'Empire', 'WaveWarZ', 'COC Concertz', 'Magnetiq', 'Sopha', 'Fractal'];
-  var ANCHOR = {
-    1024: { label: 'ZABAL GAMEZ', color: '#ff8500' },
-    2048: { label: 'THE ZAO', color: '#ffd60a', img: '/assets/logo-gamez.png' }
-  };
+  var deal = document.getElementById('qp-deal');
 
-  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-  function firstName(p) { return String(p || '').split(/\s|\(/)[0] || String(p || ''); }
-
-  // Eligible tile people: only presenters with a resolved PFP, deduped by handle/name so a
-  // presenter with two recordings (e.g. yerbearserker) appears once.
-  function eligibleSessions() {
-    var seen = {}, out = [];
-    for (var i = 0; i < SESSIONS.length; i++) {
-      var s = SESSIONS[i];
-      if (!s.pfp) continue;
-      var key = String(s.handle || s.presenter || '').toLowerCase().replace(/^@/, '');
-      if (!key || seen[key]) continue;
-      seen[key] = 1; out.push(s);
-    }
-    return out;
-  }
-  function seedTiles() {
-    tileMap = {};
-    tileMap[1024] = ANCHOR[1024];
-    tileMap[2048] = ANCHOR[2048];
-    var pool = shuffle(eligibleSessions());
-    for (var i = 0; i < SESSION_VALUES.length; i++) {
-      var v = SESSION_VALUES[i];
-      var s = pool[i];
-      if (s) {
-        tileMap[v] = { label: firstName(s.presenter), color: COLORS9[i], handle: s.handle ? String(s.handle).replace(/^@/, '') : '', session: s };
-      } else {
-        tileMap[v] = { label: BRANDS9[i], color: COLORS9[i] };
-      }
-    }
-  }
-  function tileOf(v) { return tileMap[v] || { label: String(v), color: '#ffd60a' }; }
-
-  function loadSessions() {
-    return fetch('/recordings/index.json', { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) { SESSIONS = (d && d.recordings ? d.recordings : []).filter(function (s) { return s && s.presenter; }); })
-      .catch(function () { SESSIONS = []; });
+  function two() {
+    var a = Math.floor(Math.random() * GAMES.length);
+    var b = Math.floor(Math.random() * (GAMES.length - 1));
+    if (b >= a) b++;
+    return [GAMES[a], GAMES[b]];
   }
 
-  function applyPfp(handle, pfpUrl) {
-    if (!handle || !pfpUrl) return;
-    var h = String(handle).replace(/^@/, '').toLowerCase();
-    SESSIONS.forEach(function (s) {
-      if (!s.pfp && s.handle && String(s.handle).replace(/^@/, '').toLowerCase() === h) s.pfp = pfpUrl;
-    });
+  function card(g) {
+    var el = document.createElement('a');
+    el.className = 'qp-card';
+    el.href = g.url;
+    el.innerHTML = '<span class="tag">' + g.tag + '</span><h2>' + g.name + '</h2><p>' + g.desc + '</p><span class="go">Play this one -&gt;</span>';
+    return el;
   }
 
-  // Resolve each session presenter's Farcaster PFP. Static cache (data/pfps.json) first - it
-  // is committed, CDN-served, and survives any live-lookup outage - then /api/pfps fills any
-  // handle the cache is missing. Each person appears once in the Codex + flash card.
-  function resolvePfps() {
-    var handles = [];
-    SESSIONS.forEach(function (s) { if (s.handle) handles.push(String(s.handle).replace(/^@/, '')); });
-    if (!handles.length) return Promise.resolve();
-    // 1. static cache
-    return fetch('/data/pfps.json', { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : {}; })
-      .catch(function () { return {}; })
-      .then(function (cache) {
-        var byHandle = (cache && cache.users) || cache || {};
-        Object.keys(byHandle).forEach(function (k) {
-          var v = byHandle[k];
-          applyPfp(k, v && (v.pfpUrl || v.pfp_url || v));
-        });
-        // 2. only ask the live resolver for handles the cache did not cover
-        var missing = [];
-        SESSIONS.forEach(function (s) {
-          var h = s.handle ? String(s.handle).replace(/^@/, '') : '';
-          if (h && !s.pfp && missing.indexOf(h) === -1) missing.push(h);
-        });
-        if (!missing.length) { render(); renderCodex(); return; }
-        return fetch('/api/pfps?handles=' + encodeURIComponent(missing.join(',')), { cache: 'no-store' })
-          .then(function (r) { return r.json(); })
-          .then(function (d) {
-            if (d && d.users) {
-              Object.keys(d.users).forEach(function (h) {
-                if (d.users[h] && d.users[h].pfpUrl) applyPfp(h, d.users[h].pfpUrl);
-              });
-            }
-          })
-          .catch(function () {})
-          .then(function () { render(); renderCodex(); });
-      });
+  function dealTwo() {
+    var pair = two();
+    deal.innerHTML = '';
+    deal.appendChild(card(pair[0]));
+    var or = document.createElement('div');
+    or.className = 'qp-or';
+    or.textContent = '- or -';
+    deal.appendChild(or);
+    deal.appendChild(card(pair[1]));
   }
 
-  function build() {
-    boardEl.innerHTML = '';
-    for (var i = 0; i < SIZE * SIZE; i++) {
-      var c = document.createElement('div');
-      c.className = 'cell';
-      c.setAttribute('data-i', String(i));
-      boardEl.appendChild(c);
-    }
-  }
+  document.getElementById('qp-shuffle').addEventListener('click', dealTwo);
+  dealTwo();
 
-  function newGame() {
-    seedTiles();
-    grid = [];
-    for (var i = 0; i < SIZE * SIZE; i++) grid.push(0);
-    score = 0;
-    over = false;
-    won = false;
-    maxTile = 0;
-    gameNonce = null; gameSig = null;
-    hideModal();
-    addRandom();
-    addRandom();
-    render();
-    renderCodex();
-    setStatus('');
-    // Pre-fetch a game-session nonce so we have it ready when the player finishes.
-    // If GAME_SECRET is not configured the server returns nonceRequired:false and we skip.
-    fetch('/api/game?action=nonce&game=zao2048')
-      .then(function (r) { return r.json(); })
-      .then(function (d) { if (d && d.nonce && d.sig) { gameNonce = d.nonce; gameSig = d.sig; } })
-      .catch(function () { /* nonce is best-effort; absence means server is not enforcing it */ });
-  }
-
-  function emptyCells() {
-    var e = [];
-    for (var i = 0; i < grid.length; i++) if (!grid[i]) e.push(i);
-    return e;
-  }
-
-  function addRandom() {
-    var e = emptyCells();
-    if (!e.length) return;
-    var idx = e[Math.floor(Math.random() * e.length)];
-    grid[idx] = Math.random() < 0.9 ? 2 : 4;
-  }
-
-  function render(pop) {
-    var cells = boardEl.children;
-    var maxv = 2;
-    for (var i = 0; i < grid.length; i++) {
-      var v = grid[i];
-      var c = cells[i];
-      c.innerHTML = '';
-      if (v) {
-        var t = tileOf(v);
-        var imgsrc = t.img || t.pfp || (t.session && t.session.pfp);
-        if (imgsrc) {
-          var im = document.createElement('img');
-          im.src = imgsrc;
-          im.alt = t.label;
-          im.style.cssText = 'width:66%;height:66%;object-fit:cover;border-radius:8px;';
-          im.onerror = (function (cell, lbl) { return function () { cell.textContent = lbl; }; })(c, t.label);
-          c.appendChild(im);
-        } else {
-          c.textContent = t.label;
-        }
-        c.style.background = t.color;
-        c.style.color = v >= 2048 ? '#070709' : '#ffffff';
-        if (pop && pop[i]) { c.classList.add('pop'); (function (cell) { setTimeout(function () { cell.classList.remove('pop'); }, 130); })(c); }
-        if (v > maxv) maxv = v;
-      } else {
-        c.style.background = 'rgba(255,255,255,0.04)';
-      }
-    }
-    scoreEl.textContent = String(score);
-    bestTileEl.textContent = tileOf(maxv).label;
-    if (score > bestScore) { bestScore = score; try { localStorage.setItem('zg2048_best', String(bestScore)); } catch (e) {} }
-    if (bestScoreEl) bestScoreEl.textContent = String(bestScore);
-    if (maxv > maxTile) {
-      maxTile = maxv;
-      var nt = tileOf(maxv);
-      if (nt && nt.session && maxv > 2) flashUnlock(nt.session);
-      renderCodex();
-    }
-  }
-
-  // When you reach a new highest tile, flash that session's nugget, then it settles
-  // into the Codex at the bottom. This is the "learn as you climb" beat.
-  function flashUnlock(s) {
-    var el = document.getElementById('flash');
-    if (!el) return;
-    var nugget = (s.takeaways && s.takeaways[0]) ? s.takeaways[0] : (s.topics || []).slice(0, 3).join(', ');
-    el.innerHTML = '<div class="flash-card"><div class="flash-eyebrow">Unlocked</div>'
-      + (s.pfp ? '<img class="flash-ava" src="' + escapeHtml(s.pfp) + '" alt="">' : '')
-      + '<div class="flash-name">' + escapeHtml(s.presenter) + '</div>'
-      + (s.title ? '<div class="flash-title">' + escapeHtml(s.title) + '</div>' : '')
-      + (nugget ? '<div class="flash-nugget">' + escapeHtml(nugget) + '</div>' : '')
-      + '<div class="flash-foot">Added to your codex below</div></div>';
-    el.classList.remove('show');
-    void el.offsetWidth; // restart the animation
-    el.classList.add('show');
-    if (window.ZABAL && window.ZABAL.haptic) window.ZABAL.haptic('medium');
-    clearTimeout(el._t);
-    el._t = setTimeout(function () { el.classList.remove('show'); }, 2200);
-  }
-
-  // ---- The Codex: what you've learned this run ----
-  function relatedTo(s) {
-    var mine = (s.topics || []).map(function (t) { return String(t).toLowerCase(); });
-    var out = [];
-    for (var v in tileMap) {
-      var o = tileMap[v].session;
-      if (!o || o === s) continue;
-      var share = (o.topics || []).some(function (t) { return mine.indexOf(String(t).toLowerCase()) >= 0; }) || (s.org && o.org && s.org === o.org);
-      if (share && out.indexOf(o) < 0) out.push(o);
-    }
-    return out;
-  }
-  function codexList() {
-    var seen = {}, list = [];
-    for (var i = 0; i < SESSION_VALUES.length; i++) {
-      var v = SESSION_VALUES[i], t = tileMap[v];
-      if (t && t.session && v <= maxTile) {
-        var key = t.session.page || t.session.title;
-        if (seen[key]) continue; seen[key] = 1;
-        list.push(t.session);
-      }
-    }
-    return list;
-  }
-  function renderCodex() {
-    var el = document.getElementById('codex');
-    if (!el) return;
-    var list = codexList();
-    if (!list.length) {
-      el.innerHTML = '<p class="hint">Start merging - each ZABAL Gamez session you reach flashes up top, then lands here. The farther you climb, the more of the season you learn.</p>';
-      return;
-    }
-    el.innerHTML = list.map(function (s) {
-      var head = '<div class="cx-h">' + (s.pfp ? '<img class="cx-ava" src="' + escapeHtml(s.pfp) + '" alt="">' : '') + '<span class="cx-name">' + escapeHtml(s.presenter) + '</span>' + (s.track ? ' <span class="cx-track">' + escapeHtml(s.track) + '</span>' : '') + '</div>';
-      var mid = (s.title ? '<div class="cx-title">' + escapeHtml(s.title) + '</div>' : '');
-      var line = (s.takeaways && s.takeaways[0]) ? s.takeaways[0] : (s.topics || []).slice(0, 3).join(', ');
-      if (line) mid += '<div class="cx-take">' + escapeHtml(line) + '</div>';
-      var h = s.handle ? String(s.handle).replace(/^@/, '') : '';
-      var rel = relatedTo(s).map(function (o) { return '<a href="' + escapeHtml(o.page || '#') + '" target="_blank" rel="noopener">' + escapeHtml(firstName(o.presenter)) + '</a>'; }).join(', ');
-      var full = '<div class="cx-full" hidden>'
-        + (s.summary ? '<p>' + escapeHtml(s.summary) + '</p>' : '')
-        + (s.topics && s.topics.length ? '<p class="cx-topics">' + s.topics.map(escapeHtml).join(' / ') + '</p>' : '')
-        + (rel ? '<p class="cx-rel">Related: ' + rel + '</p>' : '')
-        + '<p>' + (s.page ? '<a href="' + escapeHtml(s.page) + '" target="_blank" rel="noopener">Open the recording</a>' : '') + (h ? (s.page ? ' &middot; ' : '') + '<a href="https://farcaster.xyz/' + encodeURIComponent(h) + '" target="_blank" rel="noopener">@' + escapeHtml(h) + '</a>' : '') + '</p>'
-        + '</div>';
-      return '<div class="cx-item"><button type="button" class="cx-toggle">' + head + mid + '<span class="cx-more">tap to expand and see how it connects</span></button>' + full + '</div>';
-    }).join('');
-  }
-
-  function slide(line) {
-    var arr = line.filter(function (v) { return v; });
-    var gained = 0;
-    for (var i = 0; i < arr.length - 1; i++) {
-      if (arr[i] === arr[i + 1]) { arr[i] *= 2; gained += arr[i]; arr.splice(i + 1, 1); }
-    }
-    while (arr.length < SIZE) arr.push(0);
-    var moved = false;
-    for (var j = 0; j < SIZE; j++) if (line[j] !== arr[j]) moved = true;
-    return { line: arr, gained: gained, moved: moved };
-  }
-
-  function indexFor(dir, i, j) {
-    if (dir === 'left') return i * SIZE + j;
-    if (dir === 'right') return i * SIZE + (SIZE - 1 - j);
-    if (dir === 'up') return j * SIZE + i;
-    return (SIZE - 1 - j) * SIZE + i; // down
-  }
-
-  function move(dir) {
-    if (over) return;
-    var prev = grid.slice();
-    var moved = false, gained = 0;
-    for (var i = 0; i < SIZE; i++) {
-      var line = [];
-      for (var j = 0; j < SIZE; j++) line.push(grid[indexFor(dir, i, j)]);
-      var r = slide(line);
-      if (r.moved) moved = true;
-      gained += r.gained;
-      for (var k = 0; k < SIZE; k++) grid[indexFor(dir, i, k)] = r.line[k];
-    }
-    if (moved) {
-      score += gained;
-      if (gained && window.ZABAL && window.ZABAL.haptic) window.ZABAL.haptic('light');
-      addRandom();
-      var pop = {};
-      for (var p = 0; p < grid.length; p++) { if (grid[p] && grid[p] !== prev[p]) pop[p] = 1; }
-      render(pop);
-      if (!won) { for (var w = 0; w < grid.length; w++) { if (grid[w] >= 2048) { won = true; showWin(); break; } } }
-      if (isOver()) {
-        over = true;
-        setStatus('Game over. Score ' + score + '.');
-        showGameOver();
-      }
-    }
-  }
-
-  // ---- Win + game-over overlays ----
-  function showModal(html) {
-    var c = document.getElementById('modal-card');
-    var m = document.getElementById('modal');
-    if (!c || !m) return;
-    c.innerHTML = html;
-    m.hidden = false;
-  }
-  function hideModal() { var m = document.getElementById('modal'); if (m) m.hidden = true; }
-  function showWin() {
-    showModal('<div class="modal-eyebrow">Season complete</div>'
-      + '<div class="modal-title">You reached THE ZAO</div>'
-      + '<p class="modal-sub">Score ' + score + '. You climbed the whole ZABAL Gamez season - keep going for a higher score.</p>'
-      + '<div class="modal-actions"><button class="btn primary" data-action="share" type="button">Share it</button>'
-      + '<button class="btn" data-action="close" type="button">Keep playing</button></div>');
-  }
-  function showGameOver() {
-    showModal('<div class="modal-eyebrow">Game over</div>'
-      + '<div class="modal-title">' + score + '</div>'
-      + '<p class="modal-sub">Your best: ' + bestScore + '. Merge all the way to THE ZAO.</p>'
-      + '<div class="modal-actions"><button class="btn primary" data-action="play" type="button">Play again</button>'
-      + '<button class="btn" data-action="share" type="button">Share</button></div>');
-  }
-
-  function isOver() {
-    if (emptyCells().length) return false;
-    for (var i = 0; i < SIZE; i++) {
-      for (var j = 0; j < SIZE; j++) {
-        var v = grid[i * SIZE + j];
-        if (j < SIZE - 1 && v === grid[i * SIZE + j + 1]) return false;
-        if (i < SIZE - 1 && v === grid[(i + 1) * SIZE + j]) return false;
-      }
-    }
-    return true;
-  }
-
-  function setStatus(t) { statusEl.textContent = t; }
-
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, function (m) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
-    });
-  }
-
-  var submitting = false;
-  var authed = false;
-  // Signed game-session nonce (fetched at game start when GAME_SECRET is configured).
-  // Included in score submissions so the server can verify the score came from a real
-  // game session and consume the nonce to prevent replay.
-  var gameNonce = null, gameSig = null;
-  function doSubmit(silent) {
-    if (submitting) return;
-    // Mini App: verified submit via Quick Auth (FID -> handle + address server-side).
-    if (window.ZABAL && window.ZABAL.submitScore) {
-      submitting = true;
-      var nd = (gameNonce && gameSig) ? { nonce: gameNonce, sig: gameSig } : null;
-      window.ZABAL.submitScore('zao2048', score, nd).then(function (d) {
-        submitting = false;
-        if (d && d.ok && d.counted) { myRank = d.rank || null; myBest = d.best || myBest; if (d.streak != null) { var _se = document.getElementById('streak'); if (_se) _se.textContent = d.streak; } setStatus('Submitted as @' + (d.handle || 'you') + '. Best this month: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : '')); loadBoard(); tryAddApp(); return; }
-        if (d && (d.reason === 'not-in-miniapp' || d.counted === false)) { identitySubmit(silent); return; }
-        setStatus('Could not submit (' + (d && d.reason || 'error') + ').');
-      }).catch(function () { submitting = false; identitySubmit(silent); });
-      return;
-    }
-    identitySubmit(silent);
-  }
-  // No verified path available - submit with the known Mini App handle if we have one,
-  // and only ask the user to type a handle as a true last resort (plain web visitor).
-  function identitySubmit(silent) {
-    var h = handleEl.value.trim();
-    if (h) { webSubmit(h); return; }
-    if (window.ZABAL && window.ZABAL.getUser) {
-      window.ZABAL.getUser().then(function (u) {
-        if (u && u.username) { handleEl.value = u.username; webSubmit(u.username); }
-        else if (!silent) setStatus('Enter a Farcaster handle to get on the board.');
-      }).catch(function () { if (!silent) setStatus('Enter a Farcaster handle to get on the board.'); });
-      return;
-    }
-    if (!silent) setStatus('Enter a Farcaster handle to get on the board.');
-  }
-  // Web (no Quick Auth) submit. The board only counts verified players now (anti-cheat), so
-  // an unverified POST comes back counted:false - we keep the local best but tell the player
-  // the board lives in the Farcaster app.
-  function webSubmit(handle) {
-    submitting = true;
-    var body = { game: 'zao2048', handle: handle, score: score };
-    if (gameNonce) { body.nonce = gameNonce; body.sig = gameSig; }
-    fetch('/api/game', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    }).then(function (r) { return r.json(); }).then(function (d) {
-      submitting = false;
-      if (d && d.ok && d.counted) {
-        myRank = d.rank || null; myBest = d.best || myBest; if (d.streak != null) { var _se = document.getElementById('streak'); if (_se) _se.textContent = d.streak; }
-        setStatus('Submitted as @' + handle + '. Best this month: ' + d.best + (d.rank ? ' (rank ' + d.rank + ')' : ''));
-        loadBoard();
-        tryAddApp();
-      } else if (d && d.ok && d.counted === false) {
-        setStatus('Open ZABAL Gamez in Farcaster to get this score on the board.');
-      } else {
-        setStatus(d && d.configured === false ? 'Board is offline right now.' : 'Could not submit that score.');
-      }
-    }).catch(function () { submitting = false; setStatus('Network error submitting.'); });
-  }
-  function autoSubmit() { doSubmit(true); }
-
-  function loadBoard() {
-    var list = document.getElementById('board-list');
-    if (!list) return; // leaderboard removed - play-for-fun, no board
-    fetch('/api/game?game=zao2048', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
-      var t10 = document.getElementById('to-top10');
-      if (!d || !d.entries || !d.entries.length) {
-        list.innerHTML = '<li class="muted">No scores yet this month. Be first.</li>';
-        if (t10) t10.textContent = 'The board is empty this month - first score takes the top.';
-        return;
-      }
-      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
-        return '<li><span class="rk">' + e.rank + '</span><a class="hd" style="color:inherit;text-decoration:none;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + escapeHtml(e.handle) + '</a><span class="sc">' + e.score + '</span></li>';
-      }).join('');
-      if (t10) {
-        var mine = Math.max(score, bestScore);
-        if (d.entries.length < 10) { t10.textContent = "Top 10 is wide open - you'd be on it."; }
-        else {
-          var tenth = d.entries[9].score;
-          t10.textContent = mine > tenth ? "Your best would make this month's top 10." : (tenth - mine) + ' points to crack this month’s top 10.';
-        }
-      }
-    }).catch(function () {});
-  }
-
-  // input: keyboard
-  window.addEventListener('keydown', function (ev) {
-    var tgt = ev.target;
-    if (tgt && (tgt.tagName === 'INPUT' || tgt.tagName === 'TEXTAREA' || tgt.isContentEditable)) return;
-    var k = ev.key;
-    var dir = null;
-    if (k === 'ArrowLeft' || k === 'a' || k === 'A') dir = 'left';
-    else if (k === 'ArrowRight' || k === 'd' || k === 'D') dir = 'right';
-    else if (k === 'ArrowUp' || k === 'w' || k === 'W') dir = 'up';
-    else if (k === 'ArrowDown' || k === 's' || k === 'S') dir = 'down';
-    if (dir) { ev.preventDefault(); move(dir); }
-  });
-
-  // input: swipe
-  var sx = 0, sy = 0, tracking = false;
-  boardEl.addEventListener('touchstart', function (ev) {
-    var t = ev.changedTouches[0]; sx = t.clientX; sy = t.clientY; tracking = true;
-  }, { passive: true });
-  boardEl.addEventListener('touchend', function (ev) {
-    if (!tracking) return; tracking = false;
-    var t = ev.changedTouches[0];
-    var dx = t.clientX - sx, dy = t.clientY - sy;
-    if (Math.abs(dx) < 24 && Math.abs(dy) < 24) return;
-    if (Math.abs(dx) > Math.abs(dy)) move(dx > 0 ? 'right' : 'left');
-    else move(dy > 0 ? 'down' : 'up');
-  }, { passive: true });
-
-  // Prompt to add the Mini App after the first submit (Mini App only; no-ops elsewhere).
-  var promptedAdd = false;
-  function tryAddApp() {
-    if (promptedAdd) return; promptedAdd = true;
-    try { if (window.ZABAL && window.ZABAL.addApp) window.ZABAL.addApp(); } catch (e) {}
-  }
-  // Brag your score into /zabal (Farcaster) or X, with a referral-tagged play link.
-  var shareRef = '';
-  var myRank = null;   // set from the server after a counted submit
-  var myBest = 0;      // best score this month (server truth when verified)
-  function playUrl() { return 'https://zabalgamez.com/play' + (shareRef ? '?ref=' + encodeURIComponent(shareRef) : ''); }
-  function shareScore(platform) {
-    var tile = bestTileEl.textContent || 'ZAO';
-    var shown = Math.max(score, myBest, bestScore);
-    var text = 'I climbed to ' + tile + ' on ZAO 2048 - ' + shown + ' points. How far through the ZABAL Gamez workshop season can you get?';
-    var url = playUrl();
-    if (window.ZABAL && window.ZABAL.share) {
-      window.ZABAL.share({ platform: platform, text: text, url: url, target: 'play-score-' + platform });
-    } else {
-      var u = platform === 'x'
-        ? 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text + ' ' + url)
-        : 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url);
-      window.open(u, '_blank', 'noopener');
-    }
-  }
-  document.getElementById('new-game').addEventListener('click', newGame);
-  // Win / game-over modal actions (delegated; click backdrop to dismiss).
-  document.getElementById('modal').addEventListener('click', function (e) {
-    if (e.target === this) { hideModal(); return; }
-    var b = e.target.closest ? e.target.closest('[data-action]') : null;
-    if (!b) return;
-    var a = b.getAttribute('data-action');
-    if (a === 'close') hideModal();
-    else if (a === 'play') { hideModal(); newGame(); }
-    else if (a === 'share') shareScore('farcaster');
-    else if (a === 'submit') { doSubmit(false); hideModal(); }
-  });
-  document.getElementById('share-fc').addEventListener('click', function () { shareScore('farcaster'); });
-  document.getElementById('share-x').addEventListener('click', function () { shareScore('x'); });
-
-  // prefill handle from the Mini App user, and credit a referrer if this is a ?ref= link
-  setTimeout(function () {
-    try {
-      if (window.ZABAL && window.ZABAL.getUser) {
-        window.ZABAL.getUser().then(function (u) {
-          if (u && u.username) {
-            authed = true;
-            shareRef = u.username;
-            handleEl.value = u.username;
-            handleEl.setAttribute('readonly', 'readonly');
-            setStatus('Playing as @' + u.username + ' - your score auto-submits, no typing.');
-          }
-        }).catch(function () {});
-      }
-      var ref = new URLSearchParams(location.search).get('ref');
-      if (ref && window.ZABAL && window.ZABAL.refer) window.ZABAL.refer(ref);
-    } catch (e) {}
-  }, 800);
-
-  // expand/collapse a codex entry to read the full recap + how it connects
-  var codexEl = document.getElementById('codex');
-  if (codexEl) codexEl.addEventListener('click', function (e) {
-    var btn = e.target.closest ? e.target.closest('.cx-toggle') : null;
-    if (!btn) return;
-    var full = btn.parentNode.querySelector('.cx-full');
-    if (full) full.hidden = !full.hidden;
-  });
-
-  build();
-  newGame();
-  // Load the real sessions, then reseed so the tiles are random ZAO people each game.
-  loadSessions().then(function () { return resolvePfps(); }).then(function () { newGame(); });
+  // Game of the day: date-seeded so the whole community lands on the SAME game
+  // each day - shared boards need shared attention.
+  (function () {
+    var host = document.getElementById('qp-daily');
+    if (!host) return;
+    var dayIndex = Math.floor(Date.now() / 86400000);
+    var g = GAMES[dayIndex % GAMES.length];
+    host.innerHTML = '<a class="qp-card" style="border-color: var(--gold);" href="' + g.url + '">' +
+      '<span class="tag" style="color: var(--gold);">Game of the day</span>' +
+      '<h2>' + g.name + '</h2><p>' + g.desc + ' Everyone plays the same game today - the board fight is live.</p>' +
+      '<span class="go">Play today\'s game -&gt;</span></a>';
+  })();
 })();
 </script>
-
-<script defer src="/assets/recording-comments.js"></script>
 <script defer src="/assets/site-nav.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>

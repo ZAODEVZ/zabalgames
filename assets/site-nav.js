@@ -19,6 +19,7 @@
       ['All the details', '/info.html'],
       ['Schedule', '/#schedule'],
       ['About', '/about.html'],
+      ['Press / media kit', '/press.html'],
       ['Changelog', '/changelog.html']
     ]],
     ['Build', [
@@ -27,6 +28,9 @@
       ['Adoptable projects', '/projects.html'],
       ['Build ideas', '/build-ideas.html'],
       ['Builder playbook', '/playbook.html'],
+      ['Bounties', '/bounties.html'],
+      ['Grants + funding', '/grants.html'],
+      ['July build days', '/build-days.html'],
       ['Lead a workshop', '/lead.html'],
       ['Mentor', '/mentor.html'],
       ['Dream leads', '/dream-leads.html'],
@@ -41,7 +45,9 @@
       ['Live now', '/live.html'],
       ['The arcade', '/game'],
       ['Season Run (play the buildathon)', '/quest'],
-      ['ZAO 2048', '/play'],
+      ['Invite a builder', '/invite.html'],
+      ['Quick play (2 random games)', '/play'],
+      ['ZAO 2048', '/game/2048'],
       ['What should you build?', '/game/build-quiz'],
       ['Claim a pop', '/pops'],
       ['Daily update', '/today.html'],

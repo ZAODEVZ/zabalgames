@@ -1,0 +1,12 @@
+{
+  "name": "zabalgamez-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server for the ZABAL Gamez agent gateway - pull your status, push submissions.",
+  "bin": { "zabalgamez-mcp": "./zabalgamez-mcp.mjs" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  }
+}

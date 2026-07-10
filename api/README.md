@@ -362,6 +362,16 @@ without any IPFS/Pinata hosting (used by `assets/clip-claim.js` as the claim `ur
 - `GET ?v=<ytId>&c=<clipUrl>&t=<title>&d=<description>` -> `{ name, description, image, external_url, animation_url }`. `image` is the YouTube thumbnail (stable, hotlinkable).
 - No auth, no KV - pure function of the query string.
 
+### `POST /api/win-notify`
+Win webhook receiver (built by ZOL, PR #518). Set `SUBMIT_NOTIFY_URL=https://zabalgamez.com/api/win-notify`
+so submission notifies flow here. Texts containing `community-win` are queued to the
+`zabal:winqueue` Redis list for ZOL to cast; everything else is a logged no-op.
+- Optional auth: if `WIN_HOOK_SECRET` is set, requires `?token=` or Bearer. Unset = open (harden by setting it).
+
+### `GET /api/win-drain`
+Token-gated queue drain for ZOL's caster cron. Fails closed without `WIN_HOOK_SECRET`.
+- `GET ?token=<WIN_HOOK_SECRET>&n=1` -> `{ items: [{ text, ts }] }` (LPOP oldest-first, n max 10).
+
 ### `GET/POST /api/profile`
 Open builder profiles (docs/submission-system-spec.md). Handle is the anchor; Farcaster
 (Quick Auth), GitHub (nonce proof), and a wallet attach as optional proofs. Renders at
@@ -369,6 +379,15 @@ Open builder profiles (docs/submission-system-spec.md). Handle is the anchor; Fa
 - `GET ?handle=<h>` -> `{ ok, profile }` (public)
 - `POST { action:'upsert', handle, displayName?, bio?, links?, github?, editToken? }`
 Used by profile.html, builder.html.
+
+### `GET/POST /api/agent` (agent gateway)
+Token-authed programmatic access for builders. A per-builder token is MINTED when
+a human approves their FIRST submission (see the submissions approve action) - that
+manual gate is the anti-bot wall. See `mcp/` for the MCP server + REST docs.
+- `GET` + `Authorization: Bearer zg_...` -> `{ ok, builder:{handle}, submissions:[...], counts }` (pull)
+- `POST { action:'submit', promptId?, answer, fields?, url? }` + Bearer -> `{ ok, id, status:'pending' }` (push, attributed to the token's builder)
+- `POST { action:'claim' }` + Quick Auth JWT -> `{ ok, token }` (a verified builder retrieves their own token)
+- A token only grants the holder's own data + creating submissions as themselves. Never admin, never others.
 
 ### `GET/POST /api/submissions`
 On-site UGC + builder submissions - the site is the source of truth. Stored pending,

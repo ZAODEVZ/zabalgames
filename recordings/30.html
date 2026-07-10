@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster - Adrienne Shulman - ZABAL Gamez Season 1</title>
+  <meta name="description" content="Adrienne Shulman, co-founder and co-host of GM Farcaster, walks through how she built Warpee - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment">
+  <link rel="canonical" href="https://zabalgamez.com/recordings/30">
+  <meta property="og:title" content="ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster - Adrienne Shulman - ZABAL Gamez">
+  <meta property="og:description" content="Adrienne Shulman, co-founder and co-host of GM Farcaster, walks through how she built Warpee - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment">
+  <meta property="og:type" content="video.other">
+  <meta property="og:url" content="https://zabalgamez.com/recordings/30">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster - Adrienne Shulman">
+  <meta name="twitter:description" content="Adrienne Shulman, co-founder and co-host of GM Farcaster, walks through how she built Warpee - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: GM Farcaster","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/30","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <meta name="fc:disable-native-gestures" content="1">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); margin-top: 1rem; }
+    .rec-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
+    .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
+    .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
+    .rec-note { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 10px; background: var(--surface-2); padding: 0.85rem 1rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; }
+    .rec-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.9rem 0 0.2rem; }
+    .rec-link { font-size: 0.82rem; padding: 0.34rem 0.75rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); font-family: inherit; cursor: pointer; }
+    .rec-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
+    .rec-link:hover { filter: brightness(1.12); }
+    .rec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 1.3rem 0 0.4rem; }
+    .rec-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+    .rec-chapters li { margin: 0; }
+    .rec-chapter { display: flex; gap: 0.7rem; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 0.34rem 0.5rem; color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer; }
+    .rec-chapter:hover { background: var(--surface-2); }
+    .rec-chapter .t { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); min-width: 3.2rem; }
+    .rec-topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.3rem 0 0; }
+    .rec-topic { font-size: 0.7rem; letter-spacing: 0.02em; padding: 0.14rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-2); }
+    .rec-takeaways { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+    .rec-takeaways li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/speakers">Speakers</a>
+      <a href="/#schedule">Schedule</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <nav id="rec-nav" class="rec-nav" aria-label="Recording navigation"></nav>
+
+  <header class="hero" style="padding-bottom: 0.6rem;">
+    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / GM Farcaster</div>
+    <h1>ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster</h1>
+    <p class="rec-by">
+      Adrienne Shulman <span class="dot">&middot;</span> @adrienne <span class="dot">&middot;</span> GM Farcaster
+      <span class="dot">&middot;</span> <span class="rec-format">Builder track - Live talk plus Q and A, recorded</span>
+    </p>
+    <div class="rec-tech" title="How technical this talk is, 0 to 10"><span class="rt-label">Technical</span><span class="rt-bar"><span class="rt-fill" style="width:50%"></span></span><span class="rt-num">5/10</span><span class="rt-tag t-mid">Some technical depth</span></div>
+  </header>
+
+  <div class="rec-embed">
+    <iframe id="rec-player"
+      src="https://www.youtube.com/embed/t0LntX592vQ?rel=0"
+      title="ZABAL Gamez Workshop: ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
+  </div>
+
+  <div class="rec-links">
+    <a class="rec-link primary" href="https://youtu.be/t0LntX592vQ" target="_blank" rel="noopener">Watch on YouTube</a>
+    <a class="rec-link" href="#rec-transcript">Read the transcript</a>
+    <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
+    <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
+  </div>
+
+  <section class="section" style="margin-top: 1.4rem;">
+    <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
+      Adrienne Shulman, co-founder and co-host of GM Farcaster, walks through how she built Warpee - the AI agent that knows everything GM Farcaster has ever covered. She traces it from the late-2024 moment agents exploded on Farcaster, through the first messy MVP, to what Warpee is today: an agentic loop that picks its own tools, adds new skills, and reviews and improves its own answers with Claude Code. It doubles as a beginner-friendly guide to building your first agent - pick the one thing your bot does better than anyone, ship the smallest version that works, and build in public. Along the way she explains, in plain language, how an agent on Farcaster actually works: the account, a public API, Neynar webhooks, turning video into searchable text, and embeddings in a vector database.
+    </p>
+
+    <div class="rec-label">Best moments</div>
+    <ul class="rec-chapters" id="rec-chapters">
+      <li><button class="rec-chapter" data-start="0"><span class="t">0:00</span><span>Welcome and intro</span></button></li>
+      <li><button class="rec-chapter" data-start="90"><span class="t">1:30</span><span>Who is Adrienne and what is GM Farcaster</span></button></li>
+      <li><button class="rec-chapter" data-start="239"><span class="t">3:59</span><span>Why livestreaming is the last real scarcity</span></button></li>
+      <li><button class="rec-chapter" data-start="349"><span class="t">5:49</span><span>The problem Warpee solves: searchable Farcaster history</span></button></li>
+      <li><button class="rec-chapter" data-start="488"><span class="t">8:08</span><span>The late-2024 AI agent moment and the aha</span></button></li>
+      <li><button class="rec-chapter" data-start="587"><span class="t">9:47</span><span>Pick the one thing your bot does better than anyone</span></button></li>
+      <li><button class="rec-chapter" data-start="625"><span class="t">10:25</span><span>Build in public</span></button></li>
+      <li><button class="rec-chapter" data-start="789"><span class="t">13:09</span><span>What an AI agent on Farcaster actually is</span></button></li>
+      <li><button class="rec-chapter" data-start="826"><span class="t">13:46</span><span>Step one: create the Farcaster account</span></button></li>
+      <li><button class="rec-chapter" data-start="854"><span class="t">14:14</span><span>The public API and Neynar webhooks</span></button></li>
+      <li><button class="rec-chapter" data-start="967"><span class="t">16:07</span><span>Turning video into searchable text with Deepgram</span></button></li>
+      <li><button class="rec-chapter" data-start="1005"><span class="t">16:45</span><span>Embeddings and a vector database, explained simply</span></button></li>
+      <li><button class="rec-chapter" data-start="1150"><span class="t">19:10</span><span>Giving the agent a personality with an LLM prompt</span></button></li>
+      <li><button class="rec-chapter" data-start="1294"><span class="t">21:34</span><span>Shipping V1: the messy, proud MVP</span></button></li>
+      <li><button class="rec-chapter" data-start="1444"><span class="t">24:04</span><span>From a workflow router to an agentic loop</span></button></li>
+      <li><button class="rec-chapter" data-start="1527"><span class="t">25:27</span><span>Warpee's skills and self-improvement with Claude Code</span></button></li>
+      <li><button class="rec-chapter" data-start="1643"><span class="t">27:23</span><span>Casting as a bot with a Neynar signer</span></button></li>
+      <li><button class="rec-chapter" data-start="1763"><span class="t">29:23</span><span>Imposter syndrome and shipping imperfect work</span></button></li>
+      <li><button class="rec-chapter" data-start="1806"><span class="t">30:06</span><span>Where to find Adrienne and GM Farcaster</span></button></li>
+    </ul>
+
+    <div class="rec-label">Topics</div>
+    <div class="rec-topics">
+      <span class="rec-topic">Building Warpee</span>
+      <span class="rec-topic">AI agents on Farcaster</span>
+      <span class="rec-topic">Neynar webhooks and signers</span>
+      <span class="rec-topic">Embeddings and vector search</span>
+      <span class="rec-topic">Agentic loops and skills</span>
+      <span class="rec-topic">Building in public</span>
+    </div>
+
+    <div class="rec-label">Key takeaways</div>
+    <ul class="rec-takeaways">
+      <li>Pick the one thing your bot can do that no other bot does, and start there.</li>
+      <li>Ship the smallest version that works, then let real use tell you what to build next.</li>
+      <li>Build in public - the timeline hands you the exact terminology and help you need.</li>
+      <li>An agent on Farcaster is just an account plus one public API that reads a mention and posts a reply.</li>
+      <li>Modern agents replace hard-coded routes with an agentic loop: give it tools and let it choose.</li>
+    </ul>
+  </section>
+
+  <p style="margin-top: 1.4rem; font-size: 0.85rem;"><a href="/recordings">All recordings</a> &nbsp;-&nbsp; <a href="/recaps">Session recaps</a> &nbsp;-&nbsp; <a href="/#schedule">Upcoming schedule</a></p>
+
+  <section class="section rec-transcript-section">
+    <div class="rec-label">Transcript</div>
+    <p style="color:var(--text-dim);font-size:0.82rem;margin:0 0 0.5rem;">Hover any line and click # to copy a link straight to it.</p>
+    <div id="rec-transcript" data-src="/data/streams/zabal-games-workshops/raw/transcripts/2026-06-30-adrienne-gm-farcaster-warpy.md" data-yt="t0LntX592vQ"></div>
+  </section>
+
+  <section id="zg-clip-bounty"></section>
+
+  <section id="zg-clips"></section>
+
+  <section id="zg-clip-claim"></section>
+
+  <section class="section rec-related">
+    <div class="rec-label">Related sessions</div>
+    <ul style="list-style: none; padding: 0; margin: 0.4rem 0 0;">
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/11" style="color: var(--cyan); text-decoration: none; font-weight: 600;">Non-Dev to Shipped: building Baraza Protocol with AI tools</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Aziz (MotoMoto) - Build Africa DAO</span></li>
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/28" style="color: var(--cyan); text-decoration: none; font-weight: 600;">ZABAL GAMEZ Workshop w/Matt Lee from Tortoise</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Matt Lee - Tortoise</span></li>
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/24" style="color: var(--cyan); text-decoration: none; font-weight: 600;">ZABAL GAMEZ Workshop w/topocount from Neynar</a> <span style="color: var(--text-dim); font-size: 0.85rem;">topocount - Neynar</span></li>
+    </ul>
+  </section>
+
+  <section id="zg-comments"></section>
+
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Data">
+      <h4>Data</h4>
+      <a href="/speakers.html">Speakers</a>
+      <a href="/recordings.html">Recordings</a>
+      <a href="/recaps">Session Recaps</a>
+      <a href="/streams.html">Streams</a>
+      <a href="/#schedule">Schedule</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/links.html">All Links</a>
+      <a href="/share.html">Share</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var YT_ID = "t0LntX592vQ";
+  var PAGE_URL = "https://zabalgamez.com/recordings/30";
+  var TOPICS = [
+    "how Warpee was built",
+    "building your first AI agent on Farcaster",
+    "what an agentic loop actually is",
+    "why building in public works",
+    "turning video into searchable text with embeddings"
+  ];
+
+  var player = document.getElementById('rec-player');
+  var chapters = document.getElementById('rec-chapters');
+  if (player && chapters) {
+    chapters.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.rec-chapter');
+      if (!b) return;
+      var start = parseInt(b.getAttribute('data-start') || '0', 10) || 0;
+      player.src = 'https://www.youtube.com/embed/' + YT_ID + '?rel=0&autoplay=1&start=' + start;
+      player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  document.querySelectorAll('.rec-watch-share').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!(window.ZABAL && window.ZABAL.share)) return;
+      var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
+      var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+      var text = "I'm watching ZABAL Gamez with Adrienne Shulman - " + topic;
+      window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-30-' + platform });
+    });
+  });
+})();
+</script>
+
+<script defer src="/assets/rec-nav.js"></script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/clip-bounty.js"></script>
+<script defer src="/assets/clip-gallery.js"></script>
+<script defer src="/assets/clip-claim.js"></script>
+<script defer src="/assets/recording-comments.js"></script>
+<script defer src="/assets/transcript.js"></script>
+</body>
+</html>

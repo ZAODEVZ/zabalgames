@@ -54,6 +54,10 @@
   var canon = document.querySelector('link[rel="canonical"]');
   var REC_URL = (canon && canon.href) || location.href.split('#')[0];
 
+  // Same recording id the comment/claim/gallery widgets key on (path slug, slashes kept) -
+  // used to register this bounty in the per-recording registry once it confirms.
+  var REC_ID = location.pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/i, '').toLowerCase().replace(/[^a-z0-9/_-]/g, '');
+
   var BOUNTY_NAME = ('Clip bounty: ' + REC_TITLE).slice(0, 120);
 
   // ---- styles (injected once) ----
@@ -194,6 +198,15 @@
     var where = bountyUrl
       ? 'Live on POIDH: <a href="' + esc(bountyUrl) + '" target="_blank" rel="noopener">bounty #' + esc(bountyId) + '</a>.'
       : 'Find it on <a href="' + esc(acctUrl) + '" target="_blank" rel="noopener">your POIDH account</a> once Base finishes confirming.';
+
+    // Register this bounty against the recording so the claim + gallery widgets can look
+    // it up instead of requiring a manual paste. Best-effort - a registry hiccup must
+    // never undo or block the confirmed on-chain bounty.
+    if (bountyId && Z.recordClipBounty) {
+      try {
+        Z.recordClipBounty({ recId: REC_ID, bountyId: bountyId, amountEth: amountEth, txHash: txHash, from: from });
+      } catch (e) { /* ignore */ }
+    }
     mount.querySelector('.zgb-box').innerHTML =
       '<p class="zgb-name"><strong>Bounty created.</strong> ' + esc(amountEth) +
       ' ETH is locked on Base for the best clip of this recording.</p>' +

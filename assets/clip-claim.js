@@ -174,8 +174,9 @@
           '<input id="zgk-clip" class="zgk-in" type="url" placeholder="https://youtube.com/clip/... or a Farcaster cast" inputmode="url">' +
         '</div>' +
         '<div class="zgk-step">' +
-          '<label class="zgk-label" for="zgk-bounty"><span class="zgk-num">3.</span> Which bounty? (paste its poidh.xyz link or number)</label>' +
+          '<label class="zgk-label" id="zgk-bounty-label" for="zgk-bounty"><span class="zgk-num">3.</span> Which bounty? (paste its poidh.xyz link or number)</label>' +
           '<input id="zgk-bounty" class="zgk-in" type="text" placeholder="poidh.xyz/base/bounty/1249  or  1249">' +
+          '<p class="zgk-hint" id="zgk-bounty-hint" style="display:none;"></p>' +
         '</div>' +
         '<div class="zgk-step">' +
           '<label class="zgk-label" for="zgk-title"><span class="zgk-num">4.</span> Title</label>' +
@@ -186,6 +187,34 @@
       '<p class="zgk-note" id="zgk-note"></p>';
 
     document.getElementById('zgk-submit').addEventListener('click', onSubmit);
+    fetchKnownBounty();
+  }
+
+  // Look up this recording's own clip bounty (registered by assets/clip-bounty.js via
+  // api/clip-bounties.mjs) and pre-fill step 3 so most claimants never have to paste an
+  // id by hand. Still editable - a viewer claiming against a different/older bounty can
+  // overwrite it. Best-effort: no registry entry (or a fetch failure) just leaves the
+  // manual-paste flow exactly as it was.
+  function fetchKnownBounty() {
+    fetch('/api/clip-bounties?rec=' + encodeURIComponent(REC_ID), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var bounties = (d && d.bounties) || [];
+        if (!bounties.length) return;
+        var b = bounties[0]; // newest first
+        var input = document.getElementById('zgk-bounty');
+        var label = document.getElementById('zgk-bounty-label');
+        var hint = document.getElementById('zgk-bounty-hint');
+        if (input && !input.value) input.value = b.bountyId;
+        if (label) label.innerHTML = '<span class="zgk-num">3.</span> Bounty (auto-detected for this recording)';
+        if (hint) {
+          var amt = b.amountEth ? (b.amountEth + ' ETH pot - ') : '';
+          hint.style.display = 'block';
+          hint.innerHTML = amt + 'this recording already has <a href="https://poidh.xyz/base/bounty/' + esc(b.bountyId) +
+            '" target="_blank" rel="noopener">bounty #' + esc(b.bountyId) + '</a>. Change it above if you mean a different one.';
+        }
+      })
+      .catch(function () { /* leave manual paste as-is */ });
   }
 
   function onSubmit() {

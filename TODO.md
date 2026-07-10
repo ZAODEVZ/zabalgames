@@ -3,7 +3,7 @@
 > The live state of the build. Updated as commits land. See `docs/research/701-canonical-state.md` for the canonical event-level decisions; this file tracks the actual build / launch tasks.
 
 **Last updated:** 2026-07-03 (July open-build month - live board in [CURRENT] below; June + pre-launch ship logs preserved beneath it).
-**Goal (July):** Builders shipping in public all month; judging pipeline live; Finals stack integration-ready by Aug 1.
+**Goal (July):** 200 distinct builders, multiple submissions each (set by Zaal 2026-07-04 - math + weekly ladder in `docs/july-goal-200-builders.md`; live bar on /submissions). Judging pipeline live; Finals stack integration-ready by Aug 1.
 
 ---
 

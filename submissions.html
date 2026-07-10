@@ -151,6 +151,27 @@
     </script>
   </section>
 
+  <section class="section" id="goal-block" style="margin-top:0.6rem;">
+    <h2 style="font-size:1.05rem;margin:0;">The July goal</h2>
+    <p class="lead" style="margin:0.2rem 0 0.7rem;font-size:0.9rem;">200 builders shipping this month - and not one-and-done: the goal is multiple submissions each. WIP drafts count as being in the game.</p>
+    <div style="border:1px solid var(--border);border-radius:10px;background:var(--surface-2);padding:0.9rem 1rem;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:0.6rem;flex-wrap:wrap;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--text-muted);"><b id="goal-n" style="color:var(--zabal);font-size:1.1rem;">0</b> of 200 builders</span>
+        <span id="goal-extra" style="font-size:0.78rem;color:var(--text-dim);"></span>
+      </div>
+      <div style="height:8px;border-radius:4px;background:rgba(255,255,255,0.07);margin-top:0.55rem;overflow:hidden;">
+        <div id="goal-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--zabal),var(--cyan));border-radius:4px;transition:width 0.6s ease;"></div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-dim);margin:0.55rem 0 0;">Counted from real activity: season submissions, approved posts, and public WIP drafts. <a href="/submit" style="color:var(--cyan);">Add yours</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="wip-block" style="margin-top:0.6rem;">
+    <h2 style="font-size:1.05rem;margin:0;">Works in progress <span id="wip-count" style="color:var(--text-dim);font-weight:400;font-size:0.9rem;"></span></h2>
+    <p class="lead" style="margin:0.2rem 0 0.6rem;font-size:0.9rem;">Not done yet, on purpose. Open a WIP, leave a comment, shape it before it ships.</p>
+    <div id="wip-list" class="su-wrap" style="margin:0;max-width:none;"><p class="empty">Loading works in progress...</p></div>
+  </section>
+
   <div class="su-wrap" id="su-root"><p class="empty" style="padding-top:0.6rem;">Loading...</p></div>
 
   <section id="zg-comments"></section>
@@ -163,6 +184,27 @@
   'use strict';
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function when(ts) { try { return new Date(ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); } catch (e) { return ''; } }
+
+  // July goal: 200 distinct builders, multiple submissions each. Counts real
+  // activity across three live sources; renders once per source as each loads.
+  var goalPeople = {}, goalTotal = 0;
+  function goalCount(list, src) {
+    (list || []).forEach(function (s) {
+      var who = (s.handle || (s.builder && (s.builder.handle || s.builder.fid)) || '').toString().toLowerCase();
+      if (who) goalPeople[who] = (goalPeople[who] || 0) + 1;
+      goalTotal++;
+    });
+    var names = Object.keys(goalPeople);
+    var multi = names.filter(function (k) { return goalPeople[k] > 1; }).length;
+    var n = document.getElementById('goal-n'), bar = document.getElementById('goal-bar'), ex = document.getElementById('goal-extra');
+    if (n) n.textContent = String(names.length);
+    if (bar) bar.style.width = Math.min(100, (names.length / 200) * 100) + '%';
+    if (ex) ex.textContent = goalTotal + ' submission' + (goalTotal === 1 ? '' : 's') + (multi ? ' - ' + multi + ' repeat builder' + (multi === 1 ? '' : 's') : '');
+  }
+  fetch('/api/submission-intake?feed=recent&limit=60', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) { goalCount((d && d.items) || [], 'intake'); })
+    .catch(function () {});
 
   // id from /submissions/<id> path or ?id=
   var m = location.pathname.match(/\/submissions\/([0-9]+)/);
@@ -208,6 +250,40 @@
     });
   }
 
+  function renderDraft(s) {
+    hero.querySelector('h1').innerHTML = 'Work in progress <span class="accent">#' + esc(s.id) + '</span>';
+    hero.querySelector('.lead').textContent = 'A ZABAL Gamez draft - still being shaped. Comments below feed straight back to the builder.';
+    root.className = 'su-wrap su-single';
+    var mine = '';
+    try { mine = localStorage.getItem('zg-sub-token-' + s.id) || ''; } catch (e) {}
+    root.innerHTML = '<div class="su-card" style="border-left:3px solid var(--gold);">' +
+      '<div class="su-top"><span class="su-prompt">' + esc(s.promptId || 'submission') + '</span>' +
+      '<span class="ip-badge" style="border-color:var(--gold);color:var(--gold);font-size:0.62rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.1rem 0.5rem;border-radius:999px;border:1px solid;">WIP</span>' +
+      byline(s) + '</div>' +
+      (s.answer ? '<div class="su-answer">' + esc(s.answer) + '</div>' : '') + fields(s) +
+      '<div class="su-foot">Work in progress - comment below to shape it.</div></div>' +
+      '<div class="su-actions"><button class="btn primary" id="su-share" type="button">Ask for feedback</button>' +
+      (mine ? '<button class="btn" id="su-publish" type="button">Publish for review</button>' : '') +
+      '<a class="btn" href="/submissions">All submissions</a></div>';
+    var sb = document.getElementById('su-share');
+    if (sb) sb.addEventListener('click', function () {
+      var text = 'Work in progress for ZABAL Gamez' + (s.handle ? ' from @' + s.handle : '') + '. Not done yet, on purpose - come tell me what would make it better:';
+      var url = 'https://zabalgamez.com/submissions?id=' + s.id;
+      if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+      else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+    });
+    var pb = document.getElementById('su-publish');
+    if (pb) pb.addEventListener('click', function () {
+      pb.disabled = true; pb.textContent = 'Publishing...';
+      fetch('/api/submissions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'publish', id: s.id, editToken: mine }) })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.ok) { pb.textContent = 'In review'; try { localStorage.removeItem('zg-sub-token-' + s.id); } catch (e) {} }
+          else { pb.disabled = false; pb.textContent = 'Publish for review'; }
+        }).catch(function () { pb.disabled = false; pb.textContent = 'Publish for review'; });
+    });
+  }
+
   function renderFeed(list) {
     if (!list.length) { root.innerHTML = '<div class="empty">No approved submissions yet. <a href="/submit" style="color:var(--cyan)">Be the first</a>.</div>'; return; }
     root.innerHTML = list.map(cardHtml).join('') + '<p class="su-note"><a href="/submit">Make a submission -&gt;</a></p>';
@@ -219,6 +295,7 @@
       .then(function (d) {
         var s = d && d.submission;
         if (!s) { root.innerHTML = '<div class="empty">Submission not found. <a href="/submissions" style="color:var(--cyan)">See all submissions</a>.</div>'; return; }
+        if (s.status === 'draft') { renderDraft(s); return; }
         if (s.status !== 'approved') {
           hero.querySelector('h1').innerHTML = 'Submission <span class="accent">#' + esc(s.id) + '</span>';
           root.innerHTML = '<div class="empty">This submission is ' + esc(s.status) + ' - it shows here once approved. <a href="/submissions" style="color:var(--cyan)">See approved submissions</a>.</div>';
@@ -233,8 +310,31 @@
       .then(function (d) {
         if (d && d.configured === false) { root.innerHTML = '<div class="empty">Submissions are not live yet. <a href="/submit" style="color:var(--cyan)">Submit on the magnet</a> in the meantime.</div>'; return; }
         renderFeed((d && d.submissions) || []);
+        goalCount((d && d.submissions) || [], 'approved');
       })
       .catch(function () { root.innerHTML = '<div class="empty">Could not load submissions right now.</div>'; });
+
+    // WIP drafts rail
+    fetch('/api/submissions?feed=drafts&limit=30', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var wl = document.getElementById('wip-list'), wc = document.getElementById('wip-count');
+        var list = (d && d.submissions) || [];
+        if (wc) wc.textContent = list.length ? '(' + list.length + ')' : '';
+        if (!wl) return;
+        if (!list.length) { wl.innerHTML = '<p class="empty">No open drafts right now. <a href="/submit" style="color:var(--cyan)">Start one as a WIP</a> and let people shape it with you.</p>'; return; }
+        wl.innerHTML = list.map(function (s) {
+          var text = (s.answer || '').replace(/\s+/g, ' ').trim().slice(0, 140);
+          return '<a class="su-card" style="display:block;text-decoration:none;color:inherit;border-left:3px solid var(--gold);" href="/submissions?id=' + esc(s.id) + '">' +
+            '<div class="su-top"><span class="su-prompt">' + esc(s.promptId || 'submission') + '</span>' +
+            '<span style="font-size:0.6rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.08rem 0.45rem;border-radius:999px;border:1px solid var(--gold);color:var(--gold);">WIP</span>' +
+            (s.handle ? '<span class="su-by">@' + esc(s.handle) + '</span>' : '') + '</div>' +
+            (text ? '<div class="su-answer" style="font-size:0.9rem;color:var(--text-muted);">' + esc(text) + (s.answer && s.answer.length > 140 ? '...' : '') + '</div>' : '') +
+            '<div class="su-foot">Open it, leave a comment -&gt;</div></a>';
+        }).join('');
+        goalCount(list, 'drafts');
+      })
+      .catch(function () {});
   }
 })();
 </script>

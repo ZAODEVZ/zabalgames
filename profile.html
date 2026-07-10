@@ -210,7 +210,10 @@
         post({ action: 'github-challenge' }).then(function (d) {
           ghC.disabled = false;
           if (d && d.ok) {
-            ghS.innerHTML = 'Add this to your GitHub bio, then verify: <span class="mono">' + esc(d.nonce) + '</span><br>' + esc(d.where || '');
+            var proof = d.proof || d.nonce;
+            ghS.innerHTML = 'Paste this into your GitHub bio, then verify: <span class="mono">' + esc(proof) + '</span><br>' + esc(d.where || '') + ' <button class="btn" id="gh-copy" type="button" style="margin-top:0.4rem;">Copy</button>';
+            var cp = document.getElementById('gh-copy');
+            if (cp) cp.addEventListener('click', function () { try { navigator.clipboard.writeText(proof); cp.textContent = 'Copied'; } catch (e) {} });
             ghV.style.display = '';
           } else { ghS.textContent = (d && (d.error || d.reason)) || 'Could not start verification.'; }
         }).catch(function () { ghC.disabled = false; ghS.textContent = 'Error.'; });

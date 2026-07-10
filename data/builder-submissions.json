@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "_schema": {
+    "note": "Manually-captured builder submissions for ZABAL Gamez. Durable record; the live /submissions board is KV-fed from public activity, so these are the source to promote there (builder posts publicly OR an operator inserts via /api/submission-intake).",
+    "status": "partial (WIP, not fully complete) | complete",
+    "captured_date": "YYYY-MM-DD"
+  },
+  "submissions": [
+    {
+      "builder": "ghostmintops",
+      "name": "Brandon (ghostmintops)",
+      "farcaster": "https://farcaster.xyz/ghostmintops",
+      "github": "https://github.com/BrandonDucar",
+      "status": "partial",
+      "captured_date": "2026-07-08",
+      "projects": [
+        {
+          "name": "ZABAL Recording Scout",
+          "live": "https://dreamnet-zabal-scout.pages.dev/",
+          "desc": "Turns the ZABAL recording archive into a builder-facing board - pick a lane, find useful sessions, open recordings/transcripts, turn them into July build ideas. Includes a human-reviewed Farcaster Artist Scout concept.",
+          "status": "partial"
+        },
+        {
+          "name": "Proof Drop",
+          "live": "https://zabalgamez.com/builds/proof-drop",
+          "desc": "A tool that helps builders prove what they shipped, hashed locally, post-ready. Already the first July build on the site.",
+          "status": "partial"
+        },
+        {
+          "name": "WaveWarZ Gravity Board",
+          "live": "https://wavewarz-gravity-board.pages.dev/",
+          "desc": "WaveWarZ dashboard UI upgrade / integration - visualizes more than cumulative volume.",
+          "status": "partial"
+        },
+        {
+          "name": "Founder Nexus",
+          "live": "https://founder-nexus.pages.dev/",
+          "desc": "Founder/ecosystem discovery surface.",
+          "status": "partial"
+        },
+        {
+          "name": "DreamNet Publishing",
+          "live": "https://farcaster.xyz/miniapps/61T0iOhBDFt5/dreamnet-publishing",
+          "desc": "Farcaster mini-app publishing house.",
+          "status": "partial"
+        },
+        {
+          "name": "ZAO music (Droid With A Wallet / ZAO anthem)",
+          "live": "https://suno.com/s/BZOXXv6agBdLvuZ6",
+          "desc": "Original ZAO/ZABAL songs made with Suno.",
+          "status": "partial"
+        },
+        {
+          "name": "IDE tutorial video series",
+          "desc": "Planned submission - setup + walkthrough videos for the top IDEs (Windsurf, Antigravity, VS Code), interactive with quizzes.",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "builder": "branth",
+      "name": "Branth (KORRO / Korrocorp)",
+      "x": "https://x.com/korrocorp",
+      "site": "https://korrocorp.com",
+      "status": "partial",
+      "captured_date": "2026-07-08",
+      "projects": [
+        {
+          "name": "WaveWarZ Bridge Portal",
+          "live": "https://wavewarz-bridge-portal.vercel.app/",
+          "desc": "ETH->SOL on-ramp so Base users can get SOL and join WaveWarZ battles/trading. Base->Solana via Mayan + Wormhole. Mobile-friendly, working testnet + mainnet.",
+          "status": "working"
+        },
+        {
+          "name": "Solana MCP",
+          "desc": "One-click MCP so any agent can connect and interact with the Solana chain.",
+          "status": "partial"
+        },
+        {
+          "name": "AI music generator",
+          "desc": "WIP AI music generation tool.",
+          "status": "partial"
+        },
+        {
+          "name": "Onklaud 5",
+          "desc": "Open-source AI fusion model pipeline (Kimi K2.7 + GLM 5.2 + DeepSeek V4 Pro) with cost-saving layers; positioned to match Fable 5 at a fraction of the cost.",
+          "status": "partial"
+        },
+        {
+          "name": "Agent battle arena",
+          "desc": "WIP agent battle arena.",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "builder": "jdwalka",
+      "name": "jdwalka (JohnDaWalka)",
+      "farcaster": "https://farcaster.xyz/jdwalka",
+      "github": "https://github.com/JohnDaWalka",
+      "status": "partial",
+      "captured_date": "2026-07-08",
+      "projects": [
+        {
+          "name": "Chroma Poker",
+          "repo": "https://github.com/Chroma-Poker",
+          "desc": "Farcaster poker app - live HUD, multi-site poker tracker, hand-history parsing. Iterating on bugs.",
+          "status": "partial"
+        },
+        {
+          "name": "Crypto Prediction Orchestrator",
+          "desc": "5/15-minute and hourly binary crypto prediction orchestrator connecting 22+ exchanges plus raw on-chain data to surface mispriced contracts / contrarian bets.",
+          "status": "partial"
+        },
+        {
+          "name": "Predictive apps Space",
+          "desc": "Hosts Farcaster Spaces on predictive apps and coding for the community.",
+          "status": "partial"
+        }
+      ]
+    }
+  ]
+}
