@@ -364,7 +364,7 @@
         var text = 'Just cleared "' + q.t + '" in ZABAL Gamez Season Run (+' + q.xp + ' XP). The build-a-thon is the game: zabalgamez.com/quest';
         try {
           if (window.ZABAL && window.ZABAL.composeCast) { window.ZABAL.composeCast(text, ['https://zabalgamez.com/quest']); return; }
-          if (window.ZABAL && window.ZABAL.share) { window.ZABAL.share(text, 'https://zabalgamez.com/quest'); return; }
+          if (window.ZABAL && window.ZABAL.share) { window.ZABAL.share({ platform: 'farcaster', text: text, url: 'https://zabalgamez.com/quest', target: 'quest-share' }); return; }
         } catch (err) {}
         window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text), '_blank', 'noopener');
       });
@@ -447,7 +447,7 @@
     var url = 'https://zabalgamez.com/quest';
     try {
       if (window.ZABAL && window.ZABAL.composeCast) { window.ZABAL.composeCast(text, [url]); return; }
-      if (window.ZABAL && window.ZABAL.share) { window.ZABAL.share(text, url); return; }
+      if (window.ZABAL && window.ZABAL.share) { window.ZABAL.share({ platform: 'farcaster', text: text, url: url, target: 'quest-share' }); return; }
     } catch (e) {}
     window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text), '_blank', 'noopener');
   });

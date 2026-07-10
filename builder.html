@@ -8,10 +8,21 @@
   <link rel="canonical" href="https://zabalgamez.com/builder">
   <meta property="og:title" content="Builder profile - ZABAL Gamez">
   <meta property="og:description" content="Every piece a builder has submitted this season, grouped by track: artist, builder, creator.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/builder">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Builder profile - ZABAL Gamez">
+  <meta name="twitter:description" content="Every piece a builder has submitted this season, grouped by track: artist, builder, creator.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the season card","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/builder","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the season card","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/builder","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
   <link rel="preconnect" href="https://esm.sh">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +63,7 @@
     <h1 id="bp-title">Loading...</h1>
     <p class="hero-sub" id="bp-sub"></p>
     <div id="bp-stats" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:0.8rem;"></div>
-    <div style="margin-top:0.9rem;"><button class="btn btn-primary" id="bp-share" type="button">Share this season card</button></div>
+    <div style="margin-top:0.9rem;"><button class="btn btn-primary" id="bp-share" type="button" hidden>Share this season card</button></div>
   </header>
 
   <section class="section"><div id="bp-body"><p class="bp-empty">Loading submissions...</p></div></section>
@@ -106,6 +117,9 @@
       CARD.ranks.slice(0, 3).forEach(function (r) { h += pill('#' + r.rank, r.game); });
       stats.innerHTML = h;
     }
+    // Only offer the share once the card has real numbers to cast.
+    var sb = document.getElementById('bp-share');
+    if (sb) sb.hidden = false;
   }
   function grab(url, fn) {
     pending++;

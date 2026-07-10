@@ -253,10 +253,8 @@
       ? 'ZAO Match in ' + moves + ' moves and ' + fmt(seconds) + ' - rank ' + myRank + ' on this month\'s board. Beat my spot.'
       : 'I cleared ZAO Match in ' + moves + ' moves and ' + fmt(seconds) + '. Pair the ZAO ecosystem at the ZABAL Gamez arcade.';
     var url = 'https://zabalgamez.com/game/memory';
-    try {
-      if (window.ZABAL && window.ZABAL.composeCast) { window.ZABAL.composeCast(text, [url]); return; }
-    } catch (e) {}
-    window.open('https://warpcast.com/~/compose?text=' + encodeURIComponent(text + ' ' + url), '_blank');
+    if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
   });
 
   loadBest();

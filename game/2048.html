@@ -128,7 +128,7 @@
   <header class="hero" style="padding-bottom: 0.4rem;">
     <div class="hero-eyebrow">The arcade</div>
     <h1>Insert Coin. <span class="accent">Play.</span></h1>
-    <p class="lead" style="margin-top: 0.3rem;">Merge the ZAO ecosystem brands all the way up to THE ZAO. Play for fun - your best score is saved on your device. Built on The ZAO's live rails - come build the rest.</p>
+    <p class="lead" style="margin-top: 0.3rem;">Merge the ZAO ecosystem brands all the way up to THE ZAO. Verified scores count on the monthly board. Built on The ZAO's live rails - come build the rest.</p>
   </header>
 
   <div class="game-picker" role="tablist" aria-label="Choose a game">
@@ -163,6 +163,10 @@
     </section>
 
     <aside class="lb-panel">
+      <h3>This month's board</h3>
+      <p class="note">Best verified score this month. Scores count inside the Farcaster app. Resets monthly.</p>
+      <ol id="board-list"><li class="muted">Loading the board...</li></ol>
+      <p class="hint" id="to-top10"></p>
       <p class="hint" style="margin-top: 0.4rem;"><a href="/#schedule">Upcoming sessions</a> - <a href="/recordings">Recordings</a></p>
     </aside>
   </div>
@@ -519,11 +523,12 @@
       var pop = {};
       for (var p = 0; p < grid.length; p++) { if (grid[p] && grid[p] !== prev[p]) pop[p] = 1; }
       render(pop);
-      if (!won) { for (var w = 0; w < grid.length; w++) { if (grid[w] >= 2048) { won = true; showWin(); break; } } }
+      if (!won) { for (var w = 0; w < grid.length; w++) { if (grid[w] >= 2048) { won = true; showWin(); autoSubmit(); break; } } }
       if (isOver()) {
         over = true;
         setStatus('Game over. Score ' + score + '.');
         showGameOver();
+        autoSubmit();
       }
     }
   }
@@ -597,16 +602,16 @@
   // No verified path available - submit with the known Mini App handle if we have one,
   // and only ask the user to type a handle as a true last resort (plain web visitor).
   function identitySubmit(silent) {
-    var h = handleEl.value.trim();
+    var h = handleEl ? handleEl.value.trim() : '';
     if (h) { webSubmit(h); return; }
     if (window.ZABAL && window.ZABAL.getUser) {
       window.ZABAL.getUser().then(function (u) {
-        if (u && u.username) { handleEl.value = u.username; webSubmit(u.username); }
-        else if (!silent) setStatus('Enter a Farcaster handle to get on the board.');
-      }).catch(function () { if (!silent) setStatus('Enter a Farcaster handle to get on the board.'); });
+        if (u && u.username) { if (handleEl) handleEl.value = u.username; webSubmit(u.username); }
+        else if (!silent) setStatus('Open ZABAL Gamez in Farcaster to get on the board.');
+      }).catch(function () { if (!silent) setStatus('Open ZABAL Gamez in Farcaster to get on the board.'); });
       return;
     }
-    if (!silent) setStatus('Enter a Farcaster handle to get on the board.');
+    if (!silent) setStatus('Open ZABAL Gamez in Farcaster to get on the board.');
   }
   // Web (no Quick Auth) submit. The board only counts verified players now (anti-cheat), so
   // an unverified POST comes back counted:false - we keep the local best but tell the player
@@ -637,7 +642,7 @@
 
   function loadBoard() {
     var list = document.getElementById('board-list');
-    if (!list) return; // leaderboard removed - play-for-fun, no board
+    if (!list) return;
     fetch('/api/game?game=zao2048', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
       var t10 = document.getElementById('to-top10');
       if (!d || !d.entries || !d.entries.length) {
@@ -734,8 +739,7 @@
           if (u && u.username) {
             authed = true;
             shareRef = u.username;
-            handleEl.value = u.username;
-            handleEl.setAttribute('readonly', 'readonly');
+            if (handleEl) { handleEl.value = u.username; handleEl.setAttribute('readonly', 'readonly'); }
             setStatus('Playing as @' + u.username + ' - your score auto-submits, no typing.');
           }
         }).catch(function () {});
@@ -756,6 +760,7 @@
 
   build();
   newGame();
+  loadBoard();
   // Load the real sessions, then reseed so the tiles are random ZAO people each game.
   loadSessions().then(function () { return resolvePfps(); }).then(function () { newGame(); });
 })();
