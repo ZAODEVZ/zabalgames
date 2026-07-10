@@ -1,6 +1,6 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-07-06 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 33 recordings, newest first.
+Generated 2026-07-10 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 33 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
@@ -56,8 +56,8 @@ Topics: Building Warpee, AI agents on Farcaster, Neynar webhooks and signers, Em
 
 ======================================================================
 [4] ZABAL GAMEZ Workshop w/James from Mental Wealth Academy
-workshop  |  2026-06-27
-Presenter: James (jamesdesign.eth), Mental Wealth Academy
+workshop  |  track: builder  |  2026-06-27
+Presenter: James (@jamesdesign.eth), Mental Wealth Academy
 Watch: https://zabalgamez.com/recordings/29
 Video: https://youtu.be/PghbLCx38t8
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-27-james-mental-wealth-academy.md
