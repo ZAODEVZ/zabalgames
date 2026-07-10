@@ -573,7 +573,9 @@ body > * { position: relative; z-index: 1; }
   font-family: var(--font-pixel);
   font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--text-muted); text-decoration: none;
-  position: relative; padding: 0.4rem 0.1rem;
+  /* Tap target: the pixel font is ~10px tall, so the padding does the work of
+     getting each link toward a comfortable thumb size on phones. */
+  position: relative; padding: 0.7rem 0.35rem;
   transition: color 0.18s var(--ease);
   white-space: nowrap;
 }
