@@ -35,6 +35,10 @@
     {
       "source": "/enter/:track",
       "destination": "/enter.html?track=:track"
+    },
+    {
+      "source": "/guest/:handle",
+      "destination": "/guest.html?handle=:handle"
     }
   ],
   "redirects": [
