@@ -71,7 +71,7 @@
   <div class="iv-box">
     <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace;">Your invite link</div>
     <div class="iv-handle" id="iv-handle-row" style="display: none;">
-      <input id="iv-handle" type="text" placeholder="your Farcaster handle" maxlength="32" autocomplete="off">
+      <input id="iv-handle" type="text" placeholder="your Farcaster handle" aria-label="Your Farcaster handle" maxlength="32" autocomplete="off">
     </div>
     <div class="iv-link" id="iv-link">zabalgamez.com/start</div>
     <div class="iv-actions">
@@ -143,6 +143,7 @@
     var url = myLink();
     if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
     else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+    var b = this; b.textContent = 'Composer opened'; setTimeout(function () { b.textContent = 'Cast the invite'; }, 1800);
   });
 
   // No public leaderboard on purpose - a referrers board is exactly what breeds
