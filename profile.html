@@ -238,7 +238,7 @@
         wSave.disabled = true; wS.textContent = 'Attaching...';
         post({ action: 'wallet', wallet: w }).then(function (d) {
           wSave.disabled = false;
-          if (d && d.ok) { wS.textContent = 'Wallet attached - your collectible will airdrop here when approved.'; profile.wallet = w; }
+          if (d && d.ok) { wS.textContent = 'Wallet attached - your collectible arrives here when approved.'; profile.wallet = w; }
           else { wS.textContent = (d && (d.error || d.reason)) || 'Could not attach.'; }
         }).catch(function () { wSave.disabled = false; wS.textContent = 'Error.'; });
       });

@@ -645,7 +645,7 @@
     fetch('/api/game?game=zao2048', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
       var t10 = document.getElementById('to-top10');
       if (!d || !d.entries || !d.entries.length) {
-        list.innerHTML = '<li class="muted">No scores yet this month. Be first.</li>';
+        list.innerHTML = '<li class="muted">No verified runs yet this month. First one takes the top.</li>';
         if (t10) t10.textContent = 'The board is empty this month - first score takes the top.';
         return;
       }
