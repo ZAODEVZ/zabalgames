@@ -36,6 +36,11 @@
     .enter-steps h3 { margin: 0 0 0.3rem; font-size: 1rem; }
     .enter-steps p { margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
     .enter-form { margin-top: 0.4rem; }
+    .enter-tracks { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; margin-top: 0.6rem; }
+    .enter-track { border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1rem; }
+    .enter-track h3 { margin: 0 0 0.3rem; }
+    .enter-track.on { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+    .enter-sub { color: var(--text-dim); margin: 0.2rem 0 0; }
     .enter-field { margin-bottom: 1rem; }
     .enter-field label { display: block; font-family: var(--font-pixel); font-size: 0.55rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
     .enter-field input, .enter-field select { width: 100%; box-sizing: border-box; background: rgba(255,255,255,0.03); border: 1px solid var(--border-hover); border-radius: var(--r-pill); color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; padding: 0.7rem 1rem; }
@@ -124,9 +129,28 @@
     </ol>
   </section>
 
+  <section class="section" id="tracks">
+    <h2>What each track ships</h2>
+    <p class="enter-sub">Pick your lane. The shape is the same: make it, post it in public, and it lands on the site under your track. Repo builds also register below.</p>
+    <div class="enter-tracks">
+      <div class="enter-track" data-track="artist">
+        <h3>Artist</h3>
+        <p>A track, a cover, a visual, a set, a piece of art. Post it where you publish - a cast in <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a> counts - and it lands under the artist track. Drop your proof on the <a href="https://poidh.xyz/base/bounty/1249" target="_blank" rel="noopener">Open Pot</a> to claim.</p>
+      </div>
+      <div class="enter-track" data-track="builder">
+        <h3>Builder</h3>
+        <p>A live app, a tool, a mini app, or a repo, any harness. Ship a live URL and an open repo, then register your wallet and repo below so the season tracker follows your commits.</p>
+      </div>
+      <div class="enter-track" data-track="creator">
+        <h3>Creator</h3>
+        <p>A video, clips, a recap, a thread, a written piece. Post it where you publish - a cast in <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a> counts - and it lands under the creator track. Drop your proof on the <a href="https://poidh.xyz/base/bounty/1249" target="_blank" rel="noopener">Open Pot</a> to claim.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <h2>Register your build</h2>
-    <p>Your wallet address is how prizes reach you and how your build is tracked. Your repo is where the season tracker watches for commits. Both are required.</p>
+    <p>Registering is optional and for repo builds - it lets the season tracker follow your commits. If you register, both fields are needed: your wallet is how prizes reach you, your repo is what the tracker watches. Artist and creator builds can skip this - just post in public and drop your proof on the Open Pot.</p>
     <form class="enter-form" id="enter-form" novalidate>
       <div class="enter-field">
         <label for="wallet">Wallet address</label>
@@ -257,7 +281,9 @@
     // Preselect the lane when arriving from the build quiz (/enter?track=builder).
     try {
       var qTrack = new URLSearchParams(window.location.search).get('track');
+      if (!qTrack) { var pm = location.pathname.match(/\/enter\/(artist|builder|creator)/); if (pm) qTrack = pm[1]; }
       if (trackEl && qTrack && ['artist', 'builder', 'creator'].indexOf(qTrack) >= 0) trackEl.value = qTrack;
+      if (qTrack && ['artist', 'builder', 'creator'].indexOf(qTrack) >= 0) { var tc = document.querySelector('.enter-track[data-track="' + qTrack + '"]'); if (tc) tc.classList.add('on'); }
     } catch (e) { /* no-op */ }
 
     // Phase-aware banner: counts down to the July open build, flips to "live" in July, then
