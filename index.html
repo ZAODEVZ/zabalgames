@@ -759,6 +759,175 @@
       #workshop-schedule .ws-card:hover, #workshop-tba .ws-card:hover { transform: none; box-shadow: none; }
     }
     /* ===================== END ARCADE CONTENT POLISH ===================== */
+
+    /* =====================================================================
+       NEWCOMER CLARITY STYLES - Hero improvements for first-time visitors
+       ===================================================================== */
+
+    /* Hero tagline - simple value prop */
+    .hero-tagline {
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--text);
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+    @media (max-width: 540px) {
+      .hero-tagline { font-size: 1rem; margin-bottom: 1.6rem; }
+    }
+
+    /* Primary CTA section - the main join button */
+    .hero-cta-section {
+      text-align: center;
+      margin-bottom: 2.8rem;
+    }
+    .hero-primary-btn {
+      display: inline-block;
+      padding: 1rem 2.2rem;
+      background: var(--gold);
+      color: var(--bg);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .hero-primary-btn:hover {
+      background: transparent;
+      color: var(--gold);
+      box-shadow: 0 0 24px rgba(245, 200, 66, 0.4);
+      text-decoration: none;
+    }
+    @media (max-width: 540px) {
+      .hero-primary-btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+    .hero-cta-subtext {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 0.8rem;
+      font-weight: 400;
+    }
+
+    /* How it works section - 3 simple steps */
+    .how-it-works {
+      background: var(--surface);
+      border: 1px solid var(--border-hover);
+      border-radius: 16px;
+      padding: 2rem 1.6rem;
+      margin: 2.4rem auto 2.8rem;
+      max-width: 720px;
+    }
+    @media (max-width: 540px) {
+      .how-it-works { padding: 1.6rem 1.2rem; margin: 2rem auto 2.2rem; }
+    }
+    .how-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      color: var(--text);
+    }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+    @media (max-width: 720px) {
+      .how-steps { grid-template-columns: 1fr; gap: 1.2rem; }
+    }
+    .how-step {
+      text-align: center;
+    }
+    .how-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      color: var(--bg);
+      border-radius: 50%;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .how-step h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .how-step p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    /* Trust signals section - why join */
+    .trust-section {
+      background: linear-gradient(135deg, rgba(245,200,66,0.06), rgba(0,229,255,0.06));
+      border: 1px solid var(--border-hover);
+      border-radius: 16px;
+      padding: 2rem 1.8rem;
+      margin: 0 auto 2.8rem;
+      max-width: 720px;
+    }
+    @media (max-width: 540px) {
+      .trust-section { padding: 1.6rem 1.2rem; margin-bottom: 2.2rem; }
+    }
+    .trust-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 1.4rem;
+      color: var(--text);
+    }
+    .trust-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .trust-list li {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      padding-left: 1.6rem;
+      position: relative;
+    }
+    .trust-list li::before {
+      content: '+';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    /* Learn more section - separates newcomer clarity from original content */
+    .hero-learn-more {
+      margin-top: 2.2rem;
+      padding-top: 2.2rem;
+      border-top: 1px dashed var(--border-hover);
+      text-align: center;
+    }
+
+    /* ===================== END NEWCOMER CLARITY STYLES ===================== */
   </style>
 </head>
 <body class="ui-polish-v1">
@@ -796,15 +965,62 @@
     <div class="hero-eyebrow">Season 1 - live now</div>
     <img src="/assets/logo-gamez.png" alt="ZABAL Gamez - Insert Coin" class="hero-logo" width="420" height="420">
     <h1 class="visually-hidden">ZABAL Gamez</h1>
-    <p class="pitch">
-      <strong>Ship for a community that has been here 100+ weeks - and keep earning from what you build.</strong>
+
+    <!-- NEWCOMER CLARITY: Simple one-liner value prop -->
+    <p class="hero-tagline">
+      Learn to build real projects with AI, ship one in 3 months, with The ZAO.
     </p>
-    <p class="pitch-sub">
-      The ZAO has run weekly for 100+ weeks straight. Build something real for that community, keep an ongoing cut of what it earns, and work alongside a ZAO mentor. The July open build is live now, Finals in August - and every June workshop is recorded.
-    </p>
-    <p class="pitch-derisk">
-      Free to join, any harness. Pick one door - the July build can be a weekend. Finishers keep the repo and an ongoing cut, not a one-time trophy.
-    </p>
+
+    <!-- PRIMARY CTA: One clear button to join -->
+    <div class="hero-cta-section">
+      <a href="/lead.html" class="hero-primary-btn">Join the Build-A-Thon</a>
+      <p class="hero-cta-subtext">Free to join. Any skill level. Any tools.</p>
+    </div>
+
+    <!-- NEWCOMER CLARITY: Simple 3-step "How it works" -->
+    <div class="how-it-works">
+      <h2 class="how-title">How it works</h2>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-number">1</div>
+          <h3>Join</h3>
+          <p>Pick your lane - artist, builder, or creator. Free, no gatekeeping.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-number">2</div>
+          <h3>Learn and Build</h3>
+          <p>Attend workshops in June. Ship something in July. Work with a ZAO mentor.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-number">3</div>
+          <h3>Ship and Earn</h3>
+          <p>Finishers keep their repo and ongoing earnings. Top builders get extra rewards.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRUST SIGNALS: Why The ZAO matters -->
+    <div class="trust-section">
+      <h2 class="trust-title">Why join</h2>
+      <ul class="trust-list">
+        <li>The ZAO has run for 100+ weeks straight. Real community, proven track record.</li>
+        <li>Your project gets used. Not a weekend demo - you build for people who need it.</li>
+        <li>Ongoing earnings. Keep the repo and a 1% trade cut that keeps paying.</li>
+        <li>Free mentorship. A ZAO expert as your teammate.</li>
+      </ul>
+    </div>
+
+    <!-- SECONDARY SECTION: Original content for context - "Learn more" section -->
+    <div class="hero-learn-more">
+      <p class="pitch">
+        <strong>Ship for a community that has been here 100+ weeks - and keep earning from what you build.</strong>
+      </p>
+      <p class="pitch-sub">
+        The ZAO has run weekly for 100+ weeks straight. Build something real for that community, keep an ongoing cut of what it earns, and work alongside a ZAO mentor. The July open build is live now, Finals in August - and every June workshop is recorded.
+      </p>
+    </div>
+
+    <!-- ORIGINAL JOIN BLOCK: Keep for backward compatibility with JS -->
     <div class="track-pick" role="group" aria-label="Pick your track (optional)">
       <span class="track-pick-label">Your track</span>
       <button type="button" class="track-chip" data-track="artist">Artist</button>
