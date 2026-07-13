@@ -71,6 +71,43 @@
     @media (prefers-reduced-motion: reduce) {
       .card:hover, .tag:hover { box-shadow: none; }
     }
+
+    /* Track selection cards - big, friendly, and clickable */
+    .track-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 1rem;
+    }
+    @media (max-width: 540px) { .track-cards { grid-template-columns: 1fr; } }
+
+    .track-card {
+      padding: 1.2rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
+      text-align: center;
+    }
+    .track-card h3 { margin: 0 0 0.5rem; font-size: 1.1rem; }
+    .track-card p { margin: 0; font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
+
+    @media (hover: hover) {
+      .track-card:hover { border-color: var(--text); }
+    }
+
+    .track-card.track-artist { border-left: 4px solid var(--pink); }
+    .track-card.track-builder { border-left: 4px solid var(--zabal); }
+    .track-card.track-creator { border-left: 4px solid var(--cyan); }
+
+    .track-card.track-artist:hover { border-color: var(--pink); box-shadow: var(--glow-pink); }
+    .track-card.track-builder:hover { border-color: var(--zabal); box-shadow: 0 0 16px rgba(213,0,255,0.25); }
+    .track-card.track-creator:hover { border-color: var(--cyan); box-shadow: var(--glow-cyan); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .track-card:hover { box-shadow: none; border-color: var(--border); }
+    }
   </style>
 </head>
 <body>
@@ -94,100 +131,45 @@
 <div class="container">
 
   <header class="hero">
-    <div class="hero-eyebrow">Workshop Roster - Open</div>
-    <h1>Lead a <span class="accent">Workshop</span>.</h1>
+    <div class="hero-eyebrow">Season 1 - Join Now</div>
+    <h1>You're in. <span class="accent">Let's get you building.</span></h1>
     <p class="hero-sub">
-      ZABAL Gamez Season 1 needs workshop leads. The workshops are a library of recorded sessions that get a whole cohort of Farcaster vibe-coders ready to ship. If you have built something worth teaching, you have a session to give.
+      Pick your lane - artist, builder, or creator. June workshops, July build month, August Finals. Free to join. Any skill level. Work alongside a ZAO mentor.
     </p>
   </header>
 
   <section class="section">
-    <h2>The ask, in one paragraph</h2>
-    <p>
-      Record <strong>one ~30-minute session</strong> on your specialty. Livestream it on Farcaster spaces or screen-record it - either works. The clip lands in the workshop library on Magnetiq and stays available the whole cohort. That is the whole ask.
-    </p>
-  </section>
-
-  <section class="section">
-    <div class="card" style="border-left: 3px solid var(--zabal);">
-      <h2 style="margin-top:0;">Not you, but you know someone?</h2>
-      <p style="margin-bottom: 0.8rem;">There is a community wishlist of people we would love to see teach. Nominate someone by their GitHub, Farcaster, or X, upvote the ones you want, and tag them on Farcaster to invite them in.</p>
-      <a class="btn-primary" href="/dream-leads.html">See the Dream Leads board</a>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>What you teach</h2>
-    <p>Topics are wide open. The cohort is Farcaster-native builders using AI tools. Pick what you actually know:</p>
-    <div class="tag-row">
-      <span class="tag">Empire Builder</span>
-      <span class="tag">Clanker</span>
-      <span class="tag">Farcaster mini apps</span>
-      <span class="tag">Snaps</span>
-      <span class="tag">Claude Code</span>
-      <span class="tag">Cursor</span>
-      <span class="tag">MCP</span>
-      <span class="tag">agent harnesses</span>
-      <span class="tag">tokens</span>
-      <span class="tag">governance</span>
-      <span class="tag">Respect + fractals</span>
-      <span class="tag">music infra</span>
-      <span class="tag">POIDH</span>
-      <span class="tag">zlank</span>
-      <span class="tag">SongJam</span>
-      <span class="tag">festival ops</span>
-      <span class="tag">your thing</span>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>What you get</h2>
-    <div class="card">
-      <h3>Cast credit and a real hand in what The ZAO ships next</h3>
-      <p>Public cast credit on launch and reveal, a first look at the strongest builds in the cohort, and a real hand in what The ZAO ships next.</p>
-    </div>
-    <div class="card">
-      <h3>Builder pipeline access</h3>
-      <p>The cohort that watches your session is the same cohort that ships in July. If you are building something, this is direct top-of-funnel for the people most likely to plug into it.</p>
-    </div>
-    <div class="card">
-      <h3>Content asset</h3>
-      <p>You walk away with one polished recording + a transcript + auto-generated clips for your own channels. ZAO accounts cross-amplify on Farcaster, X, Telegram, and the ZAO newsletter.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Pick your slot</h2>
-    <p>Cal.com self-serve booking is the fastest path - pick any open day, write your topic, and it locks the time. Slots stay open 24/7 and overlaps are blocked automatically.</p>
-    <p style="color: var(--text-muted);">New to this? Read the <a href="/docs/workshop-host-onboarding.md">host guide</a> - the ask, the format, what we need from you, and how the day runs.</p>
-    <div class="embed-box">
-      <div id="cal-embed" style="width:100%;min-height:620px;"></div>
-      <div id="cal-fallback">
-        <p style="color: var(--text-muted);">Cal.com slot picker - link drops in once the event type is set up.</p>
-        <p style="margin-top: 0.5rem;">Use the form below in the meantime, or DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener">@bettercallzaal</a>.</p>
+    <h2>Pick your lane</h2>
+    <p>Choose which path fits you. Not sure? Pick Builder - mentors help you level up.</p>
+    <div class="track-cards">
+      <div class="track-card track-artist" data-track="artist">
+        <h3>Artist</h3>
+        <p>Musical, visual, or multimedia work. Produce beats, visuals, or designs for the ecosystem.</p>
+      </div>
+      <div class="track-card track-builder" data-track="builder">
+        <h3>Builder</h3>
+        <p>Code, no-code, or tools. Ship apps, bots, contracts, or infrastructure.</p>
+      </div>
+      <div class="track-card track-creator" data-track="creator">
+        <h3>Creator</h3>
+        <p>Content, writing, or distribution. Make videos, posts, clips, or strategy.</p>
       </div>
     </div>
-    <script>
-    (function () {
-      // Set CAL_LINK to your Cal.com event path (e.g. "bettercallzaal/zabal-games-workshop")
-      // to switch on the embedded slot picker. Empty string = keep the form-only
-      // fallback, so the page never shows a broken embed before Cal is connected.
-      var CAL_LINK = "zabal-gamez/workshop-session";
-      var embed = document.getElementById('cal-embed');
-      var fallback = document.getElementById('cal-fallback');
-      if (!CAL_LINK) { if (embed) embed.style.display = 'none'; return; }
-      if (fallback) fallback.style.display = 'none';
-      (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", "workshop", { origin: "https://cal.com" });
-      Cal.ns.workshop("inline", { elementOrSelector: "#cal-embed", calLink: CAL_LINK, layout: "month_view" });
-      Cal.ns.workshop("ui", { hideEventTypeDetails: false, layout: "month_view" });
-    })();
-    </script>
   </section>
 
   <section class="section">
-    <h2>Sign up</h2>
-    <p>If self-serve booking is not for you, fill the form - I will reach out in Farcaster DM within 24h to lock the date and walk you through the recording setup.</p>
+    <h2>What happens next</h2>
+    <p>After you sign up, you are on the roster. We will reach out within 24 hours in Farcaster DM to confirm your lane and walk you through the June workshops. Attend what fits your schedule, then ship something in July with a ZAO mentor as your partner.</p>
+    <div class="card" style="border-left: 3px solid var(--zabal);">
+      <h3 style="margin-top:0;">Why this matters</h3>
+      <p style="margin-bottom: 0;">The ZAO has run weekly for 100+ weeks straight. You build for a real community that needs tools, keep the repo, and get a 1% ongoing cut of what it earns. No gatekeeping. No exit fee.</p>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <h2>Join the Build-A-Thon</h2>
+    <p>One form, and you are on the roster. Pick your lane above, then fill in your info below. We will reach out in Farcaster DM within 24 hours.</p>
 
     <form action="https://formspree.io/f/mlgvvoyd" method="POST" style="margin-top: 1.2rem; max-width: 560px;">
       <input type="hidden" name="form_source" value="zabal-games-lead-page">
@@ -196,43 +178,25 @@
         <input type="text" id="l-name" name="name" placeholder="Your name" required>
       </div>
       <div class="field">
-        <label for="l-handle">Farcaster / X handle</label>
-        <input type="text" id="l-handle" name="handle" placeholder="@bettercallzaal" required>
+        <label for="l-handle">Farcaster or X handle</label>
+        <input type="text" id="l-handle" name="handle" placeholder="@yourhandle" required>
       </div>
       <div class="field">
-        <label for="l-track">Your track</label>
-        <select id="l-track" name="track">
-          <option value="">Pick one (optional)</option>
+        <label for="l-track">Your lane</label>
+        <select id="l-track" name="track" required>
+          <option value="">Pick artist, builder, or creator</option>
           <option value="artist">Artist - musical or visual</option>
-          <option value="builder">Builder - developer or aspiring</option>
-          <option value="creator">Creator - media and distribution</option>
+          <option value="builder">Builder - code or tools</option>
+          <option value="creator">Creator - content and distribution</option>
         </select>
       </div>
-      <div class="field">
-        <label for="l-topic">What will you teach?</label>
-        <input type="text" id="l-topic" name="topic" placeholder="Empire Builder, agents, music infra..." required>
-      </div>
-      <div class="field">
-        <label for="l-when">Preferred date / window</label>
-        <input type="text" id="l-when" name="when" placeholder="Any day, or a rough window that works">
-      </div>
-      <div class="field">
-        <label for="l-notes">Anything else?</label>
-        <textarea id="l-notes" name="notes" placeholder="Format preference (livestream vs recorded), tools you'll demo, what you need from us"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Sign up to lead</button>
+      <button type="submit" class="btn btn-primary">I'm in</button>
     </form>
   </section>
 
   <section class="section">
-    <h2>Confirmed so far</h2>
-    <p>Live count of leads who've locked in.</p>
-    <div id="leads-list" class="card-grid">
-      <p style="color: var(--text-muted); font-size: 0.85rem;">Loading...</p>
-    </div>
-    <p style="margin-top: 1rem; font-size: 0.85rem;">
-      Full live grid + spec links on the <a href="/info#workshops">main page workshops section</a>.
-    </p>
+    <h2>What's next</h2>
+    <p>After you submit, check your Farcaster DM for a welcome message. The first June workshop is on the calendar - watch live or catch the recording. No pressure, no cost. Join the <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a> for updates and questions.</p>
   </section>
 
   <section class="section">
@@ -312,27 +276,21 @@
     if (sel && t && ['artist', 'builder', 'creator'].indexOf(t) !== -1) sel.value = t;
   } catch (e) {}
 
-  var listEl = document.getElementById('leads-list');
-  fetch('/data/workshop-leads.json', { cache: 'no-cache' })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      var leads = data.leads || [];
-      if (leads.length === 0) {
-        listEl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No leads confirmed yet - be the first.</p>';
-        return;
-      }
-      listEl.innerHTML = leads.map(function(L) {
-        return '<div class="card">' +
-          '<div class="card-label">' + L.id + ' - confirmed ' + L.confirmed_date + '</div>' +
-          '<h3>' + L.name + (L.org ? ' - ' + L.org : '') + '</h3>' +
-          '<p>' + L.topic + '</p>' +
-          '<div class="card-meta">' + (L.format || '30-min session') + ' - ' + (L.when || 'date TBD') + '</div>' +
-          '</div>';
-      }).join('');
-    })
-    .catch(function() {
-      listEl.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">Lead list unavailable right now - see the <a href="/info#workshops">main page</a>.</p>';
+  // Make track cards clickable to set the select value.
+  var cards = document.querySelectorAll('.track-card');
+  var sel = document.getElementById('l-track');
+  if (sel && cards.length) {
+    cards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        var track = card.getAttribute('data-track');
+        if (track && ['artist', 'builder', 'creator'].indexOf(track) !== -1) {
+          sel.value = track;
+          // Scroll to form
+          document.querySelector('form') && document.querySelector('form').focus();
+        }
+      });
     });
+  }
 })();
 </script>
 
