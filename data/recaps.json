@@ -435,32 +435,6 @@
       ]
     },
     {
-      "date": "2026-06-22",
-      "type": "workshop",
-      "title": "ZABAL GAMEZ Workshop w/Nemesis",
-      "presenter": "Nemesis",
-      "handle": "@nemesis.love",
-      "track": "creator",
-      "technical": 1,
-      "format": "Creator-track conversation, recorded",
-      "summary": "A creator-track conversation with Nemesis - a rapper, singer, poet, composer, and producer from Zambia. Her story: the first memory of making art, the autobiography, the pull toward web3 and how it kept resurfacing across her career until it stuck, the decision to leave the old path, and how that leap led to building and creating in this space.",
-      "topics": [
-        "Creator journey",
-        "Music",
-        "Art",
-        "Web3",
-        "Zambia"
-      ],
-      "page": "/recordings/26",
-      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-22-nemesis-creator-journey.md",
-      "takeaways": [
-        "Nemesis's path as an artist - rapper, singer, poet, composer, producer out of Zambia.",
-        "How web3 kept reappearing across her career until it finally stuck.",
-        "The decision to leave the old path, and what the leap into building felt like.",
-        "An honest, personal look at creating and reinventing in this space."
-      ]
-    },
-    {
       "date": "2026-06-25",
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/Teresa Marrin Nakra from Stevens University",
