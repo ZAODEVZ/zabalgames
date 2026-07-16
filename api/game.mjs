@@ -39,7 +39,7 @@ const HAATZ = 'https://haatz.quilibrium.com';
 // zabaldle: cumulative monthly points, 6 per one-guess solve, hard month cap 6*31.
 // zaosnake: coins in one run. zaoecho: rounds of melody repeated.
 // zaodash: fans served in one shift. zaostack: floors stacked in one tower.
-const GAMES = { zao2048: 131072, zaotrivia: 10, zaomatch: 100000, zabaldle: 186, zaosnake: 400, zaoecho: 60, zaodash: 300, zaostack: 200, zaosudoku: 400, zaogroups: 400, zaobee: 6000, zaobox: 400, zaostrands: 400, zaomini: 400, zaotiles: 2000, zaovertex: 400 };
+const GAMES = { zao2048: 131072, zaotrivia: 10, zaomatch: 100000, zabaldle: 186, zaosnake: 400, zaoecho: 60, zaodash: 300, zaostack: 200, zaosudoku: 400, zaogroups: 400, zaobee: 6000, zaobox: 400, zaostrands: 400, zaomini: 400, zaotiles: 2000, zaovertex: 400, zaopips: 400 };
 const TOP_N = 200;
 const MONTH_TTL = 6048000; // ~70 days - last month stays readable for the winner cast
 const NONCE_TTL = 7200; // nonces expire after 2 hours

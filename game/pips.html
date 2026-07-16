@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Pips - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Pips - the daily domino logic puzzle. Fill every region so its rule is satisfied. No signup.">
+  <link rel="canonical" href="https://zabalgamez.com/game/pips">
+  <meta property="og:title" content="ZAO Pips - ZABAL Gamez">
+  <meta property="og:description" content="The daily domino logic puzzle. Fill every region so its rule is satisfied.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/pips">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Pips - ZABAL Gamez">
+  <meta name="twitter:description" content="The daily domino logic puzzle. Fill every region so its rule is satisfied.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Pips","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/pips","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .pp-msg { min-height: 1.2rem; font-size: 0.9rem; color: var(--gold); margin: 0.2rem 0 0.6rem; }
+    .pp-wrap { display: flex; flex-direction: column; align-items: center; }
+    .pp-board { display: grid; gap: 0.4rem; width: 100%; max-width: 340px; margin: 0.2rem 0 0.9rem; }
+    .pp-cell { position: relative; aspect-ratio: 1 / 1; border-radius: 9px; border: 2px solid var(--border);
+      background: var(--surface-2); display: flex; align-items: center; justify-content: center; cursor: pointer;
+      transition: border-color 0.12s ease, background 0.12s ease; }
+    .pp-cell.blocked { border: none; background: transparent; cursor: default; visibility: hidden; }
+    .pp-cell.filled { cursor: pointer; }
+    .pp-cell.sat { border-color: #2ee6a6; background: rgba(46,230,166,0.10); }
+    .pp-cell.bad { border-color: var(--pink); background: rgba(255,61,110,0.10); }
+    .pp-chip { position: absolute; top: -1px; left: -1px; z-index: 2; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem; font-weight: 600; line-height: 1; padding: 2px 4px; border-radius: 8px 0 8px 0;
+      color: #06121a; }
+    .pp-chip.free { color: var(--text-dim); background: transparent; padding: 2px 3px; font-size: 0.58rem; }
+    .pp-face { width: 78%; height: 78%; border-radius: 6px; background: #e9e6dc;
+      display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr);
+      gap: 6%; padding: 12%; box-sizing: border-box; }
+    .pp-dot { border-radius: 50%; background: transparent; }
+    .pp-dot.on { background: #14141a; }
+    .pp-tray { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin: 0.2rem 0 0.4rem; max-width: 360px; }
+    .pp-domino { display: flex; gap: 3px; background: #e9e6dc; border-radius: 8px; padding: 5px; cursor: pointer;
+      border: 2px solid transparent; }
+    .pp-domino.sel { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0,229,255,0.18); }
+    .pp-domino.used { opacity: 0.28; pointer-events: none; }
+    .pp-half { width: 30px; height: 30px; display: grid; grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr); gap: 8%; padding: 12%; box-sizing: border-box; }
+    .pp-half .pp-dot.on { background: #14141a; }
+    .pp-divv { width: 2px; align-self: stretch; background: rgba(20,20,26,0.22); border-radius: 2px; }
+    .pp-controls { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; margin: 0.3rem 0 0.2rem; }
+    .pp-controls .btn { font-size: 0.8rem; padding: 0.5rem 0.9rem; }
+    .pp-hint { font-size: 0.78rem; color: var(--text-dim); text-align: center; max-width: 340px; margin: 0.3rem auto 0.2rem; }
+    .pp-legend { font-size: 0.74rem; color: var(--text-dim); text-align: center; max-width: 360px; margin: 0.2rem auto 0.6rem; line-height: 1.5; }
+    .pp-win { margin-top: 1.1rem; padding: 1rem 1.1rem; border: 1px solid var(--cyan); border-radius: 14px;
+      background: rgba(0,229,255,0.06); display: none; width: 100%; max-width: 360px; }
+    .pp-win.show { display: block; }
+    .pp-win h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.3rem; }
+    .pp-win p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 0.4rem; }
+    .pp-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+  </style>
+</head>
+<body data-zg-game="ZAO Pips" data-zg-url="https://zabalgamez.com/game/pips">
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/info.html">Details</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow"><a href="/game" style="color: inherit;">The arcade</a> / ZAO Pips</div>
+    <h1>ZAO <span class="accent">Pips</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">Place every domino so the board fills up and each colored region follows its rule. One board a day. No signup.</p>
+  </header>
+
+  <div class="pp-msg" id="pp-msg" role="status" aria-live="polite"></div>
+
+  <div class="pp-wrap">
+    <div class="pp-board" id="pp-board" aria-label="Puzzle board"></div>
+
+    <div class="pp-controls">
+      <button class="btn btn-secondary" id="pp-rotate" type="button">Rotate: right</button>
+      <button class="btn btn-secondary" id="pp-reset" type="button">Reset board</button>
+    </div>
+
+    <div class="pp-tray" id="pp-tray" aria-label="Domino tray"></div>
+
+    <p class="pp-hint">Tap a domino, set its direction with Rotate, then tap a board cell. It fills that cell and the next one in the arrow direction. Tap a placed domino to pick it back up.</p>
+    <p class="pp-legend" id="pp-legend"></p>
+
+    <div class="pp-win" id="pp-win" aria-live="polite">
+      <h2 id="pp-win-title">Board cleared.</h2>
+      <p id="pp-win-line"></p>
+      <div class="pp-actions" style="margin-top: 0;">
+        <button class="btn btn-primary" id="pp-share" type="button">Share result</button>
+        <a class="btn btn-secondary" href="/game">Back to arcade</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">10 points per solved board. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="pp-board-list" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
+    A calm logic puzzle for a build break. New here? Browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
+  </p>
+
+</div>
+</main>
+
+<script>
+(function () {
+  // Baked bank of small ZAO Pips puzzles. Each carries a solution that is verified at
+  // build time (uses each domino once, covers every non-blocked cell once with adjacent
+  // pairs, and satisfies every region rule). Rule types: eq (all equal), sum (sum equals
+  // n), lt (sum < n), gt (sum > n), blank (no constraint).
+  var PUZZLES = [
+    {
+      rows: 2, cols: 3, blocked: [],
+      regions: [
+        { cells: [0, 1], rule: { type: 'eq' } },
+        { cells: [3, 4], rule: { type: 'sum', n: 5 } },
+        { cells: [2, 5], rule: { type: 'lt', n: 8 } }
+      ],
+      dominoes: [[3, 3], [1, 4], [5, 2]]
+    },
+    {
+      rows: 3, cols: 3, blocked: [4],
+      regions: [
+        { cells: [0, 3], rule: { type: 'sum', n: 5 } },
+        { cells: [1, 2], rule: { type: 'gt', n: 9 } },
+        { cells: [5, 8], rule: { type: 'sum', n: 6 } },
+        { cells: [6, 7], rule: { type: 'lt', n: 6 } }
+      ],
+      dominoes: [[2, 4], [6, 1], [5, 5], [0, 3]]
+    },
+    {
+      rows: 2, cols: 4, blocked: [],
+      regions: [
+        { cells: [0, 4], rule: { type: 'eq' } },
+        { cells: [1, 2, 5, 6], rule: { type: 'blank' } },
+        { cells: [3, 7], rule: { type: 'sum', n: 8 } }
+      ],
+      dominoes: [[4, 4], [3, 1], [2, 6], [2, 2]]
+    }
+  ];
+
+  var DOTS = { 0: [], 1: [5], 2: [1, 9], 3: [1, 5, 9], 4: [1, 3, 7, 9], 5: [1, 3, 5, 7, 9], 6: [1, 3, 4, 6, 7, 9] };
+  var PALETTE = ['#00e5ff', '#f5c842', '#ff3d6e', '#a78bfa', '#4ade80', '#38bdf8'];
+  var DIRS = [
+    { name: 'right', d: 1, dx: 1, dy: 0 },
+    { name: 'down', d: null, dx: 0, dy: 1 },
+    { name: 'left', d: -1, dx: -1, dy: 0 },
+    { name: 'up', d: null, dx: 0, dy: -1 }
+  ];
+
+  var dayIndex = Math.floor(Date.now() / 86400000);
+  var PUZ_NUM = dayIndex - 20270;
+  var puzzle = PUZZLES[((dayIndex % PUZZLES.length) + PUZZLES.length) % PUZZLES.length];
+  var ROWS = puzzle.rows, COLS = puzzle.cols, TOTAL = ROWS * COLS;
+
+  var blockedSet = {};
+  puzzle.blocked.forEach(function (c) { blockedSet[c] = true; });
+
+  // region metadata
+  var regionOf = [];
+  var i;
+  for (i = 0; i < TOTAL; i++) regionOf[i] = -1;
+  var anchorOf = {}; // region index -> anchor cell (smallest)
+  puzzle.regions.forEach(function (reg, ri) {
+    var anchor = Math.min.apply(null, reg.cells);
+    anchorOf[ri] = anchor;
+    reg.cells.forEach(function (c) { regionOf[c] = ri; });
+  });
+
+  var boardEl = document.getElementById('pp-board');
+  var trayEl = document.getElementById('pp-tray');
+  var msgEl = document.getElementById('pp-msg');
+  var winEl = document.getElementById('pp-win');
+  var rotateBtn = document.getElementById('pp-rotate');
+  var resetBtn = document.getElementById('pp-reset');
+  var legendEl = document.getElementById('pp-legend');
+
+  // state
+  var cells = []; // per cell: null or { domino: idx, half: 0|1 }
+  var placements = []; // { domino: idx, cells: [c1, c2] }
+  var usedDom = {}; // domino idx -> true
+  var selected = null; // selected tray domino idx
+  var dirIdx = 0; // index into DIRS
+  var solved = false;
+
+  for (i = 0; i < TOTAL; i++) cells[i] = null;
+
+  boardEl.style.gridTemplateColumns = 'repeat(' + COLS + ', 1fr)';
+
+  function setMsg(s) { msgEl.textContent = s || ''; }
+
+  function ruleLabel(rule) {
+    if (rule.type === 'eq') return '=';
+    if (rule.type === 'sum') return String(rule.n);
+    if (rule.type === 'lt') return '<' + rule.n;
+    if (rule.type === 'gt') return '>' + rule.n;
+    return 'free';
+  }
+
+  function ruleWords(rule) {
+    if (rule.type === 'eq') return 'all halves equal';
+    if (rule.type === 'sum') return 'sum to ' + rule.n;
+    if (rule.type === 'lt') return 'sum under ' + rule.n;
+    if (rule.type === 'gt') return 'sum over ' + rule.n;
+    return 'no rule';
+  }
+
+  function ruleSatisfied(rule, vals) {
+    var sum = 0, k;
+    for (k = 0; k < vals.length; k++) sum += vals[k];
+    if (rule.type === 'blank') return true;
+    if (rule.type === 'eq') { for (k = 0; k < vals.length; k++) { if (vals[k] !== vals[0]) return false; } return true; }
+    if (rule.type === 'sum') return sum === rule.n;
+    if (rule.type === 'lt') return sum < rule.n;
+    if (rule.type === 'gt') return sum > rule.n;
+    return false;
+  }
+
+  function cellValue(c) {
+    var s = cells[c];
+    if (!s) return null;
+    return puzzle.dominoes[s.domino][s.half];
+  }
+
+  function faceHtml(v) {
+    var on = DOTS[v] || [];
+    var s = '<div class="pp-face">';
+    var p;
+    for (p = 1; p <= 9; p++) s += '<span class="pp-dot' + (on.indexOf(p) >= 0 ? ' on' : '') + '"></span>';
+    return s + '</div>';
+  }
+
+  function halfHtml(v) {
+    var on = DOTS[v] || [];
+    var s = '<div class="pp-half">';
+    var p;
+    for (p = 1; p <= 9; p++) s += '<span class="pp-dot' + (on.indexOf(p) >= 0 ? ' on' : '') + '"></span>';
+    return s + '</div>';
+  }
+
+  // Which regions are currently satisfied / violated (only when fully filled).
+  function regionStatus() {
+    var status = {}; // region index -> 'sat' | 'bad' | 'open'
+    puzzle.regions.forEach(function (reg, ri) {
+      var full = true, vals = [], k;
+      for (k = 0; k < reg.cells.length; k++) {
+        var v = cellValue(reg.cells[k]);
+        if (v === null) { full = false; break; }
+        vals.push(v);
+      }
+      if (!full) { status[ri] = 'open'; return; }
+      status[ri] = ruleSatisfied(reg.rule, vals) ? 'sat' : 'bad';
+    });
+    return status;
+  }
+
+  function renderBoard() {
+    var status = regionStatus();
+    var html = '';
+    var c;
+    for (c = 0; c < TOTAL; c++) {
+      if (blockedSet[c]) { html += '<div class="pp-cell blocked"></div>'; continue; }
+      var ri = regionOf[c];
+      var col = PALETTE[ri % PALETTE.length];
+      var st = status[ri];
+      var cls = 'pp-cell';
+      var style = '';
+      if (cells[c]) cls += ' filled';
+      if (st === 'sat') { cls += ' sat'; }
+      else if (st === 'bad') { cls += ' bad'; }
+      else { style = 'border-color:' + col + ';background:' + hexA(col, 0.08) + ';'; }
+      var inner = '';
+      // rule chip on the region's anchor cell
+      if (anchorOf[ri] === c) {
+        var reg = puzzle.regions[ri];
+        var lab = ruleLabel(reg.rule);
+        if (reg.rule.type === 'blank') inner += '<span class="pp-chip free">' + lab + '</span>';
+        else inner += '<span class="pp-chip" style="background:' + col + ';">' + lab + '</span>';
+      }
+      if (cells[c]) inner += faceHtml(cellValue(c));
+      html += '<div class="' + cls + '" style="' + style + '" data-cell="' + c + '">' + inner + '</div>';
+    }
+    boardEl.innerHTML = html;
+  }
+
+  function renderTray() {
+    var html = '';
+    puzzle.dominoes.forEach(function (dom, idx) {
+      var cls = 'pp-domino';
+      if (usedDom[idx]) cls += ' used';
+      if (selected === idx) cls += ' sel';
+      html += '<div class="' + cls + '" data-dom="' + idx + '">' + halfHtml(dom[0]) + '<div class="pp-divv"></div>' + halfHtml(dom[1]) + '</div>';
+    });
+    trayEl.innerHTML = html;
+  }
+
+  function hexA(hex, a) {
+    var h = hex.replace('#', '');
+    var r = parseInt(h.substring(0, 2), 16);
+    var g = parseInt(h.substring(2, 4), 16);
+    var b = parseInt(h.substring(4, 6), 16);
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+  }
+
+  function renderLegend() {
+    var parts = puzzle.regions.map(function (reg, ri) {
+      var col = PALETTE[ri % PALETTE.length];
+      return '<span style="color:' + col + ';font-weight:600;">' + ruleLabel(reg.rule) + '</span> ' + ruleWords(reg.rule);
+    });
+    legendEl.innerHTML = 'Regions: ' + parts.join(' &nbsp;/&nbsp; ');
+  }
+
+  function inRange(c) { return c >= 0 && c < TOTAL; }
+
+  function neighborOf(anchor) {
+    var dir = DIRS[dirIdx];
+    var ax = anchor % COLS, ay = Math.floor(anchor / COLS);
+    var nx = ax + dir.dx, ny = ay + dir.dy;
+    if (nx < 0 || nx >= COLS || ny < 0 || ny >= ROWS) return -1;
+    return ny * COLS + nx;
+  }
+
+  function pickUpAt(c) {
+    var idx = -1, k;
+    for (k = 0; k < placements.length; k++) {
+      if (placements[k].cells.indexOf(c) >= 0) { idx = k; break; }
+    }
+    if (idx < 0) return;
+    var pl = placements[idx];
+    cells[pl.cells[0]] = null;
+    cells[pl.cells[1]] = null;
+    delete usedDom[pl.domino];
+    placements.splice(idx, 1);
+    setMsg('Picked up a domino.');
+  }
+
+  function tryPlace(anchor) {
+    if (selected === null) { setMsg('Pick a domino from the tray first.'); return; }
+    if (usedDom[selected]) { setMsg('That domino is already on the board.'); return; }
+    var nb = neighborOf(anchor);
+    if (nb < 0 || blockedSet[nb]) { setMsg('No room that way. Rotate and try again.'); return; }
+    if (cells[anchor] || cells[nb]) { setMsg('Those cells are taken.'); return; }
+    var dom = puzzle.dominoes[selected];
+    cells[anchor] = { domino: selected, half: 0 };
+    cells[nb] = { domino: selected, half: 1 };
+    placements.push({ domino: selected, cells: [anchor, nb] });
+    usedDom[selected] = true;
+    setMsg('');
+    // auto-advance selection to the next unused domino
+    var next = null, j;
+    for (j = 0; j < puzzle.dominoes.length; j++) { if (!usedDom[j]) { next = j; break; } }
+    selected = next;
+  }
+
+  function onCellClick(c) {
+    if (solved || blockedSet[c]) return;
+    if (cells[c]) { pickUpAt(c); }
+    else { tryPlace(c); }
+    render();
+    checkWin();
+  }
+
+  boardEl.addEventListener('click', function (e) {
+    var el = e.target;
+    while (el && el !== boardEl && !el.getAttribute('data-cell')) el = el.parentNode;
+    if (!el || el === boardEl) return;
+    onCellClick(parseInt(el.getAttribute('data-cell'), 10));
+  });
+
+  trayEl.addEventListener('click', function (e) {
+    if (solved) return;
+    var el = e.target;
+    while (el && el !== trayEl && !el.getAttribute('data-dom')) el = el.parentNode;
+    if (!el || el === trayEl) return;
+    var idx = parseInt(el.getAttribute('data-dom'), 10);
+    if (usedDom[idx]) { setMsg('That domino is already on the board.'); return; }
+    selected = idx;
+    setMsg('');
+    renderTray();
+  });
+
+  rotateBtn.addEventListener('click', function () {
+    dirIdx = (dirIdx + 1) % DIRS.length;
+    rotateBtn.textContent = 'Rotate: ' + DIRS[dirIdx].name;
+  });
+
+  resetBtn.addEventListener('click', function () {
+    if (solved) return;
+    var k;
+    for (k = 0; k < TOTAL; k++) cells[k] = null;
+    placements = [];
+    usedDom = {};
+    selected = null;
+    setMsg('Board reset.');
+    render();
+  });
+
+  function render() {
+    renderBoard();
+    renderTray();
+  }
+
+  function boardFull() {
+    var c;
+    for (c = 0; c < TOTAL; c++) { if (!blockedSet[c] && !cells[c]) return false; }
+    return true;
+  }
+
+  function allRegionsSat() {
+    var status = regionStatus(), ri;
+    for (ri = 0; ri < puzzle.regions.length; ri++) { if (status[ri] !== 'sat') return false; }
+    return true;
+  }
+
+  var myRank = null;
+  var PTS_KEY = 'zg-pips-pts-' + new Date().toISOString().slice(0, 7);
+
+  function loadBoard() {
+    var list = document.getElementById('pp-board-list');
+    if (!list) return;
+    fetch('/api/game?game=zaopips', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified solves yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' pts</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  function checkWin() {
+    if (solved) return;
+    if (!boardFull() || !allRegionsSat()) return;
+    solved = true;
+    setMsg('');
+    var pts = 10;
+    var total = 0;
+    try { total = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e) {}
+    total += pts;
+    try { localStorage.setItem(PTS_KEY, String(total)); } catch (e2) {}
+    document.getElementById('pp-win-title').textContent = 'Board cleared.';
+    document.getElementById('pp-win-line').textContent = 'Every region checks out. New board tomorrow.';
+    winEl.classList.add('show');
+    myRank = null;
+    if (total > 0) {
+      try {
+        if (window.ZABAL && window.ZABAL.submitScore) {
+          window.ZABAL.submitScore('zaopips', total, null).then(function (d) {
+            if (d && d.ok) {
+              if (d.rank) {
+                myRank = d.rank;
+                document.getElementById('pp-win-line').textContent += ' ' + total + ' pts this month, rank ' + d.rank + '.';
+              }
+              loadBoard();
+            }
+          }).catch(function () {});
+        }
+      } catch (e3) {}
+    }
+  }
+
+  document.getElementById('pp-share').addEventListener('click', function () {
+    var line = 'Cleared board #' + PUZ_NUM + '.' + (myRank ? ' Rank ' + myRank + ' on this month\'s board. Beat my spot.' : ' The daily domino logic puzzle.');
+    var url = 'https://zabalgamez.com/game/pips';
+    if (window.ZG && window.ZG.shareScore) window.ZG.shareScore('ZAO Pips', line, url);
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent('ZAO Pips\n' + line) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+  });
+
+  // first render
+  rotateBtn.textContent = 'Rotate: ' + DIRS[dirIdx].name;
+  renderLegend();
+  render();
+  loadBoard();
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/arcade-share.js"></script>
+</body>
+</html>
