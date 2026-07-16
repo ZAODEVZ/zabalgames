@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Letter Boxed - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Letter Boxed - the daily letter-box puzzle. Twelve letters on a square, spell your way around it, use them all in as few words as you can. No signup.">
+  <link rel="canonical" href="https://zabalgamez.com/game/letterbox">
+  <meta property="og:title" content="ZAO Letter Boxed - ZABAL Gamez">
+  <meta property="og:description" content="The daily letter-box puzzle. Use all twelve letters in as few words as you can.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/letterbox">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Letter Boxed - ZABAL Gamez">
+  <meta name="twitter:description" content="The daily letter-box puzzle. Use all twelve letters in as few words as you can.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Letter Boxed","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/letterbox","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .lb-wrap { display: flex; flex-direction: column; align-items: center; }
+    .lb-msg { min-height: 1.2rem; font-size: 0.9rem; color: var(--gold); margin: 0.2rem 0 0.3rem; text-align: center; }
+    .lb-word { min-height: 2rem; display: flex; align-items: center; justify-content: center; gap: 0.25rem;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text); margin-bottom: 0.3rem; }
+    .lb-word .cur { color: var(--cyan); }
+    .lb-box { position: relative; width: min(300px, 86vw); aspect-ratio: 1 / 1; margin: 0.3rem auto 0.6rem; }
+    .lb-svg { width: 100%; height: 100%; display: block; }
+    .lb-frame { fill: none; stroke: var(--border); stroke-width: 2; }
+    .lb-trace { fill: none; stroke: var(--cyan); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; opacity: 0.85; }
+    .lb-dot { fill: var(--surface-2); stroke: var(--text-dim); stroke-width: 2; cursor: pointer; }
+    .lb-dot.used { fill: var(--cyan); stroke: var(--cyan); }
+    .lb-dot.active { stroke: var(--gold); stroke-width: 3; }
+    .lb-letter { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px; fill: var(--text);
+      text-anchor: middle; dominant-baseline: central; pointer-events: none; text-transform: uppercase; }
+    .lb-dot.used + .lb-letter { fill: #04121a; }
+    .lb-stats { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; font-size: 0.82rem;
+      color: var(--text-muted); margin-bottom: 0.5rem; }
+    .lb-stats b { color: var(--text); font-weight: 700; }
+    .lb-chain { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted);
+      text-align: center; min-height: 1.1rem; margin-bottom: 0.5rem; word-break: break-word; }
+    .lb-chain span { color: var(--cyan); }
+    .lb-controls { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+    .lb-controls .btn { font-size: 0.82rem; padding: 0.55rem 0.9rem; }
+    .lb-win { margin-top: 1.1rem; padding: 1rem 1.1rem; border: 1px solid var(--cyan); border-radius: 14px;
+      background: rgba(0,229,255,0.06); display: none; }
+    .lb-win.show { display: block; }
+    .lb-win h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.3rem; }
+    .lb-win p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 0.4rem; }
+    .lb-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+  </style>
+</head>
+<body data-zg-game="ZAO Letter Boxed" data-zg-url="https://zabalgamez.com/game/letterbox">
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/info.html">Details</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow"><a href="/game" style="color: inherit;">The arcade</a> / ZAO Letter Boxed</div>
+    <h1>ZAO <span class="accent">Letter Boxed</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">Twelve letters, three on each side of the box. Spell words of three or more letters. Two letters in a row cannot come from the same side, and each new word starts on the last word's final letter. Use all twelve in as few words as you can. No signup.</p>
+  </header>
+
+  <div class="lb-msg" id="lb-msg" role="status" aria-live="polite"></div>
+
+  <div class="lb-wrap">
+    <div class="lb-word" id="lb-word" aria-label="Current word"></div>
+    <div class="lb-box" id="lb-box">
+      <svg class="lb-svg" id="lb-svg" viewBox="0 0 300 300" aria-label="Letter box"></svg>
+    </div>
+    <div class="lb-stats">
+      <span>Letters used: <b id="lb-used">0</b> / 12</span>
+      <span>Words banked: <b id="lb-count">0</b></span>
+      <span>Target: <b id="lb-par">-</b></span>
+    </div>
+    <div class="lb-chain" id="lb-chain">No words banked yet.</div>
+    <div class="lb-controls">
+      <button class="btn btn-primary" id="lb-enter" type="button">Bank word</button>
+      <button class="btn btn-secondary" id="lb-del" type="button">Delete</button>
+      <button class="btn btn-secondary" id="lb-restart" type="button">Restart</button>
+    </div>
+  </div>
+
+  <div class="lb-win" id="lb-win" aria-live="polite">
+    <h2 id="lb-win-title">Solved.</h2>
+    <p id="lb-win-line"></p>
+    <div class="lb-chain" id="lb-win-chain" style="text-align:left;"></div>
+    <div class="lb-actions" style="margin-top: 0;">
+      <button class="btn btn-primary" id="lb-share" type="button">Share result</button>
+      <a class="btn btn-secondary" href="/game">Back to arcade</a>
+    </div>
+  </div>
+
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Points per solve: 10 for a two-word finish, down to 3 for five or more. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="lb-board-list" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
+    Letters come from the world you are building in. New here? Browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
+  </p>
+
+</div>
+</main>
+
+<script>
+(function () {
+  // Daily letter-box puzzles. Each box has 3 letters on each of the 4 sides (12 distinct
+  // letters), a curated dictionary valid for THAT box, and an intended solution length.
+  // Sides order: 0 top, 1 right, 2 bottom, 3 left. One puzzle per day, date-seeded.
+  var PUZZLES = [
+    { sides: [['G','N','S'],['A','O','I'],['M','T','D'],['E','R','L']], par: 3,
+      words: ['GAME','GAMES','MODES','STONE','EARN','NAME','SMART','TIMED','DIME','METAL','METALS','SORT','SORTED','STORM','STORMED','DONATE','ISLAND','SENATOR','RIM','RIG','MONITOR','STRAND','GRANITE','MEDALS','MANOR','DILATE','GONE','MIND','MINDSET','GARDEN','METEOR','TILDE'] },
+    { sides: [['C','L','P'],['A','E','U'],['T','R','N'],['I','O','S']], par: 2,
+      words: ['SUPER','PARCEL','SECTOR','ACTOR','ACTORS','PANIC','PANICS','SPICE','CAPTURE','CAPTURES','ROTATE','PICTURE','PICTURES','PROTEIN','PROTEINS','SPECIAL','CATER','LATER','RELICS','SCRIPT','SPIRAL','PORCELAIN','SPECULATOR','PERCOLATES'] },
+    { sides: [['T','R','P'],['A','E','M'],['S','L','N'],['I','O','D']], par: 3,
+      words: ['PARADE','PARADES','SIMPLE','SIMPLER','PLANET','PLANETS','PEDAL','SPIRAL','SPIRALED','SOLDER','SOLDERED','SIMPLEST','LIMPET','SPLINTER','ROTATE','DELTA','SANDPIPER','TAILORED','PLANTER','PLANTERS','PLASTER','PLASTERED','PERMIT','PERMITS'] },
+    { sides: [['A','U','O'],['N','L','T'],['B','I','E'],['R','S','D']], par: 3,
+      words: ['BUILD','BUILDER','BUNDLE','BLADE','BLEND','BLOND','BRAND','BREAD','BRIDE','BRINE','BONDER','BANDIT','DONATE','DINER','DIODE','ERASE','EARN','ELAND','ELDER','ENABLE','ENDURE','ISLAND','LADEN','LADLE','LANDER','LEADER','LENDER','NADIR','NOBLE','ROTATE','SLATE','STONE','STRAND','TABLE','TAILOR','TENDER','TONER','UNITE','UNREAL'] },
+    { sides: [['U','O','A'],['D','P','T'],['I','E','S'],['N','L','R']], par: 3,
+      words: ['ADORE','ADULT','ALERT','ANTLER','ASPIRE','DONATE','DRAPE','DRONE','EDITOR','ELOPE','ENDURE','LADEN','LEADER','PANEL','PARADE','PARENT','PARSNIP','PASTEL','PASTOR','PATRON','PEDAL','PILOT','PIRATE','PLANET','PLATE','PONDER','PRIDE','PRUDENT','RADIO','RENTAL','RETINA','RODENT','ROTATE','SLATE','SPIDER','SPIRAL','SPREAD','STAND','STAPLE','STONE','TAILOR','TENDER','TINDER','TIRADE','UNDER','UNITE'] },
+    { sides: [['A','E','O'],['T','I','C'],['N','M','L'],['R','S','D']], par: 3,
+      words: ['ACORN','ADMIRE','ADORE','ALERT','ALTER','ANODE','ANTLER','CANDLE','CANTER','CATER','CEDAR','CENTER','CLIENT','CLONE','CODER','CONE','CRADLE','CRANE','CRATE','DANCE','DELTA','DINER','DOMAIN','DONATE','ESCORT','ISLAND','LANTERN','MEDAL','MENTAL','MENTOR','METAL','MODEL','MODERN','ORACLE','ORIENT','RODENT','ROTATE','SCALE','SCORE','SILENT','SLATE','STONE','TALON','TENDER','TRACE','TRADE','TRAIL','TRAIN'] },
+    { sides: [['G','U','A'],['B','N','T'],['O','I','E'],['S','R','L']], par: 3,
+      words: ['ABLE','ALERT','ANGLE','ANGER','ARENA','ARISE','ATONE','BARGE','BEGIN','BELONG','BONER','BRINE','ENABLE','ENGINE','ENLIST','GENRE','GLOBE','GRAIN','GRATE','IGNORE','LINGER','LONGER','NOBLE','ORANGE','ORBIT','ORIGIN','ORNATE','RANGE','RETAIL','ROTATE','SABER','SINGLE','SNORE','STABLE','STONE','TABLE','TANGLE','TIGER','TONER','TURBINE','UNABLE','UNITE','URBANE'] }
+  ];
+
+  var dayIndex = Math.floor(Date.now() / 86400000);
+  var PUZZLE_NO = dayIndex - 20270; // small readable puzzle number
+  var P = PUZZLES[((dayIndex % PUZZLES.length) + PUZZLES.length) % PUZZLES.length];
+
+  // Build a letter -> {side, x, y} map and a set for quick validity checks.
+  var LETTERS = {};       // letter -> { side, x, y }
+  var WORDSET = {};       // valid words for this box
+  P.words.forEach(function (w) { WORDSET[w] = true; });
+
+  var svg = document.getElementById('lb-svg');
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var TOP = 50, LEFT = 50, LEN = 200; // square geometry inside the 300 viewBox
+  var frac = [1 / 6, 3 / 6, 5 / 6];
+
+  function place(side, i) {
+    var f = frac[i];
+    if (side === 0) return { x: LEFT + LEN * f, y: TOP };
+    if (side === 1) return { x: LEFT + LEN, y: TOP + LEN * f };
+    if (side === 2) return { x: LEFT + LEN * f, y: TOP + LEN };
+    return { x: LEFT, y: TOP + LEN * f };
+  }
+
+  var dotEls = {}; // letter -> circle element
+  function drawBox() {
+    // frame
+    var rect = document.createElementNS(SVGNS, 'rect');
+    rect.setAttribute('x', LEFT); rect.setAttribute('y', TOP);
+    rect.setAttribute('width', LEN); rect.setAttribute('height', LEN);
+    rect.setAttribute('rx', '6'); rect.setAttribute('class', 'lb-frame');
+    svg.appendChild(rect);
+    // trace line (updated live)
+    var trace = document.createElementNS(SVGNS, 'polyline');
+    trace.setAttribute('class', 'lb-trace'); trace.setAttribute('id', 'lb-trace');
+    trace.setAttribute('points', '');
+    svg.appendChild(trace);
+    // letters
+    P.sides.forEach(function (row, side) {
+      row.forEach(function (L, i) {
+        var pos = place(side, i);
+        LETTERS[L] = { side: side, x: pos.x, y: pos.y };
+        var g = document.createElementNS(SVGNS, 'g');
+        g.style.cursor = 'pointer';
+        g.setAttribute('role', 'button');
+        g.setAttribute('tabindex', '0');
+        g.setAttribute('aria-label', 'Letter ' + L);
+        var c = document.createElementNS(SVGNS, 'circle');
+        c.setAttribute('cx', pos.x); c.setAttribute('cy', pos.y); c.setAttribute('r', '18');
+        c.setAttribute('class', 'lb-dot'); c.setAttribute('data-l', L);
+        var t = document.createElementNS(SVGNS, 'text');
+        t.setAttribute('x', pos.x); t.setAttribute('y', pos.y); t.setAttribute('class', 'lb-letter');
+        t.textContent = L;
+        g.appendChild(c); g.appendChild(t);
+        g.addEventListener('click', function () { tap(L); });
+        g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tap(L); } });
+        svg.appendChild(g);
+        dotEls[L] = c;
+      });
+    });
+  }
+
+  // Game state.
+  var chain = [];          // banked words
+  var cur = [];            // current word letters
+  var usedLetters = {};    // letters covered by banked words
+  var over = false;
+
+  var msg = document.getElementById('lb-msg');
+  var wordEl = document.getElementById('lb-word');
+  var usedEl = document.getElementById('lb-used');
+  var countEl = document.getElementById('lb-count');
+  var chainEl = document.getElementById('lb-chain');
+  var winEl = document.getElementById('lb-win');
+
+  function setMsg(s) { msg.textContent = s || ''; }
+
+  function usedCount() { var n = 0; for (var k in usedLetters) if (usedLetters[k]) n++; return n; }
+
+  function tap(L) {
+    if (over) return;
+    setMsg('');
+    if (cur.length) {
+      var prev = cur[cur.length - 1];
+      if (LETTERS[L].side === LETTERS[prev].side) { setMsg('Pick a letter from another side.'); return; }
+    }
+    cur.push(L);
+    render();
+  }
+
+  function del() {
+    if (over) return;
+    setMsg('');
+    // Do not delete the seed letter that carries the chain from the previous word.
+    var floor = chain.length ? 1 : 0;
+    if (cur.length > floor) { cur.pop(); render(); }
+  }
+
+  function seedNext(lastLetter) {
+    cur = lastLetter ? [lastLetter] : [];
+  }
+
+  function bank() {
+    if (over) return;
+    var word = cur.join('');
+    if (word.length < 3) { setMsg('Words need at least three letters.'); return; }
+    if (chain.length) {
+      var need = chain[chain.length - 1].slice(-1);
+      if (word[0] !== need) { setMsg('Start this word on ' + need + '.'); return; }
+    }
+    if (!WORDSET[word]) { setMsg('Not in this box\'s word list.'); return; }
+    // Adjacency is enforced on input, but re-check for safety.
+    for (var i = 1; i < word.length; i++) {
+      if (LETTERS[word[i]].side === LETTERS[word[i - 1]].side) { setMsg('Two letters share a side.'); return; }
+    }
+    chain.push(word);
+    word.split('').forEach(function (ch) { usedLetters[ch] = true; });
+    if (usedCount() >= 12) { render(); return finish(); }
+    seedNext(word.slice(-1));
+    render();
+  }
+
+  function restart() {
+    chain = []; cur = []; usedLetters = {}; over = false;
+    winEl.classList.remove('show'); setMsg('');
+    render();
+  }
+
+  function render() {
+    // current word display
+    wordEl.innerHTML = '';
+    cur.forEach(function (L, i) {
+      var s = document.createElement('span');
+      if (i === cur.length - 1) s.className = 'cur';
+      s.textContent = L;
+      wordEl.appendChild(s);
+    });
+    // trace line through current word
+    var trace = document.getElementById('lb-trace');
+    trace.setAttribute('points', cur.map(function (L) { return LETTERS[L].x + ',' + LETTERS[L].y; }).join(' '));
+    // dot states
+    for (var L in dotEls) {
+      var c = dotEls[L];
+      c.setAttribute('class', 'lb-dot' + (usedLetters[L] ? ' used' : '') + ((cur.length && cur[cur.length - 1] === L) ? ' active' : ''));
+    }
+    usedEl.textContent = usedCount();
+    countEl.textContent = chain.length;
+    chainEl.innerHTML = chain.length
+      ? chain.map(function (w) { return '<span>' + w + '</span>'; }).join(' &rarr; ')
+      : 'No words banked yet.';
+  }
+
+  var myRank = null;
+  var MONTH = new Date().toISOString().slice(0, 7);
+  var PTS_KEY = 'zg-box-pts-' + MONTH;
+
+  function loadBoard() {
+    var list = document.getElementById('lb-board-list');
+    if (!list) return;
+    fetch('/api/game?game=zaobox', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified solves yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' pts</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  function finish() {
+    over = true;
+    var used = chain.length;
+    var pts = used <= 2 ? 10 : (used === 3 ? 7 : (used === 4 ? 5 : 3));
+    var total = 0;
+    try { total = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e) {}
+    total += pts;
+    try { localStorage.setItem(PTS_KEY, String(total)); } catch (e2) {}
+    myRank = null;
+    document.getElementById('lb-win-title').textContent = 'Solved.';
+    var baseLine = 'All twelve letters in ' + used + (used === 1 ? ' word' : ' words') + '. ' + pts + ' points. New box tomorrow.';
+    document.getElementById('lb-win-line').textContent = baseLine;
+    document.getElementById('lb-win-chain').innerHTML = chain.map(function (w) { return '<span>' + w + '</span>'; }).join(' &rarr; ');
+    winEl.classList.add('show');
+    if (total > 0) {
+      try {
+        if (window.ZABAL && window.ZABAL.submitScore) {
+          window.ZABAL.submitScore('zaobox', total, null).then(function (d) {
+            if (d && d.ok) {
+              if (d.rank) {
+                myRank = d.rank;
+                document.getElementById('lb-win-line').textContent = baseLine + ' ' + total + ' pts this month, rank ' + d.rank + '.';
+              }
+              loadBoard();
+            }
+          }).catch(function () {});
+        }
+      } catch (e3) {}
+    }
+  }
+
+  document.getElementById('lb-enter').addEventListener('click', bank);
+  document.getElementById('lb-del').addEventListener('click', del);
+  document.getElementById('lb-restart').addEventListener('click', restart);
+
+  document.getElementById('lb-share').addEventListener('click', function () {
+    var used = chain.length;
+    var total = 0;
+    try { total = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e) {}
+    var line = 'ZAO Letter Boxed ' + PUZZLE_NO + '. Solved in ' + used + (used === 1 ? ' word' : ' words') + '. ' +
+      total + ' pts this month' + (myRank ? ', rank ' + myRank : '') + '.';
+    if (window.ZG && window.ZG.shareScore) window.ZG.shareScore('ZAO Letter Boxed', line, 'https://zabalgamez.com/game/letterbox');
+    else {
+      var url = 'https://zabalgamez.com/game/letterbox';
+      window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(line) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (over) return;
+    if (e.key === 'Enter') { e.preventDefault(); bank(); }
+    else if (e.key === 'Backspace') { e.preventDefault(); del(); }
+    else {
+      var u = e.key.toUpperCase();
+      if (/^[A-Z]$/.test(u) && u.length === 1 && LETTERS[u]) tap(u);
+    }
+  });
+
+  drawBox();
+  document.getElementById('lb-par').textContent = P.par + (P.par === 1 ? ' word' : ' words');
+  render();
+  loadBoard();
+})();
+</script>
+<script defer src="/assets/arcade-share.js"></script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
