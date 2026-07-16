@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Mini Crossword - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Mini Crossword - a daily 5x5 grid of short words with Across and Down clues. No signup.">
+  <link rel="canonical" href="https://zabalgamez.com/game/mini">
+  <meta property="og:title" content="ZAO Mini Crossword - ZABAL Gamez">
+  <meta property="og:description" content="A daily 5x5 grid of short words with Across and Down clues.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/mini">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Mini Crossword - ZABAL Gamez">
+  <meta name="twitter:description" content="A daily 5x5 grid of short words with Across and Down clues.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Mini Crossword","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/mini","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .mc-meta { display: flex; gap: 0.8rem; flex-wrap: wrap; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.4rem; }
+    .mc-meta strong { color: var(--text); font-weight: 600; }
+    .mc-msg { min-height: 1.2rem; font-size: 0.9rem; color: var(--gold); margin-bottom: 0.4rem; }
+    .mc-clue-bar { display: flex; align-items: center; gap: 0.6rem; width: 100%; max-width: 340px;
+      padding: 0.6rem 0.7rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2);
+      margin-bottom: 0.5rem; min-height: 2.6rem; }
+    .mc-clue-bar .mc-cb-tag { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--cyan); font-size: 0.82rem; white-space: nowrap; }
+    .mc-clue-bar .mc-cb-txt { font-size: 0.92rem; color: var(--text); line-height: 1.2; }
+    .mc-cb-btn { margin-left: auto; flex: 0 0 auto; width: 2rem; height: 2rem; border: 1px solid var(--border);
+      border-radius: 8px; background: var(--surface); color: var(--text-muted); font: inherit; font-size: 1rem; cursor: pointer; }
+    .mc-board { display: grid; grid-template-columns: repeat(5, 1fr); width: 100%; max-width: 340px;
+      margin: 0.1rem 0 1rem; border: 2px solid var(--text-dim); border-radius: 8px; overflow: hidden; background: var(--surface); }
+    .mc-cell { position: relative; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+      border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--surface); color: var(--text); cursor: pointer; user-select: none;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.1rem, 6.4vw, 1.7rem); text-transform: uppercase; }
+    .mc-cell.edge-r { border-right: none; }
+    .mc-cell.edge-b { border-bottom: none; }
+    .mc-cell.black { background: #0b0b0f; cursor: default; }
+    .mc-cell.active { background: rgba(0,229,255,0.10); }
+    .mc-cell.sel { background: rgba(245,200,66,0.20); outline: 2px solid var(--gold); outline-offset: -2px; z-index: 1; }
+    .mc-cell.wrong { color: var(--pink); }
+    .mc-cell.wrong::after { content: ''; position: absolute; inset: 12% auto auto 12%; }
+    .mc-num { position: absolute; top: 1px; left: 3px; font-family: 'JetBrains Mono', monospace;
+      font-weight: 500; font-size: 0.5rem; color: var(--text-dim); line-height: 1; }
+    .mc-cell.wrong .mc-num { color: var(--pink); }
+    .mc-kb { display: grid; gap: 0.35rem; width: 100%; max-width: 420px; margin-bottom: 0.2rem; }
+    .mc-kb-row { display: flex; gap: 0.3rem; justify-content: center; }
+    .mc-key { flex: 1; min-width: 0; padding: 0.7rem 0.2rem; border: 1px solid var(--border); border-radius: 6px;
+      background: var(--surface-2); color: var(--text); font: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
+    .mc-key.wide { flex: 1.6; font-size: 0.7rem; }
+    .mc-tools { display: flex; gap: 0.7rem; flex-wrap: wrap; margin: 0.9rem 0 0.4rem; }
+    .mc-clues { display: grid; grid-template-columns: 1fr; gap: 0.8rem; margin-top: 0.6rem; }
+    @media (min-width: 560px) { .mc-clues { grid-template-columns: 1fr 1fr; } }
+    .mc-clues h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); margin: 0 0 0.4rem; }
+    .mc-clue-list { list-style: none; padding: 0; margin: 0; }
+    .mc-clue-list li { display: flex; gap: 0.5rem; padding: 0.32rem 0.4rem; border-radius: 7px; cursor: pointer;
+      font-size: 0.86rem; color: var(--text-muted); line-height: 1.25; }
+    .mc-clue-list li:hover { background: var(--surface-2); }
+    .mc-clue-list li.on { background: rgba(0,229,255,0.10); color: var(--text); }
+    .mc-clue-list li .mc-cn { color: var(--gold); font-weight: 600; min-width: 1.2rem; }
+    .mc-win { margin-top: 1.1rem; padding: 1rem 1.1rem; border: 1px solid var(--cyan); border-radius: 14px;
+      background: rgba(0,229,255,0.06); display: none; }
+    .mc-win.show { display: block; }
+    .mc-win h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.3rem; }
+    .mc-win p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 0.4rem; }
+    .mc-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+  </style>
+</head>
+<body data-zg-game="ZAO Mini Crossword" data-zg-url="https://zabalgamez.com/game/mini">
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/info.html">Details</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow"><a href="/game" style="color: inherit;">The arcade</a> / ZAO Mini Crossword</div>
+    <h1>ZAO <span class="accent">Mini</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">One little 5x5 crossword a day. Tap a cell to pick a word, tap again to flip between Across and Down, then type. No signup.</p>
+  </header>
+
+  <div class="mc-meta" id="mc-meta"></div>
+  <div class="mc-msg" id="mc-msg" role="status" aria-live="polite"></div>
+
+  <div class="mc-clue-bar" id="mc-clue-bar">
+    <span class="mc-cb-tag" id="mc-cb-tag"></span>
+    <span class="mc-cb-txt" id="mc-cb-txt"></span>
+    <button class="mc-cb-btn" id="mc-cb-flip" type="button" title="Switch Across / Down" aria-label="Switch Across or Down">/</button>
+  </div>
+
+  <div class="mc-board" id="mc-board" aria-label="Crossword grid"></div>
+
+  <div class="mc-kb" id="mc-kb" aria-label="Keyboard"></div>
+
+  <div class="mc-tools">
+    <button class="btn btn-secondary" id="mc-check" type="button">Check</button>
+    <button class="btn btn-secondary" id="mc-clear" type="button">Clear grid</button>
+  </div>
+
+  <div class="mc-clues">
+    <div>
+      <h3>Across</h3>
+      <ul class="mc-clue-list" id="mc-across"></ul>
+    </div>
+    <div>
+      <h3>Down</h3>
+      <ul class="mc-clue-list" id="mc-down"></ul>
+    </div>
+  </div>
+
+  <div class="mc-win" id="mc-win" aria-live="polite">
+    <h2 id="mc-win-title">Solved.</h2>
+    <p id="mc-win-line"></p>
+    <div class="mc-actions" style="margin-top: 0;">
+      <button class="btn btn-primary" id="mc-share" type="button">Share result</button>
+      <a class="btn btn-secondary" href="/game">Back to arcade</a>
+    </div>
+  </div>
+
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Up to 10 points a solve, minus one for each Check that finds a wrong letter (floor of 2). Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="mn-board-list" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
+    A quick daily reset for the build season. New here? Browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
+  </p>
+
+</div>
+</main>
+
+<script>
+(function () {
+  // Baked bank of daily 5x5 mini crosswords. Each grid uses '#' for black cells and
+  // '.' for fillable; each solution is 25 chars with '#' at the black cells. Every
+  // across run and every down run of 2+ cells is a real word, verified before shipping.
+  var PUZZLES = [
+    { grid: "...##....#.....#....##...", sol: "LOT##EVIL#GAMES#LEAK##SPY",
+      across: [{n:1,c:"A whole ___ (plenty)"},{n:4,c:"Wicked, villainous"},{n:6,c:"What the ZABAL arcade is full of"},{n:8,c:"Slow drip through a crack"},{n:9,c:"Secret agent"}],
+      down: [{n:1,c:"One stretch of a trip"},{n:2,c:"Egg shape"},{n:3,c:"Multiplied by"},{n:5,c:"Big jump"},{n:7,c:"The blue overhead"}] },
+    { grid: "...##....#.....#....##...", sol: "ERA##BEST#BASED#DEAR##TRY",
+      across: [{n:1,c:"A distinct age in history"},{n:4,c:"Top-ranked"},{n:6,c:"Built on a firm footing"},{n:8,c:"Costly, or a letter opener"},{n:9,c:"Give it a shot"}],
+      down: [{n:1,c:"The tide's retreat"},{n:2,c:"Take in a book"},{n:3,c:"Something of value"},{n:5,c:"Rip apart"},{n:7,c:"Not wet"}] },
+    { grid: "...##....#.....#....##...", sol: "ITS##MOTH#PROOF#NONE##DEW",
+      across: [{n:1,c:"Belonging to it"},{n:4,c:"Flame chaser"},{n:6,c:"Evidence that it works"},{n:8,c:"Not any"},{n:9,c:"Morning moisture on grass"}],
+      down: [{n:1,c:"Little mischief-maker"},{n:2,c:"Ripped"},{n:3,c:"Got to one's feet"},{n:5,c:"Sharpen, as a skill"},{n:7,c:"Not many"}] },
+    { grid: "...##....#.....#....##...", sol: "SIR##ORAL#NODES#NINE##ODE",
+      across: [{n:1,c:"Polite address for a man"},{n:4,c:"Spoken, not written"},{n:6,c:"Connected points on a network"},{n:8,c:"Count on a baseball team"},{n:9,c:"Poem of praise"}],
+      down: [{n:1,c:"Male child"},{n:2,c:"A wrinkle remover for shirts"},{n:3,c:"Airwaves broadcaster"},{n:5,c:"Loan out"},{n:7,c:"Take a look"}] },
+    { grid: "...##....#.....#....##...", sol: "PEP##EVIL#RELAY#NOTE##TEN",
+      across: [{n:1,c:"Energy and spirit"},{n:4,c:"The bad guy's trait"},{n:6,c:"Baton-passing race"},{n:8,c:"Quick written reminder"},{n:9,c:"A perfect score"}],
+      down: [{n:1,c:"For each"},{n:2,c:"Divisible by two"},{n:3,c:"One who flies the plane"},{n:5,c:"Not on time"},{n:7,c:"Currency of Japan"}] },
+    { grid: "...##....#.....#....##...", sol: "OHM##WEAR#LIKES#REAL##SPY",
+      across: [{n:1,c:"Unit of electrical resistance"},{n:4,c:"Put on, as clothes"},{n:6,c:"Taps of approval on a post"},{n:8,c:"Genuine, not fake"},{n:9,c:"Undercover watcher"}],
+      down: [{n:1,c:"Night bird that hoots"},{n:2,c:"One who inherits"},{n:3,c:"Builds or creates"},{n:5,c:"Harvest the crop"},{n:7,c:"Cunning and crafty"}] },
+    { grid: "...##....#.....#....##...", sol: "OWE##RAMP#BRAIN#MINE##LET",
+      across: [{n:1,c:"Be in debt"},{n:4,c:"Skater's incline"},{n:6,c:"Where every idea starts"},{n:8,c:"Belonging to me"},{n:9,c:"Allow"}],
+      down: [{n:1,c:"A sphere"},{n:2,c:"Toasty"},{n:3,c:"Inbox message"},{n:5,c:"Evergreen tree, or to long for"},{n:7,c:"The goal's mesh"}] },
+    { grid: "...##....#.....#....##...", sol: "OWN##DEEP#DREAM#EDGE##SET",
+      across: [{n:1,c:"Have as yours"},{n:4,c:"Far down"},{n:6,c:"The goal you build toward"},{n:8,c:"Border or rim"},{n:9,c:"A ready group of things"}],
+      down: [{n:1,c:"Not even"},{n:2,c:"Existed, plural"},{n:3,c:"Must-haves"},{n:5,c:"A sheet in a book"},{n:7,c:"Ran into"}] },
+    { grid: "...##....#.....#....##...", sol: "OPT##HOOD#MEDAL#MATE##YET",
+      across: [{n:1,c:"Choose"},{n:4,c:"Sweatshirt topper"},{n:6,c:"Winner's hardware"},{n:8,c:"Good buddy"},{n:9,c:"So far"}],
+      down: [{n:1,c:"Resistance unit"},{n:2,c:"A verse work"},{n:3,c:"This very day"},{n:5,c:"Calendar entry"},{n:7,c:"Permit"}] },
+    { grid: "...##....#.....#....##...", sol: "ARC##REED#MEDIA#LAND##RED",
+      across: [{n:1,c:"Curved path"},{n:4,c:"Tall marsh plant"},{n:6,c:"Channels that carry the story"},{n:8,c:"Touch down, as a plane"},{n:9,c:"Stop-sign color"}],
+      down: [{n:1,c:"Shoulder-to-hand limb"},{n:2,c:"Fishing spool, or a short video"},{n:3,c:"Aromatic wood in closets"},{n:5,c:"Have dinner"},{n:7,c:"Sum up"}] },
+    { grid: "##...#.............#...##", sol: "##LET#LIVETOKENOVER#YES##",
+      across: [{n:1,c:"Allow"},{n:4,c:"Streaming in real time"},{n:5,c:"Arcade coin, or a small keepsake"},{n:6,c:"Finished"},{n:7,c:"Affirmative answer"}],
+      down: [{n:1,c:"Approvals tapped on a post"},{n:2,c:"At any time"},{n:3,c:"Digits on two hands"},{n:4,c:"Adore"},{n:5,c:"A plaything"}] },
+    { grid: "##...#.............#...##", sol: "##TUB#MENUCASTSONTO#YES##",
+      across: [{n:1,c:"Bathroom basin"},{n:4,c:"List of options"},{n:5,c:"Posts on Farcaster"},{n:6,c:"Positioned on top of"},{n:7,c:"A nod's meaning"}],
+      down: [{n:1,c:"Quizzes"},{n:2,c:"Toward, in old verse"},{n:3,c:"The city ride"},{n:4,c:"Lion's neck hair"},{n:5,c:"Playfully shy"}] },
+    { grid: "##...#.............#...##", sol: "##SPA#STARSTAGEHATE#EYE##",
+      across: [{n:1,c:"Relaxation retreat"},{n:4,c:"The headliner"},{n:5,c:"Where the show happens"},{n:6,c:"Strongly dislike"},{n:7,c:"A needle's hole"}],
+      down: [{n:1,c:"One of the fifty, or to say formally"},{n:2,c:"A website screen"},{n:3,c:"Exist, plural"},{n:4,c:"Remain in place"},{n:5,c:"That woman"}] }
+  ];
+
+  var boardEl = document.getElementById('mc-board');
+  var kbEl = document.getElementById('mc-kb');
+  var msgEl = document.getElementById('mc-msg');
+  var winEl = document.getElementById('mc-win');
+
+  // Date-seeded daily pick + a stable puzzle number.
+  var dayIndex = Math.floor(Date.now() / 86400000);
+  var PUZZLE = dayIndex - 20270;
+  var idx = ((dayIndex % PUZZLES.length) + PUZZLES.length) % PUZZLES.length;
+  var CUR = PUZZLES[idx];
+  var GRID = CUR.grid;
+  var SOL = CUR.sol;
+
+  document.getElementById('mc-meta').innerHTML =
+    'Mini <strong>#' + PUZZLE + '</strong><span>5 across, 5 down</span>';
+
+  // ---- numbering + entry extraction ----
+  var num = [];                 // cell -> clue number (0 if none)
+  var acrossEntries = [];       // {n, dir:'A', cells:[...], clue}
+  var downEntries = [];
+  var cellA = [];               // cell -> index into acrossEntries (-1 none)
+  var cellD = [];               // cell -> index into downEntries
+  for (var z = 0; z < 25; z++) { num[z] = 0; cellA[z] = -1; cellD[z] = -1; }
+
+  function clueFor(list, n) { for (var i = 0; i < list.length; i++) if (list[i].n === n) return list[i].c; return ''; }
+
+  (function build() {
+    var n = 0;
+    for (var i = 0; i < 25; i++) {
+      if (GRID.charAt(i) === '#') continue;
+      var r = Math.floor(i / 5), c = i % 5;
+      var startA = (c === 0 || GRID.charAt(i - 1) === '#') && (c < 4 && GRID.charAt(i + 1) !== '#');
+      var startD = (r === 0 || GRID.charAt(i - 5) === '#') && (r < 4 && GRID.charAt(i + 5) !== '#');
+      if (startA || startD) { n++; num[i] = n; }
+      if (startA) {
+        var ac = [], cc = c, j = i;
+        while (cc < 5 && GRID.charAt(j) !== '#') { ac.push(j); cc++; j++; }
+        var ai = acrossEntries.length;
+        for (var k = 0; k < ac.length; k++) cellA[ac[k]] = ai;
+        acrossEntries.push({ n: n, dir: 'A', cells: ac, clue: clueFor(CUR.across, n) });
+      }
+      if (startD) {
+        var dc = [], rr = r, j2 = i;
+        while (rr < 5 && GRID.charAt(j2) !== '#') { dc.push(j2); rr++; j2 += 5; }
+        var di = downEntries.length;
+        for (var m = 0; m < dc.length; m++) cellD[dc[m]] = di;
+        downEntries.push({ n: n, dir: 'D', cells: dc, clue: clueFor(CUR.down, n) });
+      }
+    }
+  })();
+
+  var vals = [];                // cell -> current letter ('' empty, '#' black)
+  var cells = [];               // cell -> element
+  for (var q = 0; q < 25; q++) vals[q] = (GRID.charAt(q) === '#') ? '#' : '';
+
+  var sel = -1;                 // selected cell
+  var dir = 'A';                // 'A' or 'D'
+  var over = false;
+  var badChecks = 0;
+
+  // ---- build the grid ----
+  for (var g = 0; g < 25; g++) {
+    var r2 = Math.floor(g / 5), c2 = g % 5;
+    var el = document.createElement('div');
+    el.className = 'mc-cell';
+    if (c2 === 4) el.className += ' edge-r';
+    if (r2 === 4) el.className += ' edge-b';
+    if (GRID.charAt(g) === '#') {
+      el.className += ' black';
+    } else {
+      if (num[g]) { var nn = document.createElement('span'); nn.className = 'mc-num'; nn.textContent = String(num[g]); el.appendChild(nn); }
+      var lt = document.createElement('span'); lt.className = 'mc-letter'; el.appendChild(lt);
+      (function (pos) { el.addEventListener('click', function () { onCellTap(pos); }); })(g);
+    }
+    boardEl.appendChild(el);
+    cells[g] = el;
+  }
+
+  // ---- keyboard ----
+  var KEYS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM<'];
+  KEYS.forEach(function (line) {
+    var kr = document.createElement('div'); kr.className = 'mc-kb-row';
+    line.split('').forEach(function (ch) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'mc-key';
+      if (ch === '<') { b.textContent = 'Del'; b.className += ' wide'; b.dataset.k = 'DEL'; }
+      else { b.textContent = ch; b.dataset.k = ch; }
+      b.addEventListener('click', function () { handleKey(b.dataset.k); });
+      kr.appendChild(b);
+    });
+    kbEl.appendChild(kr);
+  });
+
+  // ---- clue lists ----
+  var acrossListEl = document.getElementById('mc-across');
+  var downListEl = document.getElementById('mc-down');
+  function renderClueLists() {
+    acrossListEl.innerHTML = acrossEntries.map(function (e) {
+      return '<li data-dir="A" data-n="' + e.n + '"><span class="mc-cn">' + e.n + '</span><span>' + esc(e.clue) + '</span></li>';
+    }).join('');
+    downListEl.innerHTML = downEntries.map(function (e) {
+      return '<li data-dir="D" data-n="' + e.n + '"><span class="mc-cn">' + e.n + '</span><span>' + esc(e.clue) + '</span></li>';
+    }).join('');
+    bindClue(acrossListEl); bindClue(downListEl);
+  }
+  function bindClue(root) {
+    var lis = root.querySelectorAll('li');
+    for (var i = 0; i < lis.length; i++) {
+      (function (li) {
+        li.addEventListener('click', function () { jumpToClue(li.getAttribute('data-dir'), parseInt(li.getAttribute('data-n'), 10)); });
+      })(lis[i]);
+    }
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[m]; }); }
+
+  function entryList(d) { return d === 'A' ? acrossEntries : downEntries; }
+  function currentEntry() {
+    if (sel < 0) return null;
+    var i = (dir === 'A') ? cellA[sel] : cellD[sel];
+    if (i < 0) { var other = (dir === 'A') ? cellD[sel] : cellA[sel]; if (other < 0) return null; dir = (dir === 'A') ? 'D' : 'A'; i = other; }
+    return entryList(dir)[i];
+  }
+
+  function jumpToClue(d, n) {
+    if (over) return;
+    dir = d;
+    var list = entryList(d);
+    for (var i = 0; i < list.length; i++) if (list[i].n === n) { sel = list[i].cells[0]; break; }
+    render();
+  }
+
+  function onCellTap(pos) {
+    if (over) return;
+    if (pos === sel) {
+      if (cellA[pos] >= 0 && cellD[pos] >= 0) dir = (dir === 'A') ? 'D' : 'A';
+    } else {
+      sel = pos;
+      if (dir === 'A' && cellA[pos] < 0) dir = 'D';
+      else if (dir === 'D' && cellD[pos] < 0) dir = 'A';
+    }
+    render();
+  }
+
+  function handleKey(k) {
+    if (over || sel < 0) return;
+    if (k === 'DEL') { backspace(); return; }
+    if (/^[A-Z]$/.test(k)) { typeLetter(k); return; }
+  }
+
+  function typeLetter(ch) {
+    vals[sel] = ch;
+    cells[sel].classList.remove('wrong');
+    var e = currentEntry();
+    if (e) {
+      var pos = e.cells.indexOf(sel);
+      var np = pos + 1;
+      // prefer the next still-empty cell in this entry
+      var scan = pos + 1;
+      while (scan < e.cells.length && vals[e.cells[scan]]) scan++;
+      if (scan < e.cells.length) np = scan;
+      if (np < e.cells.length) sel = e.cells[np];
+    }
+    render();
+    checkSolved();
+  }
+
+  function backspace() {
+    var e = currentEntry();
+    if (vals[sel]) { vals[sel] = ''; cells[sel].classList.remove('wrong'); }
+    else if (e) {
+      var pos = e.cells.indexOf(sel);
+      if (pos > 0) { sel = e.cells[pos - 1]; vals[sel] = ''; cells[sel].classList.remove('wrong'); }
+    }
+    render();
+  }
+
+  // arrow-key movement: sets direction and steps to the nearest fillable cell
+  function moveArrow(dr, dc, wantDir) {
+    if (sel < 0) { sel = firstWhite(); dir = wantDir; render(); return; }
+    dir = wantDir;
+    var r = Math.floor(sel / 5), c = sel % 5;
+    while (true) {
+      r += dr; c += dc;
+      if (r < 0 || r > 4 || c < 0 || c > 4) break;
+      var i = r * 5 + c;
+      if (GRID.charAt(i) !== '#') { sel = i; break; }
+    }
+    render();
+  }
+  function firstWhite() { for (var i = 0; i < 25; i++) if (GRID.charAt(i) !== '#') return i; return 0; }
+
+  var cbTag = document.getElementById('mc-cb-tag');
+  var cbTxt = document.getElementById('mc-cb-txt');
+
+  function render() {
+    var e = currentEntry();
+    var activeSet = {};
+    if (e) for (var a = 0; a < e.cells.length; a++) activeSet[e.cells[a]] = true;
+    for (var i = 0; i < 25; i++) {
+      var el = cells[i];
+      if (GRID.charAt(i) === '#') continue;
+      el.classList.remove('sel', 'active');
+      var lt = el.querySelector('.mc-letter');
+      if (lt) lt.textContent = vals[i] && vals[i] !== '#' ? vals[i] : '';
+      if (activeSet[i]) el.classList.add('active');
+      if (i === sel) el.classList.add('sel');
+    }
+    if (e) {
+      cbTag.textContent = e.n + (dir === 'A' ? ' Across' : ' Down');
+      cbTxt.textContent = e.clue;
+    } else { cbTag.textContent = ''; cbTxt.textContent = ''; }
+    // highlight active clue in the lists
+    highlightClue(e);
+  }
+  function highlightClue(e) {
+    var lists = [acrossListEl, downListEl];
+    for (var l = 0; l < lists.length; l++) {
+      var lis = lists[l].querySelectorAll('li');
+      for (var i = 0; i < lis.length; i++) {
+        var on = e && lis[i].getAttribute('data-dir') === e.dir && parseInt(lis[i].getAttribute('data-n'), 10) === e.n;
+        if (on) lis[i].classList.add('on'); else lis[i].classList.remove('on');
+      }
+    }
+  }
+
+  function setMsg(s) { msgEl.textContent = s || ''; }
+
+  function isFull() {
+    for (var i = 0; i < 25; i++) if (GRID.charAt(i) !== '#' && !vals[i]) return false;
+    return true;
+  }
+  function isSolved() {
+    for (var i = 0; i < 25; i++) { if (GRID.charAt(i) === '#') continue; if (vals[i] !== SOL.charAt(i)) return false; }
+    return true;
+  }
+
+  function runCheck() {
+    if (over) return;
+    var wrong = 0, filled = 0;
+    for (var i = 0; i < 25; i++) {
+      if (GRID.charAt(i) === '#') continue;
+      cells[i].classList.remove('wrong');
+      if (!vals[i]) continue;
+      filled++;
+      if (vals[i] !== SOL.charAt(i)) { cells[i].classList.add('wrong'); wrong++; }
+    }
+    if (wrong > 0) {
+      badChecks++;
+      setMsg(wrong === 1 ? 'One letter is off. It is marked.' : wrong + ' letters are off. They are marked.');
+    } else if (filled === 0) {
+      setMsg('Fill some cells first.');
+    } else if (isSolved()) {
+      finish();
+    } else {
+      setMsg('No mistakes so far. Keep going.');
+    }
+  }
+
+  function checkSolved() {
+    if (over) return;
+    if (isFull() && isSolved()) finish();
+  }
+
+  var myRank = null;
+  var PTS_KEY = 'zg-mini-pts-' + new Date().toISOString().slice(0, 7);
+
+  function loadBoard() {
+    var list = document.getElementById('mn-board-list');
+    if (!list) return;
+    fetch('/api/game?game=zaomini', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified solves yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' pts</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  function finish() {
+    if (over) return;
+    over = true;
+    for (var i = 0; i < 25; i++) cells[i].classList.remove('wrong');
+    // Up to 10 points, minus one per Check that found a mistake, floor of 2.
+    var pts = Math.max(10 - badChecks, 2);
+    var total = 0;
+    try { total = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e1) {}
+    total += pts;
+    try { localStorage.setItem(PTS_KEY, String(total)); } catch (e2) {}
+
+    document.getElementById('mc-win-title').textContent = 'Solved.';
+    document.getElementById('mc-win-line').textContent =
+      'Filled today\'s grid for ' + pts + ' pts. New mini tomorrow.';
+    winEl.classList.add('show');
+    setMsg('Solved. Nice.');
+
+    myRank = null;
+    if (total > 0) {
+      try {
+        if (window.ZABAL && window.ZABAL.submitScore) {
+          window.ZABAL.submitScore('zaomini', total, null).then(function (d) {
+            if (d && d.ok) {
+              if (d.rank) {
+                myRank = d.rank;
+                document.getElementById('mc-win-line').textContent += ' ' + total + ' pts this month, rank ' + d.rank + '.';
+              }
+              loadBoard();
+            }
+          }).catch(function () {});
+        }
+      } catch (e3) {}
+    }
+  }
+
+  function clearGrid() {
+    if (over) return;
+    for (var i = 0; i < 25; i++) {
+      if (GRID.charAt(i) === '#') continue;
+      vals[i] = '';
+      cells[i].classList.remove('wrong');
+    }
+    setMsg('');
+    render();
+  }
+
+  document.getElementById('mc-check').addEventListener('click', runCheck);
+  document.getElementById('mc-clear').addEventListener('click', clearGrid);
+  document.getElementById('mc-cb-flip').addEventListener('click', function () {
+    if (over || sel < 0) return;
+    if (cellA[sel] >= 0 && cellD[sel] >= 0) { dir = (dir === 'A') ? 'D' : 'A'; render(); }
+  });
+
+  document.getElementById('mc-share').addEventListener('click', function () {
+    var total = 0;
+    try { total = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e) {}
+    var line = 'Solved today\'s ZAO Mini Crossword. ' + total + ' pts this month' + (myRank ? ', rank ' + myRank : '') + '.';
+    if (window.ZG && window.ZG.shareScore) window.ZG.shareScore('ZAO Mini Crossword', line, 'https://zabalgamez.com/game/mini');
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (over) return;
+    var key = e.key;
+    if (key === 'Backspace') { handleKey('DEL'); e.preventDefault(); return; }
+    if (key === 'ArrowUp') { moveArrow(-1, 0, 'D'); e.preventDefault(); return; }
+    if (key === 'ArrowDown') { moveArrow(1, 0, 'D'); e.preventDefault(); return; }
+    if (key === 'ArrowLeft') { moveArrow(0, -1, 'A'); e.preventDefault(); return; }
+    if (key === 'ArrowRight') { moveArrow(0, 1, 'A'); e.preventDefault(); return; }
+    var u = key.toUpperCase();
+    if (u.length === 1 && /^[A-Z]$/.test(u)) { handleKey(u); e.preventDefault(); }
+  });
+
+  renderClueLists();
+  sel = firstWhite();
+  dir = 'A';
+  if (cellA[sel] < 0) dir = 'D';
+  render();
+  loadBoard();
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/arcade-share.js"></script>
+</body>
+</html>
