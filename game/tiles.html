@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Tiles - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Tiles - the daily ZAO layer-match puzzle. Match tiles that share a motif, peel the layers, clear the board. No signup.">
+  <link rel="canonical" href="https://zabalgamez.com/game/tiles">
+  <meta property="og:title" content="ZAO Tiles - ZABAL Gamez">
+  <meta property="og:description" content="The daily ZAO layer-match puzzle. Match tiles that share a motif and clear the board.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/tiles">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Tiles - ZABAL Gamez">
+  <meta name="twitter:description" content="The daily ZAO layer-match puzzle. Match tiles that share a motif and clear the board.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Tiles","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/tiles","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .tl-hud { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.6rem 0 0.4rem; }
+    .tl-stat { flex: 1; min-width: 84px; border: 1px solid var(--border); border-radius: 10px;
+      background: var(--surface-2); padding: 0.5rem 0.6rem; text-align: center; }
+    .tl-stat b { display: block; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--text); line-height: 1.1; }
+    .tl-stat span { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin-top: 0.15rem; }
+    .tl-stat.hot b { color: var(--gold); }
+    .tl-msg { min-height: 1.2rem; font-size: 0.9rem; color: var(--gold); margin-bottom: 0.3rem; }
+    .tl-board { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.45rem; width: 100%; max-width: 360px; margin: 0.2rem 0 0.8rem; }
+    .tl-cell { aspect-ratio: 1 / 1; padding: 0; border: 1px solid var(--border); border-radius: 10px;
+      background: var(--surface-2); cursor: pointer; position: relative; overflow: hidden; transition: border-color 0.12s, transform 0.08s; }
+    .tl-cell:hover { border-color: var(--border-hover); }
+    .tl-cell.sel { border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(0,229,255,0.35) inset; }
+    .tl-cell.cleared { cursor: default; border-style: dashed; border-color: var(--border); background: transparent; opacity: 0.35; }
+    .tl-cell.shake { animation: tl-shake 0.32s ease; }
+    .tl-svg { display: block; width: 100%; height: 100%; }
+    .tl-layer { transition: opacity 0.18s; }
+    .tl-layer.flash { animation: tl-flash 0.3s ease; transform-origin: center; }
+    @keyframes tl-shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+    @keyframes tl-flash { 0% { opacity: 1; } 40% { opacity: 1; filter: brightness(2); } 100% { opacity: 0; transform: scale(1.35); } }
+    .tl-win { margin-top: 1.1rem; padding: 1rem 1.1rem; border: 1px solid var(--cyan); border-radius: 14px;
+      background: rgba(0,229,255,0.06); display: none; }
+    .tl-win.show { display: block; }
+    .tl-win h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.3rem; }
+    .tl-win p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 0.4rem; }
+    .tl-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+  </style>
+</head>
+<body data-zg-game="ZAO Tiles" data-zg-url="https://zabalgamez.com/game/tiles">
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/info.html">Details</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow"><a href="/game" style="color: inherit;">The arcade</a> / ZAO Tiles</div>
+    <h1>ZAO <span class="accent">Tiles</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">One board a day. Tap two tiles that share a motif to peel that layer off both. Keep matching to build a combo. Clear every layer to win. No signup.</p>
+  </header>
+
+  <div class="tl-hud" id="tl-hud">
+    <div class="tl-stat"><b id="tl-moves">0</b><span>Moves</span></div>
+    <div class="tl-stat" id="tl-combo-stat"><b id="tl-combo">0</b><span>Combo</span></div>
+    <div class="tl-stat"><b id="tl-cleared">0 / 0</b><span>Cleared</span></div>
+  </div>
+
+  <div class="tl-msg" id="tl-msg" role="status" aria-live="polite"></div>
+  <div class="tl-board" id="tl-board" aria-label="Tile board"></div>
+
+  <div class="tl-actions" style="margin-top: 0;">
+    <button class="btn btn-secondary" id="tl-restart" type="button" style="font-size: 0.82rem;">Restart today's board</button>
+  </div>
+
+  <div class="tl-win" id="tl-win" aria-live="polite">
+    <h2 id="tl-win-title">Board cleared.</h2>
+    <p id="tl-win-line"></p>
+    <div class="tl-actions" style="margin-top: 0;">
+      <button class="btn btn-primary" id="tl-share" type="button">Share result</button>
+      <button class="btn btn-secondary" id="tl-again" type="button">Play again</button>
+      <a class="btn btn-secondary" href="/game">Back to arcade</a>
+    </div>
+  </div>
+
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Clear the daily board for up to 20 points, more for a longer combo and fewer moves. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="tl-board-list" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
+    Same board for everyone each day. New here? Browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
+  </p>
+
+</div>
+</main>
+
+<script>
+(function () {
+  // ---- Motif set: eight layered visual motifs, each drawn as inline SVG in the ZAO palette.
+  // Each motif sits in its own zone of the 100x100 tile so stacked layers stay individually readable.
+  var MOTIF_SVG = [
+    '<circle cx="32" cy="32" r="16" fill="var(--cyan)"/>',
+    '<polygon points="68,16 84,46 52,46" fill="var(--gold)"/>',
+    '<rect x="16" y="52" width="32" height="32" rx="6" fill="var(--pink)"/>',
+    '<circle cx="68" cy="68" r="15" fill="none" stroke="var(--zabal)" stroke-width="7"/>',
+    '<polygon points="50,34 66,50 50,66 34,50" fill="none" stroke="var(--cyan)" stroke-width="6"/>',
+    '<g fill="var(--gold)"><circle cx="42" cy="16" r="5"/><circle cx="58" cy="16" r="5"/><circle cx="42" cy="30" r="5"/><circle cx="58" cy="30" r="5"/></g>',
+    '<polygon points="10,42 34,42 22,64" fill="none" stroke="var(--pink)" stroke-width="6"/>',
+    '<g fill="var(--zabal)"><rect x="72" y="38" width="6" height="24" rx="3"/><rect x="82" y="38" width="6" height="24" rx="3"/></g>'
+  ];
+  var POOL = [0, 1, 2, 3, 4, 5, 6, 7];
+  var N = 25; // 5x5 grid
+
+  // ---- Date-stable seed: everyone gets the same board that day.
+  var dayIndex = Math.floor(Date.now() / 86400000);
+  var PUZZLE = dayIndex - 20270;
+
+  // Small seeded PRNG (mulberry32) so the daily board is deterministic.
+  function makeRand(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  // ---- Board generation. Motifs are added to tiles two-at-a-time (same motif into two
+  // distinct tiles), so every motif ends with an EVEN total count across the board.
+  // Even counts guarantee solvability: a match removes one shared motif from BOTH tiles,
+  // dropping that motif's count by exactly 2, so all counts stay even and the board is
+  // always drainable and never stuck.
+  function buildTiles() {
+    var rand = makeRand(dayIndex * 2654435761 + 12345);
+    var tiles = [];
+    for (var i = 0; i < N; i++) {
+      tiles.push({ layers: [], cap: 2 + Math.floor(rand() * 2) }); // 2 or 3 layers
+    }
+    var guard = 0;
+    while (guard++ < 8000) {
+      var open = [];
+      for (var j = 0; j < N; j++) { if (tiles[j].layers.length < tiles[j].cap) open.push(j); }
+      if (open.length < 2) break;
+      var m = POOL[Math.floor(rand() * POOL.length)];
+      var cand = open.filter(function (idx) { return tiles[idx].layers.indexOf(m) === -1; });
+      if (cand.length < 2) continue;
+      var a = cand[Math.floor(rand() * cand.length)];
+      var b = a;
+      var tries = 0;
+      while (b === a && tries++ < 20) { b = cand[Math.floor(rand() * cand.length)]; }
+      if (b === a) continue;
+      tiles[a].layers.push(m);
+      tiles[b].layers.push(m);
+    }
+    return tiles;
+  }
+
+  // Verify every motif count is even before rendering. If a stray odd count ever slips
+  // through, drop one instance so the board stays fully pairable (defensive; should not fire).
+  function ensureEven(tiles) {
+    var counts = {};
+    tiles.forEach(function (t) { t.layers.forEach(function (m) { counts[m] = (counts[m] || 0) + 1; }); });
+    Object.keys(counts).forEach(function (m) {
+      if (counts[m] % 2 === 1) {
+        for (var i = tiles.length - 1; i >= 0; i--) {
+          var pos = tiles[i].layers.indexOf(parseInt(m, 10));
+          if (pos !== -1) { tiles[i].layers.splice(pos, 1); break; }
+        }
+      }
+    });
+    return tiles;
+  }
+
+  var boardEl = document.getElementById('tl-board');
+  var msgEl = document.getElementById('tl-msg');
+  var winEl = document.getElementById('tl-win');
+  var movesEl = document.getElementById('tl-moves');
+  var comboEl = document.getElementById('tl-combo');
+  var comboStat = document.getElementById('tl-combo-stat');
+  var clearedEl = document.getElementById('tl-cleared');
+
+  var tiles, cells, selIndex, moves, combo, bestCombo, cleared, activeCount, totalLayers, over, busy;
+
+  function setMsg(s) { msgEl.textContent = s || ''; }
+
+  function renderCell(i) {
+    var cell = cells[i], tile = tiles[i];
+    if (!tile.layers.length) {
+      cell.classList.add('cleared');
+      cell.classList.remove('sel');
+      cell.innerHTML = '';
+      cell.setAttribute('aria-label', 'Cleared tile');
+      return;
+    }
+    var inner = tile.layers.map(function (m) {
+      return '<g class="tl-layer" data-m="' + m + '">' + MOTIF_SVG[m] + '</g>';
+    }).join('');
+    cell.innerHTML = '<svg class="tl-svg" viewBox="0 0 100 100" aria-hidden="true">' + inner + '</svg>';
+    cell.setAttribute('aria-label', 'Tile with ' + tile.layers.length + ' layers');
+  }
+
+  function updateHud() {
+    movesEl.textContent = String(moves);
+    comboEl.textContent = combo > 1 ? ('x' + combo) : String(combo);
+    if (combo > 1) comboStat.classList.add('hot'); else comboStat.classList.remove('hot');
+    clearedEl.textContent = cleared + ' / ' + activeCount;
+  }
+
+  function deal() {
+    tiles = ensureEven(buildTiles());
+    selIndex = -1; moves = 0; combo = 0; bestCombo = 0; cleared = 0; over = false; busy = false;
+    activeCount = 0; totalLayers = 0;
+    tiles.forEach(function (t) { if (t.layers.length) { activeCount++; totalLayers += t.layers.length; } });
+    boardEl.innerHTML = '';
+    cells = [];
+    for (var i = 0; i < N; i++) {
+      var cell = document.createElement('button');
+      cell.type = 'button';
+      cell.className = 'tl-cell';
+      (function (idx) { cell.addEventListener('click', function () { onTap(idx); }); })(i);
+      boardEl.appendChild(cell);
+      cells[i] = cell;
+      renderCell(i);
+    }
+    winEl.classList.remove('show');
+    setMsg('');
+    updateHud();
+  }
+
+  function shake(i) {
+    cells[i].classList.add('shake');
+    setTimeout(function () { if (cells[i]) cells[i].classList.remove('shake'); }, 340);
+  }
+
+  function shared(a, b) {
+    // Topmost shared motif in tile a (highest z-index) that tile b also holds.
+    var la = tiles[a].layers, lb = tiles[b].layers;
+    for (var k = la.length - 1; k >= 0; k--) {
+      if (lb.indexOf(la[k]) !== -1) return la[k];
+    }
+    return -1;
+  }
+
+  function removeMotif(i, m) {
+    var pos = tiles[i].layers.indexOf(m);
+    if (pos !== -1) tiles[i].layers.splice(pos, 1);
+  }
+
+  function flashLayer(i, m) {
+    var g = cells[i].querySelector('.tl-layer[data-m="' + m + '"]');
+    if (g) g.classList.add('flash');
+  }
+
+  function onTap(i) {
+    if (over || busy) return;
+    if (!tiles[i].layers.length) return;
+    if (selIndex === -1) {
+      selIndex = i;
+      cells[i].classList.add('sel');
+      setMsg('');
+      return;
+    }
+    if (selIndex === i) {
+      cells[i].classList.remove('sel');
+      selIndex = -1;
+      return;
+    }
+    var a = selIndex, b = i;
+    var m = shared(a, b);
+    if (m === -1) {
+      // Invalid pair: no shared motif. Shake, break the combo.
+      moves++;
+      combo = 0;
+      shake(a); shake(b);
+      cells[a].classList.remove('sel');
+      selIndex = -1;
+      setMsg('No shared motif. Combo reset.');
+      updateHud();
+      return;
+    }
+    // Valid match: flash the shared motif on both tiles, then peel it off both.
+    busy = true;
+    moves++;
+    combo++;
+    if (combo > bestCombo) bestCombo = combo;
+    flashLayer(a, m); flashLayer(b, m);
+    cells[a].classList.remove('sel');
+    setMsg(combo > 1 ? ('Match. Combo x' + combo + '.') : 'Match.');
+    updateHud();
+    setTimeout(function () {
+      removeMotif(a, m); removeMotif(b, m);
+      var wasA = tiles[a].layers.length === 0;
+      var wasB = tiles[b].layers.length === 0;
+      renderCell(a); renderCell(b);
+      if (wasA) cleared++;
+      if (wasB) cleared++;
+      selIndex = -1;
+      busy = false;
+      updateHud();
+      if (cleared >= activeCount) finish();
+    }, 300);
+  }
+
+  var myRank = null;
+  var PTS_KEY = 'zg-tiles-pts-' + new Date().toISOString().slice(0, 7);
+  var SOLVED_KEY = 'zg-tiles-solved-' + dayIndex;
+
+  function loadBoard() {
+    var list = document.getElementById('tl-board-list');
+    if (!list) return;
+    fetch('/api/game?game=zaotiles', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified clears yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' pts</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  function computePts() {
+    // Bounded 1..20. Rewards a long best combo and solving in few moves.
+    var optimal = Math.max(1, totalLayers / 2); // minimum possible matches to clear
+    var extra = Math.max(0, moves - optimal);
+    var pts = 6 + bestCombo * 1.4 + Math.max(0, 6 - extra * 0.4);
+    return Math.max(1, Math.min(20, Math.round(pts)));
+  }
+
+  var solvedLine = '';
+
+  function finish() {
+    over = true;
+    var pts = computePts();
+    solvedLine = 'Best combo x' + bestCombo + ' in ' + moves + ' moves. Scored ' + pts + ' pts.';
+    // Award once per daily board so a Restart cannot farm points.
+    var alreadySolved = false;
+    try { alreadySolved = localStorage.getItem(SOLVED_KEY) === '1'; } catch (e) {}
+    var total = 0;
+    try { total = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e2) {}
+    if (!alreadySolved) {
+      total += pts;
+      try { localStorage.setItem(PTS_KEY, String(total)); } catch (e3) {}
+      try { localStorage.setItem(SOLVED_KEY, '1'); } catch (e4) {}
+    }
+    myRank = null;
+    if (total > 0 && !alreadySolved) {
+      try {
+        if (window.ZABAL && window.ZABAL.submitScore) {
+          window.ZABAL.submitScore('zaotiles', total, null).then(function (d) {
+            if (d && d.ok) {
+              if (d.rank) {
+                myRank = d.rank;
+                var wl = document.getElementById('tl-win-line');
+                wl.textContent += ' ' + total + ' pts this month, rank ' + d.rank + '.';
+              }
+              loadBoard();
+            }
+          }).catch(function () {});
+        }
+      } catch (e5) {}
+    }
+    document.getElementById('tl-win-title').textContent = 'Board cleared.';
+    document.getElementById('tl-win-line').textContent = alreadySolved
+      ? (solvedLine + ' Already counted today - new board tomorrow.')
+      : (solvedLine + ' New board tomorrow.');
+    winEl.classList.add('show');
+    setMsg('Board cleared.');
+  }
+
+  document.getElementById('tl-restart').addEventListener('click', function () { deal(); });
+  document.getElementById('tl-again').addEventListener('click', function () { deal(); });
+
+  document.getElementById('tl-share').addEventListener('click', function () {
+    var line = 'ZAO Tiles ' + PUZZLE + ' - cleared. ' + solvedLine + (myRank ? ' Rank ' + myRank + ' this month.' : '');
+    if (window.ZG && window.ZG.shareScore) {
+      window.ZG.shareScore('ZAO Tiles', line, 'https://zabalgamez.com/game/tiles');
+    } else {
+      var url = 'https://zabalgamez.com/game/tiles';
+      var text = 'ZAO Tiles\n' + line + '\n\nPlay the ZABAL Gamez arcade.';
+      if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+      else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+    }
+  });
+
+  deal();
+  loadBoard();
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/arcade-share.js"></script>
+</body>
+</html>
