@@ -67,7 +67,7 @@
   <header class="hero" style="padding-bottom: 0.4rem;">
     <div class="hero-eyebrow">The arcade</div>
     <h1>Insert Coin. <span class="accent">Pick a game.</span></h1>
-    <p class="lead" style="margin-top: 0.3rem;">Three ways in. Play ZAO 2048, test what you know about the ZAO, or take the quiz that points you at what to build. All doors into The ZAO's live build - come make the rest.</p>
+    <p class="lead" style="margin-top: 0.3rem;">Three games of the day, picked fresh each morning. No signup, verified in the Farcaster app. Tap Show all for the full arcade.</p>
   </header>
 
   <div class="arcade-grid">
@@ -190,6 +190,52 @@
 </div>
 </main>
 
+<script>
+(function () {
+  var grid = document.querySelector('.arcade-grid');
+  if (!grid) return;
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.gcard'));
+  var games = cards.filter(function (c) { return (c.getAttribute('href') || '').indexOf('/game/') === 0; });
+  if (games.length <= 3) return;
+
+  // Date-seeded deterministic pick of three games of the day.
+  var seed = (Math.floor(Date.now() / 86400000) * 2654435761) >>> 0;
+  function rand() { seed = (seed * 1103515245 + 12345) >>> 0; return seed / 4294967296; }
+  var pool = games.slice();
+  for (var i = pool.length - 1; i > 0; i--) { var j = Math.floor(rand() * (i + 1)); var t = pool[i]; pool[i] = pool[j]; pool[j] = t; }
+  var featured = pool.slice(0, 3);
+  var featSet = featured.reduce(function (m, c) { m[c.getAttribute('href')] = 1; return m; }, {});
+
+  var expanded = false;
+  function apply() {
+    cards.forEach(function (c) {
+      var keep = expanded || featSet[c.getAttribute('href')];
+      c.style.display = keep ? '' : 'none';
+    });
+    if (!expanded) featured.slice().reverse().forEach(function (c) { grid.insertBefore(c, grid.firstChild); });
+  }
+  apply();
+
+  var label = document.createElement('div');
+  label.className = 'hero-eyebrow';
+  label.style.margin = '0.4rem 0 0.2rem';
+  label.textContent = 'Games of the day';
+  grid.parentNode.insertBefore(label, grid);
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'btn btn-secondary';
+  btn.style.margin = '0.9rem 0 0.2rem';
+  btn.textContent = 'Show all games (' + cards.length + ')';
+  btn.addEventListener('click', function () {
+    expanded = !expanded;
+    apply();
+    label.textContent = expanded ? 'The full arcade' : 'Games of the day';
+    btn.textContent = expanded ? 'Show only today\'s three' : ('Show all games (' + cards.length + ')');
+  });
+  grid.parentNode.insertBefore(btn, grid.nextSibling);
+})();
+</script>
 <script defer src="/assets/site-nav.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
