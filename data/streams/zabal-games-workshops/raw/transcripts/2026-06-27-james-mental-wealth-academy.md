@@ -1,11 +1,12 @@
 ---
 title: ZABAL GAMEZ Workshop w/James from Mental Wealth Academy
 show: ZABAL Gamez Workshops
-presenter: James jamesdesign.eth
+presenter: James @jamesdesign.eth
 org: Mental Wealth Academy
 date: 2026-06-27T00:00:00.000Z
-format: Recorded workshop
+format: Live talk plus Q and A, recorded
 language: en
+track: builder
 youtube: https://youtu.be/PghbLCx38t8
 topics: [What Mental Wealth Academy is, Learn-to-earn game world, Privy accounts and diamond points, Democratization of education, Building your own brand into Web3]
 ---

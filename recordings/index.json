@@ -1,6 +1,6 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-07-06",
+  "generated": "2026-07-10",
   "season": 1,
   "count": 33,
   "recordings": [
@@ -117,11 +117,11 @@
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/James from Mental Wealth Academy",
       "presenter": "James",
-      "handle": "jamesdesign.eth",
+      "handle": "@jamesdesign.eth",
       "org": "Mental Wealth Academy",
-      "track": null,
-      "technical": null,
-      "format": null,
+      "track": "builder",
+      "technical": 4,
+      "format": "Live talk plus Q and A, recorded",
       "date": "2026-06-27",
       "url": "https://zabalgamez.com/recordings/29",
       "page": "https://zabalgamez.com/recordings/29",
