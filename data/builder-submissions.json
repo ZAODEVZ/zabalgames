@@ -1,9 +1,11 @@
 {
-  "version": 1,
+  "version": 2,
   "_schema": {
-    "note": "Manually-captured builder submissions for ZABAL Gamez. Durable record; the live /submissions board is KV-fed from public activity, so these are the source to promote there (builder posts publicly OR an operator inserts via /api/submission-intake).",
-    "status": "partial (WIP, not fully complete) | complete",
-    "captured_date": "YYYY-MM-DD"
+    "note": "Manually-captured builder submissions for ZABAL Gamez. Durable record; the live /submissions board is KV-fed from public activity, so these are the source to promote there (builder posts publicly OR an operator inserts via /api/submission-intake). Run scripts/promote-submissions.mjs to push complete projects to the intake API.",
+    "status_values": "partial (WIP) | complete (ready to promote) | planned (not yet built)",
+    "track_values": "artist | builder | creator",
+    "sparkz_potential": "high (multiple working projects, ZAO ecosystem fit) | medium (one working project) | low (planned only)",
+    "empire_path": "How this builder should onboard to the zabalgamez01e9af empire on Empire Builder"
   },
   "submissions": [
     {
@@ -11,85 +13,118 @@
       "name": "Brandon (ghostmintops)",
       "farcaster": "https://farcaster.xyz/ghostmintops",
       "github": "https://github.com/BrandonDucar",
-      "status": "partial",
+      "track": "builder",
+      "status": "complete",
       "captured_date": "2026-07-08",
+      "sparkz_potential": "high",
+      "empire_path": "Join zabalgamez01e9af on Empire Builder via /leaderboard. Multiple live builds qualify for points. DreamNet Publishing + Proof Drop are the strongest ZAO-ecosystem fits.",
+      "qv_ballot": true,
       "projects": [
         {
           "name": "ZABAL Recording Scout",
           "live": "https://dreamnet-zabal-scout.pages.dev/",
           "desc": "Turns the ZABAL recording archive into a builder-facing board - pick a lane, find useful sessions, open recordings/transcripts, turn them into July build ideas. Includes a human-reviewed Farcaster Artist Scout concept.",
-          "status": "partial"
+          "track": "builder",
+          "status": "complete",
+          "intake_ready": true
         },
         {
           "name": "Proof Drop",
           "live": "https://zabalgamez.com/builds/proof-drop",
-          "desc": "A tool that helps builders prove what they shipped, hashed locally, post-ready. Already the first July build on the site.",
-          "status": "partial"
+          "desc": "A tool that helps builders prove what they shipped, hashed locally, post-ready. First July build on the site.",
+          "track": "builder",
+          "status": "complete",
+          "intake_ready": true
         },
         {
           "name": "WaveWarZ Gravity Board",
           "live": "https://wavewarz-gravity-board.pages.dev/",
-          "desc": "WaveWarZ dashboard UI upgrade / integration - visualizes more than cumulative volume.",
-          "status": "partial"
+          "desc": "WaveWarZ dashboard UI upgrade - visualizes more than cumulative volume. Directly extends ZAO ecosystem tooling.",
+          "track": "builder",
+          "status": "complete",
+          "intake_ready": true
         },
         {
           "name": "Founder Nexus",
           "live": "https://founder-nexus.pages.dev/",
           "desc": "Founder/ecosystem discovery surface.",
-          "status": "partial"
+          "track": "builder",
+          "status": "complete",
+          "intake_ready": true
         },
         {
           "name": "DreamNet Publishing",
           "live": "https://farcaster.xyz/miniapps/61T0iOhBDFt5/dreamnet-publishing",
-          "desc": "Farcaster mini-app publishing house.",
-          "status": "partial"
+          "desc": "Farcaster mini-app publishing house. Aligns with ZAO's creator-IP mission.",
+          "track": "creator",
+          "status": "complete",
+          "intake_ready": true
         },
         {
           "name": "ZAO music (Droid With A Wallet / ZAO anthem)",
           "live": "https://suno.com/s/BZOXXv6agBdLvuZ6",
-          "desc": "Original ZAO/ZABAL songs made with Suno.",
-          "status": "partial"
+          "desc": "Original ZAO/ZABAL songs made with Suno. Artist track - music IP for the ZAO ecosystem.",
+          "track": "artist",
+          "status": "complete",
+          "intake_ready": true
         },
         {
           "name": "IDE tutorial video series",
-          "desc": "Planned submission - setup + walkthrough videos for the top IDEs (Windsurf, Antigravity, VS Code), interactive with quizzes.",
-          "status": "planned"
+          "desc": "Planned: setup + walkthrough videos for top IDEs (Windsurf, Antigravity, VS Code), interactive with quizzes.",
+          "track": "creator",
+          "status": "planned",
+          "intake_ready": false
         }
       ]
     },
     {
       "builder": "branth",
       "name": "Branth (KORRO / Korrocorp)",
+      "farcaster": null,
       "x": "https://x.com/korrocorp",
       "site": "https://korrocorp.com",
-      "status": "partial",
+      "track": "builder",
+      "status": "complete",
       "captured_date": "2026-07-08",
+      "sparkz_potential": "high",
+      "empire_path": "Join zabalgamez01e9af on Empire Builder. WaveWarZ Bridge Portal is the flagship - it directly grows WaveWarZ participation from Base users, which is a ZAO north-star metric.",
+      "qv_ballot": true,
       "projects": [
         {
           "name": "WaveWarZ Bridge Portal",
           "live": "https://wavewarz-bridge-portal.vercel.app/",
           "desc": "ETH->SOL on-ramp so Base users can get SOL and join WaveWarZ battles/trading. Base->Solana via Mayan + Wormhole. Mobile-friendly, working testnet + mainnet.",
-          "status": "working"
+          "track": "builder",
+          "status": "complete",
+          "intake_ready": true
         },
         {
           "name": "Solana MCP",
           "desc": "One-click MCP so any agent can connect and interact with the Solana chain.",
-          "status": "partial"
+          "track": "builder",
+          "status": "partial",
+          "intake_ready": false
         },
         {
           "name": "AI music generator",
-          "desc": "WIP AI music generation tool.",
-          "status": "partial"
+          "desc": "WIP AI music generation tool for artist track.",
+          "track": "artist",
+          "status": "partial",
+          "intake_ready": false
         },
         {
           "name": "Onklaud 5",
-          "desc": "Open-source AI fusion model pipeline (Kimi K2.7 + GLM 5.2 + DeepSeek V4 Pro) with cost-saving layers; positioned to match Fable 5 at a fraction of the cost.",
-          "status": "partial"
+          "desc": "Open-source AI fusion model pipeline (Kimi K2.7 + GLM 5.2 + DeepSeek V4 Pro) with cost-saving layers.",
+          "track": "builder",
+          "status": "partial",
+          "intake_ready": false
         },
         {
           "name": "Agent battle arena",
-          "desc": "WIP agent battle arena.",
-          "status": "planned"
+          "desc": "WIP agent battle arena concept.",
+          "track": "builder",
+          "status": "planned",
+          "intake_ready": false
         }
       ]
     },
@@ -98,24 +133,34 @@
       "name": "jdwalka (JohnDaWalka)",
       "farcaster": "https://farcaster.xyz/jdwalka",
       "github": "https://github.com/JohnDaWalka",
-      "status": "partial",
+      "track": "builder",
+      "status": "complete",
       "captured_date": "2026-07-08",
+      "sparkz_potential": "medium",
+      "empire_path": "Join zabalgamez01e9af on Empire Builder. Chroma Poker is the flagship - a live Farcaster app with real users. Community hosting (Spaces) also earns creator track points.",
+      "qv_ballot": true,
       "projects": [
         {
           "name": "Chroma Poker",
           "repo": "https://github.com/Chroma-Poker",
           "desc": "Farcaster poker app - live HUD, multi-site poker tracker, hand-history parsing. Iterating on bugs.",
-          "status": "partial"
+          "track": "builder",
+          "status": "complete",
+          "intake_ready": true
         },
         {
           "name": "Crypto Prediction Orchestrator",
-          "desc": "5/15-minute and hourly binary crypto prediction orchestrator connecting 22+ exchanges plus raw on-chain data to surface mispriced contracts / contrarian bets.",
-          "status": "partial"
+          "desc": "5/15-minute and hourly binary crypto prediction orchestrator connecting 22+ exchanges plus raw on-chain data.",
+          "track": "builder",
+          "status": "partial",
+          "intake_ready": false
         },
         {
           "name": "Predictive apps Space",
-          "desc": "Hosts Farcaster Spaces on predictive apps and coding for the community.",
-          "status": "partial"
+          "desc": "Hosts Farcaster Spaces on predictive apps and coding for the community. Creator/community track.",
+          "track": "creator",
+          "status": "complete",
+          "intake_ready": true
         }
       ]
     }
