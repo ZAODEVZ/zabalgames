@@ -67,7 +67,7 @@
   <header class="hero" style="padding-bottom: 0.4rem;">
     <div class="hero-eyebrow">The arcade</div>
     <h1>Insert Coin. <span class="accent">Pick a game.</span></h1>
-    <p class="lead" style="margin-top: 0.3rem;">Three ways in. Play ZAO 2048, test what you know about the ZAO, or take the quiz that points you at what to build. All doors into The ZAO's live build - come make the rest.</p>
+    <p class="lead" style="margin-top: 0.3rem;">Three games of the day, picked fresh each morning. No signup, verified in the Farcaster app. Tap Show all for the full arcade.</p>
   </header>
 
   <div class="arcade-grid">
@@ -112,6 +112,60 @@
       <p>The daily ZAO word game. Guess the five-letter ecosystem term in six tries, then share your grid. A new word every day.</p>
       <span class="go">Play now -&gt;</span>
     </a>
+    <a class="gcard" href="/game/groups">
+      <span class="tag live">No signup - new puzzle daily</span>
+      <h2>ZAO Connections</h2>
+      <p>Find the four hidden groups of four. ZAO and Farcaster themed, four mistakes allowed. A new puzzle every day.</p>
+      <span class="go">Play now -&gt;</span>
+    </a>
+    <a class="gcard" href="/game/sudoku">
+      <span class="tag live">No signup - new grid daily</span>
+      <h2>ZAO Sudoku</h2>
+      <p>The classic number puzzle. Fill the grid so every row, column, and box holds one to nine. A fresh grid every day.</p>
+      <span class="go">Play now -&gt;</span>
+    </a>
+    <a class="gcard" href="/game/bee">
+      <span class="tag live">No signup - new letters daily</span>
+      <h2>ZAO Spelling Bee</h2>
+      <p>Seven letters, one in the middle. Make as many words as you can using the center letter, and find the pangram. A fresh set every day.</p>
+      <span class="go">Play now -&gt;</span>
+    </a>
+    <a class="gcard" href="/game/letterbox">
+      <span class="tag live">No signup - new box daily</span>
+      <h2>ZAO Letter Boxed</h2>
+      <p>Spell words around the box using every letter in as few words as you can. Each word starts where the last one ended. A new box every day.</p>
+      <span class="go">Play now -&gt;</span>
+    </a>
+    <a class="gcard" href="/game/strands">
+      <span class="tag live">No signup - new theme daily</span>
+      <h2>ZAO Strands</h2>
+      <p>Find the themed words hidden in the letter grid, then the spangram that ties them together. A new theme every day.</p>
+      <span class="go">Play now -&gt;</span>
+    </a>
+    <a class="gcard" href="/game/mini">
+      <span class="tag live">No signup - new puzzle daily</span>
+      <h2>ZAO Mini Crossword</h2>
+      <p>A quick five-by-five crossword with ZAO and Farcaster themed clues. Solve it in a couple of minutes. A new one every day.</p>
+      <span class="go">Play now -&gt;</span>
+    </a>
+    <a class="gcard" href="/game/tiles">
+      <span class="tag live">No signup - new board daily</span>
+      <h2>ZAO Tiles</h2>
+      <p>Clear the board by matching tiles that share a shape. Peel the layers, chain your combos. A new board every day.</p>
+      <span class="go">Play now -&gt;</span>
+    </a>
+    <a class="gcard" href="/game/vertex">
+      <span class="tag live">No signup - new shape daily</span>
+      <h2>ZAO Vertex</h2>
+      <p>Connect the dots into triangles to reveal the hidden shape. A new picture every day.</p>
+      <span class="go">Play now -&gt;</span>
+    </a>
+    <a class="gcard" href="/game/pips">
+      <span class="tag live">No signup - new puzzle daily</span>
+      <h2>ZAO Pips</h2>
+      <p>Place the dominoes so every region follows its rule. A small daily logic puzzle.</p>
+      <span class="go">Play now -&gt;</span>
+    </a>
 
     <a class="gcard" href="/game/snake">
       <span class="tag live">No signup to play</span>
@@ -154,6 +208,52 @@
 </div>
 </main>
 
+<script>
+(function () {
+  var grid = document.querySelector('.arcade-grid');
+  if (!grid) return;
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.gcard'));
+  var games = cards.filter(function (c) { return (c.getAttribute('href') || '').indexOf('/game/') === 0; });
+  if (games.length <= 3) return;
+
+  // Date-seeded deterministic pick of three games of the day.
+  var seed = (Math.floor(Date.now() / 86400000) * 2654435761) >>> 0;
+  function rand() { seed = (seed * 1103515245 + 12345) >>> 0; return seed / 4294967296; }
+  var pool = games.slice();
+  for (var i = pool.length - 1; i > 0; i--) { var j = Math.floor(rand() * (i + 1)); var t = pool[i]; pool[i] = pool[j]; pool[j] = t; }
+  var featured = pool.slice(0, 3);
+  var featSet = featured.reduce(function (m, c) { m[c.getAttribute('href')] = 1; return m; }, {});
+
+  var expanded = false;
+  function apply() {
+    cards.forEach(function (c) {
+      var keep = expanded || featSet[c.getAttribute('href')];
+      c.style.display = keep ? '' : 'none';
+    });
+    if (!expanded) featured.slice().reverse().forEach(function (c) { grid.insertBefore(c, grid.firstChild); });
+  }
+  apply();
+
+  var label = document.createElement('div');
+  label.className = 'hero-eyebrow';
+  label.style.margin = '0.4rem 0 0.2rem';
+  label.textContent = 'Games of the day';
+  grid.parentNode.insertBefore(label, grid);
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'btn btn-secondary';
+  btn.style.margin = '0.9rem 0 0.2rem';
+  btn.textContent = 'Show all games (' + cards.length + ')';
+  btn.addEventListener('click', function () {
+    expanded = !expanded;
+    apply();
+    label.textContent = expanded ? 'The full arcade' : 'Games of the day';
+    btn.textContent = expanded ? 'Show only today\'s three' : ('Show all games (' + cards.length + ')');
+  });
+  grid.parentNode.insertBefore(btn, grid.nextSibling);
+})();
+</script>
 <script defer src="/assets/site-nav.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>

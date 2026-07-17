@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Vertex - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Vertex - the daily connect-the-dots puzzle. Link numbered dots into triangles to reveal a hidden shape. No signup.">
+  <link rel="canonical" href="https://zabalgamez.com/game/vertex">
+  <meta property="og:title" content="ZAO Vertex - ZABAL Gamez">
+  <meta property="og:description" content="Link numbered dots into triangles to reveal a hidden shape. One puzzle a day.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/vertex">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Vertex - ZABAL Gamez">
+  <meta name="twitter:description" content="Link numbered dots into triangles to reveal a hidden shape. One puzzle a day.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Vertex","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/vertex","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .vx-wrap { width: 100%; max-width: 360px; margin: 0.8rem 0 0.6rem; }
+    .vx-svg { width: 100%; height: auto; display: block; aspect-ratio: 1 / 1;
+      border: 1px solid var(--border); border-radius: 14px; background: var(--surface-2);
+      touch-action: manipulation; }
+    .vx-ghost { opacity: 0.07; }
+    .vx-edge { stroke: var(--border); stroke-width: 0.4; fill: none; opacity: 0.5; }
+    .vx-fill { stroke: rgba(255,255,255,0.14); stroke-width: 0.5; stroke-linejoin: round; opacity: 0.92; }
+    .vx-line { stroke: var(--gold); stroke-width: 1; opacity: 0.85; stroke-linecap: round; }
+    .vx-dot { fill: var(--surface); stroke: var(--text-dim); stroke-width: 0.6; cursor: pointer; }
+    .vx-dot.sel { fill: var(--gold); stroke: var(--gold); }
+    .vx-dot.done { fill: var(--text-dim); stroke: var(--text-dim); }
+    .vx-num { fill: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 3.2px;
+      font-weight: 600; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+    .vx-num.sel { fill: #1a1402; }
+    .vx-hit { fill: transparent; cursor: pointer; }
+    .vx-status { display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.86rem; color: var(--text-muted); }
+    .vx-count { color: var(--cyan); font-weight: 600; }
+    .vx-msg { min-height: 1.2rem; font-size: 0.9rem; color: var(--gold); margin: 0.4rem 0 0.2rem; }
+    .vx-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text);
+      opacity: 0; transition: opacity 0.5s ease; }
+    .vx-name.show { opacity: 1; }
+    .vx-win { margin-top: 1rem; padding: 1rem 1.1rem; border: 1px solid var(--cyan); border-radius: 14px;
+      background: rgba(0,229,255,0.06); display: none; }
+    .vx-win.show { display: block; }
+    .vx-win h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.3rem; }
+    .vx-win p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 0.4rem; }
+    .vx-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+  </style>
+</head>
+<body data-zg-game="ZAO Vertex" data-zg-url="https://zabalgamez.com/game/vertex">
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/info.html">Details</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow"><a href="/game" style="color: inherit;">The arcade</a> / ZAO Vertex</div>
+    <h1>ZAO <span class="accent">Vertex</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">One shape a day, hidden in a field of numbered dots. Tap three dots in a row to draw a triangle. Fill every triangle to reveal the picture. No signup.</p>
+  </header>
+
+  <div class="vx-msg" id="vx-msg" role="status" aria-live="polite"></div>
+
+  <div class="vx-wrap">
+    <svg class="vx-svg" id="vx-svg" viewBox="0 0 100 100" aria-label="Vertex puzzle board" role="img"></svg>
+  </div>
+
+  <div class="vx-status">
+    <span>Triangles <span class="vx-count" id="vx-count">0 / 0</span></span>
+    <span class="vx-name" id="vx-name"></span>
+  </div>
+
+  <div class="vx-win" id="vx-win" aria-live="polite">
+    <h2 id="vx-win-title">Shape complete.</h2>
+    <p id="vx-win-line"></p>
+    <div class="vx-actions" style="margin-top: 0;">
+      <button class="btn btn-primary" id="vx-share" type="button">Share result</button>
+      <a class="btn btn-secondary" href="/game">Back to arcade</a>
+    </div>
+  </div>
+
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Points per solve: 10 for a clean run, less for wrong trios, floor of 2. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="vx-board-list" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
+    A quiet daily puzzle for the build season. New here? Browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
+  </p>
+
+</div>
+</main>
+
+<script>
+(function () {
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  // Baked bank of daily puzzles. Each: name, verts (normalized 0..100), tris (vertex
+  // index triples + baked fill). Every triple is a valid, non-degenerate, unique triangle
+  // (checked at build time in scripts/verify_bank.mjs and guarded again below).
+  var PUZZLES = [
+    {
+      name: 'Diamond',
+      verts: [[50,8],[84,50],[50,92],[16,50],[50,50]],
+      tris: [
+        { v: [0,1,4], fill: 'cyan' },
+        { v: [1,2,4], fill: 'zabal' },
+        { v: [2,3,4], fill: 'cyan' },
+        { v: [3,0,4], fill: 'zabal' }
+      ]
+    },
+    {
+      name: 'Star',
+      verts: [
+        [50,10],[88,38],[74,82],[26,82],[12,38],
+        [59,37],[65,55],[50,66],[35,55],[41,37],
+        [50,50]
+      ],
+      tris: [
+        { v: [0,9,5], fill: 'gold' },
+        { v: [1,5,6], fill: 'gold' },
+        { v: [2,6,7], fill: 'gold' },
+        { v: [3,7,8], fill: 'gold' },
+        { v: [4,8,9], fill: 'gold' },
+        { v: [10,5,6], fill: 'cyan' },
+        { v: [10,6,7], fill: 'zabal' },
+        { v: [10,7,8], fill: 'cyan' },
+        { v: [10,8,9], fill: 'zabal' },
+        { v: [10,9,5], fill: 'cyan' }
+      ]
+    },
+    {
+      name: 'Coin',
+      verts: [
+        [50,12],[77,23],[88,50],[77,77],[50,88],[23,77],[12,50],[23,23],
+        [50,50]
+      ],
+      tris: [
+        { v: [8,0,1], fill: 'gold' },
+        { v: [8,1,2], fill: 'gold' },
+        { v: [8,2,3], fill: 'gold' },
+        { v: [8,3,4], fill: 'gold' },
+        { v: [8,4,5], fill: 'gold' },
+        { v: [8,5,6], fill: 'gold' },
+        { v: [8,6,7], fill: 'gold' },
+        { v: [8,7,0], fill: 'gold' }
+      ]
+    },
+    {
+      name: 'Arrow',
+      verts: [
+        [12,40],[35,40],[58,40],[58,60],[35,60],[12,60],
+        [58,22],[58,78],[92,50],[58,50]
+      ],
+      tris: [
+        { v: [0,1,4], fill: 'cyan' },
+        { v: [0,4,5], fill: 'cyan' },
+        { v: [1,2,3], fill: 'cyan' },
+        { v: [1,3,4], fill: 'cyan' },
+        { v: [6,8,9], fill: 'zabal' },
+        { v: [9,8,7], fill: 'zabal' }
+      ]
+    },
+    {
+      name: 'Letter Z',
+      verts: [
+        [20,15],[80,15],[80,30],[20,30],
+        [20,70],[80,70],[80,85],[20,85],
+        [55,30],[80,30],[20,70],[45,70]
+      ],
+      tris: [
+        { v: [0,1,2], fill: 'pink' },
+        { v: [0,2,3], fill: 'pink' },
+        { v: [4,5,6], fill: 'pink' },
+        { v: [4,6,7], fill: 'pink' },
+        { v: [8,9,11], fill: 'cyan' },
+        { v: [8,11,10], fill: 'cyan' }
+      ]
+    },
+    {
+      name: 'Heart',
+      verts: [
+        [50,32],[38,20],[26,20],[16,32],[14,45],[24,60],[40,74],
+        [50,88],[60,74],[76,60],[86,45],[84,32],[74,20],[62,20],
+        [50,52]
+      ],
+      tris: [
+        { v: [14,0,1], fill: 'pink' },
+        { v: [14,1,2], fill: 'pink' },
+        { v: [14,2,3], fill: 'pink' },
+        { v: [14,3,4], fill: 'zabal' },
+        { v: [14,4,5], fill: 'pink' },
+        { v: [14,5,6], fill: 'pink' },
+        { v: [14,6,7], fill: 'zabal' },
+        { v: [14,7,8], fill: 'zabal' },
+        { v: [14,8,9], fill: 'pink' },
+        { v: [14,9,10], fill: 'pink' },
+        { v: [14,10,11], fill: 'zabal' },
+        { v: [14,11,12], fill: 'pink' },
+        { v: [14,12,13], fill: 'pink' },
+        { v: [14,13,0], fill: 'pink' }
+      ]
+    }
+  ];
+
+  var FILL_VAR = { cyan: 'var(--cyan)', gold: 'var(--gold)', pink: 'var(--pink)', zabal: 'var(--zabal)' };
+
+  // Runtime guard: drop any puzzle whose triangles are not all valid, non-degenerate and
+  // unique. Keeps a bad daily pick from ever loading a broken board.
+  function isValid(p) {
+    var n = p.verts.length, seen = {};
+    for (var i = 0; i < p.tris.length; i++) {
+      var v = p.tris[i].v;
+      if (v.length !== 3) return false;
+      for (var j = 0; j < 3; j++) { if (v[j] < 0 || v[j] >= n || v[j] !== Math.floor(v[j])) return false; }
+      if (v[0] === v[1] || v[1] === v[2] || v[0] === v[2]) return false;
+      var a = p.verts[v[0]], b = p.verts[v[1]], c = p.verts[v[2]];
+      var area2 = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
+      if (Math.abs(area2) < 1e-6) return false;
+      var key = v.slice().sort(function (x, y) { return x - y; }).join(',');
+      if (seen[key]) return false;
+      seen[key] = true;
+    }
+    return true;
+  }
+  var BANK = PUZZLES.filter(isValid);
+
+  var dayIndex = Math.floor(Date.now() / 86400000);
+  var PUZZLE_NO = dayIndex - 20270;
+  var puzzle = BANK[((dayIndex % BANK.length) + BANK.length) % BANK.length];
+
+  var svg = document.getElementById('vx-svg');
+  var countEl = document.getElementById('vx-count');
+  var nameEl = document.getElementById('vx-name');
+  var msg = document.getElementById('vx-msg');
+  var winEl = document.getElementById('vx-win');
+
+  var total = puzzle.tris.length;
+  var completed = 0;
+  var wrongAttempts = 0;
+  var over = false;
+  var selected = [];
+  var completedKeys = {};
+  var dotEls = [];
+  var numEls = [];
+  var lineLayer, dotLayer;
+
+  function keyOf(v) { return v.slice().sort(function (a, b) { return a - b; }).join(','); }
+
+  function el(tag, attrs) {
+    var e = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) { if (attrs.hasOwnProperty(k)) e.setAttribute(k, attrs[k]); }
+    return e;
+  }
+
+  function setMsg(s) { msg.textContent = s || ''; }
+  function updateCount() { countEl.textContent = completed + ' / ' + total; }
+
+  function build() {
+    // Faint ghost of the solved shape, so the target is achievable but not spelled out.
+    var ghost = el('g', { class: 'vx-ghost' });
+    puzzle.tris.forEach(function (t) {
+      var pts = t.v.map(function (i) { return puzzle.verts[i][0] + ',' + puzzle.verts[i][1]; }).join(' ');
+      ghost.appendChild(el('polygon', { points: pts, fill: FILL_VAR[t.fill] }));
+    });
+    svg.appendChild(ghost);
+
+    // Faint edges of each triangle - the connect-the-dots hint.
+    var edges = el('g', {});
+    puzzle.tris.forEach(function (t) {
+      var pts = t.v.map(function (i) { return puzzle.verts[i][0] + ',' + puzzle.verts[i][1]; }).join(' ');
+      edges.appendChild(el('polygon', { points: pts, class: 'vx-edge' }));
+    });
+    svg.appendChild(edges);
+
+    // Layer where filled triangles and the active selection lines get drawn.
+    lineLayer = el('g', {});
+    svg.appendChild(lineLayer);
+
+    // Dots on top, each tappable.
+    dotLayer = el('g', {});
+    puzzle.verts.forEach(function (p, i) {
+      var dot = el('circle', { cx: p[0], cy: p[1], r: 2.4, class: 'vx-dot' });
+      var num = el('text', { x: p[0], y: p[1], class: 'vx-num' });
+      num.textContent = String(i + 1);
+      var hit = el('circle', { cx: p[0], cy: p[1], r: 5, class: 'vx-hit' });
+      hit.setAttribute('role', 'button');
+      hit.setAttribute('tabindex', '0');
+      hit.setAttribute('aria-label', 'Dot ' + (i + 1));
+      (function (idx) {
+        hit.addEventListener('click', function () { pick(idx); });
+        hit.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); pick(idx); }
+        });
+      })(i);
+      dotLayer.appendChild(dot);
+      dotLayer.appendChild(num);
+      dotLayer.appendChild(hit);
+      dotEls[i] = dot;
+      numEls[i] = num;
+    });
+    svg.appendChild(dotLayer);
+    updateCount();
+  }
+
+  var selLines = [];
+  function clearSelLines() {
+    selLines.forEach(function (l) { if (l.parentNode) l.parentNode.removeChild(l); });
+    selLines = [];
+  }
+
+  function refreshSelection() {
+    for (var i = 0; i < dotEls.length; i++) {
+      var isSel = selected.indexOf(i) !== -1;
+      dotEls[i].classList.toggle('sel', isSel);
+      numEls[i].classList.toggle('sel', isSel);
+    }
+    clearSelLines();
+    for (var j = 1; j < selected.length; j++) {
+      var a = puzzle.verts[selected[j - 1]], b = puzzle.verts[selected[j]];
+      var ln = el('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], class: 'vx-line' });
+      lineLayer.appendChild(ln);
+      selLines.push(ln);
+    }
+  }
+
+  function markDone(v) {
+    v.forEach(function (i) {
+      dotEls[i].classList.remove('sel');
+      dotEls[i].classList.add('done');
+    });
+  }
+
+  function fillTriangle(t) {
+    var pts = t.v.map(function (i) { return puzzle.verts[i][0] + ',' + puzzle.verts[i][1]; }).join(' ');
+    lineLayer.appendChild(el('polygon', { points: pts, class: 'vx-fill', fill: FILL_VAR[t.fill] }));
+  }
+
+  function pick(idx) {
+    if (over) return;
+    var at = selected.indexOf(idx);
+    if (at !== -1) { selected.splice(at, 1); refreshSelection(); return; }
+    selected.push(idx);
+    refreshSelection();
+    if (selected.length === 3) {
+      var trio = selected.slice();
+      selected = [];
+      attempt(trio);
+    }
+  }
+
+  function attempt(trio) {
+    var k = keyOf(trio);
+    if (completedKeys[k]) { setMsg('Already filled - pick a new trio.'); refreshSelection(); return; }
+    var match = null;
+    for (var i = 0; i < puzzle.tris.length; i++) {
+      if (keyOf(puzzle.tris[i].v) === k) { match = puzzle.tris[i]; break; }
+    }
+    if (match) {
+      completedKeys[k] = true;
+      completed++;
+      fillTriangle(match);
+      updateCount();
+      setMsg('Triangle filled.');
+      refreshSelection();
+      if (completed >= total) finish();
+    } else {
+      wrongAttempts++;
+      setMsg('Those three do not form a triangle. Selection cleared.');
+      refreshSelection();
+    }
+  }
+
+  var myRank = null;
+  var PTS_KEY = 'zg-vertex-pts-' + new Date().toISOString().slice(0, 7);
+  var lastPts = 0;
+
+  function loadBoard() {
+    var list = document.getElementById('vx-board-list');
+    if (!list) return;
+    fetch('/api/game?game=zaovertex', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified solves yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' pts</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  function finish() {
+    over = true;
+    // Points: a clean run is 10; every three wrong trios costs one; never below 2.
+    lastPts = Math.max(Math.round(10 - wrongAttempts / 3), 2);
+    var monthTotal = 0;
+    try { monthTotal = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e) {}
+    monthTotal += lastPts;
+    try { localStorage.setItem(PTS_KEY, String(monthTotal)); } catch (e2) {}
+
+    nameEl.textContent = puzzle.name;
+    nameEl.classList.add('show');
+    document.getElementById('vx-win-title').textContent = puzzle.name + ' complete.';
+    var line = 'Solved ' + puzzle.name + ' in ' + total + ' triangles' +
+      (wrongAttempts ? ', ' + wrongAttempts + ' wrong ' + (wrongAttempts === 1 ? 'trio' : 'trios') : ' with no misses') +
+      '. ' + lastPts + ' pts today. New shape tomorrow.';
+    document.getElementById('vx-win-line').textContent = line;
+    winEl.classList.add('show');
+    setMsg('');
+
+    myRank = null;
+    if (monthTotal > 0) {
+      try {
+        if (window.ZABAL && window.ZABAL.submitScore) {
+          window.ZABAL.submitScore('zaovertex', monthTotal, null).then(function (d) {
+            if (d && d.ok) {
+              if (d.rank) {
+                myRank = d.rank;
+                document.getElementById('vx-win-line').textContent = line + ' ' + monthTotal + ' pts this month, rank ' + d.rank + '.';
+              }
+              loadBoard();
+            }
+          }).catch(function () {});
+        }
+      } catch (e3) {}
+    }
+  }
+
+  document.getElementById('vx-share').addEventListener('click', function () {
+    var line = 'ZAO Vertex ' + PUZZLE_NO + ' - ' + puzzle.name + ' in ' + total + ' triangles, ' +
+      wrongAttempts + ' wrong ' + (wrongAttempts === 1 ? 'trio' : 'trios') + '. ' +
+      (myRank ? 'Rank ' + myRank + ' on this month\'s board. Beat my spot.' : lastPts + ' pts today.');
+    if (window.ZG && window.ZG.shareScore) window.ZG.shareScore('ZAO Vertex', line, 'https://zabalgamez.com/game/vertex');
+  });
+
+  build();
+  loadBoard();
+})();
+</script>
+<script defer src="/assets/arcade-share.js"></script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

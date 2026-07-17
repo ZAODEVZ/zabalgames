@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Sudoku - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Sudoku - a daily 9x9 grid. Fill every row, column, and box with 1-9. No signup.">
+  <link rel="canonical" href="https://zabalgamez.com/game/sudoku">
+  <meta property="og:title" content="ZAO Sudoku - ZABAL Gamez">
+  <meta property="og:description" content="A daily 9x9 grid. Fill every row, column, and box with 1-9.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/sudoku">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Sudoku - ZABAL Gamez">
+  <meta name="twitter:description" content="A daily 9x9 grid. Fill every row, column, and box with 1-9.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Sudoku","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/sudoku","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .sk-msg { min-height: 1.2rem; font-size: 0.9rem; color: var(--gold); margin-bottom: 0.4rem; }
+    .sk-meta { display: flex; gap: 0.8rem; flex-wrap: wrap; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .sk-meta strong { color: var(--text); font-weight: 600; }
+    .sk-board { display: grid; grid-template-columns: repeat(9, 1fr); width: 100%; max-width: 380px;
+      margin: 0.2rem 0 1rem; border: 2px solid var(--text-dim); border-radius: 8px; overflow: hidden; background: var(--surface); }
+    .sk-cell { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+      border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--surface); color: var(--cyan); cursor: pointer;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(0.95rem, 5.2vw, 1.4rem); user-select: none; }
+    .sk-cell.col3 { border-right: 2px solid var(--text-dim); }
+    .sk-cell.row3 { border-bottom: 2px solid var(--text-dim); }
+    .sk-cell.edge-r { border-right: none; }
+    .sk-cell.edge-b { border-bottom: none; }
+    .sk-cell.given { color: var(--text); background: var(--surface-2); cursor: default; }
+    .sk-cell.peer { background: rgba(0,229,255,0.05); }
+    .sk-cell.same { background: rgba(245,200,66,0.12); }
+    .sk-cell.sel { outline: 2px solid var(--cyan); outline-offset: -2px; background: rgba(0,229,255,0.14); z-index: 1; }
+    .sk-cell.conflict { color: var(--pink); }
+    .sk-cell.wrong { background: rgba(255,61,110,0.16); color: var(--pink); }
+    .sk-pad { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.35rem; width: 100%; max-width: 380px; }
+    .sk-key { padding: 0.75rem 0.2rem; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--surface-2); color: var(--text); font: inherit; font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.05rem; cursor: pointer; }
+    .sk-key:hover { border-color: var(--border-hover); }
+    .sk-key.erase { grid-column: span 5; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+    .sk-tools { display: flex; gap: 0.7rem; flex-wrap: wrap; margin: 0.9rem 0 0.2rem; }
+    .sk-win { margin-top: 1.1rem; padding: 1rem 1.1rem; border: 1px solid var(--cyan); border-radius: 14px;
+      background: rgba(0,229,255,0.06); display: none; }
+    .sk-win.show { display: block; }
+    .sk-win h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.3rem; }
+    .sk-win p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 0.4rem; }
+    .sk-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+  </style>
+</head>
+<body data-zg-game="ZAO Sudoku" data-zg-url="https://zabalgamez.com/game/sudoku">
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/info.html">Details</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow"><a href="/game" style="color: inherit;">The arcade</a> / ZAO Sudoku</div>
+    <h1>ZAO <span class="accent">Sudoku</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">One 9x9 grid a day. Every row, column, and 3x3 box holds 1 through 9 once. Tap a cell, then tap a number. No signup.</p>
+  </header>
+
+  <div class="sk-meta" id="sk-meta"></div>
+  <div class="sk-msg" id="sk-msg" role="status" aria-live="polite"></div>
+
+  <div class="sk-board" id="sk-board" aria-label="Sudoku grid"></div>
+
+  <div class="sk-pad" id="sk-pad" aria-label="Number pad"></div>
+
+  <div class="sk-tools">
+    <button class="btn btn-secondary" id="sk-check" type="button">Check</button>
+    <button class="btn btn-secondary" id="sk-reset" type="button">Reset grid</button>
+  </div>
+
+  <div class="sk-win" id="sk-win" aria-live="polite">
+    <h2 id="sk-win-title">Solved.</h2>
+    <p id="sk-win-line"></p>
+    <div class="sk-actions" style="margin-top: 0;">
+      <button class="btn btn-primary" id="sk-share" type="button">Share result</button>
+      <a class="btn btn-secondary" href="/game">Back to arcade</a>
+    </div>
+  </div>
+
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Up to 10 points a solve, minus one per Check that finds a mistake, plus 2 for a medium grid. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="sk-board-list" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
+    A steady daily reset for the build season. New here? Browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
+  </p>
+
+</div>
+</main>
+
+<script>
+(function () {
+  // Baked bank of verified, uniquely-solvable puzzles. Each solution is a valid
+  // completed sudoku and each givens string is consistent with its solution.
+  var BANK = [
+    { difficulty: 'easy', givens: '4.2...3..5..4..86..8..1354.3.56741....6..8.54748....36.1.54.68......74..9.43.627.', solution: '472865319531492867689713542395674128126938754748251936217549683863127495954386271' },
+    { difficulty: 'easy', givens: '9...54183...9..74.47.138...8.732....1.648.9..23...5..46...9..5.5912.3.687.....2.1', solution: '962754183318962745475138629847329516156487932239615874624891357591273468783546291' },
+    { difficulty: 'easy', givens: '....2...4.5.4...876..8.725..9....73.8..1....9.236.9518.3.96.8...15.8.3..7.653.94.', solution: '178325694352496187649817253591248736867153429423679518234961875915784362786532941' },
+    { difficulty: 'easy', givens: '4...7326..928.4...57.1.2..992...7.1.7..5.8.92..8...3.7.173965......4..36.6....92.', solution: '481973265692854173573162849925437618736518492148629357217396584859241736364785921' },
+    { difficulty: 'medium', givens: '.25.7..8..6....3...9..........94...7.49.1...67....324...6..5..32137...9.9..362.78', solution: '325476981167829354498531762632948517549217836781653249876195423213784695954362178' },
+    { difficulty: 'medium', givens: '.31..9....8..2..9.9.5.3.168....7..51.46.5..72...91....51...34.....8....5..3.42...', solution: '731689524684125397925437168398274651146358972257916843512793486479861235863542719' },
+    { difficulty: 'medium', givens: '...2....36............7.8.2..3..1..4.4..5.2.92..34....5.2...9.1...985.26.396...47', solution: '475268193628193475391574862983721654147856239256349718562437981714985326839612547' },
+    { difficulty: 'medium', givens: '5..8.....6.9..3.24..2.....8........2..81..356.169.5.4...5.......9725..3...3.8.76.', solution: '541892673689573124732641598354768912978124356216935847465317289897256431123489765' }
+  ];
+
+  var board = document.getElementById('sk-board');
+  var pad = document.getElementById('sk-pad');
+  var msg = document.getElementById('sk-msg');
+  var winEl = document.getElementById('sk-win');
+
+  // Date-seeded daily pick + a stable puzzle number.
+  var dayIndex = Math.floor(Date.now() / 86400000);
+  var PUZZLE = dayIndex - 20270;
+  var idx = ((dayIndex % BANK.length) + BANK.length) % BANK.length;
+  var CUR = BANK[idx];
+  var GIVENS = CUR.givens.replace(/0/g, '.');
+  var SOLUTION = CUR.solution;
+  var IS_MEDIUM = CUR.difficulty === 'medium';
+
+  var cells = [];        // 81 cell elements
+  var values = [];       // 81 current values, 0 = empty
+  var given = [];        // 81 booleans
+  var selected = -1;
+  var over = false;
+  var badChecks = 0;     // number of Check presses that revealed a mistake
+
+  document.getElementById('sk-meta').innerHTML =
+    'Grid <strong>#' + PUZZLE + '</strong>' +
+    '<span>Difficulty <strong>' + (IS_MEDIUM ? 'medium' : 'easy') + '</strong></span>';
+
+  // Build the 9x9 grid.
+  for (var i = 0; i < 81; i++) {
+    var r = Math.floor(i / 9), c = i % 9;
+    var el = document.createElement('div');
+    el.className = 'sk-cell';
+    if (c === 2 || c === 5) el.className += ' col3';
+    if (r === 2 || r === 5) el.className += ' row3';
+    if (c === 8) el.className += ' edge-r';
+    if (r === 8) el.className += ' edge-b';
+    var ch = GIVENS.charAt(i);
+    if (ch !== '.' && ch !== '0') {
+      values[i] = parseInt(ch, 10);
+      given[i] = true;
+      el.className += ' given';
+      el.textContent = ch;
+    } else {
+      values[i] = 0;
+      given[i] = false;
+    }
+    (function (pos) { el.addEventListener('click', function () { selectCell(pos); }); })(i);
+    board.appendChild(el);
+    cells[i] = el;
+  }
+
+  // Number pad 1-9 + Erase.
+  for (var n = 1; n <= 9; n++) {
+    var k = document.createElement('button');
+    k.type = 'button';
+    k.className = 'sk-key';
+    k.textContent = String(n);
+    k.dataset.n = String(n);
+    k.addEventListener('click', function () { place(parseInt(this.dataset.n, 10)); });
+    pad.appendChild(k);
+  }
+  var eraseBtn = document.createElement('button');
+  eraseBtn.type = 'button';
+  eraseBtn.className = 'sk-key erase';
+  eraseBtn.textContent = 'Erase';
+  eraseBtn.addEventListener('click', function () { place(0); });
+  pad.appendChild(eraseBtn);
+
+  function setMsg(s) { msg.textContent = s || ''; }
+
+  function rowOf(i) { return Math.floor(i / 9); }
+  function colOf(i) { return i % 9; }
+  function boxOf(i) { return Math.floor(rowOf(i) / 3) * 3 + Math.floor(colOf(i) / 3); }
+
+  // A value at pos breaks a rule if it repeats in its row, column, or box.
+  function isConflict(pos) {
+    var v = values[pos];
+    if (!v) return false;
+    for (var j = 0; j < 81; j++) {
+      if (j === pos || values[j] !== v) continue;
+      if (rowOf(j) === rowOf(pos) || colOf(j) === colOf(pos) || boxOf(j) === boxOf(pos)) return true;
+    }
+    return false;
+  }
+
+  function selectCell(pos) {
+    if (over) return;
+    selected = pos;
+    render();
+  }
+
+  function place(v) {
+    if (over || selected < 0) return;
+    if (given[selected]) { setMsg('That cell is locked.'); return; }
+    values[selected] = v;
+    cells[selected].classList.remove('wrong');
+    render();
+    if (isComplete()) checkDone();
+  }
+
+  function isComplete() {
+    for (var i = 0; i < 81; i++) if (!values[i]) return false;
+    return true;
+  }
+
+  function render() {
+    var selVal = selected >= 0 ? values[selected] : 0;
+    for (var i = 0; i < 81; i++) {
+      var el = cells[i];
+      el.classList.remove('sel', 'peer', 'same', 'conflict');
+      if (!given[i]) el.textContent = values[i] ? String(values[i]) : '';
+      if (i === selected) el.classList.add('sel');
+      else if (selected >= 0 &&
+        (rowOf(i) === rowOf(selected) || colOf(i) === colOf(selected) || boxOf(i) === boxOf(selected))) {
+        el.classList.add('peer');
+      }
+      if (selVal && values[i] === selVal && i !== selected) el.classList.add('same');
+      if (isConflict(i)) el.classList.add('conflict');
+    }
+  }
+
+  // Check reveals any filled cell that does not match the solution.
+  function runCheck() {
+    if (over) return;
+    var wrong = 0, filled = 0;
+    for (var i = 0; i < 81; i++) {
+      cells[i].classList.remove('wrong');
+      if (given[i] || !values[i]) continue;
+      filled++;
+      if (String(values[i]) !== SOLUTION.charAt(i)) { cells[i].classList.add('wrong'); wrong++; }
+    }
+    if (wrong > 0) {
+      badChecks++;
+      setMsg(wrong === 1 ? 'One number is off. It is marked.' : wrong + ' numbers are off. They are marked.');
+    } else if (filled === 0) {
+      setMsg('Fill some cells first.');
+    } else if (isComplete()) {
+      checkDone();
+    } else {
+      setMsg('No mistakes so far. Keep going.');
+    }
+  }
+
+  function isSolved() {
+    for (var i = 0; i < 81; i++) if (String(values[i]) !== SOLUTION.charAt(i)) return false;
+    return true;
+  }
+
+  var myRank = null;
+  var PTS_KEY = 'zg-sudoku-pts-' + new Date().toISOString().slice(0, 7);
+
+  function loadBoard() {
+    var list = document.getElementById('sk-board-list');
+    if (!list) return;
+    fetch('/api/game?game=zaosudoku', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified solves yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' pts</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  function checkDone() {
+    if (over) return;
+    if (!isComplete()) return;
+    if (!isSolved()) {
+      // Grid is full but wrong somewhere. Flag the offenders.
+      runCheck();
+      return;
+    }
+    finish();
+  }
+
+  function finish() {
+    over = true;
+    // Up to 10 points, minus one per Check that found a mistake (floor 2),
+    // plus a 2-point bonus on a medium grid.
+    var pts = Math.max(10 - badChecks, 2) + (IS_MEDIUM ? 2 : 0);
+    var total = 0;
+    try { total = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e) {}
+    total += pts;
+    try { localStorage.setItem(PTS_KEY, String(total)); } catch (e) {}
+
+    document.getElementById('sk-win-title').textContent = 'Solved.';
+    document.getElementById('sk-win-line').textContent =
+      'Cleared today\'s grid for ' + pts + ' pts. New grid tomorrow.';
+    winEl.classList.add('show');
+    setMsg('Solved. Nice.');
+
+    myRank = null;
+    if (total > 0) {
+      try {
+        if (window.ZABAL && window.ZABAL.submitScore) {
+          window.ZABAL.submitScore('zaosudoku', total, null).then(function (d) {
+            if (d && d.ok) {
+              if (d.rank) {
+                myRank = d.rank;
+                document.getElementById('sk-win-line').textContent += ' ' + total + ' pts this month, rank ' + d.rank + '.';
+              }
+              loadBoard();
+            }
+          }).catch(function () {});
+        }
+      } catch (e) {}
+    }
+  }
+
+  function resetGrid() {
+    if (over) return;
+    for (var i = 0; i < 81; i++) {
+      if (given[i]) continue;
+      values[i] = 0;
+      cells[i].classList.remove('wrong');
+    }
+    selected = -1;
+    setMsg('');
+    render();
+  }
+
+  document.getElementById('sk-check').addEventListener('click', runCheck);
+  document.getElementById('sk-reset').addEventListener('click', resetGrid);
+
+  document.getElementById('sk-share').addEventListener('click', function () {
+    var total = 0;
+    try { total = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e) {}
+    var line = 'Solved today\'s grid. ' + total + ' pts this month' + (myRank ? ', rank ' + myRank : '') + '.';
+    if (window.ZG && window.ZG.shareScore) window.ZG.shareScore('ZAO Sudoku', line, 'https://zabalgamez.com/game/sudoku');
+  });
+
+  // Keyboard: 1-9 to place, arrows to move, backspace/delete/0 to erase.
+  document.addEventListener('keydown', function (e) {
+    if (over) return;
+    var key = e.key;
+    if (key >= '1' && key <= '9') { place(parseInt(key, 10)); e.preventDefault(); return; }
+    if (key === 'Backspace' || key === 'Delete' || key === '0') { place(0); e.preventDefault(); return; }
+    if (selected < 0) {
+      if (key.indexOf('Arrow') === 0) { selectCell(0); e.preventDefault(); }
+      return;
+    }
+    var r = rowOf(selected), c = colOf(selected);
+    if (key === 'ArrowUp' && r > 0) { selectCell(selected - 9); e.preventDefault(); }
+    else if (key === 'ArrowDown' && r < 8) { selectCell(selected + 9); e.preventDefault(); }
+    else if (key === 'ArrowLeft' && c > 0) { selectCell(selected - 1); e.preventDefault(); }
+    else if (key === 'ArrowRight' && c < 8) { selectCell(selected + 1); e.preventDefault(); }
+  });
+
+  render();
+  loadBoard();
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/arcade-share.js"></script>
+</body>
+</html>

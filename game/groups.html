@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAO Connections - ZABAL Gamez</title>
+  <meta name="description" content="ZAO Connections - the daily ZAO grouping game. Find the four hidden groups of four in sixteen ecosystem words. No signup.">
+  <link rel="canonical" href="https://zabalgamez.com/game/groups">
+  <meta property="og:title" content="ZAO Connections - ZABAL Gamez">
+  <meta property="og:description" content="The daily ZAO grouping game. Find the four hidden groups of four ecosystem words.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/game/groups">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZAO Connections - ZABAL Gamez">
+  <meta name="twitter:description" content="The daily ZAO grouping game. Find the four hidden groups of four ecosystem words.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Play ZAO Connections","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/game/groups","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .cn-msg { min-height: 1.2rem; font-size: 0.9rem; color: var(--gold); margin-bottom: 0.4rem; }
+    .cn-solved { width: 100%; max-width: 420px; margin: 0.6rem 0 0; }
+    .cn-band { border-radius: 8px; padding: 0.5rem 0.6rem; margin-bottom: 0.4rem; text-align: center; }
+    .cn-band h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.15rem; }
+    .cn-band p { margin: 0; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+    .cn-c0 { background: var(--gold); color: #1a1402; }
+    .cn-c1 { background: var(--cyan); color: #04121a; }
+    .cn-c2 { background: var(--zabal); color: #140a2e; }
+    .cn-c3 { background: var(--pink); color: #2a0510; }
+    .cn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; width: 100%; max-width: 420px; margin: 0.4rem 0 0.8rem; }
+    .cn-tile { aspect-ratio: 5 / 4; display: flex; align-items: center; justify-content: center; text-align: center;
+      padding: 0.2rem; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-2); color: var(--text);
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.68rem; text-transform: uppercase; line-height: 1.05;
+      cursor: pointer; user-select: none; -webkit-user-select: none; }
+    .cn-tile:disabled { cursor: default; }
+    .cn-tile.sel { background: #2b2b36; border-color: var(--cyan); color: var(--text); }
+    .cn-tile.wrong { border-color: var(--pink); }
+    .cn-dots { font-size: 0.85rem; color: var(--text-dim); margin: 0.2rem 0 0.4rem; letter-spacing: 0.12em; }
+    .cn-dots b { color: var(--gold); }
+    .cn-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .cn-actions .btn { font-size: 0.85rem; }
+    .cn-win { margin-top: 1.1rem; padding: 1rem 1.1rem; border: 1px solid var(--cyan); border-radius: 14px;
+      background: rgba(0,209,255,0.06); display: none; }
+    .cn-win.show { display: block; }
+    .cn-win h2 { font-family: 'Syne', sans-serif; font-weight: 800; margin: 0 0 0.3rem; }
+    .cn-win p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 0.4rem; }
+    .cn-win-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+  </style>
+</head>
+<body data-zg-game="ZAO Connections" data-zg-url="https://zabalgamez.com/game/groups">
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/game">Arcade</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/info.html">Details</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+  <header class="hero" style="padding-bottom: 0.2rem;">
+    <div class="hero-eyebrow"><a href="/game" style="color: inherit;">The arcade</a> / ZAO Connections</div>
+    <h1>ZAO <span class="accent">Connections</span></h1>
+    <p class="lead" style="margin-top: 0.3rem;">Sixteen words from the world you are building in. Find the four hidden groups of four. Four wrong guesses and it reveals. No signup.</p>
+  </header>
+
+  <div class="cn-msg" id="cn-msg" role="status" aria-live="polite"></div>
+
+  <div class="cn-solved" id="cn-solved" aria-label="Solved groups"></div>
+  <div class="cn-grid" id="cn-grid" aria-label="Word tiles"></div>
+
+  <div class="cn-dots" id="cn-dots" aria-live="polite"></div>
+
+  <div class="cn-actions" id="cn-actions">
+    <button class="btn btn-secondary" id="cn-shuffle" type="button">Shuffle</button>
+    <button class="btn btn-secondary" id="cn-deselect" type="button">Deselect all</button>
+    <button class="btn btn-primary" id="cn-submit" type="button">Submit</button>
+  </div>
+
+  <div class="cn-win" id="cn-win" aria-live="polite">
+    <h2 id="cn-win-title">Solved.</h2>
+    <p id="cn-win-line"></p>
+    <div class="cn-win-actions">
+      <button class="btn btn-primary" id="cn-share" type="button">Share result</button>
+      <a class="btn btn-secondary" href="/game">Back to arcade</a>
+    </div>
+  </div>
+
+  <section class="section" style="margin-top: 1.2rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">This month's board</h2>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0.2rem 0 0.6rem;">Points per solve: 10 with no mistakes, down to 4 at three mistakes. Verified in the Farcaster app. Resets monthly.</p>
+    <ol id="cn-board-list" style="list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: var(--text-muted);"><li>Loading the board...</li></ol>
+  </section>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem;">
+    Groups come from the ZAO world. New here? Browse the <a href="/recordings" style="color: var(--cyan);">workshop recordings</a> or <a href="/enter" style="color: var(--cyan);">register a build</a>.
+  </p>
+
+</div>
+</main>
+
+<script>
+(function () {
+  // Baked-in daily puzzle bank. Each puzzle = 4 groups of 4 words + a category label.
+  // Themed on the ZAO / Farcaster world. One puzzle per day, date-seeded. No external fetch.
+  var BANK = [
+    { groups: [
+      { label: 'Farcaster surfaces', words: ['FRAME', 'CAST', 'CHANNEL', 'FEED'] },
+      { label: 'ZAO brands', words: ['WAVEWARZ', 'ZABAL', 'POIDH', 'BONFIRE'] },
+      { label: 'Music words', words: ['SOUND', 'REMIX', 'STAGE', 'TRACK'] },
+      { label: 'Season timeline', words: ['JUNE', 'JULY', 'AUGUST', 'FINALS'] }
+    ] },
+    { groups: [
+      { label: 'Cast actions', words: ['LIKE', 'REPLY', 'RECAST', 'QUOTE'] },
+      { label: 'Build rewards', words: ['BOUNTY', 'GRANT', 'PRIZE', 'POT'] },
+      { label: 'Content pages', words: ['RECAP', 'SPEAKER', 'SPACE', 'STREAM'] },
+      { label: 'Things you collect', words: ['MAGNET', 'POP', 'BADGE', 'RAFFLE'] }
+    ] },
+    { groups: [
+      { label: 'Roles here', words: ['ARTIST', 'BUILDER', 'CREATOR', 'MENTOR'] },
+      { label: 'Arcade games', words: ['WORD', 'TRIVIA', 'QUIZ', 'PUZZLE'] },
+      { label: 'Base and identity', words: ['WALLET', 'MINT', 'PROOF', 'TOKEN'] },
+      { label: 'Ways to join', words: ['RSVP', 'SHARE', 'VOTE', 'ENTER'] }
+    ] },
+    { groups: [
+      { label: 'Mini App parts', words: ['MINIAPP', 'EMBED', 'SPLASH', 'MANIFEST'] },
+      { label: 'ZAO ecosystem', words: ['FRACTAL', 'ZUKE', 'CONCERTZ', 'FESTIVALS'] },
+      { label: 'Leaderboard words', words: ['POINTS', 'RANK', 'BOARD', 'SCORE'] },
+      { label: 'Ship it', words: ['SHIP', 'MERGE', 'COMMIT', 'REPO'] }
+    ] },
+    { groups: [
+      { label: 'GitHub flow', words: ['REPO', 'COMMIT', 'BRANCH', 'PUSH'] },
+      { label: 'Farcaster profile', words: ['HANDLE', 'BIO', 'FEED', 'FOLLOW'] },
+      { label: 'Music on Farcaster', words: ['SOUND', 'REMIX', 'ALBUM', 'LABEL'] },
+      { label: 'Prize pool', words: ['POT', 'GRANT', 'BOUNTY', 'RAFFLE'] }
+    ] },
+    { groups: [
+      { label: 'ZAO brands', words: ['WAVEWARZ', 'ZABAL', 'FRACTAL', 'POIDH'] },
+      { label: 'Workshop world', words: ['LEAD', 'RECAP', 'SPACE', 'SPEAKER'] },
+      { label: 'Collect and keep', words: ['MAGNET', 'BADGE', 'POP', 'PFP'] },
+      { label: 'Finals stack', words: ['PROJECT', 'WINNER', 'VOTE', 'ENTER'] }
+    ] },
+    { groups: [
+      { label: 'Types of cast', words: ['REPLY', 'QUOTE', 'RECAST', 'THREAD'] },
+      { label: 'ZAO music brands', words: ['CONCERTZ', 'FESTIVALS', 'WAVEWARZ', 'MUSIC'] },
+      { label: 'Build it', words: ['SHIP', 'MERGE', 'COMMIT', 'DEPLOY'] },
+      { label: 'Arcade hub', words: ['WORD', 'GROUPS', 'TRIVIA', 'QUIZ'] }
+    ] },
+    { groups: [
+      { label: 'Mint and verify', words: ['MINT', 'PROOF', 'WALLET', 'BASE'] },
+      { label: 'Content archive', words: ['RECAP', 'TRANSCRIPT', 'CLIP', 'RECORDING'] },
+      { label: 'Demand boards', words: ['DREAM', 'IDEAS', 'LEADS', 'ENTER'] },
+      { label: 'Season phases', words: ['WORKSHOP', 'BUILD', 'FINALS', 'WINNER'] }
+    ] }
+  ];
+
+  // Date-seeded daily puzzle (UTC day index).
+  var dayIndex = Math.floor(Date.now() / 86400000);
+  var index = ((dayIndex % BANK.length) + BANK.length) % BANK.length;
+  var PUZZLE = BANK[index];
+  var GROUPS = PUZZLE.groups;
+  var MAX_MISTAKES = 4;
+
+  // Map each word to its group index for this puzzle.
+  var GROUP_OF = {};
+  var i, j;
+  for (i = 0; i < GROUPS.length; i++) {
+    for (j = 0; j < GROUPS[i].words.length; j++) { GROUP_OF[GROUPS[i].words[j]] = i; }
+  }
+
+  var gridEl = document.getElementById('cn-grid');
+  var solvedEl = document.getElementById('cn-solved');
+  var dotsEl = document.getElementById('cn-dots');
+  var msgEl = document.getElementById('cn-msg');
+  var winEl = document.getElementById('cn-win');
+
+  var order = [];        // current display order (array of words)
+  var selected = [];     // selected words (max 4)
+  var solvedCount = 0;   // groups solved
+  var mistakes = 0;
+  var over = false;
+
+  function setMsg(s) { msgEl.textContent = s || ''; }
+
+  // Deterministic daily shuffle so everyone sees the same board that day.
+  function seededShuffle(arr, seed) {
+    var a = arr.slice();
+    var s = seed >>> 0;
+    for (var k = a.length - 1; k > 0; k--) {
+      s = (s * 1664525 + 1013904223) >>> 0;
+      var m = s % (k + 1);
+      var t = a[k]; a[k] = a[m]; a[m] = t;
+    }
+    return a;
+  }
+
+  function randomShuffle(arr) {
+    var a = arr.slice();
+    for (var k = a.length - 1; k > 0; k--) {
+      var m = Math.floor(Math.random() * (k + 1));
+      var t = a[k]; a[k] = a[m]; a[m] = t;
+    }
+    return a;
+  }
+
+  // Build the initial daily order from all 16 words.
+  var allWords = [];
+  for (i = 0; i < GROUPS.length; i++) { allWords = allWords.concat(GROUPS[i].words); }
+  order = seededShuffle(allWords, dayIndex + 7);
+
+  function renderDots() {
+    var full = MAX_MISTAKES - mistakes;
+    var s = '';
+    for (i = 0; i < MAX_MISTAKES; i++) { s += (i < full ? '●' : '○') + ' '; }
+    dotsEl.innerHTML = 'Guesses left: <b>' + s.trim() + '</b>';
+  }
+
+  function renderGrid() {
+    gridEl.innerHTML = '';
+    for (i = 0; i < order.length; i++) {
+      (function (word) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'cn-tile';
+        b.textContent = word;
+        if (selected.indexOf(word) !== -1) { b.className += ' sel'; }
+        if (over) { b.disabled = true; }
+        b.addEventListener('click', function () { toggle(word); });
+        gridEl.appendChild(b);
+      })(order[i]);
+    }
+  }
+
+  function toggle(word) {
+    if (over) return;
+    var pos = selected.indexOf(word);
+    if (pos !== -1) { selected.splice(pos, 1); }
+    else {
+      if (selected.length >= 4) { setMsg('Pick four - deselect one first.'); return; }
+      selected.push(word);
+    }
+    setMsg('');
+    renderGrid();
+  }
+
+  function addBand(gi) {
+    var g = GROUPS[gi];
+    var band = document.createElement('div');
+    band.className = 'cn-band cn-c' + gi;
+    var h = document.createElement('h3');
+    h.textContent = g.label;
+    var p = document.createElement('p');
+    p.textContent = g.words.join(', ');
+    band.appendChild(h);
+    band.appendChild(p);
+    solvedEl.appendChild(band);
+  }
+
+  function removeFromOrder(words) {
+    var next = [];
+    for (i = 0; i < order.length; i++) {
+      if (words.indexOf(order[i]) === -1) { next.push(order[i]); }
+    }
+    order = next;
+  }
+
+  function flashWrong() {
+    var tiles = gridEl.querySelectorAll('.cn-tile');
+    for (i = 0; i < tiles.length; i++) {
+      if (selected.indexOf(tiles[i].textContent) !== -1) { tiles[i].className += ' wrong'; }
+    }
+  }
+
+  function submit() {
+    if (over) return;
+    if (selected.length !== 4) { setMsg('Select four words.'); return; }
+    // Which group does the selection belong to? Count per group.
+    var counts = [0, 0, 0, 0];
+    for (i = 0; i < selected.length; i++) { counts[GROUP_OF[selected[i]]]++; }
+    var best = 0, gi = 0;
+    for (i = 0; i < counts.length; i++) { if (counts[i] > best) { best = counts[i]; gi = i; } }
+
+    if (best === 4) {
+      addBand(gi);
+      removeFromOrder(GROUPS[gi].words);
+      selected = [];
+      solvedCount++;
+      renderGrid();
+      if (solvedCount === GROUPS.length) { finish(true); }
+      else { setMsg('Nice - ' + (GROUPS.length - solvedCount) + ' to go.'); }
+      return;
+    }
+
+    mistakes++;
+    flashWrong();
+    renderDots();
+    if (best === 3) { setMsg('One away.'); }
+    else { setMsg('Not a group.'); }
+
+    if (mistakes >= MAX_MISTAKES) {
+      // Reveal the remaining groups in order.
+      for (i = 0; i < GROUPS.length; i++) {
+        var alreadyGone = order.indexOf(GROUPS[i].words[0]) === -1;
+        if (!alreadyGone) { addBand(i); removeFromOrder(GROUPS[i].words); }
+      }
+      selected = [];
+      renderGrid();
+      finish(false);
+    }
+  }
+
+  var myRank = null;
+  var lastTotal = 0;
+  var solvedAll = false;
+  var PTS_KEY = 'zg-groups-pts-' + new Date().toISOString().slice(0, 7);
+
+  function loadBoard() {
+    var list = document.getElementById('cn-board-list');
+    if (!list) return;
+    fetch('/api/game?game=zaogroups', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.entries || !d.entries.length) {
+        list.innerHTML = '<li>No verified solves yet this month. First one takes the top.</li>';
+        return;
+      }
+      list.innerHTML = d.entries.slice(0, 10).map(function (e) {
+        return '<li style="display:flex;gap:0.6rem;padding:0.25rem 0;"><span style="color:var(--gold);min-width:1.4rem;">' + e.rank + '</span>' +
+          '<a style="color:inherit;text-decoration:none;flex:1;" href="https://farcaster.xyz/' + encodeURIComponent(e.handle) + '" target="_blank" rel="noopener">' + String(e.handle).replace(/[&<>"]/g, '') + '</a>' +
+          '<span>' + e.score + ' pts</span></li>';
+      }).join('');
+    }).catch(function () {});
+  }
+
+  function resultLine() {
+    var line;
+    if (solvedAll) {
+      line = 'Solved in ' + mistakes + (mistakes === 1 ? ' mistake.' : ' mistakes.');
+    } else {
+      line = 'Missed it this time.';
+    }
+    if (lastTotal > 0) {
+      line += ' ' + lastTotal + ' pts this month' + (myRank ? ', rank ' + myRank : '') + '.';
+    }
+    return line;
+  }
+
+  function finish(won) {
+    over = true;
+    solvedAll = won;
+    renderGrid();
+    // Monthly points: 10 with no mistakes, minus 2 per mistake, floor of 2; a miss scores 0.
+    var pts = won ? Math.max(2, 10 - 2 * mistakes) : 0;
+    var total = 0;
+    try { total = parseInt(localStorage.getItem(PTS_KEY) || '0', 10) || 0; } catch (e) {}
+    total += pts;
+    try { localStorage.setItem(PTS_KEY, String(total)); } catch (e) {}
+    lastTotal = total;
+    myRank = null;
+
+    document.getElementById('cn-win-title').textContent = won ? 'Solved.' : 'Out of tries.';
+    document.getElementById('cn-win-line').textContent = won
+      ? ('You found all four groups. New puzzle tomorrow.')
+      : ('All four groups revealed above. New puzzle tomorrow.');
+    winEl.classList.add('show');
+
+    if (total > 0) {
+      try {
+        if (window.ZABAL && window.ZABAL.submitScore) {
+          window.ZABAL.submitScore('zaogroups', total, null).then(function (d) {
+            if (d && d.ok) {
+              if (d.rank) {
+                myRank = d.rank;
+                var wl = document.getElementById('cn-win-line');
+                wl.textContent += ' ' + total + ' pts this month, rank ' + d.rank + '.';
+              }
+              loadBoard();
+            }
+          }).catch(function () {});
+        }
+      } catch (e) {}
+    }
+  }
+
+  document.getElementById('cn-shuffle').addEventListener('click', function () {
+    if (over) return;
+    order = randomShuffle(order);
+    renderGrid();
+    setMsg('');
+  });
+
+  document.getElementById('cn-deselect').addEventListener('click', function () {
+    if (over) return;
+    selected = [];
+    renderGrid();
+    setMsg('');
+  });
+
+  document.getElementById('cn-submit').addEventListener('click', submit);
+
+  document.getElementById('cn-share').addEventListener('click', function () {
+    if (window.ZG && window.ZG.shareScore) {
+      window.ZG.shareScore('ZAO Connections', resultLine(), 'https://zabalgamez.com/game/groups');
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (over) return;
+    if (e.key === 'Enter') { submit(); }
+    else if (e.key === 'Backspace' || e.key === 'Escape') { selected = []; renderGrid(); setMsg(''); }
+  });
+
+  renderDots();
+  renderGrid();
+  loadBoard();
+})();
+</script>
+<script defer src="/assets/arcade-share.js"></script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote - ZABAL Gamez</title>
+  <meta name="description" content="Vote for who is best this season with quadratic voting. Everyone gets 100 credits per track; each extra vote for one favorite costs more than the last, so no single account can buy the win.">
+  <link rel="canonical" href="https://zabalgamez.com/vote">
+  <meta property="og:title" content="Vote - ZABAL Gamez">
+  <meta property="og:description" content="Quadratic voting for who is best this season. Everyone gets the same 100 credits; spreading honest support counts for more than piling on.">
+  <meta property="og:url" content="https://zabalgamez.com/vote">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Vote","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/vote","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .vt-tabs { display: flex; gap: 0.4rem; margin: 0.6rem 0 0.4rem; flex-wrap: wrap; }
+    .vt-tab { font: inherit; font-size: 0.82rem; padding: 0.35rem 0.85rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-dim); cursor: pointer; text-transform: capitalize; }
+    .vt-tab.on { border-color: var(--cyan); color: var(--text); }
+    .vt-meter { position: sticky; top: 0; z-index: 4; background: var(--bg, #070709); padding: 0.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 0.7rem; }
+    .vt-meter b { font-family: 'Syne', sans-serif; }
+    .vt-bar { height: 6px; border-radius: 999px; background: var(--surface-2); overflow: hidden; margin-top: 0.3rem; }
+    .vt-bar span { display: block; height: 100%; background: var(--cyan); width: 0; }
+    .vt-row { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem 0.9rem; display: flex; align-items: center; gap: 0.8rem; }
+    .vt-row + .vt-row { margin-top: 0.6rem; }
+    .vt-row .who { flex: 1; min-width: 0; }
+    .vt-row .who h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; }
+    .vt-row .who a { color: inherit; text-decoration: none; }
+    .vt-row .who p { color: var(--text-dim); font-size: 0.78rem; margin: 0.15rem 0 0; }
+    .vt-cost { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
+    .vt-step { display: flex; align-items: center; gap: 0.45rem; }
+    .vt-step button { width: 2rem; height: 2rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font: inherit; font-size: 1.1rem; cursor: pointer; }
+    .vt-step button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .vt-step .n { min-width: 1.4rem; text-align: center; font-family: 'Syne', sans-serif; font-weight: 700; }
+    .vt-res-votes { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--gold); }
+    .vt-submit { margin-top: 1rem; }
+    .vt-msg { min-height: 1.2rem; font-size: 0.85rem; color: var(--gold); margin-top: 0.5rem; }
+    .vt-note { font-size: 0.82rem; color: var(--text-dim); }
+    .vt-empty { color: var(--text-dim); padding: 1.2rem 0; }
+  </style>
+</head>
+<body>
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/board">Board</a>
+      <a href="/enter">Enter</a>
+      <a href="/game">Arcade</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+  <header class="hero" style="padding-bottom: 0.3rem;">
+    <div class="hero-eyebrow">Community vote</div>
+    <h1>Vote for who is <span class="accent">best.</span></h1>
+    <p class="hero-sub">Everyone gets the same <strong>100 credits</strong> per track. Each extra vote for one favorite costs more than the last - 1, then 4, then 9, up to 10 votes for all 100. No single account can buy the win; spreading honest support counts for more than piling on.</p>
+  </header>
+
+  <div class="vt-tabs" id="vt-tabs" role="group" aria-label="Track"></div>
+  <div class="vt-meter" id="vt-meter" hidden><b><span id="vt-used">0</span> of 100 credits</b> used - <span id="vt-left">100</span> left<div class="vt-bar"><span id="vt-fill"></span></div></div>
+
+  <div id="vt-list"></div>
+  <p class="vt-empty" id="vt-empty" hidden></p>
+
+  <div class="vt-submit" id="vt-submit-wrap" hidden>
+    <button class="btn btn-primary" id="vt-submit" type="button">Cast my ballot</button>
+    <p class="vt-msg" id="vt-msg" role="status" aria-live="polite"></p>
+  </div>
+
+  <section class="section" style="margin-top: 1.4rem; padding-top: 0;">
+    <h2 style="font-size: 1rem;">Live results</h2>
+    <p class="vt-note" id="vt-res-note">Scores are total votes (the square root of credits), so spread support outweighs piling on. Individual ballots stay private.</p>
+    <div id="vt-results"></div>
+  </section>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1.2rem;">
+    Open this in the Farcaster app to vote (one ballot per account). New here? <a href="/board" style="color: var(--cyan);">See the build board</a> or <a href="/enter" style="color: var(--cyan);">enter the build</a>.
+  </p>
+</div>
+</main>
+
+<script>
+(function () {
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var TRACKS = ['artist', 'builder', 'creator'];
+  var BUDGET = 100, MAX = 10;
+  var slate = { status: 'preview', tracks: { artist: [], builder: [], creator: [] } };
+  var track = 'builder';
+  var alloc = { artist: {}, builder: {}, creator: {} };
+
+  function norm(h) { return String(h || '').replace(/^@+/, '').toLowerCase(); }
+  function used(t) { var c = 0, a = alloc[t]; for (var k in a) c += a[k] * a[k]; return c; }
+
+  function renderTabs() {
+    var host = document.getElementById('vt-tabs');
+    host.innerHTML = '';
+    TRACKS.forEach(function (t) {
+      var n = (slate.tracks[t] || []).length;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'vt-tab' + (t === track ? ' on' : '');
+      b.textContent = t + ' (' + n + ')';
+      b.addEventListener('click', function () { track = t; renderAll(); });
+      host.appendChild(b);
+    });
+  }
+
+  function renderMeter() {
+    var u = used(track);
+    document.getElementById('vt-meter').hidden = false;
+    document.getElementById('vt-used').textContent = u;
+    document.getElementById('vt-left').textContent = (BUDGET - u);
+    document.getElementById('vt-fill').style.width = (u) + '%';
+  }
+
+  function renderList() {
+    var list = slate.tracks[track] || [];
+    var host = document.getElementById('vt-list');
+    var empty = document.getElementById('vt-empty');
+    var submitWrap = document.getElementById('vt-submit-wrap');
+    if (!list.length) {
+      host.innerHTML = '';
+      empty.hidden = false;
+      empty.textContent = 'No candidates in this track yet. Check back soon.';
+      submitWrap.hidden = true;
+      return;
+    }
+    empty.hidden = true;
+    submitWrap.hidden = false;
+    var u = used(track);
+    host.innerHTML = list.map(function (c) {
+      var h = norm(c.handle);
+      var v = alloc[track][h] || 0;
+      var cost = v * v;
+      var nextCost = (v + 1) * (v + 1) - cost; // marginal credits for one more vote
+      var canInc = v < MAX && (u + nextCost) <= BUDGET;
+      return '<div class="vt-row" data-h="' + esc(h) + '">' +
+        '<div class="who"><h3>' + (c.url ? '<a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.name || c.handle) + '</a>' : esc(c.name || c.handle)) + '</h3>' +
+        (c.note ? '<p>' + esc(c.note) + '</p>' : '') +
+        '<span class="vt-cost">' + v + ' votes, ' + cost + ' credits</span></div>' +
+        '<div class="vt-step">' +
+        '<button type="button" data-act="dec" aria-label="fewer"' + (v <= 0 ? ' disabled' : '') + '>-</button>' +
+        '<span class="n">' + v + '</span>' +
+        '<button type="button" data-act="inc" aria-label="more"' + (canInc ? '' : ' disabled') + '>+</button>' +
+        '</div></div>';
+    }).join('');
+    host.querySelectorAll('.vt-row').forEach(function (row) {
+      var h = row.getAttribute('data-h');
+      row.querySelectorAll('button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var v = alloc[track][h] || 0;
+          if (btn.getAttribute('data-act') === 'inc') { if (v < MAX) alloc[track][h] = v + 1; }
+          else { if (v > 0) alloc[track][h] = v - 1; }
+          if (used(track) > BUDGET) alloc[track][h] = v; // safety
+          renderMeter(); renderList();
+        });
+      });
+    });
+  }
+
+  function loadResults() {
+    var host = document.getElementById('vt-results');
+    fetch('/api/qv-vote?results&track=' + track, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.results || !d.results.length) { host.innerHTML = '<p class="vt-note">No votes counted yet' + (d && d.status === 'preview' ? ' - voting opens soon.' : '.') + '</p>'; return; }
+      var max = d.results[0].votes || 1;
+      host.innerHTML = d.results.map(function (e, i) {
+        var pct = Math.round((e.votes / max) * 100);
+        return '<div style="margin:0.4rem 0;"><div style="display:flex;justify-content:space-between;font-size:0.86rem;"><span>' + (i + 1) + '. ' + esc(e.handle) + '</span><span class="vt-res-votes">' + e.votes + ' votes</span></div>' +
+          '<div class="vt-bar"><span style="width:' + pct + '%"></span></div></div>';
+      }).join('') + '<p class="vt-note" style="margin-top:0.5rem;">' + (d.voters || 0) + ' voters this track.</p>';
+    }).catch(function () { host.innerHTML = '<p class="vt-note">Results unavailable right now.</p>'; });
+  }
+
+  function renderAll() { renderTabs(); renderMeter(); renderList(); loadResults(); }
+
+  document.getElementById('vt-submit').addEventListener('click', function () {
+    var msg = document.getElementById('vt-msg');
+    if (slate.status !== 'open') { msg.textContent = 'Voting is not open yet. Come back when it goes live.'; return; }
+    var a = alloc[track];
+    if (!Object.keys(a).length) { msg.textContent = 'Give at least one vote before casting.'; return; }
+    msg.textContent = 'Casting...';
+    if (window.ZABAL && window.ZABAL.qvVote) {
+      window.ZABAL.qvVote(track, a).then(function (res) {
+        if (res && res.ok) { msg.textContent = 'Ballot counted. ' + res.creditsUsed + ' of 100 credits used. You can change it any time before close.'; loadResults(); }
+        else if (res && res.reason === 'not-in-miniapp') { msg.textContent = 'Open ZABAL Gamez in the Farcaster app to cast your ballot.'; }
+        else { msg.textContent = (res && res.reason) || 'Could not cast the ballot.'; }
+      });
+    } else { msg.textContent = 'Open ZABAL Gamez in the Farcaster app to vote.'; }
+  });
+
+  fetch('/data/vote-candidates.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+    if (d && d.tracks) slate = d;
+    // default to the first track that has candidates
+    for (var i = 0; i < TRACKS.length; i++) { if ((slate.tracks[TRACKS[i]] || []).length) { track = TRACKS[i]; break; } }
+    if (slate.status !== 'open') {
+      var m = document.getElementById('vt-msg');
+      if (m) m.textContent = 'Voting opens soon. You can see the candidates and live results now.';
+    }
+    renderAll();
+  }).catch(function () { renderAll(); });
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
