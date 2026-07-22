@@ -114,6 +114,58 @@ function publicView(s) {
   return { ...base, answer: s.answer || '', fields: s.fields || {}, profile: s.profile || null };
 }
 
+// Flatten the audited, repository-backed builder records into the same public API
+// surface as live submissions. No scores or missing fields are inferred here: a
+// project without a demo or thumbnail keeps those values null for an honest UI state.
+async function readBuilderFeed(req) {
+  const sourceUrl = new URL('/data/builder-submissions.json', req.url);
+  const r = await fetch(sourceUrl, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(4000) });
+  if (!r.ok) throw new Error('builder data ' + r.status);
+  const doc = await r.json();
+  const rows = [];
+  const builders = Array.isArray(doc.submissions) ? doc.submissions : [];
+
+  builders.forEach((builder) => {
+    const handle = cleanSlug(builder.builder, 40) || null;
+    const projects = Array.isArray(builder.projects) ? builder.projects : [];
+    projects.forEach((project, index) => {
+      rows.push({
+        id: ['builder', handle || 'unknown', index + 1].join(':'),
+        project: cleanText(project.name, 160) || null,
+        description: cleanText(project.desc, 1000) || '',
+        status: cleanSlug(project.status || builder.status, 24) || null,
+        track: cleanSlug(project.track || builder.track, 24) || null,
+        url: cleanText(project.live || project.repo, 500) || null,
+        demoUrl: cleanText(project.live, 500) || null,
+        repoUrl: cleanText(project.repo, 500) || null,
+        thumbnailUrl: cleanText(project.thumbnail_url, 500) || null,
+        capturedDate: cleanText(builder.captured_date, 16) || null,
+        builder: {
+          handle,
+          name: cleanText(builder.name, 120) || handle,
+          farcasterUrl: cleanText(builder.farcaster, 500) || null,
+          githubUrl: cleanText(builder.github, 500) || null,
+          xUrl: cleanText(builder.x, 500) || null,
+          siteUrl: cleanText(builder.site, 500) || null,
+        },
+      });
+    });
+  });
+
+  const tracks = {};
+  rows.forEach((row) => { if (row.track) tracks[row.track] = (tracks[row.track] || 0) + 1; });
+  return {
+    ok: true,
+    configured: true,
+    source: '/data/builder-submissions.json',
+    version: doc.version || null,
+    builders: builders.length,
+    count: rows.length,
+    tracks,
+    submissions: rows,
+  };
+}
+
 export default async function handler(req) {
   const reqOrigin = req.headers.get('origin') || '';
   const origin = ALLOWED_ORIGINS.has(reqOrigin) ? reqOrigin : 'https://zabalgamez.com';
@@ -124,6 +176,13 @@ export default async function handler(req) {
 
   // ---------- GET reads ----------
   if (req.method === 'GET') {
+    // Audited builder/project gallery. This stays available even when KV is not
+    // configured because the durable source is the versioned repository data file.
+    if (url.searchParams.get('feed') === 'builders') {
+      try { return json(await readBuilderFeed(req), 60); }
+      catch (e) { return json({ ok: false, configured: false, source: '/data/builder-submissions.json', error: e.message, submissions: [] }); }
+    }
+
     if (!KV_URL || !KV_TOKEN) return json({ ok: true, configured: false, submissions: [] });
 
     // admin review queue

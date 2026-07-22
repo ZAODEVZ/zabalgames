@@ -29,6 +29,8 @@ Locked from a 13-question design grill (Zaal, 2026-06-27). This is the north sta
 
 ## Data model (Upstash Redis, REST - same stack as api/game.mjs)
 
+- `data/builder-submissions.json` -> audited, repository-backed builder and project roster.
+  This durable source powers the public gallery and can be promoted into the live intake.
 - `zabal:sub:v1:<id>` -> submission JSON `{ id, promptId, answer, fields{}, profile?, fid?, handle?,
   wallet?, email?, status:'pending'|'approved'|'rejected', ts, reviewedBy?, reviewedTs? }`
 - `zabal:subs:recent` -> ZSET (score ts) of submission ids (feed + queue)
@@ -45,6 +47,9 @@ Locked from a 13-question design grill (Zaal, 2026-06-27). This is the north sta
   stores pending, fires the notify hook. `GET ?id=` returns an approved submission (public) or
   pending-to-its-owner. `GET ?status=pending` + admin gate = the review queue. `POST
   {action:'approve'|'reject', id}` + admin gate sets status (and marks ready-to-airdrop).
+- `GET /api/submissions?feed=builders` - flatten the audited builder/project roster into a
+  public gallery feed with project, builder, track, status, demo, repository, and thumbnail
+  fields. Missing media remains null so clients can render a pending state.
 - `POST /api/profile` - create/update a profile (Quick Auth or open with handle claim);
   `{action:'github-challenge'}` issues the nonce, `{action:'github-verify'}` checks the bio,
   wallet attach via signature. `GET ?handle=` returns the public profile.

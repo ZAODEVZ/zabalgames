@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submissions - ZABAL Gamez</title>
-  <meta name="description" content="Approved ZABAL Gamez submissions - what the community is building, sharing, and shaping this season.">
+  <title>Builder Submissions - ZABAL Gamez</title>
+  <meta name="description" content="Browse the real projects submitted to ZABAL Gamez Season 1 by artist, builder, and creator track.">
   <link rel="canonical" href="https://zabalgamez.com/submissions">
-  <meta property="og:title" content="Submissions - ZABAL Gamez">
-  <meta property="og:description" content="What the community is building and sharing for ZABAL Gamez.">
+  <meta property="og:title" content="Builder Submissions - ZABAL Gamez">
+  <meta property="og:description" content="Browse the real projects being built for ZABAL Gamez Season 1.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zabalgamez.com/submissions">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
@@ -48,6 +48,32 @@
     .su-note { font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem; }
     .su-note a { color: var(--cyan); }
     .empty { color: var(--text-dim); font-size: 0.92rem; }
+    .sg-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .sg-head h2 { margin: 0; font-size: clamp(1.25rem, 4vw, 1.75rem); }
+    .sg-summary { color: #e0ddaa; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; margin: 0; }
+    .sg-filters { display: flex; gap: 0.45rem; overflow-x: auto; padding: 0.9rem 0 0.75rem; scrollbar-width: thin; }
+    .sg-filter { flex: 0 0 auto; border: 1px solid rgba(224,221,170,0.3); border-radius: 999px; background: #141e27; color: #e0ddaa; padding: 0.48rem 0.78rem; font: 600 0.75rem 'Outfit', sans-serif; text-transform: capitalize; cursor: pointer; }
+    .sg-filter[aria-pressed="true"] { background: #e0ddaa; color: #141e27; border-color: #e0ddaa; }
+    .sg-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+    .sg-card { min-width: 0; display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(224,221,170,0.22); border-radius: 12px; background: #141e27; }
+    .sg-preview { aspect-ratio: 16 / 7; overflow: hidden; border-bottom: 1px solid rgba(224,221,170,0.18); background: #0d151c; }
+    .sg-preview img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .sg-preview-fallback { height: 100%; display: flex; flex-direction: column; justify-content: end; padding: 0.8rem; }
+    .sg-preview-fallback span { color: var(--cyan); font: 0.52rem var(--font-pixel); letter-spacing: 0.08em; text-transform: uppercase; }
+    .sg-preview-fallback strong { color: #e0ddaa; font-size: 0.82rem; margin-top: 0.35rem; overflow-wrap: anywhere; }
+    .sg-body { display: flex; flex: 1; flex-direction: column; padding: 0.9rem; }
+    .sg-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.55rem; }
+    .sg-badge { border: 1px solid rgba(224,221,170,0.28); border-radius: 999px; color: #e0ddaa; padding: 0.18rem 0.48rem; font-size: 0.6rem; line-height: 1; text-transform: uppercase; letter-spacing: 0.05em; }
+    .sg-badge.track { color: var(--cyan); border-color: rgba(0,229,255,0.4); }
+    .sg-card h3 { color: #e0ddaa; font-size: 1.05rem; line-height: 1.2; margin: 0; }
+    .sg-by { color: var(--text-muted); font-size: 0.78rem; margin: 0.35rem 0 0; }
+    .sg-by a { color: var(--cyan); text-decoration: none; }
+    .sg-desc { color: var(--text-muted); font-size: 0.82rem; line-height: 1.45; margin: 0.7rem 0; }
+    .sg-action { margin-top: auto; color: #141e27; background: #e0ddaa; border-radius: 8px; padding: 0.55rem 0.75rem; text-align: center; text-decoration: none; font-size: 0.78rem; font-weight: 700; }
+    .sg-action:hover { text-decoration: none; filter: brightness(1.06); }
+    .sg-pending { margin-top: auto; color: var(--text-dim); font-size: 0.75rem; }
+    @media (max-width: 620px) { .sg-grid { grid-template-columns: 1fr; } .sg-filters { flex-wrap: wrap; overflow-x: visible; } }
+    @media (max-width: 390px) { .sg-head { align-items: start; } .sg-summary { width: 100%; } .sg-card { border-radius: 10px; } .sg-preview { aspect-ratio: 16 / 6; } }
   </style>
 </head>
 <body>
@@ -69,15 +95,103 @@
 <div class="container">
 
   <header class="hero" id="su-hero" style="padding-bottom: 0.2rem;">
-    <div class="hero-eyebrow">Submissions</div>
-    <h1>What the community <span class="accent">is shaping</span></h1>
-    <p style="margin:0.3rem 0 0;font-size:0.85rem;"><a href="/board" style="color:var(--cyan);">See the whole build board</a> - submissions, partial builds, and projects to adopt, all in one place.</p>
-    <p class="lead" style="margin-top: 0.3rem;">Submit any piece of IP wherever you already post it - a build, a video, an image, a track, art - and it lands here under your profile, sorted by track (artist, builder, creator). No form required.</p>
+    <div class="hero-eyebrow">Season 1 submissions</div>
+    <h1>See what builders <span class="accent">have shipped</span></h1>
+    <p style="margin:0.3rem 0 0;font-size:0.85rem;"><a href="/submit" style="color:var(--cyan);">Submit your project</a> or <a href="/board" style="color:var(--cyan);">see the whole build board</a>.</p>
+    <p class="lead" style="margin-top: 0.3rem;">Browse the audited project roster by track. Every name, status, and demo link comes from the public submission pipeline.</p>
   </header>
 
+  <section class="section" id="builder-gallery" style="margin-top:1rem;" aria-labelledby="sg-title">
+    <div class="sg-head">
+      <div>
+        <h2 id="sg-title">Builder submissions</h2>
+        <p class="lead" style="margin:0.25rem 0 0;font-size:0.9rem;">Projects captured in the audited Season 1 builder roster.</p>
+      </div>
+      <p class="sg-summary" id="sg-summary" aria-live="polite">Loading real submissions...</p>
+    </div>
+    <div class="sg-filters" id="sg-filters" aria-label="Filter submissions by track"></div>
+    <div class="sg-grid" id="sg-grid" role="list" aria-live="polite" aria-busy="true">
+      <p class="empty">Loading builder projects...</p>
+    </div>
+    <script>
+    (function () {
+      var grid = document.getElementById('sg-grid');
+      var filters = document.getElementById('sg-filters');
+      var summary = document.getElementById('sg-summary');
+      if (!grid || !filters || !summary) return;
+      var all = [], active = '';
+      var tracks = ['artist', 'builder', 'creator'];
+
+      function esc(s) { return String(s == null ? '' : s).replace(/[&<>\"]/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[c];
+      }); }
+      function safeUrl(s) { s = String(s || ''); return /^https?:\/\//i.test(s) ? s : ''; }
+      function host(s) { try { return new URL(s).hostname.replace(/^www\./, ''); } catch (e) { return ''; } }
+
+      function renderFilters() {
+        var options = [{ key: '', label: 'All' }].concat(tracks.map(function (t) { return { key: t, label: t }; }));
+        filters.innerHTML = options.map(function (o) {
+          var n = o.key ? all.filter(function (row) { return row.track === o.key; }).length : all.length;
+          return '<button type="button" class="sg-filter" data-track="' + esc(o.key) + '" aria-pressed="' + String(active === o.key) + '">' + esc(o.label) + ' (' + n + ')</button>';
+        }).join('');
+        Array.prototype.forEach.call(filters.querySelectorAll('.sg-filter'), function (btn) {
+          btn.addEventListener('click', function () { active = btn.getAttribute('data-track') || ''; renderFilters(); renderCards(); });
+        });
+      }
+
+      function renderCards() {
+        var rows = all.filter(function (row) { return !active || row.track === active; });
+        if (!rows.length) {
+          grid.innerHTML = '<p class="empty">No real submissions are recorded for this track yet.</p>';
+          grid.setAttribute('aria-busy', 'false');
+          return;
+        }
+        grid.innerHTML = rows.map(function (row) {
+          var b = row.builder || {};
+          var mainUrl = safeUrl(row.demoUrl || row.repoUrl || row.url);
+          var builderUrl = safeUrl(b.farcasterUrl || b.githubUrl || b.xUrl || b.siteUrl);
+          var thumb = safeUrl(row.thumbnailUrl);
+          var preview = thumb
+            ? '<img src="' + esc(thumb) + '" alt="' + esc(row.project) + ' preview" loading="lazy">'
+            : '<div class="sg-preview-fallback"><span>' + esc(row.track || 'project') + '</span><strong>' + esc(mainUrl ? host(mainUrl) : 'Demo pending') + '</strong></div>';
+          var by = builderUrl
+            ? '<a href="' + esc(builderUrl) + '" target="_blank" rel="noopener">' + esc(b.name || b.handle || 'Builder') + '</a>'
+            : esc(b.name || b.handle || 'Builder');
+          var action = mainUrl
+            ? '<a class="sg-action" href="' + esc(mainUrl) + '" target="_blank" rel="noopener">' + (row.demoUrl ? 'Open demo' : 'View repository') + '</a>'
+            : '<span class="sg-pending">Demo link pending</span>';
+          return '<article class="sg-card" role="listitem">' +
+            '<div class="sg-preview">' + preview + '</div>' +
+            '<div class="sg-body"><div class="sg-badges">' +
+              (row.track ? '<span class="sg-badge track">' + esc(row.track) + '</span>' : '') +
+              (row.status ? '<span class="sg-badge">' + esc(row.status) + '</span>' : '') +
+            '</div><h3>' + esc(row.project || 'Project name pending') + '</h3>' +
+            '<p class="sg-by">Built by ' + by + (b.handle ? ' <span>@' + esc(b.handle) + '</span>' : '') + '</p>' +
+            (row.description ? '<p class="sg-desc">' + esc(row.description) + '</p>' : '') + action + '</div></article>';
+        }).join('');
+        grid.setAttribute('aria-busy', 'false');
+      }
+
+      fetch('/api/submissions?feed=builders', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (!d || !d.ok) throw new Error('builder feed unavailable');
+          all = (d && d.submissions) || [];
+          summary.textContent = (d && d.builders != null ? d.builders : 0) + ' builders / ' + all.length + ' projects';
+          renderFilters(); renderCards();
+        })
+        .catch(function () {
+          summary.textContent = 'Submission data unavailable';
+          grid.innerHTML = '<p class="empty">Could not load the audited builder roster right now.</p>';
+          grid.setAttribute('aria-busy', 'false');
+        });
+    })();
+    </script>
+  </section>
+
   <section class="section" id="ip-feed" style="margin-top:1rem;">
-    <h2 style="font-size:1.05rem;margin:0;">Season submissions <span id="ip-count" style="color:var(--text-dim);font-weight:400;font-size:0.9rem;"></span></h2>
-    <p class="lead" style="margin:0.2rem 0 0;font-size:0.9rem;">Every build, video, image, track, and app submitted this season - pulled in automatically from wherever it was posted.</p>
+    <h2 style="font-size:1.05rem;margin:0;">Live intake feed <span id="ip-count" style="color:var(--text-dim);font-weight:400;font-size:0.9rem;"></span></h2>
+    <p class="lead" style="margin:0.2rem 0 0;font-size:0.9rem;">New public activity pulled in from the live submission intake.</p>
     <div id="ip-stats" style="display:flex;flex-wrap:wrap;gap:8px;margin:0.8rem 0 0;"></div>
     <div id="ip-filters" style="display:flex;flex-wrap:wrap;gap:6px;margin:0.7rem 0;"></div>
     <div id="ip-list"></div>
