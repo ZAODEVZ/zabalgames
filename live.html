@@ -44,8 +44,26 @@
        action pills, a big stage card) styled with the shared arcade tokens
        from assets/style.css. Mobile-first - opened from a feed on a phone.
        ===================================================================== */
-    .live-wrap { max-width: 920px; margin: 0 auto; padding: 12px 12px 8px; }
+    .live-wrap { max-width: 920px; margin: 0 auto; padding: 12px 12px 8px; display: flex; flex-direction: column; }
     @media (min-width: 480px) { .live-wrap { padding: 18px 18px 8px; } }
+
+    /* Explicit order lets phones keep the player directly beneath the current-session
+       card while desktop viewers see standings before the player. */
+    .live-bar { order: 1; }
+    .live-head { order: 2; }
+    .live-actions { order: 3; }
+    .live-override { order: 4; }
+    .live-stage { order: 5; }
+    .live-standings { order: 6; }
+    .watch { order: 7; }
+    .today-sec { order: 8; }
+    .watch-recs { order: 9; }
+    .live-foot-note { order: 10; }
+    #zg-comments { order: 11; }
+    @media (max-width: 640px) {
+      .watch { order: 6; }
+      .live-standings { order: 7; }
+    }
 
     /* Keep the live landing page's header to one compact row on phones. The
        directory remains available through Menu and the footer. */
@@ -170,6 +188,43 @@
     .stage-card.now::before { background: linear-gradient(90deg, var(--pink), var(--orange)); }
     .stage-card.next::before { background: linear-gradient(90deg, var(--gold), var(--cyan)); }
     .stage-card.empty::before { background: linear-gradient(90deg, var(--zabal), var(--cyan)); }
+
+    /* Shared season standings. Scores come from /api/leaderboard?format=standings,
+       the same contract used by /leaderboard. */
+    .live-standings {
+      min-height: 166px; margin: 10px 0 6px; overflow: hidden;
+      border: 1px solid rgba(224,221,170,0.24); border-radius: var(--r-lg);
+      background: #141e27;
+    }
+    .ls-head { display: flex; align-items: center; justify-content: space-between; gap: 0.7rem; padding: 0.7rem 0.85rem 0.55rem; }
+    .ls-head h2 { color: #e0ddaa; font: 700 1rem 'Syne', sans-serif; margin: 0; }
+    .ls-all { color: var(--cyan); font-size: 0.72rem; text-decoration: none; white-space: nowrap; }
+    .ls-all:hover { text-decoration: underline; }
+    .ls-meta { color: var(--text-dim); font-size: 0.7rem; line-height: 1.4; margin: 0; padding: 0 0.85rem 0.6rem; }
+    .ls-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(224,221,170,0.13); }
+    .ls-row { display: grid; grid-template-columns: 1.4rem 1.7rem minmax(0, 1fr) auto; align-items: center; gap: 0.5rem; min-height: 43px; padding: 0.42rem 0.85rem; border-bottom: 1px solid rgba(224,221,170,0.1); }
+    .ls-row:last-child { border-bottom: 0; }
+    .ls-rank { color: #e0ddaa; font: 700 0.72rem 'JetBrains Mono', monospace; }
+    .ls-avatar { width: 1.7rem; height: 1.7rem; display: grid; place-items: center; overflow: hidden; border-radius: 50%; background: #0d151c; color: #e0ddaa; font-size: 0.68rem; font-weight: 700; }
+    .ls-avatar img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .ls-person { min-width: 0; }
+    .ls-name { display: block; color: #e0ddaa; font-size: 0.78rem; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; }
+    .ls-name:hover { color: var(--cyan); text-decoration: none; }
+    .ls-handle { display: block; color: var(--text-dim); font-size: 0.62rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ls-score { color: var(--cyan); text-align: right; font: 700 0.76rem 'JetBrains Mono', monospace; }
+    .ls-score small { display: block; color: var(--text-dim); font: 0.5rem 'Outfit', sans-serif; text-transform: uppercase; }
+    .ls-empty { color: var(--text-muted); font-size: 0.76rem; padding: 0.8rem 0.85rem; }
+    @media (max-width: 640px) {
+      .live-standings { min-height: 158px; margin-top: 12px; }
+      .ls-head { padding: 0.65rem 0.7rem 0.5rem; }
+      .ls-meta { padding: 0 0.7rem 0.55rem; }
+      .ls-row { grid-template-columns: 1.25rem 1.6rem minmax(0, 1fr) auto; gap: 0.42rem; min-height: 41px; padding: 0.4rem 0.7rem; }
+      .ls-avatar { width: 1.6rem; height: 1.6rem; }
+    }
+    @media (max-width: 350px) {
+      .ls-head h2 { font-size: 0.9rem; }
+      .ls-all { font-size: 0.65rem; }
+    }
 
     .stage-eyebrow {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -434,6 +489,17 @@
       <h2>What's Live</h2>
       <p class="stage-meta">Checking the schedule and stream status.</p>
     </div>
+  </section>
+
+  <section class="live-standings" id="live-standings" aria-labelledby="live-standings-title">
+    <div class="ls-head">
+      <h2 id="live-standings-title">Current standings</h2>
+      <a class="ls-all" href="/leaderboard">View all standings -&gt;</a>
+    </div>
+    <p class="ls-meta" id="ls-meta">Loading the live scoring source.</p>
+    <ol class="ls-list" id="ls-list" aria-live="polite" aria-busy="true">
+      <li class="ls-empty">Loading standings...</li>
+    </ol>
   </section>
 
   <section class="watch" id="watch" aria-label="Live stream player">
@@ -1098,6 +1164,71 @@
   renderWatchRecs();
   load();
   setInterval(reconcileLive, 60000); // keep the live state honest while the page is open
+})();
+</script>
+
+<script>
+(function () {
+  'use strict';
+  var list = document.getElementById('ls-list');
+  var meta = document.getElementById('ls-meta');
+  if (!list || !meta) return;
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>\"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', "'": '&#39;' }[c];
+  }); }
+  function safeUrl(s) { s = String(s || ''); return /^https?:\/\//i.test(s) ? s : ''; }
+  function score(s) { var n = Number(s); return Number.isFinite(n) ? new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(n) : 'Pending'; }
+
+  function sourceCopy(data) {
+    if (data.source === 'qv') {
+      var voters = data.qv ? Number(data.qv.voters) || 0 : 0;
+      return 'Builder QV votes from ' + voters + ' voter' + (voters === 1 ? '' : 's') + '.';
+    }
+    if (data.source === 'empire') {
+      var qv = data.qv || {};
+      return 'Empire /zabal points. Builder QV: ' + (qv.status || 'pending') + ', ' + (Number(qv.results) || 0) + ' scored results.';
+    }
+    return 'No scored source is available yet.';
+  }
+
+  function render(data) {
+    var rows = Array.isArray(data.entries) ? data.entries.slice(0, 3) : [];
+    meta.textContent = sourceCopy(data);
+    if (!rows.length) {
+      list.innerHTML = '<li class="ls-empty">Standings are pending real scoring data.</li>';
+      list.setAttribute('aria-busy', 'false');
+      return;
+    }
+    list.innerHTML = rows.map(function (row, index) {
+      var username = row.username || '';
+      var name = row.displayName || username || 'Name pending';
+      var profile = safeUrl(row.profileUrl) || (username ? 'https://farcaster.xyz/' + encodeURIComponent(username) : '');
+      var pfp = safeUrl(row.pfpUrl);
+      var avatar = pfp ? '<img src="' + esc(pfp) + '" alt="" loading="lazy">' : esc(name.charAt(0).toUpperCase());
+      var nameHtml = profile ? '<a class="ls-name" href="' + esc(profile) + '" target="_blank" rel="noopener">' + esc(name) + '</a>' : '<span class="ls-name">' + esc(name) + '</span>';
+      return '<li class="ls-row"><span class="ls-rank">' + esc(row.rank || index + 1) + '</span>' +
+        '<span class="ls-avatar" aria-hidden="true">' + avatar + '</span>' +
+        '<span class="ls-person">' + nameHtml + (username ? '<span class="ls-handle">@' + esc(username) + '</span>' : '') + '</span>' +
+        '<span class="ls-score">' + esc(score(row.score)) + '<small>' + esc(data.scoreLabel || 'points') + '</small></span></li>';
+    }).join('');
+    list.setAttribute('aria-busy', 'false');
+  }
+
+  function loadStandings() {
+    list.setAttribute('aria-busy', 'true');
+    fetch('/api/leaderboard?format=standings&limit=3', { cache: 'no-store' })
+      .then(function (response) { return response.json(); })
+      .then(function (data) { if (!data || !data.ok) throw new Error('standings unavailable'); render(data); })
+      .catch(function () {
+        meta.textContent = 'The live scoring source is unavailable.';
+        list.innerHTML = '<li class="ls-empty">No fallback scores are shown.</li>';
+        list.setAttribute('aria-busy', 'false');
+      });
+  }
+
+  loadStandings();
+  setInterval(loadStandings, 60000);
 })();
 </script>
 
