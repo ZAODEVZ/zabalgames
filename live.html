@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live - ZABAL Gamez Season 1</title>
-  <meta name="description" content="What's on now at ZABAL Gamez. Live June workshop sessions, what's next, and how to tune in. The ZAO's 3-month Build-A-Thon.">
+  <meta name="description" content="Watch ZABAL Gamez live build sessions and office hours, see what's on now, and catch recordings. Free and open to anyone.">
   <link rel="canonical" href="https://zabalgamez.com/live">
 
   <meta property="og:title" content="ZABAL Gamez - Live">
-  <meta property="og:description" content="What's on now - live June workshops and what's next. The ZAO's 3-month Build-A-Thon. Free to join.">
+  <meta property="og:description" content="Live build sessions, office hours, recordings, and what's next at ZABAL Gamez. Free and open to anyone.">
   <meta property="og:url" content="https://zabalgamez.com/live">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ZABAL Gamez">
@@ -20,7 +20,7 @@
   <meta name="twitter:site" content="@bettercallzaal">
   <meta name="twitter:creator" content="@bettercallzaal">
   <meta name="twitter:title" content="ZABAL Gamez - Live">
-  <meta name="twitter:description" content="What's on now - live June workshops and what's next.">
+  <meta name="twitter:description" content="Live build sessions, office hours, recordings, and what's next at ZABAL Gamez.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
 
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"What is on now","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/live","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
@@ -44,7 +44,29 @@
        action pills, a big stage card) styled with the shared arcade tokens
        from assets/style.css. Mobile-first - opened from a feed on a phone.
        ===================================================================== */
-    .live-wrap { max-width: 920px; margin: 0 auto; padding: 18px 18px 8px; }
+    .live-wrap { max-width: 920px; margin: 0 auto; padding: 12px 12px 8px; }
+    @media (min-width: 480px) { .live-wrap { padding: 18px 18px 8px; } }
+
+    /* Keep the live landing page's header to one compact row on phones. The
+       directory remains available through Menu and the footer. */
+    @media (max-width: 640px) {
+      .arcade-nav-inner { flex-wrap: nowrap; gap: 0.5rem; padding: 0.5rem 12px; }
+      .arcade-nav-menu {
+        width: auto; min-width: 0; flex: 1; justify-content: flex-end;
+        flex-wrap: nowrap; gap: 0.55rem;
+      }
+      .arcade-nav-menu > a:not(.arcade-coin) { display: none; }
+      .site-menu-btn { font-size: 0.52rem; }
+      .arcade-coin { font-size: 0.5rem; padding: 0.48rem 0.7rem; }
+    }
+    @media (max-width: 360px) {
+      .arcade-nav-inner { gap: 0.35rem; }
+      .arcade-brand { font-size: 0.62rem; gap: 0.35rem; }
+      .arcade-brand::before { width: 9px; height: 9px; }
+      .arcade-nav-menu { gap: 0.35rem; }
+      .site-menu-btn { font-size: 0.46rem; }
+      .arcade-coin { font-size: 0.44rem; padding: 0.45rem 0.55rem; }
+    }
 
     /* Top status bar - back link on the left, live/standby pill on the right */
     .live-bar {
@@ -64,6 +86,7 @@
       border: 1px solid var(--border-hover); border-radius: var(--r-pill);
       padding: 0.5rem 0.85rem; line-height: 1;
     }
+    .live-pill[hidden] { display: none; }
     .live-pill .dot {
       position: relative; display: inline-flex; height: 9px; width: 9px;
     }
@@ -86,27 +109,37 @@
     @keyframes livePing { 75%, 100% { transform: scale(2.4); opacity: 0; } }
 
     /* Title block */
-    .live-head { padding: 22px 0 6px; }
+    .live-head { padding: 18px 0 4px; }
     .live-head h1 {
       font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(1.9rem, 6vw, 3rem); letter-spacing: -0.02em; line-height: 1;
-      margin: 0 0 0.6rem;
+      font-size: clamp(1.6rem, 5.5vw, 3rem); letter-spacing: -0.02em; line-height: 1.1;
+      margin: 0 0 0.5rem;
     }
     .live-head h1 .accent {
       background: var(--gradient-main); -webkit-background-clip: text;
       -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .live-head p { color: var(--text-muted); font-size: 0.98rem; max-width: 560px; margin: 0; line-height: 1.45; }
+    .live-head p { color: var(--text-muted); font-size: 0.95rem; max-width: 560px; margin: 0; line-height: 1.45; }
+    @media (max-width: 480px) {
+      .live-head { padding: 16px 0 2px; }
+      .live-head h1 { font-size: clamp(1.4rem, 5vw, 2.2rem); }
+      .live-head p { font-size: 0.88rem; }
+    }
 
     /* Action pills - top-right style links */
-    .live-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
+    .live-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 6px; }
     .live-action {
       font-size: 0.82rem; text-decoration: none; color: var(--text);
       border: 1px solid var(--border-hover); background: var(--surface);
-      border-radius: var(--r-md); padding: 0.55rem 0.85rem;
+      border-radius: var(--r-md); padding: 0.6rem 0.9rem; line-height: 1.2;
       transition: border-color 0.15s var(--ease), background 0.15s var(--ease);
+      cursor: pointer;
     }
-    .live-action:hover { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
+    .live-action:hover, .live-action:active { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
+    @media (max-width: 480px) {
+      .live-actions { gap: 6px; }
+      .live-action { font-size: 0.75rem; padding: 0.5rem 0.75rem; }
+    }
 
     /* Pinned override banner (honors cta_override.active in workshop-leads.json) */
     .live-override {
@@ -194,15 +227,18 @@
     .stage-btn {
       display: inline-flex; align-items: center; justify-content: center;
       font-weight: 600; font-size: 0.88rem; text-decoration: none; cursor: pointer;
-      border-radius: var(--r-md); padding: 0.7rem 1.15rem; border: 1px solid var(--border-hover);
-      background: var(--surface); color: var(--text); font-family: inherit;
+      border-radius: var(--r-md); padding: 0.75rem 1.2rem; border: 1px solid var(--border-hover);
+      background: var(--surface); color: var(--text); font-family: inherit; line-height: 1.2;
       transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease), background 0.15s var(--ease);
     }
     .stage-btn.primary { background: var(--orange); color: #fff; border-color: var(--orange); }
-    .stage-btn.primary:hover { box-shadow: 0 6px 22px rgba(255,107,53,0.4); text-decoration: none; }
+    .stage-btn.primary:hover, .stage-btn.primary:active { box-shadow: 0 6px 22px rgba(255,107,53,0.4); text-decoration: none; }
     .stage-btn.live { background: var(--pink); color: #fff; border-color: var(--pink); }
-    .stage-btn.live:hover { box-shadow: var(--glow-pink); text-decoration: none; }
-    .stage-btn.ghost:hover { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
+    .stage-btn.live:hover, .stage-btn.live:active { box-shadow: var(--glow-pink); text-decoration: none; }
+    .stage-btn.ghost:hover, .stage-btn.ghost:active { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
+    @media (max-width: 480px) {
+      .stage-btn { font-size: 0.82rem; padding: 0.7rem 1rem; }
+    }
 
     /* Empty-state season triptych */
     .season-strip {
@@ -275,7 +311,7 @@
     .live-foot-note a { color: var(--cyan); font-weight: 600; }
 
     /* ---- Watch stage: player + chat, Twitch/YouTube toggle, collapsible ---- */
-    .watch { margin: 22px 0 8px; }
+    .watch { margin: 16px 0 12px; }
     .watch-head {
       display: flex; align-items: center; justify-content: space-between;
       gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
@@ -295,18 +331,22 @@
     .watch-toggle {
       font-size: 0.74rem; color: var(--text-muted); background: transparent;
       border: 1px solid var(--border-hover); border-radius: var(--r-md);
-      padding: 0.45rem 0.7rem; cursor: pointer; font-family: inherit;
+      padding: 0.5rem 0.75rem; cursor: pointer; font-family: inherit; line-height: 1;
       transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
     }
-    .watch-toggle:hover { color: var(--text); border-color: var(--cyan); }
+    .watch-toggle:hover, .watch-toggle:active { color: var(--text); border-color: var(--cyan); }
+    @media (max-width: 480px) {
+      .watch-tab { padding: 0.5rem 0.8rem; font-size: 0.5rem; }
+      .watch-toggle { padding: 0.45rem 0.6rem; font-size: 0.68rem; }
+    }
     .watch-body { display: grid; grid-template-columns: 1fr; gap: 12px; }
     @media (min-width: 860px) { .watch-body.has-chat { grid-template-columns: minmax(0, 1fr) 340px; } }
     .watch-video {
       border: 1px solid var(--border-hover); border-radius: var(--r-lg);
-      overflow: hidden; background: #000;
+      overflow: hidden; background: #000; width: 100%; max-width: 100%;
     }
     .watch-video .ar { position: relative; width: 100%; aspect-ratio: 16 / 9; }
-    .watch-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .watch-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
     .watch-chat {
       border: 1px solid var(--border-hover); border-radius: var(--r-lg);
       overflow: hidden; background: #000; display: flex; flex-direction: column;
@@ -319,10 +359,11 @@
       font-family: var(--font-pixel); font-size: 0.5rem; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--text-muted);
     }
-    .chat-frame { flex: 1; min-height: 360px; }
-    /* Desktop: drop the forced min-height so the video's 16:9 height drives the
-       grid row and the chat matches it (theater layout) instead of the taller
-       chat stretching the player and leaving a black gap beneath it. */
+    .chat-frame { flex: 1; min-height: 280px; }
+    /* Mobile: chat frame gets smaller min-height. Desktop: drop the forced
+       min-height so the video's 16:9 height drives the grid row and chat
+       matches it (theater layout) instead of the taller chat stretching
+       the player and leaving a black gap beneath it. */
     @media (min-width: 860px) { .chat-frame { min-height: 0; } }
     .chat-frame iframe { width: 100%; height: 100%; min-height: inherit; border: 0; display: block; }
     .chat-fallback { padding: 1rem; font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; }
@@ -358,7 +399,7 @@
 <div class="live-wrap">
 
   <div class="live-bar">
-    <a href="/" class="live-back">&larr; ZABAL Gamez home</a>
+    <a href="/" class="live-back">&larr; Home</a>
     <span class="live-pill" id="live-pill">
       <span class="dot" aria-hidden="true"></span>
       <span id="live-pill-text">Checking</span>
@@ -375,18 +416,25 @@
   </header>
 
   <div class="live-actions">
-    <button type="button" class="live-action" id="live-notify-btn">Notify me when live</button>
-    <a class="live-action" href="https://twitch.tv/bettercallzaal" target="_blank" rel="noopener">Watch on Twitch</a>
-    <a class="live-action" href="https://youtube.com/@bettercallzaal" target="_blank" rel="noopener">Watch on YouTube</a>
-    <a class="live-action" id="live-cal" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>
-    <a class="live-action" href="https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ" target="_blank" rel="noopener">/zabal group chat</a>
-    <a class="live-action" href="/#schedule">Full schedule</a>
+    <button type="button" class="live-action" id="live-notify-btn">Get notified</button>
+    <a class="live-action" href="https://twitch.tv/bettercallzaal" target="_blank" rel="noopener">Twitch</a>
+    <a class="live-action" href="https://youtube.com/@bettercallzaal" target="_blank" rel="noopener">YouTube</a>
+    <a class="live-action" id="live-cal" href="https://luma.com/zao" target="_blank" rel="noopener">Calendar</a>
+    <a class="live-action" href="https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ" target="_blank" rel="noopener">Chat</a>
   </div>
 
   <div class="live-override" id="live-override">
     <span class="lo-text" id="live-override-text"></span>
     <a id="live-override-cta" href="#" target="_blank" rel="noopener">RSVP</a>
   </div>
+
+  <section class="live-stage" id="live-stage" aria-live="polite">
+    <div class="stage-card next">
+      <div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Loading</div>
+      <h2>What's Live</h2>
+      <p class="stage-meta">Checking the schedule and stream status.</p>
+    </div>
+  </section>
 
   <section class="watch" id="watch" aria-label="Live stream player">
     <div class="watch-head">
@@ -411,14 +459,6 @@
       <span class="la-label">Who's here</span>
       <span class="la-faces" id="la-faces"></span>
       <span class="la-more" id="la-more"></span>
-    </div>
-  </section>
-
-  <section class="live-stage" id="live-stage" aria-live="polite">
-    <div class="stage-card next">
-      <div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Loading</div>
-      <h2>Checking what's on now...</h2>
-      <p class="stage-meta">Reading the workshop schedule.</p>
     </div>
   </section>
 
@@ -1108,11 +1148,14 @@
   function setLs(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
 
   var platform = ls(LS_PLATFORM) === 'youtube' ? 'youtube' : 'twitch';
-  var chatHidden = ls(LS_CHAT) === '1';
+  var savedChat = ls(LS_CHAT);
+  var chatHidden = savedChat === '1' ||
+    (savedChat == null && window.matchMedia && window.matchMedia('(max-width: 640px)').matches);
 
   // Player visibility follows the real live state (minimized when off, expanded when on),
   // with a per-session manual override so a viewer can still pop it open or shut it.
   var liveNow = false;            // set by ZGWatch.setLive() from /api/live-status
+  var liveStateReady = false;     // first status response should not steal the viewer's scroll
   var ytVideoId = null;           // live YouTube video id when YT is the live platform
   var userPickedPlatform = false; // a manual tab click pins the platform (no auto-switch)
   var manualPlayer = null;        // null = follow live state; true/false = override this session
@@ -1202,7 +1245,9 @@
   });
 
   // Driven by the reconcile loop in the first script. Minimizes the player when the stream is
-  // off, expands + auto-selects the live platform + scrolls into view when it comes on.
+  // off and expands + auto-selects the live platform when it comes on. Only auto-scroll when a
+  // stream starts while this page is already open; a first-load status check must leave the
+  // viewer at the headline and current-session card.
   function focusPlayer() {
     try { watch.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { /* old browser */ }
   }
@@ -1210,13 +1255,15 @@
     setLive: function (s) {
       var wasLive = liveNow;
       liveNow = !!(s && s.live);
+      var shouldFocus = liveStateReady && liveNow && !wasLive;
+      liveStateReady = true;
       ytVideoId = (s && s.youtube && s.youtube.live) ? (s.youtube.videoId || null) : null;
       // Auto-select whichever platform is actually live, unless the viewer pinned one.
       if (liveNow && s && s.platform && !userPickedPlatform) platform = s.platform;
       // A fresh on/off transition hands control back to the live state.
       if (liveNow !== wasLive) manualPlayer = null;
       apply();
-      if (liveNow && !wasLive && !isPlayerHidden()) focusPlayer();
+      if (shouldFocus && !isPlayerHidden()) focusPlayer();
     }
   };
 
