@@ -118,14 +118,16 @@ is actually on.
   to its schedule-driven view.
 
 ### `GET /api/leaderboard`
-Ranks builders by social-action points (cast 3 / signup 5 / share 2), stored in a
-KV sorted set by `track`.
+Gateway for the registered ZAO 2048 board and the public Season 1 standings.
 
 - Default: Empire Builder `apiLeaderboard` format `[{ address, score }]` (FIDs
-  resolved to Base verified addresses via HAATZ). Register this URL in Empire
-  Builder so activity feeds the $ZABAL empire.
-- `?format=full`: `[{ fid, username, pfpUrl, address, score }]` for the
-  `/leaderboard` page.
+  with a verified Base address only). This preserves the existing ZAO 2048
+  integration.
+- `?format=full`: all-time ZAO 2048 rows for arcade clients.
+- `?format=standings&limit=50`: the public season contract
+  `{ ok, configured, source, sourceLabel, scoreLabel, status, count, entries, qv }`.
+  It uses aggregate builder QV results once real ballots exist; before then it reads
+  the live Empire Builder `/zabal` board. No scores are synthesized or hardcoded.
 
 ### `GET /api/empire-leaderboard`
 Read-only proxy that pulls our tokenless empire's live leaderboard from the Empire
