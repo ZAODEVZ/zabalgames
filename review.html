@@ -29,8 +29,10 @@
     .rv-answer { font-size: 0.95rem; color: var(--text); line-height: 1.5; margin: 0.4rem 0 0.3rem; white-space: pre-wrap; }
     .rv-meta { font-size: 0.78rem; color: var(--text-muted); margin: 0.3rem 0; }
     .rv-meta .tgt { color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
-    .rv-fields { font-size: 0.84rem; color: var(--text-muted); }
-    .rv-actions { display: flex; gap: 8px; margin-top: 0.5rem; }
+    .rv-fields { display: grid; gap: 0.3rem; font-size: 0.84rem; color: var(--text-muted); }
+    .rv-fields a { color: var(--cyan); overflow-wrap: anywhere; }
+    .rv-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.5rem; }
+    .rv-note { box-sizing: border-box; width: 100%; min-height: 70px; margin-top: 0.65rem; padding: 0.55rem 0.65rem; border: 1px solid var(--border); border-radius: 8px; background: #0f171e; color: var(--text); font: inherit; font-size: 0.84rem; resize: vertical; }
     .rv-status { font-size: 0.85rem; color: var(--text-muted); min-height: 1.1rem; margin: 0.5rem 0; }
     .empty { color: var(--text-dim); font-size: 0.92rem; }
     .rv-airdrop { font-size: 0.78rem; color: var(--text-dim); margin-top: 1.2rem; border-top: 1px solid var(--border); padding-top: 0.8rem; }
@@ -43,7 +45,7 @@
   <header class="hero" style="padding-bottom: 0.2rem;">
     <div class="hero-eyebrow">Internal - review queue</div>
     <h1>Submissions to <span class="accent">review</span></h1>
-    <p class="lead" style="margin-top: 0.3rem; font-size: 0.95rem;">Pending submissions. Approve to trigger the collectible airdrop; reject to drop. Your ADMIN_KEY stays in this tab only.</p>
+    <p class="lead" style="margin-top: 0.3rem; font-size: 0.95rem;">Review web, email, and imported projects in one queue. Approve, request specific changes, or reject. Your ADMIN_KEY stays in this tab only.</p>
   </header>
 
   <div class="rv-wrap">
@@ -85,13 +87,16 @@
   function fieldsHtml(s) {
     var f = s.fields || {}; var keys = Object.keys(f);
     if (!keys.length) return '';
-    return '<div class="rv-fields">' + keys.map(function (k) { return '<b>' + esc(k) + ':</b> ' + esc(f[k]); }).join(' &nbsp; ') + '</div>';
+    return '<div class="rv-fields">' + keys.filter(function (k) { return f[k]; }).map(function (k) {
+      var v = String(f[k]); var rendered = /^https?:\/\//i.test(v) ? '<a href="' + esc(v) + '" target="_blank" rel="noopener">' + esc(v) + '</a>' : esc(v);
+      return '<div><b>' + esc(k) + ':</b> ' + rendered + '</div>';
+    }).join('') + '</div>';
   }
 
   // Pull a GitHub repo out of the submission so tier-1 triage can pre-screen it.
   function extractRepo(s) {
     var f = s.fields || {};
-    var cand = f.repo || f.url || f.github || '';
+    var cand = f.repoUrl || f.repo || f.url || f.github || '';
     if (!cand && s.answer) { var m = s.answer.match(/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+/); if (m) cand = m[0]; }
     return cand ? String(cand).trim() : '';
   }
@@ -120,33 +125,44 @@
   function card(s) {
     var el = document.createElement('div');
     el.className = 'rv-card';
+    var f = s.fields || {};
+    var project = f.project || s.project || '';
+    var source = s.source || 'web';
+    var attachmentText = (s.attachments || []).map(function (a) { return esc(a.filename || 'attachment') + ' (' + esc(a.contentType || 'file') + ')'; }).join(', ');
     el.innerHTML =
       '<div class="rv-top"><span class="rv-prompt">' + esc(s.promptId || '') + '</span>' +
       '<span class="rv-id">#' + esc(s.id) + '</span>' +
       '<span class="rv-who">' + (s.handle ? '@' + esc(s.handle) : 'anonymous') + (s.fid ? ' (fid ' + esc(s.fid) + ')' : '') + '</span></div>' +
+      (project ? '<h2 style="font-size:1.1rem;margin:0.4rem 0 0;color:var(--text);">' + esc(project) + '</h2>' : '') +
       (s.answer ? '<div class="rv-answer">' + esc(s.answer) + '</div>' : '') +
       fieldsHtml(s) +
+      (attachmentText ? '<div class="rv-meta"><b>Attachments:</b> ' + attachmentText + '</div>' : '') +
       '<div class="rv-triage" style="margin:0.4rem 0;font-size:0.8rem;font-family:JetBrains Mono,monospace;"></div>' +
-      '<div class="rv-meta">Airdrop to: ' + target(s) + '</div>' +
-      '<div class="rv-actions"><button class="btn ok" type="button">Approve</button><button class="btn no" type="button">Reject</button></div>';
+      '<div class="rv-meta">Source: ' + esc(source) + ' / Contact: ' + target(s) + '</div>' +
+      '<textarea class="rv-note" aria-label="Review note" placeholder="Specific feedback for the builder"></textarea>' +
+      '<div class="rv-actions"><button class="btn ok" type="button">Approve</button><button class="btn" type="button">Request changes</button><button class="btn no" type="button">Reject</button></div>';
     var btns = el.querySelectorAll('.rv-actions .btn');
     btns[0].addEventListener('click', function () { decide(s.id, 'approve', el, btns); });
-    btns[1].addEventListener('click', function () { decide(s.id, 'reject', el, btns); });
+    btns[1].addEventListener('click', function () { decide(s.id, 'request_changes', el, btns); });
+    btns[2].addEventListener('click', function () { decide(s.id, 'reject', el, btns); });
     runTriage(s, el);
     return el;
   }
 
   function decide(id, action, el, btns) {
-    btns[0].disabled = btns[1].disabled = true;
-    api('POST', { action: action, id: id }).then(function (d) {
+    var note = (el.querySelector('.rv-note').value || '').trim();
+    if (action === 'request_changes' && !note) { setStatus('Add a specific review note before requesting changes.'); el.querySelector('.rv-note').focus(); return; }
+    Array.prototype.forEach.call(btns, function (b) { b.disabled = true; });
+    api('POST', { action: action, id: id, reviewNote: note }).then(function (d) {
       if (d && d.ok) {
         el.style.opacity = '0.45';
-        el.querySelector('.rv-actions').innerHTML = '<span class="rv-who">' + (action === 'approve' ? 'APPROVED - airdrop now' : 'rejected') + '</span>';
+        var label = action === 'approve' ? 'APPROVED - airdrop now' : action === 'request_changes' ? 'changes requested' : 'rejected';
+        el.querySelector('.rv-actions').innerHTML = '<span class="rv-who">' + label + '</span>';
       } else {
-        btns[0].disabled = btns[1].disabled = false;
+        Array.prototype.forEach.call(btns, function (b) { b.disabled = false; });
         setStatus((d && d.error) === 'forbidden' ? 'Wrong ADMIN_KEY.' : 'Could not update.');
       }
-    }).catch(function () { btns[0].disabled = btns[1].disabled = false; setStatus('Error.'); });
+    }).catch(function () { Array.prototype.forEach.call(btns, function (b) { b.disabled = false; }); setStatus('Error.'); });
   }
 
   function load() {

@@ -35,6 +35,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "ZABAL Gamez Season 1",
+    "description": "The ZAO's online three-month build-a-thon: June workshops, a July open build, and August Finals with mentors and live coverage.",
+    "startDate": "2026-06-01",
+    "endDate": "2026-08-31",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+    "location": { "@type": "VirtualLocation", "url": "https://twitch.tv/bettercallzaal" },
+    "organizer": { "@type": "Organization", "name": "The ZAO", "url": "https://thezao.com" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://zabalgamez.com/submit" }
+  }
+  </script>
+
   <script type="module" src="/assets/miniapp.js"></script>
 
   <style>
@@ -58,8 +74,9 @@
     .watch { order: 7; }
     .today-sec { order: 8; }
     .watch-recs { order: 9; }
-    .live-foot-note { order: 10; }
-    #zg-comments { order: 11; }
+    .live-faq { order: 10; }
+    .live-foot-note { order: 11; }
+    #zg-comments { order: 12; }
     @media (max-width: 640px) {
       .watch { order: 6; }
       .live-standings { order: 7; }
@@ -153,6 +170,7 @@
       transition: border-color 0.15s var(--ease), background 0.15s var(--ease);
       cursor: pointer;
     }
+    .live-action.primary { background: #e0ddaa; border-color: #e0ddaa; color: #141e27; font-weight: 700; }
     .live-action:hover, .live-action:active { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
     @media (max-width: 480px) {
       .live-actions { gap: 6px; }
@@ -471,6 +489,7 @@
   </header>
 
   <div class="live-actions">
+    <a class="live-action primary" href="/submit">Submit project</a>
     <button type="button" class="live-action" id="live-notify-btn">Get notified</button>
     <a class="live-action" href="https://twitch.tv/bettercallzaal" target="_blank" rel="noopener">Twitch</a>
     <a class="live-action" href="https://youtube.com/@bettercallzaal" target="_blank" rel="noopener">YouTube</a>
@@ -545,11 +564,28 @@
     .wr-card:hover .wr-cta { text-decoration: underline; }
     .wr-all { display: inline-block; margin-top: 0.7rem; color: var(--cyan); text-decoration: none; font-size: 0.86rem; }
     .wr-all:hover { text-decoration: underline; }
+    .live-faq { border-top: 1px solid var(--border); padding: 1rem 0 0; margin-top: 1rem; }
+    .live-faq h2 { margin: 0 0 0.7rem; font-size: 1.15rem; }
+    .live-faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .live-faq article { border: 1px solid var(--border); border-radius: 9px; background: var(--surface); padding: 0.75rem; }
+    .live-faq h3 { margin: 0; color: #e0ddaa; font-size: 0.9rem; }
+    .live-faq p { margin: 0.35rem 0 0; color: var(--text-muted); font-size: 0.8rem; line-height: 1.45; }
+    .live-faq a { color: var(--cyan); }
+    @media (max-width: 640px) { .live-faq-grid { grid-template-columns: 1fr; } }
   </style>
   <section class="watch-recs" id="watch-recs" aria-label="Recordings to watch" style="display:none;">
     <h2>While you wait, catch a session</h2>
     <div class="wr-grid" id="watch-rec-grid"></div>
     <a class="wr-all" href="/speakers">All speakers and recordings -&gt;</a>
+  </section>
+
+  <section class="live-faq" aria-labelledby="live-faq-title">
+    <h2 id="live-faq-title">ZABAL Gamez quick answers</h2>
+    <div class="live-faq-grid">
+      <article><h3>What is ZABAL Gamez?</h3><p>The ZAO's online Season 1 build-a-thon: June workshops, an open July build, and August Finals.</p></article>
+      <article><h3>How do I join?</h3><p><a href="/submit">Submit any project</a> or email <a href="mailto:info@thezao.com">info@thezao.com</a>. No account, wallet, or prior registration is required.</p></article>
+      <article><h3>When is it live?</h3><p>The status above checks Twitch and YouTube in real time. Follow the current session card for the next scheduled stream, or use the recordings anytime.</p></article>
+    </div>
   </section>
 
   <div class="live-foot-note">
@@ -833,7 +869,7 @@
         '<div class="sc-month">' + month + '</div><h3>' + h + '</h3><p>' + body + '</p></div>';
     }
     var primary = (PHASE === 'july')
-      ? '<a class="stage-btn primary" href="/enter" rel="noopener">Register your build</a>'
+      ? '<a class="stage-btn primary" href="/submit" rel="noopener">Submit your project</a>'
       : '<a class="stage-btn primary" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>';
     return '<div class="stage-card empty">' +
       '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Standby</div>' +
@@ -1464,6 +1500,7 @@
 </script>
 <script defer src="/assets/recording-comments.js"></script>
 <script defer src="/assets/site-nav.js"></script>
+<script defer src="/assets/mentor-strip.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
