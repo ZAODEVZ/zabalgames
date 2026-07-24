@@ -4,13 +4,28 @@
   "_note": "On-site daily log for ZABAL Gamez. Newest day first. Mirrors the Year of the ZABAL newsletter; add one entry per build day.",
   "updates": [
     {
+      "day": 54,
+      "date": "2026-07-24",
+      "title": "The build is the application",
+      "body": "The build-a-thon is open. Bring a project, finished or a rough work in progress, and it lands on the community board where people vote on the best work. The strongest July builds get curated into the August Finals. Put yours in.",
+      "links": [
+        {
+          "label": "Submit your build",
+          "url": "/submit"
+        }
+      ]
+    },
+    {
       "day": 3,
       "date": "2026-06-03",
       "title": "ZABAL Gamez on Farcaster Batches",
       "body": "Day 3. I shared ZABAL Gamez on GM Farcaster's Farcaster Batches, on stage with Empire Builder, Defense of the Agents, Booster, and Celebration Hub - what we are building and how the ecosystem connects. Cassie's Farcaster protocol session moved to next week.",
       "mindful": "Let your life be transformed. The agreement: Don't Make Assumptions. When you stop making assumptions, your word becomes impeccable and your life is completely transformed.",
       "links": [
-        { "label": "The builders on Farcaster Batches", "url": "/farcaster-batches" }
+        {
+          "label": "The builders on Farcaster Batches",
+          "url": "/farcaster-batches"
+        }
       ]
     },
     {
@@ -18,14 +33,24 @@
       "date": "2026-06-02",
       "title": "Ohnahji opens the creator track",
       "body": "Ohnahji on his journey in live streaming - how to start and grow your own stream. The first creator-track session of the season.",
-      "links": [ { "label": "Recap", "url": "/recaps" } ]
+      "links": [
+        {
+          "label": "Recap",
+          "url": "/recaps"
+        }
+      ]
     },
     {
       "day": 1,
       "date": "2026-06-01",
       "title": "Season 1 begins - yerbearserker and Bonfire",
       "body": "Insert Coin. yerbearserker opened on Empire Builder - leaderboards, Empires, and the message to build the foundation before you rush. Then Joshua and Plat0x walked through Bonfire and the ZABAL Bonfire bot. Two live builds, a strong first day.",
-      "links": [ { "label": "Recaps", "url": "/recaps" } ]
+      "links": [
+        {
+          "label": "Recaps",
+          "url": "/recaps"
+        }
+      ]
     }
   ]
 }
