@@ -139,6 +139,19 @@
       ]
     },
     {
+      "source": "/submission-status",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
       "source": "/data/(.*)",
       "headers": [
         {

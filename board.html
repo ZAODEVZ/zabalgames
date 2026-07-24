@@ -55,7 +55,7 @@
   <div class="arcade-nav-inner">
     <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
     <div class="arcade-nav-menu">
-      <a href="/enter">Enter</a>
+      <a href="/submit">Submit</a>
       <a href="/recordings">Recordings</a>
       <a href="/game">Arcade</a>
       <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
@@ -68,7 +68,7 @@
   <header class="hero" style="padding-bottom: 0.3rem;">
     <div class="hero-eyebrow">The build board</div>
     <h1>Everything being <span class="accent">built and submitted.</span></h1>
-    <p class="hero-sub">One board for the whole season. Partial builds in progress, started projects you can pick up, and every community submission - filter by what you want to see. <a href="/enter" style="color: var(--cyan);">Add yours</a>.</p>
+    <p class="hero-sub">Track active projects and public submissions. The board opens on work already in motion; adoptable ideas stay available under their own filter. <a href="/submit" style="color: var(--cyan);">Add yours</a>.</p>
   </header>
 
   <div class="bd-controls">
@@ -78,10 +78,10 @@
 
   <p class="bd-count" id="bd-count" aria-live="polite">Loading the board...</p>
   <div class="bd-grid" id="bd-grid"></div>
-  <p class="bd-empty" id="bd-empty" hidden>Nothing here yet under this filter. Try another, or <a href="/enter" style="color:var(--cyan);">be the first to add one</a>.</p>
+  <p class="bd-empty" id="bd-empty" hidden>Nothing here yet under this filter. Try another, or <a href="/submit" style="color:var(--cyan);">be the first to add one</a>.</p>
 
   <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1.4rem;">
-    Building something? Post it in public and it lands here. <a href="/enter" style="color: var(--cyan);">Enter the build</a>, adopt a <a href="/projects" style="color: var(--cyan);">started project</a>, or browse the <a href="/recordings" style="color: var(--cyan);">workshops</a>.
+    Building something? <a href="/submit" style="color: var(--cyan);">Submit or update the project</a>, adopt a <a href="/projects" style="color: var(--cyan);">started project</a>, or browse the <a href="/recordings" style="color: var(--cyan);">workshops</a>.
   </p>
 </div>
 </main>
@@ -95,7 +95,7 @@
     </div>
     <nav class="arcade-foot-col" aria-label="Build">
       <h4>Build</h4>
-      <a href="/enter">Enter the build</a>
+      <a href="/submit">Submit a project</a>
       <a href="/projects">Adopt a project</a>
       <a href="/submissions">Submissions</a>
       <a href="/bounties">Bounties</a>
@@ -127,7 +127,7 @@
     { key: 'adopt', label: 'Start a project' }
   ];
 
-  var state = { group: 'all', track: 'all' };
+  var state = { group: 'building', track: 'all' };
   var items = [];
   var seen = {}; // dedupe by normalized url/repo
 

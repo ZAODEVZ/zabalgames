@@ -126,7 +126,7 @@
       box-shadow: 0 8px 40px rgba(167, 139, 250, 0.25), 0 2px 12px rgba(0, 0, 0, 0.5);
       image-rendering: -webkit-optimize-contrast;
     }
-    @media (max-width: 540px) { .hero-logo { width: min(320px, 88vw); margin-bottom: 1rem; } }
+    @media (max-width: 540px) { .hero-logo { width: min(175px, 56vw); margin-bottom: 0.75rem; } }
 
     .visually-hidden {
       position: absolute;
@@ -962,8 +962,6 @@
 
 <div class="container">
 
-  <div id="zg-profile"></div>
-
   <header class="hero">
     <div class="hero-eyebrow">Season 1 - live now</div>
     <img src="/assets/logo-gamez.png" alt="ZABAL Gamez - Insert Coin" class="hero-logo" width="420" height="420">
@@ -974,11 +972,14 @@
       Learn to build real projects with AI, ship one in 3 months, with The ZAO.
     </p>
 
-    <!-- PRIMARY CTA: One clear button to join -->
+    <!-- PRIMARY CTA: ship or browse without requiring an account -->
     <div class="hero-cta-section">
-      <a href="/lead.html" class="hero-primary-btn">Join the Build-A-Thon</a>
-      <p class="hero-cta-subtext">Free to join. Any skill level. Any tools.</p>
+      <a href="/submit" class="hero-primary-btn">Submit a Project</a>
+      <a href="/submissions" class="join-alt" style="display:inline-block;margin-left:0.8rem;">Browse Projects</a>
+      <p class="hero-cta-subtext">Anyone can submit. No wallet, account, or prior registration required.</p>
     </div>
+
+    <div id="zg-profile"></div>
 
     <!-- NEWCOMER CLARITY: Simple 3-step "How it works" -->
     <div class="how-it-works">
@@ -1060,7 +1061,7 @@
       <div style="height: 7px; border-radius: 4px; background: rgba(255,255,255,0.07); margin-top: 0.5rem; overflow: hidden;">
         <div id="hg-bar" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--zabal), var(--cyan)); border-radius: 4px; transition: width 0.6s ease;"></div>
       </div>
-      <p style="font-size: 0.78rem; color: var(--text-dim); margin: 0.5rem 0 0;">Not finished is fine - <a href="/enter" style="color: var(--gold);">post it as a WIP draft</a> and the community shapes it with you. Every draft counts.</p>
+      <p style="font-size: 0.78rem; color: var(--text-dim); margin: 0.5rem 0 0;">Not finished is fine - <a href="/submit?stage=building" style="color: var(--gold);">post it as a work in progress</a> and update it as you build.</p>
     </div>
 
     <div class="commit-row">
@@ -1943,6 +1944,7 @@
 })();
 </script>
 <script defer src="/assets/site-nav.js"></script>
+<script defer src="/assets/mentor-strip.js"></script>
   <script defer src="/assets/zg-profile.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>

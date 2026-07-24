@@ -8,6 +8,18 @@ For the full long-form context bundle (every detail, every code path) see [docs/
 
 ---
 
+## How to participate now
+
+- **Submit any project:** `https://zabalgamez.com/submit`
+- **Submit by email:** `info@thezao.com` with `ZABAL Gamez submission: [project name]` in the subject.
+- **Browse real projects:** `https://zabalgamez.com/submissions`
+- **Watch live and see standings:** `https://zabalgamez.com/live`
+- **Canonical season dates and tracks:** `https://zabalgamez.com/data/season.json`
+
+Anyone can submit an app, repository, song, visual, video, article, event, prototype, or work in progress. A wallet, Farcaster profile, GitHub account, and prior registration are optional. A project name plus a description, link, repository, or email attachment is enough to start. Web and email use one review queue. Contact details remain private; approved project details can appear in the gallery.
+
+---
+
 ## What ZABAL Gamez is
 
 **Not a generic hackathon.** It is a Farcaster-creator onboarding event for the ZAO ecosystem. Bring talented Farcaster builders together, give them deep context on everything the ZAO is building, let them ship something with a ZAO mentor as embedded teammate, and have them earn governance during the event itself.
@@ -15,13 +27,14 @@ For the full long-form context bundle (every detail, every code path) see [docs/
 **Three months.**
 
 - **June - workshop month.** Builders across the ecosystem record one ~30-min session each on tools they have built. The whole library lands in one Magnetiq portal. Watchable live or after.
-- **July - open build-a-thon.** Anyone with the chops ships a build for ZABAL, ZAO, or WaveWarZ. **The build IS the application.** Live URL + open-source repo + 60s demo + cast on `/zabal`. Adopt a started ZAO project from the list below, or build from scratch with this context.
+- **July - open build-a-thon.** Anyone can submit a project or work in progress for ZABAL, ZAO, or WaveWarZ. **The build IS the application.** Start with what exists; extra proof such as a live URL, repository, demo, or public build log can strengthen a project but is not required at intake.
 - **August - the Finals.** The strongest July builds get curated in. Each finalist pairs with a ZAO mentor as embedded teammate for a 24h build + 24h promote + 24h ZAO governance vote + live reveal stream. **Getting selected is the first win** - every finalist gets paid and keeps the ongoing economics - and the Finals are a real competition that crowns the season's best builder (ZAO vote + WaveWarZ-Base settlement).
 
-**Two surfaces:**
-- **Magnetiq portal** (Tyler Stambaugh's platform) - workshop library, entry/onboarding, polls, UGC submissions.
-- **This Farcaster mini app** (zabalgamez.com) - explainer and front door.
-- **Entry:** collect the Zabal connector NFT on Magnetiq. The connector is the anchor magnet - other ZAO magnets are side channels off it. Collecting it auto-drops the road-to-ZAOstock entry.
+**Current surfaces:**
+- **zabalgamez.com** is the canonical project submission, review, gallery, live, and standings system.
+- **info@thezao.com** is an alternate front door that feeds the same canonical review queue.
+- **Magnetiq portal** remains a workshop-library and casual UGC surface.
+- **Farcaster mini app** provides optional identity and social features. It is not required to submit.
 
 **Prize:** $500 USDC pool, tiered. Every finalist who ships gets paid. Plus a commemorative collectible for every finisher (July + August). **Pool sponsor: The ZAO festivals team** - $500 USDC for v0 (Season 1). Looking for more sponsors to grow the v1 prize pool or add support to v0; contact info@thezao.com.
 
