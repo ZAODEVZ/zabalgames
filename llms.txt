@@ -90,7 +90,7 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Launched:** 2026-01-01 via Clanker. Co-creators: yerbearserker (Jordan Oram) + Adrian (diviflyy).
 
 ### WaveWarZ
-- **What:** Music-battle prediction markets. Artists battle head-to-head, wallets trade on outcomes, 1% of trade volume goes to the artist, settled on-chain via smart contract (no custody). Snapshot ~2026-05-23: 400+ SOL cumulative volume, hundreds of battles, 40+ artists, ~11 shows/week (5 morning + 5 night Mon-Fri + Sunday-night battles). Current live numbers at wavewarz-intelligence.vercel.app.
+- **What:** Music-battle prediction markets. Artists battle head-to-head, wallets trade on outcomes, 1% of trade volume goes to the artist, settled on-chain via smart contract (no custody). Live stats (2026-07-17): 1,245+ battles · 524 SOL volume (~$39K) · artists paid via 1% instant payout on each trade. Current live numbers at wavewarz-intelligence.vercel.app.
 - **The model proof:** in one early battle, a musician earned ~0.5 SOL in 20 minutes of trade activity alone. Artists earn from engagement, not from streams.
 - **Top performers (Doc 180 snapshot, dated):** LUI, APORKALYPSE, PROF!T, Kata7yst were the leaders in the snapshot window. Specific stats live on wavewarz-intelligence.vercel.app.
 - **Status:** v1 LIVE on Solana (Hurric4n3Ike at wavewarz-intelligence.vercel.app). v2 IN BUILD on Base - agentic version Sam is shipping with Arthur (Neynar) reviewing smart contracts. Repo: `~/Documents/wwbase` locally; ZAO research Doc 711.
