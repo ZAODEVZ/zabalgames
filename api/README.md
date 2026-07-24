@@ -426,17 +426,15 @@ retrieves the full message and attachment metadata, normalizes it, and creates a
 `SUBMISSION_INGEST_SECRET`. See `docs/email-submission-setup.md`.
 
 ### `GET/POST /api/qv-vote`
-Quadratic vote for "who is best" this season, per track (artist/builder/creator). Each voter
-gets 100 voice credits per track; N votes on one candidate cost N^2 (max 10). Score = sum of votes.
-- `GET ?track=<t>&results` -> `{ ok, configured, status, track, voters, results:[{ handle, votes }] }`. `GET ?status` -> per-track ballot counts. Aggregate only; individual ballots never returned.
-- `POST { track, allocations:{ <handle>: <0..10> } }` + Quick Auth -> `{ ok, counted, track, creditsUsed, yourVotes }`. Re-voting overwrites. Only accepts POSTs while `data/vote-candidates.json` `status` is `"open"`. Sybil: one ballot per FID, optional Neynar quality gate (`NEYNAR_API_KEY`, `QV_SCORE_MIN`).
-- Upstash Redis (`qv:ballots:<track>` HASH, `qv:tally:<track>` ZSET); no-ops without KV.
-
-### `GET /api/qv-slate-draft`
-Admin-gated, read-only draft of vote candidates built from `data/builder-submissions.json`
-(builders flagged `qv_ballot:true`, grouped by `track`). Feeds `/slate-admin.html`; a human
-commits `data/vote-candidates.json` via a PR. Never opens voting.
-- `GET` + `Authorization: Bearer <ADMIN_KEY>` -> `{ ok, configured, status:'draft', submission_count, candidate_count, tracks:{ artist, builder, creator, _needs_track } }`. No Supabase, no PII.
+Quadratic vote for "who is best" this season, per track (artist/builder/creator). **Candidates
+are the live submissions on the board** (no curated slate): approved KV submissions keyed by
+submission id + the seed builders in `data/builder-submissions.json` keyed `b:<handle>`, grouped
+by track. Each voter gets 100 voice credits per track; N votes on one candidate cost N^2 (max 10).
+Score = sum of votes.
+- `GET ?candidates` -> `{ ok, configured, status, tracks:{ artist, builder, creator }:[{ id, name, handle, url }] }` - the votable list.
+- `GET ?results&track=<t>` -> `{ ok, configured, status, track, voters, results:[{ id, name, handle, votes }] }`. `GET ?status` -> per-track ballot counts. Aggregate only; individual ballots never returned.
+- `POST { track, allocations:{ <submissionId>: <0..10> } }` + Quick Auth -> `{ ok, counted, track, creditsUsed, yourVotes }`. Re-voting overwrites. Only accepts POSTs while `data/vote-candidates.json` `status` is `"open"` (that file is now just the on/off switch). Sybil: one ballot per FID, optional Neynar quality gate (`NEYNAR_API_KEY`, `QV_SCORE_MIN`).
+- Upstash Redis (`qv:ballots:<track>` HASH, `qv:tally:<track>` ZSET keyed by candidate id); no-ops without KV.
 
 ### `GET/POST /api/game`
 Mini-game leaderboards powering `/play`. Monthly high-score board per game in a KV

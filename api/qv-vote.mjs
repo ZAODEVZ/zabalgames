@@ -1,28 +1,31 @@
 // ZABAL Gamez - quadratic vote for "who is best" (GET/POST /api/qv-vote).
 //
-// Model (see docs + the deep-research synthesis): each voter gets a fixed budget of
-// voice credits per track; giving a candidate N votes costs N^2 credits, so with a
-// 100-credit budget the most any single account can pour into one candidate is 10 votes
-// (10^2 = 100). A candidate's score is the SUM of votes (the square root of credits),
-// which is what stops a whale from buying the win. This is the canonical Weyl/Lalley
-// quadratic-voting rule.
+// Candidates are the LIVE submissions on the board (auto-accepted projects), grouped by
+// track and keyed by submission id. There is no curated slate - everyone who submits is
+// votable, and low-quality entries simply get no votes.
 //
-// Anti-gaming (practical, no MACI): quadratic cost defeats whales; sybil resistance is a
-// SEPARATE layer - one ballot per Farcaster FID (Quick Auth), optionally gated by the
-// Neynar user-quality score when NEYNAR_API_KEY is set (graceful FID-only fallback). One
-// off vote per track, no reusable delegates. Individual ballots are never exposed; only
-// aggregate per-candidate vote totals are read back.
+// Model: each voter gets a fixed budget of voice credits per track; giving a candidate N
+// votes costs N^2 credits, so with a 100-credit budget the most any single account can
+// pour into one candidate is 10 votes (10^2 = 100). A candidate's score is the SUM of
+// votes (the square root of credits), which stops a whale from buying the win. Canonical
+// Weyl/Lalley quadratic voting.
 //
-//   POST { track, allocations: { <handle>: <votes 0..10>, ... } }  Authorization: Bearer <quick-auth-jwt>
-//        -> { ok, counted, track, creditsUsed, yourVotes }   (re-voting overwrites your ballot)
-//   GET  ?track=builder&results   -> { ok, configured, status, track, voters, results:[{handle, votes}] }
-//   GET  ?status                  -> { ok, configured, status, tracks:{artist,builder,creator}:count }
+// Anti-gaming (no MACI): quadratic cost defeats whales; sybil resistance is a SEPARATE
+// layer - one ballot per Farcaster FID (Quick Auth), optionally gated by the Neynar
+// user-quality score when NEYNAR_API_KEY is set. Individual ballots are never exposed;
+// only aggregate per-candidate totals are read back.
+//
+//   GET  ?candidates              -> { ok, configured, status, tracks:{artist,builder,creator}:[{id,name,handle,url}] }
+//   GET  ?results&track=builder   -> { ok, configured, status, track, voters, results:[{id,name,handle,votes}] }
+//   GET  ?status                  -> { ok, configured, status, tracks:{...}:voterCount }
+//   POST { track, allocations:{ <submissionId>: <votes 0..10> } }  Authorization: Bearer <quick-auth-jwt>
+//        -> { ok, counted, track, creditsUsed, yourVotes }         (re-voting overwrites your ballot)
 //
 // Storage (Upstash Redis over REST):
 //   qv:ballots:<track>  HASH  <fid> -> JSON allocations   (private, never returned)
-//   qv:tally:<track>    ZSET  handle -> total votes        (aggregate, public)
-// No-ops to { configured:false } when KV is absent. Voting only accepts POSTs while the
-// curated slate (data/vote-candidates.json) has status:"open".
+//   qv:tally:<track>    ZSET  <submissionId> -> total votes (aggregate, public)
+// Candidates come from zabal:subs:approved (the board). Status (preview|open|closed) is
+// the launch control in data/vote-candidates.json. No-ops to { configured:false } without KV.
 
 import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
 
@@ -36,7 +39,8 @@ const SCORE_MIN = Number(process.env.QV_SCORE_MIN || '0.55');
 const TRACKS = ['artist', 'builder', 'creator'];
 const BUDGET = 100;      // voice credits per voter per track
 const MAX_VOTES = 10;    // 10^2 = 100 = the whole budget on one candidate
-const SLATE_URL = 'https://zabalgamez.com/data/vote-candidates.json';
+const STATUS_URL = 'https://zabalgamez.com/data/vote-candidates.json'; // holds { status } only now
+const MAX_CANDIDATES = 300;
 
 const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 
@@ -64,20 +68,75 @@ async function kvPipeline(cmds) {
   return r.json();
 }
 
-// Fetch the curated slate (status + valid handles per track). Cached at the edge briefly.
-async function getSlate() {
+// Voting status (preview|open|closed) lives in data/vote-candidates.json. Kept as the
+// single launch control - flip it in a PR to open or close voting.
+async function getStatus() {
   try {
-    const r = await fetch(SLATE_URL, { signal: AbortSignal.timeout(3000) });
-    if (!r.ok) return null;
-    return await r.json();
-  } catch { return null; }
+    const r = await fetch(STATUS_URL, { signal: AbortSignal.timeout(3000) });
+    if (!r.ok) return 'preview';
+    const d = await r.json();
+    return (d && d.status) || 'preview';
+  } catch { return 'preview'; }
 }
 
-function slateHandles(slate, track) {
-  const list = (slate && slate.tracks && slate.tracks[track]) || [];
-  const set = new Set();
-  list.forEach((c) => { if (c && c.handle) set.add(String(c.handle).replace(/^@+/, '').toLowerCase()); });
-  return set;
+// Load the votable candidates - everything on the board, grouped by track. Two sources,
+// merged and deduped: the curated/seed builders in data/builder-submissions.json (id
+// "b:<handle>") and the live approved project submissions in KV (id = submission id).
+// Returns { tracks, validByTrack }.
+async function loadCandidates() {
+  const tracks = { artist: [], builder: [], creator: [] };
+  const validByTrack = { artist: new Set(), builder: new Set(), creator: new Set() };
+  const clean = (s, n) => String(s == null ? '' : s).replace(/[<>]/g, '').trim().slice(0, n || 100);
+  function add(track, cand) {
+    if (TRACKS.indexOf(track) < 0 || !cand.id) return;
+    if (validByTrack[track].has(cand.id)) return;
+    validByTrack[track].add(cand.id);
+    tracks[track].push(cand);
+  }
+
+  // 1) Seed/curated builders from the repo - real candidates available immediately.
+  try {
+    const r = await fetch('https://zabalgamez.com/data/builder-submissions.json', { signal: AbortSignal.timeout(3000) });
+    if (r.ok) {
+      const doc = await r.json();
+      (doc && doc.submissions || []).forEach((b) => {
+        const track = String(b.track || '').toLowerCase().trim();
+        const handle = String(b.builder || '').replace(/^@+/, '');
+        if (!handle) return;
+        const url = (b.farcaster && /^https?:\/\//i.test(b.farcaster)) ? b.farcaster : `https://farcaster.xyz/${handle}`;
+        add(track, { id: 'b:' + handle.toLowerCase(), name: clean(b.name || handle), handle, url });
+      });
+    }
+  } catch { /* seed unavailable - continue with KV submissions only */ }
+
+  // 2) Live approved project submissions from the board.
+  let ids = [];
+  try {
+    const r = await kvPipeline([['ZRANGE', 'zabal:subs:approved', '0', String(MAX_CANDIDATES - 1), 'REV']]);
+    ids = (r[0] && r[0].result) || [];
+  } catch { return { tracks, validByTrack }; }
+  if (ids.length) {
+    let rows = [];
+    try {
+      const r = await kvPipeline(ids.map((id) => ['GET', `zabal:sub:v1:${id}`]));
+      rows = r.map((x) => x && x.result).filter(Boolean);
+    } catch { return { tracks, validByTrack }; }
+    for (const raw of rows) {
+      let s;
+      try { s = JSON.parse(raw); } catch { continue; }
+      if (!s || s.status !== 'approved') continue;
+      const f = s.fields || {};
+      const track = String(f.track || '').toLowerCase().trim();
+      if (TRACKS.indexOf(track) < 0) continue; // only submissions with a real track are votable
+      const id = String(s.id);
+      const handle = s.handle ? String(s.handle).replace(/^@+/, '') : '';
+      const url = (f.demoUrl && /^https?:\/\//i.test(f.demoUrl))
+        ? f.demoUrl
+        : `https://zabalgamez.com/submissions?id=${encodeURIComponent(id)}`;
+      add(track, { id, name: clean(f.project || s.project || ('Project ' + id)), handle, url });
+    }
+  }
+  return { tracks, validByTrack };
 }
 
 // Neynar user-quality score for a FID (0..1). Returns null when not configured / on error.
@@ -108,25 +167,38 @@ export default async function handler(req) {
 
   const url = new URL(req.url);
 
-  // ---- GET: results / status (aggregate only) ----
+  // ---- GET: candidates / results / status ----
   if (req.method === 'GET') {
-    const slate = await getSlate();
-    const status = (slate && slate.status) || 'preview';
+    const status = await getStatus();
+
+    if (url.searchParams.has('candidates')) {
+      const { tracks } = await loadCandidates();
+      return json({ ok: true, configured: true, status, tracks }, cors);
+    }
+
     if (url.searchParams.has('results')) {
       const track = String(url.searchParams.get('track') || '');
       if (TRACKS.indexOf(track) < 0) return json({ ok: false, error: 'bad track' }, cors);
       try {
+        const { tracks } = await loadCandidates();
+        const byId = {};
+        (tracks[track] || []).forEach((c) => { byId[c.id] = c; });
         const r = await kvPipeline([
           ['ZRANGE', `qv:tally:${track}`, '0', '-1', 'REV', 'WITHSCORES'],
           ['HLEN', `qv:ballots:${track}`],
         ]);
         const flat = (r[0] && r[0].result) || [];
         const results = [];
-        for (let i = 0; i < flat.length; i += 2) results.push({ handle: flat[i], votes: Number(flat[i + 1]) });
+        for (let i = 0; i < flat.length; i += 2) {
+          const id = flat[i];
+          const c = byId[id] || {};
+          results.push({ id, name: c.name || ('Project ' + id), handle: c.handle || '', url: c.url || '', votes: Number(flat[i + 1]) });
+        }
         const voters = (r[1] && r[1].result) || 0;
         return json({ ok: true, configured: true, status, track, voters, results }, cors);
       } catch { return json({ ok: false, error: 'read failed' }, cors); }
     }
+
     // status summary
     try {
       const r = await kvPipeline(TRACKS.map((t) => ['HLEN', `qv:ballots:${t}`]));
@@ -150,25 +222,26 @@ export default async function handler(req) {
     const track = String(body.track || '');
     if (TRACKS.indexOf(track) < 0) return json({ ok: false, error: 'bad track' }, cors);
 
-    const slate = await getSlate();
-    if (!slate) return json({ ok: false, error: 'candidate list unavailable' }, cors);
-    if (slate.status !== 'open') return json({ ok: false, error: 'voting is not open yet' }, cors);
-    const valid = slateHandles(slate, track);
+    const status = await getStatus();
+    if (status !== 'open') return json({ ok: false, error: 'voting is not open yet' }, cors);
+
+    const { validByTrack } = await loadCandidates();
+    const valid = validByTrack[track];
 
     // Sybil gate: Neynar user-quality score, only when configured.
     const score = await neynarScore(fid);
     if (score != null && score < SCORE_MIN) return json({ ok: false, error: 'account does not meet the quality threshold to vote' }, cors);
 
-    // Validate + normalize allocations: integer 0..MAX_VOTES per candidate, sum(votes^2) <= BUDGET.
+    // Validate + normalize allocations: integer 0..MAX_VOTES per candidate id, sum(votes^2) <= BUDGET.
     const alloc = body.allocations && typeof body.allocations === 'object' ? body.allocations : {};
     const next = {};
     let credits = 0;
     for (const k in alloc) {
-      const h = String(k).replace(/^@+/, '').toLowerCase();
-      if (!valid.has(h)) return json({ ok: false, error: 'unknown candidate: ' + h }, cors);
+      const id = String(k).trim();
+      if (!valid.has(id)) return json({ ok: false, error: 'unknown candidate: ' + id }, cors);
       const v = Math.floor(Number(alloc[k]));
       if (!Number.isFinite(v) || v < 0 || v > MAX_VOTES) return json({ ok: false, error: 'votes must be 0 to ' + MAX_VOTES }, cors);
-      if (v > 0) { next[h] = v; credits += v * v; }
+      if (v > 0) { next[id] = v; credits += v * v; }
     }
     if (credits > BUDGET) return json({ ok: false, error: 'over budget: ' + credits + ' of ' + BUDGET + ' credits' }, cors);
 
@@ -179,11 +252,11 @@ export default async function handler(req) {
       const raw = prevRes[0] && prevRes[0].result;
       if (raw) { try { prev = JSON.parse(raw); } catch { prev = {}; } }
 
-      const handles = new Set(Object.keys(prev).concat(Object.keys(next)));
+      const keys = new Set(Object.keys(prev).concat(Object.keys(next)));
       const cmds = [];
-      handles.forEach((h) => {
-        const delta = (next[h] || 0) - (prev[h] || 0);
-        if (delta !== 0) cmds.push(['ZINCRBY', `qv:tally:${track}`, String(delta), h]);
+      keys.forEach((id) => {
+        const delta = (next[id] || 0) - (prev[id] || 0);
+        if (delta !== 0) cmds.push(['ZINCRBY', `qv:tally:${track}`, String(delta), id]);
       });
       cmds.push(['HSET', `qv:ballots:${track}`, String(fid), JSON.stringify(next)]);
       await kvPipeline(cmds);

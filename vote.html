@@ -136,7 +136,7 @@
     if (!list.length) {
       host.innerHTML = '';
       empty.hidden = false;
-      empty.textContent = 'No candidates in this track yet. Check back soon.';
+      empty.textContent = 'No projects in this track yet. Submit one at zabalgamez.com/submit.';
       submitWrap.hidden = true;
       return;
     }
@@ -144,14 +144,15 @@
     submitWrap.hidden = false;
     var u = used(track);
     host.innerHTML = list.map(function (c) {
-      var h = norm(c.handle);
-      var v = alloc[track][h] || 0;
+      var id = String(c.id);
+      var v = alloc[track][id] || 0;
       var cost = v * v;
       var nextCost = (v + 1) * (v + 1) - cost; // marginal credits for one more vote
       var canInc = v < MAX && (u + nextCost) <= BUDGET;
-      return '<div class="vt-row" data-h="' + esc(h) + '">' +
-        '<div class="who"><h3>' + (c.url ? '<a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.name || c.handle) + '</a>' : esc(c.name || c.handle)) + '</h3>' +
-        (c.note ? '<p>' + esc(c.note) + '</p>' : '') +
+      var title = c.name || c.handle || ('Project ' + id);
+      return '<div class="vt-row" data-id="' + esc(id) + '">' +
+        '<div class="who"><h3>' + (c.url ? '<a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(title) + '</a>' : esc(title)) + '</h3>' +
+        (c.handle ? '<p>by @' + esc(c.handle) + '</p>' : '') +
         '<span class="vt-cost">' + v + ' votes, ' + cost + ' credits</span></div>' +
         '<div class="vt-step">' +
         '<button type="button" data-act="dec" aria-label="fewer"' + (v <= 0 ? ' disabled' : '') + '>-</button>' +
@@ -160,13 +161,13 @@
         '</div></div>';
     }).join('');
     host.querySelectorAll('.vt-row').forEach(function (row) {
-      var h = row.getAttribute('data-h');
+      var id = row.getAttribute('data-id');
       row.querySelectorAll('button').forEach(function (btn) {
         btn.addEventListener('click', function () {
-          var v = alloc[track][h] || 0;
-          if (btn.getAttribute('data-act') === 'inc') { if (v < MAX) alloc[track][h] = v + 1; }
-          else { if (v > 0) alloc[track][h] = v - 1; }
-          if (used(track) > BUDGET) alloc[track][h] = v; // safety
+          var v = alloc[track][id] || 0;
+          if (btn.getAttribute('data-act') === 'inc') { if (v < MAX) alloc[track][id] = v + 1; }
+          else { if (v > 0) alloc[track][id] = v - 1; }
+          if (used(track) > BUDGET) alloc[track][id] = v; // safety
           renderMeter(); renderList();
         });
       });
@@ -180,7 +181,7 @@
       var max = d.results[0].votes || 1;
       host.innerHTML = d.results.map(function (e, i) {
         var pct = Math.round((e.votes / max) * 100);
-        return '<div style="margin:0.4rem 0;"><div style="display:flex;justify-content:space-between;font-size:0.86rem;"><span>' + (i + 1) + '. ' + esc(e.handle) + '</span><span class="vt-res-votes">' + e.votes + ' votes</span></div>' +
+        return '<div style="margin:0.4rem 0;"><div style="display:flex;justify-content:space-between;font-size:0.86rem;"><span>' + (i + 1) + '. ' + esc(e.name || e.handle || e.id) + '</span><span class="vt-res-votes">' + e.votes + ' votes</span></div>' +
           '<div class="vt-bar"><span style="width:' + pct + '%"></span></div></div>';
       }).join('') + '<p class="vt-note" style="margin-top:0.5rem;">' + (d.voters || 0) + ' voters this track.</p>';
     }).catch(function () { host.innerHTML = '<p class="vt-note">Results unavailable right now.</p>'; });
@@ -203,13 +204,14 @@
     } else { msg.textContent = 'Open ZABAL Gamez in the Farcaster app to vote.'; }
   });
 
-  fetch('/data/vote-candidates.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
-    if (d && d.tracks) slate = d;
+  // Candidates are the live submissions on the board, served by the vote API.
+  fetch('/api/qv-vote?candidates', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+    if (d && d.tracks) { slate = { status: d.status || 'preview', tracks: d.tracks }; }
     // default to the first track that has candidates
     for (var i = 0; i < TRACKS.length; i++) { if ((slate.tracks[TRACKS[i]] || []).length) { track = TRACKS[i]; break; } }
     if (slate.status !== 'open') {
       var m = document.getElementById('vt-msg');
-      if (m) m.textContent = 'Voting opens soon. You can see the candidates and live results now.';
+      if (m) m.textContent = 'Voting opens soon. You can see the projects and live results now.';
     }
     renderAll();
   }).catch(function () { renderAll(); });
