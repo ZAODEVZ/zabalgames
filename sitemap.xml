@@ -5,7 +5,9 @@
   <url><loc>https://zabalgamez.com/bounties</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/build-days</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/build-ideas</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/board</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://zabalgamez.com/changelog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zabalgamez.com/colab</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/clips</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/context</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zabalgamez.com/crm</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -41,6 +43,8 @@
   <url><loc>https://zabalgamez.com/spaces</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/speakers</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/streams</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://zabalgamez.com/submissions</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://zabalgamez.com/submit</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://zabalgamez.com/today</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zabalgamez.com/winners</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zabalgamez.com/llms.txt</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>

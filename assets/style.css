@@ -588,6 +588,23 @@ body > * { position: relative; z-index: 1; }
 .arcade-nav-menu a[aria-current="page"]::after { right: 0; }
 .arcade-nav-menu a.active,
 .arcade-nav-menu a[aria-current="page"] { color: var(--text); }
+.arcade-nav-menu .site-submit-link { display: none; }
+
+/* Real Season 1 roster strip. Text marks are used because no sponsor or mentor
+   logo asset is stored in the repository. Names and roles load from mentors.json. */
+.mentor-strip { border-top: 1px solid var(--border); background: #101820; padding: 2rem 0; }
+.mentor-strip-inner { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+.mentor-strip-kicker { margin: 0 0 0.25rem; color: var(--cyan); font: 0.55rem var(--font-pixel); letter-spacing: 0.08em; text-transform: uppercase; }
+.mentor-strip h2 { margin: 0; color: #e0ddaa; font-size: clamp(1.25rem, 4vw, 1.8rem); }
+.mentor-strip-row { display: flex; gap: 9px; overflow-x: auto; padding: 0.9rem 0 0.65rem; scrollbar-width: thin; }
+.mentor-mark { flex: 0 0 150px; min-height: 92px; display: grid; align-content: center; gap: 0.18rem; border: 1px solid rgba(224,221,170,0.22); border-radius: 10px; background: #141e27; color: #e0ddaa; padding: 0.75rem; text-decoration: none; }
+.mentor-mark:hover { border-color: #e0ddaa; text-decoration: none; }
+.mentor-mark strong { color: #e0ddaa; font-size: 0.85rem; line-height: 1.2; }
+.mentor-mark small { color: var(--text-dim); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.mentor-mark.sponsor { border-color: rgba(224,221,170,0.5); }
+.mentor-mark.sponsor > span { color: var(--cyan); font: 0.58rem var(--font-pixel); }
+.mentor-initials { width: 28px; height: 28px; display: inline-grid; place-items: center; border: 1px solid rgba(0,229,255,0.45); border-radius: 50%; color: var(--cyan); font: 0.62rem 'JetBrains Mono', monospace; }
+.mentor-strip-link { color: var(--cyan); font-size: 0.82rem; }
 
 /* INSERT COIN button - the highlighted claim CTA (nav + footer) */
 .arcade-coin {
@@ -619,10 +636,12 @@ body > * { position: relative; z-index: 1; }
 .arcade-skip:focus { left: 0; text-decoration: none; }
 
 @media (max-width: 640px) {
-  .arcade-nav-inner { padding: 0.5rem 14px; gap: 0.5rem 0.9rem; }
+  .arcade-nav-inner { min-height: 56px; padding: 0.45rem 10px; gap: 0.45rem; flex-wrap: nowrap; }
   .arcade-brand { font-size: 0.74rem; }
-  .arcade-nav-menu { gap: 0.85rem; width: 100%; justify-content: flex-start; }
-  .arcade-nav-menu a { font-size: 0.55rem; }
+  .arcade-nav-menu { gap: 0.55rem; width: auto; min-width: 0; flex: 0 1 auto; justify-content: flex-end; flex-wrap: nowrap; }
+  .arcade-nav-menu > a { display: none; }
+  .arcade-nav-menu .site-submit-link { display: block; font-size: 0.52rem; color: var(--submit-cream, #e0ddaa); }
+  .site-menu-btn { font-size: 0.52rem; }
 }
 
 /* =========================================================================

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "season-1",
+  "name": "ZABAL Gamez Season 1",
+  "organizer": "The ZAO",
+  "contact": "info@thezao.com",
+  "startDate": "2026-06-01",
+  "submissionsOpenDate": "2026-07-01",
+  "submissionDeadline": "2026-07-31",
+  "finalsStartDate": "2026-08-01",
+  "endDate": "2026-08-31",
+  "attendanceMode": "online",
+  "streamUrl": "https://twitch.tv/bettercallzaal",
+  "submissionUrl": "https://zabalgamez.com/submit",
+  "projectsUrl": "https://zabalgamez.com/submissions",
+  "tracks": ["artist", "builder", "creator"],
+  "phases": [
+    { "id": "prep", "label": "June Prep", "startDate": "2026-06-01", "endDate": "2026-06-30" },
+    { "id": "build", "label": "July Open Build", "startDate": "2026-07-01", "endDate": "2026-07-31" },
+    { "id": "finals", "label": "August Finals", "startDate": "2026-08-01", "endDate": "2026-08-31" }
+  ]
+}

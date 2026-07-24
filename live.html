@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live - ZABAL Gamez Season 1</title>
-  <meta name="description" content="What's on now at ZABAL Gamez. Live June workshop sessions, what's next, and how to tune in. The ZAO's 3-month Build-A-Thon.">
+  <meta name="description" content="Watch ZABAL Gamez live build sessions and office hours, see what's on now, and catch recordings. Free and open to anyone.">
   <link rel="canonical" href="https://zabalgamez.com/live">
 
   <meta property="og:title" content="ZABAL Gamez - Live">
-  <meta property="og:description" content="What's on now - live June workshops and what's next. The ZAO's 3-month Build-A-Thon. Free to join.">
+  <meta property="og:description" content="Live build sessions, office hours, recordings, and what's next at ZABAL Gamez. Free and open to anyone.">
   <meta property="og:url" content="https://zabalgamez.com/live">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ZABAL Gamez">
@@ -20,7 +20,7 @@
   <meta name="twitter:site" content="@bettercallzaal">
   <meta name="twitter:creator" content="@bettercallzaal">
   <meta name="twitter:title" content="ZABAL Gamez - Live">
-  <meta name="twitter:description" content="What's on now - live June workshops and what's next.">
+  <meta name="twitter:description" content="Live build sessions, office hours, recordings, and what's next at ZABAL Gamez.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
 
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"What is on now","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/live","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
@@ -35,6 +35,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "ZABAL Gamez Season 1",
+    "description": "The ZAO's online three-month build-a-thon: June workshops, a July open build, and August Finals with mentors and live coverage.",
+    "startDate": "2026-06-01",
+    "endDate": "2026-08-31",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+    "location": { "@type": "VirtualLocation", "url": "https://twitch.tv/bettercallzaal" },
+    "organizer": { "@type": "Organization", "name": "The ZAO", "url": "https://thezao.com" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://zabalgamez.com/submit" }
+  }
+  </script>
+
   <script type="module" src="/assets/miniapp.js"></script>
 
   <style>
@@ -44,7 +60,48 @@
        action pills, a big stage card) styled with the shared arcade tokens
        from assets/style.css. Mobile-first - opened from a feed on a phone.
        ===================================================================== */
-    .live-wrap { max-width: 920px; margin: 0 auto; padding: 18px 18px 8px; }
+    .live-wrap { max-width: 920px; margin: 0 auto; padding: 12px 12px 8px; display: flex; flex-direction: column; }
+    @media (min-width: 480px) { .live-wrap { padding: 18px 18px 8px; } }
+
+    /* Explicit order lets phones keep the player directly beneath the current-session
+       card while desktop viewers see standings before the player. */
+    .live-bar { order: 1; }
+    .live-head { order: 2; }
+    .live-actions { order: 3; }
+    .live-override { order: 4; }
+    .live-stage { order: 5; }
+    .live-standings { order: 6; }
+    .watch { order: 7; }
+    .today-sec { order: 8; }
+    .watch-recs { order: 9; }
+    .live-faq { order: 10; }
+    .live-foot-note { order: 11; }
+    #zg-comments { order: 12; }
+    @media (max-width: 640px) {
+      .watch { order: 6; }
+      .live-standings { order: 7; }
+    }
+
+    /* Keep the live landing page's header to one compact row on phones. The
+       directory remains available through Menu and the footer. */
+    @media (max-width: 640px) {
+      .arcade-nav-inner { flex-wrap: nowrap; gap: 0.5rem; padding: 0.5rem 12px; }
+      .arcade-nav-menu {
+        width: auto; min-width: 0; flex: 1; justify-content: flex-end;
+        flex-wrap: nowrap; gap: 0.55rem;
+      }
+      .arcade-nav-menu > a:not(.arcade-coin) { display: none; }
+      .site-menu-btn { font-size: 0.52rem; }
+      .arcade-coin { font-size: 0.5rem; padding: 0.48rem 0.7rem; }
+    }
+    @media (max-width: 360px) {
+      .arcade-nav-inner { gap: 0.35rem; }
+      .arcade-brand { font-size: 0.62rem; gap: 0.35rem; }
+      .arcade-brand::before { width: 9px; height: 9px; }
+      .arcade-nav-menu { gap: 0.35rem; }
+      .site-menu-btn { font-size: 0.46rem; }
+      .arcade-coin { font-size: 0.44rem; padding: 0.45rem 0.55rem; }
+    }
 
     /* Top status bar - back link on the left, live/standby pill on the right */
     .live-bar {
@@ -64,6 +121,7 @@
       border: 1px solid var(--border-hover); border-radius: var(--r-pill);
       padding: 0.5rem 0.85rem; line-height: 1;
     }
+    .live-pill[hidden] { display: none; }
     .live-pill .dot {
       position: relative; display: inline-flex; height: 9px; width: 9px;
     }
@@ -86,27 +144,38 @@
     @keyframes livePing { 75%, 100% { transform: scale(2.4); opacity: 0; } }
 
     /* Title block */
-    .live-head { padding: 22px 0 6px; }
+    .live-head { padding: 18px 0 4px; }
     .live-head h1 {
       font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(1.9rem, 6vw, 3rem); letter-spacing: -0.02em; line-height: 1;
-      margin: 0 0 0.6rem;
+      font-size: clamp(1.6rem, 5.5vw, 3rem); letter-spacing: -0.02em; line-height: 1.1;
+      margin: 0 0 0.5rem;
     }
     .live-head h1 .accent {
       background: var(--gradient-main); -webkit-background-clip: text;
       -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .live-head p { color: var(--text-muted); font-size: 0.98rem; max-width: 560px; margin: 0; line-height: 1.45; }
+    .live-head p { color: var(--text-muted); font-size: 0.95rem; max-width: 560px; margin: 0; line-height: 1.45; }
+    @media (max-width: 480px) {
+      .live-head { padding: 16px 0 2px; }
+      .live-head h1 { font-size: clamp(1.4rem, 5vw, 2.2rem); }
+      .live-head p { font-size: 0.88rem; }
+    }
 
     /* Action pills - top-right style links */
-    .live-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
+    .live-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 6px; }
     .live-action {
       font-size: 0.82rem; text-decoration: none; color: var(--text);
       border: 1px solid var(--border-hover); background: var(--surface);
-      border-radius: var(--r-md); padding: 0.55rem 0.85rem;
+      border-radius: var(--r-md); padding: 0.6rem 0.9rem; line-height: 1.2;
       transition: border-color 0.15s var(--ease), background 0.15s var(--ease);
+      cursor: pointer;
     }
-    .live-action:hover { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
+    .live-action.primary { background: #e0ddaa; border-color: #e0ddaa; color: #141e27; font-weight: 700; }
+    .live-action:hover, .live-action:active { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
+    @media (max-width: 480px) {
+      .live-actions { gap: 6px; }
+      .live-action { font-size: 0.75rem; padding: 0.5rem 0.75rem; }
+    }
 
     /* Pinned override banner (honors cta_override.active in workshop-leads.json) */
     .live-override {
@@ -137,6 +206,43 @@
     .stage-card.now::before { background: linear-gradient(90deg, var(--pink), var(--orange)); }
     .stage-card.next::before { background: linear-gradient(90deg, var(--gold), var(--cyan)); }
     .stage-card.empty::before { background: linear-gradient(90deg, var(--zabal), var(--cyan)); }
+
+    /* Shared season standings. Scores come from /api/leaderboard?format=standings,
+       the same contract used by /leaderboard. */
+    .live-standings {
+      min-height: 166px; margin: 10px 0 6px; overflow: hidden;
+      border: 1px solid rgba(224,221,170,0.24); border-radius: var(--r-lg);
+      background: #141e27;
+    }
+    .ls-head { display: flex; align-items: center; justify-content: space-between; gap: 0.7rem; padding: 0.7rem 0.85rem 0.55rem; }
+    .ls-head h2 { color: #e0ddaa; font: 700 1rem 'Syne', sans-serif; margin: 0; }
+    .ls-all { color: var(--cyan); font-size: 0.72rem; text-decoration: none; white-space: nowrap; }
+    .ls-all:hover { text-decoration: underline; }
+    .ls-meta { color: var(--text-dim); font-size: 0.7rem; line-height: 1.4; margin: 0; padding: 0 0.85rem 0.6rem; }
+    .ls-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(224,221,170,0.13); }
+    .ls-row { display: grid; grid-template-columns: 1.4rem 1.7rem minmax(0, 1fr) auto; align-items: center; gap: 0.5rem; min-height: 43px; padding: 0.42rem 0.85rem; border-bottom: 1px solid rgba(224,221,170,0.1); }
+    .ls-row:last-child { border-bottom: 0; }
+    .ls-rank { color: #e0ddaa; font: 700 0.72rem 'JetBrains Mono', monospace; }
+    .ls-avatar { width: 1.7rem; height: 1.7rem; display: grid; place-items: center; overflow: hidden; border-radius: 50%; background: #0d151c; color: #e0ddaa; font-size: 0.68rem; font-weight: 700; }
+    .ls-avatar img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .ls-person { min-width: 0; }
+    .ls-name { display: block; color: #e0ddaa; font-size: 0.78rem; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; }
+    .ls-name:hover { color: var(--cyan); text-decoration: none; }
+    .ls-handle { display: block; color: var(--text-dim); font-size: 0.62rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ls-score { color: var(--cyan); text-align: right; font: 700 0.76rem 'JetBrains Mono', monospace; }
+    .ls-score small { display: block; color: var(--text-dim); font: 0.5rem 'Outfit', sans-serif; text-transform: uppercase; }
+    .ls-empty { color: var(--text-muted); font-size: 0.76rem; padding: 0.8rem 0.85rem; }
+    @media (max-width: 640px) {
+      .live-standings { min-height: 158px; margin-top: 12px; }
+      .ls-head { padding: 0.65rem 0.7rem 0.5rem; }
+      .ls-meta { padding: 0 0.7rem 0.55rem; }
+      .ls-row { grid-template-columns: 1.25rem 1.6rem minmax(0, 1fr) auto; gap: 0.42rem; min-height: 41px; padding: 0.4rem 0.7rem; }
+      .ls-avatar { width: 1.6rem; height: 1.6rem; }
+    }
+    @media (max-width: 350px) {
+      .ls-head h2 { font-size: 0.9rem; }
+      .ls-all { font-size: 0.65rem; }
+    }
 
     .stage-eyebrow {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -194,15 +300,18 @@
     .stage-btn {
       display: inline-flex; align-items: center; justify-content: center;
       font-weight: 600; font-size: 0.88rem; text-decoration: none; cursor: pointer;
-      border-radius: var(--r-md); padding: 0.7rem 1.15rem; border: 1px solid var(--border-hover);
-      background: var(--surface); color: var(--text); font-family: inherit;
+      border-radius: var(--r-md); padding: 0.75rem 1.2rem; border: 1px solid var(--border-hover);
+      background: var(--surface); color: var(--text); font-family: inherit; line-height: 1.2;
       transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease), background 0.15s var(--ease);
     }
     .stage-btn.primary { background: var(--orange); color: #fff; border-color: var(--orange); }
-    .stage-btn.primary:hover { box-shadow: 0 6px 22px rgba(255,107,53,0.4); text-decoration: none; }
+    .stage-btn.primary:hover, .stage-btn.primary:active { box-shadow: 0 6px 22px rgba(255,107,53,0.4); text-decoration: none; }
     .stage-btn.live { background: var(--pink); color: #fff; border-color: var(--pink); }
-    .stage-btn.live:hover { box-shadow: var(--glow-pink); text-decoration: none; }
-    .stage-btn.ghost:hover { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
+    .stage-btn.live:hover, .stage-btn.live:active { box-shadow: var(--glow-pink); text-decoration: none; }
+    .stage-btn.ghost:hover, .stage-btn.ghost:active { border-color: var(--cyan); background: var(--surface-2); text-decoration: none; }
+    @media (max-width: 480px) {
+      .stage-btn { font-size: 0.82rem; padding: 0.7rem 1rem; }
+    }
 
     /* Empty-state season triptych */
     .season-strip {
@@ -275,7 +384,7 @@
     .live-foot-note a { color: var(--cyan); font-weight: 600; }
 
     /* ---- Watch stage: player + chat, Twitch/YouTube toggle, collapsible ---- */
-    .watch { margin: 22px 0 8px; }
+    .watch { margin: 16px 0 12px; }
     .watch-head {
       display: flex; align-items: center; justify-content: space-between;
       gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
@@ -295,18 +404,22 @@
     .watch-toggle {
       font-size: 0.74rem; color: var(--text-muted); background: transparent;
       border: 1px solid var(--border-hover); border-radius: var(--r-md);
-      padding: 0.45rem 0.7rem; cursor: pointer; font-family: inherit;
+      padding: 0.5rem 0.75rem; cursor: pointer; font-family: inherit; line-height: 1;
       transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
     }
-    .watch-toggle:hover { color: var(--text); border-color: var(--cyan); }
+    .watch-toggle:hover, .watch-toggle:active { color: var(--text); border-color: var(--cyan); }
+    @media (max-width: 480px) {
+      .watch-tab { padding: 0.5rem 0.8rem; font-size: 0.5rem; }
+      .watch-toggle { padding: 0.45rem 0.6rem; font-size: 0.68rem; }
+    }
     .watch-body { display: grid; grid-template-columns: 1fr; gap: 12px; }
     @media (min-width: 860px) { .watch-body.has-chat { grid-template-columns: minmax(0, 1fr) 340px; } }
     .watch-video {
       border: 1px solid var(--border-hover); border-radius: var(--r-lg);
-      overflow: hidden; background: #000;
+      overflow: hidden; background: #000; width: 100%; max-width: 100%;
     }
     .watch-video .ar { position: relative; width: 100%; aspect-ratio: 16 / 9; }
-    .watch-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .watch-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
     .watch-chat {
       border: 1px solid var(--border-hover); border-radius: var(--r-lg);
       overflow: hidden; background: #000; display: flex; flex-direction: column;
@@ -319,10 +432,11 @@
       font-family: var(--font-pixel); font-size: 0.5rem; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--text-muted);
     }
-    .chat-frame { flex: 1; min-height: 360px; }
-    /* Desktop: drop the forced min-height so the video's 16:9 height drives the
-       grid row and the chat matches it (theater layout) instead of the taller
-       chat stretching the player and leaving a black gap beneath it. */
+    .chat-frame { flex: 1; min-height: 280px; }
+    /* Mobile: chat frame gets smaller min-height. Desktop: drop the forced
+       min-height so the video's 16:9 height drives the grid row and chat
+       matches it (theater layout) instead of the taller chat stretching
+       the player and leaving a black gap beneath it. */
     @media (min-width: 860px) { .chat-frame { min-height: 0; } }
     .chat-frame iframe { width: 100%; height: 100%; min-height: inherit; border: 0; display: block; }
     .chat-fallback { padding: 1rem; font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; }
@@ -358,7 +472,7 @@
 <div class="live-wrap">
 
   <div class="live-bar">
-    <a href="/" class="live-back">&larr; ZABAL Gamez home</a>
+    <a href="/" class="live-back">&larr; Home</a>
     <span class="live-pill" id="live-pill">
       <span class="dot" aria-hidden="true"></span>
       <span id="live-pill-text">Checking</span>
@@ -375,18 +489,37 @@
   </header>
 
   <div class="live-actions">
-    <button type="button" class="live-action" id="live-notify-btn">Notify me when live</button>
-    <a class="live-action" href="https://twitch.tv/bettercallzaal" target="_blank" rel="noopener">Watch on Twitch</a>
-    <a class="live-action" href="https://youtube.com/@bettercallzaal" target="_blank" rel="noopener">Watch on YouTube</a>
-    <a class="live-action" id="live-cal" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>
-    <a class="live-action" href="https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ" target="_blank" rel="noopener">/zabal group chat</a>
-    <a class="live-action" href="/#schedule">Full schedule</a>
+    <a class="live-action primary" href="/submit">Submit project</a>
+    <button type="button" class="live-action" id="live-notify-btn">Get notified</button>
+    <a class="live-action" href="https://twitch.tv/bettercallzaal" target="_blank" rel="noopener">Twitch</a>
+    <a class="live-action" href="https://youtube.com/@bettercallzaal" target="_blank" rel="noopener">YouTube</a>
+    <a class="live-action" id="live-cal" href="https://luma.com/zao" target="_blank" rel="noopener">Calendar</a>
+    <a class="live-action" href="https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ" target="_blank" rel="noopener">Chat</a>
   </div>
 
   <div class="live-override" id="live-override">
     <span class="lo-text" id="live-override-text"></span>
     <a id="live-override-cta" href="#" target="_blank" rel="noopener">RSVP</a>
   </div>
+
+  <section class="live-stage" id="live-stage" aria-live="polite">
+    <div class="stage-card next">
+      <div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Loading</div>
+      <h2>What's Live</h2>
+      <p class="stage-meta">Checking the schedule and stream status.</p>
+    </div>
+  </section>
+
+  <section class="live-standings" id="live-standings" aria-labelledby="live-standings-title">
+    <div class="ls-head">
+      <h2 id="live-standings-title">Current standings</h2>
+      <a class="ls-all" href="/leaderboard">View all standings -&gt;</a>
+    </div>
+    <p class="ls-meta" id="ls-meta">Loading the live scoring source.</p>
+    <ol class="ls-list" id="ls-list" aria-live="polite" aria-busy="true">
+      <li class="ls-empty">Loading standings...</li>
+    </ol>
+  </section>
 
   <section class="watch" id="watch" aria-label="Live stream player">
     <div class="watch-head">
@@ -414,14 +547,6 @@
     </div>
   </section>
 
-  <section class="live-stage" id="live-stage" aria-live="polite">
-    <div class="stage-card next">
-      <div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Loading</div>
-      <h2>Checking what's on now...</h2>
-      <p class="stage-meta">Reading the workshop schedule.</p>
-    </div>
-  </section>
-
   <section class="today-sec" id="today-sec" style="display:none;">
     <h2>Also today</h2>
     <div class="today-grid" id="today-grid"></div>
@@ -439,11 +564,28 @@
     .wr-card:hover .wr-cta { text-decoration: underline; }
     .wr-all { display: inline-block; margin-top: 0.7rem; color: var(--cyan); text-decoration: none; font-size: 0.86rem; }
     .wr-all:hover { text-decoration: underline; }
+    .live-faq { border-top: 1px solid var(--border); padding: 1rem 0 0; margin-top: 1rem; }
+    .live-faq h2 { margin: 0 0 0.7rem; font-size: 1.15rem; }
+    .live-faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .live-faq article { border: 1px solid var(--border); border-radius: 9px; background: var(--surface); padding: 0.75rem; }
+    .live-faq h3 { margin: 0; color: #e0ddaa; font-size: 0.9rem; }
+    .live-faq p { margin: 0.35rem 0 0; color: var(--text-muted); font-size: 0.8rem; line-height: 1.45; }
+    .live-faq a { color: var(--cyan); }
+    @media (max-width: 640px) { .live-faq-grid { grid-template-columns: 1fr; } }
   </style>
   <section class="watch-recs" id="watch-recs" aria-label="Recordings to watch" style="display:none;">
     <h2>While you wait, catch a session</h2>
     <div class="wr-grid" id="watch-rec-grid"></div>
     <a class="wr-all" href="/speakers">All speakers and recordings -&gt;</a>
+  </section>
+
+  <section class="live-faq" aria-labelledby="live-faq-title">
+    <h2 id="live-faq-title">ZABAL Gamez quick answers</h2>
+    <div class="live-faq-grid">
+      <article><h3>What is ZABAL Gamez?</h3><p>The ZAO's online Season 1 build-a-thon: June workshops, an open July build, and August Finals.</p></article>
+      <article><h3>How do I join?</h3><p><a href="/submit">Submit any project</a> or email <a href="mailto:info@thezao.com">info@thezao.com</a>. No account, wallet, or prior registration is required.</p></article>
+      <article><h3>When is it live?</h3><p>The status above checks Twitch and YouTube in real time. Follow the current session card for the next scheduled stream, or use the recordings anytime.</p></article>
+    </div>
   </section>
 
   <div class="live-foot-note">
@@ -727,7 +869,7 @@
         '<div class="sc-month">' + month + '</div><h3>' + h + '</h3><p>' + body + '</p></div>';
     }
     var primary = (PHASE === 'july')
-      ? '<a class="stage-btn primary" href="/enter" rel="noopener">Register your build</a>'
+      ? '<a class="stage-btn primary" href="/submit" rel="noopener">Submit your project</a>'
       : '<a class="stage-btn primary" href="https://luma.com/zao" target="_blank" rel="noopener">Lu.ma calendar</a>';
     return '<div class="stage-card empty">' +
       '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Standby</div>' +
@@ -1064,6 +1206,71 @@
 <script>
 (function () {
   'use strict';
+  var list = document.getElementById('ls-list');
+  var meta = document.getElementById('ls-meta');
+  if (!list || !meta) return;
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>\"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', "'": '&#39;' }[c];
+  }); }
+  function safeUrl(s) { s = String(s || ''); return /^https?:\/\//i.test(s) ? s : ''; }
+  function score(s) { var n = Number(s); return Number.isFinite(n) ? new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(n) : 'Pending'; }
+
+  function sourceCopy(data) {
+    if (data.source === 'qv') {
+      var voters = data.qv ? Number(data.qv.voters) || 0 : 0;
+      return 'Builder QV votes from ' + voters + ' voter' + (voters === 1 ? '' : 's') + '.';
+    }
+    if (data.source === 'empire') {
+      var qv = data.qv || {};
+      return 'Empire /zabal points. Builder QV: ' + (qv.status || 'pending') + ', ' + (Number(qv.results) || 0) + ' scored results.';
+    }
+    return 'No scored source is available yet.';
+  }
+
+  function render(data) {
+    var rows = Array.isArray(data.entries) ? data.entries.slice(0, 3) : [];
+    meta.textContent = sourceCopy(data);
+    if (!rows.length) {
+      list.innerHTML = '<li class="ls-empty">Standings are pending real scoring data.</li>';
+      list.setAttribute('aria-busy', 'false');
+      return;
+    }
+    list.innerHTML = rows.map(function (row, index) {
+      var username = row.username || '';
+      var name = row.displayName || username || 'Name pending';
+      var profile = safeUrl(row.profileUrl) || (username ? 'https://farcaster.xyz/' + encodeURIComponent(username) : '');
+      var pfp = safeUrl(row.pfpUrl);
+      var avatar = pfp ? '<img src="' + esc(pfp) + '" alt="" loading="lazy">' : esc(name.charAt(0).toUpperCase());
+      var nameHtml = profile ? '<a class="ls-name" href="' + esc(profile) + '" target="_blank" rel="noopener">' + esc(name) + '</a>' : '<span class="ls-name">' + esc(name) + '</span>';
+      return '<li class="ls-row"><span class="ls-rank">' + esc(row.rank || index + 1) + '</span>' +
+        '<span class="ls-avatar" aria-hidden="true">' + avatar + '</span>' +
+        '<span class="ls-person">' + nameHtml + (username ? '<span class="ls-handle">@' + esc(username) + '</span>' : '') + '</span>' +
+        '<span class="ls-score">' + esc(score(row.score)) + '<small>' + esc(data.scoreLabel || 'points') + '</small></span></li>';
+    }).join('');
+    list.setAttribute('aria-busy', 'false');
+  }
+
+  function loadStandings() {
+    list.setAttribute('aria-busy', 'true');
+    fetch('/api/leaderboard?format=standings&limit=3', { cache: 'no-store' })
+      .then(function (response) { return response.json(); })
+      .then(function (data) { if (!data || !data.ok) throw new Error('standings unavailable'); render(data); })
+      .catch(function () {
+        meta.textContent = 'The live scoring source is unavailable.';
+        list.innerHTML = '<li class="ls-empty">No fallback scores are shown.</li>';
+        list.setAttribute('aria-busy', 'false');
+      });
+  }
+
+  loadStandings();
+  setInterval(loadStandings, 60000);
+})();
+</script>
+
+<script>
+(function () {
+  'use strict';
 
   // ------------------------------------------------------------------
   // Watch stage - Twitch + YouTube player and chat, both collapsible.
@@ -1108,11 +1315,14 @@
   function setLs(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
 
   var platform = ls(LS_PLATFORM) === 'youtube' ? 'youtube' : 'twitch';
-  var chatHidden = ls(LS_CHAT) === '1';
+  var savedChat = ls(LS_CHAT);
+  var chatHidden = savedChat === '1' ||
+    (savedChat == null && window.matchMedia && window.matchMedia('(max-width: 640px)').matches);
 
   // Player visibility follows the real live state (minimized when off, expanded when on),
   // with a per-session manual override so a viewer can still pop it open or shut it.
   var liveNow = false;            // set by ZGWatch.setLive() from /api/live-status
+  var liveStateReady = false;     // first status response should not steal the viewer's scroll
   var ytVideoId = null;           // live YouTube video id when YT is the live platform
   var userPickedPlatform = false; // a manual tab click pins the platform (no auto-switch)
   var manualPlayer = null;        // null = follow live state; true/false = override this session
@@ -1202,7 +1412,9 @@
   });
 
   // Driven by the reconcile loop in the first script. Minimizes the player when the stream is
-  // off, expands + auto-selects the live platform + scrolls into view when it comes on.
+  // off and expands + auto-selects the live platform when it comes on. Only auto-scroll when a
+  // stream starts while this page is already open; a first-load status check must leave the
+  // viewer at the headline and current-session card.
   function focusPlayer() {
     try { watch.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { /* old browser */ }
   }
@@ -1210,13 +1422,15 @@
     setLive: function (s) {
       var wasLive = liveNow;
       liveNow = !!(s && s.live);
+      var shouldFocus = liveStateReady && liveNow && !wasLive;
+      liveStateReady = true;
       ytVideoId = (s && s.youtube && s.youtube.live) ? (s.youtube.videoId || null) : null;
       // Auto-select whichever platform is actually live, unless the viewer pinned one.
       if (liveNow && s && s.platform && !userPickedPlatform) platform = s.platform;
       // A fresh on/off transition hands control back to the live state.
       if (liveNow !== wasLive) manualPlayer = null;
       apply();
-      if (liveNow && !wasLive && !isPlayerHidden()) focusPlayer();
+      if (shouldFocus && !isPlayerHidden()) focusPlayer();
     }
   };
 
@@ -1286,6 +1500,7 @@
 </script>
 <script defer src="/assets/recording-comments.js"></script>
 <script defer src="/assets/site-nav.js"></script>
+<script defer src="/assets/mentor-strip.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

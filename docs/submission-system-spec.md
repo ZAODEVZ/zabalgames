@@ -1,71 +1,165 @@
-# ZABAL Gamez submission + profile system - spec
+# ZABAL Gamez submission system
 
-Locked from a 13-question design grill (Zaal, 2026-06-27). This is the north star for the
-`/loop` build. The site is the source of truth; Magnetiq keeps a casual UGC lane.
+This document describes the canonical Season 1 project pipeline. The public contact is
+`info@thezao.com`. Email is an alternate front door into the same queue, not a second system.
 
-## The decisions (answer key)
+## Product rules
 
-1. **Source of truth = zabalgamez.com.** People submit on the site; our backend owns it; we
-   push out everywhere (Magnetiq, Farcaster, the list). Magnetiq still takes some casual UGC
-   (selfies, feedback); the site owns the builder/functionality lane.
-2. **Open profiles for anyone.** Anchor is an internal profile id. Farcaster (Quick Auth),
-   GitHub, and a wallet **attach** to it as optional proofs - none is required to exist.
-   - Profile URL: `/profiles/<handle>`. Submission URL: `/submissions/<id>`.
-3. **GitHub proof = nonce.** We give the profile a random string; they put it in their GitHub
-   profile bio (or a gist); the backend checks it via the GitHub API (`GITHUB_TOKEN`, already
-   used by commit-watcher) and flips the profile to `github_verified`. Point-in-time - once
-   seen, stored; they can remove it.
-4. **Farcaster proof = Quick Auth** (existing `lib/auth.mjs`). **Wallet** = connect + sign, or
-   pulled from the Farcaster verified address.
-5. **Collectible gate.** To *receive* the collectible a profile needs (a) at least one verified
-   auth, (b) one-per-verified-identity dedup, (c) human approval. The profile itself is open;
-   only the reward is gated.
-6. **Approval.** ZOE triages each submission and recommends; an email/Telegram alert fires on
-   submit; Zaal approves live. Submissions are `pending` until approved.
-7. **Reward = Unlock collectible, airdropped AFTER approval.** Unlock Airdrop Keys (manual or
-   bulk) by wallet OR email - so wallet-less people still get it. **Clear the Key Manager** on
-   airdrop so the recipient truly owns it (default sets ZAO as manager = can cancel/transfer).
-8. **Claim timing: airdrop after approval** (not on submit) - keeps the gate real.
+1. Anyone can submit a project or work in progress.
+2. An account, wallet, Farcaster profile, GitHub account, and prior registration are optional.
+3. A project name plus either a description or a public link is enough to start.
+4. Web submissions and forwarded email submissions create the same `kind: "project"` record.
+5. Contact details, edit tokens, provider IDs, and attachment metadata are never returned in a
+   public project feed.
+6. Project details become public only after approval. A work in progress is intentionally public
+   when its creator selects the building state.
+7. Every creator receives a private edit token. The token supports status checks, updates,
+   reviewer feedback, and resubmission without an account.
+8. Editing an approved project sends it back to review. This prevents a safe approved link from
+   being replaced after moderation.
+9. Missing values render as pending or empty. Clients must not invent builders, scores, links,
+   counts, or project details.
 
-## Data model (Upstash Redis, REST - same stack as api/game.mjs)
+## User flow
 
-- `zabal:sub:v1:<id>` -> submission JSON `{ id, promptId, answer, fields{}, profile?, fid?, handle?,
-  wallet?, email?, status:'pending'|'approved'|'rejected', ts, reviewedBy?, reviewedTs? }`
-- `zabal:subs:recent` -> ZSET (score ts) of submission ids (feed + queue)
-- `zabal:subs:bystatus:<status>` -> SET of ids (review queue)
-- `zabal:profile:v1:<handle>` -> profile JSON `{ handle, displayName, bio, links[], fid?,
-  github?, github_verified, wallet?, wallet_verified, created, updated }`
-- `zabal:profile:nonce:<handle>` -> the GitHub challenge string (TTL)
-- `zabal:profile:byfid:<fid>` / `zabal:profile:bygithub:<gh>` -> handle (dedup + lookup)
-- `zabal:collectible:granted` -> SET of verified-identity keys already airdropped (one-each dedup)
+```text
+/submit or info@thezao.com
+             |
+             v
+POST /api/submissions  <---  POST /api/submission-email
+             |
+             v
+      one project record
+             |
+       pending review
+        /           \
+request changes    approve
+      |                |
+private status       public gallery
+and edit link       /submissions
+```
 
-## Endpoints (api/*.mjs, edge, graceful no-op without KV)
+The submission receipt links to `/submission-status?id=<id>&token=<editToken>`. The page carries
+`noindex`, `nofollow`, and a no-referrer policy. Anyone with the full link can edit the record, so
+the UI tells the creator to keep it private.
 
-- `POST /api/submissions` - create a submission (optional Quick Auth to attach a profile/fid);
-  stores pending, fires the notify hook. `GET ?id=` returns an approved submission (public) or
-  pending-to-its-owner. `GET ?status=pending` + admin gate = the review queue. `POST
-  {action:'approve'|'reject', id}` + admin gate sets status (and marks ready-to-airdrop).
-- `POST /api/profile` - create/update a profile (Quick Auth or open with handle claim);
-  `{action:'github-challenge'}` issues the nonce, `{action:'github-verify'}` checks the bio,
-  wallet attach via signature. `GET ?handle=` returns the public profile.
-- Notify hook: if `SUBMIT_NOTIFY_URL` (a Telegram/webhook) is set, POST a one-line alert on each
-  new submission; ZOE can also read `GET ?status=pending` to triage + recommend.
+## Canonical project record
 
-## Build phases (the /loop ships these as PRs)
+Stored at `zabal:sub:v1:<id>` in Upstash Redis:
 
-1. **Backend MVP** - `api/submissions.mjs`: submit + store + notify + admin queue/approve. (this PR)
-2. **/submit becomes on-site capture** - the form writes to `/api/submissions` (supersedes the
-   inbound-hub version); keeps the Magnetiq link as the casual lane.
-3. **Profiles** - `api/profile.mjs` + `/profiles/<handle>` page (create/edit, GitHub nonce
-   verify, Farcaster, wallet).
-4. **Permalinks** - `/submissions/<id>` page (approved submissions public, with profile link).
-5. **Triage + reward** - admin review surface for Zaal/ZOE; Unlock airdrop helper + the
-   approve->airdrop runbook.
-6. **Push-out** - on approval, compose a credit cast + feed the list.
+```json
+{
+  "id": "123",
+  "kind": "project",
+  "promptId": "project",
+  "project": "Project name",
+  "answer": "Plain-language description",
+  "fields": {
+    "project": "Project name",
+    "description": "Plain-language description",
+    "builderName": "Optional person or team",
+    "track": "artist | builder | creator | empty",
+    "stage": "building | ready",
+    "demoUrl": "optional https URL",
+    "repoUrl": "optional https URL",
+    "mediaUrl": "optional https URL",
+    "thumbnailUrl": "optional https URL",
+    "helpWanted": "optional collaboration request",
+    "progressUpdate": "optional latest update"
+  },
+  "email": "private optional contact",
+  "handle": "optional Farcaster handle",
+  "fid": "optional verified Farcaster identity",
+  "status": "draft | pending | changes_requested | approved | rejected",
+  "source": "web | email | ingest",
+  "editToken": "private random token",
+  "ts": 0,
+  "updatedTs": 0
+}
+```
 
-## Open items for Zaal (not code)
+Email records can also store private source message identifiers and safe attachment metadata for
+operator review. The public serializer uses an allowlist and never exposes those fields.
 
-- Deploy the Unlock lock (the collectible) on Base; note the lock address + manager policy.
-- Set the notify target (Telegram bot or webhook) -> `SUBMIT_NOTIFY_URL`.
-- Decide which prompts stay on Magnetiq vs move to the on-site form.
-- Moderation: the site now hosts public UGC (selfies, links) - a takedown/report path.
+## Data indexes
+
+- `zabal:subs:recent`: all submission IDs by created timestamp.
+- `zabal:subs:drafts`: public work-in-progress project IDs by timestamp.
+- `zabal:subs:approved`: approved project IDs by timestamp.
+- `zabal:subs:bystatus:<status>`: IDs grouped by review state.
+- `zabal:subs:source:<sha256>`: email or import idempotency key to prevent webhook duplicates.
+- `data/builder-submissions.json`: audited repository-backed Season 1 roster.
+
+`GET /api/submissions?feed=projects` is the only public gallery contract. It combines approved
+dynamic projects, public work in progress, and the audited roster, then de-duplicates by project
+URL or builder and project name. `/submissions` and downstream consumers should use this feed.
+Approved dynamic projects also resolve at `/submissions/<id>` through the public single-record API.
+
+## Endpoints
+
+### `POST /api/submissions`
+
+Create a project:
+
+```json
+{
+  "kind": "project",
+  "project": "Name",
+  "answer": "Description",
+  "email": "optional@example.com",
+  "draft": false,
+  "consent": true,
+  "source": "web",
+  "fields": {}
+}
+```
+
+The response is `{ ok, id, status, editToken }`. Public requests use a soft IP rate limit. Trusted
+email and import adapters use `Authorization: Bearer <SUBMISSION_INGEST_SECRET>`.
+
+Creator update:
+
+```json
+{
+  "action": "update",
+  "id": "123",
+  "editToken": "private token",
+  "answer": "Updated description",
+  "fields": {},
+  "ready": true
+}
+```
+
+Admin review uses `Authorization: Bearer <ADMIN_KEY>` and one of `approve`, `request_changes`, or
+`reject`. `request_changes` should include a specific `reviewNote`.
+
+### `GET /api/submissions`
+
+- `?feed=projects`: canonical public project gallery.
+- `?feed=builders`: audited roster only, retained for compatible clients.
+- `?feed=drafts`: public work in progress.
+- `?feed=recent`: approved dynamic submissions.
+- `?id=<id>&token=<editToken>`: private owner view.
+- `?status=pending`: full internal queue, admin authentication required.
+
+### `POST /api/submission-email`
+
+Resend `email.received` webhook adapter. It verifies the Svix signature, retrieves the full message
+and attachment list from Resend, normalizes the email, and posts it to `/api/submissions` with the
+ingest secret. It does not publish or download attachments. See `docs/email-submission-setup.md`.
+
+## Review and publishing
+
+`/review` loads the pending queue with `ADMIN_KEY`. Operators can inspect source, private contact,
+links, attachment names, and automatic repository triage. Approval publishes project details and
+triggers the existing reward operations. Requesting changes sends the review note to the creator
+when an email address is available.
+
+Only a verified Farcaster FID can receive an agent token on approval. A self-entered handle is not
+treated as verified identity.
+
+## Season information
+
+`data/season.json` is the compact machine-readable source for Season 1 dates, tracks, public contact,
+stream, submission page, and project gallery. User interfaces should prefer this file when adding
+new date-driven surfaces instead of introducing another hardcoded season clock.

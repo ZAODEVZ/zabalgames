@@ -9,7 +9,19 @@
         "handle": "ghostmintops",
         "name": "Brandon (ghostmintops)",
         "url": "https://farcaster.xyz/ghostmintops",
-        "note": "ZABAL Recording Scout, Proof Drop for ZABAL Gamez, DreamNet Songs, WaveWarZ Gravity Board."
+        "note": "ZABAL Recording Scout, Proof Drop for ZABAL Gamez, WaveWarZ Gravity Board, DreamNet Publishing mini-app, ZAO music (Suno). 6 distinct builds across creator + builder tracks."
+      },
+      {
+        "handle": "branth",
+        "name": "Branth (KORRO / Korrocorp)",
+        "url": "https://x.com/korrocorp",
+        "note": "WaveWarZ Bridge Portal (Base->SOL on-ramp via Mayan + Wormhole, mainnet live), Solana MCP, AI music generator, Onklaud 5 (multi-model AI pipeline)."
+      },
+      {
+        "handle": "jdwalka",
+        "name": "jdwalka (JohnDaWalka)",
+        "url": "https://farcaster.xyz/jdwalka",
+        "note": "Chroma Poker (Farcaster poker app with live HUD + hand history), Crypto Prediction Orchestrator (22+ exchanges), predictive-apps Farcaster Spaces host."
       }
     ],
     "creator": []

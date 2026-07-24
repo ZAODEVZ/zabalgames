@@ -118,14 +118,16 @@ is actually on.
   to its schedule-driven view.
 
 ### `GET /api/leaderboard`
-Ranks builders by social-action points (cast 3 / signup 5 / share 2), stored in a
-KV sorted set by `track`.
+Gateway for the registered ZAO 2048 board and the public Season 1 standings.
 
 - Default: Empire Builder `apiLeaderboard` format `[{ address, score }]` (FIDs
-  resolved to Base verified addresses via HAATZ). Register this URL in Empire
-  Builder so activity feeds the $ZABAL empire.
-- `?format=full`: `[{ fid, username, pfpUrl, address, score }]` for the
-  `/leaderboard` page.
+  with a verified Base address only). This preserves the existing ZAO 2048
+  integration.
+- `?format=full`: all-time ZAO 2048 rows for arcade clients.
+- `?format=standings&limit=50`: the public season contract
+  `{ ok, configured, source, sourceLabel, scoreLabel, status, count, entries, qv }`.
+  It uses aggregate builder QV results once real ballots exist; before then it reads
+  the live Empire Builder `/zabal` board. No scores are synthesized or hardcoded.
 
 ### `GET /api/empire-leaderboard`
 Read-only proxy that pulls our tokenless empire's live leaderboard from the Empire
@@ -390,11 +392,25 @@ manual gate is the anti-bot wall. See `mcp/` for the MCP server + REST docs.
 - A token only grants the holder's own data + creating submissions as themselves. Never admin, never others.
 
 ### `GET/POST /api/submissions`
-On-site UGC + builder submissions - the site is the source of truth. Stored pending,
-notify hook fires for triage, admin approval unlocks the collectible airdrop. Approved
-submissions render at `/submissions/<id>`.
-- `POST { promptId, answer, fields?, handle?, email?, wallet? }` (+ optional Quick Auth)
-Used by submissions.html, review.html.
+Canonical project and legacy prompt submission endpoint. Anyone can create a project without an
+account. Web and email intake write the same record. Projects stay pending until approved; public
+work-in-progress records use `draft:true`.
+- `POST { kind:'project', project, answer?, fields?, handle?, email?, draft?, consent? }` returns
+  `{ ok, id, status, editToken }`.
+- `POST { action:'update', id, editToken, answer?, fields?, ready? }` lets the creator update through
+  the private `/submission-status` link. Editing approved content returns it to review.
+- `GET ?feed=projects` returns the canonical public gallery from approved dynamic records, public
+  work in progress, and `data/builder-submissions.json`.
+- `GET ?id=<id>&token=<editToken>` returns the private owner view.
+- `GET ?status=pending` and review actions require `ADMIN_KEY`.
+- Admin actions are `approve`, `request_changes`, and `reject`; review notes are emailed when
+  `RESEND_API_KEY` and a submitter email are available.
+
+### `POST /api/submission-email`
+Resend inbound adapter for email forwarded from `info@thezao.com`. Verifies the Svix signature,
+retrieves the full message and attachment metadata, normalizes it, and creates a pending project via
+`/api/submissions`. Requires `RESEND_API_KEY`, `RESEND_WEBHOOK_SECRET`, and
+`SUBMISSION_INGEST_SECRET`. See `docs/email-submission-setup.md`.
 
 ### `GET/POST /api/game`
 Mini-game leaderboards powering `/play`. Monthly high-score board per game in a KV
@@ -428,6 +444,12 @@ Tier-1 deterministic submission pre-screen (July playbook Move 4). Checks a buil
 | `CRON_SECRET` | **Required** for the cron endpoints (`daily-cast`, `monthly-winner`, `commit-watcher`, `workshop-reminders`) - they fail closed (503) without it. Vercel injects the matching `Authorization: Bearer` header on scheduled runs | any long random string; set in Vercel and it auto-injects on cron calls |
 | `ADMIN_KEY` | Gates the `POST /api/raffle` draw and manual `POST /api/submission-intake` / `POST /api/magnetiq-ugc` writes via `Authorization: Bearer <key>` (constant-time, fail closed) | any long random string; send only from the host's calls |
 | `MAGNETIQ_SECRET` | Bearer secret for `POST /api/magnetiq-ugc` (accepts `ADMIN_KEY` too). Wire Magnetiq to send it so UGC lands in the submission store | any long random string; set in Vercel + in the Magnetiq webhook |
+| `SUBMISSION_INGEST_SECRET` | Bearer secret used only by trusted submission adapters such as inbound email | independent long random string |
+| `RESEND_API_KEY` | Retrieves inbound email and sends project receipts or review notes | Resend API key |
+| `RESEND_WEBHOOK_SECRET` | Verifies `email.received` webhook signatures | Resend webhook settings (`whsec_...`) |
+| `SUBMISSION_INBOUND_TO` | Optional comma-separated exact recipients accepted by inbound email | private Resend receiving address or aliases |
+| `SUBMISSION_FROM_EMAIL` | Verified sender used for project mail; replies go to `info@thezao.com` | for example `The ZAO <info@updates.thezao.com>` |
+| `PUBLIC_SITE_URL` | Absolute site origin used in private status links | defaults to `https://zabalgamez.com` |
 | `GAME_SECRET` | Enables score-nonce enforcement on `POST /api/game` (HMAC-signed one-time nonces). Without it the nonce layer is bypassed gracefully; set it before any payout | any long random string |
 | `EMPIRE_ID` | Optional override for `GET /api/empire-leaderboard`. Defaults to `zabalgamez01e9af` (our tokenless empire), so no config is needed | Empire Builder |
 | `EMPIRE_API_KEY` | Optional; sent as `x-api-key` to Empire Builder. Reads work without it | Empire Builder |
