@@ -22,7 +22,7 @@ specific number. Tight, factual, warm.
 ## Current status (live)
 Mid-season (June workshops running, July open build + August Finals ahead). The site
 has grown well past the homepage into a multi-surface Mini App - 60+ pages (41 top-level
-+ 23 recording pages + the game pages), 32 edge endpoints. Snapshot:
++ 23 recording pages + the game pages), 45 edge endpoints. Snapshot:
 - Rebrand to ZABAL Gamez + zabalgamez.com is complete and deployed.
 - Mini App manifest (`.well-known/farcaster.json`) is **self-hosted and signed** for
   zabalgamez.com (accountAssociation type:auth, FID 19640). Do NOT hand-edit the
@@ -102,7 +102,7 @@ functions in `api/`. 60+ pages; not all listed here - this is the load-bearing s
 
 **Edge functions** (`api/*.mjs`, Vercel EDGE, Upstash Redis over REST; Quick Auth JWT
 verified server-side, `DOMAIN = 'zabalgamez.com'`, JWKS from auth.farcaster.xyz; all
-no-op gracefully without Redis env vars). 32 endpoints across:
+no-op gracefully without Redis env vars). 45 endpoints across:
 - *Activity/identity:* `track`, `activity`, `join`, `leaderboard`, `empire-leaderboard`
   (inverse - reads our tokenless empire FROM Empire Builder), `present`, `pfps`, `ref`.
 - *Notifications:* `webhook`, `notify` (admin), `daily-cast` (cron, public), workshop-

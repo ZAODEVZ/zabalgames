@@ -364,6 +364,19 @@ without any IPFS/Pinata hosting (used by `assets/clip-claim.js` as the claim `ur
 - `GET ?v=<ytId>&c=<clipUrl>&t=<title>&d=<description>` -> `{ name, description, image, external_url, animation_url }`. `image` is the YouTube thumbnail (stable, hotlinkable).
 - No auth, no KV - pure function of the query string.
 
+### `GET/POST /api/clip-bounties`
+Per-recording clip-bounty registry, so a recording's existing POIDH bounty can be looked
+up instead of pasted by hand (front door for `assets/clip-claim.js` + `assets/clip-gallery.js`).
+- `GET ?rec=<recId>` -> `{ ok, configured, recId, bounties:[{ bountyId, amountEth, txHash, from, handle, ts }] }`. Public read.
+- `POST { recId, bountyId, amountEth, txHash, from }` + Quick Auth -> `{ ok, bounty }`.
+- Upstash Redis; no-ops cleanly without KV env.
+
+### `GET /api/unlock-bounty-count`
+Server-side counter of how many "Unlock Protocol Clipping Bounty" casts already exist on
+POIDH, so `assets/unlock-bounty.js` can auto-number the next as v1/v2/v3 (POIDH's tRPC API
+sends no CORS header, so the browser cannot count them directly).
+- `GET` -> the current count. Public, read-only, no auth (counts a public on-chain title).
+
 ### `POST /api/win-notify`
 Win webhook receiver (built by ZOL, PR #518). Set `SUBMIT_NOTIFY_URL=https://zabalgamez.com/api/win-notify`
 so submission notifies flow here. Texts containing `community-win` are queued to the
@@ -411,6 +424,19 @@ Resend inbound adapter for email forwarded from `info@thezao.com`. Verifies the 
 retrieves the full message and attachment metadata, normalizes it, and creates a pending project via
 `/api/submissions`. Requires `RESEND_API_KEY`, `RESEND_WEBHOOK_SECRET`, and
 `SUBMISSION_INGEST_SECRET`. See `docs/email-submission-setup.md`.
+
+### `GET/POST /api/qv-vote`
+Quadratic vote for "who is best" this season, per track (artist/builder/creator). Each voter
+gets 100 voice credits per track; N votes on one candidate cost N^2 (max 10). Score = sum of votes.
+- `GET ?track=<t>&results` -> `{ ok, configured, status, track, voters, results:[{ handle, votes }] }`. `GET ?status` -> per-track ballot counts. Aggregate only; individual ballots never returned.
+- `POST { track, allocations:{ <handle>: <0..10> } }` + Quick Auth -> `{ ok, counted, track, creditsUsed, yourVotes }`. Re-voting overwrites. Only accepts POSTs while `data/vote-candidates.json` `status` is `"open"`. Sybil: one ballot per FID, optional Neynar quality gate (`NEYNAR_API_KEY`, `QV_SCORE_MIN`).
+- Upstash Redis (`qv:ballots:<track>` HASH, `qv:tally:<track>` ZSET); no-ops without KV.
+
+### `GET /api/qv-slate-draft`
+Admin-gated, read-only draft of vote candidates built from `data/builder-submissions.json`
+(builders flagged `qv_ballot:true`, grouped by `track`). Feeds `/slate-admin.html`; a human
+commits `data/vote-candidates.json` via a PR. Never opens voting.
+- `GET` + `Authorization: Bearer <ADMIN_KEY>` -> `{ ok, configured, status:'draft', submission_count, candidate_count, tracks:{ artist, builder, creator, _needs_track } }`. No Supabase, no PII.
 
 ### `GET/POST /api/game`
 Mini-game leaderboards powering `/play`. Monthly high-score board per game in a KV
