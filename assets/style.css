@@ -19,6 +19,7 @@
   --radius: 10px;
   --gradient-main: linear-gradient(135deg, #ff6b35, #ff3d6e, #00e5ff);
   --gradient-zabal: linear-gradient(135deg, #a78bfa, #00e5ff);
+  --gradient-prize: linear-gradient(135deg, #f5c842, #ff6b35);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -792,3 +793,28 @@ body > * { position: relative; z-index: 1; }
 .rec-tech-badge .b-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
 .rec-tech-badge .b-dot.t-mid { background: var(--gold); }
 .rec-tech-badge .b-dot.t-high { background: var(--zabal); }
+
+
+/* ---- UX audit batch 1: shared components promoted from inline page styles ---- */
+/* Secondary button: a filled-muted variant, distinct from primary (orange) and ghost. */
+.btn-secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border-hover); }
+.btn-secondary:hover { border-color: var(--cyan); background: rgba(0,229,255,0.06); }
+
+/* Prize podium - was only defined inline in info.html, so /winners rendered unstyled. */
+.prize-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+@media (max-width: 720px) { .prize-grid { grid-template-columns: 1fr; } }
+.prize-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; position: relative; overflow: hidden; }
+.prize-card.first { border-color: rgba(245,200,66,0.4); background: linear-gradient(180deg, rgba(245,200,66,0.06), var(--surface)); }
+.prize-card.second { border-color: rgba(167,139,250,0.3); }
+.prize-card.third { border-color: rgba(0,229,255,0.3); }
+.prize-place { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+.prize-card.first .prize-place { color: var(--gold); }
+.prize-card.second .prize-place { color: var(--zabal); }
+.prize-card.third .prize-place { color: var(--cyan); }
+.prize-amount { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; line-height: 1; margin-bottom: 0.3rem; background: var(--gradient-prize); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.prize-card.second .prize-amount { background: var(--gradient-zabal); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.prize-card.third .prize-amount { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.prize-detail { font-size: 0.78rem; color: var(--text-muted); }
+.prize-floor { background: var(--surface); border: 1px dashed var(--border-hover); border-radius: var(--radius); padding: 1.25rem; text-align: center; }
+.prize-floor strong { color: var(--text); font-family: 'Syne', sans-serif; font-weight: 700; }
+.prize-floor small { color: var(--text-muted); font-size: 0.85rem; display: block; margin-top: 0.3rem; }
