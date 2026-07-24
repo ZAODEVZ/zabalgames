@@ -3,262 +3,294 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Co-Lab - shape ZABAL Gamez</title>
-  <meta name="description" content="Answer a few quick prompts on the ZABAL Gamez magnet - your favorite session, what you want to build, where to reach you, your wallet for the collectible. When your answer is approved, your collectible comes to you.">
+  <title>Submit a Project - ZABAL Gamez</title>
+  <meta name="description" content="Submit any project, work in progress, song, visual, video, article, app, or repository to ZABAL Gamez. No wallet, Farcaster account, or prior registration required.">
   <link rel="canonical" href="https://zabalgamez.com/submit">
-  <meta property="og:title" content="Co-Lab - shape ZABAL Gamez">
-  <meta property="og:description" content="Answer a few prompts on the magnet, help shape the season, and get your collectible when approved.">
+  <meta property="og:title" content="Submit a Project - ZABAL Gamez">
+  <meta property="og:description" content="Anyone can submit. Send a project on the website or email info@thezao.com.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zabalgamez.com/submit">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="800">
-  <meta property="og:image:alt" content="ZABAL Gamez">
+  <meta property="og:image:alt" content="ZABAL Gamez project submissions">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Co-Lab - shape ZABAL Gamez">
-  <meta name="twitter:description" content="Answer a few prompts on the magnet, help shape the season, get your collectible when approved.">
+  <meta name="twitter:title" content="Submit a Project - ZABAL Gamez">
+  <meta name="twitter:description" content="Anyone can submit. No wallet, Farcaster account, GitHub account, or prior registration required.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Shape the season","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/submit","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Submit a project","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/submit","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#141e27"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
-  <meta name="theme-color" content="#070709">
-  <link rel="apple-touch-icon" href="/assets/icon.png">
-  <link rel="preconnect" href="https://esm.sh">
+  <meta name="theme-color" content="#141e27">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
   <style>
-    .sb-wrap { max-width: 760px; margin: 0 auto; }
-    .sb-deal { border: 1px solid var(--zabal); background: rgba(124,92,255,0.07); border-radius: 14px; padding: 1rem 1.1rem; margin: 1rem 0 1.4rem; }
-    .sb-deal h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; margin: 0 0 0.3rem; }
-    .sb-deal p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; margin: 0 0 0.8rem; }
-    .sb-deal p:last-of-type { margin-bottom: 0; }
-    .sb-cta { display: flex; flex-wrap: wrap; gap: 8px; }
-    .btn { font-family: inherit; font-size: 0.9rem; padding: 0.6rem 1.2rem; border-radius: 9px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; text-decoration: none; display: inline-block; }
-    .btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
-    .btn:hover { filter: brightness(1.12); }
-    .sb-group { margin: 1.6rem 0 0; }
-    .sb-group-head { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; margin: 0 0 0.7rem; }
-    .sb-group-head h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; margin: 0; }
-    .sb-group-head .blurb { font-size: 0.84rem; color: var(--text-dim); }
-    .sb-list { display: grid; gap: 0.6rem; }
-    .sb-card { display: flex; align-items: flex-start; gap: 0.85rem; border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.85rem 1rem; }
-    .sb-card.wallet { border-left: 3px solid var(--gold); }
-    .sb-main { flex: 1 1 auto; min-width: 0; }
-    .sb-q { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); line-height: 1.3; }
-    .sb-why { font-size: 0.86rem; color: var(--text-muted); line-height: 1.45; margin: 0.25rem 0 0.5rem; }
-    .sb-tag { display: inline-block; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); border: 1px solid var(--border); border-radius: 999px; padding: 0.08rem 0.5rem; margin-bottom: 0.35rem; }
-    .sb-answer { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); text-decoration: none; white-space: nowrap; flex: 0 0 auto; align-self: center; }
-    .sb-answer:hover { text-decoration: underline; }
-    .sb-cc { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 1rem 1.1rem; margin: 1.8rem 0 0; }
-    .sb-cc h3 { font-family: 'Syne', sans-serif; font-size: 1rem; margin: 0 0 0.3rem; }
-    .sb-cc p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.5; margin: 0 0 0.6rem; }
-    .sb-foot { font-size: 0.82rem; color: var(--text-dim); margin-top: 1.4rem; }
-    .sb-foot a { color: var(--cyan); }
-    .empty { color: var(--text-dim); font-size: 0.9rem; }
-    .sb-id { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.8rem 1rem; margin: 0 0 1.2rem; }
-    .sb-id .lbl { font-size: 0.78rem; color: var(--text-dim); display: block; margin: 0 0 0.4rem; }
-    .sb-id .you { font-size: 0.92rem; color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
-    .sb-id-row { display: flex; flex-wrap: wrap; gap: 8px; }
-    .sb-in { flex: 1 1 180px; box-sizing: border-box; background: var(--surface, #121217); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font: inherit; font-size: 0.9rem; padding: 0.5rem 0.7rem; }
-    .sb-actions2 { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 0.5rem; }
-    .sb-answer-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); background: none; border: 1px solid var(--border); border-radius: 8px; padding: 0.3rem 0.7rem; cursor: pointer; flex: 0 0 auto; align-self: center; }
-    .sb-answer-btn:hover { border-color: var(--cyan); }
-    .sb-form { margin-top: 0.6rem; display: none; }
-    .sb-form.open { display: block; }
-    .sb-ta { width: 100%; box-sizing: border-box; background: var(--surface, #121217); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font: inherit; font-size: 0.92rem; padding: 0.55rem 0.7rem; min-height: 56px; resize: vertical; }
-    .sb-go { background: var(--zabal); border: 0; color: #fff; border-radius: 8px; padding: 0.45rem 1rem; font: inherit; font-weight: 600; font-size: 0.86rem; cursor: pointer; }
-    .sb-go:disabled { opacity: 0.6; cursor: default; }
-    .sb-or { font-size: 0.8rem; color: var(--text-dim); }
-    .sb-or a { color: var(--cyan); }
-    .sb-stat { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.35rem; min-height: 1rem; }
-    .sb-stat.ok { color: var(--cyan); }
+    :root { --submit-dark: #141e27; --submit-cream: #e0ddaa; }
+    body { background: var(--submit-dark); }
+    .submit-shell { max-width: 920px; margin: 0 auto; }
+    .submit-hero { padding-bottom: 1rem; text-align: left; }
+    .submit-hero .lead { max-width: 720px; }
+    .submit-hero strong { color: var(--submit-cream); }
+    .submit-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.1rem; }
+    .submit-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0.7rem 1rem; border: 1px solid var(--border-hover); border-radius: 9px; background: var(--surface-2); color: var(--cyan); font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+    .submit-btn.primary { background: var(--submit-cream); border-color: var(--submit-cream); color: var(--submit-dark); }
+    .submit-btn:hover { filter: brightness(1.08); text-decoration: none; }
+    .submit-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0 1.5rem; }
+    .submit-step { border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); padding: 0.85rem; }
+    .submit-step b { display: block; color: var(--submit-cream); margin-bottom: 0.25rem; }
+    .submit-step span { color: var(--text-muted); font-size: 0.86rem; line-height: 1.45; }
+    .submit-options { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 14px; align-items: start; }
+    .submit-panel { border: 1px solid var(--border); border-radius: 14px; background: var(--surface-2); padding: 1rem; }
+    .submit-panel h2 { font-family: 'Syne', sans-serif; margin: 0 0 0.35rem; font-size: 1.2rem; }
+    .submit-panel > p { color: var(--text-muted); margin: 0 0 0.9rem; line-height: 1.55; }
+    .submit-form { display: grid; gap: 0.85rem; }
+    .submit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .submit-field { display: grid; gap: 0.3rem; min-width: 0; }
+    .submit-field.full { grid-column: 1 / -1; }
+    .submit-field label, .submit-legend { color: var(--text); font-weight: 700; font-size: 0.86rem; }
+    .submit-field small { color: var(--text-dim); line-height: 1.35; }
+    .submit-field input, .submit-field select, .submit-field textarea {
+      box-sizing: border-box; width: 100%; border: 1px solid var(--border-hover); border-radius: 8px;
+      background: #0f171e; color: var(--text); padding: 0.65rem 0.7rem; font: inherit; font-size: 0.92rem;
+    }
+    .submit-field textarea { min-height: 112px; resize: vertical; }
+    .submit-field input:focus, .submit-field select:focus, .submit-field textarea:focus { outline: 2px solid var(--cyan); outline-offset: 1px; }
+    .submit-consent { display: flex; align-items: flex-start; gap: 8px; color: var(--text-muted); font-size: 0.84rem; line-height: 1.4; }
+    .submit-consent input { margin-top: 0.2rem; }
+    .submit-status { min-height: 1.3rem; color: var(--text-muted); font-size: 0.86rem; line-height: 1.45; }
+    .submit-status.ok { border: 1px solid rgba(224,221,170,0.45); border-radius: 9px; color: var(--submit-cream); padding: 0.75rem; }
+    .submit-status.err { color: #ff8d8d; }
+    .submit-email { border-color: rgba(224,221,170,0.5); }
+    .submit-email-address { display: block; color: var(--submit-cream); font-family: 'JetBrains Mono', monospace; font-size: 1rem; overflow-wrap: anywhere; margin: 0.7rem 0; }
+    .submit-email ul, .submit-faq ul { padding-left: 1.1rem; color: var(--text-muted); }
+    .submit-email li, .submit-faq li { margin: 0.35rem 0; }
+    .submit-note { margin-top: 0.9rem; border-top: 1px solid var(--border); padding-top: 0.8rem; color: var(--text-dim); font-size: 0.8rem; line-height: 1.5; }
+    .submit-faq { margin-top: 1.2rem; }
+    .submit-faq h2 { margin-bottom: 0.6rem; }
+    .submit-faq details { border-top: 1px solid var(--border); padding: 0.75rem 0; }
+    .submit-faq summary { cursor: pointer; color: var(--text); font-weight: 700; }
+    .submit-faq p { color: var(--text-muted); line-height: 1.55; margin: 0.45rem 0 0; }
+    @media (max-width: 720px) {
+      .submit-options, .submit-grid { grid-template-columns: 1fr; }
+      .submit-field.full { grid-column: auto; }
+    }
+    @media (max-width: 480px) {
+      .submit-steps { grid-template-columns: 1fr; }
+      .submit-panel { padding: 0.85rem; }
+      .submit-actions .submit-btn { flex: 1 1 100%; }
+    }
   </style>
 </head>
 <body>
-
 <a class="arcade-skip" href="#main">Skip to content</a>
 <nav class="arcade-nav" aria-label="Primary">
   <div class="arcade-nav-inner">
     <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
     <div class="arcade-nav-menu">
-      <a href="/info.html">Details</a>
-      <a href="/recordings">Recordings</a>
-      <a href="/game">Arcade</a>
+      <a href="/submissions">Projects</a>
+      <a href="/live">Live</a>
+      <a href="/info">Details</a>
       <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
     </div>
   </div>
 </nav>
 
 <main id="main">
-<div class="container">
-
-  <header class="hero" style="padding-bottom: 0.2rem;">
-    <div class="hero-eyebrow">Co-Lab</div>
-    <h1>Help shape <span class="accent">ZABAL Gamez</span></h1>
-    <p class="lead" style="margin-top: 0.3rem;">A handful of quick prompts on the magnet - your favorite session, what you want to build, where to reach you. Answer the ones that fit. The more we hear, the more the season is yours.</p>
-  </header>
-
-  <div class="sb-wrap">
-    <div class="sb-deal">
-      <h2>How it works</h2>
-      <p>Pick the prompts that fit and answer them - right here, or on the magnet. When your answer is <strong>approved</strong>, your collectible is sent to you (wallet or email). The wallet prompt is how your collectible reaches you.</p>
-      <div class="sb-cta">
-        <a class="btn" id="sb-open" href="https://collect.zabalgamez.com" target="_blank" rel="noopener">Prefer the magnet? Open it</a>
-        <a class="btn" href="/recordings">Browse the sessions first</a>
+  <div class="container submit-shell">
+    <header class="hero submit-hero">
+      <div class="hero-eyebrow">Season 1 project intake</div>
+      <h1>Submit your <span class="accent">project</span></h1>
+      <p class="lead"><strong>Anyone can submit.</strong> Send an app, prototype, repository, song, visual, video, article, event, or unfinished idea. No wallet, Farcaster account, GitHub account, or prior registration is required.</p>
+      <div class="submit-actions">
+        <a class="submit-btn primary" href="#web-form">Use the web form</a>
+        <a class="submit-btn" href="mailto:info@thezao.com?subject=ZABAL%20Gamez%20submission%3A%20%5Bproject%20name%5D&body=Project%20name%3A%0AWhat%20did%20you%20make%3F%0AWhere%20can%20we%20see%20it%3F%0AYour%20name%20or%20handle%3A%0ATrack%2C%20if%20known%3A%20Artist%20%2F%20Builder%20%2F%20Creator%0AAnything%20else%20we%20should%20know%3F">Email info@thezao.com</a>
+        <a class="submit-btn" href="/submissions">Browse projects</a>
       </div>
+    </header>
+
+    <div class="submit-steps" aria-label="How submissions work">
+      <div class="submit-step"><b>1. Send</b><span>Use the form or email. A link, attachment, or clear description is enough to start.</span></div>
+      <div class="submit-step"><b>2. Review</b><span>The ZAO checks the project, requests missing information when needed, and keeps private details private.</span></div>
+      <div class="submit-step"><b>3. Publish</b><span>Approved projects receive a permanent page and can appear in the gallery, standings, and live coverage.</span></div>
     </div>
 
-    <div class="sb-id" id="sb-id">
-      <span class="lbl">Submitting as</span>
-      <div id="sb-who"><span class="you" id="sb-you">a guest</span></div>
-      <div class="sb-id-row" id="sb-anon" style="margin-top:0.5rem;">
-        <input class="sb-in" id="sb-handle" type="text" placeholder="your handle (optional)" aria-label="Your handle (optional)" maxlength="32" autocomplete="off">
-        <input class="sb-in" id="sb-email" type="email" placeholder="email - so we can send your collectible" aria-label="Email, so we can send your collectible" maxlength="120" autocomplete="off">
-      </div>
+    <div class="submit-options">
+      <section class="submit-panel" id="web-form" aria-labelledby="web-form-title">
+        <h2 id="web-form-title">Submit on the website</h2>
+        <p>Start with what you have. You can update a work in progress later from the private link in your receipt.</p>
+        <form class="submit-form" id="project-form" novalidate>
+          <div class="submit-grid">
+            <div class="submit-field full">
+              <label for="project-name">Project name</label>
+              <input id="project-name" name="project" maxlength="160" required placeholder="What should we call it?">
+            </div>
+            <div class="submit-field full">
+              <label for="project-description">What did you make?</label>
+              <textarea id="project-description" name="description" maxlength="2000" placeholder="A short, plain-language description. An unfinished idea is welcome too."></textarea>
+              <small>Add a description, link, or repository so reviewers can understand the project.</small>
+            </div>
+            <div class="submit-field">
+              <label for="project-builder">Your name or handle <span style="color:var(--text-dim);font-weight:400;">(optional)</span></label>
+              <input id="project-builder" name="builder" maxlength="80" placeholder="Name, @handle, or team">
+            </div>
+            <div class="submit-field">
+              <label for="project-email">Email <span style="color:var(--text-dim);font-weight:400;">(optional)</span></label>
+              <input id="project-email" name="email" type="email" maxlength="120" autocomplete="email" placeholder="For receipts and review notes">
+            </div>
+            <div class="submit-field">
+              <label for="project-track">Track <span style="color:var(--text-dim);font-weight:400;">(optional)</span></label>
+              <select id="project-track" name="track">
+                <option value="">Not sure yet</option>
+                <option value="artist">Artist</option>
+                <option value="builder">Builder</option>
+                <option value="creator">Creator</option>
+              </select>
+            </div>
+            <div class="submit-field">
+              <label for="project-stage">Stage</label>
+              <select id="project-stage" name="stage">
+                <option value="ready">Ready for review</option>
+                <option value="building">Work in progress</option>
+              </select>
+            </div>
+            <div class="submit-field full">
+              <label for="project-demo">Demo or public link <span style="color:var(--text-dim);font-weight:400;">(optional)</span></label>
+              <input id="project-demo" name="demo" type="url" maxlength="500" inputmode="url" placeholder="https://">
+            </div>
+            <div class="submit-field full">
+              <label for="project-repo">Repository <span style="color:var(--text-dim);font-weight:400;">(optional)</span></label>
+              <input id="project-repo" name="repo" maxlength="500" inputmode="url" placeholder="https://github.com/owner/repo">
+            </div>
+            <div class="submit-field full">
+              <label for="project-media">Video, image, audio, or article link <span style="color:var(--text-dim);font-weight:400;">(optional)</span></label>
+              <input id="project-media" name="media" type="url" maxlength="500" inputmode="url" placeholder="https://">
+              <small>Need to attach a file instead? Email it to info@thezao.com.</small>
+            </div>
+            <div class="submit-field full">
+              <label for="project-help">What help would move this forward? <span style="color:var(--text-dim);font-weight:400;">(optional)</span></label>
+              <input id="project-help" name="help" maxlength="500" placeholder="Feedback, design, code, testing, distribution, or a mentor introduction">
+              <small>This can help mentors and collaborators find a useful way in.</small>
+            </div>
+          </div>
+          <label class="submit-consent" for="project-consent">
+            <input id="project-consent" name="consent" type="checkbox" required>
+            <span>I made or represent this work, and The ZAO may review it and publish the project information and public links. My email stays private.</span>
+          </label>
+          <button class="submit-btn primary" id="project-submit" type="submit">Send for review</button>
+          <div class="submit-status" id="project-status" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <aside class="submit-panel submit-email" aria-labelledby="email-title">
+        <h2 id="email-title">Submit by email</h2>
+        <p>Send whatever you already have. A normal message, link, forwarded thread, or attachment can become a project draft.</p>
+        <a class="submit-email-address" href="mailto:info@thezao.com?subject=ZABAL%20Gamez%20submission%3A%20%5Bproject%20name%5D">info@thezao.com</a>
+        <ul>
+          <li>Use “ZABAL Gamez submission” in the subject when possible.</li>
+          <li>Include your project name and what you made.</li>
+          <li>Add any demo, repository, image, audio, video, or document.</li>
+          <li>If you do not know your track, The ZAO can assign it during review.</li>
+        </ul>
+        <a class="submit-btn primary" href="mailto:info@thezao.com?subject=ZABAL%20Gamez%20submission%3A%20%5Bproject%20name%5D&body=Project%20name%3A%0AWhat%20did%20you%20make%3F%0AWhere%20can%20we%20see%20it%3F%0AYour%20name%20or%20handle%3A%0ATrack%2C%20if%20known%3A%20Artist%20%2F%20Builder%20%2F%20Creator%0AAnything%20else%20we%20should%20know%3F">Open an email</a>
+        <p class="submit-note">Submissions are reviewed before publication. Sending an email does not automatically expose your address, attachments, or private message on the website.</p>
+      </aside>
     </div>
 
-    <div id="sb-groups"><p class="empty">Loading the prompts...</p></div>
-
-    <div class="sb-cc" id="sb-cc" style="display:none;">
-      <h3>Command Center</h3>
-      <p>The full ZABAL Gamez Command Center - every link, schedule, and surface in one place.</p>
-      <a class="btn" id="sb-cc-link" href="#" target="_blank" rel="noopener">Open the Command Center</a>
-    </div>
-
-    <p class="sb-foot">Your answers help run the season. New here? Start with <a href="/info.html">the details</a>, <a href="/recordings">the recordings</a>, or <a href="/enter">registering a build</a>.</p>
+    <section class="submit-panel submit-faq" aria-labelledby="submit-faq-title">
+      <h2 id="submit-faq-title">Submission questions</h2>
+      <details><summary>Does my project need to be finished?</summary><p>No. Choose “Work in progress” and update it later. Clear progress is more useful than waiting for a perfect launch.</p></details>
+      <details><summary>Do I need a wallet or Farcaster account?</summary><p>No. Anyone can submit. Identity or payout information is collected only when it is needed for prizes, voting, or collectibles.</p></details>
+      <details><summary>Do I need a GitHub repository?</summary><p>No. Repositories are useful for software projects, but songs, visuals, videos, writing, events, and other creator work can use the media or demo field instead.</p></details>
+      <details><summary>What happens after I submit?</summary><p>Your project enters a private review queue. The ZAO may request more information. Once approved, the public project record can appear across ZABAL Gamez.</p></details>
+      <details><summary>Want to answer the season survey?</summary><p>The project form is for things you make. Feedback, wins, contact preferences, and the collectible prompts now live in the separate <a href="/colab" style="color:var(--cyan);">Co-Lab</a>.</p></details>
+    </section>
   </div>
-
-</div>
 </main>
 
 <script>
 (function () {
   'use strict';
-  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  var MAGNET = 'https://collect.zabalgamez.com';
-  var signedIn = false; // Farcaster (Quick Auth binds the submission to a verified profile)
+  var form = document.getElementById('project-form');
+  var button = document.getElementById('project-submit');
+  var status = document.getElementById('project-status');
+  var stage = document.getElementById('project-stage');
 
-  function render(data) {
-    MAGNET = (data && data.magnet_url) || MAGNET;
-    document.getElementById('sb-open').href = MAGNET;
+  function value(id) { return (document.getElementById(id).value || '').trim(); }
+  function setStatus(message, kind) { status.className = 'submit-status' + (kind ? ' ' + kind : ''); status.innerHTML = message || ''; }
+  function esc(s) { return String(s || '').replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+  function validUrl(s) { if (!s) return ''; try { var u = new URL(s); return /^https?:$/.test(u.protocol) ? u.toString() : ''; } catch (e) { return ''; } }
+  function syncButton() { button.textContent = stage.value === 'building' ? 'Save as work in progress' : 'Send for review'; }
 
-    var groups = (data && data.groups) || [];
-    var host = document.getElementById('sb-groups');
-    if (!groups.length) { host.innerHTML = '<p class="empty">No prompts right now. <a href="' + esc(MAGNET) + '" target="_blank" rel="noopener" style="color:var(--cyan)">Open the magnet</a>.</p>'; return; }
+  try {
+    var params = new URLSearchParams(location.search);
+    var qTrack = params.get('track');
+    var qStage = params.get('stage') || params.get('status');
+    if (['artist','builder','creator'].indexOf(qTrack) >= 0) document.getElementById('project-track').value = qTrack;
+    if (qStage === 'building' || qStage === 'wip') stage.value = 'building';
+  } catch (e) {}
+  syncButton();
+  stage.addEventListener('change', syncButton);
 
-    host.innerHTML = groups.map(function (g) {
-      var cards = (g.prompts || []).map(function (p) {
-        var cls = 'sb-card' + (p.id === 'wallet' ? ' wallet' : '');
-        var ph = p.id === 'wallet' ? '0x... (your Base wallet)' : 'Your answer';
-        return '<div class="' + cls + '" data-prompt="' + esc(p.id) + '"><div class="sb-main" style="flex:1 1 100%;">' +
-          (p.tag ? '<span class="sb-tag">' + esc(p.tag) + '</span>' : '') +
-          '<div class="sb-q">' + esc(p.q) + '</div>' +
-          (p.why ? '<div class="sb-why">' + esc(p.why) + '</div>' : '') +
-          '<div class="sb-actions2"><button class="sb-answer-btn" type="button" data-toggle>Answer here</button>' +
-          '<span class="sb-or">or <a href="' + esc(MAGNET) + '" target="_blank" rel="noopener">on the magnet</a></span></div>' +
-          '<div class="sb-form"><textarea class="sb-ta" placeholder="' + esc(ph) + '" maxlength="2000"></textarea>' +
-          '<div class="sb-actions2"><button class="sb-go" type="button" data-submit>Submit</button>' +
-          '<button class="sb-go" type="button" data-draft style="background:transparent;border:1px solid var(--gold);color:var(--gold);">Save as WIP draft</button></div>' +
-          '<div class="sb-stat"></div></div>' +
-          '</div></div>';
-      }).join('');
-      return '<section class="sb-group"><div class="sb-group-head"><h2>' + esc(g.title) + '</h2>' +
-        (g.blurb ? '<span class="blurb">' + esc(g.blurb) + '</span>' : '') + '</div>' +
-        '<div class="sb-list">' + cards + '</div></section>';
-    }).join('');
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var project = value('project-name');
+    var description = value('project-description');
+    var demoRaw = value('project-demo');
+    var repoRaw = value('project-repo');
+    var mediaRaw = value('project-media');
+    var demo = validUrl(demoRaw), repo = validUrl(repoRaw), media = validUrl(mediaRaw);
+    if (!project) { setStatus('Add a project name.', 'err'); document.getElementById('project-name').focus(); return; }
+    if ((demoRaw && !demo) || (repoRaw && !repo) || (mediaRaw && !media)) { setStatus('Links must begin with http:// or https://.', 'err'); return; }
+    if (!description && !demo && !repo && !media) { setStatus('Add a short description or at least one project link.', 'err'); document.getElementById('project-description').focus(); return; }
+    if (!document.getElementById('project-consent').checked) { setStatus('Confirm that The ZAO may review and publish the project information.', 'err'); return; }
 
-    // wire each card
-    host.querySelectorAll('.sb-card').forEach(function (card) {
-      var promptId = card.getAttribute('data-prompt');
-      var form = card.querySelector('.sb-form');
-      var ta = card.querySelector('.sb-ta');
-      var stat = card.querySelector('.sb-stat');
-      card.querySelector('[data-toggle]').addEventListener('click', function () {
-        form.classList.toggle('open'); if (form.classList.contains('open')) ta.focus();
-      });
-      function send(asDraft) {
-        var answer = (ta.value || '').trim();
-        if (!answer) { stat.className = 'sb-stat'; stat.textContent = 'Type an answer first.'; return; }
-        var btn = card.querySelector(asDraft ? '[data-draft]' : '[data-submit]');
-        var other = card.querySelector(asDraft ? '[data-submit]' : '[data-draft]');
-        btn.disabled = true; if (other) other.disabled = true;
-        stat.className = 'sb-stat'; stat.textContent = asDraft ? 'Saving your WIP...' : 'Submitting...';
-        var body = { promptId: promptId, answer: answer };
-        if (asDraft) body.draft = true;
-        if (promptId === 'wallet' && /^0x[0-9a-fA-F]{40}$/.test(answer)) body.wallet = answer;
-        var handle = (document.getElementById('sb-handle').value || '').trim();
-        var email = (document.getElementById('sb-email').value || '').trim();
-        if (handle) body.handle = handle;
-        if (email) body.email = email;
-        submit(body).then(function (d) {
-          if (d && d.ok && d.status === 'draft') {
-            if (d.editToken) { try { localStorage.setItem('zg-sub-token-' + d.id, d.editToken); } catch (e) {} }
-            stat.className = 'sb-stat ok';
-            stat.innerHTML = 'WIP saved and public - <a href="/submissions?id=' + d.id + '" style="color:var(--cyan)">share it for comments</a>. Publish it for review from that page whenever it is ready.';
-            ta.value = ''; ta.disabled = true; btn.style.display = 'none'; if (other) other.style.display = 'none';
-          } else if (d && d.ok) {
-            stat.className = 'sb-stat ok';
-            stat.textContent = 'In review - thank you. Approved answers get the collectible' + (signedIn ? '.' : ' (add an email above so we can reach you).');
-            ta.value = ''; ta.disabled = true; btn.style.display = 'none'; if (other) other.style.display = 'none';
-          } else if (d && d.reason === 'limit') {
-            btn.disabled = false; if (other) other.disabled = false;
-            stat.textContent = 'You have submitted a lot already - thank you. Try again later.';
-          } else {
-            btn.disabled = false; if (other) other.disabled = false;
-            stat.textContent = 'Could not submit: ' + ((d && (d.error || d.reason)) || 'try again') + '. Or answer on the magnet.';
-          }
-        }).catch(function () { btn.disabled = false; if (other) other.disabled = false; stat.textContent = 'Could not submit right now. Try the magnet.'; });
+    var isDraft = stage.value === 'building';
+    var builder = value('project-builder');
+    var payload = {
+      kind: 'project',
+      promptId: 'project',
+      project: project,
+      answer: description,
+      handle: builder.charAt(0) === '@' ? builder.slice(1) : '',
+      email: value('project-email'),
+      draft: isDraft,
+      consent: true,
+      source: 'web',
+      fields: {
+        project: project,
+        description: description,
+        builderName: builder,
+        track: value('project-track'),
+        stage: isDraft ? 'building' : 'ready',
+        demoUrl: demo,
+        repoUrl: repo,
+        mediaUrl: media,
+        helpWanted: value('project-help')
       }
-      card.querySelector('[data-submit]').addEventListener('click', function () { send(false); });
-      card.querySelector('[data-draft]').addEventListener('click', function () { send(true); });
+    };
+
+    button.disabled = true;
+    setStatus(isDraft ? 'Saving your work in progress...' : 'Sending your project for review...', '');
+    fetch('/api/submissions', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+    }).then(function (response) { return response.json(); }).then(function (data) {
+      button.disabled = false;
+      if (!data || !data.ok) throw new Error((data && (data.error || data.reason)) || 'submission failed');
+      var token = data.editToken || '';
+      if (token) { try { localStorage.setItem('zg-sub-token-' + data.id, token); } catch (e) {} }
+      var link = '/submission-status?id=' + encodeURIComponent(data.id) + (token ? '&token=' + encodeURIComponent(token) : '');
+      var label = data.status === 'draft' ? 'Your work in progress is saved.' : 'Your project is in review.';
+      setStatus('<strong>' + esc(label) + '</strong> Receipt #' + esc(data.id) + '. <a href="' + esc(link) + '" style="color:var(--cyan);">Open your private status page</a> and save that link.', 'ok');
+      form.reset(); stage.value = 'ready'; syncButton();
+    }).catch(function (error) {
+      button.disabled = false;
+      setStatus('Could not submit right now. Email info@thezao.com or try again. ' + esc(error.message || ''), 'err');
     });
-
-    if (data && data.command_center_url) {
-      var cc = document.getElementById('sb-cc');
-      document.getElementById('sb-cc-link').href = data.command_center_url;
-      cc.style.display = '';
-    }
-  }
-
-  // Post a submission: Farcaster JWT when available (binds the profile), else plain.
-  function submit(body) {
-    if (window.ZABAL && window.ZABAL.authedFetch) {
-      return window.ZABAL.authedFetch('/api/submissions', body).then(function (d) {
-        if (d && d.reason === 'not-in-miniapp') return plainSubmit(body);
-        return d;
-      });
-    }
-    return plainSubmit(body);
-  }
-  function plainSubmit(body) {
-    return fetch('/api/submissions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json(); });
-  }
-
-  // Show who you are submitting as (Farcaster handle hides the anonymous fields).
-  function initIdentity() {
-    if (!(window.ZABAL && window.ZABAL.getUser)) return;
-    window.ZABAL.getUser().then(function (u) {
-      if (u && u.username) {
-        signedIn = true;
-        document.getElementById('sb-you').textContent = '@' + u.username;
-        document.getElementById('sb-anon').style.display = 'none';
-      }
-    }).catch(function () {});
-  }
-
-  fetch('/data/colab-prompts.json', { cache: 'no-store' })
-    .then(function (r) { return r.json(); })
-    .then(render)
-    .catch(function () {
-      document.getElementById('sb-groups').innerHTML = '<p class="empty">Could not load the prompts. <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener" style="color:var(--cyan)">Open the magnet directly</a>.</p>';
-    });
-  initIdentity();
+  });
 })();
 </script>
-
 <script defer src="/assets/site-nav.js"></script>
+<script defer src="/assets/mentor-strip.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

@@ -85,9 +85,9 @@
       + '<div class="zgp-card">'
       +   '<div class="zgp-id">'
       +     '<div class="zgp-gm">New here?</div>'
-      +     '<div class="zgp-sub" style="display:block">Open in a Farcaster app to see your ZABAL Gamez, or start the build.</div>'
+      +     '<div class="zgp-sub" style="display:block">No account is required. Start with any project or work in progress.</div>'
       +   '</div>'
-      +   '<div class="zgp-actions"><a class="zgp-btn primary" href="/enter">Start</a></div>'
+      +   '<div class="zgp-actions"><a class="zgp-btn primary" href="/submit">Submit</a></div>'
       + '</div>';
     el.classList.add("zgp-shown");
   }

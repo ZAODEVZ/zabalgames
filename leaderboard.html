@@ -1,12 +1,231 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZABAL Gamez</title>
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0; url=/game">
-<link rel="canonical" href="https://zabalgamez.com/game">
-</head><body>
-<p>Moved. <a href="/game">Go to the arcade</a>.</p>
-<script>location.replace('/game');</script>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Season Standings - ZABAL Gamez</title>
+  <meta name="description" content="Live ZABAL Gamez Season 1 standings from real QV results and Empire Builder points.">
+  <link rel="canonical" href="https://zabalgamez.com/leaderboard">
+  <meta property="og:title" content="Season Standings - ZABAL Gamez">
+  <meta property="og:description" content="See who is leading ZABAL Gamez Season 1 from the live scoring source.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/leaderboard">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez Season 1">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Season Standings - ZABAL Gamez">
+  <meta name="twitter:description" content="Live Season 1 standings from real ZABAL Gamez scoring data.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the standings","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/leaderboard","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#141e27"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#141e27">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    :root { --standings-navy: #141e27; --standings-cream: #e0ddaa; }
+    .lb-wrap { max-width: 820px; margin: 0 auto; padding: 1.2rem 1rem 2.5rem; }
+    .lb-hero { padding: 2rem 0 1.2rem; }
+    .lb-hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 8vw, 4rem); line-height: 0.98; letter-spacing: -0.035em; margin: 0.45rem 0 0.8rem; }
+    .lb-hero h1 span { color: var(--standings-cream); }
+    .lb-hero p { color: var(--text-muted); max-width: 630px; font-size: 1rem; line-height: 1.55; margin: 0; }
+    .lb-actions { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; }
+    .lb-action { border: 1px solid rgba(224,221,170,0.35); border-radius: 8px; background: var(--standings-navy); color: var(--standings-cream); padding: 0.62rem 0.85rem; font-size: 0.8rem; font-weight: 700; text-decoration: none; }
+    .lb-action.primary { background: var(--standings-cream); color: var(--standings-navy); }
+    .lb-action:hover { text-decoration: none; filter: brightness(1.06); }
+    .lb-panel { border: 1px solid rgba(224,221,170,0.25); border-radius: 14px; overflow: hidden; background: var(--standings-navy); }
+    .lb-panel-head { padding: 1rem 1.05rem 0.9rem; border-bottom: 1px solid rgba(224,221,170,0.16); }
+    .lb-title-row { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap; }
+    .lb-title-row h2 { color: var(--standings-cream); font: 700 clamp(1.15rem, 4vw, 1.45rem) 'Syne', sans-serif; margin: 0; }
+    .lb-source { border: 1px solid rgba(0,229,255,0.35); border-radius: 999px; color: var(--cyan); padding: 0.3rem 0.6rem; font: 0.58rem var(--font-pixel); letter-spacing: 0.04em; text-transform: uppercase; }
+    .lb-detail { color: var(--text-muted); font-size: 0.8rem; line-height: 1.45; margin: 0.55rem 0 0; }
+    .lb-list { list-style: none; padding: 0; margin: 0; }
+    .lb-row { display: grid; grid-template-columns: 2.1rem 2.4rem minmax(0, 1fr) auto; align-items: center; gap: 0.7rem; padding: 0.78rem 1.05rem; border-bottom: 1px solid rgba(224,221,170,0.12); }
+    .lb-row:last-child { border-bottom: 0; }
+    .lb-row.top { background: rgba(224,221,170,0.045); }
+    .lb-rank { color: var(--text-dim); font: 700 0.85rem 'JetBrains Mono', monospace; }
+    .lb-row.top .lb-rank { color: var(--standings-cream); }
+    .lb-avatar { width: 2.35rem; height: 2.35rem; border-radius: 50%; overflow: hidden; background: #0d151c; color: var(--standings-cream); display: grid; place-items: center; font: 700 0.8rem 'Syne', sans-serif; }
+    .lb-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lb-person { min-width: 0; }
+    .lb-name { display: block; color: var(--standings-cream); font-weight: 700; font-size: 0.9rem; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lb-handle { display: block; color: var(--text-dim); font-size: 0.72rem; margin-top: 0.2rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    a.lb-name:hover { color: var(--cyan); text-decoration: none; }
+    .lb-score { text-align: right; color: var(--cyan); font: 700 0.9rem 'JetBrains Mono', monospace; }
+    .lb-score small { display: block; color: var(--text-dim); font: 0.58rem 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.15rem; }
+    .lb-empty { color: var(--text-muted); padding: 1.2rem 1.05rem; margin: 0; font-size: 0.88rem; }
+    .lb-foot { border-top: 1px solid rgba(224,221,170,0.16); color: var(--text-dim); font-size: 0.72rem; line-height: 1.45; padding: 0.75rem 1.05rem; }
+    @media (max-width: 640px) {
+      .arcade-nav-inner { flex-wrap: nowrap; gap: 0.5rem; padding: 0.5rem 12px; }
+      .arcade-nav-menu { width: auto; min-width: 0; flex: 1; justify-content: flex-end; flex-wrap: nowrap; gap: 0.55rem; }
+      .arcade-nav-menu > a:not(.arcade-coin) { display: none; }
+      .lb-wrap { padding: 0.8rem 0.75rem 2rem; }
+      .lb-hero { padding: 1.35rem 0 1rem; }
+      .lb-row { grid-template-columns: 1.65rem 2rem minmax(0, 1fr) auto; gap: 0.5rem; padding: 0.7rem 0.75rem; }
+      .lb-avatar { width: 2rem; height: 2rem; }
+      .lb-panel-head, .lb-foot { padding-left: 0.75rem; padding-right: 0.75rem; }
+    }
+    @media (max-width: 350px) {
+      .arcade-brand { font-size: 0.62rem; gap: 0.35rem; }
+      .site-menu-btn { font-size: 0.46rem; }
+      .arcade-coin { font-size: 0.44rem; padding: 0.45rem 0.55rem; }
+      .lb-row { grid-template-columns: 1.5rem 1.8rem minmax(0, 1fr) auto; gap: 0.4rem; padding: 0.65rem 0.6rem; }
+      .lb-avatar { width: 1.8rem; height: 1.8rem; }
+      .lb-name { font-size: 0.82rem; }
+      .lb-score { font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/submissions">Submissions</a>
+      <a href="/live">Live</a>
+      <a href="/enter">Join</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="lb-wrap">
+    <header class="lb-hero">
+      <div class="hero-eyebrow">Season 1 standings</div>
+      <h1>Who is leading <span>right now</span>.</h1>
+      <p>Ranked from the live season scoring source. The board uses builder QV results once real ballots exist, with the live Empire Builder board as the scored source before then.</p>
+      <div class="lb-actions">
+        <a class="lb-action primary" href="/submissions">View submissions</a>
+        <a class="lb-action" href="/enter">Join the build</a>
+      </div>
+    </header>
+
+    <section class="lb-panel" aria-labelledby="standings-title">
+      <div class="lb-panel-head">
+        <div class="lb-title-row">
+          <h2 id="standings-title">Current standings</h2>
+          <span class="lb-source" id="lb-source">Checking source</span>
+        </div>
+        <p class="lb-detail" id="lb-detail">Loading the real scoring feed.</p>
+      </div>
+      <ol class="lb-list" id="lb-list" aria-live="polite" aria-busy="true">
+        <li class="lb-empty">Loading standings...</li>
+      </ol>
+      <div class="lb-foot">No scores are entered by hand. Rank and points refresh from the active API source.</div>
+    </section>
+  </div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Play">
+      <h4>Play</h4>
+      <a href="/">Home</a>
+      <a href="/live">Live</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/game">Arcade</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Season">
+      <h4>Season</h4>
+      <a href="/enter">Enter the Build</a>
+      <a href="/submissions">Submissions</a>
+      <a href="/board">Build Board</a>
+      <a href="/finals">Finals</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
+      <a href="/about">About</a>
+      <a href="/links">All Links</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom"><span class="pixel">INSERT COIN</span><span>zabalgamez.com - built with The ZAO</span></div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var list = document.getElementById('lb-list');
+  var source = document.getElementById('lb-source');
+  var detail = document.getElementById('lb-detail');
+  if (!list || !source || !detail) return;
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>\"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', "'": '&#39;' }[c];
+  }); }
+  function safeUrl(s) { s = String(s || ''); return /^https?:\/\//i.test(s) ? s : ''; }
+  function number(s) { var n = Number(s); return Number.isFinite(n) ? new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(n) : 'Pending'; }
+  function plural(n, one, many) { return n === 1 ? one : many; }
+
+  function sourceCopy(data) {
+    source.textContent = data.sourceLabel || 'Live scoring';
+    if (data.source === 'qv') {
+      var voters = data.qv ? Number(data.qv.voters) || 0 : 0;
+      detail.textContent = 'Builder QV results from ' + voters + ' ' + plural(voters, 'voter', 'voters') + '. Scores are aggregate votes from the live ballot.';
+      return;
+    }
+    if (data.source === 'empire') {
+      var qv = data.qv || {};
+      var qvStatus = qv.status || 'pending';
+      var qvResults = Number(qv.results) || 0;
+      detail.textContent = 'Live /zabal activity points from Empire Builder. The builder QV ballot is ' + qvStatus + ' with ' + qvResults + ' scored ' + plural(qvResults, 'result', 'results') + ', so the board has not switched to QV yet.';
+      return;
+    }
+    detail.textContent = 'No scored source is available yet. The board will update when real points or ballots exist.';
+  }
+
+  function render(data) {
+    sourceCopy(data);
+    var rows = Array.isArray(data.entries) ? data.entries : [];
+    if (!rows.length) {
+      list.innerHTML = '<li class="lb-empty">No scored standings are available yet.</li>';
+      list.setAttribute('aria-busy', 'false');
+      return;
+    }
+    list.innerHTML = rows.map(function (row, index) {
+      var username = row.username || '';
+      var name = row.displayName || username || 'Name pending';
+      var profile = safeUrl(row.profileUrl) || (username ? 'https://farcaster.xyz/' + encodeURIComponent(username) : '');
+      var pfp = safeUrl(row.pfpUrl);
+      var initial = name ? name.charAt(0).toUpperCase() : '';
+      var avatar = pfp ? '<img src="' + esc(pfp) + '" alt="" loading="lazy">' : esc(initial);
+      var nameHtml = profile ? '<a class="lb-name" href="' + esc(profile) + '" target="_blank" rel="noopener">' + esc(name) + '</a>' : '<span class="lb-name">' + esc(name) + '</span>';
+      return '<li class="lb-row' + (index < 3 ? ' top' : '') + '">' +
+        '<span class="lb-rank">' + esc(row.rank || index + 1) + '</span>' +
+        '<span class="lb-avatar" aria-hidden="true">' + avatar + '</span>' +
+        '<span class="lb-person">' + nameHtml + (username ? '<span class="lb-handle">@' + esc(username) + '</span>' : '') + '</span>' +
+        '<span class="lb-score">' + esc(number(row.score)) + '<small>' + esc(data.scoreLabel || 'points') + '</small></span></li>';
+    }).join('');
+    list.setAttribute('aria-busy', 'false');
+  }
+
+  fetch('/api/leaderboard?format=standings&limit=50', { cache: 'no-store' })
+    .then(function (response) { return response.json(); })
+    .then(function (data) { if (!data || !data.ok) throw new Error('standings unavailable'); render(data); })
+    .catch(function () {
+      source.textContent = 'Standings pending';
+      detail.textContent = 'The scoring API could not be reached. No fallback scores are shown.';
+      list.innerHTML = '<li class="lb-empty">Standings are unavailable right now.</li>';
+      list.setAttribute('aria-busy', 'false');
+    });
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

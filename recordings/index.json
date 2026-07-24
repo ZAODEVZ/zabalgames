@@ -1,6 +1,6 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-07-06",
+  "generated": "2026-07-10",
   "season": 1,
   "count": 33,
   "recordings": [
@@ -117,11 +117,11 @@
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/James from Mental Wealth Academy",
       "presenter": "James",
-      "handle": "jamesdesign.eth",
+      "handle": "@jamesdesign.eth",
       "org": "Mental Wealth Academy",
-      "track": null,
-      "technical": null,
-      "format": null,
+      "track": "builder",
+      "technical": 4,
+      "format": "Live talk plus Q and A, recorded",
       "date": "2026-06-27",
       "url": "https://zabalgamez.com/recordings/29",
       "page": "https://zabalgamez.com/recordings/29",
@@ -208,40 +208,6 @@
         "Short-form videos and slideshows built from your own footage and audio, organized by aesthetic.",
         "No generative AI - the output stays yours.",
         "How builders can plug into the FlowStage API, plus a live demo."
-      ]
-    },
-    {
-      "type": "workshop",
-      "title": "ZABAL GAMEZ Workshop w/Nemesis",
-      "presenter": "Nemesis",
-      "handle": "@nemesis.love",
-      "org": null,
-      "track": "creator",
-      "technical": 1,
-      "format": "Creator-track conversation, recorded",
-      "date": "2026-06-22",
-      "url": "https://zabalgamez.com/recordings/26",
-      "page": "https://zabalgamez.com/recordings/26",
-      "youtube": null,
-      "recording": null,
-      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-22-nemesis-creator-journey.md",
-      "transcript_raw": "https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-22-nemesis-creator-journey.md",
-      "link": null,
-      "okd": null,
-      "cast_hash": null,
-      "summary": "A creator-track conversation with Nemesis - a rapper, singer, poet, composer, and producer from Zambia. Her story: the first memory of making art, the autobiography, the pull toward web3 and how it kept resurfacing across her career until it stuck, the decision to leave the old path, and how that leap led to building and creating in this space.",
-      "topics": [
-        "Creator journey",
-        "Music",
-        "Art",
-        "Web3",
-        "Zambia"
-      ],
-      "takeaways": [
-        "Nemesis's path as an artist - rapper, singer, poet, composer, producer out of Zambia.",
-        "How web3 kept reappearing across her career until it finally stuck.",
-        "The decision to leave the old path, and what the leap into building felt like.",
-        "An honest, personal look at creating and reinventing in this space."
       ]
     },
     {

@@ -441,19 +441,33 @@
       <div class="hero-eyebrow">A 3-month Build-A-Thon - Season 1 - June Prep / July Submissions / August Finals</div>
       <h1>ZABAL <span class="accent">GAMEZ</span></h1>
       <p class="hero-sub">
-        Three months. <strong>June is prep</strong> - ZAO teachers + Vibe Coding instructors run recorded sessions on tools, context, and the ecosystem. <strong>July is the open build-a-thon</strong> - anyone with a vibe-coding harness ships a build for the ZAO ecosystem publicly. <strong>August is the Finals</strong> - a cohort curated from July, each builder paired with a ZAO mentor for the main event + winner reveal.
+        Three months. <strong>June is prep</strong> - ZAO teachers and builders run recorded sessions on tools, context, and the ecosystem. <strong>July is the open build-a-thon</strong> - anyone can submit a project or work in progress for the ZAO ecosystem. <strong>August is the Finals</strong> - a cohort curated from July, each builder paired with a ZAO mentor for the main event and winner reveal.
       </p>
       <p class="hero-sub" style="margin-top: 0.5rem;">
-        Use whatever harness you want (Claude Code, Cursor, Windsurf, Aider, Bolt, v0, Lovable). ZAO mentors pick their champions from July ships - the mentor roster is open and recruiting now. All chosen builders win. <strong>You bring the build, we bring the team + distribution.</strong>
+        Apps, music, art, video, writing, events, repositories, prototypes, and unfinished ideas all count. Use whatever tools fit the work. ZAO mentors pick their champions from July projects. <strong>You bring the project, we bring the team and distribution.</strong>
       </p>
       <div class="hero-cta">
-        <a href="#apply" class="btn btn-primary">Submit a July Build</a>
+        <a href="/submit" class="btn btn-primary">Submit a Project</a>
+        <a href="/submissions" class="btn btn-ghost">Browse Projects</a>
         <a href="#mentors" class="btn btn-ghost">Become a Mentor</a>
         <a href="https://zlank.online/s/OAmekQ" target="_blank" rel="noopener" class="btn btn-ghost">Sign Up Snap</a>
       </div>
       <p class="hero-meta">JUNE = LESSONS - JULY = SHIP - AUGUST = FINALS + WINNER REVEAL</p>
     </div>
   </header>
+
+  <section aria-labelledby="next-step-title" style="padding:1.25rem 0;">
+    <div class="container">
+      <div class="section-eyebrow">Choose your next step</div>
+      <h2 class="section-title" id="next-step-title">Get the right answer fast</h2>
+      <div class="options-grid grid-2" style="margin-top:1rem;">
+        <a class="option-card" href="/submit" style="text-decoration:none;"><div class="option-letter" style="color:var(--cyan);">01</div><h3>Submit something</h3><p>Any project or work in progress. No account, wallet, Farcaster, GitHub, or prior registration required.</p></a>
+        <a class="option-card" href="/submissions" style="text-decoration:none;"><div class="option-letter" style="color:var(--gold);">02</div><h3>Browse what is built</h3><p>Filter the real Season 1 project roster by status and track.</p></a>
+        <a class="option-card" href="/recordings" style="text-decoration:none;"><div class="option-letter" style="color:var(--pink);">03</div><h3>Learn from a session</h3><p>Start with the recorded workshops and catch up on your own schedule.</p></a>
+        <a class="option-card" href="/live" style="text-decoration:none;"><div class="option-letter" style="color:var(--orange);">04</div><h3>Watch or join live</h3><p>See the current session, real stream status, standings, and what is next.</p></a>
+      </div>
+    </div>
+  </section>
 
   <section>
     <div class="container">
@@ -498,7 +512,7 @@
         <span>/</span>
         <span id="live-projects-stat">--/-- projects claimed</span>
         <span>/</span>
-        <span id="live-mentors-stat">-- mentor slots open</span>
+        <span id="live-mentors-stat">-- confirmed mentors</span>
         <span>/</span>
         <span id="live-countdown" style="color: var(--gold);">launch in --</span>
       </div>
@@ -507,10 +521,6 @@
       </style>
       <script>
       (function() {
-        // Mentors-locked: count anyone tagged as a mentor in about.html.
-        // For now, hardcoded to 0 locked / 8 open per /about. Swap to data/mentors.json once that lands.
-        var MENTORS_LOCKED = 0;
-        var MENTORS_TOTAL = 8;
         // Phase-aware season clock (mirrors index.html) - always points at the next real
         // milestone so this never sticks on a passed date.
         var JULY = new Date('2026-07-01T00:00:00Z').getTime();
@@ -518,17 +528,19 @@
 
         Promise.all([
           fetch('/data/workshop-leads.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { leads: [] }; }),
-          fetch('/data/adoptable-projects.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { projects: [] }; })
+          fetch('/data/adoptable-projects.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { projects: [] }; }),
+          fetch('/data/mentors.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { mentors: [] }; })
         ]).then(function(results) {
           var leads = (results[0].leads || []).length;
           var projects = results[1].projects || [];
+          var mentors = (results[2].mentors || []).filter(function(m) { return m.locked === true; }).length;
           var claimed = projects.filter(function(p) { return p.status === 'claimed' || p.status === 'shipped'; }).length;
           var leadsEl = document.getElementById('live-leads-stat');
           var projectsEl = document.getElementById('live-projects-stat');
           var mentorsEl = document.getElementById('live-mentors-stat');
           if (leadsEl) leadsEl.textContent = leads + (leads === 1 ? ' workshop lead' : ' workshop leads');
           if (projectsEl) projectsEl.textContent = claimed + '/' + projects.length + ' projects claimed';
-          if (mentorsEl) mentorsEl.textContent = (MENTORS_TOTAL - MENTORS_LOCKED) + ' mentor slots open';
+          if (mentorsEl) mentorsEl.textContent = mentors + (mentors === 1 ? ' confirmed mentor' : ' confirmed mentors');
         });
 
         // Live countdown ticker - phase-aware (July open build -> August Finals)
@@ -1174,20 +1186,22 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
 
   <section id="apply">
     <div class="container">
-      <div class="section-eyebrow">Submit Your Phase 1 Build</div>
-      <h2 class="section-title">Apply by Shipping</h2>
+      <div class="section-eyebrow">Open project intake</div>
+      <h2 class="section-title">Join by Shipping</h2>
       <p class="section-sub">
-        Phase 1 is open to anyone. Build something with the ZAO context prompt (released when applications open) using your vibe-coding harness of choice. Ship publicly. ZAO mentors watch rolling - each claims one champion to bring to the Finals. Build early + build well.
+        Anyone can send a project or work in progress. A clear description, a link, or an email attachment is enough to begin. The ZAO reviews every entry and requests more information only when it is needed.
       </p>
       <p class="section-sub" style="margin-top: 0.6rem; font-size: 0.85rem;">
-        <strong>Note: applications are public by default.</strong> Your submission is a Farcaster cast - shareable, visible, indexable. If you'd prefer to apply privately, this isn't the right Games for you.
+        No account, wallet, Farcaster profile, GitHub repository, or prior registration is required. Contact details stay private; approved project details can be published in the gallery.
       </p>
 
-      <div class="form-wrapper">
-        <!-- July submission gallery: writes to Supabase (config block in <head>, placeholder keys - NOT live yet). The public gallery below reads from the same table. -->
-        <!-- TODO (July): wire Supabase project + keys; team is currently out of free Supabase slots. -->
-        <!-- HTML reads cleaner if you note: this whole zg-apply form is the July decision, not part of the June launch funnel. -->
-        <!-- Until the Supabase gallery is wired, /enter is the LIVE registration path (Upstash-backed). Banner + the not-configured submit branch both route there so this is never a dead end. -->
+      <div class="hero-cta" style="justify-content:flex-start;margin-top:1rem;">
+        <a href="/submit" class="btn btn-primary">Use the project form</a>
+        <a href="mailto:info@thezao.com?subject=ZABAL%20Gamez%20submission%3A%20%5Bproject%20name%5D" class="btn btn-ghost">Email info@thezao.com</a>
+        <a href="/submissions" class="btn btn-ghost">Browse projects</a>
+      </div>
+
+      <div class="form-wrapper" hidden inert aria-hidden="true">
         <a href="/enter" class="enter-cta" style="display:block;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.45);color:var(--cyan);padding:0.95rem 1.1rem;border-radius:10px;margin-bottom:1.4rem;text-decoration:none;font-size:0.92rem;line-height:1.5;">
           <strong>Ready to register your build now?</strong><br>
           Registration is live at <strong>/enter</strong>. To post a build, a win, or a work-in-progress, use <strong>/submit</strong> - it shows on the wall at <strong>/submissions</strong>, comments and all. (This older detailed form was superseded by that live system.)
@@ -1397,12 +1411,12 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
 
       <div class="faq-item">
         <div class="faq-question">How does the two-phase model actually work? <span style="color: var(--text-dim);">+</span></div>
-        <div class="faq-answer"><strong>Phase 1</strong> is open. Anyone can apply by building something with the ZAO context prompt (released when applications open). Use any vibe-coding harness. Ship publicly with a live URL, GitHub repo, demo video, and a cast on /zabal. As builds ship, ZAO mentors watch rolling - each claims one champion (first-come-first-served per mentor). <strong>Phase 2</strong> is the Finals - the mentor-player pairs build for 24h, promote for 24h, and the ZAO community votes on builds in a separate 24h window (settled via the WaveWarZ-Base protocol), crowning the season's best builder. Getting selected in Phase 1 is the first win - every finalist gets paid and keeps the ongoing economics - and the Finals are a real competition.</div>
+        <div class="faq-answer"><strong>Phase 1</strong> is open project intake. Anyone can send a finished project or work in progress through the website or info@thezao.com. The submission can start with a description, link, repository, or attachment; a wallet and social account are not required. Approved project details enter the public gallery. <strong>Phase 2</strong> is the curated Finals, where selected builders pair with mentors and follow the published Finals rules.</div>
       </div>
 
       <div class="faq-item">
         <div class="faq-question">Who is this for? <span style="color: var(--text-dim);">+</span></div>
-        <div class="faq-answer">Anyone willing to build in public + ship a real artifact for Phase 1. Phase 1 is genuinely open to everyone with the chops to ship. ZAO mentors then pick their champions based on whose Phase 1 builds resonate with each mentor's search style. You don't need to be a senior engineer - vibe-coding harnesses close a lot of skill gaps. You DO need to be willing to show your work in public.</div>
+        <div class="faq-answer">Anyone making something that could help, entertain, teach, or grow The ZAO ecosystem. Apps, repositories, songs, art, videos, writing, events, prototypes, and unfinished ideas are all welcome. Public project details help mentors discover the work; contact details remain private.</div>
       </div>
 
       <div class="faq-item">
@@ -1417,7 +1431,7 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
 
       <div class="faq-item">
         <div class="faq-question">Do I have to stream the entire 24h build? <span style="color: var(--text-dim);">+</span></div>
-        <div class="faq-answer">Live streaming is just one of four visibility modes. You can instead record screen sessions and upload to YouTube within 1h, share public AI prompt logs, or cast frequent screenshots every 1-2 hours. Pick what fits your personality. Required: at least one primary mode plus ongoing /zabal casts throughout. Voters need to verify you built it in 24h with AI tools - HOW you show your work is up to you.</div>
+        <div class="faq-answer">No. Streaming can help people follow your process, but it is not required to submit a project. A recording, public build log, screenshots, or a clear progress update can also show how the work developed. Finals participants receive separate visibility guidance before that event.</div>
       </div>
 
       <div class="faq-item">
@@ -1437,7 +1451,7 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
 
       <div class="faq-item">
         <div class="faq-question">Who owns the code I ship? <span style="color: var(--text-dim);">+</span></div>
-        <div class="faq-answer">You do. Open-source mandate (MIT or similar permissive license) is a submission requirement. ZAO doesn't claim IP. We can fork or extend per the license, but ownership stays with you.</div>
+        <div class="faq-answer">You do. The ZAO does not take ownership of submitted work. You grant permission to review and publish the project information you send. A public repository and permissive license are encouraged for software that others should extend, but they are not required for every submission format.</div>
       </div>
 
       <div class="faq-item">
@@ -1786,6 +1800,7 @@ curl -o ~/.claude/skills/zabal-games/SKILL.md \\<br>
   </script>
 
   <script defer src="/assets/site-nav.js"></script>
+  <script defer src="/assets/mentor-strip.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

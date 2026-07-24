@@ -707,6 +707,46 @@
       "x_url": null,
       "site_url": "https://github.com/JohnDaWalka",
       "audited_date": "2026-07-08"
+    },
+    {
+      "handle": "jamesdesign",
+      "name": "James",
+      "roles": [
+        "workshop_lead"
+      ],
+      "headline": "Mental Wealth Academy",
+      "bio": "Artist, psychologist, and scientist building Mental Wealth Academy, a learn-to-earn game world where people earn while they learn. His ZABAL Gamez workshop walks the platform - blockchain accounts via Privy, diamond points, agentic NPCs - and the bigger idea: democratizing education the way SoundCloud democratized music.",
+      "expertise_label": "LEARN TO EARN",
+      "color": "gold",
+      "avatar_url": null,
+      "farcaster_url": "https://farcaster.xyz/jamesdesign.eth",
+      "x_url": null,
+      "site_url": null,
+      "session_count": 1,
+      "session_topics": [
+        "Building Mental Wealth Academy, a learn-to-earn game world"
+      ],
+      "audited_date": "2026-07-10"
+    },
+    {
+      "handle": "ceci",
+      "name": "Ceci Sakura",
+      "roles": [
+        "workshop_lead"
+      ],
+      "headline": "Unlock Protocol",
+      "bio": "Marketing and communications steward at Unlock Protocol. Her ZABAL Gamez workshop is a live demo of Unlock - issuing memberships, event tickets, and soulbound certifications you deploy on Base and airdrop yourself, even to an email address.",
+      "expertise_label": "UNLOCK PROTOCOL",
+      "color": "cyan",
+      "avatar_url": null,
+      "farcaster_url": null,
+      "x_url": "https://x.com/Ceci_Sakura007",
+      "site_url": "https://unlock-protocol.com",
+      "session_count": 1,
+      "session_topics": [
+        "Unlock Protocol - memberships, tickets, and soulbound certifications"
+      ],
+      "audited_date": "2026-07-10"
     }
   ]
 }

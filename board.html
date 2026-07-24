@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Build Board - ZABAL Gamez</title>
+  <meta name="description" content="One board for everything being built and submitted this season - partial builds, started projects to adopt, and every community submission, all in one place.">
+  <link rel="canonical" href="https://zabalgamez.com/board">
+  <meta property="og:title" content="The Build Board - ZABAL Gamez">
+  <meta property="og:description" content="Everything being built and submitted this season, one board. Partial builds, started projects, and community submissions.">
+  <meta property="og:url" content="https://zabalgamez.com/board">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"The Build Board","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/board","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    .bd-controls { position: sticky; top: 0; z-index: 5; background: var(--bg, #070709); padding: 0.6rem 0 0.5rem; border-bottom: 1px solid var(--border); margin-bottom: 0.9rem; }
+    .bd-chiprow { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .bd-chiprow + .bd-chiprow { margin-top: 0.4rem; }
+    .bd-chip { font: inherit; font-size: 0.78rem; padding: 0.3rem 0.7rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-dim); cursor: pointer; }
+    .bd-chip.on { border-color: var(--cyan); color: var(--text); }
+    .bd-count { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-dim); margin: 0.5rem 0 0; }
+    .bd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.85rem; }
+    .pcard { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem; display: flex; flex-direction: column; }
+    .pcard.g-building { border-left-color: var(--gold); }
+    .pcard.g-submitted { border-left-color: var(--cyan); }
+    .pcard.g-adopt { border-left-color: var(--zabal); }
+    .pcard h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.02rem; margin: 0 0 0.2rem; }
+    .pcard .badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.4rem; }
+    .badge { font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 999px; border: 1px solid var(--border-hover, #2a2a33); color: var(--text-dim); }
+    .badge.grp { color: var(--text); }
+    .badge.artist { color: var(--pink); border-color: var(--pink); }
+    .badge.builder { color: var(--zabal); border-color: var(--zabal); }
+    .badge.creator { color: var(--cyan); border-color: var(--cyan); }
+    .pcard p { color: var(--text-muted); font-size: 0.86rem; line-height: 1.5; margin: 0 0 0.6rem; flex: 1; }
+    .pcard .plinks { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .pcard .plinks a { font-size: 0.78rem; color: var(--cyan); text-decoration: none; }
+    .pcard .plinks a:hover { text-decoration: underline; }
+    .pcard .pmeta { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.5rem; }
+    .bd-empty { color: var(--text-dim); font-size: 0.9rem; padding: 1.5rem 0; }
+  </style>
+</head>
+<body>
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/submit">Submit</a>
+      <a href="/recordings">Recordings</a>
+      <a href="/game">Arcade</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+  <header class="hero" style="padding-bottom: 0.3rem;">
+    <div class="hero-eyebrow">The build board</div>
+    <h1>Everything being <span class="accent">built and submitted.</span></h1>
+    <p class="hero-sub">Track active projects and public submissions. The board opens on work already in motion; adoptable ideas stay available under their own filter. <a href="/submit" style="color: var(--cyan);">Add yours</a>.</p>
+  </header>
+
+  <div class="bd-controls">
+    <div class="bd-chiprow" id="bd-groups" role="group" aria-label="Filter by kind"></div>
+    <div class="bd-chiprow" id="bd-tracks" role="group" aria-label="Filter by track"></div>
+  </div>
+
+  <p class="bd-count" id="bd-count" aria-live="polite">Loading the board...</p>
+  <div class="bd-grid" id="bd-grid" aria-live="polite"></div>
+  <p class="bd-empty" id="bd-empty" hidden>Nothing here yet under this filter. Try another, or <a href="/submit" style="color:var(--cyan);">be the first to add one</a>.</p>
+
+  <p class="arcade-note" style="font-size: 0.82rem; color: var(--text-dim); margin-top: 1.4rem;">
+    Building something? <a href="/submit" style="color: var(--cyan);">Submit or update the project</a>, adopt a <a href="/projects" style="color: var(--cyan);">started project</a>, or browse the <a href="/recordings" style="color: var(--cyan);">workshops</a>.
+  </p>
+</div>
+</main>
+
+<footer class="arcade-foot" aria-label="Site directory">
+  <div class="arcade-foot-inner">
+    <div class="arcade-foot-brand">
+      <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+    <nav class="arcade-foot-col" aria-label="Build">
+      <h4>Build</h4>
+      <a href="/submit">Submit a project</a>
+      <a href="/projects">Adopt a project</a>
+      <a href="/submissions">Submissions</a>
+      <a href="/bounties">Bounties</a>
+    </nav>
+    <nav class="arcade-foot-col" aria-label="Connect">
+      <h4>Connect</h4>
+      <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
+      <a href="/press.html">Press + Media Kit</a>
+      <a href="/links.html">All Links</a>
+    </nav>
+  </div>
+  <div class="arcade-foot-bottom">
+    <span class="pixel">INSERT COIN</span>
+    <span>zabalgamez.com - built with The ZAO</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function host(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return 'link'; } }
+  function j(url) { return fetch(url, { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return null; }); }
+  var TRACKS = ['artist', 'builder', 'creator'];
+
+  var GROUPS = [
+    { key: 'all', label: 'All' },
+    { key: 'building', label: 'Building now' },
+    { key: 'submitted', label: 'Submitted' },
+    { key: 'adopt', label: 'Start a project' }
+  ];
+
+  var state = { group: 'building', track: 'all' };
+  var items = [];
+  var seen = {}; // dedupe by normalized url/repo
+
+  function normUrl(u) { return String(u || '').toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/+$/, ''); }
+  function add(card) {
+    var dk = normUrl(card.dedupe || '');
+    if (dk && seen[dk]) return;
+    if (dk) seen[dk] = 1;
+    items.push(card);
+  }
+
+  Promise.all([
+    j('/data/adoptable-projects.json'),
+    j('/data/builder-submissions.json'),
+    j('/api/submission-intake?feed=recent&limit=60'),
+    j('/api/submissions?feed=recent&limit=40'),
+    j('/api/submissions?feed=drafts&limit=40'),
+    j('/api/builds')
+  ]).then(function (res) {
+    var adoptDoc = res[0], subDoc = res[1], intake = res[2], approved = res[3], drafts = res[4], builds = res[5];
+
+    // Partial community builds (builder-submissions.json)
+    var subs = (subDoc && subDoc.submissions) || [];
+    subs.forEach(function (b) {
+      (b.projects || []).forEach(function (p) {
+        add({
+          group: 'building', track: null, title: p.name || 'Project',
+          desc: p.desc || '', status: p.status || b.status || 'partial',
+          links: [p.live && { label: host(p.live), url: p.live }, b.github && { label: 'GitHub', url: b.github }, b.farcaster && { label: 'Farcaster', url: b.farcaster }].filter(Boolean),
+          meta: 'by ' + (b.name || b.builder || 'a builder'),
+          dedupe: p.live
+        });
+      });
+    });
+
+    // Registered / building-in-public repos (/api/builds)
+    var bl = (builds && builds.builds) || [];
+    bl.forEach(function (x) {
+      var repoUrl = x.repo ? ('https://github.com/' + x.repo) : null;
+      add({
+        group: 'building', track: null, title: x.repo || (x.owner + ' build'),
+        desc: 'Registered build, tracked in public.', status: 'registered',
+        links: [repoUrl && { label: 'GitHub', url: repoUrl }].filter(Boolean),
+        meta: x.wallet ? ('wallet ' + x.wallet) : (x.owner || ''),
+        dedupe: repoUrl
+      });
+    });
+
+    // Everything submitted (unified intake)
+    var it = (intake && intake.items) || [];
+    it.forEach(function (s) {
+      var who = s.builder && (s.builder.handle || s.builder.wallet);
+      add({
+        group: 'submitted', track: (s.track && TRACKS.indexOf(s.track) >= 0) ? s.track : null,
+        title: s.project || 'Submission', desc: s.note || '', status: s.type || s.source || 'submitted',
+        links: [s.url && { label: host(s.url), url: s.url }, s.repo && { label: 'GitHub', url: 'https://github.com/' + String(s.repo).replace(/^https?:\/\/github\.com\//, '') }].filter(Boolean),
+        meta: [who && ('by ' + who), s.forBrand].filter(Boolean).join(' - '),
+        dedupe: s.url || s.repo
+      });
+    });
+
+    // Approved + draft on-site submissions
+    function fromSub(list, st) {
+      (list || []).forEach(function (s) {
+        add({
+          group: 'submitted', track: (s.track && TRACKS.indexOf(s.track) >= 0) ? s.track : null,
+          title: s.title || s.project || 'Submission', desc: s.summary || s.answer || '', status: st,
+          links: [s.url && { label: host(s.url), url: s.url }, s.id && { label: 'Permalink', url: '/submissions/' + s.id }].filter(Boolean),
+          meta: s.handle ? ('by ' + s.handle) : '',
+          dedupe: s.url || (s.id && ('/submissions/' + s.id))
+        });
+      });
+    }
+    fromSub(approved && approved.submissions, 'approved');
+    fromSub(drafts && drafts.submissions, 'draft');
+
+    // Started + curated projects to adopt (adoptable-projects.json)
+    var projects = (adoptDoc && adoptDoc.projects) || [];
+    projects.forEach(function (p) {
+      var repoUrl = p.repo ? (String(p.repo).indexOf('http') === 0 ? p.repo : 'https://github.com/' + p.repo) : null;
+      add({
+        group: 'adopt', track: null, title: p.name, desc: p.description || '',
+        status: p.maturity || 'project',
+        links: [p.live && { label: 'Live', url: p.live }, repoUrl && { label: 'Repo', url: repoUrl }, p.spec_url && { label: p.spec_label || 'Spec', url: p.spec_url }].filter(Boolean),
+        meta: [p.brand, p.adopt_type && (p.adopt_type + ' it')].filter(Boolean).join(' - '),
+        dedupe: null
+      });
+    });
+
+    render();
+  });
+
+  function chipRow(host, list, cur, onPick) {
+    host.innerHTML = '';
+    list.forEach(function (o) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'bd-chip' + (o.key === cur ? ' on' : '');
+      b.textContent = o.label;
+      b.addEventListener('click', function () { onPick(o.key); });
+      host.appendChild(b);
+    });
+  }
+
+  function counts() {
+    var c = { building: 0, submitted: 0, adopt: 0 };
+    items.forEach(function (i) { c[i.group] = (c[i.group] || 0) + 1; });
+    return c;
+  }
+
+  function render() {
+    var c = counts();
+    chipRow(document.getElementById('bd-groups'), GROUPS.map(function (g) {
+      return { key: g.key, label: g.key === 'all' ? ('All (' + items.length + ')') : (g.label + ' (' + (c[g.key] || 0) + ')') };
+    }), state.group, function (k) { state.group = k; render(); });
+    chipRow(document.getElementById('bd-tracks'), [{ key: 'all', label: 'Any track' }].concat(TRACKS.map(function (t) {
+      return { key: t, label: t.charAt(0).toUpperCase() + t.slice(1) };
+    })), state.track, function (k) { state.track = k; render(); });
+
+    var shown = items.filter(function (i) {
+      if (state.group !== 'all' && i.group !== state.group) return false;
+      if (state.track !== 'all' && i.track !== state.track) return false;
+      return true;
+    });
+
+    var grid = document.getElementById('bd-grid');
+    var empty = document.getElementById('bd-empty');
+    document.getElementById('bd-count').textContent = shown.length + ' of ' + items.length + ' showing';
+    grid.innerHTML = shown.map(function (i) {
+      var badges = '<span class="badge grp">' + esc(i.group === 'building' ? 'Building' : i.group === 'submitted' ? 'Submitted' : 'Adopt') + '</span>';
+      if (i.track) badges += '<span class="badge ' + i.track + '">' + esc(i.track) + '</span>';
+      if (i.status) badges += '<span class="badge">' + esc(i.status) + '</span>';
+      var links = (i.links || []).map(function (l) {
+        var ext = l.url.indexOf('/') === 0 ? '' : ' target="_blank" rel="noopener"';
+        return '<a href="' + esc(l.url) + '"' + ext + '>' + esc(l.label) + '</a>';
+      }).join('');
+      return '<article class="pcard g-' + i.group + '">' +
+        '<div class="badges">' + badges + '</div>' +
+        '<h3>' + esc(i.title) + '</h3>' +
+        (i.desc ? '<p>' + esc(i.desc) + '</p>' : '<p></p>') +
+        (links ? '<div class="plinks">' + links + '</div>' : '') +
+        (i.meta ? '<div class="pmeta">' + esc(i.meta) + '</div>' : '') +
+        '</article>';
+    }).join('');
+    empty.hidden = shown.length > 0;
+  }
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

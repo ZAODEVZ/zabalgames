@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "_schema": "Curated candidate slate for the quadratic vote at /vote. status: 'preview' (page shows but voting is closed) | 'open' (ballots accepted) | 'closed' (results only). Voting is per track - each voter gets 100 voice credits in each track, and giving a candidate N votes costs N-squared credits (max 10 votes on one). Add one entry per person per track as they qualify; handle is the Farcaster handle (no @), used for display, link, and dedupe. Keep the slate honest and small - this is the ballot the api validates against.",
+  "status": "preview",
+  "tracks": {
+    "artist": [],
+    "builder": [
+      {
+        "handle": "ghostmintops",
+        "name": "Brandon (ghostmintops)",
+        "url": "https://farcaster.xyz/ghostmintops",
+        "note": "ZABAL Recording Scout, Proof Drop for ZABAL Gamez, WaveWarZ Gravity Board, DreamNet Publishing mini-app, ZAO music (Suno). 6 distinct builds across creator + builder tracks."
+      },
+      {
+        "handle": "branth",
+        "name": "Branth (KORRO / Korrocorp)",
+        "url": "https://x.com/korrocorp",
+        "note": "WaveWarZ Bridge Portal (Base->SOL on-ramp via Mayan + Wormhole, mainnet live), Solana MCP, AI music generator, Onklaud 5 (multi-model AI pipeline)."
+      },
+      {
+        "handle": "jdwalka",
+        "name": "jdwalka (JohnDaWalka)",
+        "url": "https://farcaster.xyz/jdwalka",
+        "note": "Chroma Poker (Farcaster poker app with live HUD + hand history), Crypto Prediction Orchestrator (22+ exchanges), predictive-apps Farcaster Spaces host."
+      }
+    ],
+    "creator": []
+  }
+}

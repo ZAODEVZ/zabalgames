@@ -31,6 +31,14 @@
     {
       "source": "/submissions/:id",
       "destination": "/submissions.html"
+    },
+    {
+      "source": "/enter/:track",
+      "destination": "/enter.html?track=:track"
+    },
+    {
+      "source": "/guest/:handle",
+      "destination": "/guest.html?handle=:handle"
     }
   ],
   "redirects": [
@@ -127,6 +135,19 @@
         {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/submission-status",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
         }
       ]
     },

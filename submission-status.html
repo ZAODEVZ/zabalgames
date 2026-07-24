@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Status - ZABAL Gamez</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#141e27">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    body { background: #141e27; }
+    .status-shell { max-width: 760px; margin: 0 auto; }
+    .status-hero { padding-bottom: 0.7rem; text-align: left; }
+    .status-private { border: 1px solid rgba(224,221,170,0.36); border-radius: 10px; padding: 0.75rem 0.9rem; color: #e0ddaa; font-size: 0.84rem; line-height: 1.5; background: rgba(224,221,170,0.06); }
+    .status-card { border: 1px solid var(--border); border-radius: 14px; background: var(--surface-2); padding: 1rem; margin-top: 1rem; }
+    .status-card h2 { margin: 0.45rem 0 0.35rem; font-size: 1.2rem; }
+    .status-pill { display: inline-block; border: 1px solid rgba(224,221,170,0.38); border-radius: 999px; color: #e0ddaa; padding: 0.25rem 0.6rem; font: 600 0.72rem 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.04em; }
+    .status-note { margin: 0.8rem 0; border-left: 3px solid var(--gold); padding: 0.2rem 0 0.2rem 0.75rem; color: var(--text); white-space: pre-wrap; }
+    .status-meta { color: var(--text-muted); font-size: 0.84rem; line-height: 1.55; }
+    .status-form { display: grid; gap: 0.8rem; margin-top: 0.9rem; }
+    .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .status-field { display: grid; gap: 0.3rem; min-width: 0; }
+    .status-field.full { grid-column: 1 / -1; }
+    .status-field label { color: var(--text); font-size: 0.84rem; font-weight: 700; }
+    .status-field input, .status-field select, .status-field textarea { box-sizing: border-box; width: 100%; border: 1px solid var(--border-hover); border-radius: 8px; background: #0f171e; color: var(--text); padding: 0.65rem 0.7rem; font: inherit; }
+    .status-field textarea { min-height: 105px; resize: vertical; }
+    .status-check { display: flex; align-items: flex-start; gap: 8px; color: var(--text-muted); font-size: 0.84rem; line-height: 1.4; }
+    .status-button { min-height: 44px; border: 1px solid #e0ddaa; border-radius: 9px; background: #e0ddaa; color: #141e27; padding: 0.65rem 1rem; font: inherit; font-weight: 800; cursor: pointer; }
+    .status-button:disabled { opacity: 0.55; cursor: default; }
+    .status-message { min-height: 1.25rem; color: var(--text-muted); font-size: 0.84rem; }
+    .status-message.error { color: #ff8d8d; }
+    .status-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+    .status-links a { color: var(--cyan); }
+    @media (max-width: 600px) { .status-grid { grid-template-columns: 1fr; } .status-field.full { grid-column: auto; } }
+  </style>
+</head>
+<body>
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/submit">Submit</a>
+      <a href="/submissions">Projects</a>
+      <a href="/info">Details</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="container status-shell">
+    <header class="hero status-hero">
+      <div class="hero-eyebrow">Private project record</div>
+      <h1>Your project <span class="accent">status</span></h1>
+      <p class="lead">Check review progress, respond to a note, or improve your project details without creating an account.</p>
+    </header>
+
+    <p class="status-private">Anyone with this full link can edit this project. Keep it private. The token is not included in the public gallery.</p>
+    <div id="status-message" class="status-message" role="status">Loading project...</div>
+    <section id="status-card" class="status-card" hidden aria-live="polite">
+      <span class="status-pill" id="status-pill"></span>
+      <h2 id="status-title"></h2>
+      <p class="status-meta" id="status-meta"></p>
+      <div class="status-note" id="status-review" hidden></div>
+
+      <form id="status-form" class="status-form" novalidate>
+        <div class="status-grid">
+          <div class="status-field full">
+            <label for="status-project">Project name</label>
+            <input id="status-project" maxlength="160" required>
+          </div>
+          <div class="status-field full">
+            <label for="status-description">Description</label>
+            <textarea id="status-description" maxlength="2000"></textarea>
+          </div>
+          <div class="status-field">
+            <label for="status-builder">Builder or team</label>
+            <input id="status-builder" maxlength="80">
+          </div>
+          <div class="status-field">
+            <label for="status-email">Receipt email</label>
+            <input id="status-email" type="email" maxlength="120">
+          </div>
+          <div class="status-field">
+            <label for="status-track">Track</label>
+            <select id="status-track">
+              <option value="">Not sure yet</option>
+              <option value="artist">Artist</option>
+              <option value="builder">Builder</option>
+              <option value="creator">Creator</option>
+            </select>
+          </div>
+          <div class="status-field">
+            <label for="status-stage">Project stage</label>
+            <select id="status-stage">
+              <option value="building">Building</option>
+              <option value="ready">Ready</option>
+            </select>
+          </div>
+          <div class="status-field full">
+            <label for="status-demo">Demo or public link</label>
+            <input id="status-demo" type="url" maxlength="500" inputmode="url">
+          </div>
+          <div class="status-field full">
+            <label for="status-repo">Repository</label>
+            <input id="status-repo" type="url" maxlength="500" inputmode="url">
+          </div>
+          <div class="status-field full">
+            <label for="status-media">Media or article link</label>
+            <input id="status-media" type="url" maxlength="500" inputmode="url">
+          </div>
+          <div class="status-field full">
+            <label for="status-help">Help wanted</label>
+            <input id="status-help" maxlength="500" placeholder="What feedback, skill, or introduction would help?">
+          </div>
+          <div class="status-field full">
+            <label for="status-progress">Latest progress update</label>
+            <textarea id="status-progress" maxlength="500" placeholder="What changed since your last update?"></textarea>
+          </div>
+        </div>
+        <label class="status-check" id="ready-wrap">
+          <input id="status-ready" type="checkbox">
+          <span>Send this version to The ZAO for review. Leave unchecked to save it as a work in progress.</span>
+        </label>
+        <button class="status-button" id="status-save" type="submit">Save project</button>
+        <div class="status-message" id="save-message" role="status"></div>
+      </form>
+    </section>
+
+    <div class="status-links"><a href="/submissions">Browse public projects</a><a href="mailto:info@thezao.com">Ask info@thezao.com for help</a></div>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var params = new URLSearchParams(location.search);
+  var id = params.get('id') || '';
+  var token = params.get('token') || '';
+  var card = document.getElementById('status-card');
+  var message = document.getElementById('status-message');
+  var saveMessage = document.getElementById('save-message');
+  var saveButton = document.getElementById('status-save');
+  var current = null;
+
+  function el(name) { return document.getElementById(name); }
+  function value(name) { return (el(name).value || '').trim(); }
+  function setMessage(target, text, error) { target.textContent = text || ''; target.className = 'status-message' + (error ? ' error' : ''); }
+  function statusLabel(status) {
+    return ({ draft: 'Building', pending: 'In review', approved: 'Published', changes_requested: 'Changes requested', rejected: 'Not published' })[status] || status || 'Pending';
+  }
+  function fill(s) {
+    current = s; var f = s.fields || {};
+    el('status-pill').textContent = statusLabel(s.status);
+    el('status-title').textContent = f.project || s.project || 'Untitled project';
+    el('status-meta').textContent = 'Receipt #' + s.id + ' / last updated ' + new Date(s.updatedTs || s.ts || Date.now()).toLocaleString();
+    el('status-review').hidden = !s.reviewNote;
+    el('status-review').textContent = s.reviewNote ? 'Review note: ' + s.reviewNote : '';
+    el('status-project').value = f.project || s.project || '';
+    el('status-description').value = f.description || s.answer || '';
+    el('status-builder').value = f.builderName || s.handle || '';
+    el('status-email').value = s.email || '';
+    el('status-track').value = f.track || '';
+    el('status-stage').value = f.stage || (s.status === 'draft' ? 'building' : 'ready');
+    el('status-demo').value = f.demoUrl || '';
+    el('status-repo').value = f.repoUrl || '';
+    el('status-media').value = f.mediaUrl || '';
+    el('status-help').value = f.helpWanted || '';
+    el('status-progress').value = f.progressUpdate || '';
+    el('ready-wrap').hidden = !(s.status === 'draft' || s.status === 'changes_requested' || s.status === 'rejected');
+    card.hidden = false; setMessage(message, '', false);
+  }
+  function load() {
+    if (!id || !token) { setMessage(message, 'This private link is incomplete. Open the full link from your submission receipt or email info@thezao.com.', true); return; }
+    fetch('/api/submissions?id=' + encodeURIComponent(id) + '&token=' + encodeURIComponent(token), { cache: 'no-store', referrerPolicy: 'no-referrer' })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.ok || !data.owner) throw new Error('Private project not found or token invalid.');
+        fill(data.submission);
+      })
+      .catch(function (error) { setMessage(message, error.message + ' Email info@thezao.com if you need a fresh link.', true); });
+  }
+  el('status-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (!current) return;
+    if (!value('status-project')) { setMessage(saveMessage, 'Add a project name.', true); el('status-project').focus(); return; }
+    var builder = value('status-builder');
+    saveButton.disabled = true; setMessage(saveMessage, 'Saving...', false);
+    fetch('/api/submissions', {
+      method: 'POST', referrerPolicy: 'no-referrer', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'update', id: id, editToken: token,
+        answer: value('status-description'), email: value('status-email'),
+        handle: builder.charAt(0) === '@' ? builder.slice(1) : '',
+        ready: el('status-ready').checked,
+        fields: {
+          project: value('status-project'), description: value('status-description'), builderName: builder,
+          track: value('status-track'), stage: value('status-stage'), demoUrl: value('status-demo'),
+          repoUrl: value('status-repo'), mediaUrl: value('status-media'), helpWanted: value('status-help'),
+          progressUpdate: value('status-progress')
+        }
+      })
+    }).then(function (r) { return r.json(); }).then(function (data) {
+      if (!data || !data.ok) throw new Error((data && data.error) || 'save failed');
+      fill(data.submission); el('status-ready').checked = false;
+      setMessage(saveMessage, data.status === 'pending' ? 'Saved and sent for review.' : 'Project saved.', false);
+    }).catch(function (error) { setMessage(saveMessage, 'Could not save. ' + error.message, true); })
+      .then(function () { saveButton.disabled = false; });
+  });
+  load();
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

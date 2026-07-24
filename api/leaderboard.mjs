@@ -1,15 +1,19 @@
-// ZABAL Gamez - the ZAO 2048 leaderboard (GET /api/leaderboard).
+// ZABAL Gamez leaderboard gateway (GET /api/leaderboard).
 //
-// This is now the canonical ZAO 2048 leaderboard. It serves the cumulative ALL-TIME
-// high scores (best-per-player) from the game, so a single URL can be registered in
-// Empire Builder to reward the top players, and the same data drives the /leaderboard page.
+// The default response remains the registered ZAO 2048 apiLeaderboard contract. The
+// public season page and /live use ?format=standings, which selects only real scoring:
+// builder QV results when votes exist, otherwise the live Empire Builder /zabal board.
 //
 //   GET /api/leaderboard               -> Empire Builder apiLeaderboard: [{ address, score }]
-//                                         (players with a verified Base address only)
-//   GET /api/leaderboard?format=full   -> [{ rank, handle, username, score, address }] for the page
+//   GET /api/leaderboard?format=full   -> ZAO 2048 rows for arcade clients
+//   GET /api/leaderboard?format=standings&limit=50
+//        -> { ok, source, sourceLabel, scoreLabel, entries, qv }
 //
 // Source: zabal:game:all:zao2048 (written by api/game.mjs), addresses from zabal:game:addr.
 // Empty array when KV is not configured.
+
+import qvHandler from './qv-vote.mjs';
+import empireHandler from './empire-leaderboard.mjs';
 
 export const config = { runtime: 'edge' };
 
@@ -41,9 +45,107 @@ async function kvPipeline(cmds) {
   return r.json();
 }
 
+function clamp(v, lo, hi, fallback) {
+  const n = parseInt(v, 10);
+  return Number.isFinite(n) ? Math.min(hi, Math.max(lo, n)) : fallback;
+}
+
+async function readJson(response) {
+  try { return await response.json(); } catch { return null; }
+}
+
+async function readQv(req) {
+  try {
+    const url = new URL(req.url);
+    url.pathname = '/api/qv-vote';
+    url.search = '?track=builder&results=1';
+    const response = await qvHandler(new Request(url, { method: 'GET', headers: req.headers }));
+    return await readJson(response);
+  } catch { return null; }
+}
+
+async function candidateMap(req) {
+  try {
+    const url = new URL('/data/vote-candidates.json', req.url);
+    const response = await fetch(url, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(3000) });
+    if (!response.ok) return {};
+    const doc = await response.json();
+    const out = {};
+    (((doc || {}).tracks || {}).builder || []).forEach((candidate) => {
+      if (!candidate || !candidate.handle) return;
+      out[String(candidate.handle).replace(/^@+/, '').toLowerCase()] = candidate;
+    });
+    return out;
+  } catch { return {}; }
+}
+
+async function readEmpire(req, limit) {
+  try {
+    const url = new URL(req.url);
+    url.pathname = '/api/empire-leaderboard';
+    url.search = '?board=' + encodeURIComponent('/zabal') + '&limit=' + limit;
+    const response = await empireHandler(new Request(url, { method: 'GET', headers: req.headers }));
+    return await readJson(response);
+  } catch { return null; }
+}
+
+async function seasonStandings(req, limit) {
+  const qv = await readQv(req);
+  const qvRows = qv && Array.isArray(qv.results) ? qv.results : [];
+
+  // QV is the builder-specific result once real ballots exist. Candidate metadata only
+  // adds audited names/profile links; rank and score always come from the live tally.
+  if (qv && qv.ok && qv.configured && qvRows.length) {
+    const candidates = await candidateMap(req);
+    const entries = qvRows.slice(0, limit).map((row, index) => {
+      const handle = String(row.handle || '').replace(/^@+/, '').toLowerCase();
+      const candidate = candidates[handle] || {};
+      return {
+        rank: index + 1,
+        username: handle,
+        displayName: candidate.name || handle,
+        score: Number(row.votes),
+        profileUrl: candidate.url || (handle ? 'https://farcaster.xyz/' + handle : null),
+        fid: null,
+        pfpUrl: null,
+      };
+    });
+    return {
+      ok: true, configured: true, source: 'qv', sourceLabel: 'Builder QV ballot',
+      scoreLabel: 'votes', status: qv.status || null, count: entries.length,
+      entries, qv: { status: qv.status || null, voters: Number(qv.voters) || 0, results: qvRows.length },
+    };
+  }
+
+  // Before the builder ballot has results, the real-time Empire board is the only
+  // scored season source. Keep the QV status in the response so the UI can explain
+  // why it is showing Empire points and switch automatically once ballots land.
+  const empire = await readEmpire(req, limit);
+  if (empire && empire.ok && empire.configured) {
+    const entries = Array.isArray(empire.entries) ? empire.entries.slice(0, limit) : [];
+    return {
+      ok: true, configured: true, source: 'empire', sourceLabel: 'Empire Builder /zabal',
+      scoreLabel: 'points', status: 'live', count: entries.length, entries,
+      board: empire.board || null,
+      qv: qv ? { status: qv.status || null, voters: Number(qv.voters) || 0, results: qvRows.length } : null,
+    };
+  }
+
+  return {
+    ok: true, configured: !!(qv && qv.configured), source: 'pending',
+    sourceLabel: 'Builder standings', scoreLabel: 'points', status: (qv && qv.status) || 'pending',
+    count: 0, entries: [],
+    qv: qv ? { status: qv.status || null, voters: Number(qv.voters) || 0, results: qvRows.length } : null,
+  };
+}
+
 export default async function handler(req) {
   const url = new URL(req.url);
-  const full = url.searchParams.get('format') === 'full';
+  const format = url.searchParams.get('format') || '';
+  if (format === 'standings') {
+    return json(await seasonStandings(req, clamp(url.searchParams.get('limit'), 1, 100, 50)), 30);
+  }
+  const full = format === 'full';
   if (!KV_URL || !KV_TOKEN) return json([]);
 
   let flat = [];

@@ -508,6 +508,28 @@ window.ZABAL.submitScore = async function submitScore(game, score, nonceData) {
 
 // Enter the live raffle (verified). Inside a Mini App, POSTs to /api/raffle with a Quick
 // Auth JWT - one distinct entry per FID. Returns { ok, count } or { ok:false, reason }.
+// Cast (or change) a quadratic-vote ballot for a track. Inside a Mini App, POSTs to
+// /api/qv-vote with a Quick Auth JWT so it is tied to the voter's FID - one ballot per FID
+// per track, re-voting overwrites. allocations = { handle: votes }. Returns
+// { ok, creditsUsed, yourVotes } or { ok:false, reason }.
+window.ZABAL.qvVote = async function qvVote(track, allocations) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !sdk || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/qv-vote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ track: track, allocations: allocations }),
+    });
+    if (!res.ok) { const e = await res.json().catch(() => ({})); return { ok: false, reason: (e && e.error) || 'server' }; }
+    const data = await res.json().catch(() => ({}));
+    if (data && data.ok) window.ZABAL.haptic('light');
+    return data && data.ok ? { ok: true, creditsUsed: data.creditsUsed, yourVotes: data.yourVotes } : { ok: false, reason: data.error || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 window.ZABAL.enterRaffle = async function enterRaffle(event) {
   try {
     const ctx = await getContext();

@@ -57,8 +57,11 @@
       ['Changelog', '/changelog.html']
     ]],
     ['Build', [
-      ['Enter the July build', '/enter.html'],
-      ["This season's builds", '/submissions'],
+      ['Submit a project', '/submit'],
+      ["This season's projects", '/submissions'],
+      ['Live build board', '/board'],
+      ['Register a repository', '/enter.html'],
+      ['Co-Lab prompts', '/colab'],
       ['Adoptable projects', '/projects.html'],
       ['Build ideas', '/build-ideas.html'],
       ['Builder playbook', '/playbook.html'],
@@ -136,6 +139,15 @@
   btn.setAttribute('aria-controls', 'site-menu-panel');
   btn.textContent = 'Menu';
   menu.insertBefore(btn, menu.firstChild);
+
+  // Mobile keeps one compact row: brand, the primary conversion action, and Menu.
+  // The page-specific links remain available in the directory panel.
+  var quickSubmit = document.createElement('a');
+  quickSubmit.className = 'site-submit-link';
+  quickSubmit.href = '/submit';
+  quickSubmit.textContent = 'Submit';
+  if (here === '/submit') quickSubmit.setAttribute('aria-current', 'page');
+  menu.insertBefore(quickSubmit, btn);
 
   var panel = document.createElement('div');
   panel.className = 'site-menu-panel';
