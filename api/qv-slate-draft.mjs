@@ -1,29 +1,31 @@
-// ZABAL Gamez - draft vote-slate generator from submissions (GET /api/qv-slate-draft).
+// ZABAL Gamez - draft vote-slate generator from live builder submissions (GET /api/qv-slate-draft).
 //
-// Admin-gated endpoint that reads zabalgames_submissions from Supabase, maps them to
-// candidate shape, groups by track (derived from creator_type), and returns a DRAFT
-// slate. The draft is read-only; an admin manually approves and commits the JSON.
+// Admin-gated, read-only. Reads data/builder-submissions.json - the durable source of
+// truth for builder submissions (the same file /api/submissions promotes to the public
+// board) - keeps the builders explicitly flagged qv_ballot:true (the human curation gate),
+// groups them by their track, and returns a DRAFT slate.
 //
-// This bridges submissions -> vote candidates, but does NOT auto-publish.
-// The admin uses the result to update data/vote-candidates.json explicitly.
+// This bridges submissions -> vote candidates but does NOT auto-publish and NEVER opens
+// voting. An admin reviews the draft in /slate-admin.html and commits vote-candidates.json
+// via a PR. No Supabase, no service-role key, no PII: builder-submissions.json is a public
+// curated file, so tracks are read straight off the record (no creator_type mapping).
 //
 //   GET /api/qv-slate-draft
 //        Authorization: Bearer <ADMIN_KEY>
-//        -> { ok, version, status: 'draft', tracks: { artist:[], builder:[], creator:[], _needs_track:[] } }
+//        -> { ok, configured, status:'draft', submission_count, candidate_count,
+//             tracks: { artist:[], builder:[], creator:[], _needs_track:[] } }
 //
-// Each candidate: { handle, name, url, note, submission_status, submission_id, creator_type }
+// Each candidate: { handle, name, url, note, track, submission_status, project_count }
 //
 // Admin auth: constant-time check of Authorization: Bearer <ADMIN_KEY> header.
-// Supabase access: via REST API (SUPABASE_URL + service-role key). Falls back to
-// { configured: false } if Supabase is not available.
+// Falls back to { configured: false } if the source file cannot be read.
 
 import { DOMAIN } from '../lib/auth.mjs';
 
 export const config = { runtime: 'edge' };
 
 const ADMIN_KEY = process.env.ADMIN_KEY || '';
-const SUPABASE_URL = process.env.SUPABASE_URL || '';
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+const TRACKS = ['artist', 'builder', 'creator'];
 
 const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 
@@ -60,66 +62,54 @@ function cleanText(s, n) {
   return String(s == null ? '' : s).replace(/[<>]/g, '').trim().slice(0, n || 500);
 }
 
-// Map creator_type to vote track. Returns null if ambiguous (goes to _needs_track).
-function mapTrack(creatorType) {
-  const t = String(creatorType || '').toLowerCase().trim();
-  if (t === 'artist' || t === 'musician') return 'artist';
-  if (t === 'builder' || t === 'developer') return 'builder';
-  if (t === 'creator' || t === 'media') return 'creator';
-  return null; // ambiguous; admin must assign
+// Validate a builder-submissions.json track. Returns the track or null (ambiguous ->
+// _needs_track, admin must assign). builder-submissions.json already uses the exact
+// vote-track vocabulary, so this is a whitelist check, not a mapping.
+function normTrack(t) {
+  const v = String(t || '').toLowerCase().trim();
+  return TRACKS.indexOf(v) >= 0 ? v : null;
 }
 
-// Build a short note from the submission metadata.
-function buildNote(sub) {
+// Short note from the builder record: project count + sparkz potential.
+function buildNote(rec) {
   const parts = [];
-  if (sub.creator_type) parts.push(cleanText(sub.creator_type, 30));
-  const urls = [];
-  if (sub.phase1_url) urls.push('demo');
-  if (sub.phase1_repo) urls.push('repo');
-  if (sub.phase1_cast) urls.push('cast');
-  if (urls.length) parts.push(`${urls.join('/')}`);
+  const n = Array.isArray(rec.projects) ? rec.projects.length : 0;
+  if (n) parts.push(`${n} project${n === 1 ? '' : 's'}`);
+  if (rec.sparkz_potential) parts.push(`${cleanText(rec.sparkz_potential, 20)} potential`);
   return parts.join(' - ');
 }
 
-// Fetch submissions from Supabase (status != 'rejected', no wallet/email PII).
-async function fetchSubmissions() {
-  if (!SUPABASE_URL || !SUPABASE_KEY) return null;
+// Transform a builder-submissions.json record into a vote candidate draft.
+// record.builder = Farcaster handle, record.farcaster = profile url.
+function recordToCandidate(rec) {
+  const handle = cleanHandle(rec.builder);
+  if (!handle) return null;
+  const track = normTrack(rec.track);
+  let url = cleanText(rec.farcaster, 500);
+  if (!/^https?:\/\//i.test(url)) url = `https://farcaster.xyz/${handle}`;
+  return {
+    handle,
+    name: cleanText(rec.name, 80) || handle,
+    url,
+    note: buildNote(rec),
+    track: track || undefined, // undefined = goes to _needs_track
+    creator_type: cleanText(rec.track, 30), // raw track string, for the admin _needs_track display
+    submission_status: cleanText(rec.status, 20),
+    project_count: Array.isArray(rec.projects) ? rec.projects.length : 0,
+  };
+}
+
+// Read the durable builder submissions file. Same source as /api/submissions' board feed.
+async function fetchBuilders(req) {
   try {
-    const url = new URL('/rest/v1/zabalgames_submissions', SUPABASE_URL);
-    url.searchParams.set('select', 'id,name,farcaster,github,phase1_url,phase1_repo,phase1_demo,phase1_cast,creator_type,status');
-    url.searchParams.set('order', 'created_at.desc');
-    const r = await fetch(url.toString(), {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${SUPABASE_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      signal: AbortSignal.timeout(5000),
-    });
+    const src = new URL('/data/builder-submissions.json', req.url);
+    const r = await fetch(src.toString(), { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(5000) });
     if (!r.ok) return null;
-    return await r.json();
+    const doc = await r.json();
+    return Array.isArray(doc && doc.submissions) ? doc.submissions : [];
   } catch {
     return null;
   }
-}
-
-// Transform a submission into a vote candidate draft.
-function submissionToCandidate(sub) {
-  const handle = cleanHandle(sub.farcaster);
-  if (!handle) return null;
-  const track = mapTrack(sub.creator_type);
-  const url = cleanText(sub.phase1_url, 500) || `https://farcaster.xyz/${handle}`;
-  const note = buildNote(sub);
-  return {
-    handle,
-    name: cleanText(sub.name, 80) || handle,
-    url,
-    note,
-    submission_status: sub.status,
-    submission_id: sub.id,
-    creator_type: cleanText(sub.creator_type, 30),
-    track: track || undefined, // undefined = goes to _needs_track
-  };
 }
 
 export default async function handler(req) {
@@ -130,28 +120,24 @@ export default async function handler(req) {
 
   if (req.method !== 'GET') return cors({ ok: false, error: 'method not allowed' });
 
-  // Check admin auth.
+  // Admin gate.
   if (!adminOk(req)) return cors({ ok: false, error: 'forbidden' });
 
-  // Check Supabase config.
-  const subs = await fetchSubmissions();
+  const subs = await fetchBuilders(req);
   if (subs === null) {
-    return cors({ ok: false, configured: false, error: 'Supabase not configured' });
+    return cors({ ok: false, configured: false, error: 'builder-submissions.json unavailable' });
   }
 
-  // Transform submissions to candidates and group by track.
+  // Keep only builders explicitly flagged for the ballot, dedupe by handle, group by track.
   const tracks = { artist: [], builder: [], creator: [], _needs_track: [] };
   const seenHandles = new Set();
 
-  for (const sub of subs) {
-    const candidate = submissionToCandidate(sub);
+  for (const rec of subs) {
+    if (!rec || rec.qv_ballot !== true) continue; // human curation gate
+    const candidate = recordToCandidate(rec);
     if (!candidate) continue;
-
-    // Dedupe by handle (newest first, so first occurrence is kept).
     if (seenHandles.has(candidate.handle)) continue;
     seenHandles.add(candidate.handle);
-
-    // Group by track.
     if (candidate.track) {
       tracks[candidate.track].push(candidate);
     } else {
@@ -161,10 +147,10 @@ export default async function handler(req) {
 
   return cors({
     ok: true,
-    version: 1,
+    version: 2,
     configured: true,
     status: 'draft',
-    note: 'This is a read-only draft. An admin manually approves and commits to data/vote-candidates.json.',
+    note: 'Read-only draft from builder-submissions.json (qv_ballot:true). Approve and commit data/vote-candidates.json via a PR.',
     submission_count: subs.length,
     candidate_count: seenHandles.size,
     tracks,

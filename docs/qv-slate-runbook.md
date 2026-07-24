@@ -6,7 +6,7 @@ Review and approve submissions to become voteable candidates. This is a manual p
 
 The slate (vote candidates) is curated. Submissions must be explicitly reviewed and approved before they become voteable. The bridge has two parts:
 
-1. **Draft generator** (`/api/qv-slate-draft`) - reads all submissions from Supabase, maps them to candidate shape, groups by track, returns a draft.
+1. **Draft generator** (`/api/qv-slate-draft`) - reads `data/builder-submissions.json`, keeps the builders flagged `qv_ballot: true`, groups them by their `track`, returns a draft.
 2. **Admin tool** (`/slate-admin.html`) - web UI to review the draft, assign ambiguous tracks, select which to approve, and generate the merged JSON.
 
 ## Process
@@ -23,7 +23,7 @@ The draft shows three sections:
 - **artist** - visual/musical builds
 - **builder** - developer/technical builds  
 - **creator** - media/distribution builds
-- **Needs Track Assignment** - submissions where `creator_type` didn't map clearly to a track
+- **Needs Track Assignment** - builders whose `track` value is missing or not one of artist/builder/creator
 
 ### 3. Assign ambiguous tracks
 
@@ -103,26 +103,21 @@ This is destructive and irreversible - confirm you are clearing TEST data first.
 
 - **No auto-publish.** Submissions are never automatically voteable. A human must always review and open a PR.
 - **Existing entries are preserved.** The admin tool loads the live slate and unions it with your selections (existing wins on a handle conflict), so hand-curated candidates are never dropped. If the live slate cannot be loaded, the tool refuses to generate.
-- **Track mapping.** The draft generator maps `creator_type` to tracks:
-  - "artist", "musician" -> artist
-  - "builder", "developer" -> builder
-  - "creator", "media" -> creator
-  - Anything else -> _needs_track (human assignment)
-- **Submissions table.** Candidates are read from `zabalgames_submissions` in Supabase. Only active submissions (not rejected) are included.
-- **URL fallback.** If a submission has no `phase1_url`, the candidate URL defaults to `https://farcaster.xyz/<handle>`.
+- **Curation gate.** Only builders with `qv_ballot: true` in `data/builder-submissions.json` enter the draft. Promote a builder onto the ballot by setting that flag in the file (its own edit / PR). Track comes straight off the record's `track` field - no mapping. A missing or invalid track lands the builder in _needs_track for manual assignment.
+- **Source file.** Candidates are read from `data/builder-submissions.json` (public curated file, `submissions[]`). This is the same durable source `/api/submissions` promotes to the public board.
+- **URL fallback.** If a builder record has no `farcaster` url, the candidate URL defaults to `https://farcaster.xyz/<handle>` (from the `builder` field).
 
 ## Environment
 
 The endpoint requires:
-- `ADMIN_KEY` env var - constant-time checked against the Authorization header
-- `SUPABASE_URL` env var - Supabase project URL
-- `SUPABASE_SERVICE_ROLE_KEY` env var - service-role key (server-side only, never exposed)
+- `ADMIN_KEY` env var - constant-time checked against the Authorization header.
 
-If Supabase is not configured, the endpoint returns `{ configured: false }`.
+No Supabase or service-role key is needed - the source is a public repo file. If the
+file cannot be read, the endpoint returns `{ configured: false }`.
 
 ## Troubleshooting
 
 - **"Admin key required"** - Enter your ADMIN_KEY in the prompt. It's stored in localStorage for this tab.
-- **"Supabase not configured"** - Contact the infra team. The endpoint needs Supabase connection details.
-- **Candidates missing** - Check that submissions have `farcaster` and `name` fields. Submissions without a Farcaster handle are skipped.
+- **"builder-submissions.json unavailable"** - The endpoint could not fetch `/data/builder-submissions.json`. Confirm the file is deployed and valid JSON (`node scripts/validate.mjs`).
+- **Candidates missing** - Check the builder has `qv_ballot: true` and a `builder` handle in `data/builder-submissions.json`. Records without the flag or a handle are skipped.
 - **Track assignment stuck** - Refresh the page and try again.
