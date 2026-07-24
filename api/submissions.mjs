@@ -15,21 +15,24 @@
 //   POST /api/submissions { action:'publish', id, editToken? }  (+ Quick Auth) -> { ok, id, status }
 //        (draft -> pending; owner only: verified FID match or the editToken returned at creation)
 //   GET  /api/submissions?status=pending       + admin -> { ok, queue:[...] }  (review queue)
+//   POST /api/submissions { action:'delete', id } + admin       -> hard-delete (moderation)
 //   POST /api/submissions { action:'approve'|'reject'|'request_changes', id } + admin
 //   POST /api/submissions { action:'update', id, editToken, fields... } -> owner update
 //
-// Admin = Authorization: Bearer <ADMIN_KEY> (constant-time, fail closed - same as raffle/daily-cast).
+// Submissions AUTO-ACCEPT: a new project goes live on the board immediately (status
+// 'approved'); moderation is delete-after (a whitelisted admin removes bad ones), and
+// low-quality entries simply get no votes. Admin auth (verifyAdmin, see lib/auth.mjs) is
+// a Farcaster Quick Auth JWT whose FID is on the allowlist, OR a Bearer ADMIN_KEY fallback.
 // Quick Auth on submit is optional; when present it binds the submission to a verified FID/handle
 // (needed later for the one-per-identity collectible gate). Graceful no-op without KV.
 
-import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
+import { verifyQuickAuth, verifyAdmin, DOMAIN } from '../lib/auth.mjs';
 import { RateLimiter } from '../lib/rate-limit.mjs';
 
 export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
-const ADMIN_KEY = process.env.ADMIN_KEY || '';
 const INGEST_KEY = process.env.SUBMISSION_INGEST_SECRET || '';
 const NOTIFY_URL = process.env.SUBMIT_NOTIFY_URL || ''; // optional Telegram/webhook for new-submission alerts
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
@@ -81,7 +84,6 @@ function bearer(req) {
   const auth = req.headers.get('authorization') || '';
   return auth.startsWith('Bearer ') ? auth.slice(7) : '';
 }
-function adminOk(req) { return !!ADMIN_KEY && timingEq(bearer(req), ADMIN_KEY); }
 function ingestOk(req) { return !!INGEST_KEY && timingEq(bearer(req), INGEST_KEY); }
 
 function cleanSlug(s, n) { return String(s || '').trim().toLowerCase().replace(/[^a-z0-9_.-]/g, '').slice(0, n || 40); }
@@ -312,7 +314,7 @@ export default async function handler(req) {
 
     // admin review queue
     if (url.searchParams.get('status') === 'pending') {
-      if (!adminOk(req)) return json({ ok: false, error: 'forbidden' });
+      if (!(await verifyAdmin(req, DOMAIN)).ok) return json({ ok: false, error: 'forbidden' });
       let ids = [];
       try { const r = await kvPipeline([['SMEMBERS', 'zabal:subs:bystatus:pending']]); ids = (r[0] && r[0].result) || []; }
       catch { return json({ ok: true, queue: [] }); }
@@ -364,7 +366,7 @@ export default async function handler(req) {
     // Admin moderation. Requesting changes keeps the private owner link active and
     // emails the submitter when an address is available.
     if (body.action === 'approve' || body.action === 'reject' || body.action === 'request_changes') {
-      if (!adminOk(req)) return json({ ok: false, error: 'forbidden' });
+      if (!(await verifyAdmin(req, DOMAIN)).ok) return json({ ok: false, error: 'forbidden' });
       const id = cleanSlug(body.id, 24);
       if (!id) return json({ ok: false, error: 'id required' });
       let s = null;
@@ -419,6 +421,29 @@ export default async function handler(req) {
       return json({ ok: true, id, status: s.status, agentToken });
     }
 
+    // Admin moderation: hard-delete an inappropriate submission. Post-publish moderation
+    // is the model now - submissions auto-accept, and a whitelisted admin removes bad ones.
+    if (body.action === 'delete') {
+      if (!(await verifyAdmin(req, DOMAIN)).ok) return json({ ok: false, error: 'forbidden' });
+      const id = cleanSlug(body.id, 24);
+      if (!id) return json({ ok: false, error: 'id required' });
+      let s = null;
+      try { const r = await kvPipeline([['GET', `zabal:sub:v1:${id}`]]); if (r[0] && r[0].result) s = JSON.parse(r[0].result); }
+      catch { return json({ ok: false, error: 'kv' }); }
+      if (!s) return json({ ok: true, id, deleted: true }); // already gone
+      const cmds = [
+        ['DEL', `zabal:sub:v1:${id}`],
+        ['ZREM', 'zabal:subs:recent', id],
+        ['ZREM', 'zabal:subs:approved', id],
+        ['ZREM', 'zabal:subs:drafts', id],
+        ['SREM', `zabal:subs:bystatus:${s.status}`, id],
+      ];
+      if (s.handle) cmds.push(['SREM', `zabal:subs:byhandle:${s.handle}`, id]);
+      try { await kvPipeline(cmds); } catch { return json({ ok: false, error: 'kv-write' }); }
+      await notify(`DELETED submission #${id} (${s.promptId || ''})${s.handle ? ' from @' + s.handle : ''}.`);
+      return json({ ok: true, id, deleted: true });
+    }
+
     // The creator can update a project through the private token returned at intake.
     if (body.action === 'update') {
       const id = cleanSlug(body.id, 24);
@@ -427,7 +452,7 @@ export default async function handler(req) {
       try { const r = await kvPipeline([['GET', `zabal:sub:v1:${id}`]]); if (r[0] && r[0].result) s = JSON.parse(r[0].result); }
       catch { return json({ ok: false, error: 'kv' }); }
       if (!s || s.kind !== 'project') return json({ ok: false, error: 'not found' });
-      const isAdmin = adminOk(req);
+      const isAdmin = (await verifyAdmin(req, DOMAIN)).ok;
       const owner = isAdmin || (s.editToken && timingEq(body.editToken, s.editToken));
       if (!owner) return json({ ok: false, error: 'forbidden' });
       const prev = s.status;
@@ -437,27 +462,30 @@ export default async function handler(req) {
       if (body.handle != null) s.handle = cleanSlug(body.handle, 40) || null;
       if (body.email != null) s.email = cleanEmail(body.email);
       s.updatedTs = Date.now();
-      const shouldReview = (!isAdmin && prev === 'approved') || (body.ready === true && (prev === 'draft' || prev === 'changes_requested' || prev === 'rejected'));
-      if (shouldReview) {
-        s.status = 'pending';
+      // Auto-accept model: editing a live project keeps it live (moderation is delete-after).
+      // Marking a WIP ready publishes it straight to the board, not to a review queue.
+      const shouldPublish = (body.ready === true && (prev === 'draft' || prev === 'changes_requested' || prev === 'rejected'));
+      if (shouldPublish) {
+        s.status = 'approved';
         s.reviewNote = null;
+        s.publishedTs = Date.now();
         try {
           await kvPipeline([
             ['SET', `zabal:sub:v1:${id}`, JSON.stringify(s)],
             ['SREM', `zabal:subs:bystatus:${prev}`, id],
-            ['SADD', 'zabal:subs:bystatus:pending', id],
+            ['SADD', 'zabal:subs:bystatus:approved', id],
             ['ZREM', 'zabal:subs:drafts', id],
-            ['ZREM', 'zabal:subs:approved', id],
+            ['ZADD', 'zabal:subs:approved', String(s.ts || Date.now()), id],
           ]);
         } catch { return json({ ok: false, error: 'kv-write' }); }
-        await notify(`Project #${id} updated and sent for review.`);
+        await notify(`Project #${id} published live${s.handle ? ' by @' + s.handle : ''}.`);
         if (s.email) {
           const statusLink = `${SITE_URL}/submission-status?id=${encodeURIComponent(id)}&token=${encodeURIComponent(s.editToken || '')}`;
           await sendEmail({
             to: s.email,
-            subject: `ZABAL Gamez project #${id} updated`,
-            text: `Your updated project is back in review.\n\nOpen the private status page:\n${statusLink}\n\nQuestions? Reply to this message or email ${CONTACT_EMAIL}.`,
-            idempotencyKey: `submission-${id}-review-${s.updatedTs}`,
+            subject: `ZABAL Gamez project #${id} is live`,
+            text: `Your project is live on the board at ${SITE_URL}/submissions.\n\nOpen the private status page:\n${statusLink}\n\nQuestions? Reply to this message or email ${CONTACT_EMAIL}.`,
+            idempotencyKey: `submission-${id}-live-${s.updatedTs}`,
           });
         }
       } else {
@@ -485,18 +513,19 @@ export default async function handler(req) {
       }
       if (!owner && s.editToken && body.editToken && String(body.editToken) === s.editToken) owner = true;
       if (!owner) return json({ ok: false, error: 'forbidden' });
-      s.status = 'pending';
+      s.status = 'approved';
       s.publishedTs = Date.now();
       try {
         await kvPipeline([
           ['SET', `zabal:sub:v1:${id}`, JSON.stringify(s)],
           ['SREM', 'zabal:subs:bystatus:draft', id],
-          ['SADD', 'zabal:subs:bystatus:pending', id],
+          ['SADD', 'zabal:subs:bystatus:approved', id],
           ['ZREM', 'zabal:subs:drafts', id],
+          ['ZADD', 'zabal:subs:approved', String(s.ts || Date.now()), id],
         ]);
       } catch { return json({ ok: false, error: 'kv-write' }); }
-      await notify(`Draft #${id} (${s.promptId}) published for review${s.handle ? ' by @' + s.handle : ''}.`);
-      return json({ ok: true, id, status: 'pending' });
+      await notify(`Draft #${id} (${s.promptId}) published live${s.handle ? ' by @' + s.handle : ''}.`);
+      return json({ ok: true, id, status: 'approved' });
     }
 
     // ---- create a submission ----
@@ -580,7 +609,7 @@ export default async function handler(req) {
         contentType: cleanText(a && (a.contentType || a.content_type), 120) || 'application/octet-stream',
         size: Math.max(0, Math.min(25 * 1024 * 1024, Number(a && a.size) || 0)),
       })) : [],
-      status: isDraft ? 'draft' : 'pending',
+      status: isDraft ? 'draft' : 'approved', // auto-accept: submissions go live on the board; moderation is delete-after, and low-quality entries simply get no votes
       ts: Date.now(),
       updatedTs: Date.now(),
     };
@@ -591,6 +620,7 @@ export default async function handler(req) {
       ['SADD', `zabal:subs:bystatus:${sub.status}`, id],
     ];
     if (isDraft) cmds.push(['ZADD', 'zabal:subs:drafts', String(sub.ts), id]);
+    if (sub.status === 'approved') cmds.push(['ZADD', 'zabal:subs:approved', String(sub.ts), id]); // auto-accept -> straight onto the public board feed
     if (fid) cmds.push(['INCR', `zabal:subs:byfid:${fid}`]);
     if (handle) cmds.push(['SADD', `zabal:subs:byhandle:${handle}`, id]); // lets the agent gateway list a builder's own submissions
     if (sourceHash) cmds.push(['SET', `zabal:subs:source:${sourceHash}`, id]);
@@ -598,13 +628,13 @@ export default async function handler(req) {
 
     await notify(isDraft
       ? `New WIP draft #${id} on "${promptId}"${handle ? ' from @' + handle : ''} - public at /submissions?id=${id}.`
-      : `New ZABAL Gamez submission #${id} on "${promptId}"${handle ? ' from @' + handle : ''} - review it.`);
+      : `New ZABAL Gamez submission #${id} on "${promptId}"${handle ? ' from @' + handle : ''} - live at /submissions?id=${id}.`);
     if (sub.email && kind === 'project') {
       const statusLink = `${SITE_URL}/submission-status?id=${encodeURIComponent(id)}${editToken ? `&token=${encodeURIComponent(editToken)}` : ''}`;
       await sendEmail({
         to: sub.email,
         subject: `ZABAL Gamez project received: ${project}`,
-        text: `We received "${project}" as project #${id}.\n\nStatus: ${projectStage(sub.status)}\nOpen and update the private record:\n${statusLink}\n\nThe project is reviewed before it becomes public. Questions? Reply to this message or email ${CONTACT_EMAIL}.`,
+        text: `We received "${project}" as project #${id}.\n\nIt is live on the board at ${SITE_URL}/submissions now. Open and update your private record any time:\n${statusLink}\n\nQuestions? Reply to this message or email ${CONTACT_EMAIL}.`,
         idempotencyKey: `submission-${id}-received`,
       });
     }
