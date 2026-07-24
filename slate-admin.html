@@ -211,40 +211,90 @@ function renderDraft(draft) {
   });
 
   window.generateSlate = async () => {
-    const selected = {};
-    for (const track of ['artist', 'builder', 'creator']) {
-      selected[track] = [];
+    const TRACKS = ['artist', 'builder', 'creator'];
+
+    // Load the live curated slate FIRST so its existing candidates are never wiped.
+    // The generated JSON is a union of (existing curated) + (newly selected), deduped
+    // by handle within each track, existing winning on conflict (keeps hand-curated
+    // notes/urls). If this fetch fails we refuse to generate rather than silently drop
+    // the live slate.
+    let existing = null;
+    try {
+      const r = await fetch('/data/vote-candidates.json', { cache: 'no-store' });
+      if (r.ok) existing = await r.json();
+    } catch (e) { existing = null; }
+
+    const output = document.getElementById('output-section');
+    if (!existing || typeof existing !== 'object' || !existing.tracks) {
+      output.innerHTML = `
+        <div class="output-section">
+          <p style="color: var(--gold);">Could not load the current /data/vote-candidates.json.
+          Refusing to generate a slate that might drop existing curated candidates.
+          Check the file is reachable, then try again.</p>
+        </div>
+      `;
+      return;
+    }
+
+    const out = {};
+    const seen = {};
+    let existingCount = 0;
+    let addedCount = 0;
+
+    // 1) Preserve every existing curated entry (existing wins on handle conflict).
+    for (const track of TRACKS) {
+      out[track] = [];
+      seen[track] = new Set();
+      for (const c of (existing.tracks[track] || [])) {
+        if (!c || !c.handle || seen[track].has(c.handle)) continue;
+        seen[track].add(c.handle);
+        out[track].push(c);
+        existingCount++;
+      }
+    }
+
+    // 2) Add newly-selected submission candidates, skipping handles already present.
+    for (const track of TRACKS) {
       document.querySelectorAll(`.candidate-row[data-handle]`).forEach(row => {
-        if (row.querySelector('.select-candidate').checked) {
-          const handle = row.dataset.handle;
-          const candidate = (tracks[track] || []).find(c => c.handle === handle);
-          if (candidate) {
-            selected[track].push({ handle: candidate.handle, name: candidate.name, url: candidate.url, note: candidate.note });
-          }
+        if (!row.querySelector('.select-candidate').checked) return;
+        const handle = row.dataset.handle;
+        const candidate = (tracks[track] || []).find(c => c.handle === handle);
+        if (candidate && !seen[track].has(candidate.handle)) {
+          seen[track].add(candidate.handle);
+          out[track].push({ handle: candidate.handle, name: candidate.name, url: candidate.url, note: candidate.note });
+          addedCount++;
         }
       });
     }
 
-    // Add needs_track assignments
+    // 3) needs_track assignments (also deduped against existing).
     for (const c of (tracks._needs_track || [])) {
       const assigned = trackAssignments[c.handle];
-      if (assigned && selected[assigned]) {
-        selected[assigned].push({ handle: c.handle, name: c.name, url: c.url, note: c.note });
+      if (assigned && out[assigned] && !seen[assigned].has(c.handle)) {
+        seen[assigned].add(c.handle);
+        out[assigned].push({ handle: c.handle, name: c.name, url: c.url, note: c.note });
+        addedCount++;
       }
     }
 
+    // Preserve the live status field. Opening voting stays a separate, explicit human
+    // decision (edit status to 'open' in the PR) - this tool never flips it.
+    const liveStatus = existing.status || 'preview';
     const merged = {
-      version: 1,
-      _schema: draft._schema || "Curated candidate slate for the quadratic vote.",
-      status: 'preview',
-      tracks: selected,
+      version: existing.version || 1,
+      _schema: existing._schema || draft._schema || "Curated candidate slate for the quadratic vote.",
+      status: liveStatus,
+      tracks: out,
     };
 
     const json = JSON.stringify(merged, null, 2);
-    const output = document.getElementById('output-section');
     output.innerHTML = `
       <div class="output-section">
-        <p style="color: var(--text-dim); font-size: 0.9rem;">Copy this JSON and commit it to <code>data/vote-candidates.json</code>:</p>
+        <p style="color: var(--text-dim); font-size: 0.9rem;">
+          Preserved ${existingCount} existing + added ${addedCount} new = ${existingCount + addedCount} candidates.
+          Live status is <code>${escapeHtml(liveStatus)}</code> (unchanged - opening voting is a separate step).
+          Commit this to <code>data/vote-candidates.json</code> via a PR:
+        </p>
         <button class="copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
         <div class="output-code" id="output-code">${escapeHtml(json)}</div>
       </div>
@@ -256,7 +306,7 @@ function renderDraft(draft) {
 function copyToClipboard() {
   if (window.slateJson) {
     navigator.clipboard.writeText(window.slateJson).then(() => {
-      alert('Copied to clipboard! Paste into data/vote-candidates.json and commit.');
+      alert('Copied. Open a PR that replaces data/vote-candidates.json with this - do not push to main.');
     }).catch(() => {
       alert('Failed to copy. Select the JSON manually.');
     });

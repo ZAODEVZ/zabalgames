@@ -35,39 +35,74 @@ Uncheck any candidate you want to exclude. Approved candidates remain checked.
 
 ### 5. Generate merged JSON
 
-Click "Generate Merged JSON". The page shows the JSON that merges:
-- All approved selected candidates (organized by track)
-- The existing hand-curated entries from `data/vote-candidates.json` (not shown, but preserved)
+Click "Generate Merged JSON". The tool fetches the live `/data/vote-candidates.json`
+first and outputs a UNION of:
+- every existing curated candidate in the live slate (preserved, existing wins on a
+  handle conflict so hand-written notes/urls survive), plus
+- the approved submission candidates you selected.
 
-Actually: the JSON currently only includes the selected new candidates. If you want to preserve existing entries, you must manually merge them. See note below.
+The output header shows `preserved N existing + added M new` and the current `status`.
+If the live slate cannot be loaded the tool refuses to generate rather than risk
+dropping curated candidates - fix the fetch and retry.
 
-### 6. Commit the slate
+The generated JSON keeps the live `status` unchanged. Generating a slate never opens
+voting; that is a separate, explicit step (7).
 
-Copy the JSON and manually edit `data/vote-candidates.json`:
+### 6. Commit the slate (PR only - never push main)
+
+Copy the JSON and open a PR that replaces `data/vote-candidates.json` with it:
 ```bash
-# Clone or pull the latest repo
-git checkout main
-git pull origin main
-
-# Edit the file
-nano data/vote-candidates.json
-# OR use your editor of choice
-# Replace the entire file with the new JSON from the admin tool
-
-# Commit
+git fetch origin --prune
+git checkout -b ws/qv-slate-update origin/main
+# paste the copied JSON as the full new contents of data/vote-candidates.json
+node scripts/validate.mjs        # confirm it parses
 git add data/vote-candidates.json
 git commit -m "feat(qv): approve <N> new candidates for vote"
-git push origin main
+git push origin ws/qv-slate-update
+gh pr create --base main --head ws/qv-slate-update \
+  --title "qv: approve <N> new candidates" --body "New slate from /slate-admin."
 ```
+Zaal reviews and merges. Do not push to `main` directly.
 
-### 7. Open voting
+### 7. Open voting (Zaal's call, its own PR)
 
-After merging the slate to main, the vote page (`/vote`) automatically reads the new slate from `data/vote-candidates.json`. If the `status` field is `"open"`, voting is live. If `status` is `"preview"`, voting is closed (but the page is visible for testing).
+Adding candidates does NOT open voting. The vote (`/api/qv-vote`) only accepts ballots
+while `data/vote-candidates.json` has `"status": "open"`. Opening voting is a public
+launch and a separate PR:
+- `"status": "preview"` - vote page visible, ballots refused (default / testing).
+- `"status": "open"` - ballots accepted.
+- `"status": "closed"` - results only, ballots refused.
+
+To open: a one-line PR flipping `status` to `"open"`, merged by Zaal. The edge fetches
+the slate per request (short cache), so the change takes effect within seconds of deploy.
+
+## Revert and clearing test votes
+
+**Close voting fast.** Open (or merge) a PR flipping `status` back to `"preview"` or
+`"closed"`. Once deployed, `/api/qv-vote` refuses new POSTs within seconds - no ballot
+data is touched.
+
+**Clear test ballots.** Votes live in Upstash Redis, not in the repo. There is no
+endpoint that wipes them (by design); do it from the Upstash console or REST. Two keys
+per track:
+- `qv:ballots:<track>` - HASH, one entry per voter FID (private ballots)
+- `qv:tally:<track>` - ZSET, aggregate votes per candidate handle
+
+Delete all six (artist/builder/creator) with the injected KV env vars (never paste the
+token into code or chat):
+```bash
+curl -s "$KV_REST_API_URL/pipeline" \
+  -H "Authorization: Bearer $KV_REST_API_TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '[["DEL","qv:ballots:artist"],["DEL","qv:ballots:builder"],["DEL","qv:ballots:creator"],["DEL","qv:tally:artist"],["DEL","qv:tally:builder"],["DEL","qv:tally:creator"]]'
+```
+Run this before a real open if any test ballots were cast, so the tally starts clean.
+This is destructive and irreversible - confirm you are clearing TEST data first.
 
 ## Notes
 
-- **No auto-publish.** Submissions are never automatically voteable. A human must always review and commit.
-- **Preserve existing entries.** The current admin tool only shows new candidates. If you have hand-curated entries in the slate already, you must manually merge them with the new JSON before committing. Future version should preserve existing entries automatically.
+- **No auto-publish.** Submissions are never automatically voteable. A human must always review and open a PR.
+- **Existing entries are preserved.** The admin tool loads the live slate and unions it with your selections (existing wins on a handle conflict), so hand-curated candidates are never dropped. If the live slate cannot be loaded, the tool refuses to generate.
 - **Track mapping.** The draft generator maps `creator_type` to tracks:
   - "artist", "musician" -> artist
   - "builder", "developer" -> builder
