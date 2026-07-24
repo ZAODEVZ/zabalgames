@@ -56,9 +56,12 @@ Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL`
 
 - We are NOT on Supabase for the activity backend. `db/supabase-activity.sql` was a
   short-lived migration that got reverted - it has been deleted. Do not reintroduce it.
-- `db/schema.sql` is a SEPARATE, still-unwired Postgres schema for the **July project
-  submission gallery** (`info.html`, client-side). That's a July decision and the team
-  is currently out of free Supabase project slots - revisit then.
+- `db/schema.sql` is a SEPARATE, unwired Postgres schema originally drafted for a
+  client-side Supabase submission gallery in `info.html`. That gallery (+ its Supabase
+  CDN script and placeholder keys) has been REMOVED - the live submission system is
+  `/submit` -> `/api/submissions` (Upstash Redis + `data/builder-submissions.json`) with
+  the public board at `/submissions` (PR #559). `db/schema.sql` now has no consumer; treat
+  it as dead unless a future Postgres-backed feature revives it.
 
 ## Architecture / key files
 Static HTML + inline `<style>`/scripts per page, shared helpers in `assets/*.js`, edge
@@ -68,8 +71,9 @@ functions in `api/`. 60+ pages; not all listed here - this is the load-bearing s
 - `index.html` - homepage (join button + track chips, join counter, workshop schedule
   render + filter, top-CTA cast, phase-aware countdown).
 - `lead.html` - workshop-lead page: Cal.com embed (`CAL_LINK` var) + Formspree fallback.
-- `info.html` - all-the-details; mentor Formspree form; Cal iframe; July submission
-  gallery (client-side Supabase, placeholder keys, NOT live).
+- `info.html` - all-the-details; mentor Formspree form; Cal iframe. Points to the live
+  submission system (`/submit`, `/submissions`); the old client-side Supabase form +
+  gallery were removed (no external CDN, no placeholder keys).
 - `enter.html` - July build entry: register a wallet + GitHub repo, building-in-public board.
 - `play.html` / `game.html` - ZAO 2048 + arcade hub (monthly $Zabal top-10). The arcade
   also holds `game/build-quiz.html` (what-should-you-build) + `game/zao-trivia.html`
