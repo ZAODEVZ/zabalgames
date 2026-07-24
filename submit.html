@@ -79,6 +79,21 @@
       .submit-panel { padding: 0.85rem; }
       .submit-actions .submit-btn { flex: 1 1 100%; }
     }
+    .zg-modal[hidden] { display: none; }
+    .zg-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .zg-modal-backdrop { position: absolute; inset: 0; background: rgba(5,7,10,0.74); }
+    .zg-modal-card { position: relative; z-index: 1; width: 100%; max-width: 440px; background: var(--surface, #12131a); border: 1px solid var(--border-hover, #2a2933); border-radius: 16px; padding: 1.5rem 1.3rem 1.2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.55); }
+    .zg-modal-x { position: absolute; top: 0.55rem; right: 0.75rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0.2rem 0.4rem; }
+    .zg-modal-title { margin: 0 0 0.3rem; font-size: 1.3rem; }
+    .zg-modal-sub { margin: 0 0 0.9rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+    .zg-modal-link { display: inline-block; color: var(--cyan); font-weight: 700; text-decoration: none; word-break: break-all; font-size: 0.9rem; }
+    .zg-modal-note { margin: 0.35rem 0 1.1rem; color: var(--text-dim, #8a8895); font-size: 0.8rem; line-height: 1.45; }
+    .zg-modal-share { border-top: 1px solid var(--border, #1f1e26); padding-top: 1rem; }
+    .zg-modal-share-label { display: block; font-size: 0.82rem; color: var(--text); font-weight: 700; margin-bottom: 0.6rem; }
+    .zg-modal-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .zg-share-btn { flex: 1 1 0; min-width: 132px; min-height: 44px; border-radius: 9px; border: 1px solid var(--border-hover); background: var(--surface-2); color: var(--text); font: inherit; font-weight: 700; cursor: pointer; }
+    .zg-share-btn.fc { background: #7c65c1; border-color: #7c65c1; color: #fff; }
+    .zg-modal-done { margin-top: 1rem; width: 100%; min-height: 44px; border-radius: 9px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font: inherit; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -207,6 +222,25 @@
   </div>
 </main>
 
+<div class="zg-modal" id="share-modal" hidden>
+  <div class="zg-modal-backdrop" data-close></div>
+  <div class="zg-modal-card" role="dialog" aria-modal="true" aria-labelledby="sm-title">
+    <button class="zg-modal-x" type="button" data-close aria-label="Close">&times;</button>
+    <h2 class="zg-modal-title" id="sm-title">You are in</h2>
+    <p class="zg-modal-sub" id="sm-sub"></p>
+    <a class="zg-modal-link" id="sm-link" href="#">Open your private status page</a>
+    <p class="zg-modal-note">Save that link - it is how you check status or edit your project, with no account.</p>
+    <div class="zg-modal-share">
+      <span class="zg-modal-share-label">Tell people you built something</span>
+      <div class="zg-modal-btns">
+        <button class="zg-share-btn fc" type="button" id="sm-share-fc">Share to Farcaster</button>
+        <button class="zg-share-btn x" type="button" id="sm-share-x">Share to X</button>
+      </div>
+    </div>
+    <button class="zg-modal-done" type="button" data-close>Done</button>
+  </div>
+</div>
+
 <script>
 (function () {
   'use strict';
@@ -218,6 +252,49 @@
   function value(id) { return (document.getElementById(id).value || '').trim(); }
   function setStatus(message, kind) { status.className = 'submit-status' + (kind ? ' ' + kind : ''); status.innerHTML = message || ''; }
   function esc(s) { return String(s || '').replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+
+  // Post-submit confirmation + share modal. The share links to the public board and
+  // its referral bakes in via window.ZABAL.composeCast; a web fallback covers desktop.
+  var shareModal = document.getElementById('share-modal');
+  var smSub = document.getElementById('sm-sub');
+  var smLink = document.getElementById('sm-link');
+  var lastFocus = null;
+  var SHARE_URL = 'https://zabalgamez.com/submissions';
+  var SHARE_TEXT = "ZM\n\nJust put a build into ZABAL Gamez - The ZAO's build-a-thon. The community votes on the best work. See what people are building:";
+
+  function closeShareModal() {
+    shareModal.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
+  }
+  function openShareModal(label, id, link) {
+    smSub.textContent = label + ' Receipt #' + id + '.';
+    smLink.setAttribute('href', link);
+    lastFocus = document.activeElement;
+    shareModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    var done = shareModal.querySelector('.zg-modal-done');
+    if (done && done.focus) { try { done.focus(); } catch (e) {} }
+  }
+  function doShare(platform) {
+    try {
+      if (window.ZABAL && window.ZABAL.share) {
+        window.ZABAL.share({ platform: platform, text: SHARE_TEXT, url: SHARE_URL, target: 'submit-share' });
+        return;
+      }
+    } catch (e) { /* fall through to web intent */ }
+    var joined = encodeURIComponent(SHARE_TEXT + ' ' + SHARE_URL);
+    var u = platform === 'x'
+      ? 'https://twitter.com/intent/tweet?text=' + joined
+      : 'https://farcaster.xyz/~/compose?text=' + encodeURIComponent(SHARE_TEXT) + '&embeds[]=' + encodeURIComponent(SHARE_URL) + '&channelKey=zabal';
+    window.open(u, '_blank', 'noopener');
+  }
+  if (shareModal) {
+    Array.prototype.forEach.call(shareModal.querySelectorAll('[data-close]'), function (el) { el.addEventListener('click', closeShareModal); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !shareModal.hidden) closeShareModal(); });
+    document.getElementById('sm-share-fc').addEventListener('click', function () { doShare('farcaster'); });
+    document.getElementById('sm-share-x').addEventListener('click', function () { doShare('x'); });
+  }
   function validUrl(s) { if (!s) return ''; try { var u = new URL(s); return /^https?:$/.test(u.protocol) ? u.toString() : ''; } catch (e) { return ''; } }
   function syncButton() { button.textContent = stage.value === 'building' ? 'Save as work in progress' : 'Send for review'; }
 
@@ -282,6 +359,7 @@
       var label = data.status === 'draft' ? 'Your work in progress is saved.' : 'Your project is in review.';
       setStatus('<strong>' + esc(label) + '</strong> Receipt #' + esc(data.id) + '. <a href="' + esc(link) + '" style="color:var(--cyan);">Open your private status page</a> and save that link.', 'ok');
       form.reset(); stage.value = 'ready'; syncButton();
+      try { openShareModal(label, data.id, link); } catch (e) { /* inline status above is the fallback */ }
     }).catch(function (error) {
       button.disabled = false;
       setStatus('Could not submit right now. Email info@thezao.com or try again. ' + esc(error.message || ''), 'err');
