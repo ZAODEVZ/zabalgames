@@ -105,6 +105,7 @@
       <a href="/enter">register a build for July</a>, or <a href="/recordings">learn from the workshop archive</a>.
       One more thing worth knowing: a pull request that adds one small thing to any lab repo counts as a submission.
     </p>
+    <div style="margin-top: 1.1rem;"><button class="btn btn-primary" id="st-cast" type="button">Cast that you are in</button></div>
   </section>
 
 </div>
@@ -130,6 +131,18 @@
         if (window.ZABAL && window.ZABAL.join) window.ZABAL.join({ track: t, source: 'start' });
       } catch (e) {}
     });
+  });
+
+  // The "I'm in" moment is the best share moment the funnel has.
+  var castBtn = document.getElementById('st-cast');
+  if (castBtn) castBtn.addEventListener('click', function () {
+    var t = '';
+    try { t = localStorage.getItem(KEY) || ''; } catch (e) {}
+    var text = 'ZM. I just started my ZABAL Gamez run' + (t ? ' on the ' + t + ' track' : '') + '. Free, 3 months, live right now - start yours:';
+    var url = 'https://zabalgamez.com/start';
+    if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' });
+    else window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener');
+    castBtn.textContent = 'Composer opened'; setTimeout(function () { castBtn.textContent = 'Cast that you are in'; }, 1800);
   });
 
   // Carry ?ref= through to the next steps so the referrer stays credited on

@@ -8,10 +8,21 @@
   <link rel="canonical" href="https://zabalgamez.com/builder">
   <meta property="og:title" content="Builder profile - ZABAL Gamez">
   <meta property="og:description" content="Every piece a builder has submitted this season, grouped by track: artist, builder, creator.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/builder">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="ZABAL Gamez">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Builder profile - ZABAL Gamez">
+  <meta name="twitter:description" content="Every piece a builder has submitted this season, grouped by track: artist, builder, creator.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the season card","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/builder","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the season card","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/builder","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
   <link rel="preconnect" href="https://esm.sh">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +63,7 @@
     <h1 id="bp-title">Loading...</h1>
     <p class="hero-sub" id="bp-sub"></p>
     <div id="bp-stats" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:0.8rem;"></div>
-    <div style="margin-top:0.9rem;"><button class="btn btn-primary" id="bp-share" type="button">Share this season card</button></div>
+    <div style="margin-top:0.9rem;"><button class="btn btn-primary" id="bp-share" type="button" hidden>Share this season card</button></div>
   </header>
 
   <section class="section"><div id="bp-body"><p class="bp-empty">Loading submissions...</p></div></section>
@@ -78,6 +89,11 @@
 
   var TRACKS = [['artist', 'Artist'], ['builder', 'Builder'], ['creator', 'Creator'], ['', 'Other']];
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  // Keep third-party platform names off the card - "poidh" is our backend ingest
+  // source, not a name we surface. Map it to plain ZABAL Gamez language, and strip
+  // it out of free-text notes too (those are raw cast/UGC text, not site copy).
+  function sourceLabel(s) { var m = { poidh: 'Open Pot', magnetiq: 'Magnetiq', manual: 'site' }; return m[s] || esc(s || 'site'); }
+  function deJargon(s) { return String(s == null ? '' : s).replace(/\bpoidh\b/gi, '').replace(/\s{2,}/g, ' ').trim(); }
 
   // The season card: everything this builder is this season, in one shareable view.
   var CARD = { subs: 0, wips: 0, wins: 0, ranks: [] };
@@ -101,6 +117,9 @@
       CARD.ranks.slice(0, 3).forEach(function (r) { h += pill('#' + r.rank, r.game); });
       stats.innerHTML = h;
     }
+    // Only offer the share once the card has real numbers to cast.
+    var sb = document.getElementById('bp-share');
+    if (sb) sb.hidden = false;
   }
   function grab(url, fn) {
     pending++;
@@ -129,11 +148,12 @@
       group.forEach(function (it) {
         var link = it.url || it.repo || '#';
         var proj = (it.source === 'poidh' && (!it.project || it.project === 'poidh')) ? 'ZABAL Gamez Open Pot' : (it.project || 'Untitled');
+        var note = it.note ? deJargon(String(it.note).replace(/\s+/g, ' ')) : '';
         html += '<div class="bp-item">'
           + '<a href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(proj) + '</a>'
           + '<span class="bp-badge">' + esc(it.type || 'link') + '</span>'
-          + '<span class="bp-src">via ' + esc(it.source || 'site') + '</span>'
-          + (it.note ? '<div class="bp-note">' + esc(it.note) + '</div>' : '')
+          + '<span class="bp-src">via ' + sourceLabel(it.source) + '</span>'
+          + (note ? '<div class="bp-note">' + esc(note) + '</div>' : '')
           + '</div>';
       });
     });

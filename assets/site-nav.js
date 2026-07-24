@@ -11,6 +11,40 @@
 (function () {
   var menu = document.querySelector('.arcade-nav-menu');
   var nav = document.querySelector('.arcade-nav');
+
+  // Keep --nav-h honest: the nav wraps to two rows on narrow screens, and sticky
+  // elements (e.g. the /quest HUD) offset by this variable. Measure the real height.
+  if (nav) {
+    var setNavH = function () { document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px'); };
+    setNavH();
+    window.addEventListener('resize', setNavH);
+  }
+
+  // Standard footer on every page: pages that ship without a static .arcade-foot
+  // get the shared directory injected, so no surface is a dead end.
+  if (!document.querySelector('.arcade-foot')) {
+    var foot = document.createElement('footer');
+    foot.className = 'arcade-foot';
+    foot.setAttribute('aria-label', 'Site directory');
+    foot.innerHTML = '<div class="arcade-foot-inner">'
+      + '<div class="arcade-foot-brand">'
+      + '<span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>'
+      + "<p class=\"arcade-foot-tag\">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>"
+      + '<a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>'
+      + '</div>'
+      + '<nav class="arcade-foot-col" aria-label="Play"><h4>Play</h4>'
+      + '<a href="/">Home</a><a href="/info.html">All the Details</a><a href="/#schedule">Schedule</a><a href="/game">Arcade</a><a href="/quest">Season Run</a><a href="/live.html">Live - What\'s On Now</a></nav>'
+      + '<nav class="arcade-foot-col" aria-label="Season"><h4>Season</h4>'
+      + '<a href="/enter.html">Enter the Build</a><a href="/submissions">This Season\'s Builds</a><a href="/projects.html">Projects</a><a href="/finals.html">Finals</a><a href="/winners.html">Winners</a></nav>'
+      + '<nav class="arcade-foot-col" aria-label="Data"><h4>Data</h4>'
+      + '<a href="/recordings.html">Recordings</a><a href="/streams.html">Streams</a><a href="/recaps.html">Session Recaps</a><a href="/changelog.html">Changelog</a></nav>'
+      + '<nav class="arcade-foot-col" aria-label="Connect"><h4>Connect</h4>'
+      + '<a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a><a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a><a href="/press.html">Press + Media Kit</a><a href="/links.html">All Links</a><a href="/share.html">Share</a></nav>'
+      + '</div>'
+      + '<div class="arcade-foot-bottom"><span class="pixel">INSERT COIN</span><span>zabalgamez.com - built with The ZAO</span></div>';
+    document.body.appendChild(foot);
+  }
+
   if (!menu || !nav || document.querySelector('.site-menu-btn')) return;
 
   var GROUPS = [
@@ -58,7 +92,6 @@
     ]],
     ['Explore', [
       ['ZAO graph', '/graph.html'],
-      ['Leaderboard', '/leaderboard.html'],
       ['Winners', '/winners.html'],
       ['Big wins on-chain', '/wins.html'],
       ['Research library', '/research.html'],

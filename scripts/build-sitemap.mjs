@@ -21,7 +21,10 @@ const ORIGIN = 'https://zabalgamez.com';
 const write = process.argv.includes('--write');
 
 // Internal / non-indexable pages to leave OUT of the sitemap.
-const EXCLUDE = new Set(['status', 'review']); // internal ops dashboard, not public content
+const EXCLUDE = new Set([
+  'status', 'review', // internal ops dashboard, not public content
+  'leaderboard', 'referrers' // dead redirect stubs since the web-standalone cleanup (d867c85) - real content moved to /game and /play?ref=
+]);
 
 // Non-HTML routes worth keeping in the sitemap (e.g. the AI context file).
 const EXTRA = ['/llms.txt'];

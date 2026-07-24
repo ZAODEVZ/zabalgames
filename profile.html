@@ -119,7 +119,7 @@
     var links = (p.links || []).map(function (l) { return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label || host(l.url)) + ' -&gt;</a>'; }).join('');
     var gh = (p.github ? '<a href="https://github.com/' + esc(p.github) + '" target="_blank" rel="noopener">github.com/' + esc(p.github) + (p.github_verified ? '' : ' (unverified)') + '</a>' : '');
     return '<div class="pf-head">' +
-        (p.pfp ? '<img class="pf-pfp" src="' + esc(p.pfp) + '" alt="">' : '<div class="pf-pfp"></div>') +
+        (p.pfp ? '<img class="pf-pfp" src="' + esc(p.pfp) + '" alt="@' + esc(p.handle) + '">' : '<div class="pf-pfp"></div>') +
         '<div><h1 class="pf-name">' + esc(p.displayName || ('@' + p.handle)) + '</h1>' +
         '<div class="pf-handle">zabalgamez.com/profiles/' + esc(p.handle) + '</div></div></div>' +
       badges(p) +
@@ -238,7 +238,7 @@
         wSave.disabled = true; wS.textContent = 'Attaching...';
         post({ action: 'wallet', wallet: w }).then(function (d) {
           wSave.disabled = false;
-          if (d && d.ok) { wS.textContent = 'Wallet attached - your collectible will airdrop here when approved.'; profile.wallet = w; }
+          if (d && d.ok) { wS.textContent = 'Wallet attached - your collectible arrives here when approved.'; profile.wallet = w; }
           else { wS.textContent = (d && (d.error || d.reason)) || 'Could not attach.'; }
         }).catch(function () { wSave.disabled = false; wS.textContent = 'Error.'; });
       });
@@ -254,7 +254,7 @@
   }
 
   function boot() {
-    if (!HANDLE) { root.innerHTML = '<p class="empty" style="padding-top:1rem;">No profile handle. Open a profile at /profiles/&lt;handle&gt;.</p>'; return; }
+    if (!HANDLE) { root.innerHTML = '<p class="empty" style="padding-top:1rem;">No profile handle. Open a profile at /profiles/&lt;handle&gt;, or head to <a href="/submissions">this season\'s builds</a> to find builders.</p>'; return; }
     var pUser = (window.ZABAL && window.ZABAL.getUser) ? window.ZABAL.getUser().catch(function () { return null; }) : Promise.resolve(null);
     Promise.all([
       fetch('/api/profile?handle=' + encodeURIComponent(HANDLE), { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return null; }),
@@ -263,7 +263,7 @@
       var d = res[0]; var u = res[1];
       myFid = u && u.fid ? u.fid : null;
       profile = (d && d.profile) || null;
-      if (d && d.configured === false) { root.innerHTML = '<p class="empty" style="padding-top:1rem;">Profiles are not live yet. Check back soon.</p>'; return; }
+      if (d && d.configured === false) { root.innerHTML = '<p class="empty" style="padding-top:1rem;">Profiles are not live yet. Meanwhile, <a href="/submit">make a submission</a> or browse <a href="/recordings">the recordings</a>.</p>'; return; }
       decideEdit();
       renderView();
     });

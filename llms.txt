@@ -332,7 +332,7 @@ A season submission can be any piece of IP for ZABAL Gamez, ZABAL, or The ZAO - 
 video, an image, a track, art, or a repo - across three tracks: artist, builder, creator. You
 do not have to register: submissions are ingested automatically from POIDH claim casts, Magnetiq
 UGC, and tags, and land on zabalgamez.com/submissions and your profile at /builder?handle=. The
-four-basics bar below (live URL + open-source repo + 60-second demo + a cast on /zabal) is the
+Finals code bar below (live URL + open-source repo + 60-second demo + a cast on /zabal) is the
 higher bar for a finished CODE build competing for the August Finals - not the definition of a
 season submission.
 
@@ -453,7 +453,7 @@ Voters do NOT care about: how elegant your code is, which AI tool you used, how 
 
 ---
 
-## Submission bar (hit ALL four by T+24h)
+## Finals code bar (hit ALL four by T+24h)
 
 1. **Live deployed URL** (working, not 404). Vercel free tier is fine.
 2. **Public GitHub repo link** (MIT or similar permissive). Verifiable empty git log at T+0.
@@ -735,7 +735,7 @@ Voters apply the rubric from Part "What good looks like" (above). Concretely:
 - **Has a real first-use:** "today, I can use this to <do something>." Not "imagine if..." or "you could use this for...".
 - **No emojis, no em dashes, hits the brand palette:** ZAO-native voters spot off-brand builds instantly. The palette + Syne/Outfit fonts + the naming glossary aren't aesthetic preferences - they're a signal of "you actually read the context."
 - **Open-source MIT, working CI:** the repo runs out-of-the-box. Voters who clone shouldn't hit npm errors.
-- **Posted on /zabal with the four-thing submission bar:** missing one = no submission, no votes.
+- **Posted on /zabal with the Finals code bar:** missing one = no submission, no votes.
 
 Counter-examples that lose votes:
 - Beautiful landing page, broken demo, "coming soon" buttons.

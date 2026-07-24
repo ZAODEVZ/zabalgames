@@ -161,6 +161,7 @@
   <section class="section">
     <h2>Contact</h2>
     <p>BetterCallZaal on Farcaster: <a href="https://farcaster.xyz/zaal" target="_blank" rel="noopener">farcaster.xyz/zaal</a> - or join <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>.</p>
+    <button type="button" id="zg-share" class="zg-share-btn" style="margin-top:0.6rem; font:inherit; font-size:0.85rem; font-weight:600; padding:0.55rem 1.1rem; border-radius:999px; border:1px solid var(--cyan,#00e5ff); background:transparent; color:var(--cyan,#00e5ff); cursor:pointer; min-height:40px;">Share the press kit</button>
   </section>
 
 </div>
@@ -231,6 +232,18 @@
     }
   })();
   </script>
+<script>
+(function () {
+  var b = document.getElementById('zg-share');
+  if (!b) return;
+  var text = 'The ZABAL Gamez press + media kit - facts, numbers, brand assets, and contact. One page.';
+  var url = 'https://zabalgamez.com/press';
+  b.addEventListener('click', function () {
+    if (window.ZABAL && window.ZABAL.composeCast) { window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: 'zabal' }); }
+    else { window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url), '_blank', 'noopener'); }
+  });
+})();
+</script>
 <script defer src="/assets/site-nav.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>

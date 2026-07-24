@@ -222,6 +222,8 @@
   // community votes (the shortlist signal). Vote via the Mini App (one +1 per FID per repo).
   (function() {
     function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    // Full 42-char wallets overflow the row on phones - show 0x1234...abcd instead.
+    function shortId(w){ w = String(w||''); return /^0x[0-9a-fA-F]{40}$/.test(w) ? w.slice(0,6) + '...' + w.slice(-4) : w; }
     var listEl = document.getElementById('builds-list');
     var countEl = document.getElementById('builds-count');
     if (!listEl) return;
@@ -233,7 +235,7 @@
         '<span class="build-rank">#' + (i + 1) + '</span>' +
         '<a class="build-repo" href="https://github.com/' + esc(b.repo) + '" target="_blank" rel="noopener">' + esc(b.repo) + '</a>' +
         track +
-        '<span class="by">by ' + esc(b.wallet) + '</span>' +
+        '<span class="by">by ' + esc(shortId(b.wallet)) + '</span>' +
         '<button class="vote-btn" type="button" data-repo="' + esc(b.repo) + '" aria-label="Vote for ' + esc(b.repo) + '"><span class="vote-up">+1</span> <span class="vote-n">' + (b.votes || 0) + '</span></button>' +
       '</div>';
     }

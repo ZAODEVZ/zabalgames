@@ -76,7 +76,7 @@
       A data stream is a live (or upcoming) source of activity that matters to ZABAL Gamez - an interview show, a bootcamp lineage, a bounty, a protocol feature, the workshops themselves. We keep three things together for each: the <strong>raw files</strong>, a <strong>summary</strong>, and the <strong>ideas</strong> worth picking up.
     </p>
     <p>
-      The pipeline reuses the rails the ecosystem already runs on: <code>scripts/pull-data-streams.mjs</code> fetches each live source, writes raw captures, appends to the chronological feed, and emits a dispatch that <code>aggregate-dispatches.mjs</code> merges into the Bonfire graph and <code>push-to-bonfire.mjs</code> pushes to the ZABAL Bonfire. Registry: <a href="/data/data-streams.json">data-streams.json</a>. Feed: <a href="/data/streams/timeline.json">timeline.json</a>.
+      Each stream updates automatically: new recordings, casts, and drops land in the chronological feed below and connect into the wider ZAO knowledge graph. Building on top of this? The machine-readable registry, feed, and pipeline notes are in the "For bots and builders" section at the bottom.
     </p>
   </section>
 
