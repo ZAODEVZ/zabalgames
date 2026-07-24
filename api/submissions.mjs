@@ -152,13 +152,13 @@ async function stableHash(value) {
   return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-// Public-safe view of a submission (no raw email/wallet/editToken; pending shows minimal).
-// Drafts are PUBLIC by design - a WIP others can read and comment on before it is finished.
+// Public-safe view of a submission (no raw email/wallet/editToken). Under auto-accept,
+// approved, draft (public WIP), AND pending (pre-cutover legacy) are all live on the board.
 function publicView(s) {
   if (!s) return null;
-  const isPublic = s.status === 'approved' || s.status === 'draft';
+  const isPublic = s.status === 'approved' || s.status === 'draft' || s.status === 'pending';
   const base = { id: s.id, kind: s.kind || 'prompt', promptId: s.promptId, handle: isPublic ? (s.handle || null) : null, status: s.status, publicStatus: projectStage(s.status), ts: s.ts, updatedTs: s.updatedTs || s.ts };
-  if (s.status !== 'approved' && s.status !== 'draft') return base;
+  if (!isPublic) return base;
   if (s.kind === 'project') {
     const f = s.fields || {};
     const safeFields = {
@@ -196,6 +196,7 @@ function ownerView(s) {
 }
 
 async function readStoredFeed(index, limit, status) {
+  const allow = Array.isArray(status) ? status : (status ? [status] : null);
   let ids = [];
   try { const r = await kvPipeline([['ZREVRANGE', index, '0', String(limit - 1)]]); ids = (r[0] && r[0].result) || []; }
   catch { return []; }
@@ -203,7 +204,7 @@ async function readStoredFeed(index, limit, status) {
   try {
     const r = await kvPipeline(ids.map((id) => ['GET', `zabal:sub:v1:${id}`]));
     return r.map((row) => { try { return row && row.result ? JSON.parse(row.result) : null; } catch { return null; } })
-      .filter((s) => s && (!status || s.status === status)).map(publicView).filter(Boolean);
+      .filter((s) => s && (!allow || allow.indexOf(s.status) >= 0)).map(publicView).filter(Boolean);
   } catch { return []; }
 }
 
@@ -289,7 +290,7 @@ export default async function handler(req) {
       catch (e) { audited = { ok: false, builders: 0, submissions: [], error: e.message }; }
       const dynamic = (KV_URL && KV_TOKEN)
         ? (await Promise.all([
-            readStoredFeed('zabal:subs:approved', 100, 'approved'),
+            readStoredFeed('zabal:subs:recent', 200, ['approved', 'pending']),
             readStoredFeed('zabal:subs:drafts', 100, 'draft'),
           ])).flat().filter((s) => s.kind === 'project')
         : [];
@@ -348,10 +349,10 @@ export default async function handler(req) {
       return json({ ok: true, configured: true, submissions: await readStoredFeed('zabal:subs:drafts', limit, 'draft') }, 10);
     }
 
-    // public recent feed (approved only)
+    // public recent feed (live = approved + pending, under auto-accept)
     if (url.searchParams.get('feed') === 'recent') {
       const limit = Math.min(60, Math.max(1, Number(url.searchParams.get('limit')) || 30));
-      return json({ ok: true, configured: true, submissions: await readStoredFeed('zabal:subs:approved', limit, 'approved') }, 20);
+      return json({ ok: true, configured: true, submissions: await readStoredFeed('zabal:subs:recent', limit, ['approved', 'pending']) }, 20);
     }
 
     return json({ ok: false, error: 'bad request' });

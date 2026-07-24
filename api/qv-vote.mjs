@@ -109,10 +109,13 @@ async function loadCandidates() {
     }
   } catch { /* seed unavailable - continue with KV submissions only */ }
 
-  // 2) Live approved project submissions from the board.
+  // 2) Live project submissions from the board. Read the full recent index (not just
+  // the approved ZSET) and treat approved AND pending as votable: under auto-accept
+  // everything is live, and submissions made BEFORE the auto-accept cutover are still
+  // 'pending' with no approval step - they must show too. Moderation is delete-after.
   let ids = [];
   try {
-    const r = await kvPipeline([['ZRANGE', 'zabal:subs:approved', '0', String(MAX_CANDIDATES - 1), 'REV']]);
+    const r = await kvPipeline([['ZRANGE', 'zabal:subs:recent', '0', String(MAX_CANDIDATES - 1), 'REV']]);
     ids = (r[0] && r[0].result) || [];
   } catch { return { tracks, validByTrack }; }
   if (ids.length) {
@@ -124,7 +127,7 @@ async function loadCandidates() {
     for (const raw of rows) {
       let s;
       try { s = JSON.parse(raw); } catch { continue; }
-      if (!s || s.status !== 'approved') continue;
+      if (!s || (s.status !== 'approved' && s.status !== 'pending')) continue; // drafts/rejected are not votable
       const f = s.fields || {};
       const track = String(f.track || '').toLowerCase().trim();
       if (TRACKS.indexOf(track) < 0) continue; // only submissions with a real track are votable
