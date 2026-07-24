@@ -79,6 +79,7 @@
 
   <div class="vt-submit" id="vt-submit-wrap" hidden>
     <button class="btn btn-primary" id="vt-submit" type="button">Cast my ballot</button>
+    <button class="btn" id="vt-share" type="button" style="margin-left:8px;">Share the vote</button>
     <p class="vt-msg" id="vt-msg" role="status" aria-live="polite"></p>
   </div>
 
@@ -202,6 +203,14 @@
         else { msg.textContent = (res && res.reason) || 'Could not cast the ballot.'; }
       });
     } else { msg.textContent = 'Open ZABAL Gamez in the Farcaster app to vote.'; }
+  });
+
+  // Share the vote so more Farcaster voters show up. Referral bakes in via composeCast.
+  document.getElementById('vt-share').addEventListener('click', function () {
+    var text = "ZM\n\nVote for who is best this season at ZABAL Gamez. Quadratic voting - honest, spread support wins and no account can buy it. Sign in with Farcaster and cast your ballot:";
+    var url = 'https://zabalgamez.com/vote';
+    if (window.ZABAL && window.ZABAL.share) { window.ZABAL.share({ platform: 'farcaster', text: text, url: url, target: 'vote-share' }); }
+    else { window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url) + '&channelKey=zabal', '_blank', 'noopener'); }
   });
 
   // Candidates are the live submissions on the board, served by the vote API.
