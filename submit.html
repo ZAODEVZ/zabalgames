@@ -207,7 +207,7 @@
           <li>If you do not know your track, The ZAO can assign it during review.</li>
         </ul>
         <a class="submit-btn primary" href="mailto:info@thezao.com?subject=ZABAL%20Gamez%20submission%3A%20%5Bproject%20name%5D&body=Project%20name%3A%0AWhat%20did%20you%20make%3F%0AWhere%20can%20we%20see%20it%3F%0AYour%20name%20or%20handle%3A%0ATrack%2C%20if%20known%3A%20Artist%20%2F%20Builder%20%2F%20Creator%0AAnything%20else%20we%20should%20know%3F">Open an email</a>
-        <p class="submit-note">Submissions are reviewed before publication. Sending an email does not automatically expose your address, attachments, or private message on the website.</p>
+        <p class="submit-note">Projects go live on the board as soon as you submit. Sending an email does not automatically expose your address, attachments, or private message on the website.</p>
       </aside>
     </div>
 
@@ -216,7 +216,7 @@
       <details><summary>Does my project need to be finished?</summary><p>No. Choose “Work in progress” and update it later. Clear progress is more useful than waiting for a perfect launch.</p></details>
       <details><summary>Do I need a wallet or Farcaster account?</summary><p>No. Anyone can submit. Identity or payout information is collected only when it is needed for prizes, voting, or collectibles.</p></details>
       <details><summary>Do I need a GitHub repository?</summary><p>No. Repositories are useful for software projects, but songs, visuals, videos, writing, events, and other creator work can use the media or demo field instead.</p></details>
-      <details><summary>What happens after I submit?</summary><p>Your project enters a private review queue. The ZAO may request more information. Once approved, the public project record can appear across ZABAL Gamez.</p></details>
+      <details><summary>What happens after I submit?</summary><p>Your project goes live on the board at <a href="/submissions" style="color:var(--cyan);">/submissions</a> right away. You get a private link to check it or edit it any time. The community votes on the work, and The ZAO removes anything inappropriate.</p></details>
       <details><summary>Want to answer the season survey?</summary><p>The project form is for things you make. Feedback, wins, contact preferences, and the collectible prompts now live in the separate <a href="/colab" style="color:var(--cyan);">Co-Lab</a>.</p></details>
     </section>
   </div>
@@ -356,7 +356,7 @@
       var token = data.editToken || '';
       if (token) { try { localStorage.setItem('zg-sub-token-' + data.id, token); } catch (e) {} }
       var link = '/submission-status?id=' + encodeURIComponent(data.id) + (token ? '&token=' + encodeURIComponent(token) : '');
-      var label = data.status === 'draft' ? 'Your work in progress is saved.' : 'Your project is in review.';
+      var label = data.status === 'draft' ? 'Your work in progress is saved.' : 'Your project is live on the board.';
       setStatus('<strong>' + esc(label) + '</strong> Receipt #' + esc(data.id) + '. <a href="' + esc(link) + '" style="color:var(--cyan);">Open your private status page</a> and save that link.', 'ok');
       form.reset(); stage.value = 'ready'; syncButton();
       try { openShareModal(label, data.id, link); } catch (e) { /* inline status above is the fallback */ }

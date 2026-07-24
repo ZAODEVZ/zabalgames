@@ -30,3 +30,4 @@ out/
 # Local tooling state (not part of the site)
 .serena/
 .claude/scheduled_tasks.lock
+.gstack/

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Review queue - ZABAL Gamez (internal)</title>
+  <title>Moderate the board - ZABAL Gamez (internal)</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
@@ -11,14 +11,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
   <style>
     .rv-wrap { max-width: 720px; margin: 0 auto; }
     .rv-key { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 0.6rem 0 1rem; }
     .rv-in { flex: 1 1 240px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font: inherit; font-size: 0.9rem; padding: 0.55rem 0.7rem; }
+    .rv-signed { font-size: 0.85rem; color: var(--cyan); margin: 0.4rem 0 1rem; }
     .btn { font-family: inherit; font-size: 0.85rem; padding: 0.5rem 1.05rem; border-radius: 9px; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); cursor: pointer; }
     .btn.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
-    .btn.ok { background: var(--cyan); color: #06121a; border-color: var(--cyan); }
     .btn.no { color: var(--pink); border-color: var(--pink); }
+    .btn.del { background: var(--pink); color: #1a0710; border-color: var(--pink); }
     .btn:hover { filter: brightness(1.12); }
     .btn:disabled { opacity: 0.5; cursor: default; }
     .rv-card { border: 1px solid var(--border); background: var(--surface-2); border-radius: 12px; padding: 0.85rem 1rem; margin: 0 0 0.7rem; }
@@ -28,35 +30,33 @@
     .rv-who { font-size: 0.8rem; color: var(--text-dim); }
     .rv-answer { font-size: 0.95rem; color: var(--text); line-height: 1.5; margin: 0.4rem 0 0.3rem; white-space: pre-wrap; }
     .rv-meta { font-size: 0.78rem; color: var(--text-muted); margin: 0.3rem 0; }
-    .rv-meta .tgt { color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
     .rv-fields { display: grid; gap: 0.3rem; font-size: 0.84rem; color: var(--text-muted); }
     .rv-fields a { color: var(--cyan); overflow-wrap: anywhere; }
     .rv-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.5rem; }
-    .rv-note { box-sizing: border-box; width: 100%; min-height: 70px; margin-top: 0.65rem; padding: 0.55rem 0.65rem; border: 1px solid var(--border); border-radius: 8px; background: #0f171e; color: var(--text); font: inherit; font-size: 0.84rem; resize: vertical; }
     .rv-status { font-size: 0.85rem; color: var(--text-muted); min-height: 1.1rem; margin: 0.5rem 0; }
     .empty { color: var(--text-dim); font-size: 0.92rem; }
-    .rv-airdrop { font-size: 0.78rem; color: var(--text-dim); margin-top: 1.2rem; border-top: 1px solid var(--border); padding-top: 0.8rem; }
-    .rv-airdrop a { color: var(--cyan); }
+    .rv-foot { font-size: 0.78rem; color: var(--text-dim); margin-top: 1.2rem; border-top: 1px solid var(--border); padding-top: 0.8rem; }
   </style>
 </head>
 <body>
 <main id="main">
 <div class="container">
   <header class="hero" style="padding-bottom: 0.2rem;">
-    <div class="hero-eyebrow">Internal - review queue</div>
-    <h1>Submissions to <span class="accent">review</span></h1>
-    <p class="lead" style="margin-top: 0.3rem; font-size: 0.95rem;">Review web, email, and imported projects in one queue. Approve, request specific changes, or reject. Your ADMIN_KEY stays in this tab only.</p>
+    <div class="hero-eyebrow">Internal - moderation</div>
+    <h1>Moderate the <span class="accent">board</span></h1>
+    <p class="lead" style="margin-top: 0.3rem; font-size: 0.95rem;">Submissions auto-accept and go live on <a href="/submissions" style="color:var(--cyan);">/submissions</a>. This is where you remove anything inappropriate. Sign in with Farcaster inside the app, or paste your ADMIN_KEY on desktop.</p>
   </header>
 
   <div class="rv-wrap">
-    <div class="rv-key">
-      <input class="rv-in" id="rv-admin" type="password" placeholder="ADMIN_KEY" autocomplete="off">
-      <button class="btn primary" id="rv-load" type="button">Load queue</button>
+    <div class="rv-signed" id="rv-signed" hidden></div>
+    <div class="rv-key" id="rv-keyrow">
+      <input class="rv-in" id="rv-admin" type="password" placeholder="ADMIN_KEY (desktop fallback)" autocomplete="off">
+      <button class="btn primary" id="rv-load" type="button">Load board</button>
     </div>
     <div class="rv-status" id="rv-status"></div>
     <div id="rv-list"></div>
 
-    <p class="rv-airdrop">On approve: airdrop the Unlock key to the target shown (wallet or email). See <a href="/docs/unlock-airdrop-runbook.md">the airdrop runbook</a>. Approved/rejected submissions leave this queue.</p>
+    <p class="rv-foot"><strong>Delete</strong> removes a submission permanently. <strong>Hide</strong> takes it off the board but keeps the record (reversible by re-approving). Low-quality entries that are not inappropriate can be left alone - they simply get no votes.</p>
   </div>
 </div>
 </main>
@@ -68,22 +68,40 @@
   var listEl = document.getElementById('rv-list');
   var statusEl = document.getElementById('rv-status');
   var adminEl = document.getElementById('rv-admin');
+  var keyRow = document.getElementById('rv-keyrow');
+  var signedEl = document.getElementById('rv-signed');
+  var inMiniApp = false;
 
   function key() { return adminEl.value.trim(); }
   function setStatus(t) { statusEl.textContent = t || ''; }
 
-  function api(method, body) {
-    var opts = { method: method, headers: { 'Authorization': 'Bearer ' + key() } };
-    if (body) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
-    return fetch('/api/submissions' + (method === 'GET' ? '?status=pending' : ''), opts).then(function (r) { return r.json(); });
+  // Detect a Farcaster Mini App session. When present, moderation is authed by the
+  // signed-in FID (server checks the allowlist) and the desktop key field is hidden.
+  async function detectAuth() {
+    if (window.ZABAL && window.ZABAL.getUser) {
+      try {
+        var u = await window.ZABAL.getUser();
+        if (u && u.fid) {
+          inMiniApp = true;
+          signedEl.textContent = 'Signed in with Farcaster as @' + (u.username || u.fid) + '. If you are on the admin list, Delete and Hide will work.';
+          signedEl.hidden = false;
+          keyRow.hidden = true;
+        }
+      } catch (e) { /* not in a mini app - fall back to the key field */ }
+    }
   }
 
-  function target(s) {
-    if (s.wallet) return '<span class="tgt">' + esc(s.wallet) + '</span> (wallet)';
-    if (s.email) return '<span class="tgt">' + esc(s.email) + '</span> (email)';
-    if (s.handle) return '@' + esc(s.handle) + ' (no wallet/email - ask for one)';
-    return 'anonymous (no airdrop target)';
+  // One authed POST for both moderation paths: Quick Auth JWT inside the mini app,
+  // Bearer ADMIN_KEY on desktop. Returns the parsed server response.
+  function moderate(body) {
+    if (inMiniApp) return window.ZABAL.authedFetch('/api/submissions', body);
+    return fetch('/api/submissions', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + key(), 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).then(function (r) { return r.json(); }).catch(function () { return { ok: false, reason: 'error' }; });
   }
+
   function fieldsHtml(s) {
     var f = s.fields || {}; var keys = Object.keys(f);
     if (!keys.length) return '';
@@ -93,93 +111,59 @@
     }).join('') + '</div>';
   }
 
-  // Pull a GitHub repo out of the submission so tier-1 triage can pre-screen it.
-  function extractRepo(s) {
-    var f = s.fields || {};
-    var cand = f.repoUrl || f.repo || f.url || f.github || '';
-    if (!cand && s.answer) { var m = s.answer.match(/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+/); if (m) cand = m[0]; }
-    return cand ? String(cand).trim() : '';
-  }
-  // Auto-screen: /api/triage checks the repo is real/reachable/public/on-track before
-  // the human decides. Advisory only - the human still clicks approve/reject.
-  function runTriage(s, el) {
-    var slot = el.querySelector('.rv-triage');
-    if (!slot) return;
-    var repo = extractRepo(s);
-    if (!repo) { slot.innerHTML = '<span style="color:var(--text-dim)">tier-1: no repo to auto-screen</span>'; return; }
-    var track = (s.fields && s.fields.track) || '';
-    slot.textContent = 'tier-1: screening ' + repo + '...';
-    fetch('/api/triage?repo=' + encodeURIComponent(repo) + (track ? '&track=' + encodeURIComponent(track) : ''), { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (!d || !d.ok) { slot.innerHTML = '<span style="color:var(--text-dim)">tier-1: unavailable</span>'; return; }
-        var rec = d.recommendation || 'review';
-        var color = rec === 'pass' ? '#38d39f' : (rec === 'reject' ? '#ff6b6b' : 'var(--gold)');
-        var reasons = (d.reasons || []).join('; ');
-        slot.innerHTML = '<span style="color:' + color + ';font-weight:600;">tier-1: ' + esc(rec) + '</span>' +
-          (reasons ? ' <span style="color:var(--text-muted)">' + esc(reasons) + '</span>' : '');
-      })
-      .catch(function () { slot.innerHTML = '<span style="color:var(--text-dim)">tier-1: error</span>'; });
-  }
-
   function card(s) {
     var el = document.createElement('div');
     el.className = 'rv-card';
     var f = s.fields || {};
     var project = f.project || s.project || '';
-    var source = s.source || 'web';
-    var attachmentText = (s.attachments || []).map(function (a) { return esc(a.filename || 'attachment') + ' (' + esc(a.contentType || 'file') + ')'; }).join(', ');
     el.innerHTML =
-      '<div class="rv-top"><span class="rv-prompt">' + esc(s.promptId || '') + '</span>' +
+      '<div class="rv-top"><span class="rv-prompt">' + esc(s.promptId || 'project') + '</span>' +
       '<span class="rv-id">#' + esc(s.id) + '</span>' +
-      '<span class="rv-who">' + (s.handle ? '@' + esc(s.handle) : 'anonymous') + (s.fid ? ' (fid ' + esc(s.fid) + ')' : '') + '</span></div>' +
+      '<span class="rv-who">' + (s.handle ? '@' + esc(s.handle) : 'anonymous') + (s.fid ? ' (fid ' + esc(s.fid) + ')' : '') + '</span>' +
+      '<span class="rv-who">' + esc(s.status || '') + '</span></div>' +
       (project ? '<h2 style="font-size:1.1rem;margin:0.4rem 0 0;color:var(--text);">' + esc(project) + '</h2>' : '') +
       (s.answer ? '<div class="rv-answer">' + esc(s.answer) + '</div>' : '') +
       fieldsHtml(s) +
-      (attachmentText ? '<div class="rv-meta"><b>Attachments:</b> ' + attachmentText + '</div>' : '') +
-      '<div class="rv-triage" style="margin:0.4rem 0;font-size:0.8rem;font-family:JetBrains Mono,monospace;"></div>' +
-      '<div class="rv-meta">Source: ' + esc(source) + ' / Contact: ' + target(s) + '</div>' +
-      '<textarea class="rv-note" aria-label="Review note" placeholder="Specific feedback for the builder"></textarea>' +
-      '<div class="rv-actions"><button class="btn ok" type="button">Approve</button><button class="btn" type="button">Request changes</button><button class="btn no" type="button">Reject</button></div>';
+      '<div class="rv-meta"><a href="/submissions?id=' + esc(s.id) + '" target="_blank" rel="noopener" style="color:var(--cyan)">View on the board</a></div>' +
+      '<div class="rv-actions"><button class="btn del" type="button">Delete</button><button class="btn no" type="button">Hide</button></div>';
     var btns = el.querySelectorAll('.rv-actions .btn');
-    btns[0].addEventListener('click', function () { decide(s.id, 'approve', el, btns); });
-    btns[1].addEventListener('click', function () { decide(s.id, 'request_changes', el, btns); });
-    btns[2].addEventListener('click', function () { decide(s.id, 'reject', el, btns); });
-    runTriage(s, el);
+    btns[0].addEventListener('click', function () { act('delete', s.id, el, btns); });
+    btns[1].addEventListener('click', function () { act('reject', s.id, el, btns); });
     return el;
   }
 
-  function decide(id, action, el, btns) {
-    var note = (el.querySelector('.rv-note').value || '').trim();
-    if (action === 'request_changes' && !note) { setStatus('Add a specific review note before requesting changes.'); el.querySelector('.rv-note').focus(); return; }
+  function act(action, id, el, btns) {
+    if (action === 'delete' && !window.confirm('Delete submission #' + id + ' permanently? This cannot be undone.')) return;
+    if (!inMiniApp && !key()) { setStatus('Sign in with Farcaster, or paste your ADMIN_KEY.'); return; }
     Array.prototype.forEach.call(btns, function (b) { b.disabled = true; });
-    api('POST', { action: action, id: id, reviewNote: note }).then(function (d) {
+    moderate({ action: action, id: id }).then(function (d) {
       if (d && d.ok) {
-        el.style.opacity = '0.45';
-        var label = action === 'approve' ? 'APPROVED - airdrop now' : action === 'request_changes' ? 'changes requested' : 'rejected';
-        el.querySelector('.rv-actions').innerHTML = '<span class="rv-who">' + label + '</span>';
+        el.style.opacity = '0.4';
+        el.querySelector('.rv-actions').innerHTML = '<span class="rv-who">' + (action === 'delete' ? 'deleted' : 'hidden') + '</span>';
       } else {
         Array.prototype.forEach.call(btns, function (b) { b.disabled = false; });
-        setStatus((d && d.error) === 'forbidden' ? 'Wrong ADMIN_KEY.' : 'Could not update.');
+        setStatus((d && (d.error === 'forbidden' || d.reason === 'not-in-miniapp')) ? 'Not authorized - your FID is not on the admin list, or the ADMIN_KEY is wrong.' : 'Could not update.');
       }
-    }).catch(function () { Array.prototype.forEach.call(btns, function (b) { b.disabled = false; }); setStatus('Error.'); });
+    });
   }
 
   function load() {
-    if (!key()) { setStatus('Enter the ADMIN_KEY.'); return; }
-    setStatus('Loading queue...');
+    setStatus('Loading board...');
     listEl.innerHTML = '';
-    api('GET').then(function (d) {
-      if (!d || d.ok === false) { setStatus((d && d.error) === 'forbidden' ? 'Wrong ADMIN_KEY.' : 'Could not load.'); return; }
-      var q = (d && d.queue) || [];
-      if (!q.length) { listEl.innerHTML = '<p class="empty">Nothing pending. Queue clear.</p>'; setStatus(''); return; }
-      setStatus(q.length + ' pending.');
-      q.forEach(function (s) { listEl.appendChild(card(s)); });
+    // The live board is public, so listing needs no auth; moderation actions are authed.
+    fetch('/api/submissions?feed=recent&limit=60', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || d.ok === false) { setStatus('Could not load the board.'); return; }
+      var rows = (d && d.submissions) || [];
+      if (!rows.length) { listEl.innerHTML = '<p class="empty">No submissions on the board yet.</p>'; setStatus(''); return; }
+      setStatus(rows.length + ' on the board.');
+      rows.forEach(function (s) { listEl.appendChild(card(s)); });
     }).catch(function () { setStatus('Network error.'); });
   }
 
+  detectAuth();
   document.getElementById('rv-load').addEventListener('click', load);
   adminEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') load(); });
+  load();
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
