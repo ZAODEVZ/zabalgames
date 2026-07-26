@@ -512,7 +512,7 @@ export default async function handler(req) {
       if (token2) {
         try { const fid2 = await verifyQuickAuth(token2, DOMAIN); if (s.fid && fid2 === s.fid) owner = true; } catch { /* not owner */ }
       }
-      if (!owner && s.editToken && body.editToken && String(body.editToken) === s.editToken) owner = true;
+      if (!owner && s.editToken && body.editToken && timingEq(String(body.editToken), s.editToken)) owner = true;
       if (!owner) return json({ ok: false, error: 'forbidden' });
       s.status = 'approved';
       s.publishedTs = Date.now();
