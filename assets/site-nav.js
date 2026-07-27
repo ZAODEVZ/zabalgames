@@ -35,7 +35,7 @@
       + '<nav class="arcade-foot-col" aria-label="Play"><h4>Play</h4>'
       + '<a href="/">Home</a><a href="/info.html">All the Details</a><a href="/#schedule">Schedule</a><a href="/game">Arcade</a><a href="/quest">Season Run</a><a href="/live.html">Live - What\'s On Now</a></nav>'
       + '<nav class="arcade-foot-col" aria-label="Season"><h4>Season</h4>'
-      + '<a href="/enter.html">Enter the Build</a><a href="/submissions">This Season\'s Builds</a><a href="/projects.html">Projects</a><a href="/finals.html">Finals</a><a href="/winners.html">Winners</a></nav>'
+      + '<a href="/enter.html">Enter the Build</a><a href="/submissions">This Season\'s Builds</a><a href="/vote">Vote</a><a href="/finals.html">Finals</a><a href="/winners.html">Winners</a></nav>'
       + '<nav class="arcade-foot-col" aria-label="Data"><h4>Data</h4>'
       + '<a href="/recordings.html">Recordings</a><a href="/streams.html">Streams</a><a href="/recaps.html">Session Recaps</a><a href="/changelog.html">Changelog</a></nav>'
       + '<nav class="arcade-foot-col" aria-label="Connect"><h4>Connect</h4>'
@@ -47,64 +47,36 @@
 
   if (!menu || !nav || document.querySelector('.site-menu-btn')) return;
 
+  // Lean season directory: the core loop up top, everything else reachable via /links
+  // (the full page index) and contextual buttons on the related pages.
   var GROUPS = [
     ['The season', [
       ['Home', '/'],
       ['All the details', '/info.html'],
       ['Schedule', '/#schedule'],
       ['About', '/about.html'],
-      ['Press / media kit', '/press.html'],
       ['Changelog', '/changelog.html']
     ]],
-    ['Build', [
+    ['Build + vote', [
       ['Submit a project', '/submit'],
       ["This season's projects", '/submissions'],
+      ["Vote for who's best", '/vote'],
       ['Live build board', '/board'],
-      ['Register a repository', '/enter.html'],
-      ['Co-Lab prompts', '/colab'],
-      ['Adoptable projects', '/projects.html'],
-      ['Build ideas', '/build-ideas.html'],
-      ['Builder playbook', '/playbook.html'],
-      ['Bounties', '/bounties.html'],
-      ['Grants + funding', '/grants.html'],
-      ['July build days', '/build-days.html'],
-      ['Lead a workshop', '/lead.html'],
-      ['Mentor', '/mentor.html'],
-      ['Dream leads', '/dream-leads.html'],
-      ['The Finals', '/finals.html']
+      ['Enter the build', '/enter.html'],
+      ['The Finals', '/finals.html'],
+      ['Winners', '/winners.html']
     ]],
     ['Watch + read', [
-      ['Speakers', '/speakers.html'],
       ['Recordings', '/recordings'],
       ['Session recaps', '/recaps.html'],
-      ['Data streams', '/streams.html'],
-      ['Farcaster Batches', '/farcaster-batches.html'],
+      ['Speakers', '/speakers.html'],
       ['Live now', '/live.html'],
-      ['The arcade', '/game'],
-      ['Season Run (play the buildathon)', '/quest'],
-      ['Invite a builder', '/invite.html'],
-      ['Quick play (2 random games)', '/play'],
-      ['ZAO 2048', '/game/2048'],
-      ['What should you build?', '/game/build-quiz'],
-      ['Claim a pop', '/pops'],
-      ['Daily update', '/today.html'],
-      ['Mindful moments', '/mindful.html']
-    ]],
-    ['Explore', [
-      ['ZAO graph', '/graph.html'],
-      ['Winners', '/winners.html'],
-      ['Big wins on-chain', '/wins.html'],
-      ['Research library', '/research.html'],
-      ['Context file', '/context.html'],
-      ['Install context', '/install.html'],
-      ['People', '/crm.html'],
-      ['Spaces', '/spaces.html']
+      ['The arcade', '/game']
     ]],
     ['Connect', [
       ['/zabal channel', 'https://farcaster.xyz/~/channel/zabal'],
       ['Newsletter', 'https://paragraph.com/@thezao'],
-      ['All links', '/links.html'],
-      ['Share', '/share.html'],
+      ['All links (full index)', '/links.html'],
       ['Insert Coin', 'https://collect.zabalgamez.com']
     ]]
   ];
