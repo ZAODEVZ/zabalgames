@@ -153,13 +153,14 @@
               <input id="project-email" name="email" type="email" maxlength="120" autocomplete="email" placeholder="For receipts and review notes">
             </div>
             <div class="submit-field">
-              <label for="project-track">Track <span style="color:var(--text-dim);font-weight:400;">(optional)</span></label>
-              <select id="project-track" name="track">
-                <option value="">Not sure yet</option>
+              <label for="project-track">Track</label>
+              <select id="project-track" name="track" required>
+                <option value="" disabled selected>Pick a track</option>
                 <option value="artist">Artist</option>
                 <option value="builder">Builder</option>
                 <option value="creator">Creator</option>
               </select>
+              <small>Your track decides where the community votes on it.</small>
             </div>
             <div class="submit-field">
               <label for="project-stage">Stage</label>
@@ -317,6 +318,7 @@
     var mediaRaw = value('project-media');
     var demo = validUrl(demoRaw), repo = validUrl(repoRaw), media = validUrl(mediaRaw);
     if (!project) { setStatus('Add a project name.', 'err'); document.getElementById('project-name').focus(); return; }
+    if (['artist','builder','creator'].indexOf(value('project-track')) < 0) { setStatus('Pick a track - it is where the community votes on your project.', 'err'); document.getElementById('project-track').focus(); return; }
     if ((demoRaw && !demo) || (repoRaw && !repo) || (mediaRaw && !media)) { setStatus('Links must begin with http:// or https://.', 'err'); return; }
     if (!description && !demo && !repo && !media) { setStatus('Add a short description or at least one project link.', 'err'); document.getElementById('project-description').focus(); return; }
     if (!document.getElementById('project-consent').checked) { setStatus('Confirm that The ZAO may review and publish the project information.', 'err'); return; }
