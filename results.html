@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Season 1 Results - ZABAL Gamez</title>
+  <meta name="description" content="ZABAL Gamez Season 1 results - the artist, builder, and creator winners, and the season in numbers.">
+  <link rel="canonical" href="https://zabalgamez.com/results">
+  <meta property="og:title" content="Season 1 Results - ZABAL Gamez">
+  <meta property="og:description" content="The winners of ZABAL Gamez Season 1, across artist, builder, and creator.">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#070709">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    .rs-shell { max-width: 900px; margin: 0 auto; }
+    .rs-tracks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 1.2rem 0; }
+    .rs-track { border: 1px solid var(--border); border-radius: 14px; background: var(--surface-2); padding: 1rem; text-align: center; }
+    .rs-track h3 { font-family: 'Syne', sans-serif; text-transform: capitalize; margin: 0 0 0.4rem; }
+    .rs-winner { font-size: 1.05rem; color: var(--cyan); font-weight: 700; }
+    .rs-winner a { color: inherit; text-decoration: none; }
+    .rs-tbd { color: var(--text-dim); font-size: 0.9rem; }
+    .rs-stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 1rem 0; }
+    .rs-stat { flex: 1 1 120px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); padding: 0.85rem; text-align: center; }
+    .rs-stat b { display: block; font-family: 'Syne', sans-serif; font-size: 1.6rem; color: var(--zabal, var(--cyan)); }
+    .rs-stat span { color: var(--text-muted); font-size: 0.82rem; }
+    .rs-note { color: var(--text-dim); font-size: 0.88rem; }
+    @media (max-width: 620px) { .rs-tracks { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/submissions">Projects</a>
+      <a href="/vote">Vote</a>
+      <a href="/recordings">Recordings</a>
+      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+<div class="container rs-shell">
+  <header class="hero" style="padding-bottom:0.3rem;">
+    <div class="hero-eyebrow">Season 1</div>
+    <h1>Season 1 <span class="accent">results</span></h1>
+    <p class="hero-sub" id="rs-lead">The winners across artist, builder, and creator, and the season in numbers.</p>
+  </header>
+  <section class="section" style="padding-top:0;">
+    <h2 style="font-size:1.05rem;">Track winners</h2>
+    <div class="rs-tracks" id="rs-tracks"></div>
+  </section>
+  <section class="section" style="padding-top:0;">
+    <h2 style="font-size:1.05rem;">The season in numbers</h2>
+    <div class="rs-stats" id="rs-stats"></div>
+    <p class="rs-note" id="rs-summary"></p>
+  </section>
+  <p class="rs-note" style="margin-top:1rem;">Browse the full season: <a href="/submissions" style="color:var(--cyan);">projects</a>, <a href="/recordings" style="color:var(--cyan);">recordings</a>, <a href="/vote" style="color:var(--cyan);">the vote</a>.</p>
+</div>
+</main>
+<script>
+(function () {
+  var TRACKS = ['artist', 'builder', 'creator'];
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]; }); }
+  function winnerCard(track, w) {
+    var inner = w
+      ? '<div class="rs-winner">' + (w.url ? '<a href="' + esc(w.url) + '" target="_blank" rel="noopener">' + esc(w.name) + '</a>' : esc(w.name)) + '</div>' + (w.project ? '<div class="rs-note">' + esc(w.project) + '</div>' : '')
+      : '<div class="rs-tbd">Announced after Aug 31</div>';
+    return '<div class="rs-track"><h3>' + esc(track) + '</h3>' + inner + '</div>';
+  }
+  function stat(n, label) { return '<div class="rs-stat"><b>' + (n == null ? '-' : esc(n)) + '</b><span>' + esc(label) + '</span></div>'; }
+  fetch('/data/season-1-results.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+    var w = d.winners || {};
+    document.getElementById('rs-tracks').innerHTML = TRACKS.map(function (t) { return winnerCard(t, w[t]); }).join('');
+    var rc = d.recap || {};
+    document.getElementById('rs-stats').innerHTML = stat(rc.workshops, 'workshops') + stat(rc.submissions, 'submissions') + stat(rc.voters, 'voters');
+    document.getElementById('rs-summary').textContent = rc.summary || '';
+    if (d.status !== 'final') document.getElementById('rs-lead').textContent = 'Season 1 wraps Aug 31. Winners and the final numbers land here after the WaveWarZ finale.';
+  }).catch(function () {});
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
