@@ -52,6 +52,7 @@
     <div class="rv-key" id="rv-keyrow">
       <input class="rv-in" id="rv-admin" type="password" placeholder="ADMIN_KEY (desktop fallback)" autocomplete="off">
       <button class="btn primary" id="rv-load" type="button">Load board</button>
+      <button class="btn no" id="rv-reset" type="button">Reset all votes</button>
     </div>
     <div class="rv-status" id="rv-status"></div>
     <div id="rv-list"></div>
@@ -160,8 +161,23 @@
     }).catch(function () { setStatus('Network error.'); });
   }
 
+  // Reset all vote tallies + ballots (clean slate for go-live / a new round). Admin only.
+  function resetVotes() {
+    if (!inMiniApp && !key()) { setStatus('Sign in with Farcaster, or paste your ADMIN_KEY.'); return; }
+    if (!window.confirm('Reset ALL votes to zero across every track? This wipes all ballots and tallies. Cannot be undone.')) return;
+    setStatus('Resetting votes...');
+    var body = { action: 'reset' };
+    var p = inMiniApp
+      ? window.ZABAL.authedFetch('/api/qv-vote', body)
+      : fetch('/api/qv-vote', { method: 'POST', headers: { 'Authorization': 'Bearer ' + key(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json(); }).catch(function () { return { ok: false }; });
+    p.then(function (d) {
+      setStatus(d && d.ok ? 'All votes reset to zero.' : ((d && (d.error === 'forbidden' || d.reason === 'not-in-miniapp')) ? 'Not authorized.' : 'Reset failed.'));
+    });
+  }
+
   detectAuth();
   document.getElementById('rv-load').addEventListener('click', load);
+  document.getElementById('rv-reset').addEventListener('click', resetVotes);
   adminEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') load(); });
   load();
 })();

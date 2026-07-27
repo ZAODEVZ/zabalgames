@@ -36,10 +36,20 @@ has grown well past the homepage into a multi-surface Mini App - 60+ pages (41 t
 - **Recordings/content system is live:** `/recordings` archive, `/recaps`, `/speakers`,
   `/spaces`, `/farcaster-batches`, plus per-recording Farcaster-verified comment threads
   (`assets/recording-comments.js` + `/api/comments`, `/api/cast-comments`) and transcripts.
-- **Finals stack is built (settles in Aug):** `/enter` (register + building-in-public
-  board), `/projects` (adoptable projects), `/finals` (WaveWarZ prediction-market spec),
-  `/leaderboard`, `/winners`; backed by `register`, `builds`, `build-vote`, `finals-picks`,
-  `monthly-winner`.
+- **Submit + vote pipeline is LIVE (the season's core loop):** `/submit` -> AUTO-ACCEPTS a
+  project onto the `/submissions` board immediately (no approval queue; moderation is
+  delete-after via `/review`), then the community casts a quadratic vote at `/vote` on ALL
+  live submissions (candidates = the board + the seed builders in `data/builder-submissions.json`,
+  NOT a curated slate). One ballot per Farcaster FID, 100 credits/track, N votes cost N^2.
+  Admin = Farcaster FID allowlist in `lib/auth.mjs` (19640 zaal, 1057869 imanafrikah) +
+  optional `ADMIN_KEY` fallback. The old curated slate (`slate-admin`, `qv-slate-draft`) is
+  retired. `data/vote-candidates.json` is now just the on/off `status` switch.
+- **August Finals is moving to loops.house + WaveWarZ** (spec: `docs/august-finals-loops-format.md`):
+  July submitters auto-qualify -> 2 weeks of weekly per-track tasks -> top 2 per track into
+  3-5 WaveWarZ battles -> one winner per track. The older on-site Finals stack (`/enter`
+  register + building-in-public, `/projects`, `/finals` prediction-market spec, `/leaderboard`,
+  `/winners`; `register`, `builds`, `build-vote`, `finals-picks`, `monthly-winner`) predates
+  this and is being reconciled - treat loops.house as the plan.
 - **Engagement/games layer:** `/play` + `/game` (ZAO 2048, monthly $Zabal prize via
   `/api/game` + `monthly-winner`), `/pops` collectibles, live `raffle`, `/dream-leads`
   demand board, `/mindful`, `/graph` (Bonfire/ecosystem knowledge graph), `ref` referrals,
@@ -102,13 +112,15 @@ functions in `api/`. 60+ pages; not all listed here - this is the load-bearing s
 
 **Edge functions** (`api/*.mjs`, Vercel EDGE, Upstash Redis over REST; Quick Auth JWT
 verified server-side, `DOMAIN = 'zabalgamez.com'`, JWKS from auth.farcaster.xyz; all
-no-op gracefully without Redis env vars). 45 endpoints across:
+no-op gracefully without Redis env vars). **All Vercel crons are retired** (posting is
+ZOE/ZOL's job now; `daily-cast.mjs` deleted; `workshop-reminders`/`monthly-winner`/
+`commit-watcher`/`poidh-watcher` schedules removed - the endpoint files stay for possible
+later re-scheduling). Endpoints across:
 - *Activity/identity:* `track`, `activity`, `join`, `leaderboard`, `empire-leaderboard`
   (inverse - reads our tokenless empire FROM Empire Builder), `present`, `pfps`, `ref`.
-- *Notifications:* `webhook`, `notify` (admin), `daily-cast` (cron, public), workshop-
-  `reminders` (cron, private push), `live-notify`, `live-status`.
-- *Builds/Finals:* `register` + `commit-watcher` (cron, the doc-784 GitHub-as-submission /
-  Bonfire-as-backend pair), `builds`, `build-vote`, `finals-picks`, `monthly-winner`.
+- *Notifications:* `webhook`, `notify` (admin), `live-notify`, `live-status`.
+- *Builds/Finals:* `register` + `commit-watcher` (retired cron), `builds`, `build-vote`,
+  `finals-picks`, `monthly-winner` (retired cron).
 - *Engagement:* `game`, `pops`, `raffle`, `dream-vote`, `comments`, `cast-comments`,
   `bonfire-ask`, `snap/signup`.
 
