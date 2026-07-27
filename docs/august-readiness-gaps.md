@@ -55,3 +55,23 @@ narrow: qualification, a pointer to loops, and the frozen results. Gaps below.
 2. Add a qualification signal (badge or list) from the July board.
 3. Scaffold the per-track winners / Season 1 results frozen state.
 4. Audit + retire the dead old-Finals endpoints.
+
+## Loose-ends sweep (overnight item 2)
+
+Result: no broken internal links (0 of ~70), no empty/near-empty data files. No
+clearly-safe auto-fix found - the items below need a human call, so they are listed not
+fixed (per the loop's "don't delete blind" rule).
+
+- **Intentional TODOs (leave):** `finals/live.html` has 7 markers (`0xTODO_WAVEWARZ_BASE`,
+  DATA/UI TODO cards) - these are documented placeholders for the WaveWarZ-Base protocol
+  Sam owns. Not dead code; they fill in when the protocol ships. Leave until then.
+- **Endpoints with no UI reference (12) - verify a consumer before removing:**
+  - Legit non-UI (keep): `agent` (agent gateway), `notify`/`webhook`-style, `submission-email`
+    (Resend inbound adapter), `triage` (admin repo screen), `empire-leaderboard` (read by the
+    empire side), `magnetiq-ugc` (skipped per #497), `win-notify`/`win-drain` (Unlock airdrop path).
+  - Retired crons (schedules gone in #572; files kept): `commit-watcher`, `poidh-watcher`
+    (Zaal: maybe back later), `workshop-reminders`, `monthly-winner` (Zaal: remove). The last
+    two are the safest to delete once their doc/README references are cleaned - flag for a
+    dedicated retire-endpoints PR, not a blind delete.
+- **Old-Finals endpoints** (`finals-picks`, `build-vote`, `builds`, `register`) - see the
+  "likely-dead old-Finals code" section above; same treatment (audit consumers, then retire).
