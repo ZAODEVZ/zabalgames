@@ -27,7 +27,7 @@
 // Candidates come from zabal:subs:approved (the board). Status (preview|open|closed) is
 // the launch control in data/vote-candidates.json. No-ops to { configured:false } without KV.
 
-import { verifyQuickAuth, DOMAIN } from '../lib/auth.mjs';
+import { verifyQuickAuth, verifyAdmin, DOMAIN } from '../lib/auth.mjs';
 
 export const config = { runtime: 'edge' };
 
@@ -222,6 +222,16 @@ export default async function handler(req) {
 
     let body;
     try { body = await req.json(); } catch { return json({ ok: false, error: 'bad body' }, cors); }
+
+    // Admin: wipe all ballots + tallies (clean slate for go-live or a new round).
+    if (body.action === 'reset') {
+      if (!(await verifyAdmin(req, DOMAIN)).ok) return json({ ok: false, error: 'forbidden' }, cors);
+      try {
+        await kvPipeline(TRACKS.flatMap((t) => [['DEL', `qv:ballots:${t}`], ['DEL', `qv:tally:${t}`]]));
+      } catch { return json({ ok: false, error: 'reset failed' }, cors); }
+      return json({ ok: true, reset: true }, cors);
+    }
+
     const track = String(body.track || '');
     if (TRACKS.indexOf(track) < 0) return json({ ok: false, error: 'bad track' }, cors);
 
