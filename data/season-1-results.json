@@ -1,0 +1,8 @@
+{
+  "season": 1,
+  "status": "pending",
+  "closes": "2026-08-31",
+  "_schema": "Frozen Season 1 results, read by /results. status: 'pending' (empty state, winners TBD) | 'final' (populated after the WaveWarZ finale). Fill winners.<track> with {name, handle, url, project} and recap numbers after Aug 31, then flip status to 'final'. This is a static record - no live widgets.",
+  "winners": { "artist": null, "builder": null, "creator": null },
+  "recap": { "workshops": null, "submissions": null, "voters": null, "summary": "" }
+}
