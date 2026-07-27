@@ -148,10 +148,12 @@
     });
   }
 
-  function load() {
+  function loadBoard() {
     setStatus('Loading board...');
     listEl.innerHTML = '';
-    // The live board is public, so listing needs no auth; moderation actions are authed.
+    // The feed itself is the same public-safe data /submissions shows; this page still
+    // requires a verified admin (see checkAdminThenLoad) before it fetches or renders
+    // anything, so the moderation console shell is never visible to a random visitor.
     fetch('/api/submissions?feed=recent&limit=60', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
       if (!d || d.ok === false) { setStatus('Could not load the board.'); return; }
       var rows = (d && d.submissions) || [];
@@ -159,6 +161,21 @@
       setStatus(rows.length + ' on the board.');
       rows.forEach(function (s) { listEl.appendChild(card(s)); });
     }).catch(function () { setStatus('Network error.'); });
+  }
+
+  // Verify admin status before showing the queue at all - Delete/Hide already required
+  // real auth, this closes the read side too.
+  function checkAdminThenLoad() {
+    if (!inMiniApp && !key()) { setStatus('Sign in with Farcaster, or paste your ADMIN_KEY, to load the board.'); return; }
+    setStatus('Checking access...');
+    listEl.innerHTML = '';
+    var p = inMiniApp
+      ? window.ZABAL.authedFetch('/api/submissions?admin=check', null, 'GET')
+      : fetch('/api/submissions?admin=check', { headers: { 'Authorization': 'Bearer ' + key() } }).then(function (r) { return r.json(); }).catch(function () { return { ok: false }; });
+    p.then(function (d) {
+      if (d && d.ok) { loadBoard(); return; }
+      setStatus('Not authorized - your FID is not on the admin list, or the ADMIN_KEY is wrong.');
+    });
   }
 
   // Reset all vote tallies + ballots (clean slate for go-live / a new round). Admin only.
@@ -175,11 +192,10 @@
     });
   }
 
-  detectAuth();
-  document.getElementById('rv-load').addEventListener('click', load);
+  detectAuth().then(function () { if (inMiniApp) checkAdminThenLoad(); else setStatus('Sign in with Farcaster, or paste your ADMIN_KEY, to load the board.'); });
+  document.getElementById('rv-load').addEventListener('click', checkAdminThenLoad);
   document.getElementById('rv-reset').addEventListener('click', resetVotes);
-  adminEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') load(); });
-  load();
+  adminEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') checkAdminThenLoad(); });
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>

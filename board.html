@@ -195,9 +195,9 @@
         add({
           group: 'submitted', track: (s.track && TRACKS.indexOf(s.track) >= 0) ? s.track : null,
           title: s.title || s.project || 'Submission', desc: s.summary || s.answer || '', status: st,
-          links: [s.url && { label: host(s.url), url: s.url }, s.id && { label: 'Permalink', url: '/submissions/' + s.id }].filter(Boolean),
+          links: [s.url && { label: host(s.url), url: s.url }, s.id && { label: 'Permalink', url: '/submissions?id=' + s.id }].filter(Boolean),
           meta: s.handle ? ('by ' + s.handle) : '',
-          dedupe: s.url || (s.id && ('/submissions/' + s.id))
+          dedupe: s.url || (s.id && ('/submissions?id=' + s.id))
         });
       });
     }

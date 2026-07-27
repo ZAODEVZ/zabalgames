@@ -3,7 +3,7 @@
 // The site is the source of truth for UGC + builder submissions (see
 // docs/submission-system-spec.md). A submission is stored pending; a notify hook fires so
 // ZOE/Zaal can triage; an admin approves; approval is what unlocks the Unlock collectible
-// airdrop. Permalinks render approved submissions at /submissions/<id>.
+// airdrop. Permalinks render approved submissions at /submissions?id=<id>.
 //
 //   POST /api/submissions { kind:'project', project, answer, fields?, handle?, email?, draft? }
 //        or the legacy prompt-answer payload. Quick Auth is always optional.
@@ -12,6 +12,7 @@
 //   GET  /api/submissions?feed=recent&limit=30 -> { ok, submissions:[...] }  (approved only, public)
 //   GET  /api/submissions?feed=drafts&limit=30 -> { ok, submissions:[...] }  (public WIP drafts)
 //   GET  /api/submissions?feed=projects        -> audited roster + approved projects + WIPs
+//   GET  /api/submissions?admin=check          + admin -> { ok }  (used to gate the /review UI itself)
 //   POST /api/submissions { action:'publish', id, editToken? }  (+ Quick Auth) -> { ok, id, status }
 //        (draft -> pending; owner only: verified FID match or the editToken returned at creation)
 //   GET  /api/submissions?status=pending       + admin -> { ok, queue:[...] }  (review queue)
@@ -276,6 +277,13 @@ export default async function handler(req) {
 
   // ---------- GET reads ----------
   if (req.method === 'GET') {
+    // Admin-only check used by the /review moderation UI to gate itself before it even
+    // fetches or renders the queue - a random visitor should not see the moderation
+    // console shell, even though the underlying feed data is public-safe either way.
+    if (url.searchParams.get('admin') === 'check') {
+      return json({ ok: (await verifyAdmin(req, DOMAIN)).ok });
+    }
+
     // Audited builder/project gallery. This stays available even when KV is not
     // configured because the durable source is the versioned repository data file.
     if (url.searchParams.get('feed') === 'builders') {

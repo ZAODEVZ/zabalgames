@@ -103,6 +103,7 @@
   var slate = { status: 'preview', tracks: { artist: [], builder: [], creator: [] } };
   var track = 'builder';
   var alloc = { artist: {}, builder: {}, creator: {} };
+  var mineLoaded = { artist: false, builder: false, creator: false };
 
   function norm(h) { return String(h || '').replace(/^@+/, '').toLowerCase(); }
   function used(t) { var c = 0, a = alloc[t]; for (var k in a) c += a[k] * a[k]; return c; }
@@ -116,7 +117,7 @@
       b.type = 'button';
       b.className = 'vt-tab' + (t === track ? ' on' : '');
       b.textContent = t + ' (' + n + ')';
-      b.addEventListener('click', function () { track = t; renderAll(); });
+      b.addEventListener('click', function () { track = t; renderAll(); loadMine(t); });
       host.appendChild(b);
     });
   }
@@ -188,6 +189,24 @@
     }).catch(function () { host.innerHTML = '<p class="vt-note">Results unavailable right now.</p>'; });
   }
 
+  // Restore a ballot already cast for this track, so a reload shows the real state
+  // instead of an empty allocator that looks identical to "never voted."
+  function loadMine(t) {
+    if (mineLoaded[t] || !(window.ZABAL && window.ZABAL.qvMyBallot)) return;
+    mineLoaded[t] = true;
+    window.ZABAL.qvMyBallot(t).then(function (res) {
+      if (!res || !res.ok) return;
+      alloc[t] = res.allocations || {};
+      if (t === track) {
+        renderMeter(); renderList();
+        if (Object.keys(alloc[t]).length) {
+          var msg = document.getElementById('vt-msg');
+          if (msg) msg.textContent = 'Showing the ballot you already cast for this track. You can change it any time before close.';
+        }
+      }
+    });
+  }
+
   function renderAll() { renderTabs(); renderMeter(); renderList(); loadResults(); }
 
   document.getElementById('vt-submit').addEventListener('click', function () {
@@ -207,7 +226,7 @@
 
   // Share the vote so more Farcaster voters show up. Referral bakes in via composeCast.
   document.getElementById('vt-share').addEventListener('click', function () {
-    var text = "ZM\n\nVote for who is best this season at ZABAL Gamez. Quadratic voting - honest, spread support wins and no account can buy it. Sign in with Farcaster and cast your ballot:";
+    var text = "Vote for who is best this season at ZABAL Gamez. Quadratic voting - honest, spread support wins and no account can buy it. Sign in with Farcaster and cast your ballot:";
     var url = 'https://zabalgamez.com/vote';
     if (window.ZABAL && window.ZABAL.share) { window.ZABAL.share({ platform: 'farcaster', text: text, url: url, target: 'vote-share' }); }
     else { window.open('https://farcaster.xyz/~/compose?text=' + encodeURIComponent(text) + '&embeds[]=' + encodeURIComponent(url) + '&channelKey=zabal', '_blank', 'noopener'); }
@@ -223,6 +242,7 @@
       if (m) m.textContent = 'Voting opens soon. You can see the projects and live results now.';
     }
     renderAll();
+    loadMine(track);
   }).catch(function () { renderAll(); });
 })();
 </script>

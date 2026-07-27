@@ -214,18 +214,19 @@ window.ZABAL.viewProfile = async function viewProfile(fid) {
 // Analyze the signed-in player's Farcaster profile (server-side, by verified FID) and
 // return a best-fit ZABAL Gamez track. Powers the "skip the questions" path on the build
 // quiz. Returns { ok, track, label, why, matched, confident, handle } or { ok:false, reason }.
-// Generic authed POST: sends a Quick Auth JWT so the server can bind the action to a
-// verified FID. Returns the parsed JSON, or { ok:false, reason } outside a Mini App / on
-// error. Used by the profile editor and the on-site submission form.
-window.ZABAL.authedFetch = async function authedFetch(path, bodyObj) {
+// Generic authed request: sends a Quick Auth JWT so the server can bind the action to a
+// verified FID. Defaults to POST with a JSON body; pass method:'GET' (no bodyObj) for an
+// authed read, e.g. an admin-only check. Returns the parsed JSON, or { ok:false, reason }
+// outside a Mini App / on error. Used by the profile editor, the on-site submission form,
+// and the /review moderation page.
+window.ZABAL.authedFetch = async function authedFetch(path, bodyObj, method) {
   try {
     const ctx = await getContext();
     if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
-    const res = await sdk.quickAuth.fetch(path, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bodyObj || {}),
-    });
+    const opts = (method || 'POST') === 'GET'
+      ? { method: 'GET' }
+      : { method: method || 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bodyObj || {}) };
+    const res = await sdk.quickAuth.fetch(path, opts);
     const data = await res.json().catch(() => ({}));
     if (!res.ok && !data) return { ok: false, reason: 'server' };
     return data;
@@ -525,6 +526,23 @@ window.ZABAL.qvVote = async function qvVote(track, allocations) {
     const data = await res.json().catch(() => ({}));
     if (data && data.ok) window.ZABAL.haptic('light');
     return data && data.ok ? { ok: true, creditsUsed: data.creditsUsed, yourVotes: data.yourVotes } : { ok: false, reason: data.error || 'server' };
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
+// Read back the signed-in voter's own already-cast ballot for a track, so the vote
+// page can restore the allocator + credit meter on reload instead of showing an empty
+// ballot (which otherwise looks identical to "never voted"). Returns
+// { ok, allocations } or { ok:false, reason }.
+window.ZABAL.qvMyBallot = async function qvMyBallot(track) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !sdk || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch('/api/qv-vote?mine&track=' + encodeURIComponent(track));
+    if (!res.ok) { const e = await res.json().catch(() => ({})); return { ok: false, reason: (e && e.error) || 'server' }; }
+    const data = await res.json().catch(() => ({}));
+    return data && data.ok ? { ok: true, allocations: data.allocations || {} } : { ok: false, reason: data.error || 'server' };
   } catch (e) {
     return { ok: false, reason: 'error' };
   }

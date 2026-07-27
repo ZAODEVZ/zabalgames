@@ -130,7 +130,7 @@
   var search = document.getElementById('project-search');
   var all = [], activeStatus = '', activeTrack = '', searchTerm = '';
   var pathMatch = location.pathname.match(/^\/submissions\/([^/]+)$/);
-  var singleId = pathMatch ? decodeURIComponent(pathMatch[1]) : '';
+  var singleId = pathMatch ? decodeURIComponent(pathMatch[1]) : (new URLSearchParams(location.search).get('id') || '');
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
   function safeUrl(s) { try { var u = new URL(String(s || '')); return /^https?:$/.test(u.protocol) ? u.toString() : ''; } catch (e) { return ''; } }
@@ -172,7 +172,7 @@
     if (demo) links.push('<a href="' + esc(demo) + '" target="_blank" rel="noopener">Open demo</a>');
     if (repo && repo !== demo) links.push('<a href="' + esc(repo) + '" target="_blank" rel="noopener">Repository</a>');
     if (media && media !== demo && media !== repo) links.push('<a href="' + esc(media) + '" target="_blank" rel="noopener">Media</a>');
-    if (!singleId && row.id && String(row.id).indexOf('builder:') !== 0) links.push('<a href="/submissions/' + encodeURIComponent(row.id) + '">Project page</a>');
+    if (!singleId && row.id && String(row.id).indexOf('builder:') !== 0) links.push('<a href="/submissions?id=' + encodeURIComponent(row.id) + '">Project page</a>');
     return '<article class="project-card" role="listitem">' +
       '<div class="project-preview">' + preview + '</div><div class="project-body">' +
       '<div class="project-badges">' + (row.track ? '<span class="project-badge track">' + esc(row.track) + '</span>' : '') +
