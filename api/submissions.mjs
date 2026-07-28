@@ -157,7 +157,7 @@ async function stableHash(value) {
 function publicView(s) {
   if (!s) return null;
   const isPublic = s.status === 'approved' || s.status === 'draft' || s.status === 'pending';
-  const base = { id: s.id, kind: s.kind || 'prompt', promptId: s.promptId, handle: isPublic ? (s.handle || null) : null, status: s.status, publicStatus: projectStage(s.status), ts: s.ts, updatedTs: s.updatedTs || s.ts };
+  const base = { id: s.id, kind: s.kind || 'prompt', promptId: s.promptId, handle: isPublic ? (s.handle || null) : null, fid: isPublic ? (s.fid || null) : null, status: s.status, publicStatus: projectStage(s.status), ts: s.ts, updatedTs: s.updatedTs || s.ts };
   if (!isPublic) return base;
   if (s.kind === 'project') {
     const f = s.fields || {};
@@ -340,6 +340,13 @@ export default async function handler(req) {
       if (!s) return json({ ok: false, error: 'not found' });
       const editToken = url.searchParams.get('editToken') || url.searchParams.get('token') || '';
       if (s.editToken && timingEq(editToken, s.editToken)) return json({ ok: true, owner: true, submission: ownerView(s) });
+      // Verified Farcaster owner: a Quick Auth JWT whose FID matches the submission's
+      // gets the owner view too, so a signed-in builder can edit without the token link.
+      const authTok = bearer(req);
+      if (authTok && s.fid) {
+        try { if ((await verifyQuickAuth(authTok, DOMAIN)) === s.fid) return json({ ok: true, owner: true, submission: ownerView(s) }); }
+        catch { /* not the owner - fall through to the public view */ }
+      }
       return json({ ok: true, submission: publicView(s) }, s.status === 'approved' ? 30 : 0);
     }
 
@@ -454,7 +461,16 @@ export default async function handler(req) {
       catch { return json({ ok: false, error: 'kv' }); }
       if (!s || s.kind !== 'project') return json({ ok: false, error: 'not found' });
       const isAdmin = (await verifyAdmin(req, DOMAIN)).ok;
-      const owner = isAdmin || (s.editToken && timingEq(body.editToken, s.editToken));
+      let owner = isAdmin || (s.editToken && timingEq(body.editToken, s.editToken));
+      // A verified Farcaster owner (Quick Auth FID matches) can edit without the token,
+      // same ownership rule the publish action already uses.
+      if (!owner && s.fid) {
+        const authTok = bearer(req);
+        if (authTok) {
+          try { if ((await verifyQuickAuth(authTok, DOMAIN)) === s.fid) owner = true; }
+          catch { /* not the owner */ }
+        }
+      }
       if (!owner) return json({ ok: false, error: 'forbidden' });
       const prev = s.status;
       const next = cleanFields(body.fields);
@@ -492,6 +508,13 @@ export default async function handler(req) {
       } else {
         try { await kvPipeline([['SET', `zabal:sub:v1:${id}`, JSON.stringify(s)]]); }
         catch { return json({ ok: false, error: 'kv-write' }); }
+      }
+      // Finals qualifier: count one daily-update point per project per UTC day the
+      // builder posts a progress update. The SET dedupes to one per day (anti-farm);
+      // /api/standings counts only the days inside the qualifying window. Best-effort.
+      if (next.progressUpdate && next.progressUpdate.trim()) {
+        const day = new Date().toISOString().slice(0, 10);
+        try { await kvPipeline([['SADD', `zabal:finals:updays:${id}`, day]]); } catch { /* non-blocking */ }
       }
       return json({ ok: true, id, status: s.status, submission: ownerView(s) });
     }

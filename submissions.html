@@ -94,7 +94,8 @@
       <div class="projects-actions">
         <a class="projects-button primary" href="/submit">Submit a project</a>
         <a class="projects-button" href="mailto:info@thezao.com?subject=ZABAL%20Gamez%20submission%3A%20%5Bproject%20name%5D">Submit by email</a>
-        <a class="projects-button" href="/leaderboard">View standings</a>
+        <a class="projects-button" href="/standings">Qualifier standings</a>
+        <a class="projects-button" href="/leaderboard">Activity leaderboard</a>
       </div>
     </header>
 
@@ -128,7 +129,7 @@
   var statusFilters = document.getElementById('status-filters');
   var trackFilters = document.getElementById('track-filters');
   var search = document.getElementById('project-search');
-  var all = [], activeStatus = '', activeTrack = '', searchTerm = '';
+  var all = [], activeStatus = '', activeTrack = '', searchTerm = '', myFid = null;
   var pathMatch = location.pathname.match(/^\/submissions\/([^/]+)$/);
   var singleId = pathMatch ? decodeURIComponent(pathMatch[1]) : '';
 
@@ -173,6 +174,8 @@
     if (repo && repo !== demo) links.push('<a href="' + esc(repo) + '" target="_blank" rel="noopener">Repository</a>');
     if (media && media !== demo && media !== repo) links.push('<a href="' + esc(media) + '" target="_blank" rel="noopener">Media</a>');
     if (!singleId && row.id && String(row.id).indexOf('builder:') !== 0) links.push('<a href="/submissions/' + encodeURIComponent(row.id) + '">Project page</a>');
+    // Owner-only: a signed-in Farcaster builder can edit their own live submission.
+    if (myFid && row.fid && String(row.fid) === String(myFid)) links.push('<a href="/submission-status?id=' + encodeURIComponent(row.id) + '">Edit</a>');
     return '<article class="project-card" role="listitem">' +
       '<div class="project-preview">' + preview + '</div><div class="project-body">' +
       '<div class="project-badges">' + (row.track ? '<span class="project-badge track">' + esc(row.track) + '</span>' : '') +
@@ -195,6 +198,21 @@
     grid.setAttribute('aria-busy', 'false');
   }
   search.addEventListener('input', function () { searchTerm = search.value.trim().toLowerCase(); renderCards(); });
+
+  // Resolve the signed-in Farcaster user (Mini App only) so we can surface an Edit
+  // button on their own cards. window.ZABAL loads as a module, so poll briefly for it.
+  (function resolveOwner() {
+    var tries = 0;
+    (function check() {
+      if (window.ZABAL && window.ZABAL.getUser) {
+        window.ZABAL.getUser().then(function (u) {
+          if (u && u.fid) { myFid = u.fid; if (all.length) renderCards(); }
+        }).catch(function () {});
+        return;
+      }
+      if (tries++ < 30) setTimeout(check, 100);
+    })();
+  })();
   if (singleId) {
     document.querySelector('#gallery-heading').textContent = 'Project';
     document.querySelector('.projects-controls').hidden = true;

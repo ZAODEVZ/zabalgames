@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
   <style>
     body { background: #141e27; }
     .status-shell { max-width: 760px; margin: 0 auto; }
@@ -60,7 +61,7 @@
       <p class="lead">Check review progress, respond to a note, or improve your project details without creating an account.</p>
     </header>
 
-    <p class="status-private">Anyone with this full link can edit this project. Keep it private. The token is not included in the public gallery.</p>
+    <p class="status-private" id="status-private">Anyone with this full link can edit this project. Keep it private. The token is not included in the public gallery.</p>
     <div id="status-message" class="status-message" role="status">Loading project...</div>
     <section id="status-card" class="status-card" hidden aria-live="polite">
       <span class="status-pill" id="status-pill"></span>
@@ -147,6 +148,20 @@
   var saveMessage = document.getElementById('save-message');
   var saveButton = document.getElementById('status-save');
   var current = null;
+  // 'token' = private edit link; 'fid' = signed-in Farcaster owner (no token needed).
+  var mode = token ? 'token' : 'fid';
+
+  // window.ZABAL loads as a module, so it may not be ready when this runs. Wait briefly.
+  function zabalReady() { return !!(window.ZABAL && window.ZABAL.authedGet && window.ZABAL.authedFetch); }
+  function waitZabal(ms) {
+    return new Promise(function (resolve) {
+      var start = Date.now();
+      (function check() {
+        if (zabalReady() || Date.now() - start > ms) return resolve(zabalReady());
+        setTimeout(check, 90);
+      })();
+    });
+  }
 
   function el(name) { return document.getElementById(name); }
   function value(name) { return (el(name).value || '').trim(); }
@@ -176,14 +191,29 @@
     card.hidden = false; setMessage(message, '', false);
   }
   function load() {
-    if (!id || !token) { setMessage(message, 'This private link is incomplete. Open the full link from your submission receipt or email info@thezao.com.', true); return; }
-    fetch('/api/submissions?id=' + encodeURIComponent(id) + '&token=' + encodeURIComponent(token), { cache: 'no-store', referrerPolicy: 'no-referrer' })
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        if (!data || !data.ok || !data.owner) throw new Error('Private project not found or token invalid.');
-        fill(data.submission);
-      })
-      .catch(function (error) { setMessage(message, error.message + ' Email info@thezao.com if you need a fresh link.', true); });
+    if (!id) { setMessage(message, 'This link is incomplete. Open it from your submission receipt, the Edit button on the project board, or email info@thezao.com.', true); return; }
+    if (mode === 'token') {
+      fetch('/api/submissions?id=' + encodeURIComponent(id) + '&token=' + encodeURIComponent(token), { cache: 'no-store', referrerPolicy: 'no-referrer' })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data || !data.ok || !data.owner) throw new Error('Private project not found or token invalid.');
+          fill(data.submission);
+        })
+        .catch(function (error) { setMessage(message, error.message + ' Email info@thezao.com if you need a fresh link.', true); });
+      return;
+    }
+    // No token: load as the signed-in Farcaster owner (Quick Auth carries the FID).
+    var priv = document.getElementById('status-private');
+    if (priv) priv.textContent = 'You are editing this project as its signed-in Farcaster owner. Only you and The ZAO can make changes.';
+    waitZabal(2500).then(function (ok) {
+      if (!ok) { setMessage(message, 'Open this from your private edit link, or open it inside the Farcaster app while signed in as the builder who submitted it.', true); return; }
+      window.ZABAL.authedGet('/api/submissions?id=' + encodeURIComponent(id))
+        .then(function (data) {
+          if (!data || !data.ok || !data.owner) throw new Error('You are not signed in as the builder who owns this project.');
+          fill(data.submission);
+        })
+        .catch(function (error) { setMessage(message, error.message + ' Email info@thezao.com if you need help.', true); });
+    });
   }
   el('status-form').addEventListener('submit', function (event) {
     event.preventDefault();
@@ -191,22 +221,24 @@
     if (!value('status-project')) { setMessage(saveMessage, 'Add a project name.', true); el('status-project').focus(); return; }
     var builder = value('status-builder');
     saveButton.disabled = true; setMessage(saveMessage, 'Saving...', false);
-    fetch('/api/submissions', {
-      method: 'POST', referrerPolicy: 'no-referrer', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        action: 'update', id: id, editToken: token,
-        answer: value('status-description'), email: value('status-email'),
-        handle: builder.charAt(0) === '@' ? builder.slice(1) : '',
-        ready: el('status-ready').checked,
-        fields: {
-          project: value('status-project'), description: value('status-description'), builderName: builder,
-          track: value('status-track'), stage: value('status-stage'), demoUrl: value('status-demo'),
-          repoUrl: value('status-repo'), mediaUrl: value('status-media'), helpWanted: value('status-help'),
-          progressUpdate: value('status-progress')
-        }
-      })
-    }).then(function (r) { return r.json(); }).then(function (data) {
-      if (!data || !data.ok) throw new Error((data && data.error) || 'save failed');
+    var payload = {
+      action: 'update', id: id,
+      answer: value('status-description'), email: value('status-email'),
+      handle: builder.charAt(0) === '@' ? builder.slice(1) : '',
+      ready: el('status-ready').checked,
+      fields: {
+        project: value('status-project'), description: value('status-description'), builderName: builder,
+        track: value('status-track'), stage: value('status-stage'), demoUrl: value('status-demo'),
+        repoUrl: value('status-repo'), mediaUrl: value('status-media'), helpWanted: value('status-help'),
+        progressUpdate: value('status-progress')
+      }
+    };
+    // Owner auth: the private token on the web, or the signed-in Farcaster FID in the app.
+    var request = mode === 'token'
+      ? (function () { payload.editToken = token; return fetch('/api/submissions', { method: 'POST', referrerPolicy: 'no-referrer', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).then(function (r) { return r.json(); }); })()
+      : window.ZABAL.authedFetch('/api/submissions', payload);
+    request.then(function (data) {
+      if (!data || !data.ok) throw new Error((data && (data.error || data.reason)) || 'save failed');
       fill(data.submission); el('status-ready').checked = false;
       setMessage(saveMessage, data.status === 'pending' ? 'Saved and sent for review.' : 'Project saved.', false);
     }).catch(function (error) { setMessage(saveMessage, 'Could not save. ' + error.message, true); })

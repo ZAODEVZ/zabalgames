@@ -18,5 +18,15 @@
     { "id": "prep", "label": "June Prep", "startDate": "2026-06-01", "endDate": "2026-06-30" },
     { "id": "build", "label": "July Open Build", "startDate": "2026-07-01", "endDate": "2026-07-31" },
     { "id": "finals", "label": "August Finals", "startDate": "2026-08-01", "endDate": "2026-08-31" }
-  ]
+  ],
+  "finals": {
+    "note": "August Finals config, read by /api/standings. Weeks 1-2 = open qualifier: everyone who submitted ranks per track by daily-update points plus community votes. Weeks 3-4 = top 2 per track battle. Dates and weights live here (config), never hardcoded in code. Retune scoreWeights, or the FINALS_WEIGHT_UPDATES / FINALS_WEIGHT_VOTES env vars, mid-season on real data.",
+    "qualifyingStartDate": "2026-08-01",
+    "qualifyingEndDate": "2026-08-14",
+    "battleStartDate": "2026-08-15",
+    "battleEndDate": "2026-08-31",
+    "finalistsPerTrack": 2,
+    "oneFinalistSlotPerBuilder": true,
+    "scoreWeights": { "updates": 0.5, "votes": 0.5 }
+  }
 }

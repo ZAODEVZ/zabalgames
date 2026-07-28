@@ -234,6 +234,22 @@ window.ZABAL.authedFetch = async function authedFetch(path, bodyObj) {
   }
 };
 
+// Generic authed GET: sends a Quick Auth JWT so the server can return an owner-only
+// view (e.g. a builder loading their own submission to edit it). Returns the parsed
+// JSON, or { ok:false, reason } outside a Mini App / on error.
+window.ZABAL.authedGet = async function authedGet(path) {
+  try {
+    const ctx = await getContext();
+    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    const res = await sdk.quickAuth.fetch(path, { method: 'GET' });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok && !data) return { ok: false, reason: 'server' };
+    return data;
+  } catch (e) {
+    return { ok: false, reason: 'error' };
+  }
+};
+
 window.ZABAL.analyzeProfile = async function analyzeProfile() {
   try {
     const ctx = await getContext();
