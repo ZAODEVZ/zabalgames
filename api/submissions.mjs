@@ -509,6 +509,13 @@ export default async function handler(req) {
         try { await kvPipeline([['SET', `zabal:sub:v1:${id}`, JSON.stringify(s)]]); }
         catch { return json({ ok: false, error: 'kv-write' }); }
       }
+      // Finals qualifier: count one daily-update point per project per UTC day the
+      // builder posts a progress update. The SET dedupes to one per day (anti-farm);
+      // /api/standings counts only the days inside the qualifying window. Best-effort.
+      if (next.progressUpdate && next.progressUpdate.trim()) {
+        const day = new Date().toISOString().slice(0, 10);
+        try { await kvPipeline([['SADD', `zabal:finals:updays:${id}`, day]]); } catch { /* non-blocking */ }
+      }
       return json({ ok: true, id, status: s.status, submission: ownerView(s) });
     }
 

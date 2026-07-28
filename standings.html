@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qualifier standings - ZABAL Gamez</title>
+  <meta name="description" content="August Finals qualifier standings. Everyone who submitted is ranked per track by daily-update points plus community votes. Top 2 per track advance to the battle.">
+  <link rel="canonical" href="https://zabalgamez.com/standings">
+  <meta property="og:title" content="Qualifier standings - ZABAL Gamez">
+  <meta property="og:description" content="Ranked per track by daily-update points plus community votes. Top 2 per track advance to the battle.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/standings">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#141e27">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    body { background: #141e27; }
+    .st-shell { max-width: 1040px; margin: 0 auto; }
+    .st-hero { text-align: left; padding-bottom: 0.5rem; }
+    .st-phase { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(0,229,255,0.4); border-radius: 999px; color: var(--cyan); padding: 0.3rem 0.7rem; font: 600 0.72rem 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; }
+    .st-window { color: var(--text-dim); font: 0.78rem 'JetBrains Mono', monospace; margin: 0.5rem 0 0; }
+    .st-how { border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); padding: 0.85rem 1rem; margin: 1rem 0; color: var(--text-muted); font-size: 0.86rem; line-height: 1.55; }
+    .st-how strong { color: #e0ddaa; }
+    .st-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 1rem 0; }
+    .st-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0.6rem 0.95rem; border: 1px solid var(--border-hover); border-radius: 9px; color: var(--cyan); background: var(--surface-2); text-decoration: none; font-weight: 700; }
+    .st-btn.primary { color: #141e27; background: #e0ddaa; border-color: #e0ddaa; }
+    .st-summary { color: #e0ddaa; font: 0.8rem 'JetBrains Mono', monospace; min-height: 1.2rem; margin: 0.4rem 0 1rem; }
+    .st-tracks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .st-track h2 { margin: 0 0 0.2rem; font-size: 1.1rem; color: #e0ddaa; text-transform: capitalize; }
+    .st-track .st-tcount { color: var(--text-dim); font: 0.72rem 'JetBrains Mono', monospace; margin: 0 0 0.7rem; }
+    .st-card { display: grid; grid-template-columns: auto 1fr auto; gap: 0.7rem; align-items: center; border: 1px solid rgba(224,221,170,0.18); border-radius: 11px; background: var(--surface-2); padding: 0.7rem 0.8rem; margin-bottom: 0.6rem; }
+    .st-card.finalist { border-color: rgba(0,229,255,0.55); box-shadow: inset 0 0 0 1px rgba(0,229,255,0.12); }
+    .st-rank { font: 700 0.95rem 'JetBrains Mono', monospace; color: var(--text-dim); min-width: 1.9rem; }
+    .st-card.finalist .st-rank { color: var(--cyan); }
+    .st-main { min-width: 0; }
+    .st-name { margin: 0; font-size: 0.98rem; color: #e0ddaa; line-height: 1.25; overflow-wrap: anywhere; }
+    .st-name a { color: inherit; text-decoration: none; }
+    .st-by { margin: 0.15rem 0 0.5rem; font-size: 0.76rem; color: var(--text-dim); }
+    .st-by a { color: var(--cyan); text-decoration: none; }
+    .st-badge { display: inline-block; margin-top: 0.35rem; border: 1px solid rgba(0,229,255,0.5); border-radius: 999px; color: var(--cyan); padding: 0.12rem 0.5rem; font: 600 0.6rem 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; }
+    .st-bar { margin: 0.28rem 0; }
+    .st-bar label { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--text-muted); margin-bottom: 2px; }
+    .st-bar label span { color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+    .st-meter { height: 6px; border-radius: 4px; background: #0f171e; overflow: hidden; }
+    .st-meter i { display: block; height: 100%; border-radius: 4px; }
+    .st-meter.updates i { background: var(--gold, #f5c842); }
+    .st-meter.votes i { background: var(--cyan); }
+    .st-score { text-align: right; font: 800 1.15rem 'JetBrains Mono', monospace; color: #e0ddaa; min-width: 3rem; }
+    .st-score span { display: block; font: 400 0.58rem 'JetBrains Mono', monospace; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+    .st-empty { border: 1px dashed var(--border-hover); border-radius: 10px; padding: 0.9rem; color: var(--text-muted); font-size: 0.85rem; }
+    @media (max-width: 850px) { .st-tracks { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/submit">Submit</a>
+      <a href="/submissions">Projects</a>
+      <a href="/vote">Vote</a>
+      <a href="/live">Live</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="container st-shell">
+    <header class="hero st-hero">
+      <div class="hero-eyebrow">August Finals</div>
+      <h1>Qualifier <span class="accent">standings</span></h1>
+      <p class="lead" style="max-width:740px;">Weeks 1-2 are open to everyone who submitted. Post a daily update to your project to earn points, rally community votes, and climb your track. The top 2 per track advance to the battle weeks.</p>
+      <p class="st-phase" id="st-phase" hidden></p>
+      <p class="st-window" id="st-window"></p>
+    </header>
+
+    <div class="st-how">
+      <strong>How the ranking works.</strong> Each project is scored on two parts, both shown below so it is transparent. <strong>Daily-update points</strong>: one point per day you post a progress update to your project (one per day, so consistency wins). <strong>Votes</strong>: the community quadratic ballot at <a href="/vote" style="color:var(--cyan);">/vote</a> (one ballot per Farcaster account). Each part is scaled to 0-100 within its track and combined, then the top 2 per track are marked as advancing. Two different builders take the two slots per track.
+    </div>
+
+    <div class="st-actions">
+      <a class="st-btn primary" href="/submit">Post a project update</a>
+      <a class="st-btn" href="/vote">Cast your votes</a>
+      <a class="st-btn" href="/submissions">Browse projects</a>
+    </div>
+
+    <p class="st-summary" id="st-summary" aria-live="polite">Loading standings...</p>
+    <div class="st-tracks" id="st-tracks"></div>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var tracksEl = document.getElementById('st-tracks');
+  var summaryEl = document.getElementById('st-summary');
+  var phaseEl = document.getElementById('st-phase');
+  var windowEl = document.getElementById('st-window');
+  var TRACK_ORDER = ['artist', 'builder', 'creator'];
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+  function safeUrl(s) { try { var u = new URL(String(s || '')); return /^https?:$/.test(u.protocol) ? u.toString() : ''; } catch (e) { return ''; } }
+  function pct(n) { var v = Number(n) || 0; return Math.max(0, Math.min(100, v)); }
+
+  function phaseCopy(phase, win) {
+    var q = (win && win.qualifyingStartDate) || '', qe = (win && win.qualifyingEndDate) || '';
+    var b = (win && win.battleStartDate) || '', be = (win && win.battleEndDate) || '';
+    var map = {
+      pre: ['Qualifier opens ' + (q || 'soon'), q && qe ? 'Qualifying window ' + q + ' to ' + qe : ''],
+      qualifying: ['Qualifying - weeks 1-2', q && qe ? 'Update daily and rally votes through ' + qe + '. Top 2 per track then advance.' : ''],
+      battle: ['Battle weeks', b && be ? 'Top 2 per track head-to-head, ' + b + ' to ' + be + '.' : ''],
+      post: ['Finals complete', be ? 'Qualifier and battle closed ' + be + '.' : ''],
+      finals: ['August Finals', q && qe ? 'Qualifying window ' + q + ' to ' + qe : '']
+    };
+    return map[phase] || map.finals;
+  }
+
+  function card(c) {
+    var url = safeUrl(c.url);
+    var name = esc(c.project || 'Untitled project');
+    var title = url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + name + '</a>' : name;
+    var by = c.handle ? '<a href="https://farcaster.xyz/' + esc(c.handle) + '" target="_blank" rel="noopener">@' + esc(c.handle) + '</a>' : 'builder pending';
+    var comp = c.components || {};
+    return '<article class="st-card' + (c.finalist ? ' finalist' : '') + '" role="listitem">' +
+      '<div class="st-rank">#' + esc(c.rank) + '</div>' +
+      '<div class="st-main">' +
+        '<h3 class="st-name">' + title + '</h3>' +
+        '<p class="st-by">' + by + (c.finalist ? '<br><span class="st-badge">Advancing to battle</span>' : '') + '</p>' +
+        '<div class="st-bar"><label>Updates <span>' + esc(c.updateDays) + (Number(c.updateDays) === 1 ? ' day' : ' days') + '</span></label>' +
+          '<div class="st-meter updates"><i style="width:' + pct(comp.updates) + '%"></i></div></div>' +
+        '<div class="st-bar"><label>Votes <span>' + esc(c.votes) + '</span></label>' +
+          '<div class="st-meter votes"><i style="width:' + pct(comp.votes) + '%"></i></div></div>' +
+      '</div>' +
+      '<div class="st-score">' + esc(c.score) + '<span>score</span></div>' +
+    '</article>';
+  }
+
+  function trackColumn(track, data) {
+    var cands = (data && data.candidates) || [];
+    var body = cands.length
+      ? cands.map(card).join('')
+      : '<p class="st-empty">No ranked projects in this track yet. <a href="/submit" style="color:var(--cyan);">Submit</a> or post an update to appear.</p>';
+    return '<section class="st-track" role="list" aria-label="' + esc(track) + ' standings">' +
+      '<h2>' + esc(track) + '</h2>' +
+      '<p class="st-tcount">' + cands.length + ' project' + (cands.length === 1 ? '' : 's') + ' / ' + ((data && data.voters) || 0) + ' voters</p>' +
+      body + '</section>';
+  }
+
+  fetch('/api/standings', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (!data || !data.ok) throw new Error('unavailable');
+      var copy = phaseCopy(data.phase, data.window);
+      phaseEl.textContent = copy[0]; phaseEl.hidden = false;
+      windowEl.textContent = copy[1] || '';
+      if (!data.configured) {
+        summaryEl.textContent = 'Standings open when the qualifier goes live.';
+        tracksEl.innerHTML = '<p class="st-empty">The scoreboard is configured and will fill in as builders post updates and votes come in.</p>';
+        return;
+      }
+      var total = TRACK_ORDER.reduce(function (n, t) { return n + (((data.tracks[t] || {}).candidates || []).length); }, 0);
+      summaryEl.textContent = total + ' projects ranked across 3 tracks / top ' + (data.finalistsPerTrack || 2) + ' per track advance';
+      tracksEl.innerHTML = TRACK_ORDER.map(function (t) { return trackColumn(t, data.tracks[t]); }).join('');
+    })
+    .catch(function () {
+      summaryEl.textContent = 'Standings unavailable right now.';
+      tracksEl.innerHTML = '<p class="st-empty">Could not load standings. Try again, or email <a href="mailto:info@thezao.com" style="color:var(--cyan);">info@thezao.com</a>.</p>';
+    });
+})();
+</script>
+<script defer src="/assets/site-nav.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
