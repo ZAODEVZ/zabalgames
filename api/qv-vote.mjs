@@ -12,12 +12,15 @@
 //
 // Anti-gaming (no MACI): quadratic cost defeats whales; sybil resistance is a SEPARATE
 // layer - one ballot per Farcaster FID (Quick Auth), optionally gated by the Neynar
-// user-quality score when NEYNAR_API_KEY is set. Individual ballots are never exposed;
-// only aggregate per-candidate totals are read back.
+// user-quality score when NEYNAR_API_KEY is set. Ballots are never exposed to other
+// voters; only aggregate per-candidate totals are public, and a voter can read back
+// their own ballot (below) so the client can restore it after a reload.
 //
 //   GET  ?candidates              -> { ok, configured, status, tracks:{artist,builder,creator}:[{id,name,handle,url}] }
 //   GET  ?results&track=builder   -> { ok, configured, status, track, voters, results:[{id,name,handle,votes}] }
 //   GET  ?status                  -> { ok, configured, status, tracks:{...}:voterCount }
+//   GET  ?mine&track=builder      Authorization: Bearer <quick-auth-jwt>
+//        -> { ok, track, allocations:{ <submissionId>: <votes> } }  (the caller's own ballot, {} if none yet)
 //   POST { track, allocations:{ <submissionId>: <votes 0..10> } }  Authorization: Bearer <quick-auth-jwt>
 //        -> { ok, counted, track, creditsUsed, yourVotes }         (re-voting overwrites your ballot)
 //
@@ -177,6 +180,27 @@ export default async function handler(req) {
     if (url.searchParams.has('candidates')) {
       const { tracks } = await loadCandidates();
       return json({ ok: true, configured: true, status, tracks }, cors);
+    }
+
+    // The voter's own ballot for a track (private - requires their Quick Auth JWT).
+    // Lets the client restore an already-cast ballot on reload instead of showing an
+    // empty allocator, which otherwise looks like the vote was lost.
+    if (url.searchParams.has('mine')) {
+      const track = String(url.searchParams.get('track') || '');
+      if (TRACKS.indexOf(track) < 0) return json({ ok: false, error: 'bad track' }, cors);
+      const auth = req.headers.get('authorization') || '';
+      const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
+      if (!token) return json({ ok: false, error: 'sign in with Farcaster' }, cors);
+      let fid;
+      try { fid = await verifyQuickAuth(token, DOMAIN); }
+      catch { return json({ ok: false, error: 'invalid token' }, cors); }
+      try {
+        const r = await kvPipeline([['HGET', `qv:ballots:${track}`, String(fid)]]);
+        const raw = r[0] && r[0].result;
+        let allocations = {};
+        if (raw) { try { allocations = JSON.parse(raw); } catch { allocations = {}; } }
+        return json({ ok: true, track, allocations }, cors);
+      } catch { return json({ ok: false, error: 'read failed' }, cors); }
     }
 
     if (url.searchParams.has('results')) {

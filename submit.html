@@ -125,8 +125,8 @@
 
     <div class="submit-steps" aria-label="How submissions work">
       <div class="submit-step"><b>1. Send</b><span>Use the form or email. A link, attachment, or clear description is enough to start.</span></div>
-      <div class="submit-step"><b>2. Review</b><span>The ZAO checks the project, requests missing information when needed, and keeps private details private.</span></div>
-      <div class="submit-step"><b>3. Publish</b><span>Approved projects receive a permanent page and can appear in the gallery, standings, and live coverage.</span></div>
+      <div class="submit-step"><b>2. Live instantly</b><span>Your project publishes to the board the moment you submit. There is no approval queue to wait on.</span></div>
+      <div class="submit-step"><b>3. Moderated after</b><span>The ZAO reviews live submissions and removes anything inappropriate. Your page and gallery listing stay up the whole time.</span></div>
     </div>
 
     <div class="submit-options">
@@ -261,7 +261,7 @@
   var smLink = document.getElementById('sm-link');
   var lastFocus = null;
   var SHARE_URL = 'https://zabalgamez.com/submissions';
-  var SHARE_TEXT = "ZM\n\nJust put a build into ZABAL Gamez - The ZAO's build-a-thon. The community votes on the best work. See what people are building:";
+  var SHARE_TEXT = "Just put a build into ZABAL Gamez - The ZAO's build-a-thon. The community votes on the best work. See what people are building:";
 
   function closeShareModal() {
     shareModal.hidden = true;
@@ -360,6 +360,7 @@
       var link = '/submission-status?id=' + encodeURIComponent(data.id) + (token ? '&token=' + encodeURIComponent(token) : '');
       var label = data.status === 'draft' ? 'Your work in progress is saved.' : 'Your project is live on the board.';
       setStatus('<strong>' + esc(label) + '</strong> Receipt #' + esc(data.id) + '. <a href="' + esc(link) + '" style="color:var(--cyan);">Open your private status page</a> and save that link.', 'ok');
+      SHARE_URL = 'https://zabalgamez.com/submissions?id=' + encodeURIComponent(data.id);
       form.reset(); stage.value = 'ready'; syncButton();
       try { openShareModal(label, data.id, link); } catch (e) { /* inline status above is the fallback */ }
     }).catch(function (error) {
