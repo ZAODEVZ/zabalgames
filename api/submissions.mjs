@@ -116,6 +116,30 @@ async function resolveProfile(fid) {
   } catch { return {}; }
 }
 
+// Farcaster ownership of a submission: the caller's Quick Auth FID matches the submission's
+// fid, OR the submission's wallet is one of the caller's Farcaster verified addresses. The
+// wallet path is a zero-dependency reclaim - the FID JWT already proves identity, so no
+// signed message is needed to prove the linked address.
+async function farcasterOwns(req, s) {
+  const tok = bearer(req);
+  if (!tok || !s) return false;
+  let fid;
+  try { fid = await verifyQuickAuth(tok, DOMAIN); } catch { return false; }
+  if (s.fid && fid === s.fid) return true;
+  if (s.wallet) {
+    try {
+      const r = await fetch(`${HAATZ}/v2/farcaster/user/bulk?fids=${fid}`, { signal: AbortSignal.timeout(2500) });
+      if (r.ok) {
+        const u = ((await r.json()).users || [])[0] || {};
+        const va = u.verified_addresses || {};
+        const eths = [].concat(va.eth_addresses || [], (va.primary && va.primary.eth_address) ? [va.primary.eth_address] : []);
+        if (eths.some((a) => String(a).toLowerCase() === String(s.wallet).toLowerCase())) return true;
+      }
+    } catch { /* verified-address lookup failed - not a reclaim */ }
+  }
+  return false;
+}
+
 async function notify(text) {
   if (!NOTIFY_URL) return;
   try {
@@ -340,13 +364,9 @@ export default async function handler(req) {
       if (!s) return json({ ok: false, error: 'not found' });
       const editToken = url.searchParams.get('editToken') || url.searchParams.get('token') || '';
       if (s.editToken && timingEq(editToken, s.editToken)) return json({ ok: true, owner: true, submission: ownerView(s) });
-      // Verified Farcaster owner: a Quick Auth JWT whose FID matches the submission's
-      // gets the owner view too, so a signed-in builder can edit without the token link.
-      const authTok = bearer(req);
-      if (authTok && s.fid) {
-        try { if ((await verifyQuickAuth(authTok, DOMAIN)) === s.fid) return json({ ok: true, owner: true, submission: ownerView(s) }); }
-        catch { /* not the owner - fall through to the public view */ }
-      }
+      // Verified Farcaster owner (FID match, or the submission's wallet is one of the
+      // caller's verified addresses) gets the owner view too - edit without the token link.
+      if (await farcasterOwns(req, s)) return json({ ok: true, owner: true, submission: ownerView(s) });
       return json({ ok: true, submission: publicView(s) }, s.status === 'approved' ? 30 : 0);
     }
 
@@ -462,15 +482,9 @@ export default async function handler(req) {
       if (!s || s.kind !== 'project') return json({ ok: false, error: 'not found' });
       const isAdmin = (await verifyAdmin(req, DOMAIN)).ok;
       let owner = isAdmin || (s.editToken && timingEq(body.editToken, s.editToken));
-      // A verified Farcaster owner (Quick Auth FID matches) can edit without the token,
-      // same ownership rule the publish action already uses.
-      if (!owner && s.fid) {
-        const authTok = bearer(req);
-        if (authTok) {
-          try { if ((await verifyQuickAuth(authTok, DOMAIN)) === s.fid) owner = true; }
-          catch { /* not the owner */ }
-        }
-      }
+      // A verified Farcaster owner can edit without the token: FID match, or the
+      // submission's wallet is one of the caller's Farcaster verified addresses.
+      if (!owner) owner = await farcasterOwns(req, s);
       if (!owner) return json({ ok: false, error: 'forbidden' });
       const prev = s.status;
       const next = cleanFields(body.fields);
@@ -478,6 +492,7 @@ export default async function handler(req) {
       if (body.answer != null) s.answer = cleanText(body.answer, 2000);
       if (body.handle != null) s.handle = cleanSlug(body.handle, 40) || null;
       if (body.email != null) s.email = cleanEmail(body.email);
+      if (body.wallet != null) { const w = cleanWallet(body.wallet); if (w) s.wallet = w; }
       s.updatedTs = Date.now();
       // Auto-accept model: editing a live project keeps it live (moderation is delete-after).
       // Marking a WIP ready publishes it straight to the board, not to a review queue.

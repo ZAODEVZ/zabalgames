@@ -483,6 +483,29 @@ window.ZABAL.getAddress = async function getAddress() {
   }
 };
 
+// Prompt the player to connect a wallet and return the 0x address, or null. Tries the
+// Farcaster/Base app wallet first (eth_requestAccounts), then a browser-injected wallet on
+// the open web. Used to capture a payout/identity address on submit + edit. Prompting is
+// the difference from getAddress, which reads silently.
+window.ZABAL.connectWallet = async function connectWallet() {
+  const norm = (a) => (a && /^0x[0-9a-fA-F]{40}$/.test(a)) ? a.toLowerCase() : null;
+  try {
+    const provider = await window.ZABAL.getProvider();
+    if (provider && typeof provider.request === 'function') {
+      const accts = await provider.request({ method: 'eth_requestAccounts' });
+      const a = norm(accts && accts[0]);
+      if (a) return a;
+    }
+  } catch (e) { /* fall through to an injected wallet */ }
+  try {
+    if (typeof window !== 'undefined' && window.ethereum && typeof window.ethereum.request === 'function') {
+      const accts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      return norm(accts && accts[0]);
+    }
+  } catch (e) { /* user rejected, or no wallet available */ }
+  return null;
+};
+
 // Return the connected wallet's EIP-1193 provider for write transactions (e.g.
 // creating an on-chain POIDH bounty), or null outside a Mini App / wallet context.
 // Unlike getAddress this does NOT call eth_accounts - the caller drives the flow

@@ -116,6 +116,14 @@
             <input id="status-media" type="url" maxlength="500" inputmode="url">
           </div>
           <div class="status-field full">
+            <label for="status-wallet">Payout wallet</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <input id="status-wallet" maxlength="42" inputmode="text" autocomplete="off" placeholder="0x...">
+              <button type="button" class="status-button" id="status-wallet-connect" style="flex:0 0 auto;background:transparent;color:#e0ddaa;">Connect</button>
+            </div>
+            <small style="color:var(--text-muted);font-size:0.78rem;">Where prizes and collectibles go. Adding it also lets you reclaim this project to edit it from any device signed in with your Farcaster account.</small>
+          </div>
+          <div class="status-field full">
             <label for="status-help">Help wanted</label>
             <input id="status-help" maxlength="500" placeholder="What feedback, skill, or introduction would help?">
           </div>
@@ -185,6 +193,7 @@
     el('status-demo').value = f.demoUrl || '';
     el('status-repo').value = f.repoUrl || '';
     el('status-media').value = f.mediaUrl || '';
+    el('status-wallet').value = s.wallet || '';
     el('status-help').value = f.helpWanted || '';
     el('status-progress').value = f.progressUpdate || '';
     el('ready-wrap').hidden = !(s.status === 'draft' || s.status === 'changes_requested' || s.status === 'rejected');
@@ -224,6 +233,7 @@
     var payload = {
       action: 'update', id: id,
       answer: value('status-description'), email: value('status-email'),
+      wallet: value('status-wallet'),
       handle: builder.charAt(0) === '@' ? builder.slice(1) : '',
       ready: el('status-ready').checked,
       fields: {
@@ -244,6 +254,19 @@
     }).catch(function (error) { setMessage(saveMessage, 'Could not save. ' + error.message, true); })
       .then(function () { saveButton.disabled = false; });
   });
+  var walletBtn = document.getElementById('status-wallet-connect');
+  if (walletBtn) {
+    walletBtn.addEventListener('click', function () {
+      if (!(window.ZABAL && window.ZABAL.connectWallet)) { setMessage(saveMessage, 'Wallet connect is unavailable here. Paste your address instead.', true); return; }
+      walletBtn.disabled = true; var prev = walletBtn.textContent; walletBtn.textContent = '...';
+      window.ZABAL.connectWallet().then(function (addr) {
+        if (addr) { el('status-wallet').value = addr; setMessage(saveMessage, 'Wallet connected. Save to keep it.', false); }
+        else setMessage(saveMessage, 'No wallet connected. You can paste an address instead.', false);
+      }).catch(function () { setMessage(saveMessage, 'Could not connect a wallet.', true); })
+        .then(function () { walletBtn.disabled = false; walletBtn.textContent = prev; });
+    });
+  }
+
   load();
 })();
 </script>

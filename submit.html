@@ -187,6 +187,14 @@
               <input id="project-help" name="help" maxlength="500" placeholder="Feedback, design, code, testing, distribution, or a mentor introduction">
               <small>This can help mentors and collaborators find a useful way in.</small>
             </div>
+            <div class="submit-field full">
+              <label for="project-wallet">Payout wallet <span style="color:var(--text-dim);font-weight:400;">(optional)</span></label>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <input id="project-wallet" name="wallet" maxlength="42" inputmode="text" autocomplete="off" placeholder="0x..." style="flex:1 1 220px;">
+                <button type="button" class="submit-btn" id="project-wallet-connect" style="flex:0 0 auto;">Connect wallet</button>
+              </div>
+              <small>Where prizes and collectibles are sent, and how you can reclaim your project to edit it later. Connect to fill it, or paste an address. You can add it later too.</small>
+            </div>
           </div>
           <label class="submit-consent" for="project-consent">
             <input id="project-consent" name="consent" type="checkbox" required>
@@ -309,6 +317,19 @@
   syncButton();
   stage.addEventListener('change', syncButton);
 
+  var walletBtn = document.getElementById('project-wallet-connect');
+  if (walletBtn) {
+    walletBtn.addEventListener('click', function () {
+      if (!(window.ZABAL && window.ZABAL.connectWallet)) { setStatus('Wallet connect is unavailable here. Paste your address instead.', 'err'); return; }
+      walletBtn.disabled = true; var prev = walletBtn.textContent; walletBtn.textContent = 'Connecting...';
+      window.ZABAL.connectWallet().then(function (addr) {
+        if (addr) { document.getElementById('project-wallet').value = addr; setStatus('Wallet connected.', 'ok'); }
+        else setStatus('No wallet connected. You can paste an address instead.', '');
+      }).catch(function () { setStatus('Could not connect a wallet. Paste an address instead.', 'err'); })
+        .then(function () { walletBtn.disabled = false; walletBtn.textContent = prev; });
+    });
+  }
+
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     var project = value('project-name');
@@ -332,6 +353,7 @@
       answer: description,
       handle: builder.charAt(0) === '@' ? builder.slice(1) : '',
       email: value('project-email'),
+      wallet: value('project-wallet'),
       draft: isDraft,
       consent: true,
       source: 'web',
