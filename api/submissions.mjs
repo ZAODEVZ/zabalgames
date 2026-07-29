@@ -28,6 +28,7 @@
 
 import { verifyQuickAuth, verifyAdmin, DOMAIN } from '../lib/auth.mjs';
 import { RateLimiter } from '../lib/rate-limit.mjs';
+import { verifyPersonalSign, editChallenge } from '../lib/siwe.mjs';
 
 export const config = { runtime: 'edge' };
 
@@ -300,6 +301,16 @@ export default async function handler(req) {
 
   // ---------- GET reads ----------
   if (req.method === 'GET') {
+    // SIWE: issue a one-time nonce for a wallet-signed edit challenge (10 min TTL). Lets a
+    // builder who submitted with a wallet but has no Farcaster account reclaim their project.
+    if (url.searchParams.get('siwe') === 'nonce') {
+      if (!KV_URL || !KV_TOKEN) return json({ ok: false, configured: false });
+      const nonce = 'zg' + Array.from(crypto.getRandomValues(new Uint8Array(16))).map((b) => b.toString(16).padStart(2, '0')).join('');
+      try { await kvPipeline([['SET', `zabal:siwe:nonce:${nonce}`, '1', 'EX', '600']]); }
+      catch { return json({ ok: false, error: 'kv' }); }
+      return json({ ok: true, nonce, domain: DOMAIN });
+    }
+
     // Audited builder/project gallery. This stays available even when KV is not
     // configured because the durable source is the versioned repository data file.
     if (url.searchParams.get('feed') === 'builders') {
@@ -485,6 +496,19 @@ export default async function handler(req) {
       // A verified Farcaster owner can edit without the token: FID match, or the
       // submission's wallet is one of the caller's Farcaster verified addresses.
       if (!owner) owner = await farcasterOwns(req, s);
+      // Wallet reclaim without Farcaster: a SIWE signature over the one-time nonce that
+      // recovers to the submission's stored wallet. The nonce is consumed (one-time) and
+      // the signed challenge binds the id + address, so it cannot be replayed or retargeted.
+      if (!owner && s.wallet && body.siwe && body.siwe.signature) {
+        const addr = String(body.siwe.address || '').toLowerCase();
+        const nonce = String(body.siwe.nonce || '').replace(/[^a-z0-9]/gi, '').slice(0, 80);
+        if (nonce && /^0x[0-9a-f]{40}$/.test(addr) && addr === String(s.wallet).toLowerCase()) {
+          let nonceOk = false;
+          try { const r = await kvPipeline([['GETDEL', `zabal:siwe:nonce:${nonce}`]]); nonceOk = !!(r[0] && r[0].result); }
+          catch { nonceOk = false; }
+          if (nonceOk && verifyPersonalSign(editChallenge({ domain: DOMAIN, id, address: addr, nonce }), String(body.siwe.signature), addr)) owner = true;
+        }
+      }
       if (!owner) return json({ ok: false, error: 'forbidden' });
       const prev = s.status;
       const next = cleanFields(body.fields);

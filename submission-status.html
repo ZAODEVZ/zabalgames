@@ -211,17 +211,65 @@
         .catch(function (error) { setMessage(message, error.message + ' Email info@thezao.com if you need a fresh link.', true); });
       return;
     }
-    // No token: load as the signed-in Farcaster owner (Quick Auth carries the FID).
-    var priv = document.getElementById('status-private');
-    if (priv) priv.textContent = 'You are editing this project as its signed-in Farcaster owner. Only you and The ZAO can make changes.';
+    // No token: prefer the signed-in Farcaster owner; otherwise fall back to wallet sign-in.
     waitZabal(2500).then(function (ok) {
-      if (!ok) { setMessage(message, 'Open this from your private edit link, or open it inside the Farcaster app while signed in as the builder who submitted it.', true); return; }
+      if (!ok) { siweLoad(); return; }
       window.ZABAL.authedGet('/api/submissions?id=' + encodeURIComponent(id))
         .then(function (data) {
-          if (!data || !data.ok || !data.owner) throw new Error('You are not signed in as the builder who owns this project.');
-          fill(data.submission);
+          if (data && data.ok && data.owner) {
+            mode = 'fid';
+            setPrivateNotice('You are editing this project as its signed-in Farcaster owner. Only you and The ZAO can make changes.');
+            fill(data.submission);
+          } else { siweLoad(); }
         })
-        .catch(function (error) { setMessage(message, error.message + ' Email info@thezao.com if you need help.', true); });
+        .catch(function () { siweLoad(); });
+    });
+  }
+  function setPrivateNotice(text) { var p = document.getElementById('status-private'); if (p) p.textContent = text; }
+  // Wallet sign-in: load the public record and let the builder connect the wallet they
+  // submitted with, then sign a challenge to save. Covers non-Farcaster web users.
+  function siweLoad() {
+    mode = 'siwe';
+    setPrivateNotice('Connect the wallet you submitted with, then Save. You will sign a short message to prove ownership - no gas, no transaction.');
+    fetch('/api/submissions?id=' + encodeURIComponent(id), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.ok || !data.submission || !data.submission.project) throw new Error('Project not found.');
+        fill(data.submission);
+      })
+      .catch(function (error) { setMessage(message, error.message + ' Open your private edit link, or email info@thezao.com.', true); });
+  }
+  // The exact challenge string the server rebuilds and verifies - must match lib/siwe.mjs.
+  function buildChallenge(domain, pid, address, nonce) {
+    return domain + ' wants you to edit your ZABAL Gamez project.\n\n' +
+      'Project: #' + pid + '\n' +
+      'Wallet: ' + String(address).toLowerCase() + '\n' +
+      'Nonce: ' + nonce + '\n' +
+      'Action: project-edit';
+  }
+  function toHexUtf8(str) {
+    var bytes = new TextEncoder().encode(str), out = '0x';
+    for (var i = 0; i < bytes.length; i++) out += bytes[i].toString(16).padStart(2, '0');
+    return out;
+  }
+  // Connect a wallet and sign the edit challenge. Resolves { address, nonce, signature }.
+  function siweSign() {
+    var provider = null;
+    var pget = (window.ZABAL && window.ZABAL.getProvider) ? window.ZABAL.getProvider() : Promise.resolve(null);
+    return Promise.resolve(pget).catch(function () { return null; }).then(function (p) {
+      provider = p || (typeof window !== 'undefined' ? window.ethereum : null);
+      if (!provider || typeof provider.request !== 'function') throw new Error('No wallet found. Open in the Farcaster app or install a browser wallet.');
+      return provider.request({ method: 'eth_requestAccounts' });
+    }).then(function (accts) {
+      var addr = String((accts && accts[0]) || '').toLowerCase();
+      if (!/^0x[0-9a-f]{40}$/.test(addr)) throw new Error('No wallet address available.');
+      return fetch('/api/submissions?siwe=nonce', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (nres) {
+        if (!nres || !nres.ok || !nres.nonce) throw new Error('Could not start wallet sign-in.');
+        var msg = buildChallenge(nres.domain || 'zabalgamez.com', id, addr, nres.nonce);
+        return provider.request({ method: 'personal_sign', params: [toHexUtf8(msg), addr] }).then(function (signature) {
+          return { address: addr, nonce: nres.nonce, signature: signature };
+        });
+      });
     });
   }
   el('status-form').addEventListener('submit', function (event) {
@@ -243,10 +291,20 @@
         progressUpdate: value('status-progress')
       }
     };
-    // Owner auth: the private token on the web, or the signed-in Farcaster FID in the app.
-    var request = mode === 'token'
-      ? (function () { payload.editToken = token; return fetch('/api/submissions', { method: 'POST', referrerPolicy: 'no-referrer', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).then(function (r) { return r.json(); }); })()
-      : window.ZABAL.authedFetch('/api/submissions', payload);
+    // Owner auth by mode: private token, signed-in Farcaster FID, or a wallet signature.
+    var request;
+    if (mode === 'token') {
+      payload.editToken = token;
+      request = fetch('/api/submissions', { method: 'POST', referrerPolicy: 'no-referrer', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).then(function (r) { return r.json(); });
+    } else if (mode === 'siwe') {
+      setMessage(saveMessage, 'Connect your wallet and sign to save...', false);
+      request = siweSign().then(function (proof) {
+        payload.siwe = proof;
+        return fetch('/api/submissions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).then(function (r) { return r.json(); });
+      });
+    } else {
+      request = window.ZABAL.authedFetch('/api/submissions', payload);
+    }
     request.then(function (data) {
       if (!data || !data.ok) throw new Error((data && (data.error || data.reason)) || 'save failed');
       fill(data.submission); el('status-ready').checked = false;
