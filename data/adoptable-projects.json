@@ -561,19 +561,6 @@
       "spec_label": "Doc 720"
     },
     {
-      "id": "37",
-      "name": "SongJam leaderboard migration",
-      "brand": "SongJam",
-      "maturity": "concept",
-      "adopt_type": "BUILD",
-      "description": "Move the SongJam leaderboard off the deprecated X scraper onto an Empire Builder leaderboard, so it runs on Farcaster-native data and frees the maintainer.",
-      "ship_next": "Confirm the Empire Builder leaderboard API first, then emit SongJam engagement as address+score and register it.",
-      "color": "orange",
-      "status": "open",
-      "spec_url": "/docs/research/654-empire-v3-meeting.md",
-      "spec_label": "Doc 654"
-    },
-    {
       "id": "38",
       "name": "POIDH bounty leaderboard",
       "brand": "POIDH",

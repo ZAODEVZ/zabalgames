@@ -44,22 +44,19 @@
       "handle": "tylerstambaugh",
       "name": "Tyler Stambaugh",
       "roles": [
-        "workshop_lead",
-        "partner"
+        "community_member"
       ],
-      "headline": "Founder, Magnetiq - workshop library platform",
-      "bio": "Founder of Magnetiq, the workshop library + entry/onboarding platform hosting every ZABAL Gamez Season 1 session. Magnetiq is the host platform for the workshop month - native video, opt-in email capture, per-vendor watch analytics.",
-      "expertise_label": "RETENTION + PORTAL",
+      "headline": "Community member",
+      "bio": "",
+      "expertise_label": "",
       "color": "zabal",
       "avatar_url": null,
       "farcaster_url": null,
       "x_url": null,
-      "site_url": "https://app.magnetiq.xyz",
-      "session_count": 1,
-      "session_topics": [
-        "Magnetiq - The Workshop Library Behind ZABAL Gamez"
-      ],
-      "audited_date": "2026-05-22"
+      "site_url": null,
+      "session_count": 0,
+      "session_topics": [],
+      "audited_date": "2026-07-31"
     },
     {
       "handle": "thyrevolution",

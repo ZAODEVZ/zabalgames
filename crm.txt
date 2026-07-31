@@ -277,9 +277,7 @@ Workshop lead  |  track: builder
 Farcaster: @topocount.eth
 ======================================================================
 Tyler Stambaugh  [Headliner]
-Workshop lead, Partner  |  track: builder
-  - Founder, Magnetiq - workshop library platform
-  - Workshop: Magnetiq (any day in June)
+Community member
 Profile: https://zabalgamez.com/p?handle=tylerstambaugh
 ======================================================================
 Ven (The Open Machine)  [Challenger]

@@ -24,8 +24,14 @@
       "summary": "Zaal's long-form interview show - conversations with a builder, founder, or organizer working on something worth understanding.",
       "ties_to_zabal": "Episode transcripts surface the people, tools, and threads moving through the ZAO ecosystem. BCZ YapZ already generates content/bonfire-ingest/ files from each transcript, so it is a native Bonfire feeder - the same memory layer ZABAL Gamez runs on.",
       "links": [
-        {"label": "bczyapz.com", "url": "https://www.bczyapz.com/"},
-        {"label": "github - bettercallzaal/bcz-yapz", "url": "https://github.com/bettercallzaal/bcz-yapz"}
+        {
+          "label": "bczyapz.com",
+          "url": "https://www.bczyapz.com/"
+        },
+        {
+          "label": "github - bettercallzaal/bcz-yapz",
+          "url": "https://github.com/bettercallzaal/bcz-yapz"
+        }
       ],
       "ideas": [
         "Auto-link each YapZ guest to their Bonfire entity + Farcaster FID so a guest's other ZAO activity threads into the same graph node.",
@@ -36,7 +42,10 @@
         "type": "github-content",
         "repo": "bettercallzaal/bcz-yapz",
         "ref": "main",
-        "paths": ["content/transcripts", "content/bonfire-ingest"]
+        "paths": [
+          "content/transcripts",
+          "content/bonfire-ingest"
+        ]
       },
       "raw_dir": "data/streams/bcz-yapz/raw"
     },
@@ -49,9 +58,18 @@
       "summary": "Two-week online program (Mar 30 - Apr 10 2026) co-hosted by Builders Garden + Dev3Pack - zero to building autonomous agents and miniapps on the Farcaster social graph, deployed live to compete in FarHack Online 2026.",
       "ties_to_zabal": "This is the origin thread. The bootcamp fed FarHack, where Zaal/Zlank won the Snap category ($1,000), and that prize money went to ZAOstock. The agent + miniapp patterns taught here are the same rails ZABAL Gamez builds on.",
       "links": [
-        {"label": "Bootcamp portal (Notion)", "url": "https://builders-garden.notion.site/farcaster-agentic-bootcamp"},
-        {"label": "Luma", "url": "https://luma.com/f7ok6tbp"},
-        {"label": "FarHack", "url": "https://github.com/farhackxyz/farhack"}
+        {
+          "label": "Bootcamp portal (Notion)",
+          "url": "https://builders-garden.notion.site/farcaster-agentic-bootcamp"
+        },
+        {
+          "label": "Luma",
+          "url": "https://luma.com/f7ok6tbp"
+        },
+        {
+          "label": "FarHack",
+          "url": "https://github.com/farhackxyz/farhack"
+        }
       ],
       "ideas": [
         "Distill the bootcamp curriculum (agents, memory, identity, wallets, onchain commerce, viral distribution, multi-agent) into a ZABAL Gamez builder prep track.",
@@ -70,12 +88,21 @@
       "kind": "bounty",
       "status": "live",
       "color": "gold",
-      "summary": "The ZAO festivals team funds the ZABAL Gamez Season 1 prize pool - $500 USDC for v0, tiered across finalists, plus a commemorative collectible on Magnetiq for every finisher.",
+      "summary": "The ZAO festivals team funds the ZABAL Gamez Season 1 prize pool - $500 USDC for v0, tiered across finalists, plus a commemorative collectible for every finisher.",
       "ties_to_zabal": "This is the prize pool itself. Every finalist who ships gets paid from it. Sponsor inquiries to grow the v1 pool: info@thezao.com.",
       "links": [
-        {"label": "Finals settlement", "url": "/finals"},
-        {"label": "Sponsor outreach", "url": "/docs/sponsor-outreach-2026-05-26.md"},
-        {"label": "thezao.com", "url": "https://thezao.com"}
+        {
+          "label": "Finals settlement",
+          "url": "/finals"
+        },
+        {
+          "label": "Sponsor outreach",
+          "url": "/docs/sponsor-outreach-2026-05-26.md"
+        },
+        {
+          "label": "thezao.com",
+          "url": "https://thezao.com"
+        }
       ],
       "ideas": [
         "Live bounty tracker: total pool, committed sponsors, per-tier payout, settled-to-date - published as a JSON leaderboard Empire Builder can pull.",
@@ -97,15 +124,42 @@
       "summary": "GM Farcaster's week-long builder showcase where projects present their work live. Run and hosted publicly by GM Farcaster; ZABAL Gamez takes part and adds a summary + transcript for each day.",
       "ties_to_zabal": "A stage for ZABAL Gamez work. A week-long GM Farcaster-hosted showcase (Jun 1-5 2026) organized by JubJub. Day 1 (Jun 1) featured Vini App, POIDH, Juke, Founder Check, Fotocaster and Dr. Deeks; Day 2 (Jun 2) was a live Founder Check workshop; Day 3 (Jun 3) featured Zaal (ZABAL Gamez / The ZAO), yerbearserker and azflin, running NFT raffles to holders of the Yerbearserker Mate collab mint; Day 5 (Jun 5) featured DEKEY, POWER, betrmint and Runner. GM Farcaster hosts the videos on their episode pages; we add the summaries + transcripts captured here.",
       "links": [
-        { "label": "The builders (all days)", "url": "/farcaster-batches" },
-        { "label": "Watch Day 1 on GM Farcaster", "url": "https://www.gmfarcaster.com/episodes/Batches1" },
-        { "label": "Watch Day 2 on GM Farcaster", "url": "https://www.gmfarcaster.com/episodes/Batches2" },
-        { "label": "Watch Day 3 on GM Farcaster", "url": "https://www.gmfarcaster.com/episodes/Batches3" },
-        { "label": "Watch Day 5 on GM Farcaster", "url": "https://www.gmfarcaster.com/episodes/Batches5" },
-        { "label": "Day 1 transcript (Jun 1) - builder chat", "url": "/data/streams/farcaster-batches/raw/transcripts/2026-06-01-farcaster-batches.md" },
-        { "label": "Day 2 transcript (Jun 2) - Founder Check workshop", "url": "/data/streams/farcaster-batches/raw/transcripts/2026-06-02-farcaster-batches.md" },
-        { "label": "Day 3 transcript (Jun 3) - builder chat", "url": "/data/streams/farcaster-batches/raw/transcripts/2026-06-03-farcaster-batches.md" },
-        { "label": "Day 5 transcript (Jun 5) - builder chat", "url": "/data/streams/farcaster-batches/raw/transcripts/2026-06-05-farcaster-batches.md" }
+        {
+          "label": "The builders (all days)",
+          "url": "/farcaster-batches"
+        },
+        {
+          "label": "Watch Day 1 on GM Farcaster",
+          "url": "https://www.gmfarcaster.com/episodes/Batches1"
+        },
+        {
+          "label": "Watch Day 2 on GM Farcaster",
+          "url": "https://www.gmfarcaster.com/episodes/Batches2"
+        },
+        {
+          "label": "Watch Day 3 on GM Farcaster",
+          "url": "https://www.gmfarcaster.com/episodes/Batches3"
+        },
+        {
+          "label": "Watch Day 5 on GM Farcaster",
+          "url": "https://www.gmfarcaster.com/episodes/Batches5"
+        },
+        {
+          "label": "Day 1 transcript (Jun 1) - builder chat",
+          "url": "/data/streams/farcaster-batches/raw/transcripts/2026-06-01-farcaster-batches.md"
+        },
+        {
+          "label": "Day 2 transcript (Jun 2) - Founder Check workshop",
+          "url": "/data/streams/farcaster-batches/raw/transcripts/2026-06-02-farcaster-batches.md"
+        },
+        {
+          "label": "Day 3 transcript (Jun 3) - builder chat",
+          "url": "/data/streams/farcaster-batches/raw/transcripts/2026-06-03-farcaster-batches.md"
+        },
+        {
+          "label": "Day 5 transcript (Jun 5) - builder chat",
+          "url": "/data/streams/farcaster-batches/raw/transcripts/2026-06-05-farcaster-batches.md"
+        }
       ],
       "ideas": [
         "Add Farcaster Batches session transcripts under raw/transcripts as they are shared, same convention as the workshop transcripts.",
@@ -123,12 +177,17 @@
       "kind": "workshop",
       "status": "live",
       "color": "pink",
-      "summary": "June workshop month - ZAO builders each record a ~30-min session on tools they have built. The whole library lands in the Magnetiq portal, watchable live or after.",
+      "summary": "June workshop month - ZAO builders each record a ~30-min session on tools they have built. The whole library is recorded, watchable live or after.",
       "ties_to_zabal": "The workshops are the deep-context onboarding for builders. Raw session recordings + transcripts + summaries are the richest ZABAL Gamez data stream - they directly seed what people build in July.",
       "links": [
-        {"label": "Workshop sign-up", "url": "/lead"},
-        {"label": "Workshop leads", "url": "/data/workshop-leads.json"},
-        {"label": "Magnetiq portal", "url": "https://magnetiq.xyz"}
+        {
+          "label": "Workshop sign-up",
+          "url": "/lead"
+        },
+        {
+          "label": "Workshop leads",
+          "url": "/data/workshop-leads.json"
+        }
       ],
       "ideas": [
         "Per-session: raw recording link + auto-transcript + 3-bullet summary + the tool/rail it covers, all landing as one timeline entry.",
@@ -150,8 +209,14 @@
       "summary": "The facts about ZABAL Gamez itself - the positioning and proof points worth spreading. Each is one-tap shareable into /zabal.",
       "ties_to_zabal": "This is ZABAL Gamez. The facts stream turns the strongest, verified points into shareable timeline entries so the brand spreads as facts, not hype.",
       "links": [
-        {"label": "Sign up", "url": "/lead"},
-        {"label": "Positioning", "url": "/docs/positioning-2026-05-29.md"}
+        {
+          "label": "Sign up",
+          "url": "/lead"
+        },
+        {
+          "label": "Positioning",
+          "url": "/docs/positioning-2026-05-29.md"
+        }
       ],
       "ideas": [
         "Share a fact a day into /zabal during the run-up to June.",

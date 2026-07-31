@@ -92,7 +92,7 @@
   // Keep third-party platform names off the card - "poidh" is our backend ingest
   // source, not a name we surface. Map it to plain ZABAL Gamez language, and strip
   // it out of free-text notes too (those are raw cast/UGC text, not site copy).
-  function sourceLabel(s) { var m = { poidh: 'Open Pot', magnetiq: 'Magnetiq', manual: 'site' }; return m[s] || esc(s || 'site'); }
+  function sourceLabel(s) { var m = { poidh: 'Open Pot', manual: 'site' }; return m[s] || esc(s || 'site'); }
   function deJargon(s) { return String(s == null ? '' : s).replace(/\bpoidh\b/gi, '').replace(/\s{2,}/g, ' ').trim(); }
 
   // The season card: everything this builder is this season, in one shareable view.
