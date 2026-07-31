@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>This Month - ZABAL Gamez Season 1</title>
-  <meta name="description" content="What's coming this month at ZABAL Gamez: August is the Finals month - every July builder gets a ZAO mentor and a pod, building toward the Finals. The arc, the tracks, the pods, and what's dropping.">
+  <meta name="description" content="The August Finals of ZABAL Gamez. Everyone who submitted an open build in July is in. Two weeks of weekly tasks per track, then top-2 go head-to-head in WaveWarZ battles. $500 USDC pool. Fully online.">
   <link rel="canonical" href="https://zabalgamez.com/content">
   <meta property="og:title" content="This Month - ZABAL Gamez Season 1">
-  <meta property="og:description" content="August is the Finals month. Every July builder gets a mentor + a pod. Here's what's coming.">
+  <meta property="og:description" content="The August Finals. Two weeks of weekly tasks, then WaveWarZ battles crown a winner per track. $500 USDC pool.">
   <meta property="og:url" content="https://zabalgamez.com/content">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="800">
   <meta property="og:image:alt" content="ZABAL Gamez">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See what''s coming","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/content","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
-  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See what''s coming","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/content","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the Finals","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/content","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the Finals","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/content","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
   <link rel="apple-touch-icon" href="/assets/icon.png">
@@ -26,12 +26,15 @@
   <link rel="stylesheet" href="/assets/style.css">
   <style>
     .arc-step { display: flex; gap: 1rem; align-items: flex-start; border: 1px solid var(--border); border-left: 3px solid var(--zabal); border-radius: 11px; background: var(--surface-2); padding: 1rem 1.1rem; margin-bottom: 0.7rem; }
-    .arc-when { flex: 0 0 auto; min-width: 5.6rem; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gold); padding-top: 0.15rem; }
+    .arc-when { flex: 0 0 auto; min-width: 5.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gold); padding-top: 0.15rem; }
     .arc-body h3 { margin: 0 0 0.25rem; font-size: 1.02rem; }
     .arc-body p { margin: 0; color: var(--text-muted); font-size: 0.9rem; }
     .track-grid { display: grid; gap: 0.8rem; grid-template-columns: 1fr; }
     @media (min-width: 640px) { .track-grid { grid-template-columns: repeat(3, 1fr); } }
-    .status-pill { display: inline-block; font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.12rem 0.55rem; border-radius: 999px; border: 1px solid var(--border-hover); color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+    .prize-callout { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; background: var(--surface-2); padding: 1.1rem 1.2rem; }
+    .prize-callout strong { color: var(--gold); }
+    .partner-line { color: var(--text-muted); font-size: 0.92rem; line-height: 1.9; }
+    .partner-line b { color: var(--text); font-weight: 600; }
   </style>
   <script type="module" src="/assets/miniapp.js"></script>
 </head>
@@ -55,99 +58,99 @@
 
   <header class="hero">
     <div class="hero-eyebrow">This Month at ZABAL Gamez</div>
-    <h1>August - <span class="accent">The Finals</span>.</h1>
+    <h1>The August <span class="accent">Finals</span>.</h1>
     <p class="hero-sub">
-      August is the Finals month. If you submitted anything in July - any format, partial counts - you are in. No new application. Everyone in the pool gets paired with a ZAO mentor and a pod, and builds toward the Finals together. Here is what is coming.
+      The August Finals of ZABAL Gamez, The ZAO's three-month build-a-thon. Everyone who submitted an open build in July is in. Over two weeks, artists, builders, and creators each get a new weekly task to make and share. The top 2 in each track then go head-to-head in <strong>WaveWarZ</strong> battles to crown a winner per track.
     </p>
   </header>
 
-  <!-- THE ARC -->
+  <!-- TRACKS -->
   <section class="section">
-    <h2>The August Arc</h2>
-    <p>The shape of the month. Dates firm up as the week lands - watch <a href="/live.html">/live</a> for what is on right now.</p>
-
-    <div class="arc-step">
-      <div class="arc-when">Wk 1</div>
-      <div class="arc-body">
-        <h3>Mentor pairing <span class="status-pill">core</span></h3>
-        <p>Every July builder is matched with an embedded ZAO mentor and placed in a pod. The pool is the July submissions board - if you submitted, you already have a seat.</p>
-      </div>
-    </div>
-
-    <div class="arc-step">
-      <div class="arc-when">Wk 2-3</div>
-      <div class="arc-body">
-        <h3>Pods build</h3>
-        <p>Pods work with their mentor toward a Finals-ready build. Mentors share the evaluation criteria up front, so everyone knows what "ready" looks like. Support is the whole point - no one builds alone.</p>
-      </div>
-    </div>
-
-    <div class="arc-step">
-      <div class="arc-when">Late Aug</div>
-      <div class="arc-body">
-        <h3>The Finals</h3>
-        <p>Finals builds go up for the community. WaveWarZ-Base integration and on-chain settlement decide it - the market, not a panel. Details on the <a href="/finals.html">Finals page</a>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- THE TRACKS -->
-  <section class="section">
-    <h2>The Tracks</h2>
-    <p>Three ways to be in it. Pick one, or more than one - partial and work-in-progress counts everywhere.</p>
+    <h2>Tracks</h2>
     <div class="track-grid">
       <div class="card">
-        <div class="card-label" style="color: var(--cyan);">BUILDER</div>
-        <h3>Build</h3>
-        <p>Ship something real on the ZAO rails - WaveWarZ, Empire Builder, Zlank, Farcaster. Adopt a started project or bring your own.</p>
+        <div class="card-label" style="color: var(--pink);">ARTIST</div>
+        <h3>Musical / Visual</h3>
+        <p>Music, art, cover work, visuals. The ZAO is music-first - artists carry the Games.</p>
       </div>
       <div class="card">
-        <div class="card-label" style="color: var(--pink);">ARTIST</div>
-        <h3>Create</h3>
-        <p>Music, art, cover work, visuals. The ZAO is music-first - artists carry the Games as much as builders do.</p>
+        <div class="card-label" style="color: var(--cyan);">BUILDER</div>
+        <h3>Developer / Technical</h3>
+        <p>Ship something real on the ZAO rails - WaveWarZ, Empire Builder, Zlank, Farcaster.</p>
       </div>
       <div class="card">
         <div class="card-label" style="color: var(--gold);">CREATOR</div>
-        <h3>Document</h3>
-        <p>Clips, recaps, threads, build-in-public. Tell the story of what the community is shipping and you are in the pool too.</p>
+        <h3>Media / Distribution</h3>
+        <p>Clips, recaps, threads, build-in-public. Tell the story of what the community ships.</p>
       </div>
     </div>
   </section>
 
-  <!-- MENTOR PODS -->
-  <section class="section" id="pods">
-    <h2>Mentor Pods</h2>
-    <p>
-      The heart of August. Instead of a leaderboard grind, every builder gets a <strong>ZAO mentor</strong> and a small <strong>pod</strong> - a handful of builders working alongside a mentor toward the Finals. Mentors pair with the open pool, share evaluation criteria, and give real feedback, not a score at the end.
-    </p>
-    <p>
-      <strong>Mentor roster is open.</strong> Want to mentor a pod? Sign up on the <a href="/lead.html">/lead</a> form and pick "Mentor" or "Both." Confirmed mentors are added as they come in.
-    </p>
-  </section>
-
-  <!-- WHAT'S DROPPING -->
+  <!-- ELIGIBILITY -->
   <section class="section">
-    <h2>What's Dropping This Month</h2>
-    <p>The public stuff coming across August - broadcasts, recaps, and drops. Come watch the build in public.</p>
-    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted);">
-      <li><strong>Finals broadcast</strong> - the Finals go live for the community; watch on <a href="/finals/live.html">/finals/live</a>.</li>
-      <li><strong>Pod check-ins</strong> - Spaces and streams through the month; see <a href="/spaces.html">/spaces</a> + <a href="/streams.html">/streams</a>.</li>
-      <li><strong>Session recaps</strong> - what each pod is shipping, written up as it happens: <a href="/recaps.html">/recaps</a>.</li>
-      <li><strong>Daily update</strong> - the one-glance "what's on today": <a href="/today.html">/today</a>.</li>
-    </ul>
+    <h2>Eligibility</h2>
+    <p>Open to anyone who submitted an open build during July's open build month. If you submitted - any format, partial counts - you are in. No new application.</p>
   </section>
 
-  <!-- SPONSOR + GET IN -->
+  <!-- FORMAT -->
+  <section class="section">
+    <h2>Format</h2>
+    <p>Two weeks of weekly tasks, then a battle finale. Everything runs in August, fully online.</p>
+
+    <div class="arc-step">
+      <div class="arc-when">Week 1</div>
+      <div class="arc-body">
+        <h3>Weekly task, per track</h3>
+        <p>A task drops for each track. Build it, share it.</p>
+      </div>
+    </div>
+    <div class="arc-step">
+      <div class="arc-when">Week 2</div>
+      <div class="arc-body">
+        <h3>A new weekly task, per track</h3>
+        <p>A fresh task per track. Build it, share it.</p>
+      </div>
+    </div>
+    <div class="arc-step">
+      <div class="arc-when">Finale</div>
+      <div class="arc-body">
+        <h3>WaveWarZ battles</h3>
+        <p>The top 2 per track go into 3-5 <strong>WaveWarZ</strong> battles - one winner per track. Decided by the market, not a panel. See the <a href="/finals.html">Finals page</a>.</p>
+      </div>
+    </div>
+    <p style="font-size: 0.9rem; color: var(--text-dim); margin-top: 0.4rem;">Exact dates are announced soon. Watch <a href="/live.html">/live</a> for what's on right now.</p>
+  </section>
+
+  <!-- PRIZES -->
+  <section class="section">
+    <h2>Prizes</h2>
+    <div class="prize-callout">
+      <p style="margin:0;">A <strong>$500 USDC</strong> pool sponsored by The ZAO festivals team, tiered so <strong>every finalist who ships gets paid</strong> - plus a commemorative collectible for every finisher.</p>
+    </div>
+  </section>
+
+  <!-- WHAT YOU SUBMIT -->
+  <section class="section">
+    <h2>What you submit each week</h2>
+    <p>That week's task deliverable: a title, a short pitch, a description, and a link - a live URL, repo, demo, video, or track.</p>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="section">
+    <h2>Partners</h2>
+    <p class="partner-line">
+      <b>The ZAO festivals team</b> (prize pool) &middot; <b>Empire Builder</b> &middot; <b>WaveWarZ</b> (the battle finale) &middot; <b><a href="https://www.loops.house" target="_blank" rel="noopener">loops.house</a></b> (host &amp; platform)
+    </p>
+  </section>
+
+  <!-- GET IN -->
   <section class="section">
     <h2>Get In</h2>
-    <p>Free, open to anyone, all month:</p>
     <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted);">
-      <li>Submitted in July? You are already in the pool - <a href="/submissions">see the board</a>.</li>
+      <li>Submitted in July? You are already in - <a href="/submissions">see the board</a>.</li>
       <li><a href="/enter">Enter the build</a> if you have not yet.</li>
-      <li><a href="/lead.html">Mentor a pod</a> (pick "Mentor" on the lead form).</li>
-      <li>Just <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">join /zabal</a> and follow along.</li>
+      <li>Follow along in the <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal Farcaster channel</a>.</li>
     </ul>
-    <p style="font-size: 0.9rem; color: var(--text-dim);">Finals prizes are backed by the ZAO. Sponsor a track or a prize? Reach out in <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a>.</p>
   </section>
 
 </div>
@@ -165,7 +168,6 @@
       <a href="/content.html">This Month</a>
       <a href="/info.html">All the Details</a>
       <a href="/live.html">Live - What's On Now</a>
-      <a href="/lead.html">Lead / Mentor</a>
       <a href="/recaps.html">Session Recaps</a>
     </nav>
     <nav class="arcade-foot-col" aria-label="Season">
