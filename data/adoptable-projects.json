@@ -25,7 +25,6 @@
   "brand_order": [
     "The ZAO",
     "WaveWarZ",
-    "SongJam",
     "POIDH",
     "COC Concertz",
     "zlank + Snaps",
@@ -122,21 +121,6 @@
       "repo": "https://github.com/bettercallzaal/wavewarzapp",
       "live": "https://wavewarzapp.vercel.app",
       "spec_url": "https://github.com/bettercallzaal/wavewarzapp",
-      "spec_label": "Repo"
-    },
-    {
-      "id": "07",
-      "name": "songjam-site",
-      "brand": "SongJam",
-      "maturity": "shipped",
-      "adopt_type": "EXTEND",
-      "description": "The SongJam leaderboard and music-drops frontend - aggregates Farcaster, Space, and timeline contribution points into a live leaderboard.",
-      "ship_next": "Fork the points-aggregation pattern to build a contribution leaderboard for your own track.",
-      "color": "orange",
-      "status": "open",
-      "repo": "https://github.com/bettercallzaal/songjam-site",
-      "live": "https://songjam-site-delta.vercel.app",
-      "spec_url": "https://github.com/bettercallzaal/songjam-site",
       "spec_label": "Repo"
     },
     {
@@ -559,19 +543,6 @@
       "status": "open",
       "spec_url": "/docs/research/720-wavewarz-finals-mechanic.md",
       "spec_label": "Doc 720"
-    },
-    {
-      "id": "37",
-      "name": "SongJam leaderboard migration",
-      "brand": "SongJam",
-      "maturity": "concept",
-      "adopt_type": "BUILD",
-      "description": "Move the SongJam leaderboard off the deprecated X scraper onto an Empire Builder leaderboard, so it runs on Farcaster-native data and frees the maintainer.",
-      "ship_next": "Confirm the Empire Builder leaderboard API first, then emit SongJam engagement as address+score and register it.",
-      "color": "orange",
-      "status": "open",
-      "spec_url": "/docs/research/654-empire-v3-meeting.md",
-      "spec_label": "Doc 654"
     },
     {
       "id": "38",

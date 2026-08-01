@@ -191,28 +191,6 @@
       "explain": "The builder track is for developers and aspiring developers."
     },
     {
-      "q": "What is SANG?",
-      "options": [
-        "A ZAO event",
-        "SongJam's token",
-        "A fractal",
-        "A workshop series"
-      ],
-      "answer": 1,
-      "explain": "SANG is SongJam's token."
-    },
-    {
-      "q": "What is Magnetiq?",
-      "options": [
-        "A crypto wallet",
-        "An all-in-one event and launch platform",
-        "A music player",
-        "A voting tool"
-      ],
-      "answer": 1,
-      "explain": "Magnetiq is the all-in-one event and launch platform hosting the ZABAL Gamez collectible and registration surface."
-    },
-    {
       "q": "What are ZOLs?",
       "options": [
         "A governance seat",
@@ -310,17 +288,6 @@
       ],
       "answer": 1,
       "explain": "July is the open build - you register a repo and build in public so the community can follow and vote."
-    },
-    {
-      "q": "What is SongJam?",
-      "options": [
-        "A ZAO governance body",
-        "A music project in the ZAO ecosystem",
-        "A bounty protocol",
-        "A fractal voting app"
-      ],
-      "answer": 1,
-      "explain": "SongJam is a music project in the ZAO ecosystem; its token is SANG."
     },
     {
       "q": "What do you keep when you build for ZABAL Gamez?",

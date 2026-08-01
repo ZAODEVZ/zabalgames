@@ -1,7 +1,6 @@
 {
- "_note": "Magnetiq Co-Lab UGC prompts for the /submit pipeline. Source: docs/magnetiq-next-2026-06-14.md (the 9 UGC questions from the Tyler <> Zaal session) + docs/magnetiq-zabal-gamez-collectible-page.md. All prompts live on the single ZABAL Gamez magnet; each card sends people there to answer. When an answer is approved on Magnetiq, the submitter gets their collectible/claim code by email (approval is the trigger - they do not have to return). The wallet prompt enables the on-chain (Base) collectible send. command_center_url is the Tyler-managed Notion that syncs to the site; embed it here live once a Notion connector exists. No emojis, no em dashes.",
+ "_note": "ZABAL Gamez UGC prompts for the /submit pipeline. All prompts live on the ZABAL Gamez collectible site; each card sends people there to answer. When an answer is approved, the submitter gets their collectible/claim code by email (approval is the trigger - they do not have to return). The wallet prompt enables the on-chain (Base) collectible send. command_center_url is the Notion that syncs to the site; embed it here live once a Notion connector exists. No emojis, no em dashes.",
  "magnet_url": "https://collect.zabalgamez.com",
- "magnet_alt": "https://app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez",
  "command_center_url": "https://app.notion.com/p/ZABAL-Games-Command-Center-c8e72e3e31c8837c8b0d012bca1fd20a",
  "groups": [
   {
