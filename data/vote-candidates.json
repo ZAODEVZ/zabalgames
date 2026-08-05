@@ -1,5 +1,5 @@
 {
   "version": 2,
   "_schema": "Launch control for the quadratic vote at /vote. status: 'preview' (page visible, voting closed) | 'open' (ballots accepted) | 'closed' (results only). Candidates are NO LONGER curated here - they are the live submissions on the board, served by /api/qv-vote (approved KV submissions + the seed builders in data/builder-submissions.json). This file is now just the on/off switch: flip status in a PR to open or close voting.",
-  "status": "open"
+  "status": "closed"
 }

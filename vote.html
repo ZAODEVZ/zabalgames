@@ -67,8 +67,8 @@
 <div class="container">
   <header class="hero" style="padding-bottom: 0.3rem;">
     <div class="hero-eyebrow">Community vote</div>
-    <h1>Vote for who is <span class="accent">best.</span></h1>
-    <p class="hero-sub">Everyone gets the same <strong>100 credits</strong> per track. Each extra vote for one favorite costs more than the last - 1, then 4, then 9, up to 10 votes for all 100. No single account can buy the win; spreading honest support counts for more than piling on.</p>
+    <h1>Who was <span class="accent">best.</span></h1>
+    <p class="hero-sub">The Season 1 community vote has closed. The results below are final. The season continues on <a href="https://www.loops.house" target="_blank" rel="noopener" style="color:var(--cyan);">loops.house</a> - see the <a href="/content" style="color:var(--cyan);">Finals format</a>. Quadratic voting: everyone got 100 credits per track, each extra vote for one favorite cost more than the last, so no single account could buy the win.</p>
   </header>
 
   <div class="vt-tabs" id="vt-tabs" role="group" aria-label="Track"></div>
@@ -84,7 +84,7 @@
   </div>
 
   <section class="section" style="margin-top: 1.4rem; padding-top: 0;">
-    <h2 style="font-size: 1rem;">Live results</h2>
+    <h2 style="font-size: 1rem;" id="vt-results-heading">Live results</h2>
     <p class="vt-note" id="vt-res-note">Scores are total votes (the square root of credits), so spread support outweighs piling on. Individual ballots stay private.</p>
     <div id="vt-results" aria-live="polite"></div>
   </section>
@@ -124,7 +124,7 @@
 
   function renderMeter() {
     var u = used(track);
-    document.getElementById('vt-meter').hidden = false;
+    document.getElementById('vt-meter').hidden = (slate.status !== 'open');
     document.getElementById('vt-used').textContent = u;
     document.getElementById('vt-left').textContent = (BUDGET - u);
     document.getElementById('vt-fill').style.width = (u) + '%';
@@ -138,12 +138,13 @@
     if (!list.length) {
       host.innerHTML = '';
       empty.hidden = false;
-      empty.textContent = 'No projects in this track yet. Submit one at zabalgamez.com/submit.';
+      empty.textContent = 'No projects in this track.';
       submitWrap.hidden = true;
       return;
     }
     empty.hidden = true;
-    submitWrap.hidden = false;
+    // Voting is closed for Season 1 - show the projects + final results, hide the ballot UI.
+    submitWrap.hidden = (slate.status !== 'open');
     var u = used(track);
     host.innerHTML = list.map(function (c) {
       var id = String(c.id);
@@ -211,7 +212,7 @@
 
   document.getElementById('vt-submit').addEventListener('click', function () {
     var msg = document.getElementById('vt-msg');
-    if (slate.status !== 'open') { msg.textContent = 'Voting is not open yet. Come back when it goes live.'; return; }
+    if (slate.status !== 'open') { msg.textContent = slate.status === 'closed' ? 'Voting has closed. Results are final - the season continues on loops.house.' : 'Voting is not open yet. Come back when it goes live.'; return; }
     var a = alloc[track];
     if (!Object.keys(a).length) { msg.textContent = 'Give at least one vote before casting.'; return; }
     msg.textContent = 'Casting...';
@@ -239,7 +240,15 @@
     for (var i = 0; i < TRACKS.length; i++) { if ((slate.tracks[TRACKS[i]] || []).length) { track = TRACKS[i]; break; } }
     if (slate.status !== 'open') {
       var m = document.getElementById('vt-msg');
-      if (m) m.textContent = 'Voting opens soon. You can see the projects and live results now.';
+      if (m) m.textContent = slate.status === 'closed'
+        ? 'Voting has closed for Season 1. Results below are final - the season continues on loops.house.'
+        : 'Voting opens soon. You can see the projects and live results now.';
+      if (slate.status === 'closed') {
+        var rn = document.getElementById('vt-res-note');
+        if (rn) rn.textContent = 'Final Season 1 results. Scores are total votes (the square root of credits), so spread support outweighs piling on. Individual ballots stay private.';
+        var rh = document.getElementById('vt-results-heading');
+        if (rh) rh.textContent = 'Final results';
+      }
     }
     renderAll();
     loadMine(track);
