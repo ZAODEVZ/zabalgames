@@ -24,11 +24,18 @@ specific number. Tight, factual, warm.
 has CLOSED, and the August Finals (curated build month on loops.house + WaveWarZ) are
 underway. The submission loops are closed and the site is reconciled to a coherent Season 1
 whole:
-- **Submissions are CLOSED.** `/submit` shows a closed state; `api/submissions.mjs` refuses
-  new public creates (gated on `SUBMISSIONS_OPEN`, default closed - set env
-  `SUBMISSIONS_OPEN=true` to reopen). Existing builders can still EDIT/publish their live
-  projects and trusted operator ingest still works, so Finals Week 1 final touches are
-  unaffected. `/enter` (July registration) is likewise closed and routes to the Finals.
+- **Submissions + vote are CLOSED; the season now lives on loops.house.** `/submit` shows a
+  closed state; `api/submissions.mjs` refuses new public creates (gated on `SUBMISSIONS_OPEN`,
+  default closed - set env `SUBMISSIONS_OPEN=true` to reopen). Existing builders can still
+  EDIT/publish their live projects and trusted operator ingest still works. `/enter` (July
+  registration) is closed and routes to the Finals. The `/vote` quadratic vote is CLOSED
+  (`data/vote-candidates.json` status = `closed`) - the page shows final results only. The
+  site is now the brand home + Season 1 record + funnel to loops.house (the Finals host);
+  it is no longer the live competition venue.
+- **Season 2 is being prepped.** `/content` carries a Season 2 teaser and the homepage's
+  "full season" band points to loops.house + `/zabal`. The S1 -> S2 handoff (reuse/reset +
+  the canonical brand/site map) is `docs/season-2-readiness-2026-08-05.md`; the idea menu is
+  `docs/season-2-ideas.md`. It is NOT WaveWarZ-Base - the finale is WaveWarZ battles.
 - **Homepage + Finals surfaces reflect the Finals phase.** `index.html` leads with "August
   Finals underway" (not "July open build live"), CTAs point to `/content`. The old
   prediction-market Finals copy in `finals.html`, `finals/live.html`, `winners.html`,
