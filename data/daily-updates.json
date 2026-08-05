@@ -4,6 +4,18 @@
   "_note": "On-site daily log for ZABAL Gamez. Newest day first. Mirrors the Year of the ZABAL newsletter; add one entry per build day.",
   "updates": [
     {
+      "day": 62,
+      "date": "2026-08-01",
+      "title": "July build closed - the Finals are on",
+      "body": "The July open build has wrapped and submissions are closed. Everyone who submitted is in the August Finals - a curated build month on loops.house. Two weeks of weekly tasks per track, then the top 2 in each track face off in WaveWarZ battles for one winner per track. Week 1 is final-touches week: the community is giving feedback on each project right on the posts.",
+      "links": [
+        {
+          "label": "See the Finals",
+          "url": "/content"
+        }
+      ]
+    },
+    {
       "day": 54,
       "date": "2026-07-24",
       "title": "The build is the application",

@@ -20,9 +20,27 @@ No emojis. No em dashes (hyphens only). No crypto/web3/onchain jargon in public 
 specific number. Tight, factual, warm.
 
 ## Current status (live)
-Mid-season (June workshops running, July open build + August Finals ahead). The site
-has grown well past the homepage into a multi-surface Mini App - 60+ pages (41 top-level
-+ 23 recording pages + the game pages), 45 edge endpoints. Snapshot:
+**August Finals phase - Season 1 packaged.** June workshops are done, the July open build
+has CLOSED, and the August Finals (curated build month on loops.house + WaveWarZ) are
+underway. The submission loops are closed and the site is reconciled to a coherent Season 1
+whole:
+- **Submissions are CLOSED.** `/submit` shows a closed state; `api/submissions.mjs` refuses
+  new public creates (gated on `SUBMISSIONS_OPEN`, default closed - set env
+  `SUBMISSIONS_OPEN=true` to reopen). Existing builders can still EDIT/publish their live
+  projects and trusted operator ingest still works, so Finals Week 1 final touches are
+  unaffected. `/enter` (July registration) is likewise closed and routes to the Finals.
+- **Homepage + Finals surfaces reflect the Finals phase.** `index.html` leads with "August
+  Finals underway" (not "July open build live"), CTAs point to `/content`. The old
+  prediction-market Finals copy in `finals.html`, `finals/live.html`, `winners.html`,
+  `about.html` is reconciled - `/content` is the canonical Finals page (loops.house +
+  WaveWarZ, one winner per track, $500 tiered pool). `data/finals.json` +
+  `data/season-1-results.json` stay `pending` until winners lock (Finals in progress).
+- **Season 1 close-out record:** `docs/season-1-package-2026-08-05.md` (what closed, what
+  reconciled, the remaining long tail) + `docs/finals-week1-submitter-spotlights-2026-08-05.md`
+  (submitter roster per track + Firefly spotlights + the loops.house Week 1 post).
+
+The site has grown well past the homepage into a multi-surface Mini App - 60+ pages (41
+top-level + 23 recording pages + the game pages), 45 edge endpoints. Snapshot:
 - Rebrand to ZABAL Gamez + zabalgamez.com is complete and deployed.
 - Mini App manifest (`.well-known/farcaster.json`) is **self-hosted and signed** for
   zabalgamez.com (accountAssociation type:auth, FID 19640). Do NOT hand-edit the
