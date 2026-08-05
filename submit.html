@@ -60,6 +60,12 @@
     .submit-status { min-height: 1.3rem; color: var(--text-muted); font-size: 0.86rem; line-height: 1.45; }
     .submit-status.ok { border: 1px solid rgba(224,221,170,0.45); border-radius: 9px; color: var(--submit-cream); padding: 0.75rem; }
     .submit-status.err { color: #ff8d8d; }
+    .submit-closed { margin: 1.25rem 0 0; padding: 1rem 1.15rem; border: 1px solid rgba(224,221,170,0.45); border-radius: 12px; background: rgba(224,221,170,0.06); line-height: 1.55; }
+    .submit-closed b { display: block; margin-bottom: 0.3rem; color: var(--submit-cream); }
+    .submit-closed a { color: var(--cyan); }
+    .submit-closed-list { margin: 0.4rem 0 0 1.1rem; line-height: 1.6; }
+    .submit-closed-list li { margin: 0.35rem 0; }
+    .submit-closed-list a { color: var(--cyan); }
     .submit-email { border-color: rgba(224,221,170,0.5); }
     .submit-email-address { display: block; color: var(--submit-cream); font-family: 'JetBrains Mono', monospace; font-size: 1rem; overflow-wrap: anywhere; margin: 0.7rem 0; }
     .submit-email ul, .submit-faq ul { padding-left: 1.1rem; color: var(--text-muted); }
@@ -113,23 +119,31 @@
 <main id="main">
   <div class="container submit-shell">
     <header class="hero submit-hero">
-      <div class="hero-eyebrow">Season 1 project intake</div>
-      <h1>Submit your <span class="accent">project</span></h1>
-      <p class="lead"><strong>Anyone can submit.</strong> Send an app, prototype, repository, song, visual, video, article, event, or unfinished idea. No wallet, Farcaster account, GitHub account, or prior registration is required.</p>
+      <div class="hero-eyebrow">Season 1 - submissions closed</div>
+      <h1>Submissions are <span class="accent">closed</span></h1>
+      <p class="lead"><strong>July's open build has wrapped.</strong> Everyone who submitted is in the August Finals - no new application. If you submitted, you can still make final touches to your project from the private link in your receipt.</p>
       <div class="submit-actions">
-        <a class="submit-btn primary" href="#web-form">Use the web form</a>
-        <a class="submit-btn" href="mailto:info@thezao.com?subject=ZABAL%20Gamez%20submission%3A%20%5Bproject%20name%5D&body=Project%20name%3A%0AWhat%20did%20you%20make%3F%0AWhere%20can%20we%20see%20it%3F%0AYour%20name%20or%20handle%3A%0ATrack%2C%20if%20known%3A%20Artist%20%2F%20Builder%20%2F%20Creator%0AAnything%20else%20we%20should%20know%3F">Email info@thezao.com</a>
+        <a class="submit-btn primary" href="/content">See the Finals</a>
         <a class="submit-btn" href="/submissions">Browse projects</a>
+        <a class="submit-btn" href="/vote">Vote</a>
       </div>
     </header>
 
-    <div class="submit-steps" aria-label="How submissions work">
-      <div class="submit-step"><b>1. Send</b><span>Use the form or email. A link, attachment, or clear description is enough to start.</span></div>
-      <div class="submit-step"><b>2. Live instantly</b><span>Your project publishes to the board the moment you submit. There is no approval queue to wait on.</span></div>
-      <div class="submit-step"><b>3. Moderated after</b><span>The ZAO reviews live submissions and removes anything inappropriate. Your page and gallery listing stay up the whole time.</span></div>
+    <div class="submit-closed" role="note">
+      <b>The intake window is closed for Season 1.</b>
+      <span>New submissions are no longer accepted. The <a href="/content">August Finals</a> are underway: everyone who submitted an open build in July auto-qualifies. This week is final-touches week - the community is giving feedback on each project right on the posts. Already submitted? Open your private receipt link to update your project, or <a href="/submissions">see it on the board</a>.</span>
     </div>
 
-    <div class="submit-options">
+    <section class="submit-panel" aria-labelledby="closed-title">
+      <h2 id="closed-title">What now</h2>
+      <ul class="submit-closed-list">
+        <li><b>Submitted in July?</b> You are already in the Finals - no new application. See the format on the <a href="/content">Finals page</a>.</li>
+        <li><b>Want to make final touches?</b> Open the private status link from your submission receipt to update your project. Lost it? Email <a href="mailto:info@thezao.com">info@thezao.com</a>.</li>
+        <li><b>Everyone else:</b> the community is voting and leaving feedback now - <a href="/submissions">browse the board</a> and <a href="/vote">cast your vote</a>.</li>
+      </ul>
+    </section>
+
+    <div class="submit-options" hidden>
       <section class="submit-panel" id="web-form" aria-labelledby="web-form-title">
         <h2 id="web-form-title">Submit on the website</h2>
         <p>Start with what you have. You can update a work in progress later from the private link in your receipt.</p>
@@ -212,7 +226,7 @@
       </aside>
     </div>
 
-    <section class="submit-panel submit-faq" aria-labelledby="submit-faq-title">
+    <section class="submit-panel submit-faq" aria-labelledby="submit-faq-title" hidden>
       <h2 id="submit-faq-title">Submission questions</h2>
       <details><summary>Does my project need to be finished?</summary><p>No. Choose “Work in progress” and update it later. Clear progress is more useful than waiting for a perfect launch.</p></details>
       <details><summary>Do I need a wallet or Farcaster account?</summary><p>No. Anyone can submit. Identity or payout information is collected only when it is needed for prizes, voting, or collectibles.</p></details>

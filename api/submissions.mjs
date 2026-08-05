@@ -42,6 +42,13 @@ const CONTACT_EMAIL = 'info@thezao.com';
 const SITE_URL = process.env.PUBLIC_SITE_URL || 'https://zabalgamez.com';
 const HAATZ = 'https://haatz.quilibrium.com';
 
+// Season submission window. July's open-build intake is CLOSED - August Finals is the
+// current phase (docs/august-finals-loops-format.md). New public submissions are refused;
+// existing builders can still EDIT their live projects (update/publish actions) and trusted
+// operator ingest still works, so Finals Week 1 final touches are unaffected. Reopen without
+// a deploy by setting env SUBMISSIONS_OPEN=true.
+const SUBMISSIONS_OPEN = /^(1|true|yes|on)$/i.test(process.env.SUBMISSIONS_OPEN || '');
+
 const ALLOWED_ORIGINS = new Set(['https://zabalgamez.com', 'https://www.zabalgamez.com', 'https://zabalgames.com', 'https://www.zabalgames.com']);
 const MAX_PER_FID = 30; // soft anti-spam cap on submissions per verified person
 const limiter = new RateLimiter(KV_URL, KV_TOKEN);
@@ -541,6 +548,10 @@ export default async function handler(req) {
     // Trusted email/import adapters use a separate ingest secret. Everyone else is
     // accepted anonymously behind the existing soft rate limit.
     const trustedIngest = ingestOk(req);
+    // Intake window closed: refuse new public submissions (edits/moderation above stay open).
+    if (!SUBMISSIONS_OPEN && !trustedIngest) {
+      return json({ ok: false, reason: 'closed', error: 'Submissions are closed for Season 1 - the August Finals are underway. Already submitted in July? You are in.' });
+    }
     if (!trustedIngest) {
       const ip = RateLimiter.getClientIp(req);
       const allowed = await limiter.checkLimit(ip, 'submit', { perMinute: 5, perHour: 30 });
