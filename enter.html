@@ -72,6 +72,13 @@
     .enter-phase strong { color: var(--text); font-weight: 600; }
     @keyframes enter-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
     .enter-prefill { font-size: 0.78rem; color: var(--cyan); margin-top: 0.4rem; min-height: 1rem; }
+    .enter-closed { padding: 1.1rem 1.25rem; border: 1px solid var(--border-hover); border-radius: 12px; background: rgba(255,255,255,0.03); line-height: 1.6; }
+    .enter-closed b { color: var(--text); }
+    .enter-closed > b { display: block; margin-bottom: 0.4rem; font-family: var(--font-pixel); font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+    .enter-closed p { margin: 0 0 0.6rem; color: var(--text-muted); }
+    .enter-closed ul { margin: 0.4rem 0 0 1.1rem; }
+    .enter-closed li { margin: 0.35rem 0; color: var(--text-muted); }
+    .enter-closed a { color: var(--cyan); }
   </style>
 </head>
 <body>
@@ -95,320 +102,29 @@
 <div class="container">
 
   <header class="hero">
-    <div class="hero-eyebrow">July - Open Build-A-Thon</div>
-    <h1>Enter the build. <span class="accent">The build is the application.</span></h1>
+    <div class="hero-eyebrow">Season 1 - July build closed</div>
+    <h1>The July build is closed. <span class="accent">On to the Finals.</span></h1>
     <p class="hero-sub">
-      No paragraph pitch, no waitlist. Ship something that helps ZABAL Gamez, ZABAL, or The ZAO - a live app, video, image, track, art, article, event, or repository. Anyone can submit on the site or by email. The strongest July builds get curated into the August Finals.
+      July's open build has wrapped and entries are closed. Everyone who shipped is already in the August Finals - no new application. The Finals run now as a curated build month on loops.house, capped by WaveWarZ battles, with one winner per track.
     </p>
     <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:1rem;">
-      <a class="btn btn-primary" href="/submit">Submit a project</a>
-      <a class="btn" href="mailto:info@thezao.com?subject=ZABAL%20Gamez%20submission%3A%20%5Bproject%20name%5D">Email info@thezao.com</a>
+      <a class="btn btn-primary" href="/content">See the Finals</a>
       <a class="btn" href="/submissions">Browse projects</a>
+      <a class="btn" href="/vote">Vote</a>
     </div>
-    <div class="enter-phase" id="enter-phase" hidden>
-      <span class="dot" aria-hidden="true"></span>
-      <span id="enter-phase-text">--</span>
-    </div>
-    <p id="enter-momentum" hidden style="margin-top:0.6rem;font-size:0.92rem;"><a href="/submissions" style="color:var(--cyan);"><strong id="enter-momentum-n"></strong> already shipped this season</a> - add yours.</p>
   </header>
 
   <section class="section">
-    <h2>How to enter</h2>
-    <ol class="enter-steps">
-      <li>
-        <h3>Make anything for the ecosystem</h3>
-        <p>A live app, a video, an image, a track, art, or a repo - any piece of IP for ZABAL Gamez, ZABAL, or The ZAO, with any harness or tool you like. Three tracks: artist, builder, creator. <a href="/projects.html">Adopt a started project</a> or start fresh with the <a href="/llms.txt">context file</a> - every kind of build counts.</p>
-      </li>
-      <li>
-        <h3>Send what you have</h3>
-        <p>Use the <a href="/submit">project form</a> or email <a href="mailto:info@thezao.com">info@thezao.com</a>. A description, public link, repository, or attachment is enough to begin. No wallet, Farcaster account, or GitHub account is required.</p>
-      </li>
-      <li>
-        <h3>It goes live on the board</h3>
-        <p>Your project appears on the board at <a href="/submissions">/submissions</a> as soon as it arrives, whether from the website, email, a public cast, a claim, or a repository watcher. You receive a private status link when contact information is available. The community votes on the work, and The ZAO removes anything inappropriate.</p>
-      </li>
-      <li>
-        <h3>Add prize details later</h3>
-        <p>Submitting is open to everyone. Wallet, repository tracking, a public cast, and the <a href="https://poidh.xyz/base/bounty/1249" target="_blank" rel="noopener">ZABAL Gamez Open Pot</a> are optional until they are needed for a specific prize or verification step.</p>
-      </li>
-    </ol>
-  </section>
-
-  <section class="section" id="tracks">
-    <h2>What each track ships</h2>
-    <p class="enter-sub">Pick your lane. The shape is the same: make it, post it in public, and it lands on the site under your track. Repo builds also register below.</p>
-    <div class="enter-tracks">
-      <div class="enter-track" data-track="artist">
-        <h3>Artist</h3>
-        <p>A track, a cover, a visual, a set, a piece of art. Post it where you publish - a cast in <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a> counts - and it lands under the artist track. Drop your proof on the <a href="https://poidh.xyz/base/bounty/1249" target="_blank" rel="noopener">Open Pot</a> to claim.</p>
-      </div>
-      <div class="enter-track" data-track="builder">
-        <h3>Builder</h3>
-        <p>A live app, a tool, a mini app, or a repo, any harness. Ship a live URL and an open repo, then register your wallet and repo below so the season tracker follows your commits.</p>
-      </div>
-      <div class="enter-track" data-track="creator">
-        <h3>Creator</h3>
-        <p>A video, clips, a recap, a thread, a written piece. Post it where you publish - a cast in <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal</a> counts - and it lands under the creator track. Drop your proof on the <a href="https://poidh.xyz/base/bounty/1249" target="_blank" rel="noopener">Open Pot</a> to claim.</p>
-      </div>
+    <div class="enter-closed" role="note">
+      <b>Entries are closed for Season 1</b>
+      <p>The July open build is over and registration is closed. If you shipped in July, you are already in the Finals - the August curated build month on loops.house. This is final-touches week: the community is giving feedback on each project right on the posts, and builders sharpen from it.</p>
+      <ul>
+        <li><b>Submitted in July?</b> You are in the <a href="/content">August Finals</a> - no new application needed.</li>
+        <li><b>Want to make final touches?</b> Open the private status link from your submission receipt to update your project. Lost it? Email <a href="mailto:info@thezao.com">info@thezao.com</a>.</li>
+        <li><b>Everyone else:</b> the community is voting and leaving feedback now - <a href="/submissions">browse the board</a> and <a href="/vote">cast your vote</a>.</li>
+      </ul>
     </div>
   </section>
-
-  <section class="section">
-    <h2>Register your build</h2>
-    <p>Registering is optional and for repo builds - it lets the season tracker follow your commits. If you register, both fields are needed: your wallet is how prizes reach you, your repo is what the tracker watches. Artist and creator builds can skip this - just post in public and drop your proof on the Open Pot.</p>
-    <form class="enter-form" id="enter-form" novalidate>
-      <div class="enter-field">
-        <label for="wallet">Wallet address</label>
-        <input id="wallet" name="wallet" type="text" inputmode="latin" autocomplete="off" spellcheck="false" placeholder="0x..." aria-describedby="wallet-hint">
-        <div class="enter-hint" id="wallet-hint">An address starting with 0x, 40 hex characters. Used for payouts and per-build tracking.</div>
-        <div class="enter-prefill" id="wallet-prefill" role="status" aria-live="polite"></div>
-      </div>
-      <div class="enter-field">
-        <label for="repo">GitHub repo</label>
-        <input id="repo" name="repo" type="text" autocomplete="off" spellcheck="false" placeholder="owner/repo" aria-describedby="repo-hint">
-        <div class="enter-hint" id="repo-hint">Either owner/repo or a full github.com URL. Must be public.</div>
-      </div>
-      <div class="enter-field">
-        <label for="track">Track <span style="color: var(--text-dim); font-weight: 400;">(optional)</span></label>
-        <select id="track" name="track" aria-describedby="track-hint">
-          <option value="">Pick a lane</option>
-          <option value="artist">Artist - musical or visual</option>
-          <option value="builder">Builder - developer or aspiring</option>
-          <option value="creator">Creator - media and distribution</option>
-        </select>
-        <div class="enter-hint" id="track-hint">Helps mentors judge per track. You can leave it blank.</div>
-      </div>
-      <button class="btn btn-primary enter-btn" id="enter-submit" type="submit">Register my build</button>
-      <div class="enter-msg" id="enter-msg" role="status" aria-live="polite"></div>
-    </form>
-  </section>
-
-  <section class="section">
-    <h2>What happens after you register</h2>
-    <p>
-      A scheduled tracker reads your public repo and pushes each new commit into Bonfire as part of the season's shared record - it never judges or ranks on its own, it just keeps the memory current. Mentors watch July ships and pick their champions; the most interesting builds advance to the August Finals. Getting selected is the first win.
-    </p>
-    <p>How the road to the Finals works, in three steps:</p>
-    <ol>
-      <li><strong>Vote.</strong> Anyone can upvote builds on the board below - one vote per person. Votes are the demand signal, and they rank the board into a shortlist per track.</li>
-      <li><strong>Mentors pick.</strong> ZAO mentors choose the finalists from the shortlist, one lane at a time. Picks show up on the <a href="/finals.html">Finals page</a> as they form.</li>
-      <li><strong>The Finals settle it.</strong> Finalists build with their mentor and the market decides placement. Every finalist is paid and gets the commemorative collectible.</li>
-    </ol>
-    <p>
-      Two ways to start if you have not yet: <a href="/projects.html">adopt a started ZAO project</a> from the maturity-sorted list, or <a href="/llms.txt">load the context file</a> into your harness and find the gap that wants filling. New to building for the ecosystem? The <a href="/playbook.html">Builder Playbook</a> walks the tracks, the rails you build on, and the July bar. Full details on the season are in <a href="/info.html">All the Details</a>.
-    </p>
-  </section>
-
-  <section class="section">
-    <h2>Building in public <span class="builds-count" id="builds-count"></span></h2>
-    <p>Every registered build shows up here, ranked by community votes - the demand signal that shortlists builds for the mentors. One vote per person. <a href="/finals.html">See how the Finals settle</a>.</p>
-    <div class="builds-list" id="builds-list">
-      <p class="builds-empty">Loading...</p>
-    </div>
-  </section>
-
-  <script>
-  // Season momentum line: how many builds have shipped -> /submissions.
-  (function () {
-    fetch('/api/submission-intake?feed=recent&limit=60', { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        var n = d && d.count, wrap = document.getElementById('enter-momentum'), el = document.getElementById('enter-momentum-n');
-        if (wrap && el && n > 0) { el.textContent = n + (n === 1 ? ' build' : ' builds'); wrap.hidden = false; }
-      })
-      .catch(function () {});
-  })();
-  // Public "building in public" board - reads the registry via /api/builds, ranked by
-  // community votes (the shortlist signal). Vote via the Mini App (one +1 per FID per repo).
-  (function() {
-    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-    // Full 42-char wallets overflow the row on phones - show 0x1234...abcd instead.
-    function shortId(w){ w = String(w||''); return /^0x[0-9a-fA-F]{40}$/.test(w) ? w.slice(0,6) + '...' + w.slice(-4) : w; }
-    var listEl = document.getElementById('builds-list');
-    var countEl = document.getElementById('builds-count');
-    if (!listEl) return;
-    var TRACKCOLOR = { artist: 'pink', builder: 'zabal', creator: 'cyan' };
-
-    function row(b, i) {
-      var track = b.track ? '<span class="build-track" style="border-color:var(--' + (TRACKCOLOR[b.track] || 'zabal') + ');color:var(--' + (TRACKCOLOR[b.track] || 'zabal') + ');">' + esc(b.track) + '</span>' : '';
-      return '<div class="build-row" data-repo="' + esc(b.repo) + '">' +
-        '<span class="build-rank">#' + (i + 1) + '</span>' +
-        '<a class="build-repo" href="https://github.com/' + esc(b.repo) + '" target="_blank" rel="noopener">' + esc(b.repo) + '</a>' +
-        track +
-        '<span class="by">by ' + esc(shortId(b.wallet)) + '</span>' +
-        '<button class="vote-btn" type="button" data-repo="' + esc(b.repo) + '" aria-label="Vote for ' + esc(b.repo) + '"><span class="vote-up">+1</span> <span class="vote-n">' + (b.votes || 0) + '</span></button>' +
-      '</div>';
-    }
-
-    fetch('/api/builds', { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        var builds = (d && d.builds) || [];
-        if (!builds.length) {
-          listEl.innerHTML = '<p class="builds-empty">No builds registered yet - in July, yours shows up here the moment you register.</p>';
-          return;
-        }
-        if (countEl) countEl.textContent = d.count + ' build' + (d.count === 1 ? '' : 's') + ' from ' + d.builders + ' builder' + (d.builders === 1 ? '' : 's');
-        listEl.innerHTML = builds.map(row).join('');
-      })
-      .catch(function () {
-        listEl.innerHTML = '<p class="builds-empty">Builds board unavailable right now.</p>';
-      });
-
-    // One +1 per person, via the Mini App. Outside it, point people to open in Farcaster.
-    listEl.addEventListener('click', function (ev) {
-      var btn = ev.target.closest('.vote-btn'); if (!btn) return;
-      var repo = btn.getAttribute('data-repo');
-      if (!(window.ZABAL && window.ZABAL.buildVote)) { window.open('https://farcaster.xyz/miniapps/zabal-gamez', '_blank', 'noopener'); return; }
-      btn.disabled = true;
-      window.ZABAL.buildVote(repo).then(function (res) {
-        if (res && res.ok) {
-          var n = btn.querySelector('.vote-n'); if (n && res.count != null) n.textContent = res.count;
-          btn.classList.add('voted');
-          if (window.ZABAL.toast) window.ZABAL.toast(res.firstVote ? 'Voted' : 'Already voted');
-        } else {
-          btn.disabled = false;
-          if (res && res.reason === 'not-in-miniapp') window.open('https://farcaster.xyz/miniapps/zabal-gamez', '_blank', 'noopener');
-        }
-      });
-    });
-  })();
-  </script>
-
-  <script>
-  (function() {
-    var form = document.getElementById('enter-form');
-    if (!form) return;
-    var walletEl = document.getElementById('wallet');
-    var repoEl = document.getElementById('repo');
-    var btn = document.getElementById('enter-submit');
-    var msg = document.getElementById('enter-msg');
-    var trackEl = document.getElementById('track');
-
-    // Preselect the lane when arriving from the build quiz (/enter?track=builder).
-    try {
-      var qTrack = new URLSearchParams(window.location.search).get('track');
-      if (!qTrack) { var pm = location.pathname.match(/\/enter\/(artist|builder|creator)/); if (pm) qTrack = pm[1]; }
-      if (trackEl && qTrack && ['artist', 'builder', 'creator'].indexOf(qTrack) >= 0) trackEl.value = qTrack;
-      if (qTrack && ['artist', 'builder', 'creator'].indexOf(qTrack) >= 0) { var tc = document.querySelector('.enter-track[data-track="' + qTrack + '"]'); if (tc) tc.classList.add('on'); }
-    } catch (e) { /* no-op */ }
-
-    // Phase-aware banner: counts down to the July open build, flips to "live" in July, then
-    // points at the August Finals. Mirrors the homepage clock so /enter is never stale.
-    (function () {
-      var JULY = new Date('2026-07-01T00:00:00Z').getTime();
-      var AUGUST = new Date('2026-08-01T00:00:00Z').getTime();
-      var wrap = document.getElementById('enter-phase');
-      var textEl = document.getElementById('enter-phase-text');
-      if (!wrap || !textEl) return;
-      function tick() {
-        var now = Date.now();
-        if (now >= AUGUST) {
-          wrap.classList.remove('live');
-          textEl.innerHTML = 'August Finals underway - <strong>July builds are being judged</strong>';
-        } else if (now >= JULY) {
-          wrap.classList.add('live');
-          textEl.innerHTML = '<strong>The July build is live</strong> - register now, the board is open';
-        } else {
-          wrap.classList.remove('live');
-          var diff = JULY - now;
-          var d = Math.floor(diff / 86400000);
-          var h = Math.floor((diff % 86400000) / 3600000);
-          var m = Math.floor((diff % 3600000) / 60000);
-          textEl.innerHTML = 'July build opens in <strong>' + d + 'd ' + h + 'h ' + m + 'm</strong> - register early, you are on the board day one';
-        }
-        wrap.hidden = false;
-      }
-      tick();
-      setInterval(tick, 60000);
-    })();
-
-    // Wallet autofill: inside a Mini App, prefill the connected wallet so builders do not have
-    // to copy-paste an address. Best-effort and non-blocking (eth_accounts only, no popup).
-    (function () {
-      if (!(window.ZABAL && window.ZABAL.getAddress)) return;
-      var prefillEl = document.getElementById('wallet-prefill');
-      window.ZABAL.getAddress().then(function (addr) {
-        if (addr && walletEl && !walletEl.value) {
-          walletEl.value = addr;
-          if (prefillEl) prefillEl.textContent = 'Filled from your connected wallet - edit if you want payouts elsewhere.';
-        }
-      }).catch(function () { /* no-op */ });
-    })();
-
-    function setMsg(text, kind) {
-      msg.textContent = text || '';
-      msg.className = 'enter-msg' + (kind ? ' ' + kind : '');
-    }
-    // Mirror the server's validation so bad input is caught before the call.
-    function normalizeWallet(raw) {
-      var w = String(raw || '').trim().toLowerCase();
-      return /^0x[0-9a-f]{40}$/.test(w) ? w : null;
-    }
-    function normalizeRepo(raw) {
-      var s = String(raw || '').trim();
-      if (!s) return null;
-      s = s.replace(/^https?:\/\//i, '').replace(/^github\.com\//i, '');
-      s = s.replace(/\.git$/i, '').replace(/^\/+|\/+$/g, '');
-      var m = s.match(/^([A-Za-z0-9._-]{1,39})\/([A-Za-z0-9._-]{1,100})$/);
-      return m ? (m[1] + '/' + m[2]) : null;
-    }
-    function shortWallet(w) { return w.slice(0, 6) + '...' + w.slice(-4); }
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var wallet = normalizeWallet(walletEl.value);
-      if (!wallet) { setMsg('That wallet does not look right - it should start with 0x and have 40 hex characters.', 'err'); walletEl.focus(); return; }
-      var repo = normalizeRepo(repoEl.value);
-      if (!repo) { setMsg('That repo does not look right - use owner/repo or a full github.com URL.', 'err'); repoEl.focus(); return; }
-      var track = trackEl ? trackEl.value : '';
-
-      btn.disabled = true;
-      setMsg('Registering...', '');
-      var payload = { wallet: wallet, github_repo: repo, track: track };
-
-      // Inside a Mini App, register with Quick Auth so the build is anchored to the verified
-      // FID (the server links wallet -> FID when the token is present). On the web, fall back
-      // to the plain unauthenticated call - the wallet alone still registers the build.
-      var call;
-      if (window.ZABAL && window.ZABAL.register) {
-        call = window.ZABAL.register(payload).then(function (data) {
-          if (data && data.reason === 'not-in-miniapp') {
-            return fetch('/api/register', {
-              method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-            }).then(function (r) { return r.json().catch(function () { return {}; }); });
-          }
-          return data;
-        });
-      } else {
-        call = fetch('/api/register', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-        }).then(function (r) { return r.json().catch(function () { return {}; }); });
-      }
-
-      call
-        .then(function(data) {
-          if (data && data.ok) {
-            var tail = data.count ? ' ' + data.count + ' build' + (data.count === 1 ? '' : 's') + ' entered so far.' : '';
-            var verified = data.fid ? ' Verified to your Farcaster account.' : '';
-            setMsg('You are in. ' + data.github_repo + ' is registered to ' + shortWallet(data.wallet) + '.' + verified + tail, 'ok');
-            form.reset();
-            var pf = document.getElementById('wallet-prefill'); if (pf) pf.textContent = '';
-          } else if (data && data.reason === 'unconfigured') {
-            setMsg('Registration is not open yet - it goes live with the July backend. Try again closer to July 1.', 'err');
-            btn.disabled = false;
-          } else {
-            setMsg('Could not register: ' + ((data && data.reason) || 'unexpected response') + '. Check the values and try again.', 'err');
-            btn.disabled = false;
-          }
-        })
-        .catch(function() {
-          setMsg('Could not reach the server - check your connection and try again.', 'err');
-          btn.disabled = false;
-        });
-    });
-  })();
-  </script>
 
 </div>
 
