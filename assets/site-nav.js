@@ -35,7 +35,7 @@
       + '<nav class="arcade-foot-col" aria-label="Play"><h4>Play</h4>'
       + '<a href="/">Home</a><a href="/info.html">All the Details</a><a href="/#schedule">Schedule</a><a href="/game">Arcade</a><a href="/quest">Season Run</a><a href="/live.html">Live - What\'s On Now</a></nav>'
       + '<nav class="arcade-foot-col" aria-label="Season"><h4>Season</h4>'
-      + '<a href="/enter.html">Enter the Build</a><a href="/submissions">This Season\'s Builds</a><a href="/vote">Vote</a><a href="/finals.html">Finals</a><a href="/winners.html">Winners</a></nav>'
+      + '<a href="/content">This Month</a><a href="/submissions">This Season\'s Builds</a><a href="/vote">Final Results</a><a href="/winners.html">Winners</a><a href="https://www.loops.house" target="_blank" rel="noopener">loops.house</a></nav>'
       + '<nav class="arcade-foot-col" aria-label="Data"><h4>Data</h4>'
       + '<a href="/recordings.html">Recordings</a><a href="/streams.html">Streams</a><a href="/recaps.html">Session Recaps</a><a href="/changelog.html">Changelog</a></nav>'
       + '<nav class="arcade-foot-col" aria-label="Connect"><h4>Connect</h4>'
@@ -57,14 +57,12 @@
       ['About', '/about.html'],
       ['Changelog', '/changelog.html']
     ]],
-    ['Build + vote', [
-      ['Submit a project', '/submit'],
+    ['Builds + Finals', [
+      ['This Month - the Finals', '/content'],
       ["This season's projects", '/submissions'],
-      ["Vote for who's best", '/vote'],
-      ['Live build board', '/board'],
-      ['Enter the build', '/enter.html'],
-      ['The Finals', '/finals.html'],
-      ['Winners', '/winners.html']
+      ['Final vote results', '/vote'],
+      ['Winners', '/winners.html'],
+      ['The season on loops.house', 'https://www.loops.house']
     ]],
     ['Watch + read', [
       ['Recordings', '/recordings'],
@@ -116,9 +114,9 @@
   // The page-specific links remain available in the directory panel.
   var quickSubmit = document.createElement('a');
   quickSubmit.className = 'site-submit-link';
-  quickSubmit.href = '/submit';
-  quickSubmit.textContent = 'Submit';
-  if (here === '/submit') quickSubmit.setAttribute('aria-current', 'page');
+  quickSubmit.href = '/content';
+  quickSubmit.textContent = 'Finals';
+  if (here === '/content') quickSubmit.setAttribute('aria-current', 'page');
   menu.insertBefore(quickSubmit, btn);
 
   var panel = document.createElement('div');
