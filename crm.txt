@@ -246,7 +246,7 @@ Farcaster: @saltorious.eth
 ======================================================================
 Sam  [Builder]
 Core builder
-  - WaveWarZ-Base co-builder
+  - WaveWarZ co-builder
 Profile: https://zabalgamez.com/p?handle=sam-wwbase
 ======================================================================
 Teresa Marrin Nakra  [Headliner]

@@ -957,7 +957,7 @@
         "Event"
       ],
       "attributes": {
-        "voting_mechanism": "WaveWarZ-Base (Doc 720)",
+        "voting_mechanism": "Weekly tasks + community feedback, then WaveWarZ battles (top 2 per track)",
         "date": "August 2026",
         "finalists_count": "5-8 (8 adoptable projects, one becomes Finals winners test case)",
         "respect_holder_snapshot": "T-7 days (via Hats Protocol or direct Respect contract read)",

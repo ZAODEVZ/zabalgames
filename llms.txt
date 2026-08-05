@@ -28,7 +28,7 @@ Anyone can submit an app, repository, song, visual, video, article, event, proto
 
 - **June - workshop month.** Builders across the ecosystem record one ~30-min session each on tools they have built. Recordings are archived for replay. Watchable live or after.
 - **July - open build-a-thon.** Anyone can submit a project or work in progress for ZABAL, ZAO, or WaveWarZ. **The build IS the application.** Start with what exists; extra proof such as a live URL, repository, demo, or public build log can strengthen a project but is not required at intake.
-- **August - the Finals.** The strongest July builds get curated in. Each finalist pairs with a ZAO mentor as embedded teammate for a 24h build + 24h promote + 24h ZAO governance vote + live reveal stream. **Getting selected is the first win** - every finalist gets paid and keeps the ongoing economics - and the Finals are a real competition that crowns the season's best builder (ZAO vote + WaveWarZ-Base settlement).
+- **August - the Finals.** A curated build month on loops.house. Everyone who submitted a July build auto-qualifies. Two weeks of weekly per-track tasks (build it, share it publicly, get community feedback right on the posts), then the top 2 in each track face off in 3-5 WaveWarZ battles to crown one winner per track. **Getting selected is the first win** - every finalist who ships gets paid from the tiered $500 pool and keeps the ongoing economics.
 
 **Current surfaces:**
 - **zabalgamez.com** is the canonical project submission, review, gallery, live, and standings system.
@@ -95,8 +95,8 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Status:** v1 LIVE on Solana (Hurric4n3Ike at wavewarz-intelligence.vercel.app). v2 IN BUILD on Base - agentic version Sam is shipping with Arthur (Neynar) reviewing smart contracts. Repo: `~/Documents/wwbase` locally; ZAO research Doc 711.
 - **Voice:** Loud arena brand - competitive, sports-energy, stats-forward. The deliberate opposite of the warm ZAO-umbrella tone.
 - **Cross-chain:** WaveWarZ v1 on Solana (Helius free tier for RPC, 1M credits/mo, 10 RPS). v2 on Base (matches ZAO rails). Both surfaces are real ZAO infrastructure now.
-- **ZABAL Gamez Finals integration:** WaveWarZ-Base is the August Finals voting protocol - each finalist build becomes a battle entry, wallets trade on which wins, smart contract settles placement at T+72h. Respect (The ZAO's soulbound governance signal) has a voice in settlement - exact weight mechanism locked before Finals by Sam + Arthur with the contracts.
-- **Contact:** X @WaveWarZ (no Farcaster/Discord/Telegram presence). Founders: Hurric4n3Ike + Sam (WaveWarZ-Base co-builder). Arthur (Neynar) on smart contracts for the Base build.
+- **ZABAL Gamez Finals integration:** WaveWarZ is the August Finals finale - after two weeks of weekly per-track tasks, the top 2 in each track face off in 3-5 WaveWarZ head-to-head battles to crown one winner per track. Not a prediction market.
+- **Contact:** X @WaveWarZ (no Farcaster/Discord/Telegram presence). Founders: Hurric4n3Ike + Sam (WaveWarZ co-builder).
 
 ### ZAO Festivals / ZAOstock
 - **What:** ZAO's IRL festival arm. ZAOstock 2026 is the inaugural festival; ZAO Festivals is the umbrella for future iterations worldwide.
@@ -144,7 +144,7 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Bot infrastructure:** `bettercallzaal/fractalbotmarch2026` v2.1, Discord-based (Python 3.10+, discord.py 2.0+), Supabase storage, 52 slash commands. Snapshot integration for proposal + curation voting, onchain auto-submit, Farcaster linking.
 - **Role tree:** Hats Protocol treeId 226 on **Optimism** (NOT Base - governance roles are on OP; ZABAL Gamez NFTs are on Base, separate Hats deployment).
 - **Voice:** Ritual, earned, communal. Reputation-with-weight, not gamified-points.
-- **What it gates:** ZAO governance voting (proposal + curation in fractal sessions), ZABAL Gamez Finals settlement voice (exact weight TBD with WaveWarZ-Base contracts), most ecosystem decisions. Soulbound + illiquid - cannot be sold, transferred, or traded. **During ZABAL Gamez:** up to 1000 Respect points earnable per active participant, with current ZAO holders determining who counts as active (workshop attendance, July submissions, Finals participation, real contribution). **Voter threshold:** 1000+ Respect points = eligible to vote in Finals settlement (threshold may shift as event unfolds). The 1000+ cohort also serves as meta-governance body - can vote 66%+ majority to change the governance system itself.
+- **What it gates:** ZAO governance voting (proposal + curation in fractal sessions), most ecosystem decisions. Soulbound + illiquid - cannot be sold, transferred, or traded. **During ZABAL Gamez:** up to 1000 Respect points earnable per active participant, with current ZAO holders determining who counts as active (workshop attendance, July submissions, Finals participation, real contribution). The 1000+ cohort also serves as meta-governance body - can vote 66%+ majority to change the governance system itself. (The August Finals themselves are decided by community feedback + the /vote quadratic vote, then WaveWarZ battles - not by Respect settlement.)
 
 ---
 
@@ -367,8 +367,8 @@ Suggestion sparks (non-binding):
 
 ### What "good" looks like (judging rubric)
 July builds are scored by value to the ZAO ecosystem and indexed into the knowledge graph; the
-August Finals settle through the WaveWarZ-Base hybrid (market price + a Respect-holder baseline
-allocation across a 72h trade window, not pure 1-person-1-vote). Implicit criteria either way:
+August Finals run two weeks of weekly per-track tasks with community feedback, then decide each
+track with WaveWarZ head-to-head battles (top 2 per track). Implicit criteria either way:
 1. **Does it work?** Deployed, demoable, no crashes. Voters click your link.
 2. **Is it ZAO-native?** Plugs into real rails (ZABAL, Empire, Farcaster, Hats, Bonfire, EAS, Coinflow, Hypersub). More rails wired = more votes.
 3. **Would I use this?** ZABAL holders vote for things they would open again next week.
@@ -466,15 +466,13 @@ Miss the bar OR fail visibility = no submission.
 
 ## Voting + judging
 
-The August Finals placement is decided by the **WaveWarZ-Base prediction-market protocol** (Doc 720). Each finalist build becomes a battle entry on WaveWarZ-Base. Wallets trade on which build wins. Smart contract settles at T+72h based on volume + win rate per finalist.
+The August Finals run as a curated build month on loops.house, capped by WaveWarZ battles. Everyone who submitted a July open build auto-qualifies - no separate application.
 
-- **Voter set:** open market - anyone with a Base wallet can trade. PLUS Respect-earning ZAO members have a governance voice in settlement (Respect is soulbound + illiquid - cannot be sold). Exact Respect-weight mechanism in the settlement formula TBD - locked before Finals by Sam + Arthur with the contracts.
-- **Window:** T+0 to T+72h (the whole Finals window is the trade window; market settles at the end).
-- **Output:** the WaveWarZ smart contract distributes the prize ($500 USDC pool maps to placement tiers per Doc 701 Part 5) + the 1% trade cut per WaveWarZ economics (flows to the builder forever, post-Finals too) + the Finisher / Champion commemorative collectibles.
-- **Why the shift:** real economic signal beats a 1p1v poll for "would I actually use this build." Plus the Finals become the V1 launch event for the WaveWarZ-Base agentic build that Sam + Arthur are shipping.
-- **Fallback:** if WaveWarZ-Base isn't mainnet-ready by August, revert to the original Doc 701 model: Respect-earning 1p1v vote, WaveWarZ on Solana as parallel signal (Doc 646 framing).
-
-Judge agents (per Doc 723d + 720): autonomous agents read each finalist's deployed URL + repo + demo, score against the rubric (does it work / is it ZAO-native / would I use this / shipped in 24h), get paid in x402 micropayments. Their scores feed the market as a "fundamental" but do not override it.
+- **Structure:** two weeks of weekly per-track tasks (artist, builder, creator). Each week each track gets a task to build and share out publicly. Week 1 is final-touches week - projects are posted publicly and the community gives feedback right on the posts.
+- **Community signal:** feedback on the posts, plus the /vote quadratic vote on the July builds.
+- **Finale:** the top 2 in each track advance into 3-5 WaveWarZ battles - the ZAO live head-to-head battle format - to crown one winner per track (an artist winner, a builder winner, a creator winner).
+- **Output:** the $500 USDC pool is distributed, tiered so every finalist who ships gets paid, plus $ZABAL rewards. Champion commemorative collectible for each track winner, Finisher collectible for every finisher.
+- **Host:** loops.house is the hosting/leaderboard surface; WaveWarZ (the ZAO head-to-head battle format) runs the finale. This is NOT a prediction market - the earlier WaveWarZ-Base market-settlement plan was retired.
 
 ---
 
@@ -828,7 +826,7 @@ Send a personal DM after shipping. Each one converts a built thing into eyeballs
 | **Hurric4n3Ike** (X @hurric4n3ike / Farcaster) | WaveWarZ-related builds, music-prediction, Solana | Reposts to his active WaveWarZ arenas, very engaged with builders |
 | **Jordan Oram / yerbearserker** | Empire Builder builds, token mechanics, leaderboards | He runs Empire Builder, will boost any Empire-API ship |
 | **Adrian / diviflyy** | Empire Builder smart-contract / SDK builds | The lead engineer; technical depth, will surface to Jordan |
-| **Sam** (WaveWarZ-Base co-builder) | WaveWarZ-Base, agentic builds, general ZAO | Core team, multi-surface amplifier |
+| **Sam** (WaveWarZ co-builder) | WaveWarZ, agentic builds, general ZAO | Core team, multi-surface amplifier |
 | **Arthur (Neynar)** | Smart contracts on Base, EVM patterns | Will route through Neynar circles + give technical feedback |
 | **kmac.eth** | Snap builds, zlank templates, Farcaster mini-app patterns | The Snap-builder audience |
 | **Iman** | ZAO Music team builds, ORDAO governance, ZOE skills | Internal ZAO Music distribution |
@@ -879,15 +877,14 @@ Anything you would change?
 |-------|------|--------|
 | **June 2026** | Workshop month - recorded sessions + live spaces | dates TBD; bootcamp opens ~June 1 |
 | **July 2026** | Open build-a-thon - the build IS the application | dates TBD; opens ~July 1 |
-| **August 2026** | The Finals - 72-hour window, WaveWarZ-Base settles placement | dates TBD; one week in August, exact week locks when cohort confirms |
+| **August 2026** | The Finals - curated build month on loops.house, capped by WaveWarZ battles | dates TBD; two weeks of weekly tasks + a battle finale, exact dates lock with loops.house |
 
-### The Finals 72-hour clock (anchored to T+0)
+### The Finals shape (two weeks + finale)
 
-- **T-3 days:** 90-minute onboarding call. Mandatory or forfeit.
-- **T+0:** Thursday 12:00 PT (proposed - to be confirmed). Prompt drops. Voter snapshot. WaveWarZ-Base battle markets open.
-- **T+24h:** Friday 12:00 PT. Ship deadline. The four required artifacts (URL / repo / demo / cast) must all be in.
-- **T+48h:** Saturday 12:00 PT. Promote window closes. Market continues trading.
-- **T+72h:** Sunday 12:00 PT. WaveWarZ-Base smart contract settles. Live reveal stream announces placements + distributes USDC on-chain; commemorative collectibles open.
+- **Kickoff:** everyone who submitted a July build auto-qualifies. Three tracks run in parallel.
+- **Week 1:** a task per track. Final-touches week - projects posted publicly, community feedback right on the posts. Build it, share it.
+- **Week 2:** a fresh task per track. Build it, share it publicly.
+- **Finale:** the top 2 per track advance into 3-5 WaveWarZ head-to-head battles - one winner per track. The $500 pool is distributed (tiered, every finisher paid); collectibles open.
 
 ### Soft launch milestone
 
@@ -970,7 +967,7 @@ Brand guardrails on every submission: no emojis, no em dashes (use hyphens), no 
 
 ## Bonfire knowledge graph (queryable depth)
 
-This file is a static prompt. The Bonfire knowledge graph at `zabal.bonfires.ai` is the queryable version - 444 entities + 655 edges (and growing) you can ask in natural language. Where this file states "WaveWarZ-Base settles Finals voting (Doc 720)", the graph holds the contract addresses, top performer wallets, Sam + Arthur build status, and every linked rail.
+This file is a static prompt. The Bonfire knowledge graph at `zabal.bonfires.ai` is the queryable version - 444 entities + 655 edges (and growing) you can ask in natural language. Where this file states "WaveWarZ battles decide the Finals finale", the graph holds the top performer wallets, Sam + Arthur build status, and every linked rail.
 
 Two paths:
 

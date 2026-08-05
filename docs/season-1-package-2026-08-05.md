@@ -69,6 +69,36 @@ settle.
    `/content`, empty-state "add one" links -> the board. Referential URL mentions
    (`/enter` shown as literal text) were left as-is.
 
+## Terminology fix - it is WaveWarZ, not "WaveWarZ-Base"
+The finale runs on **WaveWarZ** (the ZAO head-to-head battle format), NOT the retired
+"WaveWarZ-Base" prediction-market-on-Base concept. Scrubbed across user-facing surfaces:
+- **`finals.html`** - the entire prediction-market body (why-a-market, 72h timeline,
+  WaveWarZ-Base settlement, Respect-settlement, tech timeline, fallback) was removed and
+  replaced with a short correct explainer (auto-qualify -> weekly tasks -> WaveWarZ battles
+  -> one winner per track) + prizes. Dead `/api/finals-picks` script removed.
+- **`finals/live.html`** - the market-state / trade-view scaffold + "wire project #09"
+  dev-TODO section removed; replaced with a "battle finale, awaiting finalists" state
+  (roster still renders from `data/finals.json`, no trade buttons).
+- **`winners.html`, `spaces.html`, `install.html`, `about.html`, `crm.html`** - "WaveWarZ-Base
+  market/settlement" copy and "WaveWarZ-Base co-builder" bios fixed to WaveWarZ battles /
+  "WaveWarZ co-builder".
+- **`llms.txt`** (agent context) - the "Voting + judging" section, the August bullet, the
+  timeline table + clock, the Respect gating, and the WaveWarZ card all rewritten to the
+  loops.house + WaveWarZ-battles format.
+- **Data:** `data/zao-trivia.json` (two wrong answers), `data/finals.json` note,
+  `data/bonfire-graph.json` voting_mechanism, `data/adoptable-projects.json` (#36 reframed
+  from a settlement surface to a battle board), `data/people.json` + `data/crm.json` +
+  `crm.txt` bios.
+
+### Remaining data artifact (flagged, not hand-edited)
+- **`data/bonfire-graph.json`** still has ~40 interlinked "WaveWarZ-Base" node/edge
+  references (e.g. `wavewarz-base-settlement-zabal-finals`, "Finals voting surface",
+  "settlement T+72h"). The node IDs are load-bearing edge keys, so this should be
+  **regenerated from the ZAOOS research source** (it is a derived graph snapshot), not
+  hand-patched. Until then, `/graph` and Bonfire queries may still surface the old mechanic.
+- **`data/changelog.json`** keeps its historical entries (the WaveWarZ-Base decision was
+  real on its date); it is a dated log, so history stays. Same for `docs/` point-in-time records.
+
 ## Still ongoing by design (not entry loops)
 - **Ongoing-cadence engagement** - `/play` + `game/*` monthly leaderboards, `game/zao-trivia`
   weekly pot, `/pops`, `/dream-leads`, `/bounties` (July deadline). These are evergreen

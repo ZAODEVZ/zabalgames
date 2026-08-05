@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finals Live - The Market View - ZABAL Gamez Season 1</title>
-  <meta name="description" content="Live market view for the ZABAL Gamez Finals on WaveWarZ-Base. Pre-launch scaffold; mainnet by August.">
+  <meta name="description" content="The WaveWarZ battle finale of the ZABAL Gamez Finals - top 2 per track face off head-to-head, one winner per track. Fills when the weekly tasks close.">
   <link rel="canonical" href="https://zabalgamez.com/finals/live">
   <meta property="og:title" content="Finals Live - The Market View - ZABAL Gamez">
   <meta property="og:description" content="Pre-launch scaffold for the August Finals settlement surface.">
@@ -101,129 +101,30 @@
 
   <div class="status-banner">
     <h2>Awaiting finalists</h2>
-    <p>The WaveWarZ battles open once the top 2 per track are locked after the two weeks of weekly tasks. The trade view below is scaffold from an earlier prediction-market plan and does not reflect how Season 1 settles - see <a href="/content" style="color:var(--cyan);">/content</a> for the current format.</p>
+    <p>The WaveWarZ battles open once the top 2 per track are locked after the two weeks of weekly tasks. See <a href="/content" style="color:var(--cyan);">/content</a> for the current format.</p>
   </div>
 
   <section class="section">
-    <h2>Market state</h2>
-    <div class="market-row">
-      <div class="market-cell">
-        <div class="market-label">Status</div>
-        <div class="market-value muted">Awaiting deploy</div>
-      </div>
-      <div class="market-cell">
-        <div class="market-label">Window</div>
-        <div class="market-value muted">T+0 to T+72h</div>
-      </div>
-      <div class="market-cell">
-        <div class="market-label">Finalists</div>
-        <div class="market-value muted">TBD</div>
-      </div>
-      <div class="market-cell">
-        <div class="market-label">Total volume</div>
-        <div class="market-value muted">--</div>
+    <h2>The battle finale</h2>
+    <p>After two weeks of weekly per-track tasks, the top 2 in each track advance into 3-5 WaveWarZ battles - the ZAO live head-to-head battle format - to crown one winner per track. This board fills with the advancing finalists once the two weeks close.</p>
+
+    <div id="finalist-rows" style="display:grid; gap:8px; margin-top:1rem;">
+      <div class="placeholder-row">
+        <div class="placeholder-rank">--</div>
+        <div>
+          <div class="placeholder-name-label">Finalists</div>
+          <div class="placeholder-name">The top 2 per track appear here when the weekly tasks close</div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2>Battles</h2>
-    <p>Each finalist build is one battle entry. Volume + win rate at T+72h decides placement. Respect-holders get baseline positions; the open market trades on top.</p>
-
-    <div id="finalist-rows">
-    <div class="placeholder-row">
-      <div class="placeholder-rank">--</div>
-      <div>
-        <div class="placeholder-name-label">Finalist 1</div>
-        <div class="placeholder-name">Slot opens when finalists are selected from July</div>
-      </div>
-      <div class="placeholder-bars">
-        <div class="placeholder-bar" style="height: 60%;"></div>
-        <div class="placeholder-bar" style="height: 40%;"></div>
-        <div class="placeholder-bar" style="height: 80%;"></div>
-        <div class="placeholder-bar" style="height: 30%;"></div>
-      </div>
-      <button class="placeholder-trade-btn" disabled>Trade</button>
-    </div>
-
-    <div class="placeholder-row">
-      <div class="placeholder-rank">--</div>
-      <div>
-        <div class="placeholder-name-label">Finalist 2</div>
-        <div class="placeholder-name">Slot opens when finalists are selected from July</div>
-      </div>
-      <div class="placeholder-bars">
-        <div class="placeholder-bar" style="height: 45%;"></div>
-        <div class="placeholder-bar" style="height: 70%;"></div>
-        <div class="placeholder-bar" style="height: 55%;"></div>
-        <div class="placeholder-bar" style="height: 90%;"></div>
-      </div>
-      <button class="placeholder-trade-btn" disabled>Trade</button>
-    </div>
-
-    <div class="placeholder-row">
-      <div class="placeholder-rank">--</div>
-      <div>
-        <div class="placeholder-name-label">Finalist 3</div>
-        <div class="placeholder-name">Slot opens when finalists are selected from July</div>
-      </div>
-      <div class="placeholder-bars">
-        <div class="placeholder-bar" style="height: 35%;"></div>
-        <div class="placeholder-bar" style="height: 50%;"></div>
-        <div class="placeholder-bar" style="height: 25%;"></div>
-        <div class="placeholder-bar" style="height: 65%;"></div>
-      </div>
-      <button class="placeholder-trade-btn" disabled>Trade</button>
-    </div>
-    </div><!-- /finalist-rows -->
-
-    <p style="margin-top: 1.2rem; font-size: 0.85rem; color: var(--text-muted);">
-      <strong>For builders:</strong> this page is project <a href="/projects.html">#09</a> - "Wire WaveWarZ-Base into the Finals settlement surface". Adopt it in your July submission. Spec in <a href="/docs/research/720-wavewarz-finals-mechanic.md">Doc 720</a>. The full data plug-in points are marked with TODO comments in the page source.
-    </p>
-  </section>
-
-  <section class="section">
-    <h2>How to wire this up (for the project #09 builder)</h2>
-
-    <div class="card">
-      <div class="card-label" style="color: var(--orange);">DATA TODO 1</div>
-      <h3>Read battle state from WaveWarZ-Base</h3>
-      <p>Protocol address (once deployed): <code>0xTODO_WAVEWARZ_BASE</code>. Read methods needed: <code>getAllBattles()</code>, <code>getBattleVolume(battleId)</code>, <code>getBattlePositions(battleId)</code>. Sam owns the protocol surface; spec lands in June.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-label" style="color: var(--cyan);">DATA TODO 2</div>
-      <h3>Respect-holder snapshot lookup</h3>
-      <p>The pre-funded baseline positions are minted at T+0. The page should display each Respect-holder's current position per finalist. Hats Protocol role check (Hats contract on Base: <code>0x3bc1A0Ad72417f2d411118085256fC53CBdDd137</code>) gives the eligibility set. ORDAO + Iman own the snapshot mechanism spec.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-label" style="color: var(--pink);">DATA TODO 3</div>
-      <h3>Wire the Trade buttons to WaveWarZ-Base writes</h3>
-      <p>Each Trade button should open a wallet flow that calls <code>buyPosition(battleId, side, amount)</code> on the WaveWarZ-Base contract. Use viem + wagmi (already part of the ZAO stack baseline). Show position confirmation + tx hash on success.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-label" style="color: var(--gold);">UI TODO 1</div>
-      <h3>Real-time market data + WebSocket</h3>
-      <p>The placeholder bars + numbers should pull live. Either poll the contract every ~10s, or subscribe to WaveWarZ-Base events via a WebSocket (Helius for Solana / equivalent for Base RPC). On settlement (T+72h), trigger a confetti effect + show the final standings.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-label" style="color: var(--zabal);">UI TODO 2</div>
-      <h3>Settlement readout view</h3>
-      <p>At T+72h, the WaveWarZ-Base settlement transaction fires. The page should detect this (event subscription), show the final placement, the $500 USDC pool distribution to top 8 finalists (per-finalist allocation confirmed before Finals), $ZABAL token distribution to top 16, the 1% trade-cut totals per builder, and the commemorative collectibles (Finisher for everyone, Champion for top 3).</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Spec + cross-refs</h2>
+    <h2>More</h2>
     <ul style="margin-left: 1.5rem;">
-      <li><a href="/docs/research/720-wavewarz-finals-mechanic.md">Doc 720</a> - the full WaveWarZ Finals architecture decision.</li>
-      <li><a href="/docs/research/701-canonical-state.md">Doc 701 Part 12</a> - canonical state folding in the decision.</li>
-      <li><a href="/finals.html">/finals</a> - the public-facing Finals explainer (the why + the 72h timeline).</li>
-      <li><a href="https://github.com/bettercallzaal/ZAOOS/tree/main/research/events/711-arthur-wavewarz-base-call-may19" target="_blank" rel="noopener">ZAO Doc 711</a> - the WaveWarZ-Base contracts intro call.</li>
-      <li><a href="https://github.com/bettercallzaal/ZAOOS/tree/main/research/wavewarz/180-wavewarz-integration-blueprints" target="_blank" rel="noopener">ZAO Doc 180</a> - WaveWarZ integration patterns (Solana original).</li>
+      <li><a href="/content">/content</a> - the canonical Finals format (loops.house + WaveWarZ, weekly tasks, one winner per track).</li>
+      <li><a href="/finals.html">/finals</a> - the Finals explainer.</li>
+      <li><a href="/submissions">/submissions</a> - the July builds in the Finals.</li>
     </ul>
   </section>
 
@@ -279,16 +180,15 @@
 
   <script>
   // Render the finalist roster from data/finals.json once finalists are locked. Until
-  // then the placeholder rows stand. Trade stays disabled until WaveWarZ-Base is wired.
+  // then the placeholder row stands.
   (function () {
     function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-    var BARS = '<div class="placeholder-bars"><div class="placeholder-bar" style="height:50%;"></div><div class="placeholder-bar" style="height:70%;"></div><div class="placeholder-bar" style="height:40%;"></div><div class="placeholder-bar" style="height:60%;"></div></div>';
     fetch('/data/finals.json', { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (d) {
         var fs = (d && d.finalists) || [];
         var el = document.getElementById('finalist-rows');
-        if (!el || !fs.length) return; // keep the placeholders until finalists are locked
+        if (!el || !fs.length) return; // keep the placeholder until finalists are locked
         var ranked = fs.slice().sort(function (a, b) { return (a.rank || 99) - (b.rank || 99); });
         el.innerHTML = ranked.map(function (f) {
           var label = esc(f.name || f.handle || 'Finalist');
@@ -296,14 +196,12 @@
           var nameHtml = href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener" style="color: var(--cyan);">' + label + '</a>' : label;
           return '<div class="placeholder-row">' +
             '<div class="placeholder-rank">' + (f.rank ? esc(String(f.rank)) : '--') + '</div>' +
-            '<div><div class="placeholder-name-label">' + esc(f.handle || f.track || 'Finalist') + '</div>' +
+            '<div><div class="placeholder-name-label">' + esc(f.track || f.handle || 'Finalist') + '</div>' +
             '<div class="placeholder-name">' + nameHtml + '</div></div>' +
-            BARS +
-            '<button class="placeholder-trade-btn" disabled title="Trading opens when WaveWarZ-Base is live">Trade</button>' +
           '</div>';
         }).join('');
       })
-      .catch(function () { /* keep the placeholders */ });
+      .catch(function () { /* keep the placeholder */ });
   })();
   </script>
 
