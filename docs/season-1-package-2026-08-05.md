@@ -53,24 +53,30 @@ settle.
   one-line PR when voting should end. This is the one live switch that is a judgment call,
   not a cleanup.
 
-## Remaining long tail (not blocking; cosmetic or deep-copy)
-These land on already-closed/coherent pages, so nothing is broken - but for a spotless
-finish:
-1. **`info.html`** ("All the Details") still carries extensive old-format passages -
-   "24h build / promote / vote", "Top 8 USDC / Top 16 $ZABAL", "prediction market",
-   sealed-prompt timeline, "Sign up" Formspree mentor form, Cal.com embed. This is the
-   single biggest remaining rewrite; worth a dedicated pass to match `/content`.
-2. **Site-wide footer nav** - `Enter the Build` -> `/enter` and `Finals Live` ->
-   `/finals/live` appear on ~40 pages. Both destinations are now reconciled closed/Finals
-   states, so the links are coherent; relabeling to "Finals" is polish, not a fix.
-3. **Scattered body CTAs** - "register a build" / "Submit a project" / "Join the build" on
-   many secondary pages (`bounties`, `build-days`, `live`, the `game/*` footers, etc.)
-   point to the now-closed `/submit` or `/enter`, which explain themselves. Relabel to
-   "See the Finals" as a follow-up sweep.
-4. **Ongoing-cadence engagement** - `/play` + `game/*` monthly leaderboards, `game/zao-trivia`
-   weekly pot, `/pops`, `/dream-leads`, `/bounties` (July deadline). These are evergreen
-   engagement, not Season-1 entry loops; leave running unless you want them frozen for the
-   season.
+## Long tail - now cleared (second pass)
+1. **`info.html`** ("All the Details") - reconciled to `/content`: hero + CTAs switched to
+   closed/Finals, the "Format" section + 72h timeline replaced with the loops.house
+   two-week + WaveWarZ-battle format, Top 8/Top 16 prizes replaced with "one winner per
+   track / $500 tiered pool", the WaveWarZ-Base market/judging section reframed, the
+   Locked/TBD lists refreshed, the apply section flipped to "submissions closed", and the
+   FAQ (24h build, streaming, who-picks-winners, time-zone) updated. The mentor Formspree
+   form stays (mentors are still wanted for the Finals pods).
+2. **Site-wide footer nav** - the `Enter the Build` link on ~35 pages now reads
+   **"This Month"** -> `/content`.
+3. **Scattered body CTAs** - a scripted exact-string sweep relabeled ~110 CTAs across 73
+   pages: nav "Enter"/"Submit" -> "Finals", buttons + inline prose ("register a build",
+   "Submit a project", "Join the build", etc.) -> "See the Finals"/"see the Finals" ->
+   `/content`, empty-state "add one" links -> the board. Referential URL mentions
+   (`/enter` shown as literal text) were left as-is.
+
+## Still ongoing by design (not entry loops)
+- **Ongoing-cadence engagement** - `/play` + `game/*` monthly leaderboards, `game/zao-trivia`
+  weekly pot, `/pops`, `/dream-leads`, `/bounties` (July deadline). These are evergreen
+  engagement, not Season-1 entry loops; left running unless you want them frozen.
+- **`finals.html` / `finals/live.html` bodies** - the old prediction-market write-up and
+  trade-view scaffold are kept below their reconciled heroes, clearly marked "reference
+  only / not how Season 1 settles" and pointing to `/content`. Delete-for-good is a future
+  option if you never want the reference around.
 
 ## Companion doc
 `docs/finals-week1-submitter-spotlights-2026-08-05.md` - the July submitter roster per

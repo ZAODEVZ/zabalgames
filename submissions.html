@@ -77,7 +77,7 @@
   <div class="arcade-nav-inner">
     <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
     <div class="arcade-nav-menu">
-      <a href="/submit">Submit</a>
+      <a href="/content">Finals</a>
       <a href="/board">Build board</a>
       <a href="/live">Live</a>
       <a href="/info">Details</a>
@@ -92,7 +92,7 @@
       <h1>See what people are <span class="accent">building</span></h1>
       <p class="lead">Published work and active builds from the canonical ZABAL Gamez submission feed. Names, links, tracks, and statuses come directly from reviewed submissions and the audited project roster.</p>
       <div class="projects-actions">
-        <a class="projects-button primary" href="/submit">Submit a project</a>
+        <a class="projects-button primary" href="/content">See the Finals</a>
         <a class="projects-button" href="mailto:info@thezao.com?subject=ZABAL%20Gamez%20submission%3A%20%5Bproject%20name%5D">Submit by email</a>
         <a class="projects-button" href="/leaderboard">View standings</a>
       </div>
@@ -191,7 +191,7 @@
       return (!activeStatus || labelStatus(row) === activeStatus) && (!activeTrack || row.track === activeTrack) && (!searchTerm || hay.indexOf(searchTerm) >= 0);
     });
     summary.textContent = rows.length + ' of ' + all.length + ' real projects shown';
-    grid.innerHTML = rows.length ? rows.map(projectCard).join('') : '<p class="projects-empty">No real projects match these filters. Clear a filter or <a href="/submit" style="color:var(--cyan);">submit the first one</a>.</p>';
+    grid.innerHTML = rows.length ? rows.map(projectCard).join('') : '<p class="projects-empty">No real projects match these filters. Clear a filter or <a href="/submissions" style="color:var(--cyan);">browse the board</a>.</p>';
     grid.setAttribute('aria-busy', 'false');
   }
   search.addEventListener('input', function () { searchTerm = search.value.trim().toLowerCase(); renderCards(); });
