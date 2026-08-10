@@ -72,9 +72,22 @@ copy before commit.
 
 ## Still open, and they are Zaal's
 
-1. **The six names.** Curation means the list is Zaal's to write. Today's post
-   publishes the leaderboard and says the six are announced at the end of the week,
-   so no name has to be committed today.
+1. **The six names, due after the 16th.** Zaal, 2026-08-10: the standings run
+   "til the end of the standings on the 16th night est time", then two people are
+   selected from each of the three groups. So the board closes on the night of
+   Sunday 2026-08-16 Eastern and the six are named after it. Today's post publishes
+   the leaderboard and the deadline; no name is committed today.
+
+   **The vote does not close itself.** `data/vote-candidates.json` is the on/off
+   switch (`api/qv-vote.mjs` reads it as STATUS_URL) and currently reads
+   `"status": "open"`. Closing the board on the 16th is a one-line PR flipping it
+   to `"closed"`, which turns /vote into results-only. Schedule it - nothing fires
+   automatically, and a board still accepting ballots after the announced close is
+   the kind of thing people screenshot.
+
+   **Pin a clock time.** "Night of the 16th, Eastern" is what Zaal said and it is
+   what the copy uses. For a deadline that decides money, someone will ask what
+   time. Worth naming one before the post rather than after.
 2. **Gesd01.** Currently second in artist on 5 votes. With dee-13 seated and two
    slots per track, either Gesd01 or dee-13 is the artist runner-up, or artist runs
    three. Unresolved - and it does not need resolving to post today.

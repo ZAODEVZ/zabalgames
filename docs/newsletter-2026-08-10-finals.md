@@ -20,16 +20,18 @@ Everything below the rule is the paste block.
 Good morning. This is the one that matters, so it is longer than usual and worth
 the read.
 
-Six finalists. Two per track. Three finals in the last week of August, and the
-six of you agree the dates between yourselves rather than being handed a slot.
+Two people from each of the three groups. Six finalists. Three finals in the last
+week of August, and the six of you agree the dates between yourselves rather than
+being handed a slot.
 
-**Submissions are open all week.** That is the most important line in this
-newsletter. Nothing is closed, nothing is decided, and there is a real way to move
-before it is.
+**The board stays open until the night of Sunday August 16, Eastern.** That is the
+most important line in this newsletter. Nothing is closed, nothing is decided, and
+there is a real way to move before it is.
 
 ## The six are picked, not tallied
 
-I am choosing the finalists at the end of this week.
+The standings run until the night of Sunday August 16, Eastern. When they close I
+choose two people from each of the three groups.
 
 The vote at zabalgamez.com/vote was built to help me curate the open submissions,
 and that is exactly what it is doing. It is one of the loudest things I am reading
@@ -129,15 +131,15 @@ thinking, not the polish.
 If it is not in /zabal it does not count.
 
 A bonus answer moves you up. If you are sitting outside the top two in your track
-right now, this is the fastest way to change that before I pick at the end of the
-week. If you are already at the top, it is how you stay there.
+right now, this is the fastest way to change that before the board closes on the
+16th. If you are already at the top, it is how you stay there.
 
 ## If your build still says building, it is invisible
 
 Three of you are in this position right now. A submission left in draft does not
 appear on the public board, does not appear on the ballot, and does not reach me.
 
-It takes minutes to finish. Do it this week.
+It takes minutes to finish. Do it before Sunday.
 
 ## What the six are playing for
 
@@ -169,7 +171,7 @@ the champion. The June prize tier stands in full.
 July was quiet. We are not going to pretend it was not, and the June record stands
 on its own without any help from us.
 
-What is left is this week and the finals. That is a good place to be.
+What is left is six days and the finals. That is a good place to be.
 
 ## This week
 
@@ -180,5 +182,6 @@ Every session from June: zabalgamez.com/recordings
 Claim the collectible: collect.zabalgamez.com
 Calendar: luma.com/zao
 
-Six of you finish this month. Go and make it obvious which six.
+The board closes Sunday the 16th. Six of you finish this month. Go and make it
+obvious which six.
 
