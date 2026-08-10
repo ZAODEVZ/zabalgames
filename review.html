@@ -201,7 +201,30 @@
     });
   }
 
-  detectAuth().then(function () { if (inMiniApp) checkAdminThenLoad(); else setStatus('Sign in with Farcaster, or paste your ADMIN_KEY, to load the board.'); });
+  // miniapp.js is loaded as type="module", which is DEFERRED - it executes AFTER
+  // this inline script. Calling detectAuth() straight away therefore always found
+  // window.ZABAL undefined, fell through to the key field, and told an admin
+  // standing inside the Mini App to "sign in with Farcaster". Wait for the module
+  // to publish window.ZABAL before deciding, with a short ceiling so an ordinary
+  // browser (where it will never appear) still reaches the key fallback promptly.
+  function whenZabalReady(timeoutMs) {
+    return new Promise(function (resolve) {
+      if (window.ZABAL && window.ZABAL.getUser) return resolve(true);
+      var waited = 0;
+      var iv = setInterval(function () {
+        if (window.ZABAL && window.ZABAL.getUser) { clearInterval(iv); resolve(true); return; }
+        waited += 50;
+        if (waited >= timeoutMs) { clearInterval(iv); resolve(false); }
+      }, 50);
+    });
+  }
+
+  whenZabalReady(3000)
+    .then(detectAuth)
+    .then(function () {
+      if (inMiniApp) checkAdminThenLoad();
+      else setStatus('Sign in with Farcaster, or paste your ADMIN_KEY, to load the board.');
+    });
   document.getElementById('rv-load').addEventListener('click', checkAdminThenLoad);
   document.getElementById('rv-reset').addEventListener('click', resetVotes);
   adminEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') checkAdminThenLoad(); });
