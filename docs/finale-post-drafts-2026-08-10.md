@@ -2,9 +2,15 @@
 
 Drafted 2026-08-10. **Both are drafts for Zaal to post. Neither has been sent.**
 
-Grounded in the live API (`/api/submissions?feed=builders`), doc 2257 (the season
-retrospective), and doc 1372 (ZAOstock economics). Every figure traces to one of
-those.
+Grounded in the live API (`/api/submissions?feed=projects` and
+`/api/qv-vote`), doc 2257 (the season retrospective), and doc 1372 (ZAOstock
+economics). Every figure traces to one of those.
+
+**Corrected 2026-08-10.** The first version of Draft 1 was written off
+`?feed=builders`, which returns only the audited roster file - a partial view. It
+said 15 projects from 3 submitters and "no votes". The real field is 30 projects
+from 15 named builders plus 1 anonymous submitter, and a quadratic vote is open
+and is the criterion. Draft 1 below is rewritten. Draft 2 was never affected.
 
 Brand rules applied: no emojis, no em dashes, "100+" for the member count. The
 no-crypto-jargon rule is relaxed for the challenge post only, per Zaal.
@@ -13,19 +19,20 @@ no-crypto-jargon rule is relaxed for the challenge post only, per Zaal.
 
 ## What these drafts deliberately do NOT say
 
-**No finalist list.** Two decisions are unmade and belong to Zaal:
+**No finalist list.** A moving leaderboard is not a finalist selection, so the
+standings can drop before the projects-or-people rule is settled. Draft 1 says so
+in as many words, which is what makes it safe to post today.
 
-1. Are the six finalists **projects or people**?
-2. May **one person hold more than one slot**?
+The open decision is still Zaal's: are the six finalists **projects or people**,
+and may one person hold more than one slot? The vote currently answers this
+inconsistently - its candidate slate mixes project rows with person rows
+(`b:ghostmintops`, `b:branth`, `b:jdwalka`), which is a defect, not a policy.
+See `docs/finale-standings-2026-08-10.md`.
 
-On the agreed ranking (complete+live > complete > partial > planned) ghostmintops
-currently tops all three tracks. So the answer to (2) materially changes who
-advances - which is exactly why the rule has to be published before the standings,
-not after. A rule written once you can see who wins reads as a rule written to
-shape who wins.
-
-Both drafts therefore state the **process** and leave a marked slot for the
-standings. They can go out as-is; the standings follow when the rule is set.
+**No claim that the standings cover the whole field.** They do not. 18 of the 30
+real projects cannot be voted for at all, because the vote's candidate slate and
+the project feed are built from the roster differently. The standings doc lays
+this out and recommends what to do about it.
 
 ---
 
@@ -34,27 +41,26 @@ standings. They can go out as-is; the standings follow when the rule is set.
 ```
 zabal gamez season 1 - how it ends
 
-15 projects were submitted across three tracks. two per track
-advance. three finals, run in the last week of august.
+30 projects across three tracks. two per track advance. three
+finals, run in the last week of august.
 
 the finalists pick their own dates inside that week. you are not
 handed a slot, you agree one with the people you are finishing
 alongside.
 
-how the two per track are chosen, in order:
-  shipped and live
-  complete
-  partial
-  planned
+who advances is decided by you, not by us. the vote is open at
+zabalgamez.com/vote. 100 credits per track, and the cost of
+backing one project goes up with the square of how hard you back
+it, so ten votes on one project spends your whole budget. nobody
+buys a track.
 
-no votes, no market, no elimination rounds. what you built and
-whether it works.
+standings go up today and move every day until the vote closes. a
+leaderboard is not a finalist list. do not read a monday number as
+a result.
 
 every finalist takes the full prize tier promised in june: a share
 of the 500 usdc pool, $zabal rewards, and both the finisher and
-champion collectibles.
-
-standings drop [DAY].
+champion collectibles. that has not changed and will not.
 
 ---
 the season itself, for anyone who missed it: 32 sessions in june,
@@ -63,13 +69,21 @@ are not going to pretend otherwise, and the june record stands on
 its own.
 ```
 
-**Why it is shaped this way.** It leads with the process rather than the field,
-because the field is three submitters and leading with that invites the wrong
-comparison. The last paragraph does the real work - it is the honest version of
-the season, it makes July a fact rather than a hole, and 31 presenters from 25
-organisations is a genuinely strong number that nothing else in the post can beat.
+**Why it is shaped this way.** The field is 30 projects from 16 submitters, which
+is a real number and can lead. The vote paragraph explains quadratic voting in one
+sentence without the term, because the mechanism is the answer to "why should I
+trust this" and burying it invites the accusation it prevents. The "a leaderboard
+is not a finalist list" line is what lets the standings drop today while the
+projects-or-people rule is still open.
 
-Replace `[DAY]` with a real day. Do not post a date you are not sure of.
+**Two things to check before posting.**
+
+1. The standings themselves are not in this post, deliberately. Post the copy
+   first, put the numbers in a reply or a follow-up, so a correction to one does
+   not force a correction to the other.
+2. The collectible line does not name the rail. The rail is unchanged, but the
+   partnership retirement means the public copy should describe the collectibles
+   and not the vendor.
 
 ---
 
@@ -142,8 +156,17 @@ actually use in eight weeks.
 
 ## Sources
 
-- `https://zabalgamez.com/api/submissions?feed=builders` - 15 submissions, track
-  split builder 10 / creator 3 / artist 2, from 3 submitters. Read 2026-08-09.
+- `https://zabalgamez.com/api/submissions?feed=projects` - 32 rows, of which 30
+  are real projects and 2 are QA tests queued for deletion. Track split builder
+  19 / creator 7 / artist 6. Status split published 23 / building 7 / planned 2.
+  15 named builders plus 1 anonymous submitter. Fetched raw with curl, HTTP 200,
+  2026-08-10.
+- `https://zabalgamez.com/api/qv-vote?results&track=...` and `?candidates` -
+  status open, ballots artist 10 / builder 9 / creator 6. Fetched raw with curl,
+  HTTP 200, 2026-08-10. Full standings in `docs/finale-standings-2026-08-10.md`.
+- SUPERSEDED: `?feed=builders` - 15 submissions from 3 submitters. This is the
+  audited roster file only and is a partial view of the field. It is what produced
+  the wrong first draft. Do not rank off it.
 - Doc 2257 - 32 sessions, 31 distinct presenters, 25 organisations, the July stall.
 - Doc 1372 - ZAOstock economics: 5-7k expenses, 8.7-10.2k projected revenue,
   4.7k ticket line.
