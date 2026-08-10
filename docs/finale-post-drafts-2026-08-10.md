@@ -12,6 +12,12 @@ said 15 projects from 3 submitters and "no votes". The real field is 30 projects
 from 15 named builders plus 1 anonymous submitter, and a quadratic vote is open
 and is the criterion. Draft 1 below is rewritten. Draft 2 was never affected.
 
+**Updated again 2026-08-10, after Zaal settled the open rule.** Finalists are
+**people, not projects**: two people per track, six in total, all six present at
+the end of the month. And **submissions stay open this week**, so the leaderboard
+publishes as a live snapshot with a week left to climb, not as a cut. Draft 1 now
+ranks people and says the week is open.
+
 Brand rules applied: no emojis, no em dashes, "100+" for the member count. The
 no-crypto-jargon rule is relaxed for the challenge post only, per Zaal.
 
@@ -19,20 +25,21 @@ no-crypto-jargon rule is relaxed for the challenge post only, per Zaal.
 
 ## What these drafts deliberately do NOT say
 
-**No finalist list.** A moving leaderboard is not a finalist selection, so the
-standings can drop before the projects-or-people rule is settled. Draft 1 says so
-in as many words, which is what makes it safe to post today.
+**No finalist list.** The leaderboard is live and the week is still open, so
+today's order is a snapshot, not a selection. Draft 1 says that in as many words,
+which is what makes it safe to post today.
 
-The open decision is still Zaal's: are the six finalists **projects or people**,
-and may one person hold more than one slot? The vote currently answers this
-inconsistently - its candidate slate mixes project rows with person rows
-(`b:ghostmintops`, `b:branth`, `b:jdwalka`), which is a defect, not a policy.
-See `docs/finale-standings-2026-08-10.md`.
+**No ruling on whether one person can hold two slots.** LadyrynNemesis is
+currently first in artist and first in creator. Under "six total, all six
+present" that has to resolve to one person one slot, and the post is written so
+it reads correctly either way - it publishes the per-track order and does not
+name six finalists. The standings doc sets out both readings and what each does
+to Halit Tayyar, who is in under one and out under the other. Zaal states the
+rule before anyone reads the order as a result.
 
-**No claim that the standings cover the whole field.** They do not. 18 of the 30
-real projects cannot be voted for at all, because the vote's candidate slate and
-the project feed are built from the roster differently. The standings doc lays
-this out and recommends what to do about it.
+**No claim that everyone is on the ballot.** 13 of the 16 submitters are. The
+three who are not have submissions still in `building`, which the week that is
+still open is exactly the fix for - and the post asks for it directly.
 
 ---
 
@@ -44,82 +51,94 @@ FINAL. Post the removal first (see the runbook in
 ```
 zabal gamez season 1 - how it ends
 
-30 projects across three tracks. two per track advance. three
-finals, run in the last week of august. the finalists pick their
-own dates inside that week. you are not handed a slot, you agree
-one with the people you are finishing alongside.
+two people per track go through. six finalists, all six there at
+the end of the month. three finals in the last week of august,
+and the finalists pick their own dates inside that week. you are
+not handed a slot, you agree one with the people you are
+finishing alongside.
 
-who advances is decided by you, not by us. the vote is open at
-zabalgamez.com/vote. 100 credits per track, and backing one
-project costs the square of the votes you put on it, so ten votes
-on one project spends everything you have. nobody buys a track.
+who goes through is decided by you. the vote is open at
+zabalgamez.com/vote. 100 credits per track, and backing someone
+costs the square of the votes you put on them, so ten votes on
+one person spends everything you have. nobody buys a track.
 
 where it stands today:
 
   artist
-    n3m3sis - the call out                41
-    how artists blend different genres     5
+    ladyrynnemesis          41
+    gesd01                   5
 
   builder
-    neontetris                            37
-    colorzao                              10
-    zao artist value ledger                3
-    surfboard                              3
-    stacks                                 3
-    el charro                              3
+    kayonfire               37
+    uniquebeing404          10
+    ghostmintops             5
+    jdwalka                  4
+    branth                   4
+    pascaline                3
+    ladyrynnemesis           3
+    breadcoop                3
+    mettodo                  3
 
   creator
-    zabal gamez song & video               9
-    zabal artwork                          8
-    taydex                                 6
+    ladyrynnemesis           9
+    iman afrikah             8
+    taydexfun                6
 
-that builder four-way tie at 3 is real. the vote has not broken
-it and neither will we.
+read that as a snapshot, not a result. submissions are open all
+week and the board moves every day. two votes is the whole gap in
+creator. if you are outside the top two this morning you have a
+week to fix it.
 
-this moves every day until the vote closes. a leaderboard is not
-a finalist list, so do not read today's number as a result.
+one name is currently top of two tracks. how that resolves gets
+said out loud before anything is final, not after.
 
-now the part we are not going to bury: 18 of the 30 projects
-cannot be voted for yet. our vote page reads the old builder
-roster as one entry per person instead of one per project, so
-every project by ghostmintops, branth and jdwalka is missing from
-the ballot, fifteen between them, along with gundarium, hood and
-dee-13's ledger. that is our bug, not theirs. it gets fixed
-before the vote closes, those projects go on the ballot when it
-does, and the standings above will move when they do.
+and if your project still says building, you are not on the
+ballot yet. that is three of you. finish the submission this week
+and you are on it. dee-13, that turns artist from a two-horse
+walkover into an actual race.
 
-every finalist takes the full prize tier promised in june: a share
-of the 500 usdc pool, $zabal rewards, and both the finisher and
-champion collectibles. that has not changed and will not.
+every finalist takes the full prize tier promised in june: a
+share of the 500 usdc pool, $zabal rewards, and both the finisher
+and champion collectibles. that has not changed and will not.
 
 ---
 the season itself, for anyone who missed it: 32 sessions in june,
-31 different people teaching, 25 organisations. july was quiet. we
-are not going to pretend otherwise, and the june record stands on
-its own.
+31 different people teaching, 25 organisations. july was quiet.
+we are not going to pretend otherwise, and the june record stands
+on its own.
 ```
 
-**Why it is shaped this way.** The field is 30 projects from 16 submitters, which
-is a real number and can lead. The vote paragraph explains quadratic voting in one
+**Why it is shaped this way.** It ranks people because that is what a finalist
+now is, and it prints everyone who has a vote rather than the top two, because a
+leaderboard people can find their own name on is the thing that makes the last
+week worth playing. The one omission is sentra, on zero, which is on the ballot
+but has nothing to show yet. The vote paragraph explains quadratic voting in one
 sentence without using the term, because the mechanism is the answer to "why
 should I trust this" and burying it invites the accusation it prevents.
 
-The coverage paragraph is the one that matters. Publishing a leaderboard that
-silently omits 18 of 30 projects is the same error that produced the first draft,
-and the people it omits are the three most prolific builders in the season - they
-will notice. Saying it first, calling it our bug, and committing to fix it before
-the vote closes turns the worst fact in the post into the most credible line in it.
+The two lines doing the real work are the snapshot line and the building line.
+The first stops today's order being read as a cut, which is the entire reason
+this can go out mid-week. The second converts the only remaining coverage gap
+into a call to action: three people are off the ballot because their submission
+is unfinished, and the week is open, so the fix is theirs and it is easy. Naming
+dee-13 is deliberate - artist is a two-person walkover until someone contests it,
+and saying so is more honest than quietly running a two-horse race.
 
-**Three things to check before posting.**
+**Four things to check before posting.**
 
-1. The four rows must be removed first, or the artist table is wrong on the live
+1. The four rows must be removed first, or the artist board is wrong on the live
    page: the QA test row sits at 25 votes, second place, until it is cleared. The
    numbers above are already correct for a post-removal state.
-2. The collectible line does not name the rail. The rail is unchanged, but the
+2. LadyrynNemesis appears in artist and in creator. That is real and the post
+   shows it rather than hiding it, but the one-person-one-slot rule needs stating
+   soon - under it, Halit Tayyar (taydexfun) is in; without it, they are out. See
+   the standings doc.
+3. The collectible line does not name the rail. The rail is unchanged, but the
    partnership retirement means the public copy describes the collectibles and not
    the vendor. `about.html` was scrubbed the same way in #588.
-3. "dee-13's ledger" and "zao artist value ledger" are two different projects on
-   two different tracks. Both names are correct. Do not collapse them.
+4. "three of you" is dee-13, Presdency.eth and pyrofirezerox. Only dee-13 is named
+   in the copy, because artist is the track their submission would actually
+   change. Name all three if you would rather.
 
 ---
 
@@ -200,6 +219,11 @@ actually use in eight weeks.
 - `https://zabalgamez.com/api/qv-vote?results&track=...` and `?candidates` -
   status open, ballots artist 10 / builder 9 / creator 6. Fetched raw with curl,
   HTTP 200, 2026-08-10. Full standings in `docs/finale-standings-2026-08-10.md`.
+- Person totals in the post are the per-track sum of each person's rows in that
+  tally, with ids 5, 6, 2 and 4 excluded. No person currently holds more than one
+  row on a single track, so the summing changes no position today. 13 of the 16
+  submitters are on the ballot; the 3 who are not have submissions still in
+  `building`.
 - SUPERSEDED: `?feed=builders` - 15 submissions from 3 submitters. This is the
   audited roster file only and is a partial view of the field. It is what produced
   the wrong first draft. Do not rank off it.

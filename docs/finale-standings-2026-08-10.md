@@ -3,15 +3,22 @@
 Nothing here has been posted. This is the standings snapshot plus the exact
 criterion behind it, for Zaal to approve before anything goes out.
 
+**Finalists are PEOPLE, not projects** (Zaal, 2026-08-10). Two people per track,
+six people total, all six present at the end of the month. The tables below rank
+people. An earlier version of this doc ranked projects and is superseded.
+
+**Submissions stay open this week.** Today's standings are a moving snapshot and
+this week is the last chance to climb, not a cut. That is stated in the post copy.
+
 ## The criterion, stated once
 
-**Rank = total quadratic votes per candidate, per track, from the live vote at
-zabalgamez.com/vote.** No other input. No editorial judgement, no shipped-vs-planned
-ladder, no organiser tiebreak.
+**A person's score in a track = the sum of quadratic votes across everything of
+theirs on that track's ballot.** Ranked highest first. No other input. No
+editorial judgement, no shipped-vs-planned ladder, no organiser tiebreak.
 
-Read from `GET /api/qv-vote?results&track=<track>` on 2026-08-10. Status `open`.
+Read from `GET /api/qv-vote?results&track=<track>` on 2026-08-10, status `open`.
 
-How the number is produced, from `api/qv-vote.mjs`:
+How the underlying number is produced, from `api/qv-vote.mjs`:
 
 - Each voter gets 100 voice credits per track.
 - Giving one candidate N votes costs N squared credits, so the most any single
@@ -23,100 +30,131 @@ How the number is produced, from `api/qv-vote.mjs`:
 
 Two adjustments, both stated rather than silent:
 
-1. **The two "[QA TEST - please delete]" entries are excluded.** They are Iman's
-   test rows, already queued for deletion (due Aug 11). They are not submissions.
-   Their raw totals are shown below anyway so nothing is hidden.
-2. **Nothing is merged.** Vote rows that are duplicates or person-level rather
-   than project-level are listed and labelled, not folded together. Folding them
-   would be inventing a criterion.
+1. **The four rows being removed are excluded** - the two QA tests (ids 5, 6) and
+   the two rows absent from the canonical feed (ids 2, 4). See the runbook below.
+2. **Summing is the only aggregation.** Where a person has more than one entry on
+   a track's ballot their votes are added, and the components are shown. Nothing
+   else is merged, transferred, or reweighted.
 
-## The standings
+As it happens, no person currently holds more than one row on any single track, so
+the sum changes no position. The rule is stated because it will matter as more
+submissions land this week.
 
-### Artist - 10 ballots, slate of 3
+## The standings - people
 
-| # | Votes | Project | Builder |
+### Artist - 10 ballots, 2 people on the ballot
+
+| # | Votes | Person | From |
 |---|---|---|---|
-| 1 | 41 | N3M3SIS - THE CALL OUT | LadyrynNemesis |
-| 2 | 5 | How Artists can Blend Different Music Genres | Gesd01 |
-| - | 25 | QA Test Project - Artist Track | EXCLUDED, queued for deletion |
+| 1 | 41 | LadyrynNemesis | N3M3SIS - THE CALL OUT |
+| 2 | 5 | Gesd01 | How Artists can Blend Different Music Genres |
 
-### Builder - 9 ballots, slate of 12
+Only two people are on the artist ballot, so as of today both advance unopposed.
+dee-13 is the third artist in the field and is one publish away from contesting
+it. This is the weakest track in the standings and the most likely to move.
 
-| # | Votes | Project | Builder |
+### Builder - 9 ballots, 10 people on the ballot
+
+| # | Votes | Person | From |
 |---|---|---|---|
-| 1 | 37 | NeonTetris | kayonfire |
-| 2 | 10 | ColorZAO | uniquebeing404 |
-| 3 | 3 | ZAO Artist Value Ledger | Pascaline |
-| 3 | 3 | SURFBOARD | LadyrynNemesis |
-| 3 | 3 | Stacks | breadcoop |
-| 3 | 3 | El Charro | mettodo |
-| 7 | 0 | sentra | anonymous |
-| - | 6 | surfboard by n3m3sis | NOT in the canonical project feed |
-| - | 5 | Brandon (ghostmintops) | PERSON row, not a project |
-| - | 5 | Project 2 | NOT in the canonical project feed |
-| - | 4 | jdwalka (JohnDaWalka) | PERSON row, not a project |
-| - | 4 | Branth (KORRO / Korrocorp) | PERSON row, not a project |
+| 1 | 37 | kayonfire | NeonTetris |
+| 2 | 10 | uniquebeing404 | ColorZAO |
+| 3 | 5 | ghostmintops | roster entry |
+| 4 | 4 | jdwalka | roster entry |
+| 4 | 4 | branth | roster entry |
+| 6 | 3 | Pascaline | ZAO Artist Value Ledger |
+| 6 | 3 | LadyrynNemesis | SURFBOARD |
+| 6 | 3 | breadcoop | Stacks |
+| 6 | 3 | mettodo | El Charro |
+| 10 | 0 | anonymous | sentra |
 
-Positions 3 through 6 are a genuine four-way tie at 3 votes. The vote does not
-break it and neither should anyone else.
+The four-way tie at 3 is real and sits at position 6, well outside the two slots,
+so nothing needs to break it today.
 
-### Creator - 6 ballots, slate of 4
+### Creator - 6 ballots, 3 people on the ballot
 
-| # | Votes | Project | Builder |
+| # | Votes | Person | From |
 |---|---|---|---|
-| 1 | 9 | ZABAL GAMEZ SONG & VIDEO | LadyrynNemesis |
-| 2 | 8 | ZABAL Artwork | IMan Afrikah |
-| 3 | 6 | TayDex - Creator-Led Prediction Markets on Base | Halit Tayyar / taydexfun |
-| - | 6 | QA Test Project - Creator Track | EXCLUDED, queued for deletion |
+| 1 | 9 | LadyrynNemesis | ZABAL GAMEZ SONG & VIDEO |
+| 2 | 8 | IMan Afrikah | ZABAL Artwork |
+| 3 | 6 | Halit Tayyar / taydexfun | TayDex - Creator-Led Prediction Markets on Base |
 
-## The blocker: the vote covers 12 of the 30 real projects
+Two votes separate first from third. This is the closest track.
 
-This is the same partial-view failure that produced the wrong ranking yesterday,
-one layer further down. Yesterday the bad input was `?feed=builders`. Today the
-input is the vote itself, and the vote's candidate slate does not match the field.
+## The one thing that needs Zaal's word: LadyrynNemesis holds two tracks
 
-`GET /api/submissions?feed=projects` returns 32 rows: 30 real projects plus the 2
-QA tests, from 15 named builders and 1 anonymous submitter.
+She is first in artist on 41 and first in creator on 9. Six slots, but if she
+takes both there are only **five distinct people** at the end of the month, which
+contradicts "six total, all six present".
 
-`GET /api/qv-vote?candidates` offers 19 votable rows. Only 12 of those map to a
-real project in the field. **18 of the 30 real projects cannot be voted for at
-all:**
+**Read as one person, one slot** - she takes her strongest track, artist, and
+creator shifts up:
 
-| Track | Votable | Real | Cannot be voted for |
+| Track | Slot 1 | Slot 2 |
+|---|---|---|
+| Artist | LadyrynNemesis 41 | Gesd01 5 |
+| Builder | kayonfire 37 | uniquebeing404 10 |
+| Creator | IMan Afrikah 8 | Halit Tayyar 6 |
+
+Six distinct people. This is the reading the post copy assumes, because "six
+total, all six present" only works if the six are six humans.
+
+**Read as multi-track allowed**, creator slot 1 stays LadyrynNemesis and Halit
+Tayyar drops out, giving five people across six slots.
+
+The difference decides whether Halit Tayyar is in or out, so the rule has to be
+stated before the standings are read as a result, not after.
+
+## Coverage: 13 of the 16 submitters are on the ballot
+
+Ranking people rather than projects largely dissolves the coverage problem flagged
+in the previous version of this doc, and it is worth being precise about why
+rather than quietly dropping it.
+
+That version said 18 of 30 projects were unvotable, and that the roster rows
+(`b:ghostmintops`, `b:branth`, `b:jdwalka`) were a defect because the vote read
+the roster as one entry per person instead of one per project. **At person
+granularity those rows are the correct shape, not a bug.** ghostmintops, branth
+and jdwalka each get exactly one row in the track they compete in, which is what
+ranking people requires. The 15 projects behind those three rows are represented
+by the person, not lost.
+
+What remains is smaller and different in kind. Three of the 16 submitters have no
+ballot presence at all:
+
+| Person | Project | Track | Status |
 |---|---|---|---|
-| Artist | 2 | 5 | Ledger (dee-13), AI music generator (branth), ZAO music (ghostmintops) |
-| Builder | 7 | 19 | GundariuM, HOOD, and all 4 remaining branth + 4 remaining ghostmintops + 2 jdwalka projects |
-| Creator | 3 | 6 | DreamNet Publishing, IDE tutorial video series, Predictive apps Space |
+| dee-13 | Ledger | artist | building |
+| Presdency.eth | HOOD | builder | building |
+| Joshua Grubbs / pyrofirezerox | GundariuM | builder | building |
 
-### Why
+**Why, on the evidence:** every numeric submission with `publicStatus: published`
+is on the ballot (14 of 14) and every one with `publicStatus: building` is not
+(3 of 3). `loadCandidates()` in `api/qv-vote.mjs` line 133 admits only `approved`
+and `pending` records and explicitly skips drafts, while the projects feed also
+reads `zabal:subs:drafts`. The consistent split says these three submissions are
+still drafts rather than finished submissions. I could not read the KV store
+directly to confirm the stored status field, so this is inference from a clean
+14-of-14 / 3-of-3 correlation, not a direct read.
 
-`api/submissions.mjs` builds the projects feed by merging the live KV store with
-the audited roster in `data/builder-submissions.json`. `api/qv-vote.mjs` builds
-the vote slate differently: it takes the live KV store per project, but it takes
-the roster as **one person-level candidate per builder** (`b:<handle>`), not as
-their individual projects.
+If that is right it is not a platform bug and needs no code change: **submissions
+are open this week, so those three finish their submission and they are on the
+ballot.** dee-13 in particular would turn the artist track from a walkover into a
+contest. That is the single most useful thing the post can ask for.
 
-The result is that the three most prolific builders - ghostmintops with 7
-projects, branth with 5, jdwalka with 3 - have 15 projects between them and not
-one of them is individually votable. Each of the three is instead a single row
-voting for the person.
-
-This is the duplicate submissions store already on the queue for removal (due
-Aug 17), showing up as a live correctness problem rather than a tidiness one.
-
-### Two other slate defects
-
-- `id=4 "surfboard by n3m3sis"` (6 votes) and `id=14 "SURFBOARD"` (3 votes) look
-  like the same work by the same person with the vote split across two rows.
-  id=4 is votable but absent from the canonical feed.
-- `id=2 "Project 2"` by bettercallzaal (5 votes) is votable and absent from the
-  canonical feed.
+**One presentation asymmetry worth knowing, not worth posting.** ghostmintops,
+branth and jdwalka are voted for as a person, while everyone else is voted for
+through a named project. Same granularity in the ranking, different experience on
+the ballot page. Worth aligning when the slate is next touched; it changes no
+number today.
 
 ## Decision taken 2026-08-10
 
 Zaal chose: remove the QA tests and the two ghost rows first, then publish today's
-standings, then fix the slate. Draft 1 in `finale-post-drafts-2026-08-10.md` is
-finalised on that basis and states the coverage gap in the post itself.
+standings. Finalists are people, two per track, six in total, all six present at
+the end of the month. Submissions stay open this week, so the standings publish as
+a moving snapshot rather than a cut. Draft 1 in `finale-post-drafts-2026-08-10.md`
+is finalised on that basis.
 
 ## Removal runbook - Zaal runs this, not the loop
 
@@ -226,9 +264,17 @@ whether it goes in before or after the standings post.
 
 ## Effect of the removal on the published standings: none
 
-Every removed row was already excluded or labelled in the tables above, so the
-ranking of real projects is unchanged. What changes is that `?results` becomes
-self-evidently correct instead of needing a footnote.
+Every removed row is already excluded from the tables above, so no position moves.
+
+Person-ranking makes one of the four worth checking rather than assuming. Row id 4
+("surfboard by n3m3sis", 6 votes) belongs to LadyrynNemesis, who also holds id 14
+SURFBOARD on 3 votes in the same track. If those 6 votes counted toward her she
+would sit on 9 in builder, which is still position 3, still behind
+uniquebeing404 on 10 and outside the two slots. So hiding id 4 costs her nothing
+that changes an outcome, and counting it would not have changed one either.
+
+What the removal actually buys is that `?results` becomes self-evidently correct
+instead of needing a footnote.
 
 ## Sources
 
