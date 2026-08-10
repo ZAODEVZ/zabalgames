@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Moderate the board - ZABAL Gamez (internal)</title>
   <meta name="robots" content="noindex, nofollow">
+  <!-- Mini App meta so /review can be OPENED as a Farcaster Mini App.
+       Without this the page loads as plain web, sdk.quickAuth is undefined
+       (miniapp.js bails with reason 'not-in-miniapp'), and the only way in is
+       the ADMIN_KEY desktop fallback - so an allowlisted admin on a phone had
+       no route in at all. The FID allowlist in lib/auth.mjs still gates every
+       action server-side; this only makes the Quick Auth handshake possible.
+       Stays noindex - launchable is not the same as discoverable. -->
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Open review","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/review","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Open review","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/review","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
   <link rel="preconnect" href="https://fonts.googleapis.com">
