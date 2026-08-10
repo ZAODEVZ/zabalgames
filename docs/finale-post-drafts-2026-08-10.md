@@ -40,10 +40,12 @@ unresolved, and LadyrynNemesis has to choose which of her two tracks she compete
 in. The post commits only to announcing the six at the end of the week, so none of
 that has to be settled to publish today.
 
-**It publishes the prize split, with the fallback in the same breath.** $300 across
-three head-to-head battles, $200 by trade volume capped at $80 each. The WaveWarZ
-contract is not deployed yet, so the post states what happens if the market is not
-live rather than quietly promising a metric that may not exist.
+**It publishes the prize split, flat, with no conditions.** $300 across three
+WaveWarZ community battles, $200 by trade volume capped at $80 each. An earlier
+version carried a fallback clause because the repo's finals copy describes an
+undeployed WaveWarZ-Base contract. That copy is stale: the finals run on live
+WaveWarZ community battles, so the volume metric has a real source and the post
+states it without hedging.
 
 **It does not claim everyone is on the ballot.** Three submissions are still
 drafts, which makes them invisible on the board as well as the ballot. The post
@@ -51,109 +53,110 @@ asks those three to finish this week without naming them.
 
 ---
 
-## DRAFT 1 - the announcement
+## DRAFT 1 - the announcement (3-cast Farcaster thread)
 
 FINAL, pending the four-row removal (runbook in
 `docs/finale-standings-2026-08-10.md`). Nothing has been posted.
 
+Shipped as a thread because the full post is 2214 bytes and a Farcaster cast holds
+1024. Each cast is sized below the limit and stands on its own, so someone who
+only sees cast 2 still gets a leaderboard they can act on.
+
+### Cast 1 of 3 - how it ends, and that the six are curated (588 bytes)
+
 ```
 zabal gamez season 1 - how it ends
 
-two people per track go through. six finalists, all six there at
-the end of the month. three finals in the last week of august,
-and the finalists pick their own dates inside that week. you are
-not handed a slot, you agree one with the people you are
-finishing alongside.
+two people per track go through. six finalists, all six there at the end of the month. three finals in the last week of august, and the finalists pick their own dates inside that week.
 
-the six are picked, not tallied. i am choosing them, at the end
-of this week, from everything the season actually produced. the
-vote running at zabalgamez.com/vote is what it says on the tin -
-who is best - and it is one of the loudest things i am reading,
-but it is a signal, not the selector. i would rather say that
-plainly now than have you find out from a list.
+the six are picked, not tallied. i am choosing them at the end of this week, from everything the season actually produced.
 
-where the support sits today:
-
-  artist
-    ladyrynnemesis          41
-    gesd01                   5
-
-  builder
-    kayonfire               37
-    uniquebeing404          10
-    ghostmintops             5
-    jdwalka                  4
-    branth                   4
-    pascaline                3
-    ladyrynnemesis           3
-    breadcoop                3
-    mettodo                  3
-
-  creator
-    ladyrynnemesis           9
-    iman afrikah             8
-    taydexfun                6
-
-submissions are open all week. that is the part that matters. if
-your build is still sitting in draft it is invisible - not on the
-board, not on the ballot, not in front of me. three of you are in
-that spot right now. finish it this week.
-
-what the six are playing for, $500 usdc:
-
-  $300  three head to head battles, one per track. win yours,
-        $70. lose it, $30. everybody gets paid.
-  $200  split across all six by the trade volume your battle
-        pulls, capped at $80 each so one big trade cannot take
-        the pool.
-
-most anyone can walk with is $150. if the market is not live in
-time, that $200 rolls into the battles instead and the winners
-take $110.
-
-on top of that: 1% of all trade volume on your battle entry,
-forever, and both the finisher and champion collectibles. the
-june prize tier stands in full.
-
----
-the season itself, for anyone who missed it: 32 sessions in june,
-31 different people teaching, 25 organisations. july was quiet.
-we are not going to pretend otherwise, and the june record stands
-on its own.
+the vote running at zabalgamez.com/vote is what it says on the tin - who is best - and it is one of the loudest things i am reading. but it is a signal, not the selector. i would rather say that plainly now than have you find out from a list.
 ```
 
-**Why it is shaped this way.** The second paragraph is the one that earns the
-post. Curating the six is completely defensible, and the vote page has only ever
-said "vote for who is best" - but a leaderboard published in the same breath as a
-finalist announcement will be read as the selector unless you say otherwise
-first. Saying it in Zaal's own voice, before anyone can discover it, converts the
-weakest structural fact in the season into the most trustworthy line in the post.
+### Cast 2 of 3 - the board (504 bytes)
 
-Publishing the leaderboard anyway is right: it is real support, it is already
-public at /vote, and hiding it would look worse than the thing it hides.
+```
+where the support sits today, with a week still to go:
 
-The prize block is here rather than held back because it is the strongest
-motivator available with a week of submissions left, and the WaveWarZ fallback is
-stated in the same breath so it cannot become a broken promise.
+artist
+  ladyrynnemesis 41
+  gesd01 5
+
+builder
+  kayonfire 37
+  uniquebeing404 10
+  ghostmintops 5
+  jdwalka 4
+  branth 4
+  pascaline 3
+  ladyrynnemesis 3
+  breadcoop 3
+  mettodo 3
+
+creator
+  ladyrynnemesis 9
+  iman afrikah 8
+  taydexfun 6
+
+submissions are open all week. if your build is still sitting in draft it is invisible - not on the board, not on the ballot, not in front of me. three of you are in that spot right now. finish it this week.
+```
+
+### Cast 3 of 3 - what they are playing for (675 bytes)
+
+```
+what the six are playing for. $500 usdc:
+
+$300 - three wavewarz community battles, one per track. win yours, $70. lose it, $30. everybody gets paid.
+
+$200 - split across all six by the trade volume your battle pulls, capped at $80 each so one big trade cannot take the pool.
+
+most anyone can walk with is $150.
+
+on top of that, straight from wavewarz: 1% of every trade on your side of the battle, forever. plus both the finisher and champion collectibles. the june prize tier stands in full.
+
+the season itself: 32 sessions in june, 31 different people teaching, 25 organisations. july was quiet. we are not going to pretend otherwise, and the june record stands on its own.
+```
+
+**Why it is shaped this way.** Cast 1 earns the thread. Curating the six is
+completely defensible and the vote page has only ever said "vote for who is best",
+but a leaderboard published next to a finalist announcement reads as the selector
+unless you say otherwise first. Saying it in Zaal's own voice, before anyone can
+discover it, turns the weakest structural fact in the season into the most
+trustworthy line in the post. It goes in cast 1 rather than cast 2 for exactly
+that reason - it has to arrive before the numbers, not after.
+
+Cast 2 publishes the board anyway, because it is real support, it is already
+public at /vote, and hiding it would look worse than the thing it hides. It closes
+on the draft submissions, which is the single most useful action anyone reading
+can take this week.
+
+Cast 3 leads with money because that is what makes the open week worth playing,
+and it names WaveWarZ community battles as the instrument - the live Solana
+product with automated split payouts, not the unbuilt Base contract the site still
+describes.
 
 **Four things to check before posting.**
 
 1. The four rows must be removed first, or the artist board is wrong on the live
    page: the QA test row sits at 25 votes, second place, until it is cleared. The
-   numbers above are already correct for a post-removal state.
+   numbers in cast 2 are already correct for a post-removal state.
 2. No finalist is named, deliberately. Gesd01 and dee-13 are unresolved for the
    artist slots, and LadyrynNemesis still has to choose her track. None of that
-   needs settling to post this.
+   needs settling to post this - but cast 1 commits to naming the six at the end
+   of this week, so it does need settling by then.
 3. The collectible line does not name the rail. The rail is unchanged, but the
    partnership retirement means the public copy describes the collectibles and not
    the vendor. `about.html` was scrubbed the same way in #588.
 4. "three of you are in that spot" is dee-13, Presdency.eth and pyrofirezerox.
-   Unnamed here because under curation the point is to finish, not to be singled
-   out. Name them if you would rather - it would probably work.
+   Unnamed because under curation the point is to finish, not to be singled out.
 
-**One follow-on this creates.** If the six are curated, `/vote` and `/finals`
-should say so too, or the site contradicts the post. That is a small copy PR and
-I have not written it - say the word.
+**Two follow-on copy fixes this creates, neither written.**
+
+- `finals.html` and `finals/live.html` still describe the finals settling on
+  "WaveWarZ-Base" with contract `0xTODO_WAVEWARZ_BASE`. The finals run on live
+  WaveWarZ community battles. The site currently contradicts the post.
+- If the six are curated, `/vote` and `/finals` should say so too.
 
 ---
 

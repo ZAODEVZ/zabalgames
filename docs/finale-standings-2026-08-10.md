@@ -122,24 +122,34 @@ excess above the cap redistributes pro-rata among the rest.
 Ceiling is $70 + $80 = **$150**, which lands exactly on the original first-place
 figure from the May dispatch. Floor is $30 plus a volume share.
 
-### The dependency, and the fallback - decide this before publishing the split
+### The instrument: live WaveWarZ community battles. No fallback needed.
 
-The WaveWarZ-Base contract address on `finals/live.html:187` is still
-`0xTODO_WAVEWARZ_BASE`, and the live banner on `finals.html:59` says the finals
-are being revised to a curated build month on loops.house with the
-prediction-market write-up superseded. `finals.html` already documents a fallback
-for exactly this: if WaveWarZ-Base is not mainnet-ready, the finals revert to a
-different judging instrument, "same prize tier, same collectibles".
+Zaal, 2026-08-10: "it's not wavewarz base... it's just wavewarz, which is live and
+ready under community battles."
 
-So: **if the market is not live, there is no volume to measure and the $200 has no
-source.** It then rolls into the battles: winners take $110 each ($330), and the
-remaining $170 splits three ways as $56.67, $56.67 and $56.66 - exactly $500, with
-the odd cent going to whichever runner-up you like. A clean three-way split of
-$166.67 per track is not possible in whole cents, which is why the numbers land
-this way. The post states the fallback in one clause and quotes only the $110.
+**An earlier version of this doc built a fallback around WaveWarZ-Base not being
+mainnet-ready. That was wrong, and the source of the error is worth recording so
+nobody repeats it from the same files.** `finals/live.html:187` carries
+`0xTODO_WAVEWARZ_BASE` and `finals.html` describes the finals settling on a
+WaveWarZ-Base contract. That copy is stale. The finals run on WaveWarZ proper -
+the live Solana product - using its community battles feature.
 
-Promising a metric that might not exist is the kind of thing that costs more trust
-than it buys, so this is decided now rather than in the finals week.
+What community battles actually are, from Hurricane Ike's own session
+(`recordings/8.html`, indexed in `recaps.json`): head-to-head battles in any format
+with automated split payouts straight to artist wallets, live chart scoring, and
+the artist earning 1% of every trade on their side. 500+ SOL in volume, 40+
+artists, built on Solana. Built by Ikechi Nwachukwu (Hurric4n3Ike) - WaveWarZ is a
+partner product, not ZAO-built, and the credit belongs to them.
+
+So the volume metric has a live source, the $200 half needs no condition, and the
+post states it flat. **There is no fallback clause and the post should not carry
+one.**
+
+### Follow-on: the site contradicts this
+
+`finals.html` and `finals/live.html` still describe WaveWarZ-Base settlement and
+an undeployed contract address. That copy should be corrected to live WaveWarZ
+community battles, or the site argues with the post. Not written - flagged.
 
 ### One thing to choose knowingly: volume pays twice
 
@@ -289,8 +299,14 @@ Every figure above traces to one of these, fetched raw on 2026-08-10.
 - `AUGUST-LANE-BRIEF.md:33` - top 2 per track into 3-5 WaveWarZ battles, one
   winner per track. `finals/live.html:127` - "volume + win rate at T+72h decides
   placement". `finals.html:147` - the 1% of trade volume, forever.
-- `finals/live.html:187` - `0xTODO_WAVEWARZ_BASE`, the contract not yet deployed.
-  `finals.html:59` - the banner superseding the prediction-market plan.
+- `finals/live.html:187` (`0xTODO_WAVEWARZ_BASE`) and `finals.html:59` - STALE
+  copy describing a WaveWarZ-Base settlement that is not the plan. Reading these
+  as current is what produced the wrong fallback in an earlier version of this
+  doc. Corrected per Zaal: the finals run on live WaveWarZ community battles.
+- `recordings/8.html` - Hurricane Ike's session on WaveWarZ: community battles in
+  any format, automated split payouts to artist wallets, 1% of every trade on your
+  side, live chart scoring, 500+ SOL volume, 40+ artists, Solana. WaveWarZ is
+  built by Ikechi Nwachukwu (Hurric4n3Ike) and is a partner product, not ZAO-built.
 - Direct read, not inference: ids 3, 16 and 18 each carry `status: "draft"` in the
   projects feed. An earlier version of this doc inferred that from a 14-of-14 /
   3-of-3 correlation; the field is in the response, so it is now confirmed.
