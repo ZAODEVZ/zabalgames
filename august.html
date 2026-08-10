@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>August Finals - ZABAL Gamez</title>
+  <meta name="description" content="August is the July submitters. The leaderboard is live, the top 2 per track advance, and all six finalists present at the end of the month.">
+  <link rel="canonical" href="https://zabalgamez.com/august">
+  <meta property="og:title" content="August Finals - ZABAL Gamez">
+  <meta property="og:description" content="Everyone who submitted in July is on the leaderboard now. Top 2 per track advance. Six finalists present at the end of August.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zabalgamez.com/august">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta property="og:image:alt" content="ZABAL Gamez August Finals">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="August Finals - ZABAL Gamez">
+  <meta name="twitter:description" content="Everyone who submitted in July is on the leaderboard now. Top 2 per track advance. Six finalists present at the end of August.">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the finals","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/august","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#141e27"}}}'>
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#141e27">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    body { background: #141e27; }
+    .aug-shell { max-width: 1040px; margin: 0 auto; }
+    .aug-hero { text-align: left; padding-bottom: 0.6rem; }
+    .aug-hero .lead { max-width: 740px; }
+    .aug-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+    .aug-button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0.65rem 0.95rem; border: 1px solid var(--border-hover); border-radius: 9px; color: var(--cyan); background: var(--surface-2); text-decoration: none; font-weight: 700; }
+    .aug-button.primary { color: #141e27; background: #e0ddaa; border-color: #e0ddaa; }
+    .aug-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.85rem; margin: 1.2rem 0 0; }
+    .aug-step { border: 1px solid rgba(224,221,170,0.22); border-radius: 12px; background: var(--surface-2); padding: 1rem; }
+    .aug-step .k { color: var(--cyan); font: 0.55rem var(--font-pixel); letter-spacing: 0.06em; text-transform: uppercase; }
+    .aug-step h3 { color: #e0ddaa; font-family: 'Syne', sans-serif; font-size: 1.05rem; margin: 0.5rem 0 0.4rem; }
+    .aug-step p { color: var(--text-muted); font-size: 0.86rem; line-height: 1.5; margin: 0; }
+    .aug-section { margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.2rem; }
+    .aug-section h2 { color: #e0ddaa; font-family: 'Syne', sans-serif; margin: 0 0 0.35rem; }
+    .aug-section .lead { font-size: 0.92rem; max-width: 740px; }
+    .aug-mentors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.85rem; margin-top: 1rem; }
+    .aug-mentor { border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); padding: 1rem; }
+    .aug-mentor .track { color: var(--cyan); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .aug-mentor h3 { color: var(--text); font-size: 0.98rem; margin: 0.35rem 0 0.3rem; }
+    .aug-mentor p { color: var(--text-muted); font-size: 0.8rem; line-height: 1.45; margin: 0; }
+    .aug-field-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.85rem; margin-top: 1rem; }
+    .aug-col { border: 1px solid rgba(224,221,170,0.22); border-radius: 12px; background: var(--surface-2); padding: 0.9rem; }
+    .aug-col h3 { color: var(--cyan); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 0.15rem; }
+    .aug-col .count { color: var(--text-dim); font: 0.72rem 'JetBrains Mono', monospace; margin: 0 0 0.6rem; }
+    .aug-person { border-top: 1px solid var(--border); padding: 0.55rem 0; }
+    .aug-person strong { color: var(--text); font-size: 0.88rem; overflow-wrap: anywhere; }
+    .aug-person .links { margin-top: 0.15rem; }
+    .aug-person .links a { color: var(--cyan); text-decoration: none; font-size: 0.74rem; margin-right: 0.6rem; }
+    .aug-empty { color: var(--text-muted); font-size: 0.84rem; border: 1px dashed var(--border-hover); border-radius: 10px; padding: 0.8rem; }
+    @media (max-width: 850px) { .aug-steps, .aug-mentors, .aug-field-cols { grid-template-columns: 1fr; } .aug-actions .aug-button { flex: 1 1 100%; } }
+  </style>
+</head>
+<body>
+<a class="arcade-skip" href="#main">Skip to content</a>
+<nav class="arcade-nav" aria-label="Primary">
+  <div class="arcade-nav-inner">
+    <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
+    <div class="arcade-nav-menu">
+      <a href="/leaderboard">Standings</a>
+      <a href="/vote">Vote</a>
+      <a href="/submissions">Projects</a>
+      <a href="/info">Details</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="container aug-shell">
+    <header class="hero aug-hero">
+      <div class="hero-eyebrow">August Finals</div>
+      <h1>August is the July submitters. The <span class="accent">leaderboard</span> is live.</h1>
+      <p class="lead">Everyone who submitted anything in July - a track, a build, a draft - is on the season leaderboard right now. This week is the last chance to climb it. Then the field narrows to six finalists who present at the end of the month.</p>
+      <div class="aug-actions">
+        <a class="aug-button primary" href="/leaderboard">See the standings</a>
+        <a class="aug-button" href="/vote">Vote for who's best</a>
+        <a class="aug-button" href="/submissions">Browse the work</a>
+      </div>
+    </header>
+
+    <section aria-labelledby="how-heading">
+      <h2 id="how-heading" style="color:#e0ddaa;font-family:'Syne',sans-serif;margin-bottom:0.2rem;">How the finals work</h2>
+      <div class="aug-steps">
+        <article class="aug-step">
+          <span class="k">Now - this week</span>
+          <h3>Climb the leaderboard</h3>
+          <p>The field is every July submitter. Community votes and season standings decide who rises. If you submitted, you are in the running - this week is your last chance to move up.</p>
+        </article>
+        <article class="aug-step">
+          <span class="k">The cut</span>
+          <h3>Top 6 advance</h3>
+          <p>When the week closes, the top 2 people per track - artist, builder, creator - advance. Finalists are people, not projects: your whole body of July work carries you.</p>
+        </article>
+        <article class="aug-step">
+          <span class="k">End of August</span>
+          <h3>The finals</h3>
+          <p>All six finalists present their work live at the end of the month. One winner per track.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="aug-section" aria-labelledby="mentors-heading">
+      <h2 id="mentors-heading">Three mentors, one per track</h2>
+      <p class="lead">Each track gets a ZAO mentor for the month: guidance for the whole track while the leaderboard is open, then direct 1:1 prep with their two finalists for the end-of-month presentation. Mentors are named here as each one confirms.</p>
+      <div class="aug-mentors">
+        <article class="aug-mentor">
+          <span class="track">Artist track</span>
+          <h3>ZAO mentor - confirming</h3>
+          <p>Guides the artist-track field, then preps the two artist finalists for the finals.</p>
+        </article>
+        <article class="aug-mentor">
+          <span class="track">Builder track</span>
+          <h3>ZAO mentor - confirming</h3>
+          <p>Guides the builder-track field, then preps the two builder finalists for the finals.</p>
+        </article>
+        <article class="aug-mentor">
+          <span class="track">Creator track</span>
+          <h3>ZAO mentor - confirming</h3>
+          <p>Guides the creator-track field, then preps the two creator finalists for the finals.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="aug-section" aria-labelledby="field-heading">
+      <h2 id="field-heading">The field</h2>
+      <p class="lead">Everyone below submitted in July and is in the running. The list comes straight from the live submission feed - the top 2 per track advance to the finals.</p>
+      <div class="aug-field-cols" id="field-cols" aria-busy="true">
+        <p class="aug-empty">Loading the field...</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="/assets/site-nav.js" defer></script>
+<script>
+(function () {
+  var TRACKS = ['artist', 'builder', 'creator'];
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function render(people) {
+    var root = document.getElementById('field-cols');
+    var cols = TRACKS.map(function (track) {
+      var inTrack = people.filter(function (p) { return p.tracks[track]; });
+      var rows = inTrack.map(function (p) {
+        var links = [];
+        if (p.farcaster) links.push('<a href="' + esc(p.farcaster) + '" target="_blank" rel="noopener">Farcaster</a>');
+        if (p.github) links.push('<a href="' + esc(p.github) + '" target="_blank" rel="noopener">GitHub</a>');
+        if (p.site) links.push('<a href="' + esc(p.site) + '" target="_blank" rel="noopener">Site</a>');
+        return '<div class="aug-person" role="listitem"><strong>' + esc(p.name) + '</strong>'
+          + (links.length ? '<div class="links">' + links.join('') + '</div>' : '') + '</div>';
+      }).join('');
+      return '<div class="aug-col" role="list" aria-label="' + track + ' track">'
+        + '<h3>' + track + '</h3>'
+        + '<p class="count">' + inTrack.length + ' in the running - top 2 advance</p>'
+        + (rows || '<p class="aug-empty">No submitters in this track.</p>')
+        + '</div>';
+    }).join('');
+    root.innerHTML = cols;
+    root.setAttribute('aria-busy', 'false');
+  }
+
+  fetch('/api/submissions?feed=projects', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var subs = (data && data.submissions) || [];
+      var byPerson = {};
+      subs.forEach(function (s) {
+        var b = s.builder || {};
+        var name = b.name || s.handle || '';
+        var handle = b.handle || s.handle || '';
+        if (!name && !handle) return;
+        if (/qa test/i.test(name)) return; // internal test records are not part of the field
+        var key = String(handle || name).toLowerCase().trim();
+        var p = byPerson[key];
+        if (!p) {
+          p = byPerson[key] = { name: name || ('@' + handle), tracks: {}, farcaster: b.farcasterUrl || (handle ? 'https://farcaster.xyz/' + handle : ''), github: b.githubUrl || '', site: b.siteUrl || '' };
+        }
+        if (s.track && TRACKS.indexOf(s.track) > -1) p.tracks[s.track] = true;
+        if (!p.farcaster && b.farcasterUrl) p.farcaster = b.farcasterUrl;
+        if (!p.github && b.githubUrl) p.github = b.githubUrl;
+        if (!p.site && b.siteUrl) p.site = b.siteUrl;
+      });
+      var people = Object.keys(byPerson).map(function (k) { return byPerson[k]; });
+      people.sort(function (a, b) { return a.name.localeCompare(b.name); });
+      render(people);
+    })
+    .catch(function () {
+      var root = document.getElementById('field-cols');
+      root.innerHTML = '<p class="aug-empty">Could not load the field right now. See the live list on <a href="/submissions">the projects board</a>.</p>';
+      root.setAttribute('aria-busy', 'false');
+    });
+})();
+</script>
+</body>
+</html>
