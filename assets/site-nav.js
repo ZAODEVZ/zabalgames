@@ -58,6 +58,7 @@
       ['Changelog', '/changelog.html']
     ]],
     ['Build + vote', [
+      ['August Finals', '/august'],
       ['Submit a project', '/submit'],
       ["This season's projects", '/submissions'],
       ["Vote for who's best", '/vote'],
