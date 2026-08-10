@@ -112,27 +112,123 @@ Aug 17), showing up as a live correctness problem rather than a tidiness one.
 - `id=2 "Project 2"` by bettercallzaal (5 votes) is votable and absent from the
   canonical feed.
 
-## What this means for publishing
+## Decision taken 2026-08-10
 
-The standings above are accurate as a report of the vote. They are not a
-representative ranking of the field, and publishing them without saying so would
-repeat yesterday's mistake in a form that is harder to spot.
+Zaal chose: remove the QA tests and the two ghost rows first, then publish today's
+standings, then fix the slate. Draft 1 in `finale-post-drafts-2026-08-10.md` is
+finalised on that basis and states the coverage gap in the post itself.
 
-Three ways forward. This is Zaal's call, not the loop's:
+## Removal runbook - Zaal runs this, not the loop
 
-1. **Publish as-is, scoped honestly.** Post the standings labelled as the vote's
-   current state, and say plainly that the slate is incomplete and being fixed.
-   Cheapest, and consistent with "standings change daily".
-2. **Fix the slate first, then publish.** Change `loadCandidates()` in
-   `api/qv-vote.mjs` to expand each roster builder into their individual
-   projects, retiring the `b:<handle>` rows. This changes an open vote mid-flight
-   and orphans the 13 person-level votes already cast, so it needs a decision
-   about whether to reset the tally.
-3. **Delete the QA tests and the two ghost rows first, publish, fix the slate
-   after.** Smallest correct step available today.
+**These rows are not in the repo.** All four have numeric ids, which means they
+live only in the live Upstash KV store (`zabal:sub:v1:<id>`), reached through
+`api/submissions.mjs`. `data/builder-submissions.json` holds only the three-person
+audited roster (ghostmintops, branth, jdwalka) and contains none of them, so there
+is no data file to change and no deletion PR to open. Verified by searching that
+file for "qa test", "iman", "surfboard by n3m3sis" and "project 2" - all absent.
 
-Recommended: 3, then 2. It gets a clean number out today without pretending the
-coverage problem does not exist.
+Nothing below has been run.
+
+### The four rows
+
+| id | Track | Votes | What it is | Action |
+|---|---|---|---|---|
+| 5 | artist | 25 | QA Test Project - Artist Track | delete |
+| 6 | creator | 6 | QA Test Project - Creator Track | delete |
+| 2 | builder | 5 | "Project 2", handle bettercallzaal, absent from the canonical feed | delete |
+| 4 | builder | 6 | "surfboard by n3m3sis", looks like an earlier version of id 14 SURFBOARD | **hide, not delete** |
+
+Recommend **hide** for id 4 rather than delete. Delete is permanent and id 4
+appears to be a real person's earlier submission with 6 real votes behind it.
+Hide sets it to rejected, which removes it from the vote slate and the board while
+keeping the record, and is reversible by re-approving. Hide and delete both remove
+it from the ballot, so the standings outcome is identical either way.
+
+### Step 1 - remove the rows (preferred: the admin UI, no tokens)
+
+1. Open `https://zabalgamez.com/review`
+2. Sign in with Farcaster on an admin FID
+3. Delete on #5, #6, #2. Hide on #4.
+
+The UI confirms each delete and posts a moderation notification. This is the
+sanctioned path in `review.html` and needs no key handling.
+
+### Step 1, alternative - the API with the admin key
+
+```sh
+# delete the three
+for ID in 5 6 2; do
+  curl -sS -X POST https://zabalgamez.com/api/submissions \
+    -H "Authorization: Bearer $ADMIN_KEY" \
+    -H 'Content-Type: application/json' \
+    -d "{\"action\":\"delete\",\"id\":\"$ID\"}"
+  echo
+done
+
+# hide (not delete) the probable duplicate
+curl -sS -X POST https://zabalgamez.com/api/submissions \
+  -H "Authorization: Bearer $ADMIN_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"reject","id":"4"}'
+```
+
+### Step 2 - the removal does NOT clear the votes, and this is the part that bites
+
+`action:'delete'` in `api/submissions.mjs` lines 435-454 removes the record and
+its index entries. It does **not** touch `qv:tally:<track>`. The `?results`
+handler in `api/qv-vote.mjs` builds its rows from that tally and only looks up
+the display name from the candidate list, so after the deletion the row does not
+disappear - it comes back nameless as **"Project 5" with 25 votes**, still ranked
+second in artist. Deleting alone makes the standings look worse, not better.
+
+The tally has no API. Removing those rows means raw KV:
+
+```sh
+curl -sS -X POST "$KV_REST_API_URL/pipeline" \
+  -H "Authorization: Bearer $KV_REST_API_TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '[["ZREM","qv:tally:artist","5"],
+       ["ZREM","qv:tally:creator","6"],
+       ["ZREM","qv:tally:builder","2"],
+       ["ZREM","qv:tally:builder","4"]]'
+```
+
+**Do not use the `reset` action on `/api/qv-vote`.** It runs `DEL` on
+`qv:ballots:*` and `qv:tally:*` for all three tracks and would wipe every real
+vote cast so far.
+
+### Step 3 - verify, and know that step 2 is not stable on its own
+
+```sh
+for t in artist builder creator; do
+  echo "== $t"; curl -s "https://zabalgamez.com/api/qv-vote?results&track=$t"; echo
+done
+```
+
+Expected after a clean run: artist 2 rows, builder 9 rows, creator 3 rows, and no
+row named "Project N".
+
+The instability: the per-voter ballots in `qv:ballots:<track>` still contain
+allocations pointing at the removed ids. If one of those voters re-votes, the POST
+handler diffs their old ballot against the new one and issues
+`ZINCRBY qv:tally:<track> -<old votes> <removed id>`, which **recreates the row at
+a negative score**. So a ZREM today can be undone by a voter tomorrow.
+
+### The durable fix, which is a PR and not a command
+
+Filter the results to the current candidate slate - a tally row whose candidate no
+longer exists should not be reported. In the `?results` branch of
+`api/qv-vote.mjs`, skip any id not present in `byId`. That makes removal
+self-healing, survives re-votes, and removes the need for step 2 entirely.
+
+Not written. It changes a live route during an open vote, so it is Zaal's call
+whether it goes in before or after the standings post.
+
+## Effect of the removal on the published standings: none
+
+Every removed row was already excluded or labelled in the tables above, so the
+ranking of real projects is unchanged. What changes is that `?results` becomes
+self-evidently correct instead of needing a footnote.
 
 ## Sources
 

@@ -38,25 +38,55 @@ this out and recommends what to do about it.
 
 ## DRAFT 1 - the announcement
 
+FINAL. Post the removal first (see the runbook in
+`docs/finale-standings-2026-08-10.md`), then this.
+
 ```
 zabal gamez season 1 - how it ends
 
 30 projects across three tracks. two per track advance. three
-finals, run in the last week of august.
-
-the finalists pick their own dates inside that week. you are not
-handed a slot, you agree one with the people you are finishing
-alongside.
+finals, run in the last week of august. the finalists pick their
+own dates inside that week. you are not handed a slot, you agree
+one with the people you are finishing alongside.
 
 who advances is decided by you, not by us. the vote is open at
-zabalgamez.com/vote. 100 credits per track, and the cost of
-backing one project goes up with the square of how hard you back
-it, so ten votes on one project spends your whole budget. nobody
-buys a track.
+zabalgamez.com/vote. 100 credits per track, and backing one
+project costs the square of the votes you put on it, so ten votes
+on one project spends everything you have. nobody buys a track.
 
-standings go up today and move every day until the vote closes. a
-leaderboard is not a finalist list. do not read a monday number as
-a result.
+where it stands today:
+
+  artist
+    n3m3sis - the call out                41
+    how artists blend different genres     5
+
+  builder
+    neontetris                            37
+    colorzao                              10
+    zao artist value ledger                3
+    surfboard                              3
+    stacks                                 3
+    el charro                              3
+
+  creator
+    zabal gamez song & video               9
+    zabal artwork                          8
+    taydex                                 6
+
+that builder four-way tie at 3 is real. the vote has not broken
+it and neither will we.
+
+this moves every day until the vote closes. a leaderboard is not
+a finalist list, so do not read today's number as a result.
+
+now the part we are not going to bury: 18 of the 30 projects
+cannot be voted for yet. our vote page reads the old builder
+roster as one entry per person instead of one per project, so
+every project by ghostmintops, branth and jdwalka is missing from
+the ballot, fifteen between them, along with gundarium, hood and
+dee-13's ledger. that is our bug, not theirs. it gets fixed
+before the vote closes, those projects go on the ballot when it
+does, and the standings above will move when they do.
 
 every finalist takes the full prize tier promised in june: a share
 of the 500 usdc pool, $zabal rewards, and both the finisher and
@@ -71,19 +101,25 @@ its own.
 
 **Why it is shaped this way.** The field is 30 projects from 16 submitters, which
 is a real number and can lead. The vote paragraph explains quadratic voting in one
-sentence without the term, because the mechanism is the answer to "why should I
-trust this" and burying it invites the accusation it prevents. The "a leaderboard
-is not a finalist list" line is what lets the standings drop today while the
-projects-or-people rule is still open.
+sentence without using the term, because the mechanism is the answer to "why
+should I trust this" and burying it invites the accusation it prevents.
 
-**Two things to check before posting.**
+The coverage paragraph is the one that matters. Publishing a leaderboard that
+silently omits 18 of 30 projects is the same error that produced the first draft,
+and the people it omits are the three most prolific builders in the season - they
+will notice. Saying it first, calling it our bug, and committing to fix it before
+the vote closes turns the worst fact in the post into the most credible line in it.
 
-1. The standings themselves are not in this post, deliberately. Post the copy
-   first, put the numbers in a reply or a follow-up, so a correction to one does
-   not force a correction to the other.
+**Three things to check before posting.**
+
+1. The four rows must be removed first, or the artist table is wrong on the live
+   page: the QA test row sits at 25 votes, second place, until it is cleared. The
+   numbers above are already correct for a post-removal state.
 2. The collectible line does not name the rail. The rail is unchanged, but the
-   partnership retirement means the public copy should describe the collectibles
-   and not the vendor.
+   partnership retirement means the public copy describes the collectibles and not
+   the vendor. `about.html` was scrubbed the same way in #588.
+3. "dee-13's ledger" and "zao artist value ledger" are two different projects on
+   two different tracks. Both names are correct. Do not collapse them.
 
 ---
 
