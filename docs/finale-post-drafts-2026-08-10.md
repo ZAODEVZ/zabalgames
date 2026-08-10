@@ -37,7 +37,8 @@ would actually burn people. Order matters more than wording here.
 
 **It names no finalists.** Gesd01 versus dee-13 for the artist slots is
 unresolved, and LadyrynNemesis has to choose which of her two tracks she competes
-in. The post commits only to announcing the six at the end of the week, so none of
+in. The post commits only to announcing the six after the board closes on the 16th,
+so none of
 that has to be settled to publish today.
 
 **It publishes the prize split, flat, with no conditions.** $300 across three
@@ -68,22 +69,22 @@ Four casts because the full text is well over the 1024-byte cast limit. Each is
 sized below it and stands alone, so a reader who only sees cast 2 still gets an
 actionable board.
 
-### Cast 1 of 4 - how it ends, and that the six are curated (556 bytes)
+### Cast 1 of 4 - how it ends, and that the six are curated (602 bytes)
 
 ```
 zabal gamez season 1 - how it ends
 
-six finalists. two per track. three finals in the last week of august, and the six of you agree the dates between yourselves rather than being handed a slot.
+two people from each of the three groups. six finalists. three finals in the last week of august, and the six of you agree the dates between yourselves rather than being handed a slot.
 
-the six are picked, not tallied. i am choosing them at the end of this week.
+the standings run until the night of sunday august 16, eastern. when they close i pick the six.
 
 the vote at zabalgamez.com/vote was built to help me curate the open submissions and that is exactly what it is doing. it is one of the loudest things i am reading. but it is an input, not the decision, and i would rather you hear that from me now than work it out from a list later.
 ```
 
-### Cast 2 of 4 - the board, and the three still in draft (521 bytes)
+### Cast 2 of 4 - the board, and the three still in draft (514 bytes)
 
 ```
-where the support sits today, with a week still to go:
+where the support sits today, six days out:
 
 artist
   ladyrynnemesis 41
@@ -107,13 +108,13 @@ creator
 
 two votes separate first from third in creator. closest race on the board.
 
-and if your build still says building, it is invisible - not on the board, not on the ballot, not in front of me. three of you. finish it this week.
+and if your build still says building, it is invisible - not on the board, not on the ballot, not in front of me. three of you. finish it before sunday.
 ```
 
-### Cast 3 of 4 - the bonus brief (564 bytes)
+### Cast 3 of 4 - the bonus brief (574 bytes)
 
 ```
-new, and it starts now - the bonus. one brief, open to everyone, and answering it moves you up before i pick.
+new, and it starts now - the bonus. one brief, open to everyone, and answering it moves you up before the board closes.
 
 design the next way fans fund an event and share in it. pick a brand: zao festivals, wavewarz, or zabal gamez.
 
@@ -124,7 +125,7 @@ any format. doc, diagram, contract, demo, video, a track if you can pull it off.
 post it in /zabal or it does not count.
 ```
 
-### Cast 4 of 4 - the prize, and the link to the newsletter (514 bytes)
+### Cast 4 of 4 - the prize, and the link to the newsletter (542 bytes)
 
 ```
 what the six are playing for. $500 usdc:
@@ -137,7 +138,7 @@ most anyone walks with is $150.
 
 on top of that, straight from wavewarz: 1% of every trade on your side of the battle, forever. plus both collectibles. the june prize tier stands in full.
 
-full details, the board with every build linked, and how the vote works:
+board closes sunday aug 16, night eastern. full details, every build linked, and how the vote works:
 [NEWSLETTER LINK]
 ```
 
@@ -147,7 +148,7 @@ announcement reads as the selector unless you say otherwise first. Zaal's own
 framing does the work: the vote was built to help curate the open submissions,
 which is warmer and more accurate than calling it a signal.
 
-Cast 3 is the reason to post today rather than at the end of the week. The
+Cast 3 is the reason to post today rather than on the 16th. The
 tokenization brief is no longer a separate challenge - it is the mechanic for
 moving before the pick, answerable in any medium, gated only on being posted in
 /zabal.
@@ -157,14 +158,20 @@ legible: every build named and linked, the vote explained, the arithmetic shown.
 
 **Five things to check before posting.**
 
+0. The vote does not close itself. `data/vote-candidates.json` is the on/off
+   switch and currently reads `"status": "open"`. Closing the board on the 16th is
+   a one-line PR flipping it to `"closed"` - schedule it, it will not happen on
+   its own.
 1. Run the four-row removal and the tally `ZREM` FIRST. Until then the live /vote
    page shows the QA test at 25 votes in second place on artist while cast 2 shows
    a two-name artist board. The numbers here are correct for a post-removal state.
 2. Publish the newsletter BEFORE the thread and paste its URL into cast 4.
-3. No finalist is named. But cast 1 commits to naming the six at the end of this
-   week, so Gesd01 versus dee-13 and LadyrynNemesis's track choice are due by then.
-   Today is Monday 2026-08-10, so that is the 14th to the 16th. Name the exact day
-   if you want one - I have not invented one.
+3. No finalist is named. The deadline is now concrete: the standings close on the
+   night of Sunday 2026-08-16, Eastern, and two people come out of each of the
+   three groups. That makes Gesd01 versus dee-13 and LadyrynNemesis's track choice
+   due by the 16th, not "sometime this week".
+   The copy says "night of sunday august 16, eastern" because that is what Zaal
+   said. If you want it enforceable, pin a clock time - people will ask.
 4. The collectible line does not name the rail, matching the #588 scrub.
 5. "three of you" is dee-13, Presdency.eth and pyrofirezerox - unnamed on purpose.
 
