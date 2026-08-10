@@ -53,28 +53,34 @@ asks those three to finish this week without naming them.
 
 ---
 
-## DRAFT 1 - the announcement (3-cast Farcaster thread)
+## DRAFT 1 - the announcement (4-cast Farcaster thread)
 
-FINAL, pending the four-row removal (runbook in
-`docs/finale-standings-2026-08-10.md`). Nothing has been posted.
+FINAL, pending the four-row removal and the newsletter going live first.
+Nothing has been posted.
 
-Shipped as a thread because the full post is 2214 bytes and a Farcaster cast holds
-1024. Each cast is sized below the limit and stands on its own, so someone who
-only sees cast 2 still gets a leaderboard they can act on.
+**The newsletter is the canonical version and this thread points at it**, per Zaal.
+Full detail is in `docs/newsletter-2026-08-10-finals.md`, paste target
+paragraph.com/@thezao. The thread carries only what someone needs to act on today.
+Cast 4 must have the real newsletter URL pasted in before posting - it reads
+`[NEWSLETTER LINK]` so it cannot go out half-filled by accident.
 
-### Cast 1 of 3 - how it ends, and that the six are curated (588 bytes)
+Four casts because the full text is well over the 1024-byte cast limit. Each is
+sized below it and stands alone, so a reader who only sees cast 2 still gets an
+actionable board.
+
+### Cast 1 of 4 - how it ends, and that the six are curated (556 bytes)
 
 ```
 zabal gamez season 1 - how it ends
 
-two people per track go through. six finalists, all six there at the end of the month. three finals in the last week of august, and the finalists pick their own dates inside that week.
+six finalists. two per track. three finals in the last week of august, and the six of you agree the dates between yourselves rather than being handed a slot.
 
-the six are picked, not tallied. i am choosing them at the end of this week, from everything the season actually produced.
+the six are picked, not tallied. i am choosing them at the end of this week.
 
-the vote running at zabalgamez.com/vote is what it says on the tin - who is best - and it is one of the loudest things i am reading. but it is a signal, not the selector. i would rather say that plainly now than have you find out from a list.
+the vote at zabalgamez.com/vote was built to help me curate the open submissions and that is exactly what it is doing. it is one of the loudest things i am reading. but it is an input, not the decision, and i would rather you hear that from me now than work it out from a list later.
 ```
 
-### Cast 2 of 3 - the board (504 bytes)
+### Cast 2 of 4 - the board, and the three still in draft (521 bytes)
 
 ```
 where the support sits today, with a week still to go:
@@ -99,68 +105,88 @@ creator
   iman afrikah 8
   taydexfun 6
 
-submissions are open all week. if your build is still sitting in draft it is invisible - not on the board, not on the ballot, not in front of me. three of you are in that spot right now. finish it this week.
+two votes separate first from third in creator. closest race on the board.
+
+and if your build still says building, it is invisible - not on the board, not on the ballot, not in front of me. three of you. finish it this week.
 ```
 
-### Cast 3 of 3 - what they are playing for (675 bytes)
+### Cast 3 of 4 - the bonus brief (564 bytes)
+
+```
+new, and it starts now - the bonus. one brief, open to everyone, and answering it moves you up before i pick.
+
+design the next way fans fund an event and share in it. pick a brand: zao festivals, wavewarz, or zabal gamez.
+
+zaostock is oct 3. costs 5-7k, projects 8.7-10.2k back, tickets are 4.7k of it. grants, sponsors, tickets - all one directional. the people who show up own none of what they helped make. fix that.
+
+any format. doc, diagram, contract, demo, video, a track if you can pull it off. thinking over polish.
+
+post it in /zabal or it does not count.
+```
+
+### Cast 4 of 4 - the prize, and the link to the newsletter (514 bytes)
 
 ```
 what the six are playing for. $500 usdc:
 
-$300 - three wavewarz community battles, one per track. win yours, $70. lose it, $30. everybody gets paid.
+$300 - three wavewarz community battles, one per track. win yours, $70. lose it, $30. nobody gets zero.
 
-$200 - split across all six by the trade volume your battle pulls, capped at $80 each so one big trade cannot take the pool.
+$200 - split across all six by the trade volume your battle pulls, capped at $80 each.
 
-most anyone can walk with is $150.
+most anyone walks with is $150.
 
-on top of that, straight from wavewarz: 1% of every trade on your side of the battle, forever. plus both the finisher and champion collectibles. the june prize tier stands in full.
+on top of that, straight from wavewarz: 1% of every trade on your side of the battle, forever. plus both collectibles. the june prize tier stands in full.
 
-the season itself: 32 sessions in june, 31 different people teaching, 25 organisations. july was quiet. we are not going to pretend otherwise, and the june record stands on its own.
+full details, the board with every build linked, and how the vote works:
+[NEWSLETTER LINK]
 ```
 
-**Why it is shaped this way.** Cast 1 earns the thread. Curating the six is
-completely defensible and the vote page has only ever said "vote for who is best",
-but a leaderboard published next to a finalist announcement reads as the selector
-unless you say otherwise first. Saying it in Zaal's own voice, before anyone can
-discover it, turns the weakest structural fact in the season into the most
-trustworthy line in the post. It goes in cast 1 rather than cast 2 for exactly
-that reason - it has to arrive before the numbers, not after.
+**Why it is shaped this way.** Cast 1 carries the curation disclosure and it lands
+before the numbers on purpose - a leaderboard published next to a finalist
+announcement reads as the selector unless you say otherwise first. Zaal's own
+framing does the work: the vote was built to help curate the open submissions,
+which is warmer and more accurate than calling it a signal.
 
-Cast 2 publishes the board anyway, because it is real support, it is already
-public at /vote, and hiding it would look worse than the thing it hides. It closes
-on the draft submissions, which is the single most useful action anyone reading
-can take this week.
+Cast 3 is the reason to post today rather than at the end of the week. The
+tokenization brief is no longer a separate challenge - it is the mechanic for
+moving before the pick, answerable in any medium, gated only on being posted in
+/zabal.
 
-Cast 3 leads with money because that is what makes the open week worth playing,
-and it names WaveWarZ community battles as the instrument - the live Solana
-product with automated split payouts, not the unbuilt Base contract the site still
-describes.
+Cast 4 ends on the link, because the newsletter is where the board is actually
+legible: every build named and linked, the vote explained, the arithmetic shown.
 
-**Four things to check before posting.**
+**Five things to check before posting.**
 
-1. The four rows must be removed first, or the artist board is wrong on the live
-   page: the QA test row sits at 25 votes, second place, until it is cleared. The
-   numbers in cast 2 are already correct for a post-removal state.
-2. No finalist is named, deliberately. Gesd01 and dee-13 are unresolved for the
-   artist slots, and LadyrynNemesis still has to choose her track. None of that
-   needs settling to post this - but cast 1 commits to naming the six at the end
-   of this week, so it does need settling by then.
-3. The collectible line does not name the rail. The rail is unchanged, but the
-   partnership retirement means the public copy describes the collectibles and not
-   the vendor. `about.html` was scrubbed the same way in #588.
-4. "three of you are in that spot" is dee-13, Presdency.eth and pyrofirezerox.
-   Unnamed because under curation the point is to finish, not to be singled out.
+1. Run the four-row removal and the tally `ZREM` FIRST. Until then the live /vote
+   page shows the QA test at 25 votes in second place on artist while cast 2 shows
+   a two-name artist board. The numbers here are correct for a post-removal state.
+2. Publish the newsletter BEFORE the thread and paste its URL into cast 4.
+3. No finalist is named. But cast 1 commits to naming the six at the end of this
+   week, so Gesd01 versus dee-13 and LadyrynNemesis's track choice are due by then.
+   Today is Monday 2026-08-10, so that is the 14th to the 16th. Name the exact day
+   if you want one - I have not invented one.
+4. The collectible line does not name the rail, matching the #588 scrub.
+5. "three of you" is dee-13, Presdency.eth and pyrofirezerox - unnamed on purpose.
 
-**Two follow-on copy fixes this creates, neither written.**
-
-- `finals.html` and `finals/live.html` still describe the finals settling on
-  "WaveWarZ-Base" with contract `0xTODO_WAVEWARZ_BASE`. The finals run on live
-  WaveWarZ community battles. The site currently contradicts the post.
-- If the six are curated, `/vote` and `/finals` should say so too.
+**One thing that needs your call: what "moves you up" actually means.** You said a
+bonus drop upgrades you on the leaderboard. The displayed leaderboard is the vote
+tally, and a Farcaster post cannot change vote counts - no bonus-points system
+exists. So the copy says a bonus answer moves you up *before I pick*, which is true
+under curation and delivers the intent. If you meant it should literally move the
+numbers on the board, that is a feature we do not have and I have not built it.
 
 ---
 
-## DRAFT 2 - the bonus tokenization challenge
+## DRAFT 2 - the bonus tokenization challenge (FOLDED IN, do not post separately)
+
+**Superseded 2026-08-10.** Zaal folded this into the finals as THE bonus: answer it
+in any medium, post it in /zabal, and it moves you up before the six are picked. It
+now lives in cast 3 of the thread and in full in the newsletter's bonus section.
+
+Kept below as the source the compressed versions were cut from. Do not send it as
+its own post.
+
+### Original standalone draft
 
 ```
 bonus challenge - optional, worth real points
