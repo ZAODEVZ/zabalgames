@@ -2,51 +2,59 @@
 
 Drafted 2026-08-10. **Both are drafts for Zaal to post. Neither has been sent.**
 
-Grounded in the live API (`/api/submissions?feed=projects` and
-`/api/qv-vote`), doc 2257 (the season retrospective), and doc 1372 (ZAOstock
-economics). Every figure traces to one of those.
+Grounded in the live API (`/api/submissions?feed=projects` and `/api/qv-vote`),
+the repo's own finals and prize copy, doc 2257 (the season retrospective), and
+doc 1372 (ZAOstock economics). Every figure traces to one of those.
 
-**Corrected 2026-08-10.** The first version of Draft 1 was written off
-`?feed=builders`, which returns only the audited roster file - a partial view. It
-said 15 projects from 3 submitters and "no votes". The real field is 30 projects
-from 15 named builders plus 1 anonymous submitter, and a quadratic vote is open
-and is the criterion. Draft 1 below is rewritten. Draft 2 was never affected.
+## Revision history, because the ground moved three times
 
-**Updated again 2026-08-10, after Zaal settled the open rule.** Finalists are
-**people, not projects**: two people per track, six in total, all six present at
-the end of the month. And **submissions stay open this week**, so the leaderboard
-publishes as a live snapshot with a week left to climb, not as a cut. Draft 1 now
-ranks people and says the week is open.
+1. **First draft** was written off `?feed=builders`, which returns only the
+   audited roster file - a partial view. It said 15 projects from 3 submitters
+   and "no votes". Wrong on all three.
+2. **Corrected** to the real field: 30 projects from 15 named builders plus 1
+   anonymous submitter, ranked by the open quadratic vote.
+3. **Reframed to people** when Zaal settled that finalists are people, not
+   projects: two per track, six in total, all six present at the end of the month.
+4. **Reframed again to curation**, 2026-08-10: "We aren't doing it based on their
+   votes, it's gonna be all decided by Zaal." The leaderboard is now published as
+   a support signal and the post says so explicitly.
+
+Draft 2 was never affected by any of this.
 
 Brand rules applied: no emojis, no em dashes, "100+" for the member count. The
 no-crypto-jargon rule is relaxed for the challenge post only, per Zaal.
 
 ---
 
-## What these drafts deliberately do NOT say
+## What Draft 1 deliberately does and does not say
 
-**No finalist list.** The leaderboard is live and the week is still open, so
-today's order is a snapshot, not a selection. Draft 1 says that in as many words,
-which is what makes it safe to post today.
+**It says the six are curated, before it shows the leaderboard.** This is the
+load-bearing decision in the post. Curation is defensible and breaks no promise -
+the vote page is headed "Vote for who is best." and has never claimed to select
+finalists. But a leaderboard published alongside a finalist announcement reads as
+the selector unless you say otherwise first, and being told afterwards is what
+would actually burn people. Order matters more than wording here.
 
-**No ruling on whether one person can hold two slots.** LadyrynNemesis is
-currently first in artist and first in creator. Under "six total, all six
-present" that has to resolve to one person one slot, and the post is written so
-it reads correctly either way - it publishes the per-track order and does not
-name six finalists. The standings doc sets out both readings and what each does
-to Halit Tayyar, who is in under one and out under the other. Zaal states the
-rule before anyone reads the order as a result.
+**It names no finalists.** Gesd01 versus dee-13 for the artist slots is
+unresolved, and LadyrynNemesis has to choose which of her two tracks she competes
+in. The post commits only to announcing the six at the end of the week, so none of
+that has to be settled to publish today.
 
-**No claim that everyone is on the ballot.** 13 of the 16 submitters are. The
-three who are not have submissions still in `building`, which the week that is
-still open is exactly the fix for - and the post asks for it directly.
+**It publishes the prize split, with the fallback in the same breath.** $300 across
+three head-to-head battles, $200 by trade volume capped at $80 each. The WaveWarZ
+contract is not deployed yet, so the post states what happens if the market is not
+live rather than quietly promising a metric that may not exist.
+
+**It does not claim everyone is on the ballot.** Three submissions are still
+drafts, which makes them invisible on the board as well as the ballot. The post
+asks those three to finish this week without naming them.
 
 ---
 
 ## DRAFT 1 - the announcement
 
-FINAL. Post the removal first (see the runbook in
-`docs/finale-standings-2026-08-10.md`), then this.
+FINAL, pending the four-row removal (runbook in
+`docs/finale-standings-2026-08-10.md`). Nothing has been posted.
 
 ```
 zabal gamez season 1 - how it ends
@@ -57,12 +65,14 @@ and the finalists pick their own dates inside that week. you are
 not handed a slot, you agree one with the people you are
 finishing alongside.
 
-who goes through is decided by you. the vote is open at
-zabalgamez.com/vote. 100 credits per track, and backing someone
-costs the square of the votes you put on them, so ten votes on
-one person spends everything you have. nobody buys a track.
+the six are picked, not tallied. i am choosing them, at the end
+of this week, from everything the season actually produced. the
+vote running at zabalgamez.com/vote is what it says on the tin -
+who is best - and it is one of the loudest things i am reading,
+but it is a signal, not the selector. i would rather say that
+plainly now than have you find out from a list.
 
-where it stands today:
+where the support sits today:
 
   artist
     ladyrynnemesis          41
@@ -84,22 +94,26 @@ where it stands today:
     iman afrikah             8
     taydexfun                6
 
-read that as a snapshot, not a result. submissions are open all
-week and the board moves every day. two votes is the whole gap in
-creator. if you are outside the top two this morning you have a
-week to fix it.
+submissions are open all week. that is the part that matters. if
+your build is still sitting in draft it is invisible - not on the
+board, not on the ballot, not in front of me. three of you are in
+that spot right now. finish it this week.
 
-one name is currently top of two tracks. how that resolves gets
-said out loud before anything is final, not after.
+what the six are playing for, $500 usdc:
 
-and if your project still says building, you are not on the
-ballot yet. that is three of you. finish the submission this week
-and you are on it. dee-13, that turns artist from a two-horse
-walkover into an actual race.
+  $300  three head to head battles, one per track. win yours,
+        $70. lose it, $30. everybody gets paid.
+  $200  split across all six by the trade volume your battle
+        pulls, capped at $80 each so one big trade cannot take
+        the pool.
 
-every finalist takes the full prize tier promised in june: a
-share of the 500 usdc pool, $zabal rewards, and both the finisher
-and champion collectibles. that has not changed and will not.
+most anyone can walk with is $150. if the market is not live in
+time, that $200 rolls into the battles instead and the winners
+take $110.
+
+on top of that: 1% of all trade volume on your battle entry,
+forever, and both the finisher and champion collectibles. the
+june prize tier stands in full.
 
 ---
 the season itself, for anyone who missed it: 32 sessions in june,
@@ -108,37 +122,38 @@ we are not going to pretend otherwise, and the june record stands
 on its own.
 ```
 
-**Why it is shaped this way.** It ranks people because that is what a finalist
-now is, and it prints everyone who has a vote rather than the top two, because a
-leaderboard people can find their own name on is the thing that makes the last
-week worth playing. The one omission is sentra, on zero, which is on the ballot
-but has nothing to show yet. The vote paragraph explains quadratic voting in one
-sentence without using the term, because the mechanism is the answer to "why
-should I trust this" and burying it invites the accusation it prevents.
+**Why it is shaped this way.** The second paragraph is the one that earns the
+post. Curating the six is completely defensible, and the vote page has only ever
+said "vote for who is best" - but a leaderboard published in the same breath as a
+finalist announcement will be read as the selector unless you say otherwise
+first. Saying it in Zaal's own voice, before anyone can discover it, converts the
+weakest structural fact in the season into the most trustworthy line in the post.
 
-The two lines doing the real work are the snapshot line and the building line.
-The first stops today's order being read as a cut, which is the entire reason
-this can go out mid-week. The second converts the only remaining coverage gap
-into a call to action: three people are off the ballot because their submission
-is unfinished, and the week is open, so the fix is theirs and it is easy. Naming
-dee-13 is deliberate - artist is a two-person walkover until someone contests it,
-and saying so is more honest than quietly running a two-horse race.
+Publishing the leaderboard anyway is right: it is real support, it is already
+public at /vote, and hiding it would look worse than the thing it hides.
+
+The prize block is here rather than held back because it is the strongest
+motivator available with a week of submissions left, and the WaveWarZ fallback is
+stated in the same breath so it cannot become a broken promise.
 
 **Four things to check before posting.**
 
 1. The four rows must be removed first, or the artist board is wrong on the live
    page: the QA test row sits at 25 votes, second place, until it is cleared. The
    numbers above are already correct for a post-removal state.
-2. LadyrynNemesis appears in artist and in creator. That is real and the post
-   shows it rather than hiding it, but the one-person-one-slot rule needs stating
-   soon - under it, Halit Tayyar (taydexfun) is in; without it, they are out. See
-   the standings doc.
+2. No finalist is named, deliberately. Gesd01 and dee-13 are unresolved for the
+   artist slots, and LadyrynNemesis still has to choose her track. None of that
+   needs settling to post this.
 3. The collectible line does not name the rail. The rail is unchanged, but the
    partnership retirement means the public copy describes the collectibles and not
    the vendor. `about.html` was scrubbed the same way in #588.
-4. "three of you" is dee-13, Presdency.eth and pyrofirezerox. Only dee-13 is named
-   in the copy, because artist is the track their submission would actually
-   change. Name all three if you would rather.
+4. "three of you are in that spot" is dee-13, Presdency.eth and pyrofirezerox.
+   Unnamed here because under curation the point is to finish, not to be singled
+   out. Name them if you would rather - it would probably work.
+
+**One follow-on this creates.** If the six are curated, `/vote` and `/finals`
+should say so too, or the site contradicts the post. That is a small copy PR and
+I have not written it - say the word.
 
 ---
 

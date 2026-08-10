@@ -1,160 +1,160 @@
 # Season 1 standings - 2026-08-10
 
-Nothing here has been posted. This is the standings snapshot plus the exact
-criterion behind it, for Zaal to approve before anything goes out.
+Nothing here has been posted. This is the support leaderboard, the selection rule,
+and the prize split, for Zaal to approve before anything goes out.
 
-**Finalists are PEOPLE, not projects** (Zaal, 2026-08-10). Two people per track,
-six people total, all six present at the end of the month. The tables below rank
-people. An earlier version of this doc ranked projects and is superseded.
+## Selection: Zaal curates the six. The vote is a signal, not the selector.
 
-**Submissions stay open this week.** Today's standings are a moving snapshot and
-this week is the last chance to climb, not a cut. That is stated in the post copy.
+Zaal, 2026-08-10: "We aren't doing it based on their votes, it's gonna be all
+decided by Zaal." Finalists are **people**: two per track, six in total, all six
+present at the end of the month. LadyrynNemesis, who leads two tracks, **picks
+which track she competes in** rather than being assigned one. dee-13 is in on
+Zaal's call - she submitted an artist project and it never reached the ballot.
 
-## The criterion, stated once
+**This breaks no public promise, which is worth stating because it easily could
+have.** The vote page is headed "Vote for who is best." and `api/qv-vote.mjs`
+describes itself as a quadratic vote for "who is best". Neither has ever told
+anyone the vote selects finalists. The one sentence that would have been false was
+"who goes through is decided by you" - that was a line in an earlier draft of the
+post here, never published, now removed.
 
-**A person's score in a track = the sum of quadratic votes across everything of
-theirs on that track's ballot.** Ranked highest first. No other input. No
-editorial judgement, no shipped-vs-planned ladder, no organiser tiebreak.
+What the vote is, then: a public support signal that Zaal weighs alongside
+everything he has seen this season. That is a legitimate and common way to run a
+curated final. It just has to be described as what it is.
 
-Read from `GET /api/qv-vote?results&track=<track>` on 2026-08-10, status `open`.
+**Do not let the post imply the leaderboard selects.** Anyone who cast a ballot
+believing it decided advancement, then saw a curated six that did not match it,
+would be right to feel misled. The post copy handles this in one line.
 
-How the underlying number is produced, from `api/qv-vote.mjs`:
+## The support leaderboard - people
 
-- Each voter gets 100 voice credits per track.
-- Giving one candidate N votes costs N squared credits, so the most any single
-  account can put into one candidate is 10 votes (10 squared = 100, the whole
-  budget). A whale cannot buy a win.
-- A candidate's score is the SUM of votes across all ballots.
-- One ballot per Farcaster FID via Quick Auth. Re-voting overwrites, it does not add.
-- Ballots are private; only the per-candidate totals are public.
+Sum of each person's quadratic votes on that track's ballot, with the four removed
+rows excluded (ids 5, 6, 2, 4 - see the runbook). Read from
+`GET /api/qv-vote?results&track=<track>` on 2026-08-10, status `open`.
 
-Two adjustments, both stated rather than silent:
+How the underlying number works, from `api/qv-vote.mjs`: 100 voice credits per
+voter per track; N votes on one candidate costs N squared credits, so 10 votes is
+the whole budget and the hard cap; score is the sum of votes; one ballot per
+Farcaster FID; re-voting overwrites.
 
-1. **The four rows being removed are excluded** - the two QA tests (ids 5, 6) and
-   the two rows absent from the canonical feed (ids 2, 4). See the runbook below.
-2. **Summing is the only aggregation.** Where a person has more than one entry on
-   a track's ballot their votes are added, and the components are shown. Nothing
-   else is merged, transferred, or reweighted.
+### Artist - 10 ballots
 
-As it happens, no person currently holds more than one row on any single track, so
-the sum changes no position. The rule is stated because it will matter as more
-submissions land this week.
-
-## The standings - people
-
-### Artist - 10 ballots, 2 people on the ballot
-
-| # | Votes | Person | From |
-|---|---|---|---|
-| 1 | 41 | LadyrynNemesis | N3M3SIS - THE CALL OUT |
-| 2 | 5 | Gesd01 | How Artists can Blend Different Music Genres |
-
-Only two people are on the artist ballot, so as of today both advance unopposed.
-dee-13 is the third artist in the field and is one publish away from contesting
-it. This is the weakest track in the standings and the most likely to move.
-
-### Builder - 9 ballots, 10 people on the ballot
-
-| # | Votes | Person | From |
-|---|---|---|---|
-| 1 | 37 | kayonfire | NeonTetris |
-| 2 | 10 | uniquebeing404 | ColorZAO |
-| 3 | 5 | ghostmintops | roster entry |
-| 4 | 4 | jdwalka | roster entry |
-| 4 | 4 | branth | roster entry |
-| 6 | 3 | Pascaline | ZAO Artist Value Ledger |
-| 6 | 3 | LadyrynNemesis | SURFBOARD |
-| 6 | 3 | breadcoop | Stacks |
-| 6 | 3 | mettodo | El Charro |
-| 10 | 0 | anonymous | sentra |
-
-The four-way tie at 3 is real and sits at position 6, well outside the two slots,
-so nothing needs to break it today.
-
-### Creator - 6 ballots, 3 people on the ballot
-
-| # | Votes | Person | From |
-|---|---|---|---|
-| 1 | 9 | LadyrynNemesis | ZABAL GAMEZ SONG & VIDEO |
-| 2 | 8 | IMan Afrikah | ZABAL Artwork |
-| 3 | 6 | Halit Tayyar / taydexfun | TayDex - Creator-Led Prediction Markets on Base |
-
-Two votes separate first from third. This is the closest track.
-
-## The one thing that needs Zaal's word: LadyrynNemesis holds two tracks
-
-She is first in artist on 41 and first in creator on 9. Six slots, but if she
-takes both there are only **five distinct people** at the end of the month, which
-contradicts "six total, all six present".
-
-**Read as one person, one slot** - she takes her strongest track, artist, and
-creator shifts up:
-
-| Track | Slot 1 | Slot 2 |
+| # | Votes | Person |
 |---|---|---|
-| Artist | LadyrynNemesis 41 | Gesd01 5 |
-| Builder | kayonfire 37 | uniquebeing404 10 |
-| Creator | IMan Afrikah 8 | Halit Tayyar 6 |
+| 1 | 41 | LadyrynNemesis |
+| 2 | 5 | Gesd01 |
 
-Six distinct people. This is the reading the post copy assumes, because "six
-total, all six present" only works if the six are six humans.
+### Builder - 9 ballots
 
-**Read as multi-track allowed**, creator slot 1 stays LadyrynNemesis and Halit
-Tayyar drops out, giving five people across six slots.
+| # | Votes | Person |
+|---|---|---|
+| 1 | 37 | kayonfire |
+| 2 | 10 | uniquebeing404 |
+| 3 | 5 | ghostmintops |
+| 4 | 4 | jdwalka |
+| 4 | 4 | branth |
+| 6 | 3 | Pascaline |
+| 6 | 3 | LadyrynNemesis |
+| 6 | 3 | breadcoop |
+| 6 | 3 | mettodo |
+| 10 | 0 | anonymous (sentra) |
 
-The difference decides whether Halit Tayyar is in or out, so the rule has to be
-stated before the standings are read as a result, not after.
+### Creator - 6 ballots
 
-## Coverage: 13 of the 16 submitters are on the ballot
+| # | Votes | Person |
+|---|---|---|
+| 1 | 9 | LadyrynNemesis |
+| 2 | 8 | IMan Afrikah |
+| 3 | 6 | Halit Tayyar / taydexfun |
 
-Ranking people rather than projects largely dissolves the coverage problem flagged
-in the previous version of this doc, and it is worth being precise about why
-rather than quietly dropping it.
+All 14 numbers were re-derived from the fetched JSON and diffed against the post
+copy before commit.
 
-That version said 18 of 30 projects were unvotable, and that the roster rows
-(`b:ghostmintops`, `b:branth`, `b:jdwalka`) were a defect because the vote read
-the roster as one entry per person instead of one per project. **At person
-granularity those rows are the correct shape, not a bug.** ghostmintops, branth
-and jdwalka each get exactly one row in the track they compete in, which is what
-ranking people requires. The 15 projects behind those three rows are represented
-by the person, not lost.
+## Still open, and they are Zaal's
 
-What remains is smaller and different in kind. Three of the 16 submitters have no
-ballot presence at all:
+1. **The six names.** Curation means the list is Zaal's to write. Today's post
+   publishes the leaderboard and says the six are announced at the end of the week,
+   so no name has to be committed today.
+2. **Gesd01.** Currently second in artist on 5 votes. With dee-13 seated and two
+   slots per track, either Gesd01 or dee-13 is the artist runner-up, or artist runs
+   three. Unresolved - and it does not need resolving to post today.
+3. **LadyrynNemesis's track.** She picks. Someone has to actually ask her this
+   week. This is a real conversation, not a data lookup.
+4. **Three submissions are still drafts** - dee-13's Ledger, Presdency.eth's HOOD,
+   pyrofirezerox's GundariuM. Confirmed by a direct read: each carries
+   `status: "draft"` in the feed, and `loadCandidates()` (`api/qv-vote.mjs:133`)
+   admits only approved and pending. Under curation this matters less for
+   selection, but a draft is invisible on the public board, so they should still
+   finish this week.
 
-| Person | Project | Track | Status |
+## The prize: $500 USDC across the six
+
+Confirmed by Zaal 2026-08-10. Replaces the internal 8-way tier
+(`1st $150 / 2nd $100 / 3rd $75 / 4th-8th $35`) which came from a 2026-05-23
+dispatch and was never published - the 2026-05-26 changelog decision says
+explicitly "no specific per-finalist amounts published". Public pages commit only
+to a "$500 USDC pool, tiered so every finalist who ships gets paid, plus a
+commemorative collectible for every finisher" (`content.html:128`). All three
+commitments are honored below.
+
+### Head-to-head - $300
+
+Three battles, one per track, top two in a track facing each other. This is the
+format already documented in `AUGUST-LANE-BRIEF.md:33`: "top 2 per track go into
+3-5 WaveWarZ battles, one winner per track. Decided by the market, not a panel."
+
+| Result | Per person | Count | Total |
 |---|---|---|---|
-| dee-13 | Ledger | artist | building |
-| Presdency.eth | HOOD | builder | building |
-| Joshua Grubbs / pyrofirezerox | GundariuM | builder | building |
+| Wins their battle | $70 | 3 | $210 |
+| Loses their battle | $30 | 3 | $90 |
 
-**Why, on the evidence:** every numeric submission with `publicStatus: published`
-is on the ballot (14 of 14) and every one with `publicStatus: building` is not
-(3 of 3). `loadCandidates()` in `api/qv-vote.mjs` line 133 admits only `approved`
-and `pending` records and explicitly skips drafts, while the projects feed also
-reads `zabal:subs:drafts`. The consistent split says these three submissions are
-still drafts rather than finished submissions. I could not read the KV store
-directly to confirm the stored status field, so this is inference from a clean
-14-of-14 / 3-of-3 correlation, not a direct read.
+Everyone is paid, and winning your track pays more than double losing it.
 
-If that is right it is not a platform bug and needs no code change: **submissions
-are open this week, so those three finish their submission and they are on the
-ballot.** dee-13 in particular would turn the artist track from a walkover into a
-contest. That is the single most useful thing the post can ask for.
+### Volume - $200
 
-**One presentation asymmetry worth knowing, not worth posting.** ghostmintops,
-branth and jdwalka are voted for as a person, while everyone else is voted for
-through a named project. Same granularity in the ranking, different experience on
-the ballot page. Worth aligning when the slate is next touched; it changes no
-number today.
+Split pro-rata across all six by the trade volume their battle entry attracts.
+`finals/live.html:127` already commits to "volume + win rate at T+72h decides
+placement", so volume is not a new criterion, it is the published one.
 
-## Decision taken 2026-08-10
+**Capped at $80 per person** so a single whale trade cannot take the pool; any
+excess above the cap redistributes pro-rata among the rest.
 
-Zaal chose: remove the QA tests and the two ghost rows first, then publish today's
-standings. Finalists are people, two per track, six in total, all six present at
-the end of the month. Submissions stay open this week, so the standings publish as
-a moving snapshot rather than a cut. Draft 1 in `finale-post-drafts-2026-08-10.md`
-is finalised on that basis.
+Ceiling is $70 + $80 = **$150**, which lands exactly on the original first-place
+figure from the May dispatch. Floor is $30 plus a volume share.
+
+### The dependency, and the fallback - decide this before publishing the split
+
+The WaveWarZ-Base contract address on `finals/live.html:187` is still
+`0xTODO_WAVEWARZ_BASE`, and the live banner on `finals.html:59` says the finals
+are being revised to a curated build month on loops.house with the
+prediction-market write-up superseded. `finals.html` already documents a fallback
+for exactly this: if WaveWarZ-Base is not mainnet-ready, the finals revert to a
+different judging instrument, "same prize tier, same collectibles".
+
+So: **if the market is not live, there is no volume to measure and the $200 has no
+source.** It then rolls into the battles: winners take $110 each ($330), and the
+remaining $170 splits three ways as $56.67, $56.67 and $56.66 - exactly $500, with
+the odd cent going to whichever runner-up you like. A clean three-way split of
+$166.67 per track is not possible in whole cents, which is why the numbers land
+this way. The post states the fallback in one clause and quotes only the $110.
+
+Promising a metric that might not exist is the kind of thing that costs more trust
+than it buys, so this is decided now rather than in the finals week.
+
+### One thing to choose knowingly: volume pays twice
+
+`finals.html:147` already promises every finalist "1% of all trade volume on your
+battle entry, forever". Making 40% of the $500 also volume-weighted means volume
+is rewarded through two rails at once. That is a reasonable choice if the goal is
+to push finalists hard on promotion - but it is a choice, not an accident, and
+whoever promotes hardest gains twice from it.
+
+### Open format question
+
+`AUGUST-LANE-BRIEF.md` says "3-5 battles" while two-per-track across three tracks
+is exactly 3. If there are more than 3 - cross-track exhibition battles, or a
+second round - the $300 head-to-head half needs a rule for them. Worth settling
+before the finals week.
 
 ## Removal runbook - Zaal runs this, not the loop
 
@@ -262,20 +262,6 @@ self-healing, survives re-votes, and removes the need for step 2 entirely.
 Not written. It changes a live route during an open vote, so it is Zaal's call
 whether it goes in before or after the standings post.
 
-## Effect of the removal on the published standings: none
-
-Every removed row is already excluded from the tables above, so no position moves.
-
-Person-ranking makes one of the four worth checking rather than assuming. Row id 4
-("surfboard by n3m3sis", 6 votes) belongs to LadyrynNemesis, who also holds id 14
-SURFBOARD on 3 votes in the same track. If those 6 votes counted toward her she
-would sit on 9 in builder, which is still position 3, still behind
-uniquebeing404 on 10 and outside the two slots. So hiding id 4 costs her nothing
-that changes an outcome, and counting it would not have changed one either.
-
-What the removal actually buys is that `?results` becomes self-evidently correct
-instead of needing a footnote.
-
 ## Sources
 
 Every figure above traces to one of these, fetched raw on 2026-08-10.
@@ -287,8 +273,27 @@ Every figure above traces to one of these, fetched raw on 2026-08-10.
   HTTP 200. status open; ballots artist 10 / builder 9 / creator 6.
 - `GET https://zabalgamez.com/api/qv-vote?candidates` - HTTP 200, 19 votable rows.
 - `api/qv-vote.mjs` lines 33-146 - the credit budget, the squared cost, the
-  sum-of-votes score, and the two-source candidate loader that causes the gap.
-- `api/submissions.mjs` lines 300-320 - the canonical project feed merge.
+  sum-of-votes score, and the two-source candidate loader.
+- `api/submissions.mjs` lines 300-320 - the canonical project feed merge; line 435
+  onward - the delete handler that does not touch the tally.
+- `vote.html` - headline "Vote for who is best.", and `api/qv-vote.mjs` line 1,
+  a quadratic vote for "who is best". Neither claims the vote selects finalists,
+  which is why curation breaks no public promise.
+- `content.html:128` - the only public statement of the prize: "$500 USDC pool,
+  tiered so every finalist who ships gets paid, plus a commemorative collectible
+  for every finisher".
+- `data/changelog.json` 2026-05-26 - "no specific per-finalist amounts published",
+  which is what leaves the six-way split free to design.
+- `data/bonfire-graph.json:1736` - the internal 8-way tier, `_source`
+  `zabal-dispatch-zabal-empire-20260523`. Never published. Superseded.
+- `AUGUST-LANE-BRIEF.md:33` - top 2 per track into 3-5 WaveWarZ battles, one
+  winner per track. `finals/live.html:127` - "volume + win rate at T+72h decides
+  placement". `finals.html:147` - the 1% of trade volume, forever.
+- `finals/live.html:187` - `0xTODO_WAVEWARZ_BASE`, the contract not yet deployed.
+  `finals.html:59` - the banner superseding the prediction-market plan.
+- Direct read, not inference: ids 3, 16 and 18 each carry `status: "draft"` in the
+  projects feed. An earlier version of this doc inferred that from a 14-of-14 /
+  3-of-3 correlation; the field is in the response, so it is now confirmed.
 
 Method: `curl` for raw JSON in every case, not WebFetch. The counts are read off
 the response bodies, not off a summary of them.
