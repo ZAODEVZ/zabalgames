@@ -44,12 +44,15 @@ has grown well past the homepage into a multi-surface Mini App - 60+ pages (41 t
   Admin = Farcaster FID allowlist in `lib/auth.mjs` (19640 zaal, 1057869 imanafrikah) +
   optional `ADMIN_KEY` fallback. The old curated slate (`slate-admin`, `qv-slate-draft`) is
   retired. `data/vote-candidates.json` is now just the on/off `status` switch.
-- **August Finals is moving to loops.house + WaveWarZ** (spec: `docs/august-finals-loops-format.md`):
-  July submitters auto-qualify -> 2 weeks of weekly per-track tasks -> top 2 per track into
-  3-5 WaveWarZ battles -> one winner per track. The older on-site Finals stack (`/enter`
-  register + building-in-public, `/projects`, `/finals` prediction-market spec, `/leaderboard`,
-  `/winners`; `register`, `builds`, `build-vote`, `finals-picks`, `monthly-winner`) predates
-  this and is being reconciled - treat loops.house as the plan.
+- **August Finals format is SETTLED (Zaal, 2026-08-10; supersedes loops.house + the doc 2137
+  two-phase design):** the field is every July submitter, on the season leaderboard now -
+  the week of Aug 10 is the last chance to climb it. Top 2 PEOPLE per track (finalists are
+  people, not projects) = six finalists, who all present live at the end of August; one
+  winner per track. Three mentors total, one per track, named publicly only after each
+  confirms. `/august` is the canonical page. The older on-site Finals stack (`/enter`
+  register + building-in-public, `/projects`, `/finals` prediction-market spec, `/winners`;
+  `register`, `builds`, `build-vote`, `finals-picks`, `monthly-winner`) predates this and is
+  being reconciled to it.
 - **Engagement/games layer:** `/play` + `/game` (ZAO 2048, monthly $Zabal prize via
   `/api/game` + `monthly-winner`), `/pops` collectibles, live `raffle`, `/dream-leads`
   demand board, `/mindful`, `/graph` (Bonfire/ecosystem knowledge graph), `ref` referrals,

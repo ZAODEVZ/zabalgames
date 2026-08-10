@@ -1051,6 +1051,7 @@
     <div class="countdown-block">
       <span class="label" id="countdown-label">Doors open in</span>
       <span id="countdown-value">--</span>
+      <a href="/august" style="display:block;margin-top:0.35rem;font-size:0.78rem;color:var(--gold);text-decoration:none;">How the finals work -&gt;</a>
     </div>
 
     <div id="goal-strip" style="max-width: 560px; margin: 1.1rem auto 0; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); padding: 0.85rem 1rem; text-align: left;">
@@ -1104,7 +1105,7 @@
       <div class="phase-card august">
         <div class="phase-month">August</div>
         <h3>Finals</h3>
-        <p>Finalists picked from July ship together with ZAO mentors. Live reveal stream. Prize pool + collectibles.</p>
+        <p>Everyone who submitted in July is on the <a href="/leaderboard">leaderboard</a>. Top 2 per track advance - six finalists present live at the end of August, one ZAO mentor per track. <a href="/august">How the finals work</a>.</p>
       </div>
     </div>
   </section>
@@ -1481,7 +1482,8 @@
   // hero never shows a dead "LIVE NOW" after a date passes. UTC boundaries:
   //   - before Jul 1: count to the July open build, label "July build opens in"
   //   - Jul: count to Aug 1 (build window closing), label "Build month - time left"
-  //   - Aug: Finals month, no countdown - label "Finals" / value "this month"
+  //   - Aug: Finals month, no countdown - leaderboard is live, six finalists present
+  //     at month's end; the clock points at /august instead of a dead date
   var JULY = new Date('2026-07-01T00:00:00Z').getTime();
   var AUGUST = new Date('2026-08-01T00:00:00Z').getTime();
   // True when body has ui-polish-v1 class - controls whether countdown uses HTML with blink spans
@@ -1490,7 +1492,7 @@
   function phase(now) {
     if (now < JULY) return { label: 'July build opens in', target: JULY };
     if (now < AUGUST) return { label: 'Build month - time left', target: AUGUST };
-    return { label: 'Finals', target: null };
+    return { label: 'August Finals - leaderboard live', target: null };
   }
 
   function tick() {
@@ -1501,11 +1503,11 @@
     var labelEl = document.getElementById('countdown-label');
     if (labelEl) labelEl.textContent = p.label;
     if (p.target === null) {
-      el.textContent = 'this month';
+      el.textContent = 'top 6 present at month\'s end';
       return;
     }
     var diff = p.target - now;
-    if (diff <= 0) { el.textContent = 'this month'; return; }
+    if (diff <= 0) { el.textContent = 'top 6 present at month\'s end'; return; }
     var d = Math.floor(diff / 86400000);
     var h = Math.floor((diff % 86400000) / 3600000);
     var m = Math.floor((diff % 3600000) / 60000);
