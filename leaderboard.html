@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Season Standings - ZABAL Gamez</title>
+  <title>ZABAL Gamez Season 1 Board</title>
   <meta name="description" content="ZABAL Gamez Season 1 - six finalists, two per track, presenting at the end of August.">
   <link rel="canonical" href="https://zabalgamez.com/leaderboard">
-  <meta property="og:title" content="Season Standings - ZABAL Gamez">
+  <meta property="og:title" content="ZABAL Gamez Season 1 Board">
   <meta property="og:description" content="Six finalists, two per track, presenting at the end of August.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zabalgamez.com/leaderboard">
@@ -15,7 +15,7 @@
   <meta property="og:image:height" content="800">
   <meta property="og:image:alt" content="ZABAL Gamez Season 1">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Season Standings - ZABAL Gamez">
+  <meta name="twitter:title" content="ZABAL Gamez Season 1 Board">
   <meta name="twitter:description" content="Six finalists, two per track, presenting at the end of August.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the standings","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/leaderboard","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#141e27"}}}'>
@@ -37,6 +37,9 @@
     .lb-tab { flex: 1; border: 1px solid rgba(224,221,170,0.35); border-radius: 10px; background: transparent; color: var(--standings-cream); padding: 0.6rem 0.4rem; font: 700 0.82rem 'Outfit', sans-serif; cursor: pointer; }
     .lb-tab[aria-selected="true"] { background: var(--standings-cream); color: var(--standings-navy); border-color: var(--standings-cream); }
     .lb-tab span { opacity: 0.65; font-weight: 500; }
+    .lb-clock { display: inline-flex; align-items: baseline; gap: 0.5rem; border: 1px solid rgba(245,215,110,0.45); border-radius: 10px; padding: 0.55rem 0.8rem; margin-top: 0.9rem; }
+    .lb-clock b { color: #f5d76e; font: 700 1.05rem 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+    .lb-clock span { color: var(--text-dim); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; }
     .lb-note { border-left: 2px solid rgba(224,221,170,0.45); padding-left: 0.7rem; opacity: 0.9; }
     .lb-hero { padding: 2rem 0 1.2rem; }
     .lb-hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 8vw, 4rem); line-height: 0.98; letter-spacing: -0.035em; margin: 0.45rem 0 0.8rem; }
@@ -57,9 +60,11 @@
     .lb-list { list-style: none; padding: 0; margin: 0; }
     .lb-row { display: grid; grid-template-columns: 2.1rem 2.4rem minmax(0, 1fr) auto; align-items: center; gap: 0.7rem; padding: 0.78rem 1.05rem; border-bottom: 1px solid rgba(224,221,170,0.12); }
     .lb-row:last-child { border-bottom: 0; }
-    .lb-row.top { background: rgba(224,221,170,0.045); }
+    .lb-row.top { background: linear-gradient(90deg, rgba(224,221,170,0.14), rgba(224,221,170,0.03)); box-shadow: inset 3px 0 0 var(--standings-cream); }
+    .lb-row.top .lb-name { color: #f5d76e; }
+    .lb-row.top .lb-score { color: #f5d76e; }
     .lb-rank { color: var(--text-dim); font: 700 0.85rem 'JetBrains Mono', monospace; }
-    .lb-row.top .lb-rank { color: var(--standings-cream); }
+    .lb-row.top .lb-rank { color: #f5d76e; font-size: 0.95rem; }
     .lb-avatar { width: 2.35rem; height: 2.35rem; border-radius: 50%; overflow: hidden; background: #0d151c; color: var(--standings-cream); display: grid; place-items: center; font: 700 0.8rem 'Syne', sans-serif; }
     .lb-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .lb-person { min-width: 0; }
@@ -100,7 +105,7 @@
     <div class="arcade-nav-menu">
       <a href="/submissions">Submissions</a>
       <a href="/live">Live</a>
-            <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+            <a href="/leaderboard" class="arcade-coin">Standings</a>
     </div>
   </div>
 </nav>
@@ -108,12 +113,13 @@
 <main id="main">
   <div class="lb-wrap">
     <header class="lb-hero">
-      <div class="hero-eyebrow">ZABAL Gamez Season 1</div>
+      <div class="hero-eyebrow">ZABAL Gamez Season 1 Board</div>
       <h1>The final month of a <span>three month build-a-thon</span>.</h1>
       <p>ZABAL Gamez ran June, July and August. June was workshops, July was the open build, August is the finals. Anyone could enter, it cost nothing, and 15 people did.</p>
       <p>There are three tracks - artist, builder and creator - and everyone who entered is on the board below, in the track they entered. Six finalists get picked, two from each track. They present in the last week of August, and <strong>three win, one from each track</strong>.</p>
       <p class="lb-note">There is no vote. Points are earned by showing up: the zm stream at 5pm EST, this week&rsquo;s challenge, shipping an update on your project. Everyone starts on a point for entering and every score is public. The six are picked rather than tallied, so this board is one of the things Zaal reads, not the decision. It closes Sunday, August 16.</p>
       <p class="lb-note">Tonight at 5pm EST on the zm stream we go through this board for the first time, and there is a special guest on after.</p>
+      <p class="lb-clock"><b id="lb-countdown">--</b> <span>until the board closes</span></p>
       <div class="lb-actions">
         <a class="lb-action primary" href="/submissions">See the projects</a>
         <a class="lb-action" href="/recordings">Watch the recordings</a>
@@ -134,7 +140,7 @@
     <div class="arcade-foot-brand">
       <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
       <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
-      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+      <a href="/leaderboard" class="arcade-coin">Standings</a>
     </div>
     <nav class="arcade-foot-col" aria-label="Play">
       <h4>Play</h4>
@@ -161,6 +167,24 @@
 </footer>
 
 <script>
+(function () {
+  'use strict';
+  // The board closes Sunday, August 16 at 23:59 Eastern. August is EDT, so UTC-4.
+  var CLOSE = Date.parse('2026-08-17T03:59:00Z');
+  var el = document.getElementById('lb-countdown');
+  function tick() {
+    if (!el) return;
+    var left = CLOSE - Date.now();
+    if (left <= 0) { el.textContent = 'Closed'; return; }
+    var d = Math.floor(left / 86400000);
+    var h = Math.floor(left / 3600000) % 24;
+    var m = Math.floor(left / 60000) % 60;
+    var s2 = Math.floor(left / 1000) % 60;
+    el.textContent = d + 'd ' + h + 'h ' + m + 'm ' + s2 + 's';
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
 (function () {
   'use strict';
   var boards = document.getElementById('lb-boards');
