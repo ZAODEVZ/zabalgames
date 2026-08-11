@@ -5,6 +5,17 @@
 The newsletter goes first (Paragraph, Year of the ZABAL Day 223), then its URL replaces
 every `[newsletter link]` placeholder below, then the thread, then X, then the DMs.
 
+## Correction applied 2026-08-11 - "building" was the wrong word
+
+The first version of this kit said, in the thread, the X post and all 14 DMs, that a build
+still marked **building** is invisible. That is false. `El Charro` is marked building and
+sits on the builder standings with 3 votes - the DM to **@mettodo** would have told him he
+was invisible while he was ranked.
+
+The three genuinely invisible entries are **HOOD**, **Ledger** and **GundariuM**, and the
+cause is that they are still **drafts**. All 16 instances now say draft. Anyone told to
+change "building" would have changed the wrong setting and stayed invisible.
+
 ## Before anything goes out, tomorrow morning
 
 1. **Re-pull the standings.** The board is live and votes are still arriving, so tonight's
@@ -86,7 +97,7 @@ six or fewer finalists means nobody falls below a cutoff.
 
 6/
 
-if your build still says building it is invisible.
+if your entry is still a draft it is invisible - not on the ballot, not in front of me. three of you.
 
 three of you are in that state right now.
 
@@ -110,7 +121,7 @@ the board stays open until the night of sunday august 16 and the six are picked 
 
 fifteen builders shipped thirty projects. 32 sessions, 31 teachers, 25 orgs, 31 recordings live and free.
 
-if your build still says building it is invisible. finish it this week.
+if your entry is still a draft it is invisible - not on the ballot, not in front of me. three of you. publish it this week.
 
 [newsletter link]
 ```
@@ -131,7 +142,7 @@ where you stand right now: you are top of artist on 41 and third in creator on 9
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -147,7 +158,7 @@ where you stand right now: you are second in artist on 5.
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -163,7 +174,7 @@ where you stand right now: you are top of builder on 37.
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -179,7 +190,7 @@ where you stand right now: you are second in builder on 10.
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -195,7 +206,7 @@ where you stand right now: you are third in builder on 5 with more projects on t
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -211,7 +222,7 @@ where you stand right now: you are joint fourth in builder on 4.
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -227,7 +238,7 @@ where you stand right now: you are third in creator on 6 and the whole race is t
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -243,7 +254,7 @@ where you stand right now: you are second in creator on 8 and the whole race is 
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -259,7 +270,7 @@ where you stand right now: your project is on the board and has not picked up vo
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -275,7 +286,7 @@ where you stand right now: you are in builder on 3.
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -291,7 +302,7 @@ where you stand right now: you are in builder on 3.
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -307,7 +318,7 @@ where you stand right now: you are in builder on 3.
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -323,7 +334,7 @@ where you stand right now: your project is on the board and has not picked up vo
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
@@ -339,7 +350,7 @@ where you stand right now: your project is on the board and has not picked up vo
 
 the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
 
-if anything of yours still says building it is invisible. this is the week to finish it.
+if anything of yours is still a draft it is invisible. this is the week to publish it.
 
 full detail here: [newsletter link]
 ```
