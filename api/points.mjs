@@ -26,6 +26,7 @@ const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_RES
 const TALLY = 'zabal:points:tally';
 const LOG = 'zabal:points:log';
 const LOG_CAP = 100;
+const TRACKS = ['artist', 'builder', 'creator'];
 const ROSTER_URL = 'https://zabalgamez.com/data/points-roster.json';
 
 // A single award is bounded so a fat-fingered zero cannot hand someone 500 points.
@@ -66,8 +67,13 @@ async function loadRoster() {
 
 const norm = (s) => String(s == null ? '' : s).replace(/^@+/, '').trim().toLowerCase();
 
-// Everyone on the roster appears, including on zero. A person with no points yet has not
-// "not entered" - they are entered and have not scored, and the board must say so.
+// Entering the season is itself worth a point, so nobody sits on a bare zero. Awards stack
+// on top of it. This is a floor in code rather than 15 seeded awards, so it cannot drift and
+// it does not clutter the award log.
+const ENTRY_POINT = 1;
+
+// Everyone on the roster appears. A person with no awards yet has not "not entered" - they
+// are entered and have not scored, and the board must say so.
 async function board() {
   const people = await loadRoster();
   if (!people.length) return { ok: true, configured: false, entries: [], log: [] };
@@ -76,7 +82,8 @@ async function board() {
       ok: true,
       configured: false,
       entries: people.map((p, i) => ({
-        rank: i + 1, handle: norm(p.handle), name: p.name || p.handle, project: p.project || '', points: 0,
+        rank: i + 1, handle: norm(p.handle), name: p.name || p.handle,
+        project: p.project || '', tracks: p.tracks || [], points: ENTRY_POINT,
       })),
       log: [],
     };
@@ -99,22 +106,37 @@ async function board() {
       handle: norm(p.handle),
       name: p.name || p.handle,
       project: p.project || '',
-      points: scores[norm(p.handle)] || 0,
+      tracks: Array.isArray(p.tracks) ? p.tracks : [],
+      points: ENTRY_POINT + (scores[norm(p.handle)] || 0),
     }))
     .sort((a, b) => (b.points - a.points) || a.name.localeCompare(b.name));
 
-  // Equal scores share a rank. Everyone starts on zero, so sequential numbering would
-  // invent a running order before a single point has been awarded.
-  let lastPoints = null;
-  let lastRank = 0;
-  const entries = rows.map((row, index) => {
-    const rank = (row.points === lastPoints) ? lastRank : index + 1;
-    lastPoints = row.points;
-    lastRank = rank;
-    return { rank, ...row };
-  });
+  // Equal scores share a rank. Everyone starts level, so sequential numbering would invent
+  // a running order before a single point has been awarded.
+  function ranked(list) {
+    let lastPoints = null;
+    let lastRank = 0;
+    return list.map((row, index) => {
+      const rank = (row.points === lastPoints) ? lastRank : index + 1;
+      lastPoints = row.points;
+      lastRank = rank;
+      return { rank, ...row };
+    });
+  }
 
-  return { ok: true, configured: true, count: entries.length, entries, log };
+  // One board per track. Several people entered more than one track, so they appear on more
+  // than one board - and each board ranks independently, because a builder's position should
+  // not move because an artist scored.
+  const boards = TRACKS.map((track) => ({
+    track,
+    label: track.charAt(0).toUpperCase() + track.slice(1),
+    entries: ranked(rows.filter((r) => (r.tracks || []).indexOf(track) >= 0)),
+  }));
+
+  // Anyone whose track is not confirmed is surfaced rather than guessed onto a board.
+  const unassigned = ranked(rows.filter((r) => !(r.tracks || []).length));
+
+  return { ok: true, configured: true, count: rows.length, boards, unassigned, entries: ranked(rows), log };
 }
 
 export default async function handler(req) {
