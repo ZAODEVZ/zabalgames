@@ -88,6 +88,14 @@ async function getStatus() {
 // fix is deleting the rows from the board; until then this keeps them off every surface.
 const EXCLUDED = new Set(['artist:5', 'creator:6']);
 
+// A few entrants left the builder-name box empty, so their row named a project with nobody
+// attached. These are confirmed by Zaal, not inferred from the project name. The durable
+// fix is the entrant filling the field in - this only stops the standings reading as
+// anonymous in the meantime. id 20 (sentra) is deliberately absent: it has no handle, no
+// builderName, and no author discoverable from its Mini App page, so it stays unattributed
+// rather than guessed.
+const BUILDER_CONFIRMED = { 4: 'LadyrynNemesis' };
+
 // Load the votable candidates - everything on the board, grouped by track. Two sources,
 // merged and deduped: the curated/seed builders in data/builder-submissions.json (id
 // "b:<handle>") and the live approved project submissions in KV (id = submission id).
@@ -149,7 +157,7 @@ async function loadCandidates() {
       // builderName is the only person-identifier most submissions carry - a lot of them
       // have no Farcaster handle at all, so without this the standings list a project with
       // nobody attached to it.
-      let builder = clean(f.builderName || (s.builder && s.builder.name) || '', 60);
+      let builder = clean(f.builderName || (s.builder && s.builder.name) || BUILDER_CONFIRMED[id] || '', 60);
       // Some entrants typed a profile URL into the name box. Show the handle, not the URL -
       // "https://x.com/Gesd01" is not a name anyone recognises on a standings row.
       const asUrl = builder.match(/^https?:\/\/[^\s]+?\/@?([A-Za-z0-9._-]+)\/?$/);
