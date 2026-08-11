@@ -3,7 +3,7 @@
 **Nothing here has been sent.** Zaal sends all of it.
 
 The newsletter goes first (Paragraph, Year of the ZABAL Day 223), then its URL replaces
-every `[newsletter link]` placeholder below, then the thread, then X, then the DMs.
+every `https://paragraph.com/@thezao/year-of-the-zabal-day-223` placeholder below, then the thread, then X, then the DMs.
 
 ## Correction applied 2026-08-11 - the vote is retired
 
@@ -12,7 +12,7 @@ the projects and was never how the six get chosen, so leaving it up implied the 
 `/vote` now redirects, the ballot is `status: closed`, and no tallies render anywhere.
 
 Every line that told someone to vote, or quoted their standing, has been rewritten. What
-replaces it is the points board at `/leaderboard`: points for joining the ZAOstock Space at
+replaces it is the points board at `/leaderboard`: points for the zm stream at 5pm EST, this
 11:30am EST, the zm stream at 5pm EST, taking on this week's challenge, and shipping an
 update. All 15 are on it, and every score is public.
 
@@ -38,7 +38,7 @@ change "building" would have changed the wrong setting and stayed invisible.
    `/submissions`; a reader who counts sees 32 with "Iman QA Test" in it, not 30. (They are
    already filtered off the ballot and the board, but they still sit on the projects page.)
 3. **Publish the newsletter**, copy its URL.
-4. **Paste that URL** over `[newsletter link]` in the thread, the X post, and all 14 DMs.
+4. **Paste that URL** over `https://paragraph.com/@thezao/year-of-the-zabal-day-223` in the thread, the X post, and all 14 DMs.
 
 ## Handles, verified against the Farcaster fname registry on 2026-08-10
 
@@ -71,17 +71,17 @@ return nothing - so he is named in the thread without a tag, and his DM needs an
 
 zabal gamez season 1 ends this month.
 
-six finalists. two per track. three finals in the last week of august.
+six finalists. two per track. three finals in the last week of august. three win, one from each track.
 
 the board stays open until the night of sunday august 16.
 
 2/
 
-the six are picked not tallied.
+the six are picked, not tallied.
 
-there is no vote. the ballot ran during month two to see what people thought of the projects and it is closed now. what counts is showing up - points go on the board at zabalgamez.com/leaderboard for the zaostock space at 11:30am est, the zm stream at 5pm est, the bonus brief in /zabal, and shipping an update.
+there is no vote. a ballot ran back in month two just to see what people thought of the projects, and it is closed now. it was never how the six get chosen.
 
-i would rather you hear that from me now than work it out from a list later.
+what counts is showing up. points go on the board at zabalgamez.com/leaderboard for the zm stream at 5pm est, this week's challenge, and shipping an update on your project. everyone who entered is on it and every score is public.
 
 3/
 
@@ -93,35 +93,41 @@ every one of them showed up.
 
 4/
 
+tonight at 5pm est on the zm stream i go through the board for the first time, live. special guest on after.
+
+come and see where you stand.
+
+5/
+
 the receipts.
 
 32 sessions. 31 different people teaching. 25 organisations.
 
-29 transcripts. 28 on youtube. 31 recordings live right now.
-
-watch the whole season for free: zabalgamez.com/recordings
-
-5/
-
-every finalist gets the full june 8 tier with nothing cut.
-
-500 usdc split between the six finalists.
-
-six or fewer finalists means nobody falls below a cutoff.
+33 recordings from season 1 are up. watch the whole thing for free: zabalgamez.com/recordings
 
 6/
 
-every entry is somewhere different and that is fine. if yours is not showing on the projects page, say so in /zabal and i will sort it.
-
-three of you are in that state right now.
-
-finish it this week.
+500 usdc, split between the six finalists.
 
 7/
 
+one optional challenge this week, open to everyone.
+
+find ways to help get our musicians out to maine. funding the last few of them to get there is the hardest thing in front of us right now.
+
+post it in /zabal or bring it to me directly.
+
+8/
+
+every entry is somewhere different and that is fine. some are shipped, some are mid build, some are still an idea with a name.
+
+if yours is not showing on the projects page, say so in /zabal and i will sort it.
+
+9/
+
 full detail, the board, and this week's challenge:
 
-[newsletter link]
+https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ## X post - as @bettercallzaal
@@ -133,11 +139,11 @@ six finalists. two per track. three finals the last week of august.
 
 the board stays open until the night of sunday august 16 and the six are picked not tallied.
 
-fifteen builders shipped thirty projects. 32 sessions, 31 teachers, 25 orgs, 31 recordings live and free.
+fifteen builders shipped thirty projects. 32 sessions, 31 teachers, 25 orgs, 33 recordings live and free.
 
 every entry is somewhere different and that is fine. if yours is not showing on the projects page, say so in /zabal and i will sort it.
 
-[newsletter link]
+https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ## The DMs
@@ -158,7 +164,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @gesd1
@@ -174,7 +180,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @kayonfire
@@ -190,7 +196,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @uniquebeing404
@@ -206,7 +212,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @ghostmintops
@@ -222,7 +228,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @jdwalka
@@ -238,7 +244,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @taydexfun
@@ -254,7 +260,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @imanafrikah
@@ -270,7 +276,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @pyrofirezerox
@@ -286,7 +292,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @breadcoop
@@ -302,7 +308,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @mettodo
@@ -318,7 +324,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @pascaline
@@ -334,7 +340,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @presdency
@@ -350,7 +356,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### @dee-13
@@ -366,7 +372,7 @@ the board stays open until the night of sunday august 16. the six are picked not
 
 if anything of yours is not showing on the projects page, say so and i will sort it.
 
-full detail here: [newsletter link]
+full detail here: https://paragraph.com/@thezao/year-of-the-zabal-day-223
 ```
 
 ### branth - no confirmed handle
