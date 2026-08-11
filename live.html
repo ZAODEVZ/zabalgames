@@ -207,7 +207,7 @@
     .stage-card.next::before { background: linear-gradient(90deg, var(--gold), var(--cyan)); }
     .stage-card.empty::before { background: linear-gradient(90deg, var(--zabal), var(--cyan)); }
 
-    /* Shared season standings. Scores come from /api/leaderboard?format=standings,
+    /* Shared season standings. Scores come from /api/points - everyone who entered,
        the same contract used by /leaderboard. */
     .live-standings {
       min-height: 166px; margin: 10px 0 6px; overflow: hidden;
@@ -1216,16 +1216,12 @@
   function safeUrl(s) { s = String(s || ''); return /^https?:\/\//i.test(s) ? s : ''; }
   function score(s) { var n = Number(s); return Number.isFinite(n) ? new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(n) : 'Pending'; }
 
+  // Season 1 has no vote. This reads the points board, where everyone who entered is
+  // listed and points come from showing up.
   function sourceCopy(data) {
-    if (data.source === 'qv') {
-      var voters = data.qv ? Number(data.qv.voters) || 0 : 0;
-      return 'Builder QV votes from ' + voters + ' voter' + (voters === 1 ? '' : 's') + '.';
-    }
-    if (data.source === 'empire') {
-      var qv = data.qv || {};
-      return 'Empire /zabal points. Builder QV: ' + (qv.status || 'pending') + ', ' + (Number(qv.results) || 0) + ' scored results.';
-    }
-    return 'No scored source is available yet.';
+    var n = Number(data.count) || 0;
+    if (!n) return 'The board is not available right now.';
+    return n + ' on the board. Points come from showing up.';
   }
 
   function render(data) {
@@ -1238,26 +1234,26 @@
     }
     list.innerHTML = rows.map(function (row, index) {
       var username = row.username || '';
-      var name = row.displayName || username || 'Name pending';
-      var profile = safeUrl(row.profileUrl) || (username ? 'https://farcaster.xyz/' + encodeURIComponent(username) : '');
-      var pfp = safeUrl(row.pfpUrl);
+      var name = row.name || username || 'Name pending';
+      var profile = username ? 'https://farcaster.xyz/' + encodeURIComponent(username) : '';
+      var pfp = '';
       var avatar = pfp ? '<img src="' + esc(pfp) + '" alt="" loading="lazy">' : esc(name.charAt(0).toUpperCase());
       var nameHtml = profile ? '<a class="ls-name" href="' + esc(profile) + '" target="_blank" rel="noopener">' + esc(name) + '</a>' : '<span class="ls-name">' + esc(name) + '</span>';
       return '<li class="ls-row"><span class="ls-rank">' + esc(row.rank || index + 1) + '</span>' +
         '<span class="ls-avatar" aria-hidden="true">' + avatar + '</span>' +
         '<span class="ls-person">' + nameHtml + (username ? '<span class="ls-handle">@' + esc(username) + '</span>' : '') + '</span>' +
-        '<span class="ls-score">' + esc(score(row.score)) + '<small>' + esc(data.scoreLabel || 'points') + '</small></span></li>';
+        '<span class="ls-score">' + esc(score(row.points)) + '<small>points</small></span></li>';
     }).join('');
     list.setAttribute('aria-busy', 'false');
   }
 
   function loadStandings() {
     list.setAttribute('aria-busy', 'true');
-    fetch('/api/leaderboard?format=standings&limit=3', { cache: 'no-store' })
+    fetch('/api/points', { cache: 'no-store' })
       .then(function (response) { return response.json(); })
       .then(function (data) { if (!data || !data.ok) throw new Error('standings unavailable'); render(data); })
       .catch(function () {
-        meta.textContent = 'The live scoring source is unavailable.';
+        meta.textContent = 'The board is unavailable right now.';
         list.innerHTML = '<li class="ls-empty">No fallback scores are shown.</li>';
         list.setAttribute('aria-busy', 'false');
       });
