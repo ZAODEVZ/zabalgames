@@ -105,7 +105,7 @@ watch the whole season for free: zabalgamez.com/recordings
 
 every finalist gets the full june 8 tier with nothing cut.
 
-a share of the 500 usdc pool. $zabal rewards. both the finisher and the champion collectibles.
+500 usdc split between the six finalists.
 
 six or fewer finalists means nobody falls below a cutoff.
 
