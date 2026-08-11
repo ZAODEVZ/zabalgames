@@ -31,3 +31,6 @@ out/
 .serena/
 .claude/scheduled_tasks.lock
 .gstack/
+
+# Local working notes, not part of the site.
+AUGUST-LANE-BRIEF.md
