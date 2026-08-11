@@ -205,7 +205,9 @@ async function readStoredFeed(index, limit, status) {
   try {
     const r = await kvPipeline(ids.map((id) => ['GET', `zabal:sub:v1:${id}`]));
     return r.map((row) => { try { return row && row.result ? JSON.parse(row.result) : null; } catch { return null; } })
-      .filter((s) => s && (!allow || allow.indexOf(s.status) >= 0)).map(publicView).filter(Boolean);
+      .filter((s) => s && (!allow || allow.indexOf(s.status) >= 0))
+      .filter((s) => !QA_FIXTURES.has(String(s.id)))
+      .map(publicView).filter(Boolean);
   } catch { return []; }
 }
 
@@ -266,6 +268,11 @@ async function readBuilderFeed(req) {
     submissions: rows,
   };
 }
+
+// QA fixtures seeded while the ballot was being tested. Already excluded from the ballot
+// and the points board in api/qv-vote.mjs; excluded here too so the public project count
+// reads 30 rather than 32. Delete the rows at /review and this can go.
+const QA_FIXTURES = new Set(['5', '6']);
 
 export default async function handler(req) {
   const reqOrigin = req.headers.get('origin') || '';
