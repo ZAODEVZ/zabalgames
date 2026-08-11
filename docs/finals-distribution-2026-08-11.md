@@ -13,7 +13,7 @@ the projects and was never how the six get chosen, so leaving it up implied the 
 
 Every line that told someone to vote, or quoted their standing, has been rewritten. What
 replaces it is the points board at `/leaderboard`: points for joining the ZAOstock Space at
-11:30am EST, the zm stream at 5pm EST, answering the bonus brief in /zabal, and shipping an
+11:30am EST, the zm stream at 5pm EST, taking on this week's challenge, and shipping an
 update. All 15 are on it, and every score is public.
 
 Also removed the per-person standing lines ("you are top of artist on 41"), which quoted vote
@@ -119,7 +119,7 @@ finish it this week.
 
 7/
 
-full detail, the standings, and the bonus brief:
+full detail, the board, and this week's challenge:
 
 [newsletter link]
 ```

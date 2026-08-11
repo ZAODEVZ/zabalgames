@@ -76,7 +76,9 @@
       "handle": "pyrofirezerox",
       "name": "pyrofirezerox",
       "project": "",
-      "tracks": []
+      "tracks": [
+        "builder"
+      ]
     },
     {
       "handle": "breadcoop",
