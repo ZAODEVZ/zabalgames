@@ -33,6 +33,10 @@
     .lb-wrap { max-width: 820px; margin: 0 auto; padding: 1.2rem 1rem 2.5rem; }
     /* Three track boards stack with their own spacing rather than per-panel margins. */
     #lb-boards { display: flex; flex-direction: column; gap: 1.15rem; }
+    .lb-tabs { display: flex; gap: 0.4rem; }
+    .lb-tab { flex: 1; border: 1px solid rgba(224,221,170,0.35); border-radius: 10px; background: transparent; color: var(--standings-cream); padding: 0.6rem 0.4rem; font: 700 0.82rem 'Outfit', sans-serif; cursor: pointer; }
+    .lb-tab[aria-selected="true"] { background: var(--standings-cream); color: var(--standings-navy); border-color: var(--standings-cream); }
+    .lb-tab span { opacity: 0.65; font-weight: 500; }
     .lb-note { border-left: 2px solid rgba(224,221,170,0.45); padding-left: 0.7rem; opacity: 0.9; }
     .lb-hero { padding: 2rem 0 1.2rem; }
     .lb-hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 8vw, 4rem); line-height: 0.98; letter-spacing: -0.035em; margin: 0.45rem 0 0.8rem; }
@@ -162,50 +166,78 @@
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
   }); }
 
-  // Everyone who entered is listed, including on zero. A person with no points has not
-  // "not entered" - they are entered and have not scored yet, and the board says so.
+  var data = null;
+  var active = 'builder';
+
   function rowHtml(row) {
     var handle = String(row.handle || '');
     var link = handle ? 'https://farcaster.xyz/' + encodeURIComponent(handle) : '';
     var name = row.name || handle || 'Name pending';
-    var initial = name.charAt(0).toUpperCase();
     var nameHtml = link
       ? '<a class="lb-name" href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(name) + '</a>'
       : '<span class="lb-name">' + esc(name) + '</span>';
     var sub = row.project || (handle ? '@' + handle : '');
     return '<li class="lb-row">' +
       '<span class="lb-rank">' + esc(row.rank) + '</span>' +
-      '<span class="lb-avatar" aria-hidden="true">' + esc(initial) + '</span>' +
+      '<span class="lb-avatar" aria-hidden="true">' + esc(name.charAt(0).toUpperCase()) + '</span>' +
       '<span class="lb-person">' + nameHtml +
       (sub ? '<span class="lb-handle">' + esc(sub) + '</span>' : '') + '</span>' +
       '<span class="lb-score">' + esc(row.points) + '<small>points</small></span></li>';
   }
 
-  function render(data) {
-    var rows = (data && data.entries) || [];
-    if (!rows.length) {
-      boards.innerHTML = '<section class="lb-panel"><div class="lb-panel-head">' +
-        '<p class="lb-detail">The board is not available right now.</p></div>' +
-        '<ol class="lb-list"><li class="lb-empty">Nothing to show yet.</li></ol></section>';
-      boards.setAttribute('aria-busy', 'false');
-      return;
-    }
-    boards.innerHTML = '<section class="lb-panel">' +
+  // One board per track, switched by the buttons. Several people entered more than one
+  // track, so they appear on more than one board - that is correct, not a duplicate.
+  function tabsHtml() {
+    return '<div class="lb-tabs" role="tablist">' + (data.boards || []).map(function (b) {
+      return '<button type="button" class="lb-tab" role="tab" data-track="' + esc(b.track) + '"' +
+        ' aria-selected="' + (b.track === active ? 'true' : 'false') + '">' +
+        esc(b.label) + ' <span>' + (b.entries || []).length + '</span></button>';
+    }).join('') + '</div>';
+  }
+
+  function draw() {
+    var board = (data.boards || []).filter(function (b) { return b.track === active; })[0];
+    var rows = (board && board.entries) || [];
+    var unassigned = data.unassigned || [];
+    var body = rows.length
+      ? rows.map(rowHtml).join('')
+      : '<li class="lb-empty">Nobody on this board yet.</li>';
+
+    boards.innerHTML = tabsHtml() +
+      '<section class="lb-panel">' +
       '<div class="lb-panel-head"><div class="lb-title-row">' +
-      '<h2>Season 1</h2><span class="lb-source">Live</span></div>' +
-      '<p class="lb-detail">Everyone who entered, and what they have earned so far. ' +
-      'Points come from showing up - the ZAOstock Space, the zm stream, the bonus brief, ' +
-      'shipping an update.</p></div>' +
-      '<ol class="lb-list">' + rows.map(rowHtml).join('') + '</ol></section>' +
+      '<h2>' + esc(board ? board.label : '') + '</h2><span class="lb-source">Live</span></div>' +
+      '<p class="lb-detail">Everyone in this track. One point for entering, then points for ' +
+      'showing up - the ZAOstock Space at 11:30am EST, the zm stream at 5pm EST, the bonus ' +
+      'brief in /zabal, shipping an update.</p></div>' +
+      '<ol class="lb-list">' + body + '</ol></section>' +
+      (unassigned.length
+        ? '<section class="lb-panel"><div class="lb-panel-head"><div class="lb-title-row">' +
+          '<h2>Track to confirm</h2></div><p class="lb-detail">Entered, track not set yet.</p></div>' +
+          '<ol class="lb-list">' + unassigned.map(rowHtml).join('') + '</ol></section>'
+        : '') +
       '<div class="lb-foot">Six finalists, two per track, presenting at the end of August. ' +
       'They are picked, not tallied - this board is what Zaal is reading, not the decision.</div>';
+
+    Array.prototype.forEach.call(boards.querySelectorAll('.lb-tab'), function (b) {
+      b.addEventListener('click', function () { active = b.getAttribute('data-track'); draw(); });
+    });
     boards.setAttribute('aria-busy', 'false');
   }
 
   fetch('/api/points', { cache: 'no-store' })
     .then(function (r) { return r.json(); })
-    .then(render)
-    .catch(function () { render(null); });
+    .then(function (d) {
+      data = d;
+      if (!d || !d.boards || !d.boards.length) throw new Error('no boards');
+      draw();
+    })
+    .catch(function () {
+      boards.innerHTML = '<section class="lb-panel"><div class="lb-panel-head">' +
+        '<p class="lb-detail">The board is not available right now.</p></div>' +
+        '<ol class="lb-list"><li class="lb-empty">Nothing to show yet.</li></ol></section>';
+      boards.setAttribute('aria-busy', 'false');
+    });
 })();
 </script>
 <script defer src="/assets/site-nav.js"></script>
