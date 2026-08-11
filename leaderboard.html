@@ -103,20 +103,20 @@
 <main id="main">
   <div class="lb-wrap">
     <header class="lb-hero">
-      <div class="hero-eyebrow">Season 1 standings</div>
-      <h1>Who is leading <span>right now</span>.</h1>
-      <p>Three tracks, three separate ballots, three boards. Every entry is listed, including the ones nobody has voted for yet.</p>
-      <p class="lb-note">Six finalists, two per track. They are picked, not tallied - the vote is one of the loudest inputs, and it is not the decision. The board closes Sunday, August 16.</p>
+      <div class="hero-eyebrow">Season 1</div>
+      <h1>Who is showing up <span>right now</span>.</h1>
+      <p>Six finalists, two per track, presenting in the last week of August. They are picked, not tallied.</p>
+      <p class="lb-note">There is no vote. The ballot ran during month two to find out what people thought of the projects, and it was never how the six get chosen. What counts now is the work and the conversation around it - this week, that means the bonus brief on how fans fund an event and share in it. Post it in /zabal or it does not count.</p>
       <div class="lb-actions">
-        <a class="lb-action primary" href="/vote">Cast your ballot</a>
+        <a class="lb-action primary" href="/submissions">See the projects</a>
         <a class="lb-action" href="/recordings">Watch the recordings</a>
       </div>
     </header>
 
     <div id="lb-boards" aria-live="polite" aria-busy="true">
       <section class="lb-panel">
-        <div class="lb-panel-head"><p class="lb-detail">Loading the live ballots.</p></div>
-        <ol class="lb-list"><li class="lb-empty">Loading standings...</li></ol>
+        <div class="lb-panel-head"><p class="lb-detail">Loading.</p></div>
+        <ol class="lb-list"><li class="lb-empty">Loading...</li></ol>
       </section>
     </div>
   </div>
@@ -194,27 +194,29 @@
 
   function boardHtml(board, scoreLabel) {
     var entries = Array.isArray(board.entries) ? board.entries : [];
-    var voters = Number(board.voters) || 0;
     var detail = entries.length
-      ? entries.length + ' ' + plural(entries.length, 'entry', 'entries') + ', ' + voters + ' ' + plural(voters, 'ballot', 'ballots') + ' cast so far.'
-      : 'No entries on this ballot yet.';
+      ? 'Live /zabal channel activity, top ' + entries.length + '. Updates on its own.'
+      : 'No activity to show yet.';
     var body = entries.length
       ? entries.map(function (row) { return rowHtml(row, scoreLabel); }).join('')
-      : '<li class="lb-empty">No entries on this ballot yet.</li>';
+      : '<li class="lb-empty">No activity to show yet.</li>';
     return '<section class="lb-panel">' +
       '<div class="lb-panel-head"><div class="lb-title-row">' +
       '<h2>' + esc(board.label) + '</h2>' +
-      '<span class="lb-source">' + esc(board.status === 'open' ? 'Voting open' : (board.status || 'Pending')) + '</span>' +
+      '<span class="lb-source">Live</span>' +
       '</div><p class="lb-detail">' + esc(detail) + '</p></div>' +
       '<ol class="lb-list">' + body + '</ol></section>';
   }
 
+  // No tallies render here. Season 1 voting is retired - data.tracks is deliberately ignored.
   function render(data) {
-    var list = Array.isArray(data.tracks) ? data.tracks : [];
-    boards.innerHTML = list.length
-      ? list.map(function (b) { return boardHtml(b, data.scoreLabel || 'votes'); }).join('') +
-        '<div class="lb-foot">Nothing here is entered by hand. Every entry on each ballot is listed, including entries with no votes yet, and the boards refresh from the live ballot.</div>'
-      : '<section class="lb-panel"><ol class="lb-list"><li class="lb-empty">No ballots are available yet.</li></ol></section>';
+    var a = data.activity;
+    var rows = (a && Array.isArray(a.entries)) ? a.entries : [];
+    boards.innerHTML = rows.length
+      ? boardHtml(a, a.scoreLabel || 'points') +
+        '<div class="lb-foot">Nothing here is entered by hand. This is live /zabal channel activity from Empire Builder. It is one of the things Zaal is reading this week, not a scoreboard that decides anything.</div>'
+      : '<section class="lb-panel"><div class="lb-panel-head"><p class="lb-detail">No activity is available right now.</p></div>' +
+        '<ol class="lb-list"><li class="lb-empty">Nothing to show yet.</li></ol></section>';
     boards.setAttribute('aria-busy', 'false');
   }
 

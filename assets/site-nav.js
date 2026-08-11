@@ -55,8 +55,7 @@
   // still live and still reachable from /links - it is just not competing for attention.
   var GROUPS = [
     ['Right now', [
-      ['Standings', '/leaderboard'],
-      ['Vote', '/vote'],
+      ['Who is showing up', '/leaderboard'],
       ['Recordings', '/recordings']
     ]],
     ['Connect', [

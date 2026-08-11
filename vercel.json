@@ -89,6 +89,16 @@
       "source": "/enter.html",
       "destination": "/leaderboard",
       "permanent": false
+    },
+    {
+      "source": "/vote",
+      "destination": "/leaderboard",
+      "permanent": false
+    },
+    {
+      "source": "/vote.html",
+      "destination": "/leaderboard",
+      "permanent": false
     }
   ],
   "headers": [

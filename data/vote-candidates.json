@@ -1,5 +1,6 @@
 {
   "version": 2,
   "_schema": "Launch control for the quadratic vote at /vote. status: 'preview' (page visible, voting closed) | 'open' (ballots accepted) | 'closed' (results only). Candidates are NO LONGER curated here - they are the live submissions on the board, served by /api/qv-vote (approved KV submissions + the seed builders in data/builder-submissions.json). This file is now just the on/off switch: flip status in a PR to open or close voting.",
-  "status": "open"
+  "status": "closed",
+  "_note": "Season 1 voting is retired. The quadratic ballot ran during month two to gauge what people thought of the projects; it is not how the six finalists are chosen. Zaal picks them. Past tallies are no longer displayed anywhere on the site. Flip status back to 'open' in a PR to run a vote again."
 }
