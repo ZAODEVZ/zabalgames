@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Award points - ZABAL Gamez</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Admin only. Award ZABAL Gamez Season 1 points.">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <meta name="theme-color" content="#141e27">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="preconnect" href="https://esm.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/miniapp.js"></script>
+  <style>
+    :root { --aw-navy: #141e27; --aw-cream: #e0ddaa; }
+    .aw-wrap { max-width: 640px; margin: 0 auto; padding: 1.1rem 1rem 3rem; }
+    .aw-wrap h1 { font-family: 'Syne', sans-serif; font-size: clamp(1.5rem, 6vw, 2.2rem); margin: 0.4rem 0 0.35rem; }
+    .aw-sub { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; margin: 0 0 1rem; }
+    .aw-block { border: 1px solid rgba(224,221,170,0.25); border-radius: 12px; background: var(--aw-navy); padding: 0.85rem; margin-bottom: 0.9rem; }
+    .aw-block h2 { color: var(--aw-cream); font: 700 0.95rem 'Syne', sans-serif; margin: 0 0 0.6rem; }
+    .aw-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    /* Chips are the whole interaction: tap a reason, tap an amount, tap a person. */
+    .aw-chip { border: 1px solid rgba(224,221,170,0.35); border-radius: 999px; background: transparent; color: var(--aw-cream); padding: 0.5rem 0.7rem; font: 600 0.78rem 'Outfit', sans-serif; cursor: pointer; }
+    .aw-chip[aria-pressed="true"] { background: var(--aw-cream); color: var(--aw-navy); border-color: var(--aw-cream); }
+    .aw-input { width: 100%; box-sizing: border-box; border: 1px solid rgba(224,221,170,0.3); border-radius: 8px; background: #0d151c; color: var(--aw-cream); padding: 0.6rem 0.7rem; font: 400 0.85rem 'Outfit', sans-serif; margin-top: 0.5rem; }
+    .aw-people { display: flex; flex-direction: column; gap: 0.4rem; }
+    .aw-person { display: grid; grid-template-columns: minmax(0,1fr) auto auto; align-items: center; gap: 0.6rem; border: 1px solid rgba(224,221,170,0.18); border-radius: 10px; padding: 0.6rem 0.7rem; }
+    .aw-who { min-width: 0; }
+    .aw-name { color: var(--aw-cream); font-weight: 700; font-size: 0.88rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .aw-proj { color: var(--text-dim); font-size: 0.72rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .aw-pts { color: var(--cyan); font: 700 0.95rem 'JetBrains Mono', monospace; min-width: 2.2rem; text-align: right; }
+    .aw-give { border: 1px solid var(--aw-cream); border-radius: 8px; background: var(--aw-cream); color: var(--aw-navy); padding: 0.5rem 0.75rem; font: 700 0.78rem 'Outfit', sans-serif; cursor: pointer; }
+    .aw-give[disabled] { opacity: 0.45; cursor: not-allowed; }
+    .aw-msg { margin: 0.7rem 0 0; font-size: 0.82rem; line-height: 1.45; min-height: 1.2em; }
+    .aw-msg.ok { color: var(--cyan); }
+    .aw-msg.bad { color: #ff8a8a; }
+    .aw-log { list-style: none; padding: 0; margin: 0; }
+    .aw-log li { color: var(--text-dim); font-size: 0.76rem; padding: 0.35rem 0; border-bottom: 1px solid rgba(224,221,170,0.1); }
+    .aw-log li:last-child { border-bottom: 0; }
+  </style>
+</head>
+<body>
+
+<main id="main">
+  <div class="aw-wrap">
+    <h1>Award points</h1>
+    <p class="aw-sub">Admin only. Pick what it is for, pick how many, then tap the person. Everything here is public the moment you tap - scores show on the standings page.</p>
+
+    <div class="aw-block" id="aw-auth" hidden>
+      <h2>Sign in</h2>
+      <p class="aw-sub" id="aw-auth-msg">Open this in the Farcaster Mini App to award as yourself, or paste the admin key.</p>
+      <input class="aw-input" id="aw-key" type="password" placeholder="Admin key (desktop only)" autocomplete="off">
+    </div>
+
+    <div class="aw-block">
+      <h2>What is it for</h2>
+      <div class="aw-chips" id="aw-reasons"></div>
+      <input class="aw-input" id="aw-custom" type="text" placeholder="Or type your own reason" maxlength="120">
+    </div>
+
+    <div class="aw-block">
+      <h2>How many</h2>
+      <div class="aw-chips" id="aw-amounts"></div>
+    </div>
+
+    <div class="aw-block">
+      <h2>Who</h2>
+      <div class="aw-people" id="aw-people"><p class="aw-sub">Loading the roster...</p></div>
+      <p class="aw-msg" id="aw-msg" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="aw-block">
+      <h2>Recent</h2>
+      <ul class="aw-log" id="aw-log"><li>Nothing yet.</li></ul>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  // The reasons Zaal named as the things that matter this week. Tapping one fills the
+  // reason; the free-text box overrides it for anything else.
+  var REASONS = [
+    'ZAOstock Space, 11:30am EST',
+    'zm stream, 5pm EST',
+    'Bonus brief post in /zabal',
+    'Shipped an update',
+    'Helped someone else build'
+  ];
+  var AMOUNTS = [1, 2, 3, 5, 10];
+
+  var reasonsEl = document.getElementById('aw-reasons');
+  var amountsEl = document.getElementById('aw-amounts');
+  var customEl = document.getElementById('aw-custom');
+  var peopleEl = document.getElementById('aw-people');
+  var msgEl = document.getElementById('aw-msg');
+  var logEl = document.getElementById('aw-log');
+  var authEl = document.getElementById('aw-auth');
+  var keyEl = document.getElementById('aw-key');
+  if (!reasonsEl || !peopleEl) return;
+
+  var picked = { reason: REASONS[0], amount: 1 };
+  var inMiniApp = false;
+  var busy = false;
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  }); }
+
+  function say(text, bad) {
+    msgEl.textContent = text;
+    msgEl.className = 'aw-msg' + (text ? (bad ? ' bad' : ' ok') : '');
+  }
+
+  function chips(host, items, isPicked, onPick) {
+    host.innerHTML = '';
+    items.forEach(function (item) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'aw-chip';
+      b.textContent = String(item);
+      b.setAttribute('aria-pressed', isPicked(item) ? 'true' : 'false');
+      b.addEventListener('click', function () { onPick(item); });
+      host.appendChild(b);
+    });
+  }
+
+  function drawChips() {
+    chips(reasonsEl, REASONS, function (r) { return picked.reason === r && !customEl.value.trim(); }, function (r) {
+      picked.reason = r; customEl.value = ''; drawChips();
+    });
+    chips(amountsEl, AMOUNTS, function (a) { return picked.amount === a; }, function (a) {
+      picked.amount = a; drawChips();
+    });
+  }
+  customEl.addEventListener('input', drawChips);
+
+  function reason() { return customEl.value.trim() || picked.reason; }
+
+  // Quick Auth inside the Mini App, admin key on desktop - the same two paths /review uses.
+  function post(body) {
+    if (inMiniApp && window.ZABAL && window.ZABAL.authedFetch) {
+      return window.ZABAL.authedFetch('/api/points', body);
+    }
+    return fetch('/api/points', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + (keyEl.value || ''), 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).then(function (r) { return r.json(); }).catch(function () { return { ok: false, error: 'network error' }; });
+  }
+
+  function drawLog(log) {
+    if (!log || !log.length) { logEl.innerHTML = '<li>Nothing yet.</li>'; return; }
+    logEl.innerHTML = log.slice(0, 10).map(function (e) {
+      var sign = Number(e.delta) > 0 ? '+' : '';
+      return '<li>' + sign + esc(e.delta) + ' to @' + esc(e.handle) + ' - ' + esc(e.reason) + '</li>';
+    }).join('');
+  }
+
+  function drawPeople(data) {
+    var rows = (data && data.entries) || [];
+    if (!rows.length) { peopleEl.innerHTML = '<p class="aw-sub">No roster found.</p>'; return; }
+    peopleEl.innerHTML = '';
+    rows.forEach(function (p) {
+      var el = document.createElement('div');
+      el.className = 'aw-person';
+      el.innerHTML =
+        '<span class="aw-who"><span class="aw-name">' + esc(p.name) + '</span>' +
+        '<span class="aw-proj">' + esc(p.project || ('@' + p.handle)) + '</span></span>' +
+        '<span class="aw-pts">' + esc(p.points) + '</span>';
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'aw-give';
+      b.textContent = 'Give';
+      b.addEventListener('click', function () {
+        if (busy) return;
+        busy = true; b.disabled = true;
+        say('Awarding ' + picked.amount + ' to @' + p.handle + '...');
+        post({ handle: p.handle, delta: picked.amount, reason: reason() }).then(function (res) {
+          busy = false; b.disabled = false;
+          if (!res || !res.ok) { say((res && res.error) || 'Could not award.', true); return; }
+          say('Gave ' + picked.amount + ' to @' + p.handle + '. They are on ' + res.points + '.');
+          load();
+        });
+      });
+      el.appendChild(b);
+      peopleEl.appendChild(el);
+    });
+  }
+
+  function load() {
+    fetch('/api/points', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (data) { drawPeople(data); drawLog(data && data.log); })
+      .catch(function () { peopleEl.innerHTML = '<p class="aw-sub">Could not load the roster.</p>'; });
+  }
+
+  // Mini App gives us the signed-in identity; outside it, fall back to the key field.
+  function detectAuth() {
+    var ready = (window.ZABAL && window.ZABAL.ready) ? window.ZABAL.ready() : Promise.resolve(null);
+    return Promise.resolve(ready).then(function () {
+      var u = window.ZABAL && window.ZABAL.user;
+      if (u && (u.fid || u.username)) {
+        inMiniApp = true;
+        authEl.hidden = true;
+      } else {
+        authEl.hidden = false;
+      }
+    }).catch(function () { authEl.hidden = false; });
+  }
+
+  drawChips();
+  load();
+  detectAuth();
+})();
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

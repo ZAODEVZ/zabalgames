@@ -105,7 +105,7 @@
       <div class="hero-eyebrow">Season 1</div>
       <h1>Who is showing up <span>right now</span>.</h1>
       <p>Six finalists, two per track, presenting in the last week of August. They are picked, not tallied.</p>
-      <p class="lb-note">There is no vote. The ballot ran during month two to find out what people thought of the projects, and it was never how the six get chosen. What counts now is the work and the conversation around it - this week, that means the bonus brief on how fans fund an event and share in it. Post it in /zabal or it does not count.</p>
+      <p class="lb-note">There is no vote. Points are earned by showing up - the ZAOstock Space at 11:30am EST, the zm stream at 5pm EST, posting to the bonus brief in /zabal, shipping an update on your project. Six finalists, two per track, and they are picked rather than tallied.</p>
       <div class="lb-actions">
         <a class="lb-action primary" href="/submissions">See the projects</a>
         <a class="lb-action" href="/recordings">Watch the recordings</a>
@@ -158,19 +158,54 @@
   var boards = document.getElementById('lb-boards');
   if (!boards) return;
 
-  // Season 1 voting is retired: the ballot ran during month two to gauge what people
-  // thought of the projects, and it was never how the six finalists get chosen. No vote
-  // totals render here. The replacement board - everyone who entered, their project, and
-  // where it is at - is being built, so this says that plainly rather than showing a
-  // number nobody stands behind. Static for now; it fetches nothing.
-  boards.innerHTML = '<section class="lb-panel">' +
-    '<div class="lb-panel-head"><div class="lb-title-row">' +
-    '<h2>The board is being rebuilt</h2><span class="lb-source">Soon</span></div>' +
-    '<p class="lb-detail">Everyone who entered is on it, with their project and where it ' +
-    'is at. It goes up this week.</p></div>' +
-    '<ol class="lb-list"><li class="lb-empty">In the meantime, every project is on the ' +
-    '<a href="/submissions">submissions page</a>.</li></ol></section>';
-  boards.setAttribute('aria-busy', 'false');
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  }); }
+
+  // Everyone who entered is listed, including on zero. A person with no points has not
+  // "not entered" - they are entered and have not scored yet, and the board says so.
+  function rowHtml(row) {
+    var handle = String(row.handle || '');
+    var link = handle ? 'https://farcaster.xyz/' + encodeURIComponent(handle) : '';
+    var name = row.name || handle || 'Name pending';
+    var initial = name.charAt(0).toUpperCase();
+    var nameHtml = link
+      ? '<a class="lb-name" href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(name) + '</a>'
+      : '<span class="lb-name">' + esc(name) + '</span>';
+    var sub = row.project || (handle ? '@' + handle : '');
+    return '<li class="lb-row">' +
+      '<span class="lb-rank">' + esc(row.rank) + '</span>' +
+      '<span class="lb-avatar" aria-hidden="true">' + esc(initial) + '</span>' +
+      '<span class="lb-person">' + nameHtml +
+      (sub ? '<span class="lb-handle">' + esc(sub) + '</span>' : '') + '</span>' +
+      '<span class="lb-score">' + esc(row.points) + '<small>points</small></span></li>';
+  }
+
+  function render(data) {
+    var rows = (data && data.entries) || [];
+    if (!rows.length) {
+      boards.innerHTML = '<section class="lb-panel"><div class="lb-panel-head">' +
+        '<p class="lb-detail">The board is not available right now.</p></div>' +
+        '<ol class="lb-list"><li class="lb-empty">Nothing to show yet.</li></ol></section>';
+      boards.setAttribute('aria-busy', 'false');
+      return;
+    }
+    boards.innerHTML = '<section class="lb-panel">' +
+      '<div class="lb-panel-head"><div class="lb-title-row">' +
+      '<h2>Season 1</h2><span class="lb-source">Live</span></div>' +
+      '<p class="lb-detail">Everyone who entered, and what they have earned so far. ' +
+      'Points come from showing up - the ZAOstock Space, the zm stream, the bonus brief, ' +
+      'shipping an update.</p></div>' +
+      '<ol class="lb-list">' + rows.map(rowHtml).join('') + '</ol></section>' +
+      '<div class="lb-foot">Six finalists, two per track, presenting at the end of August. ' +
+      'They are picked, not tallied - this board is what Zaal is reading, not the decision.</div>';
+    boards.setAttribute('aria-busy', 'false');
+  }
+
+  fetch('/api/points', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(render)
+    .catch(function () { render(null); });
 })();
 </script>
 <script defer src="/assets/site-nav.js"></script>

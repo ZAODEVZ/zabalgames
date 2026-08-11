@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "_schema": "The ZABAL Gamez Season 1 roster - the 15 people who entered. Source of truth for who appears on the points board. Handles are as Zaal posted them in docs/finals-distribution-2026-08-11.md, verified against the Farcaster fname registry on 2026-08-10. 'name' is the display name shown on the board; 'project' is what they worked on during the season. Points are NOT stored here - they live in KV and are awarded through /award. Add or remove a person here in a PR.",
+  "season": "1",
+  "people": [
+    { "handle": "n3m", "name": "LadyrynNemesis", "project": "N3M3SIS - THE CALL OUT" },
+    { "handle": "gesd1", "name": "Gesd01", "project": "How Artists can Blend Different Music Genres" },
+    { "handle": "kayonfire", "name": "kayonfire", "project": "NeonTetris" },
+    { "handle": "uniquebeing404", "name": "uniquebeing404", "project": "ColorZAO" },
+    { "handle": "ghostmintops", "name": "Brandon", "project": "ghostmintops" },
+    { "handle": "jdwalka", "name": "JohnDaWalka", "project": "jdwalka" },
+    { "handle": "taydexfun", "name": "Halit Tayyar", "project": "TayDex - Creator-Led Prediction Markets" },
+    { "handle": "imanafrikah", "name": "IMan Afrikah", "project": "ZABAL Artwork" },
+    { "handle": "pyrofirezerox", "name": "pyrofirezerox", "project": "" },
+    { "handle": "breadcoop", "name": "breadcoop", "project": "Stacks" },
+    { "handle": "mettodo", "name": "mettodo", "project": "El Charro" },
+    { "handle": "pascaline", "name": "Pascaline", "project": "ZAO Artist Value Ledger" },
+    { "handle": "presdency", "name": "Presdency.eth", "project": "HOOD" },
+    { "handle": "dee-13", "name": "dee-13", "project": "Ledger" },
+    { "handle": "branth", "name": "Branth", "project": "KORRO / Korrocorp" }
+  ]
+}
