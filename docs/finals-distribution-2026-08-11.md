@@ -5,6 +5,20 @@
 The newsletter goes first (Paragraph, Year of the ZABAL Day 223), then its URL replaces
 every `[newsletter link]` placeholder below, then the thread, then X, then the DMs.
 
+## Correction applied 2026-08-11 - the vote is retired
+
+Voting came down on 2026-08-11. The month-two ballot existed to gauge what people thought of
+the projects and was never how the six get chosen, so leaving it up implied the opposite.
+`/vote` now redirects, the ballot is `status: closed`, and no tallies render anywhere.
+
+Every line that told someone to vote, or quoted their standing, has been rewritten. What
+replaces it is the points board at `/leaderboard`: points for joining the ZAOstock Space at
+11:30am EST, the zm stream at 5pm EST, answering the bonus brief in /zabal, and shipping an
+update. All 15 are on it, and every score is public.
+
+Also removed the per-person standing lines ("you are top of artist on 41"), which quoted vote
+totals that no longer exist.
+
 ## Correction applied 2026-08-11 - "building" was the wrong word
 
 The first version of this kit said, in the thread, the X post and all 14 DMs, that a build
@@ -18,11 +32,11 @@ change "building" would have changed the wrong setting and stayed invisible.
 
 ## Before anything goes out, tomorrow morning
 
-1. **Re-pull the standings.** The board is live and votes are still arriving, so tonight's
-   numbers will have drifted. Every figure below is a snapshot of 2026-08-10.
-   `curl "https://zabalgamez.com/api/submissions?feed=projects"` and the qv tallies.
+1. **Check the board.** `curl https://zabalgamez.com/api/points` - 15 people, and whatever
+   has been awarded so far. There are no vote tallies to re-pull any more.
 2. **Clear the two QA-test rows** at `/review` in the Farcaster Mini App. The post links
-   `/submissions`; a reader who counts sees 32 with "Iman QA Test" in it, not 30.
+   `/submissions`; a reader who counts sees 32 with "Iman QA Test" in it, not 30. (They are
+   already filtered off the ballot and the board, but they still sit on the projects page.)
 3. **Publish the newsletter**, copy its URL.
 4. **Paste that URL** over `[newsletter link]` in the thread, the X post, and all 14 DMs.
 
@@ -65,7 +79,7 @@ the board stays open until the night of sunday august 16.
 
 the six are picked not tallied.
 
-the vote at zabalgamez.com/vote helps me curate. it is one of the loudest things i read. it is not the decision.
+there is no vote. the ballot ran during month two to see what people thought of the projects and it is closed now. what counts is showing up - points go on the board at zabalgamez.com/leaderboard for the zaostock space at 11:30am est, the zm stream at 5pm est, the bonus brief in /zabal, and shipping an update.
 
 i would rather you hear that from me now than work it out from a list later.
 
@@ -97,7 +111,7 @@ six or fewer finalists means nobody falls below a cutoff.
 
 6/
 
-if your entry is still a draft it is invisible - not on the ballot, not in front of me. three of you.
+every entry is somewhere different and that is fine. if yours is not showing on the projects page, say so in /zabal and i will sort it.
 
 three of you are in that state right now.
 
@@ -121,7 +135,7 @@ the board stays open until the night of sunday august 16 and the six are picked 
 
 fifteen builders shipped thirty projects. 32 sessions, 31 teachers, 25 orgs, 31 recordings live and free.
 
-if your entry is still a draft it is invisible - not on the ballot, not in front of me. three of you. publish it this week.
+every entry is somewhere different and that is fine. if yours is not showing on the projects page, say so in /zabal and i will sort it.
 
 [newsletter link]
 ```
@@ -138,11 +152,11 @@ zm ladyrynnemesis
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are top of artist on 41 and third in creator on 9. the creator race is two votes wide.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -154,11 +168,11 @@ zm gesd01
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are second in artist on 5.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -170,11 +184,11 @@ zm kayonfire
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are top of builder on 37.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -186,11 +200,11 @@ zm uniquebeing404
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are second in builder on 10.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -202,11 +216,11 @@ zm ghostmintops
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are third in builder on 5 with more projects on the board than anyone.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -218,11 +232,11 @@ zm jdwalka
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are joint fourth in builder on 4.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -234,11 +248,11 @@ zm taydexfun
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are third in creator on 6 and the whole race is two votes wide.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -250,11 +264,11 @@ zm iman afrikah
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are second in creator on 8 and the whole race is two votes wide.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -266,11 +280,11 @@ zm pyrofirezerox
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: your project is on the board and has not picked up votes yet.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -282,11 +296,11 @@ zm breadcoop
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are in builder on 3.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -298,11 +312,11 @@ zm mettodo
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are in builder on 3.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -314,11 +328,11 @@ zm pascaline
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: you are in builder on 3.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -330,11 +344,11 @@ zm presdency.eth
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: your project is on the board and has not picked up votes yet.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
@@ -346,11 +360,11 @@ zm dee-13
 
 season 1 ends this month. six finalists, two per track, three finals the last week of august.
 
-where you stand right now: your project is on the board and has not picked up votes yet.
+you are on the board at zabalgamez.com/leaderboard along with everyone else who entered.
 
-the board stays open until the night of sunday august 16. the six are picked not tallied, so the vote helps me curate but it is not the decision.
+the board stays open until the night of sunday august 16. the six are picked not tallied. there is no vote any more - points go on the board for showing up, and everyone who entered is on it.
 
-if anything of yours is still a draft it is invisible. this is the week to publish it.
+if anything of yours is not showing on the projects page, say so and i will sort it.
 
 full detail here: [newsletter link]
 ```
