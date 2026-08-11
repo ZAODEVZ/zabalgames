@@ -1,8 +1,8 @@
 {
   "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-07-10",
+  "generated": "2026-08-11",
   "season": 1,
-  "count": 33,
+  "count": 32,
   "recordings": [
     {
       "type": "workshop",

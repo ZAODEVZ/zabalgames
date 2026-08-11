@@ -103,7 +103,7 @@ the receipts.
 
 32 sessions. 31 different people teaching. 25 organisations.
 
-33 recordings from season 1 are up. watch the whole thing for free: zabalgamez.com/recordings
+32 recordings from season 1 are up. watch the whole thing for free: zabalgamez.com/recordings
 
 6/
 
@@ -139,7 +139,7 @@ six finalists. two per track. three finals the last week of august.
 
 the board stays open until the night of sunday august 16 and the six are picked not tallied.
 
-fifteen builders shipped thirty projects. 32 sessions, 31 teachers, 25 orgs, 33 recordings live and free.
+fifteen builders shipped thirty projects. 32 sessions, 31 teachers, 25 orgs, 32 recordings live and free.
 
 every entry is somewhere different and that is fine. if yours is not showing on the projects page, say so in /zabal and i will sort it.
 
