@@ -127,27 +127,6 @@ async function trackStandings(req) {
       entries,
     };
   }));
-  // Season 1 voting is retired. The ballot ran during month two to gauge what people thought
-  // of the projects; it is not how the six finalists get chosen. Participation is what counts
-  // now, and the /zabal Empire board already measures it - so that is what the page shows.
-  // The per-track boards stay in the payload for internal use and are rendered nowhere.
-  const empire = await readEmpire(req, 10);
-  const activity = (empire && empire.ok && empire.configured)
-    ? {
-      label: 'Conversation',
-      scoreLabel: 'points',
-      count: (empire.entries || []).length,
-      entries: (empire.entries || []).slice(0, 10).map((e, index) => ({
-        rank: Number(e.rank) || index + 1,
-        name: e.username || e.displayName || 'Unknown',
-        username: String(e.username || '').replace(/^@+/, ''),
-        builder: '',
-        score: Number(e.score) || 0,
-        url: e.username ? 'https://farcaster.xyz/' + encodeURIComponent(e.username) : null,
-      })),
-    }
-    : null;
-
   return {
     ok: true,
     configured: boards.some((b) => b.configured),
@@ -155,7 +134,6 @@ async function trackStandings(req) {
     scoreLabel: 'votes',
     votingRetired: true,
     tracks: boards,
-    activity,
   };
 }
 
