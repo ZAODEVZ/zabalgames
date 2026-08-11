@@ -33,6 +33,7 @@
     .lb-wrap { max-width: 820px; margin: 0 auto; padding: 1.2rem 1rem 2.5rem; }
     /* Three track boards stack with their own spacing rather than per-panel margins. */
     #lb-boards { display: flex; flex-direction: column; gap: 1.15rem; }
+    .lb-note { border-left: 2px solid rgba(224,221,170,0.45); padding-left: 0.7rem; opacity: 0.9; }
     .lb-hero { padding: 2rem 0 1.2rem; }
     .lb-hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 8vw, 4rem); line-height: 0.98; letter-spacing: -0.035em; margin: 0.45rem 0 0.8rem; }
     .lb-hero h1 span { color: var(--standings-cream); }
@@ -104,7 +105,8 @@
     <header class="lb-hero">
       <div class="hero-eyebrow">Season 1 standings</div>
       <h1>Who is leading <span>right now</span>.</h1>
-      <p>Three tracks, three separate ballots, three boards. Every entry is listed - including the ones nobody has voted for yet. Two finalists come out of each track.</p>
+      <p>Three tracks, three separate ballots, three boards. Every entry is listed, including the ones nobody has voted for yet.</p>
+      <p class="lb-note">Six finalists, two per track. They are picked, not tallied - the vote is one of the loudest inputs, and it is not the decision. The board closes Sunday, August 16.</p>
       <div class="lb-actions">
         <a class="lb-action primary" href="/vote">Cast your ballot</a>
         <a class="lb-action" href="/recordings">Watch the recordings</a>
@@ -165,9 +167,10 @@
   function number(s) { var n = Number(s); return Number.isFinite(n) ? new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(n) : 'Pending'; }
   function plural(n, one, many) { return n === 1 ? one : many; }
 
-  // The top two of each track become finalists, so the cut line is drawn after rank 2
-  // rather than the usual top-three highlight.
-  var FINALIST_SLOTS = 2;
+  // Two finalists come out of each track, so the leading two are highlighted. This is
+  // deliberately NOT a qualification line: Zaal picks the six, and the ballot is an input
+  // to that call rather than the tally that decides it. The copy must not promise a seat.
+  var LEADING = 2;
 
   function rowHtml(row, scoreLabel) {
     var username = row.username || '';
@@ -182,7 +185,7 @@
     // board feel anonymous.
     var who = username ? '@' + username : (row.builder || '');
     var score = Number(row.score) || 0;
-    return '<li class="lb-row' + (row.rank <= FINALIST_SLOTS ? ' top' : '') + '">' +
+    return '<li class="lb-row' + (row.rank <= LEADING ? ' top' : '') + '">' +
       '<span class="lb-rank">' + esc(row.rank) + '</span>' +
       '<span class="lb-avatar" aria-hidden="true">' + esc(initial) + '</span>' +
       '<span class="lb-person">' + nameHtml + (who ? '<span class="lb-handle">' + esc(who) + '</span>' : '') + '</span>' +
@@ -193,7 +196,7 @@
     var entries = Array.isArray(board.entries) ? board.entries : [];
     var voters = Number(board.voters) || 0;
     var detail = entries.length
-      ? entries.length + ' ' + plural(entries.length, 'entry', 'entries') + ', ' + voters + ' ' + plural(voters, 'ballot', 'ballots') + ' cast. Top ' + FINALIST_SLOTS + ' become finalists.'
+      ? entries.length + ' ' + plural(entries.length, 'entry', 'entries') + ', ' + voters + ' ' + plural(voters, 'ballot', 'ballots') + ' cast so far.'
       : 'No entries on this ballot yet.';
     var body = entries.length
       ? entries.map(function (row) { return rowHtml(row, scoreLabel); }).join('')
