@@ -79,6 +79,16 @@
       "source": "/people",
       "destination": "/p",
       "permanent": false
+    },
+    {
+      "source": "/enter",
+      "destination": "/leaderboard",
+      "permanent": false
+    },
+    {
+      "source": "/enter.html",
+      "destination": "/leaderboard",
+      "permanent": false
     }
   ],
   "headers": [

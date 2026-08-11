@@ -49,32 +49,18 @@
 
   // Lean season directory: the core loop up top, everything else reachable via /links
   // (the full page index) and contextual buttons on the related pages.
+  // Season 1 is in its final week - the ballot closes Sunday, August 16, and six finalists
+  // present at the end of the month. The nav is cut to what actually matters right now:
+  // the standings, the ballot that decides them, and the archive. Every other page is
+  // still live and still reachable from /links - it is just not competing for attention.
   var GROUPS = [
-    ['The season', [
-      ['Home', '/'],
-      ['All the details', '/info.html'],
-      ['Schedule', '/#schedule'],
-      ['About', '/about.html'],
-      ['Changelog', '/changelog.html']
-    ]],
-    ['Build + vote', [
-      ['August Finals', '/august'],
-      ['Submit a project', '/submit'],
-      ["This season's projects", '/submissions'],
-      ["Vote for who's best", '/vote'],
-      ['Live build board', '/board'],
-      ['Enter the build', '/enter.html'],
-      ['The Finals', '/finals.html'],
-      ['Winners', '/winners.html']
-    ]],
-    ['Watch + read', [
-      ['Recordings', '/recordings'],
-      ['Session recaps', '/recaps.html'],
-      ['Speakers', '/speakers.html'],
-      ['Live now', '/live.html'],
-      ['The arcade', '/game']
+    ['Right now', [
+      ['Standings', '/leaderboard'],
+      ['Vote', '/vote'],
+      ['Recordings', '/recordings']
     ]],
     ['Connect', [
+      ['Home', '/'],
       ['/zabal channel', 'https://farcaster.xyz/~/channel/zabal'],
       ['Newsletter', 'https://paragraph.com/@thezao'],
       ['All links (full index)', '/links.html'],

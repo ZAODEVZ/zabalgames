@@ -31,6 +31,8 @@
   <style>
     :root { --standings-navy: #141e27; --standings-cream: #e0ddaa; }
     .lb-wrap { max-width: 820px; margin: 0 auto; padding: 1.2rem 1rem 2.5rem; }
+    /* Three track boards stack with their own spacing rather than per-panel margins. */
+    #lb-boards { display: flex; flex-direction: column; gap: 1.15rem; }
     .lb-hero { padding: 2rem 0 1.2rem; }
     .lb-hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 8vw, 4rem); line-height: 0.98; letter-spacing: -0.035em; margin: 0.45rem 0 0.8rem; }
     .lb-hero h1 span { color: var(--standings-cream); }
@@ -102,26 +104,19 @@
     <header class="lb-hero">
       <div class="hero-eyebrow">Season 1 standings</div>
       <h1>Who is leading <span>right now</span>.</h1>
-      <p>Ranked from the live season scoring source. The board uses builder QV results once real ballots exist, with the live Empire Builder board as the scored source before then.</p>
+      <p>Three tracks, three separate ballots, three boards. Every entry is listed - including the ones nobody has voted for yet. Two finalists come out of each track.</p>
       <div class="lb-actions">
-        <a class="lb-action primary" href="/submissions">View submissions</a>
-        <a class="lb-action" href="/enter">Join the build</a>
+        <a class="lb-action primary" href="/vote">Cast your ballot</a>
+        <a class="lb-action" href="/recordings">Watch the recordings</a>
       </div>
     </header>
 
-    <section class="lb-panel" aria-labelledby="standings-title">
-      <div class="lb-panel-head">
-        <div class="lb-title-row">
-          <h2 id="standings-title">Current standings</h2>
-          <span class="lb-source" id="lb-source">Checking source</span>
-        </div>
-        <p class="lb-detail" id="lb-detail">Loading the real scoring feed.</p>
-      </div>
-      <ol class="lb-list" id="lb-list" aria-live="polite" aria-busy="true">
-        <li class="lb-empty">Loading standings...</li>
-      </ol>
-      <div class="lb-foot">No scores are entered by hand. Rank and points refresh from the active API source.</div>
-    </section>
+    <div id="lb-boards" aria-live="polite" aria-busy="true">
+      <section class="lb-panel">
+        <div class="lb-panel-head"><p class="lb-detail">Loading the live ballots.</p></div>
+        <ol class="lb-list"><li class="lb-empty">Loading standings...</li></ol>
+      </section>
+    </div>
   </div>
 </main>
 
@@ -160,10 +155,8 @@
 <script>
 (function () {
   'use strict';
-  var list = document.getElementById('lb-list');
-  var source = document.getElementById('lb-source');
-  var detail = document.getElementById('lb-detail');
-  if (!list || !source || !detail) return;
+  var boards = document.getElementById('lb-boards');
+  if (!boards) return;
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>\"']/g, function (c) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', "'": '&#39;' }[c];
@@ -172,56 +165,64 @@
   function number(s) { var n = Number(s); return Number.isFinite(n) ? new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(n) : 'Pending'; }
   function plural(n, one, many) { return n === 1 ? one : many; }
 
-  function sourceCopy(data) {
-    source.textContent = data.sourceLabel || 'Live scoring';
-    if (data.source === 'qv') {
-      var voters = data.qv ? Number(data.qv.voters) || 0 : 0;
-      detail.textContent = 'Builder QV results from ' + voters + ' ' + plural(voters, 'voter', 'voters') + '. Scores are aggregate votes from the live ballot.';
-      return;
-    }
-    if (data.source === 'empire') {
-      var qv = data.qv || {};
-      var qvStatus = qv.status || 'pending';
-      var qvResults = Number(qv.results) || 0;
-      detail.textContent = 'Live /zabal activity points from Empire Builder. The builder QV ballot is ' + qvStatus + ' with ' + qvResults + ' scored ' + plural(qvResults, 'result', 'results') + ', so the board has not switched to QV yet.';
-      return;
-    }
-    detail.textContent = 'No scored source is available yet. The board will update when real points or ballots exist.';
+  // The top two of each track become finalists, so the cut line is drawn after rank 2
+  // rather than the usual top-three highlight.
+  var FINALIST_SLOTS = 2;
+
+  function rowHtml(row, scoreLabel) {
+    var username = row.username || '';
+    var name = row.name || username || 'Name pending';
+    var link = safeUrl(row.url) || (username ? 'https://farcaster.xyz/' + encodeURIComponent(username) : '');
+    var initial = name ? name.charAt(0).toUpperCase() : '';
+    var nameHtml = link
+      ? '<a class="lb-name" href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(name) + '</a>'
+      : '<span class="lb-name">' + esc(name) + '</span>';
+    // Prefer the Farcaster handle, fall back to the submitted builder name. Most entries
+    // have one or the other, and a row with a project but no person is what made the old
+    // board feel anonymous.
+    var who = username ? '@' + username : (row.builder || '');
+    var score = Number(row.score) || 0;
+    return '<li class="lb-row' + (row.rank <= FINALIST_SLOTS ? ' top' : '') + '">' +
+      '<span class="lb-rank">' + esc(row.rank) + '</span>' +
+      '<span class="lb-avatar" aria-hidden="true">' + esc(initial) + '</span>' +
+      '<span class="lb-person">' + nameHtml + (who ? '<span class="lb-handle">' + esc(who) + '</span>' : '') + '</span>' +
+      '<span class="lb-score">' + esc(number(score)) + '<small>' + esc(scoreLabel) + '</small></span></li>';
+  }
+
+  function boardHtml(board, scoreLabel) {
+    var entries = Array.isArray(board.entries) ? board.entries : [];
+    var voters = Number(board.voters) || 0;
+    var detail = entries.length
+      ? entries.length + ' ' + plural(entries.length, 'entry', 'entries') + ', ' + voters + ' ' + plural(voters, 'ballot', 'ballots') + ' cast. Top ' + FINALIST_SLOTS + ' become finalists.'
+      : 'No entries on this ballot yet.';
+    var body = entries.length
+      ? entries.map(function (row) { return rowHtml(row, scoreLabel); }).join('')
+      : '<li class="lb-empty">No entries on this ballot yet.</li>';
+    return '<section class="lb-panel">' +
+      '<div class="lb-panel-head"><div class="lb-title-row">' +
+      '<h2>' + esc(board.label) + '</h2>' +
+      '<span class="lb-source">' + esc(board.status === 'open' ? 'Voting open' : (board.status || 'Pending')) + '</span>' +
+      '</div><p class="lb-detail">' + esc(detail) + '</p></div>' +
+      '<ol class="lb-list">' + body + '</ol></section>';
   }
 
   function render(data) {
-    sourceCopy(data);
-    var rows = Array.isArray(data.entries) ? data.entries : [];
-    if (!rows.length) {
-      list.innerHTML = '<li class="lb-empty">No scored standings are available yet.</li>';
-      list.setAttribute('aria-busy', 'false');
-      return;
-    }
-    list.innerHTML = rows.map(function (row, index) {
-      var username = row.username || '';
-      var name = row.displayName || username || 'Name pending';
-      var profile = safeUrl(row.profileUrl) || (username ? 'https://farcaster.xyz/' + encodeURIComponent(username) : '');
-      var pfp = safeUrl(row.pfpUrl);
-      var initial = name ? name.charAt(0).toUpperCase() : '';
-      var avatar = pfp ? '<img src="' + esc(pfp) + '" alt="" loading="lazy">' : esc(initial);
-      var nameHtml = profile ? '<a class="lb-name" href="' + esc(profile) + '" target="_blank" rel="noopener">' + esc(name) + '</a>' : '<span class="lb-name">' + esc(name) + '</span>';
-      return '<li class="lb-row' + (index < 3 ? ' top' : '') + '">' +
-        '<span class="lb-rank">' + esc(row.rank || index + 1) + '</span>' +
-        '<span class="lb-avatar" aria-hidden="true">' + avatar + '</span>' +
-        '<span class="lb-person">' + nameHtml + (username ? '<span class="lb-handle">@' + esc(username) + '</span>' : '') + '</span>' +
-        '<span class="lb-score">' + esc(number(row.score)) + '<small>' + esc(data.scoreLabel || 'points') + '</small></span></li>';
-    }).join('');
-    list.setAttribute('aria-busy', 'false');
+    var list = Array.isArray(data.tracks) ? data.tracks : [];
+    boards.innerHTML = list.length
+      ? list.map(function (b) { return boardHtml(b, data.scoreLabel || 'votes'); }).join('') +
+        '<div class="lb-foot">Nothing here is entered by hand. Every entry on each ballot is listed, including entries with no votes yet, and the boards refresh from the live ballot.</div>'
+      : '<section class="lb-panel"><ol class="lb-list"><li class="lb-empty">No ballots are available yet.</li></ol></section>';
+    boards.setAttribute('aria-busy', 'false');
   }
 
-  fetch('/api/leaderboard?format=standings&limit=50', { cache: 'no-store' })
+  fetch('/api/leaderboard?format=tracks', { cache: 'no-store' })
     .then(function (response) { return response.json(); })
     .then(function (data) { if (!data || !data.ok) throw new Error('standings unavailable'); render(data); })
     .catch(function () {
-      source.textContent = 'Standings pending';
-      detail.textContent = 'The scoring API could not be reached. No fallback scores are shown.';
-      list.innerHTML = '<li class="lb-empty">Standings are unavailable right now.</li>';
-      list.setAttribute('aria-busy', 'false');
+      boards.innerHTML = '<section class="lb-panel"><div class="lb-panel-head">' +
+        '<p class="lb-detail">The ballot API could not be reached. No fallback scores are shown.</p></div>' +
+        '<ol class="lb-list"><li class="lb-empty">Standings are unavailable right now.</li></ol></section>';
+      boards.setAttribute('aria-busy', 'false');
     });
 })();
 </script>

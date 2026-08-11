@@ -54,11 +54,11 @@ async function readJson(response) {
   try { return await response.json(); } catch { return null; }
 }
 
-async function readQv(req) {
+async function readQv(req, track) {
   try {
     const url = new URL(req.url);
     url.pathname = '/api/qv-vote';
-    url.search = '?track=builder&results=1';
+    url.search = '?track=' + encodeURIComponent(track || 'builder') + '&results=1';
     const response = await qvHandler(new Request(url, { method: 'GET', headers: req.headers }));
     return await readJson(response);
   } catch { return null; }
@@ -87,6 +87,53 @@ async function readEmpire(req, limit) {
     const response = await empireHandler(new Request(url, { method: 'GET', headers: req.headers }));
     return await readJson(response);
   } catch { return null; }
+}
+
+// One standings board per track. The season runs three separate ballots, so a single
+// merged list was never the right shape - it showed the builder ballot only and left the
+// artist and creator tracks with no public standings at all.
+const TRACK_ORDER = ['artist', 'builder', 'creator'];
+const TRACK_LABELS = { artist: 'Artist', builder: 'Builder', creator: 'Creator' };
+
+async function trackStandings(req) {
+  const boards = await Promise.all(TRACK_ORDER.map(async (track) => {
+    const qv = await readQv(req, track);
+    const rows = (qv && Array.isArray(qv.results)) ? qv.results : [];
+    let lastScore = null;
+    let lastRank = 0;
+    const entries = rows.map((row, index) => {
+      const score = Number(row.votes) || 0;
+      // Equal scores share a rank. With several candidates on zero votes, sequential
+      // numbering would invent an order the ballot does not support.
+      const rank = (score === lastScore) ? lastRank : index + 1;
+      lastScore = score;
+      lastRank = rank;
+      return {
+        rank,
+        name: String(row.name || '').trim() || ('Project ' + row.id),
+        builder: String(row.builder || '').trim(),
+        username: String(row.handle || '').replace(/^@+/, ''),
+        score,
+        url: row.url || null,
+      };
+    });
+    return {
+      track,
+      label: TRACK_LABELS[track],
+      status: (qv && qv.status) || null,
+      configured: !!(qv && qv.ok && qv.configured),
+      voters: Number(qv && qv.voters) || 0,
+      count: entries.length,
+      entries,
+    };
+  }));
+  return {
+    ok: true,
+    configured: boards.some((b) => b.configured),
+    status: (boards.find((b) => b.status) || {}).status || null,
+    scoreLabel: 'votes',
+    tracks: boards,
+  };
 }
 
 async function seasonStandings(req, limit) {
@@ -142,6 +189,9 @@ async function seasonStandings(req, limit) {
 export default async function handler(req) {
   const url = new URL(req.url);
   const format = url.searchParams.get('format') || '';
+  if (format === 'tracks') {
+    return json(await trackStandings(req), 30);
+  }
   if (format === 'standings') {
     return json(await seasonStandings(req, clamp(url.searchParams.get('limit'), 1, 100, 50)), 30);
   }
