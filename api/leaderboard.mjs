@@ -132,6 +132,7 @@ async function trackStandings(req) {
     configured: boards.some((b) => b.configured),
     status: (boards.find((b) => b.status) || {}).status || null,
     scoreLabel: 'votes',
+    votingRetired: true,
     tracks: boards,
   };
 }

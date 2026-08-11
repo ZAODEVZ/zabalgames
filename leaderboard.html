@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Season Standings - ZABAL Gamez</title>
-  <meta name="description" content="Live ZABAL Gamez Season 1 standings from real QV results and Empire Builder points.">
+  <meta name="description" content="ZABAL Gamez Season 1 - six finalists, two per track, presenting at the end of August.">
   <link rel="canonical" href="https://zabalgamez.com/leaderboard">
   <meta property="og:title" content="Season Standings - ZABAL Gamez">
-  <meta property="og:description" content="See who is leading ZABAL Gamez Season 1 from the live scoring source.">
+  <meta property="og:description" content="Six finalists, two per track, presenting at the end of August.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zabalgamez.com/leaderboard">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
@@ -16,7 +16,7 @@
   <meta property="og:image:alt" content="ZABAL Gamez Season 1">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Season Standings - ZABAL Gamez">
-  <meta name="twitter:description" content="Live Season 1 standings from real ZABAL Gamez scoring data.">
+  <meta name="twitter:description" content="Six finalists, two per track, presenting at the end of August.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the standings","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/leaderboard","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#141e27"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
@@ -94,8 +94,7 @@
     <div class="arcade-nav-menu">
       <a href="/submissions">Submissions</a>
       <a href="/live">Live</a>
-      <a href="/enter">Join</a>
-      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
+            <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
     </div>
   </div>
 </nav>
@@ -103,20 +102,20 @@
 <main id="main">
   <div class="lb-wrap">
     <header class="lb-hero">
-      <div class="hero-eyebrow">Season 1 standings</div>
-      <h1>Who is leading <span>right now</span>.</h1>
-      <p>Three tracks, three separate ballots, three boards. Every entry is listed, including the ones nobody has voted for yet.</p>
-      <p class="lb-note">Six finalists, two per track. They are picked, not tallied - the vote is one of the loudest inputs, and it is not the decision. The board closes Sunday, August 16.</p>
+      <div class="hero-eyebrow">Season 1</div>
+      <h1>Who is showing up <span>right now</span>.</h1>
+      <p>Six finalists, two per track, presenting in the last week of August. They are picked, not tallied.</p>
+      <p class="lb-note">There is no vote. The ballot ran during month two to find out what people thought of the projects, and it was never how the six get chosen. What counts now is the work and the conversation around it - this week, that means the bonus brief on how fans fund an event and share in it. Post it in /zabal or it does not count.</p>
       <div class="lb-actions">
-        <a class="lb-action primary" href="/vote">Cast your ballot</a>
+        <a class="lb-action primary" href="/submissions">See the projects</a>
         <a class="lb-action" href="/recordings">Watch the recordings</a>
       </div>
     </header>
 
     <div id="lb-boards" aria-live="polite" aria-busy="true">
       <section class="lb-panel">
-        <div class="lb-panel-head"><p class="lb-detail">Loading the live ballots.</p></div>
-        <ol class="lb-list"><li class="lb-empty">Loading standings...</li></ol>
+        <div class="lb-panel-head"><p class="lb-detail">Loading.</p></div>
+        <ol class="lb-list"><li class="lb-empty">Loading...</li></ol>
       </section>
     </div>
   </div>
@@ -138,7 +137,6 @@
     </nav>
     <nav class="arcade-foot-col" aria-label="Season">
       <h4>Season</h4>
-      <a href="/enter">Enter the Build</a>
       <a href="/submissions">Submissions</a>
       <a href="/board">Build Board</a>
       <a href="/finals">Finals</a>
@@ -160,73 +158,19 @@
   var boards = document.getElementById('lb-boards');
   if (!boards) return;
 
-  function esc(s) { return String(s == null ? '' : s).replace(/[&<>\"']/g, function (c) {
-    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', "'": '&#39;' }[c];
-  }); }
-  function safeUrl(s) { s = String(s || ''); return /^https?:\/\//i.test(s) ? s : ''; }
-  function number(s) { var n = Number(s); return Number.isFinite(n) ? new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(n) : 'Pending'; }
-  function plural(n, one, many) { return n === 1 ? one : many; }
-
-  // Two finalists come out of each track, so the leading two are highlighted. This is
-  // deliberately NOT a qualification line: Zaal picks the six, and the ballot is an input
-  // to that call rather than the tally that decides it. The copy must not promise a seat.
-  var LEADING = 2;
-
-  function rowHtml(row, scoreLabel) {
-    var username = row.username || '';
-    var name = row.name || username || 'Name pending';
-    var link = safeUrl(row.url) || (username ? 'https://farcaster.xyz/' + encodeURIComponent(username) : '');
-    var initial = name ? name.charAt(0).toUpperCase() : '';
-    var nameHtml = link
-      ? '<a class="lb-name" href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(name) + '</a>'
-      : '<span class="lb-name">' + esc(name) + '</span>';
-    // Prefer the Farcaster handle, fall back to the submitted builder name. Most entries
-    // have one or the other, and a row with a project but no person is what made the old
-    // board feel anonymous.
-    var who = username ? '@' + username : (row.builder || '');
-    var score = Number(row.score) || 0;
-    return '<li class="lb-row' + (row.rank <= LEADING ? ' top' : '') + '">' +
-      '<span class="lb-rank">' + esc(row.rank) + '</span>' +
-      '<span class="lb-avatar" aria-hidden="true">' + esc(initial) + '</span>' +
-      '<span class="lb-person">' + nameHtml + (who ? '<span class="lb-handle">' + esc(who) + '</span>' : '') + '</span>' +
-      '<span class="lb-score">' + esc(number(score)) + '<small>' + esc(scoreLabel) + '</small></span></li>';
-  }
-
-  function boardHtml(board, scoreLabel) {
-    var entries = Array.isArray(board.entries) ? board.entries : [];
-    var voters = Number(board.voters) || 0;
-    var detail = entries.length
-      ? entries.length + ' ' + plural(entries.length, 'entry', 'entries') + ', ' + voters + ' ' + plural(voters, 'ballot', 'ballots') + ' cast so far.'
-      : 'No entries on this ballot yet.';
-    var body = entries.length
-      ? entries.map(function (row) { return rowHtml(row, scoreLabel); }).join('')
-      : '<li class="lb-empty">No entries on this ballot yet.</li>';
-    return '<section class="lb-panel">' +
-      '<div class="lb-panel-head"><div class="lb-title-row">' +
-      '<h2>' + esc(board.label) + '</h2>' +
-      '<span class="lb-source">' + esc(board.status === 'open' ? 'Voting open' : (board.status || 'Pending')) + '</span>' +
-      '</div><p class="lb-detail">' + esc(detail) + '</p></div>' +
-      '<ol class="lb-list">' + body + '</ol></section>';
-  }
-
-  function render(data) {
-    var list = Array.isArray(data.tracks) ? data.tracks : [];
-    boards.innerHTML = list.length
-      ? list.map(function (b) { return boardHtml(b, data.scoreLabel || 'votes'); }).join('') +
-        '<div class="lb-foot">Nothing here is entered by hand. Every entry on each ballot is listed, including entries with no votes yet, and the boards refresh from the live ballot.</div>'
-      : '<section class="lb-panel"><ol class="lb-list"><li class="lb-empty">No ballots are available yet.</li></ol></section>';
-    boards.setAttribute('aria-busy', 'false');
-  }
-
-  fetch('/api/leaderboard?format=tracks', { cache: 'no-store' })
-    .then(function (response) { return response.json(); })
-    .then(function (data) { if (!data || !data.ok) throw new Error('standings unavailable'); render(data); })
-    .catch(function () {
-      boards.innerHTML = '<section class="lb-panel"><div class="lb-panel-head">' +
-        '<p class="lb-detail">The ballot API could not be reached. No fallback scores are shown.</p></div>' +
-        '<ol class="lb-list"><li class="lb-empty">Standings are unavailable right now.</li></ol></section>';
-      boards.setAttribute('aria-busy', 'false');
-    });
+  // Season 1 voting is retired: the ballot ran during month two to gauge what people
+  // thought of the projects, and it was never how the six finalists get chosen. No vote
+  // totals render here. The replacement board - everyone who entered, their project, and
+  // where it is at - is being built, so this says that plainly rather than showing a
+  // number nobody stands behind. Static for now; it fetches nothing.
+  boards.innerHTML = '<section class="lb-panel">' +
+    '<div class="lb-panel-head"><div class="lb-title-row">' +
+    '<h2>The board is being rebuilt</h2><span class="lb-source">Soon</span></div>' +
+    '<p class="lb-detail">Everyone who entered is on it, with their project and where it ' +
+    'is at. It goes up this week.</p></div>' +
+    '<ol class="lb-list"><li class="lb-empty">In the meantime, every project is on the ' +
+    '<a href="/submissions">submissions page</a>.</li></ol></section>';
+  boards.setAttribute('aria-busy', 'false');
 })();
 </script>
 <script defer src="/assets/site-nav.js"></script>
