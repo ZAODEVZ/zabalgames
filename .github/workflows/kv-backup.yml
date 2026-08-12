@@ -70,12 +70,15 @@ jobs:
           d = json.load(open('/tmp/export.json'))
           json.dump(d, open('backups/kv-latest.json','w'), indent=1, sort_keys=True)
           "
-          if git diff --quiet backups/kv-latest.json; then
+          git config user.name  "zao-backup"
+          git config user.email "info@thezao.com"
+          # Stage FIRST, then compare the index. `git diff` against an untracked file
+          # reports no change and exits 0, so the original could never make its own
+          # first commit - it reported success while committing nothing.
+          git add backups/kv-latest.json
+          if git diff --cached --quiet -- backups/kv-latest.json; then
             echo "No change since the last backup."
             exit 0
           fi
-          git config user.name  "zao-backup"
-          git config user.email "info@thezao.com"
-          git add backups/kv-latest.json
           git commit -m "chore(backup): nightly KV export"
           git push
