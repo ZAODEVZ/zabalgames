@@ -89,13 +89,23 @@ jobs:
           print('export ok: %d keys, types=%s' % (n, d.get('types')))
           PY
 
+      - name: Redact before anything touches a public repo
+        run: |
+          # THIS REPO IS PUBLIC. The verify step above deliberately runs against the
+          # COMPLETE export, so its completeness assertions stay meaningful - but the
+          # complete export is not what gets committed. The first two runs
+          # (2026-08-12 01:07:57Z, 01:11:30Z) published 11 entrants' personal email
+          # addresses and 50 per-voter ballots before this step existed.
+          #
+          # The script exits non-zero if any non-allowlisted address or dropped key
+          # survives, so a redactor that quietly no-ops fails the job instead of
+          # producing a commit that looks reviewed.
+          set -o pipefail
+          python3 scripts/redact-export.py /tmp/export.json /tmp/export.redacted.json
+
       - name: Write and commit
         run: |
-          python3 -c "
-          import json
-          d = json.load(open('/tmp/export.json'))
-          json.dump(d, open('backups/kv-latest.json','w'), indent=1, sort_keys=True)
-          "
+          cp /tmp/export.redacted.json backups/kv-latest.json
           git config user.name  "zao-backup"
           git config user.email "info@thezao.com"
           # Stage FIRST, then compare the index. `git diff` against an untracked file
