@@ -1,62 +1,6 @@
 {
- "count": 55,
+ "count": 52,
  "data": {
-  "qv:ballots:artist": [
-   "1079922",
-   "{\"5\":6,\"10\":5}",
-   "325473",
-   "{\"5\":4,\"10\":9}",
-   "1040628",
-   "{\"10\":1}",
-   "511692",
-   "{\"5\":4,\"10\":9}",
-   "516505",
-   "{\"10\":1}",
-   "277560",
-   "{\"5\":3,\"10\":2,\"19\":5}",
-   "297645",
-   "{\"5\":1}",
-   "971518",
-   "{\"5\":4,\"10\":9}",
-   "19339",
-   "{\"5\":2,\"10\":2}",
-   "369863",
-   "{\"5\":1,\"10\":3}"
-  ],
-  "qv:ballots:builder": [
-   "1136823",
-   "{\"2\":2,\"11\":9}",
-   "1112072",
-   "{\"11\":7}",
-   "369863",
-   "{\"2\":1,\"4\":1,\"11\":2,\"12\":2,\"13\":2,\"14\":2,\"15\":2,\"b:jdwalka\":2,\"b:ghostmintops\":2,\"b:branth\":3}",
-   "1057869",
-   "{\"4\":4,\"b:jdwalka\":1}",
-   "19339",
-   "{\"2\":1,\"4\":1,\"11\":1,\"12\":1,\"13\":1,\"14\":1,\"b:ghostmintops\":1,\"b:branth\":1,\"b:jdwalka\":1}",
-   "849116",
-   "{\"17\":10}",
-   "971518",
-   "{}",
-   "1088459",
-   "{\"2\":1,\"11\":8,\"15\":1,\"b:ghostmintops\":2}",
-   "1102870",
-   "{\"11\":10}"
-  ],
-  "qv:ballots:creator": [
-   "516505",
-   "{\"9\":1}",
-   "671554",
-   "{\"7\":1,\"8\":1,\"9\":2}",
-   "971518",
-   "{\"6\":3,\"7\":3,\"8\":2,\"9\":3}",
-   "1057869",
-   "{\"7\":1}",
-   "19339",
-   "{\"6\":1,\"7\":1,\"8\":1,\"9\":1}",
-   "369863",
-   "{\"6\":2,\"7\":2,\"8\":2,\"9\":2}"
-  ],
   "qv:tally:artist": [
    "19",
    "5",
@@ -554,7 +498,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "19184380-ec53-436e-822a-2586c471d17b",
-   "email": "ladyrynnemesis6@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "LadyrynNemesis",
@@ -586,7 +530,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "91866864-107d-44cc-8af4-0edb07627006",
-   "email": "kayafterdark@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "@kayonfire",
@@ -618,7 +562,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "b415c4a8-d02c-49ce-8214-c09265275592",
-   "email": "mettodo@protonmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "@mettodo",
@@ -653,7 +597,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "ef9b6e72-2c41-4603-90c0-94f1e73b9e97",
-   "email": "mettodo@protonmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "@breadcoop",
@@ -685,7 +629,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "4de6fc59-9698-4947-a0b5-1f1e51b7f141",
-   "email": "ladyrynnemesis6@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "LadyrynNemesis",
@@ -717,7 +661,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "b851808f-ffeb-4d35-b446-4ceaa12d97d1",
-   "email": "pascalineazodo1@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "Pascaline",
@@ -749,7 +693,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "308ed8c8-9b60-402f-ac6d-6f4842574866",
-   "email": "dorcasmalgwi30@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "dee-13",
@@ -781,7 +725,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "fa040385-5fc5-497c-8f02-0cec2c3e4242",
-   "email": "beingunique049@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "@uniquebeing404",
@@ -813,7 +757,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "33accfe2-4899-4738-82db-254152e4dca6",
-   "email": "web3.xyzy@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "Presdency.eth",
@@ -845,7 +789,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "4cdbe58b-88ae-470e-92af-7db70b041c69",
-   "email": "gesd01100@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "https://x.com/Gesd01",
@@ -959,7 +903,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "23629a91-42f8-4b9e-8168-6b9cf111528a",
-   "email": "nemesis6@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "n3mesis",
@@ -1057,7 +1001,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "34ad9c69-501f-49f0-b2bc-4f60a4b97737",
-   "email": "music.imanafrikah@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "IMan Afrikah",
@@ -1089,7 +1033,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "1443db50-a7a1-4a8e-85a8-a613cb104282",
-   "email": "info@taydex.fun",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "Halit Tayyar / @taydexfun",
@@ -1121,7 +1065,7 @@
    "attachments": [],
    "consent": true,
    "editToken": "c09db2d9-01be-42e6-a9d3-6f5236e59ec2",
-   "email": "ladyrynnemesis6@gmail.com",
+   "email": "[redacted-email]",
    "fid": null,
    "fields": {
     "builderName": "LadyrynNemesis",
@@ -1274,6 +1218,14 @@
  "generated": "2026-08-12T01:11:29.887Z",
  "ok": true,
  "prefix": null,
+ "redacted": {
+  "emails_redacted": 14,
+  "keys_dropped": {
+   "qv:ballots:": 3
+  },
+  "keys_kept": 52,
+  "note": "This repository is public. Per-voter ballots, auth tokens/nonces and entrant email addresses are removed before commit. For a complete restore use GET /api/export with the admin key."
+ },
  "truncated": false,
  "types": {
   "hash": 11,
