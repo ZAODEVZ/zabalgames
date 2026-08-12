@@ -1,0 +1,81 @@
+# Nightly KV backup.
+#
+# Every trace of ZABAL Gamez Season 1 lives only in Upstash KV. This pulls the whole
+# keyspace through /api/export and commits it, so the repo always holds a restorable
+# copy and the vendor stops being a single point of failure.
+#
+# Requires one repo secret: ADMIN_KEY (the same value api/../lib/auth.mjs accepts).
+name: KV backup
+
+on:
+  schedule:
+    - cron: '20 5 * * *' # 05:20 UTC daily, well clear of deploy traffic
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch the export
+        env:
+          ADMIN_KEY: ${{ secrets.ADMIN_KEY }}
+        run: |
+          set -o pipefail
+          if [ -z "$ADMIN_KEY" ]; then
+            echo "ADMIN_KEY secret is not set - refusing to write an empty backup."
+            exit 1
+          fi
+          mkdir -p backups
+          CODE=$(curl -sS -o /tmp/export.json -w '%{http_code}' \
+            -H "Authorization: Bearer $ADMIN_KEY" \
+            "https://zabalgamez.com/api/export")
+          echo "HTTP $CODE"
+          if [ "$CODE" != "200" ]; then
+            echo "Export did not return 200. Not writing a backup."
+            head -c 400 /tmp/export.json || true
+            exit 1
+          fi
+
+      - name: Verify the export is real before committing it
+        run: |
+          # A backup that is syntactically fine but empty is the failure mode that
+          # matters - it looks green for months and restores nothing.
+          python3 - <<'PY'
+          import json, sys
+          d = json.load(open('/tmp/export.json'))
+          if not d.get('ok'):
+              sys.exit('export reported ok=false: %s' % d.get('error'))
+          n = d.get('count') or 0
+          if n < 20:
+              sys.exit('only %d keys - refusing to overwrite a good backup with a bad one' % n)
+          if d.get('truncated'):
+              print('WARNING: export was truncated at the key cap')
+          # The season must actually be in there.
+          keys = d.get('data') or {}
+          need = [k for k in ('zabal:subs:recent',) if k not in keys]
+          if need:
+              sys.exit('missing expected key(s): %s' % need)
+          print('export ok: %d keys, types=%s' % (n, d.get('types')))
+          PY
+
+      - name: Write and commit
+        run: |
+          python3 -c "
+          import json
+          d = json.load(open('/tmp/export.json'))
+          json.dump(d, open('backups/kv-latest.json','w'), indent=1, sort_keys=True)
+          "
+          if git diff --quiet backups/kv-latest.json; then
+            echo "No change since the last backup."
+            exit 0
+          fi
+          git config user.name  "zao-backup"
+          git config user.email "info@thezao.com"
+          git add backups/kv-latest.json
+          git commit -m "chore(backup): nightly KV export"
+          git push
