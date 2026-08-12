@@ -196,7 +196,10 @@ function ownerView(s) {
   return out;
 }
 
-async function readStoredFeed(index, limit, status) {
+// `showFixtures` is admin-only. The QA rows must be VISIBLE at /review or they cannot be
+// deleted there - the public filter was hiding them from the one screen that can remove
+// them. Callers pass it ONLY after verifyAdmin, and that response is never cached.
+async function readStoredFeed(index, limit, status, showFixtures) {
   const allow = Array.isArray(status) ? status : (status ? [status] : null);
   let ids = [];
   try { const r = await kvPipeline([['ZREVRANGE', index, '0', String(limit - 1)]]); ids = (r[0] && r[0].result) || []; }
@@ -206,7 +209,7 @@ async function readStoredFeed(index, limit, status) {
     const r = await kvPipeline(ids.map((id) => ['GET', `zabal:sub:v1:${id}`]));
     return r.map((row) => { try { return row && row.result ? JSON.parse(row.result) : null; } catch { return null; } })
       .filter((s) => s && (!allow || allow.indexOf(s.status) >= 0))
-      .filter((s) => !QA_FIXTURES.has(String(s.id)))
+      .filter((s) => showFixtures || !QA_FIXTURES.has(String(s.id)))
       .map(publicView).filter(Boolean);
   } catch { return []; }
 }
@@ -365,9 +368,14 @@ export default async function handler(req) {
     }
 
     // public recent feed (live = approved + pending, under auto-accept)
+    // An admin gets the QA fixtures too, because /review reads this feed and cannot delete
+    // a row it is not shown. mkJson only varies on Origin, not Authorization, so the admin
+    // variant is returned with no-store - a cached copy could otherwise leak to anonymous.
     if (url.searchParams.get('feed') === 'recent') {
       const limit = Math.min(60, Math.max(1, Number(url.searchParams.get('limit')) || 30));
-      return json({ ok: true, configured: true, submissions: await readStoredFeed('zabal:subs:recent', limit, ['approved', 'pending']) }, 20);
+      const isAdmin = (await verifyAdmin(req, DOMAIN)).ok;
+      const rows = await readStoredFeed('zabal:subs:recent', limit, ['approved', 'pending'], isAdmin);
+      return json({ ok: true, configured: true, submissions: rows }, isAdmin ? 0 : 20);
     }
 
     return json({ ok: false, error: 'bad request' });
