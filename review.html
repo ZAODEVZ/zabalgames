@@ -163,7 +163,13 @@
     // The feed itself is the same public-safe data /submissions shows; this page still
     // requires a verified admin (see checkAdminThenLoad) before it fetches or renders
     // anything, so the moderation console shell is never visible to a random visitor.
-    fetch('/api/submissions?feed=recent&limit=60', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+    // Send admin auth: the feed returns the QA fixtures only to a verified admin, and
+    // those rows are exactly the ones this console exists to delete.
+    var url = '/api/submissions?feed=recent&limit=60';
+    var pf = inMiniApp
+      ? window.ZABAL.authedFetch(url, null, 'GET')
+      : fetch(url, { cache: 'no-store', headers: { 'Authorization': 'Bearer ' + key() } }).then(function (r) { return r.json(); });
+    pf.then(function (d) {
       if (!d || d.ok === false) { setStatus('Could not load the board.'); return; }
       var rows = (d && d.submissions) || [];
       if (!rows.length) { listEl.innerHTML = '<p class="empty">No submissions on the board yet.</p>'; setStatus(''); return; }
