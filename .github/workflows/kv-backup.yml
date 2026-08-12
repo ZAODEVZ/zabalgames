@@ -51,15 +51,41 @@ jobs:
           if not d.get('ok'):
               sys.exit('export reported ok=false: %s' % d.get('error'))
           n = d.get('count') or 0
-          if n < 20:
-              sys.exit('only %d keys - refusing to overwrite a good backup with a bad one' % n)
           if d.get('truncated'):
-              print('WARNING: export was truncated at the key cap')
-          # The season must actually be in there.
+              sys.exit('export was truncated at the key cap - it is incomplete by definition')
           keys = d.get('data') or {}
-          need = [k for k in ('zabal:subs:recent',) if k not in keys]
-          if need:
-              sys.exit('missing expected key(s): %s' % need)
+
+          # Assert the SHAPE, not a floor. A floor of 20 passed a backup that was
+          # missing a third of the submissions; only comparing against the index
+          # catches a partial export.
+          need = ['zabal:subs:recent', 'zabal:subs:counter']
+          missing = [k for k in need if k not in keys]
+          if missing:
+              sys.exit('missing structural key(s): %s' % missing)
+
+          # zabal:subs:recent is the index of every submission id. Every id it lists
+          # must have its document in the backup, or the backup restores an index
+          # pointing at nothing.
+          index = keys.get('zabal:subs:recent') or []
+          ids = [index[i] for i in range(0, len(index), 2)] if index and not isinstance(index[0], dict) else []
+          docs = {k.split(':')[-1] for k in keys if k.startswith('zabal:sub:v1:')}
+          orphans = [i for i in ids if str(i) not in docs]
+          if orphans:
+              sys.exit('%d id(s) in zabal:subs:recent have no document: %s' % (len(orphans), orphans[:5]))
+          print('submissions: %d indexed, %d documents, 0 orphans' % (len(ids), len(docs)))
+
+          # The ballots are the only irreplaceable per-person data. Their absence is
+          # worth failing on, because nothing else records who voted for what.
+          if not any(k.startswith('qv:tally:') for k in keys):
+              sys.exit('no qv:tally:* keys - the ballot history is not in this backup')
+
+          # points:tally only exists once a point has been awarded. Absence is normal
+          # BEFORE the first award and alarming after it, so say which this is.
+          if 'zabal:points:tally' in keys:
+              print('points board: present')
+          else:
+              print('points board: absent - normal until the first award is made')
+
           print('export ok: %d keys, types=%s' % (n, d.get('types')))
           PY
 
