@@ -66,9 +66,9 @@
 <main id="main">
 <div class="container">
   <header class="hero" style="padding-bottom: 0.3rem;">
-    <div class="hero-eyebrow">Community vote</div>
-    <h1>Vote for who is <span class="accent">best.</span></h1>
-    <p class="hero-sub">Everyone gets the same <strong>100 credits</strong> per track. Each extra vote for one favorite costs more than the last - 1, then 4, then 9, up to 10 votes for all 100. No single account can buy the win; spreading honest support counts for more than piling on.</p>
+    <div class="hero-eyebrow" id="vt-eyebrow">Season 1 - vote retired</div>
+    <h1 id="vt-title">The vote is <span class="accent">retired.</span></h1>
+    <p class="hero-sub" id="vt-sub">The quadratic ballot ran during month two to gauge what people thought of the projects. <strong>It is not how the six finalists are chosen.</strong> Zaal picks them and there is no vote. This page is kept as a record of what was submitted - the season standings are on the <a href="/leaderboard">standings board</a>, which closes Sunday, August 16, and the Finals are on <a href="/august">the August page</a>.</p>
   </header>
 
   <div class="vt-tabs" id="vt-tabs" role="group" aria-label="Track"></div>
@@ -143,7 +143,8 @@
       return;
     }
     empty.hidden = true;
-    submitWrap.hidden = false;
+    // the ballot only appears while a vote is actually open - Season 1 is closed
+    submitWrap.hidden = (slate.status !== 'open');
     var u = used(track);
     host.innerHTML = list.map(function (c) {
       var id = String(c.id);
@@ -237,9 +238,14 @@
     if (d && d.tracks) { slate = { status: d.status || 'preview', tracks: d.tracks }; }
     // default to the first track that has candidates
     for (var i = 0; i < TRACKS.length; i++) { if ((slate.tracks[TRACKS[i]] || []).length) { track = TRACKS[i]; break; } }
-    if (slate.status !== 'open') {
-      var m = document.getElementById('vt-msg');
-      if (m) m.textContent = 'Voting opens soon. You can see the projects and live results now.';
+    if (slate.status === 'open') {
+      // a vote is running again - restore the ballot framing the static copy retires
+      var eb = document.getElementById('vt-eyebrow');
+      if (eb) eb.textContent = 'Community vote';
+      var ti = document.getElementById('vt-title');
+      if (ti) ti.innerHTML = 'Vote for who is <span class="accent">best.</span>';
+      var sb = document.getElementById('vt-sub');
+      if (sb) sb.innerHTML = 'Everyone gets the same <strong>100 credits</strong> per track. Each extra vote for one favorite costs more than the last - 1, then 4, then 9, up to 10 votes for all 100. No single account can buy the win; spreading honest support counts for more than piling on.';
     }
     renderAll();
     loadMine(track);
