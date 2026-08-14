@@ -51,10 +51,21 @@
     <h1>Award points</h1>
     <p class="aw-sub">Admin only. Pick what it is for, pick how many, then tap the person. Everything here is public the moment you tap - scores show on the standings page.</p>
 
+    <!-- Signed in by FID. Shown once Quick Auth resolves, on desktop and mobile alike. -->
+    <div class="aw-block" id="aw-signed" hidden>
+      <h2>Signed in</h2>
+      <p class="aw-sub" id="aw-signed-msg">Awarding as yourself.</p>
+    </div>
+
+    <!-- Explicit fallback ONLY. Stays hidden whenever a Farcaster context exists,
+         which is why it is not the default greeting any more. -->
     <div class="aw-block" id="aw-auth" hidden>
       <h2>Sign in</h2>
-      <p class="aw-sub" id="aw-auth-msg">Open this in the Farcaster Mini App to award as yourself, or paste the admin key.</p>
-      <input class="aw-input" id="aw-key" type="password" placeholder="Admin key (desktop only)" autocomplete="off">
+      <p class="aw-sub" id="aw-auth-msg">Open this page inside Farcaster to award as yourself - no key needed.</p>
+      <details class="aw-fallback">
+        <summary class="aw-sub">Not in Farcaster? Use an admin key</summary>
+        <input class="aw-input" id="aw-key" type="password" placeholder="Admin key" autocomplete="off">
+      </details>
     </div>
 
     <div class="aw-block">
@@ -103,6 +114,8 @@
   var logEl = document.getElementById('aw-log');
   var authEl = document.getElementById('aw-auth');
   var keyEl = document.getElementById('aw-key');
+  var signedEl = document.getElementById('aw-signed');
+  var signedMsgEl = document.getElementById('aw-signed-msg');
   if (!reasonsEl || !peopleEl) return;
 
   var picked = { reason: REASONS[0], amount: 1 };
@@ -143,10 +156,18 @@
 
   function reason() { return customEl.value.trim() || picked.reason; }
 
-  // Quick Auth inside the Mini App, admin key on desktop - the same two paths /review uses.
+  // Quick Auth whenever a Farcaster context exists (desktop web client included); the
+  // admin key only when there is none. The server verifies the FID from the Quick Auth
+  // JWT either way - a client-supplied FID is never trusted.
   function post(body) {
     if (inMiniApp && window.ZABAL && window.ZABAL.authedFetch) {
-      return window.ZABAL.authedFetch('/api/points', body);
+      return window.ZABAL.authedFetch('/api/points', body).then(function (res) {
+        // Surface the one failure that used to look like "the button does nothing".
+        if (res && res.ok === false && res.reason === 'not-in-miniapp') {
+          return { ok: false, error: 'Farcaster sign-in did not complete. Reload the page inside Farcaster.' };
+        }
+        return res;
+      });
     }
     return fetch('/api/points', {
       method: 'POST',
@@ -201,15 +222,33 @@
       .catch(function () { peopleEl.innerHTML = '<p class="aw-sub">Could not load the roster.</p>'; });
   }
 
-  // Mini App gives us the signed-in identity; outside it, fall back to the key field.
+  // Resolve the Farcaster identity, then show exactly one of: "signed in", or the
+  // key fallback.
+  //
+  // The previous version read window.ZABAL.ready() and window.ZABAL.user - neither of
+  // which exists. miniapp.js exposes getUser() (async), not a `user` property, and no
+  // `ready` helper at all. So `u` was always undefined, the else branch always ran, and
+  // the key card greeted every visitor on every platform. Quick Auth never fired here,
+  // which is why no point has ever been awarded from this page. Every other page in the
+  // repo (review, profile, quest, pops) already awaits ZABAL.getUser(); this one drifted.
+  //
+  // Nothing here is desktop-vs-mobile specific: getUser() reads sdk.context, which the
+  // desktop web client populates the same way the mobile app does.
   function detectAuth() {
-    var ready = (window.ZABAL && window.ZABAL.ready) ? window.ZABAL.ready() : Promise.resolve(null);
-    return Promise.resolve(ready).then(function () {
-      var u = window.ZABAL && window.ZABAL.user;
-      if (u && (u.fid || u.username)) {
+    var getUser = window.ZABAL && window.ZABAL.getUser;
+    if (typeof getUser !== 'function') { authEl.hidden = false; return Promise.resolve(); }
+    return Promise.resolve(getUser()).then(function (u) {
+      if (u && u.fid) {
+        // A Farcaster context exists. Award as this FID - the server re-verifies it
+        // from the Quick Auth JWT, so this only decides which UI to show.
         inMiniApp = true;
         authEl.hidden = true;
+        signedEl.hidden = false;
+        signedMsgEl.textContent = u.username
+          ? 'Awarding as @' + u.username + '. The server checks your FID on every award.'
+          : 'Awarding as FID ' + u.fid + '. The server checks your FID on every award.';
       } else {
+        // No Farcaster context at all - a plain browser tab. Only now offer the key.
         authEl.hidden = false;
       }
     }).catch(function () { authEl.hidden = false; });
