@@ -219,10 +219,16 @@ window.ZABAL.viewProfile = async function viewProfile(fid) {
 // authed read, e.g. an admin-only check. Returns the parsed JSON, or { ok:false, reason }
 // outside a Mini App / on error. Used by the profile editor, the on-site submission form,
 // and the /review moderation page.
+// Requires a context and Quick Auth, but deliberately NOT ctx.client. Hosts differ in
+// what they populate on context.client, and an authed request only needs a token the
+// server can verify - gating on ctx.client turns a host that omits it into a silent
+// "not-in-miniapp" even though Quick Auth would have worked. submitScore/qvVote/
+// qvMyBallot already omit that check; this brings authedFetch in line with them, which
+// matters for /award where authedFetch is the only path to an award.
 window.ZABAL.authedFetch = async function authedFetch(path, bodyObj, method) {
   try {
     const ctx = await getContext();
-    if (!ctx || !ctx.client || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
+    if (!ctx || !sdk || !sdk.quickAuth) return { ok: false, reason: 'not-in-miniapp' };
     const opts = (method || 'POST') === 'GET'
       ? { method: 'GET' }
       : { method: method || 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bodyObj || {}) };
