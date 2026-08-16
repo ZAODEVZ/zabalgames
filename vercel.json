@@ -116,6 +116,14 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "object-src 'none'; base-uri 'self'"
+        },
+        {
+          "key": "Content-Security-Policy-Report-Only",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://esm.sh https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://esm.sh https://auth.farcaster.xyz https://api.farcaster.xyz https://mainnet.base.org; frame-src 'self' https://www.youtube.com https://youtube.com https://player.twitch.tv https://cal.com https://app.magnetiq.xyz; form-action 'self' https://formspree.io; object-src 'none'; base-uri 'self'"
         }
       ]
     },
