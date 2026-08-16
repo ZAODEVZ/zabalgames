@@ -264,9 +264,11 @@ register; they just claim on POIDH and it appears on the site.
 
 - Needs KV + `NEYNAR_API_KEY`; returns `{ ok:true, configured:false, added:0, has:{ kv, neynar } }`
   when either is missing (the diagnostic that names the missing var).
-- Dedup set `zabal:intake:poidh:seen` (cast hashes). Runs on a daily Vercel cron and can be
-  triggered on-demand by hitting the URL. Auth: allowed unauthenticated when no `CRON_SECRET`/
-  `INTAKE_KEY` is set. Returns `{ ok, configured, scanned, added }`.
+- Dedup set `zabal:intake:poidh:seen` (cast hashes). Triggered on-demand by hitting the URL
+  (the cron is retired). Auth: **fails closed** - requires Bearer `CRON_SECRET` or
+  `?key=<INTAKE_KEY>` (constant-time), and returns 503 when neither var is set. It writes to
+  the same `zabal:intake:*` keys as `submission-intake`, so it must not be more open than that
+  endpoint. Returns `{ ok, configured, scanned, added }`.
 
 ### `POST /api/magnetiq-ugc`
 Receiver for Magnetiq UGC submissions - wire Magnetiq (webhook / Zapier / forward) to POST
@@ -381,7 +383,8 @@ sends no CORS header, so the browser cannot count them directly).
 Win webhook receiver (built by ZOL, PR #518). Set `SUBMIT_NOTIFY_URL=https://zabalgamez.com/api/win-notify`
 so submission notifies flow here. Texts containing `community-win` are queued to the
 `zabal:winqueue` Redis list for ZOL to cast; everything else is a logged no-op.
-- Optional auth: if `WIN_HOOK_SECRET` is set, requires `?token=` or Bearer. Unset = open (harden by setting it).
+- Auth: requires `WIN_HOOK_SECRET` as `?token=` or Bearer (constant-time). **Fails closed** -
+  returns 503 when the secret is unset, so the queue can never take unauthenticated writes.
 
 ### `GET /api/win-drain`
 Token-gated queue drain for ZOL's caster cron. Fails closed without `WIN_HOOK_SECRET`.
@@ -468,6 +471,9 @@ Tier-1 deterministic submission pre-screen (July playbook Move 4). Checks a buil
 | `CRON_SECRET` | **Required** for the cron endpoints (`daily-cast`, `monthly-winner`, `commit-watcher`, `workshop-reminders`) - they fail closed (503) without it. Vercel injects the matching `Authorization: Bearer` header on scheduled runs | any long random string; set in Vercel and it auto-injects on cron calls |
 | `ADMIN_KEY` | Gates the `POST /api/raffle` draw and manual `POST /api/submission-intake` / `POST /api/magnetiq-ugc` writes via `Authorization: Bearer <key>` (constant-time, fail closed) | any long random string; send only from the host's calls |
 | `MAGNETIQ_SECRET` | Bearer secret for `POST /api/magnetiq-ugc` (accepts `ADMIN_KEY` too). Wire Magnetiq to send it so UGC lands in the submission store | any long random string; set in Vercel + in the Magnetiq webhook |
+| `WIN_HOOK_SECRET` | **Required** by `POST /api/win-notify` and `GET /api/win-drain` - both fail closed (503) without it, so the win queue neither fills nor drains until it is set | any long random string; set in Vercel and in ZOL's caller |
+| `INTAKE_KEY` | Bearer/`?key=` secret for `POST /api/submission-intake` and `GET /api/poidh-watcher` (falls back to `ADMIN_KEY`). Both fail closed without it or `CRON_SECRET` | any long random string |
+| `FARCASTER_HUB_URL` | Hub exposing `/v1/onChainSignersByFid`, used by `POST /api/webhook` to bind the signing app key to the claimed FID. **Recommended in production:** the Ed25519 signature is always verified, but without a hub the key is not checked as an active signer for that FID, so a self-signed envelope can claim another FID and write or delete that FID's notification token | any public hub base URL, e.g. `https://hub.farcaster.standardcrypto.vc:2281` |
 | `SUBMISSION_INGEST_SECRET` | Bearer secret used only by trusted submission adapters such as inbound email | independent long random string |
 | `RESEND_API_KEY` | Retrieves inbound email and sends project receipts or review notes | Resend API key |
 | `RESEND_WEBHOOK_SECRET` | Verifies `email.received` webhook signatures | Resend webhook settings (`whsec_...`) |

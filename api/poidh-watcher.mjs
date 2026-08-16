@@ -1,5 +1,7 @@
 export const config = { runtime: 'edge' };
 
+import { timingEq } from '../lib/auth.mjs';
+
 // ZABAL Gamez - POIDH claim watcher (cron + on-demand GET /api/poidh-watcher).
 //
 // POIDH has no API, but claims are announced as Farcaster casts (a builder casts "I claimed the
@@ -7,7 +9,13 @@ export const config = { runtime: 'edge' };
 // auto-adds each into the unified store (api/submission-intake keys), so a builder's poidh claim
 // shows up on the site with zero action from them and zero owner config. Deduped on cast hash.
 //
-// Runs on the vercel.json cron; also callable on-demand with ?key=<INTAKE_KEY> for an instant sync.
+// Callable on-demand with ?key=<INTAKE_KEY> (or a cron Bearer CRON_SECRET) for a sync.
+//
+// FAILS CLOSED. This writes to the same keys as api/submission-intake.mjs
+// (zabal:intake:items / :feed / :builder:*), and that endpoint requires INTAKE_KEY. An
+// earlier `(!CRON_SECRET && !INTAKE_KEY)` fallback here left this one fully open when
+// neither was set, which made it an auth bypass around submission-intake's own gate on
+// the same store. Retiring the cron did not help: the HTTP endpoint stays deployed.
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
@@ -57,7 +65,8 @@ function buildUrl(c) {
 export default async function handler(req) {
   const auth = (req.headers.get('authorization') || '').replace(/^Bearer\s+/i, '');
   const key = new URL(req.url).searchParams.get('key') || auth;
-  const authorized = (CRON_SECRET && auth === CRON_SECRET) || (INTAKE_KEY && key === INTAKE_KEY) || (!CRON_SECRET && !INTAKE_KEY);
+  if (!CRON_SECRET && !INTAKE_KEY) return json({ ok: false, error: 'not configured' }, 503);
+  const authorized = (CRON_SECRET && timingEq(auth, CRON_SECRET)) || (INTAKE_KEY && timingEq(key, INTAKE_KEY));
   if (!authorized) return json({ ok: false, error: 'unauthorized' }, 401);
   if (!KV_URL || !KV_TOKEN || !NEYNAR) return json({ ok: true, configured: false, added: 0, has: { kv: !!(KV_URL && KV_TOKEN), neynar: !!NEYNAR } });
 
