@@ -160,7 +160,7 @@
                 <option value="builder">Builder</option>
                 <option value="creator">Creator</option>
               </select>
-              <small>Your track decides where the community votes on it.</small>
+              <small>Your track decides which board it lands on.</small>
             </div>
             <div class="submit-field">
               <label for="project-stage">Stage</label>
@@ -217,7 +217,7 @@
       <details><summary>Does my project need to be finished?</summary><p>No. Choose “Work in progress” and update it later. Clear progress is more useful than waiting for a perfect launch.</p></details>
       <details><summary>Do I need a wallet or Farcaster account?</summary><p>No. Anyone can submit. Identity or payout information is collected only when it is needed for prizes, voting, or collectibles.</p></details>
       <details><summary>Do I need a GitHub repository?</summary><p>No. Repositories are useful for software projects, but songs, visuals, videos, writing, events, and other creator work can use the media or demo field instead.</p></details>
-      <details><summary>What happens after I submit?</summary><p>Your project goes live on the board at <a href="/submissions" style="color:var(--cyan);">/submissions</a> right away. You get a private link to check it or edit it any time. The community votes on the work, and The ZAO removes anything inappropriate.</p></details>
+      <details><summary>What happens after I submit?</summary><p>Your project goes live on the board at <a href="/submissions" style="color:var(--cyan);">/submissions</a> right away. You get a private link to check it or edit it any time. The ZAO removes anything inappropriate.</p></details>
       <details><summary>Want to answer the season survey?</summary><p>The project form is for things you make. Feedback, wins, contact preferences, and the collectible prompts now live in the separate <a href="/colab" style="color:var(--cyan);">Co-Lab</a>.</p></details>
     </section>
   </div>
@@ -261,7 +261,7 @@
   var smLink = document.getElementById('sm-link');
   var lastFocus = null;
   var SHARE_URL = 'https://zabalgamez.com/submissions';
-  var SHARE_TEXT = "Just put a build into ZABAL Gamez - The ZAO's build-a-thon. The community votes on the best work. See what people are building:";
+  var SHARE_TEXT = "Just put a build into ZABAL Gamez - The ZAO's build-a-thon. See what people are building:";
 
   function closeShareModal() {
     shareModal.hidden = true;
@@ -318,7 +318,7 @@
     var mediaRaw = value('project-media');
     var demo = validUrl(demoRaw), repo = validUrl(repoRaw), media = validUrl(mediaRaw);
     if (!project) { setStatus('Add a project name.', 'err'); document.getElementById('project-name').focus(); return; }
-    if (['artist','builder','creator'].indexOf(value('project-track')) < 0) { setStatus('Pick a track - it is where the community votes on your project.', 'err'); document.getElementById('project-track').focus(); return; }
+    if (['artist','builder','creator'].indexOf(value('project-track')) < 0) { setStatus('Pick a track - it is which board your project lands on.', 'err'); document.getElementById('project-track').focus(); return; }
     if ((demoRaw && !demo) || (repoRaw && !repo) || (mediaRaw && !media)) { setStatus('Links must begin with http:// or https://.', 'err'); return; }
     if (!description && !demo && !repo && !media) { setStatus('Add a short description or at least one project link.', 'err'); document.getElementById('project-description').focus(); return; }
     if (!document.getElementById('project-consent').checked) { setStatus('Confirm that The ZAO may review and publish the project information.', 'err'); return; }

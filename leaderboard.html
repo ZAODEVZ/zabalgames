@@ -116,12 +116,12 @@
       <div class="hero-eyebrow">ZABAL Gamez Season 1 Board</div>
       <h1>The final month of a <span>three month build-a-thon</span>.</h1>
       <p>ZABAL Gamez ran June, July and August. June was workshops, July was the open build, August is the finals. Anyone could enter, it cost nothing, and 15 people did.</p>
-      <p>There are three tracks - artist, builder and creator - and everyone who entered is on the board below, in the track they entered. Six finalists get picked, two from each track. They present in the last week of August, and <strong>three win, one from each track</strong>.</p>
-      <p class="lb-note">There is no vote. Points are earned by showing up: the zm stream at 5pm EST, this week&rsquo;s challenge, shipping an update on your project. Everyone starts on a point for entering and every score is public. The six are picked rather than tallied, so this board is one of the things Zaal reads, not the decision. It closes Sunday, August 16.</p>
-      <p class="lb-note">Tonight at 5pm EST on the zm stream we go through this board for the first time, and there is a special guest on after.</p>
-      <p class="lb-clock"><b id="lb-countdown">--</b> <span>until the board closes</span></p>
+      <p>There are three tracks - artist, builder and creator - and everyone who entered is on the board below, in the track they entered. The board closed on August 16 and six finalists were picked, two from each track. They go head to head on WaveWarZ between August 24 and 30, and <strong>three win, one from each track</strong>. <a href="/august" style="color:var(--cyan);">See the six</a>.</p>
+      <p class="lb-note">There was no vote. Points were earned by showing up: the zm stream at 5pm EST, the weekly challenge, shipping an update on your project. Everyone started on a point for entering and every score is public. The six were picked rather than tallied, so this board was one of the things Zaal read, not the decision. It closed Sunday, August 16.</p>
+            <p class="lb-clock"><b id="lb-countdown">--</b> <span id="lb-clock-label">until the battles begin</span></p>
       <div class="lb-actions">
-        <a class="lb-action primary" href="/submissions">See the projects</a>
+        <a class="lb-action primary" href="/august">See the six finalists</a>
+        <a class="lb-action" href="/submissions">See the projects</a>
         <a class="lb-action" href="/recordings">Watch the recordings</a>
       </div>
     </header>
@@ -169,13 +169,19 @@
 <script>
 (function () {
   'use strict';
-  // The board closes Sunday, August 16 at 23:59 Eastern. August is EDT, so UTC-4.
-  var CLOSE = Date.parse('2026-08-17T03:59:00Z');
+  // The board closed Sunday, August 16 at 23:59 Eastern (EDT, UTC-4). The clock now
+  // runs to the first battle day so it never sits on a dead "Closed".
+  var BATTLES = Date.parse('2026-08-24T04:00:00Z');
   var el = document.getElementById('lb-countdown');
+  var labelEl = document.getElementById('lb-clock-label');
   function tick() {
     if (!el) return;
-    var left = CLOSE - Date.now();
-    if (left <= 0) { el.textContent = 'Closed'; return; }
+    var left = BATTLES - Date.now();
+    if (left <= 0) {
+      el.textContent = 'Battle week';
+      if (labelEl) labelEl.textContent = 'August 24 to 30';
+      return;
+    }
     var d = Math.floor(left / 86400000);
     var h = Math.floor(left / 3600000) % 24;
     var m = Math.floor(left / 60000) % 60;
