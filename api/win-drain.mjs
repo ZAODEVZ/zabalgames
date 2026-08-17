@@ -2,6 +2,8 @@
 // ZOL (Pi) calls this on a cron to pop queued community-wins oldest-first and
 // cast them. Requires WIN_HOOK_SECRET (fails closed if unset). Pops at most
 // `n` items (default 1, to honor the 1-cast-per-10-min rate limit ZOL side).
+import { timingEq } from '../lib/auth.mjs';
+
 export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
@@ -22,7 +24,7 @@ export default async function handler(req) {
   const url = new URL(req.url);
   if (!SECRET) return json({ error: 'WIN_HOOK_SECRET not set' }, 503);
   const t = url.searchParams.get('token') || (req.headers.get('authorization') || '').replace(/^Bearer /, '');
-  if (t !== SECRET) return json({ error: 'unauthorized' }, 401);
+  if (!timingEq(t, SECRET)) return json({ error: 'unauthorized' }, 401);
   if (!KV_URL || !KV_TOKEN) return json({ items: [], configured: false });
   const n = Math.min(parseInt(url.searchParams.get('n') || '1', 10) || 1, 10);
   const cmds = Array.from({ length: n }, () => ['LPOP', QKEY]);

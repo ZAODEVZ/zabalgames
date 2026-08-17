@@ -9,6 +9,8 @@ export const config = { runtime: 'edge' };
 //
 // Runs on the vercel.json cron; also callable on-demand with ?key=<INTAKE_KEY> for an instant sync.
 
+import { timingEq } from '../lib/auth.mjs';
+
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
 const KV_TOKEN = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN);
 const NEYNAR = process.env.NEYNAR_API_KEY || '';
@@ -57,7 +59,16 @@ function buildUrl(c) {
 export default async function handler(req) {
   const auth = (req.headers.get('authorization') || '').replace(/^Bearer\s+/i, '');
   const key = new URL(req.url).searchParams.get('key') || auth;
-  const authorized = (CRON_SECRET && auth === CRON_SECRET) || (INTAKE_KEY && key === INTAKE_KEY) || (!CRON_SECRET && !INTAKE_KEY);
+  // Fails CLOSED. This endpoint writes zabal:intake:items / :feed / :builder:* - the
+  // same keys api/submission-intake.mjs owns and guards with INTAKE_KEY. An open
+  // fallback here (previously `|| (!CRON_SECRET && !INTAKE_KEY)`) was an auth bypass
+  // around that guard: submission-intake refuses to write without a key while this
+  // route handed the same datastore over to anyone. Retiring the cron did not help,
+  // because the HTTP endpoint stays deployed regardless of schedule.
+  if (!CRON_SECRET && !INTAKE_KEY) {
+    return json({ ok: false, error: 'not configured', configured: false }, 503);
+  }
+  const authorized = timingEq(auth, CRON_SECRET) || timingEq(key, INTAKE_KEY);
   if (!authorized) return json({ ok: false, error: 'unauthorized' }, 401);
   if (!KV_URL || !KV_TOKEN || !NEYNAR) return json({ ok: true, configured: false, added: 0, has: { kv: !!(KV_URL && KV_TOKEN), neynar: !!NEYNAR } });
 

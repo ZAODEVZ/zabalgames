@@ -20,6 +20,8 @@
 // Env: KV_REST_API_URL/TOKEN. No NOTIFY_SECRET needed - this is server-side cron, not
 // the admin sender (api/notify.mjs).
 
+import { timingEq } from '../lib/auth.mjs';
+
 export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
@@ -80,10 +82,7 @@ export default async function handler(req) {
   if (!CRON_SECRET) return json({ ok: false, reason: 'cron-secret-unset' }, 503);
   {
     const auth = (req && req.headers && req.headers.get('authorization')) || '';
-    const expected = `Bearer ${CRON_SECRET}`;
-    let diff = auth.length ^ expected.length;
-    for (let i = 0; i < expected.length; i++) diff |= (auth.charCodeAt(i) || 0) ^ expected.charCodeAt(i);
-    if (diff !== 0) return json({ ok: false, reason: 'unauthorized' }, 401);
+    if (!timingEq(auth, `Bearer ${CRON_SECRET}`)) return json({ ok: false, reason: 'unauthorized' }, 401);
   }
 
   if (!KV_URL || !KV_TOKEN) return json({ ok: true, skipped: 'kv-unconfigured' });
