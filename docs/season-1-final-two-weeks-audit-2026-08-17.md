@@ -14,18 +14,21 @@ casts, dates-ask DM, verified handles and FIDs.
 
 **Blocking before it goes out** (full detail in that doc):
 
-1. Publish `HOOD` (presdency.eth) and `Ledger` (dee-13) at `/review`. Both were
-   still `status: "draft"` on 2026-08-10, which makes them invisible on
-   `/submissions` - the board the post links to while naming both as finalists.
+1. Publish `HOOD` (presdency.eth) and `Ledger` (dee-13). Both were still
+   `status: "draft"` on 2026-08-10, which makes them invisible on `/submissions` -
+   the board the post links to while naming both as finalists. **Not doable at
+   `/review`**; see "The publish click-path" in the announce doc for the two routes
+   that work.
 2. Re-verify the project count. The copy says 30; the raw feed said 32 including
-   two QA-test rows, and the thread published Aug 11 said thirty.
-3. Confirm and name the three mentors. The dates-ask tells them they ARE the
-   judges' panel, and the champion formula depends on that panel, but `/august`
-   still shows all three slots as "confirming".
+   two QA-test rows, and the thread published Aug 11 said thirty. Still unverified
+   from here - zabalgamez.com is blocked by this session's network policy.
+3. Zaal's yes on the four redrafted why-lines.
 4. Lock the third scoring factor before Thursday.
 
-**Decisions only Zaal can make:** the prize split (see below), whether to explain
-uniquebeing404 moving builder to creator, and the four builder/creator why-lines.
+**Decided 2026-08-17** (relayed via the zaoos-infra lane): the prize split is the
+tiered structure, mentors are announced unnamed, nothing is said about
+uniquebeing404's track move, and the four why-lines were redrafted to Zaal's
+direction and await his yes.
 
 ---
 
@@ -125,46 +128,51 @@ matter:
 ## What is left, in the order it should happen
 
 **This week, before the post**
-1. Publish the two draft submissions at `/review`.
+1. Publish the two draft submissions. **Not at `/review`** - that page has no
+   publish control, and the API's `publish` action takes only the submitter's own
+   FID or editToken. Both working routes are in the announce doc under "The publish
+   click-path": ask them (preferred) or `action:'update'` with `ready:true` as
+   admin.
 2. Verify the project count with one curl.
-3. Confirm the three mentors and name them on `/august`.
-4. Decide the prize split (below).
-5. Set `FARCASTER_HUB_URL`, confirm `INTAKE_KEY`.
-6. Send: newsletter, then casts, then the dates-ask.
+3. Approve or edit the four why-lines.
+4. Set `FARCASTER_HUB_URL`, confirm `INTAKE_KEY`.
+5. Send: newsletter, then casts, then the dates-ask.
 
 **By Thursday**
-7. Lock the third scoring factor and the three battle dates, then put the
-   schedule on `/august` - there is no per-battle date surface yet, and six
-   people plus three mentors will be asking where it is.
+6. Lock the third scoring factor and the three battle dates. **The surface is
+   built**: fill `date`, `time` and `watch` for each entry in the `battles` array
+   in `data/finals.json` and flip its `status` to `scheduled`. `/august` renders it,
+   no HTML edit. Until then each row reads "date being agreed".
 
 **Battle week, Aug 24 to 30**
-8. `/finals/live` renders the six but its Trade button is disabled and its copy
+7. `/finals/live` renders the six but its Trade button is disabled and its copy
    still describes a WaveWarZ-Base scaffold. Either wire it to the real WaveWarZ
    battles or point people at WaveWarZ directly and stop maintaining the page.
-9. Decide what the homepage hero does during battle week. The clock handles it;
+8. Decide what the homepage hero does during battle week. The clock handles it;
    the hero copy has not been rewritten for it.
 
 **After Aug 30**
-10. Populate `data/season-1-results.json` (winners, recap numbers) and flip
+9. Populate `data/season-1-results.json` (winners, recap numbers) and flip
     `status` to `final`. Set ranks in `data/finals.json` and `settled: true`,
     which is what makes `/winners` render.
-11. Distribute the 500 USDC and both collectibles.
-12. Archive `/vote`, `/enter`, and the superseded write-ups on `/finals`.
+10. Distribute the 500 USDC and both collectibles.
+11. Archive `/vote`, `/enter`, and the superseded write-ups on `/finals`.
 
 ---
 
-## The one contradiction nobody has resolved
+## The prize contradiction - RESOLVED 2026-08-17
 
-`finals.html:120` is live right now and says: **"Every finalist receives an equal
-share of the 500 USDC pool. The same for all six, not a slice by rank."**
+Zaal decided against equal shares. The structure is **$300 head-to-head** ($70 to
+each track winner, $30 to each runner-up) plus **$200 volume-weighted, capped at
+$80 per person**. Ceiling $150, floor $30 plus a volume share, nobody on zero.
 
-`docs/finale-standings-2026-08-10.md` proposes $300 head-to-head ($70 win / $30
-lose) plus $200 volume-weighted capped at $80 each. That is not equal shares.
+This overrode a promise that was live on the site, knowingly and by his call. All
+eleven places have been rewritten across `finals.html`, `winners.html`, `info.html`,
+`index.html`, `enter.html` and `finals/live.html`. Nothing on the site now says
+"equal share", "split six ways", "split evenly" or "the same share each".
 
-The announce copy says "a share of the 500 USDC pool", which is compatible with
-either, so the post can go out before this is settled. But both cannot stay true,
-and the published one is the equal-shares promise. I did not touch that line -
-changing a live prize commitment is a decision, not a copy edit.
+The announce keeps the understated "a share of the 500 USDC pool", which is true
+under the new structure.
 
 ---
 

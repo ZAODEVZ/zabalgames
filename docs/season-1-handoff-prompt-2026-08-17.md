@@ -4,8 +4,8 @@ Everything from the 2026-08-17 working session, compressed into something anothe
 agent can act on cold. The paste block below is self-contained: it assumes the
 reader knows nothing about ZABAL Gamez.
 
-Branch with all the work: `claude/zabal-gamez-season-1-finals-cctq96` (5 commits,
-pushed, no PR opened).
+Branch with all the work: `claude/zabal-gamez-season-1-finals-cctq96` (7 commits,
+pushed, no PR opened). Updated 2026-08-17 after Zaal's decisions came back.
 
 ---
 
@@ -65,18 +65,23 @@ jargon in public copy, "100+" for ZAO member count.
   earlier plan that never shipped). The crowd trades the battle onchain. The
   champion comes from a combined score: market result, a judges' panel of the
   three track mentors, and a third factor still being locked.
-- Prizes: a share of the 500 USDC pool, ZABAL rewards, and both the Finisher and
-  Champion collectibles. Season ends Aug 31.
+- Prizes: 500 USDC, tiered. 300 rides on the battles (70 to each track winner, 30
+  to each runner-up); 200 follows trade volume across all six, capped at 80 each.
+  Ceiling 150, floor 30 plus a volume share, nobody on zero. Plus ZABAL rewards and
+  both the Finisher and Champion collectibles. Season ends Aug 31. This tiered
+  structure replaced an equal-share promise that had been published; Zaal made that
+  call explicitly on Aug 17 and every page was updated.
 
 ## What is already done and on branch claude/zabal-gamez-season-1-finals-cctq96
 
-Five commits, pushed, no PR. Read these two docs before anything else:
+Seven commits, pushed, no PR. Read these two docs before anything else:
 - docs/finals-six-announce-2026-08-17.md
 - docs/season-1-final-two-weeks-audit-2026-08-17.md
 
 1. The announce kit. Newsletter, five casts, dates-ask DM, verified Farcaster
    handles and FIDs. NOTHING HAS BEEN SENT. Zaal sends all of it.
-2. data/finals.json has the six, window Aug 24 to 30, settled:false.
+2. data/finals.json has the six, the window Aug 24 to 30, and a `battles` array
+   that drives the schedule on /august. settled:false until results are in.
 3. Site reconciled to a closed board: /august, /finals, /finals/live,
    /leaderboard, /submissions, /board, /submit, /results, and the homepage
    season clock, which previously had no phase after Aug 1.
@@ -96,37 +101,41 @@ Validate with: node scripts/validate.mjs   (there is no test suite)
 
 1. HOOD (presdency.eth) and Ledger (dee-13) were still status:"draft" as of
    Aug 10, which makes them invisible on /submissions. The post names both
-   people as finalists and links to that board. Publish them at /review first.
+   people as finalists and links to that board. NOTE: this cannot be done at
+   /review - that page exposes only Delete and Hide, and the API's publish action
+   accepts only the submitter's own FID or editToken, not admin. The two routes
+   that work are written up in docs/finals-six-announce-2026-08-17.md under "The
+   publish click-path": ask the two of them (preferred), or use action:'update'
+   with ready:true as admin.
 2. Re-verify the project count. The announce says 30. The raw feed said 32
    including two QA-test rows, and the thread published Aug 11 said thirty.
    Check: curl -s "https://zabalgamez.com/api/submissions?feed=projects"
-3. Confirm and publicly name the three track mentors. They ARE the judges'
-   panel and the champion formula depends on them, but /august still shows all
-   three slots as "confirming".
-4. Lock the third scoring factor.
-5. Four why-lines in the announce are still [ZAAL LINE] placeholders, for
-   jdwalka, ghostmintops, presdency and uniquebeing404. Grounded fallback drafts
-   sit beside them. Zaal has context the picksheet lacks, so these need his words.
+3. Zaal's yes on the four redrafted why-lines for jdwalka, ghostmintops,
+   presdency and uniquebeing404. They are written and in the paste block; the
+   project claims are sourced but the sustained-presence claims are his
+   observations to confirm.
+4. Lock the third scoring factor, targeted Thursday with the schedule.
 
-## Decisions only Zaal can make
+## Settled Aug 17, do not reopen
 
-- THE PRIZE SPLIT CONTRADICTS ITSELF. finals.html line 120 is live right now and
-  promises "Every finalist receives an equal share of the 500 USDC pool. The same
-  for all six, not a slice by rank." docs/finale-standings-2026-08-10.md proposes
-  300 USDC head-to-head (70 win / 30 lose) plus 200 USDC volume-weighted capped
-  at 80 each. Those cannot both be true and the published one is equal shares.
-  The announce copy says "a share of the pool", which is compatible with either,
-  so the post can go out before this is settled. Nobody has resolved it.
-- Whether to explain uniquebeing404 moving from the builder board to the creator
-  final. n3m choosing her track was already public; this move was not.
-- kayonfire topped the builder support board before the vote was retired and is
-  not a finalist. Defensible, since no tallies are displayed and the announce
-  leads with "no vote, the picks are mine", but it is the question you will get.
+- The prize split is the tiered structure above. Decided against equal shares.
+- Mentors are announced UNNAMED as "a judges' panel" until they lock, targeted
+  Thursday. Do not put names on /august before then.
+- Say NOTHING in the announce about uniquebeing404 moving from the builder board
+  to the creator final. The picks-are-mine framing covers it; Zaal answers if asked.
+
+## Known sensitivity
+
+kayonfire topped the builder support board before the vote was retired and is not
+a finalist. Defensible, since no tallies are displayed anywhere and the announce
+leads with "no vote, the picks are mine", but it is the question you will get, and
+kayonfire's DM is the one worth writing by hand.
 
 ## Known gaps for the final two weeks
 
-- There is no per-battle schedule surface anywhere. Six finalists and three
-  mentors will ask where it is as soon as dates are agreed on Thursday.
+- The battle schedule surface IS built and renders on /august from the `battles`
+  array in data/finals.json. Publishing Thursday's dates is a JSON edit: fill
+  date, time and watch per battle and flip status to "scheduled". No HTML change.
 - /finals/live renders the six but its Trade button is disabled and its copy
   still describes a WaveWarZ-Base scaffold that was never built. Either wire it
   to real WaveWarZ battles or point people at WaveWarZ and stop maintaining it.
