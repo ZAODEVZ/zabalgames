@@ -19,9 +19,12 @@ casts, dates-ask DM, verified handles and FIDs.
    the board the post links to while naming both as finalists. **Not doable at
    `/review`**; see "The publish click-path" in the announce doc for the two routes
    that work.
-2. Re-verify the project count. The copy says 30; the raw feed said 32 including
-   two QA-test rows, and the thread published Aug 11 said thirty. Still unverified
-   from here - zabalgamez.com is blocked by this session's network policy.
+2. Settle the project count. The copy says 30 as a placeholder. A read on Aug 17
+   returned 31 rows, so the real number is 29, 30 or 31 depending on how many
+   QA-test rows remain. One command in the announce doc ("The project count")
+   separates them by name and settles it exactly. Recommend the exact number over
+   a "30+" hedge: the board is closed, so this number is final, and "100+" is a
+   convention for counts that actually move.
 3. Zaal's yes on the four redrafted why-lines.
 4. Lock the third scoring factor before Thursday.
 
@@ -133,7 +136,7 @@ matter:
    FID or editToken. Both working routes are in the announce doc under "The publish
    click-path": ask them (preferred) or `action:'update'` with `ready:true` as
    admin.
-2. Verify the project count with one curl.
+2. Settle the project count with the one command in the announce doc.
 3. Approve or edit the four why-lines.
 4. Set `FARCASTER_HUB_URL`, confirm `INTAKE_KEY`.
 5. Send: newsletter, then casts, then the dates-ask.

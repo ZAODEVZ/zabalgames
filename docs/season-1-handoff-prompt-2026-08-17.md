@@ -50,7 +50,8 @@ jargon in public copy, "100+" for ZAO member count.
 
 ## Where the season stands
 
-- The board closed Sunday Aug 16. 15 people entered, 30 projects went up.
+- The board closed Sunday Aug 16. 15 people entered, roughly 30 projects went
+  up (exact count still to be confirmed, see blocker 2).
 - Six finalists are named, two per track. Zaal picked them. There was no vote -
   a quadratic ballot ran in month two to gauge opinion and was retired Aug 11.
   Nothing on the site displays tallies any more.
@@ -107,9 +108,14 @@ Validate with: node scripts/validate.mjs   (there is no test suite)
    that work are written up in docs/finals-six-announce-2026-08-17.md under "The
    publish click-path": ask the two of them (preferred), or use action:'update'
    with ready:true as admin.
-2. Re-verify the project count. The announce says 30. The raw feed said 32
-   including two QA-test rows, and the thread published Aug 11 said thirty.
-   Check: curl -s "https://zabalgamez.com/api/submissions?feed=projects"
+2. Settle the project count. The announce says 30 as a placeholder. Aug 10 read
+   32 rows including 2 QA-test rows (30 real); Aug 11 published "thirty"; Aug 17
+   read 31 rows with the QA state unknown, so the truth is 29, 30 or 31. QA rows
+   are identifiable by "QA Test" in the name - the site filters on exactly that
+   at august.html:270 - so one command settles it. It is written out in
+   docs/finals-six-announce-2026-08-17.md under "The project count". Use the exact
+   number, not a "30+" hedge: the board is closed so the count is final, and the
+   "100+" convention is for numbers that still move.
 3. Zaal's yes on the four redrafted why-lines for jdwalka, ghostmintops,
    presdency and uniquebeing404. They are written and in the paste block; the
    project claims are sourced but the sustained-presence claims are his
