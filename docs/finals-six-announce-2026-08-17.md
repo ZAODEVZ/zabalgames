@@ -27,10 +27,8 @@ three mentors.
    enough. See "The publish click-path" below for the two routes that do work.
    (`pyrofirezerox`'s GundariuM was the third draft - not a finalist, lower priority,
    but worth clearing in the same pass.)
-2. **Re-verify the project count.** The copy below says **30**, not 32. See
-   "Corrections applied" #1. Check before sending:
-   `curl -s "https://zabalgamez.com/api/submissions?feed=projects" | head -c 400`
-   and confirm the QA-test rows are gone from `/submissions`.
+2. **Settle the project count with one command.** The copy below says **30**.
+   See "The project count" below - it is now a 60-second job, not an open question.
 3. ~~Confirm the three mentors.~~ **SETTLED 2026-08-17: announce without names.**
    The panel stays "a judges' panel" until the mentors lock, targeted at Thursday
    alongside the schedule. The copy below already reads that way and needs no edit.
@@ -50,8 +48,10 @@ Reject any of these and I will put the original wording back.
    Track`) flagged for deletion in `docs/finale-standings-2026-08-10.md`. The
    Farcaster thread published on 2026-08-11 said **"fifteen builders shipped thirty
    projects"**. Publishing 32 six days after publishing 30, from the same feed,
-   invites "which is it". If two genuinely new projects landed since the 11th, 32 is
-   right and this correction is wrong - the curl in Blocking #2 settles it.
+   invites "which is it". A read on 2026-08-17 12:30 EDT returned 31 rows, so the
+   real number is 29, 30 or 31 depending on how many QA rows are left. **Treat the
+   30 below as a placeholder** until the command in "The project count" is run - it
+   settles this exactly and takes a minute.
 2. **"built, published, and shipped in public" softened.** On 2026-08-10 the feed
    broke down as 23 published, 7 building, 2 planned. Not all 30 shipped. The line
    now reads "most of them shipped and public", which is both true and still strong.
@@ -104,6 +104,62 @@ Reject any of these and I will put the original wording back.
   "There is no prediction market". The new format is head-to-head battles with the
   crowd trading onchain. Reconciled in this change for `/august` and `/finals`; see
   "Site changes" at the bottom.
+
+---
+
+## The project count - run this, then use the exact number
+
+**Recommendation: publish the exact number, not "30+".**
+
+### What we know
+
+| When | Rows in the feed | QA rows | Real projects |
+|---|---|---|---|
+| 2026-08-10 | 32 | 2 | 30 |
+| 2026-08-11 | - | - | **30** published in the Farcaster thread |
+| 2026-08-17 12:30 EDT | 31 | unknown | 29, 30 or 31 |
+
+### Why "30+" is not the safe default it looks like
+
+The suggestion from the zaoos-infra lane was "30+", on the grounds that it is true
+under every count. It is not. If both QA rows are still in the feed, 31 rows means
+**29 real projects**, and "30+" overstates. It is only safe in two of the three
+possible states.
+
+### And the QA rows ARE separable from outside
+
+The lane reported it could not tell QA rows apart remotely. It can: they carry
+"QA Test" in the name, in the public JSON. The site already relies on exactly this
+- `august.html:270` filters `/qa test/i` off the field for the same reason. So this
+resolves definitively:
+
+```sh
+curl -s "https://zabalgamez.com/api/submissions?feed=projects" | python3 -c "
+import sys, json
+rows = json.load(sys.stdin).get('submissions', [])
+qa = [r for r in rows if 'qa test' in str(r.get('name','')).lower()]
+print('rows in feed :', len(rows))
+print('QA test rows :', len(qa), [r.get('id') for r in qa])
+print('REAL PROJECTS:', len(rows) - len(qa))
+"
+```
+
+Whatever `REAL PROJECTS` prints is the number to publish. Swap it into two places:
+the newsletter opening line and CAST 1.
+
+### Why exact beats "30+" here
+
+The "100+" convention exists for the ZAO member count, which genuinely moves and
+would need correcting monthly. **The project count no longer moves** - the board
+closed on Aug 16, so this is a final historical fact about a closed season. A
+hedge on a closed, countable set reads as not having bothered to count, which is
+the opposite of the transparency the post is claiming. And you already published
+"thirty" on Aug 11; a precise number that has moved to 31 is a season that kept
+shipping to the buzzer, which is a better story than "30+".
+
+If the command cannot be run before send, then "30+" is the right fallback, and if
+it turns out to be 29 the post is wrong by one in the generous direction, which
+nobody will litigate. But run the command.
 
 ---
 
