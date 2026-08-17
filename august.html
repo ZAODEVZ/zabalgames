@@ -54,6 +54,13 @@
     .aug-person .links { margin-top: 0.15rem; }
     .aug-person .links a { color: var(--cyan); text-decoration: none; font-size: 0.74rem; margin-right: 0.6rem; }
     .aug-empty { color: var(--text-muted); font-size: 0.84rem; border: 1px dashed var(--border-hover); border-radius: 10px; padding: 0.8rem; }
+    .aug-battles { display: grid; gap: 0.7rem; margin-top: 1rem; }
+    .aug-battle { border: 1px solid rgba(224,221,170,0.22); border-radius: 12px; background: var(--surface-2); padding: 0.9rem 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; justify-content: space-between; }
+    .aug-battle .bt-track { color: var(--cyan); font: 0.55rem var(--font-pixel); letter-spacing: 0.06em; text-transform: uppercase; }
+    .aug-battle .bt-pair { color: var(--text); font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; overflow-wrap: anywhere; }
+    .aug-battle .bt-when { color: var(--text-muted); font: 0.8rem 'JetBrains Mono', monospace; }
+    .aug-battle .bt-when.tbd { color: var(--text-dim); font-style: italic; }
+    .aug-battle .bt-watch { color: var(--cyan); text-decoration: none; font-size: 0.8rem; font-weight: 700; }
     @media (max-width: 850px) { .aug-steps, .aug-mentors, .aug-field-cols { grid-template-columns: 1fr; } .aug-actions .aug-button { flex: 1 1 100%; } }
   </style>
 </head>
@@ -110,6 +117,14 @@
       <p class="lead">Two finalists per track. They meet head to head in the last week of August, and each pair agrees its own date inside that week.</p>
       <div class="aug-field-cols" id="six-cols" aria-busy="true">
         <p class="aug-empty">Loading the finalists...</p>
+      </div>
+    </section>
+
+    <section class="aug-section" aria-labelledby="schedule-heading">
+      <h2 id="schedule-heading">The schedule</h2>
+      <p class="lead">Three battles between Monday August 24 and Sunday August 30. Each pair agrees its own day and time, so dates land here as they are confirmed.</p>
+      <div class="aug-battles" id="battle-rows" aria-busy="true">
+        <p class="aug-empty">Loading the schedule...</p>
       </div>
     </section>
 
@@ -198,13 +213,49 @@
           + '</div>';
       }).join('');
       root.setAttribute('aria-busy', 'false');
+      renderBattles(d && d.battles);
     })
     .catch(function () {
       var root = document.getElementById('six-cols');
-      if (!root) return;
-      root.innerHTML = '<p class="aug-empty">Could not load the finalists right now.</p>';
-      root.setAttribute('aria-busy', 'false');
+      if (root) {
+        root.innerHTML = '<p class="aug-empty">Could not load the finalists right now.</p>';
+        root.setAttribute('aria-busy', 'false');
+      }
+      renderBattles(null);
     });
+
+  // Battle schedule. Dates are agreed by each pair, so a battle with no date yet
+  // renders as "date being agreed" rather than being hidden - people need to see
+  // that their track is on the list even before it has a slot.
+  function renderBattles(battles) {
+    var root = document.getElementById('battle-rows');
+    if (!root) return;
+    root.setAttribute('aria-busy', 'false');
+    if (!battles || !battles.length) {
+      root.innerHTML = '<p class="aug-empty">The schedule lands here as each pair confirms.</p>';
+      return;
+    }
+    root.innerHTML = battles.map(function (b) {
+      var pair = (b.finalists || []).join(' vs ') || 'To be named';
+      var when = b.date
+        ? '<span class="bt-when">' + esc(fmtDate(b.date)) + (b.time ? ' - ' + esc(b.time) : '') + '</span>'
+        : '<span class="bt-when tbd">date being agreed</span>';
+      var watch = b.watch ? '<a class="bt-watch" href="' + esc(b.watch) + '" target="_blank" rel="noopener">Watch -&gt;</a>' : '';
+      return '<div class="aug-battle">'
+        + '<div><span class="bt-track">' + esc(b.track || '') + ' final</span>'
+        + '<div class="bt-pair">' + esc(pair) + '</div></div>'
+        + '<div>' + when + ' ' + watch + '</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  function fmtDate(iso) {
+    var parts = String(iso).split('-');
+    if (parts.length !== 3) return iso;
+    var d = new Date(Date.UTC(+parts[0], +parts[1] - 1, +parts[2]));
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' });
+  }
 
   fetch('/api/submissions?feed=projects', { cache: 'no-store' })
     .then(function (r) { return r.json(); })

@@ -18,22 +18,26 @@ three mentors.
    (dee-13) were still `status: "draft"` on 2026-08-10, which makes them invisible
    on `/submissions`. The post names both people as finalists and links to that
    board. Two of six finalists having no visible work on the board the post points
-   at is the one thing here that reads as careless. Fix at `/review` before sending.
+   at is the one thing here that reads as careless.
+
+   **Correction to an earlier version of this doc: you cannot do this at `/review`.**
+   That page only exposes Delete and Hide (`review.html:140-141`). There is no
+   publish control on it, and `action:'publish'` in `api/submissions.mjs:513` accepts
+   only the submitter's own FID or their `editToken` - admin is explicitly not
+   enough. See "The publish click-path" below for the two routes that do work.
    (`pyrofirezerox`'s GundariuM was the third draft - not a finalist, lower priority,
    but worth clearing in the same pass.)
 2. **Re-verify the project count.** The copy below says **30**, not 32. See
    "Corrections applied" #1. Check before sending:
    `curl -s "https://zabalgamez.com/api/submissions?feed=projects" | head -c 400`
    and confirm the QA-test rows are gone from `/submissions`.
-3. **Confirm the three mentors.** The dates-ask tells mentors they ARE the judges'
-   panel, and the champion formula depends on that panel. `/august` still shows all
-   three mentor slots as "ZAO mentor - confirming" and no mentor is named publicly
-   anywhere. Either confirm and name them, or the panel half of the scoring has no
-   public referent.
+3. ~~Confirm the three mentors.~~ **SETTLED 2026-08-17: announce without names.**
+   The panel stays "a judges' panel" until the mentors lock, targeted at Thursday
+   alongside the schedule. The copy below already reads that way and needs no edit.
+   `/august` keeps its three "confirming" slots until then.
 4. **Lock the third factor.** Both the newsletter ("among the factors") and the
    dates-ask ("a third factor we lock this week") leave a criterion that decides
-   money undefined, seven days out. Name it Thursday when the schedule locks, or
-   drop it and say the score is market plus panel.
+   money undefined. Locking Thursday with the schedule.
 
 ---
 
@@ -62,26 +66,32 @@ Reject any of these and I will put the original wording back.
    leaderboard published alongside a finalist announcement reads as the selector
    unless you say otherwise **first**, and being told afterwards is what actually
    burns people. Order matters more than wording. Same sentences, earlier.
-5. **Builder and creator why-lines left as placeholders.** Drafts are supplied below
-   and marked as drafts. They are assembled from the repo and deliberately do not
-   guess at your reasoning - the relayed note from the zaoos-infra lane says you have
-   context the picksheet lacks. Overwrite them.
+5. **Builder and creator why-lines redrafted 2026-08-17** to your direction: the
+   submission being cool plus three months of being active. They are in the paste
+   block below, ready to go, but they are DRAFTS - see "The four why-lines" for what
+   in them is sourced and what is your observation to confirm.
 6. **"Ledger" disambiguated once** as "Ledger, the manga". Pascaline's entry is "ZAO
    Artist Value Ledger", so a bare "Ledger" is briefly ambiguous to anyone who read
    the 2026-08-10 newsletter.
 
 ---
 
-## Open, and they are yours
+## Settled 2026-08-17
 
-- **The prize split contradicts the site.** `finals.html:120` is live right now and
-  says: "Every finalist receives an equal share of the 500 USDC pool. The same for
-  all six, not a slice by rank." `docs/finale-standings-2026-08-10.md` proposes $300
-  head-to-head ($70 win / $30 lose) plus $200 volume-weighted capped at $80 - which
-  is not equal shares. The copy below says "a share of the 500 USDC pool", which is
-  compatible with either, so the post can go out before this is settled. But the two
-  cannot both stay true, and the published one is the equal-shares promise. I have
-  not touched that line.
+- **The prize split: the tiered structure wins.** $300 head-to-head ($70 to each
+  track winner, $30 to each runner-up) plus $200 volume-weighted, capped at $80 per
+  person. Ceiling $150, floor $30 plus a volume share, everyone paid.
+  **This overrides the equal-shares promise that was live on the site**, which was
+  your explicit call against the equal-share option. Every page has been updated:
+  `finals.html` (2 places), `winners.html` (3), `info.html` (4), `index.html`,
+  `enter.html`, `finals/live.html`. No "equal share", "split six ways", "split
+  evenly" or "the same share each" remains anywhere in the site copy. The announce
+  keeps saying "a share of the 500 USDC pool", which is now true and understated.
+- **uniquebeing404's track move: say nothing.** The picks-are-mine framing covers
+  it; you answer if asked. No line was added.
+
+## Still open, and they are yours
+
 - **The builder final is the pick most likely to be questioned.** On the retired
   support board, kayonfire led builder on 37 and uniquebeing404 was second on 10.
   The builder final is jdwalka (4) and ghostmintops (5); kayonfire is in the
@@ -89,14 +99,68 @@ Reject any of these and I will put the original wording back.
   no tallies render anywhere on the site, so this breaks no promise and the "no vote,
   the picks are mine" line carries it. Flagging it because it is the question you
   will get, and because kayonfire's DM is the one worth writing by hand.
-- **uniquebeing404 moved builder to creator.** n3m choosing artist was already public
-  as her call. uniquebeing404's move was not. One clause in her why-line covering it
-  costs nothing and pre-empts the question.
 - **The site says "present", the post says "battle".** `finals.html` currently
   describes finalists presenting work live with mentors in the room, and states
   "There is no prediction market". The new format is head-to-head battles with the
   crowd trading onchain. Reconciled in this change for `/august` and `/finals`; see
   "Site changes" at the bottom.
+
+---
+
+## The publish click-path - HOOD and Ledger
+
+**This is yours to run. Nothing here has been executed.**
+
+First, confirm which ids they are. `docs/finale-standings-2026-08-10.md` records ids
+3, 16 and 18 as the three drafts across dee-13's Ledger, Presdency.eth's HOOD and
+pyrofirezerox's GundariuM, but not which id is which:
+
+```sh
+curl -s "https://zabalgamez.com/api/submissions?feed=projects" \
+  | python3 -c "import sys,json;[print(x.get('id'), x.get('status'), x.get('name'), (x.get('builder') or {}).get('handle')) for x in json.load(sys.stdin).get('submissions',[])]"
+```
+
+### Route A - ask them to publish it themselves (preferred)
+
+This is the sanctioned flow, it is their work, and it emails them a confirmation.
+Each got a private status link when they submitted:
+`https://zabalgamez.com/submission-status?id=<id>&token=<editToken>`
+
+DM to send to @presdency and @dee-13:
+
+```
+congrats again. one thing before the announce goes out - your project is still
+saved as a draft, which means it is not showing on the public board at
+zabalgamez.com/submissions.
+
+open your private link (the one you got when you submitted), mark it ready, and it
+goes live straight away. if you cannot find the link say so and i will resend it.
+
+worth doing today - the announce points people at that board.
+```
+
+If they lost the link, you can resend it: the status URL is rebuilt from the id and
+their `editToken`, both of which an admin can read out of the record.
+
+### Route B - publish it yourself, admin (fallback if they go quiet)
+
+`action:'update'` with `ready:true` DOES accept admin (`api/submissions.mjs:470`),
+unlike `action:'publish'`. It flips draft to approved, puts it on the board, and
+emails the submitter that it is live.
+
+```sh
+# repeat per id
+curl -sS -X POST https://zabalgamez.com/api/submissions \
+  -H "Authorization: Bearer $ADMIN_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"update","id":"<id>","ready":true}'
+```
+
+Verify both are gone from drafts afterwards by re-running the feed command above.
+
+**A gap worth knowing:** `/review` shows drafts but gives an admin no way to action
+them, so this fallback is curl-only today. A publish button on `/review` is maybe
+twenty lines. Say the word and I will add it, though Route A avoids needing it.
 
 ---
 
@@ -124,13 +188,19 @@ ARTIST FINAL
 
 BUILDER FINAL
 
-- jdwalka - [ZAAL LINE: why jdwalka advances]
-- ghostmintops - [ZAAL LINE: why ghostmintops advances]
+- jdwalka - Chroma Poker. A real poker app on Farcaster with a live HUD and
+  hand-history parsing, still being tuned three months in. Kept hosting the
+  Predictive Apps Space for everyone else the whole way through.
+- ghostmintops - Proof Drop, and six more behind it. Seven builds across all three
+  tracks, starting with the first July build to land on the site. Nobody shipped
+  more, or more often.
 
 CREATOR FINAL
 
-- presdency.eth - [ZAAL LINE: why presdency advances]
-- uniquebeing404 - [ZAAL LINE: why uniquebeing404 advances]
+- presdency.eth - HOOD. Kept building it out well past the point most entries
+  stopped, and stayed in the room from June through to the close.
+- uniquebeing404 - ColorZAO. Real craft in a tool that did not have to be that
+  considered, and a steady presence on the board from early on.
 
 ## To everyone else who shipped
 
@@ -152,22 +222,32 @@ Finisher and Champion collectibles for every finalist.
 
 ---
 
-## Draft why-lines for the four open slots
+## The four why-lines - REDRAFTED, needs your yes or edit
 
-**Drafts, not decisions.** Built from `data/builder-submissions.json` and the
-2026-08-10 newsletter. Use, edit, or bin.
+Per your direction: "lets draft an initial idea based on what they submitted being
+cool and them being active over the past 3 months." So each line names the work,
+says why it is good, and credits the three months of showing up. Written to match
+the two artist lines you already approved: project first, then the record.
 
-- **jdwalka** - Chroma Poker, a live Farcaster app with real users, plus a crypto
-  prediction orchestrator in progress and the Predictive Apps Space he hosts for
-  everyone else. Built in two tracks and kept the room open all season.
-- **ghostmintops** - Seven builds across all three tracks: ZABAL Recording Scout,
-  Proof Drop, WaveWarZ Gravity Board, Founder Nexus, DreamNet Publishing, the ZAO
-  anthem, and an IDE series still landing. The widest catalogue of the season, and
-  Proof Drop was the first July build to go up on the site.
-- **presdency.eth** - HOOD. Came in on the creator track and kept building it out
-  well past the point most entries stopped.
-- **uniquebeing404** - ColorZAO. The strongest-supported entry on the builder board
-  all season, competing in creator because that is where the work actually lives.
+Nothing here mentions uniquebeing404 moving track, per your call to say nothing.
+
+- **jdwalka** - Chroma Poker. A real poker app on Farcaster with a live HUD and
+  hand-history parsing, still being tuned three months in. Kept hosting the
+  Predictive Apps Space for everyone else the whole way through.
+- **ghostmintops** - Proof Drop, and six more behind it. Seven builds across all
+  three tracks, starting with the first July build to land on the site. Nobody
+  shipped more, or more often.
+- **presdency.eth** - HOOD. Kept building it out well past the point most entries
+  stopped, and stayed in the room from June through to the close.
+- **uniquebeing404** - ColorZAO. Real craft in a tool that did not have to be that
+  considered, and a steady presence on the board from early on.
+
+**One caveat before you sign these.** The project claims are all sourced
+(`data/builder-submissions.json`, the 2026-08-10 newsletter). The
+sustained-presence claims are not - there is no attendance or activity record in
+the repo I can check them against. "Kept hosting the Space", "stayed in the room",
+"steady presence from early on" are your observations to confirm or correct. If any
+of them is wrong for a given person, that is the half to rewrite.
 
 ---
 
@@ -186,13 +266,13 @@ Two artists who kept showing up all season.
 
 **CAST 3**
 
-BUILDER FINAL - jdwalka vs ghostmintops. [ZAAL LINE, or use the default: two of the
-deepest builder catalogues of the season, head to head.]
+BUILDER FINAL - jdwalka vs ghostmintops. Chroma Poker against seven builds in three
+tracks. Two of the deepest catalogues of the season, head to head.
 
 **CAST 4**
 
-CREATOR FINAL - presdency.eth vs uniquebeing404. [ZAAL LINE, or use the default:
-HOOD against ColorZAO - two builders stepping onto the creator stage.]
+CREATOR FINAL - presdency.eth vs uniquebeing404. HOOD against ColorZAO. Two builders
+stepping onto the creator stage, both still shipping at the close.
 
 **CAST 5**
 
