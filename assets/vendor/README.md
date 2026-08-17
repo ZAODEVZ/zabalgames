@@ -1,4 +1,27 @@
-# assets/vendor - self-hosted Mini App SDK
+# assets/vendor - self-hosted third-party scripts
+
+Two things live here: the Farcaster Mini App SDK (below) and `marked`, the markdown
+parser `/context` uses.
+
+## marked 12.0.0 (`marked-12.0.0.min.js`)
+
+`context.html` used to load this from `cdn.jsdelivr.net` with no integrity hash, which
+the 2026-08-03 security audit flagged (finding #5). Self-hosting closes it more
+completely than an SRI hash would: there is no third-party request left to tamper with,
+and no `script-src` allowance needed for jsdelivr when the CSP tightens. MIT licensed;
+the license ships alongside as `marked-12.0.0.LICENSE.md`.
+
+Regenerate or bump with an exact version, straight from the npm tarball:
+
+```sh
+curl -fsSL "https://registry.npmjs.org/marked/-/marked-12.0.0.tgz" -o /tmp/marked.tgz
+tar -xzOf /tmp/marked.tgz package/marked.min.js > assets/vendor/marked-12.0.0.min.js
+tar -xzOf /tmp/marked.tgz package/LICENSE.md > assets/vendor/marked-12.0.0.LICENSE.md
+```
+
+Then update the `<script src>` in `context.html` to the new filename.
+
+## The Mini App SDK
 
 `assets/miniapp.js` loads the Farcaster Mini App SDK **self-host-first**, then falls
 back to the esm.sh CDN:
