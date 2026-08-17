@@ -9,6 +9,8 @@
 //
 // Env: NOTIFY_SECRET (required), KV_REST_API_URL, KV_REST_API_TOKEN.
 
+import { timingEq } from '../lib/auth.mjs';
+
 export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
@@ -45,7 +47,8 @@ function chunk(arr, n) {
 export default async function handler(req) {
   if (req.method !== 'POST') return json({ error: 'method' }, 405);
   const auth = req.headers.get('authorization') || '';
-  if (!NOTIFY_SECRET || auth !== `Bearer ${NOTIFY_SECRET}`) return json({ error: 'unauthorized' }, 401);
+  const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
+  if (!NOTIFY_SECRET || !timingEq(token, NOTIFY_SECRET)) return json({ error: 'unauthorized' }, 401);
   if (!KV_URL || !KV_TOKEN) return json({ error: 'KV not configured' }, 503);
 
   let body = {};
