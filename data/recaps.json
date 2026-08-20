@@ -3,6 +3,356 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[], chapters[] (array of {t, label} where t is seconds and the first entry is 0 - drives the clickable chapter jumps on a generated video page), okd (YYYY-MM-DD the guest reviewed the cut/page and signed off, before public release - absent until they approve), cast_hash (the root Farcaster cast for this recording - the announce cast; its replies render as the live 'Thoughts' conversation via /api/cast-comments. A 0x hash or a Warpcast URL). To publish a new recording from a ZAOVideoEditor manifest (writes transcript + recap + recordings/N.html + rebuilds the index in one step) use: node scripts/ingest-recording.mjs <manifest.json> --write. After hand-editing this file, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-04-24",
+      "type": "fireside",
+      "title": "Builder first: Rish on Neynar's new direction for Farcaster, live on Juke",
+      "presenter": "Rish (Neynar), hosted by Nick (nickysap) with Zaal",
+      "handle": "@rish_neynar",
+      "org": "Neynar",
+      "track": "builder",
+      "technical": 5,
+      "format": "Live audio Space on Juke, recorded",
+      "summary": "A Friday audio Space on Juke, hosted by Nick (nickysap) with Zaal co-hosting, with Rish from Neynar shortly after the deal that put the main Farcaster client, the nodes, the APIs and Clanker under Neynar. Rish frames the shift plainly: the social-first experiment ran for four and a half years and did not work, so Neynar is running a builder-first experiment - primitives and in-client tooling so people can create new things on the internet without necessarily writing software. He is candid about the numbers (the Farcaster client sits at roughly 1,000 to 2,000 US daily actives, which cannot carry a team plus infrastructure costs, so growth matters but should decouple from the four-year crypto cycle), names three kinds of builder support (APIs, money through the Clanker ecosystem fund, distribution on Farcaster and X), and answers the decentralization question directly - Neynar holds protocol-level control because it pays the bills and runs on-call, and that can loosen if more teams can carry the protocol. On the Hypersnap fork: permissionless is fine, the name collision is not, and it forced a week or two of spam-prevention work. Nick notes he built Juke itself in about five days with Claude Code and the Neynar APIs - the thesis playing out live.",
+      "topics": [
+        "Neynar",
+        "builder-first",
+        "Farcaster strategy",
+        "decentralization",
+        "Hypersnap fork",
+        "Clanker ecosystem fund",
+        "Juke",
+        "agents"
+      ],
+      "listen_url": "https://x.com/nicky_sap/status/2047770959403516069",
+      "listen_label": "Recording on X (nickysap)",
+      "page": "/recordings/35",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-04-24-rish-neynar-builder-first-on-juke.md",
+      "link": "https://neynar.com",
+      "link_label": "Neynar",
+      "takeaways": [
+        "Social-first ran four and a half years without sustainable growth; Neynar is now running a builder-first experiment for at least a period of time.",
+        "Builder-first means primitives and in-client tooling, not expecting people to write software to create on the network.",
+        "Three forms of builder support: developer APIs, money via the Clanker ecosystem fund (funded by Clanker revenue, not a huge fund), and distribution help on Farcaster and X.",
+        "The Farcaster client is at roughly 1,000 to 2,000 US DAU - too small for the infrastructure it carries, so DAU growth is the number that matters, ideally decoupled from crypto cycles.",
+        "Neynar keeps protocol-level control because it pays the bills and handles on-call; decentralization becomes realistic once multiple teams can carry the protocol.",
+        "The Hypersnap fork is permissible, but the name collision created confusion and a heavy spam-prevention workload.",
+        "The products that worked - Clanker, DEGEN, Bankr (as heard) - came from the community permissionlessly, which is the outcome Neynar wants more of."
+      ],
+      "share_topics": [
+        "Farcaster after four and a half years of social-first: Neynar goes builder-first",
+        "Neynar now runs the client, the nodes, the APIs and Clanker - the decentralization tension, answered",
+        "Juke was built in about five days with Claude Code and the Neynar APIs",
+        "the Hypersnap fork: permissionless yes, name collision no",
+        "1,000 to 2,000 US DAU - the honest number and why growth must outlast the cycle",
+        "three ways Neynar supports builders: APIs, money, distribution",
+        "humans and agents in the same social pool, with money transfer alongside messages"
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Opening and the deal"
+        },
+        {
+          "t": 48,
+          "label": "Social-first vs builder-first"
+        },
+        {
+          "t": 142,
+          "label": "What builder-first means: primitives, not code"
+        },
+        {
+          "t": 237,
+          "label": "Metrics: DAU and D30 retention"
+        },
+        {
+          "t": 340,
+          "label": "Building Juke on Farcaster in five days"
+        },
+        {
+          "t": 483,
+          "label": "Three kinds of support: APIs, money, distribution"
+        },
+        {
+          "t": 622,
+          "label": "Multi-client ecosystem and decentralization"
+        },
+        {
+          "t": 1002,
+          "label": "The Hypersnap fork"
+        },
+        {
+          "t": 1241,
+          "label": "Five-year view: 10x DAU, many products"
+        },
+        {
+          "t": 1429,
+          "label": "Bull runs, unique formats, the future"
+        }
+      ],
+      "pull_quotes": [
+        {
+          "quote": "the way to think about our approach is that they tried the social first experiment, and that didn't work. And we are going to, at least for a period of time, going to try this builder first experiment",
+          "who": "Rish (Neynar)"
+        },
+        {
+          "quote": "it might look different if you have humans and agents in the same pool if you have humans and agents and not just information transfer but money transfer in the same pool that crypto allows",
+          "who": "Rish (Neynar)"
+        }
+      ],
+      "resources": [
+        {
+          "label": "Nick's announcement cast",
+          "url": "https://farcaster.xyz/nickysap/0x0d222d4a"
+        },
+        {
+          "label": "Recording on X",
+          "url": "https://x.com/nicky_sap/status/2047770959403516069"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-03",
+      "type": "fireside",
+      "title": "Farcaster Batches Day 3 builder chat: ZABAL Gamez, Empire Builder and four more",
+      "presenter": "Nounish Prof + Adrian (GM Farcaster)",
+      "handle": "@nounishprof",
+      "org": "Farcaster Batches / GM Farcaster",
+      "track": "builder",
+      "technical": 4,
+      "format": "Live X Space, recorded",
+      "summary": "Farcaster Batches Day 3 builder chat on the GM Farcaster X account, hosted by Nounish Prof and Adrian. Zaal opened for The ZAO - an impact network for the creator economy whose goal is to bring the profit margin, the data and the IP rights back to independent artists - and introduced ZABAL Gamez, the free three-month build-a-thon: June workshops, July open build, August finals with mentor pairings and a $500 prize pool, streamed through Restream with every session transcribed into an LLM-queryable archive. Yerbearserker (Empire Builder) argued for creator integrity over token-first launches and showed no-code treasury and reward tools built on Clanker, including tokenless empires. AZ Flynn presented Defensive Agents, a casual idle MOBA shipped as a mini-app with NFT collabs for in-game utility. Cashless Man (as heard) covered Booster, a self-hosted marketplace for amplifying casts. Duck Facts presented Celebration Hub, a social app for events and gifts with a JoySender agent for birthdays. Recurring theme: Farcaster's mini-app ecosystem is underused for shipping fast and finding early users.",
+      "topics": [
+        "Farcaster Batches",
+        "ZABAL Gamez",
+        "Empire Builder",
+        "Clanker",
+        "mini-apps",
+        "Defensive Agents",
+        "Booster",
+        "Celebration Hub"
+      ],
+      "page": "/recordings/34",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-03-farcaster-batches-day-3-builder-chat.md",
+      "link": "https://x.com/gmfarcaster/status/2060480656807719149",
+      "link_label": "Space announcement on X",
+      "takeaways": [
+        "The ZAO's stated goal: bring the profit margin, the data and the IP rights back to independent artists - creator ownership, not crypto education.",
+        "ZABAL Gamez is a three-month arc: June workshops, July open build, August finals with mentor pairings and a $500 prize pool, free to join.",
+        "Zaal expects audio - Spaces and transcribed sessions - to be the growth format for 2026.",
+        "Empire Builder positions itself as people of integrity who prioritize benefiting creators and builders, shipping tools (including tokenless empires) rather than pushing tokens.",
+        "AZ Flynn: the Farcaster mini-app ecosystem is super slept on - the easiest path to early, wallet-connected users.",
+        "Celebration Hub is expanding from Farcaster to Telegram, web and X with agents that surface birthdays and events."
+      ],
+      "share_topics": [
+        "ZABAL Gamez workshops open for speaker signups - Restream to YouTube, Twitch, X plus a queryable archive",
+        "Empire Builder tokenless empires on Clanker with no-code treasury",
+        "Defensive Agents - a casual MOBA as a Farcaster mini-app",
+        "mini-apps are the UX unlock: no friction between feed and play",
+        "Booster - permissionless cast amplification, self-hosted",
+        "Celebration Hub agents live on Farcaster and X",
+        "audio Spaces as the 2026 growth channel"
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Opening and soundcheck"
+        },
+        {
+          "t": 106,
+          "label": "Host intro: Farcaster Batches Day 3"
+        },
+        {
+          "t": 254,
+          "label": "Program recap: Day 1 Spaces, Day 2 workshop, Day 3 builder chat"
+        },
+        {
+          "t": 402,
+          "label": "Zaal - The ZAO, impact network for the creator economy"
+        },
+        {
+          "t": 498,
+          "label": "ZABAL Gamez clip: the three-track build-a-thon"
+        },
+        {
+          "t": 601,
+          "label": "ZABAL Gamez details: workshops, transcripts, knowledge archive"
+        },
+        {
+          "t": 787,
+          "label": "Zaal on open questions and best-practice setup"
+        },
+        {
+          "t": 1022,
+          "label": "Yerbearserker - Empire Builder, dream to empire"
+        },
+        {
+          "t": 1215,
+          "label": "Empire Builder on integrity and token responsibility"
+        },
+        {
+          "t": 1665,
+          "label": "AZ Flynn - Defensive Agents, casual idle MOBA"
+        },
+        {
+          "t": 1896,
+          "label": "Mini-app ecosystem, NFT collabs, community strategy"
+        },
+        {
+          "t": 2231,
+          "label": "Cashless Man - Booster, self-hosted amplification"
+        },
+        {
+          "t": 2533,
+          "label": "Duck Facts - Celebration Hub"
+        },
+        {
+          "t": 2917,
+          "label": "Wrap-up: Friday Day 4 Space, workshops tomorrow"
+        }
+      ],
+      "pull_quotes": [
+        {
+          "quote": "the Zao is an impact network for the creator economy. Our goal is to bring the profit margin, the data, and the IP rights back to independent artists.",
+          "who": "Zaal (The ZAO)"
+        },
+        {
+          "quote": "I think one of the strongest points I like about Farcaster is the mini-app ecosystem. Super slept on.",
+          "who": "AZ Flynn (Defensive Agents)"
+        }
+      ],
+      "resources": [
+        {
+          "label": "Nounish Prof's announcement cast",
+          "url": "https://farcaster.xyz/nounishprof/0xa366a12a"
+        },
+        {
+          "label": "Farcaster Batches Day 3 feature cast (@farcaster)",
+          "url": "https://farcaster.xyz/farcaster/0xb1ccb2f8"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-02",
+      "type": "fireside",
+      "title": "Farcaster Batches Day 1: five builders on GM Farcaster",
+      "presenter": "Nounish Prof + Adrian (GM Farcaster)",
+      "handle": "@nounishprof",
+      "org": "Farcaster Batches / GM Farcaster",
+      "track": "builder",
+      "technical": 4,
+      "format": "Live X Space, recorded",
+      "summary": "Farcaster Batches Day 1, hosted on the GM Farcaster X account by Nounish Prof and Adrian, with five builders from the batch presenting. Chris Dolinsky showed Vini App, a no-code platform that turns natural-language prompts into working web3 apps, with a $1,000+ USDC prize pool running for the hackathon week. Kenny presented POIDH, the on-chain social bounty platform where any outcome can be crowdfunded and verified trustlessly, with $25 boosts for the first 20 new bounties tied to Farcaster projects. Nick (nickysap) walked through Juke, a native Farcaster audio client with voice notes, Space recording and an SDK for embedding audio in apps - The ZAO is named as an SDK user. Jonathan Colton covered FounderCheck, an agent-powered way for founders to test their go-to-market messaging, plus the Photocaster launch where artists keep 100 percent of proceeds. Dr. Deeks (as heard) closed with Email Remittance Pro, Crafter and Ghostwriter. The through-line: tools that give creators and users in the Farcaster ecosystem more leverage. Zaal is referenced but does not speak on this recording.",
+      "topics": [
+        "Farcaster Batches",
+        "no-code web3 apps",
+        "on-chain bounties",
+        "POIDH",
+        "Juke",
+        "founder validation",
+        "artist sovereignty",
+        "crypto remittance"
+      ],
+      "page": "/recordings/33",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-farcaster-batches-day-1-five-builders.md",
+      "link": "https://x.com/gmfarcaster",
+      "link_label": "GM Farcaster on X",
+      "takeaways": [
+        "Vini App lets non-coders generate a working web3 app from natural language in minutes.",
+        "POIDH runs on ephemeral one-task DAOs: crowdfund an outcome, verify it, settle it on-chain - the $30k kickflip world record is the reference case.",
+        "A custom Farcaster client like Juke still matters after native Spaces shipped, because it can add voice notes, recording and an SDK faster than the protocol does.",
+        "FounderCheck measured go-to-market clarity improving 3.3+ points in a single session.",
+        "Photocaster keeps 100 percent of proceeds with the artist, positioned against the older Rodeo model.",
+        "Email Remittance Pro uses an email address as the identity layer to send crypto across chains without a wallet setup."
+      ],
+      "share_topics": [
+        "democratizing app building with Vini App",
+        "crowdfunding real-world outcomes on POIDH",
+        "open-source Farcaster audio clients (Juke)",
+        "founder GTM validation with agents",
+        "sovereign artist platforms - artists keep 100 percent",
+        "crypto remittance with just an email",
+        "Farcaster Batches week schedule"
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Intro and setup"
+        },
+        {
+          "t": 342,
+          "label": "Farcaster Batches and JubJub's vision"
+        },
+        {
+          "t": 392,
+          "label": "The five featured builders"
+        },
+        {
+          "t": 441,
+          "label": "Chris Dolinsky - Vini App, no-code web3 apps"
+        },
+        {
+          "t": 879,
+          "label": "Adrian's questions, Vini App tokenomics"
+        },
+        {
+          "t": 1344,
+          "label": "Kenny - POIDH concept"
+        },
+        {
+          "t": 1627,
+          "label": "POIDH on-chain bounty model and examples"
+        },
+        {
+          "t": 2109,
+          "label": "Nick - Juke, native Farcaster audio"
+        },
+        {
+          "t": 2491,
+          "label": "Juke open source and the SDK"
+        },
+        {
+          "t": 2582,
+          "label": "Jonathan Colton - FounderCheck"
+        },
+        {
+          "t": 3109,
+          "label": "Photocaster launch and artist sovereignty"
+        },
+        {
+          "t": 3450,
+          "label": "Dr. Deeks - Email Remittance Pro"
+        },
+        {
+          "t": 3642,
+          "label": "Crafter word game and first-creator NFT mints"
+        },
+        {
+          "t": 4039,
+          "label": "Ghostwriter storytelling game"
+        },
+        {
+          "t": 4344,
+          "label": "Wrap-up and the week's schedule"
+        }
+      ],
+      "pull_quotes": [
+        {
+          "quote": "Poid is a social bounty platform. And so the idea behind it is that you can crowdfund any outcome and that you can verify that it happened and you can do it all trustlessly, 100% on chain.",
+          "who": "Kenny (POIDH)"
+        },
+        {
+          "quote": "Email Remittance Pro... basically no matter who it is across the globe, if you have their email, you can send them crypto with just their email. The email is the identity layer.",
+          "who": "Dr. Deeks (as heard)"
+        }
+      ],
+      "resources": [
+        {
+          "label": "Farcaster Batches Day 3 feature cast (@farcaster)",
+          "url": "https://farcaster.xyz/farcaster/0xb1ccb2f8"
+        }
+      ]
+    },
+    {
       "date": "2026-06-30",
       "type": "workshop",
       "title": "ZABAL GAMEZ Workshop w/Ceci from Unlock Protocol",
