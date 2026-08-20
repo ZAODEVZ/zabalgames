@@ -1,13 +1,45 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Generated 2026-08-11 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 32 recordings, newest first.
+Generated 2026-08-20 from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 34 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
 Chronological feed of every recording: https://zabalgamez.com/streams
 
 ======================================================================
-[1] ZABAL GAMEZ Workshop w/Ceci from Unlock Protocol
+[1] Farcaster Batches Day 3 builder chat: ZABAL Gamez, Empire Builder and four more
+fireside  |  track: builder  |  2026-06-03
+Presenter: Nounish Prof + Adrian (GM Farcaster) (@nounishprof), Farcaster Batches / GM Farcaster
+Watch: https://zabalgamez.com/recordings/34
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-03-farcaster-batches-day-3-builder-chat.md
+Summary: Farcaster Batches Day 3 builder chat on the GM Farcaster X account, hosted by Nounish Prof and Adrian. Zaal opened for The ZAO - an impact network for the creator economy whose goal is to bring the profit margin, the data and the IP rights back to independent artists - and introduced ZABAL Gamez, the free three-month build-a-thon: June workshops, July open build, August finals with mentor pairings and a $500 prize pool, streamed through Restream with every session transcribed into an LLM-queryable archive. Yerbearserker (Empire Builder) argued for creator integrity over token-first launches and showed no-code treasury and reward tools built on Clanker, including tokenless empires. AZ Flynn presented Defensive Agents, a casual idle MOBA shipped as a mini-app with NFT collabs for in-game utility. Cashless Man (as heard) covered Booster, a self-hosted marketplace for amplifying casts. Duck Facts presented Celebration Hub, a social app for events and gifts with a JoySender agent for birthdays. Recurring theme: Farcaster's mini-app ecosystem is underused for shipping fast and finding early users.
+Takeaways:
+  - The ZAO's stated goal: bring the profit margin, the data and the IP rights back to independent artists - creator ownership, not crypto education.
+  - ZABAL Gamez is a three-month arc: June workshops, July open build, August finals with mentor pairings and a $500 prize pool, free to join.
+  - Zaal expects audio - Spaces and transcribed sessions - to be the growth format for 2026.
+  - Empire Builder positions itself as people of integrity who prioritize benefiting creators and builders, shipping tools (including tokenless empires) rather than pushing tokens.
+  - AZ Flynn: the Farcaster mini-app ecosystem is super slept on - the easiest path to early, wallet-connected users.
+  - Celebration Hub is expanding from Farcaster to Telegram, web and X with agents that surface birthdays and events.
+Topics: Farcaster Batches, ZABAL Gamez, Empire Builder, Clanker, mini-apps, Defensive Agents, Booster, Celebration Hub
+
+======================================================================
+[2] Farcaster Batches Day 1: five builders on GM Farcaster
+fireside  |  track: builder  |  2026-06-02
+Presenter: Nounish Prof + Adrian (GM Farcaster) (@nounishprof), Farcaster Batches / GM Farcaster
+Watch: https://zabalgamez.com/recordings/33
+Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-farcaster-batches-day-1-five-builders.md
+Summary: Farcaster Batches Day 1, hosted on the GM Farcaster X account by Nounish Prof and Adrian, with five builders from the batch presenting. Chris Dolinsky showed Vini App, a no-code platform that turns natural-language prompts into working web3 apps, with a $1,000+ USDC prize pool running for the hackathon week. Kenny presented POIDH, the on-chain social bounty platform where any outcome can be crowdfunded and verified trustlessly, with $25 boosts for the first 20 new bounties tied to Farcaster projects. Nick (nickysap) walked through Juke, a native Farcaster audio client with voice notes, Space recording and an SDK for embedding audio in apps - The ZAO is named as an SDK user. Jonathan Colton covered FounderCheck, an agent-powered way for founders to test their go-to-market messaging, plus the Photocaster launch where artists keep 100 percent of proceeds. Dr. Deeks (as heard) closed with Email Remittance Pro, Crafter and Ghostwriter. The through-line: tools that give creators and users in the Farcaster ecosystem more leverage. Zaal is referenced but does not speak on this recording.
+Takeaways:
+  - Vini App lets non-coders generate a working web3 app from natural language in minutes.
+  - POIDH runs on ephemeral one-task DAOs: crowdfund an outcome, verify it, settle it on-chain - the $30k kickflip world record is the reference case.
+  - A custom Farcaster client like Juke still matters after native Spaces shipped, because it can add voice notes, recording and an SDK faster than the protocol does.
+  - FounderCheck measured go-to-market clarity improving 3.3+ points in a single session.
+  - Photocaster keeps 100 percent of proceeds with the artist, positioned against the older Rodeo model.
+  - Email Remittance Pro uses an email address as the identity layer to send crypto across chains without a wallet setup.
+Topics: Farcaster Batches, no-code web3 apps, on-chain bounties, POIDH, Juke, founder validation, artist sovereignty, crypto remittance
+
+======================================================================
+[3] ZABAL GAMEZ Workshop w/Ceci from Unlock Protocol
 workshop  |  track: builder  |  2026-06-30
 Presenter: Ceci Sakura, Unlock Protocol
 Watch: https://zabalgamez.com/recordings/32
@@ -23,7 +55,7 @@ Takeaways:
 Topics: What Unlock Protocol is, Memberships vs subscriptions, Certifications and event tickets, Deploying a lock on Base, Soulbound proof-of-submission, Airdrops and bulk CSV, Unlock DAO and contributing
 
 ======================================================================
-[2] ZABAL GAMEZ Workshop w/Duo Do
+[4] ZABAL GAMEZ Workshop w/Duo Do
 workshop  |  track: artist  |  2026-06-30
 Presenter: Duo Do (@duodomusica), Clementine and Santiago
 Watch: https://zabalgamez.com/recordings/31
@@ -39,7 +71,7 @@ Takeaways:
 Topics: Independent artists on Farcaster, Community over streaming numbers, Tips and collecting, Crowdfunding with Flows and Lil Nouns, Collaboration and IRL connection, Genre-free and emotion music
 
 ======================================================================
-[3] ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster
+[5] ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster
 workshop  |  track: builder  |  2026-06-30
 Presenter: Adrienne Shulman (@adrienne), GM Farcaster
 Watch: https://zabalgamez.com/recordings/30
@@ -55,7 +87,7 @@ Takeaways:
 Topics: Building Warpee, AI agents on Farcaster, Neynar webhooks and signers, Embeddings and vector search, Agentic loops and skills, Building in public
 
 ======================================================================
-[4] ZABAL GAMEZ Workshop w/James from Mental Wealth Academy
+[6] ZABAL GAMEZ Workshop w/James from Mental Wealth Academy
 workshop  |  track: builder  |  2026-06-27
 Presenter: James (@jamesdesign.eth), Mental Wealth Academy
 Watch: https://zabalgamez.com/recordings/29
@@ -65,7 +97,7 @@ Summary: James from Mental Wealth Academy - an artist, psychologist, and scienti
 Topics: What Mental Wealth Academy is, Learn-to-earn game world, Privy accounts and diamond points, Democratization of education, Building your own brand into Web3
 
 ======================================================================
-[5] ZABAL GAMEZ Workshop w/Matt Lee from Tortoise
+[7] ZABAL GAMEZ Workshop w/Matt Lee from Tortoise
 workshop  |  track: builder  |  2026-06-28
 Presenter: Matt Lee (@mattlee), Tortoise
 Watch: https://zabalgamez.com/recordings/28
@@ -80,7 +112,7 @@ Takeaways:
 Topics: Tortoise, Music on Farcaster, Building on Farcaster, Creator economy, Farcaster
 
 ======================================================================
-[6] ZABAL GAMEZ Workshop w/AZKAL from FlowStage
+[8] ZABAL GAMEZ Workshop w/AZKAL from FlowStage
 workshop  |  track: artist  |  2026-06-28
 Presenter: AZKAL, FlowStage
 Watch: https://zabalgamez.com/recordings/27
@@ -95,7 +127,7 @@ Takeaways:
 Topics: FlowStage, Short-form video, Content tools, Creator tools, Farcaster
 
 ======================================================================
-[7] ZABAL GAMEZ Workshop w/Teresa Marrin Nakra from Stevens University
+[9] ZABAL GAMEZ Workshop w/Teresa Marrin Nakra from Stevens University
 workshop  |  track: artist  |  2026-06-25
 Presenter: Teresa Marrin Nakra, Stevens University
 Watch: https://zabalgamez.com/recordings/25
@@ -110,7 +142,7 @@ Takeaways:
 Topics: Generative AI, Ableton, Magenta, Music technology, AI music
 
 ======================================================================
-[8] ZABAL GAMEZ Workshop w/topocount from Neynar
+[10] ZABAL GAMEZ Workshop w/topocount from Neynar
 workshop  |  track: builder  |  2026-06-23
 Presenter: topocount (@topocount.eth), Neynar
 Watch: https://zabalgamez.com/recordings/24
@@ -125,7 +157,7 @@ Takeaways:
 Topics: Snapchain, Farcaster protocol, Neynar, Signers, Rust, Clients
 
 ======================================================================
-[9] ZABAL GAMEZ Workshop w/Dylan Yarter from BizarreBeasts
+[11] ZABAL GAMEZ Workshop w/Dylan Yarter from BizarreBeasts
 workshop  |  track: creator  |  2026-06-23
 Presenter: Dylan Yarter (@bizarrebeast), BizarreBeasts
 Watch: https://zabalgamez.com/recordings/23
@@ -140,7 +172,7 @@ Takeaways:
 Topics: Pixel art, Creative coding, Farcaster Mini App, BizarreBeasts, Animation
 
 ======================================================================
-[10] ZABAL GAMEZ Workshop w/Saltorious from Bankr
+[12] ZABAL GAMEZ Workshop w/Saltorious from Bankr
 workshop  |  track: builder  |  2026-06-23
 Presenter: Saltorious (@saltorious.eth), Bankr
 Watch: https://zabalgamez.com/recordings/22
@@ -155,7 +187,7 @@ Takeaways:
 Topics: Harness, Bankr, Building tools, Onchain tools, Farcaster
 
 ======================================================================
-[11] ZABAL Gamez AMA with The Farcaster Intern
+[13] ZABAL Gamez AMA with The Farcaster Intern
 workshop  |  track: builder  |  2026-06-22
 Presenter: The Farcaster Intern (@farcaster), Farcaster
 Watch: https://zabalgamez.com/recordings/20
@@ -163,14 +195,14 @@ Summary: ZABAL Gamez AMA with The Farcaster Intern - an open-mic audio-space AMA
 Topics: Farcaster, AMA, Farcaster protocol
 
 ======================================================================
-[12] Selling merch onchain
+[14] Selling merch onchain
 workshop  |  track: creator  |  2026-06-21
 Presenter: Minted Merch (@mintedmerch)
 Watch: https://zabalgamez.com/recordings/19
 Summary: Selling merch onchain - and what it opens up for creators.
 
 ======================================================================
-[13] ZABAL GAMEZ Workshop w/Meta Mu from Rose City Web3
+[15] ZABAL GAMEZ Workshop w/Meta Mu from Rose City Web3
 workshop  |  track: creator  |  2026-06-21
 Presenter: Meta Mu (@metamu), Rose City Web3
 Watch: https://zabalgamez.com/recordings/18
@@ -186,7 +218,7 @@ Takeaways:
 Topics: community building, adding value, communities, regen, getting involved, onboarding
 
 ======================================================================
-[14] ZABAL GAMEZ Workshop w/Ali Tiknazoglu
+[16] ZABAL GAMEZ Workshop w/Ali Tiknazoglu
 workshop  |  track: builder  |  2026-06-20
 Presenter: Ali Tiknazoglu (@alitiknazoglu)
 Watch: https://zabalgamez.com/recordings/17
@@ -200,7 +232,7 @@ Takeaways:
 Topics: AI coding, Vibe coding, Learning to code, AI tooling, Building
 
 ======================================================================
-[15] ZABAL GAMEZ Workshop w/Dan Singjoy from Eden Fractal
+[17] ZABAL GAMEZ Workshop w/Dan Singjoy from Eden Fractal
 workshop  |  track: builder  |  2026-06-20
 Presenter: Dan Singjoy (@dansingjoy), Eden Fractal
 Watch: https://zabalgamez.com/recordings/16
@@ -216,14 +248,14 @@ Takeaways:
 Topics: Eden Fractal, fractals, Respect, governance, Optimism, ZAO Fractal
 
 ======================================================================
-[16] Farcaster Batches, and the builders behind it
+[18] Farcaster Batches, and the builders behind it
 workshop  |  track: builder  |  2026-06-20
 Presenter: Jub Jub (@jubjub)
 Watch: https://zabalgamez.com/recordings/15
 Summary: Farcaster Batches, and a conversation about the builders and the mentality of the people of Farcaster.
 
 ======================================================================
-[17] ZABAL GAMEZ Workshop w/diviflyy from Empire Builder
+[19] ZABAL GAMEZ Workshop w/diviflyy from Empire Builder
 workshop  |  track: builder  |  2026-06-16
 Presenter: Adrian (diviflyy) (@diviflyy), Empire Builder
 Watch: https://zabalgamez.com/recordings/14
@@ -239,7 +271,7 @@ Takeaways:
 Topics: Empire Builder, leaderboards, boosters, mini apps, Farcaster, API
 
 ======================================================================
-[18] ZABAL GAMEZ Workshop w/Chris Dolinsky from Vini App
+[20] ZABAL GAMEZ Workshop w/Chris Dolinsky from Vini App
 workshop  |  track: builder  |  2026-06-15
 Presenter: Chris Dolinsky (@1dolinski), Vini App
 Watch: https://zabalgamez.com/recordings/13
@@ -255,7 +287,7 @@ Takeaways:
 Topics: Vini App, building without code, mini apps, Farcaster, Base, World App
 
 ======================================================================
-[19] POIDH: the open bounty protocol
+[21] POIDH: the open bounty protocol
 workshop  |  track: builder  |  2026-06-15
 Presenter: Kenny (@kenny), POIDH
 Watch: https://zabalgamez.com/recordings/12
@@ -271,7 +303,7 @@ Takeaways:
 Topics: POIDH, bounty protocol, on-chain bounties, composability, Empire Builder, Farcaster, Base
 
 ======================================================================
-[20] Non-Dev to Shipped: building Baraza Protocol with AI tools
+[22] Non-Dev to Shipped: building Baraza Protocol with AI tools
 workshop  |  track: builder  |  2026-06-14
 Presenter: Aziz (MotoMoto) (@azizke), Build Africa DAO
 Watch: https://zabalgamez.com/recordings/11
@@ -287,7 +319,7 @@ Takeaways:
 Topics: Non-Dev to Shipped, vibe coding, Build Africa DAO, Baraza Protocol, chamas and SACCOs, mobile-first, M-PESA, Baraza TV, building in public, Africa, AI tooling
 
 ======================================================================
-[21] MIDAO + Beta Briefing: legal entities for DAOs and AI agents
+[23] MIDAO + Beta Briefing: legal entities for DAOs and AI agents
 workshop  |  track: builder  |  2026-06-12
 Presenter: Adam Miller (@thethriller), MIDAO
 Watch: https://zabalgamez.com/recordings/10
@@ -303,7 +335,7 @@ Takeaways:
 Topics: MIDAO, DAO LLC, AI agent legal entity, Marshall Islands, Beta Briefing, agentic engineering, Claude Code
 
 ======================================================================
-[22] The Farcaster protocol, ins and outs
+[24] The Farcaster protocol, ins and outs
 workshop  |  track: builder  |  2026-06-12
 Presenter: Cassie (@cassie), Quilibrium
 Watch: https://zabalgamez.com/recordings/9
@@ -319,7 +351,7 @@ Takeaways:
 Topics: Farcaster protocol, Snapchain, Hypersnap, building a client, Snap token, gasless signers, consensus, decentralization
 
 ======================================================================
-[23] Earn from music battles, not streams: WaveWarz
+[25] Earn from music battles, not streams: WaveWarz
 workshop  |  track: artist  |  2026-06-13
 Presenter: Hurricane Ike (@hurric4n3ike), WaveWarz
 Watch: https://zabalgamez.com/recordings/8
@@ -336,7 +368,7 @@ Takeaways:
 Topics: WaveWarz, music battles, earn from engagement, Solana, community battles, keep your masters, distribution
 
 ======================================================================
-[24] Building KFMEDIA
+[26] Building KFMEDIA
 workshop  |  track: creator  |  2026-06-10
 Presenter: Will T of Web3 (@willtofweb3), Kingfishers Media
 Watch: https://zabalgamez.com/recordings/7
@@ -352,7 +384,7 @@ Takeaways:
 Topics: Kingfishers Media, KFMEDIA, creator distribution, Unlock Protocol, Highlight.xyz, Arweave, Contra, CharmVerse, KFM Talks, public goods, vibe coding
 
 ======================================================================
-[25] Owning your music as an independent artist
+[27] Owning your music as an independent artist
 workshop  |  track: artist  |  2026-06-09
 Presenter: Joseph Goats (@joseacabrerav)
 Watch: https://zabalgamez.com/recordings/6
@@ -368,7 +400,7 @@ Takeaways:
 Topics: independent artists, digital street music, peer-to-peer, decentralization, fractals, Steemit and Hive, learning English, impact concerts, festivals for social impact, autopoiesis, Venezuela, music and nature
 
 ======================================================================
-[26] Building Sopha, and why curation is needed
+[28] Building Sopha, and why curation is needed
 workshop  |  track: builder  |  2026-06-08
 Presenter: Chris (chriscocreated) (@chriscocreated), Sopha
 Watch: https://zabalgamez.com/recordings/5
@@ -386,7 +418,7 @@ Takeaways:
 Topics: Sopha, curation, Farcaster clients, high signal, third place, build your own client, Neynar, mini apps and Snaps
 
 ======================================================================
-[27] Bonfires + a vibe-coding masterclass
+[29] Bonfires + a vibe-coding masterclass
 fireside  |  track: builder  |  2026-06-06
 Presenter: Carlos (Plat0x) (@at0x_eth), Bonfires
 Watch: https://zabalgamez.com/recordings/fireside/1
@@ -401,7 +433,7 @@ Takeaways:
 Topics: Bonfires, vibe coding, planning, sub-agents, documentation-as-code, types-first, knowledge graph, agents
 
 ======================================================================
-[28] Starting and growing your own livestream
+[30] Starting and growing your own livestream
 workshop  |  track: creator  |  2026-06-02
 Presenter: Ohnahji
 Watch: https://zabalgamez.com/recordings/4
@@ -418,7 +450,7 @@ Takeaways:
 Topics: livestreaming, consistency, Twitch, OBS / Restream / StreamYard, raids, shared chat, building your own bots, API keys + env vars, opsec
 
 ======================================================================
-[29] Bonfire and the ZABAL Bonfire bot
+[31] Bonfire and the ZABAL Bonfire bot
 workshop  |  track: builder  |  2026-06-01
 Presenter: Joshua.eth and Plat0x (@joshua.eth), Bonfire
 Watch: https://zabalgamez.com/recordings/3
@@ -434,7 +466,7 @@ Takeaways:
 Topics: Bonfire, shared memory, knowledge graph, agents, curation, hackathons, ZABAL Bonfire bot
 
 ======================================================================
-[30] Empire Builder Part 2: Building a Tokenless Empire Live
+[32] Empire Builder Part 2: Building a Tokenless Empire Live
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/2
@@ -450,7 +482,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, airdrops, raffles, treasury, distribution
 
 ======================================================================
-[31] Empire Builder V3
+[33] Empire Builder V3
 workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/1
@@ -466,7 +498,7 @@ Takeaways:
 Topics: Empire Builder, tokenless Empire, leaderboards, boosters, staking, Triple-A framework, distribution
 
 ======================================================================
-[32] ZAO Fractal Weekly Introduction Presentation
+[34] ZAO Fractal Weekly Introduction Presentation
 workshop  |  track: builder  |  2026-06-01
 Presenter: Zaal (@zaal), The ZAO
 Watch: https://zabalgamez.com/recordings/zao/1
