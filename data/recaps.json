@@ -3,6 +3,114 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop (defaults to workshop if absent) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[], chapters[] (array of {t, label} where t is seconds and the first entry is 0 - drives the clickable chapter jumps on a generated video page), okd (YYYY-MM-DD the guest reviewed the cut/page and signed off, before public release - absent until they approve), cast_hash (the root Farcaster cast for this recording - the announce cast; its replies render as the live 'Thoughts' conversation via /api/cast-comments. A 0x hash or a Warpcast URL). To publish a new recording from a ZAOVideoEditor manifest (writes transcript + recap + recordings/N.html + rebuilds the index in one step) use: node scripts/ingest-recording.mjs <manifest.json> --write. After hand-editing this file, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-04-24",
+      "type": "fireside",
+      "title": "Builder first: Rish on Neynar's new direction for Farcaster, live on Juke",
+      "presenter": "Rish (Neynar), hosted by Nick (nickysap) with Zaal",
+      "handle": "@rish_neynar",
+      "org": "Neynar",
+      "track": "builder",
+      "technical": 5,
+      "format": "Live audio Space on Juke, recorded",
+      "summary": "A Friday audio Space on Juke, hosted by Nick (nickysap) with Zaal co-hosting, with Rish from Neynar shortly after the deal that put the main Farcaster client, the nodes, the APIs and Clanker under Neynar. Rish frames the shift plainly: the social-first experiment ran for four and a half years and did not work, so Neynar is running a builder-first experiment - primitives and in-client tooling so people can create new things on the internet without necessarily writing software. He is candid about the numbers (the Farcaster client sits at roughly 1,000 to 2,000 US daily actives, which cannot carry a team plus infrastructure costs, so growth matters but should decouple from the four-year crypto cycle), names three kinds of builder support (APIs, money through the Clanker ecosystem fund, distribution on Farcaster and X), and answers the decentralization question directly - Neynar holds protocol-level control because it pays the bills and runs on-call, and that can loosen if more teams can carry the protocol. On the Hypersnap fork: permissionless is fine, the name collision is not, and it forced a week or two of spam-prevention work. Nick notes he built Juke itself in about five days with Claude Code and the Neynar APIs - the thesis playing out live.",
+      "topics": [
+        "Neynar",
+        "builder-first",
+        "Farcaster strategy",
+        "decentralization",
+        "Hypersnap fork",
+        "Clanker ecosystem fund",
+        "Juke",
+        "agents"
+      ],
+      "listen_url": "https://x.com/nicky_sap/status/2047770959403516069",
+      "listen_label": "Recording on X (nickysap)",
+      "page": "/recordings/35",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-04-24-rish-neynar-builder-first-on-juke.md",
+      "link": "https://neynar.com",
+      "link_label": "Neynar",
+      "takeaways": [
+        "Social-first ran four and a half years without sustainable growth; Neynar is now running a builder-first experiment for at least a period of time.",
+        "Builder-first means primitives and in-client tooling, not expecting people to write software to create on the network.",
+        "Three forms of builder support: developer APIs, money via the Clanker ecosystem fund (funded by Clanker revenue, not a huge fund), and distribution help on Farcaster and X.",
+        "The Farcaster client is at roughly 1,000 to 2,000 US DAU - too small for the infrastructure it carries, so DAU growth is the number that matters, ideally decoupled from crypto cycles.",
+        "Neynar keeps protocol-level control because it pays the bills and handles on-call; decentralization becomes realistic once multiple teams can carry the protocol.",
+        "The Hypersnap fork is permissible, but the name collision created confusion and a heavy spam-prevention workload.",
+        "The products that worked - Clanker, DEGEN, Bankr (as heard) - came from the community permissionlessly, which is the outcome Neynar wants more of."
+      ],
+      "share_topics": [
+        "Farcaster after four and a half years of social-first: Neynar goes builder-first",
+        "Neynar now runs the client, the nodes, the APIs and Clanker - the decentralization tension, answered",
+        "Juke was built in about five days with Claude Code and the Neynar APIs",
+        "the Hypersnap fork: permissionless yes, name collision no",
+        "1,000 to 2,000 US DAU - the honest number and why growth must outlast the cycle",
+        "three ways Neynar supports builders: APIs, money, distribution",
+        "humans and agents in the same social pool, with money transfer alongside messages"
+      ],
+      "chapters": [
+        {
+          "t": 0,
+          "label": "Opening and the deal"
+        },
+        {
+          "t": 48,
+          "label": "Social-first vs builder-first"
+        },
+        {
+          "t": 142,
+          "label": "What builder-first means: primitives, not code"
+        },
+        {
+          "t": 237,
+          "label": "Metrics: DAU and D30 retention"
+        },
+        {
+          "t": 340,
+          "label": "Building Juke on Farcaster in five days"
+        },
+        {
+          "t": 483,
+          "label": "Three kinds of support: APIs, money, distribution"
+        },
+        {
+          "t": 622,
+          "label": "Multi-client ecosystem and decentralization"
+        },
+        {
+          "t": 1002,
+          "label": "The Hypersnap fork"
+        },
+        {
+          "t": 1241,
+          "label": "Five-year view: 10x DAU, many products"
+        },
+        {
+          "t": 1429,
+          "label": "Bull runs, unique formats, the future"
+        }
+      ],
+      "pull_quotes": [
+        {
+          "quote": "the way to think about our approach is that they tried the social first experiment, and that didn't work. And we are going to, at least for a period of time, going to try this builder first experiment",
+          "who": "Rish (Neynar)"
+        },
+        {
+          "quote": "it might look different if you have humans and agents in the same pool if you have humans and agents and not just information transfer but money transfer in the same pool that crypto allows",
+          "who": "Rish (Neynar)"
+        }
+      ],
+      "resources": [
+        {
+          "label": "Nick's announcement cast",
+          "url": "https://farcaster.xyz/nickysap/0x0d222d4a"
+        },
+        {
+          "label": "Recording on X",
+          "url": "https://x.com/nicky_sap/status/2047770959403516069"
+        }
+      ]
+    },
+    {
       "date": "2026-06-03",
       "type": "fireside",
       "title": "Farcaster Batches Day 3 builder chat: ZABAL Gamez, Empire Builder and four more",
