@@ -54,6 +54,13 @@
     .aug-person .links { margin-top: 0.15rem; }
     .aug-person .links a { color: var(--cyan); text-decoration: none; font-size: 0.74rem; margin-right: 0.6rem; }
     .aug-empty { color: var(--text-muted); font-size: 0.84rem; border: 1px dashed var(--border-hover); border-radius: 10px; padding: 0.8rem; }
+    .aug-battles { display: grid; gap: 0.7rem; margin-top: 1rem; }
+    .aug-battle { border: 1px solid rgba(224,221,170,0.22); border-radius: 12px; background: var(--surface-2); padding: 0.9rem 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; justify-content: space-between; }
+    .aug-battle .bt-track { color: var(--cyan); font: 0.55rem var(--font-pixel); letter-spacing: 0.06em; text-transform: uppercase; }
+    .aug-battle .bt-pair { color: var(--text); font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; overflow-wrap: anywhere; }
+    .aug-battle .bt-when { color: var(--text-muted); font: 0.8rem 'JetBrains Mono', monospace; }
+    .aug-battle .bt-when.tbd { color: var(--text-dim); font-style: italic; }
+    .aug-battle .bt-watch { color: var(--cyan); text-decoration: none; font-size: 0.8rem; font-weight: 700; }
     @media (max-width: 850px) { .aug-steps, .aug-mentors, .aug-field-cols { grid-template-columns: 1fr; } .aug-actions .aug-button { flex: 1 1 100%; } }
   </style>
 </head>
@@ -75,10 +82,10 @@
   <div class="container aug-shell">
     <header class="hero aug-hero">
       <div class="hero-eyebrow">August Finals</div>
-      <h1>August is the July submitters. The <span class="accent">leaderboard</span> is live.</h1>
-      <p class="lead">Everyone who submitted anything in July - a track, a build, a draft - is on the season leaderboard right now. This week is the last chance to climb it. Then the field narrows to six finalists who present at the end of the month.</p>
+      <h1>The board is closed. <span class="accent">Six finalists</span>, three battles.</h1>
+      <p class="lead">15 people entered and 30 projects went up across three tracks. The field has narrowed to two people per track. The six go head to head on WaveWarZ in the last week of August, and each pair picks its own date.</p>
       <div class="aug-actions">
-        <a class="aug-button primary" href="/leaderboard">See the standings</a>
+        <a class="aug-button primary" href="#six-heading">See the six</a>
         <a class="aug-button" href="/leaderboard">See the board</a>
         <a class="aug-button" href="/submissions">Browse the work</a>
       </div>
@@ -88,20 +95,36 @@
       <h2 id="how-heading" style="color:#e0ddaa;font-family:'Syne',sans-serif;margin-bottom:0.2rem;">How the finals work</h2>
       <div class="aug-steps">
         <article class="aug-step">
-          <span class="k">Now - this week</span>
-          <h3>Climb the leaderboard</h3>
-          <p>The field is every July submitter. Zaal picks the six finalists - there is no vote. If you submitted, you are in the running - this week is your last chance to move up.</p>
+          <span class="k">Done - August 16</span>
+          <h3>The board closed</h3>
+          <p>The field was every July submitter. Zaal picked the six finalists himself - there was no vote. Finalists are people, not projects: the whole body of season work carried them.</p>
         </article>
         <article class="aug-step">
           <span class="k">The cut</span>
-          <h3>Top 6 advance</h3>
-          <p>When the week closes, the top 2 people per track - artist, builder, creator - advance. Finalists are people, not projects: your whole body of July work carries you.</p>
+          <h3>Two per track</h3>
+          <p>Two people advanced in each track - artist, builder, creator. Six finalists in total, named below.</p>
         </article>
         <article class="aug-step">
-          <span class="k">End of August</span>
-          <h3>The finals</h3>
-          <p>All six finalists present their work live at the end of the month. One winner per track.</p>
+          <span class="k">August 24 to 30</span>
+          <h3>Three battles</h3>
+          <p>Each pair goes head to head live on <a href="/wavewarz" style="color:var(--cyan);">WaveWarZ</a>. The crowd trades the battle onchain, and the champion comes from a combined score: the market result and a judges' panel among the factors. One winner per track. Results land on <a href="/results" style="color:var(--cyan);">the results page</a>.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="aug-section" aria-labelledby="six-heading">
+      <h2 id="six-heading">The six</h2>
+      <p class="lead">Two finalists per track. They meet head to head in the last week of August, and each pair agrees its own date inside that week.</p>
+      <div class="aug-field-cols" id="six-cols" aria-busy="true">
+        <p class="aug-empty">Loading the finalists...</p>
+      </div>
+    </section>
+
+    <section class="aug-section" aria-labelledby="schedule-heading">
+      <h2 id="schedule-heading">The schedule</h2>
+      <p class="lead">Three battles between Monday August 24 and Sunday August 30. Each pair agrees its own day and time, so dates land here as they are confirmed.</p>
+      <div class="aug-battles" id="battle-rows" aria-busy="true">
+        <p class="aug-empty">Loading the schedule...</p>
       </div>
     </section>
 
@@ -128,8 +151,8 @@
     </section>
 
     <section class="aug-section" aria-labelledby="field-heading">
-      <h2 id="field-heading">The field</h2>
-      <p class="lead">Everyone below submitted in July and is in the running. The list comes straight from the live submission feed. Six finalists get picked, two per track.</p>
+      <h2 id="field-heading">The full field</h2>
+      <p class="lead">Everyone below entered in July and competed for a place. The list comes straight from the live submission feed. Finisher recognition goes to everyone who shipped, not only the six.</p>
       <div class="aug-field-cols" id="field-cols" aria-busy="true">
         <p class="aug-empty">Loading the field...</p>
       </div>
@@ -164,6 +187,74 @@
     }).join('');
     root.innerHTML = cols;
     root.setAttribute('aria-busy', 'false');
+  }
+
+  // The six finalists come from data/finals.json so the roster has one source across
+  // /august, /finals/live and /winners.
+  fetch('/data/finals.json', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var fs = (d && d.finalists) || [];
+      var root = document.getElementById('six-cols');
+      if (!root) return;
+      if (!fs.length) { root.innerHTML = '<p class="aug-empty">The six are announced shortly.</p>'; root.setAttribute('aria-busy', 'false'); return; }
+      root.innerHTML = TRACKS.map(function (track) {
+        var inTrack = fs.filter(function (f) { return f.track === track; });
+        var rows = inTrack.map(function (f) {
+          var handle = String(f.handle || '').replace(/^@/, '');
+          var label = esc(f.name || f.handle || 'Finalist');
+          var link = handle ? '<div class="links"><a href="https://farcaster.xyz/' + esc(handle) + '" target="_blank" rel="noopener">' + esc(f.handle) + '</a></div>' : '';
+          return '<div class="aug-person" role="listitem"><strong>' + label + '</strong>' + link + '</div>';
+        }).join('');
+        return '<div class="aug-col" role="list" aria-label="' + track + ' final">'
+          + '<h3>' + track + ' final</h3>'
+          + '<p class="count">' + inTrack.length + ' finalists - head to head</p>'
+          + (rows || '<p class="aug-empty">To be named.</p>')
+          + '</div>';
+      }).join('');
+      root.setAttribute('aria-busy', 'false');
+      renderBattles(d && d.battles);
+    })
+    .catch(function () {
+      var root = document.getElementById('six-cols');
+      if (root) {
+        root.innerHTML = '<p class="aug-empty">Could not load the finalists right now.</p>';
+        root.setAttribute('aria-busy', 'false');
+      }
+      renderBattles(null);
+    });
+
+  // Battle schedule. Dates are agreed by each pair, so a battle with no date yet
+  // renders as "date being agreed" rather than being hidden - people need to see
+  // that their track is on the list even before it has a slot.
+  function renderBattles(battles) {
+    var root = document.getElementById('battle-rows');
+    if (!root) return;
+    root.setAttribute('aria-busy', 'false');
+    if (!battles || !battles.length) {
+      root.innerHTML = '<p class="aug-empty">The schedule lands here as each pair confirms.</p>';
+      return;
+    }
+    root.innerHTML = battles.map(function (b) {
+      var pair = (b.finalists || []).join(' vs ') || 'To be named';
+      var when = b.date
+        ? '<span class="bt-when">' + esc(fmtDate(b.date)) + (b.time ? ' - ' + esc(b.time) : '') + '</span>'
+        : '<span class="bt-when tbd">date being agreed</span>';
+      var watch = b.watch ? '<a class="bt-watch" href="' + esc(b.watch) + '" target="_blank" rel="noopener">Watch -&gt;</a>' : '';
+      return '<div class="aug-battle">'
+        + '<div><span class="bt-track">' + esc(b.track || '') + ' final</span>'
+        + '<div class="bt-pair">' + esc(pair) + '</div></div>'
+        + '<div>' + when + ' ' + watch + '</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  function fmtDate(iso) {
+    var parts = String(iso).split('-');
+    if (parts.length !== 3) return iso;
+    var d = new Date(Date.UTC(+parts[0], +parts[1] - 1, +parts[2]));
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' });
   }
 
   fetch('/api/submissions?feed=projects', { cache: 'no-store' })

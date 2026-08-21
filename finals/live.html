@@ -208,7 +208,7 @@
     <div class="card">
       <div class="card-label" style="color: var(--zabal);">UI TODO 2</div>
       <h3>Settlement readout view</h3>
-      <p>At T+72h, the WaveWarZ-Base settlement transaction fires. The page should detect this (event subscription), show the final placement, the $500 USDC pool split evenly between the six finalists (allocation confirmed before Finals), the 1% trade-cut totals per builder, and the commemorative collectibles (Finisher for everyone, Champion for top 3).</p>
+      <p>At T+72h, the WaveWarZ-Base settlement transaction fires. The page should detect this (event subscription), show the final placement, the $500 USDC pool split between the six finalists by battle result and trade volume, the 1% trade-cut totals per builder, and the commemorative collectibles (Finisher for everyone, Champion for top 3).</p>
     </div>
   </section>
 
@@ -242,7 +242,7 @@
     </nav>
     <nav class="arcade-foot-col" aria-label="Season">
       <h4>Season</h4>
-      <a href="/enter.html">Enter the Build</a>
+      <a href="/leaderboard">Season Board</a>
       <a href="/projects.html">Projects</a>
       <a href="/finals.html">Finals</a>
       <a href="/finals/live.html">Finals Live</a>
@@ -295,7 +295,7 @@
             '<div><div class="placeholder-name-label">' + esc(f.handle || f.track || 'Finalist') + '</div>' +
             '<div class="placeholder-name">' + nameHtml + '</div></div>' +
             BARS +
-            '<button class="placeholder-trade-btn" disabled title="Trading opens when WaveWarZ-Base is live">Trade</button>' +
+            '<button class="placeholder-trade-btn" disabled title="Trading opens on WaveWarZ when the battle goes live">Trade</button>' +
           '</div>';
         }).join('');
       })

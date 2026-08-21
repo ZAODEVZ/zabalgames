@@ -1,8 +1,21 @@
 {
   "season": 1,
-  "_note": "Single source for the August Finals surfaces (/finals, /finals/live, /winners). status: 'pending' (no finalists yet) | 'live' (finalists locked, trading open) | 'settled' (results final). finalists[] stays empty until the set is locked after July; the pages render their built-in 'awaiting Finals' placeholders until then (progressive enhancement). When finalists are added, /finals/live renders the roster and (once settled:true with ranks filled) /winners renders the results. The WaveWarZ-Base market/trade wiring is separate and blocked on the contract addresses. Each finalist: rank (final placement 1..N, or null pre-settlement), name, handle (e.g. @builder), repo (owner/repo), demo (URL), track (artist|builder|creator), prize (e.g. '$150 USDC + $ZABAL'), collectible ('champion'|'finisher').",
+  "_note": "Single source for the August Finals surfaces (/finals, /finals/live, /winners). status: 'pending' (finalists named, battles not yet run) | 'live' (battles running) | 'settled' (results final). /finals/live renders the roster as soon as finalists[] is non-empty; /winners stays on its placeholders until settled:true with ranks filled. Each finalist: rank (final placement 1..N, or null pre-settlement), name, handle (e.g. @builder), repo (owner/repo), demo (URL), track (artist|builder|creator), prize, collectible ('champion'|'finisher'). Finalists are PEOPLE, not projects - two per track, picked by Zaal after the board closed on 2026-08-16. There was no vote. Battles run on live WaveWarZ community battles, not WaveWarZ-Base.",
   "status": "pending",
   "settled": false,
-  "window": { "starts": null, "settles": null },
-  "finalists": []
+  "window": { "starts": "2026-08-24", "settles": "2026-08-30" },
+  "_battles_note": "The three head-to-head battles, rendered by /august. Each pair agrees its own date inside the window; until they do, leave date null and the page shows 'date being agreed'. TO PUBLISH THE SCHEDULE: fill date (YYYY-MM-DD), time (display string, include the timezone) and watch (stream URL) for each battle and flip status to 'scheduled'. No HTML edit needed. status: 'scheduling' | 'scheduled' | 'live' | 'done'.",
+  "battles": [
+    { "track": "artist", "finalists": ["@dee-13", "@n3m"], "date": null, "time": null, "watch": null, "status": "scheduling" },
+    { "track": "builder", "finalists": ["@jdwalka", "@ghostmintops"], "date": null, "time": null, "watch": null, "status": "scheduling" },
+    { "track": "creator", "finalists": ["@presdency", "@uniquebeing404"], "date": null, "time": null, "watch": null, "status": "scheduling" }
+  ],
+  "finalists": [
+    { "rank": null, "name": "dee-13", "handle": "@dee-13", "repo": null, "demo": null, "track": "artist", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
+    { "rank": null, "name": "LadyrynNemesis", "handle": "@n3m", "repo": null, "demo": null, "track": "artist", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
+    { "rank": null, "name": "JohnDaWalka", "handle": "@jdwalka", "repo": null, "demo": null, "track": "builder", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
+    { "rank": null, "name": "Brandon", "handle": "@ghostmintops", "repo": null, "demo": null, "track": "builder", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
+    { "rank": null, "name": "Presdency.eth", "handle": "@presdency", "repo": null, "demo": null, "track": "creator", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
+    { "rank": null, "name": "uniquebeing404", "handle": "@uniquebeing404", "repo": null, "demo": null, "track": "creator", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" }
+  ]
 }

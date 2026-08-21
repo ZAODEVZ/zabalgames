@@ -1,3 +1,5 @@
+import { timingEq } from '../lib/auth.mjs';
+
 export const config = { runtime: 'edge' };
 
 // ZABAL Gamez - unified July submission store (GET/POST /api/submission-intake).
@@ -70,7 +72,6 @@ const cleanHandle = (s) => (String(s || '').toLowerCase().replace(/^@/, '').repl
 const cleanWallet = (s) => { const v = String(s || '').trim().toLowerCase(); return /^0x[0-9a-f]{40}$/.test(v) ? v : null; };
 const cleanUrl = (s) => { try { const u = new URL(String(s)); return (u.protocol === 'https:' || u.protocol === 'http:') ? u.toString() : null; } catch { return null; } };
 
-function timingEq(a, b) { if (!a || !b) return false; let d = a.length ^ b.length; for (let i = 0; i < a.length && i < b.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i); return d === 0; }
 function authed(req) { if (!INTAKE_KEY) return false; const h = req.headers.get('authorization') || ''; const t = h.startsWith('Bearer ') ? h.slice(7) : ''; return timingEq(t, INTAKE_KEY); }
 
 export default async function handler(req) {

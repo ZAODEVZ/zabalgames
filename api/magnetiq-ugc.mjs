@@ -1,3 +1,5 @@
+import { timingEq } from '../lib/auth.mjs';
+
 export const config = { runtime: 'edge' };
 
 // ZABAL Gamez - Magnetiq UGC receiver (POST /api/magnetiq-ugc).
@@ -25,7 +27,6 @@ const SECRET = process.env.MAGNETIQ_SECRET || process.env.ADMIN_KEY || '';
 // this does not affect it; it does block browser-based cross-origin POST.
 const CORS = { 'Access-Control-Allow-Origin': 'https://zabalgamez.com', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Authorization, Content-Type' };
 function json(obj, status = 200) { return new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json', ...CORS } }); }
-function timingEq(a, b) { if (!a || !b) return false; let d = a.length ^ b.length; for (let i = 0; i < a.length && i < b.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i); return d === 0; }
 async function kvPipeline(cmds) {
   const r = await fetch(`${KV_URL}/pipeline`, { method: 'POST', headers: { Authorization: `Bearer ${KV_TOKEN}`, 'Content-Type': 'application/json' }, body: JSON.stringify(cmds) });
   if (!r.ok) throw new Error('kv ' + r.status);

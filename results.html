@@ -60,7 +60,7 @@
     <div class="rs-stats" id="rs-stats"></div>
     <p class="rs-note" id="rs-summary"></p>
   </section>
-  <p class="rs-note" style="margin-top:1rem;">Browse the full season: <a href="/submissions" style="color:var(--cyan);">projects</a>, <a href="/recordings" style="color:var(--cyan);">recordings</a>, <a href="/vote" style="color:var(--cyan);">the month-two vote</a>.</p>
+  <p class="rs-note" style="margin-top:1rem;">Browse the full season: <a href="/submissions" style="color:var(--cyan);">projects</a>, <a href="/recordings" style="color:var(--cyan);">recordings</a>, <a href="/leaderboard" style="color:var(--cyan);">the season board</a>.</p>
 </div>
 </main>
 <script>
@@ -70,7 +70,7 @@
   function winnerCard(track, w) {
     var inner = w
       ? '<div class="rs-winner">' + (w.url ? '<a href="' + esc(w.url) + '" target="_blank" rel="noopener">' + esc(w.name) + '</a>' : esc(w.name)) + '</div>' + (w.project ? '<div class="rs-note">' + esc(w.project) + '</div>' : '')
-      : '<div class="rs-tbd">Announced after Aug 31</div>';
+      : '<div class="rs-tbd">Announced after the battles settle</div>';
     return '<div class="rs-track"><h3>' + esc(track) + '</h3>' + inner + '</div>';
   }
   function stat(n, label) { return '<div class="rs-stat"><b>' + (n == null ? '-' : esc(n)) + '</b><span>' + esc(label) + '</span></div>'; }
@@ -78,9 +78,9 @@
     var w = d.winners || {};
     document.getElementById('rs-tracks').innerHTML = TRACKS.map(function (t) { return winnerCard(t, w[t]); }).join('');
     var rc = d.recap || {};
-    document.getElementById('rs-stats').innerHTML = stat(rc.workshops, 'workshops') + stat(rc.submissions, 'submissions') + stat(rc.voters, 'voters');
+    document.getElementById('rs-stats').innerHTML = stat(rc.workshops, 'workshops') + stat(rc.submissions, 'submissions') + stat(rc.entrants, 'entrants');
     document.getElementById('rs-summary').textContent = rc.summary || '';
-    if (d.status !== 'final') document.getElementById('rs-lead').textContent = 'Season 1 wraps Aug 31. Winners and the final numbers land here after the WaveWarZ finale.';
+    if (d.status !== 'final') document.getElementById('rs-lead').textContent = 'Season 1 wraps Aug 31. Winners and the final numbers land here after the WaveWarZ battles settle on Aug 30.';
   }).catch(function () {});
 })();
 </script>
