@@ -9,11 +9,14 @@
 // header (type 'app_key') over the compact `${header}.${payload}` message, and -
 // when FARCASTER_HUB_URL is set - that app key must be an active on-chain signer
 // for the claimed FID (Key Registry, read via the hub's onChainSignersByFid).
-// A bad/missing signature is ALWAYS rejected. The FID binding fails OPEN on hub
-// errors or an unparseable response, so a hub outage never blocks a legitimate
-// registration; without FARCASTER_HUB_URL it is skipped (signature-only, no
-// extra network call). Point FARCASTER_HUB_URL at a hub exposing /v1/* and
-// verify on a Preview before relying on it.
+// A bad/missing signature is ALWAYS rejected. Once FARCASTER_HUB_URL is set the FID
+// binding fails CLOSED: a key that is not a signer for the claimed FID gets a 401,
+// and a hub outage or unparseable response gets a 503 rather than falling back to
+// signature-only, because that fallback is exactly the impersonation path this check
+// exists to close. Without FARCASTER_HUB_URL the check is skipped entirely
+// (signature-only, no extra network call) so an unconfigured deployment still
+// registers notifications - SET THIS IN PRODUCTION. Point FARCASTER_HUB_URL at a hub
+// exposing /v1/* and verify on a Preview before relying on it.
 
 export const config = { runtime: 'edge' };
 
@@ -85,23 +88,33 @@ function normalizeKey(v) {
   } catch { return null; }
 }
 
-// Is `keyHex` an ACTIVE on-chain signer for `fid`? Returns true / false /
-// null (indeterminate). Callers MUST fail open on null. Folds the signer event
-// log (ADD then REMOVE) into the live set; if we parse zero keys we assume our
-// parser does not match this hub's shape and return null rather than reject.
+// Is `keyHex` an ACTIVE on-chain signer for `fid`? Returns one of:
+//   'unconfigured' - no FARCASTER_HUB_URL, so no check was attempted
+//   'bound'        - the key is an active on-chain signer for this FID
+//   'unbound'      - the key is NOT a signer for this FID (impersonation attempt)
+//   'indeterminate'- a hub IS configured but the lookup failed or did not parse
+//
+// The last two are both rejected by the caller. Distinguishing 'unconfigured' from
+// 'indeterminate' is the point: a hub outage must not silently reopen the
+// impersonation path, but a deployment that has never set FARCASTER_HUB_URL still
+// needs its notification registrations to work on the verified signature alone.
+//
+// Folds the signer event log (ADD then REMOVE) into the live set; if we parse zero
+// keys we treat that as indeterminate rather than as proof of absence, because it
+// more likely means our parser does not match this hub's response shape.
 async function keyBoundToFid(fid, keyHex) {
-  if (!HUB_URL) return null;
+  if (!HUB_URL) return 'unconfigured';
   let j;
   try {
     const r = await fetch(`${HUB_URL}/v1/onChainSignersByFid?fid=${encodeURIComponent(fid)}`, {
       signal: AbortSignal.timeout(3000),
     });
-    if (!r.ok) return null;
+    if (!r.ok) return 'indeterminate';
     j = await r.json();
-  } catch { return null; }
+  } catch { return 'indeterminate'; }
   const events = Array.isArray(j && j.events) ? j.events : null;
   const want = normalizeKey(keyHex);
-  if (!events || !want) return null;
+  if (!events || !want) return 'indeterminate';
   const active = new Set();
   for (const ev of events) {
     const body = ev && ev.signerEventBody;
@@ -111,8 +124,8 @@ async function keyBoundToFid(fid, keyHex) {
     if (t === 'SIGNER_EVENT_TYPE_ADD' || t === 1) active.add(k);
     else if (t === 'SIGNER_EVENT_TYPE_REMOVE' || t === 2) active.delete(k);
   }
-  if (active.size === 0) return null;
-  return active.has(want);
+  if (active.size === 0) return 'indeterminate';
+  return active.has(want) ? 'bound' : 'unbound';
 }
 
 async function kv(cmds) {
@@ -151,10 +164,19 @@ export default async function handler(req) {
   if (!fid || !event) return json({ error: 'missing fid/event' }, 400);
   if (!KV_URL || !KV_TOKEN) return json({ ok: true, stored: false });
 
-  // Bind the signing app key to the claimed FID (only when a hub is configured;
-  // null = indeterminate, so we proceed on the verified signature alone).
-  if ((await keyBoundToFid(fid, header.key)) === false) {
+  // Bind the signing app key to the claimed FID before touching this FID's stored
+  // notification token. A valid signature only proves the sender controls THAT key,
+  // not that the key belongs to the FID in the header - so without this check an
+  // attacker can sign a well-formed envelope with their own key while claiming
+  // someone else's FID, and write or delete that user's notification token.
+  const binding = await keyBoundToFid(fid, header.key);
+  if (binding === 'unbound') {
     return json({ error: 'key not registered to fid' }, 401);
+  }
+  if (binding === 'indeterminate') {
+    // A hub is configured but could not answer. Fail closed: a provider outage must
+    // not degrade into the impersonation path being open. The client retries.
+    return json({ error: 'signer lookup unavailable' }, 503);
   }
 
   try {

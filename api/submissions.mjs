@@ -27,7 +27,7 @@
 // Quick Auth on submit is optional; when present it binds the submission to a verified FID/handle
 // (needed later for the one-per-identity collectible gate). Graceful no-op without KV.
 
-import { verifyQuickAuth, verifyAdmin, DOMAIN } from '../lib/auth.mjs';
+import { verifyQuickAuth, verifyAdmin, DOMAIN, timingEq } from '../lib/auth.mjs';
 import { RateLimiter } from '../lib/rate-limit.mjs';
 
 export const config = { runtime: 'edge' };
@@ -70,16 +70,6 @@ async function kvPipeline(cmds) {
   return r.json();
 }
 
-function timingEq(provided, expected) {
-  if (!expected) return false;
-  provided = String(provided || '');
-  expected = String(expected || '');
-  let diff = provided.length ^ expected.length;
-  for (let i = 0; i < Math.max(provided.length, expected.length); i++) {
-    diff |= (provided.charCodeAt(i) || 0) ^ (expected.charCodeAt(i) || 0);
-  }
-  return diff === 0;
-}
 
 function bearer(req) {
   const auth = req.headers.get('authorization') || '';

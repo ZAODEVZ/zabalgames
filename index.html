@@ -950,7 +950,7 @@
       <a href="/recordings">Recordings</a>
       <a href="/game">Arcade</a>
       <a href="/about.html">About</a>
-      <a href="/enter">Enter</a>
+      <a href="/leaderboard">Board</a>
       <a href="/board">Build board</a>
       <a href="/leaderboard" class="arcade-coin">Standings</a>
     </div>
@@ -1031,7 +1031,7 @@
       <button type="button" class="track-chip" data-track="creator">Creator</button>
     </div>
     <div class="join-block">
-      <a href="/enter" class="join-btn">Enter the build</a>
+      <a href="/august" class="join-btn">See the six finalists</a>
       <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener" class="join-btn">Claim the collectible</a>
       <button type="button" id="zg-join" class="join-addapp">Join with Farcaster</button>
       <button type="button" id="zg-addapp" class="join-addapp" style="display:none;">Add + get updates</button>
@@ -1043,7 +1043,7 @@
     <div class="proof-row">
       <span class="proof-badge">100+ weeks, never missed</span>
       <span class="proof-badge">FarHack Snap winner</span>
-      <span class="proof-badge">$500 USDC split six ways + ongoing 1% cut</span>
+      <span class="proof-badge">$500 USDC across the six + ongoing 1% cut</span>
       <span class="proof-badge">July open build live</span>
     </div>
 
@@ -1223,7 +1223,7 @@
         <p>Make something. Any harness. 500 USDC, split between the six finalists.</p>
         <div class="path-actions">
           <a href="#" class="path-btn primary" data-share="builder" data-platform="farcaster">Cast: I'll be building</a>
-          <a href="/enter.html" class="path-btn">How to enter July</a>
+          <a href="/august" class="path-btn">How the finals work</a>
           <a href="/projects.html" class="path-btn">Pick a project</a>
           <a href="/submissions" class="path-btn">See this season's builds<span id="builds-count"></span></a>
           <a href="/quest" class="path-btn">Play the season - Season Run</a>
@@ -1437,7 +1437,7 @@
     </nav>
     <nav class="arcade-foot-col" aria-label="Season">
       <h4>Season</h4>
-      <a href="/enter.html">Enter the Build</a>
+      <a href="/leaderboard">Season Board</a>
       <a href="/projects.html">Projects</a>
       <a href="/finals.html">Finals</a>
       <a href="/finals/live.html">Finals Live</a>
@@ -1481,17 +1481,27 @@
   // hero never shows a dead "LIVE NOW" after a date passes. UTC boundaries:
   //   - before Jul 1: count to the July open build, label "July build opens in"
   //   - Jul: count to Aug 1 (build window closing), label "Build month - time left"
-  //   - Aug: Finals month, no countdown - leaderboard is live, six finalists present
-  //     at month's end; the clock points at /august instead of a dead date
+  //   - Aug 1-23: count to the first battle day, label "Finals battles begin in"
+  //   - Aug 24-30: battle week itself, no countdown - the clock points at /august
   var JULY = new Date('2026-07-01T00:00:00Z').getTime();
   var AUGUST = new Date('2026-08-01T00:00:00Z').getTime();
+  // Battle week runs Mon Aug 24 to Sun Aug 30 Eastern (EDT, UTC-4).
+  var BATTLES = new Date('2026-08-24T04:00:00Z').getTime();
+  var BATTLES_END = new Date('2026-08-31T03:59:00Z').getTime();
   // True when body has ui-polish-v1 class - controls whether countdown uses HTML with blink spans
   function polishOn() { return document.body.classList.contains('ui-polish-v1'); }
+
+  // What the clock shows when there is no live countdown left to run.
+  function phaseText(now) {
+    return now >= BATTLES_END ? 'three champions, one per track' : 'six finalists, three battles';
+  }
 
   function phase(now) {
     if (now < JULY) return { label: 'July build opens in', target: JULY };
     if (now < AUGUST) return { label: 'Build month - time left', target: AUGUST };
-    return { label: 'August Finals - leaderboard live', target: null };
+    if (now < BATTLES) return { label: 'Finals battles begin in', target: BATTLES };
+    if (now < BATTLES_END) return { label: 'Finals battle week - live now', target: null };
+    return { label: 'Season 1 complete', target: null };
   }
 
   function tick() {
@@ -1502,11 +1512,11 @@
     var labelEl = document.getElementById('countdown-label');
     if (labelEl) labelEl.textContent = p.label;
     if (p.target === null) {
-      el.textContent = 'top 6 present at month\'s end';
+      el.textContent = phaseText(now);
       return;
     }
     var diff = p.target - now;
-    if (diff <= 0) { el.textContent = 'top 6 present at month\'s end'; return; }
+    if (diff <= 0) { el.textContent = phaseText(now); return; }
     var d = Math.floor(diff / 86400000);
     var h = Math.floor((diff % 86400000) / 3600000);
     var m = Math.floor((diff % 3600000) / 60000);

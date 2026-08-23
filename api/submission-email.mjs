@@ -5,6 +5,8 @@
 // Resend sends `email.received` here; this route verifies the Svix signature, retrieves
 // the full message, normalizes it, and creates the same private project record as /submit.
 
+import { timingEq } from '../lib/auth.mjs';
+
 export const config = { runtime: 'edge' };
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
@@ -15,13 +17,6 @@ const MAX_CLOCK_SKEW_SECONDS = 300;
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
-}
-
-function timingEq(a, b) {
-  a = String(a || ''); b = String(b || '');
-  let diff = a.length ^ b.length;
-  for (let i = 0; i < Math.max(a.length, b.length); i++) diff |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0);
-  return diff === 0;
 }
 
 function bytesToBase64(bytes) {
