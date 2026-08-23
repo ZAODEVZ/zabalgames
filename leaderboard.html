@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZABAL Gamez Season 1 Board</title>
-  <meta name="description" content="ZABAL Gamez Season 1 - six finalists, two per track, presenting at the end of August.">
+  <title>ZABAL Gamez Season 1 Roster</title>
+  <meta name="description" content="ZABAL Gamez Season 1 Roster - the 15 people who entered. Three tracks: artist, builder, creator.">
   <link rel="canonical" href="https://zabalgamez.com/leaderboard">
-  <meta property="og:title" content="ZABAL Gamez Season 1 Board">
-  <meta property="og:description" content="Six finalists, two per track, presenting at the end of August.">
+  <meta property="og:title" content="ZABAL Gamez Season 1 Roster">
+  <meta property="og:description" content="The 15 people who entered ZABAL Gamez Season 1. Three tracks: artist, builder, creator.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zabalgamez.com/leaderboard">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
@@ -15,10 +15,10 @@
   <meta property="og:image:height" content="800">
   <meta property="og:image:alt" content="ZABAL Gamez Season 1">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ZABAL Gamez Season 1 Board">
-  <meta name="twitter:description" content="Six finalists, two per track, presenting at the end of August.">
+  <meta name="twitter:title" content="ZABAL Gamez Season 1 Roster">
+  <meta name="twitter:description" content="The 15 people who entered ZABAL Gamez Season 1. Three tracks: artist, builder, creator.">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the standings","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/leaderboard","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#141e27"}}}'>
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See the roster","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/leaderboard","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#141e27"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#141e27">
   <link rel="apple-touch-icon" href="/assets/icon.png">
@@ -58,21 +58,18 @@
     .lb-source { border: 1px solid rgba(0,229,255,0.35); border-radius: 999px; color: var(--cyan); padding: 0.3rem 0.6rem; font: 0.58rem var(--font-pixel); letter-spacing: 0.04em; text-transform: uppercase; }
     .lb-detail { color: var(--text-muted); font-size: 0.8rem; line-height: 1.45; margin: 0.55rem 0 0; }
     .lb-list { list-style: none; padding: 0; margin: 0; }
-    .lb-row { display: grid; grid-template-columns: 2.1rem 2.4rem minmax(0, 1fr) auto; align-items: center; gap: 0.7rem; padding: 0.78rem 1.05rem; border-bottom: 1px solid rgba(224,221,170,0.12); }
+    .lb-row { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) auto; align-items: center; gap: 0.7rem; padding: 0.78rem 1.05rem; border-bottom: 1px solid rgba(224,221,170,0.12); }
     .lb-row:last-child { border-bottom: 0; }
     .lb-row.top { background: linear-gradient(90deg, rgba(224,221,170,0.14), rgba(224,221,170,0.03)); box-shadow: inset 3px 0 0 var(--standings-cream); }
     .lb-row.top .lb-name { color: #f5d76e; }
-    .lb-row.top .lb-score { color: #f5d76e; }
-    .lb-rank { color: var(--text-dim); font: 700 0.85rem 'JetBrains Mono', monospace; }
-    .lb-row.top .lb-rank { color: #f5d76e; font-size: 0.95rem; }
     .lb-avatar { width: 2.35rem; height: 2.35rem; border-radius: 50%; overflow: hidden; background: #0d151c; color: var(--standings-cream); display: grid; place-items: center; font: 700 0.8rem 'Syne', sans-serif; }
     .lb-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .lb-person { min-width: 0; }
     .lb-name { display: block; color: var(--standings-cream); font-weight: 700; font-size: 0.9rem; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .lb-handle { display: block; color: var(--text-dim); font-size: 0.72rem; margin-top: 0.2rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     a.lb-name:hover { color: var(--cyan); text-decoration: none; }
-    .lb-score { text-align: right; color: var(--cyan); font: 700 0.9rem 'JetBrains Mono', monospace; }
-    .lb-score small { display: block; color: var(--text-dim); font: 0.58rem 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.15rem; }
+    .lb-rank, .lb-score { display: none; }
+    .lb-project { text-align: right; color: var(--text-muted); font: 0.8rem 'Outfit', sans-serif; line-height: 1.3; max-width: 200px; }
     .lb-empty { color: var(--text-muted); padding: 1.2rem 1.05rem; margin: 0; font-size: 0.88rem; }
     .lb-foot { border-top: 1px solid rgba(224,221,170,0.16); color: var(--text-dim); font-size: 0.72rem; line-height: 1.45; padding: 0.75rem 1.05rem; }
     @media (max-width: 640px) {
@@ -81,18 +78,19 @@
       .arcade-nav-menu > a:not(.arcade-coin) { display: none; }
       .lb-wrap { padding: 0.8rem 0.75rem 2rem; }
       .lb-hero { padding: 1.35rem 0 1rem; }
-      .lb-row { grid-template-columns: 1.65rem 2rem minmax(0, 1fr) auto; gap: 0.5rem; padding: 0.7rem 0.75rem; }
-      .lb-avatar { width: 2rem; height: 2rem; }
+      .lb-row { grid-template-columns: 1.8rem minmax(0, 1fr) auto; gap: 0.5rem; padding: 0.7rem 0.75rem; }
+      .lb-avatar { width: 1.9rem; height: 1.9rem; }
+      .lb-project { max-width: 120px; }
       .lb-panel-head, .lb-foot { padding-left: 0.75rem; padding-right: 0.75rem; }
     }
     @media (max-width: 350px) {
       .arcade-brand { font-size: 0.62rem; gap: 0.35rem; }
       .site-menu-btn { font-size: 0.46rem; }
       .arcade-coin { font-size: 0.44rem; padding: 0.45rem 0.55rem; }
-      .lb-row { grid-template-columns: 1.5rem 1.8rem minmax(0, 1fr) auto; gap: 0.4rem; padding: 0.65rem 0.6rem; }
-      .lb-avatar { width: 1.8rem; height: 1.8rem; }
+      .lb-row { grid-template-columns: 1.6rem minmax(0, 1fr) auto; gap: 0.4rem; padding: 0.65rem 0.6rem; }
+      .lb-avatar { width: 1.7rem; height: 1.7rem; font-size: 0.7rem; }
       .lb-name { font-size: 0.82rem; }
-      .lb-score { font-size: 0.8rem; }
+      .lb-project { max-width: 90px; font-size: 0.72rem; }
     }
   </style>
 </head>
@@ -113,16 +111,14 @@
 <main id="main">
   <div class="lb-wrap">
     <header class="lb-hero">
-      <div class="hero-eyebrow">ZABAL Gamez Season 1 Board</div>
-      <h1>The final month of a <span>three month build-a-thon</span>.</h1>
+      <div class="hero-eyebrow">ZABAL Gamez Season 1 Roster</div>
+      <h1>The 15 who entered ZABAL Gamez <span>Season 1</span>.</h1>
       <p>ZABAL Gamez ran June, July and August. June was workshops, July was the open build, August is the finals. Anyone could enter, it cost nothing, and 15 people did.</p>
-      <p>There are three tracks - artist, builder and creator - and everyone who entered is on the board below, in the track they entered. The board closed on August 16 and six finalists were picked, two from each track. They go head to head on WaveWarZ between August 24 and 30, and <strong>three win, one from each track</strong>. <a href="/august" style="color:var(--cyan);">See the six</a>.</p>
-      <p class="lb-note">There was no vote. Points were earned by showing up: the zm stream at 5pm EST, the weekly challenge, shipping an update on your project. Everyone started on a point for entering and every score is public. The six were picked rather than tallied, so this board was one of the things Zaal read, not the decision. It closed Sunday, August 16.</p>
-            <p class="lb-clock"><b id="lb-countdown">--</b> <span id="lb-clock-label">until the battles begin</span></p>
+      <p>There are three tracks - artist, builder and creator. Everyone who entered appears below, in every track they joined. Six became finalists, two from each track. They go head to head on WaveWarZ between August 24 and 30, and <strong>three win, one from each track</strong>.</p>
       <div class="lb-actions">
         <a class="lb-action primary" href="/august">See the six finalists</a>
         <a class="lb-action" href="/submissions">See the projects</a>
-        <a class="lb-action" href="/recordings">Watch the recordings</a>
+        <a class="lb-action" href="/live">Watch the battles</a>
       </div>
     </header>
 
@@ -169,30 +165,6 @@
 <script>
 (function () {
   'use strict';
-  // The board closed Sunday, August 16 at 23:59 Eastern (EDT, UTC-4). The clock now
-  // runs to the first battle day so it never sits on a dead "Closed".
-  var BATTLES = Date.parse('2026-08-24T04:00:00Z');
-  var el = document.getElementById('lb-countdown');
-  var labelEl = document.getElementById('lb-clock-label');
-  function tick() {
-    if (!el) return;
-    var left = BATTLES - Date.now();
-    if (left <= 0) {
-      el.textContent = 'Battle week';
-      if (labelEl) labelEl.textContent = 'August 24 to 30';
-      return;
-    }
-    var d = Math.floor(left / 86400000);
-    var h = Math.floor(left / 3600000) % 24;
-    var m = Math.floor(left / 60000) % 60;
-    var s2 = Math.floor(left / 1000) % 60;
-    el.textContent = d + 'd ' + h + 'h ' + m + 'm ' + s2 + 's';
-  }
-  tick();
-  setInterval(tick, 1000);
-})();
-(function () {
-  'use strict';
   var boards = document.getElementById('lb-boards');
   if (!boards) return;
 
@@ -200,58 +172,57 @@
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
   }); }
 
-  var data = null;
-  var active = 'builder';
+  var roster = null;
+  var active = 'artist';
+  var tracks = [
+    { id: 'artist', label: 'Artist' },
+    { id: 'builder', label: 'Builder' },
+    { id: 'creator', label: 'Creator' }
+  ];
 
-  function rowHtml(row) {
-    var handle = String(row.handle || '');
+  function rowHtml(person) {
+    var handle = String(person.handle || '');
     var link = handle ? 'https://farcaster.xyz/' + encodeURIComponent(handle) : '';
-    var name = row.name || handle || 'Name pending';
+    var name = person.name || handle || 'Name pending';
     var nameHtml = link
       ? '<a class="lb-name" href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(name) + '</a>'
       : '<span class="lb-name">' + esc(name) + '</span>';
-    var sub = row.project || (handle ? '@' + handle : '');
+    var project = person.project || '';
     return '<li class="lb-row">' +
-      '<span class="lb-rank">' + esc(row.rank) + '</span>' +
       '<span class="lb-avatar" aria-hidden="true">' + esc(name.charAt(0).toUpperCase()) + '</span>' +
       '<span class="lb-person">' + nameHtml +
-      (sub ? '<span class="lb-handle">' + esc(sub) + '</span>' : '') + '</span>' +
-      '<span class="lb-score">' + esc(row.points) + '<small>points</small></span></li>';
+      (handle ? '<span class="lb-handle">@' + esc(handle) + '</span>' : '') + '</span>' +
+      (project ? '<span class="lb-project">' + esc(project) + '</span>' : '<span class="lb-project"></span>') + '</li>';
   }
 
-  // One board per track, switched by the buttons. Several people entered more than one
-  // track, so they appear on more than one board - that is correct, not a duplicate.
   function tabsHtml() {
-    return '<div class="lb-tabs" role="tablist">' + (data.boards || []).map(function (b) {
-      return '<button type="button" class="lb-tab" role="tab" data-track="' + esc(b.track) + '"' +
-        ' aria-selected="' + (b.track === active ? 'true' : 'false') + '">' +
-        esc(b.label) + ' <span>' + (b.entries || []).length + '</span></button>';
+    return '<div class="lb-tabs" role="tablist">' + tracks.map(function (t) {
+      var count = (roster.people || []).filter(function (p) {
+        return (p.tracks || []).indexOf(t.id) !== -1;
+      }).length;
+      return '<button type="button" class="lb-tab" role="tab" data-track="' + esc(t.id) + '"' +
+        ' aria-selected="' + (t.id === active ? 'true' : 'false') + '">' +
+        esc(t.label) + ' <span>' + count + '</span></button>';
     }).join('') + '</div>';
   }
 
   function draw() {
-    var board = (data.boards || []).filter(function (b) { return b.track === active; })[0];
-    var rows = (board && board.entries) || [];
-    var unassigned = data.unassigned || [];
-    var body = rows.length
-      ? rows.map(rowHtml).join('')
-      : '<li class="lb-empty">Nobody on this board yet.</li>';
+    var trackLabel = tracks.filter(function (t) { return t.id === active; })[0];
+    var trackLabel_text = (trackLabel && trackLabel.label) || '';
+    var people = (roster.people || []).filter(function (p) {
+      return (p.tracks || []).indexOf(active) !== -1;
+    });
+    var body = people.length
+      ? people.map(rowHtml).join('')
+      : '<li class="lb-empty">Nobody in this track.</li>';
 
     boards.innerHTML = tabsHtml() +
       '<section class="lb-panel">' +
       '<div class="lb-panel-head"><div class="lb-title-row">' +
-      '<h2>' + esc(board ? board.label : '') + '</h2><span class="lb-source">Live</span></div>' +
-      '<p class="lb-detail">Everyone in this track. One point for entering, then points for ' +
-      'showing up - the zm stream at 5pm EST, the weekly challenge, shipping an update. ' +
-      'Two of them become finalists, and one wins the track.</p></div>' +
+      '<h2>' + esc(trackLabel_text) + '</h2></div>' +
+      '<p class="lb-detail">All ' + esc(trackLabel_text.toLowerCase()) + 's who entered.</p></div>' +
       '<ol class="lb-list">' + body + '</ol></section>' +
-      (unassigned.length
-        ? '<section class="lb-panel"><div class="lb-panel-head"><div class="lb-title-row">' +
-          '<h2>Track to confirm</h2></div><p class="lb-detail">Entered, track not set yet.</p></div>' +
-          '<ol class="lb-list">' + unassigned.map(rowHtml).join('') + '</ol></section>'
-        : '') +
-      '<div class="lb-foot">Six finalists, two per track, presenting at the end of August. ' +
-      'They are picked, not tallied - this board is what Zaal is reading, not the decision.</div>';
+      '<div class="lb-foot">Season 1 Roster - everyone who participated. Six became finalists, two per track.</div>';
 
     Array.prototype.forEach.call(boards.querySelectorAll('.lb-tab'), function (b) {
       b.addEventListener('click', function () { active = b.getAttribute('data-track'); draw(); });
@@ -259,16 +230,16 @@
     boards.setAttribute('aria-busy', 'false');
   }
 
-  fetch('/api/points', { cache: 'no-store' })
+  fetch('/data/points-roster.json', { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (d) {
-      data = d;
-      if (!d || !d.boards || !d.boards.length) throw new Error('no boards');
+      roster = d;
+      if (!d || !d.people || !d.people.length) throw new Error('no people');
       draw();
     })
     .catch(function () {
       boards.innerHTML = '<section class="lb-panel"><div class="lb-panel-head">' +
-        '<p class="lb-detail">The board is not available right now.</p></div>' +
+        '<p class="lb-detail">The roster is not available right now.</p></div>' +
         '<ol class="lb-list"><li class="lb-empty">Nothing to show yet.</li></ol></section>';
       boards.setAttribute('aria-busy', 'false');
     });
