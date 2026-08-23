@@ -55,6 +55,7 @@
     .aug-person .links a { color: var(--cyan); text-decoration: none; font-size: 0.74rem; margin-right: 0.6rem; }
     .aug-empty { color: var(--text-muted); font-size: 0.84rem; border: 1px dashed var(--border-hover); border-radius: 10px; padding: 0.8rem; }
     .aug-battles { display: grid; gap: 0.7rem; margin-top: 1rem; }
+    .bt-window { margin-top: 0.35rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-dim); max-width: 46ch; }
     .aug-battle { border: 1px solid rgba(224,221,170,0.22); border-radius: 12px; background: var(--surface-2); padding: 0.9rem 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; justify-content: space-between; }
     .aug-battle .bt-track { color: var(--cyan); font: 0.55rem var(--font-pixel); letter-spacing: 0.06em; text-transform: uppercase; }
     .aug-battle .bt-pair { color: var(--text); font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; overflow-wrap: anywhere; }
@@ -107,7 +108,7 @@
         <article class="aug-step">
           <span class="k">August 24 to 30</span>
           <h3>Three battles</h3>
-          <p>Each pair goes head to head live on <a href="/wavewarz" style="color:var(--cyan);">WaveWarZ</a>. The Space opens at 5:00 PM EDT and the battle opens 30 minutes in. The champion comes from three factors, best two of three: the open poll, the charts (trading volume on the battle), and the judges' panel. One winner per track. Results land on <a href="/results" style="color:var(--cyan);">the results page</a>.</p>
+          <p>Each pair goes head to head live on <a href="/wavewarz" style="color:var(--cyan);">WaveWarZ</a>. The champion comes from three factors, best two of three: the open poll, the charts (trading volume on the battle), and the judges' panel. One winner per track. The artist and creator battles run inside a one-hour Space; the builder battle runs for 24 hours. Each battle's timing is on its row below. Results land on <a href="/results" style="color:var(--cyan);">the results page</a>.</p>
         </article>
       </div>
     </section>
@@ -122,7 +123,7 @@
 
     <section class="aug-section" aria-labelledby="schedule-heading">
       <h2 id="schedule-heading">The schedule</h2>
-      <p class="lead">Three battles between Monday August 24 and Sunday August 30. Every battle starts at 5:00 PM EDT, which is 10:00 PM BST, 11:00 PM CEST and CAT, 10:00 PM WAT, and 2:30 AM IST the next day. The builder day is still being agreed and lands here once it is set. The 500 USDC pool is split evenly across all six finalists at 83.33 each, win or lose: the battles decide who the champions are, not who gets paid.</p>
+      <p class="lead">Three battles between Monday August 24 and Sunday August 30. The artist and creator battles open at 5:00 PM EDT, which is 10:00 PM BST, 11:00 PM CEST and CAT, 10:00 PM WAT, and 2:30 AM IST the next day. The builder battle is a different shape: 24 hours, noon Saturday to noon Sunday. The 500 USDC pool is split evenly across all six finalists at 83.33 each, win or lose: the battles decide who the champions are, not who gets paid.</p>
       <div class="aug-battles" id="battle-rows" aria-busy="true">
         <p class="aug-empty">Loading the schedule...</p>
       </div>
@@ -237,13 +238,19 @@
     }
     root.innerHTML = battles.map(function (b) {
       var pair = (b.finalists || []).join(' vs ') || 'To be named';
+      var span = b.date ? fmtDate(b.date) + (b.time ? ' - ' + b.time : '') : '';
+      // A battle that runs past midnight needs both ends shown or "Saturday noon"
+      // reads as a one-hour slot.
+      if (b.date && b.endDate) span += ' to ' + fmtDate(b.endDate) + (b.endTime ? ' - ' + b.endTime : '');
       var when = b.date
-        ? '<span class="bt-when">' + esc(fmtDate(b.date)) + (b.time ? ' - ' + esc(b.time) : '') + '</span>'
+        ? '<span class="bt-when">' + esc(span) + '</span>'
         : '<span class="bt-when tbd">date being agreed</span>';
+      var window = b.window ? '<div class="bt-window">' + esc(b.window) + '</div>' : '';
       var watch = b.watch ? '<a class="bt-watch" href="' + esc(b.watch) + '" target="_blank" rel="noopener">Watch -&gt;</a>' : '';
       return '<div class="aug-battle">'
         + '<div><span class="bt-track">' + esc(b.track || '') + ' final</span>'
-        + '<div class="bt-pair">' + esc(pair) + '</div></div>'
+        + '<div class="bt-pair">' + esc(pair) + '</div>'
+        + window + '</div>'
         + '<div>' + when + ' ' + watch + '</div>'
         + '</div>';
     }).join('');
