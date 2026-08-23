@@ -979,8 +979,12 @@
           var b = bs[i];
           if (!b.date || b.status !== 'scheduled') continue;
           var ts = battleStartTs(b.date, b.time);
-          // Hold the card up through the battle, not only until it starts.
-          if (ts == null || (ts + 3 * 3600000) < Date.now()) continue;
+          if (ts == null) continue;
+          // Hold the card up through the battle, not only until it starts. A
+          // battle with an end in the data holds to its real end; the rest get
+          // three hours, which covers a one-hour Space and its overrun.
+          var endTs = b.endDate ? battleStartTs(b.endDate, b.endTime || b.time) : null;
+          if ((endTs || (ts + 3 * 3600000)) < Date.now()) continue;
           if (!soonest || ts < soonest._ts) { b._ts = ts; soonest = b; }
         }
         NEXT_BATTLE = soonest;
@@ -1000,8 +1004,13 @@
       '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Next up</div>' +
       '<h2>' + esc(track) + ' final</h2>' +
       '<p class="stage-by"><strong>' + esc(pair) + '</strong></p>' +
-      '<p class="stage-meta">Stream and Space open at ' + esc(b.time || 'the start time') + '. The battle opens 30 minutes in. Three signals decide it and two of three wins: the open poll, the charts, and the judges.</p>' +
-      '<p class="stage-when">' + esc(fmtBattleDate(b.date)) + (b.time ? ' - ' + esc(b.time) : '') + '</p>' +
+      // The timing sentence lives in the data, because it differs per battle: the
+      // artist and creator battles run inside a one-hour Space, the builder
+      // battle runs for 24 hours. Hardcoding it here is how /live and /august
+      // drifted apart the first time.
+      '<p class="stage-meta">' + esc(b.window || ('Stream and Space open at ' + (b.time || 'the start time') + '.')) + ' Three signals decide it and two of three wins: the open poll, the charts, and the judges.</p>' +
+      '<p class="stage-when">' + esc(fmtBattleDate(b.date)) + (b.time ? ' - ' + esc(b.time) : '') +
+        (b.endDate ? esc(' to ' + fmtBattleDate(b.endDate) + (b.endTime ? ' - ' + b.endTime : '')) : '') + '</p>' +
       '<div class="stage-countdown" id="live-countdown">' +
         '<div class="cd-unit"><div class="cd-num" data-cd="d">--</div><div class="cd-lab">Days</div></div>' +
         '<div class="cd-unit"><div class="cd-num" data-cd="h">--</div><div class="cd-lab">Hrs</div></div>' +
