@@ -702,10 +702,10 @@
       foot: 'July is the open build month. August is the Finals.'
     },
     august: {
-      sub: "What's on now as the August Finals come together. Finalist streams, the live reveal, and what's next.",
+      sub: "What's on now in the August Finals. Head to head battles, one winner per track.",
       emptyHead: 'No stream live right now',
-      emptyMeta: 'August is the Finals. Finalists pair with ZAO mentors for the live reveal stream. RSVP on Lu.ma so you catch it live.',
-      foot: 'August is the Finals. Finalists pair with ZAO mentors for the live reveal.'
+      emptyMeta: 'August is the Finals. Two finalists per track go head to head, and three signals decide each one: the open poll, the charts, and the judges. Two of three wins.',
+      foot: 'August is the Finals. Two finalists per track, head to head, one winner per track.'
     }
   };
   var PHASE = seasonPhase();
@@ -878,7 +878,7 @@
       '<div class="season-strip">' +
         cell('June', 'june', 'Workshops', 'Recorded sessions on the tools and the ecosystem. Watch live or anytime.') +
         cell('July', 'july', 'Open build', 'Build a project for the ecosystem with any tool. Ship in public.') +
-        cell('August', 'august', 'Finals', 'Finalists pair with ZAO mentors. Live reveal stream, prize pool, collectibles.') +
+        cell('August', 'august', 'Finals', 'Two finalists per track go head to head. Poll, charts and judges decide it. One winner per track.') +
       '</div>' +
       '<div class="stage-actions">' +
         primary +
@@ -934,7 +934,96 @@
     if (L._timed) startCountdown(L._start);
   }
 
+  // ------------------------------------------------------------------
+  // Next battle
+  //
+  // Every finals post points people here, so a generic "no stream live right
+  // now" card is the wrong thing to greet them with on battle day. The Finals
+  // surfaces are already data-driven off data/finals.json, so this reads the
+  // same file /august does and shows the next scheduled battle in the standby
+  // slot. A real live stream still wins - this only ever replaces the empty
+  // card, never the NOW one.
+  // ------------------------------------------------------------------
+  var NEXT_BATTLE = null;
+  var TZ_OFFSET = { EDT: '-04:00', EST: '-05:00' };
+
+  // "2026-08-24" + "5:00 PM EDT" -> epoch ms, or null if the label is not one we
+  // can place on a clock. Never guess an offset; a countdown that is an hour out
+  // is worse than no countdown.
+  function battleStartTs(date, time) {
+    var m = /^(\d{1,2}):(\d{2})\s*(AM|PM)\s+([A-Z]{2,4})$/.exec(String(time || '').trim());
+    if (!m) return null;
+    var off = TZ_OFFSET[m[4]];
+    if (!off) return null;
+    var h = (+m[1]) % 12;
+    if (m[3] === 'PM') h += 12;
+    var ts = Date.parse(date + 'T' + (h < 10 ? '0' + h : '' + h) + ':' + m[2] + ':00' + off);
+    return isNaN(ts) ? null : ts;
+  }
+
+  function fmtBattleDate(iso) {
+    var parts = String(iso).split('-');
+    if (parts.length !== 3) return iso;
+    var d = new Date(Date.UTC(+parts[0], +parts[1] - 1, +parts[2]));
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' });
+  }
+
+  function loadNextBattle() {
+    fetch('/data/finals.json', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var bs = (d && d.battles) || [];
+        var soonest = null;
+        for (var i = 0; i < bs.length; i++) {
+          var b = bs[i];
+          if (!b.date || b.status !== 'scheduled') continue;
+          var ts = battleStartTs(b.date, b.time);
+          // Hold the card up through the battle, not only until it starts.
+          if (ts == null || (ts + 3 * 3600000) < Date.now()) continue;
+          if (!soonest || ts < soonest._ts) { b._ts = ts; soonest = b; }
+        }
+        NEXT_BATTLE = soonest;
+        if (NEXT_BATTLE && scheduleState === 'empty') renderEmpty();
+      })
+      .catch(function () { /* the generic standby card is a fine fallback */ });
+  }
+
+  function battleHtml(b) {
+    var pair = (b.finalists || []).join(' vs ') || 'The finalists';
+    var track = String(b.track || 'Track');
+    track = track.charAt(0).toUpperCase() + track.slice(1);
+    var watch = b.watch
+      ? '<a class="stage-btn primary" href="' + esc(b.watch) + '">Watch here</a>'
+      : '';
+    return '<div class="stage-card next">' +
+      '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Next up</div>' +
+      '<h2>' + esc(track) + ' final</h2>' +
+      '<p class="stage-by"><strong>' + esc(pair) + '</strong></p>' +
+      '<p class="stage-meta">Stream and Space open at ' + esc(b.time || 'the start time') + '. The battle opens 30 minutes in. Three signals decide it and two of three wins: the open poll, the charts, and the judges.</p>' +
+      '<p class="stage-when">' + esc(fmtBattleDate(b.date)) + (b.time ? ' - ' + esc(b.time) : '') + '</p>' +
+      '<div class="stage-countdown" id="live-countdown">' +
+        '<div class="cd-unit"><div class="cd-num" data-cd="d">--</div><div class="cd-lab">Days</div></div>' +
+        '<div class="cd-unit"><div class="cd-num" data-cd="h">--</div><div class="cd-lab">Hrs</div></div>' +
+        '<div class="cd-unit"><div class="cd-num" data-cd="m">--</div><div class="cd-lab">Min</div></div>' +
+        '<div class="cd-unit"><div class="cd-num" data-cd="s">--</div><div class="cd-lab">Sec</div></div>' +
+      '</div>' +
+      '<div class="stage-actions">' +
+        watch +
+        '<a class="stage-btn ghost" href="/august">The six finalists</a>' +
+        '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
+      '</div>' +
+    '</div>';
+  }
+
   function renderEmpty() {
+    if (NEXT_BATTLE) {
+      setPill('next');
+      document.getElementById('live-stage').innerHTML = battleHtml(NEXT_BATTLE);
+      bindShare('next', (NEXT_BATTLE.finalists || []).join(' vs '));
+      startCountdown(NEXT_BATTLE._ts);
+      return;
+    }
     setPill('empty');
     document.getElementById('live-stage').innerHTML = emptyHtml();
     bindShare('empty', '');
@@ -1198,6 +1287,7 @@
   })();
 
   renderWatchRecs();
+  loadNextBattle();
   load();
   setInterval(reconcileLive, 60000); // keep the live state honest while the page is open
 })();
