@@ -11,8 +11,8 @@
     { "track": "creator", "finalists": ["@presdency", "@uniquebeing404"], "date": "2026-08-27", "time": "5:00 PM EDT", "watch": null, "status": "scheduled" }
   ],
   "finalists": [
-    { "rank": null, "name": "dee-13", "handle": "@dee-13", "repo": null, "demo": null, "track": "artist", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
-    { "rank": null, "name": "LadyrynNemesis", "handle": "@n3m", "repo": null, "demo": null, "track": "artist", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
+    { "rank": null, "name": "dee-13", "handle": "@dee-13", "repo": null, "demo": "https://drive.google.com/drive/folders/1Zn9VwCeZcxtABixrbb4d7I6FqZtXLbc7", "track": "artist", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
+    { "rank": null, "name": "LadyrynNemesis", "handle": "@n3m", "repo": null, "demo": "https://www.songchainn.xyz/n3m3sis/the-call-out", "track": "artist", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
     { "rank": null, "name": "JohnDaWalka", "handle": "@jdwalka", "repo": null, "demo": null, "track": "builder", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
     { "rank": null, "name": "Brandon", "handle": "@ghostmintops", "repo": null, "demo": null, "track": "builder", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
     { "rank": null, "name": "Presdency.eth", "handle": "@presdency", "repo": null, "demo": null, "track": "creator", "prize": "share of $500 USDC pool + $ZABAL", "collectible": "finisher" },
