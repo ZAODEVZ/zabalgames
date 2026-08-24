@@ -281,11 +281,14 @@
       // The poll is one of the three signals and the only one anyone can act on
       // without a wallet, so it gets its own button the moment a URL exists.
       var poll = b.poll ? '<a class="bt-watch bt-poll" href="' + esc(b.poll) + '" target="_blank" rel="noopener">Vote in the poll -&gt;</a>' : '';
+      // The charts are one of the three signals, so people need a way to reach
+      // the battle itself, not just the stream.
+      var trade = b.battleUrl ? '<a class="bt-watch bt-poll" href="' + esc(b.battleUrl) + '" target="_blank" rel="noopener">Trade the battle -&gt;</a>' : '';
       return '<div class="aug-battle">'
         + '<div><span class="bt-track">' + esc(b.track || '') + ' final</span>'
         + '<div class="bt-pair">' + esc(pair) + '</div>'
         + window + '</div>'
-        + '<div>' + when + ' ' + watch + ' ' + poll + '</div>'
+        + '<div>' + when + ' ' + watch + ' ' + poll + ' ' + trade + '</div>'
         + '</div>';
     }).join('');
   }
