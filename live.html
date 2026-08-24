@@ -489,7 +489,7 @@
   </header>
 
   <div class="live-actions">
-    <a class="live-action primary" href="/submit">Submit project</a>
+    <a class="live-action primary" href="/august">The six finalists</a>
     <button type="button" class="live-action" id="live-notify-btn">Get notified</button>
     <a class="live-action" href="https://twitch.tv/bettercallzaal" target="_blank" rel="noopener">Twitch</a>
     <a class="live-action" href="https://youtube.com/@bettercallzaal" target="_blank" rel="noopener">YouTube</a>
@@ -997,9 +997,17 @@
     var pair = (b.finalists || []).join(' vs ') || 'The finalists';
     var track = String(b.track || 'Track');
     track = track.charAt(0).toUpperCase() + track.slice(1);
-    var watch = b.watch
-      ? '<a class="stage-btn primary" href="' + esc(b.watch) + '">Watch here</a>'
-      : '';
+    // The watch URL for every battle is /live, which is correct on /august but
+    // circular here - this IS /live. Drop the button when it points at the page
+    // the reader is already on, and send them to the stream instead.
+    var watchHref = b.watch || '';
+    var here = false;
+    try {
+      here = !!watchHref && new URL(watchHref, location.href).pathname.replace(/\/$/, '') === location.pathname.replace(/\/$/, '');
+    } catch (e) { here = false; }
+    var watch = (watchHref && !here)
+      ? '<a class="stage-btn primary" href="' + esc(watchHref) + '">Watch here</a>'
+      : (here ? '<a class="stage-btn primary" href="' + 'https://twitch.tv/bettercallzaal' + '" target="_blank" rel="noopener">Watch on Twitch</a>' : '');
     return '<div class="stage-card next">' +
       '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Next up</div>' +
       '<h2>' + esc(track) + ' final</h2>' +
@@ -1324,7 +1332,18 @@
   }
 
   function render(data) {
-    var rows = Array.isArray(data.entries) ? data.entries.slice(0, 3) : [];
+    var all = Array.isArray(data.entries) ? data.entries : [];
+    // Points were never really awarded this season - everyone who entered sits on
+    // the same single point. A "standings" table where every row reads 1st and
+    // 1 point ranks nobody and just takes up the space above the stream. Hide the
+    // whole block until the scores actually spread, so it comes back on its own
+    // if points are ever awarded.
+    var scores = all.map(function (r) { return Number(r.points) || 0; });
+    var spread = scores.length > 1 && Math.max.apply(null, scores) !== Math.min.apply(null, scores);
+    var section = document.getElementById('live-standings');
+    if (!spread) { if (section) section.hidden = true; return; }
+    if (section) section.hidden = false;
+    var rows = all.slice(0, 3);
     meta.textContent = sourceCopy(data);
     if (!rows.length) {
       list.innerHTML = '<li class="ls-empty">Standings are pending real scoring data.</li>';
