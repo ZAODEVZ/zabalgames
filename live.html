@@ -1010,6 +1010,9 @@
     var poll = b.poll
       ? '<a class="stage-btn ghost" href="' + esc(b.poll) + '" target="_blank" rel="noopener">Vote in the poll</a>'
       : '';
+    var trade = b.battleUrl
+      ? '<a class="stage-btn ghost" href="' + esc(b.battleUrl) + '" target="_blank" rel="noopener">Trade the battle</a>'
+      : '';
     var watch = (watchHref && !here)
       ? '<a class="stage-btn primary" href="' + esc(watchHref) + '">Watch here</a>'
       : (here ? '<a class="stage-btn primary" href="' + 'https://twitch.tv/bettercallzaal' + '" target="_blank" rel="noopener">Watch on Twitch</a>' : '');
@@ -1033,6 +1036,7 @@
       '<div class="stage-actions">' +
         watch +
         poll +
+        trade +
         '<a class="stage-btn ghost" href="/august">The six finalists</a>' +
         '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
       '</div>' +
@@ -1238,6 +1242,9 @@
     var pollBtn = (b && b.poll)
       ? '<a class="stage-btn ghost" href="' + esc(b.poll) + '" target="_blank" rel="noopener">Vote in the poll</a>'
       : '';
+    var tradeBtn = (b && b.battleUrl)
+      ? '<a class="stage-btn ghost" href="' + esc(b.battleUrl) + '" target="_blank" rel="noopener">Trade the battle</a>'
+      : '';
     stage.innerHTML =
       '<div class="stage-card now">' +
         '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Live now</div>' +
@@ -1247,6 +1254,7 @@
         '<div class="stage-actions">' +
           '<a class="stage-btn primary" href="#watch">Watch the stream</a>' +
           pollBtn +
+          tradeBtn +
           '<a class="stage-btn ghost" href="' + openHref + '" target="_blank" rel="noopener">' + openLabel + '</a>' +
           (b ? '<a class="stage-btn ghost" href="/august">The six finalists</a>' : '') +
           '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
