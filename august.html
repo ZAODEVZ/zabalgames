@@ -284,11 +284,12 @@
       // The charts are one of the three signals, so people need a way to reach
       // the battle itself, not just the stream.
       var trade = b.battleUrl ? '<a class="bt-watch bt-poll" href="' + esc(b.battleUrl) + '" target="_blank" rel="noopener">Trade the battle -&gt;</a>' : '';
+      var space = b.space ? '<a class="bt-watch" href="' + esc(b.space) + '" target="_blank" rel="noopener">Set a reminder -&gt;</a>' : '';
       return '<div class="aug-battle">'
         + '<div><span class="bt-track">' + esc(b.track || '') + ' final</span>'
         + '<div class="bt-pair">' + esc(pair) + '</div>'
         + window + '</div>'
-        + '<div>' + when + ' ' + watch + ' ' + poll + ' ' + trade + '</div>'
+        + '<div>' + when + ' ' + space + ' ' + watch + ' ' + poll + ' ' + trade + '</div>'
         + '</div>';
     }).join('');
   }

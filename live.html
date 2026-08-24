@@ -1013,6 +1013,12 @@
     var trade = b.battleUrl
       ? '<a class="stage-btn ghost" href="' + esc(b.battleUrl) + '" target="_blank" rel="noopener">Trade the battle</a>'
       : '';
+    // The Space is hosted on the WaveWarZ account, which most of this audience
+    // does not follow, so a scheduled-Space link people can set a reminder on is
+    // the only thing that reaches them.
+    var space = b.space
+      ? '<a class="stage-btn ghost" href="' + esc(b.space) + '" target="_blank" rel="noopener">Set a reminder</a>'
+      : '';
     var watch = (watchHref && !here)
       ? '<a class="stage-btn primary" href="' + esc(watchHref) + '">Watch here</a>'
       : (here ? '<a class="stage-btn primary" href="' + 'https://twitch.tv/bettercallzaal' + '" target="_blank" rel="noopener">Watch on Twitch</a>' : '');
@@ -1035,6 +1041,7 @@
       '</div>' +
       '<div class="stage-actions">' +
         watch +
+        space +
         poll +
         trade +
         '<a class="stage-btn ghost" href="/august">The six finalists</a>' +
@@ -1245,6 +1252,9 @@
     var tradeBtn = (b && b.battleUrl)
       ? '<a class="stage-btn ghost" href="' + esc(b.battleUrl) + '" target="_blank" rel="noopener">Trade the battle</a>'
       : '';
+    var spaceBtn = (b && b.space)
+      ? '<a class="stage-btn ghost" href="' + esc(b.space) + '" target="_blank" rel="noopener">Join the Space</a>'
+      : '';
     stage.innerHTML =
       '<div class="stage-card now">' +
         '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Live now</div>' +
@@ -1253,6 +1263,7 @@
         '<p class="stage-meta">' + meta + '</p>' +
         '<div class="stage-actions">' +
           '<a class="stage-btn primary" href="#watch">Watch the stream</a>' +
+          spaceBtn +
           pollBtn +
           tradeBtn +
           '<a class="stage-btn ghost" href="' + openHref + '" target="_blank" rel="noopener">' + openLabel + '</a>' +
