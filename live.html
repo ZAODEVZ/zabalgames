@@ -1222,18 +1222,37 @@
     var openHref = onYouTube ? 'https://youtube.com/@bettercallzaal/live' : ('https://twitch.tv/' + LIVE_TWITCH);
     var openLabel = onYouTube ? 'Open on YouTube' : 'Open on Twitch';
     var where = onYouTube ? 'YouTube' : 'Twitch';
+    // When a scheduled battle is what is streaming, say so. The generic card
+    // drops the pair, the format and the poll at the exact moment the battle
+    // starts and the page is busiest - which is backwards.
+    var b = NEXT_BATTLE;
+    var pair = b ? (b.finalists || []).join(' vs ') : '';
+    var track = b ? String(b.track || '') : '';
+    var heading = b
+      ? (track.charAt(0).toUpperCase() + track.slice(1) + ' final')
+      : (s.title || 'A ZABAL Gamez session is streaming now');
+    var byLine = pair ? '<p class="stage-by"><strong>' + esc(pair) + '</strong></p>' : '';
+    var meta = b && b.window
+      ? esc(b.window) + ' Live on ' + where + ' - watch in the player below.'
+      : 'We are live on ' + where + '. Watch in the player below, or open the stream.';
+    var pollBtn = (b && b.poll)
+      ? '<a class="stage-btn ghost" href="' + esc(b.poll) + '" target="_blank" rel="noopener">Vote in the poll</a>'
+      : '';
     stage.innerHTML =
       '<div class="stage-card now">' +
         '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Live now</div>' +
-        '<h2>' + esc(s.title || 'A ZABAL Gamez session is streaming now') + '</h2>' +
-        '<p class="stage-meta">We are live on ' + where + '. Watch in the player below, or open the stream.</p>' +
+        '<h2>' + esc(heading) + '</h2>' +
+        byLine +
+        '<p class="stage-meta">' + meta + '</p>' +
         '<div class="stage-actions">' +
           '<a class="stage-btn primary" href="#watch">Watch the stream</a>' +
+          pollBtn +
           '<a class="stage-btn ghost" href="' + openHref + '" target="_blank" rel="noopener">' + openLabel + '</a>' +
+          (b ? '<a class="stage-btn ghost" href="/august">The six finalists</a>' : '') +
           '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
         '</div>' +
       '</div>';
-    bindShare('now', '');
+    bindShare('now', pair);
   }
   function reconcileLive() {
     fetch('/api/live-status', { cache: 'no-store' })
