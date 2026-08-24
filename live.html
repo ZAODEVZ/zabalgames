@@ -1005,6 +1005,11 @@
     try {
       here = !!watchHref && new URL(watchHref, location.href).pathname.replace(/\/$/, '') === location.pathname.replace(/\/$/, '');
     } catch (e) { here = false; }
+    // The poll is the only signal a viewer can act on without a wallet, so it
+    // gets its own button here the moment finals.json carries a URL.
+    var poll = b.poll
+      ? '<a class="stage-btn ghost" href="' + esc(b.poll) + '" target="_blank" rel="noopener">Vote in the poll</a>'
+      : '';
     var watch = (watchHref && !here)
       ? '<a class="stage-btn primary" href="' + esc(watchHref) + '">Watch here</a>'
       : (here ? '<a class="stage-btn primary" href="' + 'https://twitch.tv/bettercallzaal' + '" target="_blank" rel="noopener">Watch on Twitch</a>' : '');
@@ -1027,6 +1032,7 @@
       '</div>' +
       '<div class="stage-actions">' +
         watch +
+        poll +
         '<a class="stage-btn ghost" href="/august">The six finalists</a>' +
         '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
       '</div>' +
