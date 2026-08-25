@@ -215,7 +215,9 @@
       var repoUrl = p.repo ? (String(p.repo).indexOf('http') === 0 ? p.repo : 'https://github.com/' + p.repo) : null;
       add({
         group: 'adopt', track: null, title: p.name, desc: p.description || '',
-        status: p.maturity || 'project',
+        // 'seeking-maintainer' is the data value; 'unmaintained' is what /projects
+        // shows on the badge. Keep the two surfaces saying the same word.
+        status: p.maturity === 'seeking-maintainer' ? 'unmaintained' : (p.maturity || 'project'),
         links: [p.live && { label: 'Live', url: p.live }, repoUrl && { label: 'Repo', url: repoUrl }, p.spec_url && { label: p.spec_label || 'Spec', url: p.spec_url }].filter(Boolean),
         meta: [p.brand, p.adopt_type && (p.adopt_type + ' it')].filter(Boolean).join(' - '),
         dedupe: null

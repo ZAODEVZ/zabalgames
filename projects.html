@@ -38,6 +38,10 @@
     .proj-badge.m-working { color: var(--gold); border-color: rgba(245,200,66,0.4); background: rgba(245,200,66,0.07); }
     .proj-badge.m-early { color: var(--orange); border-color: rgba(255,107,53,0.4); background: rgba(255,107,53,0.07); }
     .proj-badge.m-concept { color: var(--zabal); border-color: rgba(167,139,250,0.4); background: rgba(167,139,250,0.07); }
+    /* Deliberately the dimmest badge on the page: these repos are real and adoptable
+       but nobody is on them, and the colour should not compete with the live buckets. */
+    .proj-badge.m-seeking-maintainer { color: var(--text-muted); border-color: var(--border-hover); background: transparent; }
+    .proj-last-active { color: var(--text-muted); font-size: 0.72rem; margin-top: 0.3rem; }
     .proj-badge.adopt { color: var(--text-muted); background: transparent; }
     .proj-status { font-size: 0.68rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.04em; }
     .proj-claim { margin-top: 0.7rem; font-family: inherit; font-size: 0.82rem; color: #fff; background: var(--zabal); border: 0; border-radius: 8px; padding: 0.42rem 0.95rem; cursor: pointer; }
@@ -111,7 +115,8 @@
       shipped: { label: 'SHIPPED', sub: 'Live and working - adopt and extend it' },
       working: { label: 'WORKING', sub: 'Real code that runs - build on it' },
       early:   { label: 'EARLY',   sub: 'Scaffold or MVP - shape it and ship it' },
-      concept: { label: 'CONCEPT', sub: 'An idea on existing rails - build it from scratch' }
+      concept: { label: 'CONCEPT', sub: 'An idea on existing rails - build it from scratch' },
+      'seeking-maintainer': { label: 'SEEKING MAINTAINER', badge: 'unmaintained', sub: 'Real code, still deployed, nobody on it - take it over' }
     };
     fetch('/data/adoptable-projects.json', { cache: 'no-cache' })
       .then(function(r) { return r.json(); })
@@ -147,13 +152,14 @@
               if (P.spec_url && P.spec_url !== P.repo) links.push('<a href="' + esc(P.spec_url) + '">' + esc(P.spec_label || 'spec') + '</a>');
               html += '<div class="card proj-card" style="border-left: 3px solid var(--' + color + ');">' +
                 '<div class="proj-card-top">' +
-                  '<span class="proj-badge m-' + esc(P.maturity) + '">' + esc(P.maturity) + '</span>' +
+                  '<span class="proj-badge m-' + esc(P.maturity) + '">' + esc((MAT[P.maturity] && MAT[P.maturity].badge) || P.maturity) + '</span>' +
                   (P.adopt_type ? '<span class="proj-badge adopt">' + esc(P.adopt_type) + '</span>' : '') +
                   status +
                 '</div>' +
                 '<h3>' + esc(P.name) + '</h3>' +
                 '<p>' + esc(P.description) + '</p>' +
                 (P.ship_next ? '<p class="proj-ship"><b>ship next</b>' + esc(P.ship_next) + '</p>' : '') +
+                (P.last_active ? '<p class="proj-last-active">last commit ' + esc(P.last_active) + '</p>' : '') +
                 (links.length ? '<div class="proj-links">' + links.join(' ') + '</div>' : '') +
                 ((P.status !== 'claimed' && P.status !== 'shipped')
                   ? '<button class="proj-claim" type="button" data-name="' + esc(P.name) + '" data-link="' + esc(P.repo || P.live || P.spec_url || 'https://zabalgamez.com/projects') + '">Claim this for July</button>'
