@@ -182,3 +182,57 @@ Nothing below was acted on. Several are irreversible.
    track champion. Part of post-Aug-30 distribution.
 8. **`/finals/live` still publicly describes the WaveWarZ-Base scaffold** with
    disabled Trade buttons, during battle week. Wire it or retire it.
+
+## 6. Routing mismatch - three tasks never assigned to this lane
+
+Recorded 2026-08-26, per Zaal's verdict via the orchestrator.
+
+After this lane reported `worker_done`, the coordinator verified against disk and
+asked for evidence of three deliverables: fractgram chats indexed into Bonfire with
+episode ids, a verbatim drafted reply to `2087125632`, and the results of a dvl mojo
+search. **None of the three were ever assigned to this lane.** They belong to the
+bonfire lane. The account switch dropped the brief before it reached this session.
+
+Evidence, measured on disk at the time of the challenge:
+
+```
+grep -rniE "fractgram|2087125632|mojo|dvl" docs/lane-audit-2026-08-25.md .handoffs/
+  -> no match in this lane's report
+grep -rniE "fractgram|2087125632|dvl mojo" . --exclude-dir=.git
+  -> no match anywhere in the repo
+```
+
+The only `Bonfire` strings under `.handoffs/` come from an unrelated 2026-07-05
+handoff listing owner-queue env vars, not from any task in this lane.
+
+Provenance check on the session transcript
+(`~/.claude/projects/-Users-zaalpanthaki-Documents-zabalgamez/f2c3e427-...jsonl`):
+`fractgram` appears 22 times, and every occurrence traces to the challenge message
+itself plus the grep commands echoing it back. Zero occurrences before that turn.
+This session never received those instructions.
+
+Corroboration from outside the repo: `~/Documents/zorca/PLAYBOOK.md:172` lists the
+lane roster and names a separate "bonfire lane (fractgram indexing + dvl mojo search,
+outbound replies draft-only)" as its own lane, distinct from this one.
+
+### What this lane did and did not claim
+
+The `worker_done` from this lane claimed only the two commits that exist -
+`6c4e0af` (this audit) and `ffe716e` (the handoff). It did not claim fractgram,
+Bonfire, the reply draft, or the mojo search. The gap was a dispatch failure, not
+an overstated completion.
+
+### Status note - the mismatch is now closed
+
+The correct bonfire lane spec arrived after this section was requested, and that
+work has since been done on its own branch: `ws/bonfire-lane`, commit `0f03589`,
+report at `docs/bonfire-lane/README.md`. Fractgram turned out to be unreachable
+(an authenticated telegram-tt client, not a public viewer), so jobs 1 and 2 are
+recorded NOT DONE with the measured reason; the dvl mojo search succeeded through
+the Bonfire recall path instead. There is no longer a missing lane spec to wait on.
+
+### Push status
+
+Unchanged and held per instruction. `6c4e0af`, `ffe716e` and this commit stay local
+on `ws/lane-audit-2026-08-25` until reviewed. No PR opened. `0f03589` on
+`ws/bonfire-lane` is also local and unpushed.
