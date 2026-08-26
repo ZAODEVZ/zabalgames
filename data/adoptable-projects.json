@@ -1,7 +1,7 @@
 {
   "version": 2,
   "_schema": {
-    "id": "two-digit project number, ordered by maturity (most finished first)",
+    "id": "STABLE two-digit identifier. Assign the next free number and never reissue or renumber - project-overrides.json in the bettercallzaalwebsite repo binds to this value, so renumbering silently rebinds overrides to the wrong projects. Ids were originally handed out in maturity order and mostly still read that way, but that is history, not a rule to restore: entries move between maturity groups (seeking-maintainer, claimed) without their id changing.",
     "name": "short project title",
     "brand": "ZAO ecosystem brand bucket",
     "maturity": "shipped | working | early | concept | seeking-maintainer",
