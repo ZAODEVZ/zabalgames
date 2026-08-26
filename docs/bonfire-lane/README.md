@@ -8,8 +8,8 @@ Nothing outbound was sent. No Telegram message, no reply, no post of any kind.
 
 | # | Job | Status | One-line reason |
 |---|-----|--------|-----------------|
-| 1 | Index Bonfires TG chat `-1002812275482` into Bonfire | **NOT DONE** | Fractalgram is an authenticated Telegram client, not a public viewer. No session, no content. **0 episodes posted.** |
-| 2 | Index `2087125632` + draft a reply | **PARTIAL** | Indexing NOT DONE (same wall). Draft written, but grounded on Bonfire recall, **not** on his live unread DM. |
+| 1 | Index Bonfires TG chat `-1002812275482` into Bonfire | **INGEST READY** | Fractgram is a dead end (below). Read path is now a Telegram Desktop export; the ingest script is written and tested. Waiting on Zaal's export. **0 episodes posted.** |
+| 2 | Index `2087125632` + draft a reply | **NOT DONE** | Indexing blocked (same wall). Blind draft discarded per Zaal; a reply awaits his read of the live DM. |
 | 3 | Search `-1002625006975` + reachable groupchats for dvl mojo | **DONE (via Bonfire, not via fractgram)** | Fractgram group unreachable; the Bonfire recall path works from the mac and returned the answer. |
 
 **Episode ids posted by me this lane: none. Zero.** Nothing was written to the graph -
@@ -67,72 +67,122 @@ owner action, not a blocked task I can retry.
 
 ---
 
-## 2. Draft reply to `2087125632`
+## 1b. The working read path - Telegram Desktop export, then ingest
 
-### Read this before sending
+Zaal's verdict: fractgram is abandoned as a read path. He exports the three chats
+from Telegram Desktop as JSON, and the ingest side reads that. The ingest side is
+written and tested; it is waiting only on the export.
 
-I could not open the DM. I have **not** seen his most recent message. This draft is built
-from Bonfire recall of the prior thread, so it answers the last open question I can prove
-exists in the graph - **not** necessarily what he asked most recently. If his latest message
-moved on, this draft is stale. Check the DM before sending.
+### Export steps - Zaal does this once per chat
 
-Who `2087125632` is, from the graph: **DvlsMojo / Dvl's Mojo / Gustavo de Lima Cavalcanti**,
-who also posts as `@GCvlcnti` and `Neuralink0666` and signs `[IV]` / `[IVI]`. He states the
-handles are all one person himself (episode `0f36697b-c16d-40f6-9d1d-64768575602a`). A separate
-episode (`b26a48f0-d992-4ae3-bfeb-89a859dbea0e`) names "a direct message chat instance between
-users @GCvlcnti and @bettercallzaal" at 95 messages, which is consistent with this id being
-that DM. He primarily speaks Portuguese and has asked for patience with English.
+Telegram Desktop only. The mobile apps and Telegram Web cannot export.
 
-The open thread the draft answers - two linked items, both awaiting Zaal:
+1. Open **Telegram Desktop** and go to the chat you want.
+2. Click the **three-dot menu** at the top right of the chat.
+3. Choose **Export chat history**.
+4. Untick the media boxes (photos, video, voice, files) unless you specifically
+   want them. The ingest reads text; media only becomes a `[photo]` marker. Leaving
+   media on can turn a chat into gigabytes and hours.
+5. Set **Format** to **JSON**. This is the one setting that matters - the default is
+   HTML, and the ingest cannot read HTML.
+6. Set the date range if you want a slice rather than the whole history.
+7. Set the download path to a folder for this job, for example `~/Desktop/tg-export/`.
+   Use the **same parent folder for all three chats** - the script walks subfolders.
+8. Click **Export**. Telegram may make you wait roughly 24 hours before the first
+   export is allowed; that is a Telegram-side limit, not something the repo controls.
+9. Repeat for each of: `-1002812275482`, `2087125632`, `-1002625006975`.
 
-1. **Network Layer Abstraction Proposal** (`88da8f86-cbf4-4f2d-843f-d7840a67742d`): he asked
-   how to create a layer *above* personal named networks ("Zabal's NetWork", "Dvl's Mojo
-   NetWork") that avoids hierarchy conflict while keeping the layers functionally separate.
-   No answer from Zaal appears in the graph.
-2. **TnN - The "n" Network** (`Introduction of TnN Network and Multi-Agent Capability
-   Assessment`): his own candidate answer. ZabalAObot explicitly staged `TnN` as
-   **unconfirmed pending his explicit definition**, with three hypotheses - umbrella brand for
-   the nLayer hierarchy (p=0.70), n-gram discourse network (p=0.20), "The Node Network" tied to
-   the n.0.0 anchoring protocol (p=0.10). It is still sitting unconfirmed.
+Each export writes a `result.json` (plus a media folder if you left media on). A
+whole-account export via **Settings > Advanced > Export Telegram data** also works -
+that produces one `result.json` with all chats under `chats.list`, and the script
+handles both shapes.
 
-### The draft, verbatim - Zaal sends this himself, I did not send it
+### Then run the ingest
 
-```
-Gustavo - your English is fine, no need to apologize for it.
+```bash
+# dry run - this is the DEFAULT, nothing is posted
+node scripts/telegram-export-to-bonfire.mjs ~/Desktop/tg-export
 
-On the layer above the personal networks: I agree the two named roots should not
-sit under one another. "Zabal's Network" under "Dvl's Mojo Network" or the reverse
-both create a hierarchy neither of us meant. So the layer above should not be a
-third owner. It should be a protocol namespace that neither of us owns.
+# narrow to one chat, see the full bodies
+node scripts/telegram-export-to-bonfire.mjs ~/Desktop/tg-export --chat 2087125632 --verbose
 
-That is what I think TnN can be, if we define it that way. Right now the bot has
-TnN staged as unconfirmed with three guesses - umbrella for nLayer, n-gram network,
-or The Node Network tied to n.0.0. It stays unconfirmed until you say which one it
-is, so nothing downstream can settle. Give me one sentence defining TnN and I will
-have it committed as canon.
+# only recent history
+node scripts/telegram-export-to-bonfire.mjs ~/Desktop/tg-export --since 2026-06-01
 
-My read: option 1 with option 3 underneath it. TnN is the namespace, nLayer is its
-structure, and n.0.0 anchoring is the mechanism that makes a node addressable inside
-it. Personal roots like /zabal and /dvlsmojo then become peers that mount into TnN,
-not children of each other. Peers, one level down from the namespace, equal to one
-another.
+# save the episodes without posting, to review or to feed the /bonfire skill poster
+node scripts/telegram-export-to-bonfire.mjs ~/Desktop/tg-export --out /tmp/bonfire-episodes.json
 
-If that matches what you meant, confirm and I will lock the definition. If it does
-not, correct the sentence and I will use yours instead.
-
-One ask on the ASCII docs - keep sending them, but put one plain line of text under
-each one saying what it is. The graph reads prose. The art is landing as a placeholder
-with no extractable content, so the ideas inside it are not making it into the
-knowledge graph, and that is a loss.
+# actually write to the graph - only after a dry run looks right
+node scripts/telegram-export-to-bonfire.mjs ~/Desktop/tg-export --post
 ```
 
-Notes on the draft, so it can be judged rather than trusted:
-- No emojis, no em dashes, per the brand rules.
-- The last paragraph is a real finding, not filler. Multiple episodes
-  (`c7a4a420-4782-4a84-9e37-45b702b11552`, `ee20099a-79d9-4f6d-a950-4f327b9811b8`,
-  `babfeb8a-994c-4735-b567-d4415e7a3f57`) record his ASCII posts being classified as
-  non-substantive and dropped, because extraction reads prose. Telling him is the fix.
-- It commits Zaal to nothing beyond a naming decision he already effectively controls.
+### What the script does
+
+`scripts/telegram-export-to-bonfire.mjs`, no dependencies, Node ESM, matching the
+repo's zero-build convention.
+
+- **Dry run is the default.** Nothing is posted without `--post`. The dry run prints
+  every episode it would create - name, source tag, message count, participants, size,
+  and a body preview (`--verbose` for full bodies).
+- **Both export shapes**: single-chat `result.json` (chat at the root) and whole-account
+  `result.json` (`chats.list`). It walks subfolders up to three deep to find them.
+- **Segments, not single messages.** A new segment starts after a quiet gap
+  (`--gap-minutes`, default 45), and each segment becomes one episode. The Bonfire rule
+  is one idea per episode, and a lone chat line is rarely an idea.
+- **Stable episode names**: `tg:<chatid>:<YYYY-MM-DD>:<first-message-id>`. Re-running the
+  same export updates rather than duplicating, which is what makes re-ingest safe.
+- **Self-contained bodies.** Each one opens by naming the chat, its Telegram id, the date,
+  and the participants before the transcript, because extraction reads prose and a graph
+  node has to stand alone.
+- **Noise filter.** Service messages are skipped, and segments under `--min-chars`
+  (default 180) are dropped. This is deliberate: the graph already recorded DvlsMojo's
+  ASCII and empty-square posts being classified non-substantive, so shipping them again
+  would just re-add noise.
+- **Local time preserved.** Telegram's `date` is local wall-clock and `date_unixtime` is
+  true epoch. The script orders and measures gaps on the epoch but displays the local
+  string, so the transcript reads on the clock Zaal saw.
+- **Text entity handling**: `text` can be a string or an array mixing raw strings and
+  `{type, text}` entity objects. Both are joined; `text_entities` is preferred. Media
+  becomes a short marker such as `[photo]` or `[voice message]`.
+- **Secret scan before anything leaves the machine**, per the `/bonfire` guardrail. Eight
+  credential patterns including Telegram bot tokens. Any hit aborts the whole run with
+  exit 1 and posts nothing.
+- **No VPS dependency.** It posts to `POST /knowledge_graph/episode/create` directly with
+  the local key from `~/.zao/zao.env`, since `187.77.3.104` is down. `--out` writes the
+  exact `{"episodes":[...]}` shape `bonfire-post.sh` expects, so the skill's poster still
+  works as an alternative once the VPS is back.
+
+### Verified before commit
+
+Run against synthetic fixtures covering both export shapes:
+
+```
+messages 6 -> segments 2 -> episodes 1   (personal_chat, 1 dropped below min-chars)
+messages 2 -> segments 1 -> episodes 1   (private_supergroup)
+messages 1 -> segments 1 -> episodes 0   (all below min-chars)
+secret scan: clean (2 episodes)
+DRY RUN total: 2 episode(s).
+```
+
+Also checked: service messages skipped, entity-array text joined, reply attribution
+rendered, media markers emitted, local times correct (`[09:01]` not UTC-shifted),
+`--chat` matching with and without the `-100` prefix, `--out` emitting no internal
+metadata, a planted credential aborting with exit 1, and both a missing directory and
+a wrong-shaped JSON failing with a clear message rather than a stack trace.
+
+**Not yet run against a real export** - there is no real export on disk yet. Fixtures
+are modelled on the documented Telegram Desktop format, so expect to re-check the first
+real dry run before using `--post`.
+
+
+## 2. Reply to `2087125632` - draft discarded
+
+A reply awaits Zaal's read of the live DM. The blind draft that stood here was
+discarded on his instruction: do not send anything drafted blind.
+
+The thread context is still recorded in section 3 - `2087125632` is DvlsMojo /
+Gustavo de Lima Cavalcanti, and the open item is his network-layer naming question
+with `TnN` staged unconfirmed.
 
 ---
 
@@ -232,9 +282,9 @@ from the mac, and `bonfire-episode.sh` posts locally without the VPS.
 
 ## Owner actions to unblock
 
-1. **Telegram session for fractgram** - only Zaal can do this. Either log in to
-   `fractgram.web.app` in a Chrome where the Claude extension is connected, or export the
-   three chats and drop the files somewhere I can read.
+1. **Export the three chats** from Telegram Desktop as JSON - steps in section 1b.
+   Drop them in one folder and say where. The ingest script is written, tested and
+   waiting; fractgram is abandoned as a read path.
 2. **VPS is down** - `187.77.3.104:22` times out. That breaks `/bonfire` posting and recall
    through the skill, and anything else on that box (`@ZAOcoworkingBot`).
 3. **Send or discard the draft** in section 2, after checking his actual latest message.
