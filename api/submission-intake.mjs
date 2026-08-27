@@ -5,7 +5,7 @@ export const config = { runtime: 'edge' };
 // ZABAL Gamez - unified July submission store (GET/POST /api/submission-intake).
 //
 // The one place every July submission lands, no matter where it came from - the POIDH-claim
-// watcher, the Magnetiq UGC receiver, a Farcaster tag capture, or Zaal adding one by hand.
+// watcher, a Farcaster tag capture, or Zaal adding one by hand.
 // Builders never register here; the sources feed it.
 //
 //   POST (auth: Bearer ADMIN_KEY) { source, builder:{fid?,wallet?,handle?}, project, url, repo?, note?,
