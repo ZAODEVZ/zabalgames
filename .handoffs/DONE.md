@@ -52,3 +52,46 @@ This file did not exist on this branch before today. It carries creator-battle
 content only - the bonfire lane's own `DONE.md` lives on `ws/bonfire-lane` and
 was deliberately kept off this branch. This one will ride to main on merge; drop
 it in the merge if that is not wanted.
+
+---
+
+# ADOPTION CANDIDATES - 99darwin source read (2026-08-27)
+
+Research doc: `ZAO OS V1/research/dev-workflows/2423-99darwin-code-adoption/`,
+committed as `de7c5cfa` on `ws/research-2423-99darwin-code-adoption`, not pushed.
+
+Read `~/zao-vault/notes/adoption-candidates.md` first, as instructed. **Not
+re-proposed here:** `99darwin/orchestrator` - that row is already complete in the
+vault note with the same three files and the same S effort, and my source read
+confirms it rather than changing it. Rows below are the ones that were marked
+`(lane reading)`, plus one new repo, plus one nuance on telecast.
+
+| source repo | what | LICENSE from the file | adopt as | target repo | effort |
+|---|---|---|---|---|---|
+| 99darwin/obsidian-vault-scaffolder | Skill test + benchmark harness: `tests/run_smoke_tests.sh` + fixtures + with-skill-vs-baseline methodology (3 realistic prompts, pass rate / time / tokens). We have ~100 skills and no test harness for any. CAVEAT: published `benchmark.json` is an empty template (`runs: []`, `<model-name>`, deltas 0.00) - adopt the methodology, not the numbers | MIT (file, 21 lines, "Copyright (c) 2026 Nick Saponaro") | pattern + 2 files (`tests/run_smoke_tests.sh`, `benchmarks/README.md`) | skill library | M |
+| 99darwin/farcaster-audio | `developer_key_service.py` + `routers/developer.py` (655 lines): application -> approval -> app -> key. Removes the exact blocker docs 695/710/712 all end on - nickysap issuing a `JUKE_API_KEY` by hand. Self-host and ZAO issues its own keys | MIT (file, 21 lines, "Copyright (c) 2026 Nick Saponaro") | fork (backend 24,375 lines Py, real test coverage, alembic, Dockerfile) | Zuke | L |
+| 99darwin/nexus | Tiered-model classification ladder for graph ingest: Haiku triage first, heavier models only for survivors. `triage.ts` defaults to `claude-haiku-4-5-20251001`. Neo4j + BullMQ + dedup + anomaly detection | MIT (file, 21 lines, "Copyright (c) 2026 Nexus Contributors") | pattern + files (`packages/agent/src/triage.ts`, `pipeline.ts`, `dedup.ts`) | Bonfire / graphify | M |
+| 99darwin/telecast | NUANCE ONLY on the existing row, not a re-proposal. Confirmed no LICENSE file on disk, so all rights reserved stands. BUT `package.json` declares `"license": "ISC"` - the intent is already stated, only the grant file is missing. Ask-Nick becomes "your package.json says ISC, add the LICENSE to match", not "will you license this" | NONE (no file; package.json claims ISC) | pattern only until licensed | ZOE v2 bridge | blocked |
+
+## Why ranks 1-3 in the doc are the write-set / cross-model / worker-report trio
+
+Measured, not asserted: `grep -rn "write-set\|parallel-safe"` across
+`.claude/rules/` and `~/zao-vault/handoffs/lanes.md` returns **zero hits**. We
+have no write-set rule anywhere, in the week two lanes nearly collided on
+`sync-projects.js` and two panes did collide on `ws/2422-lane-weighin` (#3338).
+
+`parallel-safety.md` carries the specific rules that would have caught both:
+lockfiles always serialize, migrations serialize, shared config gets one owner,
+workers declare ports so two lanes do not both claim 3000, and "when in doubt,
+sequence - a stomp costs the rerun plus re-verification."
+
+`worker-prompt.md` carries the enforcement half: "You may write to these files
+only... if your task requires writing outside this scope, STOP and report back
+instead of expanding scope."
+
+## Path I could NOT verify
+
+"convention 5" and the lane brief template are named from Zaal's context. Grep
+for a literal numbered convention 5 in `.claude/rules/lane-autonomy.md` and
+`~/zao-vault/handoffs/lanes.md` found nothing this session. Confirm the path
+before porting rather than guessing it.
