@@ -168,3 +168,65 @@ not.** That was a false positive - my grep for "200 USDC" matched
 `"liquidity": "~550-1200 USDC"`, which is unrelated. Checked for the actual
 scheme text (`70 to`, `capped at 80`, `runner-up`, `track champion`) and the file
 has none. The knowledge graph is clean.
+
+---
+
+# TONIGHT'S BATTLE - final state (2026-08-27, re-verified 08:32 EDT)
+
+## THE SIX ZAAL FIELDS - one line each, for the grill
+
+1. **Space URL (creator, tonight 5:00 PM EDT)** - schedule the Space on the WaveWarZ account and paste it into `space` on the creator row of `data/finals.json`; every surface then renders "Set a reminder", and a link pasted at 4:55 has already failed at the only job it had.
+2. **Poll URL (creator, tonight)** - post a standalone X poll before 5:00 PM and paste it into `poll` on the creator row, because on 08-24 the poll only opened inside the Space, its field is still null today, and that battle's Vote button therefore never rendered at all.
+3. **Three judges (creator, tonight)** - name them; artist ran with Thy Revolution, Jose (Joseph Goats) and AttaBotty, and note there is no judges field in `finals.json` and no page renders judges per battle, so showing them needs a small code change and a decision first.
+4. **presdency.eth's HOOD link** - no URL for HOOD exists anywhere in the repo or the vault, so he is the only one of six rendering as plain text while the other five are links.
+5. **Artist winner** - confirm it; the artist row still reads `status: scheduled` with every rank null three days on, and the 08-24 transcript closes "Congratulations again, Nemesis... since you're the winner" but that is an unreviewed machine transcript so nothing was written.
+6. **Prize ruling** - name which scheme is real; the reconciliation is committed and staged but deliberately not landed, and the reverse edit is larger than the forward one.
+
+Saturday's builder battle needs **the same fields 1, 2 and 3 again** - its `space` and `poll` are null for the same reason and no judges are named. Nothing else on that row is missing.
+
+## Re-verified end to end at 08:32 EDT, after the prize rewrite
+
+Six pages rendered headlessly against the real `finals.json`. Redone rather than
+trusted, because `finals.html` and `info.html` both changed since the last pass.
+
+- `Vote in the poll` appears **zero** times across all six pages. Zero empty-href anchors anywhere. No JS errors from our code.
+- "Set a reminder" appears **once**, on the artist row, which is the only battle with a Space. Creator and builder correctly show neither button.
+- Creator row renders: `@presdency vs @uniquebeing404 | Thursday, August 27 - 5:00 PM EDT | Watch -> | Trade the battle ->`
+- Builder row renders with both ends of the 24 hour window and the same two buttons.
+- **Judges confirmed harmless:** `grep` for `.judges` across every page returns nothing. No page reads the field, so its absence breaks nothing - it simply cannot be displayed.
+- `finals.html` and `info.html` now carry the rewritten prize copy and the old scheme is gone from every `.html`.
+- Only console errors on `/finals` and `/info` are 403s and font warnings from the embedded **Cal.com iframe**, plus `/api/*` 404s that do not exist on a static server. Neither is ours.
+
+**What appears the moment Zaal pastes:** the `space` URL renders a "Set a reminder"
+link on that battle's row on `/august` and a "Set a reminder" button on `/live`;
+the `poll` URL renders "Vote in the poll ->" on `/august` and a "Vote in the poll"
+button on `/live` and on the live stage card. Both are pure data - no code, no
+deploy beyond the merge.
+
+## Builder row (2026-08-29) - everything fillable IS filled
+
+Filled in commit `645d4ad` earlier today, not left for Saturday: `date`, `time`,
+`endDate`, `endTime`, the 24 hour `window` sentence, `watch`, `battleUrl`,
+`status: scheduled`, plus both finalists linked - ghostmintops to the Proof Drop
+live page and repo `BrandonDucar/proof-drop-zabal`, jdwalka to Chroma Poker.
+`poll` and `space` are the only nulls and neither exists anywhere to copy in.
+
+## Socials - clock-checked, still unposted
+
+Seven drafts plus a new LIVE NOW variant in
+`drafts/creator-battle-2026-08-27-socials.md`. Re-read against the clock: they
+are written for "today, pre-battle", correct until about 4:00 PM EDT, and the
+file now carries per-window swap lines because "today" reads wrong at 4:55 and is
+false after 5:45. Also flagged: the X GC line "poll goes up in the space" becomes
+untrue if Zaal pre-posts a standalone poll, which is what item 2 asks him to do.
+
+## 99darwin research - PARKED for another lane
+
+Doc 2423 is committed and complete enough to hand over:
+`ZAO OS V1/research/dev-workflows/2423-99darwin-code-adoption/`, commits
+`de7c5cfa` + `0e934b28` on `ws/research-2423-99darwin-code-adoption`, unpushed.
+Adoption rows and the unsent telecast draft are landed here. Two GitHub issues
+filed: **#3339** (new - doc-number scan reads commit SHAs as doc numbers) and a
+third-instance comment on **#3338** (a second pane took HEAD in the shared ZAOOS
+checkout while I worked). Open for the next lane: apply the `sed` fix at both
+scan sites, and audit the corpus for an already-shipped inflated doc number.

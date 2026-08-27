@@ -16,6 +16,39 @@ battle Saturday.
 Timezones, verified in the lane handoff: 5:00 PM EDT = 10:00 PM BST = 11:00 PM
 CEST = 11:00 PM CAT = 10:00 PM WAT = 2:30 AM IST next day.
 
+## CLOCK - read this before sending (checked 08:32 EDT, 8.5 hours out)
+
+Every draft below is written for **"today", pre-battle**. That is correct now and
+stays correct until about 4:00 PM EDT. After that they degrade, and after 5:45 PM
+they are wrong. Swap lines per window:
+
+| Window (EDT) | Status | What to change |
+|---|---|---|
+| now - 4:00 PM | send as written | nothing |
+| 4:00 - 4:45 PM | still fine, weaker | swap `creator final today` -> `creator final in an hour` |
+| 4:45 - 5:00 PM | do NOT send as written | swap to `creator final starting now` and drop `5:00 PM EDT` from the body - it reads odd five minutes out |
+| 5:00 - 5:45 PM | announcement is dead | use the LIVE NOW variant below instead |
+| after 5:45 PM | do not send any of these | the battle is over; that is a result post, which is not drafted here |
+
+### LIVE NOW variant (Farcaster + X, use only between 5:00 and 5:45 PM EDT)
+
+ZM
+
+creator final is live. presdency.eth with HOOD against uniquebeing404 with ColorZAO.
+
+poll is open in the space. two of three signals takes the track.
+
+https://zabalgamez.com/live
+
+### One line that can go factually wrong
+
+The X GC draft says **"poll goes up in the space"**. That matches how the artist
+battle actually ran on 08-24. But if Zaal posts a standalone X poll beforehand -
+which is the recommendation, because the artist battle's poll link never existed
+and its Vote button never rendered - then that line is wrong and should become
+`poll is up now, link in the post`. Check which he did before sending the X GC
+draft.
+
 Platform profiles were loaded first as the skill requires. Every profile's
 "Current goals" and "Best examples" are still TO FILL, so these follow the
 skill's voice rules rather than a per-platform campaign angle.
