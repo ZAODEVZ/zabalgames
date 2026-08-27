@@ -230,3 +230,49 @@ filed: **#3339** (new - doc-number scan reads commit SHAs as doc numbers) and a
 third-instance comment on **#3338** (a second pane took HEAD in the shared ZAOOS
 checkout while I worked). Open for the next lane: apply the `sed` fix at both
 scan sites, and audit the corpus for an already-shipped inflated doc number.
+
+---
+
+# ZABAL - the six, as they land (2026-08-27)
+
+**ZABAL 1/6 - JUDGES: PARTIAL.** Thy Revolution and N3M named by Zaal at 11:58;
+third seat still being found and is rendered as an explicit `TBA`, not invented.
+Landed in `8076509` - this needed a small code change, not a data edit, because
+`finals.json` had no `judges` field and no page rendered judges at all. Creator
+row now reads "Judges: Thy Revolution, N3M, TBA"; artist and builder rows are
+untouched because they carry no field. Filling seat three is now a data edit.
+*Flag for Zaal: N3M is also an artist-track finalist and, on the unconfirmed
+transcript, the artist winner. Judging another track is not a conflict on its
+face, but all six compete for the same 50 USDC season volume bonus - worth a
+conscious yes.*
+
+**ZABAL 2/6 - PRIZE: DONE.** Zaal ruled `/august` is real: 100 to each track
+champion, 50 to each runner-up, 50 to the highest season trading volume, 500
+exactly. The prepared reconciliation `3b8db2a` was already committed on this
+branch, so the ruling confirms its direction rather than requiring new work - the
+"direction unconfirmed" caveat on that commit is now resolved to CONFIRMED.
+Re-verified after the ruling: `/august`, `/finals` and `/info` all render the
+100/50/50 scheme and the old 300/70-30/200-capped-80 scheme is gone from every
+`.html`. One scheme site-wide.
+
+**ZABAL 3/6 - SPACE URL: STILL NULL.** Zaal-only. Schedule on the WaveWarZ
+account, paste into `space` on the creator row. Renders "Set a reminder" on
+`/august` and `/live` the moment it lands.
+
+**ZABAL 4/6 - STANDALONE POLL URL: STILL NULL.** Zaal-only. Post before 5:00 PM
+and paste into `poll`. Renders "Vote in the poll" on `/august`, `/live` and the
+live stage card. Note this makes the X GC social draft's "poll goes up in the
+space" line untrue - swap it, per the drafts file.
+
+**ZABAL 5/6 - HOOD LINK: STILL NULL.** Zaal-only. No URL for presdency.eth's HOOD
+exists anywhere in the repo or the vault; he is the only one of six rendering as
+plain text.
+
+**ZABAL 6/6 - ARTIST WINNER: STILL UNCONFIRMED.** Zaal-only. Artist row still
+reads `status: scheduled` with every rank null. Nothing written on machine-
+transcript evidence alone.
+
+**Score: 1 done, 1 partial, 4 open.** Saturday's builder battle needs 3/6 and 4/6
+again plus its own panel; everything else on that row is already filled.
+
+Branch: `ws/creator-battle-0827`, unpushed, unrebased. Nothing posted anywhere.
