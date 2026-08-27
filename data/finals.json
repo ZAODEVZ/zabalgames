@@ -16,6 +16,6 @@
     { "rank": null, "name": "JohnDaWalka", "handle": "@jdwalka", "repo": null, "demo": null, "track": "builder", "prize": "100 USDC as track champion, 50 as runner-up, plus a 50 USDC volume bonus across the six", "collectible": "finisher" },
     { "rank": null, "name": "Brandon", "handle": "@ghostmintops", "repo": null, "demo": null, "track": "builder", "prize": "100 USDC as track champion, 50 as runner-up, plus a 50 USDC volume bonus across the six", "collectible": "finisher" },
     { "rank": null, "name": "Presdency.eth", "handle": "@presdency", "repo": null, "demo": null, "track": "creator", "prize": "100 USDC as track champion, 50 as runner-up, plus a 50 USDC volume bonus across the six", "collectible": "finisher" },
-    { "rank": null, "name": "uniquebeing404", "handle": "@uniquebeing404", "repo": null, "demo": null, "track": "creator", "prize": "100 USDC as track champion, 50 as runner-up, plus a 50 USDC volume bonus across the six", "collectible": "finisher" }
+    { "rank": null, "name": "uniquebeing404", "handle": "@uniquebeing404", "repo": null, "demo": "https://colorzao.signalify.xyz", "track": "creator", "prize": "100 USDC as track champion, 50 as runner-up, plus a 50 USDC volume bonus across the six", "collectible": "finisher" }
   ]
 }
