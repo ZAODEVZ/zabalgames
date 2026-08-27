@@ -108,3 +108,63 @@ when two panes are already in the same file. Extend convention 5, do not replace
 That note already carries a "Candidate conventions from 99darwin/orchestrator"
 section naming these same three and deferring source paths to this lane; doc 2423
 supplies them. The note is orchestrator-written and this lane did not edit it.
+
+---
+
+# PRIZE SCHEME RECONCILIATION - PREPARED, NOT PUSHED (2026-08-27)
+
+**Zaal decides which scheme is real. This commit is staged to land the moment he
+says, and it must not be read as the decision having been made.**
+
+Two contradictory schemes were public at the same time:
+
+- **A ("august"):** 100 to each track champion, 50 to each runner-up, 50 to the
+  highest season trading volume. 500 exactly. In `august.html` + `data/finals.json`.
+- **B ("finals"):** 300 on the battles split 70/30 per track, plus 200 on trade
+  volume capped at 80 each. In `finals.html` + `info.html`.
+
+I rewrote `finals.html` and `info.html` to **scheme A**, as instructed. Arithmetic
+checked: 3x100 + 3x50 + 50 = 500. `node scripts/validate.mjs` green.
+
+## This does NOT assume A wins because it is newer
+
+Recording the evidence separately from the decision, because they are different
+things:
+
+- A is newer. PR #639 (2026-08-23 20:10) superseded #624 (same day, ~10h earlier).
+- #639's own commit message says Zaal set the structure and that the prior scheme
+  "is the opposite" of what he wanted.
+- B was never updated afterwards - `finals.html` has not been touched since #624.
+
+That is evidence A is the **current written intent**. It is not evidence of what
+Zaal wants **now**, which is the money question and is his alone. If he says B,
+the prepared commit is wrong in direction but correct in shape.
+
+**To flip to B instead:** revert this one commit and rewrite `august.html:129`,
+`august.html:163` and the `prize` field on all six entries in `data/finals.json`.
+That is the larger edit of the two - A currently has more surface.
+
+## Every other file carrying the OLD numbers
+
+Not rewritten. All are dated point-in-time records, which per CLAUDE.md are not
+current state and should not be retro-edited:
+
+| File | Line | Carries |
+|---|---|---|
+| `docs/newsletter-2026-08-17-final-six.md` | 40 | "300 USDC on the head-to-head split 70/30, plus 200 USDC volume-weighted... capped at 80" |
+| `docs/season-1-handoff-prompt-2026-08-17.md` | 69-70 | "300 rides on the battles (70 to each track winner, 30 to each runner-up); 200 follows trade volume... capped at 80 each" |
+
+If scheme A is confirmed, these stay as-is as historical record. **But the
+newsletter numbers went out to readers**, so if A is right, a correction line in
+a future edition is a separate call worth making.
+
+Also carrying old numbers, but correctly: `docs/finals-render-verification-2026-08-27.md`
+and this file both quote BOTH schemes deliberately, to document the conflict.
+
+## Correction to something I said an hour ago
+
+I reported `data/bonfire-graph.json` as carrying the old prize numbers. **It does
+not.** That was a false positive - my grep for "200 USDC" matched
+`"liquidity": "~550-1200 USDC"`, which is unrelated. Checked for the actual
+scheme text (`70 to`, `capped at 80`, `runner-up`, `track champion`) and the file
+has none. The knowledge graph is clean.
