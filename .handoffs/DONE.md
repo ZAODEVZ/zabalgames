@@ -89,9 +89,22 @@ sequence - a stomp costs the rerun plus re-verification."
 only... if your task requires writing outside this scope, STOP and report back
 instead of expanding scope."
 
-## Path I could NOT verify
+## Path CONFIRMED (Zaal, 2026-08-27)
 
-"convention 5" and the lane brief template are named from Zaal's context. Grep
-for a literal numbered convention 5 in `.claude/rules/lane-autonomy.md` and
-`~/zao-vault/handoffs/lanes.md` found nothing this session. Confirm the path
-before porting rather than guessing it.
+The numbered conventions live in `~/zao-vault/notes/orca-organization.md` under
+"Conventions to adopt" - **not** `.claude/rules/lane-autonomy.md`, which is where
+I looked and found nothing.
+
+**Convention 5 = "File ownership when panes overlap"**, and it already cites the
+same incident: *"Two panes nearly edited sync-projects.js the same hour. Rule:
+the pane whose repo owns the file makes the change; the other reports findings
+and stands by."*
+
+How the port should land: convention 5 already resolves an overlap **once it is
+noticed**. What `parallel-safety.md` adds is the step that notices it - computing
+and comparing write-sets *before* dispatch, instead of discovering the overlap
+when two panes are already in the same file. Extend convention 5, do not replace it.
+
+That note already carries a "Candidate conventions from 99darwin/orchestrator"
+section naming these same three and deferring source paths to this lane; doc 2423
+supplies them. The note is orchestrator-written and this lane did not edit it.
