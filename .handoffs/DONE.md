@@ -276,3 +276,38 @@ transcript evidence alone.
 again plus its own panel; everything else on that row is already filled.
 
 Branch: `ws/creator-battle-0827`, unpushed, unrebased. Nothing posted anywhere.
+
+**ZABAL LIVE-URL - SPACE: DONE (3/6), written 17:35 EDT.**
+`https://x.com/i/spaces/1dKrPrQkgYVJX` is on the creator row's `space` field,
+committed. Verified rendering on both surfaces: `/august` creator row shows
+"Set a reminder ->" pointing at the Space, and `/live` shows a "Set a reminder"
+button with the same href. Zero empty hrefs, still zero Vote buttons (poll null).
+
+Checked rather than assumed: the new ID `1dKrPrQkgYVJX` shares a `1dKrPr` prefix
+with the artist Space `1dKrPrnYaDqJX` and diverges at index 6. They are different
+Spaces, not a mis-paste.
+
+Stored without the `?s=20` share-tracking suffix Zaal pasted, matching how the
+artist Space is already stored in this file. The parameter carries no routing
+meaning; say the word and it goes back in.
+
+## THE THING THAT MATTERS MORE THAN THIS COMMIT
+
+It is **17:35 EDT**. The battle runs **5:15 to 5:45**, so there are roughly ten
+minutes left, and `ws/creator-battle-0827` is **unpushed**. Nothing in these 14
+commits is on production. **The Space link cannot reach a single viewer tonight
+unless Zaal pushes and merges within those ten minutes.** After 5:45 this commit
+is a record of the battle, not a promotion of it.
+
+Two cosmetic mismatches that follow from a link landing mid-battle, neither worth
+a code change at 17:35 and both listed so nobody is surprised:
+
+- The button reads **"Set a reminder"** for a Space that is live right now. The
+  link works and joins the Space; only the label is wrong for the moment.
+- `/live` still labels the card **"NEXT UP"** with a dashed-out countdown
+  (`-- -- -- --`), because the start time has passed. Correct behaviour - the
+  card holds through the battle by design - but it reads as upcoming.
+
+Also now stale: the social announcement drafts. Past 5:00 PM only the LIVE NOW
+variant applies, and after 5:45 none of them should go out at all. That is in the
+clock table in `drafts/creator-battle-2026-08-27-socials.md`.
