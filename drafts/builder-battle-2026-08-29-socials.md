@@ -11,9 +11,12 @@ noon Sunday.
   reference allowed is "noon Saturday to noon Sunday". The Spaces are described as
   opening and closing the battle, never by a start time. This also means a post
   does not go stale if it goes out an hour later than planned.
-- **Judges UNSET.** No panel is named for this battle, so no post names a judge.
-  The three deciding signals are still described, because that is the format, not
-  a person.
+- **Judges UNSET, and WANTED.** No panel is named for this battle, so no post
+  names a judge; the row renders three TBA seats. The three deciding signals are
+  still described, because that is the format, not a person.
+- **Judges wanted (Zaal 15:4x, 2026-08-28):** the builder battle is looking for
+  its three judges. The orchestrator writes the public call; nothing here goes
+  out for it. Names land in `judges` on the builder row as each confirms.
 - **Both Space URLs are Zaal's to create.** `[OPENING SPACE LINK]` and
   `[CLOSING SPACE LINK]` are placeholders - replace them or cut the line. Never
   post a placeholder.
