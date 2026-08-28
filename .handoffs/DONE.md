@@ -311,3 +311,49 @@ a code change at 17:35 and both listed so nobody is surprised:
 Also now stale: the social announcement drafts. Past 5:00 PM only the LIVE NOW
 variant applies, and after 5:45 none of them should go out at all. That is in the
 clock table in `drafts/creator-battle-2026-08-27-socials.md`.
+
+---
+
+**ZABAL builder-format - SPECIFIED AND ON THE SITE (Zaal, 21:5x).**
+
+Saturday noon to Sunday noon, 24 hours, with a Space at each end: **opening
+Sat 12:00-1:00 PM EDT**, **closing Sun 11:00 AM-12:00 PM EDT**. Between them the
+builders work in the open and the battle trades the whole way. **Ad-hoc Spaces:**
+when either builder has something to show mid-run they reach Zaal directly and he
+opens a Space, so extra Spaces can appear at any hour and nothing promises a fixed
+mid-run schedule.
+
+**Zaal's phone number is not written in any file** - not in `data/finals.json`,
+not in the drafts, not here. The mechanic is described as "they reach Zaal
+directly" and stops there. Grepped all changed files for a phone-shaped string to
+confirm: none.
+
+What changed:
+- `data/finals.json` builder row - rewritten `window` with both slot times and
+  the ad-hoc mechanic; new `spaces` array carrying the two slots; `judges: null`.
+- **Schema addition:** the row had one `space` field and this battle has two
+  Spaces. Added `spaces[]` of `{ label, date, time, ends, url }`, documented in
+  the battles note. `space` singular still works for the one-Space battles, so
+  artist and creator are untouched.
+- `august.html` renders each slot. **The slot TIME renders while the url is
+  null** - "Opening Space - Saturday, August 29 12:00 PM EDT to 1:00 PM EDT -
+  link when it is created". People need to know when to show up before the links
+  exist, and a blank slot would have hidden that.
+- `drafts/builder-battle-2026-08-29-socials.md` - seven platform drafts, unposted,
+  with `[OPENING SPACE LINK]` / `[CLOSING SPACE LINK]` placeholders and a clock
+  table. Firefly post 212/280 chars, no emojis, em dashes, hashtags or hype words,
+  every post opens with ZM.
+
+**Judges for the builder battle: UNSET**, as instructed. `judges: null` renders no
+judges line at all, so the row shows nothing rather than a row of TBAs. Verified.
+
+Re-verified render: builder row shows both slots and no judges line; creator row
+unchanged with "Judges: Thy Revolution, N3M, TBA" and its Space link; zero Vote
+buttons; zero empty-href anchors.
+
+**No page copy contradicted the new format** - `august.html` lines 116 and 131
+already said "24 hours, noon Saturday to noon Sunday", so nothing needed
+correcting there. Checked rather than assumed.
+
+**Still Zaal-only on the builder battle: both Space URLs, the poll URL, and the
+panel.** Same three shapes as tonight.
