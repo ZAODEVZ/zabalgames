@@ -409,3 +409,63 @@ Two guards written into the drafts:
   never rendered.
 
 **Still Zaal-only on the builder battle: both Space URLs, the poll URL, the panel.**
+
+---
+
+# LANE STATE AT HANDOFF (2026-08-28, convention 10)
+
+**Branch `ws/creator-battle-0827` IS PUSHED at `45b987b`.** Verified, not assumed:
+`origin/ws/creator-battle-0827` = `45b987b3bb62...` = local HEAD, byte-identical.
+I never pushed it - every relay carried a commit-only constraint - so Zaal pushed
+it himself. 16 commits ahead of `origin/main`. **No PR is open.**
+
+`origin/main` has moved 1 commit ahead of our base (`7b3c7ec chore(backup):
+nightly KV export`). It touches only `backups/kv-latest.json` and **overlaps none
+of our 10 changed files, so the merge is clean.**
+
+## WARNING for the receiving lane - a foreign commit is on this branch
+
+`7bc1067 orca.yaml: share node_modules and set up fresh worktrees` is **not from
+this lane.** It landed between `ae2f522` and `8076509` while I was working.
+Every session commits as `zao-assistant`, so the author field hides it - I only
+caught it because `orca.yaml` appeared in the branch diff and I had never touched
+that file.
+
+Content is benign and unrelated to the battles (Orca worktree config, no overlap
+with any battle file), so it was **left in place** rather than stripped -
+rewriting a pushed branch to remove another lane's work is worse than carrying
+it. But it will ride into main on merge. **Decide deliberately, do not merge
+unaware.** This is another instance of the shared-git-tree family, ZAOOS #3338.
+
+## SHIPPED (all committed, all on the pushed branch)
+
+- Creator battle fully wired: ColorZAO demo link, judges panel with an explicit
+  TBA third seat, and the live Space URL `https://x.com/i/spaces/1dKrPrQkgYVJX`.
+- Builder battle fully wired for the weekend: real 24-hour format, `spaces[]`
+  schema addition carrying both slots, `judges: null`.
+- Prize scheme reconciled site-wide to Zaal's ruling - 100 / 50 / 50, one scheme
+  across `/august`, `/finals`, `/info`.
+- Both builder finalists linked to their work.
+- Socials: creator drafts (with clock table) and builder drafts (four post types).
+  **Nothing was ever posted.**
+- Render verified repeatedly, most recently by executing `august.html`'s own
+  render function in Node when the headless browser broke.
+
+## HELD - deliberately not done
+
+- **Nothing posted, nothing sent.** Includes the unsent telecast licence ask in
+  `drafts/ask-nick-telecast-license.md`.
+- **No PR opened, no merge, no rebase.**
+- **Artist result not written.** Row still `status: scheduled`, all ranks null.
+  The only evidence is an unreviewed machine transcript.
+- **Two dated docs still carry the old prize numbers** and were left as
+  point-in-time records. The newsletter figures reached readers, so a correction
+  line is a separate call.
+
+## STILL ZAAL-ONLY
+
+Builder: **both Space URLs** (pre-scheduling tonight), **poll URL**, **the panel**.
+Creator/season: **poll URL**, **presdency.eth's HOOD link**, **artist winner**.
+
+Pasting any Space or poll URL is a data edit on `data/finals.json` with no code
+behind it - proven for the populated case, two URLs give two Reminder links.
