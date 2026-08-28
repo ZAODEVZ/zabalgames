@@ -523,6 +523,10 @@ Recommendation: Option 1. The commit is harmless and every minute before
 Saturday noon is better spent on the four inputs. Either way, decide before
 merging, not after.
 
+**RULED (Zaal 13:1x, relay orca-board.log line 4474): Option 1. `7bc1067` is
+CARRIED into main. Do not strip it, no new branch. The merge itself happens
+after the battle, on Zaal's word. Closed.**
+
 ## Waiting on Zaal (all after Daily Doots, 12:00-13:00 ET today)
 
 1. Opening Space URL (Sat 12:00-13:00 EDT, WaveWarZ X account) -> `spaces[0].url`
@@ -530,7 +534,11 @@ merging, not after.
 3. Standalone poll URL (not a poll inside the Space) -> `poll`
 4. Judges panel names -> `judges` (array; unfilled seat = `null` = TBA)
 5. (new) X handles for jdwalka and ghostmintops, or "leave bare"
-6. Option 1 or 2 on `7bc1067`
+6. ~~Option 1 or 2 on `7bc1067`~~ RULED: carry. See above.
+
+Timing per the 13:1x relay: 1-4 arrive after Zaal creates them tonight
+(2026-08-28). Merge is after the battle (Sun 2026-08-30 noon EDT or later),
+on Zaal's word, not before.
 
 Each of 1-4 is a data edit on the builder row of `data/finals.json`, re-checked
 with `node scripts/check-finals-render.mjs`, then committed.
