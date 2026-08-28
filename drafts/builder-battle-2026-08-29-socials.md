@@ -22,6 +22,12 @@ noon Sunday.
 - **Poll is null.** Post a standalone poll and paste the URL into `data/finals.json`,
   rather than opening it only inside the Space - that is why the artist battle's
   Vote button never rendered.
+- **@ handles only where the platform handle is known.** Both builders are
+  `@jdwalka` and `@ghostmintops` on Farcaster (`data/people.json`,
+  `farcaster_url`), so the Farcaster-only post tags them. Their X handles are
+  `x_url: null` in `people.json`, so the combined Firefly post and the X group
+  chat name them bare rather than tag a stranger. Add the X @ only once Zaal
+  confirms the handles.
 
 ## Site is ready for the URLs
 
@@ -63,7 +69,7 @@ https://zabalgamez.com/live
 
 ZM
 
-builder final is the last one. jdwalka vs ghostmintops, 24 hours, noon saturday to noon sunday.
+builder final is the last one. @jdwalka vs @ghostmintops, 24 hours, noon saturday to noon sunday.
 
 two spaces bookend it, one to hear what they built this season and one to see what they made in the day itself. they build in the open in between and the battle can be traded the whole way.
 

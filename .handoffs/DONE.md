@@ -469,3 +469,72 @@ Creator/season: **poll URL**, **presdency.eth's HOOD link**, **artist winner**.
 
 Pasting any Space or poll URL is a data edit on `data/finals.json` with no code
 behind it - proven for the populated case, two URLs give two Reminder links.
+
+---
+
+# BUILDER BATTLE LANE (2026-08-28, worktree `builder-battle-0829`)
+
+ZABAL-BUILDER ingested zabal-builder-0829
+State: branch `bettercallzaal/builder-battle-0829` off `ws/creator-battle-0827`, tree clean, validate green, render check green, waiting on Zaal's four inputs (two Space URLs, poll URL, judges), nothing pushed or posted.
+
+Brief: `~/zao-vault/handoffs/zabal-builder-battle-lane.md` (orca-board.log line 4463, BRIEF, matched).
+Constraint held: commit only. No push, no merge, no rebase, no sends.
+
+## Done this pass
+
+- **Drafts verified** (`drafts/builder-battle-2026-08-29-socials.md`, 16 posts):
+  zero emojis, zero em or en dashes, every post opens with `ZM` on its own line,
+  no judge named, no time of day beyond noon-to-noon, winner post carries
+  `[WINNER]` / `[RUNNER-UP]` placeholders and its do-not-send-until-called
+  rule. Aug 29 / 30 2026 confirmed Saturday / Sunday.
+- **One draft fix, @ handles.** Both builders were named bare everywhere.
+  Farcaster handles are known (`@jdwalka`, `@ghostmintops`, `people.json`
+  `farcaster_url`), so the Farcaster-only post now tags them. X handles are
+  `x_url: null` for both in `people.json`, so the combined Firefly post and the
+  X group chat stay bare rather than tag a stranger. Rule recorded in the file.
+  **ZAAL: the X handles for jdwalka and ghostmintops, if the posts should tag
+  them on X.** UNSET until typed.
+- **Render check is now a script:** `scripts/check-finals-render.mjs`. Runs
+  `august.html`'s own `renderBattles` in Node under a stub document, against
+  the real `finals.json` and six fixed cases (two URLs, one, none, quote
+  injection, poll URL, judges with null seats). All pass. This is the section B
+  approach, made repeatable for the relay.
+
+## The one decision before any merge: foreign commit `7bc1067`
+
+`7bc1067 orca.yaml: share node_modules and set up fresh worktrees` is on this
+branch but not from this lane (another pane, 2026-08-27 08:41, author field
+reads `zao-assistant` like every commit here). It only touches `orca.yaml`.
+It is already on the pushed `origin/ws/creator-battle-0827`.
+
+- **Option 1 - carry it into main.** Merge the branch as-is. The commit is
+  benign, self-contained, and documents the Orca setup schema well; it does
+  not touch any battle file. Cost: a commit lands on main under this lane's
+  name that nobody in this lane reviewed. No history rewrite, no force-push.
+- **Option 2 - strip it via a new branch.** After the battle inputs land,
+  cut a fresh branch off `origin/main`, `git cherry-pick` every commit on this
+  branch except `7bc1067` (16 of 17 today, plus whatever lands for the Space
+  URLs, poll and judges), push that, merge that. The original branch stays as
+  is, so nothing pushed is rewritten. Cost: one extra branch and a second push
+  before Saturday noon, and `7bc1067` still needs its own home (its owner pane
+  can PR it separately).
+
+Recommendation: Option 1. The commit is harmless and every minute before
+Saturday noon is better spent on the four inputs. Either way, decide before
+merging, not after.
+
+## Waiting on Zaal (all after Daily Doots, 12:00-13:00 ET today)
+
+1. Opening Space URL (Sat 12:00-13:00 EDT, WaveWarZ X account) -> `spaces[0].url`
+2. Closing Space URL (Sun 11:00-12:00 EDT) -> `spaces[1].url`
+3. Standalone poll URL (not a poll inside the Space) -> `poll`
+4. Judges panel names -> `judges` (array; unfilled seat = `null` = TBA)
+5. (new) X handles for jdwalka and ghostmintops, or "leave bare"
+6. Option 1 or 2 on `7bc1067`
+
+Each of 1-4 is a data edit on the builder row of `data/finals.json`, re-checked
+with `node scripts/check-finals-render.mjs`, then committed.
+
+## UNKNOWN-RELAY log
+
+None this session.
