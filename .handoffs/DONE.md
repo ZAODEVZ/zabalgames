@@ -357,3 +357,55 @@ correcting there. Checked rather than assumed.
 
 **Still Zaal-only on the builder battle: both Space URLs, the poll URL, and the
 panel.** Same three shapes as tonight.
+
+---
+
+**ZABAL builder-prep - READY FOR TONIGHT'S TWO SPACE URLS (2026-08-28).**
+
+**The row is ready, and this time it is proven for the populated case.** Yesterday
+I only verified the null slots. The browser broke mid-check today (Playwright's
+chromium was updated out from under `gstack browse`), so I extracted
+`august.html`'s own `spaces` render function and ran it in Node against test data
+rather than skip the check:
+
+| Case | Result |
+|---|---|
+| both urls set | **2 anchors, one "Set a reminder" per Space** |
+| first set, second null | 1 anchor + 1 pending time line |
+| both null | 0 anchors, both slot times shown |
+| no `spaces` field | renders nothing |
+| quote-injection in a url | escaped to `&quot;` - attribute injection neutralised |
+
+So when Zaal pre-schedules both Spaces, pasting the two URLs into
+`spaces[0].url` and `spaces[1].url` on the builder row is a **data edit, no code**,
+and each renders its own Reminder link. `poll` and `judges` stay null and neither
+breaks anything.
+
+**Socials rewritten to the four post types**, in
+`drafts/builder-battle-2026-08-29-socials.md`, unposted:
+
+1. **Announce** - send only once BOTH Space URLs exist and render
+2. **Hour 0** - opening Space, clock starts
+3. **Hour 23** - closing Space, final hour
+4. **Winner** - `[WINNER]`/`[RUNNER-UP]` placeholders, send only after the call
+
+Checked rather than asserted: **zero clock times anywhere in the file.** The only
+time reference is "noon Saturday to noon Sunday", the battle window, used 8 times.
+The Spaces are described as opening and closing the battle, never by a start time,
+which also means a post does not go stale if it goes out later than planned. No
+judge is named anywhere - `judges` stays UNSET. No emojis, em dashes, hashtags or
+hype words; every post opens with ZM; all four Firefly posts fit 280 (216 / 197 /
+190 / 169).
+
+Two guards written into the drafts:
+
+- **The winner post carries a do-not-send-early warning.** The artist result is
+  still unconfirmed in `data/finals.json` three days after that battle ran, and a
+  wrong winner post is not correctable.
+- **The poll question is called out before any send.** If a standalone poll
+  exists its link belongs in the announce and hour-0 posts; if it does not, every
+  reference to voting should be cut rather than pointing people at a poll that is
+  not there. That is the artist battle's mistake, which is why its Vote button
+  never rendered.
+
+**Still Zaal-only on the builder battle: both Space URLs, the poll URL, the panel.**
