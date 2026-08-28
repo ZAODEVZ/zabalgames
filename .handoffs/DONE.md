@@ -532,7 +532,9 @@ after the battle, on Zaal's word. Closed.**
 1. Opening Space URL (Sat 12:00-13:00 EDT, WaveWarZ X account) -> `spaces[0].url`
 2. Closing Space URL (Sun 11:00-12:00 EDT) -> `spaces[1].url`
 3. Standalone poll URL (not a poll inside the Space) -> `poll`
-4. Judges panel names -> `judges` (array; unfilled seat = `null` = TBA)
+4. Judges panel names -> `judges` (now `[null, null, null]`; replace a null as each confirms)
+4b. Charts-signal winner of the artist battle -> `winners.artist.charts`
+4c. Whether the artist row in `finals.json` gets rank 1 / rank 2 written now
 5. (new) X handles for jdwalka and ghostmintops, or "leave bare"
 6. ~~Option 1 or 2 on `7bc1067`~~ RULED: carry. See above.
 
@@ -542,6 +544,24 @@ on Zaal's word, not before.
 
 Each of 1-4 is a data edit on the builder row of `data/finals.json`, re-checked
 with `node scripts/check-finals-render.mjs`, then committed.
+
+## Relay 15:4x (orca-board.log line 4488) - two verdicts, landed
+
+ZABAL-BUILDER artist-champion-n3m `8de317b`
+ZABAL-BUILDER builder-judges-tba-and-wanted `e0270e3`
+
+- **n3m is the artist-track champion** in `data/season-1-results.json`, on
+  Zaal's word (meeting card 2026-08-25). The `charts` field on that winner is
+  **null and means "not yet confirmed"**, not "lost" - the charts winner is a
+  separate confirmation. `status` stays `pending` (two tracks open), so
+  `/results` shows the artist card and the "wraps Aug 31" lead. NOT touched:
+  the artist row in `data/finals.json` still reads `status: scheduled`, ranks
+  null - the relay named one file; say the word and the rank / status /
+  collectible fields follow in one edit.
+- **Builder judges are `[null, null, null]`**, rendering "Judges: TBA, TBA,
+  TBA" on `/august` (verified with `scripts/check-finals-render.mjs`: 2 judges
+  lines, 4 TBA seats site-wide). Judges-wanted note is in the socials draft
+  rules; public call is the orchestrator's, nothing posted from here.
 
 ## UNKNOWN-RELAY log
 
