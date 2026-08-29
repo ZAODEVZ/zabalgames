@@ -17,9 +17,9 @@ noon Sunday.
 - **Judges wanted (Zaal 15:4x, 2026-08-28):** the builder battle is looking for
   its three judges. The orchestrator writes the public call; nothing here goes
   out for it. Names land in `judges` on the builder row as each confirms.
-- **Both Space URLs are Zaal's to create.** The Opening Space URL is real
-  (Zaal, 2026-08-29 08:2x) and is pasted in below. `[CLOSING SPACE LINK]` is
-  still a placeholder - replace it or cut the line. Never post a placeholder.
+- **Both Space URLs are Zaal's to create.** The Opening Space URL (Zaal,
+  2026-08-29 08:2x) and the Closing Space URL (08:4x) are both real and pasted
+  in below. No placeholders remain except `[WINNER]` / `[RUNNER-UP]`.
 - **The Opening Space is 11:00 AM EDT, the clock starts at noon** (Zaal:
   "battle starts at noon 11 am space start"). The copy never gives the Space a
   time, so nothing here needed a time edit. The hour-0 post goes out when the
@@ -30,12 +30,12 @@ noon Sunday.
 - **Poll is null.** Post a standalone poll and paste the URL into `data/finals.json`,
   rather than opening it only inside the Space - that is why the artist battle's
   Vote button never rendered.
-- **@ handles only where the platform handle is known.** Both builders are
-  `@jdwalka` and `@ghostmintops` on Farcaster (`data/people.json`,
-  `farcaster_url`), so the Farcaster-only post tags them. Their X handles are
-  `x_url: null` in `people.json`, so the combined Firefly post and the X group
-  chat name them bare rather than tag a stranger. Add the X @ only once Zaal
-  confirms the handles.
+- **@ handles per platform.** Farcaster: `@jdwalka`, `@ghostmintops`. X (Zaal
+  confirmed 2026-08-29 08:5x, `x_url` in `data/people.json`): jdwalka is
+  `@MauroMarkNaz`, ghostmintops is `@GhostmintO71217`. The Firefly (X + Farcaster
+  combined) and X group chat posts tag the X handles with the ZABAL name in
+  brackets so both audiences know who is who; the Farcaster-only post keeps the
+  Farcaster tags.
 
 ## Site is ready for the URLs
 
@@ -53,7 +53,7 @@ a data edit, no code.
 
 ZM
 
-last battle of the season. jdwalka vs ghostmintops, 24 hours, noon saturday to noon sunday.
+last battle of the season. @MauroMarkNaz (jdwalka) vs @GhostmintO71217 (ghostmintops), 24 hours, noon saturday to noon sunday.
 
 a space to open it, a space to close it, and they build in the open the whole way between.
 
@@ -63,14 +63,14 @@ https://zabalgamez.com/live
 
 ZM
 
-builder final this weekend, and it is the last one of season 1. jdwalka vs ghostmintops, 24 hours, noon saturday to noon sunday.
+builder final this weekend, and it is the last one of season 1. @MauroMarkNaz (jdwalka) vs @GhostmintO71217 (ghostmintops), 24 hours, noon saturday to noon sunday.
 
 it opens with a space where they each talk through what they built this season, then the clock starts. it closes with a space where they show what they made in the 24. in between they build in the open and the battle trades the whole way through.
 
 if either of them has something worth showing partway, they get hold of me and i will open a space for it, so there may be more than two.
 
 https://x.com/i/spaces/1pKkOXDYQNdKj?s=20
-[CLOSING SPACE LINK]
+https://x.com/i/spaces/1MJgNblgDzYGL?s=20
 https://zabalgamez.com/live
 
 ## Farcaster /zao group chat
@@ -106,7 +106,7 @@ it opens with a space where each of them talks through what they built across th
 if either has something worth showing partway, a space opens for it, so there may be more than the two.
 
 https://x.com/i/spaces/1pKkOXDYQNdKj?s=20
-[CLOSING SPACE LINK]
+https://x.com/i/spaces/1MJgNblgDzYGL?s=20
 https://zabalgamez.com/live
 
 ## LinkedIn
@@ -141,7 +141,7 @@ https://zabalgamez.com/live
 
 ZM
 
-builder final is live. jdwalka vs ghostmintops.
+builder final is live. @MauroMarkNaz (jdwalka) vs @GhostmintO71217 (ghostmintops).
 
 they are talking through what they built this season, then the clock starts and runs 24 hours.
 
@@ -152,7 +152,7 @@ https://zabalgamez.com/live
 
 ZM
 
-we are live. jdwalka and ghostmintops are walking through what they each built this season, then the clock starts.
+we are live. @MauroMarkNaz (jdwalka) and @GhostmintO71217 (ghostmintops) are walking through what they each built this season, then the clock starts.
 
 24 hours from here. they build in the open, the battle trades the whole way, and if either has something to show partway i will open a space for it.
 
@@ -176,11 +176,11 @@ https://zabalgamez.com/live
 
 ZM
 
-final hour of the builder battle. jdwalka and ghostmintops are showing what they built in the 24.
+final hour of the builder battle. @MauroMarkNaz (jdwalka) and @GhostmintO71217 (ghostmintops) are showing what they built in the 24.
 
 last call on the poll and the charts.
 
-[CLOSING SPACE LINK]
+https://x.com/i/spaces/1MJgNblgDzYGL?s=20
 https://zabalgamez.com/live
 
 ## X group chat
@@ -191,7 +191,7 @@ final hour. both builders are showing what they made in the 24 hours, and this i
 
 if you have not voted or traded it, now is the moment. two of three signals takes the track.
 
-[CLOSING SPACE LINK]
+https://x.com/i/spaces/1MJgNblgDzYGL?s=20
 https://zabalgamez.com/live
 
 ## Telegram / Discord
@@ -200,7 +200,7 @@ ZM
 
 closing space is up - jdwalka and ghostmintops showing what they built in the 24. last hour of the last battle of the season.
 
-[CLOSING SPACE LINK]
+https://x.com/i/spaces/1MJgNblgDzYGL?s=20
 https://zabalgamez.com/live
 
 ---
