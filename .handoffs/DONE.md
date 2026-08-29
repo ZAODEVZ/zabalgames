@@ -582,13 +582,18 @@ ZABAL-BUILDER closing-space-and-x-handles 5353eb3
 - Poll: Zaal's call is an X poll on the WaveWarZ account, posted at 11:00, URL
   relayed then -> `poll` on the builder row (Vote button renders on /august and
   /live). No new vote backend. The build-vote reuse idea is dropped.
-- /live battle page: NOT committed yet. A working-tree edit to `live.html` exists
-  (battle card with both Space slots, judges line, Battle-on state with countdown
-  to the end, battle outranks a workshop next card). It compiles (validate green)
-  but is unverified and uncommitted; it will be re-cut without the on-site poll
-  block, with the X poll embed slot instead, as its own commit. Trade data for
-  it: `GET https://wavewarz.info/api/public/stats` (volume, liveBattle,
-  artistPayouts, traderClaims, battles).
+- ZABAL-BUILDER live-battle-page `59bf0d7` (relay 10:06, board 4523). /live shows
+  the battle card while a battle is alive: both builders, window sentence, both
+  Space slots with Set a reminder links, judges TBA x3, Trade the battle, the
+  six finalists. "Next up" + countdown to noon before the clock; "Battle on" +
+  countdown to Sunday noon during it, in its own schedule state so the Twitch
+  reconcile leaves it alone. Poll slot = link card with a Vote button, rendered
+  only when `poll` carries the X poll URL; null renders nothing (verified). No
+  widgets.js embed: the report-only CSP flags platform.twitter.com and a
+  third-party script on battle day was not worth it. Checker now covers
+  live.html's battleHtml too (9 cases). Validate green, check green.
+  The wavewarz.info stats read was left out (optional per relay; no server
+  waits on battle day).
 - The push / PR-by-REST line in the 08:35 wrapper: UNKNOWN-RELAY, not acted on;
   the orchestrator's 08:3x correction confirms commit-only.
 
