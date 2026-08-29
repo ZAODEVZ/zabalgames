@@ -69,5 +69,39 @@ const withJudges = JSON.parse(JSON.stringify(base)); withJudges.judges = ['A Jud
 out = render([withJudges]);
 expect('judges [name, null, null] -> "Judges: A Judge, TBA, TBA"', out.includes('Judges: A Judge, <span class="tba">TBA</span>, <span class="tba">TBA</span>'));
 
+// 3. /live - the battle card. Same extraction trick on live.html: its battleHtml,
+//    with the page's own helpers, under a stub location.
+const live = readFileSync(join(root, 'live.html'), 'utf8');
+const lstart = live.indexOf('  var NEXT_BATTLE = null;');
+const lend = live.indexOf('  function renderEmpty() {');
+// live.html's esc is multi-line, so a byte-identical copy is used rather than a sliced one.
+const lesc = "function esc(s) { return String(s == null ? '' : s).replace(/[&<>\"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[c]; }); }\n";
+if (lstart < 0 || lend < 0) { console.error('check-finals-render: could not locate the battle card span in live.html'); process.exit(2); }
+const lsrc = lesc + live.slice(lstart, lend);
+const liveEnv = new Function('document', 'location', 'setPill', 'bindShare', 'startCountdown', 'fetch', 'window',
+  'var scheduleState = "empty", NEXT_LEAD_TS = null;\n' + lsrc + '\nreturn { battleHtml: battleHtml, battleRunning: battleRunning };')(
+  { getElementById: () => null, querySelector: () => null }, { href: 'https://zabalgamez.com/live', pathname: '/live' },
+  () => {}, () => {}, () => {}, () => Promise.reject(new Error('no network in the checker')), {});
+const HOUR = 3600000;
+function row(overrides) {
+  const r = JSON.parse(JSON.stringify(builder));
+  r._ts = Date.now() + 2 * HOUR; r._endTs = r._ts + 24 * HOUR;
+  return Object.assign(r, overrides || {});
+}
+console.log('/live battle card:');
+let l = liveEnv.battleHtml(row());
+expect('before the clock: "Next up", countdown to the start', l.includes('>Next up<') && l.includes('Clock starts in'));
+expect(`both Space slots on the card, ${burls} linked`, count(l, 'class="slot') === bslots && count(l, 'Set a reminder -&gt;') === burls);
+expect('judges line with TBA seats', count(l, '>TBA<') === (builder.judges || []).filter(j => j === null).length);
+expect('poll null -> no poll card, no Vote button', !l.includes('battle-poll') && !l.includes('Vote in the poll'));
+expect('watch points off-page (this IS /live) -> Twitch button', l.includes('Watch on Twitch') && !l.includes('>Watch here<'));
+expect('Trade the battle link', l.includes('Trade the battle'));
+l = liveEnv.battleHtml(row({ _ts: Date.now() - HOUR, _endTs: Date.now() + 23 * HOUR }));
+expect('during the clock: "Battle on", countdown to the end', l.includes('>Battle on<') && l.includes('Clock runs out in') && l.includes('stage-card battle'));
+l = liveEnv.battleHtml(row({ poll: 'https://x.com/wavewarz/status/123' }));
+expect('poll URL -> poll card with the X link and a Vote button', count(l, 'href="https://x.com/wavewarz/status/123"') === 1 && l.includes('href="#battle-poll"'));
+l = liveEnv.battleHtml(row({ poll: 'https://x.com/wavewarz/status/1" onmouseover="alert(1)' }));
+expect('quote in the poll URL comes back escaped', !l.includes('" onmouseover="'));
+
 console.log(failed ? `\ncheck-finals-render: ${failed} FAILED` : '\ncheck-finals-render: all checks passed.');
 process.exit(failed ? 1 : 0);
