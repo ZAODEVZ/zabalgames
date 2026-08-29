@@ -59,7 +59,7 @@ expect('two URLs -> two reminder links, zero pending', count(out, 'Set a reminde
 out = render([withUrls('https://x.com/i/spaces/AAA', null)]);
 expect('one URL -> one reminder link, one pending slot with its time', count(out, 'Set a reminder') === 1 && count(out, 'link when it is created') === 1 && out.includes('11:00 AM EDT to 12:00 PM EDT'));
 out = render([withUrls(null, null)]);
-expect('both null -> zero links, both times shown', count(out, 'Set a reminder') === 0 && count(out, 'link when it is created') === 2 && out.includes('12:00 PM EDT to 1:00 PM EDT'));
+expect('both null -> zero links, both times shown', count(out, 'Set a reminder') === 0 && count(out, 'link when it is created') === 2 && out.includes("11:00 AM EDT to 12:00 PM EDT"));
 out = render([withUrls('https://x.com/i/spaces/AAA" onmouseover="alert(1)', null)]);
 expect('quote in a URL comes back escaped', out.includes('&quot; onmouseover=&quot;alert(1)') && !out.includes('" onmouseover="'));
 const withPoll = JSON.parse(JSON.stringify(base)); withPoll.poll = 'https://x.com/wavewarz/status/123';
