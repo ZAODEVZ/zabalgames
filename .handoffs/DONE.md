@@ -575,7 +575,7 @@ ZABAL-BUILDER closing-space-and-x-handles 5353eb3
   pending slots, no Vote button (poll null), builder judges TBA x3. Validate green.
 - `x_url` set in `data/people.json`: ghostmintops -> `https://x.com/GhostmintO71217`,
   jdwalka -> `https://x.com/MauroMarkNaz` (Zaal confirmed 08:5x).
-- ZABAL-BUILDER drafts-both-links-x-tags ``. Both Space URLs in every
+- ZABAL-BUILDER drafts-both-links-x-tags `c826b5b`. Both Space URLs in every
   post that carries one; Firefly + X GC posts tag @MauroMarkNaz (jdwalka) and
   @GhostmintO71217 (ghostmintops); Farcaster posts keep the Farcaster tags. Only
   `[WINNER]` / `[RUNNER-UP]` placeholders remain. No emojis, no em dashes.
