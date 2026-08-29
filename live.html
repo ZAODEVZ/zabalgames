@@ -206,6 +206,7 @@
     .stage-card.now::before { background: linear-gradient(90deg, var(--pink), var(--orange)); }
     .stage-card.next::before { background: linear-gradient(90deg, var(--gold), var(--cyan)); }
     .stage-card.empty::before { background: linear-gradient(90deg, var(--zabal), var(--cyan)); }
+    .stage-card.battle::before { background: linear-gradient(90deg, var(--pink), var(--cyan)); }
 
     /* Shared season standings. Scores come from /api/points - everyone who entered,
        the same contract used by /leaderboard. */
@@ -252,9 +253,11 @@
     .stage-card.now .stage-eyebrow { color: var(--pink); }
     .stage-card.next .stage-eyebrow { color: var(--gold); }
     .stage-card.empty .stage-eyebrow { color: var(--zabal); }
+    .stage-card.battle .stage-eyebrow { color: var(--pink); }
     .stage-eyebrow .dot { position: relative; display: inline-flex; height: 9px; width: 9px; }
     .stage-eyebrow .dot::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: currentColor; }
-    .stage-card.now .stage-eyebrow .dot::after {
+    .stage-card.now .stage-eyebrow .dot::after,
+    .stage-card.battle .stage-eyebrow .dot::after {
       content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--pink);
       animation: livePing 1.4s cubic-bezier(0,0,0.2,1) infinite;
     }
@@ -270,6 +273,19 @@
       font-family: var(--font-pixel); font-size: 0.56rem; letter-spacing: 0.04em;
       color: var(--cyan); line-height: 1.6; margin: 0.4rem 0 0;
     }
+    /* Battle card: each Space slot on its own line (time shows before the link exists),
+       the judges line with unfilled seats as TBA, and the on-site poll when one is set. */
+    .stage-slots { margin: 0.8rem 0 0; font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; }
+    .stage-slots .slot { display: block; }
+    .stage-slots .slot a { color: var(--cyan); text-decoration: none; }
+    .stage-slots .slot a:hover { text-decoration: underline; }
+    .stage-slots .pending { color: var(--text-dim); }
+    .stage-judges { margin: 0.35rem 0 0; font-size: 0.8rem; color: var(--text-muted); }
+    .stage-judges .tba { color: var(--text-dim); font-style: italic; }
+    .cd-caption { margin: 1rem 0 -0.5rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
+    .stage-poll { margin-top: 1.2rem; border: 1px solid var(--border-hover); border-radius: var(--r-md); background: var(--bg); padding: 0.85rem 0.95rem; }
+    .stage-poll h3 { margin: 0 0 0.55rem; font: 700 0.95rem 'Syne', sans-serif; color: var(--text); }
+    .poll-note { margin: 0.5rem 0 0; font-size: 0.7rem; color: var(--text-dim); line-height: 1.4; }
     .stage-track {
       display: inline-block; margin: 0.7rem 0 0; padding: 0.15rem 0.6rem;
       border-radius: var(--r-pill); font-size: 0.68rem; letter-spacing: 0.06em;
@@ -815,6 +831,9 @@
     if (state === 'next') {
       return "Next up at ZABAL Gamez: " + name + ". The ZAO's 3-month Build-A-Thon - June workshops, July open build, August Finals. See what's on now:";
     }
+    if (state === 'battle') {
+      return "ZABAL Gamez finals, battle on right now: " + name + ". Building in the open, decided by the poll, the charts and the judges. Watch, vote, trade:";
+    }
     return "ZABAL Gamez is The ZAO's 3-month Build-A-Thon - June workshops, July open build, August Finals. Free, open to anyone. See what's on now:";
   }
 
@@ -851,8 +870,8 @@
   function setPill(state) {
     var pill = document.getElementById('live-pill');
     var txt = document.getElementById('live-pill-text');
-    pill.className = 'live-pill' + (state === 'now' ? ' is-live' : state === 'next' ? ' is-next' : '');
-    txt.textContent = state === 'now' ? 'Live now' : state === 'next' ? 'Next up' : 'Standby';
+    pill.className = 'live-pill' + ((state === 'now' || state === 'battle') ? ' is-live' : state === 'next' ? ' is-next' : '');
+    txt.textContent = state === 'now' ? 'Live now' : state === 'battle' ? 'Battle on' : state === 'next' ? 'Next up' : 'Standby';
   }
 
   function bindShare(state, name) {
@@ -985,31 +1004,47 @@
           // three hours, which covers a one-hour Space and its overrun.
           var endTs = b.endDate ? battleStartTs(b.endDate, b.endTime || b.time) : null;
           if ((endTs || (ts + 3 * 3600000)) < Date.now()) continue;
-          if (!soonest || ts < soonest._ts) { b._ts = ts; soonest = b; }
+          if (!soonest || ts < soonest._ts) { b._ts = ts; b._endTs = endTs || (ts + 3 * 3600000); soonest = b; }
         }
         NEXT_BATTLE = soonest;
-        if (NEXT_BATTLE && scheduleState === 'empty') renderEmpty();
+        if (NEXT_BATTLE && (scheduleState === 'empty' || (scheduleState === 'next' && battleBeatsLead()))) renderBattle();
       })
       .catch(function () { /* the generic standby card is a fine fallback */ });
+  }
+
+  // A battle is "running" from its clock start to its end. Before that the card
+  // is a countdown to the start; during it the countdown is the time left.
+  function battleRunning(b) {
+    var now = Date.now();
+    return !!b && b._ts != null && b._ts <= now && now < b._endTs;
+  }
+  function battleAlive(b) { return !!b && b._endTs != null && Date.now() < b._endTs; }
+  // Does the next battle outrank the next workshop lead? Yes when it is already
+  // running, or when it starts before that lead does.
+  function battleBeatsLead() {
+    if (!NEXT_BATTLE) return false;
+    if (battleRunning(NEXT_BATTLE)) return true;
+    return NEXT_LEAD_TS == null || NEXT_BATTLE._ts < NEXT_LEAD_TS;
   }
 
   function battleHtml(b) {
     var pair = (b.finalists || []).join(' vs ') || 'The finalists';
     var track = String(b.track || 'Track');
     track = track.charAt(0).toUpperCase() + track.slice(1);
+    var running = battleRunning(b);
     // The watch URL for every battle is /live, which is correct on /august but
     // circular here - this IS /live. Drop the button when it points at the page
     // the reader is already on, and send them to the stream instead.
+    function isHere(href) {
+      try { return !!href && new URL(href, location.href).pathname.replace(/\/$/, '') === location.pathname.replace(/\/$/, ''); }
+      catch (e) { return false; }
+    }
     var watchHref = b.watch || '';
-    var here = false;
-    try {
-      here = !!watchHref && new URL(watchHref, location.href).pathname.replace(/\/$/, '') === location.pathname.replace(/\/$/, '');
-    } catch (e) { here = false; }
+    var here = isHere(watchHref);
     // The poll is the only signal a viewer can act on without a wallet, so it
-    // gets its own button here the moment finals.json carries a URL.
-    var poll = b.poll
-      ? '<a class="stage-btn ghost" href="' + esc(b.poll) + '" target="_blank" rel="noopener">Vote in the poll</a>'
-      : '';
+    // gets its own button here the moment finals.json carries a URL - unless that
+    // URL is this page, where the poll block itself renders below.
+    var poll = b.poll ? '<a class="stage-btn ghost" href="#battle-poll">Vote in the poll</a>' : '';
     var trade = b.battleUrl
       ? '<a class="stage-btn ghost" href="' + esc(b.battleUrl) + '" target="_blank" rel="noopener">Trade the battle</a>'
       : '';
@@ -1019,11 +1054,32 @@
     var space = b.space
       ? '<a class="stage-btn ghost" href="' + esc(b.space) + '" target="_blank" rel="noopener">Set a reminder</a>'
       : '';
+    // A battle with more than one Space (the builder battle opens and closes with
+    // one) lists each slot. The time renders even while the url is null, because
+    // people need to know when to show up before the link exists.
+    var slots = '';
+    if (b.spaces && b.spaces.length) {
+      slots = '<div class="stage-slots">' + b.spaces.map(function (sp) {
+        var when = (sp.date ? fmtBattleDate(sp.date) : '') + (sp.time ? ' ' + sp.time : '') + (sp.ends ? ' to ' + sp.ends : '');
+        var label = esc(sp.label || 'Space') + ' - ' + esc(when.trim());
+        return sp.url
+          ? '<span class="slot"><a href="' + esc(sp.url) + '" target="_blank" rel="noopener">' + label + ' - Set a reminder -&gt;</a></span>'
+          : '<span class="slot pending">' + label + ' - link when it is created</span>';
+      }).join('') + '</div>';
+    }
+    // Judges are one of the three deciding signals, so an unfilled seat is shown
+    // as TBA rather than hidden.
+    var judges = '';
+    if (b.judges && b.judges.length) {
+      judges = '<div class="stage-judges">Judges: ' + b.judges.map(function (j) {
+        return j ? esc(j) : '<span class="tba">TBA</span>';
+      }).join(', ') + '</div>';
+    }
     var watch = (watchHref && !here)
       ? '<a class="stage-btn primary" href="' + esc(watchHref) + '">Watch here</a>'
       : (here ? '<a class="stage-btn primary" href="' + 'https://twitch.tv/bettercallzaal' + '" target="_blank" rel="noopener">Watch on Twitch</a>' : '');
-    return '<div class="stage-card next">' +
-      '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>Next up</div>' +
+    return '<div class="stage-card ' + (running ? 'battle' : 'next') + '">' +
+      '<div class="stage-eyebrow"><span class="dot" aria-hidden="true"></span>' + (running ? 'Battle on' : 'Next up') + '</div>' +
       '<h2>' + esc(track) + ' final</h2>' +
       '<p class="stage-by"><strong>' + esc(pair) + '</strong></p>' +
       // The timing sentence lives in the data, because it differs per battle: the
@@ -1033,6 +1089,8 @@
       '<p class="stage-meta">' + esc(b.window || ('Stream and Space open at ' + (b.time || 'the start time') + '.')) + ' Three signals decide it and two of three wins: the open poll, the charts, and the judges.</p>' +
       '<p class="stage-when">' + esc(fmtBattleDate(b.date)) + (b.time ? ' - ' + esc(b.time) : '') +
         (b.endDate ? esc(' to ' + fmtBattleDate(b.endDate) + (b.endTime ? ' - ' + b.endTime : '')) : '') + '</p>' +
+      slots + judges +
+      '<p class="cd-caption">' + (running ? 'Clock runs out in' : 'Clock starts in') + '</p>' +
       '<div class="stage-countdown" id="live-countdown">' +
         '<div class="cd-unit"><div class="cd-num" data-cd="d">--</div><div class="cd-lab">Days</div></div>' +
         '<div class="cd-unit"><div class="cd-num" data-cd="h">--</div><div class="cd-lab">Hrs</div></div>' +
@@ -1047,17 +1105,38 @@
         '<a class="stage-btn ghost" href="/august">The six finalists</a>' +
         '<button type="button" class="stage-btn ghost" id="live-share-btn">Tell Farcaster</button>' +
       '</div>' +
+      pollBlock(b) +
     '</div>';
   }
 
+  // The poll is an X poll on the WaveWarZ account (Zaal, 2026-08-29). This is a
+  // link card, not the widgets.js embed: the report-only CSP in vercel.json
+  // allows neither platform.twitter.com scripts nor frames (the enforced policy
+  // is only object-src / base-uri today), and a third-party script on battle day
+  // is a risk the link does not carry. Renders nothing while finals.json poll is
+  // null - no dead control, same guard as /august.
+  function pollBlock(b) {
+    if (!b || !b.poll) return '';
+    return '<div class="stage-poll" id="battle-poll">' +
+      '<h3>The poll is open</h3>' +
+      '<p class="poll-note">One of the three signals, and the only one that needs no wallet. It runs on X, on the WaveWarZ account.</p>' +
+      '<a class="stage-btn primary" href="' + esc(b.poll) + '" target="_blank" rel="noopener">Vote in the poll on X -&gt;</a>' +
+    '</div>';
+  }
+
+  function renderBattle() {
+    var b = NEXT_BATTLE;
+    var running = battleRunning(b);
+    setPill(running ? 'battle' : 'next');
+    document.getElementById('live-stage').innerHTML = battleHtml(b);
+    bindShare(running ? 'battle' : 'next', (b.finalists || []).join(' vs '));
+    scheduleState = running ? 'battle' : 'next';
+    startCountdown(running ? b._endTs : b._ts);
+  }
+
   function renderEmpty() {
-    if (NEXT_BATTLE) {
-      setPill('next');
-      document.getElementById('live-stage').innerHTML = battleHtml(NEXT_BATTLE);
-      bindShare('next', (NEXT_BATTLE.finalists || []).join(' vs '));
-      startCountdown(NEXT_BATTLE._ts);
-      return;
-    }
+    if (battleAlive(NEXT_BATTLE)) { renderBattle(); return; }
+    if (NEXT_BATTLE) { NEXT_BATTLE = null; loadNextBattle(); }
     setPill('empty');
     document.getElementById('live-stage').innerHTML = emptyHtml();
     bindShare('empty', '');
@@ -1078,6 +1157,7 @@
       if (diff <= 0) {
         clearInterval(cdTimer); cdTimer = null;
         load(); // a session just started - re-evaluate NOW/NEXT
+        loadNextBattle(); // a battle may have just started or ended
         return;
       }
       set('d', Math.floor(diff / 86400000));
@@ -1191,9 +1271,11 @@
           return L.date === today && L !== live && L !== next;
         }).sort(function (a, b) { return a._start - b._start; });
 
+        NEXT_LEAD_TS = next ? next._start : null;
         if (live) { renderNow(live); scheduleState = 'now'; }
-        else if (next) { renderNext(next); scheduleState = 'next'; }
-        else { renderEmpty(); scheduleState = 'empty'; }
+        else if (next && !(battleAlive(NEXT_BATTLE) && battleBeatsLead())) { renderNext(next); scheduleState = 'next'; }
+        else if (next) { renderBattle(); }
+        else { renderEmpty(); if (scheduleState !== 'battle') scheduleState = 'empty'; }
 
         recsVisible = !live; // show the recordings strip whenever nothing is live
         applyRecsVisibility();
@@ -1218,6 +1300,7 @@
   // schedule did not know about. Reconciles against what the schedule just rendered.
   // ------------------------------------------------------------------
   var scheduleState = 'empty';
+  var NEXT_LEAD_TS = null;
   var LIVE_TWITCH = 'bettercallzaal'; // channel for the "open on Twitch" link (this scope)
   function setLivePill(viewers) {
     var pill = document.getElementById('live-pill');
@@ -1284,7 +1367,7 @@
         if (s.live) {
           setLivePill(s.viewers);
           recsVisible = false; applyRecsVisibility(); // a stream is on - lead with the player
-          if (scheduleState !== 'now') renderLiveGeneric(s);
+          if (scheduleState !== 'now' && scheduleState !== 'battle') renderLiveGeneric(s);
           showActivity(true);
         } else {
           showActivity(false);

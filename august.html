@@ -58,6 +58,11 @@
     .aug-s2 { margin: 0.9rem 0 0; padding-left: 1.1rem; display: grid; gap: 0.45rem; color: var(--text-muted); }
     .aug-s2 strong { color: var(--text); }
     .bt-poll { color: var(--gold, #f5d76e); }
+    .bt-spaces { margin-top: 0.3rem; font-size: 0.78rem; color: var(--text-muted); }
+    .bt-spaces .slot { display: block; }
+    .bt-spaces .pending { color: var(--text-dim); }
+    .bt-judges { margin-top: 0.3rem; font-size: 0.78rem; color: var(--text-muted); }
+    .bt-judges .tba { color: var(--text-dim); font-style: italic; }
     .bt-window { margin-top: 0.35rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-dim); max-width: 46ch; }
     .aug-battle { border: 1px solid rgba(224,221,170,0.22); border-radius: 12px; background: var(--surface-2); padding: 0.9rem 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; justify-content: space-between; }
     .aug-battle .bt-track { color: var(--cyan); font: 0.55rem var(--font-pixel); letter-spacing: 0.06em; text-transform: uppercase; }
@@ -277,6 +282,30 @@
         ? '<span class="bt-when">' + esc(span) + '</span>'
         : '<span class="bt-when tbd">date being agreed</span>';
       var window = b.window ? '<div class="bt-window">' + esc(b.window) + '</div>' : '';
+      // A battle with more than one Space (the builder battle opens and closes
+      // with one) lists each slot. The TIME renders even while the url is null,
+      // because people need to know when to show up before the link exists -
+      // an empty slot that says nothing is worse than one that says when.
+      var spaces = '';
+      if (b.spaces && b.spaces.length) {
+        spaces = '<div class="bt-spaces">' + b.spaces.map(function (sp) {
+          var when = (sp.date ? fmtDate(sp.date) : '') + (sp.time ? ' ' + sp.time : '')
+            + (sp.ends ? ' to ' + sp.ends : '');
+          var label = esc(sp.label || 'Space') + ' - ' + esc(when.trim());
+          return sp.url
+            ? '<span class="slot"><a class="bt-watch" href="' + esc(sp.url) + '" target="_blank" rel="noopener">' + label + ' - Set a reminder -&gt;</a></span>'
+            : '<span class="slot pending">' + label + ' - link when it is created</span>';
+        }).join('') + '</div>';
+      }
+      // Judges are one of the three deciding signals, so an unfilled seat is
+      // shown as TBA rather than hidden - a panel of two reads as the plan,
+      // an unnamed third reads as the truth.
+      var judges = '';
+      if (b.judges && b.judges.length) {
+        judges = '<div class="bt-judges">Judges: ' + b.judges.map(function (j) {
+          return j ? esc(j) : '<span class="tba">TBA</span>';
+        }).join(', ') + '</div>';
+      }
       var watch = b.watch ? '<a class="bt-watch" href="' + esc(b.watch) + '" target="_blank" rel="noopener">Watch -&gt;</a>' : '';
       // The poll is one of the three signals and the only one anyone can act on
       // without a wallet, so it gets its own button the moment a URL exists.
@@ -288,7 +317,7 @@
       return '<div class="aug-battle">'
         + '<div><span class="bt-track">' + esc(b.track || '') + ' final</span>'
         + '<div class="bt-pair">' + esc(pair) + '</div>'
-        + window + '</div>'
+        + window + spaces + judges + '</div>'
         + '<div>' + when + ' ' + space + ' ' + watch + ' ' + poll + ' ' + trade + '</div>'
         + '</div>';
     }).join('');

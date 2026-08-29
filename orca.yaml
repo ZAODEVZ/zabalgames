@@ -1,0 +1,58 @@
+# Orca per-repo hooks. Schema is the five keys Orca actually recognizes
+# (scripts, issueCommand, defaultTabs, environmentRecipes, worktree); anything
+# else makes the app flag this file as carrying unrecognized keys.
+#
+# WHAT THIS FIXES: every fresh worktree started with no node_modules,
+# so each new pane began with an install (or a broken app) before any work.
+#
+# WHAT IT DOES NOT FIX: the Claude trust picker. That prompt is Claude Code's
+# own, keyed on the directory path, and a new worktree is always a new path.
+# Nothing in orca.yaml reaches it. See the DONE note for the two Orca settings
+# that are also NOT expressible here.
+
+scripts:
+  setup: |
+    set -euo pipefail
+    # No .env in this repo's root checkout today (only .env.example / .env.local,
+    # which are per-developer). The copy is kept anyway and is a no-op until a
+    # root .env exists - it is the same script in all four repos, and a hook
+    # that silently differs per repo is how one of them ends up wrong.
+    root="${ORCA_ROOT_PATH:-}"
+    if [ -n "$root" ] && [ -f "$root/.env" ] && [ ! -e .env ]; then
+      cp "$root/.env" .env
+      echo "[setup] copied .env from $root"
+    fi
+    # npm ci ONLY where a package.json really is. Listed, not globbed: .next
+    # and node_modules both contain package.json files that must never be
+    # installed.
+    for d in mcp; do
+      [ -f "$d/package.json" ] || continue
+
+      # node_modules below is SHARED - Orca symlinks it to the root checkout,
+      # so it is the same directory for every worktree at once. `npm ci` starts
+      # by deleting node_modules, which through that symlink would wipe the
+      # tree every other pane is using. So if deps are already there, leave
+      # them alone. This guard is load-bearing, not an optimization.
+      if [ -d "$d/node_modules" ] && [ -n "$(ls -A "$d/node_modules" 2>/dev/null)" ]; then
+        echo "[setup] $d/node_modules already present (shared) - not installing"
+        continue
+      fi
+
+      if [ -f "$d/package-lock.json" ]; then
+        echo "[setup] npm ci in $d"
+        ( cd "$d" && npm ci )
+      else
+        # `npm ci` exits non-zero without a lockfile, and set -e would fail the
+        # whole setup over it. Install instead and say which one ran.
+        echo "[setup] $d has no package-lock.json - npm install instead of npm ci"
+        ( cd "$d" && npm install )
+      fi
+    done
+
+worktree:
+  # Orca shares a path only if it is a DIRECTORY that exists in the root
+  # checkout AND is gitignored - it skips anything else with a warning. That
+  # is why .env is not listed here: it is a file, so it is copied by the setup
+  # script above instead.
+  sharedDirectories:
+    - mcp/node_modules
