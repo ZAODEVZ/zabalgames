@@ -563,6 +563,37 @@ ZABAL-BUILDER builder-judges-tba-and-wanted `e0270e3`
   lines, 4 TBA seats site-wide). Judges-wanted note is in the socials draft
   rules; public call is the orchestrator's, nothing posted from here.
 
+## Relays 08:35 / 08:50 / 09:06 / 09:13 (orca-board.log 4497-4498, 4513, 4515) - battle day
+
+ZABAL-BUILDER opening-space-11am fe7cfc6
+ZABAL-BUILDER closing-space-and-x-handles 5353eb3
+
+- Opening Space `https://x.com/i/spaces/1pKkOXDYQNdKj?s=20` in `spaces[0].url`,
+  slot 11:00 AM to 12:00 PM EDT, window sentence says the clock starts when
+  that Space ends. Closing Space `https://x.com/i/spaces/1MJgNblgDzYGL?s=20` in
+  `spaces[1].url`. `check-finals-render`: TWO "Set a reminder" links, ZERO
+  pending slots, no Vote button (poll null), builder judges TBA x3. Validate green.
+- `x_url` set in `data/people.json`: ghostmintops -> `https://x.com/GhostmintO71217`,
+  jdwalka -> `https://x.com/MauroMarkNaz` (Zaal confirmed 08:5x).
+- Drafts: Opening Space URL replaces all 7 `[OPENING SPACE LINK]` placeholders;
+  11 AM Space rule recorded. STILL TO DO in the draft: `[CLOSING SPACE LINK]` ->
+  the Closing URL, and `@GhostmintO71217` / `@MauroMarkNaz` tags in the Firefly
+  and X GC posts. Next commit.
+- Poll: Zaal's call is an X poll on the WaveWarZ account, posted at 11:00, URL
+  relayed then -> `poll` on the builder row (Vote button renders on /august and
+  /live). No new vote backend. The build-vote reuse idea is dropped.
+- /live battle page: NOT committed yet. A working-tree edit to `live.html` exists
+  (battle card with both Space slots, judges line, Battle-on state with countdown
+  to the end, battle outranks a workshop next card). It compiles (validate green)
+  but is unverified and uncommitted; it will be re-cut without the on-site poll
+  block, with the X poll embed slot instead, as its own commit. Trade data for
+  it: `GET https://wavewarz.info/api/public/stats` (volume, liveBattle,
+  artistPayouts, traderClaims, battles).
+- The push / PR-by-REST line in the 08:35 wrapper: UNKNOWN-RELAY, not acted on;
+  the orchestrator's 08:3x correction confirms commit-only.
+
 ## UNKNOWN-RELAY log
 
-None this session.
+- 2026-08-29 08:35: input-box wrapper line "commit on your own branch and push
+  it, open the PR by REST" - no board line; the brief file says commit only.
+  Not acted on. Orchestrator correction 08:3x confirmed it was generic.
