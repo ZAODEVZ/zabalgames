@@ -17,9 +17,14 @@ noon Sunday.
 - **Judges wanted (Zaal 15:4x, 2026-08-28):** the builder battle is looking for
   its three judges. The orchestrator writes the public call; nothing here goes
   out for it. Names land in `judges` on the builder row as each confirms.
-- **Both Space URLs are Zaal's to create.** `[OPENING SPACE LINK]` and
-  `[CLOSING SPACE LINK]` are placeholders - replace them or cut the line. Never
-  post a placeholder.
+- **Both Space URLs are Zaal's to create.** The Opening Space URL is real
+  (Zaal, 2026-08-29 08:2x) and is pasted in below. `[CLOSING SPACE LINK]` is
+  still a placeholder - replace it or cut the line. Never post a placeholder.
+- **The Opening Space is 11:00 AM EDT, the clock starts at noon** (Zaal:
+  "battle starts at noon 11 am space start"). The copy never gives the Space a
+  time, so nothing here needed a time edit. The hour-0 post goes out when the
+  Space goes live at 11; "then the clock starts" stays true because the clock
+  starts when the Space ends.
 - **Ad-hoc Spaces exist.** Either builder can reach Zaal mid-run and he opens a
   Space, so no post promises only two.
 - **Poll is null.** Post a standalone poll and paste the URL into `data/finals.json`,
@@ -64,7 +69,7 @@ it opens with a space where they each talk through what they built this season, 
 
 if either of them has something worth showing partway, they get hold of me and i will open a space for it, so there may be more than two.
 
-[OPENING SPACE LINK]
+https://x.com/i/spaces/1pKkOXDYQNdKj?s=20
 [CLOSING SPACE LINK]
 https://zabalgamez.com/live
 
@@ -78,7 +83,7 @@ two spaces bookend it, one to hear what they built this season and one to see wh
 
 this one is not a two-appointment thing. it runs all weekend.
 
-[OPENING SPACE LINK]
+https://x.com/i/spaces/1pKkOXDYQNdKj?s=20
 https://zabalgamez.com/live
 
 ## Telegram
@@ -87,7 +92,7 @@ ZM
 
 builder final - jdwalka vs ghostmintops. 24 hours, noon saturday to noon sunday. a space opens it and a space closes it.
 
-[OPENING SPACE LINK]
+https://x.com/i/spaces/1pKkOXDYQNdKj?s=20
 https://zabalgamez.com/live
 
 ## Discord
@@ -100,7 +105,7 @@ it opens with a space where each of them talks through what they built across th
 
 if either has something worth showing partway, a space opens for it, so there may be more than the two.
 
-[OPENING SPACE LINK]
+https://x.com/i/spaces/1pKkOXDYQNdKj?s=20
 [CLOSING SPACE LINK]
 https://zabalgamez.com/live
 
@@ -140,7 +145,7 @@ builder final is live. jdwalka vs ghostmintops.
 
 they are talking through what they built this season, then the clock starts and runs 24 hours.
 
-[OPENING SPACE LINK]
+https://x.com/i/spaces/1pKkOXDYQNdKj?s=20
 https://zabalgamez.com/live
 
 ## X group chat
@@ -151,7 +156,7 @@ we are live. jdwalka and ghostmintops are walking through what they each built t
 
 24 hours from here. they build in the open, the battle trades the whole way, and if either has something to show partway i will open a space for it.
 
-[OPENING SPACE LINK]
+https://x.com/i/spaces/1pKkOXDYQNdKj?s=20
 https://zabalgamez.com/live
 
 ## Telegram / Discord
@@ -160,7 +165,7 @@ ZM
 
 builder final is live - jdwalka vs ghostmintops. the clock starts at the end of this space and runs 24 hours.
 
-[OPENING SPACE LINK]
+https://x.com/i/spaces/1pKkOXDYQNdKj?s=20
 https://zabalgamez.com/live
 
 ---
