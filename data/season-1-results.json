@@ -3,11 +3,17 @@
   "status": "pending",
   "closes": "2026-08-31",
   "_schema": "Frozen Season 1 results, read by /results. status: 'pending' (empty state, winners TBD) | 'final' (populated after the WaveWarZ battles). Fill winners.<track> with {name, handle, url, project} and the recap numbers once the three battles settle (window closes 2026-08-30), then flip status to 'final'. This is a static record - no live widgets. 'voters' was dropped when the month-two quadratic vote was retired; 'entrants' replaces it.",
-  "_winners_note": "artist written 2026-08-28 on Zaal's word (meeting card 2026-08-25, 'Record n3m as artist champion'). charts is the charts-signal winner for that battle, a separate confirmation Zaal has not given yet, so it stays null and does not mean n3m lost the charts. results.html reads name, url, project only.",
+  "_winners_note": "Creator winner written 2026-08-29 from the Creator Battle FINALZ Space recording (x.com/i/spaces/1dKrPrQkgYVJX, 01:22:03): 'we have our Zabal Games Creator Battle Finals winner unique being 404 with the ZAO color paint'. All three judge votes in the run-up go to uniquebeing404; presdency is runner-up. Its charts field is null meaning not yet confirmed, not lost. artist written 2026-08-28 on Zaal's word (meeting card 2026-08-25, 'Record n3m as artist champion'). charts is the charts-signal winner for that battle, a separate confirmation Zaal has not given yet, so it stays null and does not mean n3m lost the charts. results.html reads name, url, project only.",
   "winners": {
     "artist": { "name": "n3m", "handle": "@n3m", "url": "https://www.songchainn.xyz/n3m3sis/the-call-out", "project": null, "charts": null },
     "builder": null,
-    "creator": null
+    "creator": {
+   "name": "uniquebeing404",
+   "handle": "@uniquebeing404",
+   "url": "https://colorzao.signalify.xyz",
+   "project": "ColorZAO, the ZAO colour paint tool, plus a video",
+   "charts": null
+  }
   },
   "recap": {
     "workshops": 31,
