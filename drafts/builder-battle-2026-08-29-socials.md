@@ -205,19 +205,39 @@ https://zabalgamez.com/live
 
 ---
 
-# POST 4 - WINNER
+# POST 4 - WINNER (result is in - ready to send)
 
-`[WINNER]` and `[RUNNER-UP]` are placeholders. **Do not send until the result is
-called** - the artist result is still unconfirmed in `data/finals.json` days
-later, and a wrong winner post is not correctable.
+**ghostmintops takes the builder track. jdwalka is runner-up.** Called by Zaal on
+2026-08-30 after the closing Space, and live on `/results` since PR #659.
+
+Two corrections against the placeholder version that stood here:
+
+1. **The old copy said "decided on the poll, the charts and the judges." Do not
+   send that.** `data/season-1-results.json` records that the per-signal breakdown
+   was never captured for this battle: `poll` is null on all three battles and
+   `charts` is null on all three winners, and its own note says "no signal split
+   is claimed anywhere." Claiming a three-signal decision would be inventing a
+   result. The copy below says the judges and the closing Space, which is what
+   actually happened, and leaves the rest out.
+2. **The judges are named now** and were not when this file was written:
+   Thy Revolution, Iman Afrikah and paperhandpapi. They are in `data/finals.json`
+   on the builder row.
+
+Handles verified against `data/people.json`: ghostmintops is `@GhostmintO71217`
+on X and `@ghostmintops` on Farcaster; jdwalka is `@MauroMarkNaz` on X and
+`@jdwalka` on Farcaster.
 
 ## Farcaster + X combined (Firefly)
 
 ZM
 
-[WINNER] takes the builder track.
+@GhostmintO71217 (ghostmintops) takes the builder track.
 
-24 hours, built in the open, decided on the poll, the charts and the judges. that closes season 1.
+24 hours, noon saturday to noon sunday, built in the open the whole way. he shipped Proof Drop, a build receipt generator, plus the ZABAL Recording Scout.
+
+@MauroMarkNaz (jdwalka) is runner-up and gave up the same weekend to it.
+
+that closes season 1. three tracks, three battles, six finalists, every one of them paid.
 
 https://zabalgamez.com/results
 
@@ -225,11 +245,51 @@ https://zabalgamez.com/results
 
 ZM
 
-[WINNER] takes builder. [RUNNER-UP] ran it close and built in the open the whole way, same as everyone who got here.
+@GhostmintO71217 (ghostmintops) takes builder. @MauroMarkNaz (jdwalka) runner-up.
 
-that is season 1 done - three tracks, three battles, six finalists, everyone paid.
+24 hours from noon saturday to noon sunday, building in the open the whole way, and it closed the way it opened - in a space, with both of them showing what they made. ghostmintops shipped Proof Drop, a build receipt generator, and the ZABAL Recording Scout.
+
+judges on this one were Thy Revolution, Iman Afrikah and paperhandpapi.
+
+that is season 1 done. 31 recorded workshops, 31 projects from 15 people, three tracks, six finalists, everyone paid. season 2 comes next.
 
 thanks to both of them for giving up a weekend to it.
+
+https://zabalgamez.com/results
+
+## Farcaster /zao group chat
+
+ZM
+
+@ghostmintops takes the builder track, @jdwalka runner-up.
+
+24 hours, noon to noon, built in the open. Proof Drop and the ZABAL Recording Scout came out of it.
+
+that is the last of the three. season 1 is done and everyone who reached a final got paid.
+
+https://zabalgamez.com/results
+
+## Telegram
+
+ZM
+
+ghostmintops takes the builder track. jdwalka runner-up.
+
+24 hours, noon saturday to noon sunday. that closes season 1 - three tracks, six finalists, everyone paid.
+
+https://zabalgamez.com/results
+
+## Discord
+
+ZM
+
+ghostmintops takes the builder track and jdwalka is runner-up, and that closes season 1.
+
+24 hours from noon saturday to noon sunday, both of them building in the open, and it ended in a space with each showing what they made in the day. ghostmintops shipped Proof Drop, a build receipt generator, plus the ZABAL Recording Scout. judges were Thy Revolution, Iman Afrikah and paperhandpapi.
+
+across the whole season: 31 recorded workshops, 31 projects from 15 people, three tracks, six finalists, and every finalist paid.
+
+season 2 comes next. no dates yet.
 
 https://zabalgamez.com/results
 
@@ -237,11 +297,25 @@ https://zabalgamez.com/results
 
 ZM
 
-[WINNER] wins the builder track of ZABAL Gamez, closing out the ZAO's first season.
+ghostmintops wins the builder track of ZABAL Gamez, closing out the ZAO's first season.
 
-24 hours of building in the open, decided on three signals: an open poll, live trading on the battle, and a judges panel.
+The format was 24 hours, noon Saturday to noon Sunday, building in the open. It opened with a Space where both builders talked through their season and closed with one where they showed what they had made in the day itself. He shipped Proof Drop, a build receipt generator, along with the ZABAL Recording Scout. jdwalka is runner-up.
 
-Six finalists across three tracks finished the season, and every one of them was paid from the pool.
+Judges for this battle: Thy Revolution, Iman Afrikah, paperhandpapi.
+
+Season 1 ran June to August: 31 recorded workshop sessions, 31 projects from 15 people across three tracks, six finalists, and every finalist paid from the pool.
+
+https://zabalgamez.com/results
+
+## Facebook
+
+ZM
+
+The last of the three ZABAL Gamez finals is done, and it was the long one.
+
+ghostmintops and jdwalka each got 24 hours, noon Saturday to noon Sunday, building in the open. ghostmintops takes the track with Proof Drop, a tool that generates build receipts, plus the ZABAL Recording Scout. jdwalka is runner-up.
+
+That closes our first season: three months, 31 recorded sessions, 31 projects from 15 people, and every finalist paid.
 
 https://zabalgamez.com/results
 
@@ -249,12 +323,19 @@ https://zabalgamez.com/results
 
 ## Send order and checks
 
-1. **Announce** - only once BOTH Space URLs exist and are pasted into
-   `data/finals.json`. Check `/august` shows two "Set a reminder" links first.
-2. **Hour 0** - when the opening Space goes live.
-3. **Hour 23** - when the closing Space goes live.
-4. **Winner** - only after the result is called, never before.
+Posts 1, 2 and 3 are **spent** - the battle ran 2026-08-29 to 08-30 and they
+were time-bound to it. They stay here as the record of what was written, not as
+anything left to send.
 
-Before any of them: confirm the poll URL question. If a standalone poll exists,
-its link belongs in the announce and hour-0 posts. If it does not, cut every
-reference to voting rather than pointing people at a poll that is not there.
+**Post 4 is the only live one.** The result is settled on `/results`, so it can
+go out whenever Zaal chooses.
+
+Before sending it:
+
+1. Nothing in it claims a poll result or a charts result, because neither was
+   recorded. Keep it that way if you edit it.
+2. The three judge names are real and public in `data/finals.json`. The creator
+   battle's third judge is still a literal `null` there - that is a separate open
+   item and no post should imply otherwise.
+3. Send from the ZAO account as with the artist and creator announcements.
+   Nothing here posts itself, and nothing here has been sent.
