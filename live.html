@@ -698,7 +698,13 @@
   // June (workshops) -> July (open build) -> August (Finals), so the page is
   // not hard-coded to the June run. Evaluated in US Eastern.
   // ------------------------------------------------------------------
+  // Season 1 ran Jun-Aug 2026 and settled on 2026-08-30. The month-only test used
+  // here before had no year in it, so every September onward still resolved to
+  // 'august' and the page kept announcing Finals that were already decided. Gate
+  // on the real date first, then fall back to the within-season month test.
+  var SEASON_END = new Date('2026-08-31T04:00:00Z').getTime(); // Aug 31 00:00 ET
   function seasonPhase() {
+    if (Date.now() >= SEASON_END) return 'closed';
     var mo = +new Intl.DateTimeFormat('en-US', { timeZone: TZ, month: 'numeric' }).format(new Date());
     if (mo <= 6) return 'june';
     if (mo === 7) return 'july';
@@ -722,6 +728,12 @@
       emptyHead: 'No stream live right now',
       emptyMeta: 'August is the Finals. Two finalists per track go head to head, and three signals decide each one: the open poll, the charts, and the judges. Two of three wins.',
       foot: 'August is the Finals. Two finalists per track, head to head, one winner per track.'
+    },
+    closed: {
+      sub: "Season 1 is complete. Nothing is scheduled right now - this page lights up when the next stream starts.",
+      emptyHead: 'Nothing live right now',
+      emptyMeta: 'Season 1 ran June to August 2026 and is settled: three battles, six finalists, three champions. Every workshop is recorded and free to watch. No season 2 dates are set yet.',
+      foot: 'Season 1 is complete. See the results, or watch any of the recorded sessions.'
     }
   };
   var PHASE = seasonPhase();
