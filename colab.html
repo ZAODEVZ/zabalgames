@@ -106,8 +106,7 @@
       <h2>How it works</h2>
       <p>Pick the prompts that fit and answer them - right here, or on the magnet. When your answer is <strong>approved</strong>, your collectible is airdropped to you (wallet or email). The wallet prompt is how your on-chain collectible reaches you.</p>
       <div class="sb-cta">
-        <a class="btn" id="sb-open" href="https://collect.zabalgamez.com" target="_blank" rel="noopener">Prefer the magnet? Open it</a>
-        <a class="btn" href="/recordings">Browse the sessions first</a>
+<a class="btn" href="/recordings">Browse the sessions first</a>
       </div>
     </div>
 
@@ -138,16 +137,12 @@
 (function () {
   'use strict';
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  var MAGNET = 'https://collect.zabalgamez.com';
   var signedIn = false; // Farcaster (Quick Auth binds the submission to a verified profile)
 
   function render(data) {
-    MAGNET = (data && data.magnet_url) || MAGNET;
-    document.getElementById('sb-open').href = MAGNET;
-
     var groups = (data && data.groups) || [];
     var host = document.getElementById('sb-groups');
-    if (!groups.length) { host.innerHTML = '<p class="empty">No prompts right now. <a href="' + esc(MAGNET) + '" target="_blank" rel="noopener" style="color:var(--cyan)">Open the magnet</a>.</p>'; return; }
+    if (!groups.length) { host.innerHTML = '<p class="empty">No prompts right now.</p>'; return; }
 
     host.innerHTML = groups.map(function (g) {
       var cards = (g.prompts || []).map(function (p) {
@@ -157,8 +152,7 @@
           (p.tag ? '<span class="sb-tag">' + esc(p.tag) + '</span>' : '') +
           '<div class="sb-q">' + esc(p.q) + '</div>' +
           (p.why ? '<div class="sb-why">' + esc(p.why) + '</div>' : '') +
-          '<div class="sb-actions2"><button class="sb-answer-btn" type="button" data-toggle>Answer here</button>' +
-          '<span class="sb-or">or <a href="' + esc(MAGNET) + '" target="_blank" rel="noopener">on the magnet</a></span></div>' +
+          '<div class="sb-actions2"><button class="sb-answer-btn" type="button" data-toggle>Answer here</button></div>' +
           '<div class="sb-form"><textarea class="sb-ta" placeholder="' + esc(ph) + '" maxlength="2000"></textarea>' +
           '<div class="sb-actions2"><button class="sb-go" type="button" data-submit>Submit</button>' +
           '<button class="sb-go" type="button" data-draft style="background:transparent;border:1px solid var(--gold);color:var(--gold);">Save as WIP draft</button></div>' +
@@ -253,7 +247,7 @@
     .then(function (r) { return r.json(); })
     .then(render)
     .catch(function () {
-      document.getElementById('sb-groups').innerHTML = '<p class="empty">Could not load the prompts. <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener" style="color:var(--cyan)">Open the magnet directly</a>.</p>';
+      document.getElementById('sb-groups').innerHTML = '<p class="empty">Could not load the prompts..</p>';
     });
   initIdentity();
 })();

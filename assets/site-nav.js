@@ -30,7 +30,7 @@
       + '<div class="arcade-foot-brand">'
       + '<span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>'
       + "<p class=\"arcade-foot-tag\">The ZAO's 3-month Build-A-Thon. Season 1 ran June to August 2026 and is complete. Free, open to anyone.</p>"
-      + '<a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>'
+      + ''
       + '</div>'
       + '<nav class="arcade-foot-col" aria-label="Play"><h4>Play</h4>'
       + '<a href="/">Home</a><a href="/info.html">All the Details</a><a href="/#schedule">Schedule</a><a href="/game">Arcade</a><a href="/quest">Season Run</a><a href="/live.html">Live - What\'s On Now</a></nav>'
@@ -62,8 +62,7 @@
       ['Home', '/'],
       ['/zabal channel', 'https://farcaster.xyz/~/channel/zabal'],
       ['Newsletter', 'https://paragraph.com/@thezao'],
-      ['All links (full index)', '/links.html'],
-      ['Insert Coin', 'https://collect.zabalgamez.com']
+      ['All links (full index)', '/links.html']
     ]]
   ];
 
