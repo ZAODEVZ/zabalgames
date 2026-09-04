@@ -241,7 +241,7 @@ not stop the rest. Does no judging/ranking - that stays in Bonfire's existing pi
 
 ### `GET/POST /api/submission-intake`
 The unified July season-submission store - the single place every submission lands,
-whatever surface it came from (POIDH claims, Magnetiq UGC, manual adds, tags). Any
+whatever surface it came from (POIDH claims, manual adds, tags). Any
 piece of IP counts: app, video, image, track, art, or repo.
 
 - `POST` (Bearer `ADMIN_KEY` or `INTAKE_KEY`) upserts a normalized record:
@@ -267,14 +267,6 @@ register; they just claim on POIDH and it appears on the site.
 - Dedup set `zabal:intake:poidh:seen` (cast hashes). Runs on a daily Vercel cron and can be
   triggered on-demand by hitting the URL. Auth: allowed unauthenticated when no `CRON_SECRET`/
   `INTAKE_KEY` is set. Returns `{ ok, configured, scanned, added }`.
-
-### `POST /api/magnetiq-ugc`
-Receiver for Magnetiq UGC submissions - wire Magnetiq (webhook / Zapier / forward) to POST
-here and the UGC lands in the same store (`source: 'magnetiq'`).
-
-- `POST` (Bearer `MAGNETIQ_SECRET` or `ADMIN_KEY`). Flexible field mapping onto the
-  submission-intake record; falls back to an email-derived builder key when no
-  handle/fid/wallet is present. Returns the stored record; no-op without KV.
 
 ### `POST /api/bonfire-ask`
 Backs the Bonfire read spot on `graph.html`. Two actions:
@@ -466,8 +458,7 @@ Tier-1 deterministic submission pre-screen (July playbook Move 4). Checks a buil
 | `NEYNAR_API_KEY` | Neynar key - publishes the cast in `POST /api/daily-cast`, reads recording reply threads in `GET /api/cast-comments`, and powers the POIDH claim search in `GET /api/poidh-watcher` (feed stays empty until this is set) | Neynar dev dashboard (free tier) |
 | `NEYNAR_SIGNER_UUID` | Approved Neynar signer that posts the daily cast | Neynar managed signer (approve once) |
 | `CRON_SECRET` | **Required** for the cron endpoints (`daily-cast`, `monthly-winner`, `commit-watcher`, `workshop-reminders`) - they fail closed (503) without it. Vercel injects the matching `Authorization: Bearer` header on scheduled runs | any long random string; set in Vercel and it auto-injects on cron calls |
-| `ADMIN_KEY` | Gates the `POST /api/raffle` draw and manual `POST /api/submission-intake` / `POST /api/magnetiq-ugc` writes via `Authorization: Bearer <key>` (constant-time, fail closed) | any long random string; send only from the host's calls |
-| `MAGNETIQ_SECRET` | Bearer secret for `POST /api/magnetiq-ugc` (accepts `ADMIN_KEY` too). Wire Magnetiq to send it so UGC lands in the submission store | any long random string; set in Vercel + in the Magnetiq webhook |
+| `ADMIN_KEY` | Gates the `POST /api/raffle` draw and manual `POST /api/submission-intake` writes via `Authorization: Bearer <key>` (constant-time, fail closed) | any long random string; send only from the host's calls |
 | `SUBMISSION_INGEST_SECRET` | Bearer secret used only by trusted submission adapters such as inbound email | independent long random string |
 | `RESEND_API_KEY` | Retrieves inbound email and sends project receipts or review notes | Resend API key |
 | `RESEND_WEBHOOK_SECRET` | Verifies `email.received` webhook signatures | Resend webhook settings (`whsec_...`) |

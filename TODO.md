@@ -22,7 +22,7 @@ Reprioritized from the 3-agent repo audit (surfaces + backend + roadmap), 2026-0
 
 ### P2 - rolling (owner)
 - YouTube links for recordings punch-list (#495) - /19, /15, /26, /fireside/1, AMA /20.
-- Magnetiq `MAGNETIQ_SECRET` (#497), GSC registration (#498), Unlock locks (#476).
+- GSC registration (#498), Unlock locks (#476).
 - Future: X longform articles (#501, drafts parked in clipboard + doc 958).
 
 ### Build lane (agent, as gaps surface)
@@ -45,7 +45,7 @@ Reprioritized from the 3-agent repo audit (surfaces + backend + roadmap), 2026-0
 - **Notion Command Center** - content fully drafted (all 9 sections: ZABAL Games, BCZ Drive assets, Sprint Dates, Existing Channels, KPI Tracker, Activation Menu, Onboarding/Activation Calendar, Magnet Grid, Owner Actions). Paste into the Notion page. Confirm 3 open cells: Magnet Grid video-recorded status, Activation Menu "register your build" URL, and renaming the "Untitled" block.
 
 ### Owner actions (not code-blocked)
-- **Magnetiq** - upload the 8 ZAO brand mementos + the collectible video (paste-ready copy in `docs/magnetiq-mementos-zao-brands-2026-05-28.md` + `docs/magnetiq-zabal-gamez-collectible-page.md`).
+- **Insert Coin button** - still forwards to the retired Magnetiq magnet. Needs a replacement destination (owner decision); see CLAUDE.md "What's left".
 - **Cal.com** - add booking questions (handle / topic / format / notes).
 - **Workshop roster** - lock ~4-5 more June sessions (target ~8); mirror confirmed leads into `data/workshop-leads.json`.
 - **Vercel Web Analytics** - enable in the dashboard (the tag is already on every page).

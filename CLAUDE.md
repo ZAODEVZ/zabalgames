@@ -142,10 +142,12 @@ later re-scheduling). Endpoints across:
 - **Signups:** Formspree team form `https://formspree.io/f/mlgvvoyd` (lead, mentor,
   snap), each tagged by `form_source`.
 - **Scheduling:** Cal.com `cal.com/zabal-gamez/workshop-session`, embedded on /lead + /info.
-- **Magnetiq:** the ZABAL Gamez collectible/magnet is the season registration +
-  brand-mementos + UGC-upload surface, at `app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez`.
-  The site-wide "Insert Coin" nav button points to `collect.zabalgamez.com` - a branded
-  shortlink (DNS-level, not in `vercel.json`) to that magnet. Keep the two in sync.
+- **Collectible (RETIRED as a partner, link still live):** the site-wide "Insert Coin"
+  nav button points to `collect.zabalgamez.com`, a DNS-level branded shortlink (not in
+  `vercel.json`) that forwards to the Magnetiq magnet. Magnetiq was retired as a partner
+  on 2026-07-31 - **do not write new references to it** - but the forward still returns
+  200, so the button is not broken. Retiring the button itself needs a replacement
+  destination and is an owner decision, tracked under "What's left".
 - **Press:** `press.html` (`/press`) is the media kit; linked from every page footer.
 
 ## Git / PR conventions
@@ -184,8 +186,11 @@ every phase task split into `[OWNER]` (DMs, dates, assets) vs `[BUILD]` (repo wo
 owner-action subset.
 
 ## What's left (not code-blocked - owner actions)
-1. Magnetiq magnet - upload the 8 ZAO brand mementos + the collectible video (paste-ready
-   copy in `docs/magnetiq-zabal-gamez-collectible-page.md` + `docs/magnetiq-mementos-zao-brands-2026-05-28.md`).
+1. "Insert Coin" nav button - it still forwards to the retired Magnetiq magnet (link is
+   live, partner is not). Decide whether the button goes away, points at `/results`, or
+   points at a replacement collectible surface. It is on roughly 150 pages via
+   `assets/site-nav.js` plus per-page copies, so the swap is mechanical once the
+   destination is chosen.
 2. Cal.com booking questions - add handle/topic/format/notes to the event so bookings
    arrive with context.
 3. Announcements (yerbearserker first-workshop post + Day 0) - ON HOLD per the owner.
@@ -203,7 +208,7 @@ owner-action subset.
 
 ## Live links (do not break)
 - Luma calendar: https://luma.com/zao | yerbearserker Jun 1 RSVP: https://luma.com/7nfside5
-- Magnetiq magnet (register + collectibles): https://app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez
+- Insert Coin shortlink (retired partner, forward still live): https://collect.zabalgamez.com
 - /zabal channel + group chat: farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ
 
 ## Decision history

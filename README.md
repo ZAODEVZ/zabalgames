@@ -29,11 +29,11 @@ A Farcaster-creator onboarding event for the ZAO ecosystem: bring Farcaster-acti
 
 **Three months:**
 
-- **June - workshops.** Builders across the ecosystem each record a ~30-minute session on the tools they have built. The library lands on the site (`/recordings`) and Magnetiq.
+- **June - workshops.** Builders across the ecosystem each record a ~30-minute session on the tools they have built. The library lands on the site (`/recordings`).
 - **July - open build month.** Anyone ships a build for ZABAL, ZAO, or WaveWarZ. The build IS the application.
 - **August - the Finals.** The strongest builds get a ZAO mentor embedded as a teammate for a build + promote window, governance vote, and a live reveal. Every finalist wins.
 
-**Registration** is the ZABAL Gamez collectible on Magnetiq (`app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez`): claim it to follow the season, unlock the ZAO brand mementos, and access the open UGC upload.
+**Registration** for Season 1 ran through the on-site flow (`/submit`, `/submissions`). Season 1 closed on 2026-08-31 and is settled; see `/results`.
 
 ---
 
@@ -139,7 +139,6 @@ Deploys on Vercel zero-config: push to `main`, Vercel builds and deploys to zaba
 
 - **/zabal** channel - https://farcaster.xyz/~/channel/zabal
 - **The ZAO** - the 100+ member Farcaster community ZABAL Gamez serves
-- **Magnetiq** - https://app.magnetiq.xyz/brand/zabal/magnet/zabal-gamez
 
 ## License
 
