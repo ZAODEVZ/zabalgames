@@ -45,7 +45,7 @@ Reprioritized from the 3-agent repo audit (surfaces + backend + roadmap), 2026-0
 - **Notion Command Center** - content fully drafted (all 9 sections: ZABAL Games, BCZ Drive assets, Sprint Dates, Existing Channels, KPI Tracker, Activation Menu, Onboarding/Activation Calendar, Magnet Grid, Owner Actions). Paste into the Notion page. Confirm 3 open cells: Magnet Grid video-recorded status, Activation Menu "register your build" URL, and renaming the "Untitled" block.
 
 ### Owner actions (not code-blocked)
-- **Insert Coin button** - still forwards to the retired Magnetiq magnet. Needs a replacement destination (owner decision); see CLAUDE.md "What's left".
+- ~~Insert Coin button~~ - DONE 2026-09-04: every collect.zabalgamez.com link removed sitewide.
 - **Cal.com** - add booking questions (handle / topic / format / notes).
 - **Workshop roster** - lock ~4-5 more June sessions (target ~8); mirror confirmed leads into `data/workshop-leads.json`.
 - **Vercel Web Analytics** - enable in the dashboard (the tag is already on every page).

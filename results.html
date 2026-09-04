@@ -29,6 +29,14 @@
     .rs-stat span { color: var(--text-muted); font-size: 0.82rem; }
     .rs-note { color: var(--text-dim); font-size: 0.88rem; }
     @media (max-width: 620px) { .rs-tracks { grid-template-columns: 1fr; } }
+      .rs-swept {
+      margin-top: 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.03em;
+      color: var(--gold);
+      border-top: 1px solid var(--border);
+      padding-top: 0.45rem;
+    }
   </style>
 </head>
 <body>
@@ -61,6 +69,7 @@
     <div class="rs-stats" id="rs-stats"></div>
     <p class="rs-note" id="rs-summary"></p>
   </section>
+  <p class="rs-note" style="margin-top:1rem;">Each battle was decided on three signals - an open poll run on X from the WaveWarZ account, the charts from live trading on WaveWarZ, and a judges panel. All three champions took all three. Trading volume was light and the per-signal numbers were never recorded, so no margins are published.</p>
   <p class="rs-note" style="margin-top:1rem;">Browse the full season: <a href="/submissions" style="color:var(--cyan);">projects</a>, <a href="/recordings" style="color:var(--cyan);">recordings</a>, <a href="/leaderboard" style="color:var(--cyan);">the season board</a>.</p>
 </div>
 </main>
@@ -72,7 +81,10 @@
     var inner = w
       ? '<div class="rs-winner">' + (w.url ? '<a href="' + esc(w.url) + '" target="_blank" rel="noopener">' + esc(w.name) + '</a>' : esc(w.name)) + '</div>' + (w.project ? '<div class="rs-note">' + esc(w.project) + '</div>' : '')
       : '<div class="rs-tbd">Announced after the battles settle</div>';
-    return '<div class="rs-track"><h3>' + esc(track) + '</h3>' + inner + '</div>';
+    var swept = (w && w.swept)
+      ? '<div class="rs-swept">Swept all three signals: poll, charts, judges</div>'
+      : '';
+    return '<div class="rs-track"><h3>' + esc(track) + '</h3>' + inner + swept + '</div>';
   }
   function stat(n, label) { return '<div class="rs-stat"><b>' + (n == null ? '-' : esc(n)) + '</b><span>' + esc(label) + '</span></div>'; }
   fetch('/data/season-1-results.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {

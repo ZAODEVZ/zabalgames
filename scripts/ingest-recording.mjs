@@ -428,8 +428,7 @@ ${styles}
       <a href="/speakers">Speakers</a>
       <a href="/#schedule">Schedule</a>
       <a href="/recordings">Recordings</a>
-      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
-    </div>
+</div>
   </div>
 </nav>
 
@@ -474,8 +473,7 @@ ${resourcesBlock}${relatedBlock}  <section id="zg-comments"></section>
     <div class="arcade-foot-brand">
       <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
       <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
-      <a href="https://collect.zabalgamez.com" class="arcade-coin" target="_blank" rel="noopener">Insert Coin</a>
-    </div>
+</div>
     <nav class="arcade-foot-col" aria-label="Data">
       <h4>Data</h4>
       <a href="/speakers.html">Speakers</a>
