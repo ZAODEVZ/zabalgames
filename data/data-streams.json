@@ -86,10 +86,10 @@
       "id": "zao-festivals-bounty",
       "name": "ZAO Festivals $500 Bounty",
       "kind": "bounty",
-      "status": "live",
+      "status": "archived",
       "color": "gold",
-      "summary": "The ZAO festivals team funds the ZABAL Gamez Season 1 prize pool - $500 USDC for v0, tiered across finalists, plus a commemorative collectible for every finisher.",
-      "ties_to_zabal": "This is the prize pool itself. Every finalist who ships gets paid from it. Sponsor inquiries to grow the v1 pool: info@thezao.com.",
+      "summary": "The ZAO festivals team funded the ZABAL Gamez Season 1 prize pool - 500 USDC, tiered across the six finalists. Paid out in full when the season settled on 2026-08-30.",
+      "ties_to_zabal": "This was the Season 1 prize pool. Every finalist was paid from it: 100 to each track champion, 50 to each runner-up, 50 for the highest trading volume. Sponsor inquiries for the next season: info@thezao.com.",
       "links": [
         {
           "label": "Finals settlement",
@@ -175,10 +175,10 @@
       "id": "zabal-games-workshops",
       "name": "ZABAL Gamez Workshops",
       "kind": "workshop",
-      "status": "live",
+      "status": "archived",
       "color": "pink",
-      "summary": "June workshop month - ZAO builders each record a ~30-min session on tools they have built. The whole library is recorded, watchable live or after.",
-      "ties_to_zabal": "The workshops are the deep-context onboarding for builders. Raw session recordings + transcripts + summaries are the richest ZABAL Gamez data stream - they directly seed what people build in July.",
+      "summary": "June workshop month - ZAO builders each recorded a ~30-min session on tools they had built. 31 sessions ran and the whole library is watchable at /recordings.",
+      "ties_to_zabal": "The workshops were the deep-context onboarding for builders. Raw session recordings, transcripts and summaries are the richest ZABAL Gamez data stream, and they seeded what people built in July.",
       "links": [
         {
           "label": "Workshop sign-up",
@@ -204,10 +204,10 @@
       "id": "zabal-games",
       "name": "ZABAL Gamez",
       "kind": "event",
-      "status": "live",
+      "status": "archived",
       "color": "orange",
-      "summary": "The facts about ZABAL Gamez itself - the positioning and proof points worth spreading. Each is one-tap shareable into /zabal.",
-      "ties_to_zabal": "This is ZABAL Gamez. The facts stream turns the strongest, verified points into shareable timeline entries so the brand spreads as facts, not hype.",
+      "summary": "The facts about ZABAL Gamez itself. Season 1 ran June to August 2026 and is complete: 31 recorded workshops, 31 projects from 15 people, six finalists, three champions.",
+      "ties_to_zabal": "This is ZABAL Gamez. The facts stream turns verified points into shareable timeline entries. Season 1 is settled; season 2 has no dates, format or theme yet.",
       "links": [
         {
           "label": "Sign up",
