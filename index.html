@@ -819,6 +819,59 @@
       font-weight: 400;
     }
 
+    /* Season 1 showcase - champions + numbers. Reuses .phase-grid/.phase-card for
+       the champion cards so the block matches the rest of the page rather than
+       introducing a second card style. */
+    .s1-champs { margin: 2.2rem 0 1.4rem; }
+    .s1-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.3rem, 3.4vw, 1.8rem);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .s1-champs .phase-card h3 { font-size: 1.15rem; margin: 0.25rem 0 0.35rem; }
+    .s1-champs .phase-card p { font-size: 0.88rem; line-height: 1.5; margin: 0; }
+    .s1-champs .phase-card a { color: var(--gold); }
+    .s1-champ-foot {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin: 1rem auto 0;
+      max-width: 46rem;
+      line-height: 1.55;
+    }
+    .s1-champ-foot a { color: var(--gold); }
+    .s1-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.7rem;
+      margin: 0 0 1.6rem;
+    }
+    .s1-stat {
+      text-align: center;
+      padding: 0.85rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+    .s1-stat b {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.3rem, 4vw, 1.9rem);
+      color: var(--gold);
+      line-height: 1.1;
+    }
+    .s1-stat span {
+      display: block;
+      font-size: 0.74rem;
+      color: var(--text-dim);
+      margin-top: 0.25rem;
+      letter-spacing: 0.02em;
+    }
+    @media (max-width: 620px) {
+      .s1-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
     /* How it works section - 3 simple steps */
     .how-it-works {
       background: var(--surface);
@@ -968,7 +1021,7 @@
 
     <!-- NEWCOMER CLARITY: Simple one-liner value prop -->
     <p class="hero-tagline">
-      Learn to build real projects with AI, ship one in 3 months, with The ZAO.
+Three months of building with The ZAO. Season 1 is complete.
     </p>
 
     <!-- PRIMARY CTA: season 1 settled on 2026-08-30, so the front door points at the
@@ -981,66 +1034,39 @@
 
     <div id="zg-profile"></div>
 
-    <!-- NEWCOMER CLARITY: Simple 3-step "How it works" -->
-    <div class="how-it-works">
-      <h2 class="how-title">How it works</h2>
-      <div class="how-steps">
-        <div class="how-step">
-          <div class="how-number">1</div>
-          <h3>Join</h3>
-          <p>Pick your lane - artist, builder, or creator. Free, no gatekeeping.</p>
+    <!-- SEASON 1 SHOWCASE. Replaced the recruitment funnel (how-it-works, why-join,
+         track picker, join buttons) on 2026-09-04: the season is settled, so the front
+         door shows the result rather than asking people to enter a closed build.
+         Static on purpose - a frozen season should not depend on a live API. -->
+    <div class="s1-champs">
+      <h2 class="s1-title">The Season 1 champions</h2>
+      <div class="phase-grid">
+        <div class="phase-card">
+          <div class="phase-month" style="color: var(--pink);">Artist</div>
+          <h3>n3m</h3>
+          <p><a href="https://www.songchainn.xyz/n3m3sis/the-call-out" target="_blank" rel="noopener">The Call Out</a></p>
         </div>
-        <div class="how-step">
-          <div class="how-number">2</div>
-          <h3>Learn and Build</h3>
-          <p>Learn from the recorded workshops, then ship something real. A ZAO mentor works alongside you.</p>
+        <div class="phase-card">
+          <div class="phase-month" style="color: var(--zabal);">Builder</div>
+          <h3>ghostmintops</h3>
+          <p><a href="/builds/proof-drop">Proof Drop</a>, a build receipt generator, plus the ZABAL Recording Scout</p>
         </div>
-        <div class="how-step">
-          <div class="how-number">3</div>
-          <h3>Ship and Earn</h3>
-          <p>Finishers keep their repo and ongoing earnings. Top builders get extra rewards.</p>
+        <div class="phase-card">
+          <div class="phase-month" style="color: var(--cyan);">Creator</div>
+          <h3>uniquebeing404</h3>
+          <p><a href="https://colorzao.signalify.xyz" target="_blank" rel="noopener">ColorZAO</a>, the ZAO colour paint tool</p>
         </div>
       </div>
+      <p class="s1-champ-foot">Six finalists went head to head across three battles in the last week of August. Every finalist was paid. <a href="/results">The full record</a>.</p>
     </div>
 
-    <!-- TRUST SIGNALS: Why The ZAO matters -->
-    <div class="trust-section">
-      <h2 class="trust-title">Why join</h2>
-      <ul class="trust-list">
-        <li>The ZAO has run for 100+ weeks straight. Real community, proven track record.</li>
-        <li>Your project gets used. Not a weekend demo - you build for people who need it.</li>
-        <li>Ongoing earnings. Keep the repo and a 1% trade cut that keeps paying.</li>
-        <li>Free mentorship. A ZAO expert as your teammate.</li>
-      </ul>
+    <div class="s1-stats" aria-label="Season 1 by the numbers">
+      <div class="s1-stat"><b>31</b><span>workshops recorded</span></div>
+      <div class="s1-stat"><b>31</b><span>projects shipped</span></div>
+      <div class="s1-stat"><b>15</b><span>people entered</span></div>
+      <div class="s1-stat"><b>500</b><span>USDC paid out</span></div>
     </div>
 
-    <!-- SECONDARY SECTION: Original content for context - "Learn more" section -->
-    <div class="hero-learn-more">
-      <p class="pitch">
-        <strong>Ship for a community that has been here 100+ weeks - and keep earning from what you build.</strong>
-      </p>
-      <p class="pitch-sub">
-        The ZAO has run weekly for 100+ weeks straight. Build something real for that community, keep an ongoing cut of what it earns, and work alongside a ZAO mentor. Season 1 ran June to August and is complete, and every workshop from it is recorded and free to watch.
-      </p>
-    </div>
-
-    <!-- ORIGINAL JOIN BLOCK: Keep for backward compatibility with JS -->
-    <div class="track-pick" role="group" aria-label="Pick your track (optional)">
-      <span class="track-pick-label">Your track</span>
-      <button type="button" class="track-chip" data-track="artist">Artist</button>
-      <button type="button" class="track-chip" data-track="builder">Builder</button>
-      <button type="button" class="track-chip" data-track="creator">Creator</button>
-    </div>
-    <div class="join-block">
-      <a href="/results" class="join-btn">See the Season 1 results</a>
-      <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener" class="join-btn">Claim the collectible</a>
-      <button type="button" id="zg-join" class="join-addapp">Join with Farcaster</button>
-      <button type="button" id="zg-addapp" class="join-addapp" style="display:none;">Add + get updates</button>
-      <a href="/lead" class="join-alt" id="zg-join-alt">or full sign-up</a>
-      <a href="/start" class="join-alt">New here? Start here</a>
-      <p id="join-count" class="join-count" aria-live="polite"></p>
-    </div>
-    <p class="join-help">New here or have questions? <a href="https://farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ" target="_blank" rel="noopener">Join the ZABAL group chat</a>.</p>
     <div class="proof-row">
       <span class="proof-badge">100+ weeks, never missed</span>
       <span class="proof-badge">FarHack Snap winner</span>
@@ -1313,12 +1339,12 @@
   </section>
 
   <section class="section" id="schedule">
-    <h2>June workshop schedule</h2>
-    <p>Free, livestreamed, and recorded. Leads lock exact dates through May - RSVP on Lu.ma to get notified.</p>
+    <h2>The Season 1 workshop library</h2>
+    <p>Every June session, free and recorded. 31 of them, each with a recap you can watch any time. <a href="/recordings">Browse all recordings</a>.</p>
 
     <div class="zg-share-row">
-      <button class="zg-share primary" type="button" data-platform="farcaster" data-text="The ZABAL Gamez June workshop schedule - free, livestreamed, recorded. The ZAO's build event. Come learn or lead a session." data-url="https://zabalgamez.com/#schedule">Share the schedule</button>
-      <button class="zg-share" type="button" data-platform="x" data-text="The ZABAL Gamez June workshop schedule - free, livestreamed, recorded. The ZAO's build event. Come learn or lead a session." data-url="https://zabalgamez.com/#schedule">Share on X</button>
+      <button class="zg-share primary" type="button" data-platform="farcaster" data-text="The ZABAL Gamez Season 1 workshop library - 31 sessions, free and recorded. The ZAO's build event. Watch any of them any time." data-url="https://zabalgamez.com/#schedule">Share the schedule</button>
+      <button class="zg-share" type="button" data-platform="x" data-text="The ZABAL Gamez Season 1 workshop library - 31 sessions, free and recorded. The ZAO's build event. Watch any of them any time." data-url="https://zabalgamez.com/#schedule">Share on X</button>
     </div>
 
     <div class="ws-filter" id="ws-filter" role="group" aria-label="Filter workshops by track">
@@ -1347,36 +1373,22 @@
 
 
   <section class="section">
-    <h2>Get the ZABAL Gamez collectible</h2>
-    <p>The collectible is how you follow along. Claim it and you are registered for ZABAL Gamez across all three months - every workshop, build, and Finals update reaches you as we go, you tell us where you want those updates, and you can suggest anything for the season.</p>
-
-    <div class="cta-band">
-      <h3>Get the collectible</h3>
-      <p>Claiming the collectible keeps you posted for the whole season, lets you pick where we reach you, and opens the form to suggest anything for ZABAL Gamez - build ideas, people to know, or feedback on the season.</p>
-      <div class="btn-row">
-        <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener" class="btn btn-primary">Get the collectible</a>
-        <a href="/lead.html" class="btn btn-ghost">Sign up for the season</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Ways to take part</h2>
-    <p>Free, open to anyone, and there's a door for every kind of person. Pick one - or as many as you want.</p>
+    <h2>Where to go from here</h2>
+    <p>Season 1 is settled. Everything it produced is free, open, and stays up.</p>
     <div class="ways-grid">
       <div class="way-card">
-        <h3>Register</h3>
-        <p>Claim the collectible and you're in for the whole season - updates reach you where you choose.</p>
-        <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener" class="way-link">Claim the collectible -&gt;</a>
+        <h3>The results</h3>
+        <p>Three champions, six finalists, and the numbers behind the season, in one page.</p>
+        <a href="/results" class="way-link">See Season 1 results -&gt;</a>
       </div>
       <div class="way-card">
-        <h3>Build</h3>
-        <p>Ship something in July with any harness. Sign up as a builder or pick a project to adopt.</p>
-        <a href="/lead?role=builder" class="way-link">Sign up to build -&gt;</a>
+        <h3>Submit a project</h3>
+        <p>The board stays open between seasons. A submission does not enter Season 1 - that is settled.</p>
+        <a href="/submit" class="way-link">Submit a project -&gt;</a>
       </div>
       <div class="way-card">
-        <h3>Host a workshop</h3>
-        <p>Teach one 30-minute June session on what you know. We stream it, clip it, and cross-promote.</p>
+        <h3>Teach a session</h3>
+        <p>Thirty minutes on what you know. We stream it, clip it, and cross-promote it.</p>
         <a href="/lead" class="way-link">Lead a session -&gt;</a>
       </div>
       <div class="way-card">
@@ -1385,14 +1397,14 @@
         <a href="/dream-leads" class="way-link">Open Dream Leads -&gt;</a>
       </div>
       <div class="way-card">
-        <h3>Catch up</h3>
-        <p>Missed a session? Every workshop and fireside is recorded, transcribed, and kept - watch any time.</p>
+        <h3>The workshop library</h3>
+        <p>All 31 sessions and every fireside: recorded, transcribed, and kept. Watch any time, free.</p>
         <a href="/recordings" class="way-link">Watch the recordings -&gt;</a>
       </div>
       <div class="way-card">
-        <h3>Claim a bounty</h3>
-        <p>There is a community prize pot for July builds. Ship something for ZABAL Gamez, then drop your proof on the ZABAL Gamez Open Pot on POIDH.</p>
-        <a href="https://poidh.xyz/base/bounty/1249" target="_blank" rel="noopener" class="way-link">See the open pot -&gt;</a>
+        <h3>The Finals</h3>
+        <p>Three battles, six finalists, how each one ran and who took each track.</p>
+        <a href="/august" class="way-link">Read the Finals record -&gt;</a>
       </div>
       <div class="way-card">
         <h3>Follow along</h3>
@@ -1401,7 +1413,7 @@
       </div>
       <div class="way-card">
         <h3>Mentor or sponsor</h3>
-        <p>Built before, or want to back the pool? Come in as a mentor or partner for Season 1.</p>
+        <p>Built before, or want to back the next pool? Come in as a mentor or partner.</p>
         <a href="/lead?role=mentor" class="way-link">Get involved -&gt;</a>
       </div>
     </div>
@@ -1467,7 +1479,7 @@
       <a href="/install.html">Install Context</a>
       <a href="/links.html">All Links</a>
       <a href="/share.html">Share</a>
-      <a href="https://collect.zabalgamez.com" target="_blank" rel="noopener">Claim Collectible</a>
+      <a href="/results">Season 1 Results</a>
     </nav>
   </div>
   <div class="arcade-foot-bottom">
