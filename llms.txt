@@ -1,6 +1,6 @@
 # ZABAL Gamez Season 1
 
-> A 3-month Build-A-Thon for the ZAO ecosystem - a build event for the ecosystem, not a video-game contest. June workshops, July open build-a-thon, August Finals. Use any AI coding tool to ship a build that helps the ZAO community.
+> A 3-month Build-A-Thon for the ZAO ecosystem - a build event for the ecosystem, not a video-game contest. **Season 1 ran June to August 2026 and is complete:** June workshops, a July open build, and three August Finals battles that produced three champions. Any AI coding tool, any harness. Season 2 is named but has no dates, format or theme yet - do not state any.
 
 This file is the machine-readable context for ZABAL Gamez builders. Point your AI harness at `https://zabalgamez.com/llms.txt` (Claude Code: save as `CLAUDE.md`; Cursor: `.cursorrules`; Windsurf: `.windsurfrules`; Aider: `CONVENTIONS.md`). Treat sections as menu items - if you are building Empire Builder tooling, focus on that section.
 
@@ -8,12 +8,20 @@ For the full long-form context bundle (every detail, every code path) see [docs/
 
 ---
 
-## How to participate now
+## Status - Season 1 is closed and settled (2026-08-30)
+
+Three champions, one per track: **n3m** (artist), **ghostmintops** (builder), **uniquebeing404** (creator). Six finalists, three battles, every finalist paid from the 500 USDC pool. Full record: `https://zabalgamez.com/results`.
+
+Do not tell anyone they can still enter Season 1 - it is settled. The submission board stays open, but a submission does not enter Season 1.
+
+## Surfaces that are still live
 
 - **Submit any project:** `https://zabalgamez.com/submit`
 - **Submit by email:** `info@thezao.com` with `ZABAL Gamez submission: [project name]` in the subject.
 - **Browse real projects:** `https://zabalgamez.com/submissions`
-- **Watch live and see standings:** `https://zabalgamez.com/live`
+- **Season 1 results:** `https://zabalgamez.com/results`
+- **The Finals record:** `https://zabalgamez.com/august`
+- **Live surface (idle between seasons):** `https://zabalgamez.com/live`
 - **Canonical season dates and tracks:** `https://zabalgamez.com/data/season.json`
 
 Anyone can submit an app, repository, song, visual, video, article, event, prototype, or work in progress. A wallet, Farcaster profile, GitHub account, and prior registration are optional. A project name plus a description, link, repository, or email attachment is enough to start. Web and email use one review queue. Contact details remain private; approved project details can appear in the gallery.
@@ -24,22 +32,22 @@ Anyone can submit an app, repository, song, visual, video, article, event, proto
 
 **Not a generic hackathon.** It is a Farcaster-creator onboarding event for the ZAO ecosystem. Bring talented Farcaster builders together, give them deep context on everything the ZAO is building, let them ship something with a ZAO mentor as embedded teammate, and have them earn governance during the event itself.
 
-**Three months.**
+**Three months, June to August 2026. All three are done.**
 
-- **June - workshop month.** Builders across the ecosystem record one ~30-min session each on tools they have built. Recordings are archived for replay. Watchable live or after.
-- **July - open build-a-thon.** Anyone can submit a project or work in progress for ZABAL, ZAO, or WaveWarZ. **The build IS the application.** Start with what exists; extra proof such as a live URL, repository, demo, or public build log can strengthen a project but is not required at intake.
-- **August - the Finals.** The strongest July builds get curated in. Each finalist pairs with a ZAO mentor as embedded teammate for a 24h build + 24h promote + 24h ZAO governance vote + live reveal stream. **Getting selected is the first win** - every finalist gets paid and keeps the ongoing economics - and the Finals are a real competition that crowns the season's best builder (ZAO vote + WaveWarZ-Base settlement).
+- **June - workshop month.** Builders across the ecosystem each recorded a ~30-min session on tools they had built. 31 sessions ran and are archived at `/recordings`.
+- **July - open build-a-thon.** Anyone could submit a project or work in progress for ZABAL, ZAO, or WaveWarZ. **The build WAS the application.** 31 projects came in from 15 people across the three tracks. The board closed 2026-08-16.
+- **August - the Finals.** Two finalists per track, six people, three head-to-head battles on WaveWarZ in the last week of August: artist on the 24th, creator on the 27th, builder over 24 hours from noon on the 29th. Finalists were people, not projects. Every finalist was paid. **This supersedes the older mentor-pairing / 24h-promote / WaveWarZ-Base-settlement design that earlier docs describe - that format never ran.**
 
 **Current surfaces:**
 - **zabalgamez.com** is the canonical project submission, review, gallery, live, and standings system.
 - **info@thezao.com** is an alternate front door that feeds the same canonical review queue.
 - **Farcaster mini app** provides optional identity and social features. It is not required to submit.
 
-**Prize:** $500 USDC pool, tiered. Every finalist who ships gets paid. Plus a commemorative collectible for every finisher (July + August). **Pool sponsor: The ZAO festivals team** - $500 USDC for v0 (Season 1). Looking for more sponsors to grow the v1 prize pool or add support to v0; contact info@thezao.com.
+**Prize (paid out):** 500 USDC pool, tiered - 100 to each track champion, 50 to each runner-up, 50 for the highest trading volume across the season. Every finalist was paid. **Pool sponsor: The ZAO festivals team.** Looking for sponsors to grow the pool for the next season; contact info@thezao.com.
 
 ---
 
-## Season 1 log (live)
+## Season 1 log (complete)
 
 **Day 1 - Mon Jun 1 2026.** Two workshops shipped:
 - **Workshop 1 - yerbearserker (Jordan Oram, Empire Builder)** on going from an idea to something real. Core message: do not launch a token until you are ready - assemble the tools and the community first; the token is the amplifier, not the foundation. Covers the Triple-A framework (Assemble, Affirm, Ascend) and the tokenless Empire tier. A tokenless **ZABAL Gamez Empire** was stood up live on the call (empirebuilder.world/empire/zabalgamez01e9af). Transcript: `data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md`.
@@ -305,10 +313,14 @@ const user = await client.lookupUserByVerifiedAddress({ address });
 
 ---
 
-## How to enter July (the build-a-thon)
+## How Season 1 entry worked (July open build - CLOSED)
 
-July is the open build month. Rolling admission, built in public. The entry flow (the
-GitHub-auth judging rail) works like this:
+> This section is the record of how Season 1 ran. The board closed 2026-08-16 and the
+> season settled 2026-08-30. **Nobody can enter Season 1 now.** No season 2 entry route
+> exists yet. Do not present any of the steps below as a live path.
+
+July was the open build month. Rolling admission, built in public. The entry flow (the
+GitHub-auth judging rail) worked like this:
 
 1. **Sign up.** Connect a wallet or Farcaster identity, then authenticate a GitHub account.
    Multiple GitHub accounts are fine. Signup links {identity -> GitHub}.
@@ -319,8 +331,9 @@ GitHub-auth judging rail) works like this:
 3. **Get indexed + scored.** A cron turns your new commits into Bonfire knowledge-graph
    episodes, scored by value to the ZAO ecosystem. You do not submit once at a deadline - you
    build in the open and the graph picks it up as you go.
-4. **Rolling admission.** The strongest July builds advance to the August Finals, each paired
-   with a ZAO mentor as embedded teammate.
+4. **Rolling admission.** The strongest July builds advanced to the August Finals. (The
+   mentor-as-embedded-teammate pairing described in earlier docs was superseded and never
+   ran - the Finals were three head-to-head battles.)
 
 You can also play the **knowledge game** alongside code: write REPORTS (Markdown) about the
 ZAO ecosystem to GitHub. Reports are indexed into the same graph; the score is how often the
