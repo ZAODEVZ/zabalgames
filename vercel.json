@@ -81,6 +81,16 @@
       "permanent": false
     },
     {
+      "source": "/winners",
+      "destination": "/results",
+      "permanent": false
+    },
+    {
+      "source": "/winners.html",
+      "destination": "/results",
+      "permanent": false
+    },
+    {
       "source": "/enter",
       "destination": "/leaderboard",
       "permanent": false
