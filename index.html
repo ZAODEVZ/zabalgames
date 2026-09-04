@@ -819,6 +819,24 @@
       font-weight: 400;
     }
 
+    .hero-secondary-btn {
+      display: inline-block;
+      margin-left: 0.8rem;
+      padding: 0.78rem 1.4rem;
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      color: var(--gold);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .hero-secondary-btn:hover { background: rgba(224,221,170,0.1); }
+    @media (max-width: 620px) {
+      .hero-secondary-btn { display: block; margin: 0.7rem auto 0; text-align: center; }
+    }
+
     /* Season 1 showcase - champions + numbers. Reuses .phase-grid/.phase-card for
        the champion cards so the block matches the rest of the page rather than
        introducing a second card style. */
@@ -1028,11 +1046,10 @@ Three months of building with The ZAO. Season 1 is complete.
          results rather than at a live battle or a submission board that closed 08-16. -->
     <div class="hero-cta-section">
       <a href="/results" class="hero-primary-btn">See the Season 1 results</a>
-      <a href="/recordings" class="join-alt" style="display:inline-block;margin-left:0.8rem;">Watch the workshops</a>
+      <a href="/recordings" class="hero-secondary-btn">Watch the workshops</a>
       <p class="hero-cta-subtext">Three battles, six finalists, three champions: n3m, ghostmintops and uniquebeing404. Every session is recorded and free to watch.</p>
     </div>
 
-    <div id="zg-profile"></div>
 
     <!-- SEASON 1 SHOWCASE. Replaced the recruitment funnel (how-it-works, why-join,
          track picker, join buttons) on 2026-09-04: the season is settled, so the front
@@ -1066,6 +1083,8 @@ Three months of building with The ZAO. Season 1 is complete.
       <div class="s1-stat"><b>15</b><span>people entered</span></div>
       <div class="s1-stat"><b>500</b><span>USDC paid out</span></div>
     </div>
+
+    <div id="zg-profile"></div>
 
     <div class="proof-row">
       <span class="proof-badge">100+ weeks, never missed</span>
