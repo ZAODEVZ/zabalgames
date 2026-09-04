@@ -35,7 +35,7 @@
       + '<nav class="arcade-foot-col" aria-label="Play"><h4>Play</h4>'
       + '<a href="/">Home</a><a href="/info.html">All the Details</a><a href="/#schedule">Schedule</a><a href="/game">Arcade</a><a href="/quest">Season Run</a><a href="/live.html">Live - What\'s On Now</a></nav>'
       + '<nav class="arcade-foot-col" aria-label="Season"><h4>Season</h4>'
-      + '<a href="/enter.html">Enter the Build</a><a href="/submissions">This Season\'s Builds</a><a href="/vote">Vote</a><a href="/finals.html">Finals</a><a href="/winners.html">Winners</a></nav>'
+      + '<a href="/results">Season 1 Results</a><a href="/august">The Finals</a><a href="/submissions">This Season\'s Builds</a><a href="/leaderboard">Standings</a><a href="/finals">Finals Spec</a></nav>'
       + '<nav class="arcade-foot-col" aria-label="Data"><h4>Data</h4>'
       + '<a href="/recordings.html">Recordings</a><a href="/streams.html">Streams</a><a href="/recaps.html">Session Recaps</a><a href="/changelog.html">Changelog</a></nav>'
       + '<nav class="arcade-foot-col" aria-label="Connect"><h4>Connect</h4>'
