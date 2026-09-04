@@ -298,12 +298,18 @@
     (function () {
       var JULY = new Date('2026-07-01T00:00:00Z').getTime();
       var AUGUST = new Date('2026-08-01T00:00:00Z').getTime();
+      // See info.html: the `now >= AUGUST` branch is terminal, so without this the
+      // banner reads "August Finals underway" every day after August, forever.
+      var SEASON_END = new Date('2026-08-31T04:00:00Z').getTime();
       var wrap = document.getElementById('enter-phase');
       var textEl = document.getElementById('enter-phase-text');
       if (!wrap || !textEl) return;
       function tick() {
         var now = Date.now();
-        if (now >= AUGUST) {
+        if (now >= SEASON_END) {
+          wrap.classList.remove('live');
+          textEl.innerHTML = '<strong>Season 1 is complete</strong> - three champions, one per track. <a href="/results" style="color:inherit;">See the results</a>';
+        } else if (now >= AUGUST) {
           wrap.classList.remove('live');
           textEl.innerHTML = 'August Finals underway - <strong>July builds are being judged</strong>';
         } else if (now >= JULY) {

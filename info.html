@@ -508,6 +508,10 @@
         // milestone so this never sticks on a passed date.
         var JULY = new Date('2026-07-01T00:00:00Z').getTime();
         var AUGUST = new Date('2026-08-01T00:00:00Z').getTime();
+        // Season 1 settled 2026-08-30. Without this bound the `now >= AUGUST` branch
+        // below is the terminal state, so the page claims the Finals are "on now" in
+        // green for every day after August, forever.
+        var SEASON_END = new Date('2026-08-31T04:00:00Z').getTime();
 
         Promise.all([
           fetch('/data/workshop-leads.json', { cache: 'no-cache' }).then(function(r) { return r.json(); }).catch(function() { return { leads: [] }; }),
@@ -531,6 +535,7 @@
           var now = Date.now();
           var el = document.getElementById('live-countdown');
           if (!el) return;
+          if (now >= SEASON_END) { el.textContent = 'Season 1 complete'; el.style.color = 'var(--gold)'; return; }
           if (now >= AUGUST) { el.textContent = 'August Finals - on now'; el.style.color = '#22c55e'; return; }
           var target = now < JULY ? JULY : AUGUST;
           var label = now < JULY ? 'July build in ' : 'Finals in ';
