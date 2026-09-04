@@ -4,6 +4,25 @@ The decision log that shaped ZABAL Gamez Season 1. Each doc was originally writt
 
 **Read this first if you want the current state in one document:** [701-canonical-state.md](./701-canonical-state.md).
 
+> **Season 1 is complete (settled 2026-08-30):** n3m (artist), ghostmintops (builder),
+> uniquebeing404 (creator). Everything in this library is a decision record from while the
+> season was being designed and run. Where a doc describes a future, that future has either
+> happened or been dropped - see [/CLAUDE.md](../../CLAUDE.md) for what is actually true.
+
+> **The Finals format in these docs was superseded and never ran.** Several describe a
+> WaveWarZ-Base prediction market, a 72-hour trade window, Respect-weighted settlement
+> voting, or a mentor embedded as a teammate for a 24h build + promote cycle. What actually
+> ran: two finalists per track, three head-to-head battles in the last week of August,
+> decided on an open poll (X, from the WaveWarZ account), the charts from live trading, and
+> a judges panel. All three champions took all three signals.
+
+> **Relative links between numbered docs are mostly broken here, on purpose.** These files
+> were written in `bettercallzaal/ZAOOS` under `research/events/`, `research/business/`,
+> `research/infrastructure/` and `research/dev-workflows/`, and their cross-references still
+> use those paths (`../../business/646-...`). Around 48 such links do not resolve inside this
+> repo. Resolve them by doc NUMBER against the index below, or against the ZAOOS research
+> tree. They were left as written rather than rewritten to guesses.
+
 ---
 
 ## Index
