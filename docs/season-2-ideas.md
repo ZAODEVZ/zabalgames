@@ -23,6 +23,38 @@ Ideas only, grounded in the S1 codebase. Not a build list - a menu for after Aug
 - **Test data polluted the live vote.** S2: a staging/test mode or a test-tag that the feeds
   and `qv-vote` exclude, so QA never mixes with real candidates.
 
+## Pitch week - Zaal's own note, 2026-09-04
+
+> "One big suggestion was adding a full pitch week where the people get an
+> opportunity to practise pitching their projects so they aren't doing it for the
+> first time during the Finalz."
+
+**The problem it solves.** In Season 1 the Finals were the first time most
+finalists had presented their work out loud. The artist and creator battles ran
+inside a one-hour Space and the builder battle closed with one, so a finalist got
+a single unrehearsed shot in front of the judges and the poll.
+
+**Shape.** A pitch week sits between the board closing and the Finals - Season 1's
+gap was 2026-08-16 to 2026-08-24, so the slot already exists in the calendar and
+nothing has to move to make room.
+
+Points worth settling before it is built:
+- **Who pitches.** Everyone on the board, or only the finalists once the cut is
+  made? Opening it to everyone makes the cut better informed; limiting it to the
+  six makes it rehearsal rather than competition.
+- **Live or recorded.** A Space is closest to the real thing, which is the point.
+  A recorded upload scales better across timezones - Season 1 spanned EDT, BST,
+  CEST, CAT, WAT and IST.
+- **Feedback, and from whom.** Judges giving notes in pitch week means they have
+  seen the work before they score it. That may be the feature or the flaw; decide
+  deliberately, because it changes what the Finals measure.
+- **Does it count.** Keep it explicitly non-scoring unless the format says
+  otherwise, so nobody is penalised for treating a rehearsal as a rehearsal.
+
+**Cheapest version.** One Space in the gap week, open mic, three minutes each, no
+scoring, recorded and dropped into `/recordings` like any other session. That
+reuses the whole existing recording pipeline and needs no new page or endpoint.
+
 ## Concrete ideas (grounded, cited)
 1. **Public activity feed** - voter + project + shares in one live tab (Zaal asked for this).
    Build on `api/activity.mjs`; requires flipping ballots public. Social proof is the missing

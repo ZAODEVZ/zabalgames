@@ -1098,7 +1098,7 @@
       // artist and creator battles run inside a one-hour Space, the builder
       // battle runs for 24 hours. Hardcoding it here is how /live and /august
       // drifted apart the first time.
-      '<p class="stage-meta">' + esc(b.window || ('Stream and Space open at ' + (b.time || 'the start time') + '.')) + ' Decided by the judges and the call after the closing Space.</p>' +
+      '<p class="stage-meta">' + esc(b.window || ('Stream and Space open at ' + (b.time || 'the start time') + '.')) + ' Decided on three signals: the open poll on X, the charts, and the judges.</p>' +
       '<p class="stage-when">' + esc(fmtBattleDate(b.date)) + (b.time ? ' - ' + esc(b.time) : '') +
         (b.endDate ? esc(' to ' + fmtBattleDate(b.endDate) + (b.endTime ? ' - ' + b.endTime : '')) : '') + '</p>' +
       slots + judges +
@@ -1131,7 +1131,7 @@
     if (!b || !b.poll) return '';
     return '<div class="stage-poll" id="battle-poll">' +
       '<h3>The poll is open</h3>' +
-      '<p class="poll-note">Open to anyone, no wallet needed. It runs on X, on the WaveWarZ account.</p>' +
+      '<p class="poll-note">One of the three signals, and the only one that needs no wallet. It runs on X, on the WaveWarZ account.</p>' +
       '<a class="stage-btn primary" href="' + esc(b.poll) + '" target="_blank" rel="noopener">Vote in the poll on X -&gt;</a>' +
     '</div>';
   }
