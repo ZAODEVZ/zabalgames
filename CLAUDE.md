@@ -19,24 +19,41 @@ No emojis. No em dashes (hyphens only). No crypto/web3/onchain jargon in public 
 ("digital creators" / "builders" instead). "100+" for ZAO member count, never a
 specific number. Tight, factual, warm.
 
-## Current status (live)
-Mid-season (June workshops running, July open build + August Finals ahead). The site
-has grown well past the homepage into a multi-surface Mini App - 60+ pages (41 top-level
-+ 23 recording pages + the game pages), 45 edge endpoints. Snapshot:
+## Current status - SEASON 1 IS COMPLETE (settled 2026-08-30)
+
+**Champions, one per track: n3m (artist), ghostmintops (builder), uniquebeing404
+(creator).** 31 recorded workshops, 31 projects from 15 people, six finalists across three
+battles, every finalist paid from a 500 USDC pool. `data/season-1-results.json` is the
+frozen record and `/results` renders it - treat that file as the source of truth for any
+season figure, and if a number is wrong fix it there rather than on a page.
+
+Each battle was decided on three signals: an open poll run on X from the WaveWarZ account,
+the charts from live trading on WaveWarZ, and a judges panel. All three champions took all
+three. The per-signal NUMBERS were never captured, so no margins are published anywhere -
+do not invent them.
+
+**Season 2 is named and has no dates, format or theme. Do not add any until Zaal sets
+them.** The repo is written so it can sit untouched until then.
+
+The site is a multi-surface Mini App - 68 top-level pages + 35 recording pages + the game
+pages, 45 edge endpoints. Snapshot:
 - Rebrand to ZABAL Gamez + zabalgamez.com is complete and deployed.
 - Mini App manifest (`.well-known/farcaster.json`) is **self-hosted and signed** for
   zabalgamez.com (accountAssociation type:auth, FID 19640). Do NOT hand-edit the
   accountAssociation block - re-sign via Farcaster dev tools if the domain ever changes.
 - Homepage: validated positioning, "What you walk away with", FAQ, 3-tracks block,
-  June workshop schedule (reads `data/workshop-leads.json`) with per-track filter,
-  one-tap join (track-aware), top "tell Farcaster" share CTA, phase-aware season clock
-  (counts to July build, then Aug Finals - no hardcoded date).
+  the three champions, the season in numbers, the workshop library (reads
+  `data/workshop-leads.json`) with per-track filter, and a phase-aware clock that returns
+  "Season 1 complete" past the season end. The recruitment funnel (how-it-works, why-join,
+  track picker, join buttons) was removed 2026-09-04 - the front door shows the result now.
 - In-feed share/embed image is the arcade card `assets/embed-card-gamez.png` (3:2).
 - Activity backend is LIVE (`/api/activity` returns `configured:true`).
 - **Recordings/content system is live:** `/recordings` archive, `/recaps`, `/speakers`,
   `/spaces`, `/farcaster-batches`, plus per-recording Farcaster-verified comment threads
   (`assets/recording-comments.js` + `/api/comments`, `/api/cast-comments`) and transcripts.
-- **Submit + vote pipeline is LIVE (the season's core loop):** `/submit` -> AUTO-ACCEPTS a
+- **Submit stays open, the vote is RETIRED.** `/vote` and `/enter` both redirect to
+  `/leaderboard`; `/winners` redirects to `/results`. `/submit` still accepts projects and
+  says plainly that a submission does not enter Season 1. The pipeline as built: `/submit` -> AUTO-ACCEPTS a
   project onto the `/submissions` board immediately (no approval queue; moderation is
   delete-after via `/review`), then the community casts a quadratic vote at `/vote` on ALL
   live submissions (candidates = the board + the seed builders in `data/builder-submissions.json`,
@@ -44,15 +61,17 @@ has grown well past the homepage into a multi-surface Mini App - 60+ pages (41 t
   Admin = Farcaster FID allowlist in `lib/auth.mjs` (19640 zaal, 1057869 imanafrikah) +
   optional `ADMIN_KEY` fallback. The old curated slate (`slate-admin`, `qv-slate-draft`) is
   retired. `data/vote-candidates.json` is now just the on/off `status` switch.
-- **August Finals format is SETTLED (Zaal, 2026-08-10; supersedes loops.house + the doc 2137
-  two-phase design):** the field is every July submitter, on the season leaderboard now -
-  the week of Aug 10 is the last chance to climb it. Top 2 PEOPLE per track (finalists are
-  people, not projects) = six finalists, who all present live at the end of August; one
-  winner per track. Three mentors total, one per track, named publicly only after each
-  confirms. `/august` is the canonical page. The older on-site Finals stack (`/enter`
-  register + building-in-public, `/projects`, `/finals` prediction-market spec, `/winners`;
-  `register`, `builds`, `build-vote`, `finals-picks`, `monthly-winner`) predates this and is
-  being reconciled to it.
+- **The Finals RAN and are settled.** Two people per track (finalists are people, not
+  projects), six finalists, three head-to-head battles on WaveWarZ: artist 24 Aug, creator
+  27 Aug, builder over 24 hours from noon 29 Aug. `/august` is the canonical Finals page and
+  `/results` is the canonical result. Judges: Thy Revolution, Iman Afrikah and paperhandpapi
+  on builder; Thy Revolution and N3M on creator with a third seat never recorded; no panel
+  recorded for artist.
+  **A much older design is still described in `docs/` and must not be treated as real** - a
+  WaveWarZ-Base prediction market, a 72h trade window, Respect-weighted settlement voting,
+  and a mentor embedded as a teammate for a 24h build + promote cycle. It was superseded and
+  never ran. `/finals` and `/finals/live` are kept as the design record and both carry
+  SUPERSEDED notices.
 - **Engagement/games layer:** `/play` + `/game` (ZAO 2048, monthly $Zabal prize via
   `/api/game` + `monthly-winner`), `/pops` collectibles, live `raffle`, `/dream-leads`
   demand board, `/mindful`, `/graph` (Bonfire/ecosystem knowledge graph), `ref` referrals,
@@ -186,26 +205,50 @@ every phase task split into `[OWNER]` (DMs, dates, assets) vs `[BUILD]` (repo wo
 "what ready means" bar per phase. Read it for the arc; the list below is the near-term
 owner-action subset.
 
-## What's left (not code-blocked - owner actions)
-1. Nothing outstanding on the collectible - the Insert Coin links were removed
-   2026-09-04.
-2. Cal.com booking questions - add handle/topic/format/notes to the event so bookings
+## What's left (owner actions) - reviewed 2026-09-04
+
+Season 1 close-out is done. Everything below is optional or waiting on Zaal.
+
+1. **The season figures do not reconcile, and nobody has decided which is right.**
+   `data/season-1-results.json` publishes 31 projects from 15 people. The KV store holds
+   **21** submission documents (`zabal:sub:v1:*`, counter 21, index consistent) across **6**
+   distinct builder handles, and the backup is NOT the reason - `scripts/redact-export.py`
+   drops only ballots, tokens and emails, never submissions, and the export reports
+   `truncated: false`. The published figures were tallied by hand and probably include POIDH
+   claims, tag captures and manual adds that were never written back to a store. The site is
+   internally consistent at 31 now, so nothing is visibly broken. If the real number is
+   known, change it in `season-1-results.json` alone and every surface follows.
+2. **The creator battle's third judge is a literal `null`** in `data/finals.json`, beside
+   Thy Revolution and N3M. `/august` says so plainly rather than hiding it. A name closes it.
+   The artist battle has no panel recorded at all.
+3. **Per-signal numbers were never captured.** Vote counts and trading figures for the three
+   battles are not in the repo. Every surface names who took each signal and publishes no
+   margins. If the figures exist in the WaveWarZ or X history and you want them recorded, they
+   go in `season-1-results.json`.
+4. **Vercel Web Analytics** - the `/_vercel/insights/script.js` tag is on every page; enable
+   Web Analytics in the Vercel dashboard to start collecting. (Dashboard state cannot be
+   checked from the repo, so this may already be done.)
+5. **Cal.com booking questions** - add handle/topic/format/notes to the event so bookings
    arrive with context.
-3. Announcements (yerbearserker first-workshop post + Day 0) - ON HOLD per the owner.
-   Reference asset: BCZ YapZ Episode 7 features yerbearserker / Empire Builder.
-4. Workshop roster - DONE for June: 8 delivered + 9 scheduled (all dated, all with a Luma),
-   well past the ~8 target. Funnel is `docs/workshop-roster.md`; live production status is
-   `docs/workshop-media-tracker.md` + the internal `/status` page. Remaining near-term work is
-   production (transcripts/thumbnails/YouTube/guest-OK'd), not recruiting. Six confirmed leads
-   still need a date (Tyler, Thy Revolution, Duo Do, Jonathan Colton, kmac.eth, Plat0x).
-5. Vercel Web Analytics - the `/_vercel/insights/script.js` tag is on every page; enable
-   Web Analytics in the Vercel dashboard (Analytics tab) to start collecting.
-6. POIDH bounty - "Best ad for ZABAL Gamez", $25, ends Jun 14. Being wrapped + a new
-   two-week bounty launched live in Kenny's POIDH session (Mon Jun 15, 4pm EST). Paste-ready
-   copy + promo cast in `docs/poidh-bounty-best-ad.md`.
+6. **15 unmerged remote branches** hold work that exists nowhere on main: the Telegram-to-
+   Bonfire ingest script (`ws/bonfire-lane`), the lane audit, `ws/sopha-fireside` (a complete
+   recording page and transcript), `recordings/26.html`
+   (`rescue/orphan-8668183-azkal-flowstage`), SIWE wallet login from closed PR #584, a
+   season-2-readiness doc, and three June newsletter drafts. Salvage or delete.
+7. **Season 2 prep** - target late November. Ideas and Zaal's pitch-week suggestion are in
+   `docs/season-2-ideas.md`. Set nothing public until dates and format exist.
+
+### One scheduled job to keep alive
+`.github/workflows/kv-backup.yml` is the only scheduled job in the repo. **GitHub disables
+scheduled workflows after 60 days of repository inactivity.** Whether the bot's own nightly
+commits reset that clock is ambiguous. If the repo genuinely goes quiet until November, hit
+"Run workflow" on it once (it has `workflow_dispatch`) or watch for GitHub's warning email -
+otherwise the backups AND the daily `/api/export` call that keeps Upstash warm both stop.
 
 ## Live links (do not break)
-- Luma calendar: https://luma.com/zao | yerbearserker Jun 1 RSVP: https://luma.com/7nfside5
+- Season 1 results (canonical): https://zabalgamez.com/results
+- The Finals record: https://zabalgamez.com/august
+- Luma calendar: https://luma.com/zao
 - /zabal channel + group chat: farcaster.xyz/~/group/TTUJf88kRNt2s7Yb-KL0xQ
 
 ## Decision history

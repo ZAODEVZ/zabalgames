@@ -2,6 +2,17 @@
 
 > All non-research docs for ZABAL Gamez Season 1. Research docs (numbered 1xx-7xx) live in `docs/research/` instead.
 
+> **Season 1 is complete (settled 2026-08-30).** Champions: n3m (artist), ghostmintops (builder),
+> uniquebeing404 (creator). Almost everything in this index is now a point-in-time record of a
+> season that has finished - launch kits, outreach templates and dated briefs describe work that
+> already happened. Read them as history. For what is true now, see [/CLAUDE.md](../CLAUDE.md)
+> and [/results](https://zabalgamez.com/results).
+
+> Two format warnings for anyone reading the older docs. **The Finals design they describe -
+> mentor embedded as a teammate, a 24h build + promote window, a governance vote, WaveWarZ-Base
+> market settlement - was superseded and never ran.** And **Magnetiq was retired as a partner on
+> 2026-07-31**; docs naming it are kept readable, but do not write new references to it.
+
 > **Canonical current state + conventions: [/CLAUDE.md](../CLAUDE.md).** Most files
 > below are dated, point-in-time records (kits, briefs, recaps) - useful history, but
 > trust CLAUDE.md for what's true now. Newer references: `positioning-2026-05-29.md`,
@@ -15,8 +26,8 @@ For the announce push:
 | File | Use when |
 |---|---|
 | [announce-day-kit-2026-05-27.md](announce-day-kit-2026-05-27.md) | The single file to open the morning of launch. Pre-flight + cast schedule + DM templates + troubleshooting. |
-| [announce-posts-2026-05-26.md](announce-posts-2026-05-26.md) | The 4 platform-specific posts (X / @thezao / @ZAOFestivals / /zabal). Paste-ready. |
-| [media-kit-2026-05-26.md](media-kit-2026-05-26.md) | For media + partners. Hard facts table, brand colors, FAQ, brand-glossary corrections, pre-approved quotable phrases. |
+| [announce-posts-2026-05-26.md](archive/announce-posts-2026-05-26.md) | The 4 platform-specific posts (X / @thezao / @ZAOFestivals / /zabal). Paste-ready. |
+| [media-kit-2026-05-26.md](archive/media-kit-2026-05-26.md) | For media + partners. Hard facts table, brand colors, FAQ, brand-glossary corrections, pre-approved quotable phrases. |
 | [sponsor-outreach-2026-05-26.md](sponsor-outreach-2026-05-26.md) | Cold-pitch template for v1 prize-pool sponsors. Replies route to info@thezao.com. |
 | [luma-events-templates-2026-05-26.md](luma-events-templates-2026-05-26.md) | Lu.ma event creation templates for Tyler + Thy Rev workshops. Date + topic placeholders for Zaal to lock. |
 | [logo-brief-2026-05-26.md](logo-brief-2026-05-26.md) | 10 logo direction options for designer. |
@@ -30,7 +41,7 @@ For the announce push:
 | [launch-kit.md](launch-kit.md) | Asset + copy bundle: SVG OG card prompt, intro video script outline, Zlank Snap URL, signup CTA copy. |
 | [mentor-outreach-2026-05-24.md](mentor-outreach-2026-05-24.md) | DM scripts + target list for mentor recruitment. |
 | [workshop-roster.md](workshop-roster.md) | The guest tracker - status funnel + outreach cadence (Asked on / Reply / Next nudge). Single source of truth for who we are talking to. |
-| [warm-dm-kit-2026-06-02.md](warm-dm-kit-2026-06-02.md) | Paste-ready warm DMs: date-lock the 8 confirmed leads (assumptive scheduling), confirm the 6 lined up, plus a reusable /zabal attendee cast. |
+| [warm-dm-kit-2026-06-02.md](archive/warm-dm-kit-2026-06-02.md) | Paste-ready warm DMs: date-lock the 8 confirmed leads (assumptive scheduling), confirm the 6 lined up, plus a reusable /zabal attendee cast. |
 | [snap-design.md](snap-design.md) | Zlank no-code Snap design + custom Vercel-function path. |
 | [zao-video-editor-descript-reference.md](zao-video-editor-descript-reference.md) | What Descript + Underlord can do (prompt-driven editing, captions, vocabulary, visual layers), captured from the recordings work as reference for the ZAO video editor project. |
 

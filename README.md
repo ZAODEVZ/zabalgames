@@ -1,6 +1,10 @@
 # ZABAL Gamez
 
-> The ZAO's 3-month Build-A-Thon - a build event for the Farcaster/ZAO ecosystem, not a video-game contest. Season 1: **June 2026 (workshops) -> July (open build) -> August (Finals)**. Free, open to anyone, any harness.
+> The ZAO's 3-month Build-A-Thon - a build event for the Farcaster/ZAO ecosystem, not a video-game contest. Season 1 ran **June to August 2026 and is complete**. Free, open to anyone, any harness.
+
+**Season 1 result (settled 2026-08-30):** three champions, one per track - **n3m** (artist), **ghostmintops** (builder), **uniquebeing404** (creator). 31 recorded workshops, 31 projects from 15 people, six finalists across three battles, every finalist paid from a 500 USDC pool. Full record at [`/results`](https://zabalgamez.com/results).
+
+**Season 2** is named and has no dates, format or theme. Do not add any until they are set.
 
 Live at **zabalgamez.com**. Cast channel: **/zabal** on Farcaster.
 
@@ -29,9 +33,11 @@ A Farcaster-creator onboarding event for the ZAO ecosystem: bring Farcaster-acti
 
 **Three months:**
 
-- **June - workshops.** Builders across the ecosystem each record a ~30-minute session on the tools they have built. The library lands on the site (`/recordings`).
-- **July - open build month.** Anyone ships a build for ZABAL, ZAO, or WaveWarZ. The build IS the application.
-- **August - the Finals.** The strongest builds get a ZAO mentor embedded as a teammate for a build + promote window, governance vote, and a live reveal. Every finalist wins.
+- **June - workshops.** Builders across the ecosystem each recorded a ~30-minute session on the tools they had built. 31 sessions, all on the site (`/recordings`).
+- **July - open build month.** Anyone shipped a build for ZABAL, ZAO, or WaveWarZ. The build WAS the application. The board closed 2026-08-16.
+- **August - the Finals.** Two finalists per track, six people, three head-to-head battles on WaveWarZ in the last week of August. Finalists were people, not projects. Each battle was decided on three signals - an open poll on X from the WaveWarZ account, the charts from live trading, and a judges panel - and all three champions took all three. Every finalist was paid.
+
+> An earlier design (mentor embedded as a teammate, a 24h build + promote window, a governance vote, WaveWarZ-Base market settlement) is described in older docs. **It was superseded and never ran.**
 
 **Registration** for Season 1 ran through the on-site flow (`/submit`, `/submissions`). Season 1 closed on 2026-08-31 and is settled; see `/results`.
 
@@ -54,7 +60,7 @@ zabalgames/
 ├── data/                           # JSON content + config (see "Data" below)
 ├── scripts/                        # validate.mjs + content tooling (see "Scripts" below)
 ├── docs/                           # launch kits, brand, positioning, recordings/, research/
-├── db/schema.sql                   # Postgres schema for the JULY submission gallery (not yet wired)
+├── db/schema.sql                   # DEAD - drafted for a Supabase gallery that was removed. No consumer.
 ├── CLAUDE.md                       # canonical working context - read first
 └── vercel.json                     # cleanUrls, redirects, headers
 ```
@@ -64,18 +70,23 @@ zabalgames/
 | Page | What it is |
 |---|---|
 | `/` (`index.html`) | Home - positioning, tracks, live workshop schedule, one-tap join, top share CTA |
-| `/info` | All the details - full FAQ, mentor form, Cal embed, the (client-side) July submission gallery |
+| `/results` | **Season 1 results** - the three champions and the season in numbers. The canonical record. |
+| `/august` | The Finals record - the six finalists, the three battles, who judged |
+| `/info` | All the details - full FAQ, mentor form, Cal embed |
+| `/submit`, `/submissions` | Submit a project (board stays open between seasons); the public project board |
 | `/about`, `/context` | The pitch and the context file for the season |
-| `/playbook` | Builder Playbook - how to ship a July build |
+| `/playbook` | Builder Playbook - how to ship a build |
 | `/lead` | Lead a Workshop - self-signup (Cal.com + Formspree) |
 | `/dream-leads` | Community wishlist of people to invite to teach - nominate, upvote (+1), tag on Farcaster |
 | `/mentor` | Mentor signup |
-| `/enter`, `/projects` | Enter the July build; adoptable projects to pick up |
-| `/recordings` (+ `/recordings/N`, `/recordings/fireside/N`, `/recordings/bczworkshop/N`) | The recording library, grouped by type and auto-listed from `data/recaps.json`, plus per-session pages and a machine-readable `/recordings/index.json` for agents |
+| `/projects`, `/board` | Adoptable projects to pick up; the build board. (`/enter` and `/vote` now redirect to `/leaderboard` - the July entry and the quadratic vote are retired.) |
+| `/recordings` (+ `/recordings/N`, `/recordings/fireside/N`, `/recordings/zao/N`) | The recording library, grouped by type and auto-listed from `data/recaps.json`, plus per-session pages and a machine-readable `/recordings/index.json` for agents |
 | `/recaps` | Session recaps (one-line takeaways, share buttons) |
 | `/streams`, `/today`, `/changelog` | Data streams + timeline, the daily update, and the changelog |
-| `/live`, `/spaces` | What's on now; upcoming spaces |
-| `/finals`, `/finals/live`, `/winners`, `/leaderboard` | The Finals, the live finals page, winners, and the activity leaderboard |
+| `/live`, `/spaces` | What's on now (idle between seasons); Spaces |
+| `/press` | Media kit - copy-paste boilerplate, the facts, brand assets |
+| `/game`, `/play`, `/quest` | The arcade, the quick-pick, and the Season Run |
+| `/finals`, `/finals/live`, `/leaderboard` | The Finals spec (carries SUPERSEDED notices), the market scaffold that never launched, and the activity leaderboard. (`/winners` redirects to `/results`.) |
 | `/links`, `/share`, `/install` | All links; the share target; load the season's context into an AI tool |
 | `/graph`, `/research`, `/farcaster-batches`, `/mindful`, `/p` | ZAO graph explorer, research library, the builders, mindful moments, player profile |
 
@@ -84,7 +95,7 @@ zabalgames/
 Every workshop is recorded, corrected, clipped, and published so missing it live never means missing it.
 
 - **Workflow:** [docs/recordings-workflow.md](./docs/recordings-workflow.md) - the end-to-end pipeline (capture -> caption -> correct -> chapter -> publish).
-- **Per-session pages:** `recordings/N.html` (workshops), `recordings/fireside/N.html`, `recordings/bczworkshop/N.html` - embedded player or transcript, chapters/outline, transcript link, share buttons. Each recap carries a `type` (`workshop` / `fireside` / `bczworkshop`); the `/recordings` hub groups by type and new ones auto-appear there and on `/recaps` once added to `data/recaps.json`.
+- **Per-session pages:** `recordings/N.html` (workshops), `recordings/fireside/N.html`, `recordings/zao/N.html` - embedded player or transcript, chapters/outline, transcript link, share buttons. Each recap carries a `type` (`workshop` / `fireside`); 31 workshops and 4 firesides are published; the `/recordings` hub groups by type and new ones auto-appear there and on `/recaps` once added to `data/recaps.json`.
 - **AI index:** `recordings/index.json` (a machine-readable list of every recording) + schema.org JSON-LD on the hub, both generated by `scripts/build-recordings-index.mjs` from `recaps.json` and pointed to from `/llms.txt`. Rerun the script after editing `recaps.json`.
 - **Transcripts:** committed under `data/streams/zabal-games-workshops/raw/transcripts/`.
 - **Brand spelling:** `data/transcript-corrections.json` + `scripts/fix-transcript.mjs` fix the recurring ZAO-vocab mishearings. The preemptive version for Descript Underlord is [docs/recordings/recording-vocabulary.md](./docs/recordings/recording-vocabulary.md); the caption look is [docs/recordings/caption-style-prompt.md](./docs/recordings/caption-style-prompt.md).
@@ -97,7 +108,9 @@ Zero-dependency Vercel edge functions over **Upstash Redis** (REST). Verified wr
 - **Presence / activity:** `track`, `present`, `activity`
 - **Participation (verified):** `join` (one-tap join + counter), `dream-vote` (the `/dream-leads` +1), `register` + `commit-watcher` (GitHub-as-submission), `bonfire-ask`, `snap/signup`
 - **Leaderboards:** `leaderboard` (our data, for Empire Builder), `empire-leaderboard` (reads our tokenless empire's board back from Empire Builder)
-- **Notifications + cron:** `webhook` (Mini App add/notify tokens), `notify` (admin sender), `daily-cast` (cron), `workshop-reminders` (cron)
+- **Notifications:** `webhook` (Mini App add/notify tokens), `notify` (admin sender), `live-notify`, `live-status`
+
+> **All Vercel crons are retired** - `vercel.json` has no `crons` block and `api/daily-cast.mjs` was deleted. `workshop-reminders`, `monthly-winner`, `commit-watcher` and `poidh-watcher` still exist as files and can be hit on demand, but nothing schedules them. The only scheduled job in the repo is the nightly KV backup in `.github/workflows/kv-backup.yml`.
 
 ## Data
 
@@ -114,7 +127,8 @@ Zero-dependency Vercel edge functions over **Upstash Redis** (REST). Verified wr
 ## Storage
 
 - **Activity backend** runs on **Upstash Redis** over REST. Env: `KV_REST_API_URL` + `KV_REST_API_TOKEN` (the Upstash Vercel integration injects these; code also accepts `UPSTASH_REDIS_REST_*`). Connected and live.
-- **July submission gallery** (`info.html`) is a separate, not-yet-wired Postgres store (`db/schema.sql`). Revisit before July.
+- **`db/schema.sql` is dead.** It was drafted for a client-side Supabase submission gallery in `info.html`; that gallery, its CDN script and its placeholder keys were all removed. Nothing reads the schema. Do not reintroduce Supabase for the activity backend.
+- **Backups.** `.github/workflows/kv-backup.yml` pulls the whole keyspace nightly through `/api/export`, verifies the export is structurally complete, redacts it (`scripts/redact-export.py` - this repo is public), and commits `backups/kv-latest.json`.
 - **Signups** go to Formspree (`/f/mlgvvoyd`); **scheduling** to Cal.com (`cal.com/zabal-gamez/workshop-session`). Neither needs the DB.
 
 ## Scripts
@@ -122,7 +136,11 @@ Zero-dependency Vercel edge functions over **Upstash Redis** (REST). Verified wr
 - **`node scripts/validate.mjs`** - the pre-push gate. Checks every tracked `*.json` parses, every `api/*.mjs` passes `node --check`, every classic inline `<script>` compiles, and the manifest decodes to `{"domain":"zabalgamez.com"}`. A SessionStart hook runs it `--quiet` at the start of every session. **Run it before every push.**
 - `build-recordings-index.mjs` - regenerate `recordings/index.json` + the hub's JSON-LD from `data/recaps.json`. Run after editing recaps.
 - `fix-transcript.mjs` - apply the brand-vocab glossary to a transcript/caption file.
-- `add-daily.mjs`, `aggregate-dispatches.mjs`, `pull-data-streams.mjs`, `push-to-bonfire.mjs` - content tooling.
+- **`node scripts/check-finals-render.mjs`** - 22 cases covering how `data/finals.json` renders on `/august` and `/live`. Run it after touching finals data or those two pages.
+- `build-sitemap.mjs` - regenerate `sitemap.xml`.
+- `ingest-recording.mjs` - scaffold a new `recordings/N.html` page.
+- `redact-export.py` - strips ballots, tokens and email addresses from a KV export before it is committed. The backup workflow calls it; **never commit a raw export.**
+- `add-daily.mjs`, `aggregate-dispatches.mjs`, `pull-data-streams.mjs`, `push-to-bonfire.mjs`, `resolve-pfps.mjs`, `build-crm.mjs`, `gen-posts.mjs`, `clip-picker.mjs` - content tooling.
 
 ## Develop + deploy
 
