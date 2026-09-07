@@ -15,7 +15,10 @@
 //      youtube link is present, placeholder page when it is not) - retiring the hand-built
 //      /recordings/N.html step. <N> = the recap's existing page number on update, else the
 //      next free integer.
-//   3. Upserts the recap into data/recaps.json (newest first, carrying `chapters`).
+//   3. Upserts the recap into data/recaps.json (newest first). On an UPDATE it MERGES:
+//      manifest fields win, and any field the existing recap already had that the manifest
+//      is silent about (`youtube`, `chapters`, `technical`, `type`, ...) is carried forward
+//      rather than dropped. Pass `"replace": true` to opt out and replace wholesale.
 //   4. Rebuilds the index (recordings/index.json, recordings.txt, hub JSON-LD).
 //
 // Re-run on the same slug to UPDATE in place (e.g. video lands after a transcript-only
@@ -54,8 +57,11 @@ if (!/^\d{4}-\d{2}-\d{2}$/.test(m.date)) die(`date must be YYYY-MM-DD: "${m.date
 if (m.chapters && (!Array.isArray(m.chapters) || (m.chapters.length && (m.chapters[0].t ?? 0) !== 0)))
   die('chapters must be an array whose first entry has t:0 (seconds)');
 
-const type = m.type || 'workshop';
-const track = m.track || null;
+// `let`, not `const`: on an UPDATE these are re-derived below once the manifest has been
+// backfilled from the existing recap, so a transcript-only re-run cannot silently flip a
+// fireside back to the 'workshop' default or blank an existing track.
+let type = m.type || 'workshop';
+let track = m.track || null;
 
 // --- brand-clean helpers (mirror scripts/fix-transcript.mjs 'safe' rules) ---
 const glossary = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/transcript-corrections.json'), 'utf8'));
@@ -128,7 +134,41 @@ if (existingIdx >= 0 && recaps[existingIdx].page) {
 const page = `/recordings/${pageNum}`;
 const pageUrl = `https://zabalgamez.com${page}`;
 const pageFile = path.join(ROOT, `recordings/${pageNum}.html`);
+
+// On UPDATE, a field the manifest omits must be CARRIED, not dropped. The recap used to be
+// replaced wholesale, so re-running a transcript-only manifest over a recording that already
+// had a video silently deleted its `youtube` and rebuilt the page as a placeholder - the exact
+// reverse of this script's documented "video lands after a transcript-only first pass" flow,
+// and invisible in the diff unless you were looking for it. Caught on 2026-09-07 against
+// /recordings/27 (AZKAL / FlowStage, youtu.be/U_Eubs-2_Yo). Pass `"replace": true` in the
+// manifest for the rare case where you really do mean to drop the old fields.
+// Backfilling the manifest itself (rather than only the recap) means the generated PAGE
+// inherits too - otherwise an update still rebuilt the video page as a placeholder and
+// dropped its chapters, even with the recap repaired.
+const prevRecap = existingIdx >= 0 ? recaps[existingIdx] : null;
+const CARRY = ['type', 'presenter', 'handle', 'org', 'track', 'technical', 'format', 'thumbnail',
+  'summary', 'topics', 'youtube', 'audio_url', 'listen_url', 'listen_label', 'link',
+  'link_label', 'takeaways', 'share_topics', 'chapters', 'pull_quotes', 'resources',
+  'build_from', 'okd', 'cast_hash'];
+const carried = [];
+if (prevRecap && !m.replace) {
+  for (const k of CARRY) {
+    const v = prevRecap[k];
+    if (m[k] == null && v != null && !(Array.isArray(v) && !v.length)) { m[k] = v; carried.push(k); }
+  }
+}
+type = m.type || 'workshop';
+track = m.track || null;
 const yt = ytId(m.youtube);
+
+// The transcript is derived, not a manifest field, so it is not in CARRY - but an update
+// whose manifest carries no transcript body must still keep the transcript the recording
+// already had, or the recap link and the on-page transcript section both vanish.
+const prevTranscriptUrl = (prevRecap && !m.replace) ? prevRecap.transcript : null;
+const transcriptRef = m.transcript_markdown ? transcriptUrl : (prevTranscriptUrl || null);
+const transcriptLocal = m.transcript_markdown
+  ? `/${transcriptPath}`
+  : (prevTranscriptUrl ? '/' + prevTranscriptUrl.replace(`${REPO_BLOB}/`, '') : null);
 
 // --- build the transcript file content ---
 function buildTranscript() {
@@ -173,7 +213,7 @@ function buildRecap() {
   if (m.listen_url) r.listen_url = m.listen_url;
   if (m.listen_label) r.listen_label = m.listen_label;
   r.page = page;
-  if (m.transcript_markdown) r.transcript = transcriptUrl;
+  if (transcriptRef) r.transcript = transcriptRef;
   if (m.link) r.link = m.link;
   if (m.link_label) r.link_label = m.link_label;
   if (takeaways.length) r.takeaways = takeaways;
@@ -239,7 +279,7 @@ function buildPage() {
   else if (m.audio_url) links.push(`    <a class="rec-link primary" href="${attr(m.audio_url)}" target="_blank" rel="noopener">${esc(m.listen_label || 'Listen to the recording')}</a>`);
   else if (m.listen_url) links.push(`    <a class="rec-link primary" href="${attr(m.listen_url)}" target="_blank" rel="noopener">${esc(m.listen_label || 'Listen to the recording')}</a>`);
   else if (m.link) links.push(`    <a class="rec-link primary" href="${attr(m.link)}" target="_blank" rel="noopener">${esc(m.link_label || 'Event link')}</a>`);
-  if (m.transcript_markdown) links.push(`    <a class="rec-link" href="#rec-transcript">Read the transcript</a>`);
+  if (transcriptLocal) links.push(`    <a class="rec-link" href="#rec-transcript">Read the transcript</a>`);
   if (m.link && yt) links.push(`    <a class="rec-link" href="${attr(m.link)}" target="_blank" rel="noopener">${esc(m.link_label || 'Learn more')}</a>`);
   links.push(`    <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>`);
   links.push(`    <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>`);
@@ -318,11 +358,11 @@ function buildPage() {
   }
 
   // on-site transcript reader (assets/transcript.js renders /data/.../x.md with deep-linkable lines)
-  const transcriptBlock = m.transcript_markdown
+  const transcriptBlock = transcriptLocal
     ? `  <section class="section rec-transcript-section">
     <div class="rec-label">Transcript</div>
     <p style="color:var(--text-dim);font-size:0.82rem;margin:0 0 0.5rem;">Hover any line and click # to copy a link straight to it.</p>
-    <div id="rec-transcript" data-src="/${transcriptPath}" data-yt="${esc(yt || '')}"></div>
+    <div id="rec-transcript" data-src="${transcriptLocal}" data-yt="${esc(yt || '')}"></div>
   </section>
 
 `
@@ -513,6 +553,7 @@ ${shareScript}
 
 // --- assemble + report ---
 const transcriptContent = buildTranscript();
+
 const recap = buildRecap();
 const pageHtml = buildPage();
 const action = existingIdx >= 0 ? 'UPDATE' : 'CREATE';
@@ -523,6 +564,9 @@ console.log(`  page        ${page}  (recordings/${pageNum}.html)  [${yt ? 'video
 if (m.transcript_markdown) console.log(`  transcript  ${transcriptPath}`);
 console.log(`  recap       data/recaps.json  (${existingIdx >= 0 ? 'replace in place' : 'prepend, newest first'})`);
 if (m.chapters && m.chapters.length) console.log(`  chapters    ${m.chapters.length}`);
+if (carried.length) console.log(`  carried     ${carried.join(', ')}  (kept from the existing recap - the manifest did not set them)`);
+if (prevRecap && m.replace) console.log('  replace     true - existing fields NOT carried; anything the manifest omits is dropped');
+if (prevRecap && prevRecap.youtube && !yt) console.log('  WARNING     this recording had a video and will be rebuilt as a placeholder');
 
 if (!write) {
   console.log('\nDry run - nothing written. Re-run with --write to apply, then run node scripts/validate.mjs.');
