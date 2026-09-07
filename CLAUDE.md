@@ -102,7 +102,9 @@ functions in `api/`. 60+ pages; not all listed here - this is the load-bearing s
 **Core public pages**
 - `index.html` - homepage (join button + track chips, join counter, workshop schedule
   render + filter, top-CTA cast, phase-aware countdown).
-- `lead.html` - workshop-lead page: Cal.com embed (`CAL_LINK` var) + Formspree fallback.
+- `lead.html` - workshop-lead page: Formspree form. It has **no** Cal.com embed and no
+  `CAL_LINK` variable (measured 2026-09-07); the only Cal embed on the site is in
+  `info.html`. `CAL_LINK` survives only in `docs/archive/cal-luma-workflow.md`.
 - `info.html` - all-the-details; mentor Formspree form; Cal iframe. Points to the live
   submission system (`/submit`, `/submissions`); the old client-side Supabase form +
   gallery were removed (no external CDN, no placeholder keys).
@@ -160,7 +162,11 @@ later re-scheduling). Endpoints across:
 ## Integrations
 - **Signups:** Formspree team form `https://formspree.io/f/mlgvvoyd` (lead, mentor,
   snap), each tagged by `form_source`.
-- **Scheduling:** Cal.com `cal.com/zabal-gamez/workshop-session`, embedded on /lead + /info.
+- **Scheduling:** Cal.com `cal.com/zabal-gamez/workshop-session`, embedded on /info only.
+  A second booking page, `cal.com/bettercallzaal/zabal-games-workshop-slot`, is also live
+  and is not linked from the site. Both returned 200 on 2026-09-07 and both still take
+  bookings for a season that is over. `cal.com/bettercallzaal/zabal-games-workshop` (no
+  `-slot`) is 404 - the archive doc's link is dead.
 - **Collectible: REMOVED 2026-09-04.** Every "Insert Coin" link to
   `collect.zabalgamez.com` (the shortlink forwarding to the retired Magnetiq magnet) was
   deleted from the site on Zaal's call - 125 anchors across 85 files, plus the entry in
@@ -205,45 +211,85 @@ every phase task split into `[OWNER]` (DMs, dates, assets) vs `[BUILD]` (repo wo
 "what ready means" bar per phase. Read it for the arc; the list below is the near-term
 owner-action subset.
 
-## What's left (owner actions) - reviewed 2026-09-04
+## What's left (owner actions) - measured 2026-09-07
 
-Season 1 close-out is done. Everything below is optional or waiting on Zaal.
+Season 1 close-out is done. Four of the seven items below were open only because
+nobody had measured them; they are now answered. Three need a decision from Zaal.
+**Every figure here was measured on 2026-09-07 - the working is in
+`docs/season-1-closeout-audit-2026-09-07.md`. Read that before changing a season number.**
 
-1. **The season figures do not reconcile, and nobody has decided which is right.**
-   `data/season-1-results.json` publishes 31 projects from 15 people. The KV store holds
-   **21** submission documents (`zabal:sub:v1:*`, counter 21, index consistent) across **6**
-   distinct builder handles, and the backup is NOT the reason - `scripts/redact-export.py`
-   drops only ballots, tokens and emails, never submissions, and the export reports
-   `truncated: false`. The published figures were tallied by hand and probably include POIDH
-   claims, tag captures and manual adds that were never written back to a store. The site is
-   internally consistent at 31 now, so nothing is visibly broken. If the real number is
-   known, change it in `season-1-results.json` alone and every surface follows.
-2. **The creator battle's third judge is a literal `null`** in `data/finals.json`, beside
-   Thy Revolution and N3M. `/august` says so plainly rather than hiding it. A name closes it.
-   The artist battle has no panel recorded at all.
-3. **Per-signal numbers were never captured.** Vote counts and trading figures for the three
-   battles are not in the repo. Every surface names who took each signal and publishes no
-   margins. If the figures exist in the WaveWarZ or X history and you want them recorded, they
-   go in `season-1-results.json`.
-4. **Vercel Web Analytics** - the `/_vercel/insights/script.js` tag is on every page; enable
-   Web Analytics in the Vercel dashboard to start collecting. (Dashboard state cannot be
-   checked from the repo, so this may already be done.)
-5. **Cal.com booking questions** - add handle/topic/format/notes to the event so bookings
-   arrive with context.
-6. **15 unmerged remote branches** hold work that exists nowhere on main: the Telegram-to-
-   Bonfire ingest script (`ws/bonfire-lane`), the lane audit, `ws/sopha-fireside` (a complete
-   recording page and transcript), `recordings/26.html`
-   (`rescue/orphan-8668183-azkal-flowstage`), SIWE wallet login from closed PR #584, a
-   season-2-readiness doc, and three June newsletter drafts. Salvage or delete.
+1. **CLOSED - the season figures DO reconcile. 31 is correct; do not change it.**
+   The old entry here compared 31 projects against 21 KV documents and called it a
+   mismatch. That used the wrong store. `GET /api/submissions?feed=projects` returns
+   `count: 31` live - 16 rows from the KV board plus 15 seeded builder rows from
+   `data/builder-submissions.json` (ghostmintops 7, branth 5, jdwalka 3). The 21
+   `zabal:sub:v1:*` documents are prompt answers, not projects: 15 approved / 3 pending
+   / 3 draft, of which one is `promptId: wip-test` and two are labelled
+   `[QA TEST - please delete]`; none of the three reach the public feed. **15 people**
+   is the one soft figure: the feed yields 17 distinct identities, two of which carry no
+   usable identity (id 20 has a null builder, id 19's name is a bare URL). 17 minus those
+   two is 15. Defensible, but a judgment call, not an extraction.
+2. **NEEDS ZAAL - the creator battle's third judge is a literal `null`** in
+   `data/finals.json`, beside Thy Revolution and N3M. The artist battle has no panel
+   recorded at all. `/august` says both plainly rather than hiding them. Only a name from
+   Zaal closes this. Do not guess one onto a public results page.
+3. **NEEDS ZAAL - per-signal numbers are unrecoverable.** Poll counts and trading figures
+   for the three battles are in no store, no data file and no backup. They were never
+   captured and cannot be reconstructed. Every surface names who took each signal and
+   publishes no margin, which is correct. The live question is only whether Season 2
+   instruments them at the time.
+4. **CLOSED - Vercel Web Analytics is ON and collecting.** Measured from outside:
+   `/_vercel/insights/script.js` returns 200 with 3106 bytes of real runtime, and a POST
+   to `/_vercel/insights/view` returns 200. A project with Analytics disabled does
+   neither. Six public pages were carrying no tag at all (`august.html` - the canonical
+   Finals page - plus `guest`, `links`, `media`, `status`, `wins`); all six were tagged
+   on 2026-09-07. Coverage is 65/66 top-level pages; `referrers.html` is a redirect stub
+   and correctly has none.
+5. **NEEDS ZAAL (dashboard) - Cal.com.** Two booking pages are live and both still accept
+   bookings for a finished season: `cal.com/zabal-gamez/workshop-session` (the one the
+   site links, from `info.html`) and `cal.com/bettercallzaal/zabal-games-workshop-slot`
+   (not linked anywhere). Decide whether to close them or leave them open for Season 2,
+   and add handle/topic/format/notes questions to whichever survives. Repo-side there is
+   nothing to do.
+6. **CLOSED as a triage; the decisions are one tap each.** `git branch -r --no-merged`
+   lists 25, which overcounts - a squash merge changes the patch id and the branch keeps
+   looking unmerged. Measured: **10 are dead** (fully landed; `ws/home-season1-showcase`
+   and `ws/retire-magnetiq-endpoint` were verified by content, not by patch id, and
+   nothing is stranded on either), **3 are superseded**
+   (`ws/retire-loops-magnetiq-2026-08-27`, `ws/adoptable-seeking-maintainer`, and
+   `claude/submissions-org-finals-post-n05sij`, whose 9 commits all move the season to
+   the retired loops.house), **4 are byte-identical copies of one thing** - closed PR #584
+   SIWE wallet login, at tip `19708ef` - and **8 hold genuinely unlanded work**. Two of
+   those eight are content that exists nowhere else: `ws/sopha-fireside` and
+   `rescue/orphan-8668183-azkal-flowstage` are each a finished recording page plus
+   transcript for a session that really happened. Nothing was deleted; the full table is
+   in the audit doc.
 7. **Season 2 prep** - target late November. Ideas and Zaal's pitch-week suggestion are in
-   `docs/season-2-ideas.md`. Set nothing public until dates and format exist.
+   `docs/season-2-ideas.md`. Set nothing public until dates and format exist. Note the
+   hard dependency in the next section: late-November prep starts *after* the backup
+   switches itself off.
 
-### One scheduled job to keep alive
-`.github/workflows/kv-backup.yml` is the only scheduled job in the repo. **GitHub disables
-scheduled workflows after 60 days of repository inactivity.** Whether the bot's own nightly
-commits reset that clock is ambiguous. If the repo genuinely goes quiet until November, hit
-"Run workflow" on it once (it has `workflow_dispatch`) or watch for GitHub's warning email -
-otherwise the backups AND the daily `/api/export` call that keeps Upstash warm both stop.
+### The one scheduled job, and the date it dies: 2026-11-06
+
+`.github/workflows/kv-backup.yml` is the repo's only scheduled workflow. GitHub disables
+scheduled workflows after 60 days of repository inactivity - silently, with no failing run
+and no error anywhere.
+
+Measured 2026-09-07: workflow state `active`, last five scheduled runs all `success`. The
+last commit by a person on `main` is `9866ae6` (2026-09-06, PR #669); the last commit of
+any kind is the workflow's own nightly push, authored `zao-backup` via the default
+`GITHUB_TOKEN`. **Counting 60 days from the last human commit gives 2026-11-05, which
+today's commit moves to 2026-11-06.** Season 2 prep is targeted at late November, so on
+the current plan the backup stops about three weeks before anyone opens this repo again.
+
+Genuinely UNMEASURED: whether the workflow's own bot commits reset that clock. They are
+pushed with `GITHUB_TOKEN`, which is widely reported not to count, but the repo cannot
+measure that from the inside - so assume they do not and treat 2026-11-06 as real.
+
+When it stops, two things stop: the nightly backup, and the daily authenticated
+`/api/export` call that is also what keeps the Upstash free tier warm. Manual saves: hit
+"Run workflow" (it has `workflow_dispatch`), or watch for GitHub's warning email. Neither
+is a detector - nothing currently reports that the backup stopped.
 
 ## Live links (do not break)
 - Season 1 results (canonical): https://zabalgamez.com/results

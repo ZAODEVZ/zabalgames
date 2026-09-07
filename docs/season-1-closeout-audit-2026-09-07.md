@@ -1,0 +1,259 @@
+# Season 1 close-out audit - 2026-09-07
+
+Every number here was measured on 2026-09-07 against the live site, the committed
+KV backup, or git. Nothing is carried over from an earlier doc. Where a thing
+could not be measured it says UNMEASURED and shows what was tried.
+
+This exists so the next session does not re-derive any of it. Read this before
+changing a season figure.
+
+---
+
+## The only item with a date: the KV backup switches itself off
+
+`.github/workflows/kv-backup.yml` is the repo's only scheduled workflow. GitHub
+disables scheduled workflows after **60 days of repository inactivity**, silently,
+with no failing run and no error anywhere.
+
+Measured:
+
+| Thing | Value |
+|---|---|
+| Last commit by a person on `main` | `9866ae6`, 2026-09-06 (PR #669) |
+| Last commit of any kind | `b0458ff`, 2026-09-07 - author `zao-backup`, pushed by the workflow itself |
+| Workflow state (GitHub API) | `active` |
+| Last 5 scheduled runs | all `success`, through 2026-09-07 |
+| Workflows in the repo | 1 |
+
+**The date is 2026-11-05**, counting 60 days from the last human commit. Today's
+commit moves it to **2026-11-06**. Season 2 prep is targeted at late November, so
+on the current plan the backup stops roughly three weeks BEFORE anyone looks at
+this repo again.
+
+One thing is genuinely UNMEASURED: whether the workflow's own nightly commit
+resets the 60-day clock. The commits are pushed with the default `GITHUB_TOKEN`,
+and it is widely reported that `GITHUB_TOKEN` activity does not count - but that
+is not something this repo can measure from the inside. So the safe reading is
+the one above: assume bot commits do not count, and treat 2026-11-06 as real.
+
+What stops on that date: the nightly backup, and the daily authenticated call to
+`/api/export` that is also what keeps the Upstash free tier from going cold.
+
+Both `workflow_dispatch` and a warning email from GitHub are available as
+manual saves. Neither is a detector - see the grill.
+
+---
+
+## 1. The season figures reconcile. The premise that said otherwise was wrong.
+
+`CLAUDE.md` said 31 projects / 15 people "does not reconcile" against 21 KV
+documents from 6 handles. **That comparison used the wrong store.** Measured:
+
+`GET https://zabalgamez.com/api/submissions?feed=projects` returns, live:
+
+```
+ok: true   configured: true   source: canonical-project-feed
+count: 31   builders: 3
+tracks:   artist 6, builder 19, creator 6
+statuses: published 22, building 7, planned 2
+```
+
+31 rows, counted. They come from two places, and the old comparison only ever
+looked at the first:
+
+- **16 rows** from the KV board (`zabal:sub:v1:*`)
+- **15 rows** from the seeded builders in `data/builder-submissions.json` -
+  ghostmintops 7, branth 5, jdwalka 3
+
+Why the 21-document count was misleading: `zabal:sub:v1:*` holds 21 documents,
+but they are prompt answers, not projects. By status they are 15 approved, 3
+pending, 3 draft. Of those, id 1 is `promptId: wip-test` and reads *"E2E test
+draft from the build terminal - safe to reject"*, and ids 5 and 6 are both
+labelled `[QA TEST - please delete]`. None of those three reach the public feed.
+And the count omits the 15 seeded builder projects entirely.
+
+**Verdict: 31 is correct and reproducible. Do not change it.**
+
+### 15 people
+
+The feed yields **17 distinct identities**. Two of them carry no usable identity:
+
+- id 20 (`sentra`) - handle null, builder name null
+- id 19 - builder name is the literal string `https://x.com/Gesd01`
+
+17 minus those two is 15, which is what is published. That is a defensible
+reconciliation but it is a judgment call, not an extraction - the figure was
+hand-tallied and the tally itself was never written down. Recorded here so the
+next person sees the arithmetic instead of re-guessing it.
+
+The full identity list as measured: ghostmintops (7), branth (5), LadyrynNemesis
+(3), jdwalka (3), and one each for uniquebeing404, breadcoop, mettodo, kayonfire,
+Halit Tayyar / @taydexfun, IMan Afrikah, Presdency.eth, dee-13, Joshua Grubbs /
+@pyrofirezerox, Pascaline, เมรี เพ็ชรจันทร์, plus the two unidentified rows.
+
+Two live rows are low-signal but real submissions and were left alone: id 21
+(project `เมรี`, description `เล่นเกม`) and id 20 (`sentra`, no builder).
+
+### 31 workshops
+
+`data/season-1-results.json` publishes 31 workshops alongside 31 projects. The
+repo holds **35 recording pages**, which is a different thing (some sessions
+produced more than one page, some pages are not workshops). The two numbers are
+not in conflict and neither was changed.
+
+---
+
+## 2. The judging panels
+
+From `data/finals.json`, as recorded:
+
+| Battle | Judges |
+|---|---|
+| artist | none recorded at all |
+| builder | Thy Revolution, Iman Afrikah, paperhandpapi |
+| creator | Thy Revolution, N3M, **`null`** |
+
+The creator panel has a literal `null` in the third seat. `/august` renders that
+honestly rather than hiding it. This cannot be resolved from the repo - it needs
+a name from Zaal, or a decision that the battle ran with two. Same for artist:
+either a panel existed and was never written down, or there was none.
+
+Left as-is. Guessing a judge's name onto a public results page would be worse
+than the `null`.
+
+---
+
+## 3. Per-signal numbers
+
+Poll counts and trading figures for the three battles are in no store, no data
+file and no backup. They were never captured. Every surface names who took each
+signal and publishes no margin, which is correct.
+
+They are not recoverable by any means available here. The only live question is
+whether Season 2 instruments them at the time - see the grill.
+
+---
+
+## 4. Vercel Web Analytics is on. Measured, not assumed.
+
+`CLAUDE.md` said this was unresolved because dashboard state cannot be read from
+the repo. It can be measured from outside, and was:
+
+```
+GET  https://zabalgamez.com/_vercel/insights/script.js   -> 200, 3106 bytes of real runtime
+POST https://zabalgamez.com/_vercel/insights/view        -> 200
+```
+
+A project with Analytics disabled does not serve the runtime and does not accept
+the beacon. **It is collecting.** What still cannot be measured from here is
+retention and whether anyone reads it.
+
+One real defect found and fixed in this pass: **6 public pages carried no
+analytics tag at all** - `august.html` (the canonical Finals page), `guest.html`,
+`links.html`, `media.html`, `status.html`, `wins.html`. All six now have it.
+`referrers.html` is a redirect stub and correctly has none. Coverage is now 65 of
+66 top-level pages, which is every page that renders.
+
+---
+
+## 5. Cal.com - and a wrong claim in CLAUDE.md
+
+Two booking pages are live right now:
+
+| URL | HTTP |
+|---|---|
+| `cal.com/zabal-gamez/workshop-session` | 200 - this is the one the site links |
+| `cal.com/bettercallzaal/zabal-games-workshop-slot` | 200 - named in the lane brief |
+| `cal.com/bettercallzaal/zabal-games-workshop` | 404 - the archive doc's link is dead |
+
+The season is over and both live pages still accept bookings for it.
+
+`CLAUDE.md` described `lead.html` as "workshop-lead page: Cal.com embed
+(`CAL_LINK` var) + Formspree fallback". Measured: **`lead.html` contains no
+Cal.com link and no `CAL_LINK` variable.** The only Cal embed on the site is in
+`info.html`. `CAL_LINK` survives solely in `docs/archive/cal-luma-workflow.md`.
+Corrected in `CLAUDE.md` in this pass.
+
+Adding booking questions to the event is a Cal.com dashboard action and cannot be
+done from the repo.
+
+---
+
+## 6. Branch triage - 25 branches, 10 dead, 15 real, and 4 of the 15 are one thing
+
+`git branch -r --no-merged origin/main` lists 25. That overcounts, because a
+squash merge changes the patch id and the branch keeps looking unmerged. Cross-
+checking with `git cherry` and PR state:
+
+### Dead - fully landed on main, safe to delete (10)
+
+`ws/builder-winner-post`, `ws/docs-season1-closeout` (#669),
+`ws/remove-collectible-link`, `ws/retire-superseded-finals-stack`,
+`ws/season-clock-guards`, `ws/season1-closed-copy`, `ws/season1-llms-press`,
+`ws/season1-surface-sweep` - all report zero unmerged patches.
+
+`ws/home-season1-showcase` (PR #667 MERGED) and `ws/retire-magnetiq-endpoint`
+(PR #661 MERGED) look unmerged to `git cherry` but were verified by content:
+`api/magnetiq-ugc.mjs` is absent from `main`, so #661 landed. Nothing is
+stranded on either.
+
+### Superseded - content is on main by another route, or the plan changed (3)
+
+- `ws/retire-loops-magnetiq-2026-08-27` - its whole payload is deleting
+  `api/magnetiq-ugc.mjs`, which `main` no longer has. Landed via #661.
+- `ws/adoptable-seeking-maintainer` - a strict subset of
+  `ws/adoptable-schema-id-note`, which contains the same commit `9a1e0f2`.
+- `claude/submissions-org-finals-post-n05sij` - 9 commits, every one of them
+  built around moving the season to **loops.house**, which is retired. Also
+  closes the community vote in a way the real close-out already superseded.
+
+### One body of work in four copies (4)
+
+`backup/pr-584-2026-08-12`, `claude/zabal-august-finals-obaj97`, `pr-584` and
+`pr584` all point at tip `19708ef`, tree `6b58a4f` - **byte-identical**. This is
+closed PR #584, "Let builders edit their own projects while signed in with
+Farcaster" (SIWE wallet login). One decision covers all four.
+
+### Genuinely unlanded and worth a decision (8)
+
+| Branch | What it holds | Last touched |
+|---|---|---|
+| `ws/bonfire-lane` | Telegram-to-Bonfire ingest script + `docs/bonfire-lane/` | 2026-08-26 |
+| `ws/lane-audit-2026-08-25` | the lane audit doc | 2026-08-26 |
+| `ws/sopha-fireside` | a complete recording page + transcript (PR #188, CLOSED) | 2026-06-09 |
+| `rescue/orphan-8668183-azkal-flowstage` | `recordings/26` - Azkal FlowStage page + transcript | 2026-06-28 |
+| `ws/adoptable-schema-id-note` | `/projects` id contract + "Seeking maintainer" group | 2026-08-25 |
+| `ws/newsletter-day2` | June newsletter draft | 2026-06-02 |
+| `ws/newsletter-day159` | June newsletter draft | 2026-06-07 |
+| `ws/newsletter-2026-06-09` | June newsletter draft + socials | 2026-06-09 |
+
+Two of these are **content that exists nowhere else**: `ws/sopha-fireside` and
+`rescue/orphan-8668183-azkal-flowstage` are each a finished recording page with a
+transcript for a session that really happened. If they are dropped, those two
+sessions are missing from the archive permanently.
+
+Per the standing rule, **nothing was deleted.** This table is the archive.
+
+### The numbering gap is the visible fingerprint of the two orphans
+
+`recordings/N.html` runs 1-35 with **21 and 26 missing**, and `/recordings/21` and
+`/recordings/26` both return 404 live. Nothing is broken by this - all 35 entries
+in `data/recaps.json` point at a page that exists on disk, so there are no
+dangling links and the hub renders correctly. But slot **26** is exactly what
+`rescue/orphan-8668183-azkal-flowstage` holds. The gap in the sequence is the
+only thing on `main` that hints those sessions were recorded at all.
+
+Recording totals cross-checked while here: 35 pages on disk, 35 entries in
+`data/recaps.json`, typed 31 `workshop` + 4 `fireside`. That matches the
+published "31 recorded workshops" exactly and matches `README.md`'s "31 workshops
+and 4 firesides". No change needed.
+
+---
+
+## 7. Season 2
+
+Named, with no dates, no format and no theme. `docs/season-2-ideas.md` holds the
+ideas and Zaal's pitch-week suggestion. Nothing public was set, which is correct.
+
+The one hard dependency Season 2 has on this document is the backup date above:
+late-November prep starts after 2026-11-06.
