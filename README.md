@@ -138,7 +138,7 @@ Zero-dependency Vercel edge functions over **Upstash Redis** (REST). Verified wr
 - `fix-transcript.mjs` - apply the brand-vocab glossary to a transcript/caption file.
 - **`node scripts/check-finals-render.mjs`** - 22 cases covering how `data/finals.json` renders on `/august` and `/live`. Run it after touching finals data or those two pages.
 - `build-sitemap.mjs` - regenerate `sitemap.xml`.
-- `ingest-recording.mjs` - scaffold a new `recordings/N.html` page.
+- `ingest-recording.mjs` - scaffold a new `recordings/N.html` page from a manifest. Re-running it on an existing slug UPDATES that recording in place and now **merges**: fields the manifest omits are carried from the existing recap rather than dropped (pass `"replace": true` to opt out). Always read the dry run first - it lists what it will carry, and warns if an update would turn a video page into a placeholder.
 - `redact-export.py` - strips ballots, tokens and email addresses from a KV export before it is committed. The backup workflow calls it; **never commit a raw export.**
 - `add-daily.mjs`, `aggregate-dispatches.mjs`, `pull-data-streams.mjs`, `push-to-bonfire.mjs`, `resolve-pfps.mjs`, `build-crm.mjs`, `gen-posts.mjs`, `clip-picker.mjs` - content tooling.
 

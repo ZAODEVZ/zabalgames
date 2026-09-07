@@ -227,21 +227,40 @@ Farcaster" (SIWE wallet login). One decision covers all four.
 | `ws/newsletter-day159` | June newsletter draft | 2026-06-07 |
 | `ws/newsletter-2026-06-09` | June newsletter draft + socials | 2026-06-09 |
 
-Two of these are **content that exists nowhere else**: `ws/sopha-fireside` and
-`rescue/orphan-8668183-azkal-flowstage` are each a finished recording page with a
-transcript for a session that really happened. If they are dropped, those two
-sessions are missing from the archive permanently.
+**CORRECTION, same day.** An earlier version of this document claimed
+`ws/sopha-fireside` and `rescue/orphan-8668183-azkal-flowstage` were "content
+that exists nowhere else". **That was wrong, and it was wrong in the dangerous
+direction** - it invited someone to re-land two stale drafts over the good
+copies. Both sessions are already on `main`, under different slugs and numbers:
+
+| Branch | Session | Already on main at | Branch transcript | Main transcript |
+|---|---|---|---|---|
+| `ws/sopha-fireside` | Sopha - Chris (chriscocreated) x Zaal, 2026-06-08 | **`/recordings/5`**, "Building Sopha, and why curation is needed", transcript `2026-06-08-sopha-chris-building-curation.md` | 1,864 words, untimestamped | **2,762 words, timestamped, deep-links the video** |
+| `rescue/orphan-8668183-azkal-flowstage` | AZKAL / FlowStage, 2026-06-28 | **`/recordings/27`**, same transcript filename, `youtube: youtu.be/U_Eubs-2_Yo` | 5,192 words, **no youtube**, empty `[00:00:00]` | **5,258 words, carries the video** |
+
+**Main's copy is strictly better in both cases.** The branch versions are earlier,
+thinner drafts of sessions that later landed properly. There is nothing to
+salvage: both branches are safe to delete, and re-landing either would be a
+regression.
+
+How the wrong claim was reached: the branch diffs showed new files, because the
+slug differed (`2026-06-08-sopha-fireside-chris.md` vs
+`2026-06-08-sopha-chris-building-curation.md`). Comparing filenames is not
+comparing sessions. **The check that settles it is by session - date plus
+presenter - against `data/recaps.json`, not by path.**
+
+The gaps at `recordings/21` and `recordings/26` are therefore unrelated to these
+two branches. They are simply unallocated numbers, and nothing points at them.
 
 Per the standing rule, **nothing was deleted.** This table is the archive.
 
-### The numbering gap is the visible fingerprint of the two orphans
+### The numbering gap is harmless
 
 `recordings/N.html` runs 1-35 with **21 and 26 missing**, and `/recordings/21` and
 `/recordings/26` both return 404 live. Nothing is broken by this - all 35 entries
 in `data/recaps.json` point at a page that exists on disk, so there are no
-dangling links and the hub renders correctly. But slot **26** is exactly what
-`rescue/orphan-8668183-azkal-flowstage` holds. The gap in the sequence is the
-only thing on `main` that hints those sessions were recorded at all.
+dangling links and the hub renders correctly. They are unallocated numbers and
+nothing links to them.
 
 Recording totals cross-checked while here: 35 pages on disk, 35 entries in
 `data/recaps.json`, typed 31 `workshop` + 4 `fireside`. That matches the
@@ -249,6 +268,39 @@ published "31 recorded workshops" exactly and matches `README.md`'s "31 workshop
 and 4 firesides". No change needed.
 
 ---
+
+## The salvage attempt, and the bug it found
+
+Acting on the wrong claim above, `scripts/ingest-recording.mjs` was run against
+the AZKAL manifest on 2026-09-07. It reported `UPDATE`, matched
+`/recordings/27` by transcript filename, and **rebuilt a live video page as a
+placeholder, dropping `youtube: youtu.be/U_Eubs-2_Yo` from the recap.** Reverted
+immediately; nothing was pushed.
+
+That is a real defect, not operator error, and it is now fixed. `buildRecap()`
+built the recap from the manifest alone and `recaps[existingIdx] = recap`
+replaced it wholesale, so **every field the manifest was silent about was
+deleted** - `youtube`, `chapters`, `technical`, `type`, `pull_quotes`,
+`resources`, the lot. The docstring claimed it carried `chapters`; it did not.
+This is the exact reverse of the script's own documented flow ("re-run on the
+same slug to UPDATE in place, e.g. video lands after a transcript-only first
+pass") - that flow could not work, because the transcript-only pass would erase
+the video it was meant to complement.
+
+The fix backfills the manifest from the existing recap before anything is
+generated, so the page inherits too, and `"replace": true` opts out. Measured
+after the fix:
+
+- The manifest that broke page 27 now reports `[video]` and `carried youtube`.
+- A bare `{slug, date, title}` manifest over `/recordings/35` carries **18**
+  fields it used to drop, and keeps `type: fireside` instead of defaulting the
+  recording back to `workshop`.
+- A no-op re-ingest of `/recordings/35` now leaves `data/recaps.json` and
+  `recordings/35.html` **byte-identical**. Only the generated date stamps in
+  `recordings.txt` and `recordings/index.json` move.
+
+The script also warns now when an update would turn a video page into a
+placeholder, so the next person sees it in the dry run instead of in production.
 
 ## 7. Season 2
 

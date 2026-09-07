@@ -259,11 +259,17 @@ nobody had measured them; they are now answered. Three need a decision from Zaal
    (`ws/retire-loops-magnetiq-2026-08-27`, `ws/adoptable-seeking-maintainer`, and
    `claude/submissions-org-finals-post-n05sij`, whose 9 commits all move the season to
    the retired loops.house), **4 are byte-identical copies of one thing** - closed PR #584
-   SIWE wallet login, at tip `19708ef` - and **8 hold genuinely unlanded work**. Two of
-   those eight are content that exists nowhere else: `ws/sopha-fireside` and
-   `rescue/orphan-8668183-azkal-flowstage` are each a finished recording page plus
-   transcript for a session that really happened. Nothing was deleted; the full table is
-   in the audit doc.
+   SIWE wallet login, at tip `19708ef` - and **8 hold genuinely unlanded work**. Nothing
+   was deleted; the full table is in the audit doc.
+   **CORRECTED 2026-09-07:** an earlier version of this list said `ws/sopha-fireside` and
+   `rescue/orphan-8668183-azkal-flowstage` were the only copy of two recordings. **They
+   are not - both sessions are already on `main` and main's copy is strictly better.**
+   Sopha is `/recordings/5` (2,762 timestamped words vs the branch's 1,864); AZKAL is
+   `/recordings/27` (5,258 words *and* `youtu.be/U_Eubs-2_Yo`, vs the branch's 5,192 with
+   no video). Both branches are earlier drafts, and re-landing either is a regression.
+   The branch diffs looked like new files only because the slugs differ - **check by
+   session (date + presenter) against `data/recaps.json`, never by transcript filename.**
+   The gaps at `recordings/21` and `recordings/26` are unallocated numbers, unrelated.
 7. **Season 2 prep** - target late November. Ideas and Zaal's pitch-week suggestion are in
    `docs/season-2-ideas.md`. Set nothing public until dates and format exist. Note the
    hard dependency in the next section: late-November prep starts *after* the backup
