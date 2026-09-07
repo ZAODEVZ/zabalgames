@@ -259,8 +259,12 @@ nobody had measured them; they are now answered. Three need a decision from Zaal
    (`ws/retire-loops-magnetiq-2026-08-27`, `ws/adoptable-seeking-maintainer`, and
    `claude/submissions-org-finals-post-n05sij`, whose 9 commits all move the season to
    the retired loops.house), **4 are byte-identical copies of one thing** - closed PR #584
-   SIWE wallet login, at tip `19708ef` - and **8 hold genuinely unlanded work**. Nothing
-   was deleted; the full table is in the audit doc.
+   SIWE wallet login, at tip `19708ef` - and **6 hold genuinely unlanded work**. The full
+   table is in the audit doc.
+   **Two branches were deleted 2026-09-07 on Zaal's call** - `ws/sopha-fireside`
+   (`c59cf45`) and `rescue/orphan-8668183-azkal-flowstage` (`8668183`), both duplicates.
+   Their SHAs are recorded in the audit doc; restore with
+   `git push origin <sha>:refs/heads/<name>`. Everything else is untouched.
    **CORRECTED 2026-09-07:** an earlier version of this list said `ws/sopha-fireside` and
    `rescue/orphan-8668183-azkal-flowstage` were the only copy of two recordings. **They
    are not - both sessions are already on `main` and main's copy is strictly better.**
