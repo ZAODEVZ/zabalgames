@@ -8,6 +8,13 @@
 > already happened. Read them as history. For what is true now, see [/CLAUDE.md](../CLAUDE.md)
 > and [/results](https://zabalgamez.com/results).
 
+> **Every season figure was re-measured on 2026-09-07 and the working is in
+> [season-1-closeout-audit-2026-09-07.md](season-1-closeout-audit-2026-09-07.md).**
+> Read it before changing any number, before triaging a branch, and before repeating
+> the claim that 31 projects "does not reconcile" - it does, and the audit shows how.
+> It also carries the one item with a real date on it: the nightly KV backup switches
+> itself off around **2026-11-06**.
+
 > Two format warnings for anyone reading the older docs. **The Finals design they describe -
 > mentor embedded as a teammate, a 24h build + promote window, a governance vote, WaveWarZ-Base
 > market settlement - was superseded and never ran.** And **Magnetiq was retired as a partner on
@@ -37,6 +44,7 @@ For the announce push:
 
 | File | What it is |
 |---|---|
+| [season-1-closeout-audit-2026-09-07.md](season-1-closeout-audit-2026-09-07.md) | **Start here for any season number.** Every Season 1 figure measured against the live site, the KV backup and git on 2026-09-07: why 31 projects is correct, where the 15 people come from, the branch triage, the Vercel Analytics and Cal.com findings, and the date the nightly KV backup switches itself off. |
 | [brand-context.md](brand-context.md) | The brand spine for every ZAO ecosystem brand. Voice + visual + audience + status per brand. |
 | [launch-kit.md](launch-kit.md) | Asset + copy bundle: SVG OG card prompt, intro video script outline, Zlank Snap URL, signup CTA copy. |
 | [mentor-outreach-2026-05-24.md](mentor-outreach-2026-05-24.md) | DM scripts + target list for mentor recruitment. |
