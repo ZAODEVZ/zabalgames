@@ -105,21 +105,50 @@ not in conflict and neither was changed.
 
 ## 2. The judging panels
 
-From `data/finals.json`, as recorded:
+From `data/finals.json`:
 
 | Battle | Judges |
 |---|---|
-| artist | none recorded at all |
+| artist | none recorded at all - **still open** |
 | builder | Thy Revolution, Iman Afrikah, paperhandpapi |
-| creator | Thy Revolution, N3M, **`null`** |
+| creator | Thy Revolution, N3M, **Candy Toybox** - filled 2026-09-07 |
 
-The creator panel has a literal `null` in the third seat. `/august` renders that
-honestly rather than hiding it. This cannot be resolved from the repo - it needs
-a name from Zaal, or a decision that the battle ran with two. Same for artist:
-either a panel existed and was never written down, or there was none.
+### The creator third seat: filled, and where it came from
 
-Left as-is. Guessing a judge's name onto a public results page would be worse
-than the `null`.
+It sat as a literal `null`. **Zaal named her on 2026-09-07: Candy Toybox,
+`@CandyToyBoxYT1`.** That handle was closed by the nyczao lane the same day,
+after four earlier attempts to find it failed.
+
+**This was recovered from Zaal, not from a document.** Nothing on disk carried it
+- not `finals.json`, not the Space recording notes, not `.handoffs/DONE.md`,
+which records only that the third seat was "still being found" and was rendered
+as an explicit TBA rather than invented. So there is no file to check it against,
+and a future pass must not "correct" it toward the `null` on the grounds that
+nothing supports it. The `null` was a gap, not a correct empty.
+
+Not to be confused with the Candy (Samantha) who owns wavewarz.info and appears
+in the `candy` skill. Different person.
+
+### Was anything computed over two judges?
+
+Checked, because a null in an array is the kind of thing that quietly skews a
+count. **Nothing computes over the judges array anywhere:**
+
+- `august.html` and `live.html` both `.map()` the array and render a null as an
+  italic `TBA`. Length is never read for anything but an emptiness check.
+- `scripts/check-finals-render.mjs:47` filters `battles` by *having* a judges
+  array and counts **battles**, not judges.
+- No average, score table or per-judge tally exists in the repo. Per-signal
+  numbers were never captured at all (section 3), so there was nothing to divide.
+
+So the `null` was cosmetic in every rendered surface and factual only in the
+record. Filling it changes the record and the `/august` prose, nothing computed.
+
+### The artist battle is still open
+
+No panel is recorded for it at all. Either one existed and was never written
+down, or the battle ran on the poll and the charts alone. Only Zaal closes that.
+Guessing a judge's name onto a public results page would be worse than the gap.
 
 ---
 
