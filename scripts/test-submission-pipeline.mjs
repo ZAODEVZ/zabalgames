@@ -2,6 +2,14 @@
 
 // Zero-dependency contract smoke test for the canonical submission handler.
 // Uses a tiny in-memory Upstash REST stand-in and never contacts external services.
+//
+// UPDATED 2026-09-08. This test asserted the old APPROVAL-QUEUE model - create goes to
+// 'pending' and stays hidden from the public until an admin approves it. The pipeline moved to
+// AUTO-ACCEPT (api/submissions.mjs:23: "a new project goes live on the board immediately
+// (status 'approved'); moderation is delete-after"), so the test had been failing ever since
+// and had been quietly left OUT of the SessionStart hook chain rather than updated. That is the
+// worst of both outcomes: the submission pipeline was unguarded AND looked tested, because a
+// test file existed. Every status below was measured against the real handler, not assumed.
 
 import assert from 'node:assert/strict';
 import http from 'node:http';
@@ -86,13 +94,20 @@ try {
     },
   });
   assert.equal(created.ok, true);
-  assert.equal(created.status, 'pending');
+  // AUTO-ACCEPT: live on the board immediately. If this ever reads 'pending' again, the
+  // approval queue is back and /submissions, /review and the docs all need to change together.
+  assert.equal(created.status, 'approved');
   assert.ok(created.editToken);
 
-  const pendingPublic = await call(`/api/submissions?id=${created.id}`);
-  assert.equal(pendingPublic.submission.status, 'pending');
-  assert.equal(pendingPublic.submission.handle, null);
-  assert.equal(pendingPublic.submission.project, undefined);
+  const livePublic = await call(`/api/submissions?id=${created.id}`);
+  assert.equal(livePublic.submission.status, 'approved');
+  assert.equal(livePublic.submission.handle, 'example');
+  assert.equal(livePublic.submission.project, 'Smoke Project');
+  // Auto-accept makes the row public, so the privacy boundary matters MORE here, not less:
+  // the raw email and the inbound email source id must never appear in the public view.
+  assert.equal(livePublic.submission.email, undefined);
+  assert.equal(livePublic.submission.fields.emailSourceId, undefined);
+  assert.equal(livePublic.submission.editToken, undefined);
 
   const denied = await call('/api/submissions', { action: 'approve', id: created.id });
   assert.equal(denied.error, 'forbidden');
@@ -111,12 +126,14 @@ try {
     action: 'update', id: created.id, editToken: created.editToken,
     answer: 'Updated description.', fields: { project: 'Updated Project', description: 'Updated description.' },
   });
-  assert.equal(updated.status, 'pending');
+  // An owner edit does NOT send the row back to a review queue - there isn't one.
+  assert.equal(updated.status, 'approved');
   assert.equal(updated.submission.fields.project, 'Updated Project');
 
-  const hiddenAgain = await call(`/api/submissions?id=${created.id}`);
-  assert.equal(hiddenAgain.submission.status, 'pending');
-  assert.equal(hiddenAgain.submission.project, undefined);
+  const stillLive = await call(`/api/submissions?id=${created.id}`);
+  assert.equal(stillLive.submission.status, 'approved');
+  assert.equal(stillLive.submission.project, 'Updated Project');
+  assert.equal(stillLive.submission.email, undefined);
 
   const owner = await call(`/api/submissions?id=${created.id}&token=${encodeURIComponent(created.editToken)}`);
   assert.equal(owner.owner, true);

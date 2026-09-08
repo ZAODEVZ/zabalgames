@@ -264,6 +264,24 @@ the literal to `ALLOWED_LITERALS` **with the reason it is safe**. The allowlist 
 context (npm `integrity` lines, one named test fixture) and never whole files, because "skip
 this file" is how a real key later hides in an allowlisted file.
 
+## Tests are discovered, not listed (fixed 2026-09-08)
+`node scripts/test-all.mjs` runs **every** `scripts/test-*.mjs`, reports each, and exits
+non-zero if any fail. The SessionStart hook is now just
+`validate.mjs --quiet && test-all.mjs --quiet`.
+
+It replaced a hand-maintained `&&` chain that hid two failures at once:
+- **`test-crons.mjs` crashed on import** because it existed only to test `api/daily-cast.mjs`,
+  which PR #574 deleted. `&&` short-circuits, so **every test after it never ran** - the hook
+  listed seven tests and executed three. That dead file is deleted; there was nothing left for
+  it to test.
+- **`test-submission-pipeline.mjs` and `test-submission-email.mjs` were never in the chain.**
+  The pipeline one had been failing since the switch to auto-accept, so it was left out rather
+  than updated, leaving that pipeline unguarded while a test file implied otherwise.
+
+So: **add a `scripts/test-*.mjs` and it runs - there is no wiring step to forget**, one failure
+cannot mask another, and a test that cannot even import is reported as CRASHED rather than
+skipped. Do not reintroduce a hand-listed test chain.
+
 ## Validate before pushing (no test suite)
 - **One command: `node scripts/validate.mjs`** - runs all four checks below and exits
   non-zero on any failure. A SessionStart hook (`.claude/settings.json`) runs it
