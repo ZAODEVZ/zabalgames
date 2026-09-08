@@ -755,6 +755,26 @@
       <div class="card-meta" id="fireside-recordings"><a href="/recordings/fireside/1">Watch Fireside #1: Bonfires + a vibe-coding masterclass</a></div>
     </div>
 
+    <!-- Pitch week. Renders nothing until a recap carries type:'pitch', exactly like the other
+         sections. Format settled 2026-09-08: everyone on the board pitches, recorded, judges give
+         notes, non-scoring - see docs/season-2-pitch-week.md. No dates: Season 2 has none. -->
+    <div class="rec-card">
+      <div class="card-label" style="color: var(--cyan);">pitch week</div>
+      <h3>Pitch week</h3>
+      <p class="rec-builder">Everyone on the board records a pitch before the Finals, so nobody presents their work out loud for the first time in front of a panel.</p>
+      <p>Recorded rather than live, so a field spanning six timezones can all take part. Judges leave notes on each one. <strong>Nothing here is scored</strong> - it is rehearsal, and being treated as rehearsal is the point.</p>
+      <div class="card-meta" id="pitch-recordings"><span class="rec-builder">Nothing yet - Season 2 has no dates set.</span></div>
+    </div>
+
+    <!-- Any recap type with no section of its own lands here rather than disappearing. Hidden
+         until there is something to show. -->
+    <div class="rec-card" id="other-recordings-section" hidden>
+      <div class="card-label" style="color: var(--gold);">other sessions</div>
+      <h3>Other recorded sessions</h3>
+      <p class="rec-builder">Sessions whose type has no section of its own yet. Listed here so nothing recorded can go missing from this page.</p>
+      <div class="card-meta" id="other-recordings"></div>
+    </div>
+
     <div class="card">
       <div class="card-label" style="color: var(--cyan);">bcz workshops</div>
       <h3>BCZ Workshops</h3>
@@ -865,7 +885,7 @@
 // once it has entries.
 (function () {
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-  var TARGETS = { workshop: 'workshop-recordings', fireside: 'fireside-recordings', bczworkshop: 'bcz-recordings' };
+  var TARGETS = { workshop: 'workshop-recordings', fireside: 'fireside-recordings', bczworkshop: 'bcz-recordings', pitch: 'pitch-recordings' };
   fetch('/data/recaps.json', { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (d) {
@@ -876,6 +896,25 @@
         var t = r.type || 'workshop';
         (byType[t] = byType[t] || []).push(r);
       });
+      // A type present in the data but absent from TARGETS used to be grouped and then silently
+      // dropped - visible in /recordings/index.json, which agents read, and invisible to every
+      // human here. Surface it instead, so adding a type to recaps.json can never make a real
+      // session vanish from the hub.
+      var unhandled = Object.keys(byType).filter(function (t) { return !TARGETS[t]; });
+      if (unhandled.length) {
+        var host = document.getElementById('other-recordings');
+        if (host) {
+          var orows = [];
+          unhandled.forEach(function (t) {
+            byType[t].forEach(function (r) {
+              orows.push('<a href="' + esc(r.page) + '">Watch: ' + esc(r.title) + '</a> <span class="rec-builder">(' + esc(t) + ')</span>');
+            });
+          });
+          host.innerHTML = orows.join(' &middot; ');
+          var osec = document.getElementById('other-recordings-section');
+          if (osec) osec.hidden = false;
+        }
+      }
       Object.keys(TARGETS).forEach(function (type) {
         var el = document.getElementById(TARGETS[type]);
         var rows = byType[type];
