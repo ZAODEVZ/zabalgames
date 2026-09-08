@@ -66,6 +66,21 @@ try {
   else fail(`payload domain = ${decoded.domain} (expected ${DOMAIN})`);
 } catch (e) { fail('manifest - ' + e.message); }
 
+// 5. Per-signal capture - a battle must not settle with its numbers missing.
+// Delegated to scripts/check-signals.mjs so it can also be run on its own from the room.
+// This is here rather than standalone because Season 1's signals were lost by nobody
+// running anything; a check you have to remember is a check that does not exist.
+head('Per-signal capture:');
+try {
+  const outp = execSync(`node ${JSON.stringify('scripts/check-signals.mjs')}${QUIET ? ' --quiet' : ''}`, { encoding: 'utf8' });
+  if (!QUIET) process.stdout.write(outp.split('\n').filter(Boolean).map((l) => '  ' + l.replace(/^ {2}/, '')).join('\n') + '\n');
+  else ok('signals captured or explicitly exempted');
+} catch (e) {
+  const text = (e.stdout || '') + (e.stderr || '');
+  for (const line of text.split('\n')) if (/FAIL|failure/.test(line)) fail(line.replace(/^\s*FAIL\s*/, ''));
+  if (!/FAIL|failure/.test(text)) fail('check-signals.mjs - ' + e.message);
+}
+
 head('');
 if (failures) { console.error(`validate: ${failures} failure(s).`); process.exit(1); }
 console.log('validate: all checks passed.');

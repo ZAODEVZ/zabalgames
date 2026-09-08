@@ -140,6 +140,8 @@ Zero-dependency Vercel edge functions over **Upstash Redis** (REST). Verified wr
 - `build-sitemap.mjs` - regenerate `sitemap.xml`.
 - `ingest-recording.mjs` - scaffold a new `recordings/N.html` page from a manifest. Re-running it on an existing slug UPDATES that recording in place and now **merges**: fields the manifest omits are carried from the existing recap rather than dropped (pass `"replace": true` to opt out). Always read the dry run first - it lists what it will carry, and warns if an update would turn a video page into a placeholder.
 - `redact-export.py` - strips ballots, tokens and email addresses from a KV export before it is committed. The backup workflow calls it; **never commit a raw export.**
+- `check-signals.mjs` - refuses to let a battle settle with its deciding numbers missing. Runs inside `validate.mjs`. Season 1 lost every poll count and trading figure because nothing was watching; this is what watches.
+- `record-signal.mjs` - write one signal from the room in a single line, with an automatic `capturedAt` and a required `--source`. Built because hand-editing JSON during a live Space is why Season 1's numbers were never captured.
 - `add-daily.mjs`, `aggregate-dispatches.mjs`, `pull-data-streams.mjs`, `push-to-bonfire.mjs`, `resolve-pfps.mjs`, `build-crm.mjs`, `gen-posts.mjs`, `clip-picker.mjs` - content tooling.
 
 ## Develop + deploy
