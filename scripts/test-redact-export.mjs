@@ -50,6 +50,9 @@ const EXPORT = {
     'zabal:subs:recent': ['99', '1', '98', '2'],                   // must survive intact
     'zabal:points:tally': { someone: 12 },                         // must survive intact
     'zabal:contact:role': 'reach us at info@thezao.com',            // allowlisted, must survive
+    'zabal:ref:submitters:zaal': ['11', '12'],                     // social-graph edge, must go
+    'zabal:ref:by': { '19640': 'zaal' },                            // ditto
+    'zabal:sub:v1:97': { handle: 'referred', ref: 'zaal', project: 'A referred project' },
   },
 };
 
@@ -100,6 +103,17 @@ try {
     else fail('zabal:subs:recent was altered - redaction must not damage the record');
     if (r.out.data['zabal:sub:v1:99']?.project === 'A thing') ok('submission content preserved apart from the email');
     else fail('submission content was damaged');
+
+    // Referral attribution is a social-graph edge neither party published, and the whole
+    // Season 2 referral design is that it stays invisible. A public repo must not carry it.
+    const refKeys = Object.keys(r.out.data).filter((k) => k.startsWith('zabal:ref:'));
+    if (refKeys.length) fail(`referral key(s) survived: ${refKeys.join(', ')}`);
+    else ok('every zabal:ref:* key dropped');
+    if (blob.includes('"ref"') || /\bref\b\s*:/.test(JSON.stringify(r.out.data['zabal:sub:v1:97'] || {}))) {
+      fail('the inline `ref` field survived inside a submission - dropping whole keys is not enough');
+    } else ok('the inline ref field is stripped from inside the submission row');
+    if (r.out.data['zabal:sub:v1:97']?.project === 'A referred project') ok('the referred submission itself survives, minus its ref');
+    else fail('stripping ref damaged the submission');
 
     if (r.out.redacted?.emails_redacted === 2) ok('reports 2 emails redacted, matching what was planted');
     else fail(`emails_redacted = ${r.out.redacted?.emails_redacted}, expected 2`);
