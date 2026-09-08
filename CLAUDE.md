@@ -34,13 +34,16 @@ do not invent them.
 
 <!-- RECHECK 2026-11-01: Season 2 was targeted at "late November". If dates, format or theme still do not exist by now, the late-November target is itself the stale claim - say so rather than repeating it. -->
 **Season 2 has no dates and no theme. Do not add any until Zaal sets them.** One piece of FORMAT
-is settled: **pitch week - everyone on the board pitches, recorded, judges give notes,
-non-scoring** (Zaal 2026-09-08, spec in `docs/season-2-pitch-week.md`). It is built out of the
+is settled: **pitch week - everyone on the board pitches, recorded, three minutes, judges give
+notes, notes are PUBLIC, non-scoring** (Zaal 2026-09-08, spec in `docs/season-2-pitch-week.md`). It is built out of the
 existing recordings pipeline (`type: 'pitch'` in `data/recaps.json`) and the existing
 Farcaster-verified comment threads, so it added no page and no endpoint. **Judges giving notes
 means the panel has seen the work before the Finals - that was chosen deliberately, not
-overlooked; do not "fix" it.** Nothing about pitch week is scored, and it must never gain a
-signals block. The repo is written so it can sit untouched until then.
+overlooked; do not "fix" it.** Nothing about pitch week is scored, and it must never gain a signals block - notes must not be
+counted, ranked, averaged or aggregated, including comment counts. **Notes being public creates
+one obligation: the pitch card on `/recordings` tells entrants up front that the panel's notes
+on their work are public and written before the cut.** Keep that sentence if you rewrite the
+copy - consent to public feedback is only informed if it comes before the pitch. The repo is written so it can sit untouched until then.
 
 The site is a multi-surface Mini App - 68 top-level pages + 35 recording pages + the game
 pages, 45 edge endpoints. Snapshot:
