@@ -43,6 +43,15 @@
     .t-artist { color: var(--pink); } .t-builder { color: var(--zabal); } .t-creator { color: var(--cyan); }
     .st-legend { font-size: 0.78rem; color: var(--text-muted); margin: 0.4rem 0 0; }
     .st-legend .dot { vertical-align: middle; }
+    .st-backup { border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; margin: 0 0 0.6rem; background: var(--surface); }
+    .st-backup.bad { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 7%, var(--surface)); }
+    .st-backup.blind { border-style: dashed; }
+    .st-backup h3 { font-family: 'Syne', sans-serif; font-size: 1rem; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.45rem; }
+    .st-backup .bh-problem { color: var(--gold); font-size: 0.85rem; margin: 0.35rem 0 0; line-height: 1.5; }
+    .st-backup dl { display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 0.9rem; margin: 0.6rem 0 0; font-size: 0.82rem; }
+    .st-backup dt { color: var(--text-dim); }
+    .st-backup dd { margin: 0; color: var(--text-muted); }
+    .st-backup .bh-note { color: var(--text-dim); font-size: 0.76rem; margin: 0.6rem 0 0; line-height: 1.5; }
     .st-updated { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-dim); margin-top: 1.6rem; }
     a.lk { color: var(--cyan); text-decoration: none; } a.lk:hover { text-decoration: underline; }
   </style>
@@ -77,6 +86,17 @@
   </header>
 
   <div class="st-stats" id="st-stats" aria-label="At a glance"></div>
+
+  <!-- Backups sit ABOVE the pipeline on purpose. Once a season is closed this page is the
+       only operational surface anyone opens, and the backup switching itself off is the one
+       failure here that is both silent and irreversible. -->
+  <div class="st-section">
+    <h2>Backups + the workflow clock</h2>
+    <p>Live from <code>/api/backup-health</code>. GitHub disables scheduled workflows after 60 days of repository inactivity, and <code>kv-backup.yml</code> is the only one here.</p>
+  </div>
+  <div class="st-backup" id="st-backup" aria-busy="true" aria-live="polite">
+    <p style="color:var(--text-muted);font-size:0.85rem;margin:0;">Checking...</p>
+  </div>
 
   <div class="st-section">
     <h2>Recordings pipeline</h2>
@@ -133,6 +153,49 @@
 (function () {
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function dot(on, na){ return '<span class="dot' + (na ? ' na' : (on ? ' on' : '')) + '"></span>'; }
+
+  // Backup health, deliberately on its own fetch. If the pipeline tables below fail to load,
+  // this must still render, and vice versa - the whole point of a detector is that it does
+  // not share a failure mode with the thing it is watching.
+  //
+  // measured:false renders as UNMEASURED with a dashed border, NEVER as healthy. A blind
+  // check that shows green is worse than no check: it turns an outage into a reassurance.
+  (function backupHealth() {
+    var el = document.getElementById('st-backup');
+    if (!el) return;
+    function paint(cls, title, bodyHtml) {
+      el.className = 'st-backup' + (cls ? ' ' + cls : '');
+      el.setAttribute('aria-busy', 'false');
+      el.innerHTML = '<h3>' + title + '</h3>' + bodyHtml;
+    }
+    fetch('/api/backup-health', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || d.measured === false) {
+        paint('blind', dot(false, true) + 'Backups - UNMEASURED',
+          '<p class="bh-problem">Could not measure: ' + esc((d && d.reason) || 'no response') + '</p>' +
+          '<p class="bh-note">This is not a pass. Check <a class="lk" href="https://github.com/ZAODEVZ/zabalgames/actions/workflows/kv-backup.yml" target="_blank" rel="noopener">the workflow</a> by hand.</p>');
+        return;
+      }
+      var b = d.backup || {}, w = d.workflow || {}, i = d.inactivity || {};
+      var rows =
+        '<dl>' +
+        '<dt>Last backup</dt><dd>' + esc(b.lastCommit ? (b.ageHours + 'h ago (' + String(b.lastCommit).slice(0, 10) + ')') : 'never') + '</dd>' +
+        '<dt>Workflow</dt><dd>' + esc(w.state || 'unknown') + '</dd>' +
+        '<dt>Repo idle</dt><dd>' + esc(String(i.idleDays)) + ' day(s), since ' + esc(String(i.lastHumanCommit || '').slice(0, 10)) + '</dd>' +
+        '<dt>Switches off</dt><dd><strong>' + esc(String(i.disablesAt)) + '</strong> - ' + esc(String(i.daysLeft)) + ' day(s) left</dd>' +
+        '</dl>';
+      var note = '<p class="bh-note">Only commits by a person count toward the clock; the workflow’s own nightly commits are excluded, so the real deadline is this one or later, never earlier. Reset it by pushing anything, or by hitting <a class="lk" href="https://github.com/ZAODEVZ/zabalgames/actions/workflows/kv-backup.yml" target="_blank" rel="noopener">Run workflow</a>.</p>';
+      if (d.healthy) {
+        paint('', dot(true) + 'Backups running', rows + note);
+      } else {
+        paint('bad', dot(false) + 'Backups need attention',
+          (d.problems || []).map(function (p) { return '<p class="bh-problem">' + esc(p) + '</p>'; }).join('') + rows + note);
+      }
+    }).catch(function (e) {
+      paint('blind', dot(false, true) + 'Backups - UNMEASURED',
+        '<p class="bh-problem">The check itself did not respond: ' + esc(e && e.message) + '</p>' +
+        '<p class="bh-note">This is not a pass. Check <a class="lk" href="https://github.com/ZAODEVZ/zabalgames/actions/workflows/kv-backup.yml" target="_blank" rel="noopener">the workflow</a> by hand.</p>');
+    });
+  })();
   var TODAY = new Date().toISOString().slice(0, 10);
 
   function fmtDate(d){
