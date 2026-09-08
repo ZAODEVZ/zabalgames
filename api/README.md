@@ -457,6 +457,14 @@ retrieves the full message and attachment metadata, normalizes it, and creates a
 `SUBMISSION_INGEST_SECRET`. See `docs/email-submission-setup.md`.
 
 ### `GET/POST /api/qv-vote`
+
+**Standings are DERIVED from `qv:ballots`, not from `qv:tally` (changed 2026-09-08).** The POST
+path's read-modify-write (HGET previous ballot -> deltas in JS -> ZINCRBY in a separate pipeline)
+lets two concurrent submissions from the SAME fid both apply the same delta, inflating the ZSET
+while `qv:ballots` still shows one ballot - so the corruption was invisible in the audit trail.
+`?results` now sums `HGETALL qv:ballots:<track>`, which is authoritative and atomic per field.
+The ZINCRBY writes are kept on purpose: the nightly backup asserts `qv:tally:*` exists. Covered
+by `scripts/test-qv-tally.mjs`, which reproduces the race before proving the fix.
 Quadratic vote for "who is best" this season, per track (artist/builder/creator). **Candidates
 are the live submissions on the board** (no curated slate): approved KV submissions keyed by
 submission id + the seed builders in `data/builder-submissions.json` keyed `b:<handle>`, grouped

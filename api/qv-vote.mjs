@@ -233,11 +233,38 @@ export default async function handler(req) {
         const { tracks } = await loadCandidates();
         const byId = {};
         (tracks[track] || []).forEach((c) => { byId[c.id] = c; });
-        const r = await kvPipeline([
-          ['ZRANGE', `qv:tally:${track}`, '0', '-1', 'REV', 'WITHSCORES'],
-          ['HLEN', `qv:ballots:${track}`],
-        ]);
-        const flat = (r[0] && r[0].result) || [];
+        // DERIVED FROM THE BALLOTS, not from the qv:tally ZSET. The ZSET is maintained by a
+        // read-modify-write in the POST path (HGET the voter's previous ballot, compute deltas
+        // in JS, ZINCRBY in a SEPARATE pipeline), so two concurrent requests from the SAME fid
+        // both read the same `prev`, both apply the same delta, and the ZSET over-counts. A
+        // voter could inflate their own contribution just by double-submitting, and the
+        // qv:ballots record would still show one legitimate ballot - the corruption is
+        // invisible in the audit trail. docs/season-2-ideas.md flagged this as "do this before
+        // any high-stakes vote".
+        //
+        // qv:ballots:<track> is the authoritative record and HSET on a hash field is atomic, so
+        // summing the ballots cannot be raced into a wrong total. At this scale (Season 1: tens
+        // of voters, single-digit candidates per track) one HGETALL is cheaper than the pipeline
+        // it replaces. The ZINCRBY writes are deliberately LEFT IN PLACE: the nightly backup's
+        // completeness check requires qv:tally:* keys to exist, so removing them would fail the
+        // backup. The ZSET is now a cache nobody reads for results - if the race corrupts it,
+        // nothing published is wrong.
+        const r = await kvPipeline([['HGETALL', `qv:ballots:${track}`]]);
+        const hash = (r[0] && r[0].result) || [];
+        const totals = new Map();
+        let voterCount = 0;
+        // Upstash returns HGETALL as a flat [field, value, ...] array.
+        for (let i = 0; i + 1 < hash.length; i += 2) {
+          voterCount += 1;
+          let ballot;
+          try { ballot = JSON.parse(hash[i + 1]); } catch { continue; }
+          if (!ballot || typeof ballot !== 'object') continue;
+          for (const [id, v] of Object.entries(ballot)) {
+            const n = Number(v);
+            if (Number.isFinite(n) && n > 0) totals.set(id, (totals.get(id) || 0) + n);
+          }
+        }
+        const flat = [...totals.entries()].sort((a, b) => b[1] - a[1]).flat();
         const results = [];
         const tallied = new Set();
         for (let i = 0; i < flat.length; i += 2) {
@@ -254,7 +281,7 @@ export default async function handler(req) {
           if (tallied.has(c.id)) return;
           results.push({ id: c.id, name: c.name || ('Project ' + c.id), handle: c.handle || '', builder: c.builder || '', url: c.url || '', votes: 0 });
         });
-        const voters = (r[1] && r[1].result) || 0;
+        const voters = voterCount;
         return json({ ok: true, configured: true, status, track, voters, results }, cors);
       } catch { return json({ ok: false, error: 'read failed' }, cors); }
     }
