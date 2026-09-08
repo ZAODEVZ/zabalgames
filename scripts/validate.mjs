@@ -178,6 +178,20 @@ try {
   if (!/FAIL|drift/.test(text)) fail('check-api-docs.mjs - ' + e.message);
 }
 
+// 9. THIS REPO IS PUBLIC. No credential may reach it. The estate standard (research doc 1124,
+// and doc 2143 recording ZAOOS's active pre-commit guard) says secret-scan before every commit;
+// this repo had no such guard at all until 2026-09-08.
+head('Secret scan (public repo):');
+try {
+  const outp = execSync(`node ${JSON.stringify('scripts/check-secrets.mjs')} --quiet`, { encoding: 'utf8' });
+  void outp;
+  ok('no credential-shaped strings outside the reasoned allowlist');
+} catch (e) {
+  const text = (e.stdout || '') + (e.stderr || '');
+  for (const line of text.split('\n')) if (/looks like a|possible credential/.test(line)) fail(line.trim());
+  if (!/looks like a|possible credential/.test(text)) fail('check-secrets.mjs - ' + e.message);
+}
+
 head('');
 if (failures) { console.error(`validate: ${failures} failure(s).`); process.exit(1); }
 console.log('validate: all checks passed.');
