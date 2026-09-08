@@ -1,10 +1,37 @@
 # Battle 1 - Artist Final, 24 August 2026
 
-> Season 1's first head-to-head. **n3m def. dee-13.** Decided by the judges after
-> the poll and the judges split. Full recording: 1h46m X Space hosted on the
-> WaveWarZ account.
+> # SUPERSEDED - DO NOT CITE THE SIGNALS OR THE PANEL IN THIS DOCUMENT
+>
+> **Zaal settled this on 2026-09-07, in his own words: the artist battle had no
+> judges.** That is the decision of record. This document says the opposite - it
+> names a three-person panel and a judges signal - and on that point **this
+> document is what is wrong.**
+>
+> It is kept because the rest of it (the prize split, what each finalist brought,
+> the operational lessons, the recording and tooling notes) is still useful, and
+> because deleting a record makes the next person re-derive it from nothing.
+>
+> **If a later pass finds a judges list in here, the document is the error, not
+> the decision.** Do not "correct" the empty artist panel in `data/finals.json`
+> against this file, and do not re-open the question - it was asked and answered.
+> Decision recorded in `decisions/grill-2026-09-07-evening.md`.
+>
+> By extension, treat the whole **Result** and **The panel** sections below as
+> unreliable, not just the panel: they are one interlocking account, and the part
+> that has been overruled is load-bearing for the rest of it. In particular, the
+> claim that the poll went to dee-13 comes from the same reading of the same
+> recording and has not been separately confirmed by anyone.
+>
+> What is NOT in doubt: **n3m is the Season 1 artist champion.** That is settled
+> in `data/season-1-results.json`, which is the frozen record.
+
+> Season 1's first head-to-head. **n3m def. dee-13.** Full recording: 1h46m X
+> Space hosted on the WaveWarZ account.
 
 ## Result
+
+**SUPERSEDED - see the notice at the top. The artist battle had no judges
+(Zaal, 2026-09-07); the signal table below is not the record.**
 
 **Champion: n3m (LadyrynNemesis)** - artist track, Season 1.
 
@@ -23,6 +50,10 @@ timer is the winner of the charts"), so a number existed; it was never read out.
 Resolve this before describing the outcome as two-of-three anywhere public.
 
 ## The panel
+
+**SUPERSEDED - there was no artist panel (Zaal, 2026-09-07). The three names
+below are not a judging panel of record. Do not copy them into
+`data/finals.json` or onto any page.**
 
 All three judges asked on the morning of the battle showed up.
 
