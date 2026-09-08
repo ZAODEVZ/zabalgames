@@ -7583,7 +7583,7 @@
         ],
         "zao_adoption": "Minimal - avoided in favor of Claude Code Max OAuth pattern",
         "context_window": "1M tokens standard (Opus 4.7, Sonnet 4.6)",
-        "_source": "web search Anthropic API pricing 2026, platform.claude.com/docs"
+        "_source": "web search Anthropic API pricing 2026, platform.claude.com/docs (undated when written; NOT re-verified since - LLM pricing changes, treat as indicative. RECHECK 2026-12-01: re-read platform.claude.com/docs/about-claude/pricing and either update these figures or say they are unverified)"
       }
     },
     {
@@ -7630,7 +7630,7 @@
         "crypto_payment_fee": "5% additional",
         "zao_adoption": "Secondary option, not primary stack",
         "use_case": "Prototyping new agent capabilities before mainline deployment",
-        "_source": "web search OpenRouter pricing 2026, openrouter.ai/pricing"
+        "_source": "web search OpenRouter pricing 2026, openrouter.ai/pricing (undated when written; NOT re-verified since - OpenRouter pricing and free-tier limits change, treat as indicative. RECHECK 2026-12-01: re-read openrouter.ai/pricing or drop the figures)"
       }
     },
     {
