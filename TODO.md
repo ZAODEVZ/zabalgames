@@ -1,11 +1,44 @@
 # ZABAL Gamez - Running TODO
 
-> The live state of the build. Updated as commits land. See `docs/research/701-canonical-state.md` for the canonical event-level decisions; this file tracks the actual build / launch tasks.
+> **Season 1 is COMPLETE (settled 2026-08-30).** This file is now a history of the build,
+> not a live board. For what is true today read [/CLAUDE.md](CLAUDE.md) and
+> [/results](https://zabalgamez.com/results); for the close-out working read
+> [docs/season-1-closeout-audit-2026-09-07.md](docs/season-1-closeout-audit-2026-09-07.md).
+>
+> <!-- RECHECK 2026-11-01: if Season 2 has dates by now, this file needs a real [CURRENT]
+>      block again. If it does not, check that nothing below has crept back to present tense. -->
 
-**Last updated:** 2026-07-03 (July open-build month - live board in [CURRENT] below; June + pre-launch ship logs preserved beneath it).
-**Goal (July):** 200 distinct builders, multiple submissions each (set by Zaal 2026-07-04 - math + weekly ladder in `docs/july-goal-200-builders.md`; live bar on /submissions). Judging pipeline live; Finals stack integration-ready by Aug 1.
+**Last updated:** 2026-09-08.
 
 ---
+
+## [CURRENT] - nothing. Season 1 is closed.
+
+No build work is outstanding. Season 2 has no dates, format or theme, and nothing public
+should be set until Zaal sets them.
+
+Two things are open and neither is repo work:
+
+- **Two Cal.com event types are still bookable by direct link** and take bookings for a
+  season that ended. Turning them off is a Cal.com dashboard action - there is no API key on
+  the mac, so no session can do it.
+- **The nightly KV backup switches itself off around 2026-11-07** unless a person commits.
+  It has a detector on two legs now (`keepalive-canary` in the workflow, and
+  `GET /api/backup-health` rendered on `/status`), so this arrives loudly rather than silently.
+
+For Season 2, `data/finals.json` now carries a `signals` block per battle and
+`scripts/check-signals.mjs` fails a push if a settled battle has uncaptured numbers - Season 1
+lost every poll count and trading figure because nothing was watching.
+
+---
+
+## [SUPERSEDED - 2026-07-03] - the July open-build board, kept as history
+
+**Everything in this block is finished or was superseded. Do not action any of it.** It
+described July as the current month, a 200-builder goal, a live judging pipeline, and a
+WaveWarZ-**Base** Finals with Respect-weighted settlement - that Finals design never ran
+(see `/august` for what did). It also lists `daily-cast` and cron env vars; `daily-cast.mjs`
+was deleted in PR #574 and `vercel.json` has no crons block at all.
 
 ## [CURRENT - 2026-07-03] - July open-build month
 
@@ -106,7 +139,10 @@ Reprioritized from the 3-agent repo audit (surfaces + backend + roadmap), 2026-0
 
 ---
 
-## [WAITING] - blocked on Zaal
+## [WAITING - SUPERSEDED] - was blocked on Zaal, May/June 2026
+
+**Nothing here is outstanding.** These were the pre-launch and June ship-blockers; the season
+ran and finished. Kept as a record of what the blockers actually were.
 
 **SHIP-BLOCKERS for Sun May 31** (in order of leverage):
 
@@ -140,7 +176,9 @@ Reprioritized from the 3-agent repo audit (surfaces + backend + roadmap), 2026-0
 
 ---
 
-## [NEXT] - after the launch
+## [NEXT - SUPERSEDED] - what "after the launch" meant in May 2026
+
+**History.** The launch happened, the season ran, and it closed on 2026-08-30.
 
 | # | Build | Why | Est. effort |
 |---|-------|-----|-------------|
@@ -153,7 +191,10 @@ Reprioritized from the 3-agent repo audit (surfaces + backend + roadmap), 2026-0
 
 ---
 
-## [BACKLOG] - good ideas, not yet prioritized
+## [BACKLOG - HISTORICAL] - ideas parked in May/June 2026
+
+**Not a live backlog.** Some of these shipped, some were superseded. If any are wanted for
+Season 2 they need re-deciding against the settled season, not lifting from here.
 
 - `/dashboard` for confirmed workshop leads to manage their slot (login via Farcaster)
 - Auto-clip flywheel for workshop videos (Doc 654 / 629)
