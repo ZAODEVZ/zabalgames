@@ -20,6 +20,8 @@
 // makes it throw fast, which is the path the ADMIN_KEY fallback depends on, and that IS tested.
 
 import { isAdminFid, timingEq, verifyAdmin, DOMAIN } from '../lib/auth.mjs';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 let failures = 0;
 const fail = (m) => { console.error('  FAIL ' + m); failures++; };
@@ -124,6 +126,60 @@ ok('isAdminFid rejects 0, negatives, unknown FIDs, null, undefined, "", "abc", N
     ok(`allowlist is exactly ${EXPECTED.join(', ')} (checked FIDs 1-200000) - widening it fails this test`);
   }
   if (saved === undefined) delete process.env.ADMIN_FIDS; else process.env.ADMIN_FIDS = saved;
+}
+
+// --- Every secret-gated ENDPOINT must fail closed too, not just the shared helper ---
+//
+// Eight endpoints gate on their own secret (NOTIFY_SECRET, WIN_HOOK_SECRET, CRON_SECRET,
+// SUBMISSION_INGEST_SECRET, ...) rather than on verifyAdmin. All eight are correct today - I
+// checked before writing this. But the pattern is honour-system for the NEXT one, and the
+// mistake it prevents is exactly the one found in lib/rate-limit.mjs on 2026-09-08: a control
+// that quietly stops controlling when its env var is missing. There, an unconfigured store
+// meant no rate limiting at all. Here it would mean an unauthenticated caller can send a
+// Farcaster notification to everyone who added the app, or drain and cast the win queue.
+//
+// Two rules, both mechanical:
+//   1. An endpoint that compares a secret must also guard the UNSET case, so a missing env var
+//      denies rather than admits.
+//   2. A secret must never be compared with === or !==, which leaks length and content through
+//      timing. Use timingEq.
+{
+  const apiFiles = readdirSync('api', { withFileTypes: true })
+    .flatMap((e) => e.isDirectory()
+      ? readdirSync(join('api', e.name)).filter((f) => f.endsWith('.mjs')).map((f) => join('api', e.name, f))
+      : (e.name.endsWith('.mjs') ? [join('api', e.name)] : []));
+
+  const SECRET_ENV = /process\.env\.([A-Z][A-Z0-9_]*(?:SECRET|KEY|TOKEN))\b/g;
+  let checked = 0;
+  for (const f of apiFiles) {
+    const src = readFileSync(f, 'utf8');
+    if (!src.includes('timingEq')) {
+      // No secret comparison here - but make sure it is not doing one the unsafe way.
+      const names = [...src.matchAll(SECRET_ENV)].map((m) => m[1]);
+      for (const n of new Set(names)) {
+        const unsafe = new RegExp(`${n}\\s*[!=]==|[!=]==\\s*${n}\\b`).test(src)
+          || new RegExp(`\\b(?:token|t|auth|provided)\\s*[!=]==\\s*${n}\\b`).test(src);
+        if (unsafe) fail(`${f} compares ${n} with === - use timingEq from lib/auth.mjs, which does not leak length or content through timing`);
+      }
+      continue;
+    }
+    checked++;
+    // Rule 1: the unset case must deny. Accept either `if (!SECRET)` or `!SECRET || ...`.
+    const guarded = /if\s*\(\s*!\s*[A-Z][A-Z0-9_]*\s*\)/.test(src) || /!\s*[A-Z][A-Z0-9_]*\s*\|\|/.test(src);
+    if (!guarded) {
+      fail(`${f} compares a secret with timingEq but has no guard for the secret being UNSET. ` +
+           'Add `if (!SECRET) return 503` or `if (!SECRET || !timingEq(...))`, or a missing env var ' +
+           'turns this endpoint into an open one.');
+    }
+    // Rule 2: no plain-equality comparison anywhere in a file that handles secrets.
+    for (const n of new Set([...src.matchAll(SECRET_ENV)].map((m) => m[1]))) {
+      if (new RegExp(`${n}\\s*[!=]==|[!=]==\\s*${n}\\b`).test(src)) {
+        fail(`${f} compares ${n} with ===/!== - use timingEq`);
+      }
+    }
+  }
+  if (checked < 5) fail(`only found ${checked} secret-gated endpoint(s) - expected at least 5. Has the scan broken?`);
+  else ok(`all ${checked} secret-gated endpoints guard the unset case and use timingEq, not ===`);
 }
 
 console.log('');
