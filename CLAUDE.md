@@ -42,6 +42,14 @@ pages, 45 edge endpoints. Snapshot:
 - Mini App manifest (`.well-known/farcaster.json`) is **self-hosted and signed** for
   zabalgamez.com (accountAssociation type:auth, FID 19640). Do NOT hand-edit the
   accountAssociation block - re-sign via Farcaster dev tools if the domain ever changes.
+  **This is now enforced, not advisory** (2026-09-08): `validate.mjs` pins the signed block by
+  sha256 and checks `header.fid`, `header.type` and the payload domain, because a hand-edit of
+  `header` or `signature` used to pass - the manifest still parsed, the site still deployed,
+  and the Mini App just stopped opening in Farcaster with nothing reporting it. If you re-sign
+  deliberately, update `MANIFEST_AA_SHA256` in `scripts/validate.mjs` in the SAME commit so the
+  pin always describes a block someone actually signed. `validate.mjs` also fails any
+  `vercel.json` rewrite or redirect whose source would shadow `/.well-known/farcaster.json` -
+  a catch-all like `/(.*)` or `/:path*` silently unregisters the Mini App.
 - Homepage: validated positioning, "What you walk away with", FAQ, 3-tracks block,
   the three champions, the season in numbers, the workshop library (reads
   `data/workshop-leads.json`) with per-track filter, and a phase-aware clock that returns
@@ -227,7 +235,7 @@ later re-scheduling). Endpoints across:
   immediately. Run it by hand before every push too.
 - It covers: every tracked `*.json` parses; every `api/*.mjs` passes `node --check`;
   every classic inline `<script>` in `*.html` compiles; the manifest payload decodes
-  to `{"domain":"zabalgamez.com"}`; **per-signal capture**; **re-check dates**; and
+  to `{"domain":"zabalgamez.com"}` **and its signed block matches a pinned hash**; **per-signal capture**; **re-check dates**; and
   **generated-file drift** (all three below).
 
 ## Generated files must match their source - enforced
