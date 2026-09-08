@@ -3,7 +3,7 @@
  "status": "final",
  "closes": "2026-08-31",
  "_schema": "Frozen Season 1 results, read by /results. status: 'pending' (empty state, winners TBD) | 'final' (populated after the WaveWarZ battles). Fill winners.<track> with {name, handle, url, project} and the recap numbers once the three battles settle (window closes 2026-08-30), then flip status to 'final'. This is a static record - no live widgets. 'voters' was dropped when the month-two quadratic vote was retired; 'entrants' replaces it.",
- "_winners_note": "All three champions SWEPT their battle - Zaal confirmed 2026-09-04 that the winner of each track took all three signals: the open poll (run on X from the WaveWarZ account), the charts (live trading on WaveWarZ, light volume), and the judges. So poll, charts and judges each carry the champion's name and swept is true. What is still NOT recorded anywhere is the per-signal NUMBERS - vote counts and trading figures were never captured - so no margin or split is published, only who took each signal. Builder winner written 2026-08-30 on Zaal's call after the closing Space: ghostmintops champion, jdwalka runner-up by a two-person field. Creator winner written 2026-08-29 from the Creator Battle FINALZ Space recording (x.com/i/spaces/1dKrPrQkgYVJX, 01:22:03): 'we have our Zabal Games Creator Battle Finals winner unique being 404 with the ZAO color paint'; presdency is runner-up. Artist written 2026-08-28 on Zaal's word (meeting card 2026-08-25, 'Record n3m as artist champion'). results.html reads name, url, project only.",
+ "_winners_note": "CORRECTED 2026-09-08: the ARTIST battle had no judges panel (Zaal, 2026-09-07), so it ran on two signals, not three - artist is judges:null, swept:false, and /results renders no sweep line for it. n3m is still the artist champion; that is not in question. docs/battle-1-artist-final-2026-08-24.md names a three-person artist panel and is SUPERSEDED - if a later pass finds a judges list there, the document is the error, not this record. The builder and creator champions DID sweep - Zaal confirmed 2026-09-04 that the winner of each of those tracks took all three signals: the open poll (run on X from the WaveWarZ account), the charts (live trading on WaveWarZ, light volume), and the judges. So poll, charts and judges each carry the champion's name and swept is true. What is still NOT recorded anywhere is the per-signal NUMBERS - vote counts and trading figures were never captured - so no margin or split is published, only who took each signal. Builder winner written 2026-08-30 on Zaal's call after the closing Space: ghostmintops champion, jdwalka runner-up by a two-person field. Creator winner written 2026-08-29 from the Creator Battle FINALZ Space recording (x.com/i/spaces/1dKrPrQkgYVJX, 01:22:03): 'we have our Zabal Games Creator Battle Finals winner unique being 404 with the ZAO color paint'; presdency is runner-up. Artist written 2026-08-28 on Zaal's word (meeting card 2026-08-25, 'Record n3m as artist champion'). results.html reads name, url, project only.",
  "winners": {
   "artist": {
    "name": "n3m",
@@ -12,8 +12,8 @@
    "project": null,
    "charts": "n3m",
    "poll": "n3m",
-   "judges": "n3m",
-   "swept": true
+   "judges": null,
+   "swept": false
   },
   "builder": {
    "name": "ghostmintops",
