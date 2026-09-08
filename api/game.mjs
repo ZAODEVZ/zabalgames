@@ -39,7 +39,13 @@ const HAATZ = 'https://haatz.quilibrium.com';
 // zabaldle: cumulative monthly points, 6 per one-guess solve, hard month cap 6*31.
 // zaosnake: coins in one run. zaoecho: rounds of melody repeated.
 // zaodash: fans served in one shift. zaostack: floors stacked in one tower.
-const GAMES = { zao2048: 131072, zaotrivia: 10, zaomatch: 100000, zabaldle: 186, zaosnake: 400, zaoecho: 60, zaodash: 300, zaostack: 200, zaosudoku: 400, zaogroups: 400, zaobee: 6000, zaobox: 400, zaostrands: 400, zaomini: 400, zaotiles: 2000, zaovertex: 400, zaopips: 400 };
+// Only ZAO 2048 survived the 2026-09-08 arcade cull (Zaal: "kill the arcade experiments,
+// keep 2048"). The other 16 ids were removed with their pages: measured first, and every one
+// of them had ZERO stored scores - `zabal:game:all:zao2048` was the only board with players
+// in it (2). A score POSTed for a removed id now returns 'unknown game', which is correct:
+// the page it came from does not exist. Re-adding a game means re-adding it here AND
+// shipping the page, in the same commit.
+const GAMES = { zao2048: 131072 };
 const TOP_N = 200;
 const MONTH_TTL = 6048000; // ~70 days - last month stays readable for the winner cast
 const NONCE_TTL = 7200; // nonces expire after 2 hours
