@@ -193,6 +193,7 @@ whether Season 2 instruments them at the time - see the grill.
 
 ---
 
+<!-- RECHECK 2026-12-01: re-measure that Analytics is still collecting - the runtime and beacon calls are in this section. A Vercel plan or project change can turn it off with no signal here. -->
 ## 4. Vercel Web Analytics is on. Measured, not assumed.
 
 `CLAUDE.md` said this was unresolved because dashboard state cannot be read from
