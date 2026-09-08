@@ -96,6 +96,16 @@ pages, 45 edge endpoints. Snapshot:
 - **Internal/ops pages:** `/status` (production board), `/crm` (roster), `/context` +
   `/install` (AI-harness context loaders), `/playbook`, `/research`, `/changelog`.
 
+## Rate limiting fails CLOSED (fixed 2026-09-08)
+`lib/rate-limit.mjs` guards the write endpoints (`submissions`, `profile`, `register`). Its
+`checkLimit` used to `return true` when KV was unconfigured, so **a missing env var meant no
+rate limiting at all** - while its own constructor comment said the in-memory map existed "to
+degrade gracefully instead of failing open". Only the unconfigured path failed open, and it is
+the worse case: a missing env var is silent and survives a whole deployment, a KV outage is
+transient. Both paths now use the in-memory limiter. **Never make a limiter no-op; a limiter
+that no-ops is not graceful, it is absent.** `scripts/test-rate-limit.mjs` pins this and runs
+in the SessionStart hook - its first assertion fails loudly if the fail-open returns.
+
 ## Storage (IMPORTANT - read before any backend work)
 The activity backend runs on **Upstash Redis** over the REST API (`/pipeline`,
 Redis commands - no npm, zero-build edge functions). Env vars: `KV_REST_API_URL` +
