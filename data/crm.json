@@ -1,7 +1,7 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
-  "generated": "2026-06-23",
-  "count": 51,
+  "source": "21d7aaafb81b",
+  "count": 57,
   "people": [
     {
       "name": "Adam Miller",
@@ -140,11 +140,45 @@
         "Workshop lead"
       ],
       "involvement": [
-        "Workshop: Building FlowStage (Thu Jun 25 2026)"
+        "Workshop: Building FlowStage (Sun Jun 28 2026)"
       ],
       "profile_url": null,
       "tier": "Headliner",
       "xp": 50
+    },
+    {
+      "name": "Brandon (ghostmintops)",
+      "farcaster": "ghostmintops",
+      "x": "GhostmintO71217",
+      "github": "",
+      "track": "",
+      "color": "cyan",
+      "roles": [
+        "builder"
+      ],
+      "involvement": [
+        "DreamNet founder - AI agentic swarms, orchestration + memory"
+      ],
+      "profile_url": "/p?handle=ghostmintops",
+      "tier": "Challenger",
+      "xp": 10
+    },
+    {
+      "name": "Branth (KORRO)",
+      "farcaster": "",
+      "x": "korrocorp",
+      "github": "",
+      "track": "",
+      "color": "gold",
+      "roles": [
+        "builder"
+      ],
+      "involvement": [
+        "Dev/CEO of Korrocorp - Solana, bridges, AI music"
+      ],
+      "profile_url": "/p?handle=branth",
+      "tier": "Challenger",
+      "xp": 10
     },
     {
       "name": "Cashless Man (Booster)",
@@ -184,6 +218,23 @@
       "xp": 50
     },
     {
+      "name": "Ceci Sakura",
+      "farcaster": "",
+      "x": "Ceci_Sakura007",
+      "github": "",
+      "track": "",
+      "color": "cyan",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Unlock Protocol"
+      ],
+      "profile_url": "/p?handle=ceci",
+      "tier": "Headliner",
+      "xp": 50
+    },
+    {
       "name": "Chris (chriscocreated)",
       "farcaster": "chriscocreated",
       "x": "",
@@ -210,17 +261,19 @@
       "roles": [
         "Workshop lead",
         "Dream lead",
-        "Batches builder"
+        "Batches builder",
+        "Mentor"
       ],
       "involvement": [
         "Building Vini App",
         "Workshop: Vini App (Mon Jun 15 2026)",
         "On the Dream Leads board",
-        "Farcaster Batches: Vini App (Day 1)"
+        "Farcaster Batches: Vini App (Day 1)",
+        "Founder of Vini App - ship a real app from a plain-language prompt"
       ],
       "profile_url": "/p?handle=1dolinski",
       "tier": "Headliner",
-      "xp": 90
+      "xp": 120
     },
     {
       "name": "Dan Singjoy",
@@ -298,14 +351,13 @@
       "farcaster": "jkthedc",
       "x": "",
       "github": "",
-      "track": "creator",
+      "track": "",
       "color": "pink",
       "roles": [
         "Workshop lead"
       ],
       "involvement": [
-        "Growth through foundations",
-        "Workshop: Growth through foundations. (Tue Jun 23 2026)"
+        "Growth through foundations"
       ],
       "profile_url": "/p?handle=jkthedc",
       "tier": "Headliner",
@@ -340,7 +392,7 @@
       ],
       "involvement": [
         "Musician duo on Farcaster",
-        "Workshop: Musician on Farcaster, and the road to Farcon. (first week of June - date TBD)"
+        "Workshop: Building on Farcaster as an artist (Tue Jun 30 2026)"
       ],
       "profile_url": "/p?handle=duodomusica",
       "tier": "Headliner",
@@ -349,7 +401,7 @@
     {
       "name": "Dylan Yarter",
       "farcaster": "bizarrebeast",
-      "x": "",
+      "x": "bizarrebeasts_",
       "github": "",
       "track": "creator",
       "color": "pink",
@@ -357,6 +409,7 @@
         "Workshop lead"
       ],
       "involvement": [
+        "BizarreBeasts - Bizarre Pixel Studio",
         "Workshop: Building the Bizarre Pixel Studio (Tue Jun 23 2026)"
       ],
       "profile_url": "/p?handle=bizarrebeast",
@@ -380,6 +433,41 @@
       "profile_url": "/p?handle=hurric4n3ike",
       "tier": "Builder",
       "xp": 70
+    },
+    {
+      "name": "James",
+      "farcaster": "jamesdesign.eth",
+      "x": "",
+      "github": "",
+      "track": "creator",
+      "color": "gold",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Mental Wealth Academy",
+        "Workshop: Mental Wealth Academy (Sat Jun 27 2026)"
+      ],
+      "profile_url": "/p?handle=jamesdesign",
+      "tier": "Headliner",
+      "xp": 50
+    },
+    {
+      "name": "jdwalka (JohnDaWalka)",
+      "farcaster": "jdwalka",
+      "x": "MauroMarkNaz",
+      "github": "",
+      "track": "",
+      "color": "pink",
+      "roles": [
+        "builder"
+      ],
+      "involvement": [
+        "Predictive apps - Farcaster poker + crypto prediction orchestrator"
+      ],
+      "profile_url": "/p?handle=jdwalka",
+      "tier": "Challenger",
+      "xp": 10
     },
     {
       "name": "Jonathan Colton",
@@ -513,6 +601,40 @@
       "xp": 50
     },
     {
+      "name": "Luciano",
+      "farcaster": "luciano",
+      "x": "",
+      "github": "",
+      "track": "",
+      "color": "pink",
+      "roles": [
+        "Mentor"
+      ],
+      "involvement": [
+        "Building Kismet - where artists and collectors converge"
+      ],
+      "profile_url": null,
+      "tier": "Mentor",
+      "xp": 30
+    },
+    {
+      "name": "Matt Lee",
+      "farcaster": "mattlee",
+      "x": "",
+      "github": "",
+      "track": "builder",
+      "color": "zabal",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Tortoise, and how musicians and creators can best use Farcaster (Sun Jun 28 2026)"
+      ],
+      "profile_url": null,
+      "tier": "Headliner",
+      "xp": 50
+    },
+    {
       "name": "Max (POWER)",
       "farcaster": "baseddesigner.eth",
       "x": "",
@@ -542,6 +664,7 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Founder of Rose City Web3",
         "Workshop: How to add value as a community member (Sun Jun 21 2026)"
       ],
       "profile_url": "/p?handle=metamu",
@@ -559,26 +682,10 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Selling merch onchain",
         "Workshop: Selling merch onchain (Sun Jun 21 2026)"
       ],
       "profile_url": "/p?handle=mintedmerch",
-      "tier": "Headliner",
-      "xp": 50
-    },
-    {
-      "name": "Nemesis.love",
-      "farcaster": "",
-      "x": "",
-      "github": "",
-      "track": "creator",
-      "color": "cyan",
-      "roles": [
-        "Workshop lead"
-      ],
-      "involvement": [
-        "Workshop: Come Into the Mind of a Menace (Wed Jun 24 2026)"
-      ],
-      "profile_url": null,
       "tier": "Headliner",
       "xp": 50
     },
@@ -628,13 +735,32 @@
       "track": "creator",
       "color": "pink",
       "roles": [
-        "Workshop lead"
+        "Workshop lead",
+        "Mentor"
       ],
       "involvement": [
         "Live streamer, founder of the Ohnahji community",
-        "Workshop: His journey in live streaming (Tue Jun 2 2026)"
+        "Workshop: His journey in live streaming (Tue Jun 2 2026)",
+        "Web3's first HBCU - educating builders on blockchain + AI"
       ],
       "profile_url": "/p?handle=ohnahji",
+      "tier": "Headliner",
+      "xp": 80
+    },
+    {
+      "name": "Pauline and Tako",
+      "farcaster": "pauline-unik",
+      "x": "",
+      "github": "",
+      "track": "creator",
+      "color": "pink",
+      "roles": [
+        "Workshop lead"
+      ],
+      "involvement": [
+        "Workshop: Community, two ways: how to tap into a community like Los Fomos (Mon Jun 29 2026)"
+      ],
+      "profile_url": null,
       "tier": "Headliner",
       "xp": 50
     },
@@ -701,6 +827,7 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Builder of Harness, now at Bankr",
         "Workshop: Harness, the tool he built, and Bankr, the team he just joined (Tue Jun 23 2026)"
       ],
       "profile_url": "/p?handle=saltorious.eth",
@@ -752,6 +879,7 @@
         "Workshop lead"
       ],
       "involvement": [
+        "The Farcaster Intern",
         "Workshop: ZABAL GAMEZ AMA w/ The Farcaster Intern (Mon Jun 22 2026)"
       ],
       "profile_url": "/p?handle=farcaster",
@@ -806,6 +934,7 @@
         "Workshop lead"
       ],
       "involvement": [
+        "Snapchain - Neynar",
         "Workshop: Snapchain under the hood (Tue Jun 23 2026)"
       ],
       "profile_url": "/p?handle=topocount.eth",
@@ -817,16 +946,17 @@
       "farcaster": "",
       "x": "",
       "github": "",
-      "track": "builder",
+      "track": "",
       "color": "zabal",
       "roles": [
-        "Workshop lead",
-        "Partner"
+        "community_member"
       ],
-      "involvement": [],
+      "involvement": [
+        "Community member"
+      ],
       "profile_url": "/p?handle=tylerstambaugh",
-      "tier": "Headliner",
-      "xp": 80
+      "tier": "Challenger",
+      "xp": 10
     },
     {
       "name": "Ven (The Open Machine)",

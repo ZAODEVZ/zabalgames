@@ -227,7 +227,29 @@ later re-scheduling). Endpoints across:
   immediately. Run it by hand before every push too.
 - It covers: every tracked `*.json` parses; every `api/*.mjs` passes `node --check`;
   every classic inline `<script>` in `*.html` compiles; the manifest payload decodes
-  to `{"domain":"zabalgamez.com"}`; **per-signal capture**; and **re-check dates** (both below).
+  to `{"domain":"zabalgamez.com"}`; **per-signal capture**; **re-check dates**; and
+  **generated-file drift** (all three below).
+
+## Generated files must match their source - enforced
+Six committed files are generated: `recordings/index.json`, `recordings.txt`, the JSON-LD in
+`recordings.html`, `data/crm.json`, `crm.txt`, `crm.html`. Two are advertised on the site as
+the machine surface (`/recordings/index.json`, `/recordings.txt` - "Structured JSON for
+agents"), so a stale one is a wrong answer served confidently to anything that reads them.
+
+`scripts/check-generated.mjs` regenerates, compares, **restores the originals in a `finally`
+so the tree is never left modified**, and fails the build on a mismatch. Fix by running the
+generator yourself and committing - never hand-edit a generated file.
+
+This could not exist before 2026-09-08, because both generators stamped
+`generated: new Date()`. That made every artifact differ from a fresh build **every day
+regardless of content**, so a diff could not tell "the data changed and nobody rebuilt" from
+"a day passed" - real drift was buried in date noise, and a check on it would have failed
+daily and been switched off. Both now derive a `source` hash from their input instead, so
+identical input gives identical bytes. Nothing consumed `generated` (checked before removing
+it). **Do not reintroduce a build timestamp into a generated file.**
+
+Not covered, deliberately: `scripts/resolve-pfps.mjs` writes `data/pfps.json` from remote
+APIs, so its output legitimately changes when those do and cannot be deterministic.
 
 ## Time-bound claims must carry a re-check date - enforced
 This repo's most expensive recurring failure is not a bug, it is **a claim that stays

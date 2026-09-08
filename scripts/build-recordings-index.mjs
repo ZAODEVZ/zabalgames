@@ -14,6 +14,7 @@
 // Run after editing data/recaps.json:  node scripts/build-recordings-index.mjs
 
 import { readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -59,9 +60,18 @@ const items = (recaps.recaps || []).map((r) => {
 });
 
 // 1. The flat index.
+// `source` replaces what used to be `generated: new Date()`. A build-time timestamp made this
+// file differ from a fresh regeneration EVERY DAY regardless of content, which meant nobody
+// could tell by diffing whether the committed index still matched data/recaps.json - real
+// drift was permanently buried in date noise. Deriving it from the source instead makes the
+// output deterministic: identical input, identical bytes, so any diff is real drift and
+// scripts/check-generated.mjs can enforce it. Nothing consumed `generated` (checked).
+const sourceHash = createHash('sha256').update(JSON.stringify(recaps)).digest('hex').slice(0, 12);
+const latestDate = items.map((i) => i.date).filter(Boolean).sort().pop() || null;
 const index = {
-  _note: 'Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.',
-  generated: new Date().toISOString().slice(0, 10),
+  _note: 'Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first. `source` is a hash of data/recaps.json, not a build time, so this file is byte-identical for identical input - that is what lets drift be detected.',
+  source: sourceHash,
+  latestRecording: latestDate,
   season: recaps.season || 1,
   count: items.length,
   recordings: items,
@@ -72,7 +82,7 @@ writeFileSync(join(ROOT, 'recordings/index.json'), JSON.stringify(index, null, 2
 const txtLines = [];
 txtLines.push('ZABAL GAMEZ - RECORDINGS (plain text for agents)');
 txtLines.push('');
-txtLines.push(`Generated ${index.generated} from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Season ${index.season}. ${items.length} recordings, newest first.`);
+txtLines.push(`Built from data/recaps.json (source ${index.source}, newest recording ${index.latestRecording}) by scripts/build-recordings-index.mjs - do not edit by hand. Season ${index.season}. ${items.length} recordings, newest first.`);
 txtLines.push('Structured JSON:  https://zabalgamez.com/recordings/index.json');
 txtLines.push('Full ZAO dump:    https://zabalgamez.com/llms.txt');
 txtLines.push('Human page:       https://zabalgamez.com/recordings');
