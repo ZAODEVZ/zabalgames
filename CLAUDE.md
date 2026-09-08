@@ -144,9 +144,18 @@ functions in `api/`. 60+ pages; not all listed here - this is the load-bearing s
   submission system (`/submit`, `/submissions`); the old client-side Supabase form +
   gallery were removed (no external CDN, no placeholder keys).
 - `enter.html` - July build entry: register a wallet + GitHub repo, building-in-public board.
-- `play.html` / `game.html` - ZAO 2048 + arcade hub (monthly $Zabal top-10). The arcade
-  also holds `game/build-quiz.html` (what-should-you-build) + `game/zao-trivia.html`
-  (weekly pot), and `clips.html` - the clip-to-earn flywheel (gallery + clipper board).
+- `play.html` / `game.html` - ZAO 2048 + arcade hub (monthly $Zabal top-10). **The arcade was
+  culled 2026-09-08 on Zaal's call - "kill the arcade experiments, keep 2048".** 17 of 18
+  `game/*.html` pages were deleted, leaving only `game/2048.html`. Measured first: every one of
+  the 17 had **zero** stored scores, and `zabal:game:all:zao2048` was the only board with players
+  in it. `api/game.mjs`'s `GAMES` map is trimmed to `zao2048` alone, so a score for a removed id
+  returns "unknown game". Dead links were removed from `index.html`, `daily.html`, `play.html`,
+  `game.html` and 2048's own chips, and the `/quiz` redirect went with its target.
+  **Do not re-add a game page without adding its id to `GAMES` in the same commit**, and vice
+  versa. `data/zao-trivia.json` is KEPT but orphaned - a curated question bank a Season 2 trivia
+  could reuse; nothing reads it. `api/profile-track.mjs` survives the cull and is NOT orphaned:
+  `assets/miniapp.js` still calls it. `clips.html` is unaffected.
+
 - `finals.html` / `winners.html` / `leaderboard.html` / `projects.html` - Finals stack.
 - `bounties.html` (claimable bounty board) / `grants.html` (verified funding programs) /
   `build-days.html` (July daily-build series) / `build-ideas.html` (community build board) /

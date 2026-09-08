@@ -21,11 +21,6 @@
   ],
   "redirects": [
     {
-      "source": "/quiz",
-      "destination": "/game/build-quiz",
-      "permanent": false
-    },
-    {
       "source": "/spec",
       "destination": "/docs/research/701-canonical-state.md",
       "permanent": false

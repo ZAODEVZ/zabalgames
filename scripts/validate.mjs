@@ -192,6 +192,28 @@ try {
   if (!/looks like a|possible credential/.test(text)) fail('check-secrets.mjs - ' + e.message);
 }
 
+// 10. Every vercel.json redirect/rewrite destination must resolve to something that exists.
+// Found the hard way on 2026-09-08: the arcade cull deleted /game/build-quiz while a `/quiz`
+// redirect still pointed at it, which would have served a 404 from a URL that looked supported.
+// A redirect is a promise about a URL; deleting a page is exactly when it gets broken, and
+// nothing was checking it.
+head('Redirect targets:');
+try {
+  const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'));
+  const rules = [...(vercel.redirects || []), ...(vercel.rewrites || [])];
+  let broken = 0;
+  for (const r of rules) {
+    const dest = String(r.destination || '');
+    if (!dest.startsWith('/') || dest.startsWith('//')) continue; // external or absolute URL
+    const clean = dest.split('#')[0].split('?')[0].replace(/\/$/, '');
+    if (!clean || clean === '/') continue;
+    const rel = clean.slice(1);
+    const exists = ['', '.html', '/index.html'].some((suf) => { try { readFileSync(rel + suf); return true; } catch { return false; } });
+    if (!exists) { fail(`vercel.json "${r.source}" -> "${dest}" does not resolve to any file`); broken++; }
+  }
+  if (!broken) ok(`${rules.length} redirect/rewrite destination(s) all resolve`);
+} catch (e) { fail('redirect targets - ' + e.message); }
+
 head('');
 if (failures) { console.error(`validate: ${failures} failure(s).`); process.exit(1); }
 console.log('validate: all checks passed.');

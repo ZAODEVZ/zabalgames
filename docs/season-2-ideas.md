@@ -120,8 +120,22 @@ reuses the whole existing recording pipeline and needs no new page or endpoint.
    three new cases in `test-redact-export.mjs` pin all of it.
 7. **loops.house-native weekly-task engine** - if loops does not host the weekly tasks, the
    site needs a task surface + per-track weekly submissions. Decide with RK before building.
-8. **Consolidate the arcade** - `game/2048`, `game/build-quiz`, `game/zao-trivia`, `/pops`,
-   `/quest` are separate experiments. Fold into one arcade hub, or retire the unused ones.
+8. ~~**Consolidate the arcade**~~ **DONE 2026-09-08 - retired, not folded.** Zaal: "kill the
+   arcade experiments, keep 2048". There were **18** game pages, not the three this item listed -
+   bee, dash, echo, groups, letterbox, memory, mini, pips, snake, stack, strands, sudoku, tiles,
+   vertex, word, zao-trivia and build-quiz alongside 2048. Measured before deleting: **all 17 had
+   zero stored scores**; `zabal:game:all:zao2048` was the only board with players (2). So this was
+   retiring dead surface, not choosing between live ones.
+   `GAMES` in `api/game.mjs` is trimmed to `zao2048`. Dead links removed from the homepage,
+   `/daily`, `/play`, `/game` and 2048's own chips, and the `/quiz` redirect went with its target.
+   **Scoped to `game/*` deliberately** - `/pops` and `/quest` are named features in their own
+   right, not arcade experiments, so they were left alone. Reverse that reading if it was wrong.
+   `data/zao-trivia.json` is kept but marked orphaned: a curated question bank is worth more than
+   the space it takes.
+   One thing this surfaced: nothing checked that a redirect's destination exists, so `/quiz`
+   pointed at a page I had just deleted. `validate.mjs` now fails on any unresolvable
+   redirect/rewrite destination - a redirect is a promise about a URL, and deleting a page is
+   exactly when it gets broken.
 9. **Season-over-season standings** - reuse `api/empire-leaderboard.mjs` (Empire Builder) so a
    builder's S1 + S2 record accrues, not resets.
 10. **Sponsor tiers** - the $500 pool is one sponsor (ZAO festivals). A sponsor tier on the

@@ -1,6 +1,8 @@
 // ZABAL Gamez - profile -> track (POST /api/profile-track).
 //
-// The "skip the questions" path on /game/build-quiz. Instead of answering the 3-question
+// The "skip the questions" path that /game/build-quiz used to offer. THAT PAGE WAS REMOVED
+// 2026-09-08 in the arcade cull, but this endpoint is NOT orphaned - assets/miniapp.js still
+// calls it (checked before assuming). Instead of answering the 3-question
 // quiz, a signed-in player can have their Farcaster profile analyzed: we read their bio +
 // display name (server-side, by verified FID) and keyword-score the three lanes - artist,
 // builder, creator - returning the best fit plus a short why and the words that matched.
