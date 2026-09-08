@@ -2,6 +2,11 @@
 
 Ideas only, grounded in the S1 codebase. Not a build list - a menu for after Aug 31.
 
+**Season 2 prep opened 2026-09-08.** Items are being worked in one order only: **anything that
+needs no decision from Zaal, first.** Season 2 still has no dates, format or theme and none may
+be set here. Item 2 is done because it was a correctness bug in the voting path, not a design
+choice - see below.
+
 ## What worked in Season 1
 - **The core loop is simple and correct.** `/submit` -> auto-accept (`api/submissions.mjs`)
   -> `/submissions` board -> quadratic `/vote` (`api/qv-vote.mjs`) -> share modal. Post-moderation
@@ -59,9 +64,18 @@ reuses the whole existing recording pipeline and needs no new page or endpoint.
 1. **Public activity feed** - voter + project + shares in one live tab (Zaal asked for this).
    Build on `api/activity.mjs`; requires flipping ballots public. Social proof is the missing
    engagement layer.
-2. **Fix the vote race condition** - the read-modify-write in `api/qv-vote.mjs` (HGET then
-   ZINCRBY, non-atomic) can over-count concurrent ballots. Make it atomic (Redis Lua). Do this
-   before any high-stakes vote.
+2. ~~**Fix the vote race condition**~~ **DONE 2026-09-08.** The read-modify-write is still
+   there, but the published standings no longer read the ZSET it maintains - `?results` now
+   derives totals from `qv:ballots:<track>`, which is authoritative and whose per-field HSET is
+   atomic. Chose that over Redis Lua because it needs no new mechanism, is testable without an
+   Upstash instance, and self-heals any tally already corrupted.
+   **The ZINCRBY writes were deliberately left in place**: the nightly backup's completeness
+   check requires `qv:tally:*` keys to exist, so deleting them would have failed the backup -
+   a coupling worth knowing before anyone "finishes the job" by removing the ZSET.
+   Severity was worse than over-counting: `qv:ballots` still showed one legitimate ballot, so an
+   inflated tally was invisible in the audit trail. `scripts/test-qv-tally.mjs` reproduces the
+   race (three concurrent identical ballots of 3 -> ZSET reads **9**) and proves the derived read
+   returns 3 anyway.
 3. **Submitter identity on the board** - the public `/submissions` feed hides handles
    (`publicView` in `api/submissions.mjs`), so the board and the Unlock-drop compile can't see
    who built what. S2: show an opted-in handle per project.
