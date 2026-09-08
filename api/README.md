@@ -186,15 +186,54 @@ Live "here now" heartbeat for `/live`. Each tab POSTs `{ id }` (an anonymous
 per-tab token); a timestamp-scored ZSET counts ids seen in the last ~75s.
 Ephemeral, no identity. `{ configured, count }`. No-ops when KV is absent.
 
-### `GET /api/daily-cast` (cron)
-On a day with a workshop dated today in `data/workshop-leads.json`, casts
-"what's on today" into `/zabal` via Neynar. KV-sentinel idempotency
-(`zabal:cron:daily-cast:<date>`) so a retry never double-posts; a failed post
-releases the claim for the next run. No-ops cleanly if KV/Neynar are unset or
-there is no session today. Runs daily via `vercel.json` crons.
+### `GET /api/export` (admin)
+Full KV export. **This is what the nightly backup calls**, so it is load-bearing for the
+only copy of Season 1 that exists outside Upstash.
+
+```
+GET /api/export                Authorization: Bearer <quick-auth-jwt|ADMIN_KEY>
+  -> { ok, generated, count, types:{...}, truncated, data:{ <key>: <value> } }
+GET /api/export?prefix=zabal:subs   -> only keys under that prefix
+```
+
+It **SCANs the whole keyspace** rather than enumerating known prefixes, because a prefix list
+goes stale the moment someone adds a feature and the failure mode is a silently incomplete
+backup. `truncated` is true if it hit the 20,000-key cap - the backup workflow treats that as
+a failure rather than committing a partial export.
+
+**PRIVACY:** `qv:ballots:*` holds per-voter ballots, private by design and public nowhere
+else. They are included because an admin-only backup that omits data is not a backup - but
+anything derived from this export must not republish them. `scripts/redact-export.py` strips
+them before anything is committed to this public repo.
+
+Companion: `.github/workflows/kv-backup.yml` (nightly) and `GET /api/backup-health`, which
+reports when this stops being called.
+
+### `GET/POST /api/points`
+The Season 1 points board, awarded **by Zaal** for showing up - the ZAOstock Space, the zm
+stream, the bonus brief, shipping an update. Public by design: everyone sees every score.
+
+```
+GET  /api/points  -> { ok, configured, entries:[{rank,handle,name,project,points}], log }
+POST /api/points  Authorization: Bearer <quick-auth-jwt|ADMIN_KEY>
+     { handle, delta, reason } -> { ok, handle, points }
+```
+
+Roster is `data/points-roster.json` - the 15 who entered. **Someone not on the roster cannot
+be awarded**, so a typo creates a phantom entry rather than silently scoring the wrong person.
+Write access is the admin FID allowlist in `lib/auth.mjs` or `ADMIN_KEY`.
+
+This endpoint shipped 2026-08-19 and went undocumented here until 2026-09-08, which is why
+`scripts/check-api-docs.mjs` now exists.
+
+### `GET /api/daily-cast` - REMOVED
+`api/daily-cast.mjs` was **deleted** in PR #574 (`94934f4`, "drop dead posting"), and
+`vercel.json` has no `crons` block at all. This section documented it as live for months
+afterwards; it is kept only as a pointer so the cross-reference below still resolves.
+Automated posting is ZOE/ZOL's job now. Do not reintroduce it here.
 
 ### `GET /api/workshop-reminders` (cron)
-The private-push counterpart to `/api/daily-cast`. On a day with a workshop dated
+The private-push counterpart to the removed `/api/daily-cast` (see above; this one still exists as a file, but nothing schedules it). On a day with a workshop dated
 today in `data/workshop-leads.json`, sends a Farcaster notification to everyone who
 added the app (the `zabal:notif:tokens` store `/api/webhook` fills) - the day-of
 "tune in" nudge, the documented #1 retention lever. Day-of by design (leads carry a
@@ -457,7 +496,7 @@ Tier-1 deterministic submission pre-screen (July playbook Move 4). Checks a buil
 | `NOTIFY_SECRET` | Bearer secret guarding `POST /api/notify` | set to any long random string; pass it as `Authorization: Bearer <value>` when sending |
 | `NEYNAR_API_KEY` | Neynar key - publishes the cast in `POST /api/daily-cast`, reads recording reply threads in `GET /api/cast-comments`, and powers the POIDH claim search in `GET /api/poidh-watcher` (feed stays empty until this is set) | Neynar dev dashboard (free tier) |
 | `NEYNAR_SIGNER_UUID` | Approved Neynar signer that posts the daily cast | Neynar managed signer (approve once) |
-| `CRON_SECRET` | **Required** for the cron endpoints (`daily-cast`, `monthly-winner`, `commit-watcher`, `workshop-reminders`) - they fail closed (503) without it. Vercel injects the matching `Authorization: Bearer` header on scheduled runs | any long random string; set in Vercel and it auto-injects on cron calls |
+| `CRON_SECRET` | **Required** for the cron endpoints (`monthly-winner`, `commit-watcher`, `workshop-reminders` - `daily-cast` was deleted in #574; all Vercel crons are retired, so these only run if hit by hand) - they fail closed (503) without it. Vercel injects the matching `Authorization: Bearer` header on scheduled runs | any long random string; set in Vercel and it auto-injects on cron calls |
 | `ADMIN_KEY` | Gates the `POST /api/raffle` draw and manual `POST /api/submission-intake` writes via `Authorization: Bearer <key>` (constant-time, fail closed) | any long random string; send only from the host's calls |
 | `SUBMISSION_INGEST_SECRET` | Bearer secret used only by trusted submission adapters such as inbound email | independent long random string |
 | `RESEND_API_KEY` | Retrieves inbound email and sends project receipts or review notes | Resend API key |

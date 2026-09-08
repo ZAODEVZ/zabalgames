@@ -160,7 +160,12 @@ later re-scheduling). Endpoints across:
 - *Engagement:* `game`, `pops`, `raffle`, `dream-vote`, `comments`, `cast-comments`,
   `bonfire-ask`, `snap/signup`.
 
-  **See `api/README.md` for the authoritative per-endpoint contracts** (kept current).
+  **See `api/README.md` for the authoritative per-endpoint contracts.** That currency claim is
+  now ENFORCED, not asserted: `scripts/check-api-docs.mjs` (inside `validate.mjs`) fails the
+  build if an `api/*.mjs` has no contract heading, or if a documented route has no file unless
+  its heading is marked REMOVED. It had drifted both ways - `api/points.mjs` and
+  `api/export.mjs` were undocumented, and `daily-cast` kept a live contract for months after
+  PR #574 deleted it, surviving the #669/#670 cleanup that existed to remove exactly that claim.
 
 **Data + config**
 - `data/workshop-leads.json` - schedule source of truth (curated file, not a DB).
