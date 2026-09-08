@@ -96,6 +96,19 @@ try {
   if (!/FAIL|past their/.test(text)) fail('check-recheck.mjs - ' + e.message);
 }
 
+// 7. Generated files must match their source. /recordings/index.json and /recordings.txt are
+// the surface agents are told to read, so a stale one is a wrong answer served confidently.
+head('Generated files:');
+try {
+  const outp = execSync(`node ${JSON.stringify('scripts/check-generated.mjs')}${QUIET ? ' --quiet' : ''}`, { encoding: 'utf8' });
+  if (!QUIET) process.stdout.write(outp.split('\n').filter(Boolean).map((l) => '  ' + l.replace(/^ {2}/, '')).join('\n') + '\n');
+  else ok('every generated file matches its source');
+} catch (e) {
+  const text = (e.stdout || '') + (e.stderr || '');
+  for (const line of text.split('\n')) if (/FAIL|out of sync/.test(line)) fail(line.replace(/^\s*FAIL\s*/, ''));
+  if (!/FAIL|out of sync/.test(text)) fail('check-generated.mjs - ' + e.message);
+}
+
 head('');
 if (failures) { console.error(`validate: ${failures} failure(s).`); process.exit(1); }
 console.log('validate: all checks passed.');

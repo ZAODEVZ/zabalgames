@@ -8,6 +8,7 @@
 //   node scripts/build-crm.mjs
 
 import { readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -163,7 +164,11 @@ const people = merged
   .sort((a, b) => a.name.localeCompare(b.name));
 const out = {
   _note: 'Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.',
-  generated: new Date().toISOString().slice(0, 10),
+  // Hash of the emitted people, not a build time. A `new Date()` here made this file differ
+  // from a fresh regeneration every day, so nobody could tell by diffing whether it still
+  // matched its five source files - drift was buried in date noise. See
+  // scripts/check-generated.mjs, which can only work because this is deterministic.
+  source: createHash('sha256').update(JSON.stringify(people)).digest('hex').slice(0, 12),
   count: people.length,
   people,
 };
@@ -173,7 +178,7 @@ writeFileSync(join(ROOT, 'data/crm.json'), JSON.stringify(out, null, 2) + '\n');
 const txt = [];
 txt.push('ZABAL GAMEZ - PEOPLE (plain text for agents)');
 txt.push('');
-txt.push(`Generated ${out.generated} from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand. Season 1. ${people.length} people.`);
+txt.push(`Built from data/people.json + workshop-leads.json + dream-leads.json + mentors.json + the Farcaster Batches builders by scripts/build-crm.mjs (source ${out.source}) - do not edit by hand. Season 1. ${people.length} people.`);
 txt.push('Structured JSON:  https://zabalgamez.com/data/crm.json');
 txt.push('Human page:       https://zabalgamez.com/crm');
 txt.push('Live players board (joins / shares / casts): https://zabalgamez.com/leaderboard');

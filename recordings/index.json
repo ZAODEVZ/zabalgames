@@ -1,6 +1,7 @@
 {
-  "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first.",
-  "generated": "2026-08-20",
+  "_note": "Machine-readable index of every ZABAL Gamez recording. Generated from data/recaps.json by scripts/build-recordings-index.mjs - do not edit by hand. Newest first. `source` is a hash of data/recaps.json, not a build time, so this file is byte-identical for identical input - that is what lets drift be detected.",
+  "source": "27871a0dd96d",
+  "latestRecording": "2026-06-30",
   "season": 1,
   "count": 35,
   "recordings": [
