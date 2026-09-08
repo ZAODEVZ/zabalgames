@@ -58,6 +58,25 @@ DROP_PREFIXES = (
 )
 DROP_EXACT = ("zabal:notif:tokens",)
 
+# DELIBERATELY DUPLICATED - do not refactor these two into one list.
+#
+# The verification step at the bottom used to check the output against DROP_PREFIXES and
+# DROP_EXACT, i.e. against the very constants it was verifying. That made it tautological:
+# measured 2026-09-08, deleting the single line "qv:ballots:" from DROP_PREFIXES made this
+# script publish every per-voter ballot into this PUBLIC repo, exit 0, and print
+# "redacted: 2 keys kept, nothing dropped" - a green run committing the exact data the first
+# two backup runs leaked on 2026-08-12.
+#
+# So the verifier now checks against its own independent list. Editing one list can no longer
+# silently defeat the check; you have to edit both, which is friction on purpose. If you are
+# deliberately narrowing what gets dropped, do it in both places and say why in the commit.
+FORBIDDEN_IN_OUTPUT = (
+    "qv:ballots:",
+    "zabal:agent:tok:",
+    "zabal:profile:nonce:",
+    "zabal:notif:tokens",
+)
+
 EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 EMAIL_PLACEHOLDER = "[redacted-email]"
 
@@ -143,9 +162,16 @@ def main():
         raise SystemExit(
             "redaction failed: %d non-allowlisted address(es) survived" % len(leaked)
         )
+    # Checked against FORBIDDEN_IN_OUTPUT, never against DROP_PREFIXES/DROP_EXACT - see the
+    # comment on that constant. A verifier that shares a list with the thing it verifies
+    # passes automatically the moment that list is wrong.
     for key in out["data"]:
-        if key in DROP_EXACT or any(key.startswith(p) for p in DROP_PREFIXES):
-            raise SystemExit("redaction failed: %s survived" % key)
+        hit = next((f for f in FORBIDDEN_IN_OUTPUT if key == f or key.startswith(f)), None)
+        if hit:
+            raise SystemExit(
+                "redaction failed: %s survived (matches forbidden pattern %r). "
+                "This repo is PUBLIC - refusing to write the backup." % (key, hit)
+            )
 
     with open(sys.argv[2], "w") as fh:
         json.dump(out, fh, indent=1, sort_keys=True)
