@@ -11,6 +11,7 @@
 import { execSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
+import { createHash } from 'node:crypto';
 
 const DOMAIN = 'zabalgamez.com';
 const QUIET = process.argv.includes('--quiet'); // only print failures + summary
@@ -55,15 +56,70 @@ for (const f of tracked("'*.html'")) {
   if (n && !bad) ok(`${f} (${n} block${n > 1 ? 's' : ''})`);
 }
 
-// 4. Mini App manifest payload decodes to the right domain
+// 4. Mini App manifest - the signed block must be intact, not merely well-formed.
+//
+// This used to check only that `payload` decoded to the right domain, which meant a hand-edit
+// of `header` or `signature` passed silently. That is the worst possible failure to leave
+// undetected: the manifest still parses, the site still deploys, and the Mini App simply
+// stops opening in Farcaster with nothing anywhere reporting it. CLAUDE.md has said "do NOT
+// hand-edit the accountAssociation block" since it was signed - a prose rule with nothing
+// enforcing it. Now the whole block is pinned by hash.
+//
+// IF THIS FAILS AFTER A DELIBERATE RE-SIGN, that is correct and expected: re-sign via the
+// Farcaster dev tools, then update MANIFEST_AA_SHA256 below to the new hash in the SAME
+// commit, so the pin always describes a block someone actually signed.
+const MANIFEST_AA_SHA256 = 'ecda13386e69da2f5298d0b62cf0df1ceda748bce5b897615b0510d97bc97faf';
+const MANIFEST_FID = 19640;
 head('Mini App manifest:');
 try {
   const mani = JSON.parse(readFileSync('.well-known/farcaster.json', 'utf8'));
-  const payload = mani?.accountAssociation?.payload;
-  if (!payload) throw new Error('no accountAssociation.payload');
-  const decoded = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
-  if (decoded.domain === DOMAIN) ok(`payload domain = ${decoded.domain}`);
-  else fail(`payload domain = ${decoded.domain} (expected ${DOMAIN})`);
+  const aa = mani?.accountAssociation;
+  if (!aa) throw new Error('no accountAssociation block');
+
+  for (const k of ['header', 'payload', 'signature']) {
+    if (!aa[k] || typeof aa[k] !== 'string' || !aa[k].trim()) fail(`accountAssociation.${k} is missing or empty`);
+  }
+
+  const dec = (v) => JSON.parse(Buffer.from(v, 'base64url').toString('utf8'));
+
+  const payload = dec(aa.payload);
+  if (payload.domain === DOMAIN) ok(`payload domain = ${payload.domain}`);
+  else fail(`payload domain = ${payload.domain} (expected ${DOMAIN})`);
+
+  const header = dec(aa.header);
+  if (header.fid === MANIFEST_FID) ok(`header fid = ${header.fid}`);
+  else fail(`header fid = ${header.fid} (expected ${MANIFEST_FID}) - this manifest is signed by a different account`);
+  if (header.type === 'auth') ok('header type = auth');
+  else fail(`header type = ${header.type} (expected auth)`);
+
+  // The pin. Any byte changed anywhere in the signed block trips this, including a change
+  // that leaves every individual field above still looking plausible.
+  const canon = JSON.stringify(aa, Object.keys(aa).sort());
+  const got = createHash('sha256').update(canon).digest('hex');
+  if (got === MANIFEST_AA_SHA256) ok('signed block matches the pinned hash');
+  else fail(`the signed accountAssociation block CHANGED (sha256 ${got.slice(0, 16)}..., pinned ${MANIFEST_AA_SHA256.slice(0, 16)}...).\n` +
+            '         A hand-edit here does not break the build or the deploy - it breaks the Mini App\n' +
+            '         silently, in Farcaster, with nothing reporting it. If you re-signed on purpose,\n' +
+            '         update MANIFEST_AA_SHA256 in scripts/validate.mjs in the same commit.');
+
+  // Nothing may shadow the manifest route. CLAUDE.md states this; enforce it.
+  const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'));
+  const wellKnown = '/.well-known/farcaster.json';
+  // Vercel `source` allows both :param tokens AND raw regex groups like /(.*), so the pattern
+  // must be built by converting only the :param forms and leaving the rest intact. An earlier
+  // version escaped the regex metacharacters too, which made "/(.*)" - the catch-all that is
+  // the whole reason this guard exists - fail to match and pass silently. Caught by testing it.
+  const matchesWellKnown = (src) => {
+    const raw = String(src || '');
+    const pattern = '^' + raw.replace(/:[A-Za-z_]+\*/g, '.*').replace(/:[A-Za-z_]+/g, '[^/]+') + '$';
+    try { if (new RegExp(pattern).test(wellKnown)) return true; } catch { /* not a regex; fall through */ }
+    // Belt and braces: a literal prefix match catches a plain "/.well-known" style source that
+    // is not a regex at all.
+    return wellKnown === raw || wellKnown.startsWith(raw.replace(/\/+$/, '') + '/');
+  };
+  const shadows = [...(vercel.rewrites || []), ...(vercel.redirects || [])].filter((r) => matchesWellKnown(r.source));
+  if (!shadows.length) ok('no rewrite or redirect shadows /.well-known/farcaster.json');
+  else for (const sh of shadows) fail(`vercel.json "${sh.source}" -> "${sh.destination}" would shadow ${wellKnown}, which silently unregisters the Mini App`);
 } catch (e) { fail('manifest - ' + e.message); }
 
 // 5. Per-signal capture - a battle must not settle with its numbers missing.
