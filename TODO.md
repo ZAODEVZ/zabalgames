@@ -40,7 +40,7 @@ WaveWarZ-**Base** Finals with Respect-weighted settlement - that Finals design n
 (see `/august` for what did). It also lists `daily-cast` and cron env vars; `daily-cast.mjs`
 was deleted in PR #574 and `vercel.json` has no crons block at all.
 
-## [CURRENT - 2026-07-03] - July open-build month
+### The July board as it stood on 2026-07-03 (superseded - see the banner above)
 
 Reprioritized from the 3-agent repo audit (surfaces + backend + roadmap), 2026-07-03.
 
