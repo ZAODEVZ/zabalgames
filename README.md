@@ -76,7 +76,7 @@ zabalgames/
 | `/submit`, `/submissions` | Submit a project (board stays open between seasons); the public project board |
 | `/about`, `/context` | The pitch and the context file for the season |
 | `/playbook` | Builder Playbook - how to ship a build |
-| `/lead` | Lead a Workshop - self-signup (Formspree; the Cal.com embed is on `/info`, not here) |
+| `/lead` | Lead a Workshop - self-signup (Formspree). No Cal.com embed; booking is closed site-wide as of 2026-09-08 |
 | `/dream-leads` | Community wishlist of people to invite to teach - nominate, upvote (+1), tag on Farcaster |
 | `/mentor` | Mentor signup |
 | `/projects`, `/board` | Adoptable projects to pick up; the build board. (`/enter` and `/vote` now redirect to `/leaderboard` - the July entry and the quadratic vote are retired.) |
@@ -129,7 +129,7 @@ Zero-dependency Vercel edge functions over **Upstash Redis** (REST). Verified wr
 - **Activity backend** runs on **Upstash Redis** over REST. Env: `KV_REST_API_URL` + `KV_REST_API_TOKEN` (the Upstash Vercel integration injects these; code also accepts `UPSTASH_REDIS_REST_*`). Connected and live.
 - **`db/schema.sql` is dead.** It was drafted for a client-side Supabase submission gallery in `info.html`; that gallery, its CDN script and its placeholder keys were all removed. Nothing reads the schema. Do not reintroduce Supabase for the activity backend.
 - **Backups.** `.github/workflows/kv-backup.yml` pulls the whole keyspace nightly through `/api/export`, verifies the export is structurally complete, redacts it (`scripts/redact-export.py` - this repo is public), and commits `backups/kv-latest.json`. **It switches itself off around 2026-11-06.** GitHub disables scheduled workflows after 60 days of repository inactivity, and this is the repo's only one; 60 days from the last commit by a person lands there. Its own nightly bot commits are pushed with `GITHUB_TOKEN` and should not be assumed to reset that clock. When it stops, so does the daily `/api/export` call that keeps Upstash warm - and nothing reports that either has stopped. To reset it, push any commit or hit "Run workflow" (`workflow_dispatch`). Working: [`docs/season-1-closeout-audit-2026-09-07.md`](docs/season-1-closeout-audit-2026-09-07.md).
-- **Signups** go to Formspree (`/f/mlgvvoyd`); **scheduling** to Cal.com (`cal.com/zabal-gamez/workshop-session`). Neither needs the DB.
+- **Signups** go to Formspree (`/f/mlgvvoyd`). **Scheduling is closed** - the Cal.com embed was removed from `/info` on 2026-09-08 because Season 1 had ended and it was still taking bookings. The two Cal.com event types remain live by direct link until Zaal turns them off in the Cal.com dashboard; the repo cannot do it. Neither needs the DB.
 
 ## Scripts
 
