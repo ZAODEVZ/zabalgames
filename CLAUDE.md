@@ -206,7 +206,30 @@ later re-scheduling). Endpoints across:
   immediately. Run it by hand before every push too.
 - It covers: every tracked `*.json` parses; every `api/*.mjs` passes `node --check`;
   every classic inline `<script>` in `*.html` compiles; the manifest payload decodes
-  to `{"domain":"zabalgamez.com"}`.
+  to `{"domain":"zabalgamez.com"}`; and **per-signal capture** (below).
+
+## Per-signal capture - built 2026-09-08, for Season 2
+Season 1 was decided on three signals (open poll on X, charts from live trading, judges
+panel) and **the numbers behind all three were never written down while the battles ran.**
+They are not private and not disputed - they are gone. Nothing complained at the time,
+because nothing was watching.
+
+`scripts/check-signals.mjs` is what complains now, and it runs inside `validate.mjs`, so it
+fires on every push without anyone remembering it exists. **A battle whose `status` is
+complete/done/settled must have every signal either captured or explicitly marked
+`ran:false` with a reason - otherwise validate exits non-zero and the push is blocked.**
+
+- Capture from the room in one line, do not hand-edit the JSON:
+  `node scripts/record-signal.mjs builder poll --winner @handle --counts '@a=41,@b=17' --source 'X poll, called on air 01:02:11'`
+  `capturedAt` is stamped automatically and `--source` is REQUIRED - a number with no
+  provenance cannot be checked later. Nothing is written if any argument is bad.
+- A signal that genuinely did not happen: `--did-not-run 'no panel for this battle'`.
+  That is a different statement from an empty measurement, and the check treats it as one.
+- **`null` means NOT CAPTURED. It never means zero.**
+- Season 1's three battles carry `signalsUnrecoverable:true` with a reason and are exempted
+  **by name and out loud** - the WARN lines print on every run on purpose, so the hole in
+  the record stays visible instead of decaying into "the check passes". Recording a real
+  number on a battle clears its exemption automatically.
 
 ## 3-month roadmap
 The full June -> July -> August prep plan lives in `docs/season-1-roadmap-3month.md` -
