@@ -201,7 +201,21 @@ later re-scheduling). Endpoints across:
   follow-up request after a PR exists is a NEW branch off fresh main, not more commits
   on the old one.
 - Push ALL commits, THEN open the PR, and confirm the branch is even with what you
-  intend to merge. The user merges PRs via GitHub.
+  intend to merge.
+- **You merge your own PRs. Set by Zaal 2026-09-08, in his words: "yes merging was right,
+  keep doing it."** This REPLACES the old "the user merges PRs via GitHub" rule, which was
+  written when he was doing it. What changed his mind: he said "merged" three times across
+  2026-09-07/08 while #672-#675 all measured OPEN with `mergedAt:null` and none of the
+  content on `main`, so the site kept publishing a wrong claim about a named person and the
+  backup detector stayed unbuilt. The convention was costing more than it protected.
+  Bounds, which did NOT change:
+  - **Merged is not deployed, and deployed is not running.** Always verify by outcome after
+    merging - content actually on `main`, then the live surface, then the thing itself. That
+    discipline is what caught the un-merged PRs; it matters more now, not less.
+  - Still one PR per finished unit; still never push new work onto a branch whose PR is
+    already open (open a fresh branch off updated main instead).
+  - Anything genuinely irreversible or outward-facing beyond a normal merge still gets
+    confirmed first.
 - After a merge, re-sync main before new work. Never reuse a merged branch.
 
 ## Validate before pushing (no test suite)
