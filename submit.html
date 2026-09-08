@@ -248,6 +248,19 @@
 </div>
 
 <script>
+
+  // Read ?ref= once and keep it for the session. sessionStorage rather than localStorage so a
+  // stale ref cannot attach to a submission weeks later from an unrelated visit.
+  function refFromShareLink() {
+    try {
+      var q = new URLSearchParams(location.search).get('ref');
+      if (q) {
+        var clean = String(q).replace(/^@+/, '').replace(/[^A-Za-z0-9_.-]/g, '').slice(0, 32);
+        if (clean) { try { sessionStorage.setItem('zg:ref', clean); } catch (_) {} return clean; }
+      }
+      try { return sessionStorage.getItem('zg:ref') || ''; } catch (_) { return ''; }
+    } catch (_) { return ''; }
+  }
 (function () {
   'use strict';
   var form = document.getElementById('project-form');
@@ -332,6 +345,11 @@
     var builder = value('project-builder');
     var payload = {
       kind: 'project',
+      // Referral attribution, invisible by design. The ?ref= arrives on a shared link and is
+      // remembered for the session, so it survives the click-through to /submit. There is no
+      // code to enter and no leaderboard to climb - the recorded decision is that a public ref
+      // board breeds bots, and that the number worth counting is real submitters, not connects.
+      ref: refFromShareLink(),
       promptId: 'project',
       project: project,
       answer: description,

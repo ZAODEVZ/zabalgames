@@ -184,6 +184,10 @@ function ownerView(s) {
   delete out.editToken;
   delete out.sourceMessageId;
   delete out.sourceEventId;
+  // Referral attribution is internal. The submitter did not provide it and does not need
+  // it back; leaking it here would also make an "invisible" referral visible to the
+  // referred person, which is the one property the design is built on.
+  delete out.ref;
   return out;
 }
 
@@ -585,6 +589,12 @@ export default async function handler(req) {
 
     // optional Quick Auth binds a verified FID/handle (for the one-per-identity gate later)
     let fid = null, handle = cleanSlug(body.handle, 32) || null, pfp = null;
+    // Referral attribution, carried from the ?ref= on the share link the submitter arrived
+    // through. Stored on the row but NOT surfaced: publicView is an allowlist and never
+    // spreads the raw submission, so this cannot reach a client.
+    // Season 1 measured 0 of 21 submissions carrying a fid, so fid-based attribution alone
+    // would have credited nobody - the ref has to travel with the submission itself.
+    const refHandle = cleanSlug(String(body.ref || '').replace(/^@+/, ''), 32) || null;
     const auth = req.headers.get('authorization') || '';
     const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
     if (token) {
@@ -631,6 +641,7 @@ export default async function handler(req) {
       status: isDraft ? 'draft' : 'approved', // auto-accept: submissions go live on the board; moderation is delete-after, and low-quality entries simply get no votes
       ts: Date.now(),
       updatedTs: Date.now(),
+      ref: refHandle,
     };
     if (editToken) sub.editToken = editToken;
     const cmds = [
@@ -643,6 +654,10 @@ export default async function handler(req) {
     if (fid) cmds.push(['INCR', `zabal:subs:byfid:${fid}`]);
     if (handle) cmds.push(['SADD', `zabal:subs:byhandle:${handle}`, id]); // lets the agent gateway list a builder's own submissions
     if (sourceHash) cmds.push(['SET', `zabal:subs:source:${sourceHash}`, id]);
+    // Count a real SUBMITTER against the referrer, not a connect. The recorded design is
+    // "count who actually submitted, no public leaderboard" - a connect counter is what
+    // breeds farming. Best-effort, and never self-referral.
+    if (refHandle && refHandle !== handle) cmds.push(['SADD', `zabal:ref:submitters:${refHandle}`, id]);
     try { await kvPipeline(cmds); } catch { return json({ ok: false, error: 'kv-write' }); }
 
     await notify(isDraft

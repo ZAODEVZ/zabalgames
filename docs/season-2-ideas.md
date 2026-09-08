@@ -94,9 +94,25 @@ reuses the whole existing recording pipeline and needs no new page or endpoint.
    (`api/qv-vote.mjs` `loadCandidates`). S2: recruit per-track, or seed each track.
 5. **"Your season" page** - per-handle view of your submissions + votes + collectible, off
    `profile.html` / `p.html`. Gives each builder a shareable identity artifact.
-6. **Invisible referral that counts real submitters** - bake a ref into the share flow
-   (`assets/miniapp.js` withRef already does the plumbing); count who actually submitted, no
-   public leaderboard (avoids farm bait).
+6. ~~**Invisible referral that counts real submitters**~~ **DONE 2026-09-08.** The plumbing
+   existed (`withRef` already appends `?ref=` to shared links) but the two things that define the
+   design did not: it credited on **authentication** - a connect, the metric explicitly ruled out -
+   and it served a **public, unauthenticated** top-referrers board at `?board=top`, which is the
+   farm bait the decision exists to avoid. Neither `submit.html` nor `api/submissions.mjs` touched
+   a ref at all, so no submission carried attribution.
+   The measurement that decided the shape: **0 of 21 Season 1 submissions carry a fid**, so
+   fid-based attribution would have credited nobody. The ref now travels *with the submission* -
+   `submit.html` reads `?ref=` and holds it in `sessionStorage` (not `localStorage`, so a stale ref
+   cannot attach weeks later from an unrelated visit), and a successful submit does
+   `SADD zabal:ref:submitters:<ref> <id>`. Self-referral is refused. `?board=top` is admin-gated
+   now and ranks by **submitters**, keeping connects only for comparison - kept rather than deleted
+   so Zaal can still read it, closed so nobody can farm it. Nothing rendered it (grepped first).
+   Two consequences found by checking rather than assuming, both fixed: `ownerView` spreads the raw
+   row and only deleted three fields, so the ref was being returned to the submitter; and the
+   nightly backup commits submission rows **whole** into this public repo, so `redact-export.py`
+   now drops `zabal:ref:*` keys **and** strips the inline `ref` field at any depth - a referral is
+   a social-graph edge neither party published. `scripts/test-referral.mjs` (20 assertions) and
+   three new cases in `test-redact-export.mjs` pin all of it.
 7. **loops.house-native weekly-task engine** - if loops does not host the weekly tasks, the
    site needs a task surface + per-track weekly submissions. Decide with RK before building.
 8. **Consolidate the arcade** - `game/2048`, `game/build-quiz`, `game/zao-trivia`, `/pops`,

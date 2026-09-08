@@ -55,6 +55,11 @@ DROP_PREFIXES = (
     "qv:ballots:",
     "zabal:agent:tok:",
     "zabal:profile:nonce:",
+    # Referral attribution. Every one of these keys is a social-graph edge - "this handle
+    # brought that submitter" - that neither party published, and the whole point of the
+    # Season 2 referral design is that it is INVISIBLE. Committing it to a public repo is the
+    # opposite. Added 2026-09-08 when the ref started being recorded at submit time.
+    "zabal:ref:",
 )
 DROP_EXACT = ("zabal:notif:tokens",)
 
@@ -75,6 +80,7 @@ FORBIDDEN_IN_OUTPUT = (
     "zabal:agent:tok:",
     "zabal:profile:nonce:",
     "zabal:notif:tokens",
+    "zabal:ref:",
 )
 
 EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
@@ -129,6 +135,27 @@ def redact(doc):
     counter = [0]
     kept = {k: scrub_emails(v, counter) for k, v in kept.items()}
 
+    # Dropping whole keys is not enough: the referrer handle rides INSIDE each submission
+    # value as `ref`, and submissions are committed whole. Strip the field wherever it
+    # appears, at any depth, so the backup cannot publish who referred whom.
+    refs_dropped = [0]
+
+    def strip_ref(value):
+        if isinstance(value, dict):
+            out = {}
+            for k, v in value.items():
+                if k == "ref" and isinstance(v, (str, type(None))):
+                    if v:
+                        refs_dropped[0] += 1
+                    continue
+                out[k] = strip_ref(v)
+            return out
+        if isinstance(value, list):
+            return [strip_ref(v) for v in value]
+        return value
+
+    kept = {k: strip_ref(v) for k, v in kept.items()}
+
     out = dict(doc)
     out["data"] = kept
     out["count"] = len(kept)
@@ -141,6 +168,7 @@ def redact(doc):
         "keys_dropped": dropped,
         "keys_kept": len(kept),
         "emails_redacted": counter[0],
+        "referrals_stripped": refs_dropped[0],
     }
     return out
 
