@@ -473,6 +473,43 @@ Tier-1 deterministic submission pre-screen (July playbook Move 4). Checks a buil
 | `BONFIRE_API_URL` / `BONFIRE_API_KEY` | Bonfire REST base + key used by `bonfire-ask` and `commit-watcher` to push into the Bonfire backend | Bonfire |
 | `GITHUB_TOKEN` | Read-only GitHub token `commit-watcher` uses to poll registered build repos for commits | GitHub (fine-grained, public-repo read) |
 
+### `GET /api/backup-health`
+
+The detector for the one failure here that is both silent and irreversible.
+`.github/workflows/kv-backup.yml` is the repo's only scheduled job, and GitHub
+disables scheduled workflows after 60 days of repository inactivity - no failing
+run, no error. When it goes, the nightly backup goes AND so does the daily
+`/api/export` call that keeps Upstash warm.
+
+Keyless: reads the public GitHub API for the last commit touching
+`backups/kv-latest.json`, the last commit by a *person*, and whether the workflow
+is still `active`. Cached 15 minutes, because unauthenticated GitHub allows 60
+requests/hour per IP and edge functions share IPs.
+
+```
+GET /api/backup-health -> { ok, measured, healthy, problems[],
+                            backup:{ lastCommit, ageHours, stale },
+                            workflow:{ state, enabled },
+                            inactivity:{ lastHumanCommit, idleDays, disablesAt, daysLeft } }
+```
+
+**`measured:false` means blind, and `healthy` is then `null` - never `true`.**
+Any consumer must render that as UNMEASURED, not as green; a check that reports
+"fine" while it cannot see is worse than no check. `/status` renders it that way,
+with a dashed border.
+
+Commits authored by `zao-backup` are excluded from the inactivity clock: the
+workflow pushes them with the default `GITHUB_TOKEN`, and `GITHUB_TOKEN` activity
+is widely reported not to reset it. That cannot be verified from outside, so this
+is the pessimistic reading on purpose - if bot commits *do* count, the real
+deadline is later than reported, never earlier.
+
+This endpoint is deliberately **outside** the workflow it watches, so it keeps
+reporting after the workflow is switched off. The workflow also carries its own
+`keepalive-canary` job that fails on purpose within 14 days of the deadline, so
+GitHub emails about the failed run while it is still running. Two legs, different
+failure modes.
+
 Without these the endpoints still respond (verify + no-op store / empty feed),
 so the site never breaks - the activity feed just stays empty until KV exists.
 

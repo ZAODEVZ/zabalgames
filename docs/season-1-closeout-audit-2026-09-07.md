@@ -39,8 +39,38 @@ the one above: assume bot commits do not count, and treat 2026-11-06 as real.
 What stops on that date: the nightly backup, and the daily authenticated call to
 `/api/export` that is also what keeps the Upstash free tier from going cold.
 
-Both `workflow_dispatch` and a warning email from GitHub are available as
-manual saves. Neither is a detector - see the grill.
+### The detector, built the same day
+
+Zaal's call was detector over reminder, and the reason holds: a reminder needs
+someone to read it, and a silent stop is precisely the failure nobody notices.
+
+The honest problem with building one is that **a detector living in this repo
+dies with the workflow it watches.** So it has two legs, chosen to fail
+differently:
+
+1. **`keepalive-canary`** - a second job inside `kv-backup.yml`, running
+   alongside the backup rather than after it, so a warning can never mask or
+   block a good backup. It **fails on purpose** once the deadline is within 14
+   days, and GitHub emails about failed runs. Covers the window while the
+   workflow is still alive.
+2. **`GET /api/backup-health`** - an edge endpoint measuring from outside the
+   repo, so it keeps reporting after the workflow is gone. Keyless, via the
+   public GitHub API. `/status` renders it above the recordings pipeline.
+
+**Absence is not a value.** When the endpoint cannot reach GitHub it returns
+`measured:false` and `healthy:null` - never `healthy:true` - and `/status` shows
+UNMEASURED with a dashed border. A blind check that shows green converts an
+outage into a reassurance.
+
+One bug was caught while building the canary: under `set -euo pipefail`, the
+`git log | grep -v | head -1` pipeline dies at the assignment twice over - `grep`
+exits 1 when every commit is the bot, and `head -1` can SIGPIPE `git log`. Either
+would have made the explicit "could not measure" branch unreachable, so the job
+would have failed with no explanation. That is a detector failing silently about
+a silent failure. Fixed with `|| true` plus the explicit empty check, and both
+branches were exercised locally before committing.
+
+`workflow_dispatch` and pushing any commit remain the manual saves.
 
 ---
 

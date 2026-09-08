@@ -301,8 +301,23 @@ measure that from the inside - so assume they do not and treat 2026-11-06 as rea
 
 When it stops, two things stop: the nightly backup, and the daily authenticated
 `/api/export` call that is also what keeps the Upstash free tier warm. Manual saves: hit
-"Run workflow" (it has `workflow_dispatch`), or watch for GitHub's warning email. Neither
-is a detector - nothing currently reports that the backup stopped.
+"Run workflow" (it has `workflow_dispatch`), or push any commit.
+
+**There is a detector now, built 2026-09-07, on two legs with different failure modes:**
+
+1. **`keepalive-canary`**, a second job in `kv-backup.yml`. It runs alongside the backup
+   (never after it, so a warning cannot mask or block a good backup) and **fails on purpose**
+   once the deadline is within 14 days. A failed run is something GitHub emails about, so it
+   reaches someone without their remembering to look. This leg only works while the workflow
+   still runs - which is exactly the window before it dies.
+2. **`GET /api/backup-health`**, an edge endpoint that measures from OUTSIDE the repo, so it
+   keeps reporting after the workflow is switched off. Keyless, via the public GitHub API:
+   last commit to `backups/kv-latest.json`, last commit by a person, and whether the workflow
+   is still `active`. `/status` renders it above the recordings pipeline.
+
+**`measured:false` means blind, and `healthy` is then `null`, never `true`.** `/status` shows
+that as UNMEASURED with a dashed border. A check that reports "fine" while it cannot see turns
+an outage into a reassurance, which is worse than no check.
 
 ## Live links (do not break)
 - Season 1 results (canonical): https://zabalgamez.com/results

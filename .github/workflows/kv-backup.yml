@@ -5,6 +5,14 @@
 # copy and the vendor stops being a single point of failure.
 #
 # Requires one repo secret: ADMIN_KEY (the same value api/../lib/auth.mjs accepts).
+#
+# THIS WORKFLOW SWITCHES ITSELF OFF. GitHub disables scheduled workflows after 60 days of
+# repository inactivity - no failing run, no error, nothing. It is the only scheduled job
+# here, so when it goes so does the daily /api/export call that keeps Upstash warm. The
+# `keepalive-canary` job below exists to make that arrival loud instead of silent: it FAILS
+# ON PURPOSE as the deadline approaches, and a failed run is something GitHub emails about.
+# That covers the window while this still runs. For after it is switched off, the detector
+# is /api/backup-health, which measures from outside the repo and therefore keeps reporting.
 name: KV backup
 
 on:
@@ -118,3 +126,55 @@ jobs:
           fi
           git commit -m "chore(backup): nightly KV export"
           git push
+
+  # Runs alongside the backup, not after it, so a warning here never masks or blocks a good
+  # backup: the `backup` job stays green on its own merits and this one goes red by itself.
+  # A red run is the point - GitHub emails the repo owner about failed runs, which reaches
+  # someone without their having to remember to look at anything.
+  keepalive-canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # need real history to find the last commit by a person
+
+      - name: Fail loudly before GitHub switches this workflow off
+        run: |
+          set -euo pipefail
+          # GitHub's clock watches REPOSITORY ACTIVITY. This workflow's own nightly commits
+          # are pushed with the default GITHUB_TOKEN, and GITHUB_TOKEN activity is widely
+          # reported not to reset it. That cannot be verified from inside, so we take the
+          # pessimistic reading: only commits by a person count. If bot commits do count,
+          # this warns early, which is the harmless direction to be wrong in.
+          # `|| true` is load-bearing. Under `set -euo pipefail` this assignment dies twice
+          # over without it: grep exits 1 when every commit is the bot, and head -1 can
+          # SIGPIPE git log. Either one kills the step at the assignment, so the explicit
+          # "could not measure" branch below would be unreachable and the job would fail
+          # with no explanation - a detector failing silently about a silent failure.
+          LAST_HUMAN=$( { git log --format='%at|%an' -200 \
+            | grep -v '|zao-backup$' \
+            | head -1 | cut -d'|' -f1 ; } || true )
+
+          if [ -z "$LAST_HUMAN" ]; then
+            echo "Could not find a commit by a person in the last 200. Not guessing."
+            echo "This is UNMEASURED, not healthy - failing so someone looks."
+            exit 1
+          fi
+
+          NOW=$(date -u +%s)
+          IDLE_DAYS=$(( (NOW - LAST_HUMAN) / 86400 ))
+          LEFT=$(( 60 - IDLE_DAYS ))
+          DEADLINE=$(date -u -d "@$(( LAST_HUMAN + 60*86400 ))" +%Y-%m-%d)
+
+          echo "Last commit by a person: $(date -u -d "@$LAST_HUMAN" +%Y-%m-%d)"
+          echo "Repo has been idle:      ${IDLE_DAYS} day(s)"
+          echo "GitHub disables this on: ${DEADLINE}  (${LEFT} day(s) left)"
+
+          if [ "$LEFT" -le 14 ]; then
+            echo ""
+            echo "::error title=KV backup is about to be switched off::GitHub disables scheduled workflows after 60 days of repository inactivity. This one has ${LEFT} day(s) left and will stop on ${DEADLINE}. When it stops, the nightly backup AND the daily /api/export call that keeps Upstash warm both stop, silently. Fix: push any commit, or open the Actions tab and hit 'Run workflow' on kv-backup.yml."
+            exit 1
+          fi
+
+          echo ""
+          echo "Fine for now. This job goes red at 14 days left."
