@@ -214,18 +214,31 @@ stranded on either.
 closed PR #584, "Let builders edit their own projects while signed in with
 Farcaster" (SIWE wallet login). One decision covers all four.
 
-### Genuinely unlanded and worth a decision (8)
+### Genuinely unlanded and worth a decision (6, after two were deleted)
 
 | Branch | What it holds | Last touched |
 |---|---|---|
 | `ws/bonfire-lane` | Telegram-to-Bonfire ingest script + `docs/bonfire-lane/` | 2026-08-26 |
 | `ws/lane-audit-2026-08-25` | the lane audit doc | 2026-08-26 |
-| `ws/sopha-fireside` | a complete recording page + transcript (PR #188, CLOSED) | 2026-06-09 |
-| `rescue/orphan-8668183-azkal-flowstage` | `recordings/26` - Azkal FlowStage page + transcript | 2026-06-28 |
 | `ws/adoptable-schema-id-note` | `/projects` id contract + "Seeking maintainer" group | 2026-08-25 |
 | `ws/newsletter-day2` | June newsletter draft | 2026-06-02 |
 | `ws/newsletter-day159` | June newsletter draft | 2026-06-07 |
 | `ws/newsletter-2026-06-09` | June newsletter draft + socials | 2026-06-09 |
+
+### Deleted 2026-09-07, on Zaal's call - recoverable from these SHAs
+
+Both were duplicates (see the correction below), both remote-only, and both were
+checked immediately before deletion: each session is present in
+`data/recaps.json` on `main` with `youtube` set, and `/recordings/5` and
+`/recordings/27` each returned 200 live.
+
+| Branch | Tip SHA | Last commit | Superseded by |
+|---|---|---|---|
+| `ws/sopha-fireside` | `c59cf452038b8f781dbede7b7bf1b7ddca1288d1` | 2026-06-09, "Add the Sopha fireside (Chris x Zaal) as /recordings/fireside/2" | `/recordings/5` |
+| `rescue/orphan-8668183-azkal-flowstage` | `8668183f119a6d047679725685a545d2b7626402` | 2026-06-28, "recordings: AZKAL FlowStage - new page (transcript)" | `/recordings/27` |
+
+Restore either with `git push origin <sha>:refs/heads/<name>` - but read the
+correction first, because both are older, thinner drafts than what is live.
 
 **CORRECTION, same day.** An earlier version of this document claimed
 `ws/sopha-fireside` and `rescue/orphan-8668183-azkal-flowstage` were "content
