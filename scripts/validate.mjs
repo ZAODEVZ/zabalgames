@@ -165,6 +165,19 @@ try {
   if (!/FAIL|out of sync/.test(text)) fail('check-generated.mjs - ' + e.message);
 }
 
+// 8. api/README.md calls itself "the authoritative per-endpoint contracts (kept current)".
+// Enforce the claim: no endpoint ships undocumented, no deleted one keeps its contract.
+head('API contracts:');
+try {
+  const outp = execSync(`node ${JSON.stringify('scripts/check-api-docs.mjs')} --quiet`, { encoding: 'utf8' });
+  void outp;
+  ok('every endpoint documented; no ghost contracts');
+} catch (e) {
+  const text = (e.stdout || '') + (e.stderr || '');
+  for (const line of text.split('\n')) if (/FAIL|drift\(s\)/.test(line)) fail(line.replace(/^\s*FAIL\s*/, ''));
+  if (!/FAIL|drift/.test(text)) fail('check-api-docs.mjs - ' + e.message);
+}
+
 head('');
 if (failures) { console.error(`validate: ${failures} failure(s).`); process.exit(1); }
 console.log('validate: all checks passed.');
