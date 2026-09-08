@@ -165,11 +165,16 @@ later re-scheduling). Endpoints across:
 ## Integrations
 - **Signups:** Formspree team form `https://formspree.io/f/mlgvvoyd` (lead, mentor,
   snap), each tagged by `form_source`.
-- **Scheduling:** Cal.com `cal.com/zabal-gamez/workshop-session`, embedded on /info only.
-  A second booking page, `cal.com/bettercallzaal/zabal-games-workshop-slot`, is also live
-  and is not linked from the site. Both returned 200 on 2026-09-07 and both still take
-  bookings for a season that is over. `cal.com/bettercallzaal/zabal-games-workshop` (no
-  `-slot`) is 404 - the archive doc's link is dead.
+- **Scheduling: CLOSED 2026-09-08.** The Cal.com embed and its direct link were removed
+  from `/info`; the site now has **no** booking surface, and `/info` points at email or the
+  /zabal group for Season 2 instead. Season 1 ended 2026-08-31 and the embed was still
+  taking real bookings for workshops nobody would run.
+  **Two Cal.com event types are still live and still bookable by direct link** -
+  `cal.com/zabal-gamez/workshop-session` and `cal.com/bettercallzaal/zabal-games-workshop-slot`
+  (both HTTP 200 on 2026-09-08). Turning those off is a **Cal.com dashboard action only Zaal
+  can do** - there is no Cal.com API key on the mac, so no session can do it for him. Until
+  he does, a direct link still books. Do NOT re-embed either one; when Season 2 has dates,
+  make a NEW event type, because these carry Season 1 availability.
 - **Collectible: REMOVED 2026-09-04.** Every "Insert Coin" link to
   `collect.zabalgamez.com` (the shortlink forwarding to the retired Magnetiq magnet) was
   deleted from the site on Zaal's call - 125 anchors across 85 files, plus the entry in
