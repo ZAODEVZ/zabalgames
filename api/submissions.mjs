@@ -29,6 +29,7 @@
 
 import { verifyQuickAuth, verifyAdmin, DOMAIN, timingEq } from '../lib/auth.mjs';
 import { RateLimiter } from '../lib/rate-limit.mjs';
+import { isTestFixture } from '../lib/test-fixtures.mjs';
 
 export const config = { runtime: 'edge' };
 
@@ -199,7 +200,7 @@ async function readStoredFeed(index, limit, status, showFixtures) {
     const r = await kvPipeline(ids.map((id) => ['GET', `zabal:sub:v1:${id}`]));
     return r.map((row) => { try { return row && row.result ? JSON.parse(row.result) : null; } catch { return null; } })
       .filter((s) => s && (!allow || allow.indexOf(s.status) >= 0))
-      .filter((s) => showFixtures || !QA_FIXTURES.has(String(s.id)))
+      .filter((s) => showFixtures || !isTestFixture(s))
       .map(publicView).filter(Boolean);
   } catch { return []; }
 }
@@ -262,10 +263,14 @@ async function readBuilderFeed(req) {
   };
 }
 
-// QA fixtures seeded while the ballot was being tested. Already excluded from the ballot
-// and the points board in api/qv-vote.mjs; excluded here too so the public project count
-// reads 30 rather than 32. Delete the rows at /review and this can go.
-const QA_FIXTURES = new Set(['5', '6']);
+// Test-fixture exclusion is shared with api/qv-vote.mjs via lib/test-fixtures.mjs. It used to
+// be a hardcoded `new Set(['5','6'])` here and a track-keyed `new Set(['artist:5','creator:6'])`
+// there - the same fact maintained twice, in two formats. Detection is by MARKER now, so
+// seeding a QA row cannot leave it live on one surface because someone edited only one file.
+//
+// The old comment here claimed excluding these makes the public count "30 rather than 32".
+// Measured 2026-09-08: the live feed returns 31. The numbers were stale; the exclusion was not.
+// The durable fix is still deleting the rows at /review.
 
 export default async function handler(req) {
   const reqOrigin = req.headers.get('origin') || '';

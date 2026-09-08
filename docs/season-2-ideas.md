@@ -25,8 +25,19 @@ choice - see below.
   S2: fewer pages, each deeper. Kill or consolidate the game experiments.
 - **The Finals format churned** (prediction market -> mentor 24h -> loops.house). Lock the
   Finals format before the season opens (`docs/august-finals-loops-format.md` is the current one).
-- **Test data polluted the live vote.** S2: a staging/test mode or a test-tag that the feeds
-  and `qv-vote` exclude, so QA never mixes with real candidates.
+- ~~**Test data polluted the live vote.**~~ **DONE 2026-09-08.** `lib/test-fixtures.mjs` is now
+  the single source and detects fixtures by **MARKER, not by id** - a `[QA TEST` / `[TEST]` /
+  `[FIXTURE` prefix anywhere in the text, a `wip-test`/`*-test` promptId, or an explicit
+  `test: true`. So a newly-seeded QA row is excluded the moment it exists, with no code change.
+  It replaced two hand-maintained denylists of the same fact in **two different key formats** -
+  `new Set(['5','6'])` in `api/submissions.mjs` and `new Set(['artist:5','creator:6'])` in
+  `api/qv-vote.mjs`, the second also requiring you to know the row's track. Seed a fixture,
+  remember one file, and it was votable; one had already reached **#2 on the public artist
+  standings**. `scripts/test-test-fixtures.mjs` covers 27 cases, including the load-bearing one
+  (a brand-new id in no denylist is still excluded) and the negative control (the same id
+  *without* a marker is not) plus words that merely contain "test" - latest, contest,
+  testimonial, "Testing Framework" - which must not be swept up.
+  **The durable fix is still deleting the three rows at `/review`.**
 
 ## Pitch week - Zaal's own note, 2026-09-04
 

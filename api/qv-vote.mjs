@@ -32,6 +32,8 @@
 
 import { verifyQuickAuth, verifyAdmin, DOMAIN } from '../lib/auth.mjs';
 
+import { isTestFixture, isTestFixtureId } from '../lib/test-fixtures.mjs';
+
 export const config = { runtime: 'edge' };
 
 const KV_URL = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL);
@@ -82,11 +84,12 @@ async function getStatus() {
   } catch { return 'preview'; }
 }
 
-// QA fixtures seeded while the ballot itself was being tested. They are real rows on the
-// board, so every consumer would otherwise show them - one was ranked #2 on the public
-// artist standings. Filtered at the single source rather than in each page. The durable
-// fix is deleting the rows from the board; until then this keeps them off every surface.
-const EXCLUDED = new Set(['artist:5', 'creator:6']);
+// Test-fixture exclusion lives in lib/test-fixtures.mjs now, shared with api/submissions.mjs.
+// It used to be a hardcoded `new Set(['artist:5','creator:6'])` here AND a differently-keyed
+// `new Set(['5','6'])` there - two hand-maintained copies of the same fact, one of which also
+// required knowing the row's track. Seeding a QA row and remembering only one file made it
+// votable. Detection is by MARKER now, so a new fixture is excluded the moment it exists.
+// One fixture reached #2 on the public artist standings before any of this existed.
 
 // A few entrants left the builder-name box empty, so their row named a project with nobody
 // attached. These are confirmed by Zaal, not inferred from the project name. The durable
@@ -106,10 +109,13 @@ async function loadCandidates() {
   const clean = (s, n) => String(s == null ? '' : s).replace(/[<>]/g, '').trim().slice(0, n || 100);
   function add(track, cand) {
     if (TRACKS.indexOf(track) < 0 || !cand.id) return;
-    if (EXCLUDED.has(track + ':' + cand.id)) return;
+    if (cand._src && isTestFixture(cand._src)) return;   // marker-based, from the real row
+    if (isTestFixtureId(cand.id)) return;                // backstop for legacy ids
     if (validByTrack[track].has(cand.id)) return;
     validByTrack[track].add(cand.id);
-    tracks[track].push(cand);
+    // _src is the raw submission - internal only. Never let it reach a response body.
+    const { _src, ...publicCand } = cand;
+    tracks[track].push(publicCand);
   }
 
   // 1) Seed/curated builders from the repo - real candidates available immediately.
@@ -162,7 +168,7 @@ async function loadCandidates() {
       // "https://x.com/Gesd01" is not a name anyone recognises on a standings row.
       const asUrl = builder.match(/^https?:\/\/[^\s]+?\/@?([A-Za-z0-9._-]+)\/?$/);
       if (asUrl) builder = asUrl[1];
-      add(track, { id, name: clean(f.project || s.project || ('Project ' + id)), handle, url, builder });
+      add(track, { id, name: clean(f.project || s.project || ('Project ' + id)), handle, url, builder, _src: s });
     }
   }
   return { tracks, validByTrack };
@@ -269,7 +275,7 @@ export default async function handler(req) {
         const tallied = new Set();
         for (let i = 0; i < flat.length; i += 2) {
           const id = flat[i];
-          if (EXCLUDED.has(track + ':' + id)) continue; // tally rows outlive the candidate
+          if (isTestFixtureId(id)) continue; // tally rows outlive the candidate
           const c = byId[id] || {};
           tallied.add(id);
           results.push({ id, name: c.name || ('Project ' + id), handle: c.handle || '', builder: c.builder || '', url: c.url || '', votes: Number(flat[i + 1]) });
