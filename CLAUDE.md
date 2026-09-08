@@ -68,7 +68,11 @@ pages, 45 edge endpoints. Snapshot:
   live submissions (candidates = the board + the seed builders in `data/builder-submissions.json`,
   NOT a curated slate). One ballot per Farcaster FID, 100 credits/track, N votes cost N^2.
   Admin = Farcaster FID allowlist in `lib/auth.mjs` (19640 zaal, 1057869 imanafrikah) +
-  optional `ADMIN_KEY` fallback. The old curated slate (`slate-admin`, `qv-slate-draft`) is
+  optional `ADMIN_KEY` fallback. **The allowlist is PINNED by `scripts/test-auth.mjs`** (in the SessionStart hook): adding a
+  third FID fails the test. Admin can hard-delete submissions from the public board, so widening
+  that access must not be a quiet one-line diff - if it is intended, update `EXPECTED` in that
+  test in the same commit and say who the person is. The test also pins that every `verifyAdmin`
+  path fails closed, including a blank token and an unset or empty `ADMIN_KEY`. The old curated slate (`slate-admin`, `qv-slate-draft`) is
   retired. `data/vote-candidates.json` is now just the on/off `status` switch.
 - **The Finals RAN and are settled.** Two people per track (finalists are people, not
   projects), six finalists, three head-to-head battles on WaveWarZ: artist 24 Aug, creator
