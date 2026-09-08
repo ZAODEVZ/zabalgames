@@ -247,6 +247,23 @@ later re-scheduling). Endpoints across:
     confirmed first.
 - After a merge, re-sync main before new work. Never reuse a merged branch.
 
+## THIS REPO IS PUBLIC - secrets are scanned, not trusted
+`scripts/check-secrets.mjs` runs inside `validate.mjs`, so every push and every session start
+scans all tracked text files for credential shapes: GitHub / OpenAI-Anthropic / AWS / Slack
+tokens, private-key blocks, real JWTs, Upstash REST tokens, and any
+`API_KEY|ADMIN_KEY|SECRET|TOKEN|PASSWORD = "..."` assignment.
+
+Until 2026-09-08 this repo had **no secret guard at all** - no pre-commit hook, no gitleaks -
+while the estate standard already required one for a public repo (research doc 1124; doc 2143
+records ZAOOS running it as an active pre-commit guard). `redact-export.py` only ever covered
+the KV export.
+
+**If it fires on a real value: move it to an env var, and ROTATE it if it was already pushed** -
+deleting the line does not remove it from git history. If it fires on a deliberate fake, add
+the literal to `ALLOWED_LITERALS` **with the reason it is safe**. The allowlist holds shapes in
+context (npm `integrity` lines, one named test fixture) and never whole files, because "skip
+this file" is how a real key later hides in an allowlisted file.
+
 ## Validate before pushing (no test suite)
 - **One command: `node scripts/validate.mjs`** - runs all four checks below and exits
   non-zero on any failure. A SessionStart hook (`.claude/settings.json`) runs it
