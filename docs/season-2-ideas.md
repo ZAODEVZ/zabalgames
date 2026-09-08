@@ -54,7 +54,12 @@ a single unrehearsed shot in front of the judges and the poll.
 gap was 2026-08-16 to 2026-08-24, so the slot already exists in the calendar and
 nothing has to move to make room.
 
-Points worth settling before it is built:
+**SETTLED 2026-09-08 by Zaal: everyone pitches, recorded, judges give notes, non-scoring.**
+The full format, what each answer costs, and how it is built out of the existing recordings and
+comment systems is in [`season-2-pitch-week.md`](season-2-pitch-week.md). The four points below
+are kept as the record of what was open, not as live questions.
+
+Points that were open before it was built:
 - **Who pitches.** Everyone on the board, or only the finalists once the cut is
   made? Opening it to everyone makes the cut better informed; limiting it to the
   six makes it rehearsal rather than competition.
