@@ -81,6 +81,21 @@ try {
   if (!/FAIL|failure/.test(text)) fail('check-signals.mjs - ' + e.message);
 }
 
+// 6. Time-bound claims - refuse to look healthy while a dated claim is unverified.
+// Here rather than standalone for the same reason as check-signals: a check you have to
+// remember to run is a check that does not exist, and this repo is expected to sit
+// untouched until late November while every measured fact in CLAUDE.md ages.
+head('Time-bound claims:');
+try {
+  const outp = execSync(`node ${JSON.stringify('scripts/check-recheck.mjs')}${QUIET ? ' --quiet' : ''}`, { encoding: 'utf8' });
+  if (!QUIET) process.stdout.write(outp.split('\n').filter(Boolean).map((l) => '  ' + l.replace(/^ {2}/, '')).join('\n') + '\n');
+  else { const due = outp.split('\n').filter((l) => l.includes('DUE SOON')); for (const d of due) console.log(d); ok('no dated claim overdue'); }
+} catch (e) {
+  const text = (e.stdout || '') + (e.stderr || '');
+  for (const line of text.split('\n')) if (/FAIL|past their/.test(line)) fail(line.replace(/^\s*FAIL\s*/, ''));
+  if (!/FAIL|past their/.test(text)) fail('check-recheck.mjs - ' + e.message);
+}
+
 head('');
 if (failures) { console.error(`validate: ${failures} failure(s).`); process.exit(1); }
 console.log('validate: all checks passed.');

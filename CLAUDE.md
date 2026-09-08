@@ -32,6 +32,7 @@ the charts from live trading on WaveWarZ, and a judges panel. All three champion
 three. The per-signal NUMBERS were never captured, so no margins are published anywhere -
 do not invent them.
 
+<!-- RECHECK 2026-11-01: Season 2 was targeted at "late November". If dates, format or theme still do not exist by now, the late-November target is itself the stale claim - say so rather than repeating it. -->
 **Season 2 is named and has no dates, format or theme. Do not add any until Zaal sets
 them.** The repo is written so it can sit untouched until then.
 
@@ -169,6 +170,7 @@ later re-scheduling). Endpoints across:
   from `/info`; the site now has **no** booking surface, and `/info` points at email or the
   /zabal group for Season 2 instead. Season 1 ended 2026-08-31 and the embed was still
   taking real bookings for workshops nobody would run.
+  <!-- RECHECK 2026-10-01: are both event types still bookable? curl -o /dev/null -w %{http_code} -L each URL below. If Zaal has hidden or deleted them this whole paragraph is stale and should say so. -->
   **Two Cal.com event types are still live and still bookable by direct link** -
   `cal.com/zabal-gamez/workshop-session` and `cal.com/bettercallzaal/zabal-games-workshop-slot`
   (both HTTP 200 on 2026-09-08). Turning those off is a **Cal.com dashboard action only Zaal
@@ -225,7 +227,33 @@ later re-scheduling). Endpoints across:
   immediately. Run it by hand before every push too.
 - It covers: every tracked `*.json` parses; every `api/*.mjs` passes `node --check`;
   every classic inline `<script>` in `*.html` compiles; the manifest payload decodes
-  to `{"domain":"zabalgamez.com"}`; and **per-signal capture** (below).
+  to `{"domain":"zabalgamez.com"}`; **per-signal capture**; and **re-check dates** (both below).
+
+## Time-bound claims must carry a re-check date - enforced
+This repo's most expensive recurring failure is not a bug, it is **a claim that stays
+true-looking after it stops being true.** PRs #669 and #670 existed entirely to clear six of
+them out of these files, and the estate logged six more in a single day on 2026-09-08 -
+including a "VPS down" line that had lanes avoiding a working machine for 16 days.
+
+Structure beats intention: enforced rules run near 100%, honour-system rules 3-40%. So this
+is enforced. **Any claim about a deadline, an external service, a program or a cycle carries:**
+
+```
+<!-- RECHECK YYYY-MM-DD: what to re-verify, and how -->
+```
+
+`scripts/check-recheck.mjs` runs inside `validate.mjs`, so it fires on every push and at
+every session start. **It fails the build when a date has passed**, warns within 14 days, and
+also fails a bare date with no "what to verify" text or an impossible date - a malformed
+marker must not read as no marker.
+
+**When it fails, the fix is NOT to bump the date.** Re-verify the claim, correct it if it
+changed - at the top, where it is read - and then set the next date. Bumping a date on an
+unverified claim reproduces exactly the failure this guards against.
+
+Pick the date for when the claim would actually matter, not a round number. The backup one is
+2026-10-24 because the canary should already be shouting by then; silence at that point means
+the detector broke, not that the deadline moved.
 
 ## Per-signal capture - built 2026-09-08, for Season 2
 Season 1 was decided on three signals (open poll on X, charts from live trading, judges
@@ -349,6 +377,7 @@ When it stops, two things stop: the nightly backup, and the daily authenticated
 `/api/export` call that is also what keeps the Upstash free tier warm. Manual saves: hit
 "Run workflow" (it has `workflow_dispatch`), or push any commit.
 
+<!-- RECHECK 2026-10-24: the keepalive-canary goes red at 14 days left, so by now it should already be failing runs and emailing. If it is silent, the DETECTOR broke - do not assume the deadline moved. Verify with: gh run list --workflow=kv-backup.yml, and curl https://zabalgamez.com/api/backup-health -->
 **There is a detector now, built 2026-09-07, on two legs with different failure modes:**
 
 1. **`keepalive-canary`**, a second job in `kv-backup.yml`. It runs alongside the backup
