@@ -152,6 +152,23 @@ try {
   if (!/FAIL|past their/.test(text)) fail('check-recheck.mjs - ' + e.message);
 }
 
+// 6b. Future-dated claims on public pages must carry a marker. check-recheck.mjs validates
+// markers that EXIST; it has nothing to look at when a dated claim never got one, so the
+// enforced rule covered only claims someone already remembered to mark. This finds them.
+// Measured before adding: exactly one unmarked future date across every tracked *.html, so
+// the noise floor is one real thing. Added while Season 2 has no dates on purpose - every
+// date it eventually publishes is a claim that expires.
+head('Future-dated claims:');
+try {
+  const outp = execSync(`node ${JSON.stringify('scripts/check-future-dates.mjs')}`, { encoding: 'utf8' });
+  if (!QUIET) process.stdout.write(outp.split('\n').filter(Boolean).map((l) => '  ' + l.replace(/^ {2}/, '')).join('\n') + '\n');
+  else ok('no unmarked future-dated claim');
+} catch (e) {
+  const text = (e.stdout || '') + (e.stderr || '');
+  for (const line of text.split('\n')) if (/expires \d{4}-/.test(line)) fail(line.trim());
+  if (!/expires \d{4}-/.test(text)) fail('check-future-dates.mjs - ' + e.message);
+}
+
 // 7. Generated files must match their source. /recordings/index.json and /recordings.txt are
 // the surface agents are told to read, so a stale one is a wrong answer served confidently.
 head('Generated files:');
