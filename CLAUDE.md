@@ -272,11 +272,21 @@ later re-scheduling). Endpoints across:
   `git fetch origin --prune && git ls-remote --heads origin` and confirm the count - the repo's
   at-rest state is **1** head, `main`. Delete a survivor with
   `git push origin --delete <branch>`, which does work.
+  **Better: use `scripts/merge-pr.sh <pr-number>` and stop remembering.** It asserts the PR is
+  OPEN first, merges, checks `mergedAt` is really set, measures the remote, deletes the head
+  itself if it survived, re-measures, and exits non-zero unless the PR is merged AND the remote
+  is clean. It also keeps the FULL merge output instead of piping it to `tail` - every
+  observation of this bug so far came through a `tail`, which is itself a way to miss the
+  answer.
   **It is reproducible, not a fluke: 2 for 2** - it happened again on PR #699, the PR that added
   this very rule, and the rule caught it. **Why it no-ops is UNMEASURED.** The token carries
-  `repo` scope, which is sufficient to delete a branch, so scope is not the explanation and the
-  real cause is unknown - do not write one down until someone measures it. Assume the command
-  does not delete, and check.
+  `repo` scope, which is sufficient to delete a branch, so scope is not the explanation.
+  **Repo permission is ruled out too**: `git push origin --delete` succeeds with the same
+  credentials every time, which it could not if this were a permissions problem. And
+  `gh pr merge --help` documents no exception - it says "Delete the local and remote branch
+  after merge". The real cause is still unknown; do not write one down until someone measures
+  it. **How to close it:** capture the FULL output of a merge, stderr included and with no
+  `| tail`, and read what gh actually says. Assume the command does not delete, and check.
 - After a merge, re-sync main before new work. Never reuse a merged branch.
 
 ## THIS REPO IS PUBLIC - secrets are scanned, not trusted
