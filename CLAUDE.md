@@ -546,11 +546,17 @@ nobody had measured them; they are now answered. Three need a decision from Zaal
      `/recordings`**. Someone presented, was recorded and transcribed, and it never aired.
    - **Dan Singjoy part 1, 2026-06-20** - `...-eden-fractal-pt1.md`, 2,413 words. `/recordings/16`
      links the sibling file only, so part 1 is reachable from nowhere.
-   **DO NOT MERGE TWO IDENTITIES HERE.** `Nemesis @nemesis.love` (creator track, rapper/singer
-   from Zambia) is NOT established to be `LadyrynNemesis @n3m` (artist track, the artist
-   champion in `data/finals.json`). Different handle, different track, and neither appears in
-   `data/people.json`. They may be the same person; nothing on disk says so. Ask, do not infer -
-   same rule as Candy Toybox.
+   **DO NOT MERGE TWO IDENTITIES HERE, and the question is narrower than it looks.** Measured
+   2026-09-09: `@n3m` and `LadyrynNemesis` ARE the same record - `data/finals.json` and
+   `data/season-1-results.json` carry the same handle `@n3m` and the same URL
+   `songchainn.xyz/n3m3sis/the-call-out`, so those two names are one artist-track champion, not
+   two people. The genuinely open question is only this: **is `Nemesis @nemesis.love` - the
+   creator-track presenter, a rapper and singer from Zambia, whose 2026-06-22 transcript is the
+   unpublished one - the same person as `@n3m`?** Different handle, different track, and
+   `@nemesis.love` appears in NO data file, no page and no link anywhere in the repo; the
+   transcript is its only trace. They may well be the same person. Nothing on disk says so, and
+   guessing puts a wrong name on a public page about a named person. **One question for Zaal,
+   not a research task.** Same rule as Candy Toybox: ask, do not infer.
    If you publish either, add the `data/recaps.json` entry and generate with
    `scripts/ingest-recording.mjs`, **backfilling the manifest from any existing recap first** -
    run cold it rebuilt a live page as a placeholder and deleted a video link (`/recordings/27`).
