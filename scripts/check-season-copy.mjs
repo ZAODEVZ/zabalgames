@@ -29,14 +29,14 @@ import { readFileSync } from 'node:fs';
 // Each: the dead string, why it is dead, and what to write instead.
 const SUPERSEDED = [
   {
-    dead: "3-month Build-A-Thon. June workshops, July open build, August Finals.",
+    // Match the SCHEDULE PHRASE ITSELF, not one sentence that contains it. The first version of
+    // this guard anchored on "3-month Build-A-Thon. June workshops..." and therefore missed
+    // assets/zg-profile.js, which said "three-month build event. June workshops, July open build,
+    // August Finals." - the same dead claim, in outbound cast copy, one wording away. A denylist
+    // keyed on a whole sentence only catches the copy you already found.
+    dead: 'June workshops, July open build, August Finals',
     why: 'describes a finished season as an upcoming schedule',
-    instead: "3-month Build-A-Thon. Season 1 ran June to August 2026 and is complete.",
-  },
-  {
-    dead: "3-month Build-A-Thon - June workshops, July open build, August Finals.",
-    why: 'same claim, dash form, used in outbound cast copy',
-    instead: "3-month Build-A-Thon. Season 1 ran June to August 2026 and is complete.",
+    instead: 'Season 1 ran June to August 2026 and is complete',
   },
 ];
 
@@ -44,7 +44,10 @@ const SUPERSEDED = [
 // only one of these whose content becomes 35 more files.
 let files = [];
 try {
-  files = execSync('git ls-files "*.html" "scripts/ingest-recording.mjs"', { encoding: 'utf8' })
+  // *.js as well as *.html. The first version scanned only pages and the generator, and missed
+  // assets/zg-profile.js - a SHARED helper whose stale line was the text a person actually POSTS.
+  // Outbound copy is the highest-stakes surface here and it does not live in a page.
+  files = execSync('git ls-files "*.html" "assets/*.js" "scripts/ingest-recording.mjs"', { encoding: 'utf8' })
     .split('\n').filter(Boolean);
 } catch {
   console.error('check-season-copy: could not list tracked files (not a git repo?)');
@@ -58,10 +61,18 @@ for (const f of files) {
   for (const s of SUPERSEDED) {
     let i = t.indexOf(s.dead);
     while (i !== -1) {
-      // press.html states the schedule and then says it closed, in the same sentence. That is
-      // correct and must not be flagged - the test is whether the closure is stated nearby.
-      const window = t.slice(i, i + s.dead.length + 160);
-      if (!/closed on|and is complete|ran in 2026|is complete\b/.test(window)) {
+      // press.html states the schedule and then says it closed IN THE SAME SENTENCE, which is
+      // correct and must not be flagged. The exemption is therefore scoped to the rest of THAT
+      // LINE, not to a character window.
+      //
+      // It was a 160-character window first, and a deliberately broken test caught why that is
+      // wrong: injecting the dead phrase into a comment directly above a corrected line was
+      // FORGIVEN, because the corrected line sat inside the window. An exemption that reaches
+      // across lines lets any nearby correct sentence vouch for a stale one - including a
+      // comment explaining the very fix, which is the likeliest thing to be next to it.
+      const lineEnd = t.indexOf('\n', i);
+      const restOfLine = t.slice(i, lineEnd === -1 ? t.length : lineEnd);
+      if (!/closed on|and is complete|ran in 2026|is complete\b/.test(restOfLine)) {
         hits.push({ file: f, line: t.slice(0, i).split('\n').length, ...s });
         break;
       }
