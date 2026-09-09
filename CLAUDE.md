@@ -291,15 +291,15 @@ later re-scheduling). Endpoints across:
   merge". What IS newly measured: **gh prints NOTHING for the merge at all** - no confirmation
   line, no warning - when its output is captured rather than shown. So "no error appeared" was
   never evidence; there was no output to contain one.
-  <!-- RECHECK 2026-10-01: `gh repo set-default` was UNSET in this clone until 2026-09-09 and is
-       now set. That is the leading hypothesis for the no-op. If merges since then have deleted
-       their own branches, record that here and drop the workaround; if merge-pr.sh still reports
-       SURVIVED, the hypothesis is wrong and should be struck out rather than left hopeful. -->
-  **Leading hypothesis, untested until the next merge:** `gh repo set-default` was never set
-  here, so gh had no default remote to resolve the deletion against. It is set now, and
-  `scripts/merge-pr.sh` prints which way it went on every merge - the experiment runs itself and
-  needs nobody to remember it. Do not promote the hypothesis to the cause until a merge has
-  actually deleted its own branch.
+  **RULED OUT TOO, same day: the `gh repo set-default` hypothesis is DEAD.** It was unset in this
+  clone; I set it to `zaoDEVZ/zabalgames` and the very next merge (#703) still reported
+  `SURVIVED --delete-branch`. That is 5 for 5. Recorded as struck rather than deleted, so the
+  next session does not re-derive a dead idea from the same obvious observation - and note it
+  took one merge to kill, because `scripts/merge-pr.sh` prints the answer on every run.
+  **The cause remains genuinely unknown.** Five things it is not: scope, repo permission, the
+  API path, the moved-repo redirect, and an unset default remote. Do not add a sixth guess to
+  this list without a probe attached; the list is only useful because every line on it was
+  measured.
 - After a merge, re-sync main before new work. Never reuse a merged branch.
 
 ## THIS REPO IS PUBLIC - secrets are scanned, not trusted
