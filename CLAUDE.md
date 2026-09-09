@@ -45,7 +45,7 @@ one obligation: the pitch card on `/recordings` tells entrants up front that the
 on their work are public and written before the cut.** Keep that sentence if you rewrite the
 copy - consent to public feedback is only informed if it comes before the pitch. The repo is written so it can sit untouched until then.
 
-The site is a multi-surface Mini App - 66 top-level pages + 35 recording pages + the game
+The site is a multi-surface Mini App - 66 top-level pages + 36 recording pages + the game
 pages, 46 edge endpoints. Snapshot:
 - Rebrand to ZABAL Gamez + zabalgamez.com is complete and deployed.
 - Mini App manifest (`.well-known/farcaster.json`) is **self-hosted and signed** for
