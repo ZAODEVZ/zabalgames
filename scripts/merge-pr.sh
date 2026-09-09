@@ -88,6 +88,7 @@ done
 [ "${m:-UNKNOWN}" != "UNKNOWN" ] || echo "NOTE: GitHub still reports mergeable=UNKNOWN after 20s; trying anyway."
 
 merge_log="$(mktemp)"
+merge_log2="$(mktemp)"
 # Pick the pty form ONCE, by OS, instead of trying one and falling back on failure. The old
 # fallback was Linux syntax (`script -qec`) and on macOS printed "script: illegal option -- c"
 # INTO THE LOG, hiding gh's real message behind an error from the recovery path. A fallback
@@ -114,8 +115,30 @@ sed -e 's/\x1b\[[0-9;?]*[a-zA-Z]//g' -e 's/\r//g' -e 's/^\^D//' "$merge_log" \
 rm -f "$merge_log"
 
 # --- 3. the PR really merged (reported success is not merged) ---
+#
+# ONE RETRY, then give up. Measured on #709: the first run failed seconds after the PR was
+# created and a second run moments later merged it cleanly, with the mergeable poll above
+# already in place. WHY is not established - `gh pr view` on a merged PR reports
+# mergeable=UNKNOWN regardless, so the obvious after-the-fact probe cannot distinguish "it was
+# still computing" from anything else, and I am not writing down a cause I could not measure.
+#
+# A single bounded retry is the right shape for an unexplained transient: it does not depend on
+# the diagnosis, and it is safe because merging an already-merged PR is refused by gh rather
+# than doing anything twice - `mergedAt` is what decides, not the retry.
 merged_at="$(gh pr view "$PR" --json mergedAt -q '.mergedAt // "null"')"
-[ "$merged_at" != "null" ] || fail "#$PR reports no mergedAt. It is NOT merged."
+if [ "$merged_at" = "null" ]; then
+  echo "NOTE: no mergedAt yet. Waiting 5s and trying once more before giving up."
+  sleep 5
+  case "$(uname -s)" in
+    Darwin|*BSD) script -q "$merge_log2" gh pr merge "$PR" --squash --delete-branch >/dev/null 2>&1 || true ;;
+    *)           gh pr merge "$PR" --squash --delete-branch >"$merge_log2" 2>&1 || true ;;
+  esac
+  sed -e 's/\x1b\[[0-9;?]*[a-zA-Z]//g' -e 's/\r//g' -e 's/^\^D//' "$merge_log2" \
+    | grep -v '^[[:space:]]*$' | grep -v 'tcgetattr/ioctl' | sed 's/^/  gh(retry)| /'
+  rm -f "$merge_log2"
+  merged_at="$(gh pr view "$PR" --json mergedAt -q '.mergedAt // "null"')"
+fi
+[ "$merged_at" != "null" ] || fail "#$PR reports no mergedAt after a retry. It is NOT merged - read the gh output above."
 echo "merged at $merged_at"
 
 # --- 4. did the head actually go? This is the whole point of the script ---
