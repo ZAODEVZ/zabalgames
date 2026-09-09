@@ -37,7 +37,9 @@
   }
 
   function shareMyZabal() {
-    var text = "I am building with ZABAL Gamez - The ZAO's three-month build event. June workshops, July open build, August Finals. Free, open to anyone. Come build.";
+    // Outbound copy: this is what a person POSTS, so it must not describe a finished season as
+    // an upcoming schedule. Season 1 ran June to August 2026 and is complete.
+    var text = "My ZABAL Gamez builder profile - The ZAO's three-month build event. Season 1 ran June to August 2026 and is complete. Free, open to anyone.";
     var url = "https://zabalgamez.com";
     if (window.ZABAL && window.ZABAL.composeCast) window.ZABAL.composeCast({ text: text, embeds: [url], channelKey: "zabal" });
     else window.open("https://farcaster.xyz/~/compose?text=" + encodeURIComponent(text) + "&embeds[]=" + encodeURIComponent(url), "_blank", "noopener");
