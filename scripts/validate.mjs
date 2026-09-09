@@ -200,6 +200,23 @@ try {
   if (!/CLAUDE\.md:\d+\s+says/.test(text)) fail('check-counts.mjs - ' + e.message);
 }
 
+// 6e. In-feed embeds must survive an HTML parser. daily.html shipped
+// content='{..."title":"Today's quests"...}' - the apostrophe closes the single-quoted
+// attribute, so a browser read the JSON as truncated at "Today and sharing /daily produced a
+// broken card. Verified in a real browser against production before this was written. The JSON
+// was valid; it never reached a JSON parser intact, which is why compiling scripts and pinning
+// the manifest could not see it.
+head('In-feed embeds:');
+try {
+  const outp = execSync(`node ${JSON.stringify('scripts/check-embeds.mjs')}`, { encoding: 'utf8' });
+  if (!QUIET) process.stdout.write(outp.split('\n').filter(Boolean).map((l) => '  ' + l.replace(/^ {2}/, '')).join('\n') + '\n');
+  else ok('every in-feed embed parses');
+} catch (e) {
+  const text = (e.stdout || '') + (e.stderr || '');
+  for (const line of text.split('\n')) if (/\.html:\d+\s+fc:/.test(line)) fail(line.trim());
+  if (!/do not survive HTML parsing/.test(text)) fail('check-embeds.mjs - ' + e.message);
+}
+
 // 7. Generated files must match their source. /recordings/index.json and /recordings.txt are
 // the surface agents are told to read, so a stale one is a wrong answer served confidently.
 head('Generated files:');
