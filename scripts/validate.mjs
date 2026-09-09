@@ -217,6 +217,21 @@ try {
   if (!/do not survive HTML parsing/.test(text)) fail('check-embeds.mjs - ' + e.message);
 }
 
+// 6f. A moving fact must not be published as a fixed date. The kv-backup deadline moves 60 days
+// out on every human commit; four records published it and gave three different answers, each
+// correct when written. A RECHECK marker cannot fix that - a marker says "come back and look",
+// and the problem is the SHAPE of the claim - so this is separate from check-recheck.mjs.
+head('Moving dates:');
+try {
+  const outp = execSync(`node ${JSON.stringify('scripts/check-moving-dates.mjs')}`, { encoding: 'utf8' });
+  if (!QUIET) process.stdout.write(outp.split('\n').filter(Boolean).map((l) => '  ' + l.replace(/^ {2}/, '')).join('\n') + '\n');
+  else ok('no moving fact published as a fixed date');
+} catch (e) {
+  const text = (e.stdout || '') + (e.stderr || '');
+  for (const line of text.split('\n')) if (/^\s+\S+:\d+\s+2026-/.test(line)) fail(line.trim());
+  if (!/publish the backup deadline/.test(text)) fail('check-moving-dates.mjs - ' + e.message);
+}
+
 // 7. Generated files must match their source. /recordings/index.json and /recordings.txt are
 // the surface agents are told to read, so a stale one is a wrong answer served confidently.
 head('Generated files:');
