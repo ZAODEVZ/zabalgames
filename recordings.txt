@@ -1,6 +1,6 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Built from data/recaps.json (source f5b5baf0acbb, newest recording 2026-06-30) by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 36 recordings, newest first.
+Built from data/recaps.json (source 05e52e5f8b35, newest recording 2026-06-30) by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 36 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
@@ -9,10 +9,10 @@ Chronological feed of every recording: https://zabalgamez.com/streams
 ======================================================================
 [1] ZABAL GAMEZ Workshop w/Nemesis
 workshop  |  track: creator  |  2026-06-22
-Presenter: Nemesis
+Presenter: Nemesis (@n3m)
 Watch: https://zabalgamez.com/recordings/36
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-22-nemesis-creator-journey.md
-Summary: A creator-track conversation with Nemesis - a rapper, singer, poet, composer and producer from Zambia - about what it actually costs to build a music career from Lusaka. It starts with a first memory of music (a dad pulling up playing Tupac, a photo at three years old on a granddad's lap holding a guitar) and the women who set the standard: a single mother raising three kids, a grandmother who was the country's first neurosurgeon, another who nursed in the Copperbelt. Then the hard part. Web2 distribution paid nothing, so a first crypto onboarding in 2022 ended with a minted song, zero dollars and two years away from it. The way back in was WaveWarZ Zambia and Songchain, where Nemesis was the first Lusaka artist onboarded and won - then joined the original WaveWarZ, earned 0.3 ETH, and lost roughly 30,000 US dollars converting to the wrong currency and losing the seed phrase. The session is candid about AI too: Suno felt like cheating on a partner for a writer who writes their own music, so it got a month and then boredom. What is being built now is WaveWarZ Africa - the same idea, for African artists - and the constraint named throughout is bandwidth: "it is hard to even do this internet thing."
+Summary: A creator-track conversation with Nemesis - a rapper, singer, poet, composer and producer from Zambia - about what it actually costs to build a music career from Lusaka. It starts with a first memory of music (a dad pulling up playing Tupac, a photo at three years old on a granddad's lap holding a guitar) and the women who set the standard: a single mother raising three kids, a grandmother who was the country's first neurosurgeon, another who nursed in the Copperbelt. Then the hard part. Web2 distribution paid nothing, so a first crypto onboarding in 2022 ended with a minted song, zero dollars and two years away from it. The way back in was WaveWarZ Zambia and Songchain, where Nemesis was the first Lusaka artist onboarded and won - then joined the original WaveWarZ, earned 0.3 ETH, and lost roughly 30,000 US dollars converting to the wrong currency and losing the seed phrase. The session is candid about AI too: Suno felt like cheating on a partner for a writer who writes their own music, so it got a month and then boredom. What is being built now is WaveWarZ Africa - the same idea, for African artists - and the constraint named throughout is bandwidth: "it is hard to even do this internet thing." She competed as n3m and won the artist track of Season 1 - the workshop is a creator-track conversation, the championship was in artist, and both are hers.
 Takeaways:
   - Web2 distribution paid nothing and the first crypto attempt paid nothing either - a song was minted in 2022 and the return was zero dollars, which bought two years of staying away.
   - The second attempt worked because a person did the onboarding, not a platform: a friend explained WaveWarZ Zambia and Songchain step by step.
