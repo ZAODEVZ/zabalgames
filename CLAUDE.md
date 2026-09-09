@@ -540,28 +540,49 @@ nobody had measured them; they are now answered. Three need a decision from Zaal
    hard dependency in the next section: late-November prep starts *after* the backup
    switches itself off.
 
-### The one scheduled job, and the date it dies: 2026-11-06
+### The one scheduled job, and the date it dies (READ IT LIVE, it moves)
 
 `.github/workflows/kv-backup.yml` is the repo's only scheduled workflow. GitHub disables
 scheduled workflows after 60 days of repository inactivity - silently, with no failing run
 and no error anywhere.
 
-Measured 2026-09-07: workflow state `active`, last five scheduled runs all `success`. The
-last commit by a person on `main` is `9866ae6` (2026-09-06, PR #669); the last commit of
-any kind is the workflow's own nightly push, authored `zao-backup` via the default
-`GITHUB_TOKEN`. **Counting 60 days from the last human commit gives 2026-11-05, which
-today's commit moves to 2026-11-06.** Season 2 prep is targeted at late November, so on
-the current plan the backup stops about three weeks before anyone opens this repo again.
+**DO NOT WRITE THE DEADLINE DOWN AS A FIXED DATE. It moves 60 days out every time a person
+commits - that is the mechanism, not a fault.** Three records already disagree because each
+was correct when written: this file said 2026-11-06, the vault status said 2026-11-07, and
+`GET /api/backup-health` said **2026-11-08** on 2026-09-09 after that night's commits. None
+of them was wrong; they were snapshots of a moving number, and a reader comparing two of them
+would reasonably conclude something had broken.
 
-Genuinely UNMEASURED: whether the workflow's own bot commits reset that clock. They are
-pushed with `GITHUB_TOKEN`, which is widely reported not to count, but the repo cannot
-measure that from the inside - so assume they do not and treat 2026-11-06 as real.
+So the deadline has exactly one honest source, and it is live:
+
+```
+curl -s https://zabalgamez.com/api/backup-health | python3 -m json.tool
+  .inactivity.disablesAt   the date it would be disabled
+  .inactivity.daysLeft     how long is left
+  .workflow.state          "active" while GitHub still runs it
+  .backup.ageHours         how long since the last successful backup commit
+```
+
+Measured 2026-09-07 and still true: workflow state `active`, last five scheduled runs all
+`success`. Genuinely UNMEASURED: whether the workflow's own bot commits reset the clock. They
+are pushed with `GITHUB_TOKEN`, widely reported not to count, and the repo cannot measure that
+from the inside - so the endpoint assumes they do NOT, which is the pessimistic reading on
+purpose. If bot commits do count, the real deadline is later than reported, never earlier.
 
 When it stops, two things stop: the nightly backup, and the daily authenticated
 `/api/export` call that is also what keeps the Upstash free tier warm. Manual saves: hit
 "Run workflow" (it has `workflow_dispatch`), or push any commit.
 
-<!-- RECHECK 2026-10-24: the keepalive-canary goes red at 14 days left, so by now it should already be failing runs and emailing. If it is silent, the DETECTOR broke - do not assume the deadline moved. Verify with: gh run list --workflow=kv-backup.yml, and curl https://zabalgamez.com/api/backup-health -->
+<!-- RECHECK 2026-10-24: read daysLeft from https://zabalgamez.com/api/backup-health FIRST, then
+     judge. The canary goes red only at daysLeft <= 14, so:
+       daysLeft > 14 and the canary silent   = CORRECT, nothing is wrong, re-date this marker
+       daysLeft <= 14 and the canary silent  = the DETECTOR broke; do not conclude the deadline moved
+       daysLeft <= 14 and the canary failing = working as designed; hit Run workflow or push a commit
+     The previous version of this marker asserted "by now it should already be failing" - which was
+     true for a 2026-11-07 deadline and FALSE once ordinary commits pushed it to 2026-11-08, since
+     the canary would then not red until 2026-10-25. A dated instruction whose premise moves on its
+     own will hand the next reader a confident wrong conclusion. Verify the state, do not assume it.
+     Also: gh run list --workflow=kv-backup.yml -->
 **There is a detector now, built 2026-09-07, on two legs with different failure modes:**
 
 1. **`keepalive-canary`**, a second job in `kv-backup.yml`. It runs alongside the backup
