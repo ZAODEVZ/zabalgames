@@ -617,7 +617,7 @@
   <div class="arcade-foot-inner">
     <div class="arcade-foot-brand">
       <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
-      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. June workshops, July open build, August Finals. Free, open to anyone.</p>
+      <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. Season 1 ran June to August 2026 and is complete. Free, open to anyone.</p>
       <a href="/leaderboard" class="arcade-coin">Standings</a>
     </div>
     <nav class="arcade-foot-col" aria-label="Play">
@@ -840,12 +840,15 @@
       return "Tuning into ZABAL Gamez right now - " + name + " is live. The ZAO's 3-month Build-A-Thon, free and open to anyone. See what's on:";
     }
     if (state === 'next') {
-      return "Next up at ZABAL Gamez: " + name + ". The ZAO's 3-month Build-A-Thon - June workshops, July open build, August Finals. See what's on now:";
+      return "Next up at ZABAL Gamez: " + name + ". The ZAO's 3-month Build-A-Thon, free and open to anyone. See what's on now:";
     }
     if (state === 'battle') {
       return "ZABAL Gamez finals, battle on right now: " + name + ". Building in the open, decided by the poll, the charts and the judges. Watch, vote, trade:";
     }
-    return "ZABAL Gamez is The ZAO's 3-month Build-A-Thon - June workshops, July open build, August Finals. Free, open to anyone. See what's on now:";
+    // The idle default, and therefore the one that actually fires today - nothing is live and
+    // Season 1 is complete. It used to cast the season as an upcoming schedule, which is the
+    // one string here that a person would have posted publicly while it was wrong.
+    return "ZABAL Gamez is The ZAO's 3-month Build-A-Thon. Season 1 ran June to August 2026 and is complete - 31 recorded workshops and three champions. See the season:";
   }
 
   function tellFarcaster(text) {
