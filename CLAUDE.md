@@ -263,6 +263,14 @@ later re-scheduling). Endpoints across:
     already open (open a fresh branch off updated main instead).
   - Anything genuinely irreversible or outward-facing beyond a normal merge still gets
     confirmed first.
+- **`--delete-branch` is a request, not a receipt - verify the head is gone.** 2026-09-08,
+  PR #698: `gh pr merge 698 --squash --delete-branch` printed its fast-forward output and
+  reported no error, and `ws/alltime-board` was still on `origin` twenty minutes later. Another
+  lane's citation audit is what caught it, from a drifted branch count. This matters here more
+  than in most repos because branch hygiene is load-bearing: a surviving head is where a later
+  commit gets stranded and looks shipped. So after any merge, run
+  `git fetch origin --prune && git ls-remote --heads origin` and confirm the count - the repo's
+  at-rest state is **1** head, `main`.
 - After a merge, re-sync main before new work. Never reuse a merged branch.
 
 ## THIS REPO IS PUBLIC - secrets are scanned, not trusted
