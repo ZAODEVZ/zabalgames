@@ -270,7 +270,13 @@ later re-scheduling). Endpoints across:
   than in most repos because branch hygiene is load-bearing: a surviving head is where a later
   commit gets stranded and looks shipped. So after any merge, run
   `git fetch origin --prune && git ls-remote --heads origin` and confirm the count - the repo's
-  at-rest state is **1** head, `main`.
+  at-rest state is **1** head, `main`. Delete a survivor with
+  `git push origin --delete <branch>`, which does work.
+  **It is reproducible, not a fluke: 2 for 2** - it happened again on PR #699, the PR that added
+  this very rule, and the rule caught it. **Why it no-ops is UNMEASURED.** The token carries
+  `repo` scope, which is sufficient to delete a branch, so scope is not the explanation and the
+  real cause is unknown - do not write one down until someone measures it. Assume the command
+  does not delete, and check.
 - After a merge, re-sync main before new work. Never reuse a merged branch.
 
 ## THIS REPO IS PUBLIC - secrets are scanned, not trusted
