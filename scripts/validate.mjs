@@ -169,6 +169,21 @@ try {
   if (!/expires \d{4}-/.test(text)) fail('check-future-dates.mjs - ' + e.message);
 }
 
+// 6c. Superseded season copy must not come back. #660/#664 closed the season in the copy and
+// reached 2 files; 80 others still carried the old line six days later, and the recording
+// GENERATOR carried it too - so every new recording page would have reintroduced it. A fix that
+// loses ground as the site grows needs a guard, not a follow-up task.
+head('Season copy:');
+try {
+  const outp = execSync(`node ${JSON.stringify('scripts/check-season-copy.mjs')}`, { encoding: 'utf8' });
+  if (!QUIET) process.stdout.write(outp.split('\n').filter(Boolean).map((l) => '  ' + l.replace(/^ {2}/, '')).join('\n') + '\n');
+  else ok('no superseded season copy');
+} catch (e) {
+  const text = (e.stdout || '') + (e.stderr || '');
+  for (const line of text.split('\n')) if (/carry superseded|^\s+\S+:\d+$/.test(line)) fail(line.trim());
+  if (!/carry superseded/.test(text)) fail('check-season-copy.mjs - ' + e.message);
+}
+
 // 7. Generated files must match their source. /recordings/index.json and /recordings.txt are
 // the surface agents are told to read, so a stale one is a wrong answer served confidently.
 head('Generated files:');
