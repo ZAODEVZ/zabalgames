@@ -238,7 +238,32 @@ function buildPage() {
     ? esc(headline.slice(0, headline.indexOf(accent))) + `<span class="accent">${esc(accent)}</span>` + esc(headline.slice(headline.indexOf(accent) + accent.length))
     : esc(headline);
   const formatLabel = [track && `${cap(track)} track`, m.format].filter(Boolean).join(' - ');
-  const byParts = [esc(m.presenter), esc(m.handle), esc(m.org)].filter(Boolean)
+  // The handle links to the presenter's Farcaster profile. It used to render as plain text, so
+  // 32 of 36 recordings named a person and gave a reader no way to reach them.
+  //
+  // EVERY handle was checked against /api/pfps before this shipped, one at a time. Three do NOT
+  // resolve and are listed below with the reason, because publishing a dead link on a page about
+  // a named person is worse than plain text - it looks like we know where they are and we do not.
+  //
+  // Checked ONE AT A TIME on purpose: the batch call answered 26 of 32 asked, and `zaal` was
+  // among the missing while resolving fine on its own. A lossy batch reads exactly like a set of
+  // unresolvable handles, and acting on it would have silently un-linked real people.
+  //
+  // Default is TO LINK, so a new recording gets a working link without anyone remembering. If a
+  // future handle turns out not to resolve, add it here WITH ITS REASON rather than deleting the
+  // handle - the handle is still how the person is known, it just is not a Farcaster address.
+  const UNLINKED_HANDLES = new Set([
+    'rish_neynar',  // /recordings/35 - does not resolve; Rish is on Farcaster as @rish, this is the Neynar-branded form
+    'at0x_eth',     // /recordings/fireside/1 - does not resolve
+    'joshua.eth',   // /recordings/3 - does not resolve; a two-presenter session (Joshua.eth and Plat0x)
+  ]);
+  const handleHtml = (() => {
+    if (!m.handle) return '';
+    const bare = String(m.handle).replace(/^@/, '').trim();
+    if (!bare || UNLINKED_HANDLES.has(bare)) return esc(m.handle);
+    return `<a href="https://farcaster.xyz/${encodeURIComponent(bare)}" target="_blank" rel="noopener" style="color: inherit;">${esc(m.handle)}</a>`;
+  })();
+  const byParts = [esc(m.presenter), handleHtml, esc(m.org)].filter(Boolean)
     .join(' <span class="dot">&middot;</span> ');
   const buttonTitle = m.button_title || `Watch: ${m.org || m.presenter || m.title}`;
   const metaDesc = m.description || (summary ? summary.slice(0, 200) : m.title);
