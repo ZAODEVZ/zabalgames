@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZAO Fractal Weekly Introduction Presentation - Zaal - ZABAL Gamez Season 1</title>
-  <meta name="description" content="ZABAL Gamez workshop. Zaal's weekly introduction to the ZAO Fractal, the first ZAO project - what the ZAO is, soulbound ZAO Respect earned weekly through peer consensus, the four objectives, and how the Respect game works. Read the summary, the outline, and the full transcript.">
+  <meta name="description" content="Zaal's weekly introduction to the ZAO Fractal, framed as the first ZAO project you can build on. He covers what the ZAO is - a decentralized impact network for the creator economy, the Z Talent Artist">
   <link rel="canonical" href="https://zabalgamez.com/recordings/zao/1">
   <meta property="og:title" content="ZAO Fractal Weekly Introduction Presentation - Zaal - ZABAL Gamez">
-  <meta property="og:description" content="Zaal on the ZAO Fractal, the first ZAO project - ZAO Respect, peer consensus, and the Respect game.">
+  <meta property="og:description" content="Zaal's weekly introduction to the ZAO Fractal, framed as the first ZAO project you can build on. He covers what the ZAO is - a decentralized impact network for the creator economy, the Z Talent Artist">
   <meta property="og:type" content="video.other">
   <meta property="og:url" content="https://zabalgamez.com/recordings/zao/1">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ZAO Fractal Weekly Introduction Presentation - ZABAL Gamez">
-  <meta name="twitter:description" content="Zaal on the ZAO Fractal, the first ZAO project. A ZABAL Gamez workshop.">
+  <meta name="twitter:title" content="ZAO Fractal Weekly Introduction Presentation - Zaal">
+  <meta name="twitter:description" content="Zaal's weekly introduction to the ZAO Fractal, framed as the first ZAO project you can build on. He covers what the ZAO is - a decentralized impact network for the creator economy, the Z Talent Artist">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: ZAO Fractal intro","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/zao/1","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: The ZAO","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/zao/1","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
   <link rel="apple-touch-icon" href="/assets/icon.png">
@@ -27,13 +27,8 @@
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
   <style>
-    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); }
+    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); margin-top: 1rem; }
     .rec-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .rec-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-    .rec-chapters li { margin: 0; }
-    .rec-chapter { display: flex; gap: 0.7rem; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 0.34rem 0.5rem; color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer; }
-    .rec-chapter:hover { background: var(--surface-2); }
-    .rec-chapter .t { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); min-width: 3.2rem; }
     .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
     .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
     .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
@@ -43,10 +38,11 @@
     .rec-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
     .rec-link:hover { filter: brightness(1.12); }
     .rec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 1.3rem 0 0.4rem; }
-    .rec-outline { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-    .rec-outline > li { margin: 0; }
-    .rec-outline .grp { font-weight: 600; color: var(--text); margin: 0.5rem 0 0.1rem; font-size: 0.92rem; }
-    .rec-outline .sub { color: var(--text-muted); font-size: 0.88rem; padding-left: 1.1rem; line-height: 1.5; }
+    .rec-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+    .rec-chapters li { margin: 0; }
+    .rec-chapter { display: flex; gap: 0.7rem; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 0.34rem 0.5rem; color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer; }
+    .rec-chapter:hover { background: var(--surface-2); }
+    .rec-chapter .t { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); min-width: 3.2rem; }
     .rec-topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.3rem 0 0; }
     .rec-topic { font-size: 0.7rem; letter-spacing: 0.02em; padding: 0.14rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-2); }
     .rec-takeaways { margin: 0.3rem 0 0; padding-left: 1.1rem; }
@@ -60,10 +56,9 @@
   <div class="arcade-nav-inner">
     <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
     <div class="arcade-nav-menu">
-      <a href="/info.html">Details</a>
+      <a href="/speakers">Speakers</a>
       <a href="/#schedule">Schedule</a>
-      <a href="/recordings" class="active" aria-current="page">Recordings</a>
-      <a href="/about.html">About</a>
+      <a href="/recordings">Recordings</a>
 </div>
   </div>
 </nav>
@@ -74,11 +69,11 @@
   <nav id="rec-nav" class="rec-nav" aria-label="Recording navigation"></nav>
 
   <header class="hero" style="padding-bottom: 0.6rem;">
-    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / ZAO Fractal</div>
-    <h1>ZAO Fractal <span class="accent">weekly introduction</span>.</h1>
+    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / The ZAO</div>
+    <h1>ZAO Fractal Weekly Introduction Presentation</h1>
     <p class="rec-by">
       Zaal <span class="dot">&middot;</span> <a href="https://farcaster.xyz/zaal" target="_blank" rel="noopener" style="color: inherit;">@zaal</a> <span class="dot">&middot;</span> The ZAO
-      <span class="dot">&middot;</span> <span class="rec-format">Builder track - the first ZAO project, recorded</span>
+      <span class="dot">&middot;</span> <span class="rec-format">Builder track - The first ZAO project, recorded</span>
     </p>
     <div class="rec-tech" title="How technical this talk is, 0 to 10"><span class="rt-label">Technical</span><span class="rt-bar"><span class="rt-fill" style="width:20%"></span></span><span class="rt-num">2/10</span><span class="rt-tag t-low">Approachable</span></div>
   </header>
@@ -86,7 +81,7 @@
   <div class="rec-embed">
     <iframe id="rec-player"
       src="https://www.youtube.com/embed/N6tgsuBOXBU?rel=0"
-      title="ZABAL Gamez Workshop: ZAO Fractal Intro Presentation with Zaal"
+      title="ZABAL Gamez Workshop: ZAO Fractal Weekly Introduction Presentation"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen></iframe>
@@ -100,39 +95,20 @@
     <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
   </div>
 
-  <div class="rec-label">Best moments</div>
-  <ul class="rec-chapters" id="rec-chapters">
-    <li><button class="rec-chapter" data-start="0"><span class="t">0:00</span><span>Intro</span></button></li>
-    <li><button class="rec-chapter" data-start="39"><span class="t">0:39</span><span>What the ZAO is, and ZAO Respect</span></button></li>
-    <li><button class="rec-chapter" data-start="66"><span class="t">1:06</span><span>The Respect game: groups and four-minute updates</span></button></li>
-    <li><button class="rec-chapter" data-start="83"><span class="t">1:23</span><span>What counts: the five ways to contribute</span></button></li>
-    <li><button class="rec-chapter" data-start="126"><span class="t">2:06</span><span>The Discord tools: dash timer and meet-the-group</span></button></li>
-    <li><button class="rec-chapter" data-start="159"><span class="t">2:39</span><span>Reaching consensus: ranking level six to one</span></button></li>
-    <li><button class="rec-chapter" data-start="192"><span class="t">3:12</span><span>Camera on for ten extra ZAO Respect</span></button></li>
-  </ul>
-
   <section class="section" style="margin-top: 1.4rem;">
     <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
       Zaal's weekly introduction to the ZAO Fractal, framed as the first ZAO project you can build on. He covers what the ZAO is - a decentralized impact network for the creator economy, the Z Talent Artist Organization - and how it runs on soulbound, illiquid ZAO Respect earned weekly through peer consensus. He walks the four objectives (empowerment, transparency, sustainability, equitable distribution) and the Respect game itself: breakout groups of up to six, four-minute updates, then on-chain consensus. The ZAO Fractal meets weekly at 6pm Eastern at discord.theZAO.com.
     </p>
 
-    <div class="rec-label">What's covered</div>
-    <ul class="rec-outline">
-      <li class="grp">What the ZAO is</li>
-      <li class="sub">A decentralized impact network for the creator economy - the Z Talent Artist Organization</li>
-      <li class="sub">Powered by soulbound, illiquid ZAO Respect, earned weekly through peer consensus</li>
-      <li class="sub">Four objectives: empowerment, transparency, sustainability, equitable distribution</li>
-      <li class="grp">The Respect game</li>
-      <li class="sub">Groups of up to six share four-minute updates - an intro if new, contributions if returning</li>
-      <li class="sub">Everything is submitted on chain at the end</li>
-      <li class="grp">What counts as contributing</li>
-      <li class="sub">Contributions, collaborations, innovations, onboarding, and supporting community members</li>
-      <li class="sub">Advancing the ZAO's vision of advancing music, art, and technology</li>
-      <li class="grp">The tools</li>
-      <li class="sub">The dash timer and a meet-the-group embed; see who is speaking and choose who is next</li>
-      <li class="sub">The consensus bot (dash ZAO Fractal): vote level six down to one, then read the results</li>
-      <li class="grp">Join in</li>
-      <li class="sub">Weekly at 6pm Eastern at discord.theZAO.com - camera on earns an extra ten ZAO Respect</li>
+    <div class="rec-label">Best moments</div>
+    <ul class="rec-chapters" id="rec-chapters">
+      <li><button class="rec-chapter" data-start="0"><span class="t">0:00</span><span>Intro</span></button></li>
+      <li><button class="rec-chapter" data-start="39"><span class="t">0:39</span><span>What the ZAO is, and ZAO Respect</span></button></li>
+      <li><button class="rec-chapter" data-start="66"><span class="t">1:06</span><span>The Respect game: groups and four-minute updates</span></button></li>
+      <li><button class="rec-chapter" data-start="83"><span class="t">1:23</span><span>What counts: the five ways to contribute</span></button></li>
+      <li><button class="rec-chapter" data-start="126"><span class="t">2:06</span><span>The Discord tools: dash timer and meet-the-group</span></button></li>
+      <li><button class="rec-chapter" data-start="159"><span class="t">2:39</span><span>Reaching consensus: ranking level six to one</span></button></li>
+      <li><button class="rec-chapter" data-start="192"><span class="t">3:12</span><span>Camera on for ten extra ZAO Respect</span></button></li>
     </ul>
 
     <div class="rec-label">Topics</div>
@@ -164,9 +140,24 @@
     <div id="rec-transcript" data-src="/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-zao-fractal-zaal.md" data-yt="N6tgsuBOXBU"></div>
   </section>
 
-  <section id="zg-comments"></section>
-</div>
+  <section id="zg-clip-bounty"></section>
 
+  <section id="zg-clips"></section>
+
+  <section id="zg-clip-claim"></section>
+
+  <section class="section rec-related">
+    <div class="rec-label">Related sessions</div>
+    <ul style="list-style: none; padding: 0; margin: 0.4rem 0 0;">
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/16" style="color: var(--cyan); text-decoration: none; font-weight: 600;">ZABAL GAMEZ Workshop w/Dan Singjoy from Eden Fractal</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Dan Singjoy - Eden Fractal</span></li>
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/28" style="color: var(--cyan); text-decoration: none; font-weight: 600;">ZABAL GAMEZ Workshop w/Matt Lee from Tortoise</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Matt Lee - Tortoise</span></li>
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/18" style="color: var(--cyan); text-decoration: none; font-weight: 600;">ZABAL GAMEZ Workshop w/Meta Mu from Rose City Web3</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Meta Mu - Rose City Web3</span></li>
+    </ul>
+  </section>
+
+  <section id="zg-comments"></section>
+
+</div>
 </main>
 
 <footer class="arcade-foot" aria-label="Site directory">
@@ -175,28 +166,18 @@
       <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
       <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. Season 1 ran June to August 2026 and is complete. Free, open to anyone.</p>
 </div>
-    <nav class="arcade-foot-col" aria-label="Play">
-      <h4>Play</h4>
-      <a href="/">Home</a>
-      <a href="/info.html">All the Details</a>
-      <a href="/#schedule">Schedule</a>
-      <a href="/live.html">Live - What's On Now</a>
-      <a href="/lead.html">Lead a Workshop</a>
-      <a href="/mentor.html">Mentor</a>
-    </nav>
     <nav class="arcade-foot-col" aria-label="Data">
       <h4>Data</h4>
+      <a href="/speakers.html">Speakers</a>
       <a href="/recordings.html">Recordings</a>
       <a href="/recaps">Session Recaps</a>
       <a href="/streams.html">Streams</a>
-      <a href="/graph.html">ZAO Graph</a>
-      <a href="/changelog.html">Changelog</a>
+      <a href="/#schedule">Schedule</a>
     </nav>
     <nav class="arcade-foot-col" aria-label="Connect">
       <h4>Connect</h4>
       <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
       <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
-      <a href="/press.html">Press + Media Kit</a>
       <a href="/links.html">All Links</a>
       <a href="/share.html">Share</a>
     </nav>
@@ -209,8 +190,17 @@
 
 <script>
 (function () {
-  var YT_ID = 'N6tgsuBOXBU';
-  var PAGE_URL = 'https://zabalgamez.com/recordings/zao/1';
+  var YT_ID = "N6tgsuBOXBU";
+  var PAGE_URL = "https://zabalgamez.com/recordings/zao/1";
+  var TOPICS = [
+    "the ZAO Fractal, the first ZAO project",
+    "soulbound ZAO Respect earned weekly through peer consensus",
+    "the four objectives: empowerment, transparency, sustainability, equitable distribution",
+    "the Respect game: four-minute updates, then on-chain consensus",
+    "five ways to contribute, from building to onboarding",
+    "camera on earns ten extra ZAO Respect"
+  ];
+
   var player = document.getElementById('rec-player');
   var chapters = document.getElementById('rec-chapters');
   if (player && chapters) {
@@ -222,22 +212,14 @@
       player.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   }
-  var TOPICS = [
-    "the ZAO Fractal, the first ZAO project",
-    "soulbound ZAO Respect earned weekly through peer consensus",
-    "the four objectives: empowerment, transparency, sustainability, equitable distribution",
-    "the Respect game: four-minute updates, then on-chain consensus",
-    "five ways to contribute, from building to onboarding",
-    "camera on earns ten extra ZAO Respect"
-  ];
+
   document.querySelectorAll('.rec-watch-share').forEach(function (b) {
     b.addEventListener('click', function () {
       if (!(window.ZABAL && window.ZABAL.share)) return;
       var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
-      var zaal = platform === 'x' ? '@bettercallzaal' : '@zaal';
       var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
-      var text = "I'm at the ZABAL Gamez workshop with " + zaal + " on " + topic;
-      window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'zao-1-' + platform });
+      var text = "I'm watching ZABAL Gamez with Zaal - " + topic;
+      window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-zao-1-' + platform });
     });
   });
 })();
@@ -246,6 +228,9 @@
 <script defer src="/assets/rec-nav.js"></script>
 <script defer src="/assets/site-nav.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/assets/clip-bounty.js"></script>
+<script defer src="/assets/clip-gallery.js"></script>
+<script defer src="/assets/clip-claim.js"></script>
 <script defer src="/assets/recording-comments.js"></script>
 <script defer src="/assets/transcript.js"></script>
 </body>

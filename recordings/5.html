@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Building Sopha, and why curation is needed - Chris (chriscocreated) x Zaal - ZABAL Gamez Season 1</title>
-  <meta name="description" content="ZABAL Gamez workshop. Chris (chriscocreated), founder of Sopha, with Zaal on building a Farcaster client for depth and why curation is needed - the third place, building your own client on Farcaster's open data, the nested stack, and where Sopha is headed. Read the summary, the outline, and the full transcript.">
+  <title>Building Sopha, and why curation is needed - Chris (chriscocreated) - ZABAL Gamez Season 1</title>
+  <meta name="description" content="A ZABAL Gamez workshop with Chris (chriscocreated), founder of Sopha - a Farcaster client built for depth and high signal - on what he built and why curation is needed. Sopha is an intentional third p">
   <link rel="canonical" href="https://zabalgamez.com/recordings/5">
-  <meta property="og:title" content="Building Sopha, and why curation is needed - Chris (chriscocreated) x Zaal - ZABAL Gamez">
-  <meta property="og:description" content="Chris, founder of Sopha, with Zaal on building a Farcaster client for depth, and why curation is needed.">
+  <meta property="og:title" content="Building Sopha, and why curation is needed - Chris (chriscocreated) - ZABAL Gamez">
+  <meta property="og:description" content="A ZABAL Gamez workshop with Chris (chriscocreated), founder of Sopha - a Farcaster client built for depth and high signal - on what he built and why curation is needed. Sopha is an intentional third p">
   <meta property="og:type" content="video.other">
   <meta property="og:url" content="https://zabalgamez.com/recordings/5">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Building Sopha, and why curation is needed - ZABAL Gamez">
-  <meta name="twitter:description" content="Chris (chriscocreated) x Zaal on building Sopha and why curation is needed. A ZABAL Gamez workshop.">
+  <meta name="twitter:title" content="Building Sopha, and why curation is needed - Chris (chriscocreated)">
+  <meta name="twitter:description" content="A ZABAL Gamez workshop with Chris (chriscocreated), founder of Sopha - a Farcaster client built for depth and high signal - on what he built and why curation is needed. Sopha is an intentional third p">
   <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: Building Sopha","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/5","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: Sopha","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/5","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
   <link rel="apple-touch-icon" href="/assets/icon.png">
@@ -27,13 +27,8 @@
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
   <style>
-    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); }
+    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); margin-top: 1rem; }
     .rec-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .rec-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-    .rec-chapters li { margin: 0; }
-    .rec-chapter { display: flex; gap: 0.7rem; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 0.34rem 0.5rem; color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer; }
-    .rec-chapter:hover { background: var(--surface-2); }
-    .rec-chapter .t { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); min-width: 3.2rem; }
     .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
     .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
     .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
@@ -43,10 +38,11 @@
     .rec-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
     .rec-link:hover { filter: brightness(1.12); }
     .rec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-dim); margin: 1.3rem 0 0.4rem; }
-    .rec-outline { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-    .rec-outline > li { margin: 0; }
-    .rec-outline .grp { font-weight: 600; color: var(--text); margin: 0.5rem 0 0.1rem; font-size: 0.92rem; }
-    .rec-outline .sub { color: var(--text-muted); font-size: 0.88rem; padding-left: 1.1rem; line-height: 1.5; }
+    .rec-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+    .rec-chapters li { margin: 0; }
+    .rec-chapter { display: flex; gap: 0.7rem; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 0.34rem 0.5rem; color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer; }
+    .rec-chapter:hover { background: var(--surface-2); }
+    .rec-chapter .t { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--cyan); min-width: 3.2rem; }
     .rec-topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.3rem 0 0; }
     .rec-topic { font-size: 0.7rem; letter-spacing: 0.02em; padding: 0.14rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-2); }
     .rec-takeaways { margin: 0.3rem 0 0; padding-left: 1.1rem; }
@@ -60,10 +56,9 @@
   <div class="arcade-nav-inner">
     <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
     <div class="arcade-nav-menu">
-      <a href="/info.html">Details</a>
+      <a href="/speakers">Speakers</a>
       <a href="/#schedule">Schedule</a>
-      <a href="/recordings" class="active" aria-current="page">Recordings</a>
-      <a href="/about.html">About</a>
+      <a href="/recordings">Recordings</a>
 </div>
   </div>
 </nav>
@@ -74,11 +69,11 @@
   <nav id="rec-nav" class="rec-nav" aria-label="Recording navigation"></nav>
 
   <header class="hero" style="padding-bottom: 0.6rem;">
-    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / Building Sopha</div>
-    <h1>Building Sopha, and why <span class="accent">curation</span> is needed.</h1>
+    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / Sopha</div>
+    <h1>Building Sopha, and why curation is needed</h1>
     <p class="rec-by">
-      Chris (chriscocreated) <span class="dot">&middot;</span> <a href="https://farcaster.xyz/chriscocreated" target="_blank" rel="noopener" style="color: inherit;">@chriscocreated</a> and Zaal <span class="dot">&middot;</span> Sopha
-      <span class="dot">&middot;</span> <span class="rec-format">Builder track - live workshop, recorded</span>
+      Chris (chriscocreated) <span class="dot">&middot;</span> <a href="https://farcaster.xyz/chriscocreated" target="_blank" rel="noopener" style="color: inherit;">@chriscocreated</a> <span class="dot">&middot;</span> Sopha
+      <span class="dot">&middot;</span> <span class="rec-format">Builder track - Live workshop, recorded</span>
     </p>
     <div class="rec-tech" title="How technical this talk is, 0 to 10"><span class="rt-label">Technical</span><span class="rt-bar"><span class="rt-fill" style="width:50%"></span></span><span class="rt-num">5/10</span><span class="rt-tag t-mid">Some technical depth</span></div>
   </header>
@@ -86,7 +81,7 @@
   <div class="rec-embed">
     <iframe id="rec-player"
       src="https://www.youtube.com/embed/Z9yAFxUVW-g?rel=0"
-      title="ZABAL Gamez Workshop: Building Sopha with Chris (chriscocreated)"
+      title="ZABAL Gamez Workshop: Building Sopha, and why curation is needed"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen></iframe>
@@ -100,56 +95,30 @@
     <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
   </div>
 
-  <div class="rec-label">Best moments</div>
-  <ul class="rec-chapters" id="rec-chapters">
-    <li><button class="rec-chapter" data-start="0"><span class="t">0:00</span><span>Intro</span></button></li>
-    <li><button class="rec-chapter" data-start="13"><span class="t">0:13</span><span>What ZABAL Gamez is, and welcoming Chris</span></button></li>
-    <li><button class="rec-chapter" data-start="67"><span class="t">1:07</span><span>What Sopha is: a Farcaster client for high signal</span></button></li>
-    <li><button class="rec-chapter" data-start="115"><span class="t">1:55</span><span>The third place - depth beyond the ephemeral feed</span></button></li>
-    <li><button class="rec-chapter" data-start="180"><span class="t">3:00</span><span>Why he built it: the meme-coin moment and saving the culture</span></button></li>
-    <li><button class="rec-chapter" data-start="300"><span class="t">5:00</span><span>The two core things: the weekly call and the curated feed</span></button></li>
-    <li><button class="rec-chapter" data-start="360"><span class="t">6:00</span><span>Curators, the curator role, and BradQ's The Pulse</span></button></li>
-    <li><button class="rec-chapter" data-start="467"><span class="t">7:47</span><span>Why your own client is powerful: open data, Neynar, Hypersnap</span></button></li>
-    <li><button class="rec-chapter" data-start="593"><span class="t">9:53</span><span>How easy it is now - a client running in a couple of hours</span></button></li>
-    <li><button class="rec-chapter" data-start="643"><span class="t">10:43</span><span>The nested stack: clients, mini apps, and Snaps</span></button></li>
-    <li><button class="rec-chapter" data-start="695"><span class="t">11:35</span><span>Build your own lens - not beholden to the algorithm</span></button></li>
-    <li><button class="rec-chapter" data-start="741"><span class="t">12:21</span><span>Where Farcaster and Sopha go from here</span></button></li>
-    <li><button class="rec-chapter" data-start="824"><span class="t">13:44</span><span>The second Purple round funds the next year</span></button></li>
-    <li><button class="rec-chapter" data-start="858"><span class="t">14:18</span><span>Rewarding curators - a value loop in curation</span></button></li>
-    <li><button class="rec-chapter" data-start="933"><span class="t">15:33</span><span>Infra, and live cultural-center experiences</span></button></li>
-    <li><button class="rec-chapter" data-start="1011"><span class="t">16:51</span><span>On a token: thoughtful, non-extractive, no rush</span></button></li>
-    <li><button class="rec-chapter" data-start="1088"><span class="t">18:08</span><span>Where to find Chris and Sopha</span></button></li>
-  </ul>
-
   <section class="section" style="margin-top: 1.4rem;">
     <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
       A ZABAL Gamez workshop with Chris (chriscocreated), founder of Sopha - a Farcaster client built for depth and high signal - on what he built and why curation is needed. Sopha is an intentional third place, a coffee shop or library for the deeper writing, art, and thinking that scrolls past on the main feed, with a curated feed kept by the community's curators plus BradQ's The Pulse. Chris traces why he built it (when Farcaster felt like it was tipping into meme coins, he set out to protect the culture of interesting thinkers, and good vibe coding made him the one to do it), how easy it now is to build your own client on Farcaster's open data with Neynar and Hypersnap, and the nested stack of client, mini apps, and Snaps. He closes on where Sopha is headed: a second round of Purple funding, experiments in rewarding curators, infra, and live cultural-center experiences, with a thoughtfully designed, non-extractive token only when the time is right.
     </p>
 
-    <div class="rec-label">What's covered</div>
-    <ul class="rec-outline">
-      <li class="grp">Opening</li>
-      <li class="sub">What ZABAL Gamez is - a three-month build-a-thon, and why curated builders matter</li>
-      <li class="sub">Why Chris is here: a Farcaster client focused on curation</li>
-      <li class="grp">What Sopha is, and why curation</li>
-      <li class="sub">A client for the high-signal, deep, interesting stuff - not a replacement for the daily feed</li>
-      <li class="sub">The intentional third place: a coffee shop, a library, a cultural center</li>
-      <li class="sub">A community-curated feed, plus BradQ's The Pulse; curators earn the role by taste</li>
-      <li class="grp">Why he built it</li>
-      <li class="sub">Farcaster tipping into meme coins, and the urge to protect the culture</li>
-      <li class="sub">Vibe coding made him the person in the room to do it; the Neynar shift</li>
-      <li class="grp">Build your own client</li>
-      <li class="sub">Open data plus Neynar and Hypersnap: two ecosystems empowering builders</li>
-      <li class="sub">Bring your own culture and vibe; escape flat doom-scrolling</li>
-      <li class="sub">The nested stack: a client is a website showing Farcaster data, then mini apps, then Snaps</li>
-      <li class="sub">Build your own algorithm - you are not beholden to the platform</li>
-      <li class="grp">The future of Sopha</li>
-      <li class="sub">A second Purple round funds the next year</li>
-      <li class="sub">Experiments in rewarding curators, and covering infra</li>
-      <li class="sub">Live cultural-center experiences: a Farcaster choir, improv, live drawing</li>
-      <li class="sub">A carefully designed, non-extractive token, only when ready</li>
-      <li class="grp">Where to find it</li>
-      <li class="sub">@chriscocreated and @sopha on Farcaster, sopha.social</li>
+    <div class="rec-label">Best moments</div>
+    <ul class="rec-chapters" id="rec-chapters">
+      <li><button class="rec-chapter" data-start="0"><span class="t">0:00</span><span>Intro</span></button></li>
+      <li><button class="rec-chapter" data-start="13"><span class="t">0:13</span><span>What ZABAL Gamez is, and welcoming Chris</span></button></li>
+      <li><button class="rec-chapter" data-start="67"><span class="t">1:07</span><span>What Sopha is: a Farcaster client for high signal</span></button></li>
+      <li><button class="rec-chapter" data-start="115"><span class="t">1:55</span><span>The third place - depth beyond the ephemeral feed</span></button></li>
+      <li><button class="rec-chapter" data-start="180"><span class="t">3:00</span><span>Why he built it: the meme-coin moment and saving the culture</span></button></li>
+      <li><button class="rec-chapter" data-start="300"><span class="t">5:00</span><span>The two core things: the weekly call and the curated feed</span></button></li>
+      <li><button class="rec-chapter" data-start="360"><span class="t">6:00</span><span>Curators, the curator role, and BradQ's The Pulse</span></button></li>
+      <li><button class="rec-chapter" data-start="467"><span class="t">7:47</span><span>Why your own client is powerful: open data, Neynar, Hypersnap</span></button></li>
+      <li><button class="rec-chapter" data-start="593"><span class="t">9:53</span><span>How easy it is now - a client running in a couple of hours</span></button></li>
+      <li><button class="rec-chapter" data-start="643"><span class="t">10:43</span><span>The nested stack: clients, mini apps, and Snaps</span></button></li>
+      <li><button class="rec-chapter" data-start="695"><span class="t">11:35</span><span>Build your own lens - not beholden to the algorithm</span></button></li>
+      <li><button class="rec-chapter" data-start="741"><span class="t">12:21</span><span>Where Farcaster and Sopha go from here</span></button></li>
+      <li><button class="rec-chapter" data-start="824"><span class="t">13:44</span><span>The second Purple round funds the next year</span></button></li>
+      <li><button class="rec-chapter" data-start="858"><span class="t">14:18</span><span>Rewarding curators - a value loop in curation</span></button></li>
+      <li><button class="rec-chapter" data-start="933"><span class="t">15:33</span><span>Infra, and live cultural-center experiences</span></button></li>
+      <li><button class="rec-chapter" data-start="1011"><span class="t">16:51</span><span>On a token: thoughtful, non-extractive, no rush</span></button></li>
+      <li><button class="rec-chapter" data-start="1088"><span class="t">18:08</span><span>Where to find Chris and Sopha</span></button></li>
     </ul>
 
     <div class="rec-label">Topics</div>
@@ -190,9 +159,18 @@
 
   <section id="zg-clip-claim"></section>
 
-  <section id="zg-comments"></section>
-</div>
+  <section class="section rec-related">
+    <div class="rec-label">Related sessions</div>
+    <ul style="list-style: none; padding: 0; margin: 0.4rem 0 0;">
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/35" style="color: var(--cyan); text-decoration: none; font-weight: 600;">Builder first: Rish on Neynar's new direction for Farcaster, live on Juke</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Rish (Neynar), hosted by Nick (nickysap) with Zaal - Neynar</span></li>
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/24" style="color: var(--cyan); text-decoration: none; font-weight: 600;">ZABAL GAMEZ Workshop w/topocount from Neynar</a> <span style="color: var(--text-dim); font-size: 0.85rem;">topocount - Neynar</span></li>
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/3" style="color: var(--cyan); text-decoration: none; font-weight: 600;">Bonfire and the ZABAL Bonfire bot</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Joshua.eth and Plat0x - Bonfire</span></li>
+    </ul>
+  </section>
 
+  <section id="zg-comments"></section>
+
+</div>
 </main>
 
 <footer class="arcade-foot" aria-label="Site directory">
@@ -201,28 +179,18 @@
       <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
       <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. Season 1 ran June to August 2026 and is complete. Free, open to anyone.</p>
 </div>
-    <nav class="arcade-foot-col" aria-label="Play">
-      <h4>Play</h4>
-      <a href="/">Home</a>
-      <a href="/info.html">All the Details</a>
-      <a href="/#schedule">Schedule</a>
-      <a href="/live.html">Live - What's On Now</a>
-      <a href="/lead.html">Lead a Workshop</a>
-      <a href="/mentor.html">Mentor</a>
-    </nav>
     <nav class="arcade-foot-col" aria-label="Data">
       <h4>Data</h4>
+      <a href="/speakers.html">Speakers</a>
       <a href="/recordings.html">Recordings</a>
       <a href="/recaps">Session Recaps</a>
       <a href="/streams.html">Streams</a>
-      <a href="/graph.html">ZAO Graph</a>
-      <a href="/changelog.html">Changelog</a>
+      <a href="/#schedule">Schedule</a>
     </nav>
     <nav class="arcade-foot-col" aria-label="Connect">
       <h4>Connect</h4>
       <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
       <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
-      <a href="/press.html">Press + Media Kit</a>
       <a href="/links.html">All Links</a>
       <a href="/share.html">Share</a>
     </nav>
@@ -235,8 +203,17 @@
 
 <script>
 (function () {
-  var YT_ID = 'Z9yAFxUVW-g';
-  var PAGE_URL = 'https://zabalgamez.com/recordings/5';
+  var YT_ID = "Z9yAFxUVW-g";
+  var PAGE_URL = "https://zabalgamez.com/recordings/5";
+  var TOPICS = [
+    "Building Sopha, and why curation is needed",
+    "the feed is ephemeral - Sopha is the third place for the deep stuff",
+    "you can build your own Farcaster client in a few hours",
+    "you are not beholden to the algorithm, build your own lens",
+    "curation as the core: community curators and The Pulse",
+    "client, mini app, or Snap: the nested stack on Farcaster"
+  ];
+
   var player = document.getElementById('rec-player');
   var chapters = document.getElementById('rec-chapters');
   if (player && chapters) {
@@ -248,22 +225,13 @@
       player.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   }
-  var TOPICS = [
-    "Building Sopha, and why curation is needed",
-    "the feed is ephemeral - Sopha is the third place for the deep stuff",
-    "you can build your own Farcaster client in a few hours",
-    "you are not beholden to the algorithm, build your own lens",
-    "curation as the core: community curators and The Pulse",
-    "client, mini app, or Snap: the nested stack on Farcaster"
-  ];
+
   document.querySelectorAll('.rec-watch-share').forEach(function (b) {
     b.addEventListener('click', function () {
       if (!(window.ZABAL && window.ZABAL.share)) return;
       var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
-      var zaal = platform === 'x' ? '@bettercallzaal' : '@zaal';
-      var guest = platform === 'x' ? 'Chris from Sopha' : '@chriscocreated';
       var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
-      var text = "I'm at the ZABAL Gamez workshop with " + guest + " and " + zaal + " - " + topic;
+      var text = "I'm watching ZABAL Gamez with Chris (chriscocreated) - " + topic;
       window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-5-' + platform });
     });
   });

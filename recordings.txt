@@ -1,6 +1,6 @@
 ZABAL GAMEZ - RECORDINGS (plain text for agents)
 
-Built from data/recaps.json (source 05e52e5f8b35, newest recording 2026-06-30) by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 36 recordings, newest first.
+Built from data/recaps.json (source 5b8edf6458d3, newest recording 2026-06-30) by scripts/build-recordings-index.mjs - do not edit by hand. Season 1. 36 recordings, newest first.
 Structured JSON:  https://zabalgamez.com/recordings/index.json
 Full ZAO dump:    https://zabalgamez.com/llms.txt
 Human page:       https://zabalgamez.com/recordings
@@ -471,7 +471,6 @@ workshop  |  track: creator  |  2026-06-02
 Presenter: Ohnahji
 Watch: https://zabalgamez.com/recordings/4
 Video: https://youtu.be/VsSLEF8O9yI
-Recording: https://luma.com/xa3bsp21
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-02-ohnahji-livestreaming.md
 Summary: Day 2 of ZABAL Gamez and the first creator-track session. Ohnahji (Brian), co-founder of the Ohnahji community - a 2022 project that grew into "blockchain's first HBCU," a safe space for Black, brown, and allied folks learning emerging tech - joins Zaal on Twitch to talk about starting and growing a livestream. Ohnahji is about 288 days into a 365 daily-stream journey. The throughline: consistency is king. Every tool glitches, the early days are frustrating for everyone, and you only get better by showing up. They cover Twitch's Streamed Together and shared chat for collaborating live, raids as a discovery and gamification tool, building your own chat bots, the builder basics of API keys and environment variables, and streaming opsec - be careful what you screen-share, and when in doubt, slow down.
 Takeaways:
@@ -488,7 +487,6 @@ workshop  |  track: builder  |  2026-06-01
 Presenter: Joshua.eth and Plat0x (@joshua.eth), Bonfire
 Watch: https://zabalgamez.com/recordings/3
 Video: https://youtu.be/3jKfYdOYxSw
-Recording: https://luma.com/y189qk8p
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-bonfire-josh-plat0x.md
 Summary: The second ZABAL Gamez workshop. Joshua.eth and Plat0x (Carlos) introduce Bonfire - a shared AI workspace where a group shares agents and, in the process of using them, grows a shared memory: a knowledge graph that becomes a collective, ownable asset. They get into the data-loss problem, why curation is the last scarce asset, a vision for hackathons where every project is interoperable by design, and a live look at querying the ZABAL Bonfire bot.
 Takeaways:
@@ -504,7 +502,6 @@ workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/2
 Video: https://youtu.be/RXYTCHRh_rY
-Recording: https://luma.com/7nfside5
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder-part-2.md
 Summary: Part 2 of the first ZABAL Gamez workshop - the live build that follows the Part 1 framework talk. yerbearserker (Jordan Oram) of Empire Builder gives a hands-on tour of the Empire tool stack from inside Farcaster, walks the top empires and how leaderboards score holders times boosters, runs a live Warplet raffle airdrop to DotA NFT holders, adds a $Zabal token booster, and stands up a fresh tokenless ZABAL Gamez empire on the spot, then wires two leaderboards (channel activity in /zabal and cast reactions).
 Takeaways:
@@ -520,7 +517,6 @@ workshop  |  track: builder  |  2026-06-01
 Presenter: yerbearserker (@yerbearserker), Empire Builder
 Watch: https://zabalgamez.com/recordings/1
 Video: https://youtu.be/Ej7Wm-v6WXo
-Recording: https://luma.com/7nfside5
 Transcript: https://zabalgamez.com/data/streams/zabal-games-workshops/raw/transcripts/2026-06-01-yerbearserker-empire-builder.md
 Summary: Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up a tokenless ZABAL Gamez Empire live during the session. His message: build the foundation before you launch anything.
 Takeaways:
