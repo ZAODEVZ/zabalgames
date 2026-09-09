@@ -42,8 +42,21 @@ export const sha256 = (s) => createHash('sha256').update(s).digest('hex');
 
 // The verdict, kept pure so scripts/test-check-deployed.mjs can exercise every branch without a
 // network. The branch that matters is the last one: no body means UNREACHABLE, never IN SYNC.
-export function verdict({ localHash, liveHash, error }) {
+export function verdict({ localHash, liveHash, error, redirectTo, expectedRedirect }) {
   if (error) return { state: 'UNREACHABLE', ok: false, detail: error };
+  // A redirect stub is never served, so comparing its bytes is meaningless. Found by running
+  // --all: /enter, /vote and /winners reported DRIFTED because the fetch followed the redirect
+  // and hashed /leaderboard and /results against a stub file. Three permanent false reds is
+  // precisely how a guard teaches people to ignore it.
+  //
+  // So a redirect is CHECKED, not skipped: its destination must match what vercel.json
+  // configures. A stub that silently stopped redirecting, or started pointing somewhere else,
+  // is a real failure and this still catches it.
+  if (redirectTo != null) {
+    if (!expectedRedirect) return { state: 'REDIRECT?', ok: false, detail: `redirects to ${redirectTo}, but vercel.json configures no redirect for it` };
+    if (redirectTo !== expectedRedirect) return { state: 'MISROUTED', ok: false, detail: `redirects to ${redirectTo}, vercel.json says ${expectedRedirect}` };
+    return { state: 'REDIRECT', ok: true, detail: `-> ${redirectTo} (as configured)` };
+  }
   if (liveHash == null) return { state: 'UNREACHABLE', ok: false, detail: 'no response body' };
   if (localHash === liveHash) return { state: 'IN SYNC', ok: true, detail: '' };
   return { state: 'DRIFTED', ok: false, detail: `local ${localHash.slice(0, 12)} vs live ${liveHash.slice(0, 12)}` };
@@ -54,9 +67,22 @@ export function urlFor(slug) {
   return slug === 'index' ? `${SITE}/` : `${SITE}/${slug}`;
 }
 
+// vercel.json's configured redirects, as slug -> destination.
+export function configuredRedirects(json) {
+  const map = new Map();
+  for (const r of (json.redirects || [])) {
+    if (typeof r.source === 'string' && typeof r.destination === 'string') {
+      map.set(r.source.replace(/^\//, ''), r.destination);
+    }
+  }
+  return map;
+}
+
 async function fetchBody(url) {
   try {
-    const r = await fetch(url, { redirect: 'follow', headers: { 'Cache-Control': 'no-cache' } });
+    // manual, so a redirect is observed rather than followed into another page's bytes.
+    const r = await fetch(url, { redirect: 'manual', headers: { 'Cache-Control': 'no-cache' } });
+    if (r.status >= 300 && r.status < 400) return { redirectTo: r.headers.get('location') };
     if (!r.ok) return { error: `HTTP ${r.status}` };
     return { body: await r.text() };
   } catch (e) {
@@ -76,13 +102,21 @@ async function main() {
       .split('\n').filter(Boolean).map((f) => f.replace(/\.html$/, ''));
   } else slugs = CRITICAL;
 
+  let redirects = new Map();
+  try { redirects = configuredRedirects(JSON.parse(readFileSync('vercel.json', 'utf8'))); }
+  catch (e) { console.error(`  WARNING: could not read vercel.json (${e.message}) - redirects cannot be verified.`); }
+
   const rows = [];
   for (const slug of slugs) {
     let local;
     try { local = readFileSync(`${slug}.html`, 'utf8'); }
     catch { rows.push({ slug, ...verdict({ error: `no local ${slug}.html` }) }); continue; }
-    const { body, error } = await fetchBody(urlFor(slug));
-    rows.push({ slug, ...verdict({ localHash: sha256(local), liveHash: body == null ? null : sha256(body), error }) });
+    const { body, error, redirectTo } = await fetchBody(urlFor(slug));
+    rows.push({ slug, ...verdict({
+      localHash: sha256(local),
+      liveHash: body == null ? null : sha256(body),
+      error, redirectTo, expectedRedirect: redirects.get(slug),
+    }) });
   }
 
   const bad = rows.filter((r) => !r.ok);
@@ -92,7 +126,8 @@ async function main() {
   }
 
   if (bad.length === 0) {
-    console.log(`\ncheck-deployed: ${rows.length} page(s) IN SYNC with main.`);
+    const red = rows.filter((r) => r.state === 'REDIRECT').length;
+    console.log(`\ncheck-deployed: ${rows.length} page(s) confirmed${red ? ` (${red} redirect${red > 1 ? 's' : ''} matching vercel.json)` : ''}.`);
     process.exit(0);
   }
 
