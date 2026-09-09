@@ -184,6 +184,22 @@ try {
   if (!/carry superseded/.test(text)) fail('check-season-copy.mjs - ' + e.message);
 }
 
+// 6d. CLAUDE.md's countable claims must match the repo. It is the file every session reads
+// first, so a wrong number there propagates into whatever that session writes next - and it was
+// wrong twice on 2026-09-09, once contradicting ITSELF (68 top-level pages on line 48, 66 on
+// line 507; actual 66). These are counts of files, so they are free to verify and pointless to
+// maintain by hand. Season figures and decisions are deliberately NOT checked here.
+head('CLAUDE.md counts:');
+try {
+  const outp = execSync(`node ${JSON.stringify('scripts/check-counts.mjs')}`, { encoding: 'utf8' });
+  if (!QUIET) process.stdout.write(outp.split('\n').filter(Boolean).map((l) => '  ' + l.replace(/^ {2}/, '')).join('\n') + '\n');
+  else ok('CLAUDE.md counts match the repo');
+} catch (e) {
+  const text = (e.stdout || '') + (e.stderr || '');
+  for (const line of text.split('\n')) if (/CLAUDE\.md:\d+\s+says/.test(line)) fail(line.trim());
+  if (!/CLAUDE\.md:\d+\s+says/.test(text)) fail('check-counts.mjs - ' + e.message);
+}
+
 // 7. Generated files must match their source. /recordings/index.json and /recordings.txt are
 // the surface agents are told to read, so a stale one is a wrong answer served confidently.
 head('Generated files:');
