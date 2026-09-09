@@ -38,6 +38,22 @@ export const SITE = 'https://zabalgamez.com';
 // Deliberately short: a default that takes a minute gets run, a default that takes ten does not.
 export const CRITICAL = ['index', 'results', 'august', 'recordings', 'submit', 'play'];
 
+// Non-HTML files that are load-bearing and were NOT covered when this only walked *.html.
+// Each carries the reason it is here, because an asset list with no reasons grows until it is
+// the whole site and then gets skipped.
+export const ASSETS = [
+  { path: '.well-known/farcaster.json',
+    why: 'the Mini App registration. If it breaks the app stops opening in Farcaster and NOTHING reports it - validate pins the signed block locally, but nothing checked that production serves the same bytes.' },
+  { path: 'recordings/index.json',
+    why: 'advertised on the site as the machine surface for agents, so a stale one is a wrong answer served confidently' },
+  { path: 'recordings.txt',
+    why: 'the other agent-facing surface, same reason' },
+  { path: 'llms.txt',
+    why: 'what an AI harness reads first about this project' },
+  { path: 'assets/miniapp.js',
+    why: 'every page loads it; if the deployed copy drifts, every Mini App helper drifts with it' },
+];
+
 export const sha256 = (s) => createHash('sha256').update(s).digest('hex');
 
 // The verdict, kept pure so scripts/test-check-deployed.mjs can exercise every branch without a
@@ -95,8 +111,10 @@ async function main() {
   const all = args.includes('--all');
   const named = args.filter((a) => !a.startsWith('--'));
 
+  const assetsOnly = args.includes('--assets');
   let slugs;
-  if (named.length) slugs = named;
+  if (assetsOnly) slugs = [];
+  else if (named.length) slugs = named;
   else if (all) {
     slugs = execSync('git ls-files "*.html"', { encoding: 'utf8' })
       .split('\n').filter(Boolean).map((f) => f.replace(/\.html$/, ''));
@@ -119,10 +137,24 @@ async function main() {
     }) });
   }
 
+  // Assets are checked whenever a named page list was not given - the default run and --all
+  // both want them, because the manifest breaking is worse than any single page drifting.
+  if (!named.length) {
+    for (const a of ASSETS) {
+      let local;
+      try { local = readFileSync(a.path, 'utf8'); }
+      catch { rows.push({ slug: a.path, ...verdict({ error: `no local ${a.path}` }) }); continue; }
+      const { body, error, redirectTo } = await fetchBody(`${SITE}/${a.path}`);
+      const v = verdict({ localHash: sha256(local), liveHash: body == null ? null : sha256(body), error, redirectTo, expectedRedirect: redirects.get(a.path) });
+      rows.push({ slug: a.path, ...v, why: v.ok ? '' : a.why });
+    }
+  }
+
   const bad = rows.filter((r) => !r.ok);
   for (const r of rows) {
     const line = `  ${r.state.padEnd(11)} /${r.slug}${r.detail ? '  ' + r.detail : ''}`;
     (r.ok ? console.log : console.error)(line);
+    if (!r.ok && r.why) console.error(`              why it matters: ${r.why}`);
   }
 
   if (bad.length === 0) {
