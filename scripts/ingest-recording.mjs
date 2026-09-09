@@ -123,17 +123,39 @@ const existingIdx = recaps.findIndex((r) =>
   (r.transcript && r.transcript.endsWith(slugTail)) ||
   (m.page && r.page === m.page));
 
-let pageNum;
+// An existing recap keeps its OWN page path. It used to be rebuilt from the digits in that path
+// with `String(page).replace(/\D/g, '')`, which is fine for /recordings/12 and catastrophic for a
+// NESTED one:
+//
+//   /recordings/fireside/1  ->  "1"  ->  recordings/1.html
+//   /recordings/zao/1       ->  "1"  ->  recordings/1.html
+//
+// So re-ingesting either nested recording OVERWROTE /recordings/1 - a different session's page,
+// with a different presenter, transcript and chapters. Found 2026-09-09 by regenerating the
+// archive and noticing /recordings/1 came back with 7 chapters that were not its own; the page
+// had 16 and the replacement carried another session's timestamps entirely. Nothing had ever
+// re-ingested those two, which is the only reason it had not already happened.
+//
+// This is the same shape as the /recordings/27 incident the CARRY block above exists for: the
+// generator quietly writing over a good page. There it was the wrong FIELDS, here it is the
+// wrong FILE.
+let page, pageFile;
 if (existingIdx >= 0 && recaps[existingIdx].page) {
-  pageNum = parseInt(String(recaps[existingIdx].page).replace(/\D/g, ''), 10);
+  page = String(recaps[existingIdx].page);
+  if (!/^\/recordings\/[A-Za-z0-9/-]+$/.test(page)) die(`recap has a suspicious page path: "${page}"`);
+  pageFile = path.join(ROOT, `${page.replace(/^\//, '')}.html`);
 } else {
+  // A NEW recording gets the next free top-level integer. Nested pages are never auto-created.
   const nums = fs.readdirSync(path.join(ROOT, 'recordings'))
     .map((f) => f.match(/^(\d+)\.html$/)).filter(Boolean).map((mm) => parseInt(mm[1], 10));
-  pageNum = (nums.length ? Math.max(...nums) : 0) + 1;
+  const pageNum = (nums.length ? Math.max(...nums) : 0) + 1;
+  page = `/recordings/${pageNum}`;
+  pageFile = path.join(ROOT, `recordings/${pageNum}.html`);
 }
-const page = `/recordings/${pageNum}`;
 const pageUrl = `https://zabalgamez.com${page}`;
-const pageFile = path.join(ROOT, `recordings/${pageNum}.html`);
+// Stable id for share targets and logs. Derived from the PAGE PATH so a nested recording gets
+// "fireside-1" rather than colliding with top-level "1" - the same collision the block above fixes.
+const pageId = page.replace(/^\/recordings\//, '').replace(/\//g, '-');
 
 // On UPDATE, a field the manifest omits must be CARRIED, not dropped. The recap used to be
 // replaced wholesale, so re-running a transcript-only manifest over a recording that already
@@ -450,7 +472,7 @@ ${yt ? `
       var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
       var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
       var text = "I'm watching ZABAL Gamez with ${esc(m.presenter || 'The ZAO')} - " + topic;
-      window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-${pageNum}-' + platform });
+      window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-${pageId}-' + platform });
     });
   });
 })();
@@ -590,7 +612,7 @@ const action = existingIdx >= 0 ? 'UPDATE' : 'CREATE';
 
 console.log(`\ningest-recording: ${path.basename(manifestPath)}\n`);
 console.log(`  ${action}  ${m.title}`);
-console.log(`  page        ${page}  (recordings/${pageNum}.html)  [${yt ? 'video' : 'placeholder'}]`);
+console.log(`  page        ${page}  (${path.relative(ROOT, pageFile)})  [${yt ? 'video' : 'placeholder'}]`);
 if (m.transcript_markdown) console.log(`  transcript  ${transcriptPath}`);
 console.log(`  recap       data/recaps.json  (${existingIdx >= 0 ? 'replace in place' : 'prepend, newest first'})`);
 if (m.chapters && m.chapters.length) console.log(`  chapters    ${m.chapters.length}`);
