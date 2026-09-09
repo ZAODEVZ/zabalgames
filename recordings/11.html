@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://zabalgamez.com/recordings/11">
   <meta property="og:title" content="Non-Dev to Shipped: building Baraza Protocol with AI tools - Aziz (MotoMoto) - ZABAL Gamez">
   <meta property="og:description" content="A ZABAL Gamez session with Aziz (MotoMoto) of Build Africa DAO. Coming from media and production with no coding background, he built Baraza Protocol by directing AI tools - a mobile-first, no-jargon p">
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="video.other">
   <meta property="og:url" content="https://zabalgamez.com/recordings/11">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -56,10 +56,9 @@
   <div class="arcade-nav-inner">
     <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
     <div class="arcade-nav-menu">
-      <a href="/info.html">Details</a>
+      <a href="/speakers">Speakers</a>
       <a href="/#schedule">Schedule</a>
-      <a href="/recordings" class="active" aria-current="page">Recordings</a>
-      <a href="/about.html">About</a>
+      <a href="/recordings">Recordings</a>
 </div>
   </div>
 </nav>
@@ -82,13 +81,14 @@
   <div class="rec-embed">
     <iframe id="rec-player"
       src="https://www.youtube.com/embed/MAzecp9zVWA?rel=0"
-      title="ZABAL Gamez: Non-Dev to Shipped: building Baraza Protocol with AI tools"
+      title="ZABAL Gamez Workshop: Non-Dev to Shipped: building Baraza Protocol with AI tools"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen></iframe>
   </div>
 
   <div class="rec-links">
+    <a class="rec-link primary" href="https://youtu.be/MAzecp9zVWA" target="_blank" rel="noopener">Watch on YouTube</a>
     <a class="rec-link" href="#rec-transcript">Read the transcript</a>
     <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
     <button class="rec-link rec-watch-share" type="button" data-platform="x">Share on X</button>
@@ -138,6 +138,15 @@
 
   <section id="zg-clip-claim"></section>
 
+  <section class="section rec-related">
+    <div class="rec-label">Related sessions</div>
+    <ul style="list-style: none; padding: 0; margin: 0.4rem 0 0;">
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/17" style="color: var(--cyan); text-decoration: none; font-weight: 600;">ZABAL GAMEZ Workshop w/Ali Tiknazoglu</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Ali Tiknazoglu</span></li>
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/30" style="color: var(--cyan); text-decoration: none; font-weight: 600;">ZABAL GAMEZ Workshop w/Adrienne from GM Farcaster</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Adrienne Shulman - GM Farcaster</span></li>
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/fireside/1" style="color: var(--cyan); text-decoration: none; font-weight: 600;">Bonfires + a vibe-coding masterclass</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Carlos (Plat0x) - Bonfires</span></li>
+    </ul>
+  </section>
+
   <section id="zg-comments"></section>
 
 </div>
@@ -161,7 +170,6 @@
       <h4>Connect</h4>
       <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
       <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
-      <a href="/press.html">Press + Media Kit</a>
       <a href="/links.html">All Links</a>
       <a href="/share.html">Share</a>
     </nav>
@@ -174,14 +182,27 @@
 
 <script>
 (function () {
+  var YT_ID = "MAzecp9zVWA";
   var PAGE_URL = "https://zabalgamez.com/recordings/11";
   var TOPICS = [
     "shipping a real build with no coding background",
-    "building Baraza Protocol for Africa’s savings groups",
+    "building Baraza Protocol for Africa's savings groups",
     "why mobile-first and no jargon wins adoption",
     "meeting communities where they already are",
     "the non-coder path: know the problem, write the PRD, ship"
   ];
+
+  var player = document.getElementById('rec-player');
+  var chapters = document.getElementById('rec-chapters');
+  if (player && chapters) {
+    chapters.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.rec-chapter');
+      if (!b) return;
+      var start = parseInt(b.getAttribute('data-start') || '0', 10) || 0;
+      player.src = 'https://www.youtube.com/embed/' + YT_ID + '?rel=0&autoplay=1&start=' + start;
+      player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
 
   document.querySelectorAll('.rec-watch-share').forEach(function (b) {
     b.addEventListener('click', function () {

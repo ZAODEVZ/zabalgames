@@ -3,23 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workshop #1: yerbearserker on Empire Builder - ZABAL Gamez Season 1</title>
-  <meta name="description" content="ZABAL Gamez Workshop #1. yerbearserker (Empire Builder) on why you shouldn't launch a token yet, the Triple A framework, and building a tokenless empire. Watch the recording, jump to a chapter, read the transcript.">
+  <title>Empire Builder V3 - yerbearserker - ZABAL Gamez Season 1</title>
+  <meta name="description" content="Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up ">
   <link rel="canonical" href="https://zabalgamez.com/recordings/1">
-  <meta property="og:title" content="Workshop #1: yerbearserker on Empire Builder - ZABAL Gamez">
-  <meta property="og:description" content="Don't launch a token yet. yerbearserker on Empire Builder, the Triple A framework, and building a tokenless empire. The first ZABAL Gamez workshop, recorded and kept.">
+  <meta property="og:title" content="Empire Builder V3 - yerbearserker - ZABAL Gamez">
+  <meta property="og:description" content="Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up ">
   <meta property="og:type" content="video.other">
   <meta property="og:url" content="https://zabalgamez.com/recordings/1">
-  <meta property="og:image" content="https://zabalgamez.com/assets/workshops/2026-06-01-yerbearserker-empire-builder.png">
+  <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Workshop #1: yerbearserker on Empire Builder - ZABAL Gamez">
-  <meta name="twitter:description" content="Don't launch a token yet. yerbearserker on Empire Builder and building a tokenless empire. The first ZABAL Gamez workshop.">
-  <meta name="twitter:image" content="https://zabalgamez.com/assets/workshops/2026-06-01-yerbearserker-empire-builder.png">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch Workshop #1","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/1","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="twitter:title" content="Empire Builder V3 - yerbearserker">
+  <meta name="twitter:description" content="Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up ">
+  <meta name="twitter:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"Watch: Empire Builder","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/recordings/1","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
   <link rel="apple-touch-icon" href="/assets/icon.png">
-  <!-- Video embed + clickable chapters: opt out of native swipe gestures so a stray swipe doesn't close the Mini App. -->
   <meta name="fc:disable-native-gestures" content="1">
   <link rel="preconnect" href="https://esm.sh">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,11 +27,12 @@
   <link rel="stylesheet" href="/assets/style.css">
   <script type="module" src="/assets/miniapp.js"></script>
   <style>
-    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); }
+    .rec-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); margin-top: 1rem; }
     .rec-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .rec-by { color: var(--text-muted); font-size: 0.9rem; margin: 0.3rem 0 0.2rem; }
     .rec-by .dot { color: var(--text-dim); padding: 0 0.3rem; }
     .rec-format { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-dim); }
+    .rec-note { border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 10px; background: var(--surface-2); padding: 0.85rem 1rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; }
     .rec-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.9rem 0 0.2rem; }
     .rec-link { font-size: 0.82rem; padding: 0.34rem 0.75rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--border); background: var(--surface-2); color: var(--cyan); font-family: inherit; cursor: pointer; }
     .rec-link.primary { background: var(--zabal); color: #fff; border-color: var(--zabal); }
@@ -56,10 +56,9 @@
   <div class="arcade-nav-inner">
     <a href="/" class="arcade-brand" aria-label="ZABAL Gamez home">ZABAL <span class="accent">GAMEZ</span></a>
     <div class="arcade-nav-menu">
-      <a href="/info.html">Details</a>
+      <a href="/speakers">Speakers</a>
       <a href="/#schedule">Schedule</a>
-      <a href="/recordings" class="active" aria-current="page">Recordings</a>
-      <a href="/about.html">About</a>
+      <a href="/recordings">Recordings</a>
 </div>
   </div>
 </nav>
@@ -70,11 +69,11 @@
   <nav id="rec-nav" class="rec-nav" aria-label="Recording navigation"></nav>
 
   <header class="hero" style="padding-bottom: 0.6rem;">
-    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / Workshop #1</div>
-    <h1>Don't launch a token yet - <span class="accent">from dream to empire</span>.</h1>
+    <div class="hero-eyebrow"><a href="/recordings" style="color: inherit;">The recordings</a> / Empire Builder</div>
+    <h1>Empire Builder V3</h1>
     <p class="rec-by">
       yerbearserker <span class="dot">&middot;</span> <a href="https://farcaster.xyz/yerbearserker" target="_blank" rel="noopener" style="color: inherit;">@yerbearserker</a> <span class="dot">&middot;</span> Empire Builder
-      <span class="dot">&middot;</span> <span class="rec-format">Day 1, builder track - live workshop, recorded</span>
+      <span class="dot">&middot;</span> <span class="rec-format">Builder track - Live workshop, 30 min, recorded</span>
     </p>
     <div class="rec-tech" title="How technical this talk is, 0 to 10"><span class="rt-label">Technical</span><span class="rt-bar"><span class="rt-fill" style="width:60%"></span></span><span class="rt-num">6/10</span><span class="rt-tag t-mid">Some technical depth</span></div>
   </header>
@@ -82,14 +81,14 @@
   <div class="rec-embed">
     <iframe id="rec-player"
       src="https://www.youtube.com/embed/Ej7Wm-v6WXo?rel=0"
-      title="ZABAL Gamez Workshop #1: yerbearserker on Empire Builder"
+      title="ZABAL Gamez Workshop: Empire Builder V3"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen></iframe>
   </div>
 
   <div class="rec-links">
-    <a class="rec-link" href="/recordings/2">Watch Part 2</a>
+    <a class="rec-link primary" href="https://youtu.be/Ej7Wm-v6WXo" target="_blank" rel="noopener">Watch on YouTube</a>
     <a class="rec-link" href="#rec-transcript">Read the transcript</a>
     <a class="rec-link" href="https://empirebuilder.world/empire/zabalgamez01e9af" target="_blank" rel="noopener">The ZABAL Gamez Empire</a>
     <button class="rec-link rec-watch-share" type="button" data-platform="farcaster">Share on Farcaster</button>
@@ -98,7 +97,7 @@
 
   <section class="section" style="margin-top: 1.4rem;">
     <p class="recap-summary" style="font-size: 0.95rem; line-height: 1.6;">
-      The first official ZABAL Gamez workshop. BetterCallZaal sits down with yerbearserker (Jordan Oram), co-founder and chief ecosystem architect of Empire Builder, on why most projects launch token-first, spike, get extracted, and collapse - and what to do instead: build a real project and community first, then let the token amplify it. He walks through the Empire V3 no-code tool stack and the Triple A path, and stands up a tokenless ZABAL Gamez empire live. This is Part 1, the framework. The live demo is Part 2.
+      Day 1 opener. yerbearserker (Jordan Oram), with diviflyy, co-founder of Empire Builder, walked through Empire Builder V3 - leaderboards, Empires, boosters, staking, and token mechanics - and stood up a tokenless ZABAL Gamez Empire live during the session. His message: build the foundation before you launch anything.
     </p>
 
     <div class="rec-label">Best moments</div>
@@ -125,21 +124,19 @@
     <div class="rec-topics">
       <span class="rec-topic">Empire Builder</span>
       <span class="rec-topic">tokenless Empire</span>
-      <span class="rec-topic">Triple A framework</span>
       <span class="rec-topic">leaderboards</span>
       <span class="rec-topic">boosters</span>
       <span class="rec-topic">staking</span>
-      <span class="rec-topic">tactical generosity</span>
+      <span class="rec-topic">Triple-A framework</span>
       <span class="rec-topic">distribution</span>
     </div>
 
     <div class="rec-label">Key takeaways</div>
     <ul class="rec-takeaways">
       <li>Do not launch a token until you are ready - build the foundation first.</li>
-      <li>The token is the amplifier, not the foundation. Sequence matters.</li>
-      <li>The Triple A framework: Assemble (build, no token), Affirm (reward your active people), Ascend (launch the token once the ecosystem can carry it).</li>
-      <li>Leaderboards, boosters, staking, and tactical generosity power a tokenless empire.</li>
-      <li>yerbearserker stood up a tokenless ZABAL Gamez empire live during the session.</li>
+      <li>The Triple-A framework: Assemble, Affirm, Ascend.</li>
+      <li>Leaderboards, boosters, staking, and tactical generosity power a tokenless Empire.</li>
+      <li>yerbearserker stood up a tokenless ZABAL Gamez Empire live during the session.</li>
     </ul>
   </section>
 
@@ -157,9 +154,18 @@
 
   <section id="zg-clip-claim"></section>
 
-  <section id="zg-comments"></section>
-</div>
+  <section class="section rec-related">
+    <div class="rec-label">Related sessions</div>
+    <ul style="list-style: none; padding: 0; margin: 0.4rem 0 0;">
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/2" style="color: var(--cyan); text-decoration: none; font-weight: 600;">Empire Builder Part 2: Building a Tokenless Empire Live</a> <span style="color: var(--text-dim); font-size: 0.85rem;">yerbearserker - Empire Builder</span></li>
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/14" style="color: var(--cyan); text-decoration: none; font-weight: 600;">ZABAL GAMEZ Workshop w/diviflyy from Empire Builder</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Adrian (diviflyy) - Empire Builder</span></li>
+      <li style="margin-bottom: 0.5rem;"><a href="/recordings/34" style="color: var(--cyan); text-decoration: none; font-weight: 600;">Farcaster Batches Day 3 builder chat: ZABAL Gamez, Empire Builder and four more</a> <span style="color: var(--text-dim); font-size: 0.85rem;">Nounish Prof + Adrian (GM Farcaster) - Farcaster Batches / GM Farcaster</span></li>
+    </ul>
+  </section>
 
+  <section id="zg-comments"></section>
+
+</div>
 </main>
 
 <footer class="arcade-foot" aria-label="Site directory">
@@ -168,28 +174,18 @@
       <span class="arcade-foot-logo pixel">ZABAL GAMEZ</span>
       <p class="arcade-foot-tag">The ZAO's 3-month Build-A-Thon. Season 1 ran June to August 2026 and is complete. Free, open to anyone.</p>
 </div>
-    <nav class="arcade-foot-col" aria-label="Play">
-      <h4>Play</h4>
-      <a href="/">Home</a>
-      <a href="/info.html">All the Details</a>
-      <a href="/#schedule">Schedule</a>
-      <a href="/live.html">Live - What's On Now</a>
-      <a href="/lead.html">Lead a Workshop</a>
-      <a href="/mentor.html">Mentor</a>
-    </nav>
     <nav class="arcade-foot-col" aria-label="Data">
       <h4>Data</h4>
+      <a href="/speakers.html">Speakers</a>
       <a href="/recordings.html">Recordings</a>
       <a href="/recaps">Session Recaps</a>
       <a href="/streams.html">Streams</a>
-      <a href="/graph.html">ZAO Graph</a>
-      <a href="/changelog.html">Changelog</a>
+      <a href="/#schedule">Schedule</a>
     </nav>
     <nav class="arcade-foot-col" aria-label="Connect">
       <h4>Connect</h4>
       <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noopener">/zabal channel</a>
       <a href="https://paragraph.com/@thezao" target="_blank" rel="noopener">Newsletter</a>
-      <a href="/press.html">Press + Media Kit</a>
       <a href="/links.html">All Links</a>
       <a href="/share.html">Share</a>
     </nav>
@@ -202,9 +198,8 @@
 
 <script>
 (function () {
-  var YT_ID = 'Ej7Wm-v6WXo';
-  var PAGE_URL = 'https://zabalgamez.com/recordings/1';
-  // Random share topics for the "I'm watching" buttons - one picked per click.
+  var YT_ID = "Ej7Wm-v6WXo";
+  var PAGE_URL = "https://zabalgamez.com/recordings/1";
   var TOPICS = [
     "why you shouldn't launch a token yet",
     "the Triple A framework: Assemble, Affirm, Ascend",
@@ -217,7 +212,6 @@
     "reaching real holders, not Web2 cohorts"
   ];
 
-  // Clickable chapters - reload the embed starting at the chapter time and play.
   var player = document.getElementById('rec-player');
   var chapters = document.getElementById('rec-chapters');
   if (player && chapters) {
@@ -230,16 +224,12 @@
     });
   }
 
-  // Share buttons - tag the guest and Zaal (handle swapped per platform, since the
-  // share helper appends Zaal idempotently), with a random topic. Shares this page.
   document.querySelectorAll('.rec-watch-share').forEach(function (b) {
     b.addEventListener('click', function () {
       if (!(window.ZABAL && window.ZABAL.share)) return;
       var platform = b.getAttribute('data-platform') === 'x' ? 'x' : 'farcaster';
-      var zaal = platform === 'x' ? '@bettercallzaal' : '@zaal';
       var topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
-      var text = "I'm watching ZABAL Gamez with @yerbearserker and " + zaal +
-        " talking Empire Builder - " + topic;
+      var text = "I'm watching ZABAL Gamez with yerbearserker - " + topic;
       window.ZABAL.share({ platform: platform, text: text, url: PAGE_URL, target: 'recording-1-' + platform });
     });
   });
