@@ -278,15 +278,28 @@ later re-scheduling). Endpoints across:
   is clean. It also keeps the FULL merge output instead of piping it to `tail` - every
   observation of this bug so far came through a `tail`, which is itself a way to miss the
   answer.
-  **It is reproducible, not a fluke: 2 for 2** - it happened again on PR #699, the PR that added
-  this very rule, and the rule caught it. **Why it no-ops is UNMEASURED.** The token carries
-  `repo` scope, which is sufficient to delete a branch, so scope is not the explanation.
-  **Repo permission is ruled out too**: `git push origin --delete` succeeds with the same
-  credentials every time, which it could not if this were a permissions problem. And
-  `gh pr merge --help` documents no exception - it says "Delete the local and remote branch
-  after merge". The real cause is still unknown; do not write one down until someone measures
-  it. **How to close it:** capture the FULL output of a merge, stderr included and with no
-  `| tail`, and read what gh actually says. Assume the command does not delete, and check.
+  **It is reproducible, not a fluke: 4 for 4** - #698, #699 (the PR that added this rule, caught
+  by the rule itself), #700 and #702. **Why it no-ops is still UNMEASURED, but four causes are
+  now RULED OUT by measurement**, so nobody re-checks them:
+  - **token scope** - `gh auth status` shows `repo`, sufficient to delete a ref.
+  - **repo permission** - `git push origin --delete <branch>` succeeds every time, same creds.
+  - **the API path** - `gh api -X DELETE repos/ZAODEVZ/zabalgames/git/refs/heads/<b>` deletes a
+    ref cleanly (probed 2026-09-09 on a throwaway `tmp/delete-probe`: exit 0, ref gone).
+  - **the moved-repo redirect** - the remote is `zaoDEVZ/zabalgames` and GitHub answers "This
+    repository moved" with the canonical `ZAODEVZ`. Deletes travel that redirect fine.
+  Also `gh pr merge --help` documents no exception: "Delete the local and remote branch after
+  merge". What IS newly measured: **gh prints NOTHING for the merge at all** - no confirmation
+  line, no warning - when its output is captured rather than shown. So "no error appeared" was
+  never evidence; there was no output to contain one.
+  <!-- RECHECK 2026-10-01: `gh repo set-default` was UNSET in this clone until 2026-09-09 and is
+       now set. That is the leading hypothesis for the no-op. If merges since then have deleted
+       their own branches, record that here and drop the workaround; if merge-pr.sh still reports
+       SURVIVED, the hypothesis is wrong and should be struck out rather than left hopeful. -->
+  **Leading hypothesis, untested until the next merge:** `gh repo set-default` was never set
+  here, so gh had no default remote to resolve the deletion against. It is set now, and
+  `scripts/merge-pr.sh` prints which way it went on every merge - the experiment runs itself and
+  needs nobody to remember it. Do not promote the hypothesis to the cause until a merge has
+  actually deleted its own branch.
 - After a merge, re-sync main before new work. Never reuse a merged branch.
 
 ## THIS REPO IS PUBLIC - secrets are scanned, not trusted
