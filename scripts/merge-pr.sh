@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+# merge-pr.sh - merge a PR and leave the remote in the state you think it is in.
+#
+# WHY THIS EXISTS. `gh pr merge --squash --delete-branch` reports success and does NOT
+# delete the remote head on this repo. Measured 2026-09-09: 3 for 3, on PRs #698, #699
+# and #700 - and #699 was the PR that added the "verify the branch is deleted" rule, so
+# the rule caught its own PR one command later. It was another lane's citation audit that
+# noticed the first one, not this repo.
+#
+# That matters more here than in most repos. CLAUDE.md's git conventions exist because
+# commits get STRANDED on branches that outlive their PR: they build as Vercel Previews,
+# they look shipped, and they never reach production (PR #54 lost two commits that way).
+# A merged branch left standing is precisely the dead head those rules warn about, created
+# by the command meant to remove it.
+#
+# WHAT IS RULED OUT, so nobody re-checks it:
+#   - token SCOPE. `gh auth status` shows `repo`, which is sufficient to delete a ref.
+#   - repo PERMISSION. `git push origin --delete <branch>` succeeds with the same
+#     credentials, every time. If it were a permissions problem that would fail too.
+#   - a documented caveat. `gh pr merge --help` says plainly: "Delete the local and
+#     remote branch after merge". No exception is documented.
+# The actual cause is still UNMEASURED. Do not write one down until someone measures it:
+# capture the FULL output of a merge (no `| tail`, stderr included) and read what gh says.
+# Every observation so far came through a `tail`, which is itself a way to miss the answer.
+#
+# So this script does not trust the flag. It merges, then MEASURES the remote, then
+# deletes the head itself if it survived, then re-measures. Verify by outcome, not by
+# the exit code of the thing you asked.
+#
+#   scripts/merge-pr.sh <pr-number>
+#
+# Exit 0 only when the PR is merged AND the remote is back to main alone.
+
+set -euo pipefail
+
+PR="${1:-}"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$REPO_ROOT"
+
+if [ -z "$PR" ]; then
+  echo "usage: scripts/merge-pr.sh <pr-number>" >&2
+  exit 2
+fi
+
+fail() { echo "MERGE-PR FAILED: $*" >&2; exit 1; }
+
+# --- 1. the PR must be open, and we need its branch name before it is gone ---
+read -r state branch <<<"$(gh pr view "$PR" --json state,headRefName -q '.state + " " + .headRefName')"
+[ "$state" = "OPEN" ] || fail "PR #$PR is $state, not OPEN. Branch fresh off updated main instead."
+echo "PR #$PR is OPEN on branch '$branch'"
+
+# --- 2. merge, keeping the FULL output - a tail here is how the no-op stayed invisible ---
+merge_log="$(mktemp)"
+if ! gh pr merge "$PR" --squash --delete-branch >"$merge_log" 2>&1; then
+  cat "$merge_log" >&2
+  fail "gh pr merge exited non-zero for #$PR"
+fi
+sed 's/^/  gh| /' "$merge_log"
+rm -f "$merge_log"
+
+# --- 3. the PR really merged (reported success is not merged) ---
+merged_at="$(gh pr view "$PR" --json mergedAt -q '.mergedAt // "null"')"
+[ "$merged_at" != "null" ] || fail "#$PR reports no mergedAt. It is NOT merged."
+echo "merged at $merged_at"
+
+# --- 4. did the head actually go? This is the whole point of the script ---
+git fetch origin --prune --quiet
+if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+  echo "NOTE: '$branch' SURVIVED --delete-branch. Deleting it directly."
+  git push origin --delete "$branch"
+  git fetch origin --prune --quiet
+  git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1 \
+    && fail "'$branch' is STILL on origin after an explicit delete. Stop and look."
+  echo "deleted '$branch'"
+else
+  echo "'$branch' was already gone - --delete-branch worked this time. Worth noting."
+fi
+
+# --- 5. re-measure the remote. At rest this repo has exactly one head: main ---
+heads="$(git ls-remote --heads origin | wc -l | tr -d ' ')"
+echo "remote heads now: $heads"
+if [ "$heads" != "1" ]; then
+  echo "WARNING: $heads remote heads, expected 1 at rest. Not necessarily wrong -"
+  echo "a ws/* head with an OPEN PR is normal work. It IS a problem when the extra"
+  echo "head has no open PR, or its PR is already merged or closed:"
+  git ls-remote --heads origin | sed 's/^/    /'
+fi
+
+echo
+echo "MERGED #$PR and the remote is clean. Merged is still not deployed:"
+echo "check the live surface before you call it shipped."
