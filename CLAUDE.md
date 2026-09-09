@@ -339,6 +339,31 @@ the literal to `ALLOWED_LITERALS` **with the reason it is safe**. The allowlist 
 context (npm `integrity` lines, one named test fixture) and never whole files, because "skip
 this file" is how a real key later hides in an allowlisted file.
 
+## Is production serving what main says? `scripts/check-deployed.mjs`
+"Merged is not deployed, and deployed is not running" is the standing bound, and until
+2026-09-09 nothing in the repo could answer the first half - every check here asks a question
+about the REPO. This one asks what the public is actually served: it sha256s each local page
+against the deployed response.
+
+That works because Vercel serves these files byte-for-byte. Measured: `diff` of `/about` against
+`about.html` is empty, and four sampled pages hashed identically. So it is a real answer, not an
+approximation.
+
+```
+node scripts/check-deployed.mjs           # the 6 pages that must not break
+node scripts/check-deployed.mjs --all     # every tracked page
+node scripts/check-deployed.mjs results august
+```
+
+**It is deliberately NOT in `validate.mjs`.** validate runs at every session start and must work
+with no network; a check that goes red when the wifi drops teaches people to ignore a red run,
+and an ignored guard is worse than none. Run this on demand and after a merge.
+
+**A blind run is never green.** A page it could not read is `UNREACHABLE` and exits non-zero - it
+never reports IN SYNC for something it did not fetch. `scripts/test-check-deployed.mjs` pins that
+specifically, with no network of its own, because the failure it prevents is the one this estate
+keeps paying for: a blind sensor reads as calm.
+
 ## Tests are discovered, not listed (fixed 2026-09-08)
 `node scripts/test-all.mjs` runs **every** `scripts/test-*.mjs`, reports each, and exits
 non-zero if any fail. The SessionStart hook is now just
