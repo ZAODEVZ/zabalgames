@@ -13,10 +13,15 @@
 #   zao-measure "zabalgamez hook runtime s" -- bash /Users/zaalpanthaki/Documents/zabalgamez/scripts/measure-hook-runtime.sh
 #   zao-measure --verify "zabalgamez hook runtime s"
 #
-# ROUNDED TO WHOLE SECONDS, ON PURPOSE. Three consecutive runs measured 3.65 / 4.06 / 4.13s, so a
-# raw figure would DRIFT on noise every single time and the label would be trained to be ignored -
-# the same disease this file exists to prevent, in the instrument that measures it. Whole seconds
-# from the MEDIAN of three runs moves when something real changes and holds when nothing does.
+# IT REPORTS A VERDICT, NOT A NUMBER, and the first version got this wrong. Rounding the median
+# to whole seconds was supposed to absorb noise. It does not: five consecutive medians measured
+# 4 4 4 6 4, so the recorded label DRIFTED on process-startup jitter within minutes of being
+# created. A number that cries wolf trains its reader to ignore it - the exact disease this file
+# was written to prevent, reproduced inside the instrument that measures it.
+#
+# So the recorded value answers the question that actually matters - IS THE HOOK STILL FAST
+# ENOUGH - and DRIFT then means the threshold was crossed, which is worth a message. The raw
+# seconds still print to stderr for a human reading the run; only the verdict is the value.
 #
 # The threshold to act on is ~10s: past that, split the hook - keep the fast structural checks at
 # session start and move the slow ones to pre-push. Do not just accept it; the point of the guards
@@ -34,10 +39,13 @@ for _ in 1 2 3; do
   runs+=("$(python3 -c "print($end - $start)")")
 done
 
-# Median of three, rounded to whole seconds. Median rather than mean so one slow run - a cold
-# filesystem cache, another process - does not record as a regression.
+# Median of three (not mean, so one cold-cache run is not a regression), then a verdict against
+# the threshold. SLOW is the actionable state: split the hook, keeping fast structural checks at
+# session start and moving slow ones to pre-push.
 python3 -c "
 import sys
 xs = sorted(float(x) for x in sys.argv[1:])
-print(round(xs[1]))
+med = xs[1]
+sys.stderr.write(f'runs: {\", \".join(f\"{x:.2f}s\" for x in xs)}  median {med:.2f}s  threshold 10s\\n')
+print('OK' if med < 10 else 'SLOW')
 " "${runs[@]}"
