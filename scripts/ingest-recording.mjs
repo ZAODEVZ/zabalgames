@@ -268,6 +268,11 @@ function buildPage() {
     ? `  <div class="rec-note">
     Recorded live on ${esc(m.date)} as an audio space. <a href="${attr(m.listen_url)}" target="_blank" rel="noopener">Listen to the recording</a> - the summary, topics, and transcript are below, with the recap video to follow.
   </div>`
+    : transcriptLocal
+    ? `  <div class="rec-note">
+    Recorded live on ${esc(m.date)}. The replay is not published - the word-for-word transcript is
+    below, along with the summary and topics.
+  </div>`
     : `  <div class="rec-note">
     Recorded live on ${esc(m.date)}. The replay and the word-for-word transcript will be added here -
     the summary and topics are below, with the full recap to follow once the recording is processed.

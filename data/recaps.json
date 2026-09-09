@@ -3,6 +3,50 @@
   "_note": "Recap library for delivered ZABAL Gamez sessions. Newest first. type is one of workshop|fireside|bczworkshop|pitch (defaults to workshop if absent; pitch is a Season 2 pitch-week recording - everyone on the board, recorded, judges give notes, NON-SCORING, see docs/season-2-pitch-week.md) and drives both the /recordings hub grouping and the /recordings/index.json AI index. recording/youtube/transcript/thumbnail optional - only include links + files that exist. page (a dedicated /recordings/... landing page) takes priority for the primary 'Watch the recording' button; otherwise youtube renders a 'Watch on YouTube' button. share_topics[] feed the randomized 'I'm watching' Farcaster/X share buttons (one topic picked at random per click). Fields: date, type, title, presenter, handle, org, track, format, thumbnail, summary, topics[], recording, youtube, page, transcript, link, link_label, takeaways[], share_topics[], chapters[] (array of {t, label} where t is seconds and the first entry is 0 - drives the clickable chapter jumps on a generated video page), okd (YYYY-MM-DD the guest reviewed the cut/page and signed off, before public release - absent until they approve), cast_hash (the root Farcaster cast for this recording - the announce cast; its replies render as the live 'Thoughts' conversation via /api/cast-comments. A 0x hash or a Warpcast URL). To publish a new recording from a ZAOVideoEditor manifest (writes transcript + recap + recordings/N.html + rebuilds the index in one step) use: node scripts/ingest-recording.mjs <manifest.json> --write. After hand-editing this file, regenerate the AI index + hub JSON-LD: node scripts/build-recordings-index.mjs.",
   "recaps": [
     {
+      "date": "2026-06-22",
+      "type": "workshop",
+      "title": "ZABAL GAMEZ Workshop w/Nemesis",
+      "presenter": "Nemesis",
+      "track": "creator",
+      "technical": 1,
+      "format": "Creator-track conversation, recorded",
+      "summary": "A creator-track conversation with Nemesis - a rapper, singer, poet, composer and producer from Zambia - about what it actually costs to build a music career from Lusaka. It starts with a first memory of music (a dad pulling up playing Tupac, a photo at three years old on a granddad's lap holding a guitar) and the women who set the standard: a single mother raising three kids, a grandmother who was the country's first neurosurgeon, another who nursed in the Copperbelt. Then the hard part. Web2 distribution paid nothing, so a first crypto onboarding in 2022 ended with a minted song, zero dollars and two years away from it. The way back in was WaveWarZ Zambia and Songchain, where Nemesis was the first Lusaka artist onboarded and won - then joined the original WaveWarZ, earned 0.3 ETH, and lost roughly 30,000 US dollars converting to the wrong currency and losing the seed phrase. The session is candid about AI too: Suno felt like cheating on a partner for a writer who writes their own music, so it got a month and then boredom. What is being built now is WaveWarZ Africa - the same idea, for African artists - and the constraint named throughout is bandwidth: \"it is hard to even do this internet thing.\"",
+      "topics": [
+        "Creator journey",
+        "Music",
+        "Zambia",
+        "WaveWarZ",
+        "Songchain",
+        "AI music",
+        "Africa"
+      ],
+      "page": "/recordings/36",
+      "transcript": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/streams/zabal-games-workshops/raw/transcripts/2026-06-22-nemesis-creator-journey.md",
+      "takeaways": [
+        "Web2 distribution paid nothing and the first crypto attempt paid nothing either - a song was minted in 2022 and the return was zero dollars, which bought two years of staying away.",
+        "The second attempt worked because a person did the onboarding, not a platform: a friend explained WaveWarZ Zambia and Songchain step by step.",
+        "Being early is not the same as being safe. 0.3 ETH arrived and roughly 30,000 US dollars was lost to a wrong currency conversion and a lost seed phrase.",
+        "AI tools were resisted for a specific reason, not a vague one: for a writer who writes their own music, handing over control felt like cheating on a partner. Suno got a month, then boredom.",
+        "Connectivity is the actual constraint. \"It is hard to even do this internet thing\" - and TIA, this is Africa, is said as a fact rather than a joke.",
+        "WaveWarZ Africa is the thing being built - the WaveWarZ idea, aimed at African artists."
+      ],
+      "share_topics": [
+        "Building a music career from Lusaka when Web2 distribution pays nothing",
+        "Losing 30,000 dollars to a wrong conversion and a lost seed phrase",
+        "Why an artist who writes their own music resisted AI, then tried it anyway"
+      ],
+      "pull_quotes": [
+        {
+          "quote": "Africa is my heartbeat.",
+          "who": "Nemesis"
+        },
+        {
+          "quote": "I have billions and billions of dollars in my brain. I just need to get it out, and that's why I'm a builder now.",
+          "who": "Nemesis"
+        }
+      ]
+    },
+    {
       "date": "2026-04-24",
       "type": "fireside",
       "title": "Builder first: Rish on Neynar's new direction for Farcaster, live on Juke",
