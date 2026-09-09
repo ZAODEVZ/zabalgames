@@ -22,7 +22,9 @@ Two things are open and neither is repo work:
 - **Two Cal.com event types are still bookable by direct link** and take bookings for a
   season that ended. Turning them off is a Cal.com dashboard action - there is no API key on
   the mac, so no session can do it.
-- **The nightly KV backup switches itself off around 2026-11-07** unless a person commits.
+- **The nightly KV backup switches itself off unless a person commits** - the date MOVES 60 days
+  out on every human commit, so it is not written down here. Read it live:
+  `curl -s https://zabalgamez.com/api/backup-health` -> `.inactivity.disablesAt` and `.daysLeft`.
   It has a detector on two legs now (`keepalive-canary` in the workflow, and
   `GET /api/backup-health` rendered on `/status`), so this arrives loudly rather than silently.
 
