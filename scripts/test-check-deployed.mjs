@@ -15,7 +15,7 @@
 //
 //   node scripts/test-check-deployed.mjs
 
-import { verdict, urlFor, sha256, CRITICAL, SITE } from './check-deployed.mjs';
+import { verdict, urlFor, sha256, CRITICAL, SITE, configuredRedirects } from './check-deployed.mjs';
 
 let failures = 0;
 const fail = (m) => { console.error('  FAIL ' + m); failures++; };
@@ -66,6 +66,44 @@ check(!urlFor('results').endsWith('.html'), 'no .html suffix - vercel.json sets 
 check(CRITICAL.length <= 8, `the default set is ${CRITICAL.length} pages - short enough to be run`);
 for (const must of ['index', 'results', 'august']) {
   check(CRITICAL.includes(must), `the default set covers /${must}`);
+}
+
+// --- redirect stubs. /enter, /vote and /winners are never served, so hashing them is
+// meaningless - running --all reported all three as DRIFTED because the fetch followed the
+// redirect and compared /leaderboard's bytes to a stub. Three permanent false reds is exactly
+// how a guard teaches people to ignore it. But a redirect is CHECKED, not skipped. ---
+{
+  const v = verdict({ localHash: A, redirectTo: '/leaderboard', expectedRedirect: '/leaderboard' });
+  check(v.state === 'REDIRECT' && v.ok === true, 'a redirect matching vercel.json is ok');
+
+  const m = verdict({ localHash: A, redirectTo: '/somewhere-else', expectedRedirect: '/leaderboard' });
+  check(m.state === 'MISROUTED' && m.ok === false,
+    'a redirect to somewhere vercel.json does not configure is MISROUTED and not ok');
+  check(m.detail.includes('/somewhere-else') && m.detail.includes('/leaderboard'),
+    'MISROUTED names both the actual and configured destination');
+
+  const u = verdict({ localHash: A, redirectTo: '/leaderboard', expectedRedirect: undefined });
+  check(u.state === 'REDIRECT?' && u.ok === false,
+    'a page that redirects with NO configured redirect is not ok - the site is doing something unrecorded');
+}
+
+// A redirect must not be able to mask real drift on a page that is actually served.
+check(verdict({ localHash: A, liveHash: B, redirectTo: null }).state === 'DRIFTED',
+  'a null redirectTo does not turn drift into a pass');
+
+// --- the vercel.json parser feeding all of that ---
+{
+  const map = configuredRedirects({ redirects: [
+    { source: '/vote', destination: '/leaderboard', permanent: false },
+    { source: '/winners', destination: '/results' },
+    { source: 'nolead', destination: '/x' },
+    { bad: true },
+  ] });
+  check(map.get('vote') === '/leaderboard', 'a leading slash is stripped from the source');
+  check(map.get('winners') === '/results', 'destination is read verbatim');
+  check(map.get('nolead') === '/x', 'a source without a leading slash still maps');
+  check(map.size === 3, 'a malformed redirect entry is ignored rather than throwing');
+  check(configuredRedirects({}).size === 0, 'no redirects key is an empty map, not a crash');
 }
 
 console.log('');
