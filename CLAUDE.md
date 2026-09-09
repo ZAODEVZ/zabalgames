@@ -546,17 +546,18 @@ nobody had measured them; they are now answered. Three need a decision from Zaal
      `/recordings`**. Someone presented, was recorded and transcribed, and it never aired.
    - **Dan Singjoy part 1, 2026-06-20** - `...-eden-fractal-pt1.md`, 2,413 words. `/recordings/16`
      links the sibling file only, so part 1 is reachable from nowhere.
-   **DO NOT MERGE TWO IDENTITIES HERE, and the question is narrower than it looks.** Measured
-   2026-09-09: `@n3m` and `LadyrynNemesis` ARE the same record - `data/finals.json` and
-   `data/season-1-results.json` carry the same handle `@n3m` and the same URL
-   `songchainn.xyz/n3m3sis/the-call-out`, so those two names are one artist-track champion, not
-   two people. The genuinely open question is only this: **is `Nemesis @nemesis.love` - the
-   creator-track presenter, a rapper and singer from Zambia, whose 2026-06-22 transcript is the
-   unpublished one - the same person as `@n3m`?** Different handle, different track, and
-   `@nemesis.love` appears in NO data file, no page and no link anywhere in the repo; the
-   transcript is its only trace. They may well be the same person. Nothing on disk says so, and
-   guessing puts a wrong name on a public page about a named person. **One question for Zaal,
-   not a research task.** Same rule as Candy Toybox: ask, do not infer.
+   **CLOSED 2026-09-09 by Zaal: they are the same person. `Nemesis @nemesis.love` IS `@n3m`.**
+   His words: "yes, they're the same person, it's n3m". So the creator-track presenter from Zambia
+   in the 2026-06-22 session and `LadyrynNemesis @n3m`, the **artist champion** in
+   `data/finals.json` and `data/season-1-results.json`, are one person. It came from him, not from
+   any file - nothing on disk states it, so **do not "correct" this against the repo later**, and
+   do not re-open it because the handles differ.
+   Note the track difference is NOT a contradiction and must not be "fixed": she presented a
+   **creator-track** workshop and competed in the **artist** track. A person can do both.
+   What the earlier note got right, and is worth keeping as method: `@n3m` and `LadyrynNemesis`
+   were proven one record from disk (same handle, same `songchainn.xyz/n3m3sis/the-call-out` URL),
+   while the `@nemesis.love` link was NOT derivable and was left open rather than guessed. Guessing
+   would have put a name on a public page about a named person; asking cost one sentence.
    If you publish either, add the `data/recaps.json` entry and generate with
    `scripts/ingest-recording.mjs`, **backfilling the manifest from any existing recap first** -
    run cold it rebuilt a live page as a placeholder and deleted a video link (`/recordings/27`).
