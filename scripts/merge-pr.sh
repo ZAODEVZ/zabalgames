@@ -59,12 +59,32 @@ read -r state branch <<<"$(gh pr view "$PR" --json state,headRefName -q '.state 
 echo "PR #$PR is OPEN on branch '$branch'"
 
 # --- 2. merge, keeping the FULL output - a tail here is how the no-op stayed invisible ---
+#
+# Through a PTY, deliberately. gh suppresses its confirmation lines when stdout is not a
+# terminal, so simply capturing the output produced an EMPTY log and five merges looked
+# silent. Under a pty gh says what it actually did:
+#     [OK] Squashed and merged pull request ...#704
+#     [OK] Deleted local branch ws/...          <- local. It never claims the remote.
+# That one word is the whole answer, and capturing the output was what hid it. The act of
+# recording changed what there was to record; run it the way a human runs it.
+#
+# ON THE `|| true`: script(1) reports ITS OWN exit status, not gh's, so the exit code here is
+# not gh's verdict and must not be read as one. This repo has already been bitten by a masked
+# pipeline exit recorded as a successful measurement, so say it plainly rather than let a
+# reader assume the code is being checked: the merge is verified in step 3 by reading
+# `mergedAt` from the API, which is a fact about the PR rather than a fact about a wrapper.
+# If the merge did not happen, step 3 fails and this script exits non-zero.
 merge_log="$(mktemp)"
-if ! gh pr merge "$PR" --squash --delete-branch >"$merge_log" 2>&1; then
-  cat "$merge_log" >&2
-  fail "gh pr merge exited non-zero for #$PR"
+if command -v script >/dev/null 2>&1; then
+  # BSD/macOS: script -q <file> <cmd...>. Linux needs -c; try BSD first, fall back.
+  script -q "$merge_log" gh pr merge "$PR" --squash --delete-branch >/dev/null 2>&1 \
+    || script -qec "gh pr merge $PR --squash --delete-branch" /dev/null >"$merge_log" 2>&1 \
+    || true
+else
+  gh pr merge "$PR" --squash --delete-branch >"$merge_log" 2>&1 || true
 fi
-sed 's/^/  gh| /' "$merge_log"
+# Strip terminal control noise so the log is readable, then show it.
+sed -e 's/\x1b\[[0-9;?]*[a-zA-Z]//g' -e 's/\r//g' "$merge_log" | grep -v '^[[:space:]]*$' | sed 's/^/  gh| /'
 rm -f "$merge_log"
 
 # --- 3. the PR really merged (reported success is not merged) ---

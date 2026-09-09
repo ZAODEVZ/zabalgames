@@ -291,15 +291,35 @@ later re-scheduling). Endpoints across:
   merge". What IS newly measured: **gh prints NOTHING for the merge at all** - no confirmation
   line, no warning - when its output is captured rather than shown. So "no error appeared" was
   never evidence; there was no output to contain one.
-  **RULED OUT TOO, same day: the `gh repo set-default` hypothesis is DEAD.** It was unset in this
-  clone; I set it to `zaoDEVZ/zabalgames` and the very next merge (#703) still reported
-  `SURVIVED --delete-branch`. That is 5 for 5. Recorded as struck rather than deleted, so the
-  next session does not re-derive a dead idea from the same obvious observation - and note it
-  took one merge to kill, because `scripts/merge-pr.sh` prints the answer on every run.
-  **The cause remains genuinely unknown.** Five things it is not: scope, repo permission, the
-  API path, the moved-repo redirect, and an unset default remote. Do not add a sixth guess to
-  this list without a probe attached; the list is only useful because every line on it was
-  measured.
+  **CAUSE FOUND 2026-09-09, and it was never a silent failure.** Run the merge under a pty
+  (`script -q /dev/null gh pr merge <n> --squash --delete-branch`) and gh says exactly what it
+  did:
+
+      [OK] Squashed and merged pull request zaoDEVZ/zabalgames#704
+      [OK] Deleted local branch ws/delete-branch-hypothesis-dead
+
+  **"Deleted LOCAL branch" - and it never claims to have deleted the remote one.** gh 2.86.0
+  here deletes the local branch only. It is doing what it reports; nothing is failing and no
+  error is being swallowed.
+
+  The reason five merges looked silent is that **gh suppresses those confirmation lines when
+  stdout is not a terminal**, which is every time output is captured, piped or redirected. So
+  the evidence was in the output all along and capturing the output is what hid it - the exact
+  inverse of the usual `| tail` failure, and worth remembering as its own shape: *the act of
+  recording changed what there was to record.*
+
+  Ruled out along the way, each by probe, so nobody re-checks them: token scope (`repo` is
+  present and sufficient); repo permission (`git push origin --delete` succeeds with the same
+  credentials); the API delete path (`gh api -X DELETE .../git/refs/heads/<b>` - exit 0, ref
+  gone); the moved-repo redirect (deletes travel it fine); and an unset `gh repo set-default`
+  (set it, #703 still survived).
+
+  <!-- RECHECK 2026-11-01: gh here is 2.86.0 and gh itself reports 2.100.0 available. If gh has
+       been upgraded since, re-run one merge and see whether the remote branch goes on its own -
+       if it does, this whole entry and the delete step in merge-pr.sh can be simplified. Do not
+       upgrade gh just to find out; that is Zaal's machine. -->
+  **The remedy stays the same and stays cheap:** `scripts/merge-pr.sh` deletes the remote head
+  itself and verifies. It does not depend on which way this behaves.
 - After a merge, re-sync main before new work. Never reuse a merged branch.
 
 ## THIS REPO IS PUBLIC - secrets are scanned, not trusted
