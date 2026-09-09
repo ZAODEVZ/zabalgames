@@ -535,7 +535,27 @@ nobody had measured them; they are now answered. Three need a decision from Zaal
    The branch diffs looked like new files only because the slugs differ - **check by
    session (date + presenter) against `data/recaps.json`, never by transcript filename.**
    The gaps at `recordings/21` and `recordings/26` are unallocated numbers, unrelated.
-7. **Season 2 prep** - target late November. Ideas and Zaal's pitch-week suggestion are in
+7. **NEEDS ZAAL - two recorded workshops were never published.** Found 2026-09-09 by diffing
+   the transcripts on disk against `data/recaps.json`; `scripts/check-unpublished-sessions.mjs`
+   reports them on every run now (it REPORTS, it does not fail the build - airing someone's
+   session is your call, not a build gate).
+   - **Nemesis (`@nemesis.love`), 2026-06-22, creator track** - a 2,922-word transcript titled
+     "ZABAL GAMEZ Workshop w/Nemesis" sits at
+     `data/streams/zabal-games-workshops/raw/transcripts/2026-06-22-nemesis-creator-journey.md`.
+     There is **no recap entry, no recording page, and zero mentions on the live `/speakers` and
+     `/recordings`**. Someone presented, was recorded and transcribed, and it never aired.
+   - **Dan Singjoy part 1, 2026-06-20** - `...-eden-fractal-pt1.md`, 2,413 words. `/recordings/16`
+     links the sibling file only, so part 1 is reachable from nowhere.
+   **DO NOT MERGE TWO IDENTITIES HERE.** `Nemesis @nemesis.love` (creator track, rapper/singer
+   from Zambia) is NOT established to be `LadyrynNemesis @n3m` (artist track, the artist
+   champion in `data/finals.json`). Different handle, different track, and neither appears in
+   `data/people.json`. They may be the same person; nothing on disk says so. Ask, do not infer -
+   same rule as Candy Toybox.
+   If you publish either, add the `data/recaps.json` entry and generate with
+   `scripts/ingest-recording.mjs`, **backfilling the manifest from any existing recap first** -
+   run cold it rebuilt a live page as a placeholder and deleted a video link (`/recordings/27`).
+
+8. **Season 2 prep** - target late November. Ideas and Zaal's pitch-week suggestion are in
    `docs/season-2-ideas.md`. Set nothing public until dates and format exist. Note the
    hard dependency in the next section: late-November prep starts *after* the backup
    switches itself off.
