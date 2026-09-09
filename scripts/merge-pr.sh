@@ -92,15 +92,25 @@ merge_log="$(mktemp)"
 # fallback was Linux syntax (`script -qec`) and on macOS printed "script: illegal option -- c"
 # INTO THE LOG, hiding gh's real message behind an error from the recovery path. A fallback
 # that triggers on any failure will eventually report on itself instead of the thing it wrapped.
-if ! command -v script >/dev/null 2>&1; then
-  gh pr merge "$PR" --squash --delete-branch >"$merge_log" 2>&1 || true
-elif script -q /dev/null true >/dev/null 2>&1; then
-  script -q "$merge_log" gh pr merge "$PR" --squash --delete-branch >/dev/null 2>&1 || true   # BSD/macOS
-else
-  script -qec "gh pr merge $PR --squash --delete-branch" /dev/null >"$merge_log" 2>&1 || true # util-linux
-fi
+# Chosen by `uname`, NOT by probing script(1) at runtime. The first attempt at this probed by
+# running `script -q /dev/null true` and taking the exit code - which fails on macOS for an
+# unrelated reason ("tcgetattr/ioctl: Operation not supported on socket") whenever the caller
+# has no tty, as an agent or a CI job does. The probe therefore picked the util-linux form ON
+# macOS: precisely the broken combination it existed to avoid. A capability probe that fails
+# for a reason unrelated to the capability is worse than a plain platform check.
+case "$(uname -s)" in
+  Darwin|*BSD)
+    script -q "$merge_log" gh pr merge "$PR" --squash --delete-branch >/dev/null 2>&1 || true ;;
+  *)
+    if command -v script >/dev/null 2>&1; then
+      script -qec "gh pr merge $PR --squash --delete-branch" /dev/null >"$merge_log" 2>&1 || true
+    else
+      gh pr merge "$PR" --squash --delete-branch >"$merge_log" 2>&1 || true
+    fi ;;
+esac
 # Strip terminal control noise so the log is readable, then show it.
-sed -e 's/\x1b\[[0-9;?]*[a-zA-Z]//g' -e 's/\r//g' "$merge_log" | grep -v '^[[:space:]]*$' | sed 's/^/  gh| /'
+sed -e 's/\x1b\[[0-9;?]*[a-zA-Z]//g' -e 's/\r//g' -e 's/^\^D//' "$merge_log" \
+  | grep -v '^[[:space:]]*$' | grep -v 'tcgetattr/ioctl' | sed 's/^/  gh| /'
 rm -f "$merge_log"
 
 # --- 3. the PR really merged (reported success is not merged) ---
