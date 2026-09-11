@@ -1,5 +1,7 @@
 # ZABAL Gamez Season 1 - Player Context Bundle
 
+> **Season 1 record - do not hand out as-is (2026-09-11).** Season 2 needs its own bundle. The retired partner's leaderboard, token and glossary rows were removed on 2026-09-11 under Zaal's 2026-07-31 retirement, and the Season 1 staking mechanic did not carry into Season 2.
+
 > **This is the comprehensive context primer for the ZAO ecosystem.** July builders get a lighter cut; August Finalists get the full bundle as their sealed prompt. Read it once cover to cover, then load it into your AI coding tool's context (Claude Code uses `CLAUDE.md`, Cursor uses `.cursorrules`, Windsurf uses `.windsurfrules`, Aider supports conventions files, etc.).
 
 > **Status:** Updated 2026-05-21 to the June/July/August Season 1 model (see ZAO research Doc 701). Calendar runs June prep / July open build-a-thon / August Finals - exact dates lock once cohort + mentors are known. The August Finals bundle is sealed at T+0 so all finalists start on equal footing.
@@ -62,7 +64,6 @@ ZABAL is the ecosystem token. It lives on Base (ERC-20) and is wrapped in an "Em
 
 | Surface | URL |
 |---------|-----|
-| Canonical leaderboard | https://songjam.space/zabal |
 | Creative hub | https://zabal.art/ |
 | Empire Builder | https://empirebuilder.world |
 | Token contract (Base) | `0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07` |
@@ -77,14 +78,13 @@ ZABAL holdings + activity feed into a multiplier system that compounds points:
 totalPoints = pointsWithoutMultiplier * stakingMultiplier * empireMultiplier
 ```
 
-- `stakingMultiplier`: 2.1x-3.0x via `1 + sqrt(stakeAmount / 250000 SANG min)`
+- `stakingMultiplier`: 2.1x-3.0x in Season 1, from staking a partner token that is no longer part of ZABAL (not carried into Season 2)
 - `empireMultiplier`: 4.0x-8.6x via Empire Builder Booster system
 
 A wallet with $10 ZABAL + active Empire participation can hit ~25x effective scoring vs a wallet with zero. Aligns incentives: hold + engage = earn more.
 
 ### Related tokens
 
-- **$SANG** - SongJam's token. ZABAL holders often hold SANG. Staking SANG drives stakingMultiplier.
 - **Respect** - ZAO's contribution score (not a token, more like reputation). Tracked in `src/components/respect/`.
 - **ZOLs** - ZAO contribution credits, also non-tradeable.
 
@@ -388,11 +388,9 @@ ZAO uses Hypersub for:
 | COC Concertz | COC Concerts, CocConcertz | Space + z not s |
 | The ZAO | the Zao, ZAO, Zao | "The ZAO" when standalone |
 | BetterCallZaal | Bettercallzaal, Better Call Zaal | One word, camelCase |
-| Joseph Goats | Jose Goats, Jose | Rebranded from Jose |
-| Huottoja | Waha | Community's own spelling |
-| SongJam | Songjam, Song Jam | CamelCase |
+| Joseph Goats | Jose Goats | Artist name. His real name is Jose: correct for the person, never auto-correct it |
+| Huöttöja | Waha, Huottoja | Community's own spelling, with umlauts |
 | ZABAL | Zabal, zabal | All caps |
-| SANG | Sang, sang | All caps - SongJam's token |
 | ZOE | Zoe, zoe | All caps - ZAO ecosystem |
 | ZOLs | Zols, ZOL | ZAO contribution credits |
 | FISHBOWLZ | Fishbowlz, FishBowlz | All caps |
@@ -488,9 +486,7 @@ You have read-only access to the full ZAO research library (~700 docs as of 2026
 | Doc | Topic |
 |-----|-------|
 | 626 | apiLeaderboards pattern |
-| 324 | ZABAL/SANG wallet agent tokenomics |
 | 361 | Empire Builder v3 features |
-| 258 | ZABAL/SANG buyback |
 | 573 | ZABAL AVAX surfaces - Arena Music |
 
 ### If you're building streaming / live tooling
@@ -767,7 +763,6 @@ Submit by the T+24h ship deadline:
 
 - ZABAL Gamez landing page: https://bettercallzaal.com/zabalgames.html
 - /zabal Farcaster channel: https://farcaster.xyz/~/channel/zabal
-- $ZABAL Empire leaderboard: https://songjam.space/zabal
 - $ZABAL creative hub: https://zabal.art/
 - Empire Builder: https://empirebuilder.world
 - Empire Builder docs: https://empire-builder.gitbook.io/empire-builder-docs

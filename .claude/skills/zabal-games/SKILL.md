@@ -51,7 +51,7 @@ Plus maintain at least one **show-your-work visibility mode** during the build (
 
 ZABAL Gamez gives two paths:
 
-- **Adopt a started ZAO project** from the curated list in `/llms.txt` (Songjam migration, POIDH leaderboard, zlank Snap template, Twitch -> Empire feed, new ZOE skills, this `/zabal` mini app, COC content pipeline, streaming auto-clip flywheel). Pick one, ship it forward.
+- **Adopt a started ZAO project** from the curated list in `/llms.txt` (POIDH leaderboard, zlank Snap template, Twitch -> Empire feed, new ZOE skills, this `/zabal` mini app, COC content pipeline, streaming auto-clip flywheel). Pick one, ship it forward.
 - **Build from scratch** with the ecosystem context. Tie it to real ZAO rails.
 
 If you are unsure, start by listing the rails the user already has + the highest-leverage gap in the ecosystem. The full brand-by-brand status is in `/llms.txt`.
