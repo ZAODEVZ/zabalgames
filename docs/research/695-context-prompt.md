@@ -130,7 +130,7 @@ If you need to point at something live: `zaoos.com` (the app), `zaostock.com` (t
 
 ### 10. The rules for everything you write and build
 
-- **Brand spellings are exact. Never autocorrect them.** WaveWarZ. COC Concertz. The ZAO. BetterCallZaal. ZABAL. ZABAL Gamez. ZAOstock. ZAOCHELLA. ZAO Festivals. SongJam. ZOE. FISHBOWLZ. Thy Revolution. Tom Fellenz. Hurric4n3ike. candytoybox.
+- **Brand spellings are exact. Never autocorrect them.** WaveWarZ. COC Concertz. The ZAO. BetterCallZaal. ZABAL. ZABAL Gamez. ZAOstock. ZAOCHELLA. ZAO Festivals. ZOE. FISHBOWLZ. Thy Revolution. Tom Fellenz. Hurric4n3ike. candytoybox.
 - **No emojis. No em dashes.** Use plain hyphens and text labels, not decorative symbols.
 - **Mobile-first.** Most of the audience is on a phone. Design for the phone; treat desktop as the enhancement.
 - **Music first, community second, technology third.** Lead with the artist outcome, not the blockchain.
