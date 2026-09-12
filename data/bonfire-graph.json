@@ -412,7 +412,7 @@
           "Custom branding"
         ],
         "zabal_q1_distributed": "$168 USD equivalent",
-        "integration_status": "Live - SongJam leaderboard reads empireMultiplier",
+        "integration_status": "Live - ZABAL Empire leaderboards read empireMultiplier",
         "category": "crypto-infra",
         "role": "Leaderboard infrastructure",
         "chains": [
@@ -426,7 +426,7 @@
           "Treasury infrastructure",
           "Empire Snaps"
         ],
-        "use_case": "ZABAL token leaderboards + SongJam leaderboards",
+        "use_case": "ZABAL token leaderboards",
         "stage": "zabal-track",
         "tier": "project",
         "parent": "bettercallzaal",
@@ -443,7 +443,6 @@
       ],
       "attributes": {
         "parent_platform": "Empire Builder",
-        "url": "https://songjam.space/zabal",
         "token": "ZABAL",
         "chains": [
           "Base"
@@ -453,11 +452,11 @@
           "Adrian (divifly)"
         ],
         "boost_types": [
-          "Token Boosters (ZABAL/SANG/ZORO)",
+          "Token Boosters (ZABAL/ZORO)",
           "Reputation Boosters (Talent Protocol)"
         ],
-        "stake_minimum": "250,000 SANG",
-        "stake_multiplier_formula": "1 + sqrt(stakeAmount / 250k SANG min)",
+        "stake_minimum": "250,000 of the Season 1 partner token, retired from ZABAL 2026-07-31",
+        "stake_multiplier_formula": "1 + sqrt(stakeAmount / 250k min) - Season 1, staked in the Season 1 partner token, retired from ZABAL 2026-07-31",
         "leaderboard_7d_24h_alltime": true,
         "_source": "zabal-dispatch-poidh-20260523",
         "token_address": "0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07",
@@ -476,9 +475,6 @@
           "Holders",
           "Farcaster-Only",
           "Zabal Voting Miniapp",
-          "SongJam Season 1",
-          "SongJam Season 2 Ep1",
-          "SongJam Season 2 Ep2",
           "POIDH Bounties"
         ],
         "token_underlying": "ZABAL",
@@ -486,7 +482,6 @@
         "contract_address": "0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07",
         "empire_contract": "0xe0faa499d6711870211505bd9ae2105206af1462",
         "co_creators": "yerbearserker (Jordan Oram), Adrian (divifly)",
-        "leaderboard_url": "https://songjam.space/zabal",
         "creative_hub_url": "https://zabal.art/",
         "multiplier_system": "staking * empire boosters",
         "governance_anchor": "Respect (pre-funded baseline positions for voters)"
@@ -614,7 +609,6 @@
         "spec_url": "https://github.com/ZAODEVZ/zabalgames/blob/main/data/adoptable-projects.json",
         "funding_mechanism": "POIDH bounty adoption + Empire Builder distribution",
         "projects_include": [
-          "SongJam leaderboard migration",
           "POIDH bounty leaderboard",
           "zlank Empire Snap template",
           "Twitch to Empire feed",
@@ -1490,7 +1484,7 @@
         "stage": "active",
         "url": "https://empirebuilder.world/profile/0x7234c36A71ec237c2Ae7698e8916e0735001E9Af",
         "token": "0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07",
-        "_links": "https://empirebuilder.world/profile/0x7234c36A71ec237c2Ae7698e8916e0735001E9Af https://empirebuilder.world/api/leaderboards?tokenAddress=0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07 https://app.magnetiq.xyz/brand/ZABAL/magnet/Zabal%20Connector https://graph.bonfires.ai/zabal https://incented.co/organizations/zabal https://songjam.space/zabal"
+        "_links": "https://empirebuilder.world/profile/0x7234c36A71ec237c2Ae7698e8916e0735001E9Af https://empirebuilder.world/api/leaderboards?tokenAddress=0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07 https://graph.bonfires.ai/zabal https://incented.co/organizations/zabal"
       }
     },
     {
@@ -1674,40 +1668,6 @@
         "creatorFeeControl": "100% to creator wallet",
         "lpLockDuration": "Until 2100 (90 years)",
         "_source": "zabal-dispatch-zabal-empire-20260523"
-      }
-    },
-    {
-      "id": "sang-token",
-      "name": "SANG Token",
-      "labels": [
-        "Token",
-        "erc20_token"
-      ],
-      "attributes": {
-        "description": "SongJam native token",
-        "boosterUsage": "ZABAL booster (ERC20)",
-        "_source": "zabal-dispatch-zabal-empire-20260523",
-        "contract_address": "0x4ff4d349caa028bd069bbe85fa05253f96176741",
-        "blockchain": "Base (bridged from Solana)",
-        "native_blockchain_original": "Solana",
-        "creator": "SongJam",
-        "standard": "ERC-20",
-        "utility": "staking for ZABAL Empire multiplier",
-        "minimum_stake": "250000 SANG",
-        "chain": "Base",
-        "symbol": "SANG",
-        "total_supply": "1,000,000,000",
-        "decimals": 18,
-        "circulating_supply": "830M+",
-        "market_cap": "~12800 USD",
-        "price_usd": "0.0000155",
-        "primary_pair": "SANG/VIRTUAL on Uniswap V2",
-        "source_protocol": "SongJam by Virtuals (voice verification network)",
-        "liquidity": "Extremely thin",
-        "distribution": "SongJam staking rewards, voice node infrastructure",
-        "origin": "SongJam (music DAO)",
-        "booster_usage": "$ZABAL Empire booster (ERC-20)",
-        "integration": "Stacks on ZABAL leaderboards at multiplier UNKNOWN"
       }
     },
     {
@@ -2275,7 +2235,7 @@
         "_source": "zabal-dispatch-coinflow-20260523",
         "timeline": "June prep / July submissions / August finals (2026)",
         "integration": "Empire Builder as submission home for all participants",
-        "songjam_requirement": "migrate leaderboard to Empire Builder by June 1 2026"
+        "partner_leaderboard_requirement": "migrate leaderboard to Empire Builder by June 1 2026"
       }
     },
     {
@@ -6613,59 +6573,6 @@
       }
     },
     {
-      "id": "songjam",
-      "name": "SongJam",
-      "labels": [
-        "Platform",
-        "platform"
-      ],
-      "attributes": {
-        "url": "songjam.space",
-        "description": "Music engagement + social scoring platform",
-        "founder": "Adam",
-        "nativeToken": "SANG",
-        "hasOwnLeaderboard": true,
-        "currentDataSource": "Twitter X API (deprecated Q2 2026)",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524",
-        "focus": "live audio spaces with voice verification",
-        "ecosystem": "Farcaster + Solana",
-        "token": "SANG on Solana",
-        "tech_stack": "100ms SDK for voice, ElevenLabs TTS, Stream.io video",
-        "tagline": "When Attention becomes Currency, Voice is the Commodity",
-        "core_product": "live audio spaces platform",
-        "infrastructure": "100ms SDK for voice, ElevenLabs synthesis, Stream.io video",
-        "identity_backend": "Neynar (Farcaster)",
-        "primary_blockchain": "Solana",
-        "token_issued": "SANG",
-        "key_feature": "per-second leaderboard tracking during live audio sessions"
-      }
-    },
-    {
-      "id": "songjam-music-engagement-api",
-      "name": "SongJam Music Engagement API",
-      "labels": [
-        "DataSource",
-        "internal_service"
-      ],
-      "attributes": {
-        "metrics": [
-          "plays",
-          "reposts",
-          "comments",
-          "engagement_score"
-        ],
-        "scope": "SongJam native platform",
-        "updateFrequency": "Real-time or hourly batches",
-        "authRequired": true,
-        "outputFormat": "Array of {wallet, score, rank} tuples",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524",
-        "purpose": "track music engagement natively within SongJam ecosystem",
-        "data_source": "SongJam voice spaces, stakes, user participation",
-        "availability": "existing, operational",
-        "replacement_for": "X scraper (alternative data source)"
-      }
-    },
-    {
       "id": "empire-builder-apileaderboards",
       "name": "Empire Builder apiLeaderboards",
       "labels": [
@@ -6686,100 +6593,21 @@
         ],
         "readAuth": "None (public)",
         "writeAuth": "API key (permissioned)",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-new-empire-flow-20260524"
       }
     },
     {
-      "id": "songjam-leaderboard-season-1",
-      "name": "SongJam Leaderboard - Season 1",
-      "labels": [
-        "Leaderboard"
-      ],
-      "attributes": {
-        "empireAddress": "0xe0faa499d6711870211505bd9ae2105206af1462",
-        "type": "api",
-        "dataSource": "SongJam Music Engagement API",
-        "metric": "Music engagement (plays + reposts + comments)",
-        "rankedSpots": 250,
-        "useCase": "ZABAL Gamez Phase 1 (July open submissions)",
-        "migrationStatus": "Planned Q2 2026",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "id": "songjam-leaderboard-season-2-episode-1",
-      "name": "SongJam Leaderboard - Season 2 Episode 1",
-      "labels": [
-        "Leaderboard"
-      ],
-      "attributes": {
-        "empireAddress": "0xe0faa499d6711870211505bd9ae2105206af1462",
-        "type": "api",
-        "dataSource": "SongJam Music Engagement API",
-        "metric": "Episode 1 specific tracks",
-        "rankedSpots": 250,
-        "useCase": "SongJam's internal Season 2 competition",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "id": "songjam-leaderboard-season-2-episode-2",
-      "name": "SongJam Leaderboard - Season 2 Episode 2",
-      "labels": [
-        "Leaderboard"
-      ],
-      "attributes": {
-        "empireAddress": "0xe0faa499d6711870211505bd9ae2105206af1462",
-        "type": "api",
-        "dataSource": "SongJam Music Engagement API",
-        "metric": "Episode 2 specific tracks",
-        "rankedSpots": 250,
-        "useCase": "SongJam's internal Season 2 competition",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "id": "adam-songjam-founder",
-      "name": "Adam (SongJam Founder)",
+      "id": "adam-partner-founder",
+      "name": "Adam (founder of the Season 1 partner)",
       "labels": [
         "Person"
       ],
       "attributes": {
-        "role": "Founder, SongJam",
+        "role": "Founder of a partner platform retired from ZABAL 2026-07-31",
         "decision": "Deprecate Twitter X scraper due to cost",
         "migrationOwner": true,
         "collab": "Zaal + Jordan (Empire Builder)",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "id": "songjam-builder-airdrop-flow",
-      "name": "SongJam Builder Airdrop Flow",
-      "labels": [
-        "Pattern"
-      ],
-      "attributes": {
-        "trigger": "SongJam builder launches Clanker token in August (ZABAL Gamez finalist)",
-        "inputSource": "SongJam leaderboard CSV export (top 250 contributors)",
-        "airdropMechanism": "Clanker UI + vesting schedule",
-        "result": "Builder's token launches into Ascended Empire with SongJam engagement as airdrop vector",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "id": "songjam-old-x-scraper",
-      "name": "SongJam Old X Scraper",
-      "labels": [
-        "deprecated_service"
-      ],
-      "attributes": {
-        "purpose": "track music engagement on X/Twitter posts",
-        "input": "X API v2 search/timeline endpoints",
-        "metrics": "replies, likes, retweets, engagement intensity",
-        "output": "leaderboard data (engagement per creator)",
-        "deprecation_date": "2026-05",
-        "reason": "prohibitive API costs, maintainer burnout",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-new-empire-flow-20260524"
       }
     },
     {
@@ -6795,7 +6623,7 @@
         "post_reads_cost": "$0.005 per read",
         "basic_tier": "$200/month",
         "enterprise": "pricing on demand",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-old-x-scraper-20260524"
       }
     },
     {
@@ -6805,11 +6633,11 @@
         "person"
       ],
       "attributes": {
-        "role": "SongJam founder and maintainer",
+        "role": "Founder and maintainer of a partner platform retired from ZABAL 2026-07-31",
         "decision_date": "2026-05-16",
         "burnout_signal": "scraper cost unsustainability, technical debt",
         "current_focus": "voice spaces, not social analytics",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-old-x-scraper-20260524"
       }
     },
     {
@@ -6822,7 +6650,7 @@
         "role": "Farcaster data aggregator alternative",
         "free_tier": "available (rate-limited)",
         "use_case": "Farcaster-native data source instead of X API",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-old-x-scraper-20260524"
       }
     },
     {
@@ -6832,12 +6660,12 @@
         "Mechanic"
       ],
       "attributes": {
-        "formula": "1 + sqrt(stakeAmount / 250000 SANG)",
+        "formula": "1 + sqrt(stakeAmount / 250000)",
         "result_range": "2.1x - 3.0x",
-        "minimum_threshold": "250000 SANG",
-        "input_token": "SANG",
+        "minimum_threshold": "250000 of the Season 1 partner token, retired from ZABAL 2026-07-31",
+        "input_token": "the Season 1 partner token, retired from ZABAL 2026-07-31",
         "output_effect": "points multiplier on ZABAL leaderboard",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-token-utility-20260524"
       }
     },
     {
@@ -6851,7 +6679,7 @@
         "result_range": "4.0x - 8.6x",
         "mechanic": "permissionless token-community infrastructure",
         "booster_stacking": "composes with staking multiplier",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-token-utility-20260524"
       }
     },
     {
@@ -6863,27 +6691,8 @@
       "attributes": {
         "formula": "totalPoints = pointsWithoutMultiplier * stakingMultiplier * empireMultiplier",
         "max_theoretical_multiplier": "25x+",
-        "example": "10 ZABAL + active Empire + SANG stake = ~25x effective scoring",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
-      }
-    },
-    {
-      "id": "voice-participation-points-system",
-      "name": "Voice Participation Points System",
-      "labels": [
-        "Mechanic"
-      ],
-      "attributes": {
-        "operator": "SongJam",
-        "platform": "live audio rooms",
-        "accumulation_rate": "per-second",
-        "role_multipliers": {
-          "listener": 1,
-          "speaker": 2,
-          "host": 0
-        },
-        "earning_token": "SANG",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
+        "example": "10 ZABAL + active Empire + a Season 1 partner-token stake = ~25x effective scoring",
+        "_source": "zabal-dispatch-retired-partner-x-empire-token-utility-20260524"
       }
     },
     {
@@ -6899,12 +6708,11 @@
         "ecosystem_token": "ZABAL",
         "reputation_layer": "Respect (non-tradeable)",
         "related_communities": [
-          "SongJam",
           "Empire Builder",
           "WaveWarZ",
           "COC Concertz"
         ],
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-token-utility-20260524"
       }
     },
     {
@@ -7212,7 +7020,6 @@
         "distribution_channels": [
           "Daily airdrops via Clanker",
           "Empire Builder rewards",
-          "SongJam leaderboard prizes",
           "Incented campaigns"
         ],
         "staking_contract": "0x4C143539356444ABA748b8523A39D953f24D8d80",
@@ -7231,7 +7038,7 @@
       "attributes": {
         "definition": "ZABAL Opinion Leaders - monthly recognition credits",
         "quantity_issued": "12 total (as of Q1 2026)",
-        "allocation_method": "Top 3 SongJam leaderboard participants each month",
+        "allocation_method": "Top 3 on a Season 1 partner leaderboard each month",
         "allocation_frequency": "Monthly",
         "chain": "Virtual (not on-chain)",
         "on_chain_companion": "UNKNOWN if NFT representation exists",
@@ -7282,14 +7089,14 @@
         "gamification_contract"
       ],
       "attributes": {
-        "contract_purpose": "SongJam leaderboard rewards distribution",
+        "contract_purpose": "Season 1 partner leaderboard rewards distribution",
         "empire_address": "0xe0faa499d6711870211505bd9ae2105206af1462",
         "platform": "empirebuilder.world/zabal",
         "leaderboard_types": "24h, 7d, all-time",
-        "stake_multiplier": "Requires 250k SANG minimum stake",
+        "stake_multiplier": "Requires a 250k minimum stake in the Season 1 partner token, retired from ZABAL 2026-07-31",
         "rewards_distribution": "Automatic via `distributeTokens` call",
-        "guardian_addresses": "Adam (SongJam founder) primary, Zaal can be co-guardian",
-        "rewards_driver": "ZABAL token emissions based on SongJam engagement",
+        "guardian_addresses": "Adam (founder of the Season 1 partner) primary, Zaal can be co-guardian",
+        "rewards_driver": "ZABAL token emissions based on Season 1 partner engagement",
         "_source": "zabal-dispatch-tip-zols-architecture-tip-token-mechanics-20260524"
       }
     },
@@ -7431,7 +7238,7 @@
       "attributes": {
         "full_name": "ZAO Opinion Leaders / Contribution Ledger",
         "accrual_rate": "1 ZOL per volunteer hour at ZAO events",
-        "monthly_recognition_path": "Top 3 SongJam leaderboard performers each month",
+        "monthly_recognition_path": "Top 3 on a Season 1 partner leaderboard each month",
         "payout": "Recognition only, no token, no cash",
         "nft_rewards": "Monthly ZOL winners earn NFT perks + ZAOndz co-creation rights",
         "storage_layer": "Hybrid - spreadsheet logs + volunteer profile URLs",
@@ -7440,31 +7247,6 @@
         "transferable": false,
         "scope": "ZAO event ecosystem (ZAOstock, ZABAL Gamez, COC Concertz, fractal sessions)",
         "governance_weight": "Peer-validated contribution signal; influences standing in weekly fractal peer-evaluation",
-        "_source": "zabal-dispatch-tip-zols-architecture-zols-credits-system-20260524"
-      }
-    },
-    {
-      "id": "songjam-leaderboard",
-      "name": "SongJam Leaderboard",
-      "labels": [
-        "engagement-leaderboard"
-      ],
-      "attributes": {
-        "platform": "SongJam.space",
-        "zabal_integration_start": "Q1 2026",
-        "scoring_formula": "totalPoints = pointsWithoutMultiplier * stakingMultiplier * empireMultiplier",
-        "point_types": [
-          "Farcaster mentions",
-          "TLs/Twitter posts",
-          "Voice space participation"
-        ],
-        "multiplier_sources": [
-          "SongJam staking (2.1x - 3.0x)",
-          "Empire Builder holdings (4.0x - 8.6x)"
-        ],
-        "top_performers_monthly": "Top 3 earn ZOL status + NFT perks",
-        "distribution_channel": "Monthly ZABAL airdrops to top leaderboard performers",
-        "q1_campaign_participants": 1000,
         "_source": "zabal-dispatch-tip-zols-architecture-zols-credits-system-20260524"
       }
     },
@@ -10814,17 +10596,6 @@
       }
     },
     {
-      "from": "sang-token",
-      "to": "zabal-token",
-      "type": "STACKS_ON",
-      "properties": {
-        "boosterType": "ERC20",
-        "multiplier": "UNKNOWN",
-        "active": true,
-        "_source": "zabal-dispatch-zabal-empire-20260523"
-      }
-    },
-    {
       "from": "zaal-token",
       "to": "zabal-token",
       "type": "STACKS_ON",
@@ -10966,16 +10737,6 @@
         "rank": "3 in ZABAL leaderboard",
         "score": "297M",
         "lifetime_distributed": "$7.41",
-        "_source": "zabal-dispatch-zabal-empire-20260523"
-      }
-    },
-    {
-      "from": "songjam-leaderboard",
-      "to": "zabal-empire",
-      "type": "INTEGRATED_INTO",
-      "properties": {
-        "slot": "Multiple (Season 1, 2 Ep1, 2 Ep2)",
-        "migration": "From X scraper to Empire Builder API (2026 Q1 decision)",
         "_source": "zabal-dispatch-zabal-empire-20260523"
       }
     },
@@ -14185,166 +13946,13 @@
       }
     },
     {
-      "from": "songjam",
-      "to": "twitter-x-api",
-      "type": "HISTORICALLY_SOURCES_FROM",
-      "properties": {
-        "mechanism": "Tweet engagement scraping",
-        "endDate": "Q2 2026",
-        "costReason": "X API pricing increase",
-        "status": "Deprecated",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "songjam",
-      "to": "songjam-music-engagement-api",
-      "type": "NOW_SOURCES_FROM",
-      "properties": {
-        "mechanism": "Native SongJam platform metrics (plays, reposts, comments)",
-        "startDate": "Q2 2026 (target)",
-        "status": "In planning",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "songjam-music-engagement-api",
-      "to": "empire-builder-apileaderboards",
-      "type": "FEEDS_INTO",
-      "properties": {
-        "endpoint": "POST /api/leaderboards/update",
-        "dataShape": "Array of {wallet, score}",
-        "authentication": "API key (permissioned)",
-        "refreshFrequency": "Real-time or batch hourly",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "empire-builder-apileaderboards",
-      "to": "songjam-leaderboard-season-1",
-      "type": "RENDERS_AS",
-      "properties": {
-        "slot": "Leaderboard slot 4 of 7 in ZABAL Empire",
-        "publicAccess": true,
-        "distributionCycle": "Weekly or bi-weekly",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "empire-builder-apileaderboards",
-      "to": "songjam-leaderboard-season-2-episode-1",
-      "type": "RENDERS_AS",
-      "properties": {
-        "slot": "Leaderboard slot 5 of 7 in ZABAL Empire",
-        "publicAccess": true,
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "empire-builder-apileaderboards",
-      "to": "songjam-leaderboard-season-2-episode-2",
-      "type": "RENDERS_AS",
-      "properties": {
-        "slot": "Leaderboard slot 6 of 7 in ZABAL Empire",
-        "publicAccess": true,
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "songjam-leaderboard-season-1",
-      "to": "zabal-empire",
-      "type": "LIVES_IN",
-      "properties": {
-        "slotIndex": 4,
-        "visibility": "Public API + web UI",
-        "rankedSpots": 250,
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "adam-songjam-founder",
-      "to": "songjam",
-      "type": "OWNS",
-      "properties": {
-        "role": "Founder",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "adam-songjam-founder",
+      "from": "adam-partner-founder",
       "to": "empire-builder-apileaderboards",
       "type": "OWNS_API_KEY_FOR",
       "properties": {
-        "permissions": "Write to SongJam leaderboard slots",
+        "permissions": "Write to the Season 1 partner's leaderboard slots",
         "issuer": "Jordan (Empire Builder)",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "songjam-builder-airdrop-flow",
-      "to": "songjam-leaderboard-season-1",
-      "type": "CONSUMES",
-      "properties": {
-        "outputShape": "CSV of top 250 wallets by engagement score",
-        "useCase": "Airdrop list for builder's Clanker token launch",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "songjam-builder-airdrop-flow",
-      "to": "zabal-empire",
-      "type": "UNLOCKS_ASCENSION_INTO",
-      "properties": {
-        "requirement": "Builder launches Clanker token in August Finals",
-        "result": "New Ascended Empire with builder's own leaderboards",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "sang-token",
-      "to": "songjam",
-      "type": "IS_NATIVE_TOKEN_FOR",
-      "properties": {
-        "description": "SongJam's ERC-20 token on Base",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "sang-token",
-      "to": "zabal-empire",
-      "type": "STACKS_ON",
-      "properties": {
-        "boosterType": "ERC20",
-        "multiplier": "Unknown (likely 1-5x)",
-        "rationale": "Cross-protocol signal",
-        "_source": "zabal-dispatch-songjam-x-empire-new-empire-flow-20260524"
-      }
-    },
-    {
-      "from": "songjam-old-x-scraper",
-      "to": "x-api-v2",
-      "type": "depends_on",
-      "properties": {
-        "fact": "scraper made continuous read/write calls to X API v2, incurring per-request costs",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
-      }
-    },
-    {
-      "from": "x-api-v2",
-      "to": "songjam-old-x-scraper",
-      "type": "caused_deprecation",
-      "properties": {
-        "fact": "X API pricing model shift to paid-only with no free tier made continuous scraping unaffordable",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
-      }
-    },
-    {
-      "from": "adam",
-      "to": "songjam-old-x-scraper",
-      "type": "maintains",
-      "properties": {
-        "fact": "Adam bore the operational and financial burden of keeping X scraper running until 2026",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-new-empire-flow-20260524"
       }
     },
     {
@@ -14352,18 +13960,9 @@
       "to": "empire-builder",
       "type": "migrates_to",
       "properties": {
-        "fact": "April-May 2026: Adam decides to migrate SongJam leaderboard from X scraper to Empire Builder API",
+        "fact": "April-May 2026: Adam decides to migrate the partner leaderboard from X scraper to Empire Builder API",
         "decision_date": "2026-05-16",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
-      }
-    },
-    {
-      "from": "songjam-music-engagement-api",
-      "to": "empire-builder",
-      "type": "feeds",
-      "properties": {
-        "fact": "replacement migration: use SongJam's native music engagement data as source instead of X scrape",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-old-x-scraper-20260524"
       }
     },
     {
@@ -14371,17 +13970,8 @@
       "to": "empire-builder",
       "type": "depends_on",
       "properties": {
-        "fact": "all July Phase 1 submissions must create tokenless Empire as their build home; SongJam leaderboard migration required by June 1",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
-      }
-    },
-    {
-      "from": "songjam",
-      "to": "zabal-games",
-      "type": "participates_in",
-      "properties": {
-        "fact": "SongJam leaderboard becomes ZABAL Gamez participant surface via Empire Builder integration",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
+        "fact": "all July Phase 1 submissions must create tokenless Empire as their build home; the partner leaderboard migration was required by June 1",
+        "_source": "zabal-dispatch-retired-partner-x-empire-old-x-scraper-20260524"
       }
     },
     {
@@ -14390,7 +13980,7 @@
       "type": "committed_to",
       "properties": {
         "fact": "committed to complete Empire Builder leaderboard migration before ZABAL Gamez June 1 launch",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-old-x-scraper-20260524"
       }
     },
     {
@@ -14399,25 +13989,7 @@
       "type": "alternative_to",
       "properties": {
         "fact": "Farcaster-native data source (Neynar free tier) can replace X API for community engagement metrics",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
-      }
-    },
-    {
-      "from": "songjam-old-x-scraper",
-      "to": "technical-debt",
-      "type": "accumulated",
-      "properties": {
-        "fact": "scraper became unmaintainable due to API cost escalation + Adam's focus shift to voice spaces",
-        "_source": "zabal-dispatch-songjam-x-empire-old-x-scraper-20260524"
-      }
-    },
-    {
-      "from": "sang-token",
-      "to": "staking-multiplier-formula",
-      "type": "powers",
-      "properties": {
-        "fact": "Staking SANG in a wallet drives the staking multiplier (2.1x-3.0x) in ZABAL Empire scoring",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-old-x-scraper-20260524"
       }
     },
     {
@@ -14426,7 +13998,7 @@
       "type": "components",
       "properties": {
         "fact": "Staking multiplier is the first multiplier in the ZABAL Empire total points formula",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-token-utility-20260524"
       }
     },
     {
@@ -14435,34 +14007,7 @@
       "type": "components",
       "properties": {
         "fact": "Empire Builder booster multiplier (4.0x-8.6x) compounds with staking multiplier to form total effect",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
-      }
-    },
-    {
-      "from": "songjam",
-      "to": "sang-token",
-      "type": "issues",
-      "properties": {
-        "fact": "SongJam created and issues SANG token to speakers earning voice participation points",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
-      }
-    },
-    {
-      "from": "voice-participation-points-system",
-      "to": "sang-token",
-      "type": "rewards",
-      "properties": {
-        "fact": "Per-second voice participation in SongJam rooms earns SANG tokens to active speakers",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
-      }
-    },
-    {
-      "from": "sang-token",
-      "to": "zabal-empire",
-      "type": "boosts",
-      "properties": {
-        "fact": "SANG staking multiplier directly boosts scores in the ZABAL Empire leaderboard on Base",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-token-utility-20260524"
       }
     },
     {
@@ -14471,34 +14016,7 @@
       "type": "serves",
       "properties": {
         "fact": "ZABAL Empire is the token-economy infrastructure for the ZAO ecosystem",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
-      }
-    },
-    {
-      "from": "songjam",
-      "to": "zao-ecosystem",
-      "type": "integrates_with",
-      "properties": {
-        "fact": "SongJam speakers (SANG earners) often crossover into ZAO community and boost ZABAL scores via SANG stakes",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
-      }
-    },
-    {
-      "from": "sang-token",
-      "to": "solana",
-      "type": "originated_on",
-      "properties": {
-        "fact": "SANG was originally issued on Solana, now bridged to Base for ZABAL Empire integration",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
-      }
-    },
-    {
-      "from": "staking-multiplier-formula",
-      "to": "250000-sang",
-      "type": "references",
-      "properties": {
-        "fact": "250k SANG is the minimum stake threshold in the formula; the inflection point for maximum 3.0x multiplier",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
+        "_source": "zabal-dispatch-retired-partner-x-empire-token-utility-20260524"
       }
     },
     {
@@ -14506,8 +14024,8 @@
       "to": "zabal-empire",
       "type": "implements",
       "properties": {
-        "fact": "Empire Builder v3 houses the booster stacking system that compounds with SANG staking multiplier",
-        "_source": "zabal-dispatch-songjam-x-empire-sang-token-utility-20260524"
+        "fact": "Empire Builder v3 houses the booster stacking system that compounds with the Season 1 staking multiplier",
+        "_source": "zabal-dispatch-retired-partner-x-empire-token-utility-20260524"
       }
     },
     {
@@ -14782,21 +14300,11 @@
       }
     },
     {
-      "from": "zols-ledger",
-      "to": "songjam-leaderboard",
-      "type": "recognition_mechanism",
-      "properties": {
-        "fact": "ZOLs awarded monthly to top 3 leaderboard participants; 12 total awarded Q1 2026",
-        "source": "research/events/241-q1-2026-big-wins/README.md, ZAO Brand Kit",
-        "_source": "zabal-dispatch-tip-zols-architecture-tip-token-mechanics-20260524"
-      }
-    },
-    {
       "from": "zabal-empire",
       "to": "zols-ledger",
       "type": "token_distribution_for",
       "properties": {
-        "fact": "ZABAL Empire distributes ZABAL rewards to top SongJam performers who earn ZOL recognition status",
+        "fact": "ZABAL Empire distributes ZABAL rewards to top partner-leaderboard performers who earn ZOL recognition status",
         "source": "doc 361 Empire Builder deep dive, doc 626 Empire airdrop",
         "_source": "zabal-dispatch-tip-zols-architecture-tip-token-mechanics-20260524"
       }
@@ -14813,22 +14321,12 @@
       }
     },
     {
-      "from": "sang-token",
-      "to": "zabal-empire",
-      "type": "multiplier_requires",
-      "properties": {
-        "fact": "Empire stake multiplier requires 250k SANG minimum stake; ZABAL rewards scale with SANG holdings",
-        "source": "doc 626, ZABAL Empire profile, Empire Builder staking contracts",
-        "_source": "zabal-dispatch-tip-zols-architecture-tip-token-mechanics-20260524"
-      }
-    },
-    {
       "from": "zao-treasury",
       "to": "zabal-token-2",
       "type": "buyback_accumulation",
       "properties": {
         "fact": "Treasury executes weekly $50-100 ZABAL buyback via 1inch on Base; stores in multisig cold storage",
-        "source": "doc 258 ZABAL/SANG buyback, project decisions tracked in research",
+        "source": "doc 258 ZABAL buyback, project decisions tracked in research",
         "_source": "zabal-dispatch-tip-zols-architecture-tip-token-mechanics-20260524"
       }
     },
@@ -15001,33 +14499,6 @@
     },
     {
       "from": "zols",
-      "to": "songjam-leaderboard",
-      "type": "awarded_via",
-      "properties": {
-        "fact": "Top 3 monthly SongJam performers get ZOL status as ZABAL Opinion Leaders",
-        "monthly_recognition": "Doc 241: 12 ZOLs awarded in Q1 2026 (Jan-Mar, 3 winners per month)",
-        "winners_q1": [
-          "GodFactor",
-          "wildermax",
-          "Preshzinobabe",
-          "tabbytheblack",
-          "ohnahji",
-          "akele",
-          "jason alder",
-          "collinsxweb3",
-          "metamu",
-          "candytoybox"
-        ],
-        "repeat_winners": [
-          "ohnahji (2x)",
-          "candytoybox",
-          "jason alder (2x)"
-        ],
-        "_source": "zabal-dispatch-tip-zols-architecture-zols-credits-system-20260524"
-      }
-    },
-    {
-      "from": "zols",
       "to": "zaondz-nft",
       "type": "unlocks_permission",
       "properties": {
@@ -15080,17 +14551,6 @@
         "q1_distributed": "$168 USD",
         "distribution_method": "Manual UI - Zaal exports RaidSharks CSV, selects top 50, distributes weekly",
         "future_method": "V3 API distribute endpoint - automated batch distribution via BANKER agent",
-        "_source": "zabal-dispatch-tip-zols-architecture-zols-credits-system-20260524"
-      }
-    },
-    {
-      "from": "zabal-token-2",
-      "to": "songjam-leaderboard",
-      "type": "distributed_via",
-      "properties": {
-        "fact": "SongJam leaderboard top performers get ZABAL monthly airdrops",
-        "q1_campaign": "1000+ participants in SongJam ZABAL campaign",
-        "multiplier_integration": "Empire Builder empireMultiplier (4.0x-8.6x) feeds into SongJam scoring",
         "_source": "zabal-dispatch-tip-zols-architecture-zols-credits-system-20260524"
       }
     },
@@ -15314,7 +14774,7 @@
       "to": "zabal",
       "type": "powers",
       "properties": {
-        "fact": "Base mainnet RPC for ZABAL token, SANG, and 0xSplits contract reads",
+        "fact": "Base mainnet RPC for ZABAL token and 0xSplits contract reads",
         "_source": "zabal-dispatch-tool-stack-deep-dive-crypto-infra-tools-20260524"
       }
     },
@@ -15341,7 +14801,7 @@
       "to": "zabal-empire",
       "type": "provides_infrastructure",
       "properties": {
-        "fact": "ZABAL leaderboard instance at songjam.space/zabal with SANG booster mechanics",
+        "fact": "ZABAL leaderboard instance with Season 1 partner-token booster mechanics",
         "_source": "zabal-dispatch-tool-stack-deep-dive-crypto-infra-tools-20260524"
       }
     },
@@ -15414,15 +14874,6 @@
       "type": "reads_from",
       "properties": {
         "fact": "Base RPC queries 0xSplits revenue routing contracts for ZAO Music distribution",
-        "_source": "zabal-dispatch-tool-stack-deep-dive-crypto-infra-tools-20260524"
-      }
-    },
-    {
-      "from": "helius",
-      "to": "sang",
-      "type": "indexes",
-      "properties": {
-        "fact": "Solana RPC provides SANG token holdings data for WaveWarZ leaderboard booster calculations",
         "_source": "zabal-dispatch-tool-stack-deep-dive-crypto-infra-tools-20260524"
       }
     },
