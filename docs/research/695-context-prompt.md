@@ -29,7 +29,7 @@ The three months:
 
 All 8 finalists win. The real competition is getting selected in July; the Finals are collaboration, not a playoff. Every finalist is paid (a tiered pool of about $500 USDC - roughly $150 / $100 / $75 / $35 x5), gets a participation NFT, earns Respect during the event, keeps a GitHub portfolio piece, and gets their streamed session footage.
 
-The 8 locked mentors: ohnahji, candytoybox, eduard, freezetheverse, Iman, Thy Revolution, Tom Fellenz, Adam SongJam. Each mentor holds a Hats Protocol "ZAO Mentor S1" onchain role.
+The 8 locked mentors: ohnahji, candytoybox, eduard, freezetheverse, Iman, Thy Revolution, Tom Fellenz, Adam. Each mentor holds a Hats Protocol "ZAO Mentor S1" onchain role.
 
 You build in the open. Visibility is the anti-cheat and the point: live stream, or recorded screen uploads, or public AI prompt logs, or frequent build casts. You pick a **build track** by brand - ZAOstock, ZABAL, WaveWarZ, or The ZAO. The rest of this prompt is the shared context underneath all four tracks.
 
@@ -88,7 +88,7 @@ You are not building for a faceless org. Key people:
 - **DCoop** - hip-hop artist, leads music operations and a satellite festival.
 - **Steve Peer** - a 37-year Ellsworth, Maine music fixture, co-curates ZAOstock and anchors it locally.
 
-The remaining ZABAL Gamez mentors are **eduard**, **freezetheverse**, and **Adam SongJam**.
+The remaining ZABAL Gamez mentors are **eduard**, **freezetheverse**, and **Adam**.
 
 ### 6. The brands and your four build tracks
 
