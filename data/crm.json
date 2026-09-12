@@ -1,7 +1,7 @@
 {
   "_note": "Public ZABAL Gamez people directory rendered at /crm. Generated from data/people.json, workshop-leads.json, dream-leads.json, mentors.json, and the Farcaster Batches builders by scripts/build-crm.mjs - do not edit by hand.",
-  "source": "21d7aaafb81b",
-  "count": 57,
+  "source": "7131bb34d998",
+  "count": 56,
   "people": [
     {
       "name": "Adam Miller",
@@ -940,23 +940,6 @@
       "profile_url": "/p?handle=topocount.eth",
       "tier": "Headliner",
       "xp": 50
-    },
-    {
-      "name": "Tyler Stambaugh",
-      "farcaster": "",
-      "x": "",
-      "github": "",
-      "track": "",
-      "color": "zabal",
-      "roles": [
-        "community_member"
-      ],
-      "involvement": [
-        "Community member"
-      ],
-      "profile_url": "/p?handle=tylerstambaugh",
-      "tier": "Challenger",
-      "xp": 10
     },
     {
       "name": "Ven (The Open Machine)",
