@@ -18,6 +18,13 @@ choice - see below.
 - **Magnetiq collectible** pulled 66 holders (`docs/778-magnetiq-flow-capabilities.md`).
 
 ## What to change in Season 2
+- **Mentors have to be committed before the season opens. Zaal, 2026-09-13:** the "8 locked
+  mentors" list came *"wayy before we actually locked in all that"*, and *"we never really did the
+  mentor thing well through season 1"*. So Season 1's mentor roster was a plan that never landed,
+  and the named eight were dropped in May for open recruitment anyway
+  (`docs/research/701-canonical-state.md` Decision #1). **S2: get a yes from each mentor first, then
+  publish - never the other way round.** This is an OWNER action (DMs), not repo work, and it is the
+  kind of thing that blocks an announcement rather than trailing it.
 - **Distribution was the bottleneck, not features.** The vote went live with ~0 real voters
   because the posting/DMs/memento were drafted but not fired. S2: distribution-first, and
   posting owned by ZOL from day one (already the model now).

@@ -33,8 +33,19 @@ three. The per-signal NUMBERS were never captured, so no margins are published a
 do not invent them.
 
 <!-- RECHECK 2026-11-01: Season 2 was targeted at "late November". If dates, format or theme still do not exist by now, the late-November target is itself the stale claim - say so rather than repeating it. -->
-**Season 2 has no dates and no theme. Do not add any until Zaal sets them.** One piece of FORMAT
-is settled: **pitch week - everyone on the board pitches, recorded, three minutes, judges give
+**Season 2 has no dates and no theme. Do not add any until Zaal sets them.** A second piece is
+settled, and it is a REQUIREMENT rather than a format: **Season 2 must have mentors actually
+committed before it runs.** Zaal 2026-09-13: the old "8 locked mentors" list came *"wayy before we
+actually locked in all that"*, and *"we never really did the mentor thing well through season 1"*.
+So **Season 1 never had a locked mentor roster** - any doc saying it did is describing a plan, not
+a record, and `docs/research/695-context-prompt.md` was corrected to say so. Getting commitments is
+an OWNER action (DMs, not repo work), and nothing should publish a Season 2 mentor until the person
+has said yes. **The live footer strip on `/`, `/info` and `/live` renders `data/mentors.json` rows
+with `locked: true` under "Season 1 support" - four names. Whether that is accurate is Zaal's to
+confirm; do not edit or remove a named person's row on inference.**
+<!-- RECHECK 2026-11-01: if Season 2 has dates by then, have mentors committed? If none has, this
+     requirement is the thing blocking a Season 2 announcement, not a detail. -->
+One piece of FORMAT is settled: **pitch week - everyone on the board pitches, recorded, three minutes, judges give
 notes, notes are PUBLIC, non-scoring** (Zaal 2026-09-08, spec in `docs/season-2-pitch-week.md`). It is built out of the
 existing recordings pipeline (`type: 'pitch'` in `data/recaps.json`) and the existing
 Farcaster-verified comment threads, so it added no page and no endpoint. **Judges giving notes
