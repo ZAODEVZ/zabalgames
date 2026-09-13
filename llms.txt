@@ -884,7 +884,7 @@ Anything you would change?
 
 ## Time + dates
 
-> **Status: placeholder structure** - exact dates lock once cohort + mentor availability are confirmed. Pacific Time is the official anchor (per Doc 630). EU / Asia builders coding through their night during the August Finals window is acknowledged; future seasons may run regional variants.
+> **Status: Season 1 is complete** (closed 2026-08-31); the structure below is what ran. Pacific Time is the official anchor (per Doc 630). EU / Asia builders coding through their night during the August Finals window is acknowledged; future seasons may run regional variants.
 
 ### The three months
 
@@ -912,40 +912,21 @@ The Finals are anchored to Pacific Time because the core team is West Coast US +
 
 ---
 
-## How the mentor + finalist pair works
+## The mentor + finalist pairing never ran
 
-Per Doc 630 Part 3 + Doc 701. The mentor is **not a judge**. The mentor is an embedded teammate on your build during the August Finals - present, on-call, contributing to project management + distribution + connections while you code.
+This file used to describe a mentor-as-embedded-teammate programme in the present tense -
+what the mentor committed to, what the finalist committed to, comms tools, pairing curation.
+**None of it happened.** The pairing was superseded before the Finals (the same fact is
+stated at "Rolling admission" above), and Season 1 never had a confirmed mentor roster at
+all: an early plan named eight mentors before anyone had committed. Zaal, 2026-09-13: the
+list came "wayy before we actually locked in all that", and "we never really did the mentor
+thing well through season 1".
 
-### What the mentor commits to
+What actually decided Season 1: two finalists per track, six people, three head-to-head
+battles on WaveWarZ in the last week of August. See /results.
 
-- **Live presence during the 24h build window** (T+0 to T+24h). Available in Discord or Google Meet, in DMs, on-call. Not coding for you - but available the whole window.
-- **Screen-share availability** if you are hardware-limited or stuck on tooling.
-- **Project management help** during the build (what to ship, what to cut, when to call it done).
-- **ZAO connections** - mentor introduces you to other ZAO members, partner platforms, mentor-specific networks that strengthen your build.
-- **Distribution help during the promote window** (T+24h to T+48h). Reposts, quote-casts, intros to relevant audiences.
-- **Daily check-ins during July** (the build-a-thon month, before Finals) for finalists who got selected early.
-
-### What the finalist commits to
-
-- **Show up to the T-3 onboarding call.** 90 minutes. Mandatory.
-- **Pick + maintain at least one visibility mode** during the 24h build (live Twitch / recorded sessions / public AI prompt logs / frequent build casts). Anti-cheat verification.
-- **Cast your ship.** No private builds.
-- **Communicate.** If you are stuck or off-track, tell your mentor. They cannot help if they do not know.
-
-### Comms tools (default)
-
-- **Sync:** Discord voice / Google Meet (mentor + finalist pick on the onboarding call)
-- **Async:** Farcaster DMs OR Telegram (mentor's preference)
-- **Stream:** Twitch (default) restreamed to /zabal hub
-- **Code:** GitHub - finalist's repo, mentor has read access for quick reviews
-
-### Mentor pairing curation
-
-Mentors claim champions from July submissions (first-come-first-served per mentor). Each mentor defines their own search style ("looking for a streamer with little vibe-coding experience" / "looking for a hard-coder doing smart contracts") before applications open. Mentors are not pooled - the mentor-finalist match is intentional and locked at curation.
-
-### After the Finals
-
-The relationship usually keeps going. Many ZAO ecosystem collaborations started as mentor-finalist pairs from prior cohorts. No formal obligation either way; the door is open.
+Season 2 will not publish a mentor until that person has confirmed. There is no roster to
+read here, and an agent should not tell a builder that a mentor will be assigned to them.
 
 ---
 
