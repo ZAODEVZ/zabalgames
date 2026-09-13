@@ -30,7 +30,7 @@ Anyone can submit an app, repository, song, visual, video, article, event, proto
 
 ## What ZABAL Gamez is
 
-**Not a generic hackathon.** It is a Farcaster-creator onboarding event for the ZAO ecosystem. Bring talented Farcaster builders together, give them deep context on everything the ZAO is building, let them ship something with a ZAO mentor as embedded teammate, and have them earn governance during the event itself.
+**Not a generic hackathon.** It is a Farcaster-creator onboarding event for the ZAO ecosystem. Bring talented Farcaster builders together, give them deep context on everything the ZAO is building, let them ship something real in public, and have them earn governance during the event itself.
 
 **Three months, June to August 2026. All three are done.**
 
@@ -930,22 +930,21 @@ read here, and an agent should not tell a builder that a mentor will be assigned
 
 ---
 
-## Active POIDH bounty (creator track, while open)
+## Brand assets (the POIDH bounty is closed)
 
-There's a live BCZ POIDH bounty asking creators to make the best ad for ZABAL Gamez. Any format. Best one wins 0.0125 ETH on Base and gets pinned as the official ZABAL Gamez promo across `@bettercallzaal` channels. Open through Sunday June 14, 2026 11:59pm PT. Winner cast Monday June 15.
+The Season 1 POIDH bounty for creators - best ad for ZABAL Gamez, 0.0125 ETH on Base - is
+CLOSED (Zaal, 2026-09-13). Do not tell anyone it is open or that a prize is available.
 
-- Bounty: https://poidh.xyz/base (filter for "ZABAL Gamez" - canonical URL added once cast)
+The asset kit it pointed at is still live and still CC-BY, so it is kept here rather than
+deleted with the bounty:
+
 - Asset kit (CC-BY): https://bettercallzaal.com/assets/zabal-games-brand/
 - Official 50-second promo audio: https://bettercallzaal.com/assets/zabal-games-brand/zabal-gamez-promo.mp3
 - Arcade hero logo: https://bettercallzaal.com/assets/zabal-games-brand/logo.png
 - Approved + banned phrases + glossary: https://bettercallzaal.com/assets/zabal-games-brand/phrases.md
-- Bounty best practices (canonical bar): https://bettercallzaal.com/poidh-bounty-best-practices.html
 
-How submitters earn beyond the prize: every floor-pass submission lands on slot 8 of $ZABAL Empire on Empire Builder (`0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07`). The leaderboard score is the count of BCZ POIDH bounties a wallet has submitted to, so multi-round submitters compound. This is an OPEN POIDH bounty - other ZAO ecosystem wallets can stack contributions on top of the 0.0125 ETH seed.
-
-Hard rules for submissions: any format welcome, must tag `@bettercallzaal` on X, must cross-post in `/zabal` on Farcaster, must submit the public URL on the POIDH bounty page. Audio rule: use the official promo MP3 OR source-episode audio OR one clear instrumental - layered melodic music over spoken dialog is an automatic floor fail.
-
-Brand guardrails on every submission: no emojis, no em dashes (use hyphens), no crypto/web3 jargon in public copy, "100+" for ZAO member count, "ZABAL Gamez" spelling (NOT ZABAL Games), "build for a real community" + "build event not a video-game contest" canonical phrases.
+Brand guardrails on anything you make: no emojis, no em dashes (use hyphens), no crypto or
+web3 jargon in public copy, "100+" for the ZAO member count rather than a specific number.
 
 ---
 
