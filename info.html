@@ -506,7 +506,7 @@
         // milestone so this never sticks on a passed date.
         var JULY = new Date('2026-07-01T00:00:00Z').getTime();
         var AUGUST = new Date('2026-08-01T00:00:00Z').getTime();
-        // Season 1 settled 2026-08-30. Without this bound the `now >= AUGUST` branch
+        // The Finals ended 2026-08-30 and Season 1 closed 2026-08-31. Without this bound the `now >= AUGUST` branch
         // below is the terminal state, so the page claims the Finals are "on now" in
         // green for every day after August, forever.
         var SEASON_END = new Date('2026-08-31T04:00:00Z').getTime();

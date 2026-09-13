@@ -224,7 +224,7 @@ node scripts/push-to-bonfire.mjs              # push the graph to Bonfire
 |--------|------|--------|---------------|
 | BCZ YapZ | interview-archive | live | Zaal's long-form interview show (bczyapz.com, bettercallzaal/bcz-yapz). Already emits `content/bonfire-ingest/` from each transcript - a native Bonfire feeder. Pulled via github-content. |
 | Farcaster Agentic Bootcamp | bootcamp | archived | Builders Garden + Dev3Pack 2-week program (Mar 30 - Apr 10 2026). The origin thread: fed FarHack, where Zaal/Zlank won the Snap category ($1,000), funding ZAOstock. |
-| ZAO Festivals $500 Bounty | bounty | archived | The ZAO festivals team funded the ZABAL Gamez Season 1 prize pool - 500 USDC, tiered across the six finalists. Paid out in full when the season settled on 2026-08-30. |
+| ZAO Festivals $500 Bounty | bounty | archived | The ZAO festivals team funded the ZABAL Gamez Season 1 prize pool - 500 USDC, tiered across the six finalists. Paid out in full to all six finalists; the payout DATE is not in the record, so it is not stated here. |
 | Farcaster Batches | event | live | GM Farcaster's week-long builder showcase where projects present their work live. Run and hosted publicly by GM Farcaster; ZABAL Gamez takes part and adds a summary + transcript for each day. |
 | ZABAL Gamez Workshops | workshop | archived | June workshop month - ZAO builders each recorded a ~30-min session on tools they had built. 31 recorded workshop sessions ran through June - the canonical Season 1 figure in data/season-1-results.json - and the whole archive is watchable at /recordings. |
 
