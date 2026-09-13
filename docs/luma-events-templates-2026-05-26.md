@@ -3,6 +3,12 @@
 > Copy-paste templates for creating Lu.ma events on luma.com/zao for the workshop leads who are confirmed.
 > Dates left as `<PICK A DATE>` placeholders - Zaal locks them by DMing each lead.
 
+> **This file is a TEMPLATE, not a record.** It is copy-paste text for creating events, so a
+> line here is not an account of what ran - it is copy waiting to be republished. That is why
+> the retired partner was taken out of it on 2026-09-13 while the same name stays in the
+> Season 1 records. Season 1 closed 2026-08-31: do not create events from this file until a
+> Season 2 workshop actually needs one.
+
 ## How to use
 
 1. Go to https://luma.com/zao -> hit New Event
@@ -13,41 +19,42 @@
 6. Set Location: Link Meeting type, paste Restream studio URL once event date locked
 7. Publish
 
-## Event 1 - Tyler Stambaugh (Magnetiq) - Workshop Lead #001
+## Event 1 - <WORKSHOP LEAD> - Workshop Lead #001
+
+> **Details updated 2026-09-13** (Zaal: "Let's just update the details"). This slot held a
+> session by a partner the ZAO no longer works with, presented by someone no longer involved,
+> so the specifics are replaced with placeholders and the block is kept as the reusable
+> template it always was. Fill the angle brackets; do not re-add the old vendor.
 
 **Title:**
 ```
-Magnetiq - The Workshop Library Behind ZABAL Gamez
+<TOPIC> - <WHAT THE AUDIENCE WALKS AWAY WITH>
 ```
 
 **Subtitle / short description:**
 ```
-30-min pitch from Tyler Stambaugh, founder of Magnetiq, on the platform hosting every ZABAL Gamez workshop session.
+30-min session from <LEAD NAME>, <ONE-LINE CREDENTIAL>, on <TOPIC>.
 ```
 
 **Full description:**
 ```
-ZABAL Gamez Season 1 - Workshop #001
+ZABAL Gamez - Workshop #001
 
-Tyler Stambaugh, founder of Magnetiq, presents the workshop library platform that hosts every recorded session of ZABAL Gamez Season 1.
+<LEAD NAME> presents <TOPIC>.
 
 What you will learn:
-- Magnetiq as the workshop-library home for the whole Season
-- How attendees discover, watch, and re-watch sessions
-- The Zabal connector NFT - the anchor magnet for entry
-- SNAPS retention methodology (Status, Novelty, Access, Power, Stuff)
-- Why "rented land" social platforms lose to spaces you own
+- <THREE TO FIVE BULLETS, ONE OUTCOME EACH>
 
-Format: 30-min talk, livestreamed on Restream (multistreams to YouTube + Twitch + Farcaster), then clipped for permanent watching in the Magnetiq library.
+Format: 30-min talk, livestreamed on Restream (multistreams to YouTube + Twitch + Farcaster), then clipped and archived for permanent watching.
 
-Audience: anyone in The ZAO ecosystem + digital creators thinking about owned audiences. Builders pitching for July submissions, mentors, workshop leads.
+Audience: anyone in The ZAO ecosystem + digital creators. Builders, workshop leads, and anyone considering a submission.
 
-Hosted by: Tyler Stambaugh (Magnetiq founder)
-Part of: ZABAL Gamez Season 1 - June workshops
+Hosted by: <LEAD NAME>
+Part of: ZABAL Gamez - <SEASON> workshops
 More: zabalgamez.com
 ```
 
-**Date placeholder:** `<PICK A DATE - any weekday in June 2026>`
+**Date placeholder:** `<PICK A DATE>`
 **Time:** `<PICK A TIME - default 8pm EST to match ZAO Fractal cadence>`
 **Duration:** 45 min (30 min talk + 15 min Q&A buffer)
 **Tag:** `zabal-games`
@@ -75,7 +82,7 @@ Thy Revolution presents the first of two workshop sessions for ZABAL Gamez Seaso
 
 Topic: <TOPIC TBD - confirm with Thy Revolution before publishing>
 
-Format: livestreamed on Restream, recorded, lives in the Magnetiq library forever.
+Format: livestreamed on Restream, recorded, archived for permanent watching.
 
 Audience: anyone in The ZAO ecosystem + builders looking for July submission inspiration.
 
@@ -112,7 +119,7 @@ Thy Revolution presents the second of two workshop sessions for ZABAL Gamez Seas
 
 Topic: <TOPIC TBD - confirm with Thy Revolution before publishing>
 
-Format: livestreamed on Restream, recorded, lives in the Magnetiq library forever.
+Format: livestreamed on Restream, recorded, archived for permanent watching.
 
 Audience: anyone in The ZAO ecosystem + builders looking for July submission inspiration.
 
@@ -152,7 +159,7 @@ i ll publish + send you the cohost invite link. you confirm + share with your au
 3. Cohost-invite the lead via their email
 4. Set Restream studio link as the meeting URL once you create it on restream.io
 5. Cast the Lu.ma URL to /zabal Farcaster channel for promo
-6. Update the Tyler/Magnetiq Discord / Thy Rev's audience
+6. Update Thy Rev's audience
 
 ## Suggested topics if Thy Revolution doesn't have them yet
 
