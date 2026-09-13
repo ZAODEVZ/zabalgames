@@ -103,7 +103,7 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Status:** v1 LIVE on Solana (Hurric4n3Ike at wavewarz-intelligence.vercel.app). v2 IN BUILD on Base - agentic version Sam is shipping with Arthur (Neynar) reviewing smart contracts. Repo: `~/Documents/wwbase` locally; ZAO research Doc 711.
 - **Voice:** Loud arena brand - competitive, sports-energy, stats-forward. The deliberate opposite of the warm ZAO-umbrella tone.
 - **Cross-chain:** WaveWarZ v1 on Solana (Helius free tier for RPC, 1M credits/mo, 10 RPS). v2 on Base (matches ZAO rails). Both surfaces are real ZAO infrastructure now.
-- **ZABAL Gamez Finals integration:** the Season 1 Finals ran as three head-to-head battles on WaveWarZ (August 2026). The WaveWarZ-Base prediction-market settlement described in earlier docs was designed and never ran. Respect (The ZAO's soulbound governance signal) has a voice in settlement - exact weight mechanism locked before Finals by Sam + Arthur with the contracts.
+- **ZABAL Gamez Finals integration:** the Season 1 Finals ran as three head-to-head battles on WaveWarZ (August 2026). The WaveWarZ-Base prediction-market settlement described in earlier docs was designed and never ran. In that design Respect (The ZAO's soulbound governance signal) would have had a voice in settlement, with the weight mechanism still unsettled; none of it was built.
 - **Contact:** X @WaveWarZ (no Farcaster/Discord/Telegram presence). Founders: Hurric4n3Ike + Sam (WaveWarZ-Base co-builder). Arthur (Neynar) on smart contracts for the Base build.
 
 ### ZAO Festivals / ZAOstock
@@ -152,7 +152,7 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Bot infrastructure:** `bettercallzaal/fractalbotmarch2026` v2.1, Discord-based (Python 3.10+, discord.py 2.0+), Supabase storage, 52 slash commands. Snapshot integration for proposal + curation voting, onchain auto-submit, Farcaster linking.
 - **Role tree:** Hats Protocol treeId 226 on **Optimism** (NOT Base - governance roles are on OP; ZABAL Gamez NFTs are on Base, separate Hats deployment).
 - **Voice:** Ritual, earned, communal. Reputation-with-weight, not gamified-points.
-- **What it gates:** ZAO governance voting (proposal + curation in fractal sessions), ZABAL Gamez Finals settlement voice (exact weight TBD with WaveWarZ-Base contracts), most ecosystem decisions. Soulbound + illiquid - cannot be sold, transferred, or traded. **During ZABAL Gamez:** up to 1000 Respect points earnable per active participant, with current ZAO holders determining who counts as active (workshop attendance, July submissions, Finals participation, real contribution). **Voter threshold:** 1000+ Respect points = eligible to vote in Finals settlement (threshold may shift as event unfolds). The 1000+ cohort also serves as meta-governance body - can vote 66%+ majority to change the governance system itself.
+- **What it gates:** ZAO governance voting (proposal + curation in fractal sessions), ZABAL Gamez Finals settlement voice in the design that never ran (see "How the Finals were decided"), most ecosystem decisions. Soulbound + illiquid - cannot be sold, transferred, or traded. **During ZABAL Gamez:** up to 1000 Respect points earnable per active participant, with current ZAO holders determining who counts as active (workshop attendance, July submissions, Finals participation, real contribution). **Voter threshold:** 1000+ Respect points = eligible to vote in Finals settlement (threshold may shift as event unfolds). The 1000+ cohort also serves as meta-governance body - can vote 66%+ majority to change the governance system itself.
 
 ---
 
@@ -184,7 +184,7 @@ The bettercallzaal GitHub org runs ~1 new repo every 6 days. TypeScript dominate
 | Repo | What | Reuse value |
 |------|------|------------|
 | **ZAOOS** | The main ZAO OS platform (Next.js + Supabase + Neynar). Music-first gated Farcaster client. | Reference patterns for music players, Respect leaderboards, cross-post modules, spaces UI. |
-| **zabalgames** (this repo) | ZABAL Gamez Season 1 site + docs + Snap + Finals settlement scaffold | The Games surface itself. |
+| **zabalgames** (this repo) | ZABAL Gamez Season 1 site + docs + Snap, plus the superseded Finals settlement scaffold kept as a design record | The Games surface itself. |
 | **zlank** | No-code Farcaster Snap builder (zlank.online). 14 block types, polls, multi-page, KV vote tallies. | Make a partner template for any ZAO project; reuse the snap-spec.ts patterns. |
 | **zaomusicbot** | Discord music bot (discord.js + Lavalink). YouTube/Spotify/SoundCloud/Audius/Bandcamp/Twitch/Vimeo. | Multi-platform music search + queue patterns. Audius integration extractable. |
 | **ZOUNZ** | Farcaster Music NFT Mini App (React 19, mint.club API, Zora NFT on Base, Attention Markets on Solana, AI music gen + Audius discovery) | Embeddable mini-app for music NFT minting. |
@@ -226,7 +226,7 @@ node scripts/push-to-bonfire.mjs              # push the graph to Bonfire
 | Farcaster Agentic Bootcamp | bootcamp | archived | Builders Garden + Dev3Pack 2-week program (Mar 30 - Apr 10 2026). The origin thread: fed FarHack, where Zaal/Zlank won the Snap category ($1,000), funding ZAOstock. |
 | ZAO Festivals $500 Bounty | bounty | archived | The ZAO festivals team funded the ZABAL Gamez Season 1 prize pool - 500 USDC, tiered across the six finalists. Paid out in full when the season settled on 2026-08-30. |
 | Farcaster Batches | event | live | GM Farcaster's week-long builder showcase where projects present their work live. Run and hosted publicly by GM Farcaster; ZABAL Gamez takes part and adds a summary + transcript for each day. |
-| ZABAL Gamez Workshops | workshop | archived | June workshop month - ZAO builders each recorded a ~30-min session on tools they had built. 31 sessions ran and the whole library is watchable at /recordings. |
+| ZABAL Gamez Workshops | workshop | archived | June workshop month - ZAO builders each recorded a ~30-min session on tools they had built. 31 recorded workshop sessions ran through June - the canonical Season 1 figure in data/season-1-results.json - and the whole archive is watchable at /recordings. |
 
 Adding a stream: drop it in `data/data-streams.json`, run the pull script. Live sources (github-content, haatz) pull automatically; static sources keep curated timeline entries. The github-content + haatz pulls need outbound access to api.github.com / raw.githubusercontent.com / haatz.quilibrium.com - in a sandbox where those are blocked the script logs the miss and continues, still emitting the registry-derived Bonfire entities.
 
@@ -827,7 +827,7 @@ If your build needs something not on this list, that is a real decision - check 
 
 ## After you ship - amplification + outreach
 
-The build is the application; shipping it is the start of the conversation, not the end. ZAO accounts amplify all valid submissions during the promote window (T+24h to T+48h in the August Finals; the equivalent post-cast window in July). Beyond that auto-amplification, the seeded-asks playbook below converts.
+The build is the application; shipping it is the start of the conversation, not the end. ZAO accounts amplify all valid submissions during the promote window (T+24h to T+48h in the Finals design that never ran; the equivalent post-cast window in July). Beyond that auto-amplification, the seeded-asks playbook below converts.
 
 ### ZAO accounts that auto-amplify
 
@@ -899,16 +899,16 @@ Anything you would change?
 |-------|------|--------|
 | **June 2026** | Workshop month - recorded sessions + live spaces | dates TBD; bootcamp opens ~June 1 |
 | **July 2026** | Open build-a-thon - the build IS the application | dates TBD; opens ~July 1 |
-| **August 2026** | The Finals - 72-hour window, WaveWarZ-Base settles placement | dates TBD; one week in August, exact week locks when cohort confirms |
+| **August 2026** | The Finals - RAN as three head-to-head battles on WaveWarZ: artist 24 Aug, creator 27 Aug, builder over 24 hours from noon 29 Aug | complete; the 72-hour WaveWarZ-Base window in the row above this file's history never ran |
 
 ### The Finals 72-hour clock (anchored to T+0) - PROPOSED, NEVER RAN
 
 > This clock belongs to the WaveWarZ-Base market design that was never used. It is kept as the
 > design record. What ran: three head-to-head battles, artist 24 August, creator 27 August, builder
-> over 24 hours from noon on 29 August. See "How the Finals were decided" below and /results.
+> over 24 hours from noon on 29 August. See "How the Finals were decided" ABOVE (line ~480) and /results.
 
 - **T-3 days:** 90-minute onboarding call. Mandatory or forfeit.
-- **T+0:** Thursday 12:00 PT. Prompt drops. Voter snapshot. WaveWarZ-Base battle markets open.
+- **T+0:** Thursday 12:00 PT (proposed - to be confirmed). Prompt drops. Voter snapshot. WaveWarZ-Base battle markets open.
 - **T+24h:** Friday 12:00 PT. Ship deadline. The four required artifacts (URL / repo / demo / cast) must all be in.
 - **T+48h:** Saturday 12:00 PT. Promote window closes. Market continues trading.
 - **T+72h:** Sunday 12:00 PT. WaveWarZ-Base smart contract settles. Live reveal stream announces placements + distributes USDC on-chain; commemorative collectibles open.
@@ -975,7 +975,7 @@ community" and "build event not a video-game contest".
 
 ## Bonfire knowledge graph (queryable depth)
 
-This file is a static prompt. The Bonfire knowledge graph at `zabal.bonfires.ai` is the queryable version - 444 entities + 655 edges (and growing) you can ask in natural language. Where this file states "WaveWarZ-Base settles Finals voting (Doc 720)", the graph holds the contract addresses, top performer wallets, Sam + Arthur build status, and every linked rail.
+This file is a static prompt. The Bonfire knowledge graph at `zabal.bonfires.ai` is the queryable version - 505 entities + 713 edges you can ask in natural language. Where this file states "WaveWarZ-Base settles Finals voting (Doc 720)", the graph holds the contract addresses, top performer wallets, Sam + Arthur build status, and every linked rail.
 
 Two paths:
 

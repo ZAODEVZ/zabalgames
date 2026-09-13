@@ -177,7 +177,7 @@
       "kind": "workshop",
       "status": "archived",
       "color": "pink",
-      "summary": "June workshop month - ZAO builders each recorded a ~30-min session on tools they had built. 31 sessions ran and the whole library is watchable at /recordings.",
+      "summary": "June workshop month - ZAO builders each recorded a ~30-min session on tools they had built. 31 recorded workshop sessions ran through June - the canonical Season 1 figure in data/season-1-results.json - and the whole archive is watchable at /recordings.",
       "ties_to_zabal": "The workshops were the deep-context onboarding for builders. Raw session recordings, transcripts and summaries are the richest ZABAL Gamez data stream, and they seeded what people built in July.",
       "links": [
         {
