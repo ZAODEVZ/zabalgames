@@ -182,7 +182,14 @@
       // and Season 1 had no confirmed roster. The card still renders, which is the machinery.
       eyebrow.textContent = 'Mentor profile';
       nameEl.innerHTML = esc(mentor.name) + ' <span class="accent">@' + esc(mentor.handle) + '</span>';
-      taglineEl.textContent = mentor.tagline || '';
+      // The tagline is NOT rendered (2026-09-13). All four in data/mentors.json are offer
+      // copy - "Best mentor in the room if you have an idea and no code", "The mentor for
+      // builds about artists...", and bettercallzaal's "claim a builder if Phase 1 produces
+      // a build worth the dedicated time" in the future tense - so it sat a few lines above
+      // "this page makes no offer on this person's behalf" and contradicted it. (It also
+      // carried "Runs the Games", the wrong brand spelling.) The neutral `headline` renders
+      // in the card instead. The field stays in the JSON: undo is this one line.
+      taglineEl.textContent = '';
 
       var ctas = [];
       if (mentor.farcaster_url) ctas.push('<a href="' + esc(mentor.farcaster_url) + '" target="_blank" rel="noopener" class="btn btn-primary">DM on Farcaster</a>');
