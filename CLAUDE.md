@@ -32,7 +32,7 @@ the charts from live trading on WaveWarZ, and a judges panel. All three champion
 three. The per-signal NUMBERS were never captured, so no margins are published anywhere -
 do not invent them.
 
-<!-- RECHECK 2026-11-01: Season 2 was targeted at "late November". If dates, format or theme still do not exist by now, the late-November target is itself the stale claim - say so rather than repeating it. -->
+<!-- RECHECK 2026-11-01: late November is the Season 2 PREP window, not the season start - the two were being read as one date. If prep has not started by now, say so rather than repeating the target. The start itself is set separately and is not public; ask Zaal rather than inferring it from this line. -->
 **Season 2 has no dates and no theme. Do not add any until Zaal sets them.** A second piece is
 settled, and it is a REQUIREMENT rather than a format: **Season 2 must have mentors actually
 committed before it runs.** Zaal 2026-09-13: the old "8 locked mentors" list came *"wayy before we
@@ -573,7 +573,7 @@ nobody had measured them; they are now answered. Three need a decision from Zaal
    `scripts/ingest-recording.mjs`, **backfilling the manifest from any existing recap first** -
    run cold it rebuilt a live page as a placeholder and deleted a video link (`/recordings/27`).
 
-8. **Season 2 prep** - target late November. Ideas and Zaal's pitch-week suggestion are in
+8. **Season 2 prep** - target late November. **That is the PREP window, not the season start** (Zaal 2026-09-13); the start is a separate, non-public date - ask him, do not infer one from this. Ideas and Zaal's pitch-week suggestion are in
    `docs/season-2-ideas.md`. Set nothing public until dates and format exist. Note the
    hard dependency in the next section: late-November prep starts *after* the backup
    switches itself off.
