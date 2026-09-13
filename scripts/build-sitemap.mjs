@@ -23,6 +23,7 @@ const write = process.argv.includes('--write');
 // Internal / non-indexable pages to leave OUT of the sitemap.
 const EXCLUDE = new Set([
   'status', 'review', // internal ops dashboard, not public content
+  'mentor', // parked 2026-09-13 until Season 2: the page carries noindex, and submitting it here would ask crawlers to index exactly what noindex tells them to drop
   'leaderboard', 'referrers' // dead redirect stubs since the web-standalone cleanup (d867c85) - real content moved to /game and /play?ref=
 ]);
 
