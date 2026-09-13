@@ -2,7 +2,7 @@
 
 > All non-research docs for ZABAL Gamez Season 1. Research docs (numbered 1xx-7xx) live in `docs/research/` instead.
 
-> **Season 1 is complete (settled 2026-08-30).** Champions: n3m (artist), ghostmintops (builder),
+> **Season 1 is complete (Finals ended 2026-08-30, season closed 2026-08-31).** Champions: n3m (artist), ghostmintops (builder),
 > uniquebeing404 (creator). Almost everything in this index is now a point-in-time record of a
 > season that has finished - launch kits, outreach templates and dated briefs describe work that
 > already happened. Read them as history. For what is true now, see [/CLAUDE.md](../CLAUDE.md)

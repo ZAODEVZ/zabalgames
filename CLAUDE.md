@@ -19,7 +19,7 @@ No emojis. No em dashes (hyphens only). No crypto/web3/onchain jargon in public 
 ("digital creators" / "builders" instead). "100+" for ZAO member count, never a
 specific number. Tight, factual, warm.
 
-## Current status - SEASON 1 IS COMPLETE (settled 2026-08-30)
+## Current status - SEASON 1 IS COMPLETE (Finals ended 2026-08-30, season closed 2026-08-31)
 
 **Champions, one per track: n3m (artist), ghostmintops (builder), uniquebeing404
 (creator).** 31 recorded workshops, 31 projects from 15 people, six finalists across three
