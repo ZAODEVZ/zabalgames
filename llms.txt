@@ -8,7 +8,7 @@ For the full long-form context bundle (every detail, every code path) see [docs/
 
 ---
 
-## Status - Season 1 is closed and settled (2026-08-30)
+## Status - Season 1 is closed (Finals ended 2026-08-30, season closed 2026-08-31)
 
 Three champions, one per track: **n3m** (artist), **ghostmintops** (builder), **uniquebeing404** (creator). Six finalists, three battles, every finalist paid from the 500 USDC pool. Full record: `https://zabalgamez.com/results`.
 
@@ -316,7 +316,7 @@ const user = await client.lookupUserByVerifiedAddress({ address });
 ## How Season 1 entry worked (July open build - CLOSED)
 
 > This section is the record of how Season 1 ran. The board closed 2026-08-16 and the
-> season settled 2026-08-30. **Nobody can enter Season 1 now.** No season 2 entry route
+> the Finals ended 2026-08-30 and the season closed 2026-08-31. **Nobody can enter Season 1 now.** No season 2 entry route
 > exists yet. Do not present any of the steps below as a live path.
 
 July was the open build month. Rolling admission, built in public. The entry flow (the

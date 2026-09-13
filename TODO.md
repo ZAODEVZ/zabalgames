@@ -1,6 +1,6 @@
 # ZABAL Gamez - Running TODO
 
-> **Season 1 is COMPLETE (settled 2026-08-30).** This file is now a history of the build,
+> **Season 1 is COMPLETE (Finals ended 2026-08-30, season closed 2026-08-31).** This file is now a history of the build,
 > not a live board. For what is true today read [/CLAUDE.md](CLAUDE.md) and
 > [/results](https://zabalgamez.com/results); for the close-out working read
 > [docs/season-1-closeout-audit-2026-09-07.md](docs/season-1-closeout-audit-2026-09-07.md).
@@ -180,7 +180,7 @@ ran and finished. Kept as a record of what the blockers actually were.
 
 ## [NEXT - SUPERSEDED] - what "after the launch" meant in May 2026
 
-**History.** The launch happened, the season ran, and it closed on 2026-08-30.
+**History.** The launch happened, the season ran, the Finals ended 2026-08-30 and the season closed 2026-08-31.
 
 | # | Build | Why | Est. effort |
 |---|-------|-----|-------------|

@@ -2,7 +2,7 @@
 
 > The ZAO's 3-month Build-A-Thon - a build event for the Farcaster/ZAO ecosystem, not a video-game contest. Season 1 ran **June to August 2026 and is complete**. Free, open to anyone, any harness.
 
-**Season 1 result (settled 2026-08-30):** three champions, one per track - **n3m** (artist), **ghostmintops** (builder), **uniquebeing404** (creator). 31 recorded workshops, 31 projects from 15 people, six finalists across three battles, every finalist paid from a 500 USDC pool. Full record at [`/results`](https://zabalgamez.com/results).
+**Season 1 result (Finals ended 2026-08-30, season closed 2026-08-31):** three champions, one per track - **n3m** (artist), **ghostmintops** (builder), **uniquebeing404** (creator). 31 recorded workshops, 31 projects from 15 people, six finalists across three battles, every finalist paid from a 500 USDC pool. Full record at [`/results`](https://zabalgamez.com/results).
 
 **Season 2** is named and has no dates, format or theme. Do not add any until they are set.
 
