@@ -84,13 +84,22 @@
 <script>
 (function () {
   // The scored arcade. Descriptions stay one-breath short - the pick should take 3 seconds.
+  // Community builds link out and are NOT scored here: they have no id in api/game.mjs's
+  // GAMES map, so no score of theirs can be posted. The 2026-09-08 arcade cull rule
+  // ("do not re-add a game page without adding its id to GAMES in the same commit") is
+  // about OUR game pages; this is a link to someone else's Mini App.
   var GAMES = [
     { url: '/game/2048', name: 'ZAO 2048', tag: 'The classic', desc: 'Merge the ecosystem tiles, chase the monthly high score.' },
+    { url: 'https://farcaster.xyz/miniapps/r8cVGUy0kUXQ/neontetris', name: 'NeonTetris', tag: 'Built by @kayonfire', desc: 'Neon Tetris as a Farcaster Mini App - skins, 1v1 duels, live board. 0.1 USDC a game, from a Season 1 build.' },
   ];
 
   var deal = document.getElementById('qp-deal');
 
   function two() {
+    // With ONE game this used to return [g, undefined] and card() threw a TypeError,
+    // which killed the rest of this script - so /play lost its second card AND its
+    // game of the day from the 2026-09-08 cull until 2026-09-13. Never return a hole.
+    if (GAMES.length < 2) return [GAMES[0]];
     var a = Math.floor(Math.random() * GAMES.length);
     var b = Math.floor(Math.random() * (GAMES.length - 1));
     if (b >= a) b++;
@@ -109,6 +118,7 @@
     var pair = two();
     deal.innerHTML = '';
     deal.appendChild(card(pair[0]));
+    if (!pair[1]) return;
     var or = document.createElement('div');
     or.className = 'qp-or';
     or.textContent = '- or -';
