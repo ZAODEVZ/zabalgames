@@ -103,7 +103,7 @@ The umbrella you are building for. Understand which brand your build serves.
 - **Status:** v1 LIVE on Solana (Hurric4n3Ike at wavewarz-intelligence.vercel.app). v2 IN BUILD on Base - agentic version Sam is shipping with Arthur (Neynar) reviewing smart contracts. Repo: `~/Documents/wwbase` locally; ZAO research Doc 711.
 - **Voice:** Loud arena brand - competitive, sports-energy, stats-forward. The deliberate opposite of the warm ZAO-umbrella tone.
 - **Cross-chain:** WaveWarZ v1 on Solana (Helius free tier for RPC, 1M credits/mo, 10 RPS). v2 on Base (matches ZAO rails). Both surfaces are real ZAO infrastructure now.
-- **ZABAL Gamez Finals integration:** WaveWarZ-Base is the August Finals voting protocol - each finalist build becomes a battle entry, wallets trade on which wins, smart contract settles placement at T+72h. Respect (The ZAO's soulbound governance signal) has a voice in settlement - exact weight mechanism locked before Finals by Sam + Arthur with the contracts.
+- **ZABAL Gamez Finals integration:** the Season 1 Finals ran as three head-to-head battles on WaveWarZ (August 2026). The WaveWarZ-Base prediction-market settlement described in earlier docs was designed and never ran. Respect (The ZAO's soulbound governance signal) has a voice in settlement - exact weight mechanism locked before Finals by Sam + Arthur with the contracts.
 - **Contact:** X @WaveWarZ (no Farcaster/Discord/Telegram presence). Founders: Hurric4n3Ike + Sam (WaveWarZ-Base co-builder). Arthur (Neynar) on smart contracts for the Base build.
 
 ### ZAO Festivals / ZAOstock
@@ -224,9 +224,9 @@ node scripts/push-to-bonfire.mjs              # push the graph to Bonfire
 |--------|------|--------|---------------|
 | BCZ YapZ | interview-archive | live | Zaal's long-form interview show (bczyapz.com, bettercallzaal/bcz-yapz). Already emits `content/bonfire-ingest/` from each transcript - a native Bonfire feeder. Pulled via github-content. |
 | Farcaster Agentic Bootcamp | bootcamp | archived | Builders Garden + Dev3Pack 2-week program (Mar 30 - Apr 10 2026). The origin thread: fed FarHack, where Zaal/Zlank won the Snap category ($1,000), funding ZAOstock. |
-| ZAO Festivals $500 Bounty | bounty | live | The Season 1 prize pool ($500 USDC v0) funded by the ZAO festivals team. Grow it: info@thezao.com. |
-| Farcaster Batches | protocol-feature | upcoming | An upcoming Farcaster protocol feature, being introduced on GM Farcaster X spaces. A new rail to design ZABAL Gamez builds around. |
-| ZABAL Gamez Workshops | workshop | live | June workshop month - ~30-min builder sessions recorded and archived. Raw recordings + transcripts + summaries are the richest stream. |
+| ZAO Festivals $500 Bounty | bounty | archived | The ZAO festivals team funded the ZABAL Gamez Season 1 prize pool - 500 USDC, tiered across the six finalists. Paid out in full when the season settled on 2026-08-30. |
+| Farcaster Batches | event | live | GM Farcaster's week-long builder showcase where projects present their work live. Run and hosted publicly by GM Farcaster; ZABAL Gamez takes part and adds a summary + transcript for each day. |
+| ZABAL Gamez Workshops | workshop | archived | June workshop month - ZAO builders each recorded a ~30-min session on tools they had built. 31 sessions ran and the whole library is watchable at /recordings. |
 
 Adding a stream: drop it in `data/data-streams.json`, run the pull script. Live sources (github-content, haatz) pull automatically; static sources keep curated timeline entries. The github-content + haatz pulls need outbound access to api.github.com / raw.githubusercontent.com / haatz.quilibrium.com - in a sandbox where those are blocked the script logs the miss and continues, still emitting the registry-derived Bonfire entities.
 
@@ -380,8 +380,8 @@ Suggestion sparks (non-binding):
 
 ### What "good" looks like (judging rubric)
 July builds are scored by value to the ZAO ecosystem and indexed into the knowledge graph; the
-August Finals settle through the WaveWarZ-Base hybrid (market price + a Respect-holder baseline
-allocation across a 72h trade window, not pure 1-person-1-vote). Implicit criteria either way:
+August Finals ran as three head-to-head battles on WaveWarZ, decided on an X poll, the trading charts
+and a judges panel (the WaveWarZ-Base market settlement was designed and never ran). Implicit criteria either way:
 1. **Does it work?** Deployed, demoable, no crashes. Voters click your link.
 2. **Is it ZAO-native?** Plugs into real rails (ZABAL, Empire, Farcaster, Hats, Bonfire, EAS, Coinflow, Hypersub). More rails wired = more votes.
 3. **Would I use this?** ZABAL holders vote for things they would open again next week.
@@ -477,17 +477,24 @@ Miss the bar OR fail visibility = no submission.
 
 ---
 
-## Voting + judging
+## How the Finals were decided
 
-The August Finals placement is decided by the **WaveWarZ-Base prediction-market protocol** (Doc 720). Each finalist build becomes a battle entry on WaveWarZ-Base. Wallets trade on which build wins. Smart contract settles at T+72h based on volume + win rate per finalist.
+**The design this section used to describe never ran.** It said Finals placement "is decided by
+the WaveWarZ-Base prediction-market protocol", with a T+0 to T+72h trade window, Respect-weighted
+settlement and autonomous judge agents scoring each build. None of that happened, and line 39 of
+this file already said so - the same contradiction the mentor section had.
 
-- **Voter set:** open market - anyone with a Base wallet can trade. PLUS Respect-earning ZAO members have a governance voice in settlement (Respect is soulbound + illiquid - cannot be sold). Exact Respect-weight mechanism in the settlement formula TBD - locked before Finals by Sam + Arthur with the contracts.
-- **Window:** T+0 to T+72h (the whole Finals window is the trade window; market settles at the end).
-- **Output:** the WaveWarZ smart contract distributes the prize ($500 USDC pool maps to placement tiers per Doc 701 Part 5) + the 1% trade cut per WaveWarZ economics (flows to the builder forever, post-Finals too) + the Finisher / Champion commemorative collectibles.
-- **Why the shift:** real economic signal beats a 1p1v poll for "would I actually use this build." Plus the Finals become the V1 launch event for the WaveWarZ-Base agentic build that Sam + Arthur are shipping.
-- **Fallback:** if WaveWarZ-Base isn't mainnet-ready by August, revert to the original Doc 701 model: Respect-earning 1p1v vote, WaveWarZ on Solana as parallel signal (Doc 646 framing).
+What actually ran: **three head-to-head battles on WaveWarZ** in the last week of August - artist
+on the 24th, creator on the 27th, builder over 24 hours from noon on the 29th. Two finalists per
+track, six people, every finalist paid from a 500 USDC pool.
 
-Judge agents (per Doc 723d + 720): autonomous agents read each finalist's deployed URL + repo + demo, score against the rubric (does it work / is it ZAO-native / would I use this / shipped in 24h), get paid in x402 micropayments. Their scores feed the market as a "fundamental" but do not override it.
+Each battle was decided on three signals: an open poll on X from the WaveWarZ account, the charts
+from live trading on WaveWarZ, and a judges panel. **The per-signal numbers were never captured**,
+so no margins are published anywhere - do not invent them, and do not infer a winner from a signal.
+The artist battle had no judges panel at all, so it ran on two signals.
+
+Canonical record: /results. The superseded design survives in docs/ as a design record and must not
+be described as how anything works.
 
 ---
 
@@ -894,10 +901,14 @@ Anything you would change?
 | **July 2026** | Open build-a-thon - the build IS the application | dates TBD; opens ~July 1 |
 | **August 2026** | The Finals - 72-hour window, WaveWarZ-Base settles placement | dates TBD; one week in August, exact week locks when cohort confirms |
 
-### The Finals 72-hour clock (anchored to T+0)
+### The Finals 72-hour clock (anchored to T+0) - PROPOSED, NEVER RAN
+
+> This clock belongs to the WaveWarZ-Base market design that was never used. It is kept as the
+> design record. What ran: three head-to-head battles, artist 24 August, creator 27 August, builder
+> over 24 hours from noon on 29 August. See "How the Finals were decided" below and /results.
 
 - **T-3 days:** 90-minute onboarding call. Mandatory or forfeit.
-- **T+0:** Thursday 12:00 PT (proposed - to be confirmed). Prompt drops. Voter snapshot. WaveWarZ-Base battle markets open.
+- **T+0:** Thursday 12:00 PT. Prompt drops. Voter snapshot. WaveWarZ-Base battle markets open.
 - **T+24h:** Friday 12:00 PT. Ship deadline. The four required artifacts (URL / repo / demo / cast) must all be in.
 - **T+48h:** Saturday 12:00 PT. Promote window closes. Market continues trading.
 - **T+72h:** Sunday 12:00 PT. WaveWarZ-Base smart contract settles. Live reveal stream announces placements + distributes USDC on-chain; commemorative collectibles open.
@@ -944,7 +955,9 @@ deleted with the bounty:
 - Approved + banned phrases + glossary: https://bettercallzaal.com/assets/zabal-games-brand/phrases.md
 
 Brand guardrails on anything you make: no emojis, no em dashes (use hyphens), no crypto or
-web3 jargon in public copy, "100+" for the ZAO member count rather than a specific number.
+web3 jargon in public copy, "100+" for the ZAO member count rather than a specific number,
+"ZABAL Gamez" spelling (NOT ZABAL Games), and the canonical phrases "build for a real
+community" and "build event not a video-game contest".
 
 ---
 
@@ -956,7 +969,6 @@ web3 jargon in public copy, "100+" for the ZAO member count rather than a specif
 | ZAO infra question | `/zabal` Farcaster channel, tag `@bettercallzaal` |
 | Stream tech issue | StreamElements docs + `/zabal` |
 | Wallet / Empire Builder | DM `@bettercallzaal` on Farcaster |
-| POIDH bounty question | DM `@bettercallzaal` on Farcaster OR ask in `/poidh` channel |
 | Real emergency | Text Zaal (number in your onboarding email) |
 
 ---
