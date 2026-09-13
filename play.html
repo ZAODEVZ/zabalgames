@@ -90,7 +90,7 @@
   // about OUR game pages; this is a link to someone else's Mini App.
   var GAMES = [
     { url: '/game/2048', name: 'ZAO 2048', tag: 'The classic', desc: 'Merge the ecosystem tiles, chase the monthly high score.' },
-    { url: 'https://farcaster.xyz/miniapps/r8cVGUy0kUXQ/neontetris', name: 'NeonTetris', tag: 'Built by @kayonfire', desc: 'Neon Tetris as a Farcaster Mini App - skins, 1v1 duels, live board. 0.1 USDC a game, from a Season 1 build.' },
+    { url: 'https://farcaster.xyz/miniapps/r8cVGUy0kUXQ/neontetris', name: 'NeonTetris', tag: 'Built by @kayonfire', desc: 'Neon Tetris as a Farcaster Mini App - skins, 1v1 duels, live board. 0.1 USDC a game, from a Season 1 build.', external: true },
   ];
 
   var deal = document.getElementById('qp-deal');
@@ -110,6 +110,9 @@
     var el = document.createElement('a');
     el.className = 'qp-card';
     el.href = g.url;
+    // A community build lives on someone else's host, so it opens in a new tab rather
+    // than replacing the arcade. external:true is what marks it, not a URL sniff.
+    if (g.external) { el.target = '_blank'; el.rel = 'noopener'; }
     el.innerHTML = '<span class="tag">' + g.tag + '</span><h2>' + g.name + '</h2><p>' + g.desc + '</p><span class="go">Play this one -&gt;</span>';
     return el;
   }
@@ -136,9 +139,12 @@
     if (!host) return;
     var dayIndex = Math.floor(Date.now() / 86400000);
     var g = GAMES[dayIndex % GAMES.length];
-    host.innerHTML = '<a class="qp-card" style="border-color: var(--gold);" href="' + g.url + '">' +
+    host.innerHTML = '<a class="qp-card" style="border-color: var(--gold);" href="' + g.url + '"' +
+      (g.external ? ' target="_blank" rel="noopener"' : '') + '>' +
       '<span class="tag" style="color: var(--gold);">Game of the day</span>' +
-      '<h2>' + g.name + '</h2><p>' + g.desc + ' Everyone plays the same game today - the board fight is live.</p>' +
+      '<h2>' + g.name + '</h2><p>' + g.desc +
+      (g.external ? ' Everyone gets the same game today. It keeps its own board, not ours.'
+                  : ' Everyone plays the same game today - the board fight is live.') + '</p>' +
       '<span class="go">Play today\'s game -&gt;</span></a>';
   })();
 })();
