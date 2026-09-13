@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Parked 2026-09-13 on Zaal's call ("clean it all up strip most of it and keep it ready for
-       jan start"). Season 1 never ran a confirmed mentor roster, so this page is off the public
-       site: the nav link was removed from every page and this noindex keeps it out of search.
-       NOTHING ELSE IS CHANGED - the page, its handle routing and data/mentors.json are intact, so
-       repopulating mentors.json is all it takes to switch this back on for Season 2. -->
+  <!-- Parked 2026-09-13 on Zaal's call. Season 1 never ran a confirmed mentor roster, so this
+       page is off the public site: the nav link was removed from every page and this noindex keeps
+       it out of search. NOTHING ELSE IS CHANGED - the page, its handle routing and
+       data/mentors.json are intact, so repopulating mentors.json is all it takes to switch this
+       back on for Season 2. The Season 2 timing is deliberately not written here; it is recorded
+       privately and is Zaal's to announce. -->
   <meta name="robots" content="noindex">
   <title>Mentors - ZABAL Gamez</title>
   <meta name="description" content="Season 1 ran no confirmed mentor roster. Season 2 will not publish a mentor until that person has confirmed.">
@@ -182,7 +183,14 @@
       // and Season 1 had no confirmed roster. The card still renders, which is the machinery.
       eyebrow.textContent = 'Mentor profile';
       nameEl.innerHTML = esc(mentor.name) + ' <span class="accent">@' + esc(mentor.handle) + '</span>';
-      taglineEl.textContent = mentor.tagline || '';
+      // The tagline is NOT rendered (2026-09-13). All four in data/mentors.json are offer
+      // copy - "Best mentor in the room if you have an idea and no code", "The mentor for
+      // builds about artists...", and bettercallzaal's "claim a builder if Phase 1 produces
+      // a build worth the dedicated time" in the future tense - so it sat a few lines above
+      // "this page makes no offer on this person's behalf" and contradicted it. (It also
+      // carried "Runs the Games", the wrong brand spelling.) The neutral `headline` renders
+      // in the card instead. The field stays in the JSON: undo is this one line.
+      taglineEl.textContent = '';
 
       var ctas = [];
       if (mentor.farcaster_url) ctas.push('<a href="' + esc(mentor.farcaster_url) + '" target="_blank" rel="noopener" class="btn btn-primary">DM on Farcaster</a>');
@@ -194,21 +202,15 @@
         esc(mentor.expertise_label || 'EXPERTISE') + '</div>' +
         '<h3>' + esc(mentor.headline) + '</h3>' +
         '<p>' + esc(mentor.bio || '') + '</p>';
-      if (mentor.what_they_offer) {
-        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">What this mentor offers</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--text-muted);">' + esc(mentor.what_they_offer) + '</p>';
-      }
-      if (mentor.best_fit_for) {
-        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Best fit for builders working on</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--text-muted);">' + esc(mentor.best_fit_for) + '</p>';
-      }
-      if (mentor.champion_handle) {
-        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Champion locked</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--cyan);">@' + esc(mentor.champion_handle) + ' - ' + esc(mentor.champion_build || '') + '</p>';
-      } else {
-        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Champion slot</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--gold);">Open. This mentor will claim a champion as Phase 1 submissions arrive in July.</p>';
-      }
+      // Offers copy pulled 2026-09-13 on Zaal's call. what_they_offer and best_fit_for
+      // described a service none of these people was ever confirmed to provide, and the
+      // champion block promised a claim "as Phase 1 submissions arrive in July" - a future
+      // tense about a season that closed on 2026-08-31. The fields stay in
+      // data/mentors.json untouched; nothing on the page reads them, so restoring the
+      // blocks for Season 2 is a revert of this hunk and nothing else.
+      bodyHtml += '<p style="margin-top: 1.2rem; font-size: 0.85rem; color: var(--text-muted);">' +
+        'Season 1 did not run a confirmed mentor roster, so this page makes no offer on this ' +
+        'person\'s behalf. Season 2 publishes a mentor only once they have confirmed.</p>';
       detailCard.innerHTML = bodyHtml;
       detailWrap.style.display = '';
     })
