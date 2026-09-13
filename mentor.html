@@ -194,21 +194,15 @@
         esc(mentor.expertise_label || 'EXPERTISE') + '</div>' +
         '<h3>' + esc(mentor.headline) + '</h3>' +
         '<p>' + esc(mentor.bio || '') + '</p>';
-      if (mentor.what_they_offer) {
-        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">What this mentor offers</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--text-muted);">' + esc(mentor.what_they_offer) + '</p>';
-      }
-      if (mentor.best_fit_for) {
-        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Best fit for builders working on</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--text-muted);">' + esc(mentor.best_fit_for) + '</p>';
-      }
-      if (mentor.champion_handle) {
-        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Champion locked</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--cyan);">@' + esc(mentor.champion_handle) + ' - ' + esc(mentor.champion_build || '') + '</p>';
-      } else {
-        bodyHtml += '<h4 style="margin-top: 1.2rem; font-family: Syne, sans-serif; font-size: 0.95rem; color: var(--text);">Champion slot</h4>' +
-          '<p style="font-size: 0.9rem; color: var(--gold);">Open. This mentor will claim a champion as Phase 1 submissions arrive in July.</p>';
-      }
+      // Offers copy pulled 2026-09-13 on Zaal's call. what_they_offer and best_fit_for
+      // described a service none of these people was ever confirmed to provide, and the
+      // champion block promised a claim "as Phase 1 submissions arrive in July" - a future
+      // tense about a season that closed on 2026-08-31. The fields stay in
+      // data/mentors.json untouched; nothing on the page reads them, so restoring the
+      // blocks for Season 2 is a revert of this hunk and nothing else.
+      bodyHtml += '<p style="margin-top: 1.2rem; font-size: 0.85rem; color: var(--text-muted);">' +
+        'Season 1 did not run a confirmed mentor roster, so this page makes no offer on this ' +
+        'person\'s behalf. Season 2 publishes a mentor only once they have confirmed.</p>';
       detailCard.innerHTML = bodyHtml;
       detailWrap.style.display = '';
     })
