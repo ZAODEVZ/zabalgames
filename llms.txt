@@ -975,7 +975,7 @@ community" and "build event not a video-game contest".
 
 ## Bonfire knowledge graph (queryable depth)
 
-This file is a static prompt. The Bonfire knowledge graph at `zabal.bonfires.ai` is the queryable version - 505 entities + 713 edges you can ask in natural language. Where this file states "WaveWarZ-Base settles Finals voting (Doc 720)", the graph holds the contract addresses, top performer wallets, Sam + Arthur build status, and every linked rail.
+This file is a static prompt. The Bonfire knowledge graph at `zabal.bonfires.ai` is the queryable version - 505 entities + 713 edges you can ask in natural language. The graph holds contract addresses, top performer wallets, build status and every linked rail. Note it was populated during Season 1 planning, so an entity there may still describe the WaveWarZ-Base Finals settlement that never ran - this file, not the graph, is the corrected record on that.
 
 Two paths:
 
@@ -987,7 +987,7 @@ Twenty-one kEngrams seeded by parallel research subagents (rounds 1-8, 2026-05-2
 | kEngram | Ask the graph about | One-line takeaway |
 |---|---|---|
 | `hermes-architecture` | Hermes Coder/Critic | Two Claude Code subprocesses (Opus codes, Sonnet critiques). Loop max 3x, score >=70 ships. Auth via Max plan OAuth. Pre-flight gate (typecheck+lint+test) runs between Coder and Critic. Fleet cap $20/day notional. |
-| `wavewarz-protocol` | WaveWarZ v1 (Solana, live, hundreds of battles + 400+ SOL volume per ~2026-05-23 snapshot - current at wavewarz-intelligence.vercel.app) + v2 (Base agentic, Sam + Arthur, mainnet July 2026, settles ZABAL Gamez Finals via Doc 720 hybrid Option B). | Top performers (snapshot): LUI, APORKALYPSE, PROF!T. ~11 X Spaces/week. |
+| `wavewarz-protocol` | WaveWarZ v1 (Solana, live, hundreds of battles + 400+ SOL volume per ~2026-05-23 snapshot - current at wavewarz-intelligence.vercel.app) + v2 (Base agentic, Sam + Arthur). **v2 status is NOT verifiable from this repo** - "mainnet July 2026" was a plan and there is no readable wavewarz-protocol repo to check, so do not repeat it as fact. What IS known: the Doc 720 hybrid settlement v2 was to provide for the ZABAL Gamez Finals never ran; the battles were decided on an X poll, the trading charts and a judges panel. | Top performers (snapshot): LUI, APORKALYPSE, PROF!T. ~11 X Spaces/week. |
 | `zabal-empire` | $ZABAL token + Empire Builder V3 (Basic tokenless vs Ascended). | Contract `0xbB48f19B0494Ff7C1fE5Dc2032aeEE14312f0b07` on Base, 346 holders, 5 active boosters (4 ERC20 + 1 QUOTIENT). Glonkybot 17-token 5x stack is the reference network-effect pattern. |
 | `farcaster-snap-2026` | Snap protocol v2.0 (current). | `application/vnd.farcaster.snap+json` MIME + content negotiation on Accept header. Frame v1 buttons dead. `fc:miniapp` meta is for Mini Apps (separate protocol). Caster has a known-hosts whitelist - zlank.online whitelisted, arbitrary custom domains do NOT unfurl as Snaps. Use zlank `/s/[uuid]` template. |
 | `bounty-payment-rails` | POIDH on Base/Arbitrum/Degen + Empire Builder distribution. | POIDH escrows ETH, claim-NFT serves as proof. 2.5% protocol fee. ZABAL Gamez builders: claim project -> POIDH bounty -> proof -> payout -> Empire Builder pulls submitter feed and airdrops ZABAL. poidh-sentinel agent (open source, 0x94t3z) automates the loop. |
