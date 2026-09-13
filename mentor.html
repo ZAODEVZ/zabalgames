@@ -9,19 +9,21 @@
        NOTHING ELSE IS CHANGED - the page, its handle routing and data/mentors.json are intact, so
        repopulating mentors.json is all it takes to switch this back on for Season 2. -->
   <meta name="robots" content="noindex">
-  <title>Mentor - ZABAL Gamez Season 1</title>
-  <meta name="description" content="A ZABAL Gamez Season 1 mentor profile. Loaded dynamically from /data/mentors.json by Farcaster handle.">
+  <title>Mentors - ZABAL Gamez</title>
+  <meta name="description" content="Season 1 ran no confirmed mentor roster. Season 2 will not publish a mentor until that person has confirmed.">
   <link rel="canonical" href="https://zabalgamez.com/mentor">
-  <meta property="og:title" content="Mentor - ZABAL Gamez Season 1">
-  <meta property="og:description" content="A ZABAL Gamez mentor profile.">
+  <meta property="og:title" content="The builder battle ran for 24 hours straight">
+  <meta property="og:description" content="ZABAL Gamez Season 1: the builder Finals ran noon Saturday to noon Sunday, 29 August, traded the whole way through, with Spaces opening at any hour so the builders could show what they had.">
   <meta property="og:url" content="https://zabalgamez.com/mentor">
   <meta property="og:image" content="https://zabalgamez.com/assets/embed-card-gamez.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="800">
   <meta property="og:image:alt" content="ZABAL Gamez">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See mentor","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/mentor","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
-  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See mentor","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/mentor","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="twitter:title" content="The builder battle ran for 24 hours straight">
+  <meta name="twitter:description" content="ZABAL Gamez Season 1: the builder Finals ran noon Saturday to noon Sunday, 29 August, traded the whole way through, with Spaces opening at any hour so the builders could show what they had.">
+  <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See Season 1","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/mentor","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
+  <meta name="fc:frame" content='{"version":"1","imageUrl":"https://zabalgamez.com/assets/embed-card-gamez.png","button":{"title":"See Season 1","action":{"type":"launch_miniapp","name":"ZABAL Gamez","url":"https://zabalgamez.com/mentor","splashImageUrl":"https://zabalgamez.com/assets/logo-gamez.png","splashBackgroundColor":"#070709"}}}'>
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <meta name="theme-color" content="#070709">
   <link rel="apple-touch-icon" href="/assets/icon.png">
@@ -66,17 +68,15 @@
   <section class="section" id="mentor-missing" style="display: none;">
     <div class="card">
       <h3>Mentor not found</h3>
-      <p>No mentor matched that handle. The roster is at <a href="/about.html#mentors" style="color: var(--cyan);">/about</a>. To volunteer as a mentor, DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color: var(--cyan);">@bettercallzaal</a> on Farcaster.</p>
+      <p>No mentor matched that handle. Season 1 ran no confirmed mentor roster - see <a href="/about.html#mentors" style="color: var(--cyan);">/about</a>.</p>
     </div>
   </section>
 
   <section class="section" id="mentor-empty" style="display: none;">
     <div class="card">
-      <h3>No handle in URL</h3>
-      <p>Append a Farcaster handle: <code>/mentor.html?handle=jordan</code> (no @ needed). Or browse the full roster at <a href="/about.html#mentors" style="color: var(--cyan);">/about</a>.</p>
-      <p style="margin-top: 0.6rem; font-size: 0.85rem; color: var(--text-muted);">
-        Want to mentor? DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color: var(--cyan);">@bettercallzaal</a> on Farcaster. 8 slots total, ~0 locked so far.
-      </p>
+      <h3>There is no mentor roster to show</h3>
+      <p><strong>Season 1 did not run a confirmed mentor roster.</strong> An early plan named mentors before anyone had committed, and the embedded-mentor pairing never happened, so this page does not list one.</p>
+      <p style="margin-top: 0.6rem;">Season 2 will not publish a mentor until that person has confirmed. Read where Season 1 actually landed on <a href="/results" style="color: var(--cyan);">/results</a>, or what the programme is on <a href="/about.html#mentors" style="color: var(--cyan);">/about</a>.</p>
     </div>
   </section>
 
@@ -152,30 +152,14 @@
   var emptyWrap = document.getElementById('mentor-empty');
 
   if (!handle) {
-    // No handle -> render the full mentor directory so the roster is browsable.
-    eyebrow.textContent = 'The mentor roster';
-    nameEl.innerHTML = 'Meet the <span class="accent">mentors</span>';
-    taglineEl.textContent = 'ZAO builders pairing with July champions. Tap a mentor to see exactly how they can help your build.';
+    // Rewritten 2026-09-13 on Zaal's call. This used to render a browsable roster from
+    // data/mentors.json; Season 1 ran no confirmed roster, so listing one was the claim
+    // #734 and #736 removed everywhere else. The per-handle profile renderer below is
+    // untouched, so repopulating mentors.json is all it takes to switch this back on.
+    eyebrow.textContent = 'Mentors';
+    nameEl.innerHTML = 'No confirmed <span class="accent">roster</span>';
+    taglineEl.textContent = 'Season 1 named mentors before anyone had committed, and the pairing never happened. Season 2 publishes a mentor only once they have confirmed.';
     emptyWrap.style.display = '';
-    fetch('/data/mentors.json', { cache: 'no-cache' })
-      .then(function (r) { return r.ok ? r.json() : { mentors: [] }; })
-      .then(function (data) {
-        function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-        var list = (data.mentors || []);
-        if (!list.length) return;
-        emptyWrap.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;">' +
-          list.map(function (m) {
-            var h = esc((m.handle || '').replace(/^@/, ''));
-            return '<a class="card" style="display:block;text-decoration:none;color:inherit;" href="/mentor?handle=' + h + '">' +
-              (m.expertise_label ? '<div class="card-label" style="color:var(--gold);letter-spacing:0.08em;">' + esc(m.expertise_label) + '</div>' : '') +
-              '<h3 style="font-family:Syne,sans-serif;font-weight:700;margin:0.3rem 0 0.2rem;">' + esc(m.name || h) + '</h3>' +
-              (m.headline ? '<p style="font-size:0.85rem;color:var(--text);margin:0 0 0.4rem;">' + esc(m.headline) + '</p>' : '') +
-              (m.tagline ? '<p style="font-size:0.82rem;color:var(--text-muted);margin:0;line-height:1.5;">' + esc(m.tagline) + '</p>' : '') +
-              '<p style="margin:0.6rem 0 0;font-size:0.78rem;color:var(--cyan);">See how they help -&gt;</p></a>';
-          }).join('') + '</div>' +
-          '<p style="margin-top:1.2rem;font-size:0.85rem;color:var(--text-muted);">Want to mentor? DM <a href="https://farcaster.xyz/bettercallzaal" target="_blank" rel="noopener" style="color:var(--cyan);">@bettercallzaal</a>.</p>';
-      })
-      .catch(function () { /* static fallback card stays */ });
     return;
   }
 
@@ -194,7 +178,9 @@
         return;
       }
 
-      eyebrow.textContent = 'ZABAL Gamez Season 1 Mentor' + (mentor.locked ? ' - Locked' : ' - Tentative');
+      // 'Locked'/'Tentative' removed 2026-09-13: locked:true in mentors.json meant "confirmed",
+      // and Season 1 had no confirmed roster. The card still renders, which is the machinery.
+      eyebrow.textContent = 'Mentor profile';
       nameEl.innerHTML = esc(mentor.name) + ' <span class="accent">@' + esc(mentor.handle) + '</span>';
       taglineEl.textContent = mentor.tagline || '';
 
