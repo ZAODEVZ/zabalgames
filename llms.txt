@@ -43,7 +43,7 @@ Anyone can submit an app, repository, song, visual, video, article, event, proto
 - **info@thezao.com** is an alternate front door that feeds the same canonical review queue.
 - **Farcaster mini app** provides optional identity and social features. It is not required to submit.
 
-**Prize (paid out):** 500 USDC pool, tiered - 100 to each track champion, 50 to each runner-up, 50 for the highest trading volume across the season. Every finalist was paid. **Pool sponsor: The ZAO festivals team.** Looking for sponsors to grow the pool for the next season; contact info@thezao.com.
+**Prize:** a 500 USDC pool, of which **450 was paid** - 100 to each track champion and 50 to each runner-up, so every finalist was paid. The pool's third part, 50 USDC for the highest trading volume, was NOT paid: no finalist had meaningful volume (Zaal, 2026-09-13). There is no volume-award winner to name. **Pool sponsor: The ZAO festivals team.** Looking for sponsors to grow the pool for the next season; contact info@thezao.com.
 
 ---
 
@@ -224,7 +224,7 @@ node scripts/push-to-bonfire.mjs              # push the graph to Bonfire
 |--------|------|--------|---------------|
 | BCZ YapZ | interview-archive | live | Zaal's long-form interview show (bczyapz.com, bettercallzaal/bcz-yapz). Already emits `content/bonfire-ingest/` from each transcript - a native Bonfire feeder. Pulled via github-content. |
 | Farcaster Agentic Bootcamp | bootcamp | archived | Builders Garden + Dev3Pack 2-week program (Mar 30 - Apr 10 2026). The origin thread: fed FarHack, where Zaal/Zlank won the Snap category ($1,000), funding ZAOstock. |
-| ZAO Festivals $500 Bounty | bounty | archived | The ZAO festivals team funded the ZABAL Gamez Season 1 prize pool - 500 USDC in three parts: 100 to each track champion, 50 to each runner-up, and a further 50 to whichever of the six drew the highest trading volume across the season - 300 + 150 + 50 = 500 exactly. Every finalist was paid. Whether and to whom the 50 USDC volume award went is NOT in the record - the trading figures for all three battles were never captured - and no payout date is recorded either. |
+| ZAO Festivals $500 Bounty | bounty | archived | The ZAO festivals team funded the ZABAL Gamez Season 1 prize pool - 500 USDC in three parts: 100 to each track champion, 50 to each runner-up, and a further 50 to whichever of the six drew the highest trading volume across the season - 300 + 150 + 50 = 500 exactly. It DISBURSED 450: every finalist was paid, champions 100 each and runners-up 50 each. The 50 USDC volume award was NOT paid - Zaal 2026-09-13: no finalist had meaningful volume. No payout date is recorded. |
 | Farcaster Batches | event | live | GM Farcaster's week-long builder showcase where projects present their work live. Run and hosted publicly by GM Farcaster; ZABAL Gamez takes part and adds a summary + transcript for each day. |
 | ZABAL Gamez Workshops | workshop | archived | June workshop month - ZAO builders each recorded a ~30-min session on tools they had built. 31 recorded workshop sessions ran through June - the canonical Season 1 figure in data/season-1-results.json - and the whole archive is watchable at /recordings. |
 
