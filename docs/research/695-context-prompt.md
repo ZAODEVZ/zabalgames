@@ -29,7 +29,12 @@ The three months:
 
 All 8 finalists win. The real competition is getting selected in July; the Finals are collaboration, not a playoff. Every finalist is paid (a tiered pool of about $500 USDC - roughly $150 / $100 / $75 / $35 x5), gets a participation NFT, earns Respect during the event, keeps a GitHub portfolio piece, and gets their streamed session footage.
 
-The 8 locked mentors: ohnahji, candytoybox, eduard, freezetheverse, Iman, Thy Revolution, Tom Fellenz, Adam. Each mentor holds a Hats Protocol "ZAO Mentor S1" onchain role.
+**Mentors were never locked in Season 1.** This document once named eight and said each held a
+Hats Protocol "ZAO Mentor S1" onchain role. That was the plan before anyone had committed, not a
+record of who did - Zaal, 2026-09-13: the list came "wayy before we actually locked in all that",
+and "we never really did the mentor thing well through season 1". The named roster was dropped in
+May for open recruitment (`701-canonical-state.md` Decision #1). Season 2 is meant to have mentors
+actually committed up front.
 
 You build in the open. Visibility is the anti-cheat and the point: live stream, or recorded screen uploads, or public AI prompt logs, or frequent build casts. You pick a **build track** by brand - ZAOstock, ZABAL, WaveWarZ, or The ZAO. The rest of this prompt is the shared context underneath all four tracks.
 
@@ -88,7 +93,7 @@ You are not building for a faceless org. Key people:
 - **DCoop** - hip-hop artist, leads music operations and a satellite festival.
 - **Steve Peer** - a 37-year Ellsworth, Maine music fixture, co-curates ZAOstock and anchors it locally.
 
-The remaining ZABAL Gamez mentors are **eduard**, **freezetheverse**, and **Adam**.
+There is no remaining mentor roster to write up: see the mentor note above.
 
 ### 6. The brands and your four build tracks
 
