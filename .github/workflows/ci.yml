@@ -33,11 +33,11 @@ jobs:
         run: |
           n=0; bad=0
           while IFS= read -r -d '' f; do
-            n=1; node --check "" || bad=1
+            n=$((n+1)); node --check "$f" || { bad=$((bad+1)); echo "FAIL $f"; }
           done < <(git ls-files -z '*.js' '*.mjs')
-          echo "checked  files,  failed"
-          [ "" -gt 0 ] || { echo "UNKNOWN: 0 files checked"; exit 2; }
-          [ "" -eq 0 ]
+          echo "checked $n files, $bad failed"
+          [ "$n" -gt 0 ] || { echo "UNKNOWN: 0 files checked"; exit 2; }
+          [ "$bad" -eq 0 ]
   docs:
     name: links, frontmatter, secrets
     runs-on: ubuntu-latest
