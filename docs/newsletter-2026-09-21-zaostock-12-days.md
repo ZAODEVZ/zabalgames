@@ -11,6 +11,11 @@ below is estimated.
   rail may be revisited in favor of Unlock - "we might just make the tickets
   again on unlock." The site itself never names Stripe publicly either; this
   draft says "by card" only, so it stays true regardless of which rail wins.
+  NOT a like-for-like swap, either - Zorca, from Unlock's own guide, 2026-09-21:
+  Unlock's card path charges 10% of the lock price on top of Stripe's own
+  2.9% + $0.30. If Unlock replaces Stripe here, do not "fix" this omission by
+  adding a cheaper-sounding claim - it would be the more expensive rail, not
+  the cheaper one.
 - Does NOT mention a digital collectible / Unlock tier. Nothing is deployed
   yet - that lock doesn't exist. Add it once it's real, not before.
 - Subtitle carries the news, per house rule - it's what shows in the inbox.
@@ -42,6 +47,10 @@ Two optional tiers help cover artist fees, materials and production - neither bu
 ## The day, if you can't be there
 
 The stream goes live at zaostock.com/live. The full watch-party list goes out closer to the day.
+
+## The brand kit has sound now
+
+A 30-second spot and a radio interview are live at zaostock.com/brand/audio - make something with them.
 
 zaostock.com/tickets for the RSVP and the two ways to chip in.
 
