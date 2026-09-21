@@ -1,0 +1,76 @@
+name: CI
+
+# Every JS/MJS file must parse (node --check, all of them; ~1s).
+# Markdown checks look only at what the PR or push changed, so existing debt on main does not
+# turn every run red: frontmatter must parse, relative links must resolve,
+# and no commit in the range may add anything shaped like a secret.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GITLEAKS_VERSION: 8.30.1
+
+jobs:
+  syntax:
+    name: js syntax
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: node --check every js and mjs file
+        run: |
+          n=0; bad=0
+          while IFS= read -r -d '' f; do
+            n=1; node --check "" || bad=1
+          done < <(git ls-files -z '*.js' '*.mjs')
+          echo "checked  files,  failed"
+          [ "" -gt 0 ] || { echo "UNKNOWN: 0 files checked"; exit 2; }
+          [ "" -eq 0 ]
+  docs:
+    name: links, frontmatter, secrets
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: commit range
+        id: range
+        run: |
+          if [ "${{ github.event_name }}" = pull_request ]; then
+            base="${{ github.event.pull_request.base.sha }}"; head="${{ github.event.pull_request.head.sha }}"
+          else
+            base="${{ github.event.before }}"; head="${{ github.sha }}"
+          fi
+          # A new branch push has an all-zero "before"; check just the head commit.
+          if ! git cat-file -e "$base^{commit}" 2>/dev/null; then base="$head~1"; fi
+          echo "base=$base" >> "$GITHUB_OUTPUT"; echo "head=$head" >> "$GITHUB_OUTPUT"
+          echo "range $base..$head"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet pyyaml
+      - name: frontmatter and links (changed files)
+        run: |
+          git diff --name-only --diff-filter=AMR -z "${{ steps.range.outputs.base }}...${{ steps.range.outputs.head }}" -- '*.md' > changed.z
+          n=$(tr -cd '\0' < changed.z | wc -c | tr -d ' ')
+          echo "changed markdown files: $n"
+          if [ "$n" -eq 0 ]; then echo "no markdown changed; nothing to check"; exit 0; fi
+          xargs -0 python3 .github/scripts/docs-check.py . < changed.z
+      - name: secret scan (commits in range)
+        run: |
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | tar xz gitleaks
+          ./gitleaks git --redact --no-banner --exit-code 1 \
+            --log-opts="${{ steps.range.outputs.base }}..${{ steps.range.outputs.head }}" .
