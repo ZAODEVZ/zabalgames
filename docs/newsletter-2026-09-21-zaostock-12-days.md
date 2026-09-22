@@ -18,10 +18,10 @@ below is estimated.
   the cheaper one.
 - Does NOT mention a digital collectible / Unlock tier. Nothing is deployed
   yet - that lock doesn't exist. Add it once it's real, not before.
-- Does NOT link zaostock.com/brand/audio - that page 404s live (checked
-  2026-09-22), so the "brand kit has sound now" section that named it was
-  dropped in the 0922 refresh, not restored. Add the section back once the
-  page is actually live.
+- The "brand kit has sound now" section links zaostock.com/brand, not
+  /brand/audio - the latter was never a real route (files sit under
+  public/brand/audio; the section lives on /brand itself). Confirmed live
+  2026-09-22: 200, 30-second commercial and radio interview both on the page.
 - Subtitle carries the news, per house rule - it's what shows in the inbox.
 
 ---
@@ -51,6 +51,10 @@ Two optional tiers help cover artist fees, materials and production - neither bu
 ## The day, if you can't be there
 
 The stream goes live at zaostock.com/live. The full watch-party list goes out closer to the day.
+
+## The brand kit has sound now
+
+A 30-second spot and a radio interview are live at zaostock.com/brand - make something with them.
 
 zaostock.com/tickets for the RSVP and the two ways to chip in.
 
