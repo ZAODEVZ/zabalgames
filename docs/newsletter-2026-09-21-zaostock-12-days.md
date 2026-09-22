@@ -18,13 +18,17 @@ below is estimated.
   the cheaper one.
 - Does NOT mention a digital collectible / Unlock tier. Nothing is deployed
   yet - that lock doesn't exist. Add it once it's real, not before.
+- The "brand kit has sound now" section links zaostock.com/brand, not
+  /brand/audio - the latter was never a real route (files sit under
+  public/brand/audio; the section lives on /brand itself). Confirmed live
+  2026-09-22: 200, 30-second commercial and radio interview both on the page.
 - Subtitle carries the news, per house rule - it's what shows in the inbox.
 
 ---
 
 zm
 
-**12 days to ZAOstock. Every act on the bill is confirmed, and the day is free.**
+**11 days to ZAOstock. Every act on the bill is confirmed, and the day is free.**
 
 Saturday, October 3, 2026. Noon to 6 PM. Franklin Street Parklet, Ellsworth, Maine. Free to attend, no ticket checked at the gate, rain or shine under tent cover.
 
@@ -41,8 +45,8 @@ City of Ellsworth, Black Moon Public House, Star 97.7, Wallace Events, WaveWarZ,
 Admission is free either way. RSVP so we know how many people to plan for: zaostock.com/tickets
 
 Two optional tiers help cover artist fees, materials and production - neither buys a better spot, just a name on the credit list:
-- **Supporter, $20** - PayPal or by card.
-- **Pro Ticket, $50** - the same, plus a 1:1 with the team before the event. PayPal or by card.
+- **Supporter, $20** - by card.
+- **Pro Ticket, $50** - the same, plus a 1:1 with the team before the event. By card.
 
 ## The day, if you can't be there
 
@@ -50,7 +54,7 @@ The stream goes live at zaostock.com/live. The full watch-party list goes out cl
 
 ## The brand kit has sound now
 
-A 30-second spot and a radio interview are live at zaostock.com/brand/audio - make something with them.
+A 30-second spot and a radio interview are live at zaostock.com/brand - make something with them.
 
 zaostock.com/tickets for the RSVP and the two ways to chip in.
 
