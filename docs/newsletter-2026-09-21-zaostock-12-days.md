@@ -11,8 +11,17 @@ below is estimated.
   rail may be revisited in favor of Unlock - "we might just make the tickets
   again on unlock." The site itself never names Stripe publicly either; this
   draft says "by card" only, so it stays true regardless of which rail wins.
+  NOT a like-for-like swap, either - Zorca, from Unlock's own guide, 2026-09-21:
+  Unlock's card path charges 10% of the lock price on top of Stripe's own
+  2.9% + $0.30. If Unlock replaces Stripe here, do not "fix" this omission by
+  adding a cheaper-sounding claim - it would be the more expensive rail, not
+  the cheaper one.
 - Does NOT mention a digital collectible / Unlock tier. Nothing is deployed
   yet - that lock doesn't exist. Add it once it's real, not before.
+- Does NOT link zaostock.com/brand/audio - that page 404s live (checked
+  2026-09-22), so the "brand kit has sound now" section that named it was
+  dropped in the 0922 refresh, not restored. Add the section back once the
+  page is actually live.
 - Subtitle carries the news, per house rule - it's what shows in the inbox.
 
 ---
